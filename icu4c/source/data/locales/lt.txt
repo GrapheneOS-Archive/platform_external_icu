@@ -771,18 +771,18 @@ lt{
                         "G",
                     }
                     wide{
-                        "sausis",
-                        "vasaris",
-                        "kovas",
-                        "balandis",
-                        "gegužė",
-                        "birželis",
-                        "liepa",
-                        "rugpjūtis",
-                        "rugsėjis",
-                        "spalis",
-                        "lapkritis",
-                        "gruodis",
+                        "sausio",
+                        "vasario",
+                        "kovo",
+                        "balandžio",
+                        "gegužės",
+                        "birželio",
+                        "liepos",
+                        "rugpjūčio",
+                        "rugsėjo",
+                        "spalio",
+                        "lapkričio",
+                        "gruodžio",
                     }
                 }
                 stand-alone{
