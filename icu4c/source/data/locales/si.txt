@@ -313,6 +313,10 @@ si{
                 "පෙ.ව.",
                 "ප.ව.",
             }
+            AmPmMarkersNarrow{
+                "පෙ",
+                "ප",
+            }
             DateTimePatterns{
                 "a h.mm.ss zzzz",
                 "a h.mm.ss z",

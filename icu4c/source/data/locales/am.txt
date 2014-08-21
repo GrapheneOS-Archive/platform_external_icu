@@ -425,6 +425,10 @@ am{
                 "ጥዋት",
                 "ከሰዓት",
             }
+            AmPmMarkersNarrow{
+                "ጠ",
+                "ከ",
+            }
             DateTimePatterns{
                 "h:mm:ss a zzzz",
                 "h:mm:ss a z",

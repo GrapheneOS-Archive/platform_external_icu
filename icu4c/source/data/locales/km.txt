@@ -290,6 +290,10 @@ km{
                 "ព្រឹក",
                 "ល្ងាច",
             }
+            AmPmMarkersNarrow{
+                "ព្រឹក",
+                "ល្ងាច",
+            }
             DateTimePatterns{
                 "h:mm:ss a zzzz",
                 "h:mm:ss a z",
