@@ -316,6 +316,10 @@ af{
                 "vm.",
                 "nm.",
             }
+            AmPmMarkersNarrow{
+                "v",
+                "n",
+            }
             DateTimePatterns{
                 "h:mm:ss a zzzz",
                 "h:mm:ss a z",

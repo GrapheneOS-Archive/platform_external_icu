@@ -325,6 +325,10 @@ el{
                 "π.μ.",
                 "μ.μ.",
             }
+            AmPmMarkersNarrow{
+                "π",
+                "μ",
+            }
             DateTimePatterns{
                 "h:mm:ss a zzzz",
                 "h:mm:ss a z",
