@@ -105,7 +105,8 @@ src_files += \
         tzgnames.cpp    tznames.cpp  tznames_impl.cpp \
         udateintervalformat.cpp  upluralrules.cpp \
         scientificformathelper.cpp \
-        sharedbreakiterator.cpp
+        sharedbreakiterator.cpp \
+        scientificnumberformatter.cpp
 
 
 c_includes = \
