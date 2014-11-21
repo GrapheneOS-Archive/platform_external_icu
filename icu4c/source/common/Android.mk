@@ -22,6 +22,7 @@ LOCAL_PATH:= $(call my-dir)
 src_files := \
 	cmemory.c          cstring.c          \
 	cwchar.c           locmap.c           \
+	loadednormalizer2impl.cpp \
 	lrucache.cpp \
 	punycode.cpp       putil.cpp          \
 	sharedobject.cpp \
@@ -30,7 +31,7 @@ src_files := \
 	ubidiln.c          ubidi_props.c      \
 	ubidiwrt.c         ucase.cpp          \
 	ucasemap.cpp       ucat.c             \
-	uchar.c            ucln_cmn.c         \
+	uchar.c            ucln_cmn.cpp       \
 	ucmndata.c                            \
 	ucnv2022.cpp       ucnv_bld.cpp       \
 	ucnvbocu.cpp       ucnv.c             \
@@ -54,13 +55,14 @@ src_files := \
 	usc_impl.c         uscript.c          \
 	uscript_props.cpp  \
 	ushape.cpp         ustrcase.cpp       \
-	ustr_cnv.c         ustrfmt.c          \
+	ustr_cnv.cpp       ustrfmt.c          \
 	ustring.cpp        ustrtrns.cpp       \
 	ustr_wcs.cpp       utf_impl.c         \
 	utrace.c           utrie.cpp          \
 	utypes.c           wintz.c            \
-	utrie2_builder.cpp icuplug.c          \
+	utrie2_builder.cpp icuplug.cpp        \
 	propsvec.c         ulist.c            \
+	uloc_keytype.cpp \
 	uloc_tag.c         ucnv_ct.c
 
 src_files += \
@@ -83,6 +85,7 @@ src_files += \
 	ubrk.cpp         \
 	uchriter.cpp    uhash_us.cpp     \
 	uidna.cpp       uiter.cpp        \
+	unifiedcache.cpp \
 	unifilt.cpp     unifunct.cpp     \
 	uniset.cpp      uniset_props.cpp \
 	unistr_case.cpp unistr_cnv.cpp   \

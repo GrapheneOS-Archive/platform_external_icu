@@ -302,9 +302,17 @@ fi{
         ZW{"Zimbabwe"}
         ZZ{"tuntematon alue"}
     }
+    Countries%variant{
+        CD{"Kongo-Kinshasa"}
+        CG{"Kongo-Brazzaville"}
+        CI{"Côte d’Ivoire"}
+        FK{"Falklandinsaaret (Malvinassaaret)"}
+        MK{"EJT Makedonia"}
+        TL{"Timor-Leste"}
+    }
     CountriesShort{
         GB{"Britannia"}
         US{"USA"}
     }
-    Version{"2.0.98.52"}
+    Version{"2.1.8.9"}
 }

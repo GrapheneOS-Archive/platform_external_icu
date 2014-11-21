@@ -3338,7 +3338,7 @@ zoneinfo64:table(nofallback) {
   "CA", //Z#166 America/Moncton
   "MX", //Z#167 America/Monterrey
   "UY", //Z#168 America/Montevideo
-  "001",//Z#169 America/Montreal
+  "CA", //Z#169 America/Montreal
   "MS", //Z#170 America/Montserrat
   "BS", //Z#171 America/Nassau
   "US", //Z#172 America/New_York

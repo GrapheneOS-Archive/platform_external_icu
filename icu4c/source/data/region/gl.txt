@@ -302,5 +302,15 @@ gl{
         ZW{"Cimbabue"}
         ZZ{"Rexión descoñecida"}
     }
-    Version{"2.0.98.76"}
+    Countries%variant{
+        CD{"Congo (RDC)"}
+        CG{"Congo (RC)"}
+        CI{"Costa do Marfil"}
+        FK{"Illas Malvinas (Falkland)"}
+        MK{"Macedonia (ARIM)"}
+    }
+    CountriesShort{
+        GB{"RU"}
+    }
+    Version{"2.1.8.9"}
 }

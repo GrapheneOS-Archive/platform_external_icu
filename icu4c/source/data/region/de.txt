@@ -195,7 +195,7 @@ de{
         ML{"Mali"}
         MM{"Myanmar"}
         MN{"Mongolei"}
-        MO{"Macao"}
+        MO{"Macau"}
         MP{"Nördliche Marianen"}
         MQ{"Martinique"}
         MR{"Mauretanien"}
@@ -302,8 +302,17 @@ de{
         ZW{"Simbabwe"}
         ZZ{"Unbekannte Region"}
     }
+    Countries%variant{
+        CD{"Kongo (Demokratische Republik)"}
+        CG{"Kongo (Republik)"}
+        CI{"Elfenbeinküste"}
+        FK{"Falklandinseln (Malwinen)"}
+        MK{"Mazedonien (EJR)"}
+        TL{"Osttimor"}
+    }
     CountriesShort{
         GB{"UK"}
+        US{"USA"}
     }
-    Version{"2.0.98.52"}
+    Version{"2.1.8.9"}
 }

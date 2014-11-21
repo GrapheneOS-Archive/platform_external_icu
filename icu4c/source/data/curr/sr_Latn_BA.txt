@@ -8,5 +8,11 @@
 // ***************************************************************************
 sr_Latn_BA{
     %%Parent{"sr_Latn"}
-    Version{"2.0.90.61"}
+    Currencies{
+        BAM{
+            "KM",
+            "Konvertibilna Marka",
+        }
+    }
+    Version{"2.1.8.20"}
 }
