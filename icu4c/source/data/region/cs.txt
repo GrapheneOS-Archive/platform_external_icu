@@ -23,7 +23,7 @@ cs{
         017{"Střední Afrika"}
         018{"Jižní Afrika"}
         019{"Amerika"}
-        021{"Severní Amerika oblast"}
+        021{"Severní Amerika (oblast)"}
         029{"Karibik"}
         030{"Východní Asie"}
         034{"Jižní Asie"}
@@ -82,9 +82,9 @@ cs{
         BZ{"Belize"}
         CA{"Kanada"}
         CC{"Kokosové ostrovy"}
-        CD{"Kongo - Kinshasa"}
+        CD{"Kongo – Kinshasa"}
         CF{"Středoafrická republika"}
-        CG{"Kongo - Brazzaville"}
+        CG{"Kongo – Brazzaville"}
         CH{"Švýcarsko"}
         CI{"Pobřeží slonoviny"}
         CK{"Cookovy ostrovy"}
@@ -188,7 +188,7 @@ cs{
         MC{"Monako"}
         MD{"Moldavsko"}
         ME{"Černá Hora"}
-        MF{"Svatý Martin"}
+        MF{"Svatý Martin (Francie)"}
         MG{"Madagaskar"}
         MH{"Marshallovy ostrovy"}
         MK{"Makedonie"}
@@ -259,7 +259,7 @@ cs{
         SS{"Jižní Súdán"}
         ST{"Svatý Tomáš a Princův ostrov"}
         SV{"Salvador"}
-        SX{"Sint Maarten"}
+        SX{"Svatý Martin (Nizozemsko)"}
         SY{"Sýrie"}
         SZ{"Svazijsko"}
         TA{"Tristan da Cunha"}
@@ -302,9 +302,15 @@ cs{
         ZW{"Zimbabwe"}
         ZZ{"Neznámá oblast"}
     }
+    Countries%variant{
+        CD{"Kongo (DRK)"}
+        CG{"Kongo (republika)"}
+        FK{"Falklandské ostrovy (Malvíny)"}
+        MK{"Makedonie (FYROM)"}
+    }
     CountriesShort{
         GB{"VB"}
         US{"USA"}
     }
-    Version{"2.0.98.52"}
+    Version{"2.1.8.9"}
 }

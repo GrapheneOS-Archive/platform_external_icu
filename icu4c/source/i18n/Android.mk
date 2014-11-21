@@ -102,7 +102,9 @@ src_files += \
         alphaindex.cpp  bocsu.cpp    decfmtst.cpp \
         smpdtfst.cpp    smpdtfst.h   tzfmt.cpp \
         tzgnames.cpp    tznames.cpp  tznames_impl.cpp \
-        udateintervalformat.cpp  upluralrules.cpp
+        udateintervalformat.cpp  upluralrules.cpp \
+        scientificformathelper.cpp \
+        sharedbreakiterator.cpp
 
 
 c_includes = \

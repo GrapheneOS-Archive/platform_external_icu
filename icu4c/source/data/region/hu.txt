@@ -68,7 +68,7 @@ hu{
         BH{"Bahrein"}
         BI{"Burundi"}
         BJ{"Benin"}
-        BL{"Saint Barthélemy"}
+        BL{"Saint-Barthélemy"}
         BM{"Bermuda"}
         BN{"Brunei"}
         BO{"Bolívia"}
@@ -302,9 +302,15 @@ hu{
         ZW{"Zimbabwe"}
         ZZ{"Ismeretlen körzet"}
     }
+    Countries%variant{
+        CD{"Kongó (KDK)"}
+        CG{"Kongó (Köztársaság)"}
+        FK{"Falkland-szigetek (Malvin-szigetek)"}
+        MK{"Macedónia (MVJK)"}
+    }
     CountriesShort{
         GB{"UK"}
         US{"USA"}
     }
-    Version{"2.0.98.52"}
+    Version{"2.1.8.9"}
 }
