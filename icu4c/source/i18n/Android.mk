@@ -104,7 +104,6 @@ src_files += \
         smpdtfst.cpp    smpdtfst.h   tzfmt.cpp \
         tzgnames.cpp    tznames.cpp  tznames_impl.cpp \
         udateintervalformat.cpp  upluralrules.cpp \
-        scientificformathelper.cpp \
         sharedbreakiterator.cpp \
         scientificnumberformatter.cpp
 
