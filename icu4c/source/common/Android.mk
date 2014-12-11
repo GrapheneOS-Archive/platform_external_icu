@@ -132,13 +132,12 @@ c_includes := \
 local_cflags := '-DICU_DATA_DIR_PREFIX_ENV_VAR="ANDROID_ROOT"'
 local_cflags += '-DICU_DATA_DIR="/usr/icu"'
 
-# bionic doesn't have <langinfo.h>.
-local_cflags += -DU_HAVE_NL_LANGINFO_CODESET=0
-
 local_cflags += -D_REENTRANT
 local_cflags += -DU_COMMON_IMPLEMENTATION
 
 local_cflags += -O3 -fvisibility=hidden
+
+local_cflags += -Wno-unused-parameter -Wno-missing-field-initializers -Wno-sign-compare
 
 #
 # Build for the target (device).
