@@ -82,16 +82,16 @@ LOCAL_SRC_FILES := $(icu4j_src_files)
 LOCAL_JAVA_RESOURCE_DIRS := $(icu4j_resource_dirs)
 LOCAL_STATIC_JAVA_LIBRARIES := icu4j-icudata-host icu4j-icutzdata-host
 LOCAL_JAVACFLAGS := $(icu4j_javac_flags)
-LOCAL_MODULE := icu4j-hostdex
-include $(BUILD_HOST_DALVIK_JAVA_LIBRARY)
+LOCAL_MODULE := icu4j-host
+include $(BUILD_HOST_JAVA_LIBRARY)
 
 include $(CLEAR_VARS)
 LOCAL_SRC_FILES := $(icu4j_src_files)
 LOCAL_JAVA_RESOURCE_DIRS := $(icu4j_resource_dirs)
 LOCAL_STATIC_JAVA_LIBRARIES := icu4j-icudata-host icu4j-icutzdata-host
 LOCAL_JAVACFLAGS := $(icu4j_javac_flags)
-LOCAL_MODULE := icu4j-host
-include $(BUILD_HOST_JAVA_LIBRARY)
+LOCAL_MODULE := icu4j-hostdex
+include $(BUILD_HOST_DALVIK_JAVA_LIBRARY)
 
 include $(CLEAR_VARS)
 LOCAL_SRC_FILES := $(icu4j_test_src_files)
