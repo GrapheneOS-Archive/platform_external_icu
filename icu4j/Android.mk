@@ -66,7 +66,7 @@ include $(BUILD_MULTI_PREBUILT)
 
 include $(CLEAR_VARS)
 LOCAL_IS_HOST_MODULE := true
-LOCAL_PREBUILT_STATIC_JAVA_LIBRARIES := $(icu4j_data_jars)
+LOCAL_PREBUILT_STATIC_JAVA_LIBRARIES := $(subst :,-host:,$(icu4j_data_jars))
 include $(BUILD_MULTI_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -80,7 +80,7 @@ include $(BUILD_STATIC_JAVA_LIBRARY)
 include $(CLEAR_VARS)
 LOCAL_SRC_FILES := $(icu4j_src_files)
 LOCAL_JAVA_RESOURCE_DIRS := $(icu4j_resource_dirs)
-LOCAL_STATIC_JAVA_LIBRARIES := icu4j-icudata icu4j-icutzdata
+LOCAL_STATIC_JAVA_LIBRARIES := icu4j-icudata-host icu4j-icutzdata-host
 LOCAL_JAVACFLAGS := $(icu4j_javac_flags)
 LOCAL_MODULE := icu4j-hostdex
 include $(BUILD_HOST_DALVIK_JAVA_LIBRARY)
@@ -88,7 +88,7 @@ include $(BUILD_HOST_DALVIK_JAVA_LIBRARY)
 include $(CLEAR_VARS)
 LOCAL_SRC_FILES := $(icu4j_src_files)
 LOCAL_JAVA_RESOURCE_DIRS := $(icu4j_resource_dirs)
-LOCAL_STATIC_JAVA_LIBRARIES := icu4j-icudata icu4j-icutzdata
+LOCAL_STATIC_JAVA_LIBRARIES := icu4j-icudata-host icu4j-icutzdata-host
 LOCAL_JAVACFLAGS := $(icu4j_javac_flags)
 LOCAL_MODULE := icu4j-host
 include $(BUILD_HOST_JAVA_LIBRARY)
@@ -105,7 +105,7 @@ include $(BUILD_STATIC_JAVA_LIBRARY)
 include $(CLEAR_VARS)
 LOCAL_SRC_FILES := $(icu4j_test_src_files)
 LOCAL_JAVA_RESOURCE_DIRS := $(icu4j_test_resource_dirs)
-LOCAL_STATIC_JAVA_LIBRARIES := icu4j-testdata
+LOCAL_STATIC_JAVA_LIBRARIES := icu4j-testdata-host
 LOCAL_JAVA_LIBRARIES := icu4j-host
 LOCAL_JAVACFLAGS := $(icu4j_test_javac_flags)
 LOCAL_MODULE := icu4j-tests-host
@@ -114,7 +114,7 @@ include $(BUILD_HOST_JAVA_LIBRARY)
 include $(CLEAR_VARS)
 LOCAL_SRC_FILES := $(icu4j_test_src_files)
 LOCAL_JAVA_RESOURCE_DIRS := $(icu4j_test_resource_dirs)
-LOCAL_STATIC_JAVA_LIBRARIES := icu4j-testdata
+LOCAL_STATIC_JAVA_LIBRARIES := icu4j-testdata-host
 LOCAL_JAVA_LIBRARIES := icu4j-hostdex
 LOCAL_JAVACFLAGS := $(icu4j_test_javac_flags)
 LOCAL_MODULE := icu4j-tests-hostdex
