@@ -104,6 +104,10 @@ LOCAL_JAVACFLAGS := $(icu4j_test_javac_flags)
 LOCAL_MODULE := icu4j-tests
 include $(BUILD_STATIC_JAVA_LIBRARY)
 
+$(LOCAL_INTERMEDIATE_TARGETS): PRIVATE_EXTRA_JAR_ARGS += \
+    -C "$(LOCAL_PATH)/main/tests/core/src" \
+    "com/ibm/icu/dev/test/serializable/data"
+
 include $(CLEAR_VARS)
 LOCAL_SRC_FILES := $(icu4j_test_src_files)
 LOCAL_JAVA_RESOURCE_DIRS := $(icu4j_test_resource_dirs)
@@ -112,6 +116,10 @@ LOCAL_JAVA_LIBRARIES := icu4j-host
 LOCAL_JAVACFLAGS := $(icu4j_test_javac_flags)
 LOCAL_MODULE := icu4j-tests-host
 include $(BUILD_HOST_JAVA_LIBRARY)
+
+$(LOCAL_INTERMEDIATE_TARGETS): PRIVATE_EXTRA_JAR_ARGS += \
+    -C "$(LOCAL_PATH)/main/tests/core/src" \
+    "com/ibm/icu/dev/test/serializable/data"
 
 ifeq ($(HOST_OS),linux)
 include $(CLEAR_VARS)
@@ -122,4 +130,9 @@ LOCAL_JAVA_LIBRARIES := icu4j-hostdex
 LOCAL_JAVACFLAGS := $(icu4j_test_javac_flags)
 LOCAL_MODULE := icu4j-tests-hostdex
 include $(BUILD_HOST_DALVIK_JAVA_LIBRARY)
+
+$(LOCAL_INTERMEDIATE_TARGETS): PRIVATE_EXTRA_JAR_ARGS += \
+    -C "$(LOCAL_PATH)/main/tests/core/src" \
+    "com/ibm/icu/dev/test/serializable/data"
+
 endif  # HOST_OS == linux
