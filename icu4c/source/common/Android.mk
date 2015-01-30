@@ -23,7 +23,6 @@ src_files := \
 	cmemory.c          cstring.c          \
 	cwchar.c           locmap.c           \
 	loadednormalizer2impl.cpp \
-	lrucache.cpp \
 	punycode.cpp       putil.cpp          \
 	sharedobject.cpp \
 	simplepatternformatter.cpp \
