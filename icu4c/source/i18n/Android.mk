@@ -68,6 +68,7 @@ src_files += \
 	rbt_data.cpp    rbt_pars.cpp rbt_rule.cpp \
 	rbt_set.cpp     regexcmp.cpp regexst.cpp  \
 	regeximp.cpp 	region.cpp \
+	reldatefmt.cpp \
 	rematch.cpp     remtrans.cpp repattrn.cpp \
 	rulebasedcollator.cpp \
 	scriptset.cpp \
