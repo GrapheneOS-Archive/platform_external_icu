@@ -1,12 +1,12 @@
 //---------------------------------------------------------
-// Copyright (C) 2003-2014, International Business Machines
+// Copyright (C) 2003-2015, International Business Machines
 // Corporation and others.  All Rights Reserved.
 //---------------------------------------------------------
 // Build tool: tz2icu
-// Build date: Tue Nov 11 16:31:19 2014
+// Build date: Thu Feb  5 18:26:07 2015
 // Olson source: ftp://elsie.nci.nih.gov/pub/
 // Olson version: 2014j
-// ICU version: 53.1.0.1
+// ICU version: 54.1.0.1
 //---------------------------------------------------------
 // >> !!! >>   THIS IS A MACHINE-GENERATED FILE   << !!! <<
 // >> !!! >>>            DO NOT EDIT             <<< !!! <<
@@ -3179,7 +3179,7 @@ zoneinfo64:table(nofallback) {
   "ET", //Z#7 Africa/Addis_Ababa
   "DZ", //Z#8 Africa/Algiers
   "ER", //Z#9 Africa/Asmara
-  "KE", //Z#10 Africa/Asmera
+  "ER", //Z#10 Africa/Asmera
   "ML", //Z#11 Africa/Bamako
   "CF", //Z#12 Africa/Bangui
   "GM", //Z#13 Africa/Banjul
