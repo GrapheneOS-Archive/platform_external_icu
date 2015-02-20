@@ -16,6 +16,9 @@
 
 LOCAL_PATH := $(call my-dir)
 
+# Path to the ICU4C data files in the Android device file system:
+icu4c_data := /system/usr/icu
+
 # User-supplied locale service providers (using the java.text.spi or
 # java.util.spi mechanisms) are not supported in Android:
 #
@@ -51,10 +54,6 @@ icu4j_test_resource_dirs := \
 icu4j_javac_flags := -encoding UTF-8 -Xlint:-deprecation,-unchecked
 icu4j_test_javac_flags := $(icu4j_javac_flags)
 
-# TODO: Replace use of ICU4J data JAR files with accessing ICU4C data (ie. by
-# setting the com.ibm.icu.impl.ICUBinary.dataPath property), after everything
-# else works and ICU4C in Android has been updated to ICU 54.
-
 # For each data *.jar file, define a corresponding icu4j-* target.
 icu4j_data_jars := \
     $(shell find $(LOCAL_PATH)/main/shared/data -name "*.jar" \
@@ -72,11 +71,29 @@ include $(BUILD_MULTI_PREBUILT)
 include $(CLEAR_VARS)
 LOCAL_SRC_FILES := $(icu4j_src_files)
 LOCAL_JAVA_RESOURCE_DIRS := $(icu4j_resource_dirs)
-LOCAL_STATIC_JAVA_LIBRARIES := icu4j-icudata icu4j-icutzdata
 LOCAL_DONT_DELETE_JAR_DIRS := true
 LOCAL_JAVACFLAGS := $(icu4j_javac_flags)
 LOCAL_MODULE := icu4j
 include $(BUILD_STATIC_JAVA_LIBRARY)
+
+# In order to append $(icu4c_data) to the dataPath line in ICUConfig.properties
+# this hack here removes the path to that file in the source tree and instead
+# appends the path to a dynamically generated modified file to the list of
+# arguments passed to the jar tool.
+
+config_path := com/ibm/icu/ICUConfig.properties
+config_root := $(LOCAL_PATH)/main/classes/core/src
+
+tmp_resource_dir := $(intermediates.COMMON)/tmp
+
+$(tmp_resource_dir)/$(config_path): $(config_root)/$(config_path)
+	$(hide) mkdir -p $(dir $@)
+	$(hide) sed "/\.dataPath =/s/$$/ $(subst /,\/,$(icu4c_data))/" $< > $@
+
+$(LOCAL_INTERMEDIATE_TARGETS): $(tmp_resource_dir)/$(config_path)
+$(LOCAL_INTERMEDIATE_TARGETS): PRIVATE_EXTRA_JAR_ARGS := \
+    $(subst -C "$(config_root)" "$(config_path)",,$(extra_jar_args)) \
+    -C "$(tmp_resource_dir)" "$(config_path)"
 
 include $(CLEAR_VARS)
 LOCAL_SRC_FILES := $(icu4j_src_files)
