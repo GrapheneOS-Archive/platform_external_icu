@@ -711,11 +711,13 @@ $(UNIT_INDEX_FILE): $(SRCLISTDEPS)
 	echo "}" >> $@;
 
 ### collation res
+# BEGIN android-changed.
 $(COLBLDDIR)/%.res: $(COLSRCDIR)/%.txt  $(TOOLBINDIR)/genrb$(TOOLEXEEXT) $(DAT_FILES)
-	$(INVOKE) $(TOOLBINDIR)/genrb $(GENRBOPTS) -i $(BUILDDIR) -s $(COLSRCDIR) -d $(COLBLDDIR) $(<F)
+	$(INVOKE) $(TOOLBINDIR)/genrb $(GENRBOPTS) -i $(BUILDDIR) -s $(COLSRCDIR) -d $(COLBLDDIR) --omitCollationRules $(<F)
 
 $(COLBLDDIR)/$(INDEX_NAME).res: $(OUTTMPDIR)/$(COLLATION_TREE)/$(INDEX_NAME).txt $(TOOLBINDIR)/genrb$(TOOLEXEEXT)
-	$(INVOKE) $(TOOLBINDIR)/genrb $(GENRBOPTS) -i $(BUILDDIR) -s $(OUTTMPDIR)/$(COLLATION_TREE) -d $(COLBLDDIR) $(INDEX_NAME).txt
+	$(INVOKE) $(TOOLBINDIR)/genrb $(GENRBOPTS) -i $(BUILDDIR) -s $(OUTTMPDIR)/$(COLLATION_TREE) -d $(COLBLDDIR) --omitCollationRules $(INDEX_NAME).txt
+#END android-changed
 
 $(COLLATION_INDEX_FILE): $(SRCLISTDEPS)
 	@echo "generating $@ (list of installed collation locales)"; \
