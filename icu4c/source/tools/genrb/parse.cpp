@@ -1086,7 +1086,11 @@ addCollation(ParseState* state, struct SResource  *result, const char *collation
 }
 
 static UBool
-keepCollationType(const char * /*type*/) {
+keepCollationType(const char *type) {  // android-changed
+    // BEGIN android-added
+    if (uprv_strcmp(type, "big5han") == 0) { return FALSE; }
+    if (uprv_strcmp(type, "gb2312han") == 0) { return FALSE; }
+    // END android-added
     return TRUE;
 }
 
