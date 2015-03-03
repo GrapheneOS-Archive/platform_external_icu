@@ -872,10 +872,11 @@ windows-1361-2000 { UTR22* }
                         x-Johab { JAVA* }
 
 windows-874-2000 { UTR22* }   # Thai (w/ euro update)
-                        TIS-620 { WINDOWS }
-                        windows-874 { JAVA* WINDOWS* }
-                        MS874 { JAVA }
-                        x-windows-874 { JAVA }
+                        # BEGIN android-changed
+                        TIS-620 { IANA* WINDOWS JAVA }
+                        windows-874 { JAVA WINDOWS* }
+                        # END android-changed
+                        MS874 { JAVA* }
                         # iso-8859-11 { WINDOWS } # iso-8859-11 is similar to TIS-620. ibm-13162 is a closer match.
 
 ibm-874_P100-1995 { UTR22* }    # Thai PC (w/o euro update).
