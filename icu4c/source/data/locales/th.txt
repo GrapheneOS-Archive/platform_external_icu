@@ -899,7 +899,7 @@ th{
                 }
             }
         }
-        default{"buddhist"}
+        default{"gregorian"} // android-changed
         ethiopic{
             monthNames{
                 format{
