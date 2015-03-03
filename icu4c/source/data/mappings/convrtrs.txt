@@ -870,7 +870,9 @@ ibm-860_P100-1995 { UTR22* }    ibm-860 { IBM* } IBM860 { IANA* MIME* JAVA } cp8
 ibm-861_P100-1995 { UTR22* }    ibm-861 { IBM* } IBM861 { IANA* MIME* WINDOWS JAVA } cp861 { IANA MIME JAVA* } 861 { IANA JAVA } cp-is { IANA JAVA } csIBM861 { IANA JAVA } windows-861 { WINDOWS* } # PC Iceland
 ibm-862_P100-1995 { UTR22* }    ibm-862 { IBM* } IBM862 { IANA* MIME* JAVA } cp862 { IANA MIME JAVA* } 862 { IANA JAVA } csPC862LatinHebrew { IANA JAVA } DOS-862 { WINDOWS } windows-862 { WINDOWS* }    # PC Hebrew visual order (w/o euro update)
 ibm-863_P100-1995 { UTR22* }    ibm-863 { IBM* } IBM863 { IANA* MIME* JAVA } cp863 { IANA MIME JAVA* } 863 { IANA JAVA } csIBM863 { IANA JAVA }    # PC Canadian French
-ibm-864_X110-1999 { UTR22* }    ibm-864 { IBM* } IBM864 { IANA* MIME* JAVA } cp864 { IANA MIME JAVA* } csIBM864 { IANA JAVA } # PC Arabic (w/o euro update)
+# BEGIN Android-changed
+ibm-864_X110-1999 { UTR22* }    ibm-864 { IBM* } IBM864 { IANA* JAVA } cp864 { IANA MIME* JAVA* } csIBM864 { IANA JAVA } # PC Arabic (w/o euro update)
+# END Android-changed
 ibm-865_P100-1995 { UTR22* }    ibm-865 { IBM* } IBM865 { IANA* MIME* JAVA } cp865 { IANA MIME JAVA* } 865 { IANA JAVA } csIBM865 { IANA JAVA }    # PC Nordic
 ibm-866_P100-1995 { UTR22* }    ibm-866 { IBM* } IBM866 { IANA* MIME* JAVA } cp866 { IANA MIME WINDOWS JAVA* } 866 { IANA JAVA } csIBM866 { IANA JAVA } windows-866 { WINDOWS* } # PC Russian (w/o euro update)
 ibm-867_P100-1998 { UTR22* }    ibm-867 { IBM* } x-IBM867 { JAVA* } # PC Hebrew (w/ euro update) Updated version of ibm-862
