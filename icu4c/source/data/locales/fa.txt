@@ -267,7 +267,7 @@ fa{
                 }
             }
         }
-        default{"persian"}
+        default{"gregorian"}  // android-changed
         generic{
             DateTimePatterns{
                 "H:mm:ss (zzzz)",

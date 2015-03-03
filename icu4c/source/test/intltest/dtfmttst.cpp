@@ -4860,12 +4860,12 @@ void DateFormatTest::TestDFSCreateForLocaleNonGregorianLocale() {
         return;
     }
 
-    // Farsi should default to the persian calendar, not gregorian
+    // Android: All locales default to Gregorian calendar:
     int32_t count;
     const UnicodeString *months = sym->getShortMonths(count);
 
     // First persian month.
-    UnicodeString expected("\\u0641\\u0631\\u0648\\u0631\\u062f\\u06cc\\u0646");
+    UnicodeString expected("\\u0698\\u0627\\u0646\\u0648\\u06CC\\u0647\\u0654");  // Android-changed
     assertEquals("", expected.unescape(), months[0]);
 }
 
