@@ -865,17 +865,20 @@ windows-1361-2000 { UTR22* }
                         x-Johab { JAVA* }
 
 windows-874-2000 { UTR22* }   # Thai (w/ euro update)
-                        TIS-620 { WINDOWS }
-                        windows-874 { JAVA* WINDOWS* }
-                        MS874 { JAVA }
-                        x-windows-874 { JAVA }
+                        # BEGIN android-changed
+                        TIS-620 { IANA* WINDOWS JAVA }
+                        windows-874 { JAVA WINDOWS* }
+                        MS874 { JAVA* }
+                        # END android-changed
                         # iso-8859-11 { WINDOWS } # iso-8859-11 is similar to TIS-620. ibm-13162 is a closer match.
 
 ibm-874_P100-1995 { UTR22* }    # Thai PC (w/o euro update).
                         ibm-874 { IBM* JAVA }
                         ibm-9066 { IBM }    # Yes ibm-874 == ibm-9066. ibm-1161 has the euro update.
                         cp874 { JAVA* }
-                        TIS-620 { IANA* JAVA }  # This is actually separate from ibm-874, which is similar to this table
+                        # BEGIN android-changed
+                        # TIS-620 { IANA* JAVA }  # This is actually separate from ibm-874, which is similar to this table
+                        # END android-changed
                         tis620.2533 { JAVA }    # This is actually separate from ibm-874, which is similar to this table
                         eucTH               # eucTH is an unusual alias from Solaris.  eucTH has fewer mappings than TIS620
                         x-IBM874 { JAVA }
