@@ -11,7 +11,7 @@ ar_SA{
     }
     Version{"2.1.37.6"}
     calendar{
-        default{"islamic-umalqura"}
+        default{"gregorian"}  // android-changed
         gregorian{
             dayPeriod{
                 format{

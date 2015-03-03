@@ -373,7 +373,7 @@ fa{
                 }
             }
         }
-        default{"persian"}
+        default{"gregorian"}  // android-changed
         ethiopic{
             eras{
                 abbreviated{
