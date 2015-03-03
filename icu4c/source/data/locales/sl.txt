@@ -535,7 +535,7 @@ sl{
                 "EEEE, dd. MMMM y G",
                 "dd. MMMM y G",
                 "d. MMM y G",
-                "d. MM. yy GGGGG",
+                "d. M. yy GGGGG", // android-changed: http://b/17431155 & http://unicode.org/cldr/trac/ticket/7991
                 "{1} {0}",
                 "{1} {0}",
                 "{1} {0}",
@@ -703,7 +703,7 @@ sl{
                 "EEEE, dd. MMMM y",
                 "dd. MMMM y",
                 "d. MMM y",
-                "d. MM. yy",
+                "d. M. yy", // android-changed: http://b/17431155 & http://unicode.org/cldr/trac/ticket/7991
                 "{1} {0}",
                 "{1} {0}",
                 "{1} {0}",
