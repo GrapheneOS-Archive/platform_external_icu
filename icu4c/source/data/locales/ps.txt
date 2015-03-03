@@ -40,7 +40,7 @@ ps{
     }
     Version{"2.1.6.69"}
     calendar{
-        default{"persian"}
+        default{"gregorian"}  // android-changed
         generic{
             DateTimePatterns{
                 "H:mm:ss (zzzz)",
