@@ -122,9 +122,9 @@ IntlCalendarTest::TestTypes()
                             "buddhist",           
                             "gregorian",
                             "gregorian",
-                            "buddhist",           
-                            "buddhist",           
-                            "buddhist",           
+                            "gregorian",  // android-changed.  "buddhist",
+                            "gregorian",  // android-changed.  "buddhist",
+                            "gregorian",  // android-changed.  "buddhist",
                             "gregorian",
                             NULL };
 
