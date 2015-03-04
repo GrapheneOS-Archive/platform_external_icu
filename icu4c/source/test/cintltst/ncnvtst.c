@@ -465,9 +465,15 @@ static void TestErrorBehaviour(){
         if(!convertFromU(sampleText, UPRV_LENGTHOF(sampleText),
                 expectedSUB, sizeof(expectedSUB), "iso-2022-jp", offsets, TRUE, U_ZERO_ERROR))
             log_err("u-> iso-2022-jp [UCNV_MBCS] \n");
+        // Google Patch: Change expected result code from U_AMBIGUOUS_ALIAS_WARNING to U_ZERO_ERROR.
+        //               Introduced with ICU 51.1.
+        //               Markus says this warning can occur when the set of available converters is changed,
+        //               and that it's not worth looking into in further detail.
+        //               Note: public ICU was U_ZERO_ERROR prior to ICU 51.
         if(!convertFromU(sampleText, UPRV_LENGTHOF(sampleText),
-                expected, sizeof(expected), "iso-2022-jp", offsets, FALSE, U_AMBIGUOUS_ALIAS_WARNING))
+                expected, sizeof(expected), "iso-2022-jp", offsets, FALSE, U_ZERO_ERROR))
             log_err("u-> iso-2022-jp [UCNV_MBCS] \n");
+        // End of Google Patch.
 
         if(!convertFromU(sampleText2, UPRV_LENGTHOF(sampleText2),
                 expected2, sizeof(expected2), "iso-2022-jp", offsets2, TRUE, U_ZERO_ERROR))
