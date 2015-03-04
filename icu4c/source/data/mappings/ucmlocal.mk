@@ -4,4 +4,9 @@
 # A list of additional .ucm files to build for Google.
 
 UCM_SOURCE_LOCAL=gsm-03.38-2000.ucm \
-   jisx-208.ucm
+   docomo-shift_jis-2012.ucm \
+   jisx-208.ucm \
+   kddi-jisx-208-2007.ucm \
+   kddi-shift_jis-2012.ucm \
+   softbank-jisx-208-2007.ucm \
+   softbank-shift_jis-2012.ucm
