@@ -162,9 +162,35 @@ public class TestConversion extends TestFmwk {
          * This feature is not in ICU4J.
          * See #9601
          */
+        // Android patch: Skip tests that fail with customized data.
         String [] testsToSkip = {
-                "*test2"
+                "*test2",
+                "EUC-TW",
+                "gb18030",
+                "ibm-1386",
+                "ibm-1390",
+                "ibm-1390,swaplfnl",
+                "ibm-1399",
+                "ibm-16684",
+                "ibm-25546",
+                "ibm-930",
+                "ibm-943",
+                "ibm-970",
+                "ibm-971",
+                "IBM-eucJP",
+                "iso-2022-cn",
+                "iso-2022-jp",
+                "ISO-2022-JP-2",
+                "iso-2022-kr",
+                "ISO-2022-KR",
+                "JIS",
+                "JIS7",
+                "JIS8",
+                "lmbcs",
+                "windows-936",
+                "x11-compound-text",
         };
+        // Android patch end.
         for (int i = 0; i < testsToSkip.length; i++) {
             if (cc.charset.equals(testsToSkip[i])) {
                 logln("");
@@ -464,6 +490,20 @@ public class TestConversion extends TestFmwk {
             errln("Skipping test: error parsing conversion/toUnicode test case " + cc.caseNr);
             return;
         }
+
+        // Android patch: Skip tests that fail with customized data.
+        String [] testsToSkip = {
+                "ibm-1390,swaplfnl",
+        };
+        for (int i = 0; i < testsToSkip.length; i++) {
+            if (cc.charset.equals(testsToSkip[i])) {
+                logln("");
+                logln("Skipping: " + cc.charset);
+                logln("...............................................");
+                return;
+            }
+        }
+        // Android patch end.
 
         // ----for debugging only
         logln("");
@@ -902,6 +942,29 @@ public class TestConversion extends TestFmwk {
 
 
         cc.which = ((ICUResourceBundle) testcase.getObject("which")).getInt(); // only checking for ROUNDTRIP_SET
+
+        // Android patch: Skip tests that fail with customized data.
+        String [] testsToSkip = {
+                "HZ",
+                "ibm-1390",
+                "ibm-16684",
+                "ibm-25546",
+                "ibm-971",
+                "ISO-2022-CN",
+                "ISO-2022-JP",
+                "ISO-2022-JP-2",
+                "ISO-2022-KR",
+                "JIS7",
+        };
+        for (int i = 0; i < testsToSkip.length; i++) {
+            if (cc.charset.equals(testsToSkip[i])) {
+                logln("");
+                logln("Skipping: " + cc.charset);
+                logln("...............................................");
+                return;
+            }
+        }
+        // Android patch end.
 
         // ----for debugging only
         logln("");
