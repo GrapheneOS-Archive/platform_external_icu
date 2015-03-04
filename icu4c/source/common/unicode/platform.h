@@ -615,6 +615,12 @@
     /* Use the predefined value. */
 #elif U_PLATFORM == U_PF_ANDROID || U_PLATFORM_IS_DARWIN_BASED
 #   define U_CHARSET_IS_UTF8 1
+#elif U_PLATFORM_IS_LINUX_BASED
+   /*
+    * Google-specific: Set to 1 to match the google3 execution environment's
+    * use of UTF-8, on both Linux server and workstation machines.
+    */
+#   define U_CHARSET_IS_UTF8 1
 #else
 #   define U_CHARSET_IS_UTF8 0
 #endif
