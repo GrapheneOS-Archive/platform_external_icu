@@ -200,7 +200,7 @@ static void TestSurrogateBehaviour(){
    /* BEGIN android-removed */
    /* To save space, Android does not build full ISO-2022-CN tables.
       We skip the tests for ISO-2022-CN. */
-   /* 
+   /*
     log_verbose("Testing for ISO-2022-cn\n");
     {
         static const UChar    sampleText[] =   { 0x4e00, 0x04e01, 0x0031, 0xd801, 0xdc01, 0x0032};
@@ -465,9 +465,15 @@ static void TestErrorBehaviour(){
         if(!convertFromU(sampleText, sizeof(sampleText)/sizeof(sampleText[0]),
                 expectedSUB, sizeof(expectedSUB), "iso-2022-jp", offsets, TRUE, U_ZERO_ERROR))
             log_err("u-> iso-2022-jp [UCNV_MBCS] \n");
+        // Google Patch: Change expected result code from U_AMBIGUOUS_ALIAS_WARNING to U_ZERO_ERROR.
+        //               Introduced with ICU 51.1.
+        //               Markus says this warning can occur when the set of available converters is changed,
+        //               and that it's not worth looking into in further detail.
+        //               Note: public ICU was U_ZERO_ERROR prior to ICU 51.
         if(!convertFromU(sampleText, sizeof(sampleText)/sizeof(sampleText[0]),
-                expected, sizeof(expected), "iso-2022-jp", offsets, FALSE, U_AMBIGUOUS_ALIAS_WARNING))
+                expected, sizeof(expected), "iso-2022-jp", offsets, FALSE, U_ZERO_ERROR))
             log_err("u-> iso-2022-jp [UCNV_MBCS] \n");
+        // End of Google Patch.
 
         if(!convertFromU(sampleText2, sizeof(sampleText2)/sizeof(sampleText2[0]),
                 expected2, sizeof(expected2), "iso-2022-jp", offsets2, TRUE, U_ZERO_ERROR))
