@@ -744,5 +744,11 @@
 		<include locales="zh_TW"/>
 		<include locales="zu"/>
 		<include locales="zu_ZA"/>
+
+		<!-- Google-specific addition of fil data generation regardless of draft status. -->
+		<include locales="fil" draft=".*" />
+		<include locales="fil_PH"/>
+		<include locales="tl"/>
+		<include locales="tl_PH"/>
 	</locales>
 </config>
