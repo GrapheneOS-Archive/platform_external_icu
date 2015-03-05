@@ -137,7 +137,7 @@ ro{
         GU{"Guam"}
         GW{"Guineea-Bissau"}
         GY{"Guyana"}
-        HK{"R.A.S. Hong Kong a Chinei"}
+        HK{"Hong Kong"}
         HM{"Insula Heard și Insulele McDonald"}
         HN{"Honduras"}
         HR{"Croația"}
@@ -300,7 +300,6 @@ ro{
     }
     Countries%short{
         GB{"Regatul Unit"}
-        HK{"Hong Kong"}
         MO{"Macao"}
         PS{"Palestina"}
         US{"S.U.A."}

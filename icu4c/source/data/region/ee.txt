@@ -135,7 +135,7 @@ ee{
         GU{"Guam nutome"}
         GW{"Gini-Bisao nutome"}
         GY{"Guyanadu"}
-        HK{"Hɔng Kɔng SAR Tsaina nutome"}
+        HK{"Hɔng Kɔng nutome"}
         HM{"Heard kple Mcdonald ƒudomekpowo nutome"}
         HN{"Hondurasdu"}
         HR{"Kroatsia nutome"}
@@ -293,7 +293,6 @@ ee{
         ZZ{"nutome manya"}
     }
     Countries%short{
-        HK{"Hɔng Kɔng nutome"}
         MO{"Macau nutome"}
     }
     Countries%variant{

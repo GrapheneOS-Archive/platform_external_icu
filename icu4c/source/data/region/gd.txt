@@ -137,7 +137,7 @@ gd{
         GU{"Guam"}
         GW{"Gini-Bioso"}
         GY{"Guidheàna"}
-        HK{"Hong Kong SAR na Sìne"}
+        HK{"Hong Kong"}
         HM{"Eilean Heard is MhicDhòmhnaill"}
         HN{"Hondùras"}
         HR{"A’ Chròthais"}
@@ -300,7 +300,6 @@ gd{
     }
     Countries%short{
         GB{"RA"}
-        HK{"Hong Kong"}
         MO{"Macàthu"}
         PS{"Palastain"}
         US{"SA"}

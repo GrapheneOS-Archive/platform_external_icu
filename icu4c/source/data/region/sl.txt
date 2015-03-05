@@ -137,7 +137,7 @@ sl{
         GU{"Guam"}
         GW{"Gvineja Bissau"}
         GY{"Gvajana"}
-        HK{"Posebno administrativno območje LR Kitajske Hong Kong"}
+        HK{"Hongkong"}
         HM{"Heardov otok in McDonaldovi otoki"}
         HN{"Honduras"}
         HR{"Hrvaška"}
@@ -300,7 +300,6 @@ sl{
     }
     Countries%short{
         GB{"ZK"}
-        HK{"Hongkong"}
         MO{"Macao"}
         PS{"Palestina"}
         US{"ZDA"}

@@ -137,7 +137,7 @@ fo{
         GU{"Guam"}
         GW{"Guinea-Bissau"}
         GY{"Gujana"}
-        HK{"Hong Kong SAR Kina"}
+        HK{"Hong Kong"}
         HM{"Heard og McDonaldoyggjar"}
         HN{"Honduras"}
         HR{"Kroatia"}
@@ -300,7 +300,6 @@ fo{
     }
     Countries%short{
         GB{"UK"}
-        HK{"Hong Kong"}
         MO{"Makao"}
         PS{"Palestina"}
         US{"USA"}

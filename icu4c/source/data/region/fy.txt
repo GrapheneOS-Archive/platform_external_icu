@@ -137,7 +137,7 @@ fy{
         GU{"Guam"}
         GW{"Guinee-Bissau"}
         GY{"Guyana"}
-        HK{"Hongkong SAR van Sina"}
+        HK{"Hongkong"}
         HM{"Heard- en McDonaldeilannen"}
         HN{"Honduras"}
         HR{"Kroatië"}
@@ -300,7 +300,6 @@ fy{
     }
     Countries%short{
         GB{"VK"}
-        HK{"Hongkong"}
         MO{"Macao"}
         PS{"Palestina"}
         US{"VS"}

@@ -137,7 +137,7 @@ to{
         GU{"Kuamu"}
         GW{"Kini-Pisau"}
         GY{"Kuiana"}
-        HK{"Hongi Kongi SAR Siaina"}
+        HK{"Hongi Kongi"}
         HM{"ʻOtumotu Heati mo Makitonali"}
         HN{"Honitulasi"}
         HR{"Kuloisia"}
@@ -300,7 +300,6 @@ to{
     }
     Countries%short{
         GB{"Pilitānia"}
-        HK{"Hongi Kongi"}
         MO{"Makau"}
         PS{"Palesitaine"}
         US{"ʻAmelika"}

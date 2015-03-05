@@ -137,7 +137,7 @@ eu{
         GU{"Guam"}
         GW{"Ginea-Bissau"}
         GY{"Guyana"}
-        HK{"Hong Kong AEB Txina"}
+        HK{"Hong Kong"}
         HM{"Heard eta McDonald uharteak"}
         HN{"Honduras"}
         HR{"Kroazia"}
@@ -300,7 +300,6 @@ eu{
     }
     Countries%short{
         GB{"EB"}
-        HK{"Hong Kong"}
         MO{"Macau"}
         PS{"Palestina"}
         US{"AEB"}

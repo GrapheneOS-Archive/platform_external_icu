@@ -137,7 +137,7 @@ lt{
         GU{"Guamas"}
         GW{"Bisau Gvinėja"}
         GY{"Gajana"}
-        HK{"Ypatingasis Administracinis Kinijos Regionas Honkongas"}
+        HK{"Honkongas"}
         HM{"Herdo ir Makdonaldo Salos"}
         HN{"Hondūras"}
         HR{"Kroatija"}
@@ -300,7 +300,6 @@ lt{
     }
     Countries%short{
         GB{"Didžioji Britanija"}
-        HK{"Honkongas"}
         MO{"Makao"}
         PS{"Palestina"}
         US{"JAV"}

@@ -137,7 +137,7 @@ az{
         GU{"Quam"}
         GW{"Qvineya-Bisau"}
         GY{"Qviyana"}
-        HK{"Honq Konq Xüsusi İnzibati Ərazi Çin"}
+        HK{"Honq Konq"}
         HM{"Herd və Mak Donald Adaları"}
         HN{"Honduras"}
         HR{"Xorvatiya"}
@@ -300,7 +300,6 @@ az{
     }
     Countries%short{
         GB{"B.K."}
-        HK{"Honq Konq"}
         MO{"Makao"}
         PS{"Fələstin"}
         US{"A.B.Ş."}

@@ -137,7 +137,7 @@ fil{
         GU{"Guam"}
         GW{"Guinea-Bissau"}
         GY{"Guyana"}
-        HK{"Hong Kong SAR China"}
+        HK{"Hong Kong"}
         HM{"Heard Island and McDonald Islands"}
         HN{"Honduras"}
         HR{"Croatia"}
@@ -300,7 +300,6 @@ fil{
     }
     Countries%short{
         GB{"U.K."}
-        HK{"Hong Kong"}
         MO{"Macau"}
         PS{"Palestine"}
         US{"U.S."}

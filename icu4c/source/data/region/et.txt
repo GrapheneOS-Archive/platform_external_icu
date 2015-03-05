@@ -137,7 +137,7 @@ et{
         GU{"Guam"}
         GW{"Guinea-Bissau"}
         GY{"Guyana"}
-        HK{"Hongkongi erihalduspiirkond"}
+        HK{"Hongkong"}
         HM{"Heardi ja McDonaldi saared"}
         HN{"Honduras"}
         HR{"Horvaatia"}
@@ -300,7 +300,6 @@ et{
     }
     Countries%short{
         GB{"ÜK"}
-        HK{"Hongkong"}
         MO{"Macau"}
         PS{"Palestiina"}
         US{"USA"}
