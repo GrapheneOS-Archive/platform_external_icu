@@ -185,7 +185,7 @@ az{
         ML{"Mali"}
         MM{"Myanma"}
         MN{"Monqolustan"}
-        MO{"Makao Xüsusi İnzibati Ərazi Çin"}
+        MO{"Makao"}
         MP{"Şimali Marian adaları"}
         MQ{"Martinik"}
         MR{"Mavritaniya"}
@@ -295,7 +295,6 @@ az{
     }
     Countries%short{
         GB{"BK"}
-        MO{"Makao"}
         PS{"Fələstin"}
         UN{"BMT"}
         US{"ABŞ"}
