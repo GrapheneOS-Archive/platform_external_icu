@@ -221,7 +221,7 @@ sl{
         PM{"Saint Pierre in Miquelon"}
         PN{"Pitcairn"}
         PR{"Portoriko"}
-        PS{"Palestinsko ozemlje"}
+        PS{"Palestina"}
         PT{"Portugalska"}
         PW{"Palau"}
         PY{"Paragvaj"}
@@ -296,7 +296,6 @@ sl{
     }
     Countries%short{
         GB{"ZK"}
-        PS{"Palestina"}
         UN{"ZN"}
         US{"ZDA"}
     }

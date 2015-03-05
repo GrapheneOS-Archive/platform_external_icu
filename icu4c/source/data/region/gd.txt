@@ -221,7 +221,7 @@ gd{
         PM{"Saint Pierre agus Miquelon"}
         PN{"Eileanan Pheit a’ Chàirn"}
         PR{"Porto Rìceo"}
-        PS{"Na Ranntairean Palastaineach"}
+        PS{"Palastain"}
         PT{"A’ Phortagail"}
         PW{"Palabh"}
         PY{"Paraguaidh"}
@@ -296,7 +296,6 @@ gd{
     }
     Countries%short{
         GB{"RA"}
-        PS{"Palastain"}
         US{"SA"}
     }
     Countries%variant{

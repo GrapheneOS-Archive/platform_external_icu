@@ -221,7 +221,7 @@ da{
         PM{"Saint Pierre og Miquelon"}
         PN{"Pitcairn"}
         PR{"Puerto Rico"}
-        PS{"De palæstinensiske områder"}
+        PS{"Palæstina"}
         PT{"Portugal"}
         PW{"Palau"}
         PY{"Paraguay"}
@@ -296,7 +296,6 @@ da{
     }
     Countries%short{
         GB{"UK"}
-        PS{"Palæstina"}
         UN{"FN"}
         US{"USA"}
     }

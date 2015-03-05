@@ -221,7 +221,7 @@ id{
         PM{"Saint Pierre dan Miquelon"}
         PN{"Kepulauan Pitcairn"}
         PR{"Puerto Riko"}
-        PS{"Wilayah Palestina"}
+        PS{"Palestina"}
         PT{"Portugal"}
         PW{"Palau"}
         PY{"Paraguay"}
@@ -296,7 +296,6 @@ id{
     }
     Countries%short{
         GB{"UK"}
-        PS{"Palestina"}
         UN{"PBB"}
         US{"A.S."}
     }

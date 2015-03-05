@@ -222,7 +222,7 @@ en{
         PM{"St. Pierre & Miquelon"}
         PN{"Pitcairn Islands"}
         PR{"Puerto Rico"}
-        PS{"Palestinian Territories"}
+        PS{"Palestine"}
         PT{"Portugal"}
         PW{"Palau"}
         PY{"Paraguay"}
@@ -299,7 +299,6 @@ en{
         BA{"Bosnia"}
         GB{"UK"}
         MM{"Myanmar"}
-        PS{"Palestine"}
         UN{"UN"}
         US{"US"}
     }

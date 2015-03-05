@@ -221,7 +221,7 @@ ca{
         PM{"Saint-Pierre-et-Miquelon"}
         PN{"Illes Pitcairn"}
         PR{"Puerto Rico"}
-        PS{"territoris palestins"}
+        PS{"Palestina"}
         PT{"Portugal"}
         PW{"Palau"}
         PY{"Paraguai"}
@@ -296,7 +296,6 @@ ca{
     }
     Countries%short{
         GB{"RU"}
-        PS{"Palestina"}
         UN{"ONU"}
         US{"EUA"}
     }

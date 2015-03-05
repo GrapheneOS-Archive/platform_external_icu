@@ -221,7 +221,7 @@ to{
         PM{"Sā Piea mo Mikeloni"}
         PN{"ʻOtumotu Pitikeni"}
         PR{"Puēto Liko"}
-        PS{"Potu Palesitaine"}
+        PS{"Palesitaine"}
         PT{"Potukali"}
         PW{"Palau"}
         PY{"Palakuai"}
@@ -296,7 +296,6 @@ to{
     }
     Countries%short{
         GB{"Pilitānia"}
-        PS{"Palesitaine"}
         US{"ʻAmelika"}
     }
     Countries%variant{

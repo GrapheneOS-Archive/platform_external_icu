@@ -221,7 +221,7 @@ sw{
         PM{"Santapierre na Miquelon"}
         PN{"Visiwa vya Pitcairn"}
         PR{"Puerto Rico"}
-        PS{"Maeneo ya Palestina"}
+        PS{"Palestina"}
         PT{"Ureno"}
         PW{"Palau"}
         PY{"Paraguay"}
@@ -296,7 +296,6 @@ sw{
     }
     Countries%short{
         GB{"Uingereza"}
-        PS{"Palestina"}
         UN{"Umoja wa Mataifa"}
         US{"US"}
     }

@@ -221,7 +221,7 @@ sq{
         PM{"Shën Pier dhe Mikelon"}
         PN{"Ishujt Pitkern"}
         PR{"Porto-Riko"}
-        PS{"Territoret Palestineze"}
+        PS{"Palestinë"}
         PT{"Portugali"}
         PW{"Palau"}
         PY{"Paraguai"}
@@ -296,7 +296,6 @@ sq{
     }
     Countries%short{
         GB{"Mbretëria e Bashkuar"}
-        PS{"Palestinë"}
         UN{"Kombet e Bashkuara"}
         US{"SHBA"}
     }

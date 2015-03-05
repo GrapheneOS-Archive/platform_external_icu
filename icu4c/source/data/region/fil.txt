@@ -221,7 +221,7 @@ fil{
         PM{"St. Pierre & Miquelon"}
         PN{"Pitcairn Islands"}
         PR{"Puerto Rico"}
-        PS{"Palestinian Territories"}
+        PS{"Palestine"}
         PT{"Portugal"}
         PW{"Palau"}
         PY{"Paraguay"}
@@ -296,7 +296,6 @@ fil{
     }
     Countries%short{
         GB{"U.K."}
-        PS{"Palestine"}
         UN{"UN"}
         US{"U.S."}
     }
