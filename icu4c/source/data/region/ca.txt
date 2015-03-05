@@ -301,7 +301,6 @@ ca{
     }
     Countries%short{
         GB{"GB"}
-        PS{"Palestina"}
         US{"EUA"}
     }
     Countries%variant{

@@ -227,7 +227,7 @@ lt{
         PM{"Sen Pjeras ir Mikelonas"}
         PN{"Pitkernas"}
         PR{"Puerto Rikas"}
-        PS{"Palestinos teritorija"}
+        PS{"Palestina"}
         PT{"Portugalija"}
         PW{"Palau"}
         PY{"Paragvajus"}
@@ -301,7 +301,6 @@ lt{
     }
     Countries%short{
         GB{"Didžioji Britanija"}
-        PS{"Palestina"}
         US{"JAV"}
     }
     Countries%variant{

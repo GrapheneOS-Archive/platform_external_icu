@@ -227,7 +227,7 @@ zu{
         PM{"i-Saint Pierre kanye ne-Miquelon"}
         PN{"i-Pitcairn Islands"}
         PR{"i-Puerto Rico"}
-        PS{"i-Palestinian Territories"}
+        PS{"i-Phalestine"}
         PT{"i-Portugal"}
         PW{"i-Palau"}
         PY{"i-Paraguay"}
@@ -301,7 +301,6 @@ zu{
     }
     Countries%short{
         GB{"i-U.K."}
-        PS{"i-Phalestine"}
         US{"i-U.S"}
     }
     Countries%variant{

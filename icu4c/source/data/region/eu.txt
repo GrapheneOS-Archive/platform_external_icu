@@ -227,7 +227,7 @@ eu{
         PM{"Saint-Pierre eta Mikelune"}
         PN{"Pitcairn uharteak"}
         PR{"Puerto Rico"}
-        PS{"Palestinako Lurraldeak"}
+        PS{"Palestina"}
         PT{"Portugal"}
         PW{"Palau"}
         PY{"Paraguai"}
@@ -301,7 +301,6 @@ eu{
     }
     Countries%short{
         GB{"EB"}
-        PS{"Palestina"}
         US{"AEB"}
     }
     Countries%variant{
