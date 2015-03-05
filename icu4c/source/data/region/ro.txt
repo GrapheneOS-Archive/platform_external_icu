@@ -226,7 +226,7 @@ ro{
         PM{"Saint-Pierre și Miquelon"}
         PN{"Insulele Pitcairn"}
         PR{"Puerto Rico"}
-        PS{"Teritoriile Palestiniene"}
+        PS{"Palestina"}
         PT{"Portugalia"}
         PW{"Palau"}
         PY{"Paraguay"}
@@ -300,7 +300,6 @@ ro{
     }
     Countries%short{
         GB{"Regatul Unit"}
-        PS{"Palestina"}
         US{"S.U.A."}
     }
     Countries%variant{

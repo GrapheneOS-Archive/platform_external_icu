@@ -226,7 +226,7 @@ hsb{
         PM{"St. Pierre a Miquelon"}
         PN{"Pitcairnowe kupy"}
         PR{"Puerto Rico"}
-        PS{"Palestinski awtonomny teritorij"}
+        PS{"Palestina"}
         PT{"Portugalska"}
         PW{"Palau"}
         PY{"Paraguay"}
@@ -300,7 +300,6 @@ hsb{
     }
     Countries%short{
         GB{"UK"}
-        PS{"Palestina"}
         US{"USA"}
     }
     Countries%variant{

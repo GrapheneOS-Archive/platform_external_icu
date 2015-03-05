@@ -226,7 +226,7 @@ hr{
         PM{"Sveti Petar i Mikelon"}
         PN{"Otoci Pitcairn"}
         PR{"Portoriko"}
-        PS{"Palestinsko Područje"}
+        PS{"Palestina"}
         PT{"Portugal"}
         PW{"Palau"}
         PY{"Paragvaj"}
@@ -300,7 +300,6 @@ hr{
     }
     Countries%short{
         GB{"UK"}
-        PS{"Palestina"}
         US{"SAD"}
     }
     Countries%variant{

@@ -226,7 +226,7 @@ ga{
         PM{"Saint-Pierre-et-Miquelon"}
         PN{"Oileáin Pitcairn"}
         PR{"Portó Ríce"}
-        PS{"Na Críocha Palaistíneacha"}
+        PS{"An Phalaistín"}
         PT{"An Phortaingéil"}
         PW{"Palau"}
         PY{"Paragua"}
@@ -300,7 +300,6 @@ ga{
     }
     Countries%short{
         GB{"RA"}
-        PS{"An Phalaistín"}
         US{"SAM"}
     }
     Countries%variant{

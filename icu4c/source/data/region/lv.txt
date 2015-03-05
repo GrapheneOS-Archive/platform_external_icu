@@ -300,7 +300,6 @@ lv{
     }
     Countries%short{
         GB{"Lielbritānija"}
-        PS{"Palestīna"}
         US{"ASV"}
     }
     Countries%variant{

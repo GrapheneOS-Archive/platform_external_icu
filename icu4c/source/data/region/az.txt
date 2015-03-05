@@ -226,7 +226,7 @@ az{
         PM{"San Pier və Mikelon"}
         PN{"Pitkern Adaları"}
         PR{"Puerto Riko"}
-        PS{"Fələstin Əraziləri"}
+        PS{"Fələstin"}
         PT{"Portuqal"}
         PW{"Palau"}
         PY{"Paraqvay"}
@@ -300,7 +300,6 @@ az{
     }
     Countries%short{
         GB{"B.K."}
-        PS{"Fələstin"}
         US{"A.B.Ş."}
     }
     Countries%variant{

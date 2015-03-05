@@ -226,7 +226,7 @@ fo{
         PM{"Saint Pierre og Miquelon"}
         PN{"Pitcairnoyggjar"}
         PR{"Puerto Riko"}
-        PS{"Palestinskt landøki"}
+        PS{"Palestina"}
         PT{"Portugal"}
         PW{"Palau"}
         PY{"Paraguai"}
@@ -300,7 +300,6 @@ fo{
     }
     Countries%short{
         GB{"UK"}
-        PS{"Palestina"}
         US{"USA"}
     }
     Countries%variant{

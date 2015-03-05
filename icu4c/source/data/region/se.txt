@@ -295,7 +295,6 @@ se{
     }
     Countries%short{
         GB{"Stuorra-Británnia"}
-        PS{"Palestina"}
         US{"USA"}
     }
     Version{"2.1.19.14"}

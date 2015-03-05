@@ -226,7 +226,7 @@ lb{
         PM{"St. Pierre a Miquelon"}
         PN{"Pitcairninselen"}
         PR{"Puerto Rico"}
-        PS{"Palestinensesch Autonomiegebidder"}
+        PS{"Palestina"}
         PT{"Portugal"}
         PW{"Palau"}
         PY{"Paraguay"}
@@ -300,7 +300,6 @@ lb{
     }
     Countries%short{
         GB{"GB"}
-        PS{"Palestina"}
         US{"US"}
     }
     Countries%variant{

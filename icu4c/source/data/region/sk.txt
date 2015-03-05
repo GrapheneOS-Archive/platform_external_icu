@@ -226,7 +226,7 @@ sk{
         PM{"Saint Pierre a Miquelon"}
         PN{"Pitcairnove ostrovy"}
         PR{"Portoriko"}
-        PS{"Palestínske územia"}
+        PS{"Palestína"}
         PT{"Portugalsko"}
         PW{"Palau"}
         PY{"Paraguaj"}
@@ -300,7 +300,6 @@ sk{
     }
     Countries%short{
         GB{"UK"}
-        PS{"Palestína"}
         US{"USA"}
     }
     Countries%variant{

@@ -226,7 +226,7 @@ fy{
         PM{"Saint-Pierre en Miquelon"}
         PN{"Pitcairneilannen"}
         PR{"Puerto Rico"}
-        PS{"Palestynske gebieten"}
+        PS{"Palestina"}
         PT{"Portugal"}
         PW{"Palau"}
         PY{"Paraguay"}
@@ -300,7 +300,6 @@ fy{
     }
     Countries%short{
         GB{"VK"}
-        PS{"Palestina"}
         US{"VS"}
     }
     Countries%variant{

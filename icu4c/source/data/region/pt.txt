@@ -226,7 +226,7 @@ pt{
         PM{"Saint Pierre e Miquelon"}
         PN{"Ilhas Pitcairn"}
         PR{"Porto Rico"}
-        PS{"Territórios palestinos"}
+        PS{"Palestina"}
         PT{"Portugal"}
         PW{"Palau"}
         PY{"Paraguai"}
@@ -300,7 +300,6 @@ pt{
     }
     Countries%short{
         GB{"Reino Unido"}
-        PS{"Palestina"}
         US{"EUA"}
     }
     Countries%variant{
