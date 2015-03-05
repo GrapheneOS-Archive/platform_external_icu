@@ -132,7 +132,7 @@ fr{
         GU{"Guam"}
         GW{"Guinée-Bissau"}
         GY{"Guyana"}
-        HK{"R.A.S. chinoise de Hong Kong"}
+        HK{"Hong Kong"}
         HM{"Îles Heard et McDonald"}
         HN{"Honduras"}
         HR{"Croatie"}
@@ -296,7 +296,6 @@ fr{
     }
     Countries%short{
         GB{"R.-U."}
-        HK{"Hong Kong"}
         MO{"Macao"}
         PS{"Palestine"}
         UN{"NU"}

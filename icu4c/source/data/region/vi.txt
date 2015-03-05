@@ -132,7 +132,7 @@ vi{
         GU{"Guam"}
         GW{"Guinea-Bissau"}
         GY{"Guyana"}
-        HK{"Hồng Kông, Trung Quốc"}
+        HK{"Hồng Kông"}
         HM{"Quần đảo Heard và McDonald"}
         HN{"Honduras"}
         HR{"Croatia"}
@@ -296,7 +296,6 @@ vi{
     }
     Countries%short{
         GB{"Vương quốc Anh"}
-        HK{"Hồng Kông"}
         MO{"Macao"}
         PS{"Palestine"}
         UN{"Liên hiệp quốc"}

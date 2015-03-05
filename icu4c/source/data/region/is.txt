@@ -132,7 +132,7 @@ is{
         GU{"Gvam"}
         GW{"Gínea-Bissá"}
         GY{"Gvæjana"}
-        HK{"sérstjórnarsvæðið Hong Kong"}
+        HK{"Hong Kong"}
         HM{"Heard og McDonaldseyjar"}
         HN{"Hondúras"}
         HR{"Króatía"}
@@ -296,7 +296,6 @@ is{
     }
     Countries%short{
         GB{"Bretland"}
-        HK{"Hong Kong"}
         MO{"Makaó"}
         PS{"Palestína"}
         UN{"SÞ"}

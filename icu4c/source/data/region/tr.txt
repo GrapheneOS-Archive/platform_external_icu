@@ -132,7 +132,7 @@ tr{
         GU{"Guam"}
         GW{"Gine-Bissau"}
         GY{"Guyana"}
-        HK{"Çin Hong Kong ÖİB"}
+        HK{"Hong Kong"}
         HM{"Heard Adası ve McDonald Adaları"}
         HN{"Honduras"}
         HR{"Hırvatistan"}
@@ -296,7 +296,6 @@ tr{
     }
     Countries%short{
         GB{"BK"}
-        HK{"Hong Kong"}
         MO{"Makao"}
         PS{"Filistin"}
         UN{"BM"}

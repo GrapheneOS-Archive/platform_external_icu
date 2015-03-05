@@ -92,6 +92,7 @@ wo{
         GU{"Guwam"}
         GW{"Gine-Bisaawóo"}
         GY{"Giyaan"}
+        HK{"Ooŋ Koŋ"}
         HM{"Duni Hërd ak Duni MakDonald"}
         HN{"Onduraas"}
         HR{"Korowasi"}
@@ -247,7 +248,6 @@ wo{
         ZZ{"Gox buñ xamul"}
     }
     Countries%short{
-        HK{"Ooŋ Koŋ"}
         MO{"Makaawo"}
     }
     Countries%variant{
