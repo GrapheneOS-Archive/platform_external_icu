@@ -183,10 +183,7 @@ mt{
         ML{"il-Mali"}
         MM{"il-Myanmar/Burma"}
         MN{"il-Mongolja"}
-        MO{
-            "ir-Reġjun Amministrattiv Speċjali tal-Macao tar-Repubblika tal-Poplu taċ"
-            "-Ċina"
-        }
+        MO{"il-Macao"}
         MP{"Ġżejjer Mariana tat-Tramuntana"}
         MQ{"Martinique"}
         MR{"il-Mauritania"}
@@ -294,7 +291,6 @@ mt{
     }
     Countries%short{
         GB{"UK"}
-        MO{"il-Macao"}
         PS{"il-Palestina"}
         US{"US"}
     }

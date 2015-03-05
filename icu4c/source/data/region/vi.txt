@@ -186,7 +186,7 @@ vi{
         ML{"Mali"}
         MM{"Myanmar (Miến Điện)"}
         MN{"Mông Cổ"}
-        MO{"Macao, Trung Quốc"}
+        MO{"Macao"}
         MP{"Quần đảo Bắc Mariana"}
         MQ{"Martinique"}
         MR{"Mauritania"}
@@ -296,7 +296,6 @@ vi{
     }
     Countries%short{
         GB{"Vương quốc Anh"}
-        MO{"Macao"}
         PS{"Palestine"}
         UN{"Liên hiệp quốc"}
         US{"Hoa Kỳ"}

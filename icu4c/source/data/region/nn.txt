@@ -186,7 +186,7 @@ nn{
         ML{"Mali"}
         MM{"Myanmar (Burma)"}
         MN{"Mongolia"}
-        MO{"Macao S.A.R. Kina"}
+        MO{"Macao"}
         MP{"Nord-Marianane"}
         MQ{"Martinique"}
         MR{"Mauritania"}
@@ -296,7 +296,6 @@ nn{
     }
     Countries%short{
         GB{"Storbritannia"}
-        MO{"Macao"}
         PS{"Palestina"}
         US{"USA"}
     }

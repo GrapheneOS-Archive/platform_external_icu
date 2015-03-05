@@ -186,7 +186,7 @@ zu{
         ML{"iMali"}
         MM{"i-Myanmar (Burma)"}
         MN{"i-Mongolia"}
-        MO{"i-Macau SAR China"}
+        MO{"i-Macau"}
         MP{"i-Northern Mariana Islands"}
         MQ{"i-Martinique"}
         MR{"i-Mauritania"}
@@ -296,7 +296,6 @@ zu{
     }
     Countries%short{
         GB{"i-U.K."}
-        MO{"i-Macau"}
         PS{"i-Palestine"}
         UN{"ifulegi"}
         US{"i-U.S"}

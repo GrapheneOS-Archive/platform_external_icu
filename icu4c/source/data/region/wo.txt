@@ -144,6 +144,7 @@ wo{
         ML{"Mali"}
         MM{"Miyanmaar"}
         MN{"Mongoli"}
+        MO{"Makaawo"}
         MP{"Duni Mariyaan Noor"}
         MQ{"Martinik"}
         MR{"Mooritani"}
@@ -246,9 +247,6 @@ wo{
         ZM{"Sàmbi"}
         ZW{"Simbabwe"}
         ZZ{"Gox buñ xamul"}
-    }
-    Countries%short{
-        MO{"Makaawo"}
     }
     Countries%variant{
         CD{"Kongo (R K D)"}

@@ -186,7 +186,7 @@ sq{
         ML{"Mali"}
         MM{"Mianmar (Burma)"}
         MN{"Mongoli"}
-        MO{"RPA i Makaos"}
+        MO{"Makao"}
         MP{"Ishujt e Marianës Veriore"}
         MQ{"Martinikë"}
         MR{"Mauritani"}
@@ -296,7 +296,6 @@ sq{
     }
     Countries%short{
         GB{"Mbretëria e Bashkuar"}
-        MO{"Makao"}
         PS{"Palestinë"}
         UN{"Kombet e Bashkuara"}
         US{"SHBA"}

@@ -186,7 +186,7 @@ sk{
         ML{"Mali"}
         MM{"Mjanmarsko"}
         MN{"Mongolsko"}
-        MO{"Macao – OAO Číny"}
+        MO{"Macao"}
         MP{"Severné Mariány"}
         MQ{"Martinik"}
         MR{"Mauritánia"}
@@ -296,7 +296,6 @@ sk{
     }
     Countries%short{
         GB{"UK"}
-        MO{"Macao"}
         PS{"Palestínska samospráva"}
         UN{"OSN"}
         US{"USA"}

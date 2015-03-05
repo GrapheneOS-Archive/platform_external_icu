@@ -149,7 +149,7 @@ smn{
         ML{"Mali"}
         MM{"Myanmar (Burma)"}
         MN{"Mongolia"}
-        MO{"Macao - – Kiina e.h.k."}
+        MO{"Macao"}
         MP{"Tave-Marianeh"}
         MQ{"Martinique"}
         MR{"Mauritania"}
@@ -255,7 +255,6 @@ smn{
     }
     Countries%short{
         GB{"OK"}
-        MO{"Macao"}
         US{"USA"}
     }
     Countries%variant{

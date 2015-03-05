@@ -296,7 +296,6 @@ sv{
     }
     Countries%short{
         GB{"Storbritannien"}
-        MO{"Macao"}
         PS{"Palestina"}
         UN{"FN"}
         US{"USA"}

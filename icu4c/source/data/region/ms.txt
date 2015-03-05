@@ -186,7 +186,7 @@ ms{
         ML{"Mali"}
         MM{"Myanmar (Burma)"}
         MN{"Mongolia"}
-        MO{"Macau SAR China"}
+        MO{"Macau"}
         MP{"Kepulauan Mariana Utara"}
         MQ{"Martinique"}
         MR{"Mauritania"}
@@ -296,7 +296,6 @@ ms{
     }
     Countries%short{
         GB{"UK"}
-        MO{"Macau"}
         PS{"Palestin"}
         UN{"PBB"}
         US{"A.S"}

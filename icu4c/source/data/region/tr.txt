@@ -186,7 +186,7 @@ tr{
         ML{"Mali"}
         MM{"Myanmar (Burma)"}
         MN{"Moğolistan"}
-        MO{"Çin Makao ÖİB"}
+        MO{"Makao"}
         MP{"Kuzey Mariana Adaları"}
         MQ{"Martinik"}
         MR{"Moritanya"}
@@ -296,7 +296,6 @@ tr{
     }
     Countries%short{
         GB{"BK"}
-        MO{"Makao"}
         PS{"Filistin"}
         UN{"BM"}
         US{"ABD"}

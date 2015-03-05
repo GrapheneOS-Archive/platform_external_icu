@@ -186,7 +186,7 @@ sw{
         ML{"Mali"}
         MM{"Myanmar (Burma)"}
         MN{"Mongolia"}
-        MO{"Macau SAR China"}
+        MO{"Macau"}
         MP{"Visiwa vya Mariana vya Kaskazini"}
         MQ{"Martinique"}
         MR{"Moritania"}
@@ -296,7 +296,6 @@ sw{
     }
     Countries%short{
         GB{"Uingereza"}
-        MO{"Macau"}
         PS{"Palestina"}
         UN{"Umoja wa Mataifa"}
         US{"US"}
