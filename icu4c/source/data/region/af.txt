@@ -131,7 +131,7 @@ af{
         GU{"Guam"}
         GW{"Guinee-Bissau"}
         GY{"Guyana"}
-        HK{"Hongkong SAS Sjina"}
+        HK{"Hongkong"}
         HM{"Heard- en McDonaldeilande"}
         HN{"Honduras"}
         HR{"Kroasië"}
@@ -295,7 +295,6 @@ af{
     }
     Countries%short{
         GB{"VK"}
-        HK{"Hongkong"}
         MO{"Macau"}
         PS{"Palestina"}
         UN{"VN"}

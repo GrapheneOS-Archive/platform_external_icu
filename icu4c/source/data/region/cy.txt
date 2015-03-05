@@ -131,7 +131,7 @@ cy{
         GU{"Guam"}
         GW{"Guiné-Bissau"}
         GY{"Guyana"}
-        HK{"Hong Kong RhGA Tsieina"}
+        HK{"Hong Kong"}
         HM{"Ynys Heard ac Ynysoedd McDonald"}
         HN{"Honduras"}
         HR{"Croatia"}
@@ -295,7 +295,6 @@ cy{
     }
     Countries%short{
         GB{"DU"}
-        HK{"Hong Kong"}
         MO{"Macau"}
         PS{"Palesteina"}
         UN{"UN"}

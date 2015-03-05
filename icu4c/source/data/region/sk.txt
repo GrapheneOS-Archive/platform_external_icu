@@ -131,7 +131,7 @@ sk{
         GU{"Guam"}
         GW{"Guinea-Bissau"}
         GY{"Guayana"}
-        HK{"Hongkong – OAO Číny"}
+        HK{"Hongkong"}
         HM{"Heardov ostrov a Macdonaldove ostrovy"}
         HN{"Honduras"}
         HR{"Chorvátsko"}
@@ -295,7 +295,6 @@ sk{
     }
     Countries%short{
         GB{"UK"}
-        HK{"Hongkong"}
         MO{"Macao"}
         PS{"Palestínska samospráva"}
         UN{"OSN"}
