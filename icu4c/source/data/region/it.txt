@@ -192,7 +192,7 @@ it{
         ML{"Mali"}
         MM{"Myanmar (Birmania)"}
         MN{"Mongolia"}
-        MO{"RAS di Macao"}
+        MO{"Macao"}
         MP{"Isole Marianne settentrionali"}
         MQ{"Martinica"}
         MR{"Mauritania"}
@@ -301,7 +301,6 @@ it{
     }
     Countries%short{
         GB{"GB"}
-        MO{"Macao"}
         PS{"Palestina"}
         US{"USA"}
     }

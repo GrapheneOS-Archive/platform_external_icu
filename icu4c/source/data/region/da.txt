@@ -192,7 +192,7 @@ da{
         ML{"Mali"}
         MM{"Myanmar (Burma)"}
         MN{"Mongoliet"}
-        MO{"Macao SAR"}
+        MO{"Macao"}
         MP{"Nordmarianerne"}
         MQ{"Martinique"}
         MR{"Mauretanien"}
@@ -301,7 +301,6 @@ da{
     }
     Countries%short{
         GB{"UK"}
-        MO{"Macao"}
         PS{"Palæstina"}
         US{"USA"}
     }

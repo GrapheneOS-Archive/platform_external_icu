@@ -191,7 +191,7 @@ hsb{
         ML{"Mali"}
         MM{"Myanmar"}
         MN{"Mongolska"}
-        MO{"Wosebita zarjadniska cona Macao"}
+        MO{"Macao"}
         MP{"Sewjerne Mariany"}
         MQ{"Martinique"}
         MR{"Mawretanska"}
@@ -300,7 +300,6 @@ hsb{
     }
     Countries%short{
         GB{"UK"}
-        MO{"Macao"}
         PS{"Palestina"}
         US{"USA"}
     }

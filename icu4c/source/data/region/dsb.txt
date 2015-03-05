@@ -191,7 +191,7 @@ dsb{
         ML{"Mali"}
         MM{"Myanmar"}
         MN{"Mongolska"}
-        MO{"Wósebna zastojnstwowa cona Macao"}
+        MO{"Macao"}
         MP{"Pódpołnocne Mariany"}
         MQ{"Martinique"}
         MR{"Mawretańska"}
@@ -300,7 +300,6 @@ dsb{
     }
     Countries%short{
         GB{"UK"}
-        MO{"Macao"}
         PS{"Palestina"}
         US{"USA"}
     }

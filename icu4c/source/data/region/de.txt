@@ -192,7 +192,7 @@ de{
         ML{"Mali"}
         MM{"Myanmar"}
         MN{"Mongolei"}
-        MO{"Sonderverwaltungsregion Macau"}
+        MO{"Macau"}
         MP{"Nördliche Marianen"}
         MQ{"Martinique"}
         MR{"Mauretanien"}
@@ -301,7 +301,6 @@ de{
     }
     Countries%short{
         GB{"GB"}
-        MO{"Macau"}
         PS{"Palästina"}
         US{"USA"}
     }

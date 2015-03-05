@@ -192,7 +192,7 @@ gd{
         ML{"Màili"}
         MM{"Miànmar"}
         MN{"Dùthaich nam Mongol"}
-        MO{"Macàthu SAR na Sìne"}
+        MO{"Macàthu"}
         MP{"Na h-Eileanan Mairianach a Tuath"}
         MQ{"Mairtinic"}
         MR{"Moratàinea"}
@@ -301,7 +301,6 @@ gd{
     }
     Countries%short{
         GB{"RA"}
-        MO{"Macàthu"}
         PS{"Palastain"}
         US{"SA"}
     }

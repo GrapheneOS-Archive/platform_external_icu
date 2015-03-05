@@ -190,7 +190,7 @@ nn{
         ML{"Mali"}
         MM{"Myanmar"}
         MN{"Mongolia"}
-        MO{"Macao S.A.R. Kina"}
+        MO{"Macao"}
         MP{"Nord-Marianane"}
         MQ{"Martinique"}
         MR{"Mauritania"}
@@ -293,9 +293,6 @@ nn{
         ZM{"Zambia"}
         ZW{"Zimbabwe"}
         ZZ{"ukjent område"}
-    }
-    Countries%short{
-        MO{"Macao"}
     }
     Version{"2.1.19.14"}
 }
