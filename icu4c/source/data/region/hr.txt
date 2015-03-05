@@ -220,7 +220,7 @@ hr{
         PM{"Saint-Pierre-et-Miquelon"}
         PN{"Otoci Pitcairn"}
         PR{"Portoriko"}
-        PS{"Palestinsko Područje"}
+        PS{"Palestina"}
         PT{"Portugal"}
         PW{"Palau"}
         PY{"Paragvaj"}
@@ -295,7 +295,6 @@ hr{
     }
     Countries%short{
         GB{"UK"}
-        PS{"Palestina"}
         UN{"UN"}
         US{"SAD"}
     }

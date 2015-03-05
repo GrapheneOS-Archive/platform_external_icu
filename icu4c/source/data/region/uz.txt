@@ -220,7 +220,7 @@ uz{
         PM{"Sen-Pyer va Mikelon"}
         PN{"Pitkern orollari"}
         PR{"Puerto-Riko"}
-        PS{"Falastin hududi"}
+        PS{"Falastin"}
         PT{"Portugaliya"}
         PW{"Palau"}
         PY{"Paragvay"}
@@ -295,7 +295,6 @@ uz{
     }
     Countries%short{
         GB{"Britaniya"}
-        PS{"Falastin"}
         UN{"BMT"}
         US{"AQSH"}
     }

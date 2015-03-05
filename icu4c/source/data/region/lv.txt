@@ -295,7 +295,6 @@ lv{
     }
     Countries%short{
         GB{"Lielbritānija"}
-        PS{"Palestīna"}
         UN{"ANO"}
         US{"ASV"}
     }

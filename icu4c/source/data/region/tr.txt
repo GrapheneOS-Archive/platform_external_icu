@@ -220,7 +220,7 @@ tr{
         PM{"Saint Pierre ve Miquelon"}
         PN{"Pitcairn Adaları"}
         PR{"Porto Riko"}
-        PS{"Filistin Bölgeleri"}
+        PS{"Filistin"}
         PT{"Portekiz"}
         PW{"Palau"}
         PY{"Paraguay"}
@@ -295,7 +295,6 @@ tr{
     }
     Countries%short{
         GB{"BK"}
-        PS{"Filistin"}
         UN{"BM"}
         US{"ABD"}
     }

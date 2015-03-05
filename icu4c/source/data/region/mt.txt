@@ -218,7 +218,7 @@ mt{
         PM{"Saint Pierre u Miquelon"}
         PN{"Gżejjer Pitcairn"}
         PR{"Puerto Rico"}
-        PS{"it-Territorji Palestinjani"}
+        PS{"il-Palestina"}
         PT{"il-Portugall"}
         PW{"Palau"}
         PY{"il-Paragwaj"}
@@ -291,7 +291,6 @@ mt{
     }
     Countries%short{
         GB{"UK"}
-        PS{"il-Palestina"}
         US{"US"}
     }
     Countries%variant{

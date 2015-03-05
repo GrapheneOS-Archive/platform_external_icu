@@ -220,7 +220,7 @@ et{
         PM{"Saint Pierre ja Miquelon"}
         PN{"Pitcairni saared"}
         PR{"Puerto Rico"}
-        PS{"Palestiina alad"}
+        PS{"Palestiina"}
         PT{"Portugal"}
         PW{"Belau"}
         PY{"Paraguay"}
@@ -295,7 +295,6 @@ et{
     }
     Countries%short{
         GB{"ÜK"}
-        PS{"Palestiina"}
         UN{"ÜRO"}
         US{"USA"}
     }

@@ -220,7 +220,7 @@ hu{
         PM{"Saint-Pierre és Miquelon"}
         PN{"Pitcairn-szigetek"}
         PR{"Puerto Rico"}
-        PS{"Palesztin Terület"}
+        PS{"Palesztina"}
         PT{"Portugália"}
         PW{"Palau"}
         PY{"Paraguay"}
@@ -295,7 +295,6 @@ hu{
     }
     Countries%short{
         GB{"UK"}
-        PS{"Palesztina"}
         UN{"ENSZ"}
         US{"USA"}
     }
