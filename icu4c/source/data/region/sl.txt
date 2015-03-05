@@ -192,7 +192,7 @@ sl{
         ML{"Mali"}
         MM{"Mjanmar (Burma)"}
         MN{"Mongolija"}
-        MO{"Posebno administrativno območje LR Kitajske Macao"}
+        MO{"Macao"}
         MP{"Severni Marianski otoki"}
         MQ{"Martinik"}
         MR{"Mavretanija"}
@@ -301,7 +301,6 @@ sl{
     }
     Countries%short{
         GB{"ZK"}
-        MO{"Macao"}
         PS{"Palestina"}
         US{"ZDA"}
     }

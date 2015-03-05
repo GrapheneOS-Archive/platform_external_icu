@@ -191,7 +191,7 @@ lb{
         ML{"Mali"}
         MM{"Myanmar"}
         MN{"Mongolei"}
-        MO{"Spezialverwaltungszon Macau"}
+        MO{"Macau"}
         MP{"Nërdlech Marianen"}
         MQ{"Martinique"}
         MR{"Mauretanien"}
@@ -300,7 +300,6 @@ lb{
     }
     Countries%short{
         GB{"GB"}
-        MO{"Macau"}
         PS{"Palestina"}
         US{"US"}
     }

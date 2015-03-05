@@ -192,7 +192,7 @@ cy{
         ML{"Mali"}
         MM{"Myanmar (Burma)"}
         MN{"Mongolia"}
-        MO{"Macau RhGA Tsieina"}
+        MO{"Macau"}
         MP{"Ynysoedd Gogledd Mariana"}
         MQ{"Martinique"}
         MR{"Mauritania"}
@@ -301,7 +301,6 @@ cy{
     }
     Countries%short{
         GB{"DU"}
-        MO{"Macau"}
         PS{"Palesteina"}
         US{"UDA"}
     }

@@ -191,7 +191,7 @@ uz{
         ML{"Mali"}
         MM{"Myanma (Birma)"}
         MN{"Mo‘g‘uliston"}
-        MO{"Makao Xitoy MMH"}
+        MO{"Makao"}
         MP{"Shimoliy Marianna orollari"}
         MQ{"Martinika"}
         MR{"Mavritaniya"}
@@ -300,7 +300,6 @@ uz{
     }
     Countries%short{
         GB{"B.Q."}
-        MO{"Makao"}
         PS{"Falastin"}
         US{"AQSH"}
     }

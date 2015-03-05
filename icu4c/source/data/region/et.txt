@@ -192,7 +192,7 @@ et{
         ML{"Mali"}
         MM{"Myanmar (Birma)"}
         MN{"Mongoolia"}
-        MO{"Macau - Hiina erihalduspiirkond"}
+        MO{"Macau"}
         MP{"Põhja-Mariaanid"}
         MQ{"Martinique"}
         MR{"Mauritaania"}
@@ -301,7 +301,6 @@ et{
     }
     Countries%short{
         GB{"Suurbritannia"}
-        MO{"Macau"}
         PS{"Palestiina"}
         US{"USA"}
     }

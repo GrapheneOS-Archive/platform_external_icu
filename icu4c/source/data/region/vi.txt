@@ -192,7 +192,7 @@ vi{
         ML{"Mali"}
         MM{"Myanmar (Miến Điện)"}
         MN{"Mông Cổ"}
-        MO{"Đặc khu hành chính Macao - Trung Quốc"}
+        MO{"Macao"}
         MP{"Quần đảo Bắc Mariana"}
         MQ{"Martinique"}
         MR{"Mauritania"}
@@ -301,7 +301,6 @@ vi{
     }
     Countries%short{
         GB{"Vương quốc Anh"}
-        MO{"Macao"}
         PS{"Palestine"}
         US{"Hoa Kỳ"}
     }

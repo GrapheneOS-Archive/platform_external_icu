@@ -193,7 +193,7 @@ sr_Latn{
         ML{"Mali"}
         MM{"Mijanmar (Burma)"}
         MN{"Mongolija"}
-        MO{"SAR Makao (Kina)"}
+        MO{"Makao"}
         MP{"Severna Marijanska Ostrva"}
         MQ{"Martinik"}
         MR{"Mauritanija"}
@@ -302,7 +302,6 @@ sr_Latn{
     }
     Countries%short{
         GB{"UK"}
-        MO{"Makao"}
         PS{"Palestina"}
         US{"SAD"}
     }

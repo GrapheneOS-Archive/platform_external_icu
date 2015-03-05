@@ -185,7 +185,7 @@ gsw{
         ML{"Maali"}
         MM{"Myanmar (Burma)"}
         MN{"Mongolei"}
-        MO{"Sonderverwaltigszone Macao"}
+        MO{"Macao"}
         MP{"Nördlichi Mariaane"}
         MQ{"Martinigg"}
         MR{"Mauretaanie"}
@@ -287,9 +287,6 @@ gsw{
         ZM{"Sambia"}
         ZW{"Simbabwe"}
         ZZ{"Unbekannti oder ungültigi Regioon"}
-    }
-    Countries%short{
-        MO{"Macao"}
     }
     Countries%variant{
         MK{"Mazedoonie (EJRM)"}

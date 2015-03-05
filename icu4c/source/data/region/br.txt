@@ -192,7 +192,7 @@ br{
         ML{"Mali"}
         MM{"Myanmar (Birmania)"}
         MN{"Mongolia"}
-        MO{"Macau RMD Sina"}
+        MO{"Macau"}
         MP{"Inizi Mariana an Norzh"}
         MQ{"Martinik"}
         MR{"Maouritania"}
@@ -301,7 +301,6 @@ br{
     }
     Countries%short{
         GB{"R.U."}
-        MO{"Macau"}
         PS{"Palestina"}
         US{"S.U."}
     }

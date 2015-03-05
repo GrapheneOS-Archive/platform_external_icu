@@ -192,7 +192,7 @@ en{
         ML{"Mali"}
         MM{"Myanmar (Burma)"}
         MN{"Mongolia"}
-        MO{"Macau SAR China"}
+        MO{"Macau"}
         MP{"Northern Mariana Islands"}
         MQ{"Martinique"}
         MR{"Mauritania"}
@@ -303,7 +303,6 @@ en{
         BA{"Bosnia"}
         GB{"UK"}
         MM{"Myanmar"}
-        MO{"Macau"}
         PS{"Palestine"}
         US{"US"}
     }

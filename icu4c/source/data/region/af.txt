@@ -192,7 +192,7 @@ af{
         ML{"Mali"}
         MM{"Mianmar (Birma)"}
         MN{"Mongolië"}
-        MO{"Macau SAS Sjina"}
+        MO{"Macau"}
         MP{"Noord-Mariane-eilande"}
         MQ{"Martinique"}
         MR{"Mauritanië"}
@@ -301,7 +301,6 @@ af{
     }
     Countries%short{
         GB{"VK"}
-        MO{"Macau"}
         PS{"Palestina"}
         US{"VSA"}
     }
