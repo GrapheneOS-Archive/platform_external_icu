@@ -131,7 +131,7 @@ kea{
         GU{"Guam"}
         GW{"Gine-Bisau"}
         GY{"Giana"}
-        HK{"Rejiãu Administrativu Spesial di Hong Kong"}
+        HK{"Hong Kong"}
         HM{"Ilhas Heard i McDonald"}
         HN{"Onduras"}
         HR{"Kroásia"}
@@ -294,7 +294,6 @@ kea{
     }
     Countries%short{
         GB{"R.U."}
-        HK{"Hong Kong"}
         MO{"Makau"}
         US{"S.U."}
     }

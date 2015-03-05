@@ -131,7 +131,7 @@ sw{
         GU{"Guam"}
         GW{"Ginebisau"}
         GY{"Guyana"}
-        HK{"Hong Kong SAR China"}
+        HK{"Hong Kong"}
         HM{"Kisiwa cha Heard na Visiwa vya McDonald"}
         HN{"Hondurasi"}
         HR{"Korasia"}
@@ -295,7 +295,6 @@ sw{
     }
     Countries%short{
         GB{"Uingereza"}
-        HK{"Hong Kong"}
         MO{"Macau"}
         PS{"Palestina"}
         UN{"umoja wa mataifa"}

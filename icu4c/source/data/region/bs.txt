@@ -131,7 +131,7 @@ bs{
         GU{"Guam"}
         GW{"Gvineja-Bisao"}
         GY{"Gvajana"}
-        HK{"Hong Kong (SAR Kina)"}
+        HK{"Hong Kong"}
         HM{"Herd i arhipelag MekDonald"}
         HN{"Honduras"}
         HR{"Hrvatska"}
@@ -295,7 +295,6 @@ bs{
     }
     Countries%short{
         GB{"UK"}
-        HK{"Hong Kong"}
         MO{"Makao"}
         PS{"Palestina"}
         UN{"UN"}

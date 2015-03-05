@@ -131,7 +131,7 @@ ms{
         GU{"Guam"}
         GW{"Guinea Bissau"}
         GY{"Guyana"}
-        HK{"Hong Kong SAR China"}
+        HK{"Hong Kong"}
         HM{"Kepulauan Heard & McDonald"}
         HN{"Honduras"}
         HR{"Croatia"}
@@ -295,7 +295,6 @@ ms{
     }
     Countries%short{
         GB{"UK"}
-        HK{"Hong Kong"}
         MO{"Macau"}
         PS{"Palestin"}
         UN{"PBB"}

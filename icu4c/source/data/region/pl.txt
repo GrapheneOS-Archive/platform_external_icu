@@ -131,7 +131,7 @@ pl{
         GU{"Guam"}
         GW{"Gwinea Bissau"}
         GY{"Gujana"}
-        HK{"SRA Hongkong (Chiny)"}
+        HK{"Hongkong"}
         HM{"Wyspy Heard i McDonalda"}
         HN{"Honduras"}
         HR{"Chorwacja"}
@@ -295,7 +295,6 @@ pl{
     }
     Countries%short{
         GB{"Wlk. Bryt."}
-        HK{"Hongkong"}
         MO{"Makau"}
         PS{"Palestyna"}
         UN{"ONZ"}

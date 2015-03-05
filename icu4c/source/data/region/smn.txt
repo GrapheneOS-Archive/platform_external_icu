@@ -96,7 +96,7 @@ smn{
         GU{"Guam"}
         GW{"Guinea-Bissau"}
         GY{"Guyana"}
-        HK{"Hongkong – Kiina e.h.k."}
+        HK{"Hong Kong"}
         HM{"Heard já McDonaldsuolluuh"}
         HN{"Honduras"}
         HR{"Kroatia"}
@@ -255,7 +255,6 @@ smn{
     }
     Countries%short{
         GB{"OK"}
-        HK{"Hong Kong"}
         MO{"Macao"}
         US{"USA"}
     }

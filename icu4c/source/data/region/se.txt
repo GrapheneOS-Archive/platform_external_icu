@@ -289,7 +289,6 @@ se{
     }
     Countries%short{
         GB{"Stuorra-Británnia"}
-        HK{"Hongkong"}
         MO{"Makáo"}
         PS{"Palestina"}
         US{"USA"}
