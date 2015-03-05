@@ -220,7 +220,7 @@ ast{
         PM{"Saint Pierre y Miquelon"}
         PN{"Islles Pitcairn"}
         PR{"Puertu Ricu"}
-        PS{"Territorios Palestinos"}
+        PS{"Palestina"}
         PT{"Portugal"}
         PW{"Paláu"}
         PY{"Paraguái"}
@@ -294,7 +294,6 @@ ast{
     }
     Countries%short{
         GB{"RX"}
-        PS{"Palestina"}
         US{"EE.XX."}
     }
     Countries%variant{
