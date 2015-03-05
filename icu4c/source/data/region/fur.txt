@@ -135,7 +135,7 @@ fur{
         GU{"Guam"}
         GW{"Guinea-Bissau"}
         GY{"Guyana"}
-        HK{"Regjon aministrative speciâl de Cine di Hong Kong"}
+        HK{"Hong Kong"}
         HM{"Isule Heard e Isulis McDonald"}
         HN{"Honduras"}
         HR{"Cravuazie"}
@@ -294,7 +294,6 @@ fur{
         ZZ{"Regjon no cognossude o no valide"}
     }
     Countries%short{
-        HK{"Hong Kong"}
         MO{"Macao"}
     }
     Countries%variant{

@@ -138,7 +138,7 @@ it{
         GU{"Guam"}
         GW{"Guinea-Bissau"}
         GY{"Guyana"}
-        HK{"RAS di Hong Kong"}
+        HK{"Hong-Kong"}
         HM{"Isole Heard e McDonald"}
         HN{"Honduras"}
         HR{"Croazia"}
@@ -301,7 +301,6 @@ it{
     }
     Countries%short{
         GB{"GB"}
-        HK{"Hong Kong"}
         MO{"Macao"}
         PS{"Palestina"}
         US{"USA"}

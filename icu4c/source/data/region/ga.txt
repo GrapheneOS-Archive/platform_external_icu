@@ -138,7 +138,7 @@ ga{
         GU{"Guam"}
         GW{"Guine Bissau"}
         GY{"An Ghuáin"}
-        HK{"S.R.R. na Síne Hong Cong"}
+        HK{"Hong Cong"}
         HM{"Oileán Heard agus Oileáin McDonald"}
         HN{"Hondúras"}
         HR{"An Chróit"}
@@ -301,7 +301,6 @@ ga{
     }
     Countries%short{
         GB{"RA"}
-        HK{"Hong Cong"}
         MO{"Macao"}
         PS{"An Phalaistín"}
         US{"SAM"}
