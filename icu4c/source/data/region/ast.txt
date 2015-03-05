@@ -185,7 +185,7 @@ ast{
         ML{"Malí"}
         MM{"Myanmar (Birmania)"}
         MN{"Mongolia"}
-        MO{"ARE China de Macáu"}
+        MO{"Macáu"}
         MP{"Islles Marianes del Norte"}
         MQ{"La Martinica"}
         MR{"Mauritania"}
@@ -294,7 +294,6 @@ ast{
     }
     Countries%short{
         GB{"RX"}
-        MO{"Macáu"}
         PS{"Palestina"}
         US{"EE.XX."}
     }

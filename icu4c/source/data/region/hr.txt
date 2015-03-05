@@ -185,7 +185,7 @@ hr{
         ML{"Mali"}
         MM{"Mjanmar (Burma)"}
         MN{"Mongolija"}
-        MO{"PUP Makao Kina"}
+        MO{"Makao"}
         MP{"Sjevernomarijanski otoci"}
         MQ{"Martinique"}
         MR{"Mauretanija"}
@@ -295,7 +295,6 @@ hr{
     }
     Countries%short{
         GB{"UK"}
-        MO{"Makao"}
         PS{"Palestina"}
         UN{"UN"}
         US{"SAD"}
