@@ -295,7 +295,6 @@ se{
     }
     Countries%short{
         GB{"Stuorra-Británnia"}
-        MO{"Makáo"}
         PS{"Palestina"}
         US{"USA"}
     }

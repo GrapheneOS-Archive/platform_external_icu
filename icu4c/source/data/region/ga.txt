@@ -191,7 +191,7 @@ ga{
         ML{"Mailí"}
         MM{"Maenmar (Burma)"}
         MN{"An Mhongóil"}
-        MO{"S.R.R. na Síne Macao"}
+        MO{"Macao"}
         MP{"Na hOileáin Mháirianacha Thuaidh"}
         MQ{"Martinique"}
         MR{"An Mháratáin"}
@@ -300,7 +300,6 @@ ga{
     }
     Countries%short{
         GB{"RA"}
-        MO{"Macao"}
         PS{"An Phalaistín"}
         US{"SAM"}
     }

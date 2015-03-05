@@ -191,7 +191,7 @@ lt{
         ML{"Malis"}
         MM{"Mianmaras (Birma)"}
         MN{"Mongolija"}
-        MO{"Ypatingasis Administracinis Kinijos Regionas Makao"}
+        MO{"Makao"}
         MP{"Marianos Šiaurinės Salos"}
         MQ{"Martinika"}
         MR{"Mauritanija"}
@@ -300,7 +300,6 @@ lt{
     }
     Countries%short{
         GB{"Didžioji Britanija"}
-        MO{"Makao"}
         PS{"Palestina"}
         US{"JAV"}
     }

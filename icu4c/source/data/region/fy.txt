@@ -191,7 +191,7 @@ fy{
         ML{"Mali"}
         MM{"Myanmar (Birma)"}
         MN{"Mongolië"}
-        MO{"Macao SAR van Sina"}
+        MO{"Macao"}
         MP{"Noardlike Marianeneilannen"}
         MQ{"Martinique"}
         MR{"Mauritanië"}
@@ -300,7 +300,6 @@ fy{
     }
     Countries%short{
         GB{"VK"}
-        MO{"Macao"}
         PS{"Palestina"}
         US{"VS"}
     }

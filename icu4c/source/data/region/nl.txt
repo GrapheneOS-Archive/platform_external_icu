@@ -191,7 +191,7 @@ nl{
         ML{"Mali"}
         MM{"Myanmar (Birma)"}
         MN{"Mongolië"}
-        MO{"Macau SAR van China"}
+        MO{"Macau"}
         MP{"Noordelijke Marianen"}
         MQ{"Martinique"}
         MR{"Mauritanië"}
@@ -300,7 +300,6 @@ nl{
     }
     Countries%short{
         GB{"VK"}
-        MO{"Macau"}
         PS{"Palestina"}
         US{"VS"}
     }

@@ -191,7 +191,7 @@ kea{
         ML{"Mali"}
         MM{"Mianmar"}
         MN{"Mongolia"}
-        MO{"Rejiãu Administrativu Special di Makau"}
+        MO{"Makau"}
         MP{"Ilhas Marianas di Norti"}
         MQ{"Martinika"}
         MR{"Mauritania"}
@@ -300,7 +300,6 @@ kea{
     }
     Countries%short{
         GB{"R.U."}
-        MO{"Makau"}
         US{"S.U."}
     }
     Countries%variant{

@@ -300,7 +300,6 @@ ksh{
     }
     Countries%short{
         GB{"Jruußbrettannije"}
-        MO{"Makau"}
         US{"USA"}
     }
     Countries%variant{

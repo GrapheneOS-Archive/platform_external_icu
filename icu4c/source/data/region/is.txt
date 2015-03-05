@@ -191,7 +191,7 @@ is{
         ML{"Malí"}
         MM{"Mjanmar (Búrma)"}
         MN{"Mongólía"}
-        MO{"Sjálfstjórnarsvæðið Makaó"}
+        MO{"Makaó"}
         MP{"Norður-Maríanaeyjar"}
         MQ{"Martiník"}
         MR{"Máritanía"}
@@ -300,7 +300,6 @@ is{
     }
     Countries%short{
         GB{"Bretland"}
-        MO{"Makaó"}
         PS{"Palestína"}
         US{"BNA"}
     }

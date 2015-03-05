@@ -191,7 +191,7 @@ id{
         ML{"Mali"}
         MM{"Myanmar (Burma)"}
         MN{"Mongolia"}
-        MO{"Makau SAR Tiongkok"}
+        MO{"Makau"}
         MP{"Kepulauan Mariana Utara"}
         MQ{"Martinik"}
         MR{"Mauritania"}
@@ -300,7 +300,6 @@ id{
     }
     Countries%short{
         GB{"GB"}
-        MO{"Makau"}
         PS{"Palestina"}
         US{"A.S."}
     }

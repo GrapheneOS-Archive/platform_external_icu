@@ -191,7 +191,7 @@ cs{
         ML{"Mali"}
         MM{"Myanmar (Barma)"}
         MN{"Mongolsko"}
-        MO{"Macao – ZAO Číny"}
+        MO{"Macao"}
         MP{"Severní Mariany"}
         MQ{"Martinik"}
         MR{"Mauritánie"}
@@ -300,7 +300,6 @@ cs{
     }
     Countries%short{
         GB{"VB"}
-        MO{"Macao"}
         PS{"Palestina"}
         US{"USA"}
     }

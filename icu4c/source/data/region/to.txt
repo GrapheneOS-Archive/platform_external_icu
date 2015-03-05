@@ -191,7 +191,7 @@ to{
         ML{"Māli"}
         MM{"Pema"}
         MN{"Mongokōlia"}
-        MO{"Makau SAR Siaina"}
+        MO{"Makau"}
         MP{"ʻOtumotu Maliana tokelau"}
         MQ{"Māteniki"}
         MR{"Maulitenia"}
@@ -300,7 +300,6 @@ to{
     }
     Countries%short{
         GB{"Pilitānia"}
-        MO{"Makau"}
         PS{"Palesitaine"}
         US{"ʻAmelika"}
     }
