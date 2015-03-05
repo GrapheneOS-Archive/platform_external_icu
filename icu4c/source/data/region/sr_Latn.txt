@@ -228,7 +228,7 @@ sr_Latn{
         PM{"Sen Pjer i Mikelon"}
         PN{"Pitkern"}
         PR{"Portoriko"}
-        PS{"Palestinske teritorije"}
+        PS{"Palestina"}
         PT{"Portugal"}
         PW{"Palau"}
         PY{"Paragvaj"}
@@ -302,7 +302,6 @@ sr_Latn{
     }
     Countries%short{
         GB{"UK"}
-        PS{"Palestina"}
         US{"SAD"}
     }
     Countries%variant{

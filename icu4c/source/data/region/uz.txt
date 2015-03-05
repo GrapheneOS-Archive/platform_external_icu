@@ -226,7 +226,7 @@ uz{
         PM{"Sent-Pyer va Mikelon"}
         PN{"Pitkarin orollari"}
         PR{"Puerto-Riko"}
-        PS{"Falastin hududi"}
+        PS{"Falastin"}
         PT{"Portugaliya"}
         PW{"Palau"}
         PY{"Paragvay"}
@@ -300,7 +300,6 @@ uz{
     }
     Countries%short{
         GB{"B.Q."}
-        PS{"Falastin"}
         US{"AQSH"}
     }
     Countries%variant{

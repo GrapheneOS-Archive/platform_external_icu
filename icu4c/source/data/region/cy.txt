@@ -227,7 +227,7 @@ cy{
         PM{"Saint-Pierre-et-Miquelon"}
         PN{"Ynysoedd Pitcairn"}
         PR{"Puerto Rico"}
-        PS{"Tiriogaethau Palesteinaidd"}
+        PS{"Palesteina"}
         PT{"Portiwgal"}
         PW{"Palau"}
         PY{"Paraguay"}
@@ -301,7 +301,6 @@ cy{
     }
     Countries%short{
         GB{"DU"}
-        PS{"Palesteina"}
         US{"UDA"}
     }
     Countries%variant{

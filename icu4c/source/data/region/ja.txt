@@ -301,7 +301,6 @@ ja{
     }
     Countries%short{
         GB{"英国"}
-        PS{"パレスチナ"}
         US{"アメリカ"}
     }
     Countries%variant{

@@ -227,7 +227,7 @@ is{
         PM{"Sankti Pierre og Miquelon"}
         PN{"Pitcairn-eyjar"}
         PR{"Púertó Ríkó"}
-        PS{"Heimastjórnarsvæði Palestínumanna"}
+        PS{"Palestína"}
         PT{"Portúgal"}
         PW{"Palá"}
         PY{"Paragvæ"}
@@ -301,7 +301,6 @@ is{
     }
     Countries%short{
         GB{"Bretland"}
-        PS{"Palestína"}
         US{"BNA"}
     }
     Countries%variant{

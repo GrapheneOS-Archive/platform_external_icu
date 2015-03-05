@@ -226,7 +226,7 @@ sq{
         PM{"Shën Peir dhe Mikuelon"}
         PN{"Ishujt Pitkernë"}
         PR{"Porto Riko"}
-        PS{"Territoret Palestineze"}
+        PS{"Palestinë"}
         PT{"Portugali"}
         PW{"Palau"}
         PY{"Paraguai"}
@@ -300,7 +300,6 @@ sq{
     }
     Countries%short{
         GB{"Mbretëria e Bashkuar"}
-        PS{"Palestinë"}
         US{"SHBA"}
     }
     Countries%variant{

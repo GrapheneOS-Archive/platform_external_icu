@@ -227,7 +227,7 @@ sw{
         PM{"Santapieri na Mikeloni"}
         PN{"Pitkairni"}
         PR{"Pwetoriko"}
-        PS{"Maeneo ya Palestina"}
+        PS{"Palestina"}
         PT{"Ureno"}
         PW{"Palau"}
         PY{"Paragwai"}
@@ -301,7 +301,6 @@ sw{
     }
     Countries%short{
         GB{"Uingereza"}
-        PS{"Palestina"}
         US{"US"}
     }
     Countries%variant{
