@@ -79,9 +79,9 @@ en{
         BZ{"Belize"}
         CA{"Canada"}
         CC{"Cocos (Keeling) Islands"}
-        CD{"Congo - Kinshasa"}
+        CD{"Congo (DRC)"}
         CF{"Central African Republic"}
-        CG{"Congo - Brazzaville"}
+        CG{"Congo (Republic)"}
         CH{"Switzerland"}
         CI{"Côte d’Ivoire"}
         CK{"Cook Islands"}
