@@ -298,7 +298,6 @@ fo{
     }
     Countries%short{
         GB{"Stóra Bretland"}
-        HK{"Hongkong"}
         MO{"Makao"}
         PS{"Palestina"}
         US{"USA"}

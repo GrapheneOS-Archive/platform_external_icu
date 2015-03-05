@@ -139,7 +139,7 @@ sr_Latn{
         GU{"Guam"}
         GW{"Gvineja-Bisao"}
         GY{"Gvajana"}
-        HK{"Hong Kong S. A. R. Kina"}
+        HK{"Hong Kong"}
         HM{"Ostrva Herd i Mekdonald"}
         HN{"Honduras"}
         HR{"Hrvatska"}
@@ -302,7 +302,6 @@ sr_Latn{
     }
     Countries%short{
         GB{"UK"}
-        HK{"Hong Kong"}
         MO{"Makao"}
         PS{"Palestina"}
         US{"SAD"}

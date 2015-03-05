@@ -137,7 +137,7 @@ uz{
         GU{"Guam"}
         GW{"Gvineya-Bisau"}
         GY{"Gayana"}
-        HK{"Gonkong Xitoy MMH"}
+        HK{"Gonkong"}
         HM{"Gerd oroli va MakDonald orollari"}
         HN{"Gonduras"}
         HR{"Xorvatiya"}
@@ -300,7 +300,6 @@ uz{
     }
     Countries%short{
         GB{"B.Q."}
-        HK{"Gonkong"}
         MO{"Makao"}
         PS{"Falastin"}
         US{"AQSH"}

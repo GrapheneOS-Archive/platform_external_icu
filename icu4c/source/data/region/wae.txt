@@ -136,7 +136,7 @@ wae{
         GU{"Guam"}
         GW{"Ginea Bissau"}
         GY{"Guyana"}
-        HK{"Sonderverwaltigszona Hongkong"}
+        HK{"Hongkong"}
         HM{"Heard- und McDonald-Inslä"}
         HN{"Honduras"}
         HR{"Kroatie"}
@@ -295,7 +295,6 @@ wae{
         ZZ{"Unbekannti Regio"}
     }
     Countries%short{
-        HK{"Hongkong"}
         MO{"Makau"}
     }
     Countries%variant{

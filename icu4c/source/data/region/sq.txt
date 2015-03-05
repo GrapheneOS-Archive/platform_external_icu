@@ -137,7 +137,7 @@ sq{
         GU{"Guam"}
         GW{"Guine-Bisau"}
         GY{"Guajanë"}
-        HK{"RVAK i Hong Kongut"}
+        HK{"Hong Kong"}
         HM{"Ishulli Hërd dhe Ishujt Mekdonald"}
         HN{"Honduras"}
         HR{"Kroaci"}
@@ -300,7 +300,6 @@ sq{
     }
     Countries%short{
         GB{"Mbretëria e Bashkuar"}
-        HK{"Hong Kong"}
         MO{"Makao"}
         PS{"Palestinë"}
         US{"SHBA"}

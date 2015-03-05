@@ -136,7 +136,7 @@ nn{
         GU{"Guam"}
         GW{"Guinea-Bissau"}
         GY{"Guyana"}
-        HK{"Hongkong S.A.R. Kina"}
+        HK{"Hongkong"}
         HM{"Heard- og McDonaldsøyane"}
         HN{"Honduras"}
         HR{"Kroatia"}
@@ -295,7 +295,6 @@ nn{
         ZZ{"ukjent område"}
     }
     Countries%short{
-        HK{"Hongkong"}
         MO{"Macao"}
     }
     Version{"2.1.10.42"}
