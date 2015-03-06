@@ -370,8 +370,8 @@ bn{
         }
         gregorian{
             AmPmMarkers{
-                "AM",
-                "অপরাহ্ণ",
+                "am",
+                "pm",
             }
             AmPmMarkersAbbr{
                 "AM",
@@ -396,6 +396,8 @@ bn{
                 "{1} {0}",
                 "{1} {0}",
             }
+            NoonMarker{"noon"}
+            NoonMarkerNarrow{"n"}
             appendItems{
                 Timezone{"{0} {1}"}
             }
