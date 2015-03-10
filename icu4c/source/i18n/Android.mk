@@ -22,8 +22,8 @@ LOCAL_PATH:= $(call my-dir)
 include $(CLEAR_VARS)
 
 src_files := \
-	ucln_in.c  decContext.c \
-	ulocdata.c  utmscale.c decNumber.c
+	ucln_in.cpp decContext.c \
+	ulocdata.c utmscale.c decNumber.c
 
 src_files += \
         indiancal.cpp   dtptngen.cpp dtrule.cpp   \
