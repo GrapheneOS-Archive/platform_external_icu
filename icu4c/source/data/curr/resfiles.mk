@@ -49,8 +49,6 @@ CURR_ALIAS_SOURCE = $(CURR_SYNTHETIC_ALIAS)
 
 
 # Ordinary resources
-# BEGIN Android-add.  Including en_US.txt
-# END Android-add
 CURR_SOURCE = af.txt af_NA.txt agq.txt ak.txt\
  am.txt ar.txt ar_AE.txt ar_DJ.txt ar_ER.txt\
  ar_LB.txt ar_SO.txt ar_SS.txt as.txt asa.txt\
@@ -77,9 +75,7 @@ CURR_SOURCE = af.txt af_NA.txt agq.txt ak.txt\
  en_RW.txt en_SB.txt en_SC.txt en_SD.txt en_SG.txt\
  en_SH.txt en_SL.txt en_SS.txt en_SX.txt en_SZ.txt\
  en_TC.txt en_TK.txt en_TO.txt en_TT.txt en_TV.txt\
- en_TZ.txt en_UG.txt  \
- en_US.txt \
- en_VC.txt en_VG.txt en_VU.txt\
+ en_TZ.txt en_UG.txt en_VC.txt en_VG.txt en_VU.txt\
  en_WS.txt en_ZA.txt en_ZM.txt en_ZW.txt eo.txt\
  es.txt es_419.txt es_AR.txt es_BO.txt es_CL.txt\
  es_CO.txt es_CR.txt es_CU.txt es_DO.txt es_EC.txt\
