@@ -48,10 +48,7 @@ icu4j_test_resource_dirs := \
     $(filter-out main/tests/localespi/%, \
     $(call all-subdir-with-subdir,main/tests/*/src,com/ibm/icu/dev))
 
-# ICU4J depends on being able to use deprecated APIs and doing unchecked
-# conversions, so these otherwise noisy lint warnings must be turned off.
-
-icu4j_javac_flags := -encoding UTF-8 -Xlint:-deprecation,-unchecked
+icu4j_javac_flags := -encoding UTF-8
 icu4j_test_javac_flags := $(icu4j_javac_flags)
 
 # For each data *.jar file, define a corresponding icu4j-* target.
