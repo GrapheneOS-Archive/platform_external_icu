@@ -96,7 +96,7 @@ nyn{
             "Faranga ya Guinea",
         }
         INR{
-            "Rs.",
+            "₹",
             "Rupiya ya India",
         }
         JPY{

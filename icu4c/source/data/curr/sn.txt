@@ -96,7 +96,7 @@ sn{
             "Furenki re Gine",
         }
         INR{
-            "Rs.",
+            "₹",
             "Rupe re India",
         }
         JPY{

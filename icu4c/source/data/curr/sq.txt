@@ -256,7 +256,7 @@ sq{
             "Shekeli izrealit",
         }
         INR{
-            "Rs.",
+            "₹",
             "Rupia indiane",
         }
         IQD{

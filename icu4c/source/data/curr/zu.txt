@@ -256,7 +256,7 @@ zu{
             "i-Israeli New Sheqel",
         }
         INR{
-            "Rs.",
+            "₹",
             "i-Indian Rupee",
         }
         IQD{

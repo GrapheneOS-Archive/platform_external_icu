@@ -96,7 +96,7 @@ xog{
             "Faranga ya Gini",
         }
         INR{
-            "Rs.",
+            "₹",
             "Rupiya ya Buyindi",
         }
         JPY{

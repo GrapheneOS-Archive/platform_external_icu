@@ -256,7 +256,7 @@ uz{
             "ILS",
         }
         INR{
-            "Rs.",
+            "₹",
             "Hind rupiyasi",
         }
         IQD{

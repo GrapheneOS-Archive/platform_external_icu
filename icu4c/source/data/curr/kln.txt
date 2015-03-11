@@ -96,7 +96,7 @@ kln{
             "Rabisiekab Guinea",
         }
         INR{
-            "Rs.",
+            "₹",
             "Rabisiekab India",
         }
         JPY{

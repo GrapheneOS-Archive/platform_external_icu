@@ -96,7 +96,7 @@ ff{
             "Faraa Gine",
         }
         INR{
-            "Rs.",
+            "₹",
             "Rupii Enndo",
         }
         JPY{

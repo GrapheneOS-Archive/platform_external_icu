@@ -96,7 +96,7 @@ luo{
             "Faranga ya Gine",
         }
         INR{
-            "Rs.",
+            "₹",
             "Rupia ya India",
         }
         JPY{

@@ -444,7 +444,7 @@ it{
             "Nuovo siclo israeliano",
         }
         INR{
-            "Rs.",
+            "₹",
             "Rupia Indiana",
         }
         IQD{

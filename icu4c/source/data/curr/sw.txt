@@ -264,7 +264,7 @@ sw{
             "Sheqel Mpya ya Israeli",
         }
         INR{
-            "Rs.",
+            "₹",
             "rupia ya India",
         }
         IQD{
