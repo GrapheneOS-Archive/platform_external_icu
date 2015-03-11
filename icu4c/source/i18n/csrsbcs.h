@@ -33,9 +33,7 @@ protected:
 
 public:
     NGramParser(const int32_t *theNgramList, const uint8_t *theCharMap);
-    virtual ~NGramParser()   // Google patch: declare virtual destructor
-      {
-      }
+    virtual ~NGramParser();
 
 private:
     /*
