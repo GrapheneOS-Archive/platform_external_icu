@@ -7,7 +7,6 @@
 // *
 // ***************************************************************************
 zh_Hant_HK{
-    %%Parent{"zh_Hant"}
     NumberElements{
         latn{
             patternsLong{
