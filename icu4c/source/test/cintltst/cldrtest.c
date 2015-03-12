@@ -563,11 +563,8 @@ TestLocaleStructure(void) {
         if (strcmp(resolvedLoc, currLoc) != 0) {
             /* All locales have at least a Version resource.
                If it's absolutely empty, then the previous test will fail too.*/
-            /* Google Patch:  tl_PH and fil_PH are aliases of each other */
-            if (!(strcmp(currLoc, "tl_PH")==0 && strcmp(resolvedLoc, "fil_PH")==0) &&
-                !(strcmp(currLoc, "tl")==0 && strcmp(resolvedLoc, "fil")==0))
-                log_err("Locale resolves to different locale. Is %s an alias of %s?\n",
-                    currLoc, resolvedLoc);
+            log_err("Locale resolves to different locale. Is %s an alias of %s?\n",
+                currLoc, resolvedLoc);
         }
         TestKeyInRootRecursive(root, "root", currentLocale, currLoc);
 
