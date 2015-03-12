@@ -730,8 +730,7 @@ static int32_t pkg_executeOptions(UPKGOptions *o) {
 #endif
                 } else {
 #ifdef CAN_WRITE_OBJ_CODE
-                  // android-change -- removed
-                  //                    writeObjectCode(datFileNamePath, o->tmpDir, o->entryName, NULL, NULL, gencFilePath);
+                    writeObjectCode(datFileNamePath, o->tmpDir, o->entryName, NULL, NULL, gencFilePath);
 #if U_PLATFORM_IS_LINUX_BASED
                     result = pkg_generateLibraryFile(targetDir, mode, gencFilePath);
 #elif defined(WINDOWS_WITH_MSVC)
