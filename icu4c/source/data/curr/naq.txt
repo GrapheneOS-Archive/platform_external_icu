@@ -96,7 +96,7 @@ naq{
             "Guinea Franc",
         }
         INR{
-            "Rs.",
+            "₹",
             "Indian Rupee",
         }
         JPY{

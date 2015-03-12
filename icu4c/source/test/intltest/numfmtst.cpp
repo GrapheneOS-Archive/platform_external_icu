@@ -4827,7 +4827,7 @@ NumberFormatTest::TestParseCurrencyInUCurr() {
         "\\u20ab1.00",
         "\\u20aa1.00",
         "\\u20ac1.00",
-        "Rs.1.00",          // Google Patch: Indian Rupee symbol \u20B9 -> "Rs."
+        "\\u20b91.00",
         //
         // Following has extra text, should be parsed correctly too
         "$1.00 random",

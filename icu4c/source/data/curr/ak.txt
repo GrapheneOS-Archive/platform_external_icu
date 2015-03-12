@@ -96,7 +96,7 @@ ak{
             "Gini Frank",
         }
         INR{
-            "Rs.",
+            "₹",
             "India Rupi",
         }
         JPY{

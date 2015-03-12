@@ -197,7 +197,7 @@ kea{
             "ILS",
         }
         INR{
-            "Rs.",
+            "₹",
             "Rupia indianu",
         }
         IQD{

@@ -96,7 +96,7 @@ bez{
             "Lupila lwa Hujine",
         }
         INR{
-            "Rs.",
+            "₹",
             "Lupila lwa Huindia",
         }
         JPY{

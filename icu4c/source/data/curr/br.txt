@@ -416,7 +416,7 @@ br{
             "shekel nevez Israel",
         }
         INR{
-            "Rs.",
+            "₹",
             "roupi India",
         }
         IQD{

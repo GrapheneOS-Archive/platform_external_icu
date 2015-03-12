@@ -500,7 +500,7 @@ en{
             "Israeli New Sheqel",
         }
         INR{
-            "Rs.",
+            "₹",
             "Indian Rupee",
         }
         IQD{

@@ -256,7 +256,7 @@ ms{
             "Sheqel Baru Israel",
         }
         INR{
-            "Rs.",
+            "₹",
             "Rupee India",
         }
         IQD{

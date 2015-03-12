@@ -96,7 +96,7 @@ nd{
             "Fulenki yase Gine",
         }
         INR{
-            "Rs.",
+            "₹",
             "Rupi yase Indiya",
         }
         JPY{

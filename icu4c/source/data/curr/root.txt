@@ -44,7 +44,7 @@ root{
             "ILS",
         }
         INR{
-            "Rs.",
+            "₹",
             "INR",
         }
         JPY{
