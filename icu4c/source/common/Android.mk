@@ -39,7 +39,7 @@ src_files := \
 	ucnv_ext.cpp       ucnvhz.c           \
 	ucnv_io.cpp        ucnvisci.c         \
 	ucnvlat1.c         ucnv_lmb.c         \
-	ucnvmbcs.c         ucnvscsu.c         \
+	ucnvmbcs.cpp       ucnvscsu.c         \
 	ucnv_set.c         ucnv_u16.c         \
 	ucnv_u32.c         ucnv_u7.c          \
 	ucnv_u8.c                             \
