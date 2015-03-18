@@ -4569,8 +4569,8 @@ const char* const full_data[][3] = {
     "nl"
   }, {
     "und_NO",
-    "nb_Latn_NO",
-    "nb"
+    "no_Latn_NO",  /* Google patch */
+    "no"  /* Google patch */
   }, {
     "und_NP",
     "ne_Deva_NP",
@@ -4685,8 +4685,8 @@ const char* const full_data[][3] = {
     "sl"
   }, {
     "und_SJ",
-    "nb_Latn_SJ",
-    "nb_SJ"
+    "no_Latn_SJ",  /* Google patch */
+    "no_SJ"  /* Google patch */
   }, {
     "und_SK",
     "sk_Latn_SK",
