@@ -16556,12 +16556,6 @@ supplementalData:table(nofallback){
     languageMatching{
         written{
             {
-                "no",
-                "nb",
-                "99",
-                "0",
-            }
-            {
                 "hr",
                 "bs",
                 "96",
@@ -17042,6 +17036,12 @@ supplementalData:table(nofallback){
                 "1",
             }
             {
+                "nb",
+                "no",
+                "99",
+                "0",
+            }
+            {
                 "ne",
                 "en",
                 "90",
@@ -17057,13 +17057,13 @@ supplementalData:table(nofallback){
                 "nn",
                 "nb",
                 "90",
-                "0",
+                "1",
             }
             {
                 "nn",
                 "no",
                 "90",
-                "1",
+                "0",
             }
             {
                 "nso",
