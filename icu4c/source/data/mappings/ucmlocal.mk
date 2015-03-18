@@ -3,4 +3,5 @@
 
 # A list of additional .ucm files to build for Google.
 
-UCM_SOURCE_LOCAL=gsm-03.38-2000.ucm
+UCM_SOURCE_LOCAL=gsm-03.38-2000.ucm \
+   jisx-208.ucm
