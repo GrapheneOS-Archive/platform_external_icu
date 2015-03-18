@@ -1,5 +1,5 @@
 /*
- *   Copyright (C) 1996-2014, International Business Machines
+ *   Copyright (C) 1996-2015, International Business Machines
  *   Corporation and others.  All Rights Reserved.
  */
 
@@ -437,32 +437,48 @@ public abstract class DateFormat extends UFormat {
     public final static int TIMEZONE_ISO_LOCAL_FIELD = 33;
 
     /**
+     * {@icu} FieldPosition selector for 'r' field alignment,
+     * corresponding to the {@link Calendar#EXTENDED_YEAR} field
+     * of the *related* calendar which may be different than the
+     * one used by the DateFormat.
+     * @internal
+     * @deprecated This API is ICU internal only.
+     */
+    @Deprecated
+    final static int RELATED_YEAR = 34;
+
+    /**
+     * {@icu} FieldPosition selector for ':' field alignment,
+     * no related Calendar field.
+     * @draft ICU 55
+     * @provisional This API might change or be removed in a future release.
+     */
+    public final static int TIME_SEPARATOR = 35;
+
+    /**
      * {@icu} Number of FieldPosition selectors for DateFormat.
      * Valid selectors range from 0 to FIELD_COUNT-1.
      * @stable ICU 3.0
      */
 
-    public final static int FIELD_COUNT = 34; // must == DateFormatSymbols.patternChars.length()
+    public final static int FIELD_COUNT = 36; // must == DateFormatSymbols.patternChars.length()
 
     
     /**
      * boolean attributes
      * 
-     * @draft ICU 53
-     * @provisional This API might change or be removed in a future release.
+     * @stable ICU 53
      */
     public enum BooleanAttribute { 
         /** 
          * indicates whitespace tolerance. Also included is trailing dot tolerance. 
-         * @draft ICU 53
-         * @provisional This API might change or be removed in a future release.
+         * @stable ICU 53
          */
         PARSE_ALLOW_WHITESPACE,
         /** 
          * indicates tolerance of numeric data when String data may be assumed. 
          * e.g. YEAR_NAME_FIELD 
-         * @draft ICU 53
-         * @provisional This API might change or be removed in a future release.
+         * @stable ICU 53
          */
         PARSE_ALLOW_NUMERIC, 
         /** 
@@ -1537,8 +1553,7 @@ public abstract class DateFormat extends UFormat {
      * inputs must match this object's format more closely.
      * @param lenient when true, Calendar parsing is lenient 
      * @see com.ibm.icu.util.Calendar#setLenient 
-     * @draft ICU 53
-     * @provisional This API might change or be removed in a future release.
+     * @stable ICU 53
      */ 
     public void setCalendarLenient(boolean lenient)
     {
@@ -1548,8 +1563,7 @@ public abstract class DateFormat extends UFormat {
     
     /** 
      * Returns whether date/time parsing in the encapsulated Calendar object is lenient. 
-     * @draft ICU 53
-     * @provisional This API might change or be removed in a future release.
+     * @stable ICU 53
      */ 
     public boolean isCalendarLenient()
     {
@@ -1561,8 +1575,7 @@ public abstract class DateFormat extends UFormat {
      * boolean attributes. 
      * 
      * @see BooleanAttribute
-     * @draft ICU 53
-     * @provisional This API might change or be removed in a future release.
+     * @stable ICU 53
      */
     public DateFormat setBooleanAttribute(BooleanAttribute key, boolean value) 
     {
@@ -1584,8 +1597,7 @@ public abstract class DateFormat extends UFormat {
      * if attribute is missing false is returned.
      * 
      * @see BooleanAttribute
-     * @draft ICU 53
-     * @provisional This API might change or be removed in a future release.
+     * @stable ICU 53
      */
     public boolean getBooleanAttribute(BooleanAttribute key) 
     {
@@ -1598,8 +1610,7 @@ public abstract class DateFormat extends UFormat {
      * such as CAPITALIZATION_FOR_STANDALONE. 
      * 
      * @param context The DisplayContext value to set. 
-     * @draft ICU 53
-     * @provisional This API might change or be removed in a future release.
+     * @stable ICU 53
      */
     public void setContext(DisplayContext context) {
         if (context.type() == DisplayContext.Type.CAPITALIZATION) {
@@ -1613,8 +1624,7 @@ public abstract class DateFormat extends UFormat {
      * 
      * @param type the DisplayContext.Type whose value to return
      * @return the current DisplayContext setting for the specified type
-     * @draft ICU 53
-     * @provisional This API might change or be removed in a future release.
+     * @stable ICU 53
      */
     public DisplayContext getContext(DisplayContext.Type type) {
         return (type == DisplayContext.Type.CAPITALIZATION && capitalizationSetting != null)?
@@ -2341,6 +2351,21 @@ public abstract class DateFormat extends UFormat {
          * @stable ICU 3.8
          */
         public static final Field QUARTER = new Field("quarter", -1);
+
+        /**
+         * Constant identifying the related year field.
+         * @internal
+         * @deprecated This API is ICU internal only.
+         */
+        @Deprecated
+        public static final Field RELATED_YEAR = new Field("related year", -1);
+
+        /**
+         * Constant identifying the time separator field.
+         * @draft ICU 55
+         * @provisional This API might change or be removed in a future release.
+         */
+        public static final Field TIME_SEPARATOR = new Field("time separator", -1);
 
         // Stand alone types are variants for its base types.  So we do not define Field for
         // them.

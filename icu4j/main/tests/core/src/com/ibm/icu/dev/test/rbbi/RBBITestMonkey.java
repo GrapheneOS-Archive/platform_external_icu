@@ -16,7 +16,6 @@ import java.util.Locale;
 import com.ibm.icu.dev.test.TestFmwk;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.lang.UProperty;
-import com.ibm.icu.lang.UScript;
 import com.ibm.icu.text.BreakIterator;
 import com.ibm.icu.text.RuleBasedBreakIterator;
 import com.ibm.icu.text.UTF16;
@@ -529,6 +528,10 @@ public class RBBITestMonkey extends TestFmwk {
         
         List        fSets;
         
+        // UnicodeSets for each of the Line Breaking character classes.
+        // Order matches that of Unicode UAX 14, Table 1, which makes it a little easier
+        // to verify that they are all accounted for.
+        
         UnicodeSet  fBK;
         UnicodeSet  fCR;
         UnicodeSet  fLF;
@@ -538,12 +541,12 @@ public class RBBITestMonkey extends TestFmwk {
         UnicodeSet  fWJ;
         UnicodeSet  fZW;
         UnicodeSet  fGL;
-        UnicodeSet  fCB;
         UnicodeSet  fSP;
         UnicodeSet  fB2;
         UnicodeSet  fBA;
         UnicodeSet  fBB;
         UnicodeSet  fHY;
+        UnicodeSet  fCB;
         UnicodeSet  fCL;
         UnicodeSet  fCP;
         UnicodeSet  fEX;
@@ -558,15 +561,16 @@ public class RBBITestMonkey extends TestFmwk {
         UnicodeSet  fSY;
         UnicodeSet  fAI;
         UnicodeSet  fAL;
+        UnicodeSet  fCJ;
+        UnicodeSet  fH2;
+        UnicodeSet  fH3;
         UnicodeSet  fHL;
         UnicodeSet  fID;
-        UnicodeSet  fSA;
         UnicodeSet  fJL;
         UnicodeSet  fJV;
         UnicodeSet  fJT;
-        UnicodeSet  fH2;
-        UnicodeSet  fH3;
         UnicodeSet  fRI;
+        UnicodeSet  fSA;
         UnicodeSet  fXX;
         
         StringBuffer  fText;
@@ -584,15 +588,16 @@ public class RBBITestMonkey extends TestFmwk {
             fLF    = new UnicodeSet("[\\p{Line_break=LF}]");
             fCM    = new UnicodeSet("[\\p{Line_break=CM}]");
             fNL    = new UnicodeSet("[\\p{Line_break=NL}]");
+            fSG    = new UnicodeSet("[\\ud800-\\udfff]");
             fWJ    = new UnicodeSet("[\\p{Line_break=WJ}]");
             fZW    = new UnicodeSet("[\\p{Line_break=ZW}]");
             fGL    = new UnicodeSet("[\\p{Line_break=GL}]");
-            fCB    = new UnicodeSet("[\\p{Line_break=CB}]");
             fSP    = new UnicodeSet("[\\p{Line_break=SP}]");
             fB2    = new UnicodeSet("[\\p{Line_break=B2}]");
             fBA    = new UnicodeSet("[\\p{Line_break=BA}]");
             fBB    = new UnicodeSet("[\\p{Line_break=BB}]");
             fHY    = new UnicodeSet("[\\p{Line_break=HY}]");
+            fCB    = new UnicodeSet("[\\p{Line_break=CB}]");
             fCL    = new UnicodeSet("[\\p{Line_break=CL}]");
             fCP    = new UnicodeSet("[\\p{Line_break=CP}]");
             fEX    = new UnicodeSet("[\\p{Line_break=EX}]");
@@ -607,26 +612,32 @@ public class RBBITestMonkey extends TestFmwk {
             fSY    = new UnicodeSet("[\\p{Line_break=SY}]");
             fAI    = new UnicodeSet("[\\p{Line_break=AI}]");
             fAL    = new UnicodeSet("[\\p{Line_break=AL}]");
+            fCJ    = new UnicodeSet("[\\p{Line_break=CJ}]");
+            fH2    = new UnicodeSet("[\\p{Line_break=H2}]");
+            fH3    = new UnicodeSet("[\\p{Line_break=H3}]");
             fHL    = new UnicodeSet("[\\p{Line_break=HL}]");
             fID    = new UnicodeSet("[\\p{Line_break=ID}]");
-            fSA    = new UnicodeSet("[\\p{Line_break=SA}]");
             fJL    = new UnicodeSet("[\\p{Line_break=JL}]");
             fJV    = new UnicodeSet("[\\p{Line_break=JV}]");
             fJT    = new UnicodeSet("[\\p{Line_break=JT}]");
-            fH2    = new UnicodeSet("[\\p{Line_break=H2}]");
-            fH3    = new UnicodeSet("[\\p{Line_break=H3}]");
-            fSG    = new UnicodeSet("[\\ud800-\\udfff]");
             fRI    = new UnicodeSet("[\\p{Line_break=RI}]");
+            fSA    = new UnicodeSet("[\\p{Line_break=SA}]");
             fXX    = new UnicodeSet("[\\p{Line_break=XX}]");
 
-            
+            // Remove dictionary characters.
+            // The monkey test reference implementation of line break does not replicate the dictionary behavior,
+            // so dictionary characters are omitted from the monkey test data.
+            UnicodeSet dictionarySet = new UnicodeSet(
+                    "[[:LineBreak = Complex_Context:] & [[:Script = Thai:][:Script = Lao:][:Script = Khmer:] [:script = Myanmar:]]]");
+            fSA.removeAll(dictionarySet);
+
             fAL.addAll(fXX);     // Default behavior for XX is identical to AL
             fAL.addAll(fAI);     // Default behavior for AI is identical to AL
             fAL.addAll(fSA);     // Default behavior for SA is XX, which defaults to AL
             fAL.addAll(fSG);     // Default behavior for SG (unpaired surrogates) is AL
             
-            
-            
+            fNS.addAll(fCJ);     // Default behavior for CJ is identical to NS.
+                        
             fSets.add(fBK);
             fSets.add(fCR);
             fSets.add(fLF);
@@ -635,14 +646,12 @@ public class RBBITestMonkey extends TestFmwk {
             fSets.add(fWJ);
             fSets.add(fZW);
             fSets.add(fGL);
-            fSets.add(fCB);
             fSets.add(fSP);
             fSets.add(fB2);
             fSets.add(fBA);
             fSets.add(fBB);
             fSets.add(fHY);
-            fSets.add(fH2);
-            fSets.add(fH3);
+            fSets.add(fCB);
             fSets.add(fCL);
             fSets.add(fCP);
             fSets.add(fEX);
@@ -660,6 +669,8 @@ public class RBBITestMonkey extends TestFmwk {
             fSets.add(fSY);
             fSets.add(fAI);
             fSets.add(fAL);
+            fSets.add(fH2);
+            fSets.add(fH3);
             fSets.add(fHL);
             fSets.add(fID);
             fSets.add(fWJ);
@@ -1846,18 +1857,6 @@ void RunMonkey(BreakIterator  bi, RBBIMonkeyKind mk, String name, int  seed, int
                 errorType = "following()";
             } else if (precedingBreaks[i] != expectedBreaks[i]) {
                 errorType = "preceding()";
-            }
-
-
-            // Exclude Myanmar from tests, it is dictionary-based. Not sure how this is handled
-            // for other script with dictionary break, but it is not working for Myanmar.
-            if (errorType != null && errorType.equals("next()") && name.equals("line")) {
-                int cBefore = UTF16.charAt(testText, i-1);
-                int cAfter = UTF16.charAt(testText, i);
-                if (UScript.getScript(cBefore) == UScript.MYANMAR && UScript.getScript(cAfter) == UScript.MYANMAR &&
-                        logKnownIssue("11245", "Skip errors for unexpected line breaks between Myanmar characters")) {
-                    errorType = null;
-                }
             }
 
             if (errorType != null) {

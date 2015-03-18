@@ -1,6 +1,6 @@
 /*
  *******************************************************************************
- * Copyright (C) 1996-2014, International Business Machines Corporation and    *
+ * Copyright (C) 1996-2015, International Business Machines Corporation and    *
  * others. All Rights Reserved.                                                *
  *******************************************************************************
  */
@@ -64,11 +64,11 @@ import com.ibm.icu.util.ULocale.Category;
  * Like the Islamic religious calendar, <em>Umm al-Qura</em> is also based 
  * on the sighting method of the crescent moon but is standardized by Saudi Arabia.
  * <p>  
- * The {@link #setType setType} method determines
+ * The {@link #setCalculationType(CalculationType) setCalculationType} method determines
  * which approach is used to determine the start of a month.  By default, the
- * fixed-cycle <em>civil</em> calendar is used.  However, if <code>setType(ISLAMIC)</code>
+ * fixed-cycle <em>civil</em> calendar is used.  However, if <code>setCalculationType(ISLAMIC)</code>
  * is called, an approximation of the true lunar calendar will be used.
- * Similarly, if <code>setType(ISLAMIC_UMALQURA)</code> is called, an approximation 
+ * Similarly, if <code>setCalculationType(ISLAMIC_UMALQURA)</code> is called, an approximation 
  * of the Umm al-Qura lunar calendar will be used.
  * <p>
  * This class should not be subclassed.</p>
@@ -515,6 +515,41 @@ public class IslamicCalendar extends Calendar {
     // Assorted calculation utilities
     //
 
+	// we could compress this down more if we need to
+	private static final byte[] UMALQURA_YEAR_START_ESTIMATE_FIX = {
+		 0,  0, -1,  0, -1,  0,  0,  0,  0,  0, // 1300..
+		-1,  0,  0,  0,  0,  0,  0,  0, -1,  0, // 1310..
+		 1,  0,  1,  1,  0,  0,  0,  0,  1,  0, // 1320..
+		 0,  0,  0,  0,  0,  0,  1,  0,  0,  0, // 1330..
+		 0,  0,  1,  0,  0, -1, -1,  0,  0,  0, // 1340..
+		 1,  0,  0, -1,  0,  0,  0,  1,  1,  0, // 1350..
+		 0,  0,  0,  0,  0,  0,  0, -1,  0,  0, // 1360..
+		 0,  1,  1,  0,  0, -1,  0,  1,  0,  1, // 1370..
+		 1,  0,  0, -1,  0,  1,  0,  0,  0, -1, // 1380..
+		 0,  1,  0,  1,  0,  0,  0, -1,  0,  0, // 1390..
+		 0,  0, -1, -1,  0, -1,  0,  1,  0,  0, // 1400..
+		 0, -1,  0,  0,  0,  1,  0,  0,  0,  0, // 1410..
+		 0,  1,  0,  0, -1, -1,  0,  0,  0,  1, // 1420..
+		 0,  0, -1, -1,  0, -1,  0,  0, -1, -1, // 1430..
+		 0, -1,  0, -1,  0,  0, -1, -1,  0,  0, // 1440..
+		 0,  0,  0,  0, -1,  0,  1,  0,  1,  1, // 1450..
+		 0,  0, -1,  0,  1,  0,  0,  0,  0,  0, // 1460..
+		 1,  0,  1,  0,  0,  0, -1,  0,  1,  0, // 1470..
+		 0, -1, -1,  0,  0,  0,  1,  0,  0,  0, // 1480..
+		 0,  0,  0,  0,  1,  0,  0,  0,  0,  0, // 1490..
+		 1,  0,  0, -1,  0,  0,  0,  1,  1,  0, // 1500..
+		 0, -1,  0,  1,  0,  1,  1,  0,  0,  0, // 1510..
+		 0,  1,  0,  0,  0, -1,  0,  0,  0,  1, // 1520..
+		 0,  0,  0, -1,  0,  0,  0,  0,  0, -1, // 1530..
+		 0, -1,  0,  1,  0,  0,  0, -1,  0,  1, // 1540..
+		 0,  1,  0,  0,  0,  0,  0,  1,  0,  0, // 1550..
+		-1,  0,  0,  0,  0,  1,  0,  0,  0, -1, // 1560..
+		 0,  0,  0,  0, -1, -1,  0, -1,  0,  1, // 1570..
+		 0,  0, -1, -1,  0,  0,  1,  1,  0,  0, // 1580..
+		-1,  0,  0,  0,  0,  1,  0,  0,  0,  0, // 1590..
+		 1 // 1600
+	};
+
 // Unused code - Alan 2003-05
 //    /**
 //     * Find the day of the week for a given day
@@ -550,15 +585,15 @@ public class IslamicCalendar extends Calendar {
         if (cType == CalculationType.ISLAMIC_CIVIL
                 || cType == CalculationType.ISLAMIC_TBLA
                 || (cType == CalculationType.ISLAMIC_UMALQURA && (year < UMALQURA_YEAR_START || year > UMALQURA_YEAR_END))) {
-             ys = (year-1)*354 + (long)Math.floor((3+11*year)/30.0);
+            ys = (year-1)*354 + (long)Math.floor((3+11*year)/30.0);
         } else if(cType == CalculationType.ISLAMIC) {
-             ys = trueMonthStart(12*(year-1));
+            ys = trueMonthStart(12*(year-1));
         } else if(cType == CalculationType.ISLAMIC_UMALQURA){
-             ys = yearStart(UMALQURA_YEAR_START -1);  
-             ys += handleGetYearLength(UMALQURA_YEAR_START -1);
-             for(int i=UMALQURA_YEAR_START; i< year; i++) {
-                ys+= handleGetYearLength(i);
-            }
+            year -= UMALQURA_YEAR_START;
+            // rounded least-squares fit of the dates previously calculated from UMALQURA_MONTHLENGTH iteration
+            int yrStartLinearEstimate = (int)((354.36720 * (double)year) + 460322.05 + 0.5);
+            // need a slight correction to some
+            ys = yrStartLinearEstimate + UMALQURA_YEAR_START_ESTIMATE_FIX[year];
         }
         return ys;
     }
@@ -916,13 +951,10 @@ public class IslamicCalendar extends Calendar {
     /**
      * sets the calculation type for this calendar.
      * 
-     * @draft ICU 52
+     * @draft ICU 55
      * @provisional This API might change or be removed in a future release.
      */
-    // TODO: We should change the method name to setCalculationType, because
-    // corresponding getter (not yet available) will collide with String getType().
-    // See ticket#10426.
-    public void setType(CalculationType type) {
+    public void setCalculationType(CalculationType type) {
         cType = type;
         
         // ensure civil property is up-to-date
@@ -933,20 +965,30 @@ public class IslamicCalendar extends Calendar {
     }
 
     /**
+     * gets the calculation type for this calendar.
+     * 
+     * @draft ICU 55
+     * @provisional This API might change or be removed in a future release.
+     */
+    public CalculationType getCalculationType() {
+        return cType;
+    }
+
+    /**
      * set type based on locale
      */
     private void setCalcTypeForLocale(ULocale locale) {
         String localeCalType = CalendarUtil.getCalendarType(locale);
         if("islamic-civil".equals(localeCalType)) 
-            setType(CalculationType.ISLAMIC_CIVIL);
+            setCalculationType(CalculationType.ISLAMIC_CIVIL);
         else if("islamic-umalqura".equals(localeCalType)) 
-            setType(CalculationType.ISLAMIC_UMALQURA);
+            setCalculationType(CalculationType.ISLAMIC_UMALQURA);
         else if("islamic-tbla".equals(localeCalType)) 
-            setType(CalculationType.ISLAMIC_TBLA);
+            setCalculationType(CalculationType.ISLAMIC_TBLA);
         else if(localeCalType.startsWith("islamic"))
-            setType(CalculationType.ISLAMIC);       // needs to be last so it's always the default if it's islamic-something-unhandled  
+            setCalculationType(CalculationType.ISLAMIC);       // needs to be last so it's always the default if it's islamic-something-unhandled  
         else 
-            setType(CalculationType.ISLAMIC_CIVIL); // default for any non-islamic calendar locale
+            setCalculationType(CalculationType.ISLAMIC_CIVIL); // default for any non-islamic calendar locale
     }
 
     

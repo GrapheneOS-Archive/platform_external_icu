@@ -11,7 +11,7 @@
 
   <groupId>com.ibm.icu</groupId>
   <artifactId>icu4j</artifactId>
-  <version>54.1</version>
+  <version>55-SNAPSHOT</version>
 
   <name>ICU4J</name>
   <description>
@@ -133,12 +133,12 @@
     <repository>
       <id>icu4j-releases</id>
       <name>ICU4J Central Repository</name>
-      <url>http://oss.sonatype.org/service/local/staging/deploy/maven2</url>
+      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
     </repository>
     <snapshotRepository>
       <id>icu4j-snapshots</id>
       <name>ICU4J Central Development Repository</name>
-      <url>http://oss.sonatype.org/content/repositories/snapshots</url>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
     </snapshotRepository>
   </distributionManagement>
 </project>
