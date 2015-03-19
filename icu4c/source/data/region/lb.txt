@@ -1,14 +1,11 @@
 ﻿// ***************************************************************************
 // *
-// * Copyright (C) 2014 International Business Machines
+// * Copyright (C) 2015 International Business Machines
 // * Corporation and others. All Rights Reserved.
 // * Tool: org.unicode.cldr.icu.NewLdml2IcuConverter
 // * Source File: <path>/common/main/lb.xml
 // *
 // ***************************************************************************
-/**
- * ICU <specials> source: <path>/common/main/lb.xml
- */
 lb{
     Countries{
         001{"Welt"}
@@ -140,7 +137,7 @@ lb{
         GU{"Guam"}
         GW{"Guinea-Bissau"}
         GY{"Guyana"}
-        HK{"Hong Kong"}
+        HK{"Spezialverwaltungszon Hong Kong"}
         HM{"Heard- a McDonald-Inselen"}
         HN{"Honduras"}
         HR{"Kroatien"}
@@ -194,7 +191,7 @@ lb{
         ML{"Mali"}
         MM{"Myanmar"}
         MN{"Mongolei"}
-        MO{"Macau"}
+        MO{"Spezialverwaltungszon Macau"}
         MP{"Nërdlech Marianen"}
         MQ{"Martinique"}
         MR{"Mauretanien"}
@@ -229,7 +226,7 @@ lb{
         PM{"St. Pierre a Miquelon"}
         PN{"Pitcairninselen"}
         PR{"Puerto Rico"}
-        PS{"Palestina"}
+        PS{"Palestinensesch Autonomiegebidder"}
         PT{"Portugal"}
         PW{"Palau"}
         PY{"Paraguay"}
@@ -301,15 +298,18 @@ lb{
         ZW{"Simbabwe"}
         ZZ{"Onbekannt Regioun"}
     }
+    Countries%short{
+        GB{"GB"}
+        HK{"Hong Kong"}
+        MO{"Macau"}
+        PS{"Palestina"}
+        US{"US"}
+    }
     Countries%variant{
         CD{"Kongo (Demokratesch Republik)"}
         CG{"Kongo (Republik)"}
         CI{"Côte d’Ivoire"}
         MK{"Mazedonien (EJR)"}
     }
-    CountriesShort{
-        GB{"GB"}
-        US{"US"}
-    }
-    Version{"2.1.8.9"}
+    Version{"2.1.12.94"}
 }

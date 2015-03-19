@@ -1,14 +1,11 @@
 ﻿// ***************************************************************************
 // *
-// * Copyright (C) 2014 International Business Machines
+// * Copyright (C) 2015 International Business Machines
 // * Corporation and others. All Rights Reserved.
 // * Tool: org.unicode.cldr.icu.NewLdml2IcuConverter
 // * Source File: <path>/common/main/da.xml
 // *
 // ***************************************************************************
-/**
- * ICU <specials> source: <path>/common/main/da.xml
- */
 da{
     Countries{
         001{"Verden"}
@@ -57,7 +54,7 @@ da{
         AT{"Østrig"}
         AU{"Australien"}
         AW{"Aruba"}
-        AX{"Ålandsøerne"}
+        AX{"Åland"}
         AZ{"Aserbajdsjan"}
         BA{"Bosnien-Hercegovina"}
         BB{"Barbados"}
@@ -141,7 +138,7 @@ da{
         GU{"Guam"}
         GW{"Guinea-Bissau"}
         GY{"Guyana"}
-        HK{"Hongkong"}
+        HK{"Hongkong SAR"}
         HM{"Heard Island og McDonald Islands"}
         HN{"Honduras"}
         HR{"Kroatien"}
@@ -195,7 +192,7 @@ da{
         ML{"Mali"}
         MM{"Myanmar (Burma)"}
         MN{"Mongoliet"}
-        MO{"Macao"}
+        MO{"Macao SAR"}
         MP{"Nordmarianerne"}
         MQ{"Martinique"}
         MR{"Mauretanien"}
@@ -208,9 +205,9 @@ da{
         MY{"Malaysia"}
         MZ{"Mozambique"}
         NA{"Namibia"}
-        NC{"Ny Caledonien"}
+        NC{"Ny Kaledonien"}
         NE{"Niger"}
-        NF{"Norfolkøen"}
+        NF{"Norfolk Island"}
         NG{"Nigeria"}
         NI{"Nicaragua"}
         NL{"Holland"}
@@ -230,7 +227,7 @@ da{
         PM{"Saint Pierre og Miquelon"}
         PN{"Pitcairn"}
         PR{"Puerto Rico"}
-        PS{"Palæstina"}
+        PS{"De palæstinensiske områder"}
         PT{"Portugal"}
         PW{"Palau"}
         PY{"Paraguay"}
@@ -302,6 +299,13 @@ da{
         ZW{"Zimbabwe"}
         ZZ{"Ukendt område"}
     }
+    Countries%short{
+        GB{"UK"}
+        HK{"Hongkong"}
+        MO{"Macao"}
+        PS{"Palæstina"}
+        US{"USA"}
+    }
     Countries%variant{
         CD{"Den Demokratiske Republik Congo"}
         CG{"Republikken Congo"}
@@ -309,9 +313,5 @@ da{
         MK{"Makedonien (Den Tidligere Jugoslaviske Republik Makedonien)"}
         TL{"Østtimor"}
     }
-    CountriesShort{
-        GB{"UK"}
-        US{"USA"}
-    }
-    Version{"2.1.9.62"}
+    Version{"2.1.12.94"}
 }

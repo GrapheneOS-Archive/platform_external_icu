@@ -165,10 +165,8 @@ COMPILE.c=    $(CC) $(CPPFLAGS) $(DEFS) $(CFLAGS) -c
 COMPILE.cc=   $(CXX) $(CPPFLAGS) $(DEFS) $(CXXFLAGS) -c
 
 # Commands to link
-# Markus Scherer (Google) 20070430: Add LINKFLAGS to enable
-# setting -rpath options.
-LINK.c=       $(CC) $(CFLAGS) $(LDFLAGS) $(LINKFLAGS)
-LINK.cc=      $(CXX) $(CXXFLAGS) $(LDFLAGS) $(LINKFLAGS)
+LINK.c=       $(CC) $(CFLAGS) $(LDFLAGS)
+LINK.cc=      $(CXX) $(CXXFLAGS) $(LDFLAGS)
 
 # Commands to make a shared library
 SHLIB.c=      $(CC) $(CFLAGS) $(LDFLAGS) -shared $(LD_SOOPTIONS)

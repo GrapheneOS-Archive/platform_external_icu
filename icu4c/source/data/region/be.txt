@@ -1,14 +1,11 @@
 ﻿// ***************************************************************************
 // *
-// * Copyright (C) 2014 International Business Machines
+// * Copyright (C) 2015 International Business Machines
 // * Corporation and others. All Rights Reserved.
 // * Tool: org.unicode.cldr.icu.NewLdml2IcuConverter
 // * Source File: <path>/common/main/be.xml
 // *
 // ***************************************************************************
-/**
- * ICU <specials> source: <path>/common/main/be.xml
- */
 be{
     Countries{
         001{"Свет"}
@@ -133,7 +130,7 @@ be{
         GU{"Гуам"}
         GW{"Гвінея-Бісау"}
         GY{"Гаяна"}
-        HK{"Ганконг"}
+        HK{"Гон-Конг, Кітай (САР)"}
         HM{"Востраў Херд і Астравы Макдоналд"}
         HN{"Гандурас"}
         HR{"Харватыя"}
@@ -185,7 +182,7 @@ be{
         ML{"Малі"}
         MM{"М’янма"}
         MN{"Манголія"}
-        MO{"Макаа"}
+        MO{"Макао, Кітай (САР)"}
         MP{"Паўночныя Марыянскія астравы"}
         MQ{"Марцініка"}
         MR{"Маўрытанія"}
@@ -287,10 +284,14 @@ be{
         ZW{"Зімбабвэ"}
         ZZ{"Невядомы рэгіён"}
     }
+    Countries%short{
+        HK{"Ганконг"}
+        MO{"Макаа"}
+    }
     Countries%variant{
         CD{"Дэмакратычная Рэспубліка Конга"}
         CG{"Рэспубліка Конга"}
         MK{"Рэспубліка Македонія"}
     }
-    Version{"2.1.7.39"}
+    Version{"2.1.10.93"}
 }

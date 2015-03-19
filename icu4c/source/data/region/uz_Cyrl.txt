@@ -1,14 +1,11 @@
 ﻿// ***************************************************************************
 // *
-// * Copyright (C) 2014 International Business Machines
+// * Copyright (C) 2015 International Business Machines
 // * Corporation and others. All Rights Reserved.
 // * Tool: org.unicode.cldr.icu.NewLdml2IcuConverter
 // * Source File: <path>/common/main/uz_Cyrl.xml
 // *
 // ***************************************************************************
-/**
- * ICU <specials> source: <path>/common/main/uz_Cyrl.xml
- */
 uz_Cyrl{
     %%Parent{"root"}
     Countries{
@@ -141,7 +138,7 @@ uz_Cyrl{
         GU{"Гуам"}
         GW{"Гвинея-Бисау"}
         GY{"Гаяна"}
-        HK{"Гонконг"}
+        HK{"Гонконг Хитой ММҲ"}
         HM{"Герд ороли ва МакДоналд ороллари"}
         HN{"Гондурас"}
         HR{"Хорватия"}
@@ -195,7 +192,7 @@ uz_Cyrl{
         ML{"Мали"}
         MM{"Мьянма (Бирма)"}
         MN{"Муғулистон"}
-        MO{"Макао"}
+        MO{"Макао Хитой ММҲ"}
         MP{"Шимолий Марианна ороллари"}
         MQ{"Мартиника"}
         MR{"Мавритания"}
@@ -230,7 +227,7 @@ uz_Cyrl{
         PM{"Сент-Пьер ва Микелон"}
         PN{"Питкарин ороллари"}
         PR{"Пуэрто-Рико"}
-        PS{"Фаластина"}
+        PS{"Фаластин ҳудуди"}
         PT{"Португалия"}
         PW{"Палау"}
         PY{"Парагвай"}
@@ -302,6 +299,13 @@ uz_Cyrl{
         ZW{"Зимбабве"}
         ZZ{"Номаълум минтақа"}
     }
+    Countries%short{
+        GB{"Бирлашган Қироллик"}
+        HK{"Гонконг"}
+        MO{"Макао"}
+        PS{"Фаластина"}
+        US{"АКШ"}
+    }
     Countries%variant{
         CD{"Конго (КДР)"}
         CG{"Конго (Республика)"}
@@ -310,9 +314,5 @@ uz_Cyrl{
         MK{"Македония (СЮР)"}
         TL{"Шарқий Тимор"}
     }
-    CountriesShort{
-        GB{"Бирлашган Қироллик"}
-        US{"АКШ"}
-    }
-    Version{"2.1.7.39"}
+    Version{"2.1.10.42"}
 }

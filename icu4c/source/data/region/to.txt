@@ -1,14 +1,11 @@
 ﻿// ***************************************************************************
 // *
-// * Copyright (C) 2014 International Business Machines
+// * Copyright (C) 2015 International Business Machines
 // * Corporation and others. All Rights Reserved.
 // * Tool: org.unicode.cldr.icu.NewLdml2IcuConverter
 // * Source File: <path>/common/main/to.xml
 // *
 // ***************************************************************************
-/**
- * ICU <specials> source: <path>/common/main/to.xml
- */
 to{
     Countries{
         001{"Māmani"}
@@ -141,7 +138,7 @@ to{
         GU{"Kuamu"}
         GW{"Kini-Pisau"}
         GY{"Kuiana"}
-        HK{"Hongi Kongi"}
+        HK{"Hongi Kongi SAR Siaina"}
         HM{"ʻOtumotu Heati mo Makitonali"}
         HN{"Honitulasi"}
         HR{"Kuloisia"}
@@ -195,7 +192,7 @@ to{
         ML{"Māli"}
         MM{"Pema"}
         MN{"Mongokōlia"}
-        MO{"Makau"}
+        MO{"Makau SAR Siaina"}
         MP{"ʻOtumotu Maliana tokelau"}
         MQ{"Māteniki"}
         MR{"Maulitenia"}
@@ -230,7 +227,7 @@ to{
         PM{"Sā Piea mo Mikeloni"}
         PN{"ʻOtumotu Pitikeni"}
         PR{"Pueto Liko"}
-        PS{"Palesitaine"}
+        PS{"Potu Palesitaine"}
         PT{"Potukali"}
         PW{"Palau"}
         PY{"Palakuai"}
@@ -302,14 +299,17 @@ to{
         ZW{"Simipapuei"}
         ZZ{"Potu fonua taʻeʻiloa pe hala"}
     }
+    Countries%short{
+        GB{"Pilitānia"}
+        HK{"Hongi Kongi"}
+        MO{"Makau"}
+        PS{"Palesitaine"}
+        US{"ʻAmelika"}
+    }
     Countries%variant{
         CD{"Kongo (LTK)"}
         CG{"Kongo (Lipapilika)"}
         MK{"Masetōnia (FYROM)"}
     }
-    CountriesShort{
-        GB{"Pilitānia"}
-        US{"ʻAmelika"}
-    }
-    Version{"2.1.8.9"}
+    Version{"2.1.12.94"}
 }

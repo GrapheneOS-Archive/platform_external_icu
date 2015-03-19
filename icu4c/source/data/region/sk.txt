@@ -1,14 +1,11 @@
 ﻿// ***************************************************************************
 // *
-// * Copyright (C) 2014 International Business Machines
+// * Copyright (C) 2015 International Business Machines
 // * Corporation and others. All Rights Reserved.
 // * Tool: org.unicode.cldr.icu.NewLdml2IcuConverter
 // * Source File: <path>/common/main/sk.xml
 // *
 // ***************************************************************************
-/**
- * ICU <specials> source: <path>/common/main/sk.xml
- */
 sk{
     Countries{
         001{"svet"}
@@ -141,7 +138,7 @@ sk{
         GU{"Guam"}
         GW{"Guinea-Bissau"}
         GY{"Guayana"}
-        HK{"Hongkong"}
+        HK{"Hongkong – OAO Číny"}
         HM{"Heardov ostrov a McDonaldove ostrovy"}
         HN{"Honduras"}
         HR{"Chorvátsko"}
@@ -195,7 +192,7 @@ sk{
         ML{"Mali"}
         MM{"Mjanmarsko"}
         MN{"Mongolsko"}
-        MO{"Macao"}
+        MO{"Macao – OAO Číny"}
         MP{"Severné Mariány"}
         MQ{"Martinik"}
         MR{"Mauritánia"}
@@ -230,7 +227,7 @@ sk{
         PM{"Saint Pierre a Miquelon"}
         PN{"Pitcairnove ostrovy"}
         PR{"Portoriko"}
-        PS{"Palestína"}
+        PS{"Palestínske územia"}
         PT{"Portugalsko"}
         PW{"Palau"}
         PY{"Paraguaj"}
@@ -302,15 +299,18 @@ sk{
         ZW{"Zimbabwe"}
         ZZ{"neznámy región"}
     }
+    Countries%short{
+        GB{"UK"}
+        HK{"Hongkong"}
+        MO{"Macao"}
+        PS{"Palestína"}
+        US{"USA"}
+    }
     Countries%variant{
         CD{"Konžská demokratická republika"}
         CG{"Konžská republika"}
         FK{"Malvíny"}
         MK{"Macedónsko (BJRM)"}
     }
-    CountriesShort{
-        GB{"UK"}
-        US{"USA"}
-    }
-    Version{"2.1.8.9"}
+    Version{"2.1.12.94"}
 }

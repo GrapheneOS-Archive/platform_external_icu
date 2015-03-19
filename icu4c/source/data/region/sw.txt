@@ -1,14 +1,11 @@
 ﻿// ***************************************************************************
 // *
-// * Copyright (C) 2014 International Business Machines
+// * Copyright (C) 2015 International Business Machines
 // * Corporation and others. All Rights Reserved.
 // * Tool: org.unicode.cldr.icu.NewLdml2IcuConverter
 // * Source File: <path>/common/main/sw.xml
 // *
 // ***************************************************************************
-/**
- * ICU <specials> source: <path>/common/main/sw.xml
- */
 sw{
     Countries{
         001{"Dunia"}
@@ -141,7 +138,7 @@ sw{
         GU{"Gwam"}
         GW{"Ginebisau"}
         GY{"Guyana"}
-        HK{"Hong Kong"}
+        HK{"Hong Kong SAR China"}
         HM{"Kisiwa cha Heard na Visiwa vya McDonald"}
         HN{"Hondurasi"}
         HR{"Korasia"}
@@ -195,7 +192,7 @@ sw{
         ML{"Mali"}
         MM{"Myanmar (Burma)"}
         MN{"Mongolia"}
-        MO{"Macau"}
+        MO{"Macau SAR China"}
         MP{"Visiwa vya Mariana vya Kaskazini"}
         MQ{"Martiniki"}
         MR{"Moritania"}
@@ -230,7 +227,7 @@ sw{
         PM{"Santapieri na Mikeloni"}
         PN{"Pitkairni"}
         PR{"Pwetoriko"}
-        PS{"Palestina"}
+        PS{"Maeneo ya Palestina"}
         PT{"Ureno"}
         PW{"Palau"}
         PY{"Paragwai"}
@@ -302,15 +299,18 @@ sw{
         ZW{"Zimbabwe"}
         ZZ{"Eneo lisilojulikana"}
     }
+    Countries%short{
+        GB{"Uingereza"}
+        HK{"Hong Kong"}
+        MO{"Macau"}
+        PS{"Palestina"}
+        US{"US"}
+    }
     Countries%variant{
         CG{"Jamhuri ya Kongo"}
         CI{"Ivory Coast"}
         FK{"Visiwa vya Falkland (Islas Malvinas)"}
         MK{"Masedonia (FYROM)"}
     }
-    CountriesShort{
-        GB{"Uingereza"}
-        US{"US"}
-    }
-    Version{"2.1.8.9"}
+    Version{"2.1.12.94"}
 }

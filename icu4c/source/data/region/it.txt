@@ -1,14 +1,11 @@
 ﻿// ***************************************************************************
 // *
-// * Copyright (C) 2014 International Business Machines
+// * Copyright (C) 2015 International Business Machines
 // * Corporation and others. All Rights Reserved.
 // * Tool: org.unicode.cldr.icu.NewLdml2IcuConverter
 // * Source File: <path>/common/main/it.xml
 // *
 // ***************************************************************************
-/**
- * ICU <specials> source: <path>/common/main/it.xml
- */
 it{
     Countries{
         001{"Mondo"}
@@ -141,8 +138,8 @@ it{
         GU{"Guam"}
         GW{"Guinea-Bissau"}
         GY{"Guyana"}
-        HK{"Hong-Kong"}
-        HM{"Isole Heard ed Isole McDonald"}
+        HK{"RAS di Hong Kong"}
+        HM{"Isole Heard e McDonald"}
         HN{"Honduras"}
         HR{"Croazia"}
         HT{"Haiti"}
@@ -195,7 +192,7 @@ it{
         ML{"Mali"}
         MM{"Myanmar (Birmania)"}
         MN{"Mongolia"}
-        MO{"Macao"}
+        MO{"RAS di Macao"}
         MP{"Isole Marianne Settentrionali"}
         MQ{"Martinica"}
         MR{"Mauritania"}
@@ -230,7 +227,7 @@ it{
         PM{"Saint Pierre e Miquelon"}
         PN{"Isole Pitcairn"}
         PR{"Portorico"}
-        PS{"Palestina"}
+        PS{"Territori palestinesi"}
         PT{"Portogallo"}
         PW{"Palau"}
         PY{"Paraguay"}
@@ -302,15 +299,18 @@ it{
         ZW{"Zimbabwe"}
         ZZ{"Regione non valida o sconosciuta"}
     }
+    Countries%short{
+        GB{"GB"}
+        HK{"Hong-Kong"}
+        MO{"Macao"}
+        PS{"Palestina"}
+        US{"USA"}
+    }
     Countries%variant{
         CD{"Congo (RDC)"}
         CG{"Congo (repubblica)"}
         FK{"Isole Falkland (isole Malvine)"}
         MK{"Repubblica ex Jugoslava di Macedonia"}
     }
-    CountriesShort{
-        GB{"GB"}
-        US{"USA"}
-    }
-    Version{"2.1.8.32"}
+    Version{"2.1.13.6"}
 }

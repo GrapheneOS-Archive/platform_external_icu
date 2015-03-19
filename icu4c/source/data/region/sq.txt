@@ -1,14 +1,11 @@
 ﻿// ***************************************************************************
 // *
-// * Copyright (C) 2014 International Business Machines
+// * Copyright (C) 2015 International Business Machines
 // * Corporation and others. All Rights Reserved.
 // * Tool: org.unicode.cldr.icu.NewLdml2IcuConverter
 // * Source File: <path>/common/main/sq.xml
 // *
 // ***************************************************************************
-/**
- * ICU <specials> source: <path>/common/main/sq.xml
- */
 sq{
     Countries{
         001{"Bota"}
@@ -140,7 +137,7 @@ sq{
         GU{"Guam"}
         GW{"Guine-Bisau"}
         GY{"Guajanë"}
-        HK{"Hong Kong"}
+        HK{"RVAK i Hong Kongut"}
         HM{"Ishulli Hërd dhe Ishujt Mekdonald"}
         HN{"Honduras"}
         HR{"Kroaci"}
@@ -194,7 +191,7 @@ sq{
         ML{"Mali"}
         MM{"Mianmar (Burma)"}
         MN{"Mongoli"}
-        MO{"Makao"}
+        MO{"RVAK i Makaos"}
         MP{"Ishujt e Marianës Veriore"}
         MQ{"Martinik"}
         MR{"Mauritani"}
@@ -229,7 +226,7 @@ sq{
         PM{"Shën Peir dhe Mikuelon"}
         PN{"Ishujt Pitkernë"}
         PR{"Porto Riko"}
-        PS{"Palestinë"}
+        PS{"Territoret Palestineze"}
         PT{"Portugali"}
         PW{"Palau"}
         PY{"Paraguai"}
@@ -301,15 +298,18 @@ sq{
         ZW{"Zimbabve"}
         ZZ{"I panjohur"}
     }
+    Countries%short{
+        GB{"Mbretëria e Bashkuar"}
+        HK{"Hong Kong"}
+        MO{"Makao"}
+        PS{"Palestinë"}
+        US{"SHBA"}
+    }
     Countries%variant{
         CD{"Kongo (RDK)"}
         CG{"Kongo (Republika)"}
         FK{"Ishujt Folklandë (Ishujt Malvine)"}
         MK{"Maqedoni (IRJM)"}
     }
-    CountriesShort{
-        GB{"Mbretëria e Bashkuar"}
-        US{"SHBA"}
-    }
-    Version{"2.1.8.9"}
+    Version{"2.1.12.94"}
 }

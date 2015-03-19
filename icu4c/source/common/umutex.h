@@ -94,6 +94,7 @@ U_NAMESPACE_END
 # define NOMINMAX
 # endif
 # include <windows.h>
+
 U_NAMESPACE_BEGIN
 typedef volatile LONG u_atomic_int32_t;
 #define ATOMIC_INT32_T_INITIALIZER(val) val
@@ -115,6 +116,7 @@ inline int32_t umtx_atomic_dec(u_atomic_int32_t *var) {
     return InterlockedDecrement(var);
 }
 U_NAMESPACE_END
+
 
 #elif U_HAVE_GCC_ATOMICS
 /*

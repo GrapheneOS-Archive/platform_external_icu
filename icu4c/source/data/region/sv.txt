@@ -1,14 +1,11 @@
 ﻿// ***************************************************************************
 // *
-// * Copyright (C) 2014 International Business Machines
+// * Copyright (C) 2015 International Business Machines
 // * Corporation and others. All Rights Reserved.
 // * Tool: org.unicode.cldr.icu.NewLdml2IcuConverter
 // * Source File: <path>/common/main/sv.xml
 // *
 // ***************************************************************************
-/**
- * ICU <specials> source: <path>/common/main/sv.xml
- */
 sv{
     Countries{
         001{"världen"}
@@ -141,7 +138,7 @@ sv{
         GU{"Guam"}
         GW{"Guinea-Bissau"}
         GY{"Guyana"}
-        HK{"Hongkong"}
+        HK{"Hongkong (S.A.R. Kina)"}
         HM{"Heardön och McDonaldöarna"}
         HN{"Honduras"}
         HR{"Kroatien"}
@@ -195,7 +192,7 @@ sv{
         ML{"Mali"}
         MM{"Myanmar (Burma)"}
         MN{"Mongoliet"}
-        MO{"Macao"}
+        MO{"Macao (S.A.R. Kina)"}
         MP{"Nordmarianerna"}
         MQ{"Martinique"}
         MR{"Mauretanien"}
@@ -230,7 +227,7 @@ sv{
         PM{"S:t Pierre och Miquelon"}
         PN{"Pitcairnöarna"}
         PR{"Puerto Rico"}
-        PS{"Palestina"}
+        PS{"Palestinska territorierna"}
         PT{"Portugal"}
         PW{"Palau"}
         PY{"Paraguay"}
@@ -302,15 +299,18 @@ sv{
         ZW{"Zimbabwe"}
         ZZ{"okänd region"}
     }
+    Countries%short{
+        GB{"Storbritannien"}
+        HK{"Hongkong"}
+        MO{"Macao"}
+        PS{"Palestina"}
+        US{"USA"}
+    }
     Countries%variant{
         CD{"Demokratiska republiken Kongo"}
         CG{"Republiken Kongo"}
         FK{"Falklandsöarna (Malvinerna)"}
         MK{"f.d. jugoslaviska republiken Makedonien"}
     }
-    CountriesShort{
-        GB{"Storbritannien"}
-        US{"USA"}
-    }
-    Version{"2.1.8.9"}
+    Version{"2.1.12.94"}
 }

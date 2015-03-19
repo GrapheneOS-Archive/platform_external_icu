@@ -1,14 +1,11 @@
 ﻿// ***************************************************************************
 // *
-// * Copyright (C) 2014 International Business Machines
+// * Copyright (C) 2015 International Business Machines
 // * Corporation and others. All Rights Reserved.
 // * Tool: org.unicode.cldr.icu.NewLdml2IcuConverter
 // * Source File: <path>/common/main/nn.xml
 // *
 // ***************************************************************************
-/**
- * ICU <specials> source: <path>/common/main/nn.xml
- */
 nn{
     Countries{
         001{"verda"}
@@ -139,7 +136,7 @@ nn{
         GU{"Guam"}
         GW{"Guinea-Bissau"}
         GY{"Guyana"}
-        HK{"Hongkong"}
+        HK{"Hongkong S.A.R. Kina"}
         HM{"Heard- og McDonaldsøyane"}
         HN{"Honduras"}
         HR{"Kroatia"}
@@ -193,7 +190,7 @@ nn{
         ML{"Mali"}
         MM{"Myanmar"}
         MN{"Mongolia"}
-        MO{"Macao"}
+        MO{"Macao S.A.R. Kina"}
         MP{"Nord-Marianane"}
         MQ{"Martinique"}
         MR{"Mauritania"}
@@ -297,5 +294,9 @@ nn{
         ZW{"Zimbabwe"}
         ZZ{"ukjent område"}
     }
-    Version{"2.1.7.72"}
+    Countries%short{
+        HK{"Hongkong"}
+        MO{"Macao"}
+    }
+    Version{"2.1.10.42"}
 }

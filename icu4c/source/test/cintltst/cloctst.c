@@ -1,6 +1,6 @@
 /********************************************************************
  * COPYRIGHT:
- * Copyright (c) 1997-2014, International Business Machines Corporation and
+ * Copyright (c) 1997-2015, International Business Machines Corporation and
  * others. All Rights Reserved.
  ********************************************************************/
 /*****************************************************************************
@@ -2201,14 +2201,14 @@ static void TestDisplayKeywordValues(void){
         {   "de_AT@currency=ATS",         "fr_FR", 
             {0x0073, 0x0063, 0x0068, 0x0069, 0x006c, 0x006c, 0x0069, 0x006e, 0x0067, 0x0020, 0x0061, 0x0075, 0x0074, 0x0072, 0x0069, 0x0063, 0x0068, 0x0069, 0x0065, 0x006e, 0x0000}
         },
-        { "de_DE@currency=DEM",         "it", 
-            {0x004d, 0x0061, 0x0072, 0x0063, 0x006f, 0x0020, 0x0054, 0x0065, 0x0064, 0x0065, 0x0073, 0x0063, 0x006f, 0x0000}
+        {   "de_DE@currency=DEM",         "it", 
+            {0x006d, 0x0061, 0x0072, 0x0063, 0x006f, 0x0020, 0x0074, 0x0065, 0x0064, 0x0065, 0x0073, 0x0063, 0x006f, 0x0000}
         },
         {   "el_GR@currency=GRD",         "en",    
             {0x0047, 0x0072, 0x0065, 0x0065, 0x006b, 0x0020, 0x0044, 0x0072, 0x0061, 0x0063, 0x0068, 0x006d, 0x0061, 0x0000}
         },
         {   "eu_ES@currency=ESP",         "it_IT", 
-            {0x0050, 0x0065, 0x0073, 0x0065, 0x0074, 0x0061, 0x0020, 0x0053, 0x0070, 0x0061, 0x0067, 0x006e, 0x006f, 0x006c, 0x0061, 0x0000}
+            {0x0070, 0x0065, 0x0073, 0x0065, 0x0074, 0x0061, 0x0020, 0x0073, 0x0070, 0x0061, 0x0067, 0x006e, 0x006f, 0x006c, 0x0061, 0x0000}
         },
         {   "de@collation=phonebook",     "es",    
             {0x006F, 0x0072, 0x0064, 0x0065, 0x006E, 0x0020, 0x0064, 0x0065, 0x0020, 0x006C, 0x0069, 0x0073, 0x0074, 0x00ED, 0x006E, 0x0020, 0x0074, 0x0065, 0x006C, 0x0065, 0x0066, 0x00F3, 0x006E, 0x0069, 0x0063, 0x006F, 0x0000}
@@ -3924,8 +3924,8 @@ const char* const full_data[][3] = {
     "ur"
   }, {
     "und_Arab_SN",
-    "wo_Arab_SN",  /* Google patch */
-    "wo_Arab"  /* Google patch */
+    "ar_Arab_SN",
+    "ar_SN"
   }, {
     "und_Armn",
     "hy_Armn_AM",
@@ -4056,8 +4056,8 @@ const char* const full_data[][3] = {
     "ru"
   }, {
     "und_Cyrl_KZ",
-    "kk_Cyrl_KZ",  /* Google patch */
-    "kk"  /* Google patch */
+    "ru_Cyrl_KZ",
+    "ru_KZ"
   }, {
     "und_DE",
     "de_Latn_DE",
@@ -4116,16 +4116,16 @@ const char* const full_data[][3] = {
     "am"
   }, {
     "und_Ethi_ER",
-    "ti_Ethi_ER",  /* Google patch */
-    "ti_ER"  /* Google patch */
+    "am_Ethi_ER",
+    "am_ER"
   }, {
     "und_FI",
     "fi_Latn_FI",
     "fi"
   }, {
     "und_FM",
-    "chk_Latn_FM",
-    "chk"
+    "en_Latn_FM",
+    "en_FM"
   }, {
     "und_FO",
     "fo_Latn_FO",
@@ -4172,8 +4172,8 @@ const char* const full_data[][3] = {
     "es_GT"
   }, {
     "und_GU",
-    "ch_Latn_GU",  /* Google patch */
-    "ch"  /* Google patch */
+    "en_Latn_GU",
+    "en_GU"
   }, {
     "und_GW",
     "pt_Latn_GW",
@@ -4380,8 +4380,8 @@ const char* const full_data[][3] = {
     "tr"
   }, {
     "und_Latn_ZA",
-    "af_Latn_ZA",  /* Google patch */
-    "af"  /* Google patch */
+    "en_Latn_ZA",
+    "en_ZA"
   }, {
     "und_MA",
     "ar_Arab_MA",
@@ -4404,8 +4404,8 @@ const char* const full_data[][3] = {
     "mg"
   }, {
     "und_MH",
-    "mh_Latn_MH",   /* Google patch */
-    "mh"  /* Google patch */
+    "en_Latn_MH",
+    "en_MH"
   }, {
     "und_MK",
     "mk_Cyrl_MK",
@@ -4488,20 +4488,20 @@ const char* const full_data[][3] = {
     "nl"
   }, {
     "und_NO",
-    "no_Latn_NO",  /* Google patch */
-    "no"  /* Google patch */
+    "nb_Latn_NO",
+    "nb"
   }, {
     "und_NP",
     "ne_Deva_NP",
     "ne"
   }, {
     "und_NR",
-    "na_Latn_NR",  /* Google patch */
-    "na"  /* Google patch */
+    "en_Latn_NR",
+    "en_NR"
   }, {
     "und_NU",
-    "niu_Latn_NU",  /* Google patch */
-    "niu"  /* Google patch */
+    "en_Latn_NU",
+    "en_NU"
   }, {
     "und_OM",
     "ar_Arab_OM",
@@ -4604,8 +4604,8 @@ const char* const full_data[][3] = {
     "sl"
   }, {
     "und_SJ",
-    "no_Latn_SJ",  /* Google patch */
-    "no_SJ"  /* Google patch */
+    "nb_Latn_SJ",
+    "nb_SJ"
   }, {
     "und_SK",
     "sk_Latn_SK",

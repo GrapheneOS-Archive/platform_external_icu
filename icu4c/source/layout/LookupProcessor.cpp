@@ -36,7 +36,7 @@ le_uint32 LookupProcessor::applyLookupTable(const LEReferenceTo<LookupTable> &lo
 
         delta = applySubtable(lookupSubtable, lookupType, glyphIterator, fontInstance, success);
 
-        if (delta > 0 || LE_FAILURE(success)) {  // Google patch: && -> ||
+        if (delta > 0 && LE_FAILURE(success)) {
             return 1;
         }
 
@@ -100,7 +100,7 @@ le_uint32 LookupProcessor::applySingleLookup(le_uint16 lookupTableIndex, GlyphIt
 
     const LEReferenceTo<LookupTable> lookupTable = lookupListTable->getLookupTable(lookupListTable, lookupTableIndex, success);
     if (!lookupTable.isValid()) {
-        // Google patch: remove  success = LE_INTERNAL_ERROR;  (is this right?)
+        success = LE_INTERNAL_ERROR;
         return 0;
     }
     le_uint16 lookupFlags = SWAPW(lookupTable->lookupFlags);

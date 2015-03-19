@@ -1,14 +1,11 @@
 ﻿// ***************************************************************************
 // *
-// * Copyright (C) 2014 International Business Machines
+// * Copyright (C) 2015 International Business Machines
 // * Corporation and others. All Rights Reserved.
 // * Tool: org.unicode.cldr.icu.NewLdml2IcuConverter
 // * Source File: <path>/common/main/fy.xml
 // *
 // ***************************************************************************
-/**
- * ICU <specials> source: <path>/common/main/fy.xml
- */
 fy{
     Countries{
         001{"Wrâld"}
@@ -141,7 +138,7 @@ fy{
         GU{"Guam"}
         GW{"Guinee-Bissau"}
         GY{"Guyana"}
-        HK{"Hongkong"}
+        HK{"Hongkong SAR van Sina"}
         HM{"Heard- en McDonaldeilannen"}
         HN{"Honduras"}
         HR{"Kroatië"}
@@ -195,7 +192,7 @@ fy{
         ML{"Mali"}
         MM{"Myanmar (Birma)"}
         MN{"Mongolië"}
-        MO{"Macao"}
+        MO{"Macao SAR van Sina"}
         MP{"Noardlike Marianeneilannen"}
         MQ{"Martinique"}
         MR{"Mauritanië"}
@@ -230,7 +227,7 @@ fy{
         PM{"Saint-Pierre en Miquelon"}
         PN{"Pitcairneilannen"}
         PR{"Puerto Rico"}
-        PS{"Palestina"}
+        PS{"Palestynske gebieten"}
         PT{"Portugal"}
         PW{"Palau"}
         PY{"Paraguay"}
@@ -302,15 +299,18 @@ fy{
         ZW{"Zimbabwe"}
         ZZ{"Unbekend gebiet"}
     }
+    Countries%short{
+        GB{"VK"}
+        HK{"Hongkong"}
+        MO{"Macao"}
+        PS{"Palestina"}
+        US{"VS"}
+    }
     Countries%variant{
         CD{"Congo (DRC)"}
         CG{"Congo (Republyk)"}
         FK{"Falklâneilannen (Islas Malvinas)"}
         MK{"Macedonië (FYROM)"}
     }
-    CountriesShort{
-        GB{"VK"}
-        US{"VS"}
-    }
-    Version{"2.1.7.53"}
+    Version{"2.1.10.93"}
 }

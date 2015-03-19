@@ -1,14 +1,11 @@
 ﻿// ***************************************************************************
 // *
-// * Copyright (C) 2014 International Business Machines
+// * Copyright (C) 2015 International Business Machines
 // * Corporation and others. All Rights Reserved.
 // * Tool: org.unicode.cldr.icu.NewLdml2IcuConverter
 // * Source File: <path>/common/main/br.xml
 // *
 // ***************************************************************************
-/**
- * ICU <specials> source: <path>/common/main/br.xml
- */
 br{
     Countries{
         001{"Bed"}
@@ -141,7 +138,7 @@ br{
         GU{"Guam"}
         GW{"Ginea-Bissau"}
         GY{"Guyana"}
-        HK{"Hong Kong"}
+        HK{"Hong Kong RMD Sina"}
         HM{"Inizi Heard ha McDonald"}
         HN{"Honduras"}
         HR{"Kroatia"}
@@ -195,7 +192,7 @@ br{
         ML{"Mali"}
         MM{"Myanmar (Birmania)"}
         MN{"Mongolia"}
-        MO{"Macau"}
+        MO{"Macau RMD Sina"}
         MP{"Inizi Mariana an Norzh"}
         MQ{"Martinik"}
         MR{"Maouritania"}
@@ -230,7 +227,7 @@ br{
         PM{"Sant-Pêr-ha-Mikelon"}
         PN{"Enez Pitcairn"}
         PR{"Puerto Rico"}
-        PS{"Palestina"}
+        PS{"Tiriadoù Palestina"}
         PT{"Portugal"}
         PW{"Palau"}
         PY{"Paraguay"}
@@ -302,6 +299,13 @@ br{
         ZW{"Zimbabwe"}
         ZZ{"Rannved dianav"}
     }
+    Countries%short{
+        GB{"R.U."}
+        HK{"Hong Kong"}
+        MO{"Macau"}
+        PS{"Palestina"}
+        US{"S.U."}
+    }
     Countries%variant{
         CD{"Kongo (RDK)"}
         CG{"Kongo (Republik)"}
@@ -310,9 +314,5 @@ br{
         MK{"Makedonia (RYKM)"}
         TL{"Timor ar Reter"}
     }
-    CountriesShort{
-        GB{"R.U."}
-        US{"S.U."}
-    }
-    Version{"2.1.7.39"}
+    Version{"2.1.10.93"}
 }

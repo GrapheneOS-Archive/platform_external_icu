@@ -1,14 +1,11 @@
 ﻿// ***************************************************************************
 // *
-// * Copyright (C) 2014 International Business Machines
+// * Copyright (C) 2015 International Business Machines
 // * Corporation and others. All Rights Reserved.
 // * Tool: org.unicode.cldr.icu.NewLdml2IcuConverter
 // * Source File: <path>/common/main/az.xml
 // *
 // ***************************************************************************
-/**
- * ICU <specials> source: <path>/common/main/az.xml
- */
 az{
     Countries{
         001{"Dünya"}
@@ -141,7 +138,7 @@ az{
         GU{"Quam"}
         GW{"Qvineya-Bisau"}
         GY{"Qviyana"}
-        HK{"Honq Konq"}
+        HK{"Honq Konq Xüsusi İnzibati Ərazi Çin"}
         HM{"Herd və Mak Donald Adaları"}
         HN{"Honduras"}
         HR{"Xorvatiya"}
@@ -195,7 +192,7 @@ az{
         ML{"Mali"}
         MM{"Myanma"}
         MN{"Monqoliya"}
-        MO{"Makao"}
+        MO{"Makao Xüsusi İnzibati Ərazi Çin"}
         MP{"Şimali Mariana Adaları"}
         MQ{"Martinik"}
         MR{"Mavritaniya"}
@@ -230,7 +227,7 @@ az{
         PM{"San Pier və Mikelon"}
         PN{"Pitkern Adaları"}
         PR{"Puerto Riko"}
-        PS{"Fələstin"}
+        PS{"Fələstin Əraziləri"}
         PT{"Portuqal"}
         PW{"Palau"}
         PY{"Paraqvay"}
@@ -302,6 +299,13 @@ az{
         ZW{"Zimbabve"}
         ZZ{"Naməlum Region"}
     }
+    Countries%short{
+        GB{"B.K."}
+        HK{"Honq Konq"}
+        MO{"Makao"}
+        PS{"Fələstin"}
+        US{"A.B.Ş."}
+    }
     Countries%variant{
         CD{"Konqo (KDR)"}
         CG{"Konqo (Respublika)"}
@@ -309,9 +313,5 @@ az{
         MK{"Makedoniya (FYROM)"}
         TL{"Doğu Timor"}
     }
-    CountriesShort{
-        GB{"B.K."}
-        US{"A.B.Ş."}
-    }
-    Version{"2.1.8.9"}
+    Version{"2.1.12.94"}
 }
