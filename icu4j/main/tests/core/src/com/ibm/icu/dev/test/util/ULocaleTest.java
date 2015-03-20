@@ -2364,8 +2364,8 @@ public class ULocaleTest extends TestFmwk {
                     "ur"
                 }, {
                     "und_Arab_SN",
-                    "ar_Arab_SN",
-                    "ar_SN"
+                    "wo_Arab_SN",  // Android patch: likelySubtags.txt: Add lots of entries.
+                    "wo_Arab"
                 }, {
                     "und_Armn",
                     "hy_Armn_AM",
@@ -2492,8 +2492,8 @@ public class ULocaleTest extends TestFmwk {
                     "ru"
                 }, {
                     "und_Cyrl_KZ",
-                    "ru_Cyrl_KZ",
-                    "ru_KZ"
+                    "kk_Cyrl_KZ",  // Android patch: likelySubtags.txt: Add lots of entries.
+                    "kk"
                 }, {
                     "und_DE",
                     "de_Latn_DE",
@@ -2552,8 +2552,8 @@ public class ULocaleTest extends TestFmwk {
                     "am"
                 }, {
                     "und_Ethi_ER",
-                    "am_Ethi_ER",
-                    "am_ER"
+                    "ti_Ethi_ER",  // Android patch: likelySubtags.txt: Add lots of entries.
+                    "ti_ER"
                 }, {
                     "und_FI",
                     "fi_Latn_FI",
@@ -2608,8 +2608,8 @@ public class ULocaleTest extends TestFmwk {
                     "es_GT"
                 }, {
                     "und_GU",
-                    "en_Latn_GU",
-                    "en_GU"
+                    "ch_Latn_GU",  // Android patch: likelySubtags.txt: Add lots of entries.
+                    "ch"
                 }, {
                     "und_GW",
                     "pt_Latn_GW",
@@ -2820,8 +2820,8 @@ public class ULocaleTest extends TestFmwk {
                     "tr"
                 }, {
                     "und_Latn_ZA",
-                    "en_Latn_ZA",
-                    "en_ZA"
+                    "af_Latn_ZA",  // Android patch: likelySubtags.txt: Add lots of entries.
+                    "af"
                 }, {
                     "und_MA",
                     "ar_Arab_MA",
@@ -2928,8 +2928,8 @@ public class ULocaleTest extends TestFmwk {
                     "ne"
                 }, {
                     "und_NR",
-                    "en_Latn_NR",
-                    "en_NR"
+                    "na_Latn_NR",  // Android patch: likelySubtags.txt: Add lots of entries.
+                    "na"
                 }, {
                     "und_OM",
                     "ar_Arab_OM",
