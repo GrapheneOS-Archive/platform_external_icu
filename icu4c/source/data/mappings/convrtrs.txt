@@ -274,7 +274,9 @@ UTF-16LE,version=1		UnicodeLittle { JAVA* }  x-UTF-16LE-BOM { JAVA }
 #   MalformedInputException: Missing byte-order mark.
 #   In this case, ICU4C sets a U_ILLEGAL_ESCAPE_SEQUENCE UErrorCode value
 #   and a UCNV_ILLEGAL UConverterCallbackReason.
-UTF-16,version=1
+# BEGIN Android-changed
+UTF-16,version=1                JavaUnicode # alias made up to avoid java.nio.charset.IllegalCharsetNameException
+# END Android-changed
 
 # This is the same as standard UTF-16 but always writes a big-endian byte stream,
 # regardless of the platform endianness, as expected by the Java compatibility tests.
@@ -284,7 +286,9 @@ UTF-16,version=1
 #
 # From Unicode: Write BE BOM and BE bytes
 # To Unicode: Detects and consumes BOM. Defaults to BE.
-UTF-16,version=2
+# BEGIN Android-changed
+UTF-16,version=2               JavaUnicode2 # alias made up to avoid java.nio.charset.IllegalCharsetNameException
+# END Android-changed
 
 # Note: ICU does not currently support Java-specific, non-Unicode-standard UTF-32 variants.
 # Presumably, these behave analogously to the UTF-16 variants with similar names.
