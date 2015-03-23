@@ -34,7 +34,7 @@ src_files += \
 	basictz.cpp     calendar.cpp casetrn.cpp  \
 	choicfmt.cpp    coleitr.cpp  coll.cpp     \
 	collation.cpp \
-	collationbasedatabuilder.cpp collationbuilder.cpp \
+	collationbuilder.cpp \
 	collationcompare.cpp collationdata.cpp \
 	collationdatabuilder.cpp collationdatareader.cpp \
 	collationdatawriter.cpp collationfastlatin.cpp \
@@ -85,6 +85,7 @@ src_files += \
 	umsg.cpp        unesctrn.cpp uni2name.cpp \
 	unum.cpp        uregexc.cpp  uregex.cpp   \
 	usearch.cpp     \
+	ufieldpositer.cpp \
 	utf16collationiterator.cpp \
 	utf8collationiterator.cpp \
 	utrans.cpp   windtfmt.cpp \

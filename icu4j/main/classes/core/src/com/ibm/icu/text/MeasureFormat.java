@@ -1,6 +1,6 @@
 /*
  **********************************************************************
- * Copyright (c) 2004-2014, International Business Machines
+ * Copyright (c) 2004-2015, International Business Machines
  * Corporation and others.  All Rights Reserved.
  **********************************************************************
  * Author: Alan Liu
@@ -156,8 +156,7 @@ public class MeasureFormat extends UFormat {
     /**
      * Formatting width enum.
      * 
-     * @draft ICU 53
-     * @provisional This API might change or be removed in a future release.
+     * @stable ICU 53
      */
     // Be sure to update MeasureUnitTest.TestSerialFormatWidthEnum
     // when adding an enum value.
@@ -166,24 +165,21 @@ public class MeasureFormat extends UFormat {
         /**
          * Spell out everything.
          * 
-         * @draft ICU 53
-         * @provisional This API might change or be removed in a future release.
+         * @stable ICU 53
          */
         WIDE("units", ListFormatter.Style.DURATION, NumberFormat.PLURALCURRENCYSTYLE), 
 
         /**
          * Abbreviate when possible.
          * 
-         * @draft ICU 53
-         * @provisional This API might change or be removed in a future release.
+         * @stable ICU 53
          */
         SHORT("unitsShort", ListFormatter.Style.DURATION_SHORT, NumberFormat.ISOCURRENCYSTYLE), 
 
         /**
          * Brief. Use only a symbol for the unit when possible.
          * 
-         * @draft ICU 53
-         * @provisional This API might change or be removed in a future release.
+         * @stable ICU 53
          */
         NARROW("unitsNarrow", ListFormatter.Style.DURATION_NARROW, NumberFormat.CURRENCYSTYLE),
 
@@ -192,8 +188,7 @@ public class MeasureFormat extends UFormat {
          * an hour and minute; minute and second; or hour, minute, and second Measures.
          * In these cases formatMeasures formats as 5:37:23 instead of 5h, 37m, 23s.
          * 
-         * @draft ICU 53
-         * @provisional This API might change or be removed in a future release.
+         * @stable ICU 53
          */
         NUMERIC("unitsNarrow", ListFormatter.Style.DURATION_NARROW, NumberFormat.CURRENCYSTYLE);
 
@@ -225,8 +220,7 @@ public class MeasureFormat extends UFormat {
      * @param locale the locale.
      * @param formatWidth hints how long formatted strings should be.
      * @return The new MeasureFormat object.
-     * @draft ICU 53
-     * @provisional This API might change or be removed in a future release.
+     * @stable ICU 53
      */
     public static MeasureFormat getInstance(ULocale locale, FormatWidth formatWidth) {
         return getInstance(locale, formatWidth, NumberFormat.getInstance(locale));
@@ -252,8 +246,7 @@ public class MeasureFormat extends UFormat {
      * @param formatWidth hints how long formatted strings should be.
      * @param format This is defensively copied.
      * @return The new MeasureFormat object.
-     * @draft ICU 53
-     * @provisional This API might change or be removed in a future release.
+     * @stable ICU 53
      */
     public static MeasureFormat getInstance(ULocale locale, FormatWidth formatWidth, NumberFormat format) {
         PluralRules rules = PluralRules.forLocale(locale);
@@ -317,8 +310,7 @@ public class MeasureFormat extends UFormat {
      * @param pos Identifies a field in the formatted text.
      * @see java.text.Format#format(java.lang.Object, java.lang.StringBuffer, java.text.FieldPosition)
      * 
-     * @draft ICU53
-     * @provisional This API might change or be removed in a future release.
+     * @stable ICU53
      */
     @Override
     public StringBuffer format(Object obj, StringBuffer toAppendTo, FieldPosition pos) {
@@ -354,7 +346,7 @@ public class MeasureFormat extends UFormat {
      * Parses text from a string to produce a <code>Measure</code>.
      * @see java.text.Format#parseObject(java.lang.String, java.text.ParsePosition)
      * @throws UnsupportedOperationException Not supported.
-     * @draft ICU 53
+     * @draft ICU 53 (Retain)
      * @provisional This API might change or be removed in a future release.
      */
     @Override
@@ -373,8 +365,7 @@ public class MeasureFormat extends UFormat {
      * 
      * @param measures a sequence of one or more measures.
      * @return the formatted string.
-     * @draft ICU 53
-     * @provisional This API might change or be removed in a future release.
+     * @stable ICU 53
      */
     public final String formatMeasures(Measure... measures) {
         return formatMeasures(
@@ -498,30 +489,38 @@ public class MeasureFormat extends UFormat {
     }
     
     /**
-     * Like formatMeasures but formats with a per unit.
+     * Formats a single measure per unit. 
      * 
-     * Will format to a string such as "5 kilometers, 300 meters per hour."
-     * 
-     * @param appendTo the formatted string appended here.
-     * @param fieldPosition Identifies a field in the formatted text.
-     * @param perUnit for the example above would be MeasureUnit.HOUR.
-     * @param measures the measures to format.
+     * An example of such a formatted string is "3.5 meters per second."
+     *
+     * @param measure  the measure object. In above example, 3.5 meters.
+     * @param perUnit  the per unit. In above example, it is MeasureUnit.SECOND
+     * @param appendTo formatted string appended here.
+     * @param pos      The field position.
      * @return appendTo.
-     * @internal Technology preview
-     * @deprecated This API is ICU internal only.
+     * @draft ICU 55
+     * @provisional This API might change or be removed in a future release.
      */
-    @Deprecated
-    public StringBuilder formatMeasuresPer(
-            StringBuilder appendTo, FieldPosition fieldPosition, MeasureUnit perUnit, Measure... measures) {
+    public StringBuilder formatMeasurePerUnit(
+            Measure measure,
+            MeasureUnit perUnit,
+            StringBuilder appendTo,
+            FieldPosition pos) {
+        MeasureUnit resolvedUnit = MeasureUnit.resolveUnitPerUnit(
+                measure.getUnit(), perUnit);
+        if (resolvedUnit != null) {
+            Measure newMeasure = new Measure(measure.getNumber(), resolvedUnit);
+            return formatMeasure(newMeasure, numberFormat, appendTo, pos);
+        }
         FieldPosition fpos = new FieldPosition(
-                fieldPosition.getFieldAttribute(), fieldPosition.getField());
-        int offset = withPerUnit(
-                formatMeasures(new StringBuilder(), fpos, measures),
+                pos.getFieldAttribute(), pos.getField());
+        int offset = withPerUnitAndAppend(
+                formatMeasure(measure, numberFormat, new StringBuilder(), fpos),
                 perUnit,
                 appendTo);
         if (fpos.getBeginIndex() != 0 || fpos.getEndIndex() != 0) {
-            fieldPosition.setBeginIndex(fpos.getBeginIndex() + offset);
-            fieldPosition.setEndIndex(fpos.getEndIndex() + offset);
+            pos.setBeginIndex(fpos.getBeginIndex() + offset);
+            pos.setEndIndex(fpos.getEndIndex() + offset);
         }
         return appendTo;
     }
@@ -538,8 +537,7 @@ public class MeasureFormat extends UFormat {
      * @param measures the measures to format.
      * @return appendTo.
      * @see MeasureFormat#formatMeasures(Measure...)
-     * @draft ICU 53
-     * @provisional This API might change or be removed in a future release.
+     * @stable ICU 53
      */
     public StringBuilder formatMeasures(
             StringBuilder appendTo, FieldPosition fieldPosition, Measure... measures) {
@@ -579,8 +577,7 @@ public class MeasureFormat extends UFormat {
     /**
      * Two MeasureFormats, a and b, are equal if and only if they have the same formatWidth,
      * locale, and equal number formats.
-     * @draft ICU 53
-     * @provisional This API might change or be removed in a future release.
+     * @stable ICU 53
      */
     @Override
     public final boolean equals(Object other) {
@@ -599,8 +596,7 @@ public class MeasureFormat extends UFormat {
 
     /**
      * {@inheritDoc}
-     * @draft ICU 53
-     * @provisional This API might change or be removed in a future release.
+     * @stable ICU 53
      */
     @Override
     public final int hashCode() {
@@ -611,8 +607,7 @@ public class MeasureFormat extends UFormat {
 
     /**
      * Get the format width this instance is using.
-     * @draft ICU 53
-     * @provisional This API might change or be removed in a future release.
+     * @stable ICU 53
      */
     public MeasureFormat.FormatWidth getWidth() {
         return formatWidth;
@@ -620,8 +615,7 @@ public class MeasureFormat extends UFormat {
 
     /**
      * Get the locale of this instance.
-     * @draft ICU 53
-     * @provisional This API might change or be removed in a future release.
+     * @stable ICU 53
      */
     public final ULocale getLocale() {
         return getLocale(ULocale.VALID_LOCALE);
@@ -629,8 +623,7 @@ public class MeasureFormat extends UFormat {
 
     /**
      * Get a copy of the number format.
-     * @draft ICU 53
-     * @provisional This API might change or be removed in a future release.
+     * @stable ICU 53
      */
     public NumberFormat getNumberFormat() {
         return numberFormat.get();
@@ -747,7 +740,7 @@ public class MeasureFormat extends UFormat {
     private static NumericFormatters loadNumericFormatters(
             ULocale locale) {
         ICUResourceBundle r = (ICUResourceBundle)UResourceBundle.
-                getBundleInstance(ICUData.ICU_BASE_NAME, locale);
+                getBundleInstance(ICUData.ICU_UNIT_BASE_NAME, locale);
         return new NumericFormatters(
                 loadNumericDurationFormat(r, "hm"),
                 loadNumericDurationFormat(r, "ms"),
@@ -852,20 +845,21 @@ public class MeasureFormat extends UFormat {
         return true;
     }
     
-    private int withPerUnit(CharSequence formatted, MeasureUnit perUnit, StringBuilder appendTo) {
+    private int withPerUnitAndAppend(
+            CharSequence formatted, MeasureUnit perUnit, StringBuilder appendTo) {
         int[] offsets = new int[1];
         Map<FormatWidth, SimplePatternFormatter> styleToPerUnitPattern =
                 unitToStyleToPerUnitPattern.get(perUnit);
         SimplePatternFormatter perUnitPattern = styleToPerUnitPattern.get(formatWidth);
         if (perUnitPattern != null) {
-            perUnitPattern.format(appendTo, offsets, formatted);
+            perUnitPattern.formatAndAppend(appendTo, offsets, formatted);
             return offsets[0];
         }
         SimplePatternFormatter perPattern = styleToPerPattern.get(formatWidth);
         Map<FormatWidth, QuantityFormatter> styleToCountToFormat = unitToStyleToCountToFormat.get(perUnit);
         QuantityFormatter countToFormat = styleToCountToFormat.get(formatWidth);
         String perUnitString = countToFormat.getByVariant("one").getPatternWithNoPlaceholders().trim();
-        perPattern.format(appendTo, offsets, formatted, perUnitString);
+        perPattern.formatAndAppend(appendTo, offsets, formatted, perUnitString);
         return offsets[0];
     }
 
@@ -898,7 +892,7 @@ public class MeasureFormat extends UFormat {
         QuantityFormatter countToFormat = styleToCountToFormat.get(formatWidth);
         SimplePatternFormatter formatter = countToFormat.getByVariant(keyword);
         int[] offsets = new int[1];
-        formatter.format(appendTo, offsets, formattedNumber);
+        formatter.formatAndAppend(appendTo, offsets, formattedNumber);
         if (offsets[0] != -1) { // there is a number (may not happen with, say, Arabic dual)
             // Fix field position
             if (fpos.getBeginIndex() != 0 || fpos.getEndIndex() != 0) {

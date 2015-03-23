@@ -61,6 +61,7 @@ src_files := \
 	utypes.c           wintz.c            \
 	utrie2_builder.cpp icuplug.cpp        \
 	propsvec.c         ulist.c            \
+	ulistformatter.cpp \
 	uloc_keytype.cpp \
 	uloc_tag.c         ucnv_ct.c
 
