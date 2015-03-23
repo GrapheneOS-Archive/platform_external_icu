@@ -1,6 +1,6 @@
 /**
  *******************************************************************************
- * Copyright (C) 2001-2014, International Business Machines Corporation and
+ * Copyright (C) 2001-2015, International Business Machines Corporation and
  * others. All Rights Reserved.
  *******************************************************************************
  * CollationTest.java, ported from collationtest.cpp
@@ -60,7 +60,6 @@ public class CollationTest extends TestFmwk {
     String fileLine;
     int fileLineNumber;
     String fileTestName;
-    Throwable error;
 
     // package private methods ----------------------------------------------
     
@@ -282,10 +281,9 @@ public class CollationTest extends TestFmwk {
         }
 
         long ce = ces[0];
-        long expected = (Collation.MERGE_SEPARATOR_PRIMARY << 32) |
-                Collation.MERGE_SEPARATOR_LOWER32;
+        long expected = Collation.makeCE(Collation.MERGE_SEPARATOR_PRIMARY);
         if (ce != expected) {
-            errln("CE(U+fffe)=0x" + Utility.hex(ce) + " != 02.02.02");
+            errln("CE(U+fffe)=0x" + Utility.hex(ce) + " != 02..");
         }
 
         ce = ces[1];
@@ -692,11 +690,8 @@ public class CollationTest extends TestFmwk {
         }
         // Minimum & maximum lead bytes.
         if ((p1 != 0 && p1 <= Collation.MERGE_SEPARATOR_BYTE)
-                || (s1 != 0 && s1 <= Collation.MERGE_SEPARATOR_BYTE)
-                || (t1 != 0 && t1 <= Collation.MERGE_SEPARATOR_BYTE)) {
-            return false;
-        }
-        if (t1 != 0 && t1 > 0x3f) {
+                || s1 == Collation.LEVEL_SEPARATOR_BYTE
+                || t1 == Collation.LEVEL_SEPARATOR_BYTE || t1 > 0x3f) {
             return false;
         }
         if (c > 2) {
@@ -815,7 +810,26 @@ public class CollationTest extends TestFmwk {
             // Simple primary CE.
             ++index;
             pri = p;
-            secTer = Collation.COMMON_SEC_AND_TER_CE;
+            // Does this have an explicit below-common sec/ter unit,
+            // or does it imply a common one?
+            if(index == length) {
+                secTer = Collation.COMMON_SEC_AND_TER_CE;
+            } else {
+                secTer = elements[index];
+                if((secTer & CollationRootElements.SEC_TER_DELTA_FLAG) == 0) {
+                    // No sec/ter delta.
+                    secTer = Collation.COMMON_SEC_AND_TER_CE;
+                } else {
+                    secTer &= ~CollationRootElements.SEC_TER_DELTA_FLAG;
+                    if(secTer > Collation.COMMON_SEC_AND_TER_CE) {
+                        // Implied sec/ter.
+                        secTer = Collation.COMMON_SEC_AND_TER_CE;
+                    } else {
+                        // Explicit sec/ter below common/common.
+                        ++index;
+                    }
+                }
+            }
             return true;
         }
 
@@ -1044,29 +1058,34 @@ public class CollationTest extends TestFmwk {
         return printSortKey(p);
     }
 
-    private boolean readLine(BufferedReader in) throws IOException {
-        String line = in.readLine();
-        if (line == null) {
-            fileLine = null;
-            return false;
-        }
-        ++fileLineNumber;
-        // Strip trailing comments and spaces
-        int idx = line.indexOf('#');
-        if (idx < 0) {
-            idx = line.length();
-        }
-        for (; idx > 0; idx--) {
-            if (!isSpace(line.charAt(idx -1))) {
-                break;
+    private boolean readNonEmptyLine(BufferedReader in) throws IOException {
+        for (;;) {
+            String line = in.readLine();
+            if (line == null) {
+                fileLine = null;
+                return false;
             }
+            if (fileLineNumber == 0 && line.length() != 0 && line.charAt(0) == '\uFEFF') {
+                line = line.substring(1);  // Remove the BOM.
+            }
+            ++fileLineNumber;
+            // Strip trailing comments and spaces
+            int idx = line.indexOf('#');
+            if (idx < 0) {
+                idx = line.length();
+            }
+            while (idx > 0 && isSpace(line.charAt(idx - 1))) {
+                --idx;
+            }
+            if (idx != 0) {
+                fileLine = idx < line.length() ? line.substring(0, idx) : line;
+                return true;
+            }
+            // Empty line, continue.
         }
-
-        fileLine = idx < line.length() ? line.substring(0, idx) : line;
-        return true;
     }
 
-    private int parseString(int start, Output<String> prefix, Output<String> s) {
+    private int parseString(int start, Output<String> prefix, Output<String> s) throws ParseException {
         int length = fileLine.length();
         int i;
         for (i = start; i < length && !isSpace(fileLine.charAt(i)); ++i) {
@@ -1077,9 +1096,7 @@ public class CollationTest extends TestFmwk {
             if (tmpPrefix.length() == 0) {
                 prefix.value = null;
                 logln(fileLine);
-                error = new ParseException("empty prefix on line " + fileLineNumber, fileLineNumber);
-                errln("empty prefix on line " + fileLineNumber);
-                return start;
+                throw new ParseException("empty prefix on line " + fileLineNumber, fileLineNumber);
             }
             prefix.value = tmpPrefix;
             start = pipeIndex + 1;
@@ -1091,15 +1108,13 @@ public class CollationTest extends TestFmwk {
         if (tmp.length() == 0) {
             s.value = null;
             logln(fileLine);
-            error = new ParseException("empty string on line " + fileLineNumber, fileLineNumber);
-            errln("empty string on line " + fileLineNumber);
-            return start;
+            throw new ParseException("empty string on line " + fileLineNumber, fileLineNumber);
         }
         s.value = tmp;
         return i;
     }
 
-    private int parseRelationAndString(Output<String> s) {
+    private int parseRelationAndString(Output<String> s) throws ParseException {
         int relation = Collation.NO_LEVEL;
         int start;
         if (fileLine.charAt(0) == '<') {
@@ -1138,34 +1153,30 @@ public class CollationTest extends TestFmwk {
 
         if (start == 0 || !isSpace(fileLine.charAt(start))) {
             logln(fileLine);
-            error = new ParseException("no relation (= < <1 <2 <c <3 <4 <i) at beginning of line "
+            throw new ParseException("no relation (= < <1 <2 <c <3 <4 <i) at beginning of line "
                                         + fileLineNumber, fileLineNumber);
-            errln("no relation (= < <1 <2 <c <3 <4 <i) at beginning of line " + fileLineNumber);
-            return Collation.NO_LEVEL;
         }
 
         start = skipSpaces(start);
         Output<String> prefixOut = new Output<String>();
         start = parseString(start, prefixOut, s);
-        if (error == null && prefixOut.value != null) {
+        if (prefixOut.value != null) {
             logln(fileLine);
-            error = new ParseException("prefix string not allowed for test string: on line "
+            throw new ParseException("prefix string not allowed for test string: on line "
                                         + fileLineNumber, fileLineNumber);
-            errln("prefix string not allowed for test string: on line " + fileLineNumber);
-            return Collation.NO_LEVEL;
         }
         if (start < fileLine.length()) {
             logln(fileLine);
-            error = new ParseException("unexpected line contents after test string on line "
+            throw new ParseException("unexpected line contents after test string on line "
                                         + fileLineNumber, fileLineNumber);
-            errln("unexpected line contents after test string on line " + fileLineNumber);
-            return Collation.NO_LEVEL;
         }
 
         return relation;
     }
 
-    private void parseAndSetAttribute() {
+    private void parseAndSetAttribute() throws ParseException {
+        // Parse attributes even if the Collator could not be created,
+        // in order to report syntax errors.
         int start = skipSpaces(1);
         int equalPos = fileLine.indexOf('=');
         if (equalPos < 0) {
@@ -1174,9 +1185,7 @@ public class CollationTest extends TestFmwk {
                 return;
             }
             logln(fileLine);
-            error = new ParseException("missing '=' on line " + fileLineNumber, fileLineNumber);
-            errln("missing '=' on line " + fileLineNumber);
-            return;
+            throw new ParseException("missing '=' on line " + fileLineNumber, fileLineNumber);
         }
 
         String attrString = fileLine.substring(start,  equalPos);
@@ -1193,12 +1202,12 @@ public class CollationTest extends TestFmwk {
                 max = ReorderCodes.CURRENCY;
             } else {
                 logln(fileLine);
-                error = new ParseException("invalid attribute value name on line "
+                throw new ParseException("invalid attribute value name on line "
                                             + fileLineNumber, fileLineNumber);
-                errln("invalid attribute value name on line " + fileLineNumber);
-                return;
             }
-            coll.setMaxVariable(max);
+            if (coll != null) {
+                coll.setMaxVariable(max);
+            }
             fileLine = null;
             return;
         }
@@ -1207,89 +1216,86 @@ public class CollationTest extends TestFmwk {
         RuleBasedCollator rbc = (RuleBasedCollator)coll;
         if (attrString.equals("backwards")) {
             if (valueString.equals("on")) {
-                rbc.setFrenchCollation(true);
+                if (rbc != null) rbc.setFrenchCollation(true);
             } else if (valueString.equals("off")) {
-                rbc.setFrenchCollation(false);
+                if (rbc != null) rbc.setFrenchCollation(false);
             } else if (valueString.equals("default")) {
-                rbc.setFrenchCollationDefault();
+                if (rbc != null) rbc.setFrenchCollationDefault();
             } else {
                 parsed = false;
             }
         } else if (attrString.equals("alternate")) {
             if (valueString.equals("non-ignorable")) {
-                rbc.setAlternateHandlingShifted(false);
+                if (rbc != null) rbc.setAlternateHandlingShifted(false);
             } else if (valueString.equals("shifted")) {
-                rbc.setAlternateHandlingShifted(true);
+                if (rbc != null) rbc.setAlternateHandlingShifted(true);
             } else if (valueString.equals("default")) {
-                rbc.setAlternateHandlingDefault();
+                if (rbc != null) rbc.setAlternateHandlingDefault();
             } else {
                 parsed = false;
             }
         } else if (attrString.equals("caseFirst")) {
             if (valueString.equals("upper")) {
-                rbc.setUpperCaseFirst(true);
+                if (rbc != null) rbc.setUpperCaseFirst(true);
             } else if (valueString.equals("lower")) {
-                rbc.setLowerCaseFirst(true);
+                if (rbc != null) rbc.setLowerCaseFirst(true);
             } else if (valueString.equals("default")) {
-                rbc.setCaseFirstDefault();
+                if (rbc != null) rbc.setCaseFirstDefault();
             } else {
                 parsed = false;
             }
         } else if (attrString.equals("caseLevel")) {
             if (valueString.equals("on")) {
-                rbc.setCaseLevel(true);
+                if (rbc != null) rbc.setCaseLevel(true);
             } else if (valueString.equals("off")) {
-                rbc.setCaseLevel(false);
+                if (rbc != null) rbc.setCaseLevel(false);
             } else if (valueString.equals("default")) {
-                rbc.setCaseLevelDefault();
+                if (rbc != null) rbc.setCaseLevelDefault();
             } else {
                 parsed = false;
             }
         } else if (attrString.equals("strength")) {
             if (valueString.equals("primary")) {
-                rbc.setStrength(Collator.PRIMARY);
+                if (rbc != null) rbc.setStrength(Collator.PRIMARY);
             } else if (valueString.equals("secondary")) {
-                rbc.setStrength(Collator.SECONDARY);
+                if (rbc != null) rbc.setStrength(Collator.SECONDARY);
             } else if (valueString.equals("tertiary")) {
-                rbc.setStrength(Collator.TERTIARY);
+                if (rbc != null) rbc.setStrength(Collator.TERTIARY);
             } else if (valueString.equals("quaternary")) {
-                rbc.setStrength(Collator.QUATERNARY);
+                if (rbc != null) rbc.setStrength(Collator.QUATERNARY);
             } else if (valueString.equals("identical")) {
-                rbc.setStrength(Collator.IDENTICAL);
+                if (rbc != null) rbc.setStrength(Collator.IDENTICAL);
             } else if (valueString.equals("default")) {
-                rbc.setStrengthDefault();
+                if (rbc != null) rbc.setStrengthDefault();
             } else {
                 parsed = false;
             }
         } else if (attrString.equals("numeric")) {
             if (valueString.equals("on")) {
-                rbc.setNumericCollation(true);
+                if (rbc != null) rbc.setNumericCollation(true);
             } else if (valueString.equals("off")) {
-                rbc.setNumericCollation(false);
+                if (rbc != null) rbc.setNumericCollation(false);
             } else if (valueString.equals("default")) {
-                rbc.setNumericCollationDefault();
+                if (rbc != null) rbc.setNumericCollationDefault();
             } else {
                 parsed = false;
             }
         } else {
             logln(fileLine);
-            error = new ParseException("invalid attribute value name on line "
+            throw new ParseException("invalid attribute name on line "
                                         + fileLineNumber, fileLineNumber);
-            errln("invalid attribute value name on line " + fileLineNumber);
-            return;
         }
         if (!parsed) {
             logln(fileLine);
-            error = new ParseException("invalid attribute=value combination on line "
-                                        + fileLineNumber, fileLineNumber);
-            errln("invalid attribute=value combination on line " + fileLineNumber);
-            return;
+            throw new ParseException(
+                    "invalid attribute value name or attribute=value combination on line "
+                    + fileLineNumber, fileLineNumber);
         }
 
         fileLine = null;
     }
 
-    private void parseAndSetReorderCodes(int start) {
+    private void parseAndSetReorderCodes(int start) throws ParseException {
         UVector32 reorderCodes = new UVector32();
         while (start < fileLine.length()) {
             start = skipSpaces(start);
@@ -1304,31 +1310,26 @@ public class CollationTest extends TestFmwk {
                     code = ReorderCodes.DEFAULT;  // -1
                 } else {
                     logln(fileLine);
-                    error = new ParseException("invalid reorder code '" + name + "' on line "
+                    throw new ParseException("invalid reorder code '" + name + "' on line "
                                                 + fileLineNumber, fileLineNumber);
-                    return;
                 }
             }
             reorderCodes.addElement(code);
             start = limit;
         }
-        int[] reorderCodesArray = new int[reorderCodes.size()];
-        System.arraycopy(reorderCodes.getBuffer(), 0,
-                reorderCodesArray, 0, reorderCodes.size());
-        coll.setReorderCodes(reorderCodesArray);
+        if (coll != null) {
+            int[] reorderCodesArray = new int[reorderCodes.size()];
+            System.arraycopy(reorderCodes.getBuffer(), 0,
+                    reorderCodesArray, 0, reorderCodes.size());
+            coll.setReorderCodes(reorderCodesArray);
+        }
 
         fileLine = null;
     }
 
     private void buildTailoring(BufferedReader in) throws IOException {
         StringBuilder rules = new StringBuilder();
-        while (readLine(in)) {
-            if (fileLine.length() == 0) {
-                continue;
-            }
-            if (isSectionStarter(fileLine.charAt(0))) {
-                break;
-            }
+        while (readNonEmptyLine(in) && !isSectionStarter(fileLine.charAt(0))) {
             rules.append(Utility.unescape(fileLine));
         }
 
@@ -1336,8 +1337,10 @@ public class CollationTest extends TestFmwk {
             coll = new RuleBasedCollator(rules.toString());
         } catch (Exception e) {
             logln(rules.toString());
-            errln("RuleBasedCollator(rules) failed - " + e.getMessage());
-            error = e;
+            // Android patch: Add --omitCollationRules to genrb.
+            warnln("RuleBasedCollator(rules) failed - " + e.getMessage());
+            // Android patch end.
+            coll = null;
         }
     }
 
@@ -1346,6 +1349,7 @@ public class CollationTest extends TestFmwk {
     }
 
     private void setLocaleCollator() {
+        coll = null;
         ULocale locale = null;
         if (fileLine.length() > 9) {
             String localeID = fileLine.substring(9); // "@ locale <langTag>"
@@ -1358,12 +1362,16 @@ public class CollationTest extends TestFmwk {
         if (locale == null) {
             logln(fileLine);
             errln("invalid language tag on line " + fileLineNumber);
-            error = new ParseException("invalid langauge tag on line " + fileLineNumber, fileLineNumber);
             return;
         }
 
         logln("creating a collator for locale ID " + locale.getName());
-        coll = Collator.getInstance(locale);
+        try {
+            coll = Collator.getInstance(locale);
+        } catch (Exception e) {
+            errln("unable to create a collator for locale " + locale +
+                    " on line " + fileLineNumber + " - " + e);
+        }
     }
 
     private boolean needsNormalization(String s) {
@@ -1432,7 +1440,17 @@ public class CollationTest extends TestFmwk {
             return false;
         }
 
-        // If s contains U+FFFE, check that merged segments make the same key.
+        // No nextSortKeyPart support in ICU4J
+
+        return true;
+    }
+
+    /**
+     * Changes the key to the merged segments of the U+FFFE-separated substrings of s.
+     * Leaves key unchanged if s does not contain U+FFFE.
+     * @return true if the key was successfully changed
+     */
+    private boolean getMergedCollationKey(String s, Output<CollationKey> key) {
         CollationKey mergedKey = null;
         int sLength = s.length();
         int segmentStart = 0;
@@ -1440,7 +1458,7 @@ public class CollationTest extends TestFmwk {
             if (i == sLength) {
                 if (segmentStart == 0) {
                     // s does not contain any U+FFFE.
-                    break;
+                    return false;
                 }
             } else if (s.charAt(i) != '\uFFFE') {
                 ++i;
@@ -1458,19 +1476,31 @@ public class CollationTest extends TestFmwk {
             }
             segmentStart = ++i;
         }
-        if (segmentStart != 0 && key.compareTo(mergedKey) != 0) {
-            logln(fileTestName);
-            logln(line);
-            logln(printCollationKey(key));
-            logln(printCollationKey(mergedKey));
-            errln("Collator(" + norm
-                    + ").getCollationKey(with U+FFFE) != CollationKey.merge(segments)");
-            return false;
-        }
-
-        // No nextSortKeyPart support in ICU4J
-
+        key.value = mergedKey;
         return true;
+    }
+
+    private static int getDifferenceLevel(CollationKey prevKey, CollationKey key,
+            int order, boolean collHasCaseLevel) {
+        if (order == Collation.EQUAL) {
+            return Collation.NO_LEVEL;
+        }
+        byte[] prevBytes = prevKey.toByteArray();
+        byte[] bytes = key.toByteArray();
+        int level = Collation.PRIMARY_LEVEL;
+        for (int i = 0;; ++i) {
+            byte b = prevBytes[i];
+            if (b != bytes[i]) {
+                break;
+            }
+            if ((int)b == Collation.LEVEL_SEPARATOR_BYTE) {
+                ++level;
+                if (level == Collation.CASE_LEVEL && !collHasCaseLevel) {
+                    ++level;
+                }
+            }
+        }
+        return level;
     }
 
     private boolean checkCompareTwo(String norm, String prevFileLine, String prevString, String s,
@@ -1527,23 +1557,9 @@ public class CollationTest extends TestFmwk {
                     + order + " != " + expectedOrder);
             return false;
         }
+        boolean collHasCaseLevel = ((RuleBasedCollator)coll).isCaseLevel();
+        int level = getDifferenceLevel(prevKey, key, order, collHasCaseLevel);
         if (order != Collation.EQUAL && expectedLevel != Collation.NO_LEVEL) {
-            byte[] prevBytes = prevKey.toByteArray();
-            byte[] bytes = key.toByteArray();
-            int level = Collation.PRIMARY_LEVEL;
-            for (int i = 0;; ++i) {
-                byte b = prevBytes[i];
-                if (b != bytes[i]) {
-                    break;
-                }
-                if ((int)b == Collation.LEVEL_SEPARATOR_BYTE) {
-                    ++level;
-                    if (level == Collation.CASE_LEVEL
-                            && !((RuleBasedCollator)coll).isCaseLevel()) {
-                        ++level;
-                    }
-                }
-            }
             if (level != expectedLevel) {
                 logln(fileTestName);
                 logln(prevFileLine);
@@ -1552,8 +1568,51 @@ public class CollationTest extends TestFmwk {
                 logln(printCollationKey(key));
                 errln("line " + fileLineNumber
                         + " Collator(" + norm + ").getCollationKey(previous, current).compareTo()="
-                        + level + " wrong level: " + level + " != " + expectedLevel);
+                        + order + " wrong level: " + level + " != " + expectedLevel);
                 return false;
+            }
+        }
+
+        // If either string contains U+FFFE, then their sort keys must compare the same as
+        // the merged sort keys of each string's between-FFFE segments.
+        //
+        // It is not required that
+        //   sortkey(str1 + "\uFFFE" + str2) == mergeSortkeys(sortkey(str1), sortkey(str2))
+        // only that those two methods yield the same order.
+        //
+        // Use bit-wise OR so that getMergedCollationKey() is always called for both strings.
+        Output<CollationKey> outPrevKey = new Output<CollationKey>(prevKey);
+        Output<CollationKey> outKey = new Output<CollationKey>(key);
+        if (getMergedCollationKey(prevString, outPrevKey) | getMergedCollationKey(s, outKey)) {
+            prevKey = outPrevKey.value;
+            key = outKey.value;
+            order = prevKey.compareTo(key);
+            if (order != expectedOrder) {
+                logln(fileTestName);
+                errln("line " + fileLineNumber
+                        + " Collator(" + norm + ").getCollationKey"
+                        + "(previous, current segments between U+FFFE)).merge().compareTo() wrong order: "
+                        + order + " != " + expectedOrder);
+                logln(prevFileLine);
+                logln(fileLine);
+                logln(printCollationKey(prevKey));
+                logln(printCollationKey(key));
+                return false;
+            }
+            int mergedLevel = getDifferenceLevel(prevKey, key, order, collHasCaseLevel);
+            if (order != Collation.EQUAL && expectedLevel != Collation.NO_LEVEL) {
+                if(mergedLevel != level) {
+                    logln(fileTestName);
+                    errln("line " + fileLineNumber
+                        + " Collator(" + norm + ").getCollationKey"
+                        + "(previous, current segments between U+FFFE)).merge().compareTo()="
+                        + order + " wrong level: " + mergedLevel + " != " + level);
+                    logln(prevFileLine);
+                    logln(fileLine);
+                    logln(printCollationKey(prevKey));
+                    logln(printCollationKey(key));
+                    return false;
+                }
             }
         }
         return true;
@@ -1562,17 +1621,24 @@ public class CollationTest extends TestFmwk {
     private void checkCompareStrings(BufferedReader in) throws IOException {
         String prevFileLine = "(none)";
         String prevString = "";
-        String s;
         Output<String> sOut = new Output<String>();
-        while (readLine(in)) {
-            if (fileLine.length() == 0) {
-                continue;
-            }
-            if (isSectionStarter(fileLine.charAt(0))) {
+        while (readNonEmptyLine(in) && !isSectionStarter(fileLine.charAt(0))) {
+            // Parse the line even if it will be ignored (when we do not have a Collator)
+            // in order to report syntax issues.
+            int relation;
+            try {
+                relation = parseRelationAndString(sOut);
+            } catch (ParseException pe) {
+                errln(pe.toString());
                 break;
             }
-            int relation = parseRelationAndString(sOut);
-            s = sOut.value;
+            if(coll == null) {
+                // We were unable to create the Collator but continue with tests.
+                // Ignore test data for this Collator.
+                // The next Collator creation might work.
+                continue;
+            }
+            String s = sOut.value;
             int expectedOrder = (relation == Collation.ZERO_LEVEL) ? Collation.EQUAL : Collation.LESS;
             int expectedLevel = relation;
             boolean isOk = true;
@@ -1606,19 +1672,9 @@ public class CollationTest extends TestFmwk {
         try {
             in = TestUtil.getDataReader("collationtest.txt", "UTF-8");
 
-            // read first line and remove BOM if present
-            readLine(in);
-            if (fileLine != null && fileLine.charAt(0) == '\uFEFF') {
-                fileLine = fileLine.substring(1);
-            }
-
-            while (error == null) {
-                if (fileLine == null || fileLine.length() == 0) {
-                    if (!readLine(in)) {
-                        break;
-                    }
-                    continue;
-                }
+            // Read a new line if necessary.
+            // Sub-parsers leave the first line set that they do not handle.
+            while (fileLine != null || readNonEmptyLine(in)) {
                 if (!isSectionStarter(fileLine.charAt(0))) {
                     logln(fileLine);
                     errln("syntax error on line " + fileLineNumber);
@@ -1647,6 +1703,8 @@ public class CollationTest extends TestFmwk {
                     return;
                 }
             }
+        } catch (ParseException pe) {
+            errln(pe.toString());
         } catch (IOException e) {
             errln(e.getMessage());
         } finally {

@@ -1,6 +1,6 @@
 /*
 *******************************************************************************
-* Copyright (C) 2010-2014, International Business Machines
+* Copyright (C) 2010-2015, International Business Machines
 * Corporation and others.  All Rights Reserved.
 *******************************************************************************
 * Collation.java, ported from collation.h/.cpp
@@ -32,17 +32,19 @@ public final class Collation {
     // Special sort key bytes for all levels.
     public static final int TERMINATOR_BYTE = 0;
     public static final int LEVEL_SEPARATOR_BYTE = 1;
+
+    /** The secondary/tertiary lower limit for tailoring before any root elements. */
+    static final int BEFORE_WEIGHT16 = 0x100;
+
     /**
      * Merge-sort-key separator.
-     * Must not be used as the lead byte of any CE weight,
-     * nor as primary compression low terminator.
+     * Same as the unique primary and identical-level weights of U+FFFE.
+     * Must not be used as primary compression low terminator.
      * Otherwise usable.
      */
     public static final int MERGE_SEPARATOR_BYTE = 2;
     public static final long MERGE_SEPARATOR_PRIMARY = 0x02000000;  // U+FFFE
-    static final int MERGE_SEPARATOR_WEIGHT16 = 0x0200;  // U+FFFE
-    public static final int MERGE_SEPARATOR_LOWER32 = 0x02000200;  // U+FFFE
-    static final int MERGE_SEPARATOR_CE32 = 0x02000202;  // U+FFFE
+    static final int MERGE_SEPARATOR_CE32 = 0x02000505;  // U+FFFE
 
     /**
      * Primary compression low terminator, must be greater than MERGE_SEPARATOR_BYTE.
@@ -583,10 +585,6 @@ public final class Collation {
 
     static long unassignedCEFromCodePoint(int c) {
         return makeCE(unassignedPrimaryFromCodePoint(c));
-    }
-
-    static long reorder(byte[] reorderTable, long primary) {
-        return ((reorderTable[(int)primary >>> 24] & 0xffL) << 24) | (primary & 0xffffff);
     }
 
     // private Collation()  // No instantiation.

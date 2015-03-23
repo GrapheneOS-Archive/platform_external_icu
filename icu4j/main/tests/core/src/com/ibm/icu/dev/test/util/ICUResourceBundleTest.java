@@ -469,7 +469,7 @@ public final class ICUResourceBundleTest extends TestFmwk {
             rb = (UResourceBundle)UResourceBundle.getBundleInstance("com/ibm/icu/dev/data/testdata","testaliases",testLoader);
             sub = rb.get("referencingalias");
             s1 = sub.getString();
-            if(s1.equals("Hani")){
+            if(s1.equals("H:mm:ss")){
                 logln("Alias mechanism works for referencingalias");
             }else{
                 errln("Did not get the expected output for referencingalias");
@@ -715,6 +715,7 @@ public final class ICUResourceBundleTest extends TestFmwk {
     }
 
     public void TestFunctionalEquivalent(){
+       // Android patch: Force default Gregorian calendar.
        String[] calCases = {
        //  avail    locale                              equiv
            "t",     "en_US_POSIX",                      "en@calendar=gregorian",
@@ -722,10 +723,11 @@ public final class ICUResourceBundleTest extends TestFmwk {
            "f",     "ja_JP_TOKYO@calendar=japanese",    "ja@calendar=japanese",
            "t",     "sr@calendar=gregorian",            "sr@calendar=gregorian",
            "t",     "en",                               "en@calendar=gregorian",
-           "t",     "th_TH",                            "th@calendar=buddhist",
+           "t",     "th_TH",                            "th@calendar=gregorian",
            "t",     "th_TH@calendar=gregorian",         "th@calendar=gregorian",
-           "f",     "th_TH_Bangkok",                    "th@calendar=buddhist",
+           "f",     "th_TH_Bangkok",                    "th@calendar=gregorian",
        };
+       // Android patch end.
 
        logln("Testing functional equivalents for calendar...");
        getFunctionalEquivalentTestCases(ICUResourceBundle.ICU_BASE_NAME,

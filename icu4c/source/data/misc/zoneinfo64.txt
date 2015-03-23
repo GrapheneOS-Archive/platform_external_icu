@@ -2,11 +2,11 @@
 // Copyright (C) 2003-2015, International Business Machines
 // Corporation and others.  All Rights Reserved.
 //---------------------------------------------------------
-// Build tool: tz2icu
-// Build date: Tue Feb 10 13:41:19 2015
-// Olson source: ftp://elsie.nci.nih.gov/pub/
-// Olson version: 2015a
-// ICU version: 54.1.0.1
+// Build tool:  tz2icu
+// Build date:  Tue Feb  3 16:54:37 2015
+// tz database: ftp://ftp.iana.org/tz/
+// tz version:  2015a
+// ICU version: 55.0.1
 //---------------------------------------------------------
 // >> !!! >>   THIS IS A MACHINE-GENERATED FILE   << !!! <<
 // >> !!! >>>            DO NOT EDIT             <<< !!! <<

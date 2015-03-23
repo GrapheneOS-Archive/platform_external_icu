@@ -1,6 +1,6 @@
 /*
  *******************************************************************************
- * Copyright (C) 1996-2014, International Business Machines Corporation and    *
+ * Copyright (C) 1996-2015, International Business Machines Corporation and    *
  * others. All Rights Reserved.                                                *
  *******************************************************************************
  */
@@ -826,7 +826,7 @@ public class RuleBasedNumberFormat extends NumberFormat {
      * There are three legal values: SPELLOUT, which creates a formatter that spells
      * out a value in words in the default locale's language, ORDINAL, which attaches
      * an ordinal suffix from the default locale's language to a numeral, and
-     * DURATION, which formats a duration in seconds as hours, minutes, and seconds.
+     * DURATION, which formats a duration in seconds as hours, minutes, and seconds always rounding down.
      * or NUMBERING_SYSTEM, which is used for alternate numbering systems such as Hebrew.
      * @see Category#FORMAT
      * @stable ICU 2.0
@@ -1423,8 +1423,7 @@ public class RuleBasedNumberFormat extends NumberFormat {
      * NumberFormat.
      * 
      * @param context The DisplayContext value to set. 
-     * @draft ICU 53
-     * @provisional This API might change or be removed in a future release.
+     * @stable ICU 53
      */
     // Here we override the NumberFormat implementation in order to
     // lazily initialize relevant items 

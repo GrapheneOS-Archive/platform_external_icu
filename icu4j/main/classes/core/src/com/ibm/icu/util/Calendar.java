@@ -1,5 +1,5 @@
 /*
- *   Copyright (C) 1996-2014, International Business Machines
+ *   Copyright (C) 1996-2015, International Business Machines
  *   Corporation and others.  All Rights Reserved.
  */
 
@@ -136,9 +136,9 @@ import com.ibm.icu.util.ULocale.Category;
  * </blockquote>
  * 
  * <p><strong>Ambiguous Wall Clock Time.</strong> When time offset from UTC has
- * changed, it produces ambiguous time slot around the transition. For example,
+ * changed, it produces an ambiguous time slot around the transition. For example,
  * many US locations observe daylight saving time. On the date switching to daylight
- * saving time in US, wall clock time jumps from 1:00 AM (standard) to 2:00 AM
+ * saving time in US, wall clock time jumps from 12:59 AM (standard) to 2:00 AM
  * (daylight). Therefore, wall clock time from 1:00 AM to 1:59 AM do not exist on
  * the date. When the input wall time fall into this missing time slot, the ICU
  * Calendar resolves the time using the UTC offset before the transition by default.
@@ -2155,6 +2155,155 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
         set(SECOND, second);
     }
 
+    // -------------------------------------
+    // For now the full getRelatedYear implementation is here;
+    // per #10752 move the non-default implementation to subclasses
+    // (default implementation will do no year adjustment)
+
+    /**
+     * utility function for getRelatedYear
+     */
+    private static int gregoYearFromIslamicStart(int year) {
+        // ad hoc conversion, improve under #10752
+        // rough est for now, ok for grego 1846-2138,
+        // otherwise occasionally wrong (for 3% of years)
+        int cycle, offset, shift = 0;
+        if (year >= 1397) {
+            cycle = (year - 1397) / 67;
+            offset = (year - 1397) % 67;
+            shift = 2*cycle + ((offset >= 33)? 1: 0);
+        } else {
+            cycle = (year - 1396) / 67 - 1;
+            offset = -(year - 1396) % 67;
+            shift = 2*cycle + ((offset <= 33)? 1: 0);
+        }
+        return year + 579 - shift;
+    }
+
+    /**
+     * @internal
+     * @deprecated This API is ICU internal only.
+     */
+    @Deprecated
+    public final int getRelatedYear() {
+        int year = get(EXTENDED_YEAR);
+        CalType type = CalType.GREGORIAN;
+        String typeString = getType();
+        for (CalType testType : CalType.values()) {
+            if (typeString.equals(testType.id)) {
+                type = testType;
+                break;
+            }
+        }
+        switch (type) {
+            case PERSIAN:
+                year += 622; break;
+            case HEBREW:
+                year -= 3760; break;
+            case CHINESE:
+                year -= 2637; break;
+            case INDIAN:
+                year += 79; break;
+            case COPTIC:
+                year += 284; break;
+            case ETHIOPIC:
+                year += 8; break;
+            case ETHIOPIC_AMETE_ALEM:
+                year -=5492; break;
+            case DANGI:
+                year -= 2333; break;
+            case ISLAMIC_CIVIL:
+            case ISLAMIC:
+            case ISLAMIC_UMALQURA:
+            case ISLAMIC_TBLA:
+            case ISLAMIC_RGSA:
+                year = gregoYearFromIslamicStart(year); break;
+            // case GREGORIAN:
+            // case JAPANESE:
+            // case BUDDHIST:
+            // case ROC:
+            // case ISO8601:
+            default:
+                // do nothing, EXTENDED_YEAR same as Gregorian
+                break;
+        }
+        return year;
+    }
+
+    // -------------------------------------
+    // For now the full setRelatedYear implementation is here;
+    // per #10752 move the non-default implementation to subclasses
+    // (default implementation will do no year adjustment)
+
+    /**
+     * utility function for setRelatedYear
+     */
+    private static int firstIslamicStartYearFromGrego(int year) {
+        // ad hoc conversion, improve under #10752
+        // rough est for now, ok for grego 1846-2138,
+        // otherwise occasionally wrong (for 3% of years)
+        int cycle, offset, shift = 0;
+        if (year >= 1977) {
+            cycle = (year - 1977) / 65;
+            offset = (year - 1977) % 65;
+            shift = 2*cycle + ((offset >= 32)? 1: 0);
+        } else {
+            cycle = (year - 1976) / 65 - 1;
+            offset = -(year - 1976) % 65;
+            shift = 2*cycle + ((offset <= 32)? 1: 0);
+        }
+        return year - 579 + shift;
+    }
+
+    /**
+     * @internal
+     * @deprecated This API is ICU internal only.
+     */
+    @Deprecated
+    public final void setRelatedYear(int year) {
+        CalType type = CalType.GREGORIAN;
+        String typeString = getType();
+        for (CalType testType : CalType.values()) {
+            if (typeString.equals(testType.id)) {
+                type = testType;
+                break;
+            }
+        }
+        switch (type) {
+            case PERSIAN:
+                year -= 622; break;
+            case HEBREW:
+                year += 3760; break;
+            case CHINESE:
+                year += 2637; break;
+            case INDIAN:
+                year -= 79; break;
+            case COPTIC:
+                year -= 284; break;
+            case ETHIOPIC:
+                year -= 8; break;
+            case ETHIOPIC_AMETE_ALEM:
+                year +=5492; break;
+            case DANGI:
+                year += 2333; break;
+            case ISLAMIC_CIVIL:
+            case ISLAMIC:
+            case ISLAMIC_UMALQURA:
+            case ISLAMIC_TBLA:
+            case ISLAMIC_RGSA:
+                year = firstIslamicStartYearFromGrego(year); break;
+            // case GREGORIAN:
+            // case JAPANESE:
+            // case BUDDHIST:
+            // case ROC:
+            // case ISO8601:
+            default:
+                // do nothing, EXTENDED_YEAR same as Gregorian
+                break;
+        }
+        set(EXTENDED_YEAR, year);
+    }
+
     /**
      * Clears the values of all the time fields.
      * @stable ICU 2.0
@@ -4150,7 +4299,6 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
         { -0x7F000000,  -0x7F000000,    0x7F000000,    0x7F000000  }, // JULIAN_DAY
         {           0,            0, 24*ONE_HOUR-1, 24*ONE_HOUR-1  }, // MILLISECONDS_IN_DAY
         {           0,            0,             1,             1  }, // IS_LEAP_MONTH
-
     };
 
     /**

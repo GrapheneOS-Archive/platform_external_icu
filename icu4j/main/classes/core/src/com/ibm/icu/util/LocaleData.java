@@ -319,18 +319,24 @@ public final class LocaleData {
      * @stable ICU 2.8
      */
     public static final class MeasurementSystem{
-        /** 
+        /**
          * Measurement system specified by Le Syst&#x00E8;me International d'Unit&#x00E9;s (SI)
          * otherwise known as Metric system. 
          * @stable ICU 2.8
          */
         public static final MeasurementSystem SI = new MeasurementSystem(0);
 
-        /** 
+        /**
          * Measurement system followed in the United States of America. 
          * @stable ICU 2.8
-         */ 
+         */
         public static final MeasurementSystem US = new MeasurementSystem(1);
+
+        /**
+         * Mix of metric and imperial units used in Great Britain.
+         * @stable ICU 55
+         */
+        public static final MeasurementSystem UK = new MeasurementSystem(2);
 
         private int systemID;
         private MeasurementSystem(int id){
@@ -355,6 +361,9 @@ public final class LocaleData {
         int system = sysBundle.getInt();
         if(MeasurementSystem.US.equals(system)){
             return MeasurementSystem.US;
+        }
+        if(MeasurementSystem.UK.equals(system)){
+            return MeasurementSystem.UK;
         }
         if(MeasurementSystem.SI.equals(system)){
             return MeasurementSystem.SI;

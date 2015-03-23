@@ -1,14 +1,11 @@
 ﻿// ***************************************************************************
 // *
-// * Copyright (C) 2014 International Business Machines
+// * Copyright (C) 2015 International Business Machines
 // * Corporation and others. All Rights Reserved.
 // * Tool: org.unicode.cldr.icu.NewLdml2IcuConverter
 // * Source File: <path>/common/main/fy.xml
 // *
 // ***************************************************************************
-/**
- * ICU <specials> source: <path>/common/main/fy.xml
- */
 fy{
     Countries{
         001{"Wrâld"}
@@ -302,15 +299,15 @@ fy{
         ZW{"Zimbabwe"}
         ZZ{"Unbekend gebiet"}
     }
+    Countries%short{
+        GB{"VK"}
+        US{"VS"}
+    }
     Countries%variant{
         CD{"Congo (DRC)"}
         CG{"Congo (Republyk)"}
         FK{"Falklâneilannen (Islas Malvinas)"}
         MK{"Macedonië (FYROM)"}
     }
-    CountriesShort{
-        GB{"VK"}
-        US{"VS"}
-    }
-    Version{"2.1.7.53"}
+    Version{"2.1.10.93"}
 }

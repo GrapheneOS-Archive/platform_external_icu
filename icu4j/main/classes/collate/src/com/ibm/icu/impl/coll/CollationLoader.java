@@ -66,7 +66,7 @@ public final class CollationLoader {
                     sb.append(s, 0, i).append((char)(c + 0x20));
                     while (++i < s.length()) {
                         c = s.charAt(i);
-                        if ('A' <= c && c <= 'Z') { c += 0x20; }
+                        if ('A' <= c && c <= 'Z') { c = (char)(c + 0x20); }
                         sb.append(c);
                     }
                     return sb.toString();
@@ -104,8 +104,9 @@ public final class CollationLoader {
 
         UResourceBundle bundle = null;
         try {
-            bundle = UResourceBundle.getBundleInstance(
-                    ICUResourceBundle.ICU_COLLATION_BASE_NAME, locale);
+            bundle = ICUResourceBundle.getBundleInstance(
+                    ICUResourceBundle.ICU_COLLATION_BASE_NAME, locale,
+                    ICUResourceBundle.OpenType.LOCALE_ROOT);
         } catch (MissingResourceException e) {
             outValidLocale.value = ULocale.ROOT;
             return root;

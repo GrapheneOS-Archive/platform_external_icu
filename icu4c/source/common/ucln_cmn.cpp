@@ -21,7 +21,6 @@
 #include "ucln_cmn.h"
 #include "utracimp.h"
 #include "umutex.h"
-#include <pthread.h>    // Google Patch. Buganizer #10800219.
 
 /**  Auto-client for UCLN_COMMON **/
 #define UCLN_TYPE_IS_COMMON

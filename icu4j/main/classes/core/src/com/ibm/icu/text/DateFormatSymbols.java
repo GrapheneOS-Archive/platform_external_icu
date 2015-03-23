@@ -1,7 +1,7 @@
 /*
  *******************************************************************************
- * Copyright (C) 1996-2014, International Business Machines Corporation and    *
- * others. All Rights Reserved.                                                *
+ * Copyright (C) 1996-2015, International Business Machines Corporation and
+ * others. All Rights Reserved.
  *******************************************************************************
  */
 
@@ -146,53 +146,66 @@ public class DateFormatSymbols implements Serializable, Cloneable {
     @Deprecated
     public static final int DT_WIDTH_COUNT = 4;
 
-     /**
+    /**
      * {@icu} Somewhat temporary constant for leap month pattern type, adequate for Chinese calendar.
      * @internal
      */
     static final int DT_LEAP_MONTH_PATTERN_FORMAT_WIDE = 0;
 
-     /**
+    /**
      * {@icu} Somewhat temporary constant for leap month pattern type, adequate for Chinese calendar.
      * @internal
      */
     static final int DT_LEAP_MONTH_PATTERN_FORMAT_ABBREV = 1;
 
-     /**
+    /**
      * {@icu} Somewhat temporary constant for leap month pattern type, adequate for Chinese calendar.
      * @internal
      */
     static final int DT_LEAP_MONTH_PATTERN_FORMAT_NARROW = 2;
 
-     /**
+    /**
      * {@icu} Somewhat temporary constant for leap month pattern type, adequate for Chinese calendar.
      * @internal
      */
     static final int DT_LEAP_MONTH_PATTERN_STANDALONE_WIDE = 3;
 
-     /**
+    /**
      * {@icu} Somewhat temporary constant for leap month pattern type, adequate for Chinese calendar.
      * @internal
      */
     static final int DT_LEAP_MONTH_PATTERN_STANDALONE_ABBREV = 4;
 
-     /**
+    /**
      * {@icu} Somewhat temporary constant for leap month pattern type, adequate for Chinese calendar.
      * @internal
      */
     static final int DT_LEAP_MONTH_PATTERN_STANDALONE_NARROW = 5;
 
-     /**
+    /**
      * {@icu} Somewhat temporary constant for leap month pattern type, adequate for Chinese calendar.
      * @internal
      */
     static final int DT_LEAP_MONTH_PATTERN_NUMERIC = 6;
 
-     /**
+    /**
      * {@icu} Somewhat temporary constant for month pattern count, adequate for Chinese calendar.
      * @internal
      */
     static final int DT_MONTH_PATTERN_COUNT = 7;
+
+    /**
+     * {@icu} This default time separator is used for formatting when the locale
+     * doesn't specify any time separator, and always recognized when parsing.
+     * @internal
+     */
+    static final String DEFAULT_TIME_SEPARATOR = ":";
+
+    /**
+     * {@icu} This alternate time separator is always recognized when parsing.
+     * @internal
+     */
+    static final String ALTERNATE_TIME_SEPARATOR = ".";
 
    /**
      * Constructs a DateFormatSymbols object by loading format data from
@@ -474,6 +487,20 @@ public class DateFormatSymbols implements Serializable, Cloneable {
     String ampms[] = null;
 
     /**
+     * narrow AM and PM strings. For example: "a" and "p".  An array of
+     * 2 strings, indexed by <code>Calendar.AM</code> and
+     * <code>Calendar.PM</code>.
+     * @serial
+     */
+    String ampmsNarrow[] = null;
+
+    /**
+     * Time separator string. For example: ":".
+     * @serial
+     */
+    private String timeSeparator = null;
+
+    /**
      * Abbreviated quarter names. For example: "Q1", "Q2", "Q3", "Q4". An array
      * of 4 strings indexed by the month divided by 3.
      * @serial
@@ -565,7 +592,7 @@ public class DateFormatSymbols implements Serializable, Cloneable {
      * Unlocalized date-time pattern characters. For example: 'y', 'd', etc.
      * All locales use the same unlocalized pattern characters.
      */
-    static final String  patternChars = "GyMdkHmsSEDFwWahKzYeugAZvcLQqVUOXx";
+    static final String patternChars = "GyMdkHmsSEDFwWahKzYeugAZvcLQqVUOXxr:";
 
     /**
      * Localized date-time pattern characters. For example, a locale may
@@ -1231,6 +1258,26 @@ public class DateFormatSymbols implements Serializable, Cloneable {
     }
 
     /**
+     * Returns the time separator string. For example: ":".
+     * @return the time separator string.
+     * @draft ICU 55
+     * @provisional This API might change or be removed in a future release.
+     */
+    public String getTimeSeparatorString() {
+        return timeSeparator;
+    }
+
+    /**
+     * Sets the time separator string. For example: ":".
+     * @param newTimeSeparator the new time separator string.
+     * @draft ICU 55
+     * @provisional This API might change or be removed in a future release.
+     */
+    public void setTimeSeparatorString(String newTimeSeparator) {
+        timeSeparator = newTimeSeparator;
+    }
+
+    /**
      * Returns time zone strings.
      * <p>
      * The array returned by this API is a two dimensional String array and
@@ -1376,6 +1423,8 @@ public class DateFormatSymbols implements Serializable, Cloneable {
                 && Utility.arrayEquals(standaloneShorterWeekdays, that.standaloneShorterWeekdays)
                 && Utility.arrayEquals(standaloneNarrowWeekdays, that.standaloneNarrowWeekdays)
                 && Utility.arrayEquals(ampms, that.ampms)
+                && Utility.arrayEquals(ampmsNarrow, that.ampmsNarrow)
+                && Utility.arrayEquals(timeSeparator, that.timeSeparator)
                 && arrayOfArrayEquals(zoneStrings, that.zoneStrings)
                 // getDiplayName maps deprecated country and language codes to the current ones
                 // too bad there is no way to get the current codes!
@@ -1407,6 +1456,10 @@ public class DateFormatSymbols implements Serializable, Cloneable {
     protected void initializeData(ULocale desiredLocale, String type)
     {
         String key = desiredLocale.getBaseName() + "+" + type;
+        String ns = desiredLocale.getKeywordValue("numbers");
+        if (ns != null && ns.length() > 0) {
+            key += "+" + ns;
+        }
         DateFormatSymbols dfs = DFSCACHE.get(key);
         if (dfs == null) {
             // Initialize data from scratch put a clone of this instance into the cache
@@ -1446,6 +1499,8 @@ public class DateFormatSymbols implements Serializable, Cloneable {
         this.standaloneShorterWeekdays = dfs.standaloneShorterWeekdays;
         this.standaloneNarrowWeekdays = dfs.standaloneNarrowWeekdays;
         this.ampms = dfs.ampms;
+        this.ampmsNarrow = dfs.ampmsNarrow;
+        this.timeSeparator = dfs.timeSeparator;
         this.shortQuarters = dfs.shortQuarters;
         this.quarters = dfs.quarters;
         this.standaloneShortQuarters = dfs.standaloneShortQuarters;
@@ -1548,6 +1603,7 @@ public class DateFormatSymbols implements Serializable, Cloneable {
         System.arraycopy(snWeekdays, 0, standaloneNarrowWeekdays, 1, snWeekdays.length);
 
         ampms = calData.getStringArray("AmPmMarkers");
+        ampmsNarrow = calData.getStringArray("AmPmMarkersNarrow");
 
         quarters = calData.getStringArray("quarters", "wide");
         shortQuarters = calData.getStringArray("quarters", "abbreviated");
@@ -1635,6 +1691,15 @@ public class DateFormatSymbols implements Serializable, Cloneable {
                     }
                 }
             }
+        }
+
+        NumberingSystem ns = NumberingSystem.getInstance(desiredLocale);
+        String nsName = ns == null ? "latn" : ns.getName();  // Latin is default.
+        String tsPath = "NumberElements/" + nsName + "/symbols/timeSeparator";
+        try {
+            setTimeSeparatorString(rb.getStringWithFallback(tsPath));
+        } catch (MissingResourceException e) {
+            setTimeSeparatorString(DEFAULT_TIME_SEPARATOR);
         }
     }
 

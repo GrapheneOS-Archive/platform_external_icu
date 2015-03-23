@@ -630,7 +630,7 @@ extern "C" const DataHeader U_DATA_API U_ICUDATA_ENTRY_POINT;
 /*
 extern const void *uprv_getICUData_collation(void) ATTRIBUTE_WEAK;
 extern const void *uprv_getICUData_conversion(void) ATTRIBUTE_WEAK;
- */
+*/
 
 /*----------------------------------------------------------------------*
  *                                                                      *
@@ -677,6 +677,14 @@ openCommonData(const char *path,          /*  Path from OpenChoice?          */
              * This is where we would check and call weakly linked partial-data-library
              * access functions.
              */
+            /*
+            if (uprv_getICUData_collation) {
+                setCommonICUDataPointer(uprv_getICUData_collation(), FALSE, pErrorCode);
+            }
+            if (uprv_getICUData_conversion) {
+                setCommonICUDataPointer(uprv_getICUData_conversion(), FALSE, pErrorCode);
+            }
+            */
             setCommonICUDataPointer(&U_ICUDATA_ENTRY_POINT, FALSE, pErrorCode);
         }
         return gCommonICUDataArray[commonDataIndex];

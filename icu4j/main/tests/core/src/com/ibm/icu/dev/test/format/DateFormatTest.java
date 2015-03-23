@@ -1,7 +1,7 @@
 /*
  *******************************************************************************
- * Copyright (C) 2001-2014, International Business Machines Corporation and    *
- * others. All Rights Reserved.                                                *
+ * Copyright (C) 2001-2015, International Business Machines Corporation and
+ * others. All Rights Reserved.
  *******************************************************************************
  */
 
@@ -348,22 +348,22 @@ public class DateFormatTest extends com.ibm.icu.dev.test.TestFmwk {
              "", "1997", "August", "13", "", "", "34", "12", "", "Wednesday",
              "", "", "", "", "PM", "2", "", "Pacific Daylight Time", "", "",
              "", "", "", "", "", "", "", "", "", "",
-             "", "", "", "",
+             "", "", "", "", "", ":",
 
              "", "1997", "ao\u00FBt", "13", "", "14", "34", "12", "", "mercredi",
              "", "", "", "", "", "", "", "heure d\u2019\u00E9t\u00E9 du Pacifique", "", "",
              "", "", "", "", "", "", "", "", "", "",
-             "", "", "", "",
+             "", "", "", "", "", ":",
 
             "AD", "1997", "8", "13", "14", "14", "34", "12", "5", "Wed",
             "225", "2", "33", "3", "PM", "2", "2", "PDT", "1997", "4",
             "1997", "2450674", "52452513", "-0700", "PT", "4", "8", "3", "3", "uslax",
-            "1997", "GMT-7", "-07", "-07",
+            "1997", "GMT-7", "-07", "-07", "1997", ":",
 
             "Anno Domini", "1997", "August", "0013", "0014", "0014", "0034", "0012", "5130", "Wednesday",
             "0225", "0002", "0033", "0003", "PM", "0002", "0002", "Pacific Daylight Time", "1997", "Wednesday",
             "1997", "2450674", "52452513", "GMT-07:00", "Pacific Time", "Wednesday", "August", "3rd quarter", "3rd quarter", "Los Angeles Time",
-            "1997", "GMT-07:00", "-0700", "-0700",
+            "1997", "GMT-07:00", "-0700", "-0700", "1997", ":",
         };
 
         assertTrue("data size", EXPECTED.length == COUNT * DateFormat.FIELD_COUNT);
@@ -466,7 +466,7 @@ public class DateFormatTest extends com.ibm.icu.dev.test.TestFmwk {
     /**
      * This MUST be kept in sync with DateFormatSymbols.patternChars.
      */
-    static final String PATTERN_CHARS = "GyMdkHmsSEDFwWahKzYeugAZvcLQqVUOXx";
+    static final String PATTERN_CHARS = "GyMdkHmsSEDFwWahKzYeugAZvcLQqVUOXxr:";
 
     /**
      * A list of the DateFormat.Field.
@@ -507,6 +507,8 @@ public class DateFormatTest extends com.ibm.icu.dev.test.TestFmwk {
         DateFormat.Field.TIME_ZONE,     // O
         DateFormat.Field.TIME_ZONE,     // X
         DateFormat.Field.TIME_ZONE,     // x
+        DateFormat.Field.RELATED_YEAR,  // r
+        DateFormat.Field.TIME_SEPARATOR,// :
     };
 
     /**
@@ -548,6 +550,8 @@ public class DateFormatTest extends com.ibm.icu.dev.test.TestFmwk {
         "TIMEZONE_LOCALIZED_GMT_OFFSET_FIELD",
         "TIMEZONE_ISO_FIELD",
         "TIMEZONE_ISO_LOCAL_FIELD",
+        "RELATED_YEAR",
+        "TIME_SEPARATOR",
     };
 
     /**
@@ -2002,6 +2006,30 @@ public class DateFormatTest extends com.ibm.icu.dev.test.TestFmwk {
             errln("FAIL: Expected " + expectedUS+" Got "+out);
     }
 
+    public void TestFormattingLocaleTimeSeparator() {
+        Date date = new Date(874266720000L);  // Sun Sep 14 21:52:00 CET 1997
+        TimeZone tz = TimeZone.getTimeZone("CET");
+
+        DateFormat dfArab = DateFormat.getTimeInstance(DateFormat.SHORT, new ULocale("ar"));
+        DateFormat dfLatn = DateFormat.getTimeInstance(DateFormat.SHORT, new ULocale("ar-u-nu-latn"));
+
+        dfArab.setTimeZone(tz);
+        dfLatn.setTimeZone(tz);
+
+        String expectedArab = "\u0669\u060C\u0665\u0662 \u0645";
+        String expectedLatn = "9:52 \u0645";
+
+        String actualArab = dfArab.format(date);
+        String actualLatn = dfLatn.format(date);
+
+        if (!actualArab.equals(expectedArab)) {
+            errln("FAIL: Expected " + expectedArab + " Got " + actualArab);
+        }
+        if (!actualLatn.equals(expectedLatn)) {
+            errln("FAIL: Expected " + expectedLatn + " Got " + actualLatn);
+        }
+    }
+
     /**
      * Test the formatting of dates with the 'NONE' keyword.
      */
@@ -2098,15 +2126,20 @@ public class DateFormatTest extends com.ibm.icu.dev.test.TestFmwk {
     public void TestSpaceParsing() {
 
         String DATA[] = {
-            "yyyy MM dd",
+            "yyyy MM dd HH:mm:ss",
 
             // pattern, input, expected output (in quotes)
             "MMMM d yy", " 04 05 06",  null, // MMMM wants Apr/April
             null,        "04 05 06",   null,
-            "MM d yy",   " 04 05 06",  "2006 04 05",
-            null,        "04 05 06",   "2006 04 05",
-            "MMMM d yy", " Apr 05 06", "2006 04 05",
-            null,        "Apr 05 06",  "2006 04 05",
+            "MM d yy",   " 04 05 06",  "2006 04 05 00:00:00",
+            null,        "04 05 06",   "2006 04 05 00:00:00",
+            "MMMM d yy", " Apr 05 06", "2006 04 05 00:00:00",
+            null,        "Apr 05 06",  "2006 04 05 00:00:00",
+
+            "hh:mm:ss a", "12:34:56 PM", "1970 01 01 12:34:56",
+            null,         "12:34:56PM",  "1970 01 01 12:34:56",
+            null,         "12.34.56PM",  "1970 01 01 12:34:56",
+            null,         "12 : 34 : 56  PM", "1970 01 01 12:34:56",
         };
 
         expectParse(DATA, new Locale("en", "", ""));
@@ -2859,6 +2892,11 @@ public class DateFormatTest extends com.ibm.icu.dev.test.TestFmwk {
                 "ccccc", "1970 01 01 0:00:00", "T",
                 "ccccc", "1970 01 02 0:00:00", "F",
                 "ccccc", "1970 01 03 0:00:00", "S",
+            
+                "h:mm a",     "2015 01 01 10:00:00", "10:00 AM",
+                "h:mm a",     "2015 01 01 22:00:00", "10:00 PM",
+                "h:mm aaaaa", "2015 01 01 10:00:00", "10:00 a",
+                "h:mm aaaaa", "2015 01 01 22:00:00", "10:00 p",
             };
             
             String CS_DATA[] = {
@@ -2908,10 +2946,25 @@ public class DateFormatTest extends com.ibm.icu.dev.test.TestFmwk {
                 "ccccc", "1970 01 01 0:00:00", "\u010C",
                 "ccccc", "1970 01 02 0:00:00", "P",
                 "ccccc", "1970 01 03 0:00:00", "S",
+            
+                "h:mm a",     "2015 01 01 10:00:00", "10:00 dopoledne",
+                "h:mm a",     "2015 01 01 22:00:00", "10:00 odpoledne",
+                "h:mm aaaaa", "2015 01 01 10:00:00", "10:00 dop.",
+                "h:mm aaaaa", "2015 01 01 22:00:00", "10:00 odp.",
             };
             
+            String CA_DATA[] = {
+                "yyyy MM dd HH:mm:ss",
+
+                "h:mm a",     "2015 01 01 10:00:00", "10:00 a. m.",
+                "h:mm a",     "2015 01 01 22:00:00", "10:00 p. m.",
+                "h:mm aaaaa", "2015 01 01 10:00:00", "10:00 a.m.",
+                "h:mm aaaaa", "2015 01 01 22:00:00", "10:00 p.m.",
+            };
+
             expectFormat(EN_DATA, new Locale("en", "", ""));
             expectFormat(CS_DATA, new Locale("cs", "", ""));
+            expectFormat(CA_DATA, new Locale("ca", "", ""));
     }
     
     public void TestEras()
@@ -4056,34 +4109,35 @@ public class DateFormatTest extends com.ibm.icu.dev.test.TestFmwk {
                 dateString[2] = dateStr2;
             }
         };
+        // Android patch: Revert to "9" instead of "Month9".
         final MonthPatternItem[] items = {
-            new MonthPatternItem( "root@calendar=chinese",    DateFormat.LONG,  "ren-chen M04 2",        "ren-chen M04bis 2",        "ren-chen M05 2" ),
-            new MonthPatternItem( "root@calendar=chinese",    DateFormat.SHORT, "29-04-02",              "29-04bis-02",              "29-05-02" ),
+            new MonthPatternItem( "root@calendar=chinese",    DateFormat.LONG,  "2012(ren-chen) M04 2",  "2012(ren-chen) M04bis 2",  "2012(ren-chen) M05 2" ),
+            new MonthPatternItem( "root@calendar=chinese",    DateFormat.SHORT, "2012-04-02",            "2012-04bis-02",            "2012-05-02" ),
             new MonthPatternItem( "root@calendar=chinese",    -1,               "29-4-2",                "29-4bis-2",                "29-5-2" ),
             new MonthPatternItem( "root@calendar=chinese",    -2,               "78x29-4-2",             "78x29-4bis-2",             "78x29-5-2" ),
             new MonthPatternItem( "root@calendar=chinese",    -3,               "ren-chen-4-2",          "ren-chen-4bis-2",          "ren-chen-5-2" ),
             new MonthPatternItem( "root@calendar=chinese",    -4,               "ren-chen M04 2",        "ren-chen M04bis 2",        "ren-chen M05 2" ),
             new MonthPatternItem( "en@calendar=gregorian",    -3,               "2012-4-22",             "2012-5-22",                "2012-6-20" ),
-            new MonthPatternItem( "en@calendar=chinese",      DateFormat.LONG,  "Month4 2, ren-chen",    "Month4bis 2, ren-chen",    "Month5 2, ren-chen" ),
-            new MonthPatternItem( "en@calendar=chinese",      DateFormat.SHORT, "4/2/29",                "4bis/2/29",                "5/2/29" ),
-            new MonthPatternItem( "zh@calendar=chinese",      DateFormat.LONG,  "\u58EC\u8FB0\u5E74\u56DB\u6708\u521D\u4E8C",
-                                                                                "\u58EC\u8FB0\u5E74\u95F0\u56DB\u6708\u521D\u4E8C",
-                                                                                "\u58EC\u8FB0\u5E74\u4E94\u6708\u521D\u4E8C" ),
-            new MonthPatternItem( "zh@calendar=chinese",      DateFormat.SHORT, "\u58EC\u8FB0-4-2",      "\u58EC\u8FB0-\u95F04-2",   "\u58EC\u8FB0-5-2" ),
+            new MonthPatternItem( "en@calendar=chinese",      DateFormat.LONG,  "4 2, 2012(ren-chen)", "4bis 2, 2012(ren-chen)", "5 2, 2012(ren-chen)" ),
+            new MonthPatternItem( "en@calendar=chinese",      DateFormat.SHORT, "4/2/2012",              "4bis/2/2012",              "5/2/2012" ),
+            new MonthPatternItem( "zh@calendar=chinese",      DateFormat.LONG,  "2012\u58EC\u8FB0\u5E74\u56DB\u6708\u521D\u4E8C",
+                                                                                "2012\u58EC\u8FB0\u5E74\u95F0\u56DB\u6708\u521D\u4E8C",
+                                                                                "2012\u58EC\u8FB0\u5E74\u4E94\u6708\u521D\u4E8C" ),
+            new MonthPatternItem( "zh@calendar=chinese",      DateFormat.SHORT, "2012-4-2",              "2012-\u95F04-2",           "2012-5-2" ),
             new MonthPatternItem( "zh@calendar=chinese",      -3,               "\u58EC\u8FB0-4-2",
                                                                                 "\u58EC\u8FB0-\u95F04-2",
                                                                                 "\u58EC\u8FB0-5-2" ),
             new MonthPatternItem( "zh@calendar=chinese",      -4,               "\u58EC\u8FB0 \u56DB\u6708 2",
                                                                                 "\u58EC\u8FB0 \u95F0\u56DB\u6708 2",
                                                                                 "\u58EC\u8FB0 \u4E94\u6708 2" ),
-            new MonthPatternItem( "zh_Hant@calendar=chinese", DateFormat.LONG,  "\u58EC\u8FB0\u5E74\u56DB\u6708\u521D\u4E8C",
-                                                                                "\u58EC\u8FB0\u5E74\u958F\u56DB\u6708\u521D\u4E8C",
-                                                                                "\u58EC\u8FB0\u5E74\u4E94\u6708\u521D\u4E8C" ),
-            new MonthPatternItem( "zh_Hant@calendar=chinese", DateFormat.SHORT, "\u58EC\u8FB0/4/2",            "\u58EC\u8FB0/\u958F4/2",         "\u58EC\u8FB0/5/2" ),
+            new MonthPatternItem( "zh_Hant@calendar=chinese", DateFormat.LONG,  "2012\u58EC\u8FB0\u5E74\u56DB\u6708\u521D\u4E8C",
+                                                                                "2012\u58EC\u8FB0\u5E74\u958F\u56DB\u6708\u521D\u4E8C",
+                                                                                "2012\u58EC\u8FB0\u5E74\u4E94\u6708\u521D\u4E8C" ),
+            new MonthPatternItem( "zh_Hant@calendar=chinese", DateFormat.SHORT, "2012/4/2",              "2012/\u958F4/2",           "2012/5/2" ),
             new MonthPatternItem( "fr@calendar=chinese",      DateFormat.LONG,  "2 s\u00ECyu\u00E8 ren-chen",  "2 s\u00ECyu\u00E8bis ren-chen",  "2 w\u01D4yu\u00E8 ren-chen" ),
             new MonthPatternItem( "fr@calendar=chinese",      DateFormat.SHORT, "2/4/29",                      "2/4bis/29",                      "2/5/29" ),
-            new MonthPatternItem( "en@calendar=dangi",        DateFormat.LONG,  "Month3bis 2, ren-chen",       "Month4 2, ren-chen",             "Month5 1, ren-chen" ),
-            new MonthPatternItem( "en@calendar=dangi",        DateFormat.SHORT, "3bis/2/29",                   "4/2/29",                         "5/1/29" ),
+            new MonthPatternItem( "en@calendar=dangi",        DateFormat.LONG,  "3bis 2, 2012(ren-chen)", "4 2, 2012(ren-chen)",       "5 1, 2012(ren-chen)" ),
+            new MonthPatternItem( "en@calendar=dangi",        DateFormat.SHORT, "3bis/2/2012",                 "4/2/2012",                       "5/1/2012" ),
             new MonthPatternItem( "en@calendar=dangi",        -2,               "78x29-3bis-2",                "78x29-4-2",                      "78x29-5-1" ),
             new MonthPatternItem( "ko@calendar=dangi",        DateFormat.LONG,  "\uC784\uC9C4\uB144 \uC7243\uC6D4 2\uC77C",
                                                                                 "\uC784\uC9C4\uB144 4\uC6D4 2\uC77C",
@@ -4092,6 +4146,7 @@ public class DateFormatTest extends com.ibm.icu.dev.test.TestFmwk {
                                                                                 "29. 4. 2.",
                                                                                 "29. 5. 1." ),
         };
+        // Android patch end.
         //                         style: -1        -2            -3       -4
         final String[] customPatterns = { "y-Ml-d", "G'x'y-Ml-d", "U-M-d", "U MMM d" }; // previously G and l for chinese cal only handled by ChineseDateFormat
         Calendar rootChineseCalendar = Calendar.getInstance(new ULocale("root@calendar=chinese"));
@@ -4138,6 +4193,7 @@ public class DateFormatTest extends com.ibm.icu.dev.test.TestFmwk {
     
     public void TestNonGregoFmtParse() {
         class CalAndFmtTestItem {
+            public int era;
             public int year;
             public int month;
             public int day;
@@ -4145,7 +4201,8 @@ public class DateFormatTest extends com.ibm.icu.dev.test.TestFmwk {
             public int minute;
             public String formattedDate;
              // Simple constructor
-            public CalAndFmtTestItem(int yr, int mo, int da, int hr, int mi, String fd) {
+            public CalAndFmtTestItem(int er, int yr, int mo, int da, int hr, int mi, String fd) {
+                era = er;
                 year = yr;
                 month = mo;
                 day = da;
@@ -4156,34 +4213,73 @@ public class DateFormatTest extends com.ibm.icu.dev.test.TestFmwk {
         };
         // test items for he@calendar=hebrew, long date format
         final CalAndFmtTestItem[] cafti_he_hebrew_long = {
-            //                       yr  mo  da  hr  mi  formattedDate
-            new CalAndFmtTestItem( 4999, 12, 29, 12,  0, "\u05DB\u05F4\u05D8 \u05D1\u05D0\u05DC\u05D5\u05DC \u05D3\u05F3\u05EA\u05EA\u05E7\u05E6\u05F4\u05D8" ),
-            new CalAndFmtTestItem( 5100,  0,  1, 12,  0, "\u05D0\u05F3 \u05D1\u05EA\u05E9\u05E8\u05D9 \u05E7\u05F3" ),
-            new CalAndFmtTestItem( 5774,  5,  1, 12,  0, "\u05D0\u05F3 \u05D1\u05D0\u05D3\u05E8 \u05D0\u05F3 \u05EA\u05E9\u05E2\u05F4\u05D3" ),
-            new CalAndFmtTestItem( 5999, 12, 29, 12,  0, "\u05DB\u05F4\u05D8 \u05D1\u05D0\u05DC\u05D5\u05DC \u05EA\u05EA\u05E7\u05E6\u05F4\u05D8" ),
-            new CalAndFmtTestItem( 6100,  0,  1, 12,  0, "\u05D0\u05F3 \u05D1\u05EA\u05E9\u05E8\u05D9 \u05D5\u05F3\u05E7\u05F3" ),
+            //                     era    yr  mo  da  hr  mi  formattedDate
+            new CalAndFmtTestItem(   0, 4999, 12, 29, 12,  0, "\u05DB\u05F4\u05D8 \u05D1\u05D0\u05DC\u05D5\u05DC \u05D3\u05F3\u05EA\u05EA\u05E7\u05E6\u05F4\u05D8" ),
+            new CalAndFmtTestItem(   0, 5100,  0,  1, 12,  0, "\u05D0\u05F3 \u05D1\u05EA\u05E9\u05E8\u05D9 \u05E7\u05F3" ),
+            new CalAndFmtTestItem(   0, 5774,  5,  1, 12,  0, "\u05D0\u05F3 \u05D1\u05D0\u05D3\u05E8 \u05D0\u05F3 \u05EA\u05E9\u05E2\u05F4\u05D3" ),
+            new CalAndFmtTestItem(   0, 5999, 12, 29, 12,  0, "\u05DB\u05F4\u05D8 \u05D1\u05D0\u05DC\u05D5\u05DC \u05EA\u05EA\u05E7\u05E6\u05F4\u05D8" ),
+            new CalAndFmtTestItem(   0, 6100,  0,  1, 12,  0, "\u05D0\u05F3 \u05D1\u05EA\u05E9\u05E8\u05D9 \u05D5\u05F3\u05E7\u05F3" ),
+        };
+        final CalAndFmtTestItem[] cafti_zh_chinese_custU = {
+            //                     era    yr  mo  da  hr  mi  formattedDate
+            new CalAndFmtTestItem(  78,   31,  0,  1, 12,  0, "2014\u7532\u5348\u5E74\u6B63\u67081" ),
+            new CalAndFmtTestItem(  77,   31,  0,  1, 12,  0, "1954\u7532\u5348\u5E74\u6B63\u67081" ),
+        };
+        final CalAndFmtTestItem[] cafti_zh_chinese_custNoU = {
+            //                     era    yr  mo  da  hr  mi  formattedDate
+            new CalAndFmtTestItem(  78,   31,  0,  1, 12, 0, "2014\u5E74\u6B63\u67081" ),
+            new CalAndFmtTestItem(  77,   31,  0,  1, 12, 0, "1954\u5E74\u6B63\u67081" ),
+        };
+        final CalAndFmtTestItem[] cafti_ja_japanese_custGy = {
+            //                     era    yr  mo  da  hr  mi  formattedDate
+            new CalAndFmtTestItem( 235,   26,  2,  5, 12, 0, "2014(\u5E73\u621026)\u5E743\u67085\u65E5" ),
+            new CalAndFmtTestItem( 234,   60,  2,  5, 12, 0, "1985(\u662D\u548C60)\u5E743\u67085\u65E5" ),
+        };
+        final CalAndFmtTestItem[] cafti_ja_japanese_custNoGy = {
+            //                     era    yr  mo  da  hr  mi  formattedDate
+            new CalAndFmtTestItem( 235,   26,  2,  5, 12, 0, "2014\u5E743\u67085\u65E5" ),
+            new CalAndFmtTestItem( 234,   60,  2,  5, 12, 0, "1985\u5E743\u67085\u65E5" ),
+        };
+        final CalAndFmtTestItem[] cafti_en_islamic_cust = {
+            //                     era    yr  mo  da  hr  mi  formattedDate
+            new CalAndFmtTestItem(   0, 1384,  0,  1, 12, 0, "1 Muh. 1384 AH, 1964" ),
+            new CalAndFmtTestItem(   0, 1436,  0,  1, 12, 0, "1 Muh. 1436 AH, 2014" ),
+            new CalAndFmtTestItem(   0, 1487,  0,  1, 12, 0, "1 Muh. 1487 AH, 2064" ),
         };
         class TestNonGregoItem {
             public String locale;
             public int style;
+            public String pattern;  // ignored unless style == DateFormat.NONE
             public CalAndFmtTestItem[] caftItems;
              // Simple constructor
-            public TestNonGregoItem(String loc, int styl, CalAndFmtTestItem[] items) {
+            public TestNonGregoItem(String loc, int styl, String pat, CalAndFmtTestItem[] items) {
                 locale = loc;
                 style = styl;
+                pattern = pat;
                 caftItems = items;
             }
         };
         final TestNonGregoItem[] items = {
-            new TestNonGregoItem( "he@calendar=hebrew", DateFormat.LONG, cafti_he_hebrew_long ),
+            new TestNonGregoItem( "he@calendar=hebrew",   DateFormat.LONG, "",                          cafti_he_hebrew_long ),
+            new TestNonGregoItem( "zh@calendar=chinese",  DateFormat.NONE, "rU\u5E74MMMd",              cafti_zh_chinese_custU ),
+            new TestNonGregoItem( "zh@calendar=chinese",  DateFormat.NONE, "r\u5E74MMMd",               cafti_zh_chinese_custNoU ),
+            new TestNonGregoItem( "ja@calendar=japanese", DateFormat.NONE, "r(Gy)\u5E74M\u6708d\u65E5", cafti_ja_japanese_custGy ),
+            new TestNonGregoItem( "ja@calendar=japanese", DateFormat.NONE, "r\u5E74M\u6708d\u65E5",     cafti_ja_japanese_custNoGy ),
+            new TestNonGregoItem( "en@calendar=islamic",  DateFormat.NONE, "d MMM y G, r",              cafti_en_islamic_cust ),
         };
         for (TestNonGregoItem item: items) {
             ULocale locale = new ULocale(item.locale);
-            DateFormat dfmt = DateFormat.getDateInstance(item.style, locale);
+            DateFormat dfmt = null;
+            if (item.style != DateFormat.NONE) {
+                dfmt = DateFormat.getDateInstance(item.style, locale);
+            } else {
+                dfmt = new SimpleDateFormat(item.pattern, locale);
+            }
             Calendar cal = dfmt.getCalendar();
 
             for (CalAndFmtTestItem caftItem: item.caftItems) {
                 cal.clear();
+                cal.set(Calendar.ERA, caftItem.era);
                 cal.set(caftItem.year, caftItem.month, caftItem.day, caftItem.hour, caftItem.minute, 0);
                 StringBuffer result = new StringBuffer();
                 FieldPosition fpos = new FieldPosition(0);
@@ -4195,12 +4291,13 @@ public class DateFormatTest extends com.ibm.icu.dev.test.TestFmwk {
                     // formatted OK, try parse
                     ParsePosition ppos = new ParsePosition(0);
                     dfmt.parse(result.toString(), cal, ppos);
+                    int era = cal.get(Calendar.ERA);
                     int year = cal.get(Calendar.YEAR);
                     int month = cal.get(Calendar.MONTH);
                     int day = cal.get(Calendar.DATE);
-                    if ( ppos.getIndex() < result.length() || year != caftItem.year || month != caftItem.month || day != caftItem.day) {
+                    if ( ppos.getIndex() < result.length() || era != caftItem.era || year != caftItem.year || month != caftItem.month || day != caftItem.day) {
                         errln("FAIL: date parse for locale " + item.locale +  ", style " + item.style +
-                                ", string \"" + result + "\", expected " + caftItem.year+"-"+caftItem.month+"-"+caftItem.day +
+                                ", string \"" + result + "\", expected " + caftItem.era+":" +caftItem.year+"-"+caftItem.month+"-"+caftItem.day +
                                 ", got pos " + ppos.getIndex() + " "+year+"-"+month+"-"+day );
                     }
                 }

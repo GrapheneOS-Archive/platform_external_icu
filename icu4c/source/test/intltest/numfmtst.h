@@ -183,6 +183,7 @@ class NumberFormatTest: public CalendarTimeZoneTest {
     void TestEquality();
 
     void TestCurrencyUsage();
+    void TestDoubleLimit11439();
     void TestFastPathConsistent11524();
 
  private:

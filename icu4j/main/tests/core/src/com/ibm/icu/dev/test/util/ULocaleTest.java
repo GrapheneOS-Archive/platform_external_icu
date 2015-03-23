@@ -1,6 +1,6 @@
 /*
  **********************************************************************
- * Copyright (c) 2004-2014, International Business Machines
+ * Copyright (c) 2004-2015, International Business Machines
  * Corporation and others.  All Rights Reserved.
  **********************************************************************
  * Author: Alan Liu
@@ -12,6 +12,7 @@ package com.ibm.icu.dev.test.util;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -37,6 +38,7 @@ import com.ibm.icu.util.LocaleData;
 import com.ibm.icu.util.ULocale;
 import com.ibm.icu.util.ULocale.Builder;
 import com.ibm.icu.util.ULocale.Category;
+import com.ibm.icu.util.ULocale.Minimize;
 import com.ibm.icu.util.UResourceBundle;
 import com.ibm.icu.util.VersionInfo;
 
@@ -1125,8 +1127,8 @@ public class ULocaleTest extends TestFmwk {
             String country2 = substring.replace('(', '[').replace(')',']').replace('（', '［').replace('）','］');
             if (name.indexOf(country2) == -1) {
                 errln("loc: " + dl + " name '" + name + "' does not contain " +
-                		substringName +
-                		" '" + substring + "'");
+                        substringName +
+                        " '" + substring + "'");
                 return false;
             }
         }
@@ -1312,9 +1314,17 @@ public class ULocaleTest extends TestFmwk {
         target = "德文（電話簿排序）"; // \u5FB7\u6587\uFF08\u96FB\u8A71\u7C3F\u6392\u5E8F\uFF09
         assertEquals("collation", target, name);
 
+        name = dn.localeDisplayName("ja@currency=JPY");
+        target = "Japanese (Japanese Yen)";
+        assertEquals("currency (JPY)", target, name);
+
+        name = tdn.localeDisplayName("ja@currency=JPY");
+        target = "日文（日圓）"; // \u65E5\u6587\uFF08\u65E5\u5713\uFF09
+        assertEquals("currency (JPY)", target, name);
+
         name = dn.localeDisplayName("de@currency=XYZ");
         target = "German (Currency: XYZ)";
-        assertEquals("currency", target, name);
+        assertEquals("currency (XYZ)", target, name);
 
         name = dn.localeDisplayName("de@collation=phonebook;currency=XYZ");
         target = "German (Phonebook Sort Order, Currency: XYZ)";
@@ -1591,6 +1601,33 @@ public class ULocaleTest extends TestFmwk {
             errln("Did not get the expected display name for de_CH locale. Got: "+ prettify(disp));
         }
     }
+
+    public void TestMinimize() { 
+        String[][] data = { 
+                // source, favorRegion, favorScript 
+                {"zh-Hans-CN", "zh", "zh"}, 
+                {"zh-Hant-TW", "zh-TW", "zh-Hant"}, 
+                {"zh-Hant-SG", "zh-Hant-SG", "zh-Hant-SG"}, 
+                {"zh-Hans-SG", "zh-SG", "zh-SG"}, 
+                {"zh-Hant-HK", "zh-HK", "zh-HK"}, 
+                {"en_Latn_US", "en", "en"}, 
+                {"en_Cyrl-US", "en-Cyrl", "en-Cyrl"}, 
+                {"en_Cyrl-RU", "en-Cyrl-RU", "en-Cyrl-RU"}, 
+                {"en_Latn-RU", "en-RU", "en-RU"}, 
+                {"sr_Cyrl-US", "sr-US", "sr-US"}, 
+                {"sr_Cyrl-RU", "sr-Cyrl-RU", "sr-Cyrl-RU"}, 
+                {"sr_Latn-RU", "sr-RU", "sr-RU"}, 
+        }; 
+        for (String[] test : data) { 
+            ULocale source = new ULocale(test[0]); 
+            ULocale expectedFavorRegion = new ULocale(test[1]); 
+            ULocale expectedFavorScript = new ULocale(test[2]); 
+            assertEquals("favor region:\t" + Arrays.asList(test).toString(), expectedFavorRegion,  
+                    ULocale.minimizeSubtags(source, Minimize.FAVOR_REGION)); 
+            assertEquals("favor script:\t" + Arrays.asList(test).toString(), expectedFavorScript,  
+                    ULocale.minimizeSubtags(source, Minimize.FAVOR_SCRIPT)); 
+        } 
+    } 
 
     public void TestAddLikelySubtags() {
         String[][] data = {
@@ -2323,8 +2360,8 @@ public class ULocaleTest extends TestFmwk {
                     "ur"
                 }, {
                     "und_Arab_SN",
-                    "ar_Arab_SN",
-                    "ar_SN"
+                    "wo_Arab_SN",  // Android patch: likelySubtags.txt: Add lots of entries.
+                    "wo_Arab"
                 }, {
                     "und_Armn",
                     "hy_Armn_AM",
@@ -2451,8 +2488,8 @@ public class ULocaleTest extends TestFmwk {
                     "ru"
                 }, {
                     "und_Cyrl_KZ",
-                    "ru_Cyrl_KZ",
-                    "ru_KZ"
+                    "kk_Cyrl_KZ",  // Android patch: likelySubtags.txt: Add lots of entries.
+                    "kk"
                 }, {
                     "und_DE",
                     "de_Latn_DE",
@@ -2511,16 +2548,16 @@ public class ULocaleTest extends TestFmwk {
                     "am"
                 }, {
                     "und_Ethi_ER",
-                    "am_Ethi_ER",
-                    "am_ER"
+                    "ti_Ethi_ER",  // Android patch: likelySubtags.txt: Add lots of entries.
+                    "ti_ER"
                 }, {
                     "und_FI",
                     "fi_Latn_FI",
                     "fi"
                 }, {
                     "und_FM",
-                    "chk_Latn_FM",
-                    "chk"
+                    "en_Latn_FM",
+                    "en_FM"
                 }, {
                     "und_FO",
                     "fo_Latn_FO",
@@ -2567,8 +2604,8 @@ public class ULocaleTest extends TestFmwk {
                     "es_GT"
                 }, {
                     "und_GU",
-                    "en_Latn_GU",
-                    "en_GU"
+                    "ch_Latn_GU",  // Android patch: likelySubtags.txt: Add lots of entries.
+                    "ch"
                 }, {
                     "und_GW",
                     "pt_Latn_GW",
@@ -2779,8 +2816,8 @@ public class ULocaleTest extends TestFmwk {
                     "tr"
                 }, {
                     "und_Latn_ZA",
-                    "en_Latn_ZA",
-                    "en_ZA"
+                    "af_Latn_ZA",  // Android patch: likelySubtags.txt: Add lots of entries.
+                    "af"
                 }, {
                     "und_MA",
                     "ar_Arab_MA",
@@ -2879,16 +2916,16 @@ public class ULocaleTest extends TestFmwk {
                     "nl"
                 }, {
                     "und_NO",
-                    "nb_Latn_NO",
-                    "nb"
+                    "no_Latn_NO",  // Android patch: Replace nb with no.
+                    "no"
                 }, {
                     "und_NP",
                     "ne_Deva_NP",
                     "ne"
                 }, {
                     "und_NR",
-                    "en_Latn_NR",
-                    "en_NR"
+                    "na_Latn_NR",  // Android patch: likelySubtags.txt: Add lots of entries.
+                    "na"
                 }, {
                     "und_OM",
                     "ar_Arab_OM",
@@ -2991,8 +3028,8 @@ public class ULocaleTest extends TestFmwk {
                     "sl"
                 }, {
                     "und_SJ",
-                    "nb_Latn_SJ",
-                    "nb_SJ"
+                    "no_Latn_SJ",  // Android patch: Replace nb with no.
+                    "no_SJ"
                 }, {
                     "und_SK",
                     "sk_Latn_SK",
@@ -4358,31 +4395,31 @@ public class ULocaleTest extends TestFmwk {
         // This list contains multiple different strings creating
         // multiple equivalent locales.
         final String[] localeStrings = {
-            "en",
-            "EN",
-            "en_US",
-            "en_GB",
-            "en_US_POSIX",
-            "en_us_posix",
-            "ar_EG",
-            "zh_Hans_CN",
-            "zh_Hant_TW",
-            "zh_Hans",
-            "zh_CN",
-            "zh_TW",
-            "th_TH@calendar=buddhist;numbers=thai",
-            "TH_TH@NUMBERS=thai;CALENDAR=buddhist",
-            "th_TH@calendar=buddhist",
-            "th_TH@calendar=gergorian",
-            "th_TH@numbers=latn",
-            "abc_def_ghi_jkl_opq",
-            "abc_DEF_ghi_JKL_opq",
-            "",
-            "und",
-            "This is a bogus locale ID",
-            "This is a BOGUS locale ID",
-            "en_POSIX",
-            "en__POSIX",
+                "en",
+                "EN",
+                "en_US",
+                "en_GB",
+                "en_US_POSIX",
+                "en_us_posix",
+                "ar_EG",
+                "zh_Hans_CN",
+                "zh_Hant_TW",
+                "zh_Hans",
+                "zh_CN",
+                "zh_TW",
+                "th_TH@calendar=buddhist;numbers=thai",
+                "TH_TH@NUMBERS=thai;CALENDAR=buddhist",
+                "th_TH@calendar=buddhist",
+                "th_TH@calendar=gergorian",
+                "th_TH@numbers=latn",
+                "abc_def_ghi_jkl_opq",
+                "abc_DEF_ghi_JKL_opq",
+                "",
+                "und",
+                "This is a bogus locale ID",
+                "This is a BOGUS locale ID",
+                "en_POSIX",
+                "en__POSIX",
         };
 
         ULocale[] locales = new ULocale[localeStrings.length];
@@ -4423,25 +4460,25 @@ public class ULocaleTest extends TestFmwk {
         // Duplicated locales are removed and locale string is normalized
         // (by the ULocale constructor).
         final String[] sortedLocaleStrings = {
-            "",
-            "abc_DEF_GHI_JKL_OPQ",
-            "ar_EG",
-            "en",
-            "en__POSIX",
-            "en_GB",
-            "en_US",
-            "en_US_POSIX",
-            "th_TH@calendar=buddhist",
-            "th_TH@calendar=buddhist;numbers=thai",
-            "th_TH@calendar=gergorian",
-            "th_TH@numbers=latn",
-            "this is a bogus locale id",
-            "und",
-            "zh_CN",
-            "zh_TW",
-            "zh_Hans",
-            "zh_Hans_CN",
-            "zh_Hant_TW",
+                "",
+                "abc_DEF_GHI_JKL_OPQ",
+                "ar_EG",
+                "en",
+                "en__POSIX",
+                "en_GB",
+                "en_US",
+                "en_US_POSIX",
+                "th_TH@calendar=buddhist",
+                "th_TH@calendar=buddhist;numbers=thai",
+                "th_TH@calendar=gergorian",
+                "th_TH@numbers=latn",
+                "this is a bogus locale id",
+                "und",
+                "zh_CN",
+                "zh_TW",
+                "zh_Hans",
+                "zh_Hans_CN",
+                "zh_Hant_TW",
         };
 
         TreeSet<ULocale> sortedLocales = new TreeSet<ULocale>();
@@ -4586,5 +4623,30 @@ public class ULocaleTest extends TestFmwk {
         assertTrue("ckb RTL", new ULocale("ckb").isRightToLeft());  // Sorani Kurdish
         assertFalse("fil LTR", new ULocale("fil").isRightToLeft());
         assertFalse("he-Zyxw LTR", new ULocale("he-Zyxw").isRightToLeft());
+    }
+
+    public void TestChineseToLocale() {
+        final ULocale[][] LOCALES = {
+                {ULocale.CHINESE,               new ULocale("zh")},
+                {ULocale.SIMPLIFIED_CHINESE,    new ULocale("zh_Hans")},
+                {ULocale.TRADITIONAL_CHINESE,   new ULocale("zh_Hant")},
+                {ULocale.CHINA,                 new ULocale("zh_Hans_CN")},
+                {ULocale.PRC,                   new ULocale("zh_Hans_CN")},
+                {ULocale.TAIWAN,                new ULocale("zh_Hant_TW")},
+        };
+
+        // When two ULocales are equal, results of ULocale#toLocale() must be
+        // also equal.
+        for (ULocale[] pair : LOCALES) {
+            if (pair[0].equals(pair[1])) {
+                assertEquals(pair[0].toString(), pair[0].toLocale(), pair[1].toLocale());
+            } else {
+                // This could happen when the definition of ULocale constant is changed.
+                // When it happens, it could be a mistake. So we use errln below.
+                // If we change the definitioin for a legitimate reason, then the hardcoded
+                // test data above should be reviewed and updated.
+                errln("Error: " + pair[0] + " is not equal to " + pair[1]);
+            }
+        }
     }
 }
