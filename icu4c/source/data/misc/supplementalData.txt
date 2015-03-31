@@ -8118,7 +8118,9 @@ supplementalData:table(nofallback){
         "ksb_TZ",
         "ksf_CM",
         "ksh_DE",
+        "ku_Arab",
         "ku_Latn",
+        "ku_Latn_SY",
         "ku_Latn_TR",
         "kw_GB",
         "ky_Cyrl",
@@ -21351,7 +21353,7 @@ supplementalData:table(nofallback){
             kk_Cyrl{
                 populationShareF:int{44700000}
             }
-            ku_Latn{
+            ku{
                 populationShareF:int{48550000}
             }
             ky_Latn{

@@ -447,7 +447,7 @@ static void TestErrorBehaviour(){
             log_err("u-> euc-jp [UCNV_MBCS] \n");
     }
 
-    // iso-2022-jp
+    // iso-2022-jp  android-change
     log_verbose("Testing for iso-2022-jp\n");
     {
         static const UChar    sampleText[]    = { 0x0031, 0xd801};
