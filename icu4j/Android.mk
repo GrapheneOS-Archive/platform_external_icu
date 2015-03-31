@@ -16,9 +16,6 @@
 
 LOCAL_PATH := $(call my-dir)
 
-# Path to the ICU4C data files in the Android device file system:
-icu4c_data := /system/usr/icu
-
 # User-supplied locale service providers (using the java.text.spi or
 # java.util.spi mechanisms) are not supported in Android:
 #
@@ -73,24 +70,10 @@ LOCAL_JAVACFLAGS := $(icu4j_javac_flags)
 LOCAL_MODULE := icu4j
 include $(BUILD_STATIC_JAVA_LIBRARY)
 
-# In order to append $(icu4c_data) to the dataPath line in ICUConfig.properties
-# this hack here removes the path to that file in the source tree and instead
-# appends the path to a dynamically generated modified file to the list of
-# arguments passed to the jar tool.
-
-config_path := com/ibm/icu/ICUConfig.properties
-config_root := $(LOCAL_PATH)/main/classes/core/src
-
-tmp_resource_dir := $(intermediates.COMMON)/tmp
-
-$(tmp_resource_dir)/$(config_path): $(config_root)/$(config_path)
-	$(hide) mkdir -p $(dir $@)
-	$(hide) sed "/\.dataPath =/s/$$/ $(subst /,\/,$(icu4c_data))/" $< > $@
-
-$(LOCAL_INTERMEDIATE_TARGETS): $(tmp_resource_dir)/$(config_path)
-$(LOCAL_INTERMEDIATE_TARGETS): PRIVATE_EXTRA_JAR_ARGS := \
-    $(subst -C "$(config_root)" "$(config_path)",,$(extra_jar_args)) \
-    -C "$(tmp_resource_dir)" "$(config_path)"
+# Path to the ICU4C data files in the Android device file system:
+icu4c_data := /system/usr/icu
+icu4j_config_root := $(LOCAL_PATH)/main/classes/core/src
+include external/icu/icu4j/adjust_icudt_path.mk
 
 include $(CLEAR_VARS)
 LOCAL_SRC_FILES := $(icu4j_src_files)
