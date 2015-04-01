@@ -45,9 +45,6 @@ icu4j_test_resource_dirs := \
     $(filter-out main/tests/localespi/%, \
     $(call all-subdir-with-subdir,main/tests/*/src,com/ibm/icu/dev))
 
-icu4j_javac_flags := -encoding UTF-8
-icu4j_test_javac_flags := $(icu4j_javac_flags)
-
 # For each data *.jar file, define a corresponding icu4j-* target.
 icu4j_data_jars := \
     $(shell find $(LOCAL_PATH)/main/shared/data -name "*.jar" \
@@ -66,7 +63,6 @@ include $(CLEAR_VARS)
 LOCAL_SRC_FILES := $(icu4j_src_files)
 LOCAL_JAVA_RESOURCE_DIRS := $(icu4j_resource_dirs)
 LOCAL_DONT_DELETE_JAR_DIRS := true
-LOCAL_JAVACFLAGS := $(icu4j_javac_flags)
 LOCAL_MODULE := icu4j
 include $(BUILD_STATIC_JAVA_LIBRARY)
 
@@ -80,7 +76,6 @@ LOCAL_SRC_FILES := $(icu4j_src_files)
 LOCAL_JAVA_RESOURCE_DIRS := $(icu4j_resource_dirs)
 LOCAL_STATIC_JAVA_LIBRARIES := icu4j-icudata-host icu4j-icutzdata-host
 LOCAL_DONT_DELETE_JAR_DIRS := true
-LOCAL_JAVACFLAGS := $(icu4j_javac_flags)
 LOCAL_MODULE := icu4j-host
 include $(BUILD_HOST_JAVA_LIBRARY)
 
@@ -90,7 +85,6 @@ LOCAL_SRC_FILES := $(icu4j_src_files)
 LOCAL_JAVA_RESOURCE_DIRS := $(icu4j_resource_dirs)
 LOCAL_STATIC_JAVA_LIBRARIES := icu4j-icudata-host icu4j-icutzdata-host
 LOCAL_DONT_DELETE_JAR_DIRS := true
-LOCAL_JAVACFLAGS := $(icu4j_javac_flags)
 LOCAL_MODULE := icu4j-hostdex
 include $(BUILD_HOST_DALVIK_JAVA_LIBRARY)
 endif  # HOST_OS == linux
@@ -101,7 +95,6 @@ LOCAL_JAVA_RESOURCE_DIRS := $(icu4j_test_resource_dirs)
 LOCAL_STATIC_JAVA_LIBRARIES := icu4j-testdata
 LOCAL_DONT_DELETE_JAR_DIRS := true
 LOCAL_JAVA_LIBRARIES := icu4j
-LOCAL_JAVACFLAGS := $(icu4j_test_javac_flags)
 LOCAL_MODULE := icu4j-tests
 include $(BUILD_STATIC_JAVA_LIBRARY)
 
@@ -115,7 +108,6 @@ LOCAL_JAVA_RESOURCE_DIRS := $(icu4j_test_resource_dirs)
 LOCAL_STATIC_JAVA_LIBRARIES := icu4j-testdata-host
 LOCAL_DONT_DELETE_JAR_DIRS := true
 LOCAL_JAVA_LIBRARIES := icu4j-host
-LOCAL_JAVACFLAGS := $(icu4j_test_javac_flags)
 LOCAL_MODULE := icu4j-tests-host
 include $(BUILD_HOST_JAVA_LIBRARY)
 
@@ -130,7 +122,6 @@ LOCAL_JAVA_RESOURCE_DIRS := $(icu4j_test_resource_dirs)
 LOCAL_STATIC_JAVA_LIBRARIES := icu4j-testdata-host
 LOCAL_DONT_DELETE_JAR_DIRS := true
 LOCAL_JAVA_LIBRARIES := icu4j-hostdex
-LOCAL_JAVACFLAGS := $(icu4j_test_javac_flags)
 LOCAL_MODULE := icu4j-tests-hostdex
 include $(BUILD_HOST_DALVIK_JAVA_LIBRARY)
 
