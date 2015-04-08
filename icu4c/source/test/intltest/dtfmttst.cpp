@@ -4052,7 +4052,7 @@ void DateFormatTest::TestMonthPatterns()
                                                             CharsToUnicodeString("2 s\\u00ECyu\\u00E8bis ren-chen"),
                                                             CharsToUnicodeString("2 w\\u01D4yu\\u00E8 ren-chen") } },
         { "fr@calendar=chinese",      DateFormat::kShort, { UnicodeString("2/4/29"),        UnicodeString("2/4bis/29"),             UnicodeString("2/5/29") } },
-        { "en@calendar=dangi",        DateFormat::kLong,  { UnicodeString("3bis 2, 2012(29)"),  UnicodeString("4 2, 2012(29)"),       UnicodeString("5 1, 2012(29)") } },              // Google Patch
+        { "en@calendar=dangi",        DateFormat::kLong,  { UnicodeString("3bis 2, 2012(29)"),  UnicodeString("4 2, 2012(29)"),     UnicodeString("5 1, 2012(29)") } },   // Google Patch
         { "en@calendar=dangi",        DateFormat::kShort, { UnicodeString("3bis/2/2012"),   UnicodeString("4/2/2012"),              UnicodeString("5/1/2012") } },
         { "en@calendar=dangi",        -2,                 { UnicodeString("78x29-3bis-2"),  UnicodeString("78x29-4-2"),             UnicodeString("78x29-5-1") } },
         { "ko@calendar=dangi",        DateFormat::kLong,  { CharsToUnicodeString("\\uC784\\uC9C4\\uB144 \\uC7243\\uC6D4 2\\uC77C"),
@@ -4759,12 +4759,12 @@ void DateFormatTest::TestDFSCreateForLocaleNonGregorianLocale() {
         return;
     }
 
-    // Android: All locales default to Gregorian calendar:
+    // Android change: All locales default to Gregorian calendar:
     int32_t count;
     const UnicodeString *months = sym->getShortMonths(count);
 
     // First persian month.
-    UnicodeString expected("\\u0698\\u0627\\u0646\\u0648\\u06CC\\u0647\\u0654");
+    UnicodeString expected("\\u0698\\u0627\\u0646\\u0648\\u06CC\\u0647\\u0654");  // Android patch: Gregorian date
     assertEquals("", expected.unescape(), months[0]);
 }
 

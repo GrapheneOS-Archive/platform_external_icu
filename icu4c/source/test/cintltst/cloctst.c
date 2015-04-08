@@ -3924,8 +3924,8 @@ const char* const full_data[][3] = {
     "ur"
   }, {
     "und_Arab_SN",
-    "wo_Arab_SN",  /* Google patch */
-    "wo_Arab"  /* Google patch */
+    "ar_Arab_SN",
+    "ar_SN"
   }, {
     "und_Armn",
     "hy_Armn_AM",
@@ -4056,8 +4056,8 @@ const char* const full_data[][3] = {
     "ru"
   }, {
     "und_Cyrl_KZ",
-    "kk_Cyrl_KZ",  /* Google patch */
-    "kk"  /* Google patch */
+    "ru_Cyrl_KZ",
+    "ru_KZ"
   }, {
     "und_DE",
     "de_Latn_DE",
@@ -4116,8 +4116,8 @@ const char* const full_data[][3] = {
     "am"
   }, {
     "und_Ethi_ER",
-    "ti_Ethi_ER",  /* Google patch */
-    "ti_ER"  /* Google patch */
+    "am_Ethi_ER",
+    "am_ER"
   }, {
     "und_FI",
     "fi_Latn_FI",
@@ -4172,8 +4172,8 @@ const char* const full_data[][3] = {
     "es_GT"
   }, {
     "und_GU",
-    "ch_Latn_GU",  /* Google patch */
-    "ch"  /* Google patch */
+    "en_Latn_GU",
+    "en_GU"
   }, {
     "und_GW",
     "pt_Latn_GW",
@@ -4380,8 +4380,8 @@ const char* const full_data[][3] = {
     "tr"
   }, {
     "und_Latn_ZA",
-    "af_Latn_ZA",  /* Google patch */
-    "af"  /* Google patch */
+    "en_Latn_ZA",
+    "en_ZA"
   }, {
     "und_MA",
     "ar_Arab_MA",
@@ -4404,8 +4404,8 @@ const char* const full_data[][3] = {
     "mg"
   }, {
     "und_MH",
-    "mh_Latn_MH",   /* Google patch */
-    "mh"  /* Google patch */
+    "en_Latn_MH",
+    "en_MH"
   }, {
     "und_MK",
     "mk_Cyrl_MK",
@@ -4496,12 +4496,12 @@ const char* const full_data[][3] = {
     "ne"
   }, {
     "und_NR",
-    "na_Latn_NR",  /* Google patch */
-    "na"  /* Google patch */
+    "en_Latn_NR",
+    "en_NR"
   }, {
     "und_NU",
-    "niu_Latn_NU",  /* Google patch */
-    "niu"  /* Google patch */
+    "en_Latn_NU",
+    "en_NU"
   }, {
     "und_OM",
     "ar_Arab_OM",

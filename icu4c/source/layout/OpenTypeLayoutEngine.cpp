@@ -536,7 +536,7 @@ void OpenTypeLayoutEngine::adjustGlyphPositions(const LEUnicode chars[], le_int3
         //       Umesh says layout is poor both with and without the change, but
         //       worse with the change.  See ocean/imageprocessing/layout_test_unittest.cc
         //   Public ICU ticket for this problem is  #7742
-        // LayoutEngine::adjustGlyphPositions(chars, offset, count, reverse, glyphStorage, success);
+        // LayoutEngine::adjustGlyphPositions(chars, offset, count, reverse, glyphStorage, success);        
     }
 
     LEGlyphID zwnj  = fFontInstance->mapCharToGlyph(0x200C);
