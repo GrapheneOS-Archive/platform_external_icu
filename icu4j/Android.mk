@@ -72,6 +72,13 @@ icu4j_config_root := $(LOCAL_PATH)/main/classes/core/src
 include external/icu/icu4j/adjust_icudt_path.mk
 
 include $(CLEAR_VARS)
+LOCAL_STATIC_JAVA_LIBRARIES := icu4j
+LOCAL_DONT_DELETE_JAR_DIRS := true
+LOCAL_MODULE := icu4j-jarjar
+LOCAL_JARJAR_RULES := $(TOP)/libcore/jarjar-rules.txt
+include $(BUILD_STATIC_JAVA_LIBRARY)
+
+include $(CLEAR_VARS)
 LOCAL_SRC_FILES := $(icu4j_src_files)
 LOCAL_JAVA_RESOURCE_DIRS := $(icu4j_resource_dirs)
 LOCAL_STATIC_JAVA_LIBRARIES := icu4j-icudata-host icu4j-icutzdata-host
