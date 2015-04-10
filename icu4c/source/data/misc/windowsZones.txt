@@ -472,7 +472,6 @@ windowsZones:table(nofallback){
             EC{"America/Guayaquil"}
             JM{"America/Jamaica"}
             KY{"America/Cayman"}
-            MX{"America/Cancun"}
             PA{"America/Panama"}
             PE{"America/Lima"}
             ZZ{"Etc/GMT+5"}
