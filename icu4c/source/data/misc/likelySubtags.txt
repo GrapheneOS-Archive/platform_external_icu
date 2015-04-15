@@ -272,7 +272,6 @@ likelySubtags:table(nofallback){
     ja{"ja_Jpan_JP"}
     jam{"jam_Latn_JM"}
     jgo{"jgo_Latn_CM"}
-    ji{"ji_Hebr_UA"}
     jmc{"jmc_Latn_TZ"}
     jml{"jml_Deva_NP"}
     jut{"jut_Latn_DK"}
