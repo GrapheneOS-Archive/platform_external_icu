@@ -137,3 +137,19 @@ $(LOCAL_INTERMEDIATE_TARGETS): PRIVATE_EXTRA_JAR_ARGS += \
     "com/ibm/icu/dev/test/serializable/data"
 
 endif  # HOST_OS == linux
+
+# LayoutLib (frameworks/base/tools/layoutlib) needs JarJar'd versions of the
+# icudata and icutzdata, so add rules for it.
+include $(CLEAR_VARS)
+LOCAL_STATIC_JAVA_LIBRARIES := icu4j-icudata
+LOCAL_JARJAR_RULES := $(TOP)/libcore/jarjar-rules.txt
+LOCAL_JACK_ENABLED := disabled
+LOCAL_MODULE := icu4j-icudata-jarjar
+include $(BUILD_STATIC_JAVA_LIBRARY)
+
+include $(CLEAR_VARS)
+LOCAL_STATIC_JAVA_LIBRARIES := icu4j-icutzdata
+LOCAL_JARJAR_RULES := $(TOP)/libcore/jarjar-rules.txt
+LOCAL_JACK_ENABLED := disabled
+LOCAL_MODULE := icu4j-icutzdata-jarjar
+include $(BUILD_STATIC_JAVA_LIBRARY)
