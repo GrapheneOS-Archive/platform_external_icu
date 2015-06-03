@@ -126,11 +126,8 @@ c_includes := \
 	$(LOCAL_PATH) \
 	$(LOCAL_PATH)/../i18n
 
-# We make the ICU data directory relative to $ANDROID_ROOT on Android, so both
-# device and sim builds can use the same codepath, and it's hard to break one
-# without noticing because the other still works.
-local_cflags := '-DICU_DATA_DIR_PREFIX_ENV_VAR="ANDROID_ROOT"'
-local_cflags += '-DICU_DATA_DIR="/usr/icu"'
+# We deliberately do not set -DICU_DATA_DIR: ICU4C is configured on Android
+# using udata_setCommonData.
 
 local_cflags += -D_REENTRANT
 local_cflags += -DU_COMMON_IMPLEMENTATION
