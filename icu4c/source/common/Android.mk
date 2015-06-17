@@ -151,7 +151,9 @@ LOCAL_RTTI_FLAG := -frtti
 LOCAL_ADDITIONAL_DEPENDENCIES += $(LOCAL_PATH)/Android.mk
 LOCAL_REQUIRED_MODULES += icu-data
 LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)
+ifneq ($(TARGET_ARCH),mips64)
 LOCAL_CLANG := true
+endif
 include $(BUILD_SHARED_LIBRARY)
 
 #
@@ -191,5 +193,7 @@ LOCAL_MODULE_TAGS := optional
 LOCAL_MODULE := libicuuc_static
 LOCAL_SRC_FILES += $(src_files)
 LOCAL_REQUIRED_MODULES += icu-data
+ifneq ($(TARGET_ARCH),mips64)
 LOCAL_CLANG := true
+endif
 include $(BUILD_STATIC_LIBRARY)
