@@ -50,34 +50,88 @@ icu4j_data_jars := \
     $(shell find $(LOCAL_PATH)/main/shared/data -name "*.jar" \
     | sed "s,^$(LOCAL_PATH)/\(.*/\(.*\)\.jar\)$$,icu4j-\2:\1,")
 
+# Prebuilt data resource jars for device. e.g. icu4j-icudata.jar, icu4j-icutzdata.jar,
+# icu4j-testdata.jar.
 include $(CLEAR_VARS)
 LOCAL_PREBUILT_STATIC_JAVA_LIBRARIES := $(icu4j_data_jars)
 include $(BUILD_MULTI_PREBUILT)
 
+# Host resource jars. e.g. icu4j-icudata-host.jar, icu4j-icutzdata-host.jar,
+# icu4j-testdata-host.jar.
 include $(CLEAR_VARS)
 LOCAL_IS_HOST_MODULE := true
 LOCAL_PREBUILT_STATIC_JAVA_LIBRARIES := $(subst :,-host:,$(icu4j_data_jars))
 include $(BUILD_MULTI_PREBUILT)
 
+#
+# ICU4J / device runtime.
+#
+
+# See libcore/JavaLibrary.mk.
+# libcore builds icu4j source directly in core-libart and repackages it
+# from com.ibm.icu -> android.icu. In that case data files are read from
+# the ICU4C data files and configured via the java.util.System class.
+
+# ICU4J with ICU4J data included in the .jar. For running ICU4J tests on device.
 include $(CLEAR_VARS)
 LOCAL_SRC_FILES := $(icu4j_src_files)
 LOCAL_JAVA_RESOURCE_DIRS := $(icu4j_resource_dirs)
+LOCAL_STATIC_JAVA_LIBRARIES := icu4j-icudata icu4j-icutzdata
 LOCAL_DONT_DELETE_JAR_DIRS := true
-LOCAL_MODULE := icu4j
+LOCAL_MODULE := icu4j-plus-data
 include $(BUILD_STATIC_JAVA_LIBRARY)
 
-# Path to the ICU4C data files in the Android device file system:
-icu4c_data := /system/usr/icu
-icu4j_config_root := $(LOCAL_PATH)/main/classes/core/src
-include external/icu/icu4j/adjust_icudt_path.mk
-
+# ICU4J tests + test data. For running ICU4J tests on device (with icu4j-plus-data).
 include $(CLEAR_VARS)
-LOCAL_STATIC_JAVA_LIBRARIES := icu4j
+LOCAL_SRC_FILES := $(icu4j_test_src_files)
+LOCAL_JAVA_RESOURCE_DIRS := $(icu4j_test_resource_dirs)
+LOCAL_STATIC_JAVA_LIBRARIES := icu4j-testdata
 LOCAL_DONT_DELETE_JAR_DIRS := true
-LOCAL_MODULE := icu4j-jarjar
-LOCAL_JARJAR_RULES := $(TOP)/libcore/jarjar-rules.txt
+LOCAL_JAVA_LIBRARIES := icu4j-plus-data
+LOCAL_MODULE := icu4j-plus-data-tests
 include $(BUILD_STATIC_JAVA_LIBRARY)
 
+$(LOCAL_INTERMEDIATE_TARGETS): PRIVATE_EXTRA_JAR_ARGS += \
+    -C "$(LOCAL_PATH)/main/tests/core/src" \
+    "com/ibm/icu/dev/test/serializable/data"
+
+#
+# ICU4J / host Android runtime.
+#
+
+ifeq ($(HOST_OS),linux)
+
+# Host runtime equivalent of icu4j-plus-data. For running ICU4J tests on host.
+include $(CLEAR_VARS)
+LOCAL_SRC_FILES := $(icu4j_src_files)
+LOCAL_JAVA_RESOURCE_DIRS := $(icu4j_resource_dirs)
+LOCAL_STATIC_JAVA_LIBRARIES := icu4j-icudata-host icu4j-icutzdata-host
+LOCAL_DONT_DELETE_JAR_DIRS := true
+LOCAL_MODULE := icu4j-plus-data-hostdex
+include $(BUILD_HOST_DALVIK_JAVA_LIBRARY)
+
+# Host runtime equivalent of icu4j-tests. For running ICU4J tests on host with
+# icu4j-plus-data-hostdex.
+include $(CLEAR_VARS)
+LOCAL_SRC_FILES := $(icu4j_test_src_files)
+LOCAL_JAVA_RESOURCE_DIRS := $(icu4j_test_resource_dirs)
+LOCAL_STATIC_JAVA_LIBRARIES := icu4j-testdata-host
+LOCAL_DONT_DELETE_JAR_DIRS := true
+LOCAL_JAVA_LIBRARIES := icu4j-plus-data-hostdex
+LOCAL_MODULE := icu4j-plus-data-tests-hostdex
+include $(BUILD_HOST_DALVIK_JAVA_LIBRARY)
+
+$(LOCAL_INTERMEDIATE_TARGETS): PRIVATE_EXTRA_JAR_ARGS += \
+    -C "$(LOCAL_PATH)/main/tests/core/src" \
+    "com/ibm/icu/dev/test/serializable/data"
+
+endif  # HOST_OS == linux
+
+#
+# ICU4J / host JRE.
+#
+
+# ICU4J with ICU4J data included in the .jar. Built against the host JRE. For transconsole.
 include $(CLEAR_VARS)
 LOCAL_SRC_FILES := $(icu4j_src_files)
 LOCAL_JAVA_RESOURCE_DIRS := $(icu4j_resource_dirs)
@@ -85,55 +139,3 @@ LOCAL_STATIC_JAVA_LIBRARIES := icu4j-icudata-host icu4j-icutzdata-host
 LOCAL_DONT_DELETE_JAR_DIRS := true
 LOCAL_MODULE := icu4j-host
 include $(BUILD_HOST_JAVA_LIBRARY)
-
-ifeq ($(HOST_OS),linux)
-include $(CLEAR_VARS)
-LOCAL_SRC_FILES := $(icu4j_src_files)
-LOCAL_JAVA_RESOURCE_DIRS := $(icu4j_resource_dirs)
-LOCAL_STATIC_JAVA_LIBRARIES := icu4j-icudata-host icu4j-icutzdata-host
-LOCAL_DONT_DELETE_JAR_DIRS := true
-LOCAL_MODULE := icu4j-hostdex
-include $(BUILD_HOST_DALVIK_JAVA_LIBRARY)
-endif  # HOST_OS == linux
-
-include $(CLEAR_VARS)
-LOCAL_SRC_FILES := $(icu4j_test_src_files)
-LOCAL_JAVA_RESOURCE_DIRS := $(icu4j_test_resource_dirs)
-LOCAL_STATIC_JAVA_LIBRARIES := icu4j-testdata
-LOCAL_DONT_DELETE_JAR_DIRS := true
-LOCAL_JAVA_LIBRARIES := icu4j
-LOCAL_MODULE := icu4j-tests
-include $(BUILD_STATIC_JAVA_LIBRARY)
-
-$(LOCAL_INTERMEDIATE_TARGETS): PRIVATE_EXTRA_JAR_ARGS += \
-    -C "$(LOCAL_PATH)/main/tests/core/src" \
-    "com/ibm/icu/dev/test/serializable/data"
-
-include $(CLEAR_VARS)
-LOCAL_SRC_FILES := $(icu4j_test_src_files)
-LOCAL_JAVA_RESOURCE_DIRS := $(icu4j_test_resource_dirs)
-LOCAL_STATIC_JAVA_LIBRARIES := icu4j-testdata-host
-LOCAL_DONT_DELETE_JAR_DIRS := true
-LOCAL_JAVA_LIBRARIES := icu4j-host
-LOCAL_MODULE := icu4j-tests-host
-include $(BUILD_HOST_JAVA_LIBRARY)
-
-$(LOCAL_INTERMEDIATE_TARGETS): PRIVATE_EXTRA_JAR_ARGS += \
-    -C "$(LOCAL_PATH)/main/tests/core/src" \
-    "com/ibm/icu/dev/test/serializable/data"
-
-ifeq ($(HOST_OS),linux)
-include $(CLEAR_VARS)
-LOCAL_SRC_FILES := $(icu4j_test_src_files)
-LOCAL_JAVA_RESOURCE_DIRS := $(icu4j_test_resource_dirs)
-LOCAL_STATIC_JAVA_LIBRARIES := icu4j-testdata-host
-LOCAL_DONT_DELETE_JAR_DIRS := true
-LOCAL_JAVA_LIBRARIES := icu4j-hostdex
-LOCAL_MODULE := icu4j-tests-hostdex
-include $(BUILD_HOST_DALVIK_JAVA_LIBRARY)
-
-$(LOCAL_INTERMEDIATE_TARGETS): PRIVATE_EXTRA_JAR_ARGS += \
-    -C "$(LOCAL_PATH)/main/tests/core/src" \
-    "com/ibm/icu/dev/test/serializable/data"
-
-endif  # HOST_OS == linux
