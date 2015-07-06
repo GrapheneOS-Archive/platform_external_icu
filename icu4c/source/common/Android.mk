@@ -134,7 +134,10 @@ local_cflags += -DU_COMMON_IMPLEMENTATION
 
 local_cflags += -O3 -fvisibility=hidden
 
-local_cflags += -Wno-unused-parameter -Wno-missing-field-initializers -Wno-sign-compare
+local_cflags += -Wno-unused-parameter \
+                -Wno-missing-field-initializers \
+                -Wno-sign-compare \
+                -Wno-deprecated-declarations
 
 #
 # Build for the target (device).
