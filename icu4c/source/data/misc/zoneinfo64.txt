@@ -3,7 +3,7 @@
 // Corporation and others.  All Rights Reserved.
 //---------------------------------------------------------
 // Build tool:  tz2icu
-// Build date:  Tue Jun 30 14:33:58 2015
+// Build date:  Tue Jun 30 16:20:10 2015
 // tz database: ftp://ftp.iana.org/tz/
 // tz version:  2015e
 // ICU version: 55.1
