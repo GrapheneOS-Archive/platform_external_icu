@@ -11,7 +11,9 @@ import shutil
 import subprocess
 import sys
 import tarfile
-import tempfile
+
+import i18nutil
+import updateicudata
 
 regions = ['africa', 'antarctica', 'asia', 'australasia',
            'etcetera', 'europe', 'northamerica', 'southamerica',
@@ -19,36 +21,13 @@ regions = ['africa', 'antarctica', 'asia', 'australasia',
            # before (and each other).
            'backward', 'backzone' ]
 
-def CheckDirExists(dir, dirname):
-  if not os.path.isdir(dir):
-    print "Couldn't find %s (%s)!" % (dirname, dir)
-    sys.exit(1)
-
-def GetAndroidRootOrDie():
-  value = os.environ.get('ANDROID_BUILD_TOP')
-  if not value:
-    print "ANDROID_BUILD_TOP not defined: run envsetup.sh / lunch"
-    sys.exit(1);
-  CheckDirExists(value, '$ANDROID_BUILD_TOP')
-  return value
-
-# Find the bionic directory, searching upward from this script.
-android_build_top = GetAndroidRootOrDie()
+# Find the bionic directory.
+android_build_top = i18nutil.GetAndroidRootOrDie()
 bionic_dir = os.path.realpath('%s/bionic' % android_build_top)
 bionic_libc_zoneinfo_dir = '%s/libc/zoneinfo' % bionic_dir
-CheckDirExists(bionic_libc_zoneinfo_dir, 'bionic/libc/zoneinfo')
+i18nutil.CheckDirExists(bionic_libc_zoneinfo_dir, 'bionic/libc/zoneinfo')
 tools_dir = '%s/external/icu/tools' % android_build_top
-CheckDirExists(tools_dir, 'external/icu/tools')
-print 'Found bionic in %s ...' % bionic_dir
-
-# Find the icu directory.
-icu_dir = os.path.realpath('%s/external/icu' % android_build_top)
-icu4c_dir = os.path.realpath('%s/icu4c/source' % icu_dir)
-icu4j_dir = os.path.realpath('%s/icu4j' % icu_dir)
-CheckDirExists(icu4c_dir, 'external/icu/icu4c/source')
-CheckDirExists(icu4j_dir, 'external/icu/icu4j')
-print 'Found icu in %s ...' % icu_dir
-
+i18nutil.CheckDirExists(tools_dir, 'external/icu/tools')
 
 def GetCurrentTzDataVersion():
   return open('%s/tzdata' % bionic_libc_zoneinfo_dir).read().split('\x00', 1)[0]
@@ -75,12 +54,6 @@ def WriteSetupFile():
   for zone in sorted(set(zones)):
     setup.write('%s\n' % zone)
   setup.close()
-
-
-def SwitchToNewTemporaryDirectory():
-  tmp_dir = tempfile.mkdtemp('-tzdata')
-  os.chdir(tmp_dir)
-  print 'Created temporary directory "%s"...' % tmp_dir
 
 
 def FtpRetrieveFile(ftp, filename):
@@ -115,71 +88,12 @@ def HttpRetrieveFileAndSignature(http, data_filename):
   signature_filename = '%s.asc' % data_filename
   HttpRetrievefile(http, "%s.asc" % path, signature_filename)
 
-
 def BuildIcuToolsAndData(data_filename):
-  # Keep track of the original cwd so we can go back to it at the end.
-  original_working_dir = os.getcwd()
+  icu_build_dir = '%s/icu' % os.getcwd()
 
-  # Create a directory to run 'make' from.
-  icu_working_dir = '%s/icu' % original_working_dir
-  os.mkdir(icu_working_dir)
-  os.chdir(icu_working_dir)
-
-  # Build the ICU tools.
-  print 'Configuring ICU tools...'
-  subprocess.check_call(['%s/runConfigureICU' % icu4c_dir, 'Linux'])
-
-  # Run the ICU tools.
-  os.chdir('tools/tzcode')
-
-  # The tz2icu tool only picks up icuregions and icuzones in they are in the CWD
-  for icu_data_file in [ 'icuregions', 'icuzones']:
-    icu_data_file_source = '%s/tools/tzcode/%s' % (icu4c_dir, icu_data_file)
-    icu_data_file_symlink = './%s' % icu_data_file
-    os.symlink(icu_data_file_source, icu_data_file_symlink)
-
-  shutil.copyfile('%s/%s' % (original_working_dir, data_filename), data_filename)
-  print 'Making ICU data...'
-  # The Makefile assumes the existence of the bin directory.
-  os.mkdir('%s/bin' % icu_working_dir)
-  subprocess.check_call(['make'])
-
-  # Copy the source file to its ultimate destination.
-  icu_txt_data_dir = '%s/data/misc' % icu4c_dir
-  print 'Copying zoneinfo64.txt to %s ...' % icu_txt_data_dir
-  shutil.copy('zoneinfo64.txt', icu_txt_data_dir)
-
-  # Regenerate the .dat file.
-  os.chdir(icu_working_dir)
-  subprocess.check_call(['make', 'INCLUDE_UNI_CORE_DATA=1', '-j32'])
-
-  # Copy the .dat file to its ultimate destination.
-  icu_dat_data_dir = '%s/stubdata' % icu4c_dir
-  datfiles = glob.glob('data/out/tmp/icudt??l.dat')
-  if len(datfiles) != 1:
-    print 'ERROR: Unexpectedly found %d .dat files (%s). Halting.' % (len(datfiles), datfiles)
-    sys.exit(1)
-  datfile = datfiles[0]
-  print 'Copying %s to %s ...' % (datfile, icu_dat_data_dir)
-  shutil.copy(datfile, icu_dat_data_dir)
-
-  # Generate the ICU4J .jar files
-  os.chdir('%s/data' % icu_working_dir)
-  subprocess.check_call(['make', 'icu4j-data'])
-
-  # Copy the ICU4J .jar files to their ultimate destination.
-  icu_jar_data_dir = '%s/main/shared/data' % icu4j_dir
-  jarfiles = glob.glob('out/icu4j/*.jar')
-  if len(jarfiles) != 2:
-    print 'ERROR: Unexpectedly found %d .jar files (%s). Halting.' % (len(jarfiles), jarfiles)
-    sys.exit(1)
-  for jarfile in jarfiles:
-    print 'Copying %s to %s ...' % (jarfile, icu_jar_data_dir)
-    shutil.copy(jarfile, icu_jar_data_dir)
-
-  # Switch back to the original working cwd.
-  os.chdir(original_working_dir)
-
+  updateicudata.PrepareIcuBuild(icu_build_dir)
+  updateicudata.MakeTzDataFiles(icu_build_dir, data_filename)
+  updateicudata.MakeAndCopyIcuDataFiles(icu_build_dir)
 
 def CheckSignature(data_filename):
   signature_filename = '%s.asc' % data_filename
@@ -218,6 +132,9 @@ def BuildBionicToolsAndData(data_filename):
 # Run with no arguments from any directory, with no special setup required.
 # See http://www.iana.org/time-zones/ for more about the source of this data.
 def main():
+  print 'Found bionic in %s ...' % bionic_dir
+  print 'Found icu in %s ...' % updateicudata.icuDir()
+
   print 'Looking for new tzdata...'
 
   tzdata_filenames = []
@@ -250,7 +167,7 @@ def main():
   for filename in tzdata_filenames:
     if filename > current_filename:
       print 'Found new tzdata: %s' % filename
-      SwitchToNewTemporaryDirectory()
+      i18nutil.SwitchToNewTemporaryDirectory()
       if use_ftp:
         FtpRetrieveFileAndSignature(ftp, filename)
       else:
@@ -259,10 +176,10 @@ def main():
       CheckSignature(filename)
       BuildIcuToolsAndData(filename)
       BuildBionicToolsAndData(filename)
-      print 'Look in %s and %s for new data files' % (bionic_dir, icu_dir)
+      print 'Look in %s and %s for new data files' % (bionic_dir, updateicudata.icuDir())
       sys.exit(0)
 
-  print 'You already have the latest tzdata (%s)!' % current_version
+  print 'You already have the latest tzdata in bionic (%s)!' % current_version
   sys.exit(0)
 
 
