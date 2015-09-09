@@ -1,7 +1,7 @@
 /*
  *******************************************************************************
- * Copyright (C) 2011-2014, International Business Machines Corporation and    *
- * others. All Rights Reserved.                                                *
+ * Copyright (C) 2011-2015, International Business Machines Corporation and
+ * others. All Rights Reserved.
  *******************************************************************************
  */
 package com.ibm.icu.text;
@@ -437,6 +437,39 @@ public abstract class TimeZoneNames implements Serializable {
          */
         public int matchLength() {
             return _matchLength;
+        }
+    }
+
+    /**
+     * @author Markus
+     * @internal For specific users only until proposed publicly.
+     * @deprecated This API is ICU internal only.
+     */
+    @Deprecated
+    public void loadAllDisplayNames() {}
+
+    /**
+     * @author Markus
+     * @internal For specific users only until proposed publicly.
+     * @deprecated This API is ICU internal only.
+     */
+    @Deprecated
+    public void getDisplayNames(String tzID, NameType[] types, long date,
+            String[] dest, int destOffset) {
+        if (tzID == null || tzID.length() == 0) {
+            return;
+        }
+        String mzID = null;
+        for (int i = 0; i < types.length; ++i) {
+            NameType type = types[i];
+            String name = getTimeZoneDisplayName(tzID, type);
+            if (name == null) {
+                if (mzID == null) {
+                    mzID = getMetaZoneID(tzID, date);
+                }
+                name = getMetaZoneDisplayName(mzID, type);
+            }
+            dest[destOffset + i] = name;
         }
     }
 
