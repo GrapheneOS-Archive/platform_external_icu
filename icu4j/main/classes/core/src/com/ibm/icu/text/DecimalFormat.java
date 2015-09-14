@@ -1512,6 +1512,9 @@ public class DecimalFormat extends NumberFormat {
         }
 
         int sizeBeforeIntegerPart = result.length();
+        // Android patch (ticket #11914) begin.
+        int posSinceLastGrouping = result.length();
+        // Android patch (ticket #11914) end.
         for (i = count - 1; i >= 0; --i) {
             if (i < digitList.decimalAt && digitIndex < digitList.count
                 && sigCount < maxSigDig) {
@@ -1528,12 +1531,29 @@ public class DecimalFormat extends NumberFormat {
 
             // Output grouping separator if necessary.
             if (isGroupingPosition(i)) {
+                // Android patch (ticket #11914) begin.
+                // An integer has been added until this position, thus record that if necessary.
+                if (parseAttr) {
+                    addAttribute(Field.INTEGER, posSinceLastGrouping, result.length());
+                }
+                // Android patch (ticket #11914) end.
                 result.append(grouping);
                 // [Spark/CDL] Add grouping separator attribute here.
                 if (parseAttr) {
                     // Length of grouping separator is 1.
                     addAttribute(Field.GROUPING_SEPARATOR, result.length() - 1, result.length());
                 }
+                // Android patch (ticket #11914) begin.
+                // Record the field position of the first grouping seperator if necessary.
+                if (fieldPosition.getFieldAttribute() == Field.GROUPING_SEPARATOR
+                        && fieldPosition.getEndIndex() == 0) {
+                    fieldPosition.setBeginIndex(result.length() - 1);
+                    fieldPosition.setEndIndex(result.length());
+                }
+
+                // Update the position since last grouping.
+                posSinceLastGrouping = result.length();
+                // Android patch (ticket #11914) end.
             }
         }
 
@@ -1543,7 +1563,11 @@ public class DecimalFormat extends NumberFormat {
         } else if (fieldPosition.getFieldAttribute() == NumberFormat.Field.INTEGER) {
             fieldPosition.setEndIndex(result.length());
         }
-        
+        // Android patch (ticket #11914) begin.
+        if (parseAttr) {
+            addAttribute(Field.INTEGER, posSinceLastGrouping, result.length());
+        }
+        // Android patch (ticket #11914) end.
         // This handles the special case of formatting 0. For zero only, we count the
         // zero to the left of the decimal point as one signficant digit. Ordinarily we
         // do not count any leading 0's as significant. If the number we are formatting
@@ -1762,7 +1786,16 @@ public class DecimalFormat extends NumberFormat {
                     intEnd = result.length();
                     addAttribute(Field.INTEGER, intBegin, result.length());
                 }
+                // Android patch (ticket #11914) begin.
+                // Decimal separator field position tracking if necessary.
+                if (fieldPosition.getFieldAttribute() == Field.DECIMAL_SEPARATOR) {
+                    fieldPosition.setBeginIndex(result.length());
+                }
                 result.append(decimal);
+                if (fieldPosition.getFieldAttribute() == Field.DECIMAL_SEPARATOR) {
+                    fieldPosition.setEndIndex(result.length());
+                }
+                // Android patch (ticket #11914) end.
                 // [Spark/CDL] Add attribute for decimal separator
                 if (parseAttr) {
                     // Length of decimal separator is 1.
@@ -1829,10 +1862,19 @@ public class DecimalFormat extends NumberFormat {
             }
         }
 
+        // Android patch (ticket #11914) begin.
+        // Exponent FieldPosition tracking if necessary.
+        if (fieldPosition.getFieldAttribute() == Field.EXPONENT_SYMBOL) {
+            fieldPosition.setBeginIndex(result.length());
+        }
         // The exponent is output using the pattern-specified minimum exponent
         // digits. There is no maximum limit to the exponent digits, since truncating
         // the exponent would result in an unacceptable inaccuracy.
         result.append(symbols.getExponentSeparator());
+        if (fieldPosition.getFieldAttribute() == Field.EXPONENT_SYMBOL) {
+            fieldPosition.setEndIndex(result.length());
+        }
+        // Android patch (ticket #11914) end.
         // [Spark/CDL] For exponent symbol, add an attribute.
         if (parseAttr) {
             addAttribute(Field.EXPONENT_SYMBOL, result.length() -
@@ -1845,6 +1887,14 @@ public class DecimalFormat extends NumberFormat {
             exponent = 0;
 
         boolean negativeExponent = exponent < 0;
+        // Android patch (ticket #11914) begin.
+        // Record start position of exponent sign if necessary.
+        if (negativeExponent || exponentSignAlwaysShown) {
+            if (fieldPosition.getFieldAttribute() == Field.EXPONENT_SIGN) {
+                fieldPosition.setBeginIndex(result.length());
+            }
+        }
+        // Android patch (ticket #11914) end.
         if (negativeExponent) {
             exponent = -exponent;
             result.append(symbols.getMinusString());
@@ -1863,6 +1913,14 @@ public class DecimalFormat extends NumberFormat {
                 addAttribute(Field.EXPONENT_SIGN, expSignBegin, result.length());
             }
         }
+        // Android patch (ticket #11914) begin.
+        // Record end position of exponent sign if necessary.
+        if (negativeExponent || exponentSignAlwaysShown) {
+             if (fieldPosition.getFieldAttribute() == Field.EXPONENT_SIGN) {
+                fieldPosition.setEndIndex(result.length());
+            }
+        }
+        // Android patch (ticket #11914) end.
         int expBegin = result.length();
         digitList.set(exponent);
         {
@@ -1877,6 +1935,13 @@ public class DecimalFormat extends NumberFormat {
             result.append((i < digitList.count) ? digits[digitList.getDigitValue(i)]
                           : digits[0]);
         }
+        // Android patch (ticket #11914) begin.
+        // Record start and end positions of exponent if necessary.
+        if (fieldPosition.getFieldAttribute() == Field.EXPONENT) {
+            fieldPosition.setBeginIndex(expBegin);
+            fieldPosition.setEndIndex(result.length());
+        }
+        // Android patch (ticket #11914) end.
         // [Spark/CDL] Add attribute for exponent part.
         if (parseAttr) {
             addAttribute(Field.EXPONENT, expBegin, result.length());
