@@ -1119,6 +1119,10 @@ public class DecimalFormat extends NumberFormat {
         number *= multiplier;
         synchronized (digitList) {
             digitList.set(number, precision(true));
+            // Issue 11808
+            if (digitList.wasRounded() && roundingMode == BigDecimal.ROUND_UNNECESSARY) {
+                throw new ArithmeticException("Rounding necessary");              
+            }
             return subformat(number, result, fieldPosition, isNegative, true, parseAttr);
         }
     }
@@ -1150,6 +1154,10 @@ public class DecimalFormat extends NumberFormat {
         // number.
         synchronized (digitList) {
             digitList.set(number, precision(true));
+            // For issue 11808.
+            if (digitList.wasRounded() && roundingMode == BigDecimal.ROUND_UNNECESSARY) {
+                throw new ArithmeticException("Rounding necessary");              
+            }
             return subformat(number.intValue(), result, fieldPosition, number.signum() < 0, true,
                              parseAttr);
         }
@@ -1180,6 +1188,10 @@ public class DecimalFormat extends NumberFormat {
         synchronized (digitList) {
             digitList.set(number, precision(false), !useExponentialNotation &&
                           !areSignificantDigitsUsed());
+            // For issue 11808.
+            if (digitList.wasRounded() && roundingMode == BigDecimal.ROUND_UNNECESSARY) {
+                throw new ArithmeticException("Rounding necessary");              
+            }
             return subformat(number.doubleValue(), result, fieldPosition, number.signum() < 0,
                              false, parseAttr);
         }
@@ -1209,6 +1221,10 @@ public class DecimalFormat extends NumberFormat {
         synchronized (digitList) {
             digitList.set(number, precision(false), !useExponentialNotation &&
                           !areSignificantDigitsUsed());
+            // For issue 11808.
+            if (digitList.wasRounded() && roundingMode == BigDecimal.ROUND_UNNECESSARY) {
+                throw new ArithmeticException("Rounding necessary");              
+            }
             return subformat(number.doubleValue(), result, fieldPosition, number.signum() < 0,
                              false, false);
         }
