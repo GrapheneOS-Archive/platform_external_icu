@@ -212,10 +212,10 @@ public class DecimalFormatSymbols implements Cloneable, Serializable {
     public void setZeroDigit(char zeroDigit) {
         if ( digits != null ) {
             this.digits[0] = zeroDigit;
-            if (Character.digit(zeroDigit,10) == 0) {
+            // Android patch (ticket #11903) begin.
                 for ( int i = 1 ; i < 10 ; i++ ) {
                     this.digits[i] = (char)(zeroDigit+i);
-                }
+            // Android patch (ticket #11903) end.
             }
         } else {
             this.zeroDigit = zeroDigit;
