@@ -205,16 +205,13 @@ public class DecimalFormatSymbols implements Cloneable, Serializable {
         digitStrings[0] = String.valueOf(zeroDigit);
         digits[0] = zeroDigit;
 
-        // Propagate digit 1 - 9 only when the input zeroDigit is a
-        // Unicode number and its integer value is 0.
-
-        if (Character.digit(zeroDigit, 10) == 0) {
+        // Android patch (ticket #11903) begin.
             for (int i = 1; i < 10; i++) {
                 char d = (char)(zeroDigit + i);
                 digitStrings[i] = String.valueOf(d);
                 digits[i] = d;
             }
-        }
+        // Android patch (ticket #11903) end.
     }
 
     /**
