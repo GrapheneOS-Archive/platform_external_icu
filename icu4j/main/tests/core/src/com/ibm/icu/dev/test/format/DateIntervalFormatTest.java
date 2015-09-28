@@ -410,7 +410,7 @@ public class DateIntervalFormatTest extends com.ibm.icu.dev.test.TestFmwk {
 
                 "en", "2007 01 10 10:10:10", "2007 01 10 10:10:20", "hhmmzz", "10:10 AM PST", 
 
-                "en", "2007 01 10 10:10:10", "2007 01 10 10:10:20", "hms", "10:10:10 AM", 
+                "en", "2007 01 10 10:10:10", "2007 01 10 10:10:20", "hms", "10:10:10 AM \u2013 10:10:20 AM", 
 
                 "en", "2007 01 01 22:00:00", "2007 01 01 23:00:00", "yMMMMdHm", "January 1, 2007, 22:00 \u2013 23:00", 
 
@@ -636,9 +636,7 @@ public class DateIntervalFormatTest extends com.ibm.icu.dev.test.TestFmwk {
 
                 // Thai (default calendar buddhist)
 
-                // Android patch: Force default Gregorian calendar.
-
-                "th", "2550 10 10 10:10:10", "2551 10 10 10:10:10", "EEEEdMMMy", "\\u0E27\\u0E31\\u0E19\\u0E40\\u0E2A\\u0E32\\u0E23\\u0E4C\\u0E17\\u0E35\\u0E48 10 \\u0E15.\\u0E04. 2550 \\u2013 \\u0E27\\u0E31\\u0E19\\u0E2D\\u0E32\\u0E17\\u0E34\\u0E15\\u0E22\\u0E4C\\u0E17\\u0E35\\u0E48 10 \\u0E15.\\u0E04. 2551",
+                "th", "2550 10 10 10:10:10", "2551 10 10 10:10:10", "EEEEdMMMy", "\\u0E27\\u0E31\\u0E19\\u0E1E\\u0E38\\u0E18\\u0E17\\u0E35\\u0E48 10 \\u0E15.\\u0E04. 2550 \\u2013 \\u0E27\\u0E31\\u0E19\\u0E28\\u0E38\\u0E01\\u0E23\\u0E4C\\u0E17\\u0E35\\u0E48 10 \\u0E15.\\u0E04. 2551", 
 
 
                 "th", "2550 10 10 10:10:10", "2551 10 10 10:10:10", "dMMM", "10 \\u0E15.\\u0E04. 2550 \\u2013 10 \\u0E15.\\u0E04. 2551", 
@@ -646,14 +644,14 @@ public class DateIntervalFormatTest extends com.ibm.icu.dev.test.TestFmwk {
                 "th", "2550 10 10 10:10:10", "2551 10 10 10:10:10", "MMMy", "\\u0E15.\\u0E04. 2550 \\u2013 \\u0E15.\\u0E04. 2551", 
 
 
-                "th", "2550 10 10 10:10:10", "2551 10 10 10:10:10", "EdMy", "\\u0E2A. 10/10/2550 \\u2013 \\u0E2D\\u0E32. 10/10/2551",
+                "th", "2550 10 10 10:10:10", "2551 10 10 10:10:10", "EdMy", "\\u0E1E. 10/10/2550 \\u2013 \\u0E28. 10/10/2551", 
 
                 "th", "2550 10 10 10:10:10", "2551 10 10 10:10:10", "dMy", "10/10/2550 \\u2013 10/10/2551", 
 
 
                 "th", "2550 10 10 10:10:10", "2551 10 10 10:10:10", "My", "10/2550 \\u2013 10/2551", 
 
-                "th", "2550 10 10 10:10:10", "2551 10 10 10:10:10", "EdM", "\\u0E2A. 10/10/2550 \\u2013 \\u0E2D\\u0E32. 10/10/2551",
+                "th", "2550 10 10 10:10:10", "2551 10 10 10:10:10", "EdM", "\\u0E1E. 10/10/2550 \\u2013 \\u0E28. 10/10/2551", 
 
 
                 "th", "2550 10 10 10:10:10", "2551 10 10 10:10:10", "y", "2550\\u20132551", 
@@ -661,7 +659,7 @@ public class DateIntervalFormatTest extends com.ibm.icu.dev.test.TestFmwk {
                 "th", "2550 10 10 10:10:10", "2551 10 10 10:10:10", "M", "10/2550 \\u2013 10/2551", 
 
 
-                "th", "2550 10 10 10:10:10", "2550 11 10 10:10:10", "EEEEdMMMy", "\\u0E27\\u0E31\\u0E19\\u0E40\\u0E2A\\u0E32\\u0E23\\u0E4C\\u0E17\\u0E35\\u0E48 10 \\u0E15.\\u0E04. \\u2013 \\u0E27\\u0E31\\u0E19\\u0E2D\\u0E31\\u0E07\\u0E04\\u0E32\\u0E23\\u0E17\\u0E35\\u0E48 10 \\u0E1E.\\u0E22. 2550",
+                "th", "2550 10 10 10:10:10", "2550 11 10 10:10:10", "EEEEdMMMy", "\\u0E27\\u0E31\\u0E19\\u0E1E\\u0E38\\u0E18\\u0E17\\u0E35\\u0E48 10 \\u0E15.\\u0E04. \\u2013 \\u0E27\\u0E31\\u0E19\\u0E40\\u0E2A\\u0E32\\u0E23\\u0E4C\\u0E17\\u0E35\\u0E48 10 \\u0E1E.\\u0E22. 2550", 
 
 
                 "th", "2550 10 10 10:10:10", "2550 11 10 10:10:10", "dMMM", "10 \\u0E15.\\u0E04. \\u2013 10 \\u0E1E.\\u0E22.", 
@@ -675,12 +673,11 @@ public class DateIntervalFormatTest extends com.ibm.icu.dev.test.TestFmwk {
 
                 "th", "2550 10 10 10:10:10", "2550 11 10 10:10:10", "d", "10/10 \\u2013 10/11", 
 
-                "th", "2550 10 10 10:10:10", "2550 11 10 10:10:10", "y", "2550",
+                "th", "2550 10 10 10:10:10", "2550 11 10 10:10:10", "y", "\u0E1E.\u0E28. 2550", 
 
 
                 "th", "2550 10 10 10:10:10", "2550 11 10 10:10:10", "MMM", "\\u0E15.\\u0E04.\\u2013\\u0E1E.\\u0E22.", 
 
-                // Android patch end.
         };
         expect(DATA, DATA.length);
     }
@@ -1199,10 +1196,10 @@ public class DateIntervalFormatTest extends com.ibm.icu.dev.test.TestFmwk {
      */
     public void TestGetIntervalPattern(){
         // Tests when "if ( field > MINIMUM_SUPPORTED_CALENDAR_FIELD )" is true
-        // MINIMUM_SUPPORTED_CALENDAR_FIELD = Calendar.MINUTE;
+        // MINIMUM_SUPPORTED_CALENDAR_FIELD = Calendar.SECOND;
         DateIntervalInfo dii = new DateIntervalInfo();
         try{
-            dii.getIntervalPattern("", Calendar.MINUTE+1);
+            dii.getIntervalPattern("", Calendar.SECOND+1);
             errln("DateIntervalInfo.getIntervalPattern(String,int) was suppose " +
                     "to return an exception for the 'int field' parameter " +
                     "when it exceeds MINIMUM_SUPPORTED_CALENDAR_FIELD.");
@@ -1224,10 +1221,10 @@ public class DateIntervalFormatTest extends com.ibm.icu.dev.test.TestFmwk {
         } catch(Exception e){}
 
         // Tests when "if ( lrgDiffCalUnit > MINIMUM_SUPPORTED_CALENDAR_FIELD )" is true
-        // MINIMUM_SUPPORTED_CALENDAR_FIELD = Calendar.MINUTE;
+        // MINIMUM_SUPPORTED_CALENDAR_FIELD = Calendar.SECOND;
         try{
             dii = (DateIntervalInfo) dii.cloneAsThawed();
-            dii.setIntervalPattern("", Calendar.MINUTE+1, "");
+            dii.setIntervalPattern("", Calendar.SECOND+1, "");
             errln("DateIntervalInfo.setIntervalPattern(String,int,String) " +
                     "was suppose to return an exception when the " +
                     "variable 'lrgDiffCalUnit' is greater than " + 
@@ -1530,5 +1527,191 @@ public class DateIntervalFormatTest extends com.ibm.icu.dev.test.TestFmwk {
             }
         }
         return false;
+    }
+
+    public void TestFPos_SkelWithSeconds () {
+        
+        final long[] deltas = {
+	        0L, // none
+	        200L, // 200 millisec
+	        20000L, // 20 sec
+	        1200000L, // 20 min
+	        7200000L, // 2 hrs
+	        43200000L, // 12 hrs
+	        691200000L, // 8 days
+	        1382400000L, // 16 days,
+	        8640000000L, // 100 days
+        };
+
+        class ExpectPosAndFormat {
+            public int posBegin;
+            public int posEnd;
+            public String format;
+             // Simple constructor
+            public ExpectPosAndFormat(int pBegin, int pEnd, String fmt) {
+                posBegin = pBegin;
+                posEnd = pEnd;
+                format = fmt;
+            }
+        };
+        
+        final ExpectPosAndFormat[] exp_en_HHmm = {
+            new ExpectPosAndFormat(  3,  5, "09:00" ),
+            new ExpectPosAndFormat(  3,  5, "09:00" ),
+            new ExpectPosAndFormat(  3,  5, "09:00" ),
+            new ExpectPosAndFormat(  3,  5, "09:00 \u2013 09:20" ),
+            new ExpectPosAndFormat(  3,  5, "09:00 \u2013 11:00" ),
+            new ExpectPosAndFormat(  3,  5, "09:00 \u2013 21:00" ),
+            new ExpectPosAndFormat( 15, 17, "11/20/2014, 09:00 \u2013 11/28/2014, 09:00" ),
+            new ExpectPosAndFormat( 15, 17, "11/20/2014, 09:00 \u2013 12/6/2014, 09:00" ),
+            new ExpectPosAndFormat( 15, 17, "11/20/2014, 09:00 \u2013 2/28/2015, 09:00" )
+        };
+
+        final ExpectPosAndFormat[] exp_en_HHmmss = {
+            new ExpectPosAndFormat(  3,  5, "09:00:00" ),
+            new ExpectPosAndFormat(  3,  5, "09:00:00" ),
+            new ExpectPosAndFormat(  3,  5, "09:00:00 \u2013 09:00:20" ),
+            new ExpectPosAndFormat(  3,  5, "09:00:00 \u2013 09:20:00" ),
+            new ExpectPosAndFormat(  3,  5, "09:00:00 \u2013 11:00:00" ),
+            new ExpectPosAndFormat(  3,  5, "09:00:00 \u2013 21:00:00" ),
+            new ExpectPosAndFormat( 15, 17, "11/20/2014, 09:00:00 \u2013 11/28/2014, 09:00:00" ),
+            new ExpectPosAndFormat( 15, 17, "11/20/2014, 09:00:00 \u2013 12/6/2014, 09:00:00" ),
+            new ExpectPosAndFormat( 15, 17, "11/20/2014, 09:00:00 \u2013 2/28/2015, 09:00:00" )
+        };
+
+        final ExpectPosAndFormat[] exp_en_yyMMdd = {
+            new ExpectPosAndFormat(  0,  0, "11/20/14" ),
+            new ExpectPosAndFormat(  0,  0, "11/20/14" ),
+            new ExpectPosAndFormat(  0,  0, "11/20/14" ),
+            new ExpectPosAndFormat(  0,  0, "11/20/14" ),
+            new ExpectPosAndFormat(  0,  0, "11/20/14" ),
+            new ExpectPosAndFormat(  0,  0, "11/20/14" ),
+            new ExpectPosAndFormat(  0,  0, "11/20/14 \u2013 11/28/14" ),
+            new ExpectPosAndFormat(  0,  0, "11/20/14 \u2013 12/6/14" ),
+            new ExpectPosAndFormat(  0,  0, "11/20/14 \u2013 2/28/15" )
+        };
+
+        final ExpectPosAndFormat[] exp_en_yyMMddHHmm = {
+            new ExpectPosAndFormat( 13, 15, "11/20/14, 09:00" ),
+            new ExpectPosAndFormat( 13, 15, "11/20/14, 09:00" ),
+            new ExpectPosAndFormat( 13, 15, "11/20/14, 09:00" ),
+            new ExpectPosAndFormat( 13, 15, "11/20/14, 09:00 \u2013 09:20" ),
+            new ExpectPosAndFormat( 13, 15, "11/20/14, 09:00 \u2013 11:00" ),
+            new ExpectPosAndFormat( 13, 15, "11/20/14, 09:00 \u2013 21:00" ),
+            new ExpectPosAndFormat( 13, 15, "11/20/14, 09:00 \u2013 11/28/14, 09:00" ),
+            new ExpectPosAndFormat( 13, 15, "11/20/14, 09:00 \u2013 12/06/14, 09:00" ),
+            new ExpectPosAndFormat( 13, 15, "11/20/14, 09:00 \u2013 02/28/15, 09:00" )
+        };
+
+        final ExpectPosAndFormat[] exp_en_yyMMddHHmmss = {
+            new ExpectPosAndFormat( 13, 15, "11/20/14, 09:00:00" ),
+            new ExpectPosAndFormat( 13, 15, "11/20/14, 09:00:00" ),
+            new ExpectPosAndFormat( 13, 15, "11/20/14, 09:00:00 \u2013 09:00:20" ),
+            new ExpectPosAndFormat( 13, 15, "11/20/14, 09:00:00 \u2013 09:20:00" ),
+            new ExpectPosAndFormat( 13, 15, "11/20/14, 09:00:00 \u2013 11:00:00" ),
+            new ExpectPosAndFormat( 13, 15, "11/20/14, 09:00:00 \u2013 21:00:00" ),
+            new ExpectPosAndFormat( 13, 15, "11/20/14, 09:00:00 \u2013 11/28/14, 09:00:00" ),
+            new ExpectPosAndFormat( 13, 15, "11/20/14, 09:00:00 \u2013 12/06/14, 09:00:00" ),
+            new ExpectPosAndFormat( 13, 15, "11/20/14, 09:00:00 \u2013 02/28/15, 09:00:00" )
+        };
+
+        @SuppressWarnings("unused")
+        final ExpectPosAndFormat[] exp_en_yMMMdhmmssz = {
+            new ExpectPosAndFormat( 16, 18, "Nov 20, 2014, 9:00:00 AM GMT" ),
+            new ExpectPosAndFormat( 16, 18, "Nov 20, 2014, 9:00:00 AM GMT" ),
+            new ExpectPosAndFormat( 16, 18, "Nov 20, 2014, 9:00:00 AM GMT \u2013 9:00:20 AM GMT" ),
+            new ExpectPosAndFormat( 16, 18, "Nov 20, 2014, 9:00:00 AM GMT \u2013 9:20:00 AM GMT" ),
+            new ExpectPosAndFormat( 16, 18, "Nov 20, 2014, 9:00:00 AM GMT \u2013 11:00:00 AM GMT" ),
+            new ExpectPosAndFormat( 16, 18, "Nov 20, 2014, 9:00:00 AM GMT \u2013 9:00:00 PM GMT" ),
+            new ExpectPosAndFormat( 16, 18, "Nov 20, 2014, 9:00:00 AM GMT \u2013 Nov 28, 2014, 9:00:00 AM GMT" ),
+            new ExpectPosAndFormat( 16, 18, "Nov 20, 2014, 9:00:00 AM GMT \u2013 Dec 6, 2014, 9:00:00 AM GMT" ),
+            new ExpectPosAndFormat( 16, 18, "Nov 20, 2014, 9:00:00 AM GMT \u2013 Feb 28, 2015, 9:00:00 AM GMT" )
+        };
+
+        final ExpectPosAndFormat[] exp_ja_yyMMddHHmm = {
+            new ExpectPosAndFormat( 11, 13, "14/11/20 9:00" ),
+            new ExpectPosAndFormat( 11, 13, "14/11/20 9:00" ),
+            new ExpectPosAndFormat( 11, 13, "14/11/20 9:00" ),
+            new ExpectPosAndFormat( 11, 13, "14/11/20 9\u664200\u5206\uFF5E9\u664220\u5206" ),
+            new ExpectPosAndFormat( 11, 13, "14/11/20 9\u664200\u5206\uFF5E11\u664200\u5206" ),
+            new ExpectPosAndFormat( 11, 13, "14/11/20 9\u664200\u5206\uFF5E21\u664200\u5206" ),
+            new ExpectPosAndFormat( 11, 13, "14/11/20 9:00\uFF5E14/11/28 9:00" ),
+            new ExpectPosAndFormat( 11, 13, "14/11/20 9:00\uFF5E14/12/06 9:00" ),
+            new ExpectPosAndFormat( 11, 13, "14/11/20 9:00\uFF5E15/02/28 9:00" )
+        };
+
+        final ExpectPosAndFormat[] exp_ja_yyMMddHHmmss = {
+            new ExpectPosAndFormat( 11, 13, "14/11/20 9:00:00" ),
+            new ExpectPosAndFormat( 11, 13, "14/11/20 9:00:00" ),
+            new ExpectPosAndFormat( 11, 13, "14/11/20 9:00:00\uFF5E9:00:20" ),
+            new ExpectPosAndFormat( 11, 13, "14/11/20 9:00:00\uFF5E9:20:00" ),
+            new ExpectPosAndFormat( 11, 13, "14/11/20 9:00:00\uFF5E11:00:00" ),
+            new ExpectPosAndFormat( 11, 13, "14/11/20 9:00:00\uFF5E21:00:00" ),
+            new ExpectPosAndFormat( 11, 13, "14/11/20 9:00:00\uFF5E14/11/28 9:00:00" ),
+            new ExpectPosAndFormat( 11, 13, "14/11/20 9:00:00\uFF5E14/12/06 9:00:00" ),
+            new ExpectPosAndFormat( 11, 13, "14/11/20 9:00:00\uFF5E15/02/28 9:00:00" )
+        };
+
+        final ExpectPosAndFormat[] exp_ja_yMMMdHHmmss = {
+            new ExpectPosAndFormat( 14, 16, "2014\u5E7411\u670820\u65E5 9:00:00" ),
+            new ExpectPosAndFormat( 14, 16, "2014\u5E7411\u670820\u65E5 9:00:00" ),
+            new ExpectPosAndFormat( 14, 16, "2014\u5E7411\u670820\u65E5 9:00:00\uFF5E9:00:20" ),
+            new ExpectPosAndFormat( 14, 16, "2014\u5E7411\u670820\u65E5 9:00:00\uFF5E9:20:00" ),
+            new ExpectPosAndFormat( 14, 16, "2014\u5E7411\u670820\u65E5 9:00:00\uFF5E11:00:00" ),
+            new ExpectPosAndFormat( 14, 16, "2014\u5E7411\u670820\u65E5 9:00:00\uFF5E21:00:00" ),
+            new ExpectPosAndFormat( 14, 16, "2014\u5E7411\u670820\u65E5 9:00:00\uFF5E2014\u5E7411\u670828\u65E5 9:00:00" ),
+            new ExpectPosAndFormat( 14, 16, "2014\u5E7411\u670820\u65E5 9:00:00\uFF5E2014\u5E7412\u67086\u65E5 9:00:00" ),
+            new ExpectPosAndFormat( 14, 16, "2014\u5E7411\u670820\u65E5 9:00:00\uFF5E2015\u5E742\u670828\u65E5 9:00:00" )
+        };
+
+        class LocaleAndSkeletonItem {
+            public String locale;
+            public String skeleton;
+            public int fieldToCheck;
+            public ExpectPosAndFormat[] expected;
+             // Simple constructor
+            public LocaleAndSkeletonItem(String loc, String skel, int field, ExpectPosAndFormat[] exp) {
+                locale = loc;
+                skeleton = skel;
+                fieldToCheck = field;
+                expected = exp;
+            }
+        };
+        
+        final LocaleAndSkeletonItem[] locSkelItems = {
+           new LocaleAndSkeletonItem( "en",		"HHmm",         DateFormat.MINUTE_FIELD, exp_en_HHmm ),
+           new LocaleAndSkeletonItem( "en",		"HHmmss",       DateFormat.MINUTE_FIELD, exp_en_HHmmss ),
+           new LocaleAndSkeletonItem( "en",		"yyMMdd",       DateFormat.MINUTE_FIELD, exp_en_yyMMdd ),
+           new LocaleAndSkeletonItem( "en",		"yyMMddHHmm",   DateFormat.MINUTE_FIELD, exp_en_yyMMddHHmm ),
+           new LocaleAndSkeletonItem( "en",		"yyMMddHHmmss", DateFormat.MINUTE_FIELD, exp_en_yyMMddHHmmss ),
+        // skip the following until ICU4J DateIntervalFormat has support for setting time zone
+        // new LocaleAndSkeletonItem( "en",		"yMMMdhmmssz",  DateFormat.MINUTE_FIELD, exp_en_yMMMdhmmssz ),
+           new LocaleAndSkeletonItem( "ja",		"yyMMddHHmm",   DateFormat.MINUTE_FIELD, exp_ja_yyMMddHHmm ),
+           new LocaleAndSkeletonItem( "ja",		"yyMMddHHmmss", DateFormat.MINUTE_FIELD, exp_ja_yyMMddHHmmss ),
+           new LocaleAndSkeletonItem( "ja",		"yMMMdHHmmss",  DateFormat.MINUTE_FIELD, exp_ja_yMMMdHHmmss )
+        };
+        
+        //final String zoneGMT = "GMT";
+        final long startTimeGMT = 1416474000000L; // 2014 Nov 20 09:00 GMT
+
+        TimeZone localZone = TimeZone.getDefault();
+        long startTime = startTimeGMT - localZone.getOffset(startTimeGMT);
+        for (LocaleAndSkeletonItem item: locSkelItems) {
+            DateIntervalFormat difmt = DateIntervalFormat.getInstance(item.skeleton, new ULocale(item.locale));
+            int dIdx, dCount = deltas.length;
+            for (dIdx = 0; dIdx < dCount; dIdx++) {
+                DateInterval di = new DateInterval(startTime, startTime + deltas[dIdx]);
+                StringBuffer actual = new StringBuffer(64);
+                FieldPosition pos = new FieldPosition(item.fieldToCheck);
+                String actualString = difmt.format(di, actual, pos).toString();
+                ExpectPosAndFormat expectPosFmt = item.expected[dIdx];
+                if (!actualString.equals(expectPosFmt.format) ||
+                        pos.getBeginIndex() != expectPosFmt.posBegin || pos.getEndIndex() != expectPosFmt.posEnd) {
+                    errln("For locale " + item.locale + ", skeleton " + item.skeleton + ", delta " + deltas[dIdx] +
+                           ": expect " + expectPosFmt.posBegin + "-" + expectPosFmt.posEnd + " \"" + expectPosFmt.format +
+                           "\"; get " + pos.getBeginIndex() + "-" + pos.getEndIndex() + " \"" + actualString + "\"");
+                }
+            }
+        }
     }
 }

@@ -117,10 +117,6 @@ public class CompatibilityTest extends TestFmwk
                         }
                     } catch (MissingResourceException e) {
                         warnln("Could not load the data. " + e.getMessage());
-                    // Android patch: Work-around for ClassNotFoundException.
-                    } catch (ClassNotFoundException e) {
-                        warnln("Could not load the data. " + e.getMessage());
-                    // Android patch end.
                     } catch (Exception e) {
                         e.printStackTrace();
                         errln("Exception: " + e.toString());

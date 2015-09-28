@@ -1,6 +1,6 @@
 /*
  *******************************************************************************
- * Copyright (C) 1996-2014, International Business Machines Corporation and    *
+ * Copyright (C) 1996-2015, International Business Machines Corporation and    *
  * others. All Rights Reserved.                                                *
  *******************************************************************************
  */
@@ -27,7 +27,6 @@ import com.ibm.icu.impl.Utility;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.math.BigDecimal;
 import com.ibm.icu.math.MathContext;
-import com.ibm.icu.text.NumberFormat;
 import com.ibm.icu.text.PluralRules.FixedDecimal;
 import com.ibm.icu.util.Currency;
 import com.ibm.icu.util.Currency.CurrencyUsage;
@@ -698,7 +697,11 @@ public class DecimalFormat extends NumberFormat {
     private void createFromPatternAndSymbols(String pattern, DecimalFormatSymbols inputSymbols) {
         // Always applyPattern after the symbols are set
         symbols = (DecimalFormatSymbols) inputSymbols.clone();
-        setCurrencyForSymbols();
+        if (pattern.indexOf(CURRENCY_SIGN) >= 0) {
+            // Only spend time with currency symbols when we're going to display it.
+            // Also set some defaults before the apply pattern.
+            setCurrencyForSymbols();
+        }
         applyPatternWithoutExpandAffix(pattern, false);
         if (currencySignCount == CURRENCY_SIGN_COUNT_IN_PLURAL_FORMAT) {
             currencyPluralInfo = new CurrencyPluralInfo(symbols.getULocale());
@@ -2348,7 +2351,7 @@ public class DecimalFormat extends NumberFormat {
      * @param negSuffix negative suffix pattern
      * @param posPrefix positive prefix pattern
      * @param negSuffix negative suffix pattern
-     * @param complexCurrencyParsing whether it is complex currency parsing or not.
+     * @param parseComplexCurrency whether it is complex currency parsing or not.
      * @param type type of currency to parse against, LONG_NAME only or not.
      */
     private final boolean subparse(
@@ -2795,7 +2798,7 @@ public class DecimalFormat extends NumberFormat {
      * @param isNegative
      * @param isPrefix
      * @param affixPat affix pattern used for currency affix comparison
-     * @param copmplexCurrencyParsing whether it is currency parsing or not
+     * @param complexCurrencyParsing whether it is currency parsing or not
      * @param type compare against currency type, LONG_NAME only or not.
      * @param currency return value for parsed currency, for generic currency parsing
      * mode, or null for normal parsing.  In generic currency parsing mode, any currency
@@ -3799,8 +3802,7 @@ public class DecimalFormat extends NumberFormat {
      * pattern. 
      * @param value true if input must contain a match to decimal mark in pattern  
      * Default is false.
-     * @draft ICU 54
-     * @provisional This API might change or be removed in a future release.
+     * @stable ICU 54
      */
      public void setDecimalPatternMatchRequired(boolean value) {
          parseRequireDecimalPoint = value;
@@ -3810,8 +3812,7 @@ public class DecimalFormat extends NumberFormat {
      * {@icu} Returns whether the input to parsing must contain a decimal mark if there
      * is a decimal mark in the pattern.
      * @return true if input must contain a match to decimal mark in pattern
-     * @draft ICU 54
-     * @provisional This API might change or be removed in a future release.
+     * @stable ICU 54
      */
     public boolean isDecimalPatternMatchRequired() {
         return parseRequireDecimalPoint;
@@ -5313,8 +5314,7 @@ public class DecimalFormat extends NumberFormat {
      * This takes effect immediately, if this format is a
      * currency format.  
      * @param newUsage new currency context object to use.  
-     * @draft ICU 54
-     * @provisional This API might change or be removed in a future release. 
+     * @stable ICU 54
      */
     public void setCurrencyUsage(CurrencyUsage newUsage) {
         if (newUsage == null) {
@@ -5334,8 +5334,7 @@ public class DecimalFormat extends NumberFormat {
 
     /**
      * Returns the <tt>Currency Usage</tt> object used to display currency
-     * @draft ICU 54
-     * @provisional This API might change or be removed in a future release. 
+     * @stable ICU 54
      */
     public CurrencyUsage getCurrencyUsage() {
         return currencyUsage;
