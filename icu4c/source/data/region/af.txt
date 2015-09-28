@@ -81,7 +81,7 @@ af{
         CC{"Kokos-eilande"}
         CD{"Demokratiese Republiek van die Kongo"}
         CF{"Sentraal-Afrikaanse Republiek"}
-        CG{"Republiek van die Kongo"}
+        CG{"Kongo - Brazzaville"}
         CH{"Switserland"}
         CI{"Ivoorkus"}
         CK{"Cookeilande"}
@@ -138,7 +138,7 @@ af{
         GU{"Guam"}
         GW{"Guinee-Bissau"}
         GY{"Guyana"}
-        HK{"Hongkong"}
+        HK{"Hongkong SAS Sjina"}
         HM{"Heard- en McDonaldeilande"}
         HN{"Honduras"}
         HR{"Kroasië"}
@@ -185,14 +185,14 @@ af{
         MC{"Monaco"}
         MD{"Moldowa"}
         ME{"Montenegro"}
-        MF{"Sint Martin"}
+        MF{"St. Martin"}
         MG{"Madagaskar"}
         MH{"Marshalleilande"}
         MK{"Macedonië"}
         ML{"Mali"}
         MM{"Mianmar (Birma)"}
         MN{"Mongolië"}
-        MO{"Macau"}
+        MO{"Macau SAS Sjina"}
         MP{"Noord-Mariane-eilande"}
         MQ{"Martinique"}
         MR{"Mauritanië"}
@@ -227,7 +227,7 @@ af{
         PM{"St. Pierre en Miquelon"}
         PN{"Pitcairneilande"}
         PR{"Puerto Rico"}
-        PS{"Palestina"}
+        PS{"Palestynse gebiede"}
         PT{"Portugal"}
         PW{"Palau"}
         PY{"Paraguay"}
@@ -301,13 +301,16 @@ af{
     }
     Countries%short{
         GB{"VK"}
+        HK{"Hongkong"}
+        MO{"Macau"}
+        PS{"Palestina"}
         US{"VSA"}
     }
     Countries%variant{
         CD{"Kongo (DRK)"}
-        CG{"Kongo (Republiek)"}
+        CG{"Kongo (Republiek die)"}
         FK{"Falklandeilande (Malvinas)"}
         MK{"Macedonië (VJRM)"}
     }
-    Version{"2.1.12.94"}
+    Version{"2.1.19.94"}
 }

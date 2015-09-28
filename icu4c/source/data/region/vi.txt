@@ -65,7 +65,7 @@ vi{
         BH{"Bahrain"}
         BI{"Burundi"}
         BJ{"Benin"}
-        BL{"Saint Barthélemy"}
+        BL{"St. Barthélemy"}
         BM{"Bermuda"}
         BN{"Brunei"}
         BO{"Bolivia"}
@@ -138,8 +138,8 @@ vi{
         GU{"Guam"}
         GW{"Guinea-Bissau"}
         GY{"Guyana"}
-        HK{"Hồng Kông"}
-        HM{"Đảo Heard và Quần đảo McDonald"}
+        HK{"Hồng Kông, Trung Quốc"}
+        HM{"Quần đảo Heard và McDonald"}
         HN{"Honduras"}
         HR{"Croatia"}
         HT{"Haiti"}
@@ -164,7 +164,7 @@ vi{
         KH{"Campuchia"}
         KI{"Kiribati"}
         KM{"Comoros"}
-        KN{"Saint Kitts và Nevis"}
+        KN{"St. Kitts và Nevis"}
         KP{"Triều Tiên"}
         KR{"Hàn Quốc"}
         KW{"Cô-oét"}
@@ -172,7 +172,7 @@ vi{
         KZ{"Kazakhstan"}
         LA{"Lào"}
         LB{"Li-băng"}
-        LC{"Saint Lucia"}
+        LC{"St. Lucia"}
         LI{"Liechtenstein"}
         LK{"Sri Lanka"}
         LR{"Liberia"}
@@ -185,14 +185,14 @@ vi{
         MC{"Monaco"}
         MD{"Moldova"}
         ME{"Montenegro"}
-        MF{"Saint Martin"}
+        MF{"St. Martin"}
         MG{"Madagascar"}
         MH{"Quần đảo Marshall"}
         MK{"Macedonia"}
         ML{"Mali"}
         MM{"Myanmar (Miến Điện)"}
         MN{"Mông Cổ"}
-        MO{"Macao"}
+        MO{"Macao, Trung Quốc"}
         MP{"Quần đảo Bắc Mariana"}
         MQ{"Martinique"}
         MR{"Mauritania"}
@@ -227,7 +227,7 @@ vi{
         PM{"Saint Pierre và Miquelon"}
         PN{"Quần đảo Pitcairn"}
         PR{"Puerto Rico"}
-        PS{"Palestine"}
+        PS{"Lãnh thổ Palestine"}
         PT{"Bồ Đào Nha"}
         PW{"Palau"}
         PY{"Paraguay"}
@@ -244,7 +244,7 @@ vi{
         SD{"Sudan"}
         SE{"Thụy Điển"}
         SG{"Singapore"}
-        SH{"Saint Helena"}
+        SH{"St. Helena"}
         SI{"Slovenia"}
         SJ{"Svalbard và Jan Mayen"}
         SK{"Slovakia"}
@@ -283,7 +283,7 @@ vi{
         UY{"Uruguay"}
         UZ{"Uzbekistan"}
         VA{"Thành Vatican"}
-        VC{"Saint Vincent và Grenadines"}
+        VC{"St. Vincent và Grenadines"}
         VE{"Venezuela"}
         VG{"Quần đảo Virgin thuộc Anh"}
         VI{"Quần đảo Virgin thuộc Mỹ"}
@@ -301,6 +301,9 @@ vi{
     }
     Countries%short{
         GB{"Vương quốc Anh"}
+        HK{"Hồng Kông"}
+        MO{"Macao"}
+        PS{"Palestine"}
         US{"Hoa Kỳ"}
     }
     Countries%variant{
@@ -309,5 +312,5 @@ vi{
         FK{"Quần đảo Falkland (Islas Malvinas)"}
         MK{"Macedonia (FYROM)"}
     }
-    Version{"2.1.12.94"}
+    Version{"2.1.19.17"}
 }

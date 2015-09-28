@@ -79,7 +79,7 @@ sr_Latn{
         BY{"Belorusija"}
         BZ{"Belize"}
         CA{"Kanada"}
-        CC{"Kokos (Keling) Ostrva"}
+        CC{"Kokosova (Kilingova) Ostrva"}
         CD{"Kongo - Kinšasa"}
         CF{"Centralnoafrička Republika"}
         CG{"Kongo - Brazavil"}
@@ -139,7 +139,7 @@ sr_Latn{
         GU{"Guam"}
         GW{"Gvineja-Bisao"}
         GY{"Gvajana"}
-        HK{"Hong Kong"}
+        HK{"SAR Hongkong (Kina)"}
         HM{"Ostrva Herd i Mekdonald"}
         HN{"Honduras"}
         HR{"Hrvatska"}
@@ -193,7 +193,7 @@ sr_Latn{
         ML{"Mali"}
         MM{"Mijanmar (Burma)"}
         MN{"Mongolija"}
-        MO{"Makao"}
+        MO{"SAR Makao (Kina)"}
         MP{"Severna Marijanska Ostrva"}
         MQ{"Martinik"}
         MR{"Mauritanija"}
@@ -208,7 +208,7 @@ sr_Latn{
         NA{"Namibija"}
         NC{"Nova Kaledonija"}
         NE{"Niger"}
-        NF{"Norfolk Ostrvo"}
+        NF{"Ostrvo Norfok"}
         NG{"Nigerija"}
         NI{"Nikaragva"}
         NL{"Holandija"}
@@ -228,7 +228,7 @@ sr_Latn{
         PM{"Sen Pjer i Mikelon"}
         PN{"Pitkern"}
         PR{"Portoriko"}
-        PS{"Palestina"}
+        PS{"Palestinske teritorije"}
         PT{"Portugal"}
         PW{"Palau"}
         PY{"Paragvaj"}
@@ -302,6 +302,9 @@ sr_Latn{
     }
     Countries%short{
         GB{"UK"}
+        HK{"Hong Kong"}
+        MO{"Makao"}
+        PS{"Palestina"}
         US{"SAD"}
     }
     Countries%variant{
@@ -310,5 +313,5 @@ sr_Latn{
         FK{"Foklandska (Malvinska) ostrva"}
         MK{"Makedonija (BJRM)"}
     }
-    Version{"2.1.13.24"}
+    Version{"2.1.20.4"}
 }

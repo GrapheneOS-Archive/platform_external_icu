@@ -138,8 +138,8 @@ de{
         GU{"Guam"}
         GW{"Guinea-Bissau"}
         GY{"Guyana"}
-        HK{"Hongkong"}
-        HM{"Heard- und McDonald-Inseln"}
+        HK{"Sonderverwaltungszone Hongkong"}
+        HM{"Heard und McDonaldinseln"}
         HN{"Honduras"}
         HR{"Kroatien"}
         HT{"Haiti"}
@@ -192,7 +192,7 @@ de{
         ML{"Mali"}
         MM{"Myanmar"}
         MN{"Mongolei"}
-        MO{"Macau"}
+        MO{"Sonderverwaltungsregion Macau"}
         MP{"Nördliche Marianen"}
         MQ{"Martinique"}
         MR{"Mauretanien"}
@@ -227,7 +227,7 @@ de{
         PM{"St. Pierre und Miquelon"}
         PN{"Pitcairninseln"}
         PR{"Puerto Rico"}
-        PS{"Palästina"}
+        PS{"Palästinensische Autonomiegebiete"}
         PT{"Portugal"}
         PW{"Palau"}
         PY{"Paraguay"}
@@ -278,7 +278,7 @@ de{
         TZ{"Tansania"}
         UA{"Ukraine"}
         UG{"Uganda"}
-        UM{"Amerikanisch-Ozeanien"}
+        UM{"Amerikanische Überseeinseln"}
         US{"Vereinigte Staaten"}
         UY{"Uruguay"}
         UZ{"Usbekistan"}
@@ -300,7 +300,10 @@ de{
         ZZ{"Unbekannte Region"}
     }
     Countries%short{
-        GB{"UK"}
+        GB{"GB"}
+        HK{"Hongkong"}
+        MO{"Macau"}
+        PS{"Palästina"}
         US{"USA"}
     }
     Countries%variant{
@@ -311,5 +314,5 @@ de{
         MK{"Mazedonien (EJR)"}
         TL{"Osttimor"}
     }
-    Version{"2.1.13.4"}
+    Version{"2.1.19.72"}
 }

@@ -490,13 +490,8 @@ _ISO2022Open(UConverter *cnv, UConverterLoadArgs *pArgs, UErrorCode *errorCode){
         }
         version = pArgs->options & UCNV_OPTIONS_VERSION_MASK;
         myConverterData->version = version;
-        /* Begin Google-specific change. */
-        /* The "jk" locale ID was made up for KDDI ISO-2022-JP. */
-        /* The "js" locale ID was made up for SoftBank ISO-2022-JP. */
-        if((myLocale[0]=='j' &&
-            (myLocale[1]=='a'|| myLocale[1]=='p' || myLocale[1]=='k' ||
-             myLocale[1]=='s') &&
-            (myLocale[2]=='_' || myLocale[2]=='\0')))
+        if(myLocale[0]=='j' && (myLocale[1]=='a'|| myLocale[1]=='p') &&
+            (myLocale[2]=='_' || myLocale[2]=='\0'))
         {
             /* open the required converters and cache them */
             if(version>MAX_JA_VERSION) {
@@ -510,34 +505,15 @@ _ISO2022Open(UConverter *cnv, UConverterLoadArgs *pArgs, UErrorCode *errorCode){
                 myConverterData->myConverterArray[ISO8859_7] =
                     ucnv_loadSharedData("ISO8859_7", &stackPieces, &stackArgs, errorCode);
             }
-            if (myLocale[1]=='k') {  /* Use KDDI's version. */
-                myConverterData->myConverterArray[JISX208]  = 
-                    ucnv_loadSharedData("kddi-jisx-208-2007", &stackPieces, &stackArgs, errorCode);
-            } else if (myLocale[1]=='s') {  /* Use SoftBank's version. */
-                myConverterData->myConverterArray[JISX208]  = 
-                    ucnv_loadSharedData("softbank-jisx-208-2007", &stackPieces, &stackArgs, errorCode);
-            } else {
-                /*
-                 * Change for http://b/issue?id=937017 :
-                 * Restore JIS X 0208 ISO-2022-JP mappings from before
-                 * sharing the table with the Shift-JIS converter
-                 * (CL 5963009 and http://bugs.icu-project.org/trac/ticket/5797).
-                 * TODO(mscherer): Create and use a new, unified Google Shift-JIS
-                 * table for both Shift-JIS and ISO-2022-JP.
-                 */
-                myConverterData->myConverterArray[JISX208]  = 
-                    ucnv_loadSharedData("jisx-208", &stackPieces, &stackArgs, errorCode);
-            }
-            /* End Google-specific change. */
+            myConverterData->myConverterArray[JISX208] =
+                ucnv_loadSharedData("Shift-JIS", &stackPieces, &stackArgs, errorCode);
             if(jpCharsetMasks[version]&CSM(JISX212)) {
                 myConverterData->myConverterArray[JISX212] =
                     ucnv_loadSharedData("jisx-212", &stackPieces, &stackArgs, errorCode);
             }
             if(jpCharsetMasks[version]&CSM(GB2312)) {
                 myConverterData->myConverterArray[GB2312] =
-                    /* BEGIN android-changed */
-                    ucnv_loadSharedData("noop-gb2312_gl", &stackPieces, &stackArgs, errorCode); /* gb_2312_80-1 */
-                    /* END android-changed */
+                    ucnv_loadSharedData("ibm-5478", &stackPieces, &stackArgs, errorCode);   /* gb_2312_80-1 */
             }
             if(jpCharsetMasks[version]&CSM(KSC5601)) {
                 myConverterData->myConverterArray[KSC5601] =
@@ -568,9 +544,7 @@ _ISO2022Open(UConverter *cnv, UConverterLoadArgs *pArgs, UErrorCode *errorCode){
             if(version==1) {
                 cnvName="icu-internal-25546";
             } else {
-                /* BEGIN android-changed */
-                cnvName="ksc_5601";
-                /* END android-changed */
+                cnvName="ibm-949";
                 myConverterData->version=version=0;
             }
             if(pArgs->onlyTestIsLoadable) {
@@ -614,16 +588,14 @@ _ISO2022Open(UConverter *cnv, UConverterLoadArgs *pArgs, UErrorCode *errorCode){
             }
 
             /* open the required converters and cache them */
-            /* BEGIN android-changed */
             myConverterData->myConverterArray[GB2312_1] =
-                ucnv_loadSharedData("noop-gb2312_gl", &stackPieces, &stackArgs, errorCode);
+                ucnv_loadSharedData("ibm-5478", &stackPieces, &stackArgs, errorCode);
             if(version==1) {
                 myConverterData->myConverterArray[ISO_IR_165] =
-                    ucnv_loadSharedData("noop-iso-ir-165", &stackPieces, &stackArgs, errorCode);
+                    ucnv_loadSharedData("iso-ir-165", &stackPieces, &stackArgs, errorCode);
             }
             myConverterData->myConverterArray[CNS_11643] =
-                ucnv_loadSharedData("noop-cns-11643", &stackPieces, &stackArgs, errorCode);
-            /* END android-changed */
+                ucnv_loadSharedData("cns-11643-1992", &stackPieces, &stackArgs, errorCode);
 
 
             /* set the function pointers to appropriate funtions */
@@ -1449,8 +1421,8 @@ static const StateEnum jpCharsetPref[]={
     ASCII,
     JISX201,
     ISO8859_1,
-    ISO8859_7,
     JISX208,
+    ISO8859_7,
     JISX212,
     GB2312,
     KSC5601,
@@ -3834,16 +3806,8 @@ static const UConverterStaticData _ISO2022StaticData={
     0,
     { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 } /* reserved */
 };
-const UConverterSharedData _ISO2022Data={
-    sizeof(UConverterSharedData),
-    ~((uint32_t) 0),
-    NULL,
-    NULL,
-    &_ISO2022StaticData,
-    FALSE,
-    &_ISO2022Impl,
-    0, UCNV_MBCS_TABLE_INITIALIZER
-};
+const UConverterSharedData _ISO2022Data=
+        UCNV_IMMUTABLE_SHARED_DATA_INITIALIZER(&_ISO2022StaticData, &_ISO2022Impl);
 
 /*************JP****************/
 static const UConverterImpl _ISO2022JPImpl={
@@ -3890,16 +3854,8 @@ static const UConverterStaticData _ISO2022JPStaticData={
 
 namespace {
 
-const UConverterSharedData _ISO2022JPData={
-    sizeof(UConverterSharedData),
-    ~((uint32_t) 0),
-    NULL,
-    NULL,
-    &_ISO2022JPStaticData,
-    FALSE,
-    &_ISO2022JPImpl,
-    0, UCNV_MBCS_TABLE_INITIALIZER
-};
+const UConverterSharedData _ISO2022JPData=
+        UCNV_IMMUTABLE_SHARED_DATA_INITIALIZER(&_ISO2022JPStaticData, &_ISO2022JPImpl);
 
 }  // namespace
 
@@ -3949,16 +3905,8 @@ static const UConverterStaticData _ISO2022KRStaticData={
 
 namespace {
 
-const UConverterSharedData _ISO2022KRData={
-    sizeof(UConverterSharedData),
-    ~((uint32_t) 0),
-    NULL,
-    NULL,
-    &_ISO2022KRStaticData,
-    FALSE,
-    &_ISO2022KRImpl,
-    0, UCNV_MBCS_TABLE_INITIALIZER
-};
+const UConverterSharedData _ISO2022KRData=
+        UCNV_IMMUTABLE_SHARED_DATA_INITIALIZER(&_ISO2022KRStaticData, &_ISO2022KRImpl);
 
 }  // namespace
 
@@ -4008,16 +3956,8 @@ static const UConverterStaticData _ISO2022CNStaticData={
 
 namespace {
 
-const UConverterSharedData _ISO2022CNData={
-    sizeof(UConverterSharedData),
-    ~((uint32_t) 0),
-    NULL,
-    NULL,
-    &_ISO2022CNStaticData,
-    FALSE,
-    &_ISO2022CNImpl,
-    0, UCNV_MBCS_TABLE_INITIALIZER
-};
+const UConverterSharedData _ISO2022CNData=
+        UCNV_IMMUTABLE_SHARED_DATA_INITIALIZER(&_ISO2022CNStaticData, &_ISO2022CNImpl);
 
 }  // namespace
 #endif /* #if !UCONFIG_ONLY_HTML_CONVERSION */

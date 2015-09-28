@@ -138,7 +138,7 @@ lv{
         GU{"Guama"}
         GW{"Gvineja-Bisava"}
         GY{"Gajāna"}
-        HK{"Honkonga"}
+        HK{"Ķīnas īpašās pārvaldes apgabals Honkonga"}
         HM{"Hērda un Makdonalda salas"}
         HN{"Hondurasa"}
         HR{"Horvātija"}
@@ -192,7 +192,7 @@ lv{
         ML{"Mali"}
         MM{"Mjanma (Birma)"}
         MN{"Mongolija"}
-        MO{"Makao"}
+        MO{"Ķīnas īpašās pārvaldes apgabals Makao"}
         MP{"Ziemeļu Marianas salas"}
         MQ{"Martinika"}
         MR{"Mauritānija"}
@@ -301,6 +301,9 @@ lv{
     }
     Countries%short{
         GB{"Lielbritānija"}
+        HK{"Honkonga"}
+        MO{"Makao"}
+        PS{"Palestīna"}
         US{"ASV"}
     }
     Countries%variant{
@@ -310,5 +313,5 @@ lv{
         FK{"Folklenda (Malvinu) salas"}
         MK{"Maķedonija (BDRM)"}
     }
-    Version{"2.1.12.94"}
+    Version{"2.1.19.19"}
 }

@@ -583,10 +583,9 @@ $(CFU_FILES): $(ALL_CFU_SOURCE) $(TOOLBINDIR)/gencfu$(TOOLEXEEXT) $(DAT_FILES)
 # CNV FILES
 $(CNV_FILES_SPECIAL) : $(UCM_FILES_SPECIAL) $(TOOLBINDIR)/makeconv$(TOOLEXEEXT) 
 	$(INVOKE) $(TOOLBINDIR)/makeconv --ignore-siso-check -c -d $(BUILDDIR) $(UCMSRCDIR)/$(@F:%.cnv=%.ucm) 
-# BEGIN android-changed
 $(BUILDDIR)/%.cnv: $(UCMSRCDIR)/%.ucm $(TOOLBINDIR)/makeconv$(TOOLEXEEXT)
-	$(INVOKE) $(TOOLBINDIR)/makeconv -c --small -d $(BUILDDIR) $(UCMSRCDIR)/$(<F)
-#END android-changed
+	$(INVOKE) $(TOOLBINDIR)/makeconv -c -d $(BUILDDIR) $(UCMSRCDIR)/$(<F)
+
 ####################################################    RES
 # RES FILES
 
@@ -711,13 +710,11 @@ $(UNIT_INDEX_FILE): $(SRCLISTDEPS)
 	echo "}" >> $@;
 
 ### collation res
-# BEGIN android-changed.
 $(COLBLDDIR)/%.res: $(COLSRCDIR)/%.txt  $(TOOLBINDIR)/genrb$(TOOLEXEEXT) $(DAT_FILES)
-	$(INVOKE) $(TOOLBINDIR)/genrb $(GENRBOPTS) -i $(BUILDDIR) -s $(COLSRCDIR) -d $(COLBLDDIR) --omitCollationRules $(<F)
+	$(INVOKE) $(TOOLBINDIR)/genrb $(GENRBOPTS) -i $(BUILDDIR) -s $(COLSRCDIR) -d $(COLBLDDIR) $(<F)
 
 $(COLBLDDIR)/$(INDEX_NAME).res: $(OUTTMPDIR)/$(COLLATION_TREE)/$(INDEX_NAME).txt $(TOOLBINDIR)/genrb$(TOOLEXEEXT)
-	$(INVOKE) $(TOOLBINDIR)/genrb $(GENRBOPTS) -i $(BUILDDIR) -s $(OUTTMPDIR)/$(COLLATION_TREE) -d $(COLBLDDIR) --omitCollationRules $(INDEX_NAME).txt
-#END android-changed
+	$(INVOKE) $(TOOLBINDIR)/genrb $(GENRBOPTS) -i $(BUILDDIR) -s $(OUTTMPDIR)/$(COLLATION_TREE) -d $(COLBLDDIR) $(INDEX_NAME).txt
 
 $(COLLATION_INDEX_FILE): $(SRCLISTDEPS)
 	@echo "generating $@ (list of installed collation locales)"; \

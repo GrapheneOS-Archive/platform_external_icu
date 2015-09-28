@@ -34,7 +34,7 @@ fr{
         143{"Asie centrale"}
         145{"Asie occidentale"}
         150{"Europe"}
-        151{"Europe orientale"}
+        151{"Europe de l’Est"}
         154{"Europe septentrionale"}
         155{"Europe occidentale"}
         419{"Amérique latine"}
@@ -138,7 +138,7 @@ fr{
         GU{"Guam"}
         GW{"Guinée-Bissau"}
         GY{"Guyana"}
-        HK{"Hong Kong"}
+        HK{"R.A.S. chinoise de Hong Kong"}
         HM{"Îles Heard et McDonald"}
         HN{"Honduras"}
         HR{"Croatie"}
@@ -190,9 +190,9 @@ fr{
         MH{"Îles Marshall"}
         MK{"Macédoine"}
         ML{"Mali"}
-        MM{"Myanmar"}
+        MM{"Myanmar (Birmanie)"}
         MN{"Mongolie"}
-        MO{"Macao"}
+        MO{"R.A.S. chinoise de Macao"}
         MP{"Îles Mariannes du Nord"}
         MQ{"Martinique"}
         MR{"Mauritanie"}
@@ -227,7 +227,7 @@ fr{
         PM{"Saint-Pierre-et-Miquelon"}
         PN{"Îles Pitcairn"}
         PR{"Porto Rico"}
-        PS{"Palestine"}
+        PS{"Territoires palestiniens"}
         PT{"Portugal"}
         PW{"Palaos"}
         PY{"Paraguay"}
@@ -266,7 +266,7 @@ fr{
         TG{"Togo"}
         TH{"Thaïlande"}
         TJ{"Tadjikistan"}
-        TK{"Tokelau"}
+        TK{"Tokélaou"}
         TL{"Timor oriental"}
         TM{"Turkménistan"}
         TN{"Tunisie"}
@@ -301,6 +301,9 @@ fr{
     }
     Countries%short{
         GB{"R.-U."}
+        HK{"Hong Kong"}
+        MO{"Macao"}
+        PS{"Palestine"}
         US{"É.-U."}
     }
     Countries%variant{
@@ -310,5 +313,5 @@ fr{
         MK{"Macédoine (ARYM)"}
         TL{"Timor-Oriental"}
     }
-    Version{"2.1.13.46"}
+    Version{"2.1.20.4"}
 }
