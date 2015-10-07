@@ -52,6 +52,7 @@ import android.icu.lang.UCharacterDirection;
  * or consumed either next to the affected character or at the end of the
  * text.</p>
  * @stable ICU 2.0
+ * @hide All android.icu classes are currently hidden
  */
 public final class ArabicShaping {
     private final int options;

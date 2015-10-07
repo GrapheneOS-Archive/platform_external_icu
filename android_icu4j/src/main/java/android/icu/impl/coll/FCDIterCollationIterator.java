@@ -17,6 +17,7 @@ import android.icu.text.UCharacterIterator;
 
 /**
  * Incrementally checks the input text for FCD and normalizes where necessary.
+ * @hide All android.icu classes are currently hidden
  */
 public final class FCDIterCollationIterator extends IterCollationIterator {
     public FCDIterCollationIterator(CollationData data, boolean numeric,

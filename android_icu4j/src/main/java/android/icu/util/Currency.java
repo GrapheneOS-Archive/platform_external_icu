@@ -52,6 +52,7 @@ import android.icu.util.ULocale.Category;
  * implementation, and adds features not present in the JDK.
  * @author Alan Liu
  * @stable ICU 2.2
+ * @hide All android.icu classes are currently hidden
  */
 public class Currency extends MeasureUnit {
     private static final long serialVersionUID = -5839973855554750484L;
@@ -648,7 +649,7 @@ public class Currency extends MeasureUnit {
      * @return the ISO 4217 code, as a string, of the best match, or
      * null if there is no match
      *
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated

@@ -12,7 +12,7 @@ import java.util.Date;
 import android.icu.impl.Grego;
 
 /**
- * {@icuenhanced java.util.SimpleTimeZone}.{@icu _usage_}
+ * {{@literal @}icuenhanced java.util.SimpleTimeZone}.{{@literal @}icu _usage_}
  *
  * <p><code>SimpleTimeZone</code> is a concrete subclass of <code>TimeZone</code>
  * that represents a time zone for use with a Gregorian calendar. This
@@ -29,6 +29,7 @@ import android.icu.impl.Grego;
  * @see      TimeZone
  * @author   David Goldsmith, Mark Davis, Chen-Lieh Huang, Alan Liu
  * @stable ICU 2.0
+ * @hide All android.icu classes are currently hidden
  */
 public class SimpleTimeZone extends BasicTimeZone {
     private static final long serialVersionUID = -7034676239311322769L;
@@ -658,7 +659,7 @@ public class SimpleTimeZone extends BasicTimeZone {
     }
 
     /**
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -787,7 +788,7 @@ public class SimpleTimeZone extends BasicTimeZone {
 
     /**
      * {@inheritDoc}
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated

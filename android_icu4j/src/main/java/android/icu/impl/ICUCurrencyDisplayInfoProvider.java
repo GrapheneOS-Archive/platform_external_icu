@@ -22,6 +22,7 @@ import android.icu.impl.CurrencyData.CurrencySpacingInfo;
 import android.icu.util.ULocale;
 import android.icu.util.UResourceBundle;
 
+/** @hide All android.icu classes are currently hidden */
 public class ICUCurrencyDisplayInfoProvider implements CurrencyDisplayInfoProvider {
     public ICUCurrencyDisplayInfoProvider() {
     }

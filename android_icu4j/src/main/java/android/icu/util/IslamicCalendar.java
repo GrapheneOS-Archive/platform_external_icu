@@ -85,6 +85,7 @@ import android.icu.util.ULocale.Category;
  * @author Laura Werner
  * @author Alan Liu
  * @stable ICU 2.8
+ * @hide All android.icu classes are currently hidden
  */
 public class IslamicCalendar extends Calendar {
     // jdk1.4.2 serialver
@@ -952,8 +953,8 @@ public class IslamicCalendar extends Calendar {
     /**
      * sets the calculation type for this calendar.
      * 
-     * @draft ICU 55
-     * @provisional This API might change or be removed in a future release.
+     * {@literal @}draft ICU 55
+     * {@literal @}provisional This API might change or be removed in a future release.
      */
     public void setCalculationType(CalculationType type) {
         cType = type;
@@ -968,8 +969,8 @@ public class IslamicCalendar extends Calendar {
     /**
      * gets the calculation type for this calendar.
      * 
-     * @draft ICU 55
-     * @provisional This API might change or be removed in a future release.
+     * {@literal @}draft ICU 55
+     * {@literal @}provisional This API might change or be removed in a future release.
      */
     public CalculationType getCalculationType() {
         return cType;

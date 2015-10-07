@@ -85,6 +85,7 @@ import android.icu.impl.coll.Collation;
  * @see RuleBasedCollator
  * @author Syn Wee Quek
  * @stable ICU 2.8 
+ * @hide All android.icu classes are currently hidden
  */
 public final class CollationKey implements Comparable<CollationKey>
 {

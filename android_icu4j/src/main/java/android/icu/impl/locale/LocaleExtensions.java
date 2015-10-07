@@ -19,6 +19,7 @@ import android.icu.impl.locale.InternalLocaleBuilder.CaseInsensitiveChar;
 import android.icu.impl.locale.InternalLocaleBuilder.CaseInsensitiveString;
 
 
+/** @hide All android.icu classes are currently hidden */
 public class LocaleExtensions {
 
     private SortedMap<Character, Extension> _map;

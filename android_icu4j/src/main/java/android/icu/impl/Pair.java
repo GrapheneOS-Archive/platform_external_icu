@@ -12,6 +12,7 @@ package android.icu.impl;
  *
  * @param <F> first object type
  * @param <S> second object type
+ * @hide All android.icu classes are currently hidden
  */
 public class Pair<F, S> {
     public final F first;

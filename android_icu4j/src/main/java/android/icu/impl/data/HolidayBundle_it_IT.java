@@ -15,6 +15,7 @@ import android.icu.util.EasterHoliday;
 import android.icu.util.Holiday;
 import android.icu.util.SimpleHoliday;
 
+/** @hide All android.icu classes are currently hidden */
 public class HolidayBundle_it_IT extends ListResourceBundle {
     static private final Holiday[] fHolidays = {
         SimpleHoliday.NEW_YEARS_DAY,

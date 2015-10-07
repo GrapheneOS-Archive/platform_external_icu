@@ -18,6 +18,7 @@ import android.icu.text.UCharacterIterator;
  * UCharIterator-based collation element and character iterator.
  * Handles normalized text, with length or NUL-terminated.
  * Unnormalized text is handled by a subclass.
+ * @hide All android.icu classes are currently hidden
  */
 public class IterCollationIterator extends CollationIterator {
     public IterCollationIterator(CollationData d, boolean numeric, UCharacterIterator ui) {

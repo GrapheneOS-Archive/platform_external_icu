@@ -19,6 +19,7 @@ import java.util.Date;
  * @see android.icu.util.RuleBasedTimeZone
  * 
  * @stable ICU 3.8
+ * @hide All android.icu classes are currently hidden
  */
 public abstract class TimeZoneRule implements Serializable {
 

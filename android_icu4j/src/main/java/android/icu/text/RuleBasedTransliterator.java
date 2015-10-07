@@ -271,8 +271,9 @@ import java.util.Map;
  * <p>Copyright (c) IBM Corporation 1999-2000. All rights reserved.</p>
  *
  * @author Alan Liu
- * @internal
+ * {@literal @}internal
  * @deprecated This API is ICU internal only.
+ * @hide All android.icu classes are currently hidden
  */
 @Deprecated
 public class RuleBasedTransliterator extends Transliterator {
@@ -323,7 +324,7 @@ public class RuleBasedTransliterator extends Transliterator {
 
     /**
      * Implements {@link Transliterator#handleTransliterate}.
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -440,7 +441,7 @@ public class RuleBasedTransliterator extends Transliterator {
      * \\Uxxxxxxxx.  Unprintable characters are those other than
      * U+000A, U+0020..U+007E.
      * @return rules string
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -465,7 +466,7 @@ public class RuleBasedTransliterator extends Transliterator {
 //    }
     
     /**
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -476,7 +477,7 @@ public class RuleBasedTransliterator extends Transliterator {
 
     /**
      * Temporary hack for registry problem. Needs to be replaced by better architecture.
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated

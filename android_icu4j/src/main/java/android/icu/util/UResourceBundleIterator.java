@@ -33,6 +33,7 @@ import java.util.NoSuchElementException;
  * </pre>
  * @author ram
  * @stable ICU 3.8
+ * @hide All android.icu classes are currently hidden
  */
 public class UResourceBundleIterator{
     private UResourceBundle bundle;

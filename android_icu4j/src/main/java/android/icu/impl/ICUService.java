@@ -89,6 +89,7 @@ import android.icu.util.ULocale.Category;
  * fallback strategy.  ICULocaleService is a customized service that
  * uses Locale names as ids and uses Keys that implement the standard
  * resource bundle fallback strategy.<p>
+ * @hide All android.icu classes are currently hidden
  */
 public class ICUService extends ICUNotifier {
     /**

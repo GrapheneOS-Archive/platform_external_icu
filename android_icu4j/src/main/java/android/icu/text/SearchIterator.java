@@ -48,6 +48,7 @@ import java.text.CharacterIterator;
  * @stable ICU 2.0
  * @see BreakIterator
  * @see RuleBasedCollator
+ * @hide All android.icu classes are currently hidden
  */
 public abstract class SearchIterator 
 {
@@ -710,7 +711,7 @@ public abstract class SearchIterator
     protected abstract int handlePrevious(int startAt);
 
     /**
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated

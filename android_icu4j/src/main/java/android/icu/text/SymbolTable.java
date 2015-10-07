@@ -36,6 +36,7 @@ import java.text.ParsePosition;
  * table parses the name, if there is one, and returns it.
  *
  * @stable ICU 2.8
+ * @hide All android.icu classes are currently hidden
  */
 public interface SymbolTable {
 

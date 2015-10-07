@@ -18,6 +18,7 @@ import java.text.FieldPosition;
  * A <code>format</code> method use <code>fpos == DontCareFieldPosition.INSTANCE</code>
  * to tell whether or not it needs to calculate a field position.
  *
+ * @hide All android.icu classes are currently hidden
  */
 public final class DontCareFieldPosition extends FieldPosition {
     

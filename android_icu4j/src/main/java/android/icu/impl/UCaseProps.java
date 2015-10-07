@@ -31,6 +31,7 @@ import android.icu.text.UnicodeSet;
 import android.icu.util.ICUUncheckedIOException;
 import android.icu.util.ULocale;
 
+/** @hide All android.icu classes are currently hidden */
 public final class UCaseProps {
 
     // constructors etc. --------------------------------------------------- ***
@@ -801,7 +802,7 @@ public final class UCaseProps {
      *
      * @see ContextIterator
      * @see #MAX_STRING_LENGTH
-     * @internal
+     * {@literal @}internal
      */
     public final int toFullLower(int c, ContextIterator iter,
                                  StringBuilder out,
@@ -1100,7 +1101,7 @@ public final class UCaseProps {
     /**
      * Bit mask for getting just the options from a string compare options word
      * that are relevant for case folding (of a single string or code point).
-     * @internal
+     * {@literal @}internal
      */
     private static final int FOLD_CASE_OPTIONS_MASK = 0xff;
     
@@ -1246,7 +1247,7 @@ public final class UCaseProps {
      * We use a shared StringBuilder to avoid allocating a new one in each call.
      * We remove its contents each time so that it does not grow large over time.
      *
-     * @internal
+     * {@literal @}internal
      */
     public static final StringBuilder dummyStringBuilder = new StringBuilder();
 

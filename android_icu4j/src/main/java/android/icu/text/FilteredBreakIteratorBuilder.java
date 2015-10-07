@@ -33,8 +33,9 @@ import android.icu.util.ULocale;
  *
  * @author tomzhang
  * 
- * @internal ICU 54 technology preview
+ * {@literal @}internal ICU 54 technology preview
  * @deprecated This API might change or be removed in a future release.
+ * @hide All android.icu classes are currently hidden
  */
 @Deprecated
 public abstract class FilteredBreakIteratorBuilder {
@@ -48,7 +49,7 @@ public abstract class FilteredBreakIteratorBuilder {
      * of the CLDR exception data.
      * @param where the locale.
      * @return the new builder
-     * @internal ICU 54 technology preview
+     * {@literal @}internal ICU 54 technology preview
      * @deprecated This API might change or be removed in a future release.
      */
     @Deprecated
@@ -61,7 +62,7 @@ public abstract class FilteredBreakIteratorBuilder {
      * Construct an empty FilteredBreakIteratorBuilder.
      * In this state, it will not suppress any segment boundaries.
      * @return the new builder
-     * @internal ICU 54 technology preview
+     * {@literal @}internal ICU 54 technology preview
      * @deprecated This API might change or be removed in a future release.
      */
     @Deprecated
@@ -77,7 +78,7 @@ public abstract class FilteredBreakIteratorBuilder {
      * @param str the string to suppress, such as "Mr."
      * @return returns true if the string was not present and now added,
      * false if the call was a no-op because the string was already being suppressed.
-     * @internal ICU 54 technology preview
+     * {@literal @}internal ICU 54 technology preview
      * @deprecated This API might change or be removed in a future release.
      */
     @Deprecated
@@ -91,7 +92,7 @@ public abstract class FilteredBreakIteratorBuilder {
      * @param str the str the string to unsuppress, such as "Mr."
      * @return returns true if the string was present and now removed,
      * false if the call was a no-op because the string was not being suppressed.
-     * @internal ICU 54 technology preview
+     * {@literal @}internal ICU 54 technology preview
      * @deprecated This API might change or be removed in a future release.
      */
     @Deprecated
@@ -106,7 +107,7 @@ public abstract class FilteredBreakIteratorBuilder {
      * The FilteredBreakIteratorBuilder may be reused.
      * @param adoptBreakIterator the break iterator to adopt
      * @return the new BreakIterator, owned by the caller.
-     * @internal ICU 54 technology preview
+     * {@literal @}internal ICU 54 technology preview
      * @deprecated This API might change or be removed in a future release.
      */
     @Deprecated
@@ -114,7 +115,7 @@ public abstract class FilteredBreakIteratorBuilder {
 
     /**
      * For subclass use
-     * @internal ICU 54 technology preview
+     * {@literal @}internal ICU 54 technology preview
      * @deprecated This API might change or be removed in a future release.
      */
     @Deprecated

@@ -28,6 +28,7 @@ import android.icu.util.Freezable;
  * The Map-like APIs return collections for values.
  * @author medavis
 
+ * @hide All android.icu classes are currently hidden
  */
 public class Relation<K, V> implements Freezable<Relation<K,V>> { // TODO: add , Map<K, Collection<V>>, but requires API changes
     private Map<K, Set<V>> data;

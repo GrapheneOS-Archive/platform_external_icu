@@ -86,7 +86,7 @@ abstract class DictionaryBreakEngine implements LanguageBreakEngine {
      *  A deque-like structure holding raw ints.
      *  Partial, limited implementation, only what is needed by the dictionary implementation.
      *  For internal use only.
-     * @internal
+     * {@literal @}internal
      */
     static class DequeI {
         private int[] data = new int[50];

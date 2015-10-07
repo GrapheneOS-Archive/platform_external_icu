@@ -112,6 +112,7 @@ import android.icu.util.UResourceBundle;
  * Each item is either a 2-letter ISO country code or "001"
  * (UN M.49 - World).  This data is generated from "zone.tab"
  * in the tz database.
+ * @hide All android.icu classes are currently hidden
  */
 public class OlsonTimeZone extends BasicTimeZone {
 

@@ -15,6 +15,7 @@ import java.util.List;
 
 import android.icu.lang.UCharacter;
 
+/** @hide All android.icu classes are currently hidden */
 public class XMLRecordWriter implements RecordWriter {
     private Writer w;
     private List<String> nameStack;

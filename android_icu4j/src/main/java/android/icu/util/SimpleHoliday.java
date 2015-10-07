@@ -17,8 +17,9 @@ import java.util.Date;
  * A holiday whose date can be represented by a month, day, and optionally day of week
  * in the Gregorian calendar.
  *
- * @draft ICU 2.8 (retainAll)
- * @provisional This API might change or be removed in a future release.
+ * {@literal @}draft ICU 2.8 (retainAll)
+ * {@literal @}provisional This API might change or be removed in a future release.
+ * @hide All android.icu classes are currently hidden
  */
 public class SimpleHoliday extends Holiday {
     /**
@@ -33,8 +34,8 @@ public class SimpleHoliday extends Holiday {
      *              getDisplayName will return this string instead.
      *
      * @see Holiday#getDisplayName(java.util.Locale)
-     * @draft ICU 2.8
-     * @provisional This API might change or be removed in a future release.
+     * {@literal @}draft ICU 2.8
+     * {@literal @}provisional This API might change or be removed in a future release.
      */
     public SimpleHoliday(int month, int dayOfMonth, String name)
     {
@@ -53,8 +54,8 @@ public class SimpleHoliday extends Holiday {
      *              getDisplayName will return this string instead.
      *
      * @see Holiday#getDisplayName(java.util.Locale)
-     * @draft ICU 2.8
-     * @provisional This API might change or be removed in a future release.
+     * {@literal @}draft ICU 2.8
+     * {@literal @}provisional This API might change or be removed in a future release.
      */
     public SimpleHoliday(int month, int dayOfMonth, String name,
                             int startYear)
@@ -74,8 +75,8 @@ public class SimpleHoliday extends Holiday {
      *              getDisplayName will return this string instead.
      *
      * @see Holiday#getDisplayName(java.util.Locale)
-     * @draft ICU 2.8
-     * @provisional This API might change or be removed in a future release.
+     * {@literal @}draft ICU 2.8
+     * {@literal @}provisional This API might change or be removed in a future release.
      */
     public SimpleHoliday(int month, int dayOfMonth, String name,
                             int startYear, int endYear)
@@ -105,8 +106,8 @@ public class SimpleHoliday extends Holiday {
      *              getDisplayName will return this string instead.
      *
      * @see Holiday#getDisplayName(java.util.Locale)
-     * @draft ICU 2.8
-     * @provisional This API might change or be removed in a future release.
+     * {@literal @}draft ICU 2.8
+     * {@literal @}provisional This API might change or be removed in a future release.
      */
     public SimpleHoliday(int month, int dayOfMonth, int dayOfWeek, String name)
     {
@@ -116,8 +117,8 @@ public class SimpleHoliday extends Holiday {
     }
 
     /**
-     * @draft ICU 2.8
-     * @provisional This API might change or be removed in a future release.
+     * {@literal @}draft ICU 2.8
+     * {@literal @}provisional This API might change or be removed in a future release.
      */
     public SimpleHoliday(int month, int dayOfMonth, int dayOfWeek, String name,
                         int startYear)
@@ -130,8 +131,8 @@ public class SimpleHoliday extends Holiday {
 
 
     /**
-     * @draft ICU 2.8
-     * @provisional This API might change or be removed in a future release.
+     * {@literal @}draft ICU 2.8
+     * {@literal @}provisional This API might change or be removed in a future release.
      */
     public SimpleHoliday(int month, int dayOfMonth, int dayOfWeek, String name,
                         int startYear, int endYear)
@@ -169,96 +170,96 @@ public class SimpleHoliday extends Holiday {
 
     /**
      * New Year's Day - January 1st
-     * @draft ICU 2.8
-     * @provisional This API might change or be removed in a future release.
+     * {@literal @}draft ICU 2.8
+     * {@literal @}provisional This API might change or be removed in a future release.
      */
     public static final SimpleHoliday NEW_YEARS_DAY =
         new SimpleHoliday(Calendar.JANUARY,    1,  "New Year's Day");
 
     /**
      * Epiphany, January 6th
-     * @draft ICU 2.8
-     * @provisional This API might change or be removed in a future release.
+     * {@literal @}draft ICU 2.8
+     * {@literal @}provisional This API might change or be removed in a future release.
      */
     public static final SimpleHoliday EPIPHANY =
         new SimpleHoliday(Calendar.JANUARY,    6,  "Epiphany");
 
     /**
      * May Day, May 1st
-     * @draft ICU 2.8
-     * @provisional This API might change or be removed in a future release.
+     * {@literal @}draft ICU 2.8
+     * {@literal @}provisional This API might change or be removed in a future release.
      */
     public static final SimpleHoliday MAY_DAY =
         new SimpleHoliday(Calendar.MAY,        1,  "May Day");
 
     /**
      * Assumption, August 15th
-     * @draft ICU 2.8
-     * @provisional This API might change or be removed in a future release.
+     * {@literal @}draft ICU 2.8
+     * {@literal @}provisional This API might change or be removed in a future release.
      */
     public static final SimpleHoliday ASSUMPTION =
         new SimpleHoliday(Calendar.AUGUST,    15,  "Assumption");
 
     /**
      * All Saints' Day, November 1st
-     * @draft ICU 2.8
-     * @provisional This API might change or be removed in a future release.
+     * {@literal @}draft ICU 2.8
+     * {@literal @}provisional This API might change or be removed in a future release.
      */
     public static final SimpleHoliday ALL_SAINTS_DAY =
         new SimpleHoliday(Calendar.NOVEMBER,   1,  "All Saints' Day");
 
     /**
      * All Souls' Day, November 1st
-     * @draft ICU 2.8
-     * @provisional This API might change or be removed in a future release.
+     * {@literal @}draft ICU 2.8
+     * {@literal @}provisional This API might change or be removed in a future release.
      */
     public static final SimpleHoliday ALL_SOULS_DAY =
         new SimpleHoliday(Calendar.NOVEMBER,   2,  "All Souls' Day");
 
     /**
      * Immaculate Conception, December 8th
-     * @draft ICU 2.8
-     * @provisional This API might change or be removed in a future release.
+     * {@literal @}draft ICU 2.8
+     * {@literal @}provisional This API might change or be removed in a future release.
      */
     public static final SimpleHoliday IMMACULATE_CONCEPTION =
         new SimpleHoliday(Calendar.DECEMBER,   8,  "Immaculate Conception");
 
     /**
      * Christmas Eve, December 24th
-     * @draft ICU 2.8
-     * @provisional This API might change or be removed in a future release.
+     * {@literal @}draft ICU 2.8
+     * {@literal @}provisional This API might change or be removed in a future release.
      */
     public static final SimpleHoliday CHRISTMAS_EVE =
         new SimpleHoliday(Calendar.DECEMBER,  24,  "Christmas Eve");
 
     /**
      * Christmas, December 25th
-     * @draft ICU 2.8
-     * @provisional This API might change or be removed in a future release.
+     * {@literal @}draft ICU 2.8
+     * {@literal @}provisional This API might change or be removed in a future release.
      */
     public static final SimpleHoliday CHRISTMAS =
         new SimpleHoliday(Calendar.DECEMBER,  25,  "Christmas");
 
     /**
      * Boxing Day, December 26th
-     * @draft ICU 2.8
-     * @provisional This API might change or be removed in a future release.
+     * {@literal @}draft ICU 2.8
+     * {@literal @}provisional This API might change or be removed in a future release.
      */
     public static final SimpleHoliday BOXING_DAY =
         new SimpleHoliday(Calendar.DECEMBER,  26,  "Boxing Day");
 
     /**
      * Saint Stephen's Day, December 26th
-     * @draft ICU 2.8
-     * @provisional This API might change or be removed in a future release.
+     * {@literal @}draft ICU 2.8
+     * {@literal @}provisional This API might change or be removed in a future release.
      */
     public static final SimpleHoliday ST_STEPHENS_DAY =
         new SimpleHoliday(Calendar.DECEMBER,  26,  "St. Stephen's Day");
 
     /**
      * New Year's Eve, December 31st
-     * @draft ICU 2.8
-     * @provisional This API might change or be removed in a future release.
+     * {@literal @}draft ICU 2.8
+     * {@literal @}provisional This API might change or be removed in a future release.
      */
     public static final SimpleHoliday NEW_YEARS_EVE =
         new SimpleHoliday(Calendar.DECEMBER,  31,  "New Year's Eve");

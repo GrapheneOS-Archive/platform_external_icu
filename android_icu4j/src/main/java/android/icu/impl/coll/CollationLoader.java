@@ -26,6 +26,7 @@ import android.icu.util.UResourceBundle;
 
 /**
  * Convenience string denoting the Collation data tree
+ * @hide All android.icu classes are currently hidden
  */
 public final class CollationLoader {
 

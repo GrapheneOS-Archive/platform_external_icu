@@ -14,6 +14,7 @@ import android.icu.text.UCharacterIterator;
 /**
  * @author Doug Felt
  *
+ * @hide All android.icu classes are currently hidden
  */
 
 public final class UCharArrayIterator extends UCharacterIterator {

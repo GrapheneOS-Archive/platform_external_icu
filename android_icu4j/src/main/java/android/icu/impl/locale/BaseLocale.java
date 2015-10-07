@@ -9,6 +9,7 @@
 package android.icu.impl.locale;
 
 
+/** @hide All android.icu classes are currently hidden */
 public final class BaseLocale {
 
     private static final boolean JDKIMPL = false;

@@ -18,6 +18,7 @@ import java.util.TreeSet;
 /**
  * Computationally efficient determination of the relationship between
  * two SortedSets.
+ * @hide All android.icu classes are currently hidden
  */
 public class SortedSetRelation {
 

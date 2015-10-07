@@ -10,6 +10,7 @@ package android.icu.impl.data;
 
 import java.util.ListResourceBundle;
 
+/** @hide All android.icu classes are currently hidden */
 public class HolidayBundle_fr extends ListResourceBundle {
     static private final Object[][] fContents = {
         {   "All Saints' Day",      "Toussaint" },

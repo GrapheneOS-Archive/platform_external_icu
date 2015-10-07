@@ -19,6 +19,7 @@ import android.icu.text.Collator;
 /**
  * Collation settings/options/attributes.
  * These are the values that can be changed via API.
+ * @hide All android.icu classes are currently hidden
  */
 public final class CollationSettings extends SharedObject {
     /**

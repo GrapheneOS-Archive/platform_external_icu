@@ -27,6 +27,7 @@ package android.icu.text;
  *
  * @see android.icu.text.Bidi
  * @stable ICU 3.8
+ * @hide All android.icu classes are currently hidden
  */
 public class BidiRun {
 

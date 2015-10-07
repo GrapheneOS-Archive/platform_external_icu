@@ -12,6 +12,7 @@ package android.icu.impl;
  * lets you know where they are different.
  * @author Mark Davis
  * @version 1.0
+ * @hide All android.icu classes are currently hidden
  */
 
 final public class Differ<T> {

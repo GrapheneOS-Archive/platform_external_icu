@@ -20,14 +20,15 @@ import android.icu.util.ULocale.Category;
  * Despite its age, is still draft API, and clients should treat it as such.
  * 
  * An abstract class representing a holiday.
- * @draft ICU 2.8 (retainAll)
- * @provisional This API might change or be removed in a future release.
+ * {@literal @}draft ICU 2.8 (retainAll)
+ * {@literal @}provisional This API might change or be removed in a future release.
+ * @hide All android.icu classes are currently hidden
  */
 public abstract class Holiday implements DateRule
 {
     /**
-     * @draft ICU 2.8
-     * @provisional This API might change or be removed in a future release.
+     * {@literal @}draft ICU 2.8
+     * {@literal @}provisional This API might change or be removed in a future release.
      */
     public static Holiday[] getHolidays()
     {
@@ -35,8 +36,8 @@ public abstract class Holiday implements DateRule
     }
 
     /**
-     * @draft ICU 2.8
-     * @provisional This API might change or be removed in a future release.
+     * {@literal @}draft ICU 2.8
+     * {@literal @}provisional This API might change or be removed in a future release.
      */
     public static Holiday[] getHolidays(Locale locale)
     {
@@ -44,8 +45,8 @@ public abstract class Holiday implements DateRule
     }
 
     /**
-     * @draft ICU 3.2
-     * @provisional This API might change or be removed in a future release.
+     * {@literal @}draft ICU 3.2
+     * {@literal @}provisional This API might change or be removed in a future release.
      */
     public static Holiday[] getHolidays(ULocale locale)
     {
@@ -70,8 +71,8 @@ public abstract class Holiday implements DateRule
      *              does not occur on or after the start date.
      *
      * @see #firstBetween
-     * @draft ICU 2.8
-     * @provisional This API might change or be removed in a future release.
+     * {@literal @}draft ICU 2.8
+     * {@literal @}provisional This API might change or be removed in a future release.
      */
     public Date firstAfter(Date start) {
         return rule.firstAfter(start);
@@ -88,8 +89,8 @@ public abstract class Holiday implements DateRule
      *              does not occur between the start and end dates.
      *
      * @see #firstAfter
-     * @draft ICU 2.8
-     * @provisional This API might change or be removed in a future release.
+     * {@literal @}draft ICU 2.8
+     * {@literal @}provisional This API might change or be removed in a future release.
      */
     public Date firstBetween(Date start, Date end) {
         return rule.firstBetween(start, end);
@@ -102,8 +103,8 @@ public abstract class Holiday implements DateRule
      *
      * @param date  The date to check.
      * @return      true if this holiday occurs on the given date.
-     * @draft ICU 2.8
-     * @provisional This API might change or be removed in a future release.
+     * {@literal @}draft ICU 2.8
+     * {@literal @}provisional This API might change or be removed in a future release.
      */
     public boolean isOn(Date date) {
         //System.out.println(name + ".isOn(" + date.toString() + "):");
@@ -113,8 +114,8 @@ public abstract class Holiday implements DateRule
     /**
      * Check whether this holiday occurs at least once between the two
      * dates given.
-     * @draft ICU 2.8
-     * @provisional This API might change or be removed in a future release.
+     * {@literal @}draft ICU 2.8
+     * {@literal @}provisional This API might change or be removed in a future release.
      */
     public boolean isBetween(Date start, Date end) {
         return rule.isBetween(start, end);
@@ -131,8 +132,8 @@ public abstract class Holiday implements DateRule
      * @param rule  The date rules used for determining when this holiday
      *              falls.  Holiday's implementation of the DateRule interface
      *              simply delegates to this DateRule object.
-     * @draft ICU 2.8
-     * @provisional This API might change or be removed in a future release.
+     * {@literal @}draft ICU 2.8
+     * {@literal @}provisional This API might change or be removed in a future release.
      */
     protected Holiday(String name, DateRule rule)
     {
@@ -143,8 +144,8 @@ public abstract class Holiday implements DateRule
     /**
      * Return the name of this holiday in the language of the default <code>DISPLAY</code> locale.
      * @see Category#DISPLAY
-     * @draft ICU 2.8
-     * @provisional This API might change or be removed in a future release.
+     * {@literal @}draft ICU 2.8
+     * {@literal @}provisional This API might change or be removed in a future release.
      */
     public String getDisplayName() {
         return getDisplayName(ULocale.getDefault(Category.DISPLAY));
@@ -159,8 +160,8 @@ public abstract class Holiday implements DateRule
      * @param locale   A locale specifying the language in which the name is desired.
      *
      * @see ResourceBundle
-     * @draft ICU 2.8
-     * @provisional This API might change or be removed in a future release.
+     * {@literal @}draft ICU 2.8
+     * {@literal @}provisional This API might change or be removed in a future release.
      */
     public String getDisplayName(Locale locale)
     {
@@ -176,8 +177,8 @@ public abstract class Holiday implements DateRule
      * @param locale   A locale specifying the language in which the name is desired.
      *
      * @see ResourceBundle
-     * @draft ICU 3.2
-     * @provisional This API might change or be removed in a future release.
+     * {@literal @}draft ICU 3.2
+     * {@literal @}provisional This API might change or be removed in a future release.
      */
     public String getDisplayName(ULocale locale)
     {
@@ -193,16 +194,16 @@ public abstract class Holiday implements DateRule
     }
 
     /**
-     * @draft ICU 2.8
-     * @provisional This API might change or be removed in a future release.
+     * {@literal @}draft ICU 2.8
+     * {@literal @}provisional This API might change or be removed in a future release.
      */
     public DateRule getRule() {
         return rule;
     }
 
     /**
-     * @draft ICU 2.8
-     * @provisional This API might change or be removed in a future release.
+     * {@literal @}draft ICU 2.8
+     * {@literal @}provisional This API might change or be removed in a future release.
      */
     public void setRule(DateRule rule) {
         this.rule = rule;

@@ -12,6 +12,7 @@ package android.icu.impl;
 import android.icu.util.Freezable;
 
 
+/** @hide All android.icu classes are currently hidden */
 @SuppressWarnings({ "unchecked", "rawtypes" })
 public class Row<C0, C1, C2, C3, C4> implements java.lang.Comparable, Cloneable,
                                         Freezable<Row<C0, C1, C2, C3, C4>>{

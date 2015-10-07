@@ -35,6 +35,7 @@ import java.util.List;
  * ignore html or xml style markup that could otherwise obscure the content.
  * <p/>
  * @stable ICU 3.4
+ * @hide All android.icu classes are currently hidden
  */
 public class CharsetDetector {
 
@@ -518,7 +519,7 @@ public class CharsetDetector {
      * @return an array of the names of charsets that can be recognized by this CharsetDetector
      * instance.
      *
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -546,7 +547,7 @@ public class CharsetDetector {
      * @throws IllegalArgumentException when the name of charset encoding is
      * not supported.
      *
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated

@@ -65,6 +65,7 @@ import java.util.regex.Pattern;
  * ja;q=1.0</pre>
  * @author markdavis@google.com
  * @stable ICU 4.4
+ * @hide All android.icu classes are currently hidden
  */
 public class LocalePriorityList implements Iterable<ULocale> {
     private static final double D0 = 0.0d;

@@ -60,8 +60,9 @@ import android.icu.util.ULocale.Category;
  *
  * @author Roozbeh Pournader
  *
- * @internal
+ * {@literal @}internal
  * @deprecated This API is ICU internal only.
+ * @hide All android.icu classes are currently hidden
  */
 @Deprecated
 public class PersianCalendar extends Calendar {
@@ -101,7 +102,7 @@ public class PersianCalendar extends Calendar {
      * in the default time zone with the default <code>FORMAT</code> locale.
      * @see Category#FORMAT
      *
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -116,7 +117,7 @@ public class PersianCalendar extends Calendar {
      * @param zone the given time zone.
      * @see Category#FORMAT
      *
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -131,7 +132,7 @@ public class PersianCalendar extends Calendar {
      *
      * @param aLocale the given locale.
      *
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -146,7 +147,7 @@ public class PersianCalendar extends Calendar {
      *
      * @param locale the given ulocale.
      *
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -162,7 +163,7 @@ public class PersianCalendar extends Calendar {
      * @param zone the given time zone.
      * @param aLocale the given locale.
      *
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -179,7 +180,7 @@ public class PersianCalendar extends Calendar {
      * @param zone the given time zone.
      * @param locale the given ulocale.
      *
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -196,7 +197,7 @@ public class PersianCalendar extends Calendar {
      * @param date      The date to which the new calendar is set.
      * @see Category#FORMAT
      *
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -215,7 +216,7 @@ public class PersianCalendar extends Calendar {
      * @param date the value used to set the {@link #DATE DATE} time field in the calendar.
      * @see Category#FORMAT
      *
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -243,7 +244,7 @@ public class PersianCalendar extends Calendar {
      *              in the calendar.
      * @see Category#FORMAT
      *
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -291,7 +292,7 @@ public class PersianCalendar extends Calendar {
     };
 
     /**
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -324,7 +325,7 @@ public class PersianCalendar extends Calendar {
      * @param extendedYear  The Persian year
      * @param month The Persian month, 0-based
      *
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -343,7 +344,7 @@ public class PersianCalendar extends Calendar {
     /**
      * Return the number of days in the given Persian year
      *
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -358,7 +359,7 @@ public class PersianCalendar extends Calendar {
     /**
      * Return JD of start of given month/year
      *
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -383,7 +384,7 @@ public class PersianCalendar extends Calendar {
     //-------------------------------------------------------------------------
 
     /**
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -411,7 +412,7 @@ public class PersianCalendar extends Calendar {
      * The DAY_OF_WEEK and DOW_LOCAL fields are already set when this
      * method is called.
      *
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -442,7 +443,7 @@ public class PersianCalendar extends Calendar {
     /**
      * {@inheritDoc}
      *
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated

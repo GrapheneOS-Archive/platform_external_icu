@@ -29,6 +29,7 @@ import android.icu.util.UResourceBundleIterator;
 
 /**
  * @author srl
+ * @hide All android.icu classes are currently hidden
  */
 public class RelativeDateFormat extends DateFormat {
 

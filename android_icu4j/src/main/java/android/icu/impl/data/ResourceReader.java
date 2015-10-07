@@ -31,6 +31,7 @@ import android.icu.impl.PatternProps;
  * <p>2015-sep-03 TODO: Only used in com.ibm.icu.dev.test.format, move there.
  *
  * @author Alan Liu
+ * @hide All android.icu classes are currently hidden
  */
 public class ResourceReader implements Closeable {
     private BufferedReader reader = null;

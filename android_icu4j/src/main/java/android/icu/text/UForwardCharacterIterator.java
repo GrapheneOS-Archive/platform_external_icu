@@ -56,6 +56,7 @@ package android.icu.text;
  * </p>
  * @stable ICU 2.4
  *
+ * @hide All android.icu classes are currently hidden
  */
 
 public interface UForwardCharacterIterator {

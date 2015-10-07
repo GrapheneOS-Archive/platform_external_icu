@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+/** @hide All android.icu classes are currently hidden */
 public class LanguageTag {
     private static final boolean JDKIMPL = false;
 

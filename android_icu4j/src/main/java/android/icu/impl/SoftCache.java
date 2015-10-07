@@ -26,6 +26,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * @param <D> Data type for creating a new instance value
  *
  * @author Markus Scherer, Mark Davis
+ * @hide All android.icu classes are currently hidden
  */
 public abstract class SoftCache<K, V, D> extends CacheBase<K, V, D> {
     @Override

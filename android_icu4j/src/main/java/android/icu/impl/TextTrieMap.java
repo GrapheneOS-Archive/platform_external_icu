@@ -17,6 +17,7 @@ import android.icu.lang.UCharacter;
 /**
  * TextTrieMap is a trie implementation for supporting
  * fast prefix match for the key.
+ * @hide All android.icu classes are currently hidden
  */
 public class TextTrieMap<V> {
 

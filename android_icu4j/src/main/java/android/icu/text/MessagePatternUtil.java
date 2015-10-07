@@ -25,6 +25,7 @@ import java.util.List;
  * <p>This class and its nested classes are not intended for public subclassing.
  * @stable ICU 49
  * @author Markus Scherer
+ * @hide All android.icu classes are currently hidden
  */
 public final class MessagePatternUtil {
 

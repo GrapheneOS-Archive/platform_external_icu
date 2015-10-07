@@ -45,6 +45,7 @@ import java.util.Locale;
  * @author Laura Werner
  * @author Alan Liu
  * @stable ICU 2.8
+ * @hide All android.icu classes are currently hidden
  */
 public class JapaneseCalendar extends GregorianCalendar {
     // jdk1.4.2 serialver
@@ -233,8 +234,8 @@ public class JapaneseCalendar extends GregorianCalendar {
      * taking year and era into account.  Defaults to 0 (JANUARY) for Gregorian.
      * @param extendedYear the extendedYear, as returned by handleGetExtendedYear
      * @return the default month
-     * @provisional ICU 3.6
-     * @draft ICU 3.6 (retain)
+     * {@literal @}provisional ICU 3.6
+     * {@literal @}draft ICU 3.6 (retain)
      * @see #MONTH
      */
     protected int getDefaultMonthInYear(int extendedYear)
@@ -257,8 +258,8 @@ public class JapaneseCalendar extends GregorianCalendar {
      * @param extendedYear the extendedYear, as returned by handleGetExtendedYear
      * @param month the month, as returned by getDefaultMonthInYear
      * @return the default day of the month
-     * @draft ICU 3.6 (retain)
-     * @provisional ICU 3.6
+     * {@literal @}draft ICU 3.6 (retain)
+     * {@literal @}provisional ICU 3.6
      * @see #DAY_OF_MONTH
      */
     protected int getDefaultDayInMonth(int extendedYear, int month) {
@@ -639,7 +640,7 @@ public class JapaneseCalendar extends GregorianCalendar {
 
     /**
      * {@inheritDoc}
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated

@@ -17,6 +17,7 @@ import android.icu.text.UTF16;
  * @author synwee
  * @see android.icu.impl.Trie
  * @since release 2.1, Jan 01 2002
+ * @hide All android.icu classes are currently hidden
  */
 
  // note that i need to handle the block calculations later, since chartrie
