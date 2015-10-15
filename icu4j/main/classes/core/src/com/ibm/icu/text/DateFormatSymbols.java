@@ -592,7 +592,7 @@ public class DateFormatSymbols implements Serializable, Cloneable {
      * Unlocalized date-time pattern characters. For example: 'y', 'd', etc.
      * All locales use the same unlocalized pattern characters.
      */
-    static final String patternChars = "GyMdkHmsSEDFwWahKzYeugAZvcLQqVUOXxr:";
+    static final String patternChars = "GyMdkHmsSEDFwWahKzYeugAZvcLQqVUOXxr";
 
     /**
      * Localized date-time pattern characters. For example, a locale may
@@ -1072,8 +1072,7 @@ public class DateFormatSymbols implements Serializable, Cloneable {
      * @param width     The requested name width: WIDE, ABBREVIATED, SHORT, NARROW.
      * @return          The year name strings, or null if they are not
      *                  available for this calendar.
-     * @draft ICU 54
-     * @provisional This API might change or be removed in a future release.
+     * @stable ICU 54
      */
     public String[] getYearNames(int context, int width) {
         // context & width ignored for now, one set of names for all uses
@@ -1088,8 +1087,7 @@ public class DateFormatSymbols implements Serializable, Cloneable {
      * @param yearNames The new cyclic year name strings.
      * @param context   The usage context: FORMAT, STANDALONE (currently only FORMAT is supported).
      * @param width     The name width: WIDE, ABBREVIATED, NARROW (currently only ABBREVIATED is supported).
-     * @draft ICU 54
-     * @provisional This API might change or be removed in a future release.
+     * @stable ICU 54
      */
     public void setYearNames(String[] yearNames, int context, int width) {
         if (context == FORMAT && width == ABBREVIATED) {
@@ -1104,8 +1102,7 @@ public class DateFormatSymbols implements Serializable, Cloneable {
      * @param width     The requested name width: WIDE, ABBREVIATED, SHORT, NARROW.
      * @return          The zodiac name strings, or null if they are not
      *                  available for this calendar.
-     * @draft ICU 54
-     * @provisional This API might change or be removed in a future release.
+     * @stable ICU 54
      */
     public String[] getZodiacNames(int context, int width) {
         // context & width ignored for now, one set of names for all uses
@@ -1120,8 +1117,7 @@ public class DateFormatSymbols implements Serializable, Cloneable {
      * @param zodiacNames   The new zodiac name strings.
      * @param context   The usage context: FORMAT, STANDALONE (currently only FORMAT is supported).
      * @param width     The name width: WIDE, ABBREVIATED, NARROW (currently only ABBREVIATED is supported).
-     * @draft ICU 54
-     * @provisional This API might change or be removed in a future release.
+     * @stable ICU 54
      */
     public void setZodiacNames(String[] zodiacNames, int context, int width) {
         if (context == FORMAT && width == ABBREVIATED) {
@@ -1309,6 +1305,11 @@ public class DateFormatSymbols implements Serializable, Cloneable {
 
         String[] tzIDs = TimeZone.getAvailableIDs();
         TimeZoneNames tznames = TimeZoneNames.getInstance(validLocale);
+        tznames.loadAllDisplayNames();
+        NameType types[] = {
+            NameType.LONG_STANDARD, NameType.SHORT_STANDARD,
+            NameType.LONG_DAYLIGHT, NameType.SHORT_DAYLIGHT
+        };
         long now = System.currentTimeMillis();
         String[][] array = new String[tzIDs.length][5];
         for (int i = 0; i < tzIDs.length; i++) {
@@ -1318,10 +1319,7 @@ public class DateFormatSymbols implements Serializable, Cloneable {
             }
 
             array[i][0] = tzIDs[i];
-            array[i][1] = tznames.getDisplayName(canonicalID, NameType.LONG_STANDARD, now);
-            array[i][2] = tznames.getDisplayName(canonicalID, NameType.SHORT_STANDARD, now);
-            array[i][3] = tznames.getDisplayName(canonicalID, NameType.LONG_DAYLIGHT, now);
-            array[i][4] = tznames.getDisplayName(canonicalID, NameType.SHORT_DAYLIGHT, now);
+            tznames.getDisplayNames(canonicalID, types, now, array[i], 1);
         }
 
         zoneStrings = array;

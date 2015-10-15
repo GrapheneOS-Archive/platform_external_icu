@@ -135,7 +135,7 @@ public final class ICUResource {
             return internalSubString(start, end);
         }
 
-        private boolean contentEquals(byte[] otherBytes, int otherOffset, int n) {
+        private boolean regionMatches(byte[] otherBytes, int otherOffset, int n) {
             for (int i = 0; i < n; ++i) {
                 if (bytes[offset + i] != otherBytes[otherOffset + i]) {
                     return false;
@@ -144,7 +144,7 @@ public final class ICUResource {
             return true;
         }
 
-        private boolean contentEquals(int start, CharSequence cs, int n) {
+        private boolean regionMatches(int start, CharSequence cs, int n) {
             for (int i = 0; i < n; ++i) {
                 if (bytes[offset + start + i] != cs.charAt(i)) {
                     return false;
@@ -162,7 +162,7 @@ public final class ICUResource {
             } else if (other instanceof Key) {
                 Key otherKey = (Key)other;
                 return length == otherKey.length &&
-                        contentEquals(otherKey.bytes, otherKey.offset, length);
+                        regionMatches(otherKey.bytes, otherKey.offset, length);
             } else {
                 return false;
             }
@@ -172,17 +172,17 @@ public final class ICUResource {
             if (cs == null) {
                 return false;
             }
-            return this == cs || (cs.length() == length && contentEquals(0, cs, length));
+            return this == cs || (cs.length() == length && regionMatches(0, cs, length));
         }
 
         public boolean startsWith(CharSequence cs) {
             int csLength = cs.length();
-            return csLength <= length && contentEquals(0, cs, csLength);
+            return csLength <= length && regionMatches(0, cs, csLength);
         }
 
         public boolean endsWith(CharSequence cs) {
             int csLength = cs.length();
-            return csLength <= length && contentEquals(length - csLength, cs, csLength);
+            return csLength <= length && regionMatches(length - csLength, cs, csLength);
         }
 
         @Override
@@ -357,15 +357,15 @@ public final class ICUResource {
         public void put(Key key, Value value) {}
 
         /**
-         * Removes any value for this key.
-         * Typically used for CLDR no-fallback data values of "∅∅∅"
-         * when enumerating tables with fallback from root to the specific resource bundle.
+         * Adds a no-fallback/no-inheritance marker for this key.
+         * Used for CLDR no-fallback data values of "∅∅∅"
+         * when enumerating tables with fallback from the specific resource bundle to root.
          *
          * <p>The default implementation does nothing.
          *
          * @param key to be removed
          */
-        public void remove(Key key) {}
+        public void putNoFallback(Key key) {}
 
         /**
          * Returns a nested resource array for the key as another sink.

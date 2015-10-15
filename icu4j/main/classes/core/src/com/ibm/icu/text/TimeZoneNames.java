@@ -179,8 +179,7 @@ public abstract class TimeZoneNames implements Serializable {
      * @param locale
      *            The JDK locale.
      * @return An instance of <code>TimeZoneDisplayNames</code>
-     * @draft ICU 54
-     * @provisional This API might change or be removed in a future release.
+     * @stable ICU 54
      */
     public static TimeZoneNames getInstance(Locale locale) {
         return getInstance(ULocale.forLocale(locale));
@@ -195,8 +194,7 @@ public abstract class TimeZoneNames implements Serializable {
      * as Israel Standard Time for Israel, while it is parsed as India Standard Time for
      * all other regions). The zone names returned by this instance are not localized.
      * 
-     * @draft ICU 54
-     * @provisional This API might change or be removed in a future release.
+     * @stable ICU 54
      */
     public static TimeZoneNames getTZDBInstance(ULocale locale) {
         return new TZDBTimeZoneNames(locale);
@@ -441,7 +439,6 @@ public abstract class TimeZoneNames implements Serializable {
     }
 
     /**
-     * @author Markus
      * @internal For specific users only until proposed publicly.
      * @deprecated This API is ICU internal only.
      */
@@ -449,7 +446,6 @@ public abstract class TimeZoneNames implements Serializable {
     public void loadAllDisplayNames() {}
 
     /**
-     * @author Markus
      * @internal For specific users only until proposed publicly.
      * @deprecated This API is ICU internal only.
      */

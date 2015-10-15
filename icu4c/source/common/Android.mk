@@ -21,10 +21,10 @@ LOCAL_PATH:= $(call my-dir)
 
 src_files := \
 	cmemory.c          cstring.c          \
-	cwchar.c           locmap.c           \
-	loadednormalizer2impl.cpp \
-	punycode.cpp       putil.cpp          \
-	sharedobject.cpp \
+	cwchar.c           filteredbrk.cpp    \
+	locmap.c           loadednormalizer2impl.cpp \
+	pluralmap.cpp      punycode.cpp       \
+	putil.cpp          sharedobject.cpp   \
 	simplepatternformatter.cpp \
 	uarrsort.c         ubidi.c            \
 	ubidiln.c          ubidi_props.c      \
