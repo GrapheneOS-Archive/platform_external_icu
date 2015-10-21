@@ -761,7 +761,7 @@ public class SimpleDateFormat extends DateFormat {
     //       !   "   #   $   %   &   '   (   )   *   +   ,   -   .   /
         -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
     //   0   1   2   3   4   5   6   7   8   9   :   ;   <   =   >   ?
-        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,  0, -1, -1, -1, -1, -1,
+        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
     //   @   A   B   C   D   E   F   G   H   I   J   K   L   M   N   O
         -1, 40, -1, -1, 20, 30, 30,  0, 50, -1, -1, 50, 20, 20, -1,  0,
     //   P   Q   R   S   T   U   V   W   X   Y   Z   [   \   ]   ^   _
@@ -796,7 +796,7 @@ public class SimpleDateFormat extends DateFormat {
         //  0      1      2      3      4      5      6      7
         false, false, false, false, false, false, false, false,
         //  8      9      :      ;      <      =      >      ?
-        false, false,  true, false, false, false, false, false,
+        false, false, false, false, false, false, false, false,
         //  @      A      B      C      D      E      F      G
         false,  true,  true,  true,  true,  true,  true,  true,
         //  H      I      J      K      L      M      N      O
@@ -1361,7 +1361,7 @@ public class SimpleDateFormat extends DateFormat {
     //       !   "   #   $   %   &   '   (   )   *   +   ,   -   .   /
         -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
     //   0   1   2   3   4   5   6   7   8   9   :   ;   <   =   >   ?
-        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 35, -1, -1, -1, -1, -1,
+        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
     //   @   A   B   C   D   E   F   G   H   I   J   K   L   M   N   O
         -1, 22, -1, -1, 10,  9, 11,  0,  5, -1, -1, 16, 26,  2, -1, 31,
     //   P   Q   R   S   T   U   V   W   X   Y   Z   [   \   ]   ^   _
@@ -1418,7 +1418,7 @@ public class SimpleDateFormat extends DateFormat {
         /*O*/   DateFormat.TIMEZONE_LOCALIZED_GMT_OFFSET_FIELD,
         /*Xx*/  DateFormat.TIMEZONE_ISO_FIELD, DateFormat.TIMEZONE_ISO_LOCAL_FIELD,
         /*r*/   DateFormat.RELATED_YEAR,
-        /*:*/   DateFormat.TIME_SEPARATOR,
+        /*(no pattern character defined for this)*/   DateFormat.TIME_SEPARATOR,
     };
 
     // Map pattern character index to DateFormat.Field
@@ -1440,7 +1440,7 @@ public class SimpleDateFormat extends DateFormat {
         /*O*/   DateFormat.Field.TIME_ZONE,
         /*Xx*/  DateFormat.Field.TIME_ZONE, DateFormat.Field.TIME_ZONE,
         /*r*/   DateFormat.Field.RELATED_YEAR,
-        /*:*/   DateFormat.Field.TIME_SEPARATOR,
+        /*(no pattern character defined for this)*/   DateFormat.Field.TIME_SEPARATOR,
     };
 
     /**
@@ -1844,7 +1844,8 @@ public class SimpleDateFormat extends DateFormat {
                 zeroPaddingNumber(currentNumberFormat,buf, (value/3)+1, count, maxIntCount);
             }
             break;
-        case 35: // ':' - TIME SEPARATOR
+        case 35: // TIME SEPARATOR (no pattern character currently defined, we should
+                 // not get here but leave support in for future definition. 
             buf.append(formatData.getTimeSeparatorString());
             break;
         default:
@@ -2143,18 +2144,23 @@ public class SimpleDateFormat extends DateFormat {
     }
 
     /**
-     * Format characters that indicate numeric fields.  The character
-     * at index 0 is treated specially.
+     * Format characters that indicate numeric fields always.
      */
-    private static final String NUMERIC_FORMAT_CHARS = "MYyudehHmsSDFwWkK";
+    private static final String NUMERIC_FORMAT_CHARS = "ADdFgHhKkmrSsuWwYy";
+
+    /**
+     * Format characters that indicate numeric fields when pattern lengh
+     * is up to 2.
+     */
+    private static final String NUMERIC_FORMAT_CHARS2 = "ceLMQq";
 
     /**
      * Return true if the given format character, occuring count
      * times, represents a numeric field.
      */
     private static final boolean isNumeric(char formatChar, int count) {
-        int i = NUMERIC_FORMAT_CHARS.indexOf(formatChar);
-        return (i > 0 || (i == 0 && count < 3));
+        return NUMERIC_FORMAT_CHARS.indexOf(formatChar) >= 0
+                || (count <= 2 && NUMERIC_FORMAT_CHARS2.indexOf(formatChar) >= 0);
     }
 
     /**
@@ -2566,7 +2572,7 @@ public class SimpleDateFormat extends DateFormat {
                 } else if ((pch == ' ' || pch == '.') && getBooleanAttribute(DateFormat.BooleanAttribute.PARSE_ALLOW_WHITESPACE)) {
                     ++idx;
                     continue;
-                } else if (pos != originalPos && getBooleanAttribute(DateFormat.BooleanAttribute.PARSE_PARTIAL_MATCH)) {
+                } else if (pos != originalPos && getBooleanAttribute(DateFormat.BooleanAttribute.PARSE_PARTIAL_LITERAL_MATCH)) {
                     ++idx;
                     continue;
                 }
@@ -3322,7 +3328,8 @@ public class SimpleDateFormat extends DateFormat {
                     return newStart;
                 }
 
-            case 35:
+            case 35: // TIME SEPARATOR (no pattern character currently defined, we should
+                     // not get here but leave support in for future definition. 
             {
                 // Try matching a time separator.
                 ArrayList<String> data = new ArrayList<String>(3);
@@ -3334,7 +3341,7 @@ public class SimpleDateFormat extends DateFormat {
                 }
 
                 // If lenient, add also the alternate, if different from the locale.
-                if (getBooleanAttribute(DateFormat.BooleanAttribute.PARSE_PARTIAL_MATCH) &&
+                if (getBooleanAttribute(DateFormat.BooleanAttribute.PARSE_PARTIAL_LITERAL_MATCH) &&
                         !formatData.getTimeSeparatorString().equals(DateFormatSymbols.ALTERNATE_TIME_SEPARATOR)) {
                     data.add(DateFormatSymbols.ALTERNATE_TIME_SEPARATOR);
                 }
@@ -3673,6 +3680,11 @@ public class SimpleDateFormat extends DateFormat {
                     break;
                 }
             }
+        }
+        
+        // if serialized pre-56 update & turned off partial match switch to new enum value
+        if(getBooleanAttribute(DateFormat.BooleanAttribute.PARSE_PARTIAL_MATCH) == false) {
+            setBooleanAttribute(DateFormat.BooleanAttribute.PARSE_PARTIAL_LITERAL_MATCH, false);
         }
     }
 
@@ -4042,8 +4054,7 @@ public class SimpleDateFormat extends DateFormat {
      * @param fields the fields to override
      * @param overrideNF the NumbeferFormat used 
      * @exception IllegalArgumentException when the fields contain invalid field
-     * @draft ICU 54
-     * @provisional This API might change or be removed in a future release.
+     * @stable ICU 54
      */
     public void setNumberFormat(String fields, NumberFormat overrideNF) {
         overrideNF.setGroupingUsed(false);
@@ -4077,8 +4088,7 @@ public class SimpleDateFormat extends DateFormat {
      *
      * @param field the field the user wants
      * @return override NumberFormat used for the field
-     * @draft ICU 54
-     * @provisional This API might change or be removed in a future release.
+     * @stable ICU 54
      */
     public NumberFormat getNumberFormat(char field) {
         Character ovrField;
