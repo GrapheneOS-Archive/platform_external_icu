@@ -30,6 +30,7 @@ src_files += \
         persncal.cpp    rbtz.cpp     reldtfmt.cpp \
         taiwncal.cpp    tzrule.cpp   tztrans.cpp  \
         udatpg.cpp      vtzone.cpp                \
+	affixpatternparser.cpp \
 	anytrans.cpp    astro.cpp    buddhcal.cpp \
 	basictz.cpp     calendar.cpp casetrn.cpp  \
 	choicfmt.cpp    coleitr.cpp  coll.cpp     \
@@ -50,9 +51,11 @@ src_files += \
 	curramt.cpp     currfmt.cpp  currunit.cpp \
 	dangical.cpp \
 	datefmt.cpp     dcfmtsym.cpp decimfmt.cpp \
+	decimfmtimpl.cpp \
 	decimalformatpattern.cpp \
+	digitaffix.cpp digitaffixesandpadding.cpp \
+	digitformatter.cpp digitgrouping.cpp digitinterval.cpp \
 	digitlst.cpp    dtfmtsym.cpp esctrn.cpp   \
-	filteredbrk.cpp \
 	fmtable_cnv.cpp fmtable.cpp  format.cpp   \
 	funcrepl.cpp    gender.cpp \
 	gregocal.cpp gregoimp.cpp \
@@ -63,6 +66,7 @@ src_files += \
 	msgfmt.cpp      name2uni.cpp nfrs.cpp     \
 	nfrule.cpp      nfsubs.cpp   nortrans.cpp \
 	nultrans.cpp    numfmt.cpp   olsontz.cpp  \
+	pluralaffix.cpp precision.cpp \
 	quant.cpp       quantityformatter.cpp \
 	rbnf.cpp     rbt.cpp      \
 	rbt_data.cpp    rbt_pars.cpp rbt_rule.cpp \
@@ -72,6 +76,7 @@ src_files += \
 	rematch.cpp     remtrans.cpp repattrn.cpp \
 	rulebasedcollator.cpp \
 	scriptset.cpp \
+	smallintformatter.cpp \
 	search.cpp      simpletz.cpp smpdtfmt.cpp \
 	sortkey.cpp     strmatch.cpp strrepl.cpp  \
 	stsearch.cpp    timezone.cpp \
@@ -88,8 +93,9 @@ src_files += \
 	ufieldpositer.cpp \
 	utf16collationiterator.cpp \
 	utf8collationiterator.cpp \
-	utrans.cpp   windtfmt.cpp \
-	winnmfmt.cpp    zonemeta.cpp \
+	utrans.cpp \
+	valueformatter.cpp visibledigits.cpp \
+	windtfmt.cpp    winnmfmt.cpp zonemeta.cpp \
 	numsys.cpp      chnsecal.cpp \
 	cecal.cpp       coptccal.cpp ethpccal.cpp \
 	brktrans.cpp    wintzimpl.cpp plurrule.cpp \

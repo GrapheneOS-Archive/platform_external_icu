@@ -203,11 +203,23 @@ public class TimeZoneNamesImpl extends TimeZoneNames {
         NameSearchHandler handler = new NameSearchHandler(nameTypes);
         _namesTrie.find(text, start, handler);
         if (handler.getMaxMatchLen() == (text.length() - start) || _namesTrieFullyLoaded) {
+            // perfect match, or no more names available
+            return handler.getMatches();
+        }
+
+        // All names are not yet loaded into the trie.
+        // We may have loaded names for formatting several time zones,
+        // and might be parsing one of those.
+        // Populate the parsing trie from all of the already-loaded names.
+        addAllNamesIntoTrie();
+        handler.resetResults();
+        _namesTrie.find(text, start, handler);
+        if (handler.getMaxMatchLen() == (text.length() - start)) {
             // perfect match
             return handler.getMatches();
         }
 
-        // All names are not yet loaded into the trie
+        // Still no match, load all names.
         internalLoadAllDisplayNames();
         addAllNamesIntoTrie();
 
@@ -298,7 +310,9 @@ public class TimeZoneNamesImpl extends TimeZoneNames {
             for (Map.Entry<ICUResource.Key, ZNamesLoader> entry : keyToLoader.entrySet()) {
                 ICUResource.Key key = entry.getKey();
                 ZNamesLoader loader = entry.getValue();
-                if (key.startsWith(MZ_PREFIX)) {
+                if (loader == ZNamesLoader.DUMMY_LOADER) {
+                    // skip
+                } else if (key.startsWith(MZ_PREFIX)) {
                     String mzID = mzIDFromKey(key).intern();
                     ZNames mzNames = ZNames.getInstance(loader.getNames(), null);
                     _mzNamesMap.put(mzID, mzNames);
@@ -314,28 +328,38 @@ public class TimeZoneNamesImpl extends TimeZoneNames {
         public TableSink getOrCreateTableSink(ICUResource.Key key, int initialSize) {
             ZNamesLoader loader = keyToLoader.get(key);
             if (loader != null) {
+                if (loader == ZNamesLoader.DUMMY_LOADER) {
+                    return null;
+                }
                 return loader;
             }
+            ZNamesLoader result = null;
             if (key.startsWith(MZ_PREFIX)) {
                 String mzID = mzIDFromKey(key);
                 if (_mzNamesMap.containsKey(mzID)) {
-                    return null;  // We have already loaded the names for this meta zone.
+                    // We have already loaded the names for this meta zone.
+                    loader = ZNamesLoader.DUMMY_LOADER;
+                } else {
+                    result = loader = ZNamesLoader.forMetaZoneNames();
                 }
-                loader = ZNamesLoader.forMetaZoneNames();
             } else {
                 String tzID = tzIDFromKey(key);
                 if (_tzNamesMap.containsKey(tzID)) {
-                    return null;  // We have already loaded the names for this time zone.
+                    // We have already loaded the names for this time zone.
+                    loader = ZNamesLoader.DUMMY_LOADER;
+                } else {
+                    result = loader = ZNamesLoader.forTimeZoneNames();
                 }
-                loader = ZNamesLoader.forTimeZoneNames();
             }
             keyToLoader.put(key.clone(), loader);
-            return loader;
+            return result;
         }
 
         @Override
-        public void remove(ICUResource.Key key) {
-            keyToLoader.remove(key);
+        public void putNoFallback(ICUResource.Key key) {
+            if (!keyToLoader.containsKey(key)) {
+                keyToLoader.put(key.clone(), ZNamesLoader.DUMMY_LOADER);
+            }
         }
 
         /**
@@ -552,6 +576,13 @@ public class TimeZoneNamesImpl extends TimeZoneNames {
         private static int NUM_META_ZONE_NAMES = 6;
         private static int NUM_TIME_ZONE_NAMES = 7;  // incl. EXEMPLAR_LOCATION
 
+        private static String NO_NAME = "";
+
+        /**
+         * Does not load any names, for no-fallback handling.
+         */
+        private static ZNamesLoader DUMMY_LOADER = new ZNamesLoader(0);
+
         private String[] names;
         private int numNames;
 
@@ -605,23 +636,24 @@ public class TimeZoneNamesImpl extends TimeZoneNames {
         @Override
         public void put(ICUResource.Key key, ICUResource.Value value) {
             if (value.getType() == UResourceBundle.STRING) {
+                if (names == null) {
+                    names = new String[numNames];
+                }
                 NameType type = nameTypeFromKey(key);
-                if (type != null && type.ordinal() < numNames) {
-                    if (names == null) {
-                        names = new String[numNames];
-                    }
+                if (type != null && type.ordinal() < numNames && names[type.ordinal()] == null) {
                     names[type.ordinal()] = value.getString();
                 }
             }
         }
 
         @Override
-        public void remove(ICUResource.Key key) {
-            if (names != null) {
-                NameType type = nameTypeFromKey(key);
-                if (type != null && type.ordinal() < numNames) {
-                    names[type.ordinal()] = null;
-                }
+        public void putNoFallback(ICUResource.Key key) {
+            if (names == null) {
+                names = new String[numNames];
+            }
+            NameType type = nameTypeFromKey(key);
+            if (type != null && type.ordinal() < numNames && names[type.ordinal()] == null) {
+                names[type.ordinal()] = NO_NAME;
             }
         }
 
@@ -629,13 +661,21 @@ public class TimeZoneNamesImpl extends TimeZoneNames {
             if (names == null) {
                 return null;
             }
-            int length = names.length;
-            while (names[length - 1] == null) {
-                if (--length == 0) {
-                    return null;  // no names
+            int length = 0;
+            for (int i = 0; i < numNames; ++i) {
+                String name = names[i];
+                if (name != null) {
+                    if (name == NO_NAME) {
+                        names[i] = null;
+                    } else {
+                        length = i + 1;
+                    }
                 }
             }
-            if (length == names.length || numNames == NUM_TIME_ZONE_NAMES) {
+            if (length == 0) {
+                return null;
+            }
+            if (length == numNames || numNames == NUM_TIME_ZONE_NAMES) {
                 // Return the full array if the last name is set.
                 // Also return the full *time* zone names array,
                 // so that the exemplar location can be set.
@@ -664,9 +704,11 @@ public class TimeZoneNamesImpl extends TimeZoneNames {
         private static final int EX_LOC_INDEX = NameType.EXEMPLAR_LOCATION.ordinal();
 
         private String[] _names;
+        private boolean didAddIntoTrie;
 
         protected ZNames(String[] names) {
             _names = names;
+            didAddIntoTrie = names == null;
         }
 
         public static ZNames getInstance(String[] names, String tzID) {
@@ -700,7 +742,7 @@ public class TimeZoneNamesImpl extends TimeZoneNames {
         }
 
         public void addNamesIntoTrie(String mzID, String tzID, TextTrieMap<NameInfo> trie) {
-            if (_names == null) {
+            if (_names == null || didAddIntoTrie) {
                 return;
             }
             for (int i = 0; i < _names.length; ++ i) {
@@ -713,6 +755,7 @@ public class TimeZoneNamesImpl extends TimeZoneNames {
                     trie.put(name, info);
                 }
             }
+            didAddIntoTrie = true;
         }
     }
 

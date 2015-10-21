@@ -12,9 +12,11 @@ import java.text.FieldPosition;
 import java.text.Format;
 import java.text.ParseException;
 import java.text.ParsePosition;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.EnumSet;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.MissingResourceException;
@@ -448,8 +450,9 @@ public abstract class DateFormat extends UFormat {
     final static int RELATED_YEAR = 34;
 
     /**
-     * {@icu} FieldPosition selector for ':' field alignment,
-     * no related Calendar field.
+     * {@icu} FieldPosition selector time separator,
+     * no related Calendar field. No pattern character is currently
+     * defined for this.
      * @draft ICU 55
      * @provisional This API might change or be removed in a future release.
      */
@@ -461,7 +464,13 @@ public abstract class DateFormat extends UFormat {
      * @stable ICU 3.0
      */
 
-    public final static int FIELD_COUNT = 36; // must == DateFormatSymbols.patternChars.length()
+    public final static int FIELD_COUNT = 36;
+    // A previous comment for the above stated that we must have
+    // DateFormat.FIELD_COUNT == DateFormatSymbols.patternChars.length()
+    // but that does not seem to be the case, and in fact since there is
+    // no pattern character currently defined for TIME_SEPARATOR it is
+    // currently the case that
+    // DateFormat.FIELD_COUNT == DateFormatSymbols.patternChars.length() + 1
 
     
     /**
@@ -484,15 +493,23 @@ public abstract class DateFormat extends UFormat {
         /** 
          * indicates tolerance of pattern mismatch between input data and specified format pattern.
          * e.g. accepting "September" for a month pattern of MMM ("Sep")  
-         * @draft ICU 53
+         * @draft ICU 56
          * @provisional This API might change or be removed in a future release.
          */
         PARSE_MULTIPLE_PATTERNS_FOR_MATCH, 
         /**
          * indicates tolerance of a partial literal match
-         * @draft ICU 53
+         * e.g. accepting "--mon-02-march-2011" for a pattern of "'--: 'EEE-WW-MMMM-yyyy"
+         * @draft ICU 56
          * @provisional This API might change or be removed in a future release.
          */
+        PARSE_PARTIAL_LITERAL_MATCH,
+        /**
+         * alias of PARSE_PARTIAL_LITERAL_MATCH
+         * @internal
+         * @deprecated
+         */
+        @Deprecated
         PARSE_PARTIAL_MATCH
     };
     
@@ -1037,6 +1054,41 @@ public abstract class DateFormat extends UFormat {
      * @stable ICU 4.0
      */
     public static final String NUM_MONTH_WEEKDAY_DAY = "MEd";
+    
+    /**
+     * List of all of the date skeleton constants for iteration.
+     * Note that this is fragile; be sure to add any values that are added above.
+     * @internal
+     * @deprecated This API is ICU internal only.
+     */
+    @Deprecated
+    public static final List<String> DATE_SKELETONS = Arrays.asList(
+            YEAR,
+            QUARTER,
+            ABBR_QUARTER,
+            YEAR_QUARTER,
+            YEAR_ABBR_QUARTER,
+            MONTH,
+            ABBR_MONTH,
+            NUM_MONTH,
+            YEAR_MONTH,
+            YEAR_ABBR_MONTH,
+            YEAR_NUM_MONTH,
+            DAY,
+            YEAR_MONTH_DAY,
+            YEAR_ABBR_MONTH_DAY,
+            YEAR_NUM_MONTH_DAY,
+            WEEKDAY,
+            ABBR_WEEKDAY,
+            YEAR_MONTH_WEEKDAY_DAY,
+            YEAR_ABBR_MONTH_WEEKDAY_DAY,
+            YEAR_NUM_MONTH_WEEKDAY_DAY,
+            MONTH_DAY,
+            ABBR_MONTH_DAY,
+            NUM_MONTH_DAY,
+            MONTH_WEEKDAY_DAY,
+            ABBR_MONTH_WEEKDAY_DAY,
+            NUM_MONTH_WEEKDAY_DAY);
 
     /*
      * TIMES
@@ -1102,7 +1154,25 @@ public abstract class DateFormat extends UFormat {
      * @stable ICU 4.0
      */
     public static final String MINUTE_SECOND = "ms";
-
+    
+    /**
+     * List of all of the time skeleton constants for iteration.
+     * Note that this is fragile; be sure to add any values that are added above.
+     * @internal
+     * @deprecated This API is ICU internal only.
+     */
+    @Deprecated
+    public static final List<String> TIME_SKELETONS = Arrays.asList(
+            HOUR,
+            HOUR24,
+            MINUTE,
+            HOUR_MINUTE,
+            HOUR24_MINUTE,
+            SECOND,
+            HOUR_MINUTE_SECOND,
+            HOUR24_MINUTE_SECOND,
+            MINUTE_SECOND);
+    
     /*
      * TIMEZONES
      */
@@ -1160,6 +1230,21 @@ public abstract class DateFormat extends UFormat {
      * @stable ICU 50
      */
     public static final String ABBR_UTC_TZ = "ZZZZ";
+
+    /**
+     * List of all of the zone skeleton constants for iteration.
+     * Note that this is fragile; be sure to add any values that are added above.
+     * @internal
+     * @deprecated This API is ICU internal only.
+     */
+    @Deprecated
+    public static final List<String> ZONE_SKELETONS = Arrays.asList(
+            LOCATION_TZ,
+            GENERIC_TZ,
+            ABBR_GENERIC_TZ,
+            SPECIFIC_TZ,
+            ABBR_SPECIFIC_TZ,
+            ABBR_UTC_TZ);
 
     /*
      * deprecated skeleton constants
@@ -1579,6 +1664,9 @@ public abstract class DateFormat extends UFormat {
      */
     public DateFormat setBooleanAttribute(BooleanAttribute key, boolean value) 
     {
+        if(key.equals(DateFormat.BooleanAttribute.PARSE_PARTIAL_MATCH)) {
+            key = DateFormat.BooleanAttribute.PARSE_PARTIAL_LITERAL_MATCH;
+        }
         if(value)
         {
             booleanAttributes.add(key);
@@ -1601,6 +1689,9 @@ public abstract class DateFormat extends UFormat {
      */
     public boolean getBooleanAttribute(BooleanAttribute key) 
     {
+        if(key == DateFormat.BooleanAttribute.PARSE_PARTIAL_MATCH) {
+            key = DateFormat.BooleanAttribute.PARSE_PARTIAL_LITERAL_MATCH;
+        }
         return booleanAttributes.contains(key);
     }
     
@@ -1730,6 +1821,12 @@ public abstract class DateFormat extends UFormat {
             // Didn't have capitalizationSetting, set it to default
             capitalizationSetting = DisplayContext.CAPITALIZATION_NONE;
         }
+        
+        // if deserialized from a release that didn't have booleanAttributes, add them all
+        if(booleanAttributes == null) {
+            booleanAttributes = EnumSet.allOf(BooleanAttribute.class);
+        }
+
         serialVersionOnStream = currentSerialVersion;
     }
 
@@ -1990,8 +2087,7 @@ public abstract class DateFormat extends UFormat {
      *              {@link DateTimePatternGenerator}.) This can be {@link DateFormat#ABBR_MONTH},
      *              {@link DateFormat#MONTH_WEEKDAY_DAY}, etc.
      *
-     * @draft ICU 54
-     * @provisional This API might change or be removed in a future release.
+     * @stable ICU 54
      */
     public final static DateFormat getInstanceForSkeleton(String skeleton) {
         return getPatternInstance(skeleton, ULocale.getDefault(Category.FORMAT));
@@ -2007,8 +2103,7 @@ public abstract class DateFormat extends UFormat {
      *
      * @param locale The locale for which the date/time format is desired.
      *
-     * @draft ICU 54
-     * @provisional This API might change or be removed in a future release.
+     * @stable ICU 54
      */
     public final static DateFormat getInstanceForSkeleton(String skeleton, Locale locale) {
         return getPatternInstance(skeleton, ULocale.forLocale(locale));
@@ -2024,8 +2119,7 @@ public abstract class DateFormat extends UFormat {
      *
      * @param locale The locale for which the date/time format is desired.
      *
-     * @draft ICU 54
-     * @provisional This API might change or be removed in a future release.
+     * @stable ICU 54
      */
     public final static DateFormat getInstanceForSkeleton(String skeleton, ULocale locale) {
         DateTimePatternGenerator generator = DateTimePatternGenerator.getInstance(locale);
@@ -2046,8 +2140,7 @@ public abstract class DateFormat extends UFormat {
      *
      * @param locale The locale for which the date/time format is desired.
      *
-     * @draft ICU 54
-     * @provisional This API might change or be removed in a future release.
+     * @stable ICU 54
      */
     public final static DateFormat getInstanceForSkeleton(Calendar cal, String skeleton, Locale locale) {
         return getPatternInstance(cal, skeleton, ULocale.forLocale(locale));
@@ -2066,8 +2159,7 @@ public abstract class DateFormat extends UFormat {
      *
      * @param locale The locale for which the date/time format is desired.
      *
-     * @draft ICU 54
-     * @provisional This API might change or be removed in a future release.
+     * @stable ICU 54
      */
     public final static DateFormat getInstanceForSkeleton(
         Calendar cal, String skeleton, ULocale locale) {
