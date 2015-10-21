@@ -1,7 +1,7 @@
 /*
  *******************************************************************************
- * Copyright (C) 1996-2014, International Business Machines Corporation and    *
- * others. All Rights Reserved.                                                *
+ * Copyright (C) 1996-2015, International Business Machines Corporation and
+ * others. All Rights Reserved.
  *******************************************************************************
  */
 package com.ibm.icu.text;
@@ -13,7 +13,6 @@ import com.ibm.icu.impl.CharacterIteratorWrapper;
 import com.ibm.icu.impl.ReplaceableUCharacterIterator;
 import com.ibm.icu.impl.UCharArrayIterator;
 import com.ibm.icu.impl.UCharacterIteratorWrapper;
-import com.ibm.icu.impl.UCharacterProperty;
 
 
 /**
@@ -159,9 +158,7 @@ public abstract class UCharacterIterator
             if(UTF16.isTrailSurrogate((char)ch2)){
                 // we found a surrogate pair 
                 // return the codepoint
-                return UCharacterProperty.getRawSupplementary(
-                                                          (char)ch,(char)ch2
-                                                             );
+                return Character.toCodePoint((char)ch, (char)ch2);
             }
         }
         return ch;
@@ -210,8 +207,7 @@ public abstract class UCharacterIterator
         if(UTF16.isLeadSurrogate((char)ch1)){
             int ch2 = next();
             if(UTF16.isTrailSurrogate((char)ch2)){
-                return UCharacterProperty.getRawSupplementary((char)ch1,
-                                                              (char)ch2);
+                return Character.toCodePoint((char)ch1, (char)ch2);
             }else if (ch2 != DONE) {
                 // unmatched surrogate so back out
                 previous();
@@ -248,8 +244,7 @@ public abstract class UCharacterIterator
         if(UTF16.isTrailSurrogate((char)ch1)){
             int ch2 = previous();
             if(UTF16.isLeadSurrogate((char)ch2)){
-                return UCharacterProperty.getRawSupplementary((char)ch2,
-                                                              (char)ch1);
+                return Character.toCodePoint((char)ch2, (char)ch1);
             }else if (ch2 != DONE) {
                 //unmatched trail surrogate so back out
                 next();
