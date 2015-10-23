@@ -1,4 +1,7 @@
-This directory contains tools for ICU data updates.
+This directory contains tools for ICU updates.
+
+Data update tools
+=================
 
 update-tzdata.py
   - downloads tzdata updates and regenerates the ICU and
@@ -14,3 +17,10 @@ updateicudata.py
   - regerates the ICU data files.
     ICU and CTS tests for libcore should be run before and
     after.
+
+Version upgrade tools
+=====================
+
+srcgen
+  - tools to generate Android's copy of the ICU source code in
+    libcore/android_icu4j.
