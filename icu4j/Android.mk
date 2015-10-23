@@ -72,13 +72,6 @@ icu4j_config_root := $(LOCAL_PATH)/main/classes/core/src
 include external/icu/icu4j/adjust_icudt_path.mk
 
 include $(CLEAR_VARS)
-LOCAL_STATIC_JAVA_LIBRARIES := icu4j
-LOCAL_DONT_DELETE_JAR_DIRS := true
-LOCAL_MODULE := icu4j-jarjar
-LOCAL_JARJAR_RULES := $(TOP)/libcore/jarjar-rules.txt
-include $(BUILD_STATIC_JAVA_LIBRARY)
-
-include $(CLEAR_VARS)
 LOCAL_SRC_FILES := $(icu4j_src_files)
 LOCAL_JAVA_RESOURCE_DIRS := $(icu4j_resource_dirs)
 LOCAL_STATIC_JAVA_LIBRARIES := icu4j-icudata-host icu4j-icutzdata-host
@@ -142,14 +135,14 @@ endif  # HOST_OS == linux
 # icudata and icutzdata, so add rules for it.
 include $(CLEAR_VARS)
 LOCAL_STATIC_JAVA_LIBRARIES := icu4j-icudata
-LOCAL_JARJAR_RULES := $(TOP)/libcore/jarjar-rules.txt
+LOCAL_JARJAR_RULES := $(LOCAL_PATH)/liblayout-jarjar-rules.txt
 LOCAL_JACK_ENABLED := disabled
 LOCAL_MODULE := icu4j-icudata-jarjar
 include $(BUILD_STATIC_JAVA_LIBRARY)
 
 include $(CLEAR_VARS)
 LOCAL_STATIC_JAVA_LIBRARIES := icu4j-icutzdata
-LOCAL_JARJAR_RULES := $(TOP)/libcore/jarjar-rules.txt
+LOCAL_JARJAR_RULES := $(LOCAL_PATH)/liblayout-jarjar-rules.txt
 LOCAL_JACK_ENABLED := disabled
 LOCAL_MODULE := icu4j-icutzdata-jarjar
 include $(BUILD_STATIC_JAVA_LIBRARY)
