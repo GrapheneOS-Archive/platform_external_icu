@@ -7,6 +7,7 @@
  */
 package android.icu.impl.locale;
 
+/** @hide All android.icu classes are currently hidden */
 public class ParseStatus {
     int _parseLength = 0;
     int _errorIndex = -1;

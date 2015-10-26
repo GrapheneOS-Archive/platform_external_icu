@@ -45,6 +45,7 @@ package android.icu.util;
  * </pre>
  * @author synwee
  * @stable ICU 2.6
+ * @hide All android.icu classes are currently hidden
  */
 public interface RangeValueIterator
 {

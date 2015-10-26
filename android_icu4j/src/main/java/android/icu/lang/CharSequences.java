@@ -21,8 +21,9 @@ package android.icu.lang;
  * <li>{@link java.lang.Character#toCodePoint(char, char)}</li>
  * </ul>
  * @author markdavis
- * @internal
+ * {@literal @}internal
  * @deprecated This API is ICU internal only.
+ * @hide All android.icu classes are currently hidden
  */
 @Deprecated
 public class CharSequences {
@@ -45,7 +46,7 @@ public class CharSequences {
 
     /**
      * Find the longest n such that a[aIndex,n] = b[bIndex,n], and n is on a character boundary.
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -70,7 +71,7 @@ public class CharSequences {
     
     /**
      * Count the code point length. Unpaired surrogates count as 1.
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -93,7 +94,7 @@ public class CharSequences {
      * Utility function for comparing codepoint to string without generating new
      * string.
      * 
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -109,7 +110,7 @@ public class CharSequences {
     }
 
     /**
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -124,7 +125,7 @@ public class CharSequences {
      * Actually, there is one difference; a null compares as less.
      * Note that this (=String) order is UTF-16 order -- *not* code point order.
      * 
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -168,7 +169,7 @@ public class CharSequences {
      * Actually, there is one difference; a null compares as less.
      * Note that this (=String) order is UTF-16 order -- *not* code point order.
      * 
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -179,7 +180,7 @@ public class CharSequences {
     /**
      * Return the value of the first code point, if the string is exactly one code point. Otherwise return Integer.MAX_VALUE.
      * 
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -196,7 +197,7 @@ public class CharSequences {
      * Utility function for comparing objects that may be null
      * string.
      * 
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -209,7 +210,7 @@ public class CharSequences {
     /**
      * Utility for comparing the contents of CharSequences
      * 
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -229,7 +230,7 @@ public class CharSequences {
     /**
      * Utility for comparing the contents of CharSequences
      * 
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -241,7 +242,7 @@ public class CharSequences {
     /**
      * Are we on a character boundary?
      * 
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -255,7 +256,7 @@ public class CharSequences {
     /**
      * Find code point in string.
      * 
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -278,7 +279,7 @@ public class CharSequences {
      *   }
      * </pre>
      * 
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated

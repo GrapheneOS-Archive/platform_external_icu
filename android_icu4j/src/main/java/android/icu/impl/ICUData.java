@@ -22,6 +22,7 @@ import android.icu.util.VersionInfo;
 
 /**
  * Provides access to ICU data files as InputStreams.  Implements security checking.
+ * @hide All android.icu classes are currently hidden
  */
 public final class ICUData {
     /**

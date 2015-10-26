@@ -16,6 +16,7 @@ package android.icu.impl.coll;
  * UTF-16 collation element and character iterator.
  * Handles normalized UTF-16 text, with length or NUL-terminated.
  * Unnormalized text is handled by a subclass.
+ * @hide All android.icu classes are currently hidden
  */
 public class UTF16CollationIterator extends CollationIterator {
     /**

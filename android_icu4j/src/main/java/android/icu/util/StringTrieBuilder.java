@@ -20,6 +20,7 @@ import java.util.HashMap;
  *
  * @author Markus W. Scherer
  * @stable ICU 4.8
+ * @hide All android.icu classes are currently hidden
  */
 public abstract class StringTrieBuilder {
     /**
@@ -46,14 +47,14 @@ public abstract class StringTrieBuilder {
     }
 
     /**
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
     protected StringTrieBuilder() {}
 
     /**
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -74,7 +75,7 @@ public abstract class StringTrieBuilder {
     }
 
     /**
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -119,7 +120,7 @@ public abstract class StringTrieBuilder {
     }
 
     /**
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -816,57 +817,57 @@ public abstract class StringTrieBuilder {
     }
 
     /**
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
     protected abstract boolean matchNodesCanHaveValues() /*const*/;
 
     /**
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
     protected abstract int getMaxBranchLinearSubNodeLength() /*const*/;
     /**
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
     protected abstract int getMinLinearMatch() /*const*/;
     /**
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
     protected abstract int getMaxLinearMatchLength() /*const*/;
 
     /**
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
     protected abstract int write(int unit);
     /**
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
     protected abstract int write(int offset, int length);
     /**
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
     protected abstract int writeValueAndFinal(int i, boolean isFinal);
     /**
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
     protected abstract int writeValueAndType(boolean hasValue, int value, int node);
     /**
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -879,7 +880,7 @@ public abstract class StringTrieBuilder {
 
     // Strings and sub-strings for linear-match nodes.
     /**
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated

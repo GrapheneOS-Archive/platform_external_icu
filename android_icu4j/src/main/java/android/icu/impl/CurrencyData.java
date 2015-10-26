@@ -13,6 +13,7 @@ import java.util.Map;
 import android.icu.text.CurrencyDisplayNames;
 import android.icu.util.ULocale;
 
+/** @hide All android.icu classes are currently hidden */
 public class CurrencyData {
     public static final CurrencyDisplayInfoProvider provider;
 

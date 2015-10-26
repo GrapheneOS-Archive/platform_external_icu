@@ -150,6 +150,7 @@ import android.icu.util.UResourceBundle;
  * calendar; non-Gregorian calendars are supported from ICU 4.4.1.  
  * 
  * @stable ICU 4.0
+ * @hide All android.icu classes are currently hidden
  */
 
 public class DateIntervalInfo implements Cloneable, Freezable<DateIntervalInfo>, Serializable {
@@ -261,7 +262,7 @@ public class DateIntervalInfo implements Cloneable, Freezable<DateIntervalInfo>,
 
         /**
          * {@inheritDoc}
-         * @internal
+         * {@literal @}internal
          * @deprecated This API is ICU internal only.
          */
         @Deprecated
@@ -327,7 +328,7 @@ public class DateIntervalInfo implements Cloneable, Freezable<DateIntervalInfo>,
      * and is recommended to be used only for power users who
      * wants to create their own interval patterns and use them to create
      * date interval formatter.
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -710,7 +711,7 @@ public class DateIntervalInfo implements Cloneable, Freezable<DateIntervalInfo>,
      * @param laterDateFirst   whether the first date in intervalPattern
      *                         is earlier date or later date
      * @return                 pattern info object
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -1045,7 +1046,7 @@ public class DateIntervalInfo implements Cloneable, Freezable<DateIntervalInfo>,
     }
     
     /**
-     * @internal CLDR
+     * {@literal @}internal CLDR
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -1059,7 +1060,7 @@ public class DateIntervalInfo implements Cloneable, Freezable<DateIntervalInfo>,
     
     /**
      * Get the internal patterns, with a deep clone for safety.
-     * @internal CLDR
+     * {@literal @}internal CLDR
      * @deprecated This API is ICU internal only.
      */
     @Deprecated

@@ -37,6 +37,7 @@ import java.util.Iterator;
  * Do not alter the UnicodeSet while iterating.
  * @author M. Davis
  * @stable ICU 2.0
+ * @hide All android.icu classes are currently hidden
  */
 public class UnicodeSetIterator {
     
@@ -236,7 +237,7 @@ public class UnicodeSetIterator {
     private int range = 0;
     
     /**
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -245,13 +246,13 @@ public class UnicodeSetIterator {
     }
     
     /**
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
     protected int endElement;
     /**
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -263,7 +264,7 @@ public class UnicodeSetIterator {
      */
 
     /**
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated

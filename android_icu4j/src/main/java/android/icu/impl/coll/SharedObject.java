@@ -90,6 +90,7 @@ import android.icu.util.ICUCloneNotSupportedException;
  *
  * TODO: Consider making this more widely available inside ICU,
  * or else adopting a different model.
+ * @hide All android.icu classes are currently hidden
  */
 public class SharedObject implements Cloneable {
     /**

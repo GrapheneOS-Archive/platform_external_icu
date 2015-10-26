@@ -18,6 +18,7 @@ import android.icu.text.UnicodeSet;
 import android.icu.util.ICUUncheckedIOException;
 import android.icu.util.VersionInfo;
 
+/** @hide All android.icu classes are currently hidden */
 public final class Normalizer2Impl {
     public static final class Hangul {
         /* Korean Hangul and Jamo constants */

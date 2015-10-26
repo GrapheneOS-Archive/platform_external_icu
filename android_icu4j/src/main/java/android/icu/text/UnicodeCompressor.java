@@ -73,6 +73,7 @@ package android.icu.text;
 *
 * @author Stephen F. Booth
 * @stable ICU 2.4
+* @hide All android.icu classes are currently hidden
 */
 
 /*

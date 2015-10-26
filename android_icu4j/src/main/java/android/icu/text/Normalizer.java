@@ -128,6 +128,7 @@ import android.icu.util.ICUCloneNotSupportedException;
  * It is for this reason that Normalizer does not implement the CharacterIterator interface.
  *
  * @stable ICU 2.8
+ * @hide All android.icu classes are currently hidden
  */
 public final class Normalizer implements Cloneable {
     // The input text and our position in it
@@ -229,7 +230,7 @@ public final class Normalizer implements Cloneable {
     public static abstract class Mode {
         /**
          * Sole constructor
-         * @internal
+         * {@literal @}internal
          * @deprecated This API is ICU internal only.
          */
         @Deprecated
@@ -237,7 +238,7 @@ public final class Normalizer implements Cloneable {
         }
 
         /**
-         * @internal
+         * {@literal @}internal
          * @deprecated This API is ICU internal only.
          */
         @Deprecated
@@ -1568,7 +1569,7 @@ public final class Normalizer implements Cloneable {
      * @throws IllegalArgumentException if the given index is less than
      *          {@link #getBeginIndex} or greater than {@link #getEndIndex}.
      * @deprecated ICU 3.2
-     * @obsolete ICU 3.2
+     * {@literal @}obsolete ICU 3.2
      */
     @Deprecated
      ///CLOVER:OFF

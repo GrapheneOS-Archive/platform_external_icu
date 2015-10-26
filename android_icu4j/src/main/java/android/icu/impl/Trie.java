@@ -42,6 +42,7 @@ import android.icu.text.UTF16;
  * @see android.icu.impl.CharTrie
  * @see android.icu.impl.IntTrie
  * @since release 2.1, Jan 01 2002
+ * @hide All android.icu classes are currently hidden
  */
 public abstract class Trie
 {

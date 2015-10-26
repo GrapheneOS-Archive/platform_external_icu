@@ -13,6 +13,7 @@ import java.util.TimeZone;
 
 /**
  * Formatter for durations in milliseconds.
+ * @hide All android.icu classes are currently hidden
  */
 public interface DurationFormatter {
 

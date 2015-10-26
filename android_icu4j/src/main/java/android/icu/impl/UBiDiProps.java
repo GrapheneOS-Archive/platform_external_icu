@@ -29,6 +29,7 @@ import android.icu.lang.UProperty;
 import android.icu.text.UnicodeSet;
 import android.icu.util.ICUUncheckedIOException;
 
+/** @hide All android.icu classes are currently hidden */
 public final class UBiDiProps {
     // constructors etc. --------------------------------------------------- ***
 

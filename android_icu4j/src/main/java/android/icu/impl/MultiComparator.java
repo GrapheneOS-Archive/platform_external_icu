@@ -12,6 +12,7 @@ import java.util.Comparator;
 /**
  * TODO: Move to com.ibm.icu.dev.somewhere.
  * 2015-sep-03: This is used there, and also in CLDR and in UnicodeTools.
+ * @hide All android.icu classes are currently hidden
  */
 public class MultiComparator<T> implements Comparator<T> {
     private Comparator<T>[] comparators;

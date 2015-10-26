@@ -21,8 +21,9 @@ import android.icu.impl.SimpleCache;
 /**
  * Provide information about gender in locales based on data in CLDR. Currently supplies gender of lists.
  * @author markdavis
- * @internal
+ * {@literal @}internal
  * @deprecated This API is ICU internal only.
+ * @hide All android.icu classes are currently hidden
  */
 @Deprecated
 public class GenderInfo {
@@ -31,25 +32,25 @@ public class GenderInfo {
 
     /**
      * Gender: OTHER means either the information is unavailable, or the person has declined to state MALE or FEMALE.
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
     public enum Gender {
         /**
-         * @internal
+         * {@literal @}internal
          * @deprecated This API is ICU internal only.
          */
         @Deprecated
         MALE,
         /**
-         * @internal
+         * {@literal @}internal
          * @deprecated This API is ICU internal only.
          */
         @Deprecated
         FEMALE,
         /**
-         * @internal
+         * {@literal @}internal
          * @deprecated This API is ICU internal only.
          */
         @Deprecated
@@ -59,7 +60,7 @@ public class GenderInfo {
     /**
      * Create GenderInfo from a ULocale.
      * @param uLocale desired locale
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -70,7 +71,7 @@ public class GenderInfo {
     /**
      * Create GenderInfo from a Locale.
      * @param locale desired locale
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -82,7 +83,7 @@ public class GenderInfo {
      * Enum only meant for use in CLDR and in testing. Indicates the category for the locale.
      * This only affects gender for lists more than one. For lists of 1 item, the gender
      * of the list always equals the gender of that sole item.
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -91,7 +92,7 @@ public class GenderInfo {
          * For an empty list, returns OTHER;
          * For a single item, returns its gender;
          * Otherwise always OTHER.
-         * @internal
+         * {@literal @}internal
          * @deprecated This API is ICU internal only.
          */
         @Deprecated
@@ -101,7 +102,7 @@ public class GenderInfo {
          * For a single item, returns its gender;
          * Otherwise gender(all male) = male, gender(all female) = female, otherwise gender(list) = other.
          * So any 'other' value makes the overall gender be 'other'.
-         * @internal
+         * {@literal @}internal
          * @deprecated This API is ICU internal only.
          */
         @Deprecated
@@ -111,7 +112,7 @@ public class GenderInfo {
          * For a single item, returns its gender;
          * Otherwise, gender(all female) = female, otherwise gender(list) = male.
          * So for more than one item, any 'other' value makes the overall gender be 'male'.
-         * @internal
+         * {@literal @}internal
          * @deprecated This API is ICU internal only.
          */
         @Deprecated
@@ -127,7 +128,7 @@ public class GenderInfo {
         }
 
         /**
-         * @internal
+         * {@literal @}internal
          * @deprecated This API is ICU internal only.
          */
         @Deprecated
@@ -144,7 +145,7 @@ public class GenderInfo {
      * Get the gender of a list, based on locale usage.
      * @param genders a list of genders.
      * @return the gender of the list.
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -156,7 +157,7 @@ public class GenderInfo {
      * Get the gender of a list, based on locale usage.
      * @param genders a list of genders.
      * @return the gender of the list.
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -208,7 +209,7 @@ public class GenderInfo {
     /**
      * Only for testing and use with CLDR.
      * @param genderStyle gender style
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated

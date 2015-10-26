@@ -28,6 +28,7 @@ import android.icu.util.UResourceBundle;
  *
  * @author Mark Davis
  * @stable ICU 50
+ * @hide All android.icu classes are currently hidden
  */
 final public class ListFormatter {
     private final SimplePatternFormatter two;
@@ -38,35 +39,35 @@ final public class ListFormatter {
     
     /**
      * Indicates the style of Listformatter
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
     public enum Style {
         /**
          * Standard style.
-         * @internal
+         * {@literal @}internal
          * @deprecated This API is ICU internal only.
          */
         @Deprecated
         STANDARD("standard"),
         /**
          * Style for full durations
-         * @internal
+         * {@literal @}internal
          * @deprecated This API is ICU internal only.
          */
         @Deprecated
         DURATION("unit"),
         /**
          * Style for durations in abbrevated form
-         * @internal
+         * {@literal @}internal
          * @deprecated This API is ICU internal only.
          */
         @Deprecated
         DURATION_SHORT("unit-short"),
         /**
          * Style for durations in narrow form
-         * @internal
+         * {@literal @}internal
          * @deprecated This API is ICU internal only.
          */
         @Deprecated
@@ -78,7 +79,7 @@ final public class ListFormatter {
             this.name = name;
         }
         /**
-         * @internal
+         * {@literal @}internal
          * @deprecated This API is ICU internal only.
          */
         @Deprecated
@@ -104,7 +105,7 @@ final public class ListFormatter {
      * @param end
      *            string for the end of a list items, containing {0} for the
      *            first part of the list, and {1} for the last item.
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -156,7 +157,7 @@ final public class ListFormatter {
      * @param locale the locale in question.
      * @param style the style
      * @return ListFormatter
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -242,7 +243,7 @@ final public class ListFormatter {
     
     /**
      * Returns the locale of this object.
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated

@@ -8,12 +8,13 @@
 package android.icu.impl;
 
 /**
- * @internal
+ * {@literal @}internal
+ * @hide All android.icu classes are currently hidden
  */
 public class CalendarCache
 {
     /**
-     * @internal
+     * {@literal @}internal
      */
     public CalendarCache() {
         makeArrays(arraySize);
@@ -32,14 +33,14 @@ public class CalendarCache
     }
     
     /**
-     * @internal
+     * {@literal @}internal
      */
     public synchronized long get(long key) {
         return values[findIndex(key)];
     }
     
     /**
-     * @internal
+     * {@literal @}internal
      */
     public synchronized void put(long key, long value)
     {
@@ -121,7 +122,7 @@ public class CalendarCache
     private long[]  values      = new long[arraySize];
 
     /**
-     * @internal
+     * {@literal @}internal
      */
     static public  long EMPTY   = Long.MIN_VALUE;
 }

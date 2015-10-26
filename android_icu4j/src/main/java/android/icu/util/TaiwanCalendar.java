@@ -33,6 +33,7 @@ import java.util.Locale;
  * @author Alan Liu
  * @author Steven R. Loomis
  * @stable ICU 3.8
+ * @hide All android.icu classes are currently hidden
  */
 public class TaiwanCalendar extends GregorianCalendar {
     // jdk1.4.2 serialver

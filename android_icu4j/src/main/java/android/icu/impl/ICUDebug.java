@@ -9,6 +9,7 @@ package android.icu.impl;
 
 import android.icu.util.VersionInfo;
 
+/** @hide All android.icu classes are currently hidden */
 public final class ICUDebug {
     private static String params;
     static {

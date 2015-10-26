@@ -11,15 +11,16 @@ package android.icu.util;
  * Simple struct-like class for int output parameters.
  * Like <code>Output&lt;Integer&gt;</code> but without auto-boxing.
  *
- * @internal but could become public
+ * {@literal @}internal but could become public
  * @deprecated This API is ICU internal only.
+ * @hide All android.icu classes are currently hidden
  */
 @Deprecated
 public class OutputInt {
     /**
      * The value field.
      *
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -28,7 +29,7 @@ public class OutputInt {
     /**
      * Constructs an <code>OutputInt</code> with value 0.
      *
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -39,7 +40,7 @@ public class OutputInt {
      * Constructs an <code>OutputInt</code> with the given value.
      *
      * @param value the initial value
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -49,7 +50,7 @@ public class OutputInt {
 
     /**
      * {@inheritDoc}
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated

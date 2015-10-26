@@ -107,6 +107,7 @@ import android.icu.impl.coll.UVector32;
  * @see StringSearch
  * @author Syn Wee Quek
  * @stable ICU 2.8
+ * @hide All android.icu classes are currently hidden
  */
 public final class CollationElementIterator
 {
@@ -715,7 +716,7 @@ public final class CollationElementIterator
     /**
      * Mock implementation of hashCode(). This implementation always returns a constant
      * value. When Java assertion is enabled, this method triggers an assertion failure.
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -725,7 +726,7 @@ public final class CollationElementIterator
     }
 
     /**
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated

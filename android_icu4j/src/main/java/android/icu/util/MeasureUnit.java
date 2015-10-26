@@ -34,6 +34,7 @@ import android.icu.text.UnicodeSet;
  * @see android.icu.util.Measure
  * @author Alan Liu
  * @stable ICU 3.0
+ * @hide All android.icu classes are currently hidden
  */
 public class MeasureUnit implements Serializable {
     private static final long serialVersionUID = -1839973855554750484L;
@@ -45,21 +46,21 @@ public class MeasureUnit implements Serializable {
     = new HashMap<String, Map<String,MeasureUnit>>();
 
     /**
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
     protected final String type;
     
     /**
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
     protected final String subType;
     
     /**
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -173,7 +174,7 @@ public class MeasureUnit implements Serializable {
      * available for it, and it may not be returned by getAvailable().
      * However, for special purposes (such as CLDR tooling), it is available.
      *
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -199,7 +200,7 @@ public class MeasureUnit implements Serializable {
     
     /**
      * For ICU use only.
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -211,13 +212,13 @@ public class MeasureUnit implements Serializable {
     static final UnicodeSet ASCII_HYPHEN_DIGITS = new UnicodeSet('-', '-', '0', '9', 'a', 'z').freeze();
 
     /**
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
     protected interface Factory {
         /**
-         * @internal
+         * {@literal @}internal
          * @deprecated This API is ICU internal only.
          */
         @Deprecated
@@ -292,7 +293,7 @@ public class MeasureUnit implements Serializable {
 
     // Must only be called at static initialization, or inside synchronized block.
     /**
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -362,8 +363,8 @@ public class MeasureUnit implements Serializable {
 
     /**
      * Constant for unit of angle: revolution
-     * @draft ICU 56
-     * @provisional This API might change or be removed in a future release.
+     * {@literal @}draft ICU 56
+     * {@literal @}provisional This API might change or be removed in a future release.
      */
     public static final MeasureUnit REVOLUTION_ANGLE = MeasureUnit.internalGetInstance("angle", "revolution");
 
@@ -423,8 +424,8 @@ public class MeasureUnit implements Serializable {
 
     /**
      * Constant for unit of consumption: liter-per-100kilometers
-     * @draft ICU 56
-     * @provisional This API might change or be removed in a future release.
+     * {@literal @}draft ICU 56
+     * {@literal @}provisional This API might change or be removed in a future release.
      */
     public static final MeasureUnit LITER_PER_100KILOMETERS = MeasureUnit.internalGetInstance("consumption", "liter-per-100kilometers");
 
@@ -502,8 +503,8 @@ public class MeasureUnit implements Serializable {
 
     /**
      * Constant for unit of duration: century
-     * @draft ICU 56
-     * @provisional This API might change or be removed in a future release.
+     * {@literal @}draft ICU 56
+     * {@literal @}provisional This API might change or be removed in a future release.
      */
     public static final MeasureUnit CENTURY = MeasureUnit.internalGetInstance("duration", "century");
 
@@ -725,8 +726,8 @@ public class MeasureUnit implements Serializable {
 
     /**
      * Constant for unit of length: mile-scandinavian
-     * @draft ICU 56
-     * @provisional This API might change or be removed in a future release.
+     * {@literal @}draft ICU 56
+     * {@literal @}provisional This API might change or be removed in a future release.
      */
     public static final MeasureUnit MILE_SCANDINAVIAN = MeasureUnit.internalGetInstance("length", "mile-scandinavian");
 
@@ -918,8 +919,8 @@ public class MeasureUnit implements Serializable {
 
     /**
      * Constant for unit of speed: knot
-     * @draft ICU 56
-     * @provisional This API might change or be removed in a future release.
+     * {@literal @}draft ICU 56
+     * {@literal @}provisional This API might change or be removed in a future release.
      */
     public static final MeasureUnit KNOT = MeasureUnit.internalGetInstance("speed", "knot");
 
@@ -949,8 +950,8 @@ public class MeasureUnit implements Serializable {
 
     /**
      * Constant for unit of temperature: generic
-     * @draft ICU 56
-     * @provisional This API might change or be removed in a future release.
+     * {@literal @}draft ICU 56
+     * {@literal @}provisional This API might change or be removed in a future release.
      */
     public static final MeasureUnit GENERIC_TEMPERATURE = MeasureUnit.internalGetInstance("temperature", "generic");
 
@@ -1028,8 +1029,8 @@ public class MeasureUnit implements Serializable {
 
     /**
      * Constant for unit of volume: cup-metric
-     * @draft ICU 56
-     * @provisional This API might change or be removed in a future release.
+     * {@literal @}draft ICU 56
+     * {@literal @}provisional This API might change or be removed in a future release.
      */
     public static final MeasureUnit CUP_METRIC = MeasureUnit.internalGetInstance("volume", "cup-metric");
 
@@ -1083,8 +1084,8 @@ public class MeasureUnit implements Serializable {
 
     /**
      * Constant for unit of volume: pint-metric
-     * @draft ICU 56
-     * @provisional This API might change or be removed in a future release.
+     * {@literal @}draft ICU 56
+     * {@literal @}provisional This API might change or be removed in a future release.
      */
     public static final MeasureUnit PINT_METRIC = MeasureUnit.internalGetInstance("volume", "pint-metric");
 

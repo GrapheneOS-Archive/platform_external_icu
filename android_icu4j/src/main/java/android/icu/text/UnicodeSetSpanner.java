@@ -40,6 +40,7 @@ import android.icu.util.OutputInt;
  * </p>The entire string is traversed.
  * 
  * @stable ICU 54
+ * @hide All android.icu classes are currently hidden
  */
 public class UnicodeSetSpanner {
 

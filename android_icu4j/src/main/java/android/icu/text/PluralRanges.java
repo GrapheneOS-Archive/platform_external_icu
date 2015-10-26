@@ -19,8 +19,9 @@ import android.icu.util.Output;
  * be chosen. The rules for determining this value vary widely across locales.
  * 
  * @author markdavis
- * @internal
+ * {@literal @}internal
  * @deprecated This API is ICU internal only.
+ * @hide All android.icu classes are currently hidden
  */
 @Deprecated
 public final class PluralRanges implements Freezable<PluralRanges>, Comparable<PluralRanges> {
@@ -32,7 +33,7 @@ public final class PluralRanges implements Freezable<PluralRanges>, Comparable<P
     /**
      * Constructor
      * 
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -192,7 +193,7 @@ public final class PluralRanges implements Freezable<PluralRanges>, Comparable<P
      *            plural category for the end of the range
      * @param result
      *            the resulting plural category
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -234,7 +235,7 @@ public final class PluralRanges implements Freezable<PluralRanges>, Comparable<P
      * @param end
      *            plural category for the end of the range
      * @return the resulting plural category, or 'end' if there is no data.
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -252,7 +253,7 @@ public final class PluralRanges implements Freezable<PluralRanges>, Comparable<P
      * @param end
      *            plural category for the end of the range
      * @return whether the value for (start,end) is explicit or not.
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -266,7 +267,7 @@ public final class PluralRanges implements Freezable<PluralRanges>, Comparable<P
      * @param count
      *            plural category to test
      * @return true if set
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -276,7 +277,7 @@ public final class PluralRanges implements Freezable<PluralRanges>, Comparable<P
 
     /**
      * {@inheritDoc}
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -294,7 +295,7 @@ public final class PluralRanges implements Freezable<PluralRanges>, Comparable<P
 
     /**
      * {@inheritDoc}
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Override
@@ -305,7 +306,7 @@ public final class PluralRanges implements Freezable<PluralRanges>, Comparable<P
 
     /**
      * {@inheritDoc}
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -315,7 +316,7 @@ public final class PluralRanges implements Freezable<PluralRanges>, Comparable<P
 
     /**
      * {@inheritDoc}
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -325,7 +326,7 @@ public final class PluralRanges implements Freezable<PluralRanges>, Comparable<P
 
     /**
      * {@inheritDoc}
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -336,7 +337,7 @@ public final class PluralRanges implements Freezable<PluralRanges>, Comparable<P
 
     /**
      * {@inheritDoc}
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -349,7 +350,7 @@ public final class PluralRanges implements Freezable<PluralRanges>, Comparable<P
 
     /**
      * {@inheritDoc}
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Override

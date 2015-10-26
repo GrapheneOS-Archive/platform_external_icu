@@ -12,7 +12,7 @@
  * This is a port of the C++ class UPropsVectors from ICU4C
  * 
  * @author Shaopeng Jia
- * @internal
+ * {@literal @}internal
  */
 
 package android.icu.impl;
@@ -33,6 +33,7 @@ import java.util.Comparator;
  * 
  * It would be possible to store only one range boundary per row, but
  * self-contained rows allow to later sort them by contents.
+ * @hide All android.icu classes are currently hidden
  */
 public class PropsVectors {
     private int v[];

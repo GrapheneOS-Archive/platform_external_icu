@@ -28,6 +28,7 @@ package android.icu.util;
  * @see android.icu.text.MeasureFormat
  * @author Alan Liu
  * @stable ICU 3.0
+ * @hide All android.icu classes are currently hidden
  */
 public class Measure {
     

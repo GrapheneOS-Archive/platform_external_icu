@@ -17,6 +17,7 @@ import android.icu.util.ULocale.Category;
  * A class for accessing miscellaneous data in the locale bundles
  * @author ram
  * @stable ICU 2.8
+ * @hide All android.icu classes are currently hidden
  */
 public final class LocaleData {
 

@@ -34,6 +34,7 @@ import android.icu.util.CharsTrie.Entry;
  * - That would make the runtime code depend on the builder.
  * - That would only work if we have the rule string, and we allow users to
  *   omit the rule string from data files.
+ * @hide All android.icu classes are currently hidden
  */
 public final class TailoredSet {
 

@@ -144,6 +144,7 @@ import android.icu.util.ULocale;
  *     are normally used with text from many different scripts. </blockquote>
  *
  * @stable ICU 4.6
+ * @hide All android.icu classes are currently hidden
  */
 public class SpoofChecker {
 
@@ -197,7 +198,7 @@ public class SpoofChecker {
     /**
      * Security Profile constant from UAX 31 for use in setAllowedChars.
      * Will probably be replaced by UnicodeSet property.
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -209,7 +210,7 @@ public class SpoofChecker {
     /**
      * Security Profile constant from UAX 31 for use in setAllowedChars.
      * Will probably be replaced by UnicodeSet property.
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -332,7 +333,7 @@ public class SpoofChecker {
      * Check that an identifier is no looser than the specified RestrictionLevel.
      * The default if this is not called is HIGHLY_RESTRICTIVE.
      *
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -367,7 +368,7 @@ public class SpoofChecker {
     /**
      * Check that an identifier does not mix numbers.
      *
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -635,7 +636,7 @@ public class SpoofChecker {
          * This method also sets RESTRICTION_LEVEL.
          * @param restrictionLevel The loosest restriction level allowed.
          * @return self
-         * @internal
+         * {@literal @}internal
          * @deprecated This API is ICU internal only.
          */
         @Deprecated
@@ -1459,7 +1460,7 @@ public class SpoofChecker {
      * Get the Restriction Level that is being tested.
      *
      * @return The restriction level
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -1548,7 +1549,7 @@ public class SpoofChecker {
         /**
          * The numerics found in the string, if MIXED_NUMBERS was set; otherwise null;
          *
-         * @internal
+         * {@literal @}internal
          * @deprecated This API is ICU internal only.
          */
         @Deprecated
@@ -1556,7 +1557,7 @@ public class SpoofChecker {
         /**
          * The restriction level that the text meets, if RESTRICTION_LEVEL is set; otherwise null.
          *
-         * @internal
+         * {@literal @}internal
          * @deprecated This API is ICU internal only.
          */
         @Deprecated
@@ -1930,7 +1931,7 @@ public class SpoofChecker {
      *
      *   @param other the SpoofChecker being compared with.
      *   @return true if the two SpoofCheckers are equal.
-     *   @internal
+     *   {@literal @}internal
      *   @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -1962,7 +1963,7 @@ public class SpoofChecker {
 
     /**
      * This is a stub implementation and not designed for generic use.
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated

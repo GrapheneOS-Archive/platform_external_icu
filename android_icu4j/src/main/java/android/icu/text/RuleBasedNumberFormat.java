@@ -534,6 +534,7 @@ import android.icu.util.UResourceBundleIterator;
  * @see PluralFormat
  * @see PluralRules
  * @stable ICU 2.0
+ * @hide All android.icu classes are currently hidden
  */
 public class RuleBasedNumberFormat extends NumberFormat {
 
@@ -939,7 +940,7 @@ public class RuleBasedNumberFormat extends NumberFormat {
     /**
      * Mock implementation of hashCode(). This implementation always returns a constant
      * value. When Java assertion is enabled, this method triggers an assertion failure.
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -1483,7 +1484,7 @@ public class RuleBasedNumberFormat extends NumberFormat {
     }
 
     /**
-     * {@icu} Set a particular DisplayContext value in the formatter,
+     * {{@literal @}icu} Set a particular DisplayContext value in the formatter,
      * such as CAPITALIZATION_FOR_STANDALONE. Note: For getContext, see 
      * NumberFormat.
      * 
@@ -1513,7 +1514,7 @@ public class RuleBasedNumberFormat extends NumberFormat {
      * <code>BigDecimal.ROUND_UNNECESSARY</code>.
      * @see #setRoundingMode
      * @see java.math.BigDecimal
-     * @draft ICU 56
+     * {@literal @}draft ICU 56
      */
     @Override
     public int getRoundingMode() {
@@ -1529,7 +1530,7 @@ public class RuleBasedNumberFormat extends NumberFormat {
      * @exception IllegalArgumentException if <code>roundingMode</code> is unrecognized.
      * @see #getRoundingMode
      * @see java.math.BigDecimal
-     * @draft ICU 56
+     * {@literal @}draft ICU 56
      */
     @Override
     public void setRoundingMode(int roundingMode) {

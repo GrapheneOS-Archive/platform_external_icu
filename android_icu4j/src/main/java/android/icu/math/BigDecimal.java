@@ -218,6 +218,7 @@ import android.icu.lang.UCharacter;
  * @see MathContext
  * @author Mike Cowlishaw
  * @stable ICU 2.0
+ * @hide All android.icu classes are currently hidden
  */
 
 public class BigDecimal extends java.lang.Number implements java.io.Serializable, java.lang.Comparable<BigDecimal> {

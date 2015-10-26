@@ -29,6 +29,7 @@ import android.icu.util.VersionInfo;
  *
  * It is logically immutable: Do not modify its values.
  * The fields are public for convenience.
+ * @hide All android.icu classes are currently hidden
  */
 public final class CollationTailoring {
     CollationTailoring(SharedObject.Reference<CollationSettings> baseSettings) {

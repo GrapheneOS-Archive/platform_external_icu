@@ -15,6 +15,7 @@ import java.security.PrivilegedAction;
  * This utility class is used for resolving a right ClassLoader from
  * a given class. getClassLoader always returns a non-null ClassLoader
  * even a class is loaded through the bootstrap class loader of JRE.
+ * @hide All android.icu classes are currently hidden
  */
 public class ClassLoaderUtil {
 

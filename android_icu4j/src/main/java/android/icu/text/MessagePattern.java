@@ -76,6 +76,7 @@ import android.icu.util.ICUCloneNotSupportedException;
  *
  * @stable ICU 4.8
  * @author Markus Scherer
+ * @hide All android.icu classes are currently hidden
  */
 public final class MessagePattern implements Cloneable, Freezable<MessagePattern> {
     /**
@@ -308,7 +309,7 @@ public final class MessagePattern implements Cloneable, Freezable<MessagePattern
 
     /**
      * @return true if getApostropheMode() == ApostropheMode.DOUBLE_REQUIRED
-     * @internal
+     * {@literal @}internal
      */
     /* package */ boolean jdkAposMode() {
         return aposMode == ApostropheMode.DOUBLE_REQUIRED;
@@ -1416,7 +1417,7 @@ public final class MessagePattern implements Cloneable, Freezable<MessagePattern
     /**
      * Appends the s[start, limit[ substring to sb, but with only half of the apostrophes
      * according to JDK pattern behavior.
-     * @internal
+     * {@literal @}internal
      */
     /* package */ static void appendReducedApostrophes(String s, int start, int limit,
                                                        StringBuilder sb) {

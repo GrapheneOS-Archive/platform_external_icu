@@ -14,6 +14,7 @@ import java.util.Locale;
 
 /**
  * A class to hold utility functions missing from java.util.Locale.
+ * @hide All android.icu classes are currently hidden
  */
 public class LocaleUtility {
 

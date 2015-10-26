@@ -80,6 +80,7 @@ import android.icu.util.ULocale.Category;
  * @see android.icu.util.Calendar
  * @author Alan Liu
  * @stable ICU 2.8
+ * @hide All android.icu classes are currently hidden
  */
 public class ChineseCalendar extends Calendar {
     // jdk1.4.2 serialver
@@ -334,7 +335,7 @@ public class ChineseCalendar extends Calendar {
      * Construct a <code>ChineseCalenar</code> based on the current time
      * with the given time zone, the locale, the epoch year and the time zone
      * used for astronomical calculation.
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -1021,7 +1022,7 @@ public class ChineseCalendar extends Calendar {
 
     /**
      * {@inheritDoc}
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
