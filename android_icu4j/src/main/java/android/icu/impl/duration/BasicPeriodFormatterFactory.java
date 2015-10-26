@@ -52,6 +52,7 @@ import android.icu.impl.duration.impl.PeriodFormatterDataService;
  * Counts for higher units will be formatted as integers.
  *
  * </ul>
+ * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
  */
 public class BasicPeriodFormatterFactory implements PeriodFormatterFactory {

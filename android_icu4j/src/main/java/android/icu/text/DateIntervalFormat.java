@@ -357,6 +357,8 @@ public class DateIntervalFormat extends UFormat {
      * 
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide original deprecated method
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public DateIntervalFormat(String skeleton, DateIntervalInfo dtItvInfo,
@@ -632,6 +634,8 @@ public class DateIntervalFormat extends UFormat {
     /**
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide original deprecated method
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public String getPatterns(Calendar fromCalendar,
@@ -927,6 +931,8 @@ public class DateIntervalFormat extends UFormat {
      *                  on failure.
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide original deprecated method
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public Object parseObject(String source, ParsePosition parse_pos)
@@ -1843,6 +1849,8 @@ public class DateIntervalFormat extends UFormat {
      * Get the internal patterns for the skeleton
      * {@literal @}internal CLDR
      * @deprecated This API is ICU internal only.
+     * @hide original deprecated method
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public Map<String, PatternInfo> getRawPatterns() {

@@ -15,7 +15,9 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-/** @hide All android.icu classes are currently hidden */
+/** @hide Only a subset of ICU is exposed in Android
+* @hide All android.icu classes are currently hidden
+ */
 public class SimpleCache<K, V> implements ICUCache<K, V> {
     private static final int DEFAULT_CAPACITY = 16;
 

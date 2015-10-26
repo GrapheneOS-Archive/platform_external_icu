@@ -14,6 +14,7 @@ import java.util.Date;
  * defined by an array of milliseconds since the standard base time.
  * 
  * @stable ICU 3.8
+ * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
  */
 public class TimeArrayTimeZoneRule extends TimeZoneRule {

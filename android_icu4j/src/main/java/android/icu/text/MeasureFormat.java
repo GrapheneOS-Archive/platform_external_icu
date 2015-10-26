@@ -348,6 +348,7 @@ public class MeasureFormat extends UFormat {
      * @throws UnsupportedOperationException Not supported.
      * {@literal @}draft ICU 53 (Retain)
      * {@literal @}provisional This API might change or be removed in a future release.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Override
     public Measure parseObject(String source, ParsePosition pos) {
@@ -387,6 +388,8 @@ public class MeasureFormat extends UFormat {
      * @return the formatted string.
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide original deprecated method
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public final String formatMeasureRange(Measure lowValue, Measure highValue) {
@@ -500,6 +503,7 @@ public class MeasureFormat extends UFormat {
      * @return appendTo.
      * {@literal @}draft ICU 55
      * {@literal @}provisional This API might change or be removed in a future release.
+     * @hide draft / provisional / internal are hidden on Android
      */
     public StringBuilder formatMeasurePerUnit(
             Measure measure,
@@ -1268,6 +1272,8 @@ public class MeasureFormat extends UFormat {
      * @return range formatter, such as "{0}–{1}"
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide original deprecated method
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
 
@@ -1314,6 +1320,8 @@ public class MeasureFormat extends UFormat {
      * @return range pattern
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide original deprecated method
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public static String getRangePattern(ULocale forLocale, FormatWidth width) {

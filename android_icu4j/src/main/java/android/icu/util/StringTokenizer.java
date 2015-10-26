@@ -100,6 +100,7 @@ import android.icu.text.UnicodeSet;
  * </p>
  * @author syn wee
  * @stable ICU 2.4
+ * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
  */
 public final class StringTokenizer implements Enumeration<Object>
@@ -147,6 +148,7 @@ public final class StringTokenizer implements Enumeration<Object>
      * @exception NullPointerException if str is null
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public StringTokenizer(String str, UnicodeSet delim, boolean returndelims, boolean coalescedelims)
@@ -231,6 +233,7 @@ public final class StringTokenizer implements Enumeration<Object>
      * @exception NullPointerException if str is null
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public StringTokenizer(String str, String delim, boolean returndelims, boolean coalescedelims)

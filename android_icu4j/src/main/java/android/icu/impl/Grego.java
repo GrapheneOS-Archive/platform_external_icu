@@ -26,6 +26,7 @@ import java.util.Locale;
  *
  * Note:  Unlike GregorianCalendar, all computations performed by this
  * class occur in the pure proleptic GregorianCalendar.
+ * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
  */
 public class Grego {

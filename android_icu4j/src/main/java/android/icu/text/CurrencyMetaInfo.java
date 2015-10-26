@@ -27,6 +27,7 @@ import android.icu.util.Currency.CurrencyUsage;
  * This class is not intended for public subclassing.
  * 
  * @stable ICU 4.4
+ * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
  */
 public class CurrencyMetaInfo {
@@ -58,6 +59,7 @@ public class CurrencyMetaInfo {
      * @return true if there is actual data
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public static boolean hasData() {
@@ -68,6 +70,7 @@ public class CurrencyMetaInfo {
      * Subclass constructor.
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     protected CurrencyMetaInfo() {
@@ -106,6 +109,7 @@ public class CurrencyMetaInfo {
          * true if we are filtering only for currencies used as legal tender.
          * {@literal @}internal
          * @deprecated This API is ICU internal only.
+         * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
         public final boolean tenderOnly;
@@ -462,6 +466,7 @@ public class CurrencyMetaInfo {
          * 
          * {@literal @}internal
          * @deprecated This API is ICU internal only.
+         * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
         public CurrencyInfo(String region, String code, long from, long to, int priority, boolean tender) {
@@ -558,6 +563,7 @@ public class CurrencyMetaInfo {
     /**
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     protected static final CurrencyDigits defaultDigits = new CurrencyDigits(2, 0);

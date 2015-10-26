@@ -17,6 +17,8 @@ import java.util.Date;
  * Simple implementation of DateRule.
  * {@literal @}draft ICU 2.8 (retainAll)
  * {@literal @}provisional This API might change or be removed in a future release.
+ * @hide Only a subset of ICU is exposed in Android
+ * @hide draft / provisional / internal are hidden on Android
  * @hide All android.icu classes are currently hidden
  */
 public class SimpleDateRule implements DateRule
@@ -28,6 +30,7 @@ public class SimpleDateRule implements DateRule
      * @param dayOfMonth    The date in that month (1-based).
      * {@literal @}draft ICU 2.8
      * {@literal @}provisional This API might change or be removed in a future release.
+     * @hide draft / provisional / internal are hidden on Android
      */
     public SimpleDateRule(int month, int dayOfMonth)
     {
@@ -56,6 +59,7 @@ public class SimpleDateRule implements DateRule
      *                      the first dayOfWeek on or before dayOfMonth.
      * {@literal @}draft ICU 2.8
      * {@literal @}provisional This API might change or be removed in a future release.
+     * @hide draft / provisional / internal are hidden on Android
      */
     public SimpleDateRule(int month, int dayOfMonth, int dayOfWeek, boolean after)
     {
@@ -76,6 +80,7 @@ public class SimpleDateRule implements DateRule
      * @see #firstBetween
      * {@literal @}draft ICU 2.8
      * {@literal @}provisional This API might change or be removed in a future release.
+     * @hide draft / provisional / internal are hidden on Android
      */
     public Date firstAfter(Date start)
     {
@@ -96,6 +101,7 @@ public class SimpleDateRule implements DateRule
      * @see #firstAfter
      * {@literal @}draft ICU 2.8
      * {@literal @}provisional This API might change or be removed in a future release.
+     * @hide draft / provisional / internal are hidden on Android
      */
     public Date firstBetween(Date start, Date end)
     {
@@ -114,6 +120,7 @@ public class SimpleDateRule implements DateRule
      * @return      true if this event occurs on the given date.
      * {@literal @}draft ICU 2.8
      * {@literal @}provisional This API might change or be removed in a future release.
+     * @hide draft / provisional / internal are hidden on Android
      */
     public boolean isOn(Date date)
     {
@@ -138,6 +145,7 @@ public class SimpleDateRule implements DateRule
      * dates given.
      * {@literal @}draft ICU 2.8
      * {@literal @}provisional This API might change or be removed in a future release.
+     * @hide draft / provisional / internal are hidden on Android
      */
     public boolean isBetween(Date start, Date end)
     {
@@ -216,6 +224,7 @@ public class SimpleDateRule implements DateRule
     /**
      * {@literal @}draft ICU 2.8
      * {@literal @}provisional This API might change or be removed in a future release.
+     * @hide draft / provisional / internal are hidden on Android
      */
 //    public void setCalendar(Calendar c) {
 //        calendar = c;

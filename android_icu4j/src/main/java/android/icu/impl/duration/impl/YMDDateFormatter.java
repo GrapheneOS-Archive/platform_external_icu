@@ -17,6 +17,7 @@ import android.icu.impl.duration.DateFormatter;
 
 /**
  * A DateFormatter that formats the requested date fields.
+ * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
  */
 public class YMDDateFormatter implements DateFormatter {

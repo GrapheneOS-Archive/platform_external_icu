@@ -174,6 +174,8 @@ public final class VersionInfo implements Comparable<VersionInfo>
      * Used for appending to data path (e.g. icudt43b)
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide original deprecated method
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public static final String ICU_DATA_VERSION_PATH = "56b";
@@ -182,6 +184,8 @@ public final class VersionInfo implements Comparable<VersionInfo>
      * Data version in ICU4J.
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide original deprecated method
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public static final VersionInfo ICU_DATA_VERSION;
@@ -208,6 +212,7 @@ public final class VersionInfo implements Comparable<VersionInfo>
      * This was intended to be the version of collation tailorings,
      * but instead the tailoring data carries a version number.
      * @deprecated ICU 54
+     * @hide original deprecated method
      */
     @Deprecated
     public static final VersionInfo UCOL_TAILORINGS_VERSION;
@@ -341,6 +346,8 @@ public final class VersionInfo implements Comparable<VersionInfo>
     /**
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide original deprecated method
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public static VersionInfo javaVersion() {
@@ -615,6 +622,8 @@ public final class VersionInfo implements Comparable<VersionInfo>
      * @return A tailored version string
      * {@literal @}internal
      * @deprecated This API is ICU internal only. (For use in CLDR, etc.)
+     * @hide original deprecated method
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public String getVersionString(int minDigits, int maxDigits) {

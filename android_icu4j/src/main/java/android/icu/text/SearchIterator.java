@@ -713,6 +713,8 @@ public abstract class SearchIterator
     /**
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide original deprecated method
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     //TODO: This protected method is @stable 2.0 in ICU4C

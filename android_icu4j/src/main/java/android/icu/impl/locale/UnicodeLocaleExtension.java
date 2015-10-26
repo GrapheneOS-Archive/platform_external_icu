@@ -15,7 +15,9 @@ import java.util.SortedSet;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
-/** @hide All android.icu classes are currently hidden */
+/** @hide Only a subset of ICU is exposed in Android
+* @hide All android.icu classes are currently hidden
+ */
 public class UnicodeLocaleExtension extends Extension {
     public static final char SINGLETON = 'u';
 

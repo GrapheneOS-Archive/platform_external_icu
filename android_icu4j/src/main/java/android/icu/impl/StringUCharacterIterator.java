@@ -13,6 +13,7 @@ import android.icu.text.UCharacterIterator;
  * Used by Collation. UCharacterIterator on Strings. Can't use 
  * ReplaceableUCharacterIterator because it is not easy to do a fast setText. 
  * @author synwee
+ * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
  */
 // TODO: Investivate if setText is a feature required by users so that we can 

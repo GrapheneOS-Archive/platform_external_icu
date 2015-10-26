@@ -87,6 +87,7 @@ abstract class DictionaryBreakEngine implements LanguageBreakEngine {
      *  Partial, limited implementation, only what is needed by the dictionary implementation.
      *  For internal use only.
      * {@literal @}internal
+     * @hide draft / provisional / internal are hidden on Android
      */
     static class DequeI {
         private int[] data = new int[50];

@@ -22,6 +22,8 @@ import android.icu.util.ULocale.Category;
  * An abstract class representing a holiday.
  * {@literal @}draft ICU 2.8 (retainAll)
  * {@literal @}provisional This API might change or be removed in a future release.
+ * @hide Only a subset of ICU is exposed in Android
+ * @hide draft / provisional / internal are hidden on Android
  * @hide All android.icu classes are currently hidden
  */
 public abstract class Holiday implements DateRule
@@ -29,6 +31,7 @@ public abstract class Holiday implements DateRule
     /**
      * {@literal @}draft ICU 2.8
      * {@literal @}provisional This API might change or be removed in a future release.
+     * @hide draft / provisional / internal are hidden on Android
      */
     public static Holiday[] getHolidays()
     {
@@ -38,6 +41,7 @@ public abstract class Holiday implements DateRule
     /**
      * {@literal @}draft ICU 2.8
      * {@literal @}provisional This API might change or be removed in a future release.
+     * @hide draft / provisional / internal are hidden on Android
      */
     public static Holiday[] getHolidays(Locale locale)
     {
@@ -47,6 +51,7 @@ public abstract class Holiday implements DateRule
     /**
      * {@literal @}draft ICU 3.2
      * {@literal @}provisional This API might change or be removed in a future release.
+     * @hide draft / provisional / internal are hidden on Android
      */
     public static Holiday[] getHolidays(ULocale locale)
     {
@@ -73,6 +78,7 @@ public abstract class Holiday implements DateRule
      * @see #firstBetween
      * {@literal @}draft ICU 2.8
      * {@literal @}provisional This API might change or be removed in a future release.
+     * @hide draft / provisional / internal are hidden on Android
      */
     public Date firstAfter(Date start) {
         return rule.firstAfter(start);
@@ -91,6 +97,7 @@ public abstract class Holiday implements DateRule
      * @see #firstAfter
      * {@literal @}draft ICU 2.8
      * {@literal @}provisional This API might change or be removed in a future release.
+     * @hide draft / provisional / internal are hidden on Android
      */
     public Date firstBetween(Date start, Date end) {
         return rule.firstBetween(start, end);
@@ -105,6 +112,7 @@ public abstract class Holiday implements DateRule
      * @return      true if this holiday occurs on the given date.
      * {@literal @}draft ICU 2.8
      * {@literal @}provisional This API might change or be removed in a future release.
+     * @hide draft / provisional / internal are hidden on Android
      */
     public boolean isOn(Date date) {
         //System.out.println(name + ".isOn(" + date.toString() + "):");
@@ -116,6 +124,7 @@ public abstract class Holiday implements DateRule
      * dates given.
      * {@literal @}draft ICU 2.8
      * {@literal @}provisional This API might change or be removed in a future release.
+     * @hide draft / provisional / internal are hidden on Android
      */
     public boolean isBetween(Date start, Date end) {
         return rule.isBetween(start, end);
@@ -134,6 +143,7 @@ public abstract class Holiday implements DateRule
      *              simply delegates to this DateRule object.
      * {@literal @}draft ICU 2.8
      * {@literal @}provisional This API might change or be removed in a future release.
+     * @hide draft / provisional / internal are hidden on Android
      */
     protected Holiday(String name, DateRule rule)
     {
@@ -146,6 +156,7 @@ public abstract class Holiday implements DateRule
      * @see Category#DISPLAY
      * {@literal @}draft ICU 2.8
      * {@literal @}provisional This API might change or be removed in a future release.
+     * @hide draft / provisional / internal are hidden on Android
      */
     public String getDisplayName() {
         return getDisplayName(ULocale.getDefault(Category.DISPLAY));
@@ -162,6 +173,7 @@ public abstract class Holiday implements DateRule
      * @see ResourceBundle
      * {@literal @}draft ICU 2.8
      * {@literal @}provisional This API might change or be removed in a future release.
+     * @hide draft / provisional / internal are hidden on Android
      */
     public String getDisplayName(Locale locale)
     {
@@ -179,6 +191,7 @@ public abstract class Holiday implements DateRule
      * @see ResourceBundle
      * {@literal @}draft ICU 3.2
      * {@literal @}provisional This API might change or be removed in a future release.
+     * @hide draft / provisional / internal are hidden on Android
      */
     public String getDisplayName(ULocale locale)
     {
@@ -196,6 +209,7 @@ public abstract class Holiday implements DateRule
     /**
      * {@literal @}draft ICU 2.8
      * {@literal @}provisional This API might change or be removed in a future release.
+     * @hide draft / provisional / internal are hidden on Android
      */
     public DateRule getRule() {
         return rule;
@@ -204,6 +218,7 @@ public abstract class Holiday implements DateRule
     /**
      * {@literal @}draft ICU 2.8
      * {@literal @}provisional This API might change or be removed in a future release.
+     * @hide draft / provisional / internal are hidden on Android
      */
     public void setRule(DateRule rule) {
         this.rule = rule;

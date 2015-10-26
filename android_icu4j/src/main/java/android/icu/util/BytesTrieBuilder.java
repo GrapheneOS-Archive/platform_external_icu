@@ -20,6 +20,7 @@ import java.nio.ByteBuffer;
  *
  * @stable ICU 4.8
  * @author Markus W. Scherer
+ * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
  */
 public final class BytesTrieBuilder extends StringTrieBuilder {
@@ -128,6 +129,7 @@ public final class BytesTrieBuilder extends StringTrieBuilder {
      * {@inheritDoc}
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     @Override
@@ -137,6 +139,7 @@ public final class BytesTrieBuilder extends StringTrieBuilder {
      * {@inheritDoc}
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     @Override
@@ -145,6 +148,7 @@ public final class BytesTrieBuilder extends StringTrieBuilder {
      * {@inheritDoc}
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     @Override
@@ -153,6 +157,7 @@ public final class BytesTrieBuilder extends StringTrieBuilder {
      * {@inheritDoc}
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     @Override
@@ -174,6 +179,7 @@ public final class BytesTrieBuilder extends StringTrieBuilder {
      * {@inheritDoc}
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     @Override
@@ -188,6 +194,7 @@ public final class BytesTrieBuilder extends StringTrieBuilder {
      * {@inheritDoc}
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     @Override
@@ -217,6 +224,7 @@ public final class BytesTrieBuilder extends StringTrieBuilder {
      * {@inheritDoc}
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     @Override
@@ -256,6 +264,7 @@ public final class BytesTrieBuilder extends StringTrieBuilder {
      * {@inheritDoc}
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     @Override
@@ -270,6 +279,7 @@ public final class BytesTrieBuilder extends StringTrieBuilder {
      * {@inheritDoc}
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     @Override

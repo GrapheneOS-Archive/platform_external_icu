@@ -11,6 +11,7 @@ package android.icu.util;
  * Simple struct-like class for output parameters.
  * @param <T> The type of the parameter.
  * @stable ICU 4.8
+ * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
  */
 public class Output<T> {

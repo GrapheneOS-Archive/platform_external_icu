@@ -224,6 +224,7 @@ import android.icu.util.UResourceBundle;
  * 
  * @author Alan Liu
  * @stable ICU 2.0
+ * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
  */
 public abstract class Transliterator implements StringTransform  {
@@ -377,6 +378,7 @@ public abstract class Transliterator implements StringTransform  {
          * value. When Java assertion is enabled, this method triggers an assertion failure.
          * {@literal @}internal
          * @deprecated This API is ICU internal only.
+         * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
         public int hashCode() {
@@ -1632,6 +1634,7 @@ public abstract class Transliterator implements StringTransform  {
      * @see #getTargetSet
      * {@literal @}internal
      * @deprecated  This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public void addSourceTargetSet(UnicodeSet inputFilter, UnicodeSet sourceSet, UnicodeSet targetSet) {
@@ -1654,6 +1657,7 @@ public abstract class Transliterator implements StringTransform  {
      * The result may be frozen, so don't attempt to modify.
      * {@literal @}internal
      * @deprecated  This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
    // TODO change to getMergedFilter
@@ -1980,6 +1984,7 @@ public abstract class Transliterator implements StringTransform  {
      * Register the script-based "Any" transliterators: Any-Latin, Any-Greek
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public static void registerAny() {

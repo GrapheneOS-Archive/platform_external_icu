@@ -10,7 +10,9 @@ package android.icu.impl.data;
 
 import java.util.ListResourceBundle;
 
-/** @hide All android.icu classes are currently hidden */
+/** @hide Only a subset of ICU is exposed in Android
+* @hide All android.icu classes are currently hidden
+ */
 public class HolidayBundle extends ListResourceBundle {
 
     // Normally, each HolidayBundle uses the holiday's US English name

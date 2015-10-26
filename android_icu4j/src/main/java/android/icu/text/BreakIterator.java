@@ -850,6 +850,8 @@ s     */
      * Avoids writing a switch statement with getXYZInstance(where) calls.
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide original deprecated method
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public static BreakIterator getBreakInstance(ULocale where, int kind) {
@@ -897,6 +899,7 @@ s     */
      * be used when creating a BreakIterator.
      * {@literal @}draft ICU 3.2 (retain)
      * {@literal @}provisional This API might change or be removed in a future release.
+     * @hide draft / provisional / internal are hidden on Android
      */
     public static synchronized ULocale[] getAvailableULocales()
     {
@@ -981,6 +984,7 @@ s     */
      * @see android.icu.util.ULocale#ACTUAL_LOCALE
      * {@literal @}draft ICU 2.8 (retain)
      * {@literal @}provisional This API might change or be removed in a future release.
+     * @hide draft / provisional / internal are hidden on Android
      */
     public final ULocale getLocale(ULocale.Type type) {
         return type == ULocale.ACTUAL_LOCALE ?

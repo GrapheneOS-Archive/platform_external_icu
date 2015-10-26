@@ -21,6 +21,8 @@ import android.icu.util.Output;
  * @author markdavis
  * {@literal @}internal
  * @deprecated This API is ICU internal only.
+ * @hide Only a subset of ICU is exposed in Android
+ * @hide draft / provisional / internal are hidden on Android
  * @hide All android.icu classes are currently hidden
  */
 @Deprecated
@@ -35,6 +37,7 @@ public final class PluralRanges implements Freezable<PluralRanges>, Comparable<P
      * 
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public PluralRanges() {
@@ -195,6 +198,7 @@ public final class PluralRanges implements Freezable<PluralRanges>, Comparable<P
      *            the resulting plural category
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public void add(StandardPluralCategories rangeStart, StandardPluralCategories rangeEnd,
@@ -237,6 +241,7 @@ public final class PluralRanges implements Freezable<PluralRanges>, Comparable<P
      * @return the resulting plural category, or 'end' if there is no data.
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public StandardPluralCategories get(StandardPluralCategories start, StandardPluralCategories end) {
@@ -255,6 +260,7 @@ public final class PluralRanges implements Freezable<PluralRanges>, Comparable<P
      * @return whether the value for (start,end) is explicit or not.
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public boolean isExplicit(StandardPluralCategories start, StandardPluralCategories end) {
@@ -269,6 +275,7 @@ public final class PluralRanges implements Freezable<PluralRanges>, Comparable<P
      * @return true if set
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public boolean isExplicitlySet(StandardPluralCategories count) {
@@ -279,6 +286,7 @@ public final class PluralRanges implements Freezable<PluralRanges>, Comparable<P
      * {@inheritDoc}
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     @Override
@@ -297,6 +305,7 @@ public final class PluralRanges implements Freezable<PluralRanges>, Comparable<P
      * {@inheritDoc}
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Override
     @Deprecated
@@ -308,6 +317,7 @@ public final class PluralRanges implements Freezable<PluralRanges>, Comparable<P
      * {@inheritDoc}
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public int compareTo(PluralRanges that) {
@@ -318,6 +328,7 @@ public final class PluralRanges implements Freezable<PluralRanges>, Comparable<P
      * {@inheritDoc}
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public boolean isFrozen() {
@@ -328,6 +339,7 @@ public final class PluralRanges implements Freezable<PluralRanges>, Comparable<P
      * {@inheritDoc}
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public PluralRanges freeze() {
@@ -339,6 +351,7 @@ public final class PluralRanges implements Freezable<PluralRanges>, Comparable<P
      * {@inheritDoc}
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public PluralRanges cloneAsThawed() {
@@ -352,6 +365,7 @@ public final class PluralRanges implements Freezable<PluralRanges>, Comparable<P
      * {@inheritDoc}
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Override
     @Deprecated
