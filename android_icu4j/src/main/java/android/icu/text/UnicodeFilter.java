@@ -15,6 +15,7 @@ package android.icu.text;
  * to only process selected characters through a
  * transformation.
  * @stable ICU 2.0
+ * @hide All android.icu classes are currently hidden
  */
 public abstract class UnicodeFilter implements UnicodeMatcher {
 
@@ -64,7 +65,7 @@ public abstract class UnicodeFilter implements UnicodeMatcher {
      * happy.  Java inserts a synthetic constructor and CheckTags
      * can't tell that it's synthetic.)
      *
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated

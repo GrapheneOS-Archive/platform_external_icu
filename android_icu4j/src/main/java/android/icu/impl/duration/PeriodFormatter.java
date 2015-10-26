@@ -20,6 +20,7 @@ package android.icu.impl.duration;
  * @see Period
  * @see PeriodBuilder
  * @see PeriodFormatterFactory
+ * @hide All android.icu classes are currently hidden
  */
 public interface PeriodFormatter {
   /**

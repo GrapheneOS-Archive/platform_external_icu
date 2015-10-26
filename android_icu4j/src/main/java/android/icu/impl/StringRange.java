@@ -19,6 +19,7 @@ import java.util.TreeSet;
 import android.icu.lang.CharSequences;
 import android.icu.util.ICUException;
 
+/** @hide All android.icu classes are currently hidden */
 @SuppressWarnings("deprecation")
 public class StringRange {
     private static final boolean DEBUG = false;

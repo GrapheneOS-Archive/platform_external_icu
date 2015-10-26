@@ -31,6 +31,7 @@ import android.icu.util.UResourceBundleIterator;
  *
  * @author       John Emmons
  * @stable ICU 4.2
+ * @hide All android.icu classes are currently hidden
  */
 public class NumberingSystem {
 

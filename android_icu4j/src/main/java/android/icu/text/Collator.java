@@ -30,7 +30,7 @@ import android.icu.util.UResourceBundle;
 import android.icu.util.VersionInfo;
 
 /**
-* {@icuenhanced java.text.Collator}.{@icu _usage_}
+* {{@literal @}icuenhanced java.text.Collator}.{{@literal @}icu _usage_}
 *
 * <p>Collator performs locale-sensitive string comparison. A concrete
 * subclass, RuleBasedCollator, allows customization of the collation
@@ -130,6 +130,7 @@ import android.icu.util.VersionInfo;
 * @see CollationKey
 * @author Syn Wee Quek
 * @stable ICU 2.8
+* @hide All android.icu classes are currently hidden
 */
 public abstract class Collator implements Comparator<Object>, Freezable<Collator>, Cloneable
 {
@@ -169,7 +170,7 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
     public final static int TERTIARY = 2;
 
     /**
-     * {@icu} Fourth level collator strength value.
+     * {{@literal @}icu} Fourth level collator strength value.
      * When punctuation is ignored
      * (see <a href="http://userguide.icu-project.org/collation/concepts#TOC-Ignoring-Punctuation">
      * Ignoring Punctuation in the User Guide</a>) at PRIMARY to TERTIARY
@@ -197,7 +198,7 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
     public final static int IDENTICAL = 15;
 
     /**
-     * {@icunote} This is for backwards compatibility with Java APIs only.  It
+     * {{@literal @}icunote} This is for backwards compatibility with Java APIs only.  It
      * should not be used, IDENTICAL should be used instead.  ICU's
      * collation does not support Java's FULL_DECOMPOSITION mode.
      * @stable ICU 3.4
@@ -355,7 +356,7 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
 
     /**
      * @return this, for chaining
-     * @internal Used in UnicodeTools
+     * {@literal @}internal Used in UnicodeTools
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -784,7 +785,7 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
     }
 
     /**
-     * {@icu} Returns the Collator for the desired locale.
+     * {{@literal @}icu} Returns the Collator for the desired locale.
      *
      * <p>For some languages, multiple collation types are available;
      * for example, "de@collation=phonebook".
@@ -843,7 +844,7 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
     }
 
     /**
-     * {@icu} Registers a collator as the default collator for the provided locale.  The
+     * {{@literal @}icu} Registers a collator as the default collator for the provided locale.  The
      * collator should not be modified after it is registered.
      *
      * <p>Because ICU may choose to cache Collator objects internally, this must
@@ -861,7 +862,7 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
     }
 
     /**
-     * {@icu} Registers a collator factory.
+     * {{@literal @}icu} Registers a collator factory.
      * 
      * <p>Because ICU may choose to cache Collator objects internally, this must
      * be called at application startup, prior to any calls to
@@ -877,7 +878,7 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
     }
 
     /**
-     * {@icu} Unregisters a collator previously registered using registerInstance.
+     * {{@literal @}icu} Unregisters a collator previously registered using registerInstance.
      * @param registryKey the object previously returned by registerInstance.
      * @return true if the collator was successfully unregistered.
      * @stable ICU 2.6
@@ -907,7 +908,7 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
     }
 
     /**
-     * {@icu} Returns the set of locales, as ULocale objects, for which collators
+     * {{@literal @}icu} Returns the set of locales, as ULocale objects, for which collators
      * are installed.  ULocale objects support RFC 3066.
      * @return the list of locales in which collators are installed.
      * This list includes any that have been registered, in addition to
@@ -944,7 +945,7 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
     private static final String BASE = ICUResourceBundle.ICU_COLLATION_BASE_NAME;
 
     /**
-     * {@icu} Returns an array of all possible keywords that are relevant to
+     * {{@literal @}icu} Returns an array of all possible keywords that are relevant to
      * collation. At this point, the only recognized keyword for this
      * service is "collation".
      * @return an array of valid collation keywords.
@@ -956,7 +957,7 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
     }
 
     /**
-     * {@icu} Given a keyword, returns an array of all values for
+     * {{@literal @}icu} Given a keyword, returns an array of all values for
      * that keyword that are currently in use.
      * @param keyword one of the keywords returned by getKeywords.
      * @see #getKeywords
@@ -970,7 +971,7 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
     }
 
     /**
-     * {@icu} Given a key and a locale, returns an array of string values in a preferred
+     * {{@literal @}icu} Given a key and a locale, returns an array of string values in a preferred
      * order that would make a difference. These are all and only those values where
      * the open (creation) of the service with the locale formed from the input locale
      * plus input keyword and that value has different behavior than creation with the
@@ -1029,7 +1030,7 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
     }
 
     /**
-     * {@icu} Returns the functionally equivalent locale for the given
+     * {{@literal @}icu} Returns the functionally equivalent locale for the given
      * requested locale, with respect to given keyword, for the
      * collation service.  If two locales return the same result, then
      * collators instantiated for these locales will behave
@@ -1061,7 +1062,7 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
     }
 
     /**
-     * {@icu} Returns the functionally equivalent locale for the given
+     * {{@literal @}icu} Returns the functionally equivalent locale for the given
      * requested locale, with respect to given keyword, for the
      * collation service.
      * @param keyword a particular keyword as enumerated by
@@ -1077,7 +1078,7 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
     }
 
     /**
-     * {@icu} Returns the name of the collator for the objectLocale, localized for the
+     * {{@literal @}icu} Returns the name of the collator for the objectLocale, localized for the
      * displayLocale.
      * @param objectLocale the locale of the collator
      * @param displayLocale the locale for the collator's display name
@@ -1090,7 +1091,7 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
     }
 
     /**
-     * {@icu} Returns the name of the collator for the objectLocale, localized for the
+     * {{@literal @}icu} Returns the name of the collator for the objectLocale, localized for the
      * displayLocale.
      * @param objectLocale the locale of the collator
      * @param displayLocale the locale for the collator's display name
@@ -1102,7 +1103,7 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
     }
 
     /**
-     * {@icu} Returns the name of the collator for the objectLocale, localized for the
+     * {{@literal @}icu} Returns the name of the collator for the objectLocale, localized for the
      * default <code>DISPLAY</code> locale.
      * @param objectLocale the locale of the collator
      * @return the display name
@@ -1114,7 +1115,7 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
     }
 
     /**
-     * {@icu} Returns the name of the collator for the objectLocale, localized for the
+     * {{@literal @}icu} Returns the name of the collator for the objectLocale, localized for the
      * default <code>DISPLAY</code> locale.
      * @param objectLocale the locale of the collator
      * @return the display name
@@ -1129,7 +1130,7 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
      * Returns this Collator's strength attribute. The strength attribute
      * determines the minimum level of difference considered significant.
      * </p>
-     * {@icunote} This can return QUATERNARY strength, which is not supported by the
+     * {{@literal @}icunote} This can return QUATERNARY strength, which is not supported by the
      * JDK version.
      * <p>
      * See the Collator class description for more details.
@@ -1191,7 +1192,7 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
     }
 
     /**
-     * {@icu} Returns a UnicodeSet that contains all the characters and sequences tailored
+     * {{@literal @}icu} Returns a UnicodeSet that contains all the characters and sequences tailored
      * in this collator.
      * @return a pointer to a UnicodeSet object containing all the
      *         code points and sequences that may sort differently than
@@ -1242,7 +1243,7 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
      * Compares two CharSequences.
      * The base class just calls compare(left.toString(), right.toString()).
      * Subclasses should instead implement this method and have the String API call this method.
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -1272,7 +1273,7 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
     public abstract CollationKey getCollationKey(String source);
 
     /**
-     * {@icu} Returns the simpler form of a CollationKey for the String source following
+     * {{@literal @}icu} Returns the simpler form of a CollationKey for the String source following
      * the rules of this Collator and stores the result into the user provided argument
      * key.  If key has a internal byte array of length that's too small for the result,
      * the internal byte array will be grown to the exact required size.
@@ -1293,7 +1294,7 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
                                                        RawCollationKey key);
 
     /**
-     * {@icu} Sets the variable top to the top of the specified reordering group.
+     * {{@literal @}icu} Sets the variable top to the top of the specified reordering group.
      * The variable top determines the highest-sorting character
      * which is affected by the alternate handling behavior.
      * If that attribute is set to UCOL_NON_IGNORABLE, then the variable top has no effect.
@@ -1311,7 +1312,7 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
     }
 
     /**
-     * {@icu} Returns the maximum reordering group whose characters are affected by
+     * {{@literal @}icu} Returns the maximum reordering group whose characters are affected by
      * the alternate handling behavior.
      *
      * <p>The base class implementation returns Collator.ReorderCodes.PUNCTUATION.
@@ -1324,7 +1325,7 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
     }
 
     /**
-     * {@icu} Sets the variable top to the primary weight of the specified string.
+     * {{@literal @}icu} Sets the variable top to the primary weight of the specified string.
      *
      * <p>Beginning with ICU 53, the variable top is pinned to
      * the top of one of the supported reordering groups,
@@ -1351,7 +1352,7 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
     public abstract int setVariableTop(String varTop);
 
     /**
-     * {@icu} Gets the variable top value of a Collator.
+     * {{@literal @}icu} Gets the variable top value of a Collator.
      * 
      * @return the variable top primary weight
      * @see #getMaxVariable
@@ -1360,7 +1361,7 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
     public abstract int getVariableTop();
 
     /**
-     * {@icu} Sets the variable top to the specified primary weight.
+     * {{@literal @}icu} Sets the variable top to the specified primary weight.
      *
      * <p>Beginning with ICU 53, the variable top is pinned to
      * the top of one of the supported reordering groups,
@@ -1376,14 +1377,14 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
     public abstract void setVariableTop(int varTop);
 
     /**
-     * {@icu} Returns the version of this collator object.
+     * {{@literal @}icu} Returns the version of this collator object.
      * @return the version object associated with this collator
      * @stable ICU 2.8
      */
     public abstract VersionInfo getVersion();
 
     /**
-     * {@icu} Returns the UCA version of this collator object.
+     * {{@literal @}icu} Returns the UCA version of this collator object.
      * @return the version object associated with this collator
      * @stable ICU 2.8
      */
@@ -1469,7 +1470,7 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
     // -------- BEGIN ULocale boilerplate --------
 
     /**
-     * {@icu} Returns the locale that was used to create this object, or null.
+     * {{@literal @}icu} Returns the locale that was used to create this object, or null.
      * This may may differ from the locale requested at the time of
      * this object's creation.  For example, if an object is created
      * for locale <tt>en_US_CALIFORNIA</tt>, the actual data may be
@@ -1493,8 +1494,8 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
      * @see android.icu.util.ULocale
      * @see android.icu.util.ULocale#VALID_LOCALE
      * @see android.icu.util.ULocale#ACTUAL_LOCALE
-     * @draft ICU 2.8 (retain)
-     * @provisional This API might change or be removed in a future release.
+     * {@literal @}draft ICU 2.8 (retain)
+     * {@literal @}provisional This API might change or be removed in a future release.
      */
     public ULocale getLocale(ULocale.Type type) {
         return ULocale.ROOT;

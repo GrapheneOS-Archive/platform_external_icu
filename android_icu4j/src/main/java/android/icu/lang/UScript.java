@@ -40,6 +40,7 @@ import android.icu.util.ULocale;
  * may be added at any time.
  *
  * @stable ICU 2.4
+ * @hide All android.icu classes are currently hidden
  */
 public final class UScript {
     /**

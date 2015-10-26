@@ -50,6 +50,7 @@ import android.icu.util.ULocale;
  *
  * @author markdavis
  * @stable ICU 49
+ * @hide All android.icu classes are currently hidden
  */
 public class CompactDecimalFormat extends DecimalFormat {
 
@@ -156,7 +157,7 @@ public class CompactDecimalFormat extends DecimalFormat {
      * @param debugCreationErrors
      *            A collection of strings for debugging. If null on input, then any errors found will be added to that
      *            collection instead of throwing exceptions.
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated

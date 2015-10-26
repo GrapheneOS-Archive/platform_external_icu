@@ -60,6 +60,7 @@ import android.icu.util.UResourceBundle;
  * @see MeasureFormat
  * @author markdavis
  * @deprecated ICU 53 use {@link MeasureFormat} instead.
+ * @hide All android.icu classes are currently hidden
  */
 @Deprecated
 public class TimeUnitFormat extends MeasureFormat {
@@ -533,7 +534,7 @@ public class TimeUnitFormat extends MeasureFormat {
 
     
     /**
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -544,7 +545,7 @@ public class TimeUnitFormat extends MeasureFormat {
     }
     
     /**
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -554,7 +555,7 @@ public class TimeUnitFormat extends MeasureFormat {
     }
     
     /**
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -564,7 +565,7 @@ public class TimeUnitFormat extends MeasureFormat {
     }
     
     /**
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated

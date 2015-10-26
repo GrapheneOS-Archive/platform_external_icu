@@ -16,6 +16,7 @@ package android.icu.impl;
 * Arguments for <a href=UCharacterName.html>UCharacterName</a>
 * @author Syn Wee Quek
 * @since oct0600
+* @hide All android.icu classes are currently hidden
 */
 
 public interface UCharacterNameChoice

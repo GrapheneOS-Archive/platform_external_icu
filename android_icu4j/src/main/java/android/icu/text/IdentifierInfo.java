@@ -34,8 +34,9 @@ import android.icu.text.SpoofChecker.RestrictionLevel;
  * </ol>
  * 
  * @author markdavis
- * @internal
+ * {@literal @}internal
  * @deprecated This API is ICU internal only.
+ * @hide All android.icu classes are currently hidden
  */
 @Deprecated
 public class IdentifierInfo {
@@ -52,7 +53,7 @@ public class IdentifierInfo {
     /**
      * Create an identifier info object. Subsequently, call {@link #setIdentifier(String)}, etc.
      * {@link #setIdentifierProfile(UnicodeSet)}
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -73,7 +74,7 @@ public class IdentifierInfo {
      * 
      * @param identifierProfile the characters that are to be allowed in the identifier
      * @return self
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -87,7 +88,7 @@ public class IdentifierInfo {
      * Get the identifier profile: the characters that are to be allowed in the identifier.
      * 
      * @return The characters that are to be allowed in the identifier.
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -101,7 +102,7 @@ public class IdentifierInfo {
      * 
      * @param identifier the identifier to analyze
      * @return self
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated    
@@ -171,7 +172,7 @@ public class IdentifierInfo {
      * Get the identifier that was analyzed.
      * 
      * @return the identifier that was analyzed.
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -183,7 +184,7 @@ public class IdentifierInfo {
      * Get the scripts found in the identifiers.
      * 
      * @return the set of explicit scripts.
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -196,7 +197,7 @@ public class IdentifierInfo {
      * the set consisting of those scripts will be returned.
      * 
      * @return the set of explicit scripts.
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -212,7 +213,7 @@ public class IdentifierInfo {
      * Get the representative characters (zeros) for the numerics found in the identifier.
      * 
      * @return the set of explicit scripts.
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -224,7 +225,7 @@ public class IdentifierInfo {
      * Find out which scripts are in common among the alternates.
      * 
      * @return the set of scripts that are in common among the alternates.
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -245,7 +246,7 @@ public class IdentifierInfo {
      * Find the "tightest" restriction level that the identifier satisfies.
      * 
      * @return the restriction level.
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -288,7 +289,7 @@ public class IdentifierInfo {
      *         The alternate script computation may not be perfect. The distinction
      *         between 0, 1 and > 1 scripts will be valid, however.
      * @return the number of scripts.
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -302,7 +303,7 @@ public class IdentifierInfo {
 
     /**
      * See Object.toString()
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -330,7 +331,7 @@ public class IdentifierInfo {
      * 
      * @param alternates a set of BitSets of script values.
      * @return display form
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -353,7 +354,7 @@ public class IdentifierInfo {
     
     /**
      * Order BitSets, first by shortest, then by items.
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -378,7 +379,7 @@ public class IdentifierInfo {
      * 
      * @param scripts a BitSet of UScript values
      * @return a readable string of a set of scripts
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -398,7 +399,7 @@ public class IdentifierInfo {
      * 
      * @param scriptsString the string to be parsed
      * @return BitSet of UScript values.
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -417,7 +418,7 @@ public class IdentifierInfo {
      * 
      * @param scriptsSetString a list of alternates, separated by ;
      * @return a set of BitSets of UScript values
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -437,7 +438,7 @@ public class IdentifierInfo {
      * @param container possible container to be tested
      * @param containee possible containee to be tested
      * @return true if container contains containee
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -456,7 +457,7 @@ public class IdentifierInfo {
      * @param bitset bitset to be affected
      * @param values values to be set in the bitset
      * @return modified bitset.
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated

@@ -20,6 +20,7 @@ import java.util.Locale;
  *
  * @see android.icu.util.Calendar
  * @stable ICU 3.4
+ * @hide All android.icu classes are currently hidden
  */
 public final class CopticCalendar extends CECalendar 
 {
@@ -244,7 +245,7 @@ public final class CopticCalendar extends CECalendar
 
     /**
      * {@inheritDoc}
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -266,7 +267,7 @@ public final class CopticCalendar extends CECalendar
 
     /**
      * {@inheritDoc}
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -297,7 +298,7 @@ public final class CopticCalendar extends CECalendar
 
     /**
      * {@inheritDoc}
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -311,11 +312,11 @@ public final class CopticCalendar extends CECalendar
      * @param year the year
      * @param month the month
      * @param date the day
-     * @draft ICU 3.4 (retain)
-     * @provisional This API might change or be removed in a future release.
+     * {@literal @}draft ICU 3.4 (retain)
+     * {@literal @}provisional This API might change or be removed in a future release.
      */
     // The equivalent operation can be done by public Calendar API.
-    // This API was accidentally marked as @draft, but we have no good
+    // This API was accidentally marked as {@literal @}draft, but we have no good
     // reason to keep this.  For now, we leave it as is, but may be
     // removed in future.  2008-03-21 yoshito
     public static int copticToJD(long year, int month, int date) {

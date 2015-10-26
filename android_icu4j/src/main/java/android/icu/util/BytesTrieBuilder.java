@@ -20,6 +20,7 @@ import java.nio.ByteBuffer;
  *
  * @stable ICU 4.8
  * @author Markus W. Scherer
+ * @hide All android.icu classes are currently hidden
  */
 public final class BytesTrieBuilder extends StringTrieBuilder {
     /**
@@ -125,7 +126,7 @@ public final class BytesTrieBuilder extends StringTrieBuilder {
 
     /**
      * {@inheritDoc}
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -134,7 +135,7 @@ public final class BytesTrieBuilder extends StringTrieBuilder {
 
     /**
      * {@inheritDoc}
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -142,7 +143,7 @@ public final class BytesTrieBuilder extends StringTrieBuilder {
     protected int getMaxBranchLinearSubNodeLength() /*const*/ { return BytesTrie.kMaxBranchLinearSubNodeLength; }
     /**
      * {@inheritDoc}
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -150,7 +151,7 @@ public final class BytesTrieBuilder extends StringTrieBuilder {
     protected int getMinLinearMatch() /*const*/ { return BytesTrie.kMinLinearMatch; }
     /**
      * {@inheritDoc}
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -171,7 +172,7 @@ public final class BytesTrieBuilder extends StringTrieBuilder {
     }
     /**
      * {@inheritDoc}
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -185,7 +186,7 @@ public final class BytesTrieBuilder extends StringTrieBuilder {
     }
     /**
      * {@inheritDoc}
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -214,7 +215,7 @@ public final class BytesTrieBuilder extends StringTrieBuilder {
 
     /**
      * {@inheritDoc}
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -253,7 +254,7 @@ public final class BytesTrieBuilder extends StringTrieBuilder {
     }
     /**
      * {@inheritDoc}
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -267,7 +268,7 @@ public final class BytesTrieBuilder extends StringTrieBuilder {
     }
     /**
      * {@inheritDoc}
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated

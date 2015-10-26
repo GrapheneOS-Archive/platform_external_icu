@@ -12,6 +12,7 @@ package android.icu.impl;
 * parsing functions. Does not have an analog in the JDK.
 * @author Syn Wee Quek
 * @since sep2900
+* @hide All android.icu classes are currently hidden
 */
 
 public final class UCharacterUtility

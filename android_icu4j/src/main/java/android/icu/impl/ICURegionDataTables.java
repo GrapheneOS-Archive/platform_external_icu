@@ -7,6 +7,7 @@
  */
 package android.icu.impl;
 
+/** @hide All android.icu classes are currently hidden */
 public class ICURegionDataTables extends LocaleDisplayNamesImpl.ICUDataTables {
     public ICURegionDataTables() {
         super(ICUResourceBundle.ICU_REGION_BASE_NAME);

@@ -26,6 +26,7 @@ import android.icu.lang.UCharacterEnums.ECharacterCategory;
  * </p>
  * @author Syn Wee Quek
  * @stable ICU 2.1
+ * @hide All android.icu classes are currently hidden
  */
 
 public final class UCharacterCategory implements ECharacterCategory

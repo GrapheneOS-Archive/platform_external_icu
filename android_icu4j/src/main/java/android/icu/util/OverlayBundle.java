@@ -60,8 +60,9 @@ import java.util.ResourceBundle;
  *
  * @see java.util.ResourceBundle
  * @author Alan Liu
- * @internal
+ * {@literal @}internal
  * @deprecated ICU 2.4. This class may be removed or modified.
+ * @hide All android.icu classes are currently hidden
  */
 @Deprecated
 // prepare to deprecate in next release
@@ -88,7 +89,7 @@ public class OverlayBundle extends ResourceBundle {
     /**
      * Construct an overlay bundle given a sequence of base names and
      * a locale.
-     * @internal
+     * {@literal @}internal
      * @deprecated ICU 2.4. This class may be removed or modified.
      */
     @Deprecated
@@ -102,7 +103,7 @@ public class OverlayBundle extends ResourceBundle {
     /**
      * ResourceBundle framework method.  Delegates to
      * bundles[i].getObject().
-     * @internal
+     * {@literal @}internal
      * @deprecated ICU 2.4. This class may be removed or modified.
      */
     @Deprecated
@@ -131,7 +132,7 @@ public class OverlayBundle extends ResourceBundle {
     /**
      * ResourceBundle framework method.  Delegates to
      * bundles[bundles.length-1].getKeys().
-     * @internal
+     * {@literal @}internal
      * @deprecated ICU 2.4. This class may be removed or modified.
      */
     @Deprecated

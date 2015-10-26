@@ -33,7 +33,7 @@ import android.icu.util.UResourceBundle;
 import android.icu.util.UResourceBundleIterator;
 
 /**
- * {@icuenhanced java.text.DateFormatSymbols}.{@icu _usage_}
+ * {{@literal @}icuenhanced java.text.DateFormatSymbols}.{{@literal @}icu _usage_}
  *
  * <p><code>DateFormatSymbols</code> is a public class for encapsulating
  * localizable date-time formatting data, such as the names of the
@@ -75,6 +75,7 @@ import android.icu.util.UResourceBundleIterator;
  * @see          android.icu.util.SimpleTimeZone
  * @author       Chen-Lieh Huang
  * @stable ICU 2.0
+ * @hide All android.icu classes are currently hidden
  */
 public class DateFormatSymbols implements Serializable, Cloneable {
 
@@ -85,29 +86,29 @@ public class DateFormatSymbols implements Serializable, Cloneable {
 
     // Constants for context
     /**
-     * {@icu} Constant for context.
+     * {{@literal @}icu} Constant for context.
      * @stable ICU 3.6
      */
     public static final int FORMAT = 0;
 
     /**
-     * {@icu} Constant for context.
+     * {{@literal @}icu} Constant for context.
      * @stable ICU 3.6
      */
     public static final int STANDALONE = 1;
 
     /**
-     * {@icu} Constant for context. NUMERIC context
+     * {{@literal @}icu} Constant for context. NUMERIC context
      * is only supported for leapMonthPatterns.
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
     public static final int NUMERIC = 2;
 
     /**
-     * {@icu} Constant for context.
-     * @internal
+     * {{@literal @}icu} Constant for context.
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -116,95 +117,95 @@ public class DateFormatSymbols implements Serializable, Cloneable {
     // Constants for width
 
     /**
-     * {@icu} Constant for width.
+     * {{@literal @}icu} Constant for width.
      * @stable ICU 3.6
      */
     public static final int ABBREVIATED = 0;
 
     /**
-     * {@icu} Constant for width.
+     * {{@literal @}icu} Constant for width.
      * @stable ICU 3.6
      */
     public static final int WIDE = 1;
 
     /**
-     * {@icu} Constant for width.
+     * {{@literal @}icu} Constant for width.
      * @stable ICU 3.6
      */
     public static final int NARROW = 2;
 
     /**
-     * {@icu} Constant for width; only supported for weekdays.
+     * {{@literal @}icu} Constant for width; only supported for weekdays.
      * @stable ICU 51
      */
     public static final int SHORT = 3;
 
     /**
-     * {@icu} Constant for width.
-     * @internal
+     * {{@literal @}icu} Constant for width.
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
     public static final int DT_WIDTH_COUNT = 4;
 
     /**
-     * {@icu} Somewhat temporary constant for leap month pattern type, adequate for Chinese calendar.
-     * @internal
+     * {{@literal @}icu} Somewhat temporary constant for leap month pattern type, adequate for Chinese calendar.
+     * {@literal @}internal
      */
     static final int DT_LEAP_MONTH_PATTERN_FORMAT_WIDE = 0;
 
     /**
-     * {@icu} Somewhat temporary constant for leap month pattern type, adequate for Chinese calendar.
-     * @internal
+     * {{@literal @}icu} Somewhat temporary constant for leap month pattern type, adequate for Chinese calendar.
+     * {@literal @}internal
      */
     static final int DT_LEAP_MONTH_PATTERN_FORMAT_ABBREV = 1;
 
     /**
-     * {@icu} Somewhat temporary constant for leap month pattern type, adequate for Chinese calendar.
-     * @internal
+     * {{@literal @}icu} Somewhat temporary constant for leap month pattern type, adequate for Chinese calendar.
+     * {@literal @}internal
      */
     static final int DT_LEAP_MONTH_PATTERN_FORMAT_NARROW = 2;
 
     /**
-     * {@icu} Somewhat temporary constant for leap month pattern type, adequate for Chinese calendar.
-     * @internal
+     * {{@literal @}icu} Somewhat temporary constant for leap month pattern type, adequate for Chinese calendar.
+     * {@literal @}internal
      */
     static final int DT_LEAP_MONTH_PATTERN_STANDALONE_WIDE = 3;
 
     /**
-     * {@icu} Somewhat temporary constant for leap month pattern type, adequate for Chinese calendar.
-     * @internal
+     * {{@literal @}icu} Somewhat temporary constant for leap month pattern type, adequate for Chinese calendar.
+     * {@literal @}internal
      */
     static final int DT_LEAP_MONTH_PATTERN_STANDALONE_ABBREV = 4;
 
     /**
-     * {@icu} Somewhat temporary constant for leap month pattern type, adequate for Chinese calendar.
-     * @internal
+     * {{@literal @}icu} Somewhat temporary constant for leap month pattern type, adequate for Chinese calendar.
+     * {@literal @}internal
      */
     static final int DT_LEAP_MONTH_PATTERN_STANDALONE_NARROW = 5;
 
     /**
-     * {@icu} Somewhat temporary constant for leap month pattern type, adequate for Chinese calendar.
-     * @internal
+     * {{@literal @}icu} Somewhat temporary constant for leap month pattern type, adequate for Chinese calendar.
+     * {@literal @}internal
      */
     static final int DT_LEAP_MONTH_PATTERN_NUMERIC = 6;
 
     /**
-     * {@icu} Somewhat temporary constant for month pattern count, adequate for Chinese calendar.
-     * @internal
+     * {{@literal @}icu} Somewhat temporary constant for month pattern count, adequate for Chinese calendar.
+     * {@literal @}internal
      */
     static final int DT_MONTH_PATTERN_COUNT = 7;
 
     /**
-     * {@icu} This default time separator is used for formatting when the locale
+     * {{@literal @}icu} This default time separator is used for formatting when the locale
      * doesn't specify any time separator, and always recognized when parsing.
-     * @internal
+     * {@literal @}internal
      */
     static final String DEFAULT_TIME_SEPARATOR = ":";
 
     /**
-     * {@icu} This alternate time separator is always recognized when parsing.
-     * @internal
+     * {{@literal @}icu} This alternate time separator is always recognized when parsing.
+     * {@literal @}internal
      */
     static final String ALTERNATE_TIME_SEPARATOR = ".";
 
@@ -236,7 +237,7 @@ public class DateFormatSymbols implements Serializable, Cloneable {
     }
 
     /**
-     * {@icu} Constructs a DateFormatSymbols object by loading format data from
+     * {{@literal @}icu} Constructs a DateFormatSymbols object by loading format data from
      * resources for the given ulocale.
      *
      * @throws java.util.MissingResourceException if the resources for the specified
@@ -251,7 +252,7 @@ public class DateFormatSymbols implements Serializable, Cloneable {
     /**
      * Returns a DateFormatSymbols instance for the default locale.
      *
-     * {@icunote} Unlike <code>java.text.DateFormatSymbols#getInstance</code>,
+     * {{@literal @}icunote} Unlike <code>java.text.DateFormatSymbols#getInstance</code>,
      * this method simply returns <code>new com.ibm.icu.text.DateFormatSymbols()</code>.
      * ICU does not support <code>DateFormatSymbolsProvider</code> introduced in Java 6
      * or its equivalent implementation for now.
@@ -266,7 +267,7 @@ public class DateFormatSymbols implements Serializable, Cloneable {
     /**
      * Returns a DateFormatSymbols instance for the given locale.
      *
-     * {@icunote} Unlike <code>java.text.DateFormatSymbols#getInstance</code>,
+     * {{@literal @}icunote} Unlike <code>java.text.DateFormatSymbols#getInstance</code>,
      * this method simply returns <code>new com.ibm.icu.text.DateFormatSymbols(locale)</code>.
      * ICU does not support <code>DateFormatSymbolsProvider</code> introduced in Java 6
      * or its equivalent implementation for now.
@@ -280,9 +281,9 @@ public class DateFormatSymbols implements Serializable, Cloneable {
     }
 
     /**
-     * {@icu} Returns a DateFormatSymbols instance for the given locale.
+     * {{@literal @}icu} Returns a DateFormatSymbols instance for the given locale.
      *
-     * {@icunote} Unlike <code>java.text.DateFormatSymbols#getInstance</code>,
+     * {{@literal @}icunote} Unlike <code>java.text.DateFormatSymbols#getInstance</code>,
      * this method simply returns <code>new com.ibm.icu.text.DateFormatSymbols(locale)</code>.
      * ICU does not support <code>DateFormatSymbolsProvider</code> introduced in Java 6
      * or its equivalent implementation for now.
@@ -299,7 +300,7 @@ public class DateFormatSymbols implements Serializable, Cloneable {
      * Returns an array of all locales for which the <code>getInstance</code> methods of
      * this class can return localized instances.
      *
-     * {@icunote} Unlike <code>java.text.DateFormatSymbols#getAvailableLocales</code>,
+     * {{@literal @}icunote} Unlike <code>java.text.DateFormatSymbols#getAvailableLocales</code>,
      * this method simply returns the array of <code>Locale</code>s available in this
      * class.  ICU does not support <code>DateFormatSymbolsProvider</code> introduced in
      * Java 6 or its equivalent implementation for now.
@@ -313,18 +314,18 @@ public class DateFormatSymbols implements Serializable, Cloneable {
     }
 
     /**
-     * {@icu} Returns an array of all locales for which the <code>getInstance</code>
+     * {{@literal @}icu} Returns an array of all locales for which the <code>getInstance</code>
      * methods of this class can return localized instances.
      *
-     * {@icunote} Unlike <code>java.text.DateFormatSymbols#getAvailableLocales</code>,
+     * {{@literal @}icunote} Unlike <code>java.text.DateFormatSymbols#getAvailableLocales</code>,
      * this method simply returns the array of <code>ULocale</code>s available in this
      * class.  ICU does not support <code>DateFormatSymbolsProvider</code> introduced in
      * Java 6 or its equivalent implementation for now.
      *
      * @return An array of <code>ULocale</code>s for which localized
      * <code>DateFormatSymbols</code> instances are available.
-     * @draft ICU 3.8 (retain)
-     * @provisional This API might change or be removed in a future release.
+     * {@literal @}draft ICU 3.8 (retain)
+     * {@literal @}provisional This API might change or be removed in a future release.
      */
     public static ULocale[] getAvailableULocales() {
         return ICUResourceBundle.getAvailableULocales();
@@ -625,9 +626,9 @@ public class DateFormatSymbols implements Serializable, Cloneable {
     };
 
     /**
-     * {@icu} Constants for capitalization context usage types
+     * {{@literal @}icu} Constants for capitalization context usage types
      * related to date formatting.
-     * @internal
+     * {@literal @}internal
      */
     enum CapitalizationContextUsage {
         OTHER, 
@@ -693,7 +694,7 @@ public class DateFormatSymbols implements Serializable, Cloneable {
     }
 
     /**
-     * {@icu} Returns era name strings. For example: "Anno Domini" and "Before Christ".
+     * {{@literal @}icu} Returns era name strings. For example: "Anno Domini" and "Before Christ".
      * @return the era strings.
      * @stable ICU 3.4
      */
@@ -702,7 +703,7 @@ public class DateFormatSymbols implements Serializable, Cloneable {
     }
 
     /**
-     * {@icu} Sets era name strings. For example: "Anno Domini" and "Before Christ".
+     * {{@literal @}icu} Sets era name strings. For example: "Anno Domini" and "Before Christ".
      * @param newEraNames the new era strings.
      * @stable ICU 3.8
      */
@@ -977,7 +978,7 @@ public class DateFormatSymbols implements Serializable, Cloneable {
         shortWeekdays = duplicate(newAbbrevWeekdays);
     }
     /**
-     * {@icu} Returns quarter strings. For example: "1st Quarter", "2nd Quarter", etc.
+     * {{@literal @}icu} Returns quarter strings. For example: "1st Quarter", "2nd Quarter", etc.
      * @param context    The quarter context, FORMAT or STANDALONE.
      * @param width      The width or the returned quarter string,
      *                   either WIDE or ABBREVIATED. There are no NARROW quarters.
@@ -1024,7 +1025,7 @@ public class DateFormatSymbols implements Serializable, Cloneable {
     }
 
     /**
-     * {@icu} Sets quarter strings. For example: "1st Quarter", "2nd Quarter", etc.
+     * {{@literal @}icu} Sets quarter strings. For example: "1st Quarter", "2nd Quarter", etc.
      * @param newQuarters the new quarter strings.
      * @param context    The formatting context, FORMAT or STANDALONE.
      * @param width      The width of the quarter string,
@@ -1133,7 +1134,7 @@ public class DateFormatSymbols implements Serializable, Cloneable {
      * @param width     The requested pattern width: WIDE, ABBREVIATED, SHORT, NARROW.
      * @return          The leapMonthPattern, or null if not available for
      *                  this calendar.
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -1186,7 +1187,7 @@ public class DateFormatSymbols implements Serializable, Cloneable {
      * @param leapMonthPattern  The new leapMonthPattern.
      * @param context   The usage context: FORMAT, STANDALONE, NUMERIC.
      * @param width     The name width: WIDE, ABBREVIATED, NARROW.
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -1257,8 +1258,8 @@ public class DateFormatSymbols implements Serializable, Cloneable {
     /**
      * Returns the time separator string. For example: ":".
      * @return the time separator string.
-     * @draft ICU 55
-     * @provisional This API might change or be removed in a future release.
+     * {@literal @}draft ICU 55
+     * {@literal @}provisional This API might change or be removed in a future release.
      */
     public String getTimeSeparatorString() {
         return timeSeparator;
@@ -1267,8 +1268,8 @@ public class DateFormatSymbols implements Serializable, Cloneable {
     /**
      * Sets the time separator string. For example: ":".
      * @param newTimeSeparator the new time separator string.
-     * @draft ICU 55
-     * @provisional This API might change or be removed in a future release.
+     * {@literal @}draft ICU 55
+     * {@literal @}provisional This API might change or be removed in a future release.
      */
     public void setTimeSeparatorString(String newTimeSeparator) {
         timeSeparator = newTimeSeparator;
@@ -1451,7 +1452,7 @@ public class DateFormatSymbols implements Serializable, Cloneable {
      * @stable ICU 3.0
      */
     //TODO: This protected seems to be marked as @stable accidentally.
-    // We may need to deescalate this API to @internal.
+    // We may need to deescalate this API to {@literal @}internal.
     protected void initializeData(ULocale desiredLocale, String type)
     {
         String key = desiredLocale.getBaseName() + "+" + type;
@@ -1522,7 +1523,7 @@ public class DateFormatSymbols implements Serializable, Cloneable {
      * Initializes format symbols for the locale and calendar type
      * @param desiredLocale The locale whose symbols are desired.
      * @param calData       The calendar resource data
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -2046,8 +2047,8 @@ public class DateFormatSymbols implements Serializable, Cloneable {
      * @see android.icu.util.ULocale
      * @see android.icu.util.ULocale#VALID_LOCALE
      * @see android.icu.util.ULocale#ACTUAL_LOCALE
-     * @draft ICU 2.8 (retain)
-     * @provisional This API might change or be removed in a future release.
+     * {@literal @}draft ICU 2.8 (retain)
+     * {@literal @}provisional This API might change or be removed in a future release.
      */
     public final ULocale getLocale(ULocale.Type type) {
         return type == ULocale.ACTUAL_LOCALE ?

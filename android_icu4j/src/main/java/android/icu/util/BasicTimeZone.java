@@ -15,7 +15,7 @@ import java.util.List;
 import android.icu.impl.Grego;
 
 /**
- * {@icu} BasicTimeZone extends <code>TimeZone</code> with additional methods to access
+ * {{@literal @}icu} BasicTimeZone extends <code>TimeZone</code> with additional methods to access
  * time zone transitions and rules.  All ICU <code>TimeZone</code> concrete subclasses
  * extend this class. APIs added to <code>java.util.TimeZone</code> by
  * <code>BasicTimeZone</code> are annotated with <strong>'<font
@@ -25,6 +25,7 @@ import android.icu.impl.Grego;
  * @see android.icu.util.TimeZoneTransition
  *
  * @stable ICU 3.8
+ * @hide All android.icu classes are currently hidden
  */
 public abstract class BasicTimeZone extends TimeZone {
 
@@ -33,8 +34,8 @@ public abstract class BasicTimeZone extends TimeZone {
     private static final long MILLIS_PER_YEAR = 365*24*60*60*1000L;
 
     /**
-     * {@icu} Returns the first time zone transition after the base time.
-     * <p>Example code:{@.jcite com.ibm.icu.samples.util.timezone.BasicTimeZoneExample:---getNextTransitionExample}
+     * {{@literal @}icu} Returns the first time zone transition after the base time.
+     * <p>Example code:{{@literal @}.jcite com.ibm.icu.samples.util.timezone.BasicTimeZoneExample:---getNextTransitionExample}
      * 
      * @param base      The base time.
      * @param inclusive Whether the base time is inclusive or not.
@@ -48,8 +49,8 @@ public abstract class BasicTimeZone extends TimeZone {
     public abstract TimeZoneTransition getNextTransition(long base, boolean inclusive);
 
     /**
-     * {@icu} Returns the last time zone transition before the base time.
-     * <p>Example code:{@.jcite com.ibm.icu.samples.util.timezone.BasicTimeZoneExample:---getPreviousTransitionExample}
+     * {{@literal @}icu} Returns the last time zone transition before the base time.
+     * <p>Example code:{{@literal @}.jcite com.ibm.icu.samples.util.timezone.BasicTimeZoneExample:---getPreviousTransitionExample}
      *
      * @param base      The base time.
      * @param inclusive Whether the base time is inclusive or not.
@@ -63,11 +64,11 @@ public abstract class BasicTimeZone extends TimeZone {
     public abstract TimeZoneTransition getPreviousTransition(long base, boolean inclusive);
 
     /**
-     * {@icu} Checks if the time zone has equivalent transitions in the time range.
+     * {{@literal @}icu} Checks if the time zone has equivalent transitions in the time range.
      * This method returns true when all of transition times, from/to standard
      * offsets and DST savings used by this time zone match the other in the
      * time range.
-     * <p>Example code:{@.jcite com.ibm.icu.samples.util.timezone.BasicTimeZoneExample:---hasEquivalentTransitionsExample}
+     * <p>Example code:{{@literal @}.jcite com.ibm.icu.samples.util.timezone.BasicTimeZoneExample:---hasEquivalentTransitionsExample}
      *
      * @param tz    The instance of <code>TimeZone</code>
      * @param start The start time of the evaluated time range (inclusive)
@@ -84,7 +85,7 @@ public abstract class BasicTimeZone extends TimeZone {
     }
 
     /**
-     * {@icu} Checks if the time zone has equivalent transitions in the time range.
+     * {{@literal @}icu} Checks if the time zone has equivalent transitions in the time range.
      * This method returns true when all of transition times, from/to standard
      * offsets and DST savings used by this time zone match the other in the
      * time range.
@@ -206,7 +207,7 @@ public abstract class BasicTimeZone extends TimeZone {
     }
 
     /**
-     * {@icu} Returns the array of <code>TimeZoneRule</code> which represents the rule
+     * {{@literal @}icu} Returns the array of <code>TimeZoneRule</code> which represents the rule
      * of this time zone object.  The first element in the result array will
      * be the <code>InitialTimeZoneRule</code> instance for the initial rule.
      * The rest will be either <code>AnnualTimeZoneRule</code> or
@@ -220,13 +221,13 @@ public abstract class BasicTimeZone extends TimeZone {
     public abstract TimeZoneRule[] getTimeZoneRules();
 
     /**
-     * {@icu} Returns the array of <code>TimeZoneRule</code> which represents the rule
+     * {{@literal @}icu} Returns the array of <code>TimeZoneRule</code> which represents the rule
      * of this time zone object since the specified start time.  The first
      * element in the result array will be the <code>InitialTimeZoneRule</code>
      * instance for the initial rule.  The rest will be either
      * <code>AnnualTimeZoneRule</code> or <code>TimeArrayTimeZoneRule</code>
      * instances representing transitions.
-     * <p>Example code:{@.jcite com.ibm.icu.samples.util.timezone.BasicTimeZoneExample:---getTimeZoneRulesExample}
+     * <p>Example code:{{@literal @}.jcite com.ibm.icu.samples.util.timezone.BasicTimeZoneExample:---getTimeZoneRulesExample}
      *
      * @param start The start time (inclusive).
      * @return  The array of <code>TimeZoneRule</code> which represents this
@@ -367,7 +368,7 @@ public abstract class BasicTimeZone extends TimeZone {
     }
 
     /**
-     * {@icu} Returns the array of <code>TimeZoneRule</code> which represents the rule of
+     * {{@literal @}icu} Returns the array of <code>TimeZoneRule</code> which represents the rule of
      * this time zone object near the specified date.  Some applications are not
      * capable to handle historic time zone rule changes.  Also some applications
      * can only handle certain type of rule definitions.  This method returns
@@ -535,62 +536,62 @@ public abstract class BasicTimeZone extends TimeZone {
     }
 
     /**
-     * {@icu} The time type option for standard time used by
+     * {{@literal @}icu} The time type option for standard time used by
      * {@link #getOffsetFromLocal(long, int, int, int[])}
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
     public static final int LOCAL_STD = 0x01;
 
     /**
-     * {@icu} The time type option for daylight saving time used by
+     * {{@literal @}icu} The time type option for daylight saving time used by
      * {@link #getOffsetFromLocal(long, int, int, int[])}
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
     public static final int LOCAL_DST = 0x03;
 
     /**
-     * {@icu} The option designate former time to be used by
+     * {{@literal @}icu} The option designate former time to be used by
      * {@link #getOffsetFromLocal(long, int, int, int[])}
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
     public static final int LOCAL_FORMER = 0x04;
 
     /**
-     * {@icu} The option designate latter time to be used by
+     * {{@literal @}icu} The option designate latter time to be used by
      * {@link #getOffsetFromLocal(long, int, int, int[])}
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
     public static final int LOCAL_LATTER = 0x0C;
 
     /**
-     * {@icu} The bit mask for the time type option used by
+     * {{@literal @}icu} The bit mask for the time type option used by
      * {@link #getOffsetFromLocal(long, int, int, int[])}
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
     protected static final int STD_DST_MASK = 0x03;
 
     /**
-     * {@icu} The bit mask for the former/latter option used by
+     * {{@literal @}icu} The bit mask for the former/latter option used by
      * {@link #getOffsetFromLocal(long, int, int, int[])}
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
     protected static final int FORMER_LATTER_MASK = 0x0C;
 
     /**
-     * {@icu} Returns time zone offsets from local wall time.
-     * @internal
+     * {{@literal @}icu} Returns time zone offsets from local wall time.
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -609,7 +610,7 @@ public abstract class BasicTimeZone extends TimeZone {
     /**
      * Constructing a BasicTimeZone with the given time zone ID.
      * @param ID the time zone ID.
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated

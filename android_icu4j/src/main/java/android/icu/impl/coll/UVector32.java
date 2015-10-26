@@ -13,6 +13,7 @@ package android.icu.impl.coll;
 // TODO: There must be a Java class for a growable array of ints without auto-boxing to Integer?!
 // Keep the API parallel to the C++ version for ease of porting. Port methods only as needed.
 // If & when we start using something else, we might keep this as a thin wrapper for porting.
+/** @hide All android.icu classes are currently hidden */
 public final class UVector32 {
     public UVector32() {}
     public boolean isEmpty() { return length == 0; }

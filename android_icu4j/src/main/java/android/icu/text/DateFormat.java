@@ -31,7 +31,7 @@ import android.icu.util.ULocale;
 import android.icu.util.ULocale.Category;
 
 /**
- * {@icuenhanced java.text.DateFormat}.{@icu _usage_}
+ * {{@literal @}icuenhanced java.text.DateFormat}.{{@literal @}icu _usage_}
  * 
  * <p>
  * DateFormat is an abstract class for date/time formatting subclasses which formats and parses dates or time in a
@@ -139,6 +139,7 @@ import android.icu.util.ULocale.Category;
  * @see android.icu.util.TimeZone
  * @author Mark Davis, Chen-Lieh Huang, Alan Liu
  * @stable ICU 2.0
+ * @hide All android.icu classes are currently hidden
  */
 public abstract class DateFormat extends UFormat {
 
@@ -222,7 +223,7 @@ public abstract class DateFormat extends UFormat {
     public final static int SECOND_FIELD = 7;
 
     /**
-     * {@icu} FieldPosition selector for 'S' field alignment,
+     * {{@literal @}icu} FieldPosition selector for 'S' field alignment,
      * corresponding to the {@link Calendar#MILLISECOND} field.
      *
      * Note: Time formats that use 'S' can display a maximum of three
@@ -311,42 +312,42 @@ public abstract class DateFormat extends UFormat {
     public final static int TIMEZONE_FIELD = 17;
 
     /**
-     * {@icu} FieldPosition selector for 'Y' field alignment,
+     * {{@literal @}icu} FieldPosition selector for 'Y' field alignment,
      * corresponding to the {@link Calendar#YEAR_WOY} field.
      * @stable ICU 3.0
      */
     public final static int YEAR_WOY_FIELD = 18;
 
     /**
-     * {@icu} FieldPosition selector for 'e' field alignment,
+     * {{@literal @}icu} FieldPosition selector for 'e' field alignment,
      * corresponding to the {@link Calendar#DOW_LOCAL} field.
      * @stable ICU 3.0
      */
     public final static int DOW_LOCAL_FIELD = 19;
 
     /**
-     * {@icu} FieldPosition selector for 'u' field alignment,
+     * {{@literal @}icu} FieldPosition selector for 'u' field alignment,
      * corresponding to the {@link Calendar#EXTENDED_YEAR} field.
      * @stable ICU 3.0
      */
     public final static int EXTENDED_YEAR_FIELD = 20;
 
     /**
-     * {@icu} FieldPosition selector for 'g' field alignment,
+     * {{@literal @}icu} FieldPosition selector for 'g' field alignment,
      * corresponding to the {@link Calendar#JULIAN_DAY} field.
      * @stable ICU 3.0
      */
     public final static int JULIAN_DAY_FIELD = 21;
 
     /**
-     * {@icu} FieldPosition selector for 'A' field alignment,
+     * {{@literal @}icu} FieldPosition selector for 'A' field alignment,
      * corresponding to the {@link Calendar#MILLISECONDS_IN_DAY} field.
      * @stable ICU 3.0
      */
     public final static int MILLISECONDS_IN_DAY_FIELD = 22;
 
     /**
-     * {@icu} FieldPosition selector for 'Z' field alignment,
+     * {{@literal @}icu} FieldPosition selector for 'Z' field alignment,
      * corresponding to the {@link Calendar#ZONE_OFFSET} and
      * {@link Calendar#DST_OFFSET} fields.
      * @stable ICU 3.0
@@ -354,7 +355,7 @@ public abstract class DateFormat extends UFormat {
     public final static int TIMEZONE_RFC_FIELD = 23;
 
     /**
-     * {@icu} FieldPosition selector for 'v' field alignment,
+     * {{@literal @}icu} FieldPosition selector for 'v' field alignment,
      * corresponding to the {@link Calendar#ZONE_OFFSET} and
      * {@link Calendar#DST_OFFSET} fields.  This displays the generic zone
      * name, if available.
@@ -363,7 +364,7 @@ public abstract class DateFormat extends UFormat {
     public final static int TIMEZONE_GENERIC_FIELD = 24;
 
     /**
-     * {@icu} FieldPosition selector for 'c' field alignment,
+     * {{@literal @}icu} FieldPosition selector for 'c' field alignment,
      * corresponding to the {@link Calendar#DAY_OF_WEEK} field.
      * This displays the stand alone day name, if available.
      * @stable ICU 3.4
@@ -371,7 +372,7 @@ public abstract class DateFormat extends UFormat {
     public final static int STANDALONE_DAY_FIELD = 25;
 
     /**
-     * {@icu} FieldPosition selector for 'L' field alignment,
+     * {{@literal @}icu} FieldPosition selector for 'L' field alignment,
      * corresponding to the {@link Calendar#MONTH} field.
      * This displays the stand alone month name, if available.
      * @stable ICU 3.4
@@ -379,7 +380,7 @@ public abstract class DateFormat extends UFormat {
     public final static int STANDALONE_MONTH_FIELD = 26;
 
     /**
-     * {@icu} FieldPosition selector for 'Q' field alignment,
+     * {{@literal @}icu} FieldPosition selector for 'Q' field alignment,
      * corresponding to the {@link Calendar#MONTH} field.
      * This displays the quarter.
      * @stable ICU 3.6
@@ -387,7 +388,7 @@ public abstract class DateFormat extends UFormat {
     public final static int QUARTER_FIELD = 27;
 
     /**
-     * {@icu} FieldPosition selector for 'q' field alignment,
+     * {{@literal @}icu} FieldPosition selector for 'q' field alignment,
      * corresponding to the {@link Calendar#MONTH} field.
      * This displays the stand alone quarter, if available.
      * @stable ICU 3.6
@@ -395,7 +396,7 @@ public abstract class DateFormat extends UFormat {
     public final static int STANDALONE_QUARTER_FIELD = 28;
 
     /**
-     * {@icu} FieldPosition selector for 'V' field alignment,
+     * {{@literal @}icu} FieldPosition selector for 'V' field alignment,
      * corresponding to the {@link Calendar#ZONE_OFFSET} and
      * {@link Calendar#DST_OFFSET} fields.  This displays the fallback timezone
      * name when VVVV is specified, and the short standard or daylight
@@ -405,7 +406,7 @@ public abstract class DateFormat extends UFormat {
     public final static int TIMEZONE_SPECIAL_FIELD = 29;
 
     /**
-     * {@icu} FieldPosition selector for 'U' field alignment,
+     * {{@literal @}icu} FieldPosition selector for 'U' field alignment,
      * corresponding to the {@link Calendar#YEAR} field.
      * This displays the cyclic year name, if available.
      * @stable ICU 49
@@ -413,7 +414,7 @@ public abstract class DateFormat extends UFormat {
     public final static int YEAR_NAME_FIELD = 30;
 
     /**
-     * {@icu} FieldPosition selector for 'O' field alignment,
+     * {{@literal @}icu} FieldPosition selector for 'O' field alignment,
      * corresponding to the {@link Calendar#ZONE_OFFSET} and
      * {@link Calendar#DST_OFFSET} fields.  This displays the
      * localized GMT format.
@@ -422,7 +423,7 @@ public abstract class DateFormat extends UFormat {
     public final static int TIMEZONE_LOCALIZED_GMT_OFFSET_FIELD = 31;
 
     /**
-     * {@icu} FieldPosition selector for 'X' field alignment,
+     * {{@literal @}icu} FieldPosition selector for 'X' field alignment,
      * corresponding to the {@link Calendar#ZONE_OFFSET} and
      * {@link Calendar#DST_OFFSET} fields.  This displays the
      * ISO 8601 local time offset format or UTC indicator ("Z").
@@ -431,7 +432,7 @@ public abstract class DateFormat extends UFormat {
     public final static int TIMEZONE_ISO_FIELD = 32;
 
     /**
-     * {@icu} FieldPosition selector for 'x' field alignment,
+     * {{@literal @}icu} FieldPosition selector for 'x' field alignment,
      * corresponding to the {@link Calendar#ZONE_OFFSET} and
      * {@link Calendar#DST_OFFSET} fields.  This displays the
      * ISO 8601 local time offset format.
@@ -440,27 +441,27 @@ public abstract class DateFormat extends UFormat {
     public final static int TIMEZONE_ISO_LOCAL_FIELD = 33;
 
     /**
-     * {@icu} FieldPosition selector for 'r' field alignment,
+     * {{@literal @}icu} FieldPosition selector for 'r' field alignment,
      * corresponding to the {@link Calendar#EXTENDED_YEAR} field
      * of the *related* calendar which may be different than the
      * one used by the DateFormat.
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
     final static int RELATED_YEAR = 34;
 
     /**
-     * {@icu} FieldPosition selector time separator,
+     * {{@literal @}icu} FieldPosition selector time separator,
      * no related Calendar field. No pattern character is currently
      * defined for this.
-     * @draft ICU 55
-     * @provisional This API might change or be removed in a future release.
+     * {@literal @}draft ICU 55
+     * {@literal @}provisional This API might change or be removed in a future release.
      */
     public final static int TIME_SEPARATOR = 35;
 
     /**
-     * {@icu} Number of FieldPosition selectors for DateFormat.
+     * {{@literal @}icu} Number of FieldPosition selectors for DateFormat.
      * Valid selectors range from 0 to FIELD_COUNT-1.
      * @stable ICU 3.0
      */
@@ -494,20 +495,20 @@ public abstract class DateFormat extends UFormat {
         /** 
          * indicates tolerance of pattern mismatch between input data and specified format pattern.
          * e.g. accepting "September" for a month pattern of MMM ("Sep")  
-         * @draft ICU 56
-         * @provisional This API might change or be removed in a future release.
+         * {@literal @}draft ICU 56
+         * {@literal @}provisional This API might change or be removed in a future release.
          */
         PARSE_MULTIPLE_PATTERNS_FOR_MATCH, 
         /**
          * indicates tolerance of a partial literal match
          * e.g. accepting "--mon-02-march-2011" for a pattern of "'--: 'EEE-WW-MMMM-yyyy"
-         * @draft ICU 56
-         * @provisional This API might change or be removed in a future release.
+         * {@literal @}draft ICU 56
+         * {@literal @}provisional This API might change or be removed in a future release.
          */
         PARSE_PARTIAL_LITERAL_MATCH,
         /**
          * alias of PARSE_PARTIAL_LITERAL_MATCH
-         * @internal
+         * {@literal @}internal
          * @deprecated
          */
         @Deprecated
@@ -813,7 +814,7 @@ public abstract class DateFormat extends UFormat {
     }
 
     /**
-     * {@icu} Constant for empty style pattern.
+     * {{@literal @}icu} Constant for empty style pattern.
      * @stable ICU 3.8
      */
     public static final int NONE = -1;
@@ -849,37 +850,37 @@ public abstract class DateFormat extends UFormat {
     public static final int DEFAULT = MEDIUM;
 
     /**
-     * {@icu} Constant for relative style mask.
+     * {{@literal @}icu} Constant for relative style mask.
      * @stable ICU 3.8
      */
     public static final int RELATIVE = (1 << 7);
 
     /**
-     * {@icu} Constant for relative full style pattern.
+     * {{@literal @}icu} Constant for relative full style pattern.
      * @stable ICU 3.8
      */
     public static final int RELATIVE_FULL = RELATIVE | FULL;
 
     /**
-     * {@icu} Constant for relative style pattern.
+     * {{@literal @}icu} Constant for relative style pattern.
      * @stable ICU 3.8
      */
     public static final int RELATIVE_LONG = RELATIVE | LONG;
 
     /**
-     * {@icu} Constant for relative style pattern.
+     * {{@literal @}icu} Constant for relative style pattern.
      * @stable ICU 3.8
      */
     public static final int RELATIVE_MEDIUM = RELATIVE | MEDIUM;
 
     /**
-     * {@icu} Constant for relative style pattern.
+     * {{@literal @}icu} Constant for relative style pattern.
      * @stable ICU 3.8
      */
     public static final int RELATIVE_SHORT = RELATIVE | SHORT;
 
     /**
-     * {@icu} Constant for relative default style pattern.
+     * {{@literal @}icu} Constant for relative default style pattern.
      * @stable ICU 3.8
      */
     public static final int RELATIVE_DEFAULT = RELATIVE | DEFAULT;
@@ -889,168 +890,168 @@ public abstract class DateFormat extends UFormat {
      */
 
     /**
-     * {@icu} Constant for date skeleton with year.
+     * {{@literal @}icu} Constant for date skeleton with year.
      * @stable ICU 4.0
      */
     public static final String YEAR = "y";
 
     /**
-     * {@icu} Constant for date skeleton with quarter.
+     * {{@literal @}icu} Constant for date skeleton with quarter.
      * @stable ICU 50
      */
     public static final String QUARTER = "QQQQ";
 
     /**
-     * {@icu} Constant for date skeleton with abbreviated quarter.
+     * {{@literal @}icu} Constant for date skeleton with abbreviated quarter.
      * @stable ICU 50
      */
     public static final String ABBR_QUARTER = "QQQ";
 
     /**
-     * {@icu} Constant for date skeleton with year and quarter.
+     * {{@literal @}icu} Constant for date skeleton with year and quarter.
      * @stable ICU 4.0
      */
     public static final String YEAR_QUARTER = "yQQQQ";
 
     /**
-     * {@icu} Constant for date skeleton with year and abbreviated quarter.
+     * {{@literal @}icu} Constant for date skeleton with year and abbreviated quarter.
      * @stable ICU 4.0
      */
     public static final String YEAR_ABBR_QUARTER = "yQQQ";
 
     /**
-     * {@icu} Constant for date skeleton with month.
+     * {{@literal @}icu} Constant for date skeleton with month.
      * @stable ICU 4.0
      */
     public static final String MONTH = "MMMM";
 
     /**
-     * {@icu} Constant for date skeleton with abbreviated month.
+     * {{@literal @}icu} Constant for date skeleton with abbreviated month.
      * @stable ICU 4.0
      */
     public static final String ABBR_MONTH = "MMM";
 
     /**
-     * {@icu} Constant for date skeleton with numeric month.
+     * {{@literal @}icu} Constant for date skeleton with numeric month.
      * @stable ICU 4.0
      */
     public static final String NUM_MONTH = "M";
 
     /**
-     * {@icu} Constant for date skeleton with year and month.
+     * {{@literal @}icu} Constant for date skeleton with year and month.
      * @stable ICU 4.0
      */
     public static final String YEAR_MONTH = "yMMMM";
 
     /**
-     * {@icu} Constant for date skeleton with year and abbreviated month.
+     * {{@literal @}icu} Constant for date skeleton with year and abbreviated month.
      * @stable ICU 4.0
      */
     public static final String YEAR_ABBR_MONTH = "yMMM";
 
     /**
-     * {@icu} Constant for date skeleton with year and numeric month.
+     * {{@literal @}icu} Constant for date skeleton with year and numeric month.
      * @stable ICU 4.0
      */
     public static final String YEAR_NUM_MONTH = "yM";
 
     /**
-     * {@icu} Constant for date skeleton with day.
+     * {{@literal @}icu} Constant for date skeleton with day.
      * @stable ICU 4.0
      */
     public static final String DAY = "d";
 
     /**
-     * {@icu} Constant for date skeleton with year, month, and day.
+     * {{@literal @}icu} Constant for date skeleton with year, month, and day.
      * Used in combinations date + time, date + time + zone, or time + zone.
      * @stable ICU 4.0
      */
     public static final String YEAR_MONTH_DAY = "yMMMMd";
 
     /**
-     * {@icu} Constant for date skeleton with year, abbreviated month, and day.
+     * {{@literal @}icu} Constant for date skeleton with year, abbreviated month, and day.
      * Used in combinations date + time, date + time + zone, or time + zone.
      * @stable ICU 4.0
      */
     public static final String YEAR_ABBR_MONTH_DAY = "yMMMd";
 
     /**
-     * {@icu} Constant for date skeleton with year, numeric month, and day.
+     * {{@literal @}icu} Constant for date skeleton with year, numeric month, and day.
      * Used in combinations date + time, date + time + zone, or time + zone.
      * @stable ICU 4.0
      */
     public static final String YEAR_NUM_MONTH_DAY = "yMd";
 
     /**
-     * {@icu} Constant for date skeleton with weekday.
+     * {{@literal @}icu} Constant for date skeleton with weekday.
      * @stable ICU 50
      */
     public static final String WEEKDAY = "EEEE";
 
     /**
-     * {@icu} Constant for date skeleton with abbreviated weekday.
+     * {{@literal @}icu} Constant for date skeleton with abbreviated weekday.
      * @stable ICU 50
      */
     public static final String ABBR_WEEKDAY = "E";
 
     /**
-     * {@icu} Constant for date skeleton with year, month, weekday, and day.
+     * {{@literal @}icu} Constant for date skeleton with year, month, weekday, and day.
      * Used in combinations date + time, date + time + zone, or time + zone.
      * @stable ICU 4.0
      */
     public static final String YEAR_MONTH_WEEKDAY_DAY = "yMMMMEEEEd";
 
     /**
-     * {@icu} Constant for date skeleton with year, abbreviated month, weekday, and day.
+     * {{@literal @}icu} Constant for date skeleton with year, abbreviated month, weekday, and day.
      * Used in combinations date + time, date + time + zone, or time + zone.
      * @stable ICU 4.0
      */
     public static final String YEAR_ABBR_MONTH_WEEKDAY_DAY = "yMMMEd";
 
     /**
-     * {@icu} Constant for date skeleton with year, numeric month, weekday, and day.
+     * {{@literal @}icu} Constant for date skeleton with year, numeric month, weekday, and day.
      * Used in combinations date + time, date + time + zone, or time + zone.
      * @stable ICU 4.0
      */
     public static final String YEAR_NUM_MONTH_WEEKDAY_DAY = "yMEd";
 
     /**
-     * {@icu} Constant for date skeleton with long month and day.
+     * {{@literal @}icu} Constant for date skeleton with long month and day.
      * Used in combinations date + time, date + time + zone, or time + zone.
      * @stable ICU 4.0
      */
     public static final String MONTH_DAY = "MMMMd";
 
     /**
-     * {@icu} Constant for date skeleton with abbreviated month and day.
+     * {{@literal @}icu} Constant for date skeleton with abbreviated month and day.
      * Used in combinations date + time, date + time + zone, or time + zone.
      * @stable ICU 4.0
      */
     public static final String ABBR_MONTH_DAY = "MMMd";
 
     /**
-     * {@icu} Constant for date skeleton with numeric month and day.
+     * {{@literal @}icu} Constant for date skeleton with numeric month and day.
      * Used in combinations date + time, date + time + zone, or time + zone.
      * @stable ICU 4.0
      */
     public static final String NUM_MONTH_DAY = "Md";
 
     /**
-     * {@icu} Constant for date skeleton with month, weekday, and day.
+     * {{@literal @}icu} Constant for date skeleton with month, weekday, and day.
      * Used in combinations date + time, date + time + zone, or time + zone.
      * @stable ICU 4.0
      */
     public static final String MONTH_WEEKDAY_DAY = "MMMMEEEEd";
 
     /**
-     * {@icu} Constant for date skeleton with abbreviated month, weekday, and day.
+     * {{@literal @}icu} Constant for date skeleton with abbreviated month, weekday, and day.
      * Used in combinations date + time, date + time + zone, or time + zone.
      * @stable ICU 4.0
      */
     public static final String ABBR_MONTH_WEEKDAY_DAY = "MMMEd";
 
     /**
-     * {@icu} Constant for date skeleton with numeric month, weekday, and day.
+     * {{@literal @}icu} Constant for date skeleton with numeric month, weekday, and day.
      * Used in combinations date + time, date + time + zone, or time + zone.
      * @stable ICU 4.0
      */
@@ -1059,7 +1060,7 @@ public abstract class DateFormat extends UFormat {
     /**
      * List of all of the date skeleton constants for iteration.
      * Note that this is fragile; be sure to add any values that are added above.
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -1096,45 +1097,45 @@ public abstract class DateFormat extends UFormat {
      */
 
     /**
-     * {@icu} Constant for date skeleton with hour, with the locale's preferred hour format (12 or 24).
+     * {{@literal @}icu} Constant for date skeleton with hour, with the locale's preferred hour format (12 or 24).
      * @stable ICU 4.0
      */
     public static final String HOUR = "j";
 
     /**
-     * {@icu} Constant for date skeleton with hour in 24-hour presentation.
+     * {{@literal @}icu} Constant for date skeleton with hour in 24-hour presentation.
      * @stable ICU 50
      */
     public static final String HOUR24 = "H";
 
     /**
-     * {@icu} Constant for date skeleton with minute.
+     * {{@literal @}icu} Constant for date skeleton with minute.
      * @stable ICU 50
      */
     public static final String MINUTE = "m";
 
     /**
-     * {@icu} Constant for date skeleton with hour and minute, with the locale's preferred hour format (12 or 24).
+     * {{@literal @}icu} Constant for date skeleton with hour and minute, with the locale's preferred hour format (12 or 24).
      * Used in combinations date + time, date + time + zone, or time + zone.
      * @stable ICU 4.0
      */
     public static final String HOUR_MINUTE = "jm";
 
     /**
-     * {@icu} Constant for date skeleton with hour and minute in 24-hour presentation.
+     * {{@literal @}icu} Constant for date skeleton with hour and minute in 24-hour presentation.
      * Used in combinations date + time, date + time + zone, or time + zone.
      * @stable ICU 4.0
      */
     public static final String HOUR24_MINUTE = "Hm";
 
     /**
-     * {@icu} Constant for date skeleton with second.
+     * {{@literal @}icu} Constant for date skeleton with second.
      * @stable ICU 50
      */
     public static final String SECOND = "s";
 
     /**
-     * {@icu} Constant for date skeleton with hour, minute, and second,
+     * {{@literal @}icu} Constant for date skeleton with hour, minute, and second,
      * with the locale's preferred hour format (12 or 24).
      * Used in combinations date + time, date + time + zone, or time + zone.
      * @stable ICU 4.0
@@ -1142,7 +1143,7 @@ public abstract class DateFormat extends UFormat {
     public static final String HOUR_MINUTE_SECOND = "jms";
 
     /**
-     * {@icu} Constant for date skeleton with hour, minute, and second in
+     * {{@literal @}icu} Constant for date skeleton with hour, minute, and second in
      * 24-hour presentation.
      * Used in combinations date + time, date + time + zone, or time + zone.
      * @stable ICU 4.0
@@ -1150,7 +1151,7 @@ public abstract class DateFormat extends UFormat {
     public static final String HOUR24_MINUTE_SECOND = "Hms";
 
     /**
-     * {@icu} Constant for date skeleton with minute and second.
+     * {{@literal @}icu} Constant for date skeleton with minute and second.
      * Used in combinations date + time, date + time + zone, or time + zone.
      * @stable ICU 4.0
      */
@@ -1159,7 +1160,7 @@ public abstract class DateFormat extends UFormat {
     /**
      * List of all of the time skeleton constants for iteration.
      * Note that this is fragile; be sure to add any values that are added above.
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -1179,7 +1180,7 @@ public abstract class DateFormat extends UFormat {
      */
 
     /**
-     * {@icu} Constant for <i>generic location format</i>, such as Los Angeles Time;
+     * {{@literal @}icu} Constant for <i>generic location format</i>, such as Los Angeles Time;
      * used in combinations date + time + zone, or time + zone.
      * @see <a href="http://unicode.org/reports/tr35/#Date_Format_Patterns">LDML Date Format Patterns</a>
      * @see <a href="http://unicode.org/reports/tr35/#Time_Zone_Fallback">LDML Time Zone Fallback</a>
@@ -1188,7 +1189,7 @@ public abstract class DateFormat extends UFormat {
     public static final String LOCATION_TZ = "VVVV";
     
     /**
-     * {@icu} Constant for <i>generic non-location format</i>, such as Pacific Time;
+     * {{@literal @}icu} Constant for <i>generic non-location format</i>, such as Pacific Time;
      * used in combinations date + time + zone, or time + zone.
      * @see <a href="http://unicode.org/reports/tr35/#Date_Format_Patterns">LDML Date Format Patterns</a>
      * @see <a href="http://unicode.org/reports/tr35/#Time_Zone_Fallback">LDML Time Zone Fallback</a>
@@ -1197,7 +1198,7 @@ public abstract class DateFormat extends UFormat {
     public static final String GENERIC_TZ = "vvvv";
     
     /**
-     * {@icu} Constant for <i>generic non-location format</i>, abbreviated if possible, such as PT;
+     * {{@literal @}icu} Constant for <i>generic non-location format</i>, abbreviated if possible, such as PT;
      * used in combinations date + time + zone, or time + zone.
      * @see <a href="http://unicode.org/reports/tr35/#Date_Format_Patterns">LDML Date Format Patterns</a>
      * @see <a href="http://unicode.org/reports/tr35/#Time_Zone_Fallback">LDML Time Zone Fallback</a>
@@ -1206,7 +1207,7 @@ public abstract class DateFormat extends UFormat {
     public static final String ABBR_GENERIC_TZ = "v";
     
     /**
-     * {@icu} Constant for <i>specific non-location format</i>, such as Pacific Daylight Time;
+     * {{@literal @}icu} Constant for <i>specific non-location format</i>, such as Pacific Daylight Time;
      * used in combinations date + time + zone, or time + zone.
      * @see <a href="http://unicode.org/reports/tr35/#Date_Format_Patterns">LDML Date Format Patterns</a>
      * @see <a href="http://unicode.org/reports/tr35/#Time_Zone_Fallback">LDML Time Zone Fallback</a>
@@ -1215,7 +1216,7 @@ public abstract class DateFormat extends UFormat {
     public static final String SPECIFIC_TZ = "zzzz";
     
     /**
-     * {@icu} Constant for <i>specific non-location format</i>, abbreviated if possible, such as PDT;
+     * {{@literal @}icu} Constant for <i>specific non-location format</i>, abbreviated if possible, such as PDT;
      * used in combinations date + time + zone, or time + zone.
      * @see <a href="http://unicode.org/reports/tr35/#Date_Format_Patterns">LDML Date Format Patterns</a>
      * @see <a href="http://unicode.org/reports/tr35/#Time_Zone_Fallback">LDML Time Zone Fallback</a>
@@ -1224,7 +1225,7 @@ public abstract class DateFormat extends UFormat {
     public static final String ABBR_SPECIFIC_TZ = "z";
     
     /**
-     * {@icu} Constant for <i>localized GMT/UTC format</i>, such as GMT+8:00 or HPG-8:00;
+     * {{@literal @}icu} Constant for <i>localized GMT/UTC format</i>, such as GMT+8:00 or HPG-8:00;
      * used in combinations date + time + zone, or time + zone.
      * @see <a href="http://unicode.org/reports/tr35/#Date_Format_Patterns">LDML Date Format Patterns</a>
      * @see <a href="http://unicode.org/reports/tr35/#Time_Zone_Fallback">LDML Time Zone Fallback</a>
@@ -1235,7 +1236,7 @@ public abstract class DateFormat extends UFormat {
     /**
      * List of all of the zone skeleton constants for iteration.
      * Note that this is fragile; be sure to add any values that are added above.
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -1252,42 +1253,42 @@ public abstract class DateFormat extends UFormat {
      */
 
     /**
-     * {@icu} Constant for date skeleton with standalone month.
+     * {{@literal @}icu} Constant for date skeleton with standalone month.
      * @deprecated ICU 50 Use {@link #MONTH} instead.
      */
     @Deprecated
     public static final String STANDALONE_MONTH = "LLLL";
 
     /**
-     * {@icu} Constant for date skeleton with standalone abbreviated month.
+     * {{@literal @}icu} Constant for date skeleton with standalone abbreviated month.
      * @deprecated ICU 50 Use {@link #ABBR_MONTH} instead.
      */
     @Deprecated
     public static final String ABBR_STANDALONE_MONTH = "LLL";
 
     /**
-     * {@icu} Constant for date skeleton with hour, minute, and generic timezone.
+     * {{@literal @}icu} Constant for date skeleton with hour, minute, and generic timezone.
      * @deprecated ICU 50 Use instead {@link #HOUR_MINUTE}+{@link #ABBR_GENERIC_TZ} or some other timezone presentation.
      */
     @Deprecated
     public static final String HOUR_MINUTE_GENERIC_TZ = "jmv";
 
     /**
-     * {@icu} Constant for date skeleton with hour, minute, and timezone.
+     * {{@literal @}icu} Constant for date skeleton with hour, minute, and timezone.
      * @deprecated ICU 50 Use instead {@link #HOUR_MINUTE}+{@link #ABBR_SPECIFIC_TZ} or some other timezone presentation.
      */
     @Deprecated
     public static final String HOUR_MINUTE_TZ = "jmz";
 
     /**
-     * {@icu} Constant for date skeleton with hour and generic timezone.
+     * {{@literal @}icu} Constant for date skeleton with hour and generic timezone.
      * @deprecated ICU 50 Use instead {@link #HOUR}+{@link #ABBR_GENERIC_TZ} or some other timezone presentation.
      */
     @Deprecated
     public static final String HOUR_GENERIC_TZ = "jv";
 
     /**
-     * {@icu} Constant for date skeleton with hour and timezone.
+     * {{@literal @}icu} Constant for date skeleton with hour and timezone.
      * @deprecated ICU 50 Use instead {@link #HOUR}+{@link #ABBR_SPECIFIC_TZ} or some other timezone presentation.
      */
     @Deprecated
@@ -1515,10 +1516,10 @@ public abstract class DateFormat extends UFormat {
     }
 
     /**
-     * {@icu} Returns the set of locales for which DateFormats are installed.
+     * {{@literal @}icu} Returns the set of locales for which DateFormats are installed.
      * @return the set of locales for which DateFormats are installed.
-     * @draft ICU 3.2 (retain)
-     * @provisional This API might change or be removed in a future release.
+     * {@literal @}draft ICU 3.2 (retain)
+     * {@literal @}provisional This API might change or be removed in a future release.
      */
     public static ULocale[] getAvailableULocales()
     {
@@ -1698,7 +1699,7 @@ public abstract class DateFormat extends UFormat {
     
     
     /**
-     * {@icu} Set a particular DisplayContext value in the formatter,
+     * {{@literal @}icu} Set a particular DisplayContext value in the formatter,
      * such as CAPITALIZATION_FOR_STANDALONE. 
      * 
      * @param context The DisplayContext value to set. 
@@ -1711,7 +1712,7 @@ public abstract class DateFormat extends UFormat {
     }
 
     /**
-     * {@icu} Get the formatter's DisplayContext value for the specified DisplayContext.Type,
+     * {{@literal @}icu} Get the formatter's DisplayContext value for the specified DisplayContext.Type,
      * such as CAPITALIZATION.
      * 
      * @param type the DisplayContext.Type whose value to return
@@ -2004,7 +2005,7 @@ public abstract class DateFormat extends UFormat {
      * @param cal   The calendar system for which a date/time format is desired.
      * @param locale The locale for which the date/time format is desired. 
      * @stable ICU 3.2
-     * @provisional This API might change or be removed in a future release.
+     * {@literal @}provisional This API might change or be removed in a future release.
      */
     static final public DateFormat getInstance(Calendar cal, ULocale locale) {
         return getDateTimeInstance(cal, SHORT, SHORT, locale);
@@ -2081,7 +2082,7 @@ public abstract class DateFormat extends UFormat {
     }
     
     /**
-     * {@icu} Returns a {@link DateFormat} object that can be used to format dates and times in
+     * {{@literal @}icu} Returns a {@link DateFormat} object that can be used to format dates and times in
      * the default locale.
      *
      * @param skeleton The skeleton that selects the fields to be formatted. (Uses the
@@ -2095,7 +2096,7 @@ public abstract class DateFormat extends UFormat {
     }
 
     /**
-     * {@icu} Returns a {@link DateFormat} object that can be used to format dates and times in
+     * {{@literal @}icu} Returns a {@link DateFormat} object that can be used to format dates and times in
      * the given locale.
      *
      * @param skeleton The skeleton that selects the fields to be formatted. (Uses the
@@ -2111,7 +2112,7 @@ public abstract class DateFormat extends UFormat {
     }
 
     /**
-     * {@icu} Returns a {@link DateFormat} object that can be used to format dates and times in
+     * {{@literal @}icu} Returns a {@link DateFormat} object that can be used to format dates and times in
      * the given locale.
      *
      * @param skeleton The skeleton that selects the fields to be formatted. (Uses the
@@ -2129,7 +2130,7 @@ public abstract class DateFormat extends UFormat {
     }
 
     /**
-     * {@icu} Creates a {@link DateFormat} object that can be used to format dates and
+     * {{@literal @}icu} Creates a {@link DateFormat} object that can be used to format dates and
      * times in the calendar system specified by <code>cal</code>.
      *
      * @param cal   The calendar system for which a date/time format is desired.
@@ -2148,7 +2149,7 @@ public abstract class DateFormat extends UFormat {
     }
 
     /**
-     * {@icu} Creates a {@link DateFormat} object that can be used to format dates and
+     * {{@literal @}icu} Creates a {@link DateFormat} object that can be used to format dates and
      * times in the calendar system specified by <code>cal</code>.
      *
      * @param cal   The calendar system for which a date/time format is desired.
@@ -2173,7 +2174,7 @@ public abstract class DateFormat extends UFormat {
 
 
     /**
-     * {@icu} Returns a {@link DateFormat} object that can be used to format dates and times in
+     * {{@literal @}icu} Returns a {@link DateFormat} object that can be used to format dates and times in
      * the default locale.
      * The getInstanceForSkeleton methods are preferred over the getPatternInstance methods.
      *
@@ -2188,7 +2189,7 @@ public abstract class DateFormat extends UFormat {
     }
 
     /**
-     * {@icu} Returns a {@link DateFormat} object that can be used to format dates and times in
+     * {{@literal @}icu} Returns a {@link DateFormat} object that can be used to format dates and times in
      * the given locale.
      * The getInstanceForSkeleton methods are preferred over the getPatternInstance methods.
      *
@@ -2205,7 +2206,7 @@ public abstract class DateFormat extends UFormat {
     }
 
     /**
-     * {@icu} Returns a {@link DateFormat} object that can be used to format dates and times in
+     * {{@literal @}icu} Returns a {@link DateFormat} object that can be used to format dates and times in
      * the given locale.
      * The getInstanceForSkeleton methods are preferred over the getPatternInstance methods.
      *
@@ -2222,7 +2223,7 @@ public abstract class DateFormat extends UFormat {
     }
 
     /**
-     * {@icu} Creates a {@link DateFormat} object that can be used to format dates and
+     * {{@literal @}icu} Creates a {@link DateFormat} object that can be used to format dates and
      * times in the calendar system specified by <code>cal</code>.
      * The getInstanceForSkeleton methods are preferred over the getPatternInstance methods.
      *
@@ -2242,7 +2243,7 @@ public abstract class DateFormat extends UFormat {
     }
 
     /**
-     * {@icu} Creates a {@link DateFormat} object that can be used to format dates and
+     * {{@literal @}icu} Creates a {@link DateFormat} object that can be used to format dates and
      * times in the calendar system specified by <code>cal</code>.
      * The getInstanceForSkeleton methods are preferred over the getPatternInstance methods.
      *
@@ -2447,7 +2448,7 @@ public abstract class DateFormat extends UFormat {
 
         /**
          * Constant identifying the related year field.
-         * @internal
+         * {@literal @}internal
          * @deprecated This API is ICU internal only.
          */
         @Deprecated
@@ -2455,8 +2456,8 @@ public abstract class DateFormat extends UFormat {
 
         /**
          * Constant identifying the time separator field.
-         * @draft ICU 55
-         * @provisional This API might change or be removed in a future release.
+         * {@literal @}draft ICU 55
+         * {@literal @}provisional This API might change or be removed in a future release.
          */
         public static final Field TIME_SEPARATOR = new Field("time separator", -1);
 

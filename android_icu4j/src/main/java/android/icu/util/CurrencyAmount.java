@@ -20,6 +20,7 @@ package android.icu.util;
  * @see Currency
  * @author Alan Liu
  * @stable ICU 3.0
+ * @hide All android.icu classes are currently hidden
  */
 public class CurrencyAmount extends Measure {
     

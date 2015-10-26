@@ -13,6 +13,7 @@ import java.util.ListResourceBundle;
 import android.icu.util.HebrewHoliday;
 import android.icu.util.Holiday;
 
+/** @hide All android.icu classes are currently hidden */
 public class HolidayBundle_iw_IL extends ListResourceBundle {
     static private final Holiday[] fHolidays = {
         HebrewHoliday.ROSH_HASHANAH,

@@ -44,7 +44,7 @@ import android.icu.util.ULocale;
 import android.icu.util.ULocale.Category;
 
 /**
- * {@icuenhanced java.text.MessageFormat}.{@icu _usage_}
+ * {{@literal @}icuenhanced java.text.MessageFormat}.{{@literal @}icu _usage_}
  *
  * <p>MessageFormat prepares strings for display to users,
  * with optional arguments (variables/placeholders).
@@ -331,6 +331,7 @@ import android.icu.util.ULocale.Category;
  * @author       Mark Davis
  * @author       Markus Scherer
  * @stable ICU 3.0
+ * @hide All android.icu classes are currently hidden
  */
 public class MessageFormat extends UFormat {
 
@@ -429,7 +430,7 @@ public class MessageFormat extends UFormat {
     }
 
     /**
-     * {@icu} Returns the locale that's used when creating argument Format objects.
+     * {{@literal @}icu} Returns the locale that's used when creating argument Format objects.
      *
      * @return the locale used when creating or comparing subformats
      * @stable ICU 3.2
@@ -464,7 +465,7 @@ public class MessageFormat extends UFormat {
     }
 
     /**
-     * {@icu} Sets the ApostropheMode and the pattern used by this message format.
+     * {{@literal @}icu} Sets the ApostropheMode and the pattern used by this message format.
      * Parses the pattern and caches Format objects for simple argument types.
      * Patterns and their interpretation are specified in the
      * <a href="#patterns">class description</a>.
@@ -488,7 +489,7 @@ public class MessageFormat extends UFormat {
     }
 
     /**
-     * {@icu}
+     * {{@literal @}icu}
      * @return this instance's ApostropheMode.
      * @stable ICU 4.8
      */
@@ -602,7 +603,7 @@ public class MessageFormat extends UFormat {
     }
 
     /**
-     * {@icu} Sets the Format objects to use for the values passed into
+     * {{@literal @}icu} Sets the Format objects to use for the values passed into
      * <code>format</code> methods or returned from <code>parse</code>
      * methods. The keys in <code>newFormats</code> are the argument
      * names in the previously set pattern string, and the values
@@ -700,7 +701,7 @@ public class MessageFormat extends UFormat {
     }
 
     /**
-     * {@icu} Sets the Format object to use for the format elements within the
+     * {{@literal @}icu} Sets the Format object to use for the format elements within the
      * previously set pattern string that use the given argument
      * name.
      * <p>
@@ -831,7 +832,7 @@ public class MessageFormat extends UFormat {
     }
 
     /**
-     * {@icu} Returns the top-level argument names. For more details, see
+     * {{@literal @}icu} Returns the top-level argument names. For more details, see
      * {@link #setFormatByArgumentName(String, Format)}.
      * @return a Set of argument names
      * @stable ICU 4.8
@@ -845,7 +846,7 @@ public class MessageFormat extends UFormat {
     }
 
     /**
-     * {@icu} Returns the first top-level format associated with the given argument name.
+     * {{@literal @}icu} Returns the first top-level format associated with the given argument name.
      * For more details, see {@link #setFormatByArgumentName(String, Format)}.
      * @param argumentName The name of the desired argument.
      * @return the Format associated with the name, or null if there isn't one.
@@ -1018,7 +1019,7 @@ public class MessageFormat extends UFormat {
     }
 
     /**
-     * {@icu} Returns true if this MessageFormat uses named arguments,
+     * {{@literal @}icu} Returns true if this MessageFormat uses named arguments,
      * and false otherwise.  See class description.
      *
      * @return true if named arguments are used.
@@ -1169,7 +1170,7 @@ public class MessageFormat extends UFormat {
     }
     
     /**
-     * {@icu} Parses the string, returning the results in a Map.
+     * {{@literal @}icu} Parses the string, returning the results in a Map.
      * This is similar to the version that returns an array
      * of Object.  This supports both named and numbered
      * arguments-- if numbered, the keys in the map are the
@@ -1354,7 +1355,7 @@ public class MessageFormat extends UFormat {
     }
 
     /**
-     * {@icu} Parses text from the beginning of the given string to produce a map from
+     * {{@literal @}icu} Parses text from the beginning of the given string to produce a map from
      * argument to values. The method may not use the entire text of the given string.
      *
      * <p>See the {@link #parse(String, ParsePosition)} method for more information on
@@ -2452,7 +2453,7 @@ public class MessageFormat extends UFormat {
     private static final int STATE_MSG_ELEMENT = 3;
 
     /**
-     * {@icu} Converts an 'apostrophe-friendly' pattern into a standard
+     * {{@literal @}icu} Converts an 'apostrophe-friendly' pattern into a standard
      * pattern.
      * <em>This is obsolete for ICU 4.8 and higher MessageFormat pattern strings.</em>
      * It can still be useful together with the JDK MessageFormat.

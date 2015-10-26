@@ -121,6 +121,7 @@ import android.icu.util.ULocale;
  *
  * @author Mark Davis
  * @stable ICU 4.8
+ * @hide All android.icu classes are currently hidden
  */
 public final class AlphabeticIndex<V> implements Iterable<Bucket<V>> {
     /**
@@ -1224,7 +1225,7 @@ public final class AlphabeticIndex<V> implements Iterable<Bucket<V>> {
      * Return a list of the first character in each script. Only exposed for testing.
      *
      * @return list of first characters in each script
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal, only for testing.
      */
     @Deprecated

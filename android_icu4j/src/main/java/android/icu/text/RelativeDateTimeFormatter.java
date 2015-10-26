@@ -63,6 +63,7 @@ import android.icu.util.UResourceBundle;
  * (3 secs ago), and relative day periods ("yesterday afternoon"), etc.
  * 
  * @stable ICU 53
+ * @hide All android.icu classes are currently hidden
  */
 public final class RelativeDateTimeFormatter {
     

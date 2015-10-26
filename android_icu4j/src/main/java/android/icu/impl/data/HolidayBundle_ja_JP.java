@@ -14,6 +14,7 @@ import java.util.ListResourceBundle;
 import android.icu.util.Holiday;
 import android.icu.util.SimpleHoliday;
 
+/** @hide All android.icu classes are currently hidden */
 public class HolidayBundle_ja_JP extends ListResourceBundle {
     static private final Holiday[] fHolidays = {
         new SimpleHoliday(Calendar.FEBRUARY,  11,  0,    "National Foundation Day"),

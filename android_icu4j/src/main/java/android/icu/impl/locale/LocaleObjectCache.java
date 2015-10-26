@@ -11,6 +11,7 @@ import java.lang.ref.ReferenceQueue;
 import java.lang.ref.SoftReference;
 import java.util.concurrent.ConcurrentHashMap;
 
+/** @hide All android.icu classes are currently hidden */
 public abstract class LocaleObjectCache<K, V> {
     private ConcurrentHashMap<K, CacheEntry<K, V>> _map;
     private ReferenceQueue<V> _queue = new ReferenceQueue<V>();

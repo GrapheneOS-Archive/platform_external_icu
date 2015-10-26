@@ -49,6 +49,7 @@ import android.icu.math.BigDecimal;
  * chapter in the ICU User Guide.</p>
  *
  * @stable ICU 3.2
+ * @hide All android.icu classes are currently hidden
  */
 
 public final class UniversalTimeScale
@@ -222,7 +223,7 @@ public final class UniversalTimeScale
      * 
      * @see #getTimeScaleValue
      *
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -236,7 +237,7 @@ public final class UniversalTimeScale
      * 
      * @see #getTimeScaleValue
      *
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -250,7 +251,7 @@ public final class UniversalTimeScale
      * 
      * @see #getTimeScaleValue
      *
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -264,7 +265,7 @@ public final class UniversalTimeScale
      * 
      * @see #getTimeScaleValue
      *
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -277,7 +278,7 @@ public final class UniversalTimeScale
      * 
      * @see #getTimeScaleValue
      *
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -645,7 +646,7 @@ public final class UniversalTimeScale
      * @param timeScale the time scale to convert to
      * @return the time in the given time scale
      * 
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated

@@ -34,6 +34,7 @@ import android.icu.util.ULocale.Category;
  * currency plural pattern of the locale.
  *
  * @stable ICU 4.2
+ * @hide All android.icu classes are currently hidden
  */
 
 public class CurrencyPluralInfo implements Cloneable, Serializable {
@@ -224,7 +225,7 @@ public class CurrencyPluralInfo implements Cloneable, Serializable {
     /**
      * Mock implementation of hashCode(). This implementation always returns a constant
      * value. When Java assertion is enabled, this method triggers an assertion failure.
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -236,7 +237,7 @@ public class CurrencyPluralInfo implements Cloneable, Serializable {
     /**
      * Given a number, returns the keyword of the first rule that applies
      * to the number.
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -247,7 +248,7 @@ public class CurrencyPluralInfo implements Cloneable, Serializable {
     /**
      * Given a number, returns the keyword of the first rule that applies
      * to the number.
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated

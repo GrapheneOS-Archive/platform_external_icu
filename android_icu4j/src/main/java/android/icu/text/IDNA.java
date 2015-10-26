@@ -51,6 +51,7 @@ import android.icu.impl.UTS46;
  * 
  * @author Ram Viswanadha, Markus Scherer
  * @stable ICU 2.8
+ * @hide All android.icu classes are currently hidden
  */
 public abstract class IDNA {
     /** 
@@ -270,7 +271,7 @@ public abstract class IDNA {
     // The IDNAInfo also provides intermediate state that is publicly invisible,
     // avoiding the allocation of another worker object.
     /**
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -278,7 +279,7 @@ public abstract class IDNA {
         info.reset();
     }
     /**
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -286,7 +287,7 @@ public abstract class IDNA {
         return !info.errors.isEmpty() && !Collections.disjoint(info.errors, errors);
     }
     /**
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -294,7 +295,7 @@ public abstract class IDNA {
         return !info.labelErrors.isEmpty() && !Collections.disjoint(info.labelErrors, errors);
     }
     /**
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -302,7 +303,7 @@ public abstract class IDNA {
         info.labelErrors.add(error);
     }
     /**
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -313,7 +314,7 @@ public abstract class IDNA {
         }
     }
     /**
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -321,7 +322,7 @@ public abstract class IDNA {
         info.errors.add(error);
     }
     /**
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -329,7 +330,7 @@ public abstract class IDNA {
         info.isTransDiff=true;
     }
     /**
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -337,7 +338,7 @@ public abstract class IDNA {
         info.isBiDi=true;
     }
     /**
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -345,7 +346,7 @@ public abstract class IDNA {
         return info.isBiDi;
     }
     /**
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -353,7 +354,7 @@ public abstract class IDNA {
         info.isOkBiDi=false;
     }
     /**
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -460,7 +461,7 @@ public abstract class IDNA {
 
     /**
      * Sole constructor. (For invocation by subclass constructors, typically implicit.)
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated

@@ -306,7 +306,7 @@ class CompoundTransliterator extends Transliterator {
     }
 
     /**
-     * @internal
+     * {@literal @}internal
      */
     @Override
     public void addSourceTargetSet(UnicodeSet filter, UnicodeSet sourceSet, UnicodeSet targetSet) {

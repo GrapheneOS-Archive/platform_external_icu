@@ -19,6 +19,7 @@ import java.util.Arrays;
 /**
  * Allocates n collation element weights between two exclusive limits.
  * Used only internally by the collation tailoring builder.
+ * @hide All android.icu classes are currently hidden
  */
 public final class CollationWeights {
     public CollationWeights() {}
@@ -154,7 +155,7 @@ public final class CollationWeights {
         }
     }
 
-    /** @internal */
+    /** {@literal @}internal */
     private static final class WeightRange implements Comparable<WeightRange> {
         long start, end;
         int length, count;

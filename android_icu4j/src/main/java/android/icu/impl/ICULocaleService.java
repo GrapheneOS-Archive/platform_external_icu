@@ -14,6 +14,7 @@ import java.util.Set;
 
 import android.icu.util.ULocale;
 
+/** @hide All android.icu classes are currently hidden */
 public class ICULocaleService extends ICUService {
     private ULocale fallbackLocale;
     private String fallbackLocaleName;
