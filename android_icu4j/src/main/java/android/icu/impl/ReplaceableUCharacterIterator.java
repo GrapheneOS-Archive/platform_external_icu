@@ -21,6 +21,7 @@ import android.icu.text.UTF16;
  * moved up into UCharacterIterator.
  *
  * What are first, last, and getBeginIndex doing here?!?!?!
+ * @hide All android.icu classes are currently hidden
  */
 public class ReplaceableUCharacterIterator extends UCharacterIterator {
 

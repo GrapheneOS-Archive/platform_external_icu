@@ -17,6 +17,7 @@ package android.icu.util;
  * java.io.UncheckedIOException instead.
  *
  * @stable ICU 53
+ * @hide All android.icu classes are currently hidden
  */
 public class ICUUncheckedIOException extends RuntimeException {
     private static final long serialVersionUID = 1210263498513384449L;

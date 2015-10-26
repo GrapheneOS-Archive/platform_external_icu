@@ -11,6 +11,7 @@ import java.text.CharacterIterator;
 
 import android.icu.text.UTF16;
 
+/** @hide All android.icu classes are currently hidden */
 public final class CharacterIteration {
     // disallow instantiation
     private CharacterIteration() { }

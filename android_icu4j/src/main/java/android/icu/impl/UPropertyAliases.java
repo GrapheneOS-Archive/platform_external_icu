@@ -43,6 +43,7 @@ import android.icu.util.BytesTrie;
  *
  * @author Alan Liu
  * @since ICU 2.4
+ * @hide All android.icu classes are currently hidden
  */
 public final class UPropertyAliases {
     // Byte offsets from the start of the data, after the generic header.

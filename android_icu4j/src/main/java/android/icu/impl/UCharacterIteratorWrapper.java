@@ -16,6 +16,7 @@ import android.icu.text.UCharacterIterator;
  * This class is a wrapper around UCharacterIterator and implements the 
  * CharacterIterator protocol
  * @author ram
+ * @hide All android.icu classes are currently hidden
  */
 public class UCharacterIteratorWrapper implements CharacterIterator{
     

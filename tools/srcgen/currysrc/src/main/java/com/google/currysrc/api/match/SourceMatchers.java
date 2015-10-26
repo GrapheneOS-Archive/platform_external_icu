@@ -22,19 +22,23 @@ import org.eclipse.jdt.core.dom.CompilationUnit;
  */
 public final class SourceMatchers {
 
-  private static final SourceMatcher ALWAYS_MATCHER = new SourceMatcher() {
+  private static final SourceMatcher ALL_MATCHER = new SourceMatcher() {
     @Override
     public boolean matches(CompilationUnit cu) {
       return true;
+    }
+
+    @Override public String toString() {
+      return "{match all}";
     }
   };
 
   private SourceMatchers() {
   }
 
-  /** Returns a {@link SourceMatcher} that matches and {@link CompilationUnit}. */
-  public static SourceMatcher always() {
-    return ALWAYS_MATCHER;
+  /** Returns a {@link SourceMatcher} that matches any {@link CompilationUnit}. */
+  public static SourceMatcher all() {
+    return ALL_MATCHER;
   }
 
 }

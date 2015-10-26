@@ -13,6 +13,7 @@ import java.util.MissingResourceException;
 /**
  * Utilities for mapping between old and new language, country, and other
  * locale ID related names.
+ * @hide All android.icu classes are currently hidden
  */
 public class LocaleIDs {
 

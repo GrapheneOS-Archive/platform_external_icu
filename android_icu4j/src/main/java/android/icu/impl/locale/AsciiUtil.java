@@ -7,6 +7,7 @@
  */
 package android.icu.impl.locale;
 
+/** @hide All android.icu classes are currently hidden */
 public final class AsciiUtil {
     public static boolean caseIgnoreMatch(String s1, String s2) {
         if (s1 == s2) {

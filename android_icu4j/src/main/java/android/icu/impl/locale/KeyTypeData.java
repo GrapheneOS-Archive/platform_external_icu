@@ -21,6 +21,7 @@ import android.icu.util.UResourceBundle;
 import android.icu.util.UResourceBundleIterator;
 
 /**
+ * @hide All android.icu classes are currently hidden
  */
 public class KeyTypeData {
 

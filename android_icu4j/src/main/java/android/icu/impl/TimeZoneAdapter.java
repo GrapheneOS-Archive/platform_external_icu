@@ -27,6 +27,7 @@ import android.icu.util.TimeZone;
  * @see android.icu.util.TimeZone#setDefault
  * @author Alan Liu
  * @since ICU 2.8
+ * @hide All android.icu classes are currently hidden
  */
 public class TimeZoneAdapter extends java.util.TimeZone {
  

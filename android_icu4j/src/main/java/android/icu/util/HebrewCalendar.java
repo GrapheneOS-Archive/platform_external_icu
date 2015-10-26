@@ -71,6 +71,7 @@ import android.icu.util.ULocale.Category;
  * @author Laura Werner
  * @author Alan Liu
  * @stable ICU 2.8
+ * @hide All android.icu classes are currently hidden
  */
 public class HebrewCalendar extends Calendar {
     // jdk1.4.2 serialver
@@ -684,7 +685,7 @@ public class HebrewCalendar extends Calendar {
      *
      * The rule here is that if (year % 19) == 0, 3, 6, 8, 11, 14, or 17.
      * The formula below performs the same test, believe it or not.
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -753,7 +754,7 @@ public class HebrewCalendar extends Calendar {
      * <p>
      * Overrides {@link Calendar#validateField(int)} to provide
      * special handling for month validation for Hebrew calendar.
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated

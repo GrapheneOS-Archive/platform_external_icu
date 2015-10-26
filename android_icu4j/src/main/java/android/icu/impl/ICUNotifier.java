@@ -27,6 +27,7 @@ import java.util.List;
  * identical listener is not already registered with the Notifier.
  * NotifyListener should cast the listener to the appropriate 
  * type and call the appropriate method on the listener.
+ * @hide All android.icu classes are currently hidden
  */
 public abstract class ICUNotifier {
     private final Object notifyLock = new Object();

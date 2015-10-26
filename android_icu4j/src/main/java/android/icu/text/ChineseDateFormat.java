@@ -42,6 +42,7 @@ import android.icu.util.ULocale;
  * @see ChineseDateFormatSymbols
  * @author Alan Liu
  * @deprecated ICU 50 Use SimpleDateFormat instead.
+ * @hide All android.icu classes are currently hidden
  */
 @Deprecated
 public class ChineseDateFormat extends SimpleDateFormat {
@@ -116,7 +117,7 @@ public class ChineseDateFormat extends SimpleDateFormat {
 
     /**
      * {@inheritDoc}
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated

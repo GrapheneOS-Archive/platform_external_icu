@@ -52,6 +52,7 @@ package android.icu.text;
  *
  * @author Alan Liu
  * @stable ICU 2.0
+ * @hide All android.icu classes are currently hidden
  */
 public interface Replaceable {
     /**

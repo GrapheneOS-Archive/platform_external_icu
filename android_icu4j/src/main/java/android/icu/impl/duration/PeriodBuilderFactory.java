@@ -11,6 +11,7 @@ package android.icu.impl.duration;
 import java.util.TimeZone;
 
 /**
+ * @hide All android.icu classes are currently hidden
  */
 public interface PeriodBuilderFactory {
 

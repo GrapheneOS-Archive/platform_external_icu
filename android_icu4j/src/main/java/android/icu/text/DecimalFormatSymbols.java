@@ -29,7 +29,7 @@ import android.icu.util.ULocale.Category;
 import android.icu.util.UResourceBundle;
 
 /**
- * {@icuenhanced java.text.DecimalFormatSymbols}.{@icu _usage_}
+ * {{@literal @}icuenhanced java.text.DecimalFormatSymbols}.{{@literal @}icu _usage_}
  *
  * This class represents the set of symbols (such as the decimal separator, the grouping
  * separator, and so on) needed by <code>DecimalFormat</code> to format
@@ -43,6 +43,7 @@ import android.icu.util.UResourceBundle;
  * @author       Mark Davis
  * @author       Alan Liu
  * @stable ICU 2.0
+ * @hide All android.icu classes are currently hidden
  */
 public class DecimalFormatSymbols implements Cloneable, Serializable {
     /**
@@ -64,7 +65,7 @@ public class DecimalFormatSymbols implements Cloneable, Serializable {
     }
 
     /**
-     * {@icu} Creates a DecimalFormatSymbols object for the given locale.
+     * {{@literal @}icu} Creates a DecimalFormatSymbols object for the given locale.
      * @param locale the locale
      * @stable ICU 3.2
      */
@@ -140,7 +141,7 @@ public class DecimalFormatSymbols implements Cloneable, Serializable {
     }
 
     /**
-     * {@icu} Returns an array of all locales for which the <code>getInstance</code>
+     * {{@literal @}icu} Returns an array of all locales for which the <code>getInstance</code>
      * methods of this class can return localized instances.
      *
      * <p><strong>Note:</strong> Unlike
@@ -152,7 +153,7 @@ public class DecimalFormatSymbols implements Cloneable, Serializable {
      * @return An array of <code>ULocale</code>s for which localized
      * <code>DecimalFormatSymbols</code> instances are available.
      * @stable ICU 3.8 (retain)
-     * @provisional This API might change or be removed in a future release.
+     * {@literal @}provisional This API might change or be removed in a future release.
      */
     public static ULocale[] getAvailableULocales() {
         return ICUResourceBundle.getAvailableULocales();
@@ -408,7 +409,7 @@ public class DecimalFormatSymbols implements Cloneable, Serializable {
     /**
      * Returns the string used to represent minus sign.
      * @return the minus sign string
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -512,7 +513,7 @@ public class DecimalFormatSymbols implements Cloneable, Serializable {
     }
 
     /**
-     * {@icu} Returns the monetary grouping separator.
+     * {{@literal @}icu} Returns the monetary grouping separator.
      * @return the monetary grouping separator character
      * @stable ICU 3.6
      */
@@ -563,7 +564,7 @@ public class DecimalFormatSymbols implements Cloneable, Serializable {
     }
 
     /**
-     * {@icu} Returns the string used to separate the mantissa from the exponent.
+     * {{@literal @}icu} Returns the string used to separate the mantissa from the exponent.
      * Examples: "x10^" for 1.23x10^4, "E" for 1.23E4.
      * @return the localized exponent symbol, used in localized patterns
      * and formatted strings
@@ -575,7 +576,7 @@ public class DecimalFormatSymbols implements Cloneable, Serializable {
     }
 
     /**
-     * {@icu} Sets the string used to separate the mantissa from the exponent.
+     * {{@literal @}icu} Sets the string used to separate the mantissa from the exponent.
      * Examples: "x10^" for 1.23x10^4, "E" for 1.23E4.
      * @param exp the localized exponent symbol, used in localized patterns
      * and formatted strings
@@ -587,7 +588,7 @@ public class DecimalFormatSymbols implements Cloneable, Serializable {
     }
 
     /**
-     * {@icu} Returns the localized plus sign.
+     * {{@literal @}icu} Returns the localized plus sign.
      * @return the plus sign, used in localized patterns and formatted
      * strings
      * @see #setPlusSign
@@ -602,7 +603,7 @@ public class DecimalFormatSymbols implements Cloneable, Serializable {
     /**
      * Returns the string used to represent plus sign.
      * @return the plus sign string
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -611,7 +612,7 @@ public class DecimalFormatSymbols implements Cloneable, Serializable {
     }
 
     /**
-     * {@icu} Sets the localized plus sign.
+     * {{@literal @}icu} Sets the localized plus sign.
      * @param plus the plus sign, used in localized patterns and formatted
      * strings
      * @see #getPlusSign
@@ -627,7 +628,7 @@ public class DecimalFormatSymbols implements Cloneable, Serializable {
     }
 
     /**
-     * {@icu} Returns the character used to pad numbers out to a specified width.  This is
+     * {{@literal @}icu} Returns the character used to pad numbers out to a specified width.  This is
      * not the pad character itself; rather, it is the special pattern character
      * <em>preceding</em> the pad character.  In the pattern "*_#,##0", '*' is the pad
      * escape, and '_' is the pad character.
@@ -643,7 +644,7 @@ public class DecimalFormatSymbols implements Cloneable, Serializable {
     }
 
     /**
-     * {@icu} Sets the character used to pad numbers out to a specified width.  This is not
+     * {{@literal @}icu} Sets the character used to pad numbers out to a specified width.  This is not
      * the pad character itself; rather, it is the special pattern character
      * <em>preceding</em> the pad character.  In the pattern "*_#,##0", '*' is the pad
      * escape, and '_' is the pad character.
@@ -658,20 +659,20 @@ public class DecimalFormatSymbols implements Cloneable, Serializable {
     }
 
     /**
-     * {@icu} Indicates the currency match pattern used in {@link #getPatternForCurrencySpacing}.
+     * {{@literal @}icu} Indicates the currency match pattern used in {@link #getPatternForCurrencySpacing}.
      * @stable ICU 4.2
      */
     public static final int CURRENCY_SPC_CURRENCY_MATCH = 0;
 
     /**
-     * {@icu} Indicates the surrounding match pattern used in {@link
+     * {{@literal @}icu} Indicates the surrounding match pattern used in {@link
      * #getPatternForCurrencySpacing}.
      * @stable ICU 4.2
      */
     public static final int CURRENCY_SPC_SURROUNDING_MATCH = 1;
 
     /**
-     * {@icu} Indicates the insertion value used in {@link #getPatternForCurrencySpacing}.
+     * {{@literal @}icu} Indicates the insertion value used in {@link #getPatternForCurrencySpacing}.
      * @stable ICU 4.4
      */
     public static final int CURRENCY_SPC_INSERT = 2;
@@ -680,7 +681,7 @@ public class DecimalFormatSymbols implements Cloneable, Serializable {
     private String[] currencySpcAfterSym;
 
     /**
-     * {@icu} Returns the desired currency spacing value. Original values come from ICU's
+     * {{@literal @}icu} Returns the desired currency spacing value. Original values come from ICU's
      * CLDR data based on the locale provided during construction, and can be null.  These
      * values govern what and when text is inserted between a currency code/name/symbol
      * and the currency amount when formatting money.
@@ -710,7 +711,7 @@ public class DecimalFormatSymbols implements Cloneable, Serializable {
     }
 
     /**
-     * {@icu} Sets the indicated currency spacing pattern or value. See {@link
+     * {{@literal @}icu} Sets the indicated currency spacing pattern or value. See {@link
      * #getPatternForCurrencySpacing} for more information.
      *
      * <p>Values for currency match and surrounding match must be {@link
@@ -1327,7 +1328,7 @@ public class DecimalFormatSymbols implements Cloneable, Serializable {
     // -------- BEGIN ULocale boilerplate --------
 
     /**
-     * {@icu} Returns the locale that was used to create this object, or null.
+     * {{@literal @}icu} Returns the locale that was used to create this object, or null.
      * This may may differ from the locale requested at the time of
      * this object's creation.  For example, if an object is created
      * for locale <tt>en_US_CALIFORNIA</tt>, the actual data may be
@@ -1345,8 +1346,8 @@ public class DecimalFormatSymbols implements Cloneable, Serializable {
      * @see android.icu.util.ULocale
      * @see android.icu.util.ULocale#VALID_LOCALE
      * @see android.icu.util.ULocale#ACTUAL_LOCALE
-     * @draft ICU 2.8 (retain)
-     * @provisional This API might change or be removed in a future release.
+     * {@literal @}draft ICU 2.8 (retain)
+     * {@literal @}provisional This API might change or be removed in a future release.
      */
     public final ULocale getLocale(ULocale.Type type) {
         return type == ULocale.ACTUAL_LOCALE ?
@@ -1354,7 +1355,7 @@ public class DecimalFormatSymbols implements Cloneable, Serializable {
     }
 
     /**
-     * {@icu} Sets information about the locales that were used to create this
+     * {{@literal @}icu} Sets information about the locales that were used to create this
      * object.  If the object was not constructed from locale data,
      * both arguments should be set to null.  Otherwise, neither
      * should be null.  The actual locale must be at the same level or

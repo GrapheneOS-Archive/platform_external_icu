@@ -13,6 +13,7 @@ import java.util.Collection;
 /**
  * Provider of Factory instances for building PeriodBuilders, PeriodFormatters,
  * and DurationFormatters.
+ * @hide All android.icu classes are currently hidden
  */
 public interface PeriodFormatterService {
 

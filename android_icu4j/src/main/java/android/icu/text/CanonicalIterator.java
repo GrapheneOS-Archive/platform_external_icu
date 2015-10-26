@@ -40,6 +40,7 @@ import android.icu.lang.UCharacter;
  * since it has not been optimized for that situation.
  * @author M. Davis
  * @stable ICU 2.4
+ * @hide All android.icu classes are currently hidden
  */
 
 public final class CanonicalIterator {
@@ -159,7 +160,7 @@ public final class CanonicalIterator {
      * @param source the string to find permutations for
      * @param skipZeros set to true to skip characters with canonical combining class zero
      * @param output the set to add the results to
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated

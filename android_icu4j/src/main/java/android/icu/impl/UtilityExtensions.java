@@ -13,6 +13,7 @@ import android.icu.text.Transliterator;
 import android.icu.text.UnicodeMatcher;
 /**
  * @author Ram
+ * @hide All android.icu classes are currently hidden
  */
 //This class contains utility functions so testing not needed
 ///CLOVER:OFF

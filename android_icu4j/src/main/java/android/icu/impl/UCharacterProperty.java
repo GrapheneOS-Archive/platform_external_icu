@@ -38,6 +38,7 @@ import android.icu.util.VersionInfo;
 * <a href=UCharacter.html>UCharacter</a>.</p>
 * @author Syn Wee Quek
 * @since release 2.1, february 1st 2002
+* @hide All android.icu classes are currently hidden
 */
 
 public final class UCharacterProperty
@@ -173,7 +174,7 @@ public final class UCharacterProperty
      * [^\p{space}\p{gc=Control}\p{gc=Surrogate}\p{gc=Unassigned}]
      * with space=\p{Whitespace} and Control=Cc.
      * Implements UCHAR_POSIX_GRAPH.
-     * @internal
+     * {@literal @}internal
      */
     private static final boolean isgraphPOSIX(int c) {
         /* \p{space}\p{gc=Control} == \p{gc=Z}\p{Control} */

@@ -13,6 +13,7 @@ package android.icu.util;
  * 
  * @see ULocale
  * @stable ICU 4.2
+ * @hide All android.icu classes are currently hidden
  */
 public class IllformedLocaleException extends RuntimeException {
 

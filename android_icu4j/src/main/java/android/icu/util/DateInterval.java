@@ -15,6 +15,7 @@ import java.io.Serializable;
  * This class represents date interval.
  * It is a pair of long representing from date 1 to date 2.
  * @stable ICU 4.0
+ * @hide All android.icu classes are currently hidden
  */
 public final class DateInterval implements Serializable {
 

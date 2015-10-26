@@ -28,6 +28,8 @@ import com.google.currysrc.api.transform.AstTransformRule;
 import com.google.currysrc.api.transform.AstTransformer;
 import com.google.currysrc.api.transform.DocumentTransformRule;
 import com.google.currysrc.api.transform.DocumentTransformer;
+import com.google.currysrc.api.transform.ast.TypeLocater;
+import com.google.currysrc.transformers.HidePublicClasses;
 import com.google.currysrc.transformers.InsertHeader;
 import com.google.currysrc.transformers.ModifyQualifiedNames;
 import com.google.currysrc.transformers.ModifyStringLiterals;
@@ -35,7 +37,7 @@ import com.google.currysrc.transformers.RenamePackage;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -83,20 +85,28 @@ public class Icu4jTransform {
     }
 
     private static AstTransformRule createMandatoryRule(AstTransformer transformer) {
-      return new AstTransformRule(transformer, SourceMatchers.always(), true /* mustModify */);
+      return new AstTransformRule(transformer, SourceMatchers.all(), true /* mustModify */);
     }
 
     private static AstTransformRule createOptionalRule(AstTransformer transformer) {
-      return new AstTransformRule(transformer, SourceMatchers.always(), false /* mustModify */);
+      return new AstTransformRule(transformer, SourceMatchers.all(), false /* mustModify */);
     }
 
     @Override
     public List<DocumentTransformRule> getDocumentTransformRules(File file) {
-      return Lists.newArrayList(createMandatoryRule(new InsertHeader(SOURCE_CODE_HEADER)));
+      return Lists.newArrayList(
+          createMandatoryRule(new InsertHeader(SOURCE_CODE_HEADER)),
+          createOptionalRule(new HidePublicClasses(Collections.<TypeLocater>emptyList(),
+              "All android.icu classes are currently hidden")),
+          createOptionalRule(new MungeIcuJavaDocTags()));
     }
 
     private static DocumentTransformRule createMandatoryRule(DocumentTransformer transformer) {
-      return new DocumentTransformRule(transformer, SourceMatchers.always(), true);
+      return new DocumentTransformRule(transformer, SourceMatchers.all(), true /* mustModify */);
+    }
+
+    private static DocumentTransformRule createOptionalRule(DocumentTransformer transformer) {
+      return new DocumentTransformRule(transformer, SourceMatchers.all(), false /* mustModify*/);
     }
 
     @Override

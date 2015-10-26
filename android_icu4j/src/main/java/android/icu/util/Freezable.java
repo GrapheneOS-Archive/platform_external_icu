@@ -299,6 +299,7 @@ package android.icu.util;
  * 
  * </blockquote>
  * @stable ICU 3.8
+ * @hide All android.icu classes are currently hidden
  */
 public interface Freezable<T> extends Cloneable {
     /**

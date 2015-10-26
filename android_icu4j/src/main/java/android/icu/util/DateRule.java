@@ -20,8 +20,9 @@ import java.util.Date;
  * Daylight Savings Time rules, and other events such as meetings.
  *
  * @see SimpleDateRule
- * @draft ICU 2.8 (retainAll)
- * @provisional This API might change or be removed in a future release.
+ * {@literal @}draft ICU 2.8 (retainAll)
+ * {@literal @}provisional This API might change or be removed in a future release.
+ * @hide All android.icu classes are currently hidden
  */
 public interface DateRule
 {
@@ -35,8 +36,8 @@ public interface DateRule
      *              does not occur on or after the start date.
      *
      * @see #firstBetween
-     * @draft ICU 2.8
-     * @provisional This API might change or be removed in a future release.
+     * {@literal @}draft ICU 2.8
+     * {@literal @}provisional This API might change or be removed in a future release.
      */
     abstract public Date    firstAfter(Date start);
 
@@ -52,8 +53,8 @@ public interface DateRule
      *              does not occur between the start and end dates.
      *
      * @see #firstAfter
-     * @draft ICU 2.8
-     * @provisional This API might change or be removed in a future release.
+     * {@literal @}draft ICU 2.8
+     * {@literal @}provisional This API might change or be removed in a future release.
      */
     abstract public Date    firstBetween(Date start, Date end);
 
@@ -66,16 +67,16 @@ public interface DateRule
      *
      * @param date  The date to check.
      * @return      true if this event occurs on the given date.
-     * @draft ICU 2.8
-     * @provisional This API might change or be removed in a future release.
+     * {@literal @}draft ICU 2.8
+     * {@literal @}provisional This API might change or be removed in a future release.
      */
     abstract public boolean isOn(Date date);
 
     /**
      * Check whether this event occurs at least once between the two
      * dates given.
-     * @draft ICU 2.8
-     * @provisional This API might change or be removed in a future release.
+     * {@literal @}draft ICU 2.8
+     * {@literal @}provisional This API might change or be removed in a future release.
      */
     abstract public boolean isBetween(Date start, Date end);
 }

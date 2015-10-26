@@ -32,6 +32,7 @@ import android.icu.text.UTF16;
  * </UL>
  * This is a direct port from the ICU4C version
  * @author             Syn Wee Quek
+ * @hide All android.icu classes are currently hidden
  */
 public class IntTrieBuilder extends TrieBuilder
 {
@@ -768,7 +769,7 @@ public class IntTrieBuilder extends TrieBuilder
     }
     
     /**
-     * @internal
+     * {@literal @}internal
      */
     private void fillBlock(int block, int start, int limit, int value, 
                            boolean overwrite) 

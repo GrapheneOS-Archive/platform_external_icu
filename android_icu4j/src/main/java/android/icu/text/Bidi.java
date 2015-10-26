@@ -429,6 +429,7 @@ import android.icu.lang.UProperty;
  *  }
  *
  * </pre>
+ * @hide All android.icu classes are currently hidden
  */
 
 /*

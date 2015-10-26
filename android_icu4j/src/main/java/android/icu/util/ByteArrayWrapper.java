@@ -23,6 +23,7 @@ import android.icu.impl.Utility;
  * </p> 
  * @author syn wee
  * @stable ICU 2.8
+ * @hide All android.icu classes are currently hidden
  */
 public class ByteArrayWrapper implements Comparable<ByteArrayWrapper>
 {

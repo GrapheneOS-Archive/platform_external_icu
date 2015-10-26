@@ -15,6 +15,7 @@ import android.icu.util.ULocale;
 
 /**
  * @author srl
+ * @hide All android.icu classes are currently hidden
  */
 public class BasicDurationFormat extends DurationFormat {
     

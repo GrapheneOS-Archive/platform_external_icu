@@ -11,6 +11,7 @@ package android.icu.util;
  * Base class for unchecked, ICU-specific exceptions.
  *
  * @stable ICU 53
+ * @hide All android.icu classes are currently hidden
  */
 public class ICUException extends RuntimeException {
     private static final long serialVersionUID = -3067399656455755650L;

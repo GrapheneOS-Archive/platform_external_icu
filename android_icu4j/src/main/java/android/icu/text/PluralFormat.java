@@ -130,6 +130,7 @@ import android.icu.util.ULocale.Category;
  *
  * @author tschumann (Tim Schumann)
  * @stable ICU 3.8
+ * @hide All android.icu classes are currently hidden
  */
 public class PluralFormat extends UFormat {
     private static final long serialVersionUID = 1L;
@@ -293,7 +294,7 @@ public class PluralFormat extends UFormat {
      * locale.
      * The locale will be used to get the set of plural rules and for
      * standard number formatting.
-     * <p>Example code:{@.jcite com.ibm.icu.samples.text.pluralformat.PluralFormatSample:---PluralFormatExample}
+     * <p>Example code:{{@literal @}.jcite com.ibm.icu.samples.text.pluralformat.PluralFormatSample:---PluralFormatExample}
      * @param ulocale the <code>PluralFormat</code> will be configured with
      *        rules for this locale. This locale will also be used for standard
      *        number formatting.
@@ -536,7 +537,7 @@ public class PluralFormat extends UFormat {
      * only MessageFormat and PluralFormat have PluralSelector implementations.
      * Therefore, PluralRules is not marked to implement this non-public interface,
      * to avoid confusing users.
-     * @internal
+     * {@literal @}internal
      */
     /*package*/ interface PluralSelector {
         /**

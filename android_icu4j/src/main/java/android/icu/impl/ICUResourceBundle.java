@@ -31,6 +31,7 @@ import android.icu.util.UResourceBundle;
 import android.icu.util.UResourceBundleIterator;
 import android.icu.util.UResourceTypeMismatchException;
 
+/** @hide All android.icu classes are currently hidden */
 public  class ICUResourceBundle extends UResourceBundle {
     /**
      * The data path to be used with getBundleInstance API
@@ -189,7 +190,7 @@ public  class ICUResourceBundle extends UResourceBundle {
      * @param omitDefault  if true, omit keyword and value if default.
      * 'de_DE\@collation=standard' -> 'de_DE'
      * @return the locale
-     * @internal ICU 3.0
+     * {@literal @}internal ICU 3.0
      */
     public static final ULocale getFunctionalEquivalent(String baseName, ClassLoader loader,
             String resName, String keyword, ULocale locID,
@@ -329,7 +330,7 @@ public  class ICUResourceBundle extends UResourceBundle {
      * @param baseName resource specifier
      * @param keyword a particular keyword to consider, must match a top level resource name
      * within the tree. (i.e. "collations")
-     * @internal ICU 3.0
+     * {@literal @}internal ICU 3.0
      */
     public static final String[] getKeywordValues(String baseName, String keyword) {
         Set<String> keywords = new HashSet<String>();
@@ -1574,7 +1575,7 @@ public  class ICUResourceBundle extends UResourceBundle {
     }
 
     /**
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     public final Set<String> getTopLevelKeySet() {
@@ -1582,7 +1583,7 @@ public  class ICUResourceBundle extends UResourceBundle {
     }
 
     /**
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     public final void setTopLevelKeySet(Set<String> keySet) {

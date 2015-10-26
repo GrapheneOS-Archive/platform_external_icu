@@ -18,6 +18,7 @@ package android.icu.impl.coll;
  * Needed for finding boundaries for building a tailoring.
  *
  * This class takes and returns 16-bit secondary and tertiary weights.
+ * @hide All android.icu classes are currently hidden
  */
 public final class CollationRootElements {
     public CollationRootElements(long[] rootElements) {

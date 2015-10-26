@@ -13,6 +13,7 @@ import java.util.Collection;
 /**
  * Abstract service for PeriodFormatterData, which defines the localization data
  * used by period formatters.
+ * @hide All android.icu classes are currently hidden
  */
 public abstract class PeriodFormatterDataService {
     /**

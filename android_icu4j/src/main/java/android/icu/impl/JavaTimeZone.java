@@ -25,6 +25,7 @@ import android.icu.util.TimeZone;
  *
  * This TimeZone subclass is returned by the TimeZone factory method getTimeZone(String)
  * when the default timezone type in TimeZone class is TimeZone.TIMEZONE_JDK.
+ * @hide All android.icu classes are currently hidden
  */
 public class JavaTimeZone extends TimeZone {
 

@@ -20,6 +20,7 @@ import android.icu.impl.Grego;
  * @see android.icu.util.TimeZoneRule
  * 
  * @stable ICU 3.8
+ * @hide All android.icu classes are currently hidden
  */
 public class RuleBasedTimeZone extends BasicTimeZone {
 
@@ -117,7 +118,7 @@ public class RuleBasedTimeZone extends BasicTimeZone {
 
     /**
      * {@inheritDoc}
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated

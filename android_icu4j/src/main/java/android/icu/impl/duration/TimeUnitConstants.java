@@ -10,6 +10,7 @@ package android.icu.impl.duration;
 
 /**
  * Easy access to time units for Java 1.4, which doesn't have static imports.
+ * @hide All android.icu classes are currently hidden
  */
 public interface TimeUnitConstants {
   /** Represents a year. */ 

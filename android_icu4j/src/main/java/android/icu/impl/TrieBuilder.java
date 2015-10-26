@@ -28,6 +28,7 @@ import android.icu.lang.UCharacter;
  * </UL>
  * This is a direct port from the ICU4C version
  * @author             Syn Wee Quek
+ * @hide All android.icu classes are currently hidden
  */
 public class TrieBuilder
 {

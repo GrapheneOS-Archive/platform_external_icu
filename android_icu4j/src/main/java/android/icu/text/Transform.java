@@ -14,6 +14,7 @@ package android.icu.text;
  * @author markdavis
  * @stable ICU 4.4
 
+ * @hide All android.icu classes are currently hidden
  */
 
 public interface Transform<S,D> {

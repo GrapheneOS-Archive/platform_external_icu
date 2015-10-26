@@ -54,6 +54,7 @@ import android.icu.impl.ICUResourceBundle;
  *  
  * @author       John Emmons
  * @stable ICU 50
+ * @hide All android.icu classes are currently hidden
  */
 
 public class Region implements Comparable<Region> {

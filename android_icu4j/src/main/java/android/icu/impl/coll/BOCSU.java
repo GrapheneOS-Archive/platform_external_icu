@@ -76,6 +76,7 @@ import android.icu.util.ByteArrayWrapper;
  *
  * @author Syn Wee Quek
  * @since release 2.2, May 3rd 2002
+ * @hide All android.icu classes are currently hidden
  */
 public class BOCSU 
 {      

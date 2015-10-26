@@ -39,6 +39,7 @@ import android.icu.util.UResourceBundle;
  *
  * @author Alan Liu
  * @since ICU 2.8
+ * @hide All android.icu classes are currently hidden
  */
 public final class ZoneMeta {
     private static final boolean ASSERT = false;

@@ -19,7 +19,7 @@ import android.icu.util.ICUCloneNotSupportedException;
 import android.icu.util.ULocale;
 
 /**
- * {@icuenhanced java.text.BreakIterator}.{@icu _usage_}
+ * {{@literal @}icuenhanced java.text.BreakIterator}.{{@literal @}icu _usage_}
  *
  * <p>A class that locates boundaries in text.  This class defines a protocol for
  * objects that break up a piece of natural-language text according to a set
@@ -208,6 +208,7 @@ import android.icu.util.ULocale;
  * @see CharacterIterator
  * @stable ICU 2.0
  *
+ * @hide All android.icu classes are currently hidden
  */
 
 public abstract class BreakIterator implements Cloneable
@@ -527,27 +528,27 @@ public abstract class BreakIterator implements Cloneable
     public abstract void setText(CharacterIterator newText);
 
     /**
-     * {@icu}
+     * {{@literal @}icu}
      * @stable ICU 2.4
      */
     public static final int KIND_CHARACTER = 0;
     /**
-     * {@icu}
+     * {{@literal @}icu}
      * @stable ICU 2.4
      */
     public static final int KIND_WORD = 1;
     /**
-     * {@icu}
+     * {{@literal @}icu}
      * @stable ICU 2.4
      */
     public static final int KIND_LINE = 2;
     /**
-     * {@icu}
+     * {{@literal @}icu}
      * @stable ICU 2.4
      */
     public static final int KIND_SENTENCE = 3;
     /**
-     * {@icu}
+     * {{@literal @}icu}
      * @stable ICU 2.4
      */
     public static final int KIND_TITLE = 4;
@@ -585,7 +586,7 @@ public abstract class BreakIterator implements Cloneable
     }
 
     /**
-     * {@icu} Returns a new instance of BreakIterator that locates word boundaries.
+     * {{@literal @}icu} Returns a new instance of BreakIterator that locates word boundaries.
      * @param where A locale specifying the language of the text to be
      * analyzed.
      * @return An instance of BreakIterator that locates word boundaries.
@@ -625,7 +626,7 @@ public abstract class BreakIterator implements Cloneable
     }
 
     /**
-     * {@icu} Returns a new instance of BreakIterator that locates legal line-
+     * {{@literal @}icu} Returns a new instance of BreakIterator that locates legal line-
      * wrapping positions.
      * @param where A Locale specifying the language of the text being broken.
      * @return A new instance of BreakIterator that locates legal
@@ -666,7 +667,7 @@ public abstract class BreakIterator implements Cloneable
     }
 
     /**
-     * {@icu} Returns a new instance of BreakIterator that locates logical-character
+     * {{@literal @}icu} Returns a new instance of BreakIterator that locates logical-character
      * boundaries.
      * @param where A Locale specifying the language of the text being analyzed.
      * @return A new instance of BreakIterator that locates logical-character
@@ -704,7 +705,7 @@ public abstract class BreakIterator implements Cloneable
     }
 
     /**
-     * {@icu} Returns a new instance of BreakIterator that locates sentence boundaries.
+     * {{@literal @}icu} Returns a new instance of BreakIterator that locates sentence boundaries.
      * @param where A Locale specifying the language of the text being analyzed.
      * @return A new instance of BreakIterator that locates sentence boundaries.
      * @throws NullPointerException if <code>where</code> is null.
@@ -716,7 +717,7 @@ public abstract class BreakIterator implements Cloneable
     }
 
     /**
-     * {@icu} Returns a new instance of BreakIterator that locates title boundaries.
+     * {{@literal @}icu} Returns a new instance of BreakIterator that locates title boundaries.
      * This function assumes the text being analyzed is in the default locale's
      * language. The iterator returned locates title boundaries as described for
      * Unicode 3.2 only. For Unicode 4.0 and above title boundary iteration,
@@ -730,7 +731,7 @@ public abstract class BreakIterator implements Cloneable
     }
 
     /**
-     * {@icu} Returns a new instance of BreakIterator that locates title boundaries.
+     * {{@literal @}icu} Returns a new instance of BreakIterator that locates title boundaries.
      * The iterator returned locates title boundaries as described for
      * Unicode 3.2 only. For Unicode 4.0 and above title boundary iteration,
      * please use Word Boundary iterator.{@link #getWordInstance}
@@ -745,7 +746,7 @@ public abstract class BreakIterator implements Cloneable
     }
 
     /**
-     * {@icu} Returns a new instance of BreakIterator that locates title boundaries.
+     * {{@literal @}icu} Returns a new instance of BreakIterator that locates title boundaries.
      * The iterator returned locates title boundaries as described for
      * Unicode 3.2 only. For Unicode 4.0 and above title boundary iteration,
      * please use Word Boundary iterator.{@link #getWordInstance}
@@ -760,7 +761,7 @@ s     */
     }
 
     /**
-     * {@icu} Registers a new break iterator of the indicated kind, to use in the given
+     * {{@literal @}icu} Registers a new break iterator of the indicated kind, to use in the given
      * locale.  Clones of the iterator will be returned if a request for a break iterator
      * of the given kind matches or falls back to this locale.
      * 
@@ -779,7 +780,7 @@ s     */
     }
 
     /**
-     * {@icu} Registers a new break iterator of the indicated kind, to use in the given
+     * {{@literal @}icu} Registers a new break iterator of the indicated kind, to use in the given
      * locale.  Clones of the iterator will be returned if a request for a break iterator
      * of the given kind matches or falls back to this locale.
      * 
@@ -808,7 +809,7 @@ s     */
     }
 
     /**
-     * {@icu} Unregisters a previously-registered BreakIterator using the key returned
+     * {{@literal @}icu} Unregisters a previously-registered BreakIterator using the key returned
      * from the register call.  Key becomes invalid after this call and should not be used
      * again.
      * @param key the registry key returned by a previous call to registerInstance
@@ -847,7 +848,7 @@ s     */
     /**
      * Returns a particular kind of BreakIterator for a locale.
      * Avoids writing a switch statement with getXYZInstance(where) calls.
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -891,11 +892,11 @@ s     */
     }
 
     /**
-     * {@icu} Returns a list of locales for which BreakIterators can be used.
+     * {{@literal @}icu} Returns a list of locales for which BreakIterators can be used.
      * @return An array of Locales.  All of the locales in the array can
      * be used when creating a BreakIterator.
-     * @draft ICU 3.2 (retain)
-     * @provisional This API might change or be removed in a future release.
+     * {@literal @}draft ICU 3.2 (retain)
+     * {@literal @}provisional This API might change or be removed in a future release.
      */
     public static synchronized ULocale[] getAvailableULocales()
     {
@@ -960,7 +961,7 @@ s     */
     // -------- BEGIN ULocale boilerplate --------
 
     /**
-     * {@icu} Returns the locale that was used to create this object, or null.
+     * {{@literal @}icu} Returns the locale that was used to create this object, or null.
      * This may may differ from the locale requested at the time of
      * this object's creation.  For example, if an object is created
      * for locale <tt>en_US_CALIFORNIA</tt>, the actual data may be
@@ -978,8 +979,8 @@ s     */
      * @see android.icu.util.ULocale
      * @see android.icu.util.ULocale#VALID_LOCALE
      * @see android.icu.util.ULocale#ACTUAL_LOCALE
-     * @draft ICU 2.8 (retain)
-     * @provisional This API might change or be removed in a future release.
+     * {@literal @}draft ICU 2.8 (retain)
+     * {@literal @}provisional This API might change or be removed in a future release.
      */
     public final ULocale getLocale(ULocale.Type type) {
         return type == ULocale.ACTUAL_LOCALE ?

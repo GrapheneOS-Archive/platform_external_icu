@@ -34,6 +34,7 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
  *
  * <p>The lock provides utility methods getStats and clearStats
  * to return statistics on the use of the lock.</p>
+ * @hide All android.icu classes are currently hidden
  */
 public class ICURWLock {
     private ReentrantReadWriteLock rwl = new ReentrantReadWriteLock();

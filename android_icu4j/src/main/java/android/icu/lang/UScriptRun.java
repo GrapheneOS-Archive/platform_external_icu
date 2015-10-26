@@ -47,8 +47,9 @@ import android.icu.text.UTF16;
  *  }
  * </pre>
  *
- * @internal
+ * {@literal @}internal
  * @deprecated This API is ICU internal only.
+ * @hide All android.icu classes are currently hidden
  */
 @Deprecated
 public final class UScriptRun
@@ -57,7 +58,7 @@ public final class UScriptRun
      * Construct an empty <code>UScriptRun</code> object. The <code>next()</code>
      * method will return <code>false</code> the first time it is called.
      *
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -74,7 +75,7 @@ public final class UScriptRun
      *
      * @param text the string of characters over which to iterate.
      *
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -91,7 +92,7 @@ public final class UScriptRun
      * @param start the index of the first character over which to iterate
      * @param count the number of characters over which to iterate
      *
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -106,7 +107,7 @@ public final class UScriptRun
      *
      * @param chars the array of characters over which to iterate.
      *
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -123,7 +124,7 @@ public final class UScriptRun
      * @param start the index of the first character over which to iterate
      * @param count the number of characters over which to iterate
      *
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -136,7 +137,7 @@ public final class UScriptRun
     /**
      * Reset the iterator to the start of the text.
      *
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -168,7 +169,7 @@ public final class UScriptRun
      * @param count the new number of characters over which to iterate.
      * @exception IllegalArgumentException If invalid arguments are passed.
      *
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -200,7 +201,7 @@ public final class UScriptRun
      * @param start the index of the first character over which to iterate.
      * @param count the number of characters over which to iterate.
      *
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -221,7 +222,7 @@ public final class UScriptRun
      *
      * @param chars the new array of characters over which to iterate.
      *
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -245,7 +246,7 @@ public final class UScriptRun
      * @param start the index of the first character over which to iterate.
      * @param count the nuber of characters over which to iterate.
      *
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -266,7 +267,7 @@ public final class UScriptRun
      *
      * @param str the new string of characters over which to iterate.
      *
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -288,7 +289,7 @@ public final class UScriptRun
      *
      * @return the index of the first character in the current script run.
      *
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -302,7 +303,7 @@ public final class UScriptRun
      *
      * @return the index of the first character after the current script run.
      *
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -317,7 +318,7 @@ public final class UScriptRun
      * @return the script code for the script of the current script run.
      * @see android.icu.lang.UScript
      *
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
@@ -332,7 +333,7 @@ public final class UScriptRun
      *
      * @return <code>false</code> if there isn't another run, <code>true</code> if there is.
      *
-     * @internal
+     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
