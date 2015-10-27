@@ -16,6 +16,7 @@ package android.icu.impl;
 * Arguments for <a href=UCharacterName.html>UCharacterName</a>
 * @author Syn Wee Quek
 * @since oct0600
+* @hide Only a subset of ICU is exposed in Android
 * @hide All android.icu classes are currently hidden
 */
 

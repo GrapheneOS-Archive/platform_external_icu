@@ -23,6 +23,7 @@ import android.icu.util.ICUException;
  *
  * When a method returns a code point value, it must be in 0..10FFFF,
  * except it can be negative as a sentinel value.
+ * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
  */
 public abstract class CollationIterator {

@@ -307,6 +307,7 @@ class CompoundTransliterator extends Transliterator {
 
     /**
      * {@literal @}internal
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Override
     public void addSourceTargetSet(UnicodeSet filter, UnicodeSet sourceSet, UnicodeSet targetSet) {

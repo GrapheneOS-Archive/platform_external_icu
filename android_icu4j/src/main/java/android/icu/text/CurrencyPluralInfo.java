@@ -227,6 +227,8 @@ public class CurrencyPluralInfo implements Cloneable, Serializable {
      * value. When Java assertion is enabled, this method triggers an assertion failure.
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide original deprecated method
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public int hashCode() {
@@ -239,6 +241,7 @@ public class CurrencyPluralInfo implements Cloneable, Serializable {
      * to the number.
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     String select(double number) {
@@ -250,6 +253,7 @@ public class CurrencyPluralInfo implements Cloneable, Serializable {
      * to the number.
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     String select(PluralRules.FixedDecimal numberInfo) {

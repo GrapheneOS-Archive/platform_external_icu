@@ -40,6 +40,7 @@ import android.icu.lang.UCharacter;
  * since it has not been optimized for that situation.
  * @author M. Davis
  * @stable ICU 2.4
+ * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
  */
 
@@ -162,6 +163,7 @@ public final class CanonicalIterator {
      * @param output the set to add the results to
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public static void permute(String source, boolean skipZeros, Set<String> output) {

@@ -22,6 +22,7 @@ import android.icu.text.UTF16;
  * in order to minimize complexity.
  * @author Alan Liu
  * @since ICU 2.8
+ * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
  */
 public class RuleCharacterIterator {

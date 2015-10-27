@@ -135,6 +135,8 @@ abstract public class TimeZone implements Serializable, Cloneable, Freezable<Tim
      * @param ID the time zone ID.
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide original deprecated method
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     protected TimeZone(String ID) {
@@ -268,6 +270,7 @@ abstract public class TimeZone implements Serializable, Cloneable, Freezable<Tim
          * Any system zones.
          * @stable ICU 4.8
          * {@literal @}provisional This API might change or be removed in a future release.
+         * @hide draft / provisional / internal are hidden on Android
          */
         ANY,
 
@@ -275,6 +278,7 @@ abstract public class TimeZone implements Serializable, Cloneable, Freezable<Tim
          * Canonical system zones.
          * @stable ICU 4.8
          * {@literal @}provisional This API might change or be removed in a future release.
+         * @hide draft / provisional / internal are hidden on Android
          */
         CANONICAL,
 
@@ -282,6 +286,7 @@ abstract public class TimeZone implements Serializable, Cloneable, Freezable<Tim
          * Canonical system zones associated with actual locations.
          * @stable ICU 4.8
          * {@literal @}provisional This API might change or be removed in a future release.
+         * @hide draft / provisional / internal are hidden on Android
          */
         CANONICAL_LOCATION,
     }

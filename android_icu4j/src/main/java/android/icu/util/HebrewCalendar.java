@@ -687,6 +687,8 @@ public class HebrewCalendar extends Calendar {
      * The formula below performs the same test, believe it or not.
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide original deprecated method
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public static boolean isLeapYear(int year) {
@@ -756,6 +758,8 @@ public class HebrewCalendar extends Calendar {
      * special handling for month validation for Hebrew calendar.
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide original deprecated method
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     protected void validateField(int field) {

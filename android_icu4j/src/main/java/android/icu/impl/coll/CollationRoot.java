@@ -21,6 +21,7 @@ import android.icu.impl.ICUData;
 
 /**
  * Collation root provider.
+ * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
  */
 public final class CollationRoot {  // purely static

@@ -35,6 +35,7 @@ import java.util.List;
  * ignore html or xml style markup that could otherwise obscure the content.
  * <p/>
  * @stable ICU 3.4
+ * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
  */
 public class CharsetDetector {
@@ -521,6 +522,7 @@ public class CharsetDetector {
      *
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public String[] getDetectableCharsets() {
@@ -549,6 +551,7 @@ public class CharsetDetector {
      *
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public CharsetDetector setDetectableCharset(String encoding, boolean enabled) {

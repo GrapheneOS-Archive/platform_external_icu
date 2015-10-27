@@ -29,6 +29,7 @@ import android.icu.util.VersionInfo;
  *
  * It is logically immutable: Do not modify its values.
  * The fields are public for convenience.
+ * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
  */
 public final class CollationTailoring {

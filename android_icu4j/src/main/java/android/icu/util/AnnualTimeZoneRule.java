@@ -17,6 +17,7 @@ import android.icu.impl.Grego;
  * all Gregorian calendar years.
  * 
  * @stable ICU 3.8
+ * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
  */
 public class AnnualTimeZoneRule extends TimeZoneRule {

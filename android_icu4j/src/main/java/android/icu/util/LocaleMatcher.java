@@ -47,6 +47,7 @@ import android.icu.impl.Utility;
  * 
  * @author markdavis@google.com
  * @stable ICU 4.4
+ * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
  */
 public class LocaleMatcher {
@@ -54,6 +55,7 @@ public class LocaleMatcher {
     /**
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public static final boolean DEBUG = false;
@@ -107,6 +109,7 @@ public class LocaleMatcher {
      * @param matcherData Internal matching data
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public LocaleMatcher(LocalePriorityList languagePriorityList, LanguageMatcherData matcherData) {
@@ -119,6 +122,7 @@ public class LocaleMatcher {
      * @param matcherData Internal matching data
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public LocaleMatcher(LocalePriorityList languagePriorityList, LanguageMatcherData matcherData, double threshold) {
@@ -228,6 +232,7 @@ public class LocaleMatcher {
     /**
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public ULocale getBestMatch(ULocale... ulocales) {
@@ -294,6 +299,7 @@ public class LocaleMatcher {
     /**
      * {@literal @}internal 
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     private static class OutputDouble { // TODO, move to where OutputInt is
@@ -600,6 +606,7 @@ public class LocaleMatcher {
      * Only for testing and use by tools. Interface may change!!
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public static class LanguageMatcherData implements Freezable<LanguageMatcherData> {
@@ -613,6 +620,7 @@ public class LocaleMatcher {
         /**
          * {@literal @}internal
          * @deprecated This API is ICU internal only.
+         * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
         public LanguageMatcherData() {
@@ -621,6 +629,7 @@ public class LocaleMatcher {
         /**
          * {@literal @}internal
          * @deprecated This API is ICU internal only.
+         * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
         public Relation<String, String> matchingLanguages() {
@@ -630,6 +639,7 @@ public class LocaleMatcher {
         /**
          * {@literal @}internal
          * @deprecated This API is ICU internal only.
+         * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
         public String toString() {
@@ -639,6 +649,7 @@ public class LocaleMatcher {
         /**
          * {@literal @}internal
          * @deprecated This API is ICU internal only.
+         * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
         public double match(ULocale a, ULocale aMax, ULocale b, ULocale bMax) {
@@ -673,6 +684,7 @@ public class LocaleMatcher {
          * added specifically.
          * {@literal @}internal
          * @deprecated This API is ICU internal only.
+         * @hide draft / provisional / internal are hidden on Android
          */
         @SuppressWarnings("unused")
         @Deprecated
@@ -682,6 +694,7 @@ public class LocaleMatcher {
         /**
          * {@literal @}internal
          * @deprecated This API is ICU internal only.
+         * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
         public LanguageMatcherData addDistance(String desired, String supported, int percent, String comment) {
@@ -690,6 +703,7 @@ public class LocaleMatcher {
         /**
          * {@literal @}internal
          * @deprecated This API is ICU internal only.
+         * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
         public LanguageMatcherData addDistance(String desired, String supported, int percent, boolean oneway) {
@@ -758,6 +772,7 @@ public class LocaleMatcher {
          * {@inheritDoc}
          * {@literal @}internal
          * @deprecated This API is ICU internal only.
+         * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
         public LanguageMatcherData cloneAsThawed() {
@@ -778,6 +793,7 @@ public class LocaleMatcher {
          * {@inheritDoc}
          * {@literal @}internal
          * @deprecated This API is ICU internal only.
+         * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
         public LanguageMatcherData freeze() {
@@ -793,6 +809,7 @@ public class LocaleMatcher {
          * {@inheritDoc}
          * {@literal @}internal
          * @deprecated This API is ICU internal only.
+         * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
         public boolean isFrozen() {
@@ -834,6 +851,7 @@ public class LocaleMatcher {
     /**
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public static ICUResourceBundle getICUSupplementalData() {
@@ -847,6 +865,7 @@ public class LocaleMatcher {
     /**
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public static double match(ULocale a, ULocale b) {

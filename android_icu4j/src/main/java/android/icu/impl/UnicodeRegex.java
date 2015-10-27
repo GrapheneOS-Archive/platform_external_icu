@@ -37,6 +37,7 @@ import android.icu.util.Freezable;
  * 2015-sep-03: This is used there, and also in CLDR and in UnicodeTools.
  *
  * @author markdavis
+ * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
  */
 public class UnicodeRegex implements Cloneable, Freezable<UnicodeRegex>, StringTransform {
@@ -48,6 +49,7 @@ public class UnicodeRegex implements Cloneable, Freezable<UnicodeRegex>, StringT
     /**
      * Set the symbol table for internal processing
      * {@literal @}internal
+     * @hide draft / provisional / internal are hidden on Android
      */
     public SymbolTable getSymbolTable() {
         return symbolTable;
@@ -56,6 +58,7 @@ public class UnicodeRegex implements Cloneable, Freezable<UnicodeRegex>, StringT
     /**
      * Get the symbol table for internal processing
      * {@literal @}internal
+     * @hide draft / provisional / internal are hidden on Android
      */
     public UnicodeRegex setSymbolTable(SymbolTable symbolTable) {
         this.symbolTable = symbolTable;

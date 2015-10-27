@@ -24,6 +24,8 @@ import android.icu.util.ULocale;
  * implementation behind setLenientParseMode, which is based on Collator.
  * {@literal @}internal
  * @deprecated This API is ICU internal only.
+ * @hide Only a subset of ICU is exposed in Android
+ * @hide draft / provisional / internal are hidden on Android
  * @hide All android.icu classes are currently hidden
  */
 @Deprecated
@@ -34,6 +36,7 @@ public class RbnfScannerProviderImpl implements RbnfLenientScannerProvider {
     /**
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public RbnfScannerProviderImpl() {
@@ -70,6 +73,7 @@ public class RbnfScannerProviderImpl implements RbnfLenientScannerProvider {
      * 
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public RbnfLenientScanner get(ULocale locale, String extras) {
@@ -91,6 +95,7 @@ public class RbnfScannerProviderImpl implements RbnfLenientScannerProvider {
     /**
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     protected RbnfLenientScanner createScanner(ULocale locale, String extras) {

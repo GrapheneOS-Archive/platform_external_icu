@@ -67,6 +67,8 @@ public abstract class UnicodeFilter implements UnicodeMatcher {
      *
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide original deprecated method
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     protected UnicodeFilter() {}

@@ -24,6 +24,7 @@ import android.icu.util.ULocale;
  * @see MeasureFormat
  * @see RelativeDateTimeFormatter
  * @deprecated ICU 56 Use MeasureFormat or RelativeDateTimeFormatter instead.
+ * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
  */
 @Deprecated
@@ -45,6 +46,7 @@ public abstract class DurationFormat extends UFormat {
      * Subclass interface
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     protected DurationFormat() {
@@ -54,6 +56,7 @@ public abstract class DurationFormat extends UFormat {
      * Subclass interface
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     protected DurationFormat(ULocale locale) {

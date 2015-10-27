@@ -15,6 +15,7 @@ import java.util.List;
  * DataRecord contains the data used by PeriodFormatterData. Fields are
  * package-private for ease of access. This is a struct, it knows how to read
  * and write itself to/from simple XML, that's all.
+ * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
  */
 public class DataRecord {

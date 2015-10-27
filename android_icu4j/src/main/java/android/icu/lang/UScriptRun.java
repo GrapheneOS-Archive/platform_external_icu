@@ -49,6 +49,8 @@ import android.icu.text.UTF16;
  *
  * {@literal @}internal
  * @deprecated This API is ICU internal only.
+ * @hide Only a subset of ICU is exposed in Android
+ * @hide draft / provisional / internal are hidden on Android
  * @hide All android.icu classes are currently hidden
  */
 @Deprecated
@@ -60,6 +62,7 @@ public final class UScriptRun
      *
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public UScriptRun()
@@ -77,6 +80,7 @@ public final class UScriptRun
      *
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public UScriptRun(String text)
@@ -94,6 +98,7 @@ public final class UScriptRun
      *
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public UScriptRun(String text, int start, int count)
@@ -109,6 +114,7 @@ public final class UScriptRun
      *
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public UScriptRun(char[] chars)
@@ -126,6 +132,7 @@ public final class UScriptRun
      *
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public UScriptRun(char[] chars, int start, int count)
@@ -139,6 +146,7 @@ public final class UScriptRun
      *
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public final void reset()
@@ -171,6 +179,7 @@ public final class UScriptRun
      *
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public final void reset(int start, int count)
@@ -203,6 +212,7 @@ public final class UScriptRun
      *
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public final void reset(char[] chars, int start, int count)
@@ -224,6 +234,7 @@ public final class UScriptRun
      *
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public final void reset(char[] chars)
@@ -248,6 +259,7 @@ public final class UScriptRun
      *
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public final void reset(String str, int start, int count)
@@ -269,6 +281,7 @@ public final class UScriptRun
      *
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public final void reset(String str)
@@ -291,6 +304,7 @@ public final class UScriptRun
      *
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public final int getScriptStart()
@@ -305,6 +319,7 @@ public final class UScriptRun
      *
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public final int getScriptLimit()
@@ -320,6 +335,7 @@ public final class UScriptRun
      *
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public final int getScriptCode()
@@ -335,6 +351,7 @@ public final class UScriptRun
      *
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public final boolean next()

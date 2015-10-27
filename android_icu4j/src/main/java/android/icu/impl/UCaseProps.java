@@ -31,7 +31,9 @@ import android.icu.text.UnicodeSet;
 import android.icu.util.ICUUncheckedIOException;
 import android.icu.util.ULocale;
 
-/** @hide All android.icu classes are currently hidden */
+/** @hide Only a subset of ICU is exposed in Android
+* @hide All android.icu classes are currently hidden
+ */
 public final class UCaseProps {
 
     // constructors etc. --------------------------------------------------- ***
@@ -803,6 +805,7 @@ public final class UCaseProps {
      * @see ContextIterator
      * @see #MAX_STRING_LENGTH
      * {@literal @}internal
+     * @hide draft / provisional / internal are hidden on Android
      */
     public final int toFullLower(int c, ContextIterator iter,
                                  StringBuilder out,
@@ -1102,6 +1105,7 @@ public final class UCaseProps {
      * Bit mask for getting just the options from a string compare options word
      * that are relevant for case folding (of a single string or code point).
      * {@literal @}internal
+     * @hide draft / provisional / internal are hidden on Android
      */
     private static final int FOLD_CASE_OPTIONS_MASK = 0xff;
     

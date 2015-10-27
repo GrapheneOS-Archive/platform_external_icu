@@ -17,6 +17,7 @@ import java.util.TimeZone;
  * to customize how that formatter constructs a Period for formatting.
  * <p>
  * None of the operations on PeriodBuilder change the current builder.
+ * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
  */
 public interface PeriodBuilder {

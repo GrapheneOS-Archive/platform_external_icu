@@ -19,6 +19,7 @@ package android.icu.impl;
  * @param <D> Data type for creating a new instance value
  *
  * @author Markus Scherer, Mark Davis
+ * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
  */
 public abstract class CacheBase<K, V, D> {

@@ -20,6 +20,7 @@ import java.util.HashMap;
  *
  * @author Markus W. Scherer
  * @stable ICU 4.8
+ * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
  */
 public abstract class StringTrieBuilder {
@@ -49,6 +50,7 @@ public abstract class StringTrieBuilder {
     /**
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     protected StringTrieBuilder() {}
@@ -56,6 +58,7 @@ public abstract class StringTrieBuilder {
     /**
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     protected void addImpl(CharSequence s, int value) {
@@ -77,6 +80,7 @@ public abstract class StringTrieBuilder {
     /**
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     protected final void buildImpl(Option buildOption) {
@@ -122,6 +126,7 @@ public abstract class StringTrieBuilder {
     /**
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     protected void clearImpl() {
@@ -819,6 +824,7 @@ public abstract class StringTrieBuilder {
     /**
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     protected abstract boolean matchNodesCanHaveValues() /*const*/;
@@ -826,18 +832,21 @@ public abstract class StringTrieBuilder {
     /**
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     protected abstract int getMaxBranchLinearSubNodeLength() /*const*/;
     /**
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     protected abstract int getMinLinearMatch() /*const*/;
     /**
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     protected abstract int getMaxLinearMatchLength() /*const*/;
@@ -845,30 +854,35 @@ public abstract class StringTrieBuilder {
     /**
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     protected abstract int write(int unit);
     /**
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     protected abstract int write(int offset, int length);
     /**
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     protected abstract int writeValueAndFinal(int i, boolean isFinal);
     /**
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     protected abstract int writeValueAndType(boolean hasValue, int value, int node);
     /**
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     protected abstract int writeDeltaTo(int jumpTarget);
@@ -882,6 +896,7 @@ public abstract class StringTrieBuilder {
     /**
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     protected StringBuilder strings=new StringBuilder();

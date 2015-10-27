@@ -25,6 +25,7 @@ import android.icu.util.UResourceBundle;
 
 /**
  * Loader for plural rules data.
+ * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
  */
 public class PluralRulesLoader extends PluralRules.Factory {

@@ -14,6 +14,7 @@ import android.icu.text.UTF16;
 /**
  * Ported code from ICU punycode.c 
  * @author ram
+ * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
  */
 public final class Punycode {

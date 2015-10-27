@@ -1129,6 +1129,7 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
      * @see #WEEKEND_CEASE
      * @see #getDayOfWeekType
      * @deprecated ICU 54 use {@link #getWeekDataForRegion(String)}, {@link #getWeekData()}, {@link #setWeekData(WeekData)}
+     * @hide original deprecated method
      */
     @Deprecated
     public static final int WEEKDAY = 0;
@@ -1141,6 +1142,7 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
      * @see #WEEKEND_CEASE
      * @see #getDayOfWeekType
      * @deprecated  ICU 54 use {@link #getWeekDataForRegion(String)}, {@link #getWeekData()}, {@link #setWeekData(WeekData)}
+     * @hide original deprecated method
      */
     @Deprecated
     public static final int WEEKEND = 1;
@@ -1154,6 +1156,7 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
      * @see #WEEKEND_CEASE
      * @see #getDayOfWeekType
      * @deprecated ICU 54 use {@link #getWeekDataForRegion(String)}, {@link #getWeekData()}, {@link #setWeekData(WeekData)}
+     * @hide original deprecated method
      */
     @Deprecated
     public static final int WEEKEND_ONSET = 2;
@@ -1167,6 +1170,7 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
      * @see #WEEKEND_ONSET
      * @see #getDayOfWeekType
      * @deprecated ICU 54 use {@link #getWeekDataForRegion(String)}, {@link #getWeekData()}, {@link #setWeekData(WeekData)}
+     * @hide original deprecated method
      */
     @Deprecated
     public static final int WEEKEND_CEASE = 3;
@@ -1907,6 +1911,7 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
      * @return the list of locales for which Calendars are installed.
      * {@literal @}draft ICU 3.2 (retain)
      * {@literal @}provisional This API might change or be removed in a future release.
+     * @hide draft / provisional / internal are hidden on Android
      */
     public static ULocale[] getAvailableULocales()
     {
@@ -2185,6 +2190,8 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
     /**
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide original deprecated method
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public final int getRelatedYear() {
@@ -2260,6 +2267,8 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
     /**
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide original deprecated method
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public final void setRelatedYear(int year) {
@@ -3510,6 +3519,7 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
      * @return a <code>DateFormat</code> appropriate to this calendar
      * {@literal @}draft ICU 3.2 (retain)
      * {@literal @}provisional This API might change or be removed in a future release.
+     * @hide draft / provisional / internal are hidden on Android
      */
     protected DateFormat handleGetDateFormat(String pattern, String override, ULocale locale) {
         FormatConfiguration fmtConfig = new FormatConfiguration();
@@ -3628,6 +3638,8 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
     /**
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide original deprecated method
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public static String getDateTimePattern(Calendar cal, ULocale uLocale, int dateStyle) {
@@ -3696,6 +3708,8 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
      *
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide original deprecated method
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public static class FormatConfiguration {
@@ -3714,6 +3728,8 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
          * @return the format pattern string
          * {@literal @}internal
          * @deprecated This API is ICU internal only.
+         * @hide original deprecated method
+         * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
         public String getPatternString() {
@@ -3723,6 +3739,8 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
         /**
          * {@literal @}internal
          * @deprecated This API is ICU internal only.
+         * @hide original deprecated method
+         * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
         public String getOverrideString() {
@@ -3734,6 +3752,8 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
          * @return the calendar
          * {@literal @}internal
          * @deprecated This API is ICU internal only.
+         * @hide original deprecated method
+         * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
         public Calendar getCalendar() {
@@ -3745,6 +3765,8 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
          * @return the locale
          * {@literal @}internal
          * @deprecated This API is ICU internal only.
+         * @hide original deprecated method
+         * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
         public ULocale getLocale() {
@@ -3756,6 +3778,8 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
          * @return the format symbols
          * {@literal @}internal
          * @deprecated This API is ICU internal only.
+         * @hide original deprecated method
+         * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
         public DateFormatSymbols getDateFormatSymbols() {
@@ -4486,6 +4510,7 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
      * @see #isWeekend(Date)
      * @see #isWeekend()
      * @deprecated ICU 54 use {@link #getWeekDataForRegion(String)}, {@link #getWeekData()}, {@link #setWeekData(WeekData)}
+     * @hide original deprecated method
      */
     @Deprecated
     public int getDayOfWeekType(int dayOfWeek) {
@@ -4531,6 +4556,7 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
      * @see #isWeekend(Date)
      * @see #isWeekend()
      * @deprecated ICU 54 use {@link #getWeekDataForRegion(String)}, {@link #getWeekData()}, {@link #setWeekData(WeekData)}
+     * @hide original deprecated method
      */
     @Deprecated
     public int getWeekendTransition(int dayOfWeek) {
@@ -5775,6 +5801,7 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
      * {@literal @}draft ICU 3.6 (retain)
      * {@literal @}provisional This API might change or be removed in a future release.
      * @see #MONTH
+     * @hide draft / provisional / internal are hidden on Android
      */
     protected int getDefaultMonthInYear(int extendedYear) {
         return Calendar.JANUARY;
@@ -5790,6 +5817,7 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
      * {@literal @}draft ICU 3.6 (retain)
      * {@literal @}provisional This API might change or be removed in a future release.
      * @see #DAY_OF_MONTH
+     * @hide draft / provisional / internal are hidden on Android
      */
     protected int getDefaultDayInMonth(int extendedYear, int month) {
         return 1;
@@ -6309,6 +6337,8 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
      * @return <code>true<code> if this calendar has a default century.
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide original deprecated method
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public boolean haveDefaultCentury() {
@@ -6340,6 +6370,7 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
      * @see android.icu.util.ULocale#ACTUAL_LOCALE
      * {@literal @}draft ICU 2.8 (retain)
      * {@literal @}provisional This API might change or be removed in a future release.
+     * @hide draft / provisional / internal are hidden on Android
      */
     public final ULocale getLocale(ULocale.Type type) {
         return type == ULocale.ACTUAL_LOCALE ?

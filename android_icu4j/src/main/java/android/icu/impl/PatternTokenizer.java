@@ -19,6 +19,7 @@ import android.icu.text.UnicodeSet;
  * <li>Quote characters can be specified: '...', "...", and \x </li>
  * <li>Other characters are treated as literals</li>
  * </ul>
+ * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
  */
 public class PatternTokenizer {

@@ -13,6 +13,7 @@ import android.icu.util.ULocale;
 
 /**
  * The implementation class of <code>TimeZoneNames.Factory</code>
+ * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
  */
 public class TimeZoneNamesFactoryImpl extends Factory {

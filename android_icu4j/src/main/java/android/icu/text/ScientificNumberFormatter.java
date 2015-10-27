@@ -33,6 +33,7 @@ import android.icu.util.ULocale;
  * {@literal @}draft ICU 55
  * {@literal @}provisional This API might change or be removed in a future release.
  *
+ * @hide draft / provisional / internal are hidden on Android
  * @hide All android.icu classes are currently hidden
  */
 public final class ScientificNumberFormatter {
@@ -49,6 +50,7 @@ public final class ScientificNumberFormatter {
      * 
      * {@literal @}draft ICU 55
      * {@literal @}provisional This API might change or be removed in a future release.
+     * @hide draft / provisional / internal are hidden on Android
      */
     public static ScientificNumberFormatter getSuperscriptInstance(ULocale locale) {
         return getInstanceForLocale(locale, SUPER_SCRIPT); 
@@ -64,6 +66,7 @@ public final class ScientificNumberFormatter {
      * 
      * {@literal @}draft ICU 55
      * {@literal @}provisional This API might change or be removed in a future release.
+     * @hide draft / provisional / internal are hidden on Android
      */ 
      public static ScientificNumberFormatter getSuperscriptInstance(
              DecimalFormat df) {
@@ -80,6 +83,7 @@ public final class ScientificNumberFormatter {
       * 
       * {@literal @}draft ICU 55
       * {@literal @}provisional This API might change or be removed in a future release.
+      * @hide draft / provisional / internal are hidden on Android
       */
      public static ScientificNumberFormatter getMarkupInstance(
              ULocale locale,
@@ -101,6 +105,7 @@ public final class ScientificNumberFormatter {
       * 
       * {@literal @}draft ICU 55
       * {@literal @}provisional This API might change or be removed in a future release.
+      * @hide draft / provisional / internal are hidden on Android
       */
      public static ScientificNumberFormatter getMarkupInstance(
              DecimalFormat df,
@@ -118,6 +123,7 @@ public final class ScientificNumberFormatter {
       *
       * {@literal @}draft ICU 55
       * {@literal @}provisional This API might change or be removed in a future release.
+      * @hide draft / provisional / internal are hidden on Android
       */
      public String format(Object number) {
          synchronized (fmt) {

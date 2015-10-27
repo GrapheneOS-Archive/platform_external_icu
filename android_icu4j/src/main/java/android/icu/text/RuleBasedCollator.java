@@ -393,6 +393,7 @@ public final class RuleBasedCollator extends Collator {
      * @see #setHiraganaQuaternaryDefault
      * @see #isHiraganaQuaternary
      * @deprecated ICU 50 Implementation detail, cannot be set via API, was removed from implementation.
+     * @hide original deprecated method
      */
     @Deprecated
     public void setHiraganaQuaternary(boolean flag) {
@@ -411,6 +412,7 @@ public final class RuleBasedCollator extends Collator {
      * @see #setHiraganaQuaternary(boolean)
      * @see #isHiraganaQuaternary
      * @deprecated ICU 50 Implementation detail, cannot be set via API, was removed from implementation.
+     * @hide original deprecated method
      */
     @Deprecated
     public void setHiraganaQuaternaryDefault() {
@@ -812,6 +814,7 @@ public final class RuleBasedCollator extends Collator {
      * @see #getVariableTop
      * @see RuleBasedCollator#setAlternateHandlingShifted
      * @deprecated ICU 53 Call {@link #setMaxVariable(int)} instead.
+     * @hide original deprecated method
      */
     @Override
     @Deprecated
@@ -850,6 +853,7 @@ public final class RuleBasedCollator extends Collator {
      * @see #getVariableTop
      * @see #setVariableTop(String)
      * @deprecated ICU 53 Call setMaxVariable() instead.
+     * @hide original deprecated method
      */
     @Override
     @Deprecated
@@ -1042,6 +1046,7 @@ public final class RuleBasedCollator extends Collator {
      * Ignores prefixes. Used by AlphabeticIndex.
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     void internalAddContractions(int c, UnicodeSet set) {
         new ContractionsAndExpansions(set, null, null, false).forCodePoint(data, c);
@@ -1217,6 +1222,8 @@ public final class RuleBasedCollator extends Collator {
      * @param str the string
      * {@literal @}internal for tests & tools
      * @deprecated This API is ICU internal only.
+     * @hide original deprecated method
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public long[] internalGetCEs(CharSequence str) {
@@ -1365,6 +1372,7 @@ public final class RuleBasedCollator extends Collator {
      * @see #setHiraganaQuaternaryDefault
      * @see #setHiraganaQuaternary(boolean)
      * @deprecated ICU 50 Implementation detail, cannot be set via API, was removed from implementation.
+     * @hide original deprecated method
      */
     @Deprecated
     public boolean isHiraganaQuaternary() {
@@ -1642,6 +1650,8 @@ public final class RuleBasedCollator extends Collator {
      * Compares two CharSequences.
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide original deprecated method
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Override
     @Deprecated
@@ -1857,6 +1867,7 @@ public final class RuleBasedCollator extends Collator {
      * {@inheritDoc}
      * {@literal @}draft ICU 53 (retain)
      * {@literal @}provisional This API might change or be removed in a future release.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Override
     public ULocale getLocale(ULocale.Type type) {

@@ -62,6 +62,8 @@ import java.util.ResourceBundle;
  * @author Alan Liu
  * {@literal @}internal
  * @deprecated ICU 2.4. This class may be removed or modified.
+ * @hide Only a subset of ICU is exposed in Android
+ * @hide draft / provisional / internal are hidden on Android
  * @hide All android.icu classes are currently hidden
  */
 @Deprecated
@@ -91,6 +93,7 @@ public class OverlayBundle extends ResourceBundle {
      * a locale.
      * {@literal @}internal
      * @deprecated ICU 2.4. This class may be removed or modified.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public OverlayBundle(String[] baseNames,
@@ -105,6 +108,7 @@ public class OverlayBundle extends ResourceBundle {
      * bundles[i].getObject().
      * {@literal @}internal
      * @deprecated ICU 2.4. This class may be removed or modified.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     protected Object handleGetObject(String key) 
@@ -134,6 +138,7 @@ public class OverlayBundle extends ResourceBundle {
      * bundles[bundles.length-1].getKeys().
      * {@literal @}internal
      * @deprecated ICU 2.4. This class may be removed or modified.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public Enumeration<String> getKeys() {

@@ -14,6 +14,7 @@ package android.icu.util;
  * @see android.icu.text.TimeUnitFormat
  * @author markdavis
  * @stable ICU 4.0
+ * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
  */
 public class TimeUnitAmount extends Measure {

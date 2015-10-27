@@ -19,6 +19,7 @@ import android.icu.util.ULocale;
  * This class is not intended for public subclassing.
  * 
  * @stable ICU 4.4
+ * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
  */
 public abstract class CurrencyDisplayNames {
@@ -95,6 +96,7 @@ public abstract class CurrencyDisplayNames {
      * @return true if currency display name data is available
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public static boolean hasData() {
@@ -164,6 +166,7 @@ public abstract class CurrencyDisplayNames {
      * typically implicit.)
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     protected CurrencyDisplayNames() {
