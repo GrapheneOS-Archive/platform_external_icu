@@ -31,6 +31,7 @@ import java.util.List;
  * // Output: "paul {born} in england"
  * System.out.println(fmt.format("england", "paul"));
  * </pre>
+ * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
  */
 public class SimplePatternFormatter {

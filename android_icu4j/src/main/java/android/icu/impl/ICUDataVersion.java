@@ -13,7 +13,9 @@ import java.util.MissingResourceException;
 import android.icu.util.UResourceBundle;
 import android.icu.util.VersionInfo;
 
-/** @hide All android.icu classes are currently hidden */
+/** @hide Only a subset of ICU is exposed in Android
+* @hide All android.icu classes are currently hidden
+ */
 public final class ICUDataVersion {
     private static final String U_ICU_VERSION_BUNDLE = "icuver";
     

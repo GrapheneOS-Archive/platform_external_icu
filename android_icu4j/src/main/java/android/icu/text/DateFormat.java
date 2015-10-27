@@ -447,6 +447,7 @@ public abstract class DateFormat extends UFormat {
      * one used by the DateFormat.
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     final static int RELATED_YEAR = 34;
@@ -457,6 +458,7 @@ public abstract class DateFormat extends UFormat {
      * defined for this.
      * {@literal @}draft ICU 55
      * {@literal @}provisional This API might change or be removed in a future release.
+     * @hide draft / provisional / internal are hidden on Android
      */
     public final static int TIME_SEPARATOR = 35;
 
@@ -497,6 +499,7 @@ public abstract class DateFormat extends UFormat {
          * e.g. accepting "September" for a month pattern of MMM ("Sep")  
          * {@literal @}draft ICU 56
          * {@literal @}provisional This API might change or be removed in a future release.
+         * @hide draft / provisional / internal are hidden on Android
          */
         PARSE_MULTIPLE_PATTERNS_FOR_MATCH, 
         /**
@@ -504,12 +507,14 @@ public abstract class DateFormat extends UFormat {
          * e.g. accepting "--mon-02-march-2011" for a pattern of "'--: 'EEE-WW-MMMM-yyyy"
          * {@literal @}draft ICU 56
          * {@literal @}provisional This API might change or be removed in a future release.
+         * @hide draft / provisional / internal are hidden on Android
          */
         PARSE_PARTIAL_LITERAL_MATCH,
         /**
          * alias of PARSE_PARTIAL_LITERAL_MATCH
          * {@literal @}internal
          * @deprecated
+         * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
         PARSE_PARTIAL_MATCH
@@ -1062,6 +1067,8 @@ public abstract class DateFormat extends UFormat {
      * Note that this is fragile; be sure to add any values that are added above.
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide original deprecated method
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public static final List<String> DATE_SKELETONS = Arrays.asList(
@@ -1162,6 +1169,8 @@ public abstract class DateFormat extends UFormat {
      * Note that this is fragile; be sure to add any values that are added above.
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide original deprecated method
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public static final List<String> TIME_SKELETONS = Arrays.asList(
@@ -1238,6 +1247,8 @@ public abstract class DateFormat extends UFormat {
      * Note that this is fragile; be sure to add any values that are added above.
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide original deprecated method
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public static final List<String> ZONE_SKELETONS = Arrays.asList(
@@ -1255,6 +1266,7 @@ public abstract class DateFormat extends UFormat {
     /**
      * {{@literal @}icu} Constant for date skeleton with standalone month.
      * @deprecated ICU 50 Use {@link #MONTH} instead.
+     * @hide original deprecated method
      */
     @Deprecated
     public static final String STANDALONE_MONTH = "LLLL";
@@ -1262,6 +1274,7 @@ public abstract class DateFormat extends UFormat {
     /**
      * {{@literal @}icu} Constant for date skeleton with standalone abbreviated month.
      * @deprecated ICU 50 Use {@link #ABBR_MONTH} instead.
+     * @hide original deprecated method
      */
     @Deprecated
     public static final String ABBR_STANDALONE_MONTH = "LLL";
@@ -1269,6 +1282,7 @@ public abstract class DateFormat extends UFormat {
     /**
      * {{@literal @}icu} Constant for date skeleton with hour, minute, and generic timezone.
      * @deprecated ICU 50 Use instead {@link #HOUR_MINUTE}+{@link #ABBR_GENERIC_TZ} or some other timezone presentation.
+     * @hide original deprecated method
      */
     @Deprecated
     public static final String HOUR_MINUTE_GENERIC_TZ = "jmv";
@@ -1276,6 +1290,7 @@ public abstract class DateFormat extends UFormat {
     /**
      * {{@literal @}icu} Constant for date skeleton with hour, minute, and timezone.
      * @deprecated ICU 50 Use instead {@link #HOUR_MINUTE}+{@link #ABBR_SPECIFIC_TZ} or some other timezone presentation.
+     * @hide original deprecated method
      */
     @Deprecated
     public static final String HOUR_MINUTE_TZ = "jmz";
@@ -1283,6 +1298,7 @@ public abstract class DateFormat extends UFormat {
     /**
      * {{@literal @}icu} Constant for date skeleton with hour and generic timezone.
      * @deprecated ICU 50 Use instead {@link #HOUR}+{@link #ABBR_GENERIC_TZ} or some other timezone presentation.
+     * @hide original deprecated method
      */
     @Deprecated
     public static final String HOUR_GENERIC_TZ = "jv";
@@ -1290,6 +1306,7 @@ public abstract class DateFormat extends UFormat {
     /**
      * {{@literal @}icu} Constant for date skeleton with hour and timezone.
      * @deprecated ICU 50 Use instead {@link #HOUR}+{@link #ABBR_SPECIFIC_TZ} or some other timezone presentation.
+     * @hide original deprecated method
      */
     @Deprecated
     public static final String HOUR_TZ = "jz";
@@ -1520,6 +1537,7 @@ public abstract class DateFormat extends UFormat {
      * @return the set of locales for which DateFormats are installed.
      * {@literal @}draft ICU 3.2 (retain)
      * {@literal @}provisional This API might change or be removed in a future release.
+     * @hide draft / provisional / internal are hidden on Android
      */
     public static ULocale[] getAvailableULocales()
     {
@@ -2006,6 +2024,7 @@ public abstract class DateFormat extends UFormat {
      * @param locale The locale for which the date/time format is desired. 
      * @stable ICU 3.2
      * {@literal @}provisional This API might change or be removed in a future release.
+     * @hide draft / provisional / internal are hidden on Android
      */
     static final public DateFormat getInstance(Calendar cal, ULocale locale) {
         return getDateTimeInstance(cal, SHORT, SHORT, locale);
@@ -2450,6 +2469,7 @@ public abstract class DateFormat extends UFormat {
          * Constant identifying the related year field.
          * {@literal @}internal
          * @deprecated This API is ICU internal only.
+         * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
         public static final Field RELATED_YEAR = new Field("related year", -1);
@@ -2458,6 +2478,7 @@ public abstract class DateFormat extends UFormat {
          * Constant identifying the time separator field.
          * {@literal @}draft ICU 55
          * {@literal @}provisional This API might change or be removed in a future release.
+         * @hide draft / provisional / internal are hidden on Android
          */
         public static final Field TIME_SEPARATOR = new Field("time separator", -1);
 

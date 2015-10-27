@@ -1523,6 +1523,8 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      * @see Category#DISPLAY
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide original deprecated method
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public String getDisplayScriptInContext() {
@@ -1545,6 +1547,8 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      * @return the localized script name.
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide original deprecated method
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public String getDisplayScriptInContext(ULocale displayLocale) {
@@ -1570,6 +1574,8 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      * @return the localized script name.
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide original deprecated method
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public static String getDisplayScriptInContext(String localeID, String displayLocaleID) {
@@ -1593,6 +1599,8 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      * @return the localized script name.
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide original deprecated method
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public static String getDisplayScriptInContext(String localeID, ULocale displayLocale) {
@@ -1952,6 +1960,7 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      *
      * {@literal @}draft ICU 2.8 (retain)
      * {@literal @}provisional This API might change or be removed in a future release.
+     * @hide draft / provisional / internal are hidden on Android
      */
     public static Type ACTUAL_LOCALE = new Type();
 
@@ -1968,6 +1977,7 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      * 3.0 or later.  In ICU 2.8, it is not returned correctly.
      * {@literal @}draft ICU 2.8 (retain)
      * {@literal @}provisional This API might change or be removed in a future release.
+     * @hide draft / provisional / internal are hidden on Android
      */
     public static Type VALID_LOCALE = new Type();
 
@@ -1978,6 +1988,7 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      * @see android.icu.util.ULocale#VALID_LOCALE
      * {@literal @}draft ICU 2.8 (retainAll)
      * {@literal @}provisional This API might change or be removed in a future release.
+     * @hide draft / provisional / internal are hidden on Android
      */
     public static final class Type {
         private Type() {}
@@ -2467,6 +2478,8 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      * Options for minimizeSubtags. 
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide original deprecated method
+     * @hide draft / provisional / internal are hidden on Android
      */ 
     @Deprecated
     public enum Minimize { 
@@ -2474,6 +2487,7 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
          * Favor including the script, when either the region <b>or</b> the script could be suppressed, but not both.
          * {@literal @}internal
          * @deprecated This API is ICU internal only.
+         * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
         FAVOR_SCRIPT,  
@@ -2481,6 +2495,7 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
          * Favor including the region, when either the region <b>or</b> the script could be suppressed, but not both.
          * {@literal @}internal
          * @deprecated This API is ICU internal only.
+         * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
         FAVOR_REGION 
@@ -2515,6 +2530,8 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      * @return The minimized ULocale instance. 
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide original deprecated method
+     * @hide draft / provisional / internal are hidden on Android
      */ 
     @Deprecated
     public static ULocale minimizeSubtags(ULocale loc, Minimize fieldToFavor) { 

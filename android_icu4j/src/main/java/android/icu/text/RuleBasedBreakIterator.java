@@ -35,6 +35,7 @@ import android.icu.lang.UScript;
  * This is a port of the C++ class RuleBasedBreakIterator from ICU4C.
  * 
  * @stable ICU 2.0
+ * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
  */
 public class RuleBasedBreakIterator extends BreakIterator {
@@ -87,6 +88,7 @@ public class RuleBasedBreakIterator extends BreakIterator {
      * @see    #compileRules(String, OutputStream)
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public static RuleBasedBreakIterator getInstanceFromCompiledRules(ByteBuffer bytes) throws IOException {
@@ -232,6 +234,7 @@ public class RuleBasedBreakIterator extends BreakIterator {
      *   for updating it is live.  Dictionary Based break iterators (a subclass
      *   of us) access this field directly.
      * {@literal @}internal
+     * @hide draft / provisional / internal are hidden on Android
      */
     private int fDictionaryCharCount;
 
@@ -292,6 +295,7 @@ public class RuleBasedBreakIterator extends BreakIterator {
      * For debugging only.
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public void dump() {
@@ -986,6 +990,7 @@ public class RuleBasedBreakIterator extends BreakIterator {
      *
      * {@literal @}draft ICU 3.0 (retain)
      * {@literal @}provisional This is a draft API and might change in a future release of ICU.
+     * @hide draft / provisional / internal are hidden on Android
      */
 
     public int  getRuleStatus() {
@@ -1024,6 +1029,7 @@ public class RuleBasedBreakIterator extends BreakIterator {
      *                  not the reduced number that were actually returned.
      * {@literal @}draft ICU 3.0 (retain)
      * {@literal @}provisional This is a draft API and might change in a future release of ICU.
+     * @hide draft / provisional / internal are hidden on Android
      */
     public int getRuleStatusVec(int[] fillInArray) {
         makeRuleStatusValid();
@@ -1078,6 +1084,7 @@ public class RuleBasedBreakIterator extends BreakIterator {
     /**
      * Control debug, trace and dump options.
      * {@literal @}internal
+     * @hide draft / provisional / internal are hidden on Android
      */
     static final String fDebugEnv = ICUDebug.enabled(RBBI_DEBUG_ARG) ?
                                         ICUDebug.value(RBBI_DEBUG_ARG) : null;

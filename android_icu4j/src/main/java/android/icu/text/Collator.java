@@ -358,6 +358,8 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
      * @return this, for chaining
      * {@literal @}internal Used in UnicodeTools
      * @deprecated This API is ICU internal only.
+     * @hide original deprecated method
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public Collator setStrength2(int newStrength)
@@ -1245,6 +1247,8 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
      * Subclasses should instead implement this method and have the String API call this method.
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide original deprecated method
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     protected int doCompare(CharSequence left, CharSequence right) {
@@ -1347,6 +1351,7 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
      * @see #getVariableTop
      * @see RuleBasedCollator#setAlternateHandlingShifted
      * @deprecated ICU 53 Call {@link #setMaxVariable(int)} instead.
+     * @hide original deprecated method
      */
     @Deprecated
     public abstract int setVariableTop(String varTop);
@@ -1372,6 +1377,7 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
      * @see #getVariableTop
      * @see #setVariableTop(String)
      * @deprecated ICU 53 Call setMaxVariable() instead.
+     * @hide original deprecated method
      */
     @Deprecated
     public abstract void setVariableTop(int varTop);
@@ -1496,6 +1502,7 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
      * @see android.icu.util.ULocale#ACTUAL_LOCALE
      * {@literal @}draft ICU 2.8 (retain)
      * {@literal @}provisional This API might change or be removed in a future release.
+     * @hide draft / provisional / internal are hidden on Android
      */
     public ULocale getLocale(ULocale.Type type) {
         return ULocale.ROOT;

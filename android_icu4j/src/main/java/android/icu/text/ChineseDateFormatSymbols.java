@@ -24,6 +24,7 @@ import android.icu.util.ULocale.Category;
  * @see android.icu.util.ChineseCalendar
  * @author Alan Liu
  * @deprecated ICU 50 
+ * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
  */
 @Deprecated

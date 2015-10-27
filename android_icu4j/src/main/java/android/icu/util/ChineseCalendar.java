@@ -337,6 +337,8 @@ public class ChineseCalendar extends Calendar {
      * used for astronomical calculation.
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide original deprecated method
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     protected ChineseCalendar(TimeZone zone, ULocale locale, int epochYear, TimeZone zoneAstroCalc) {
@@ -1024,6 +1026,8 @@ public class ChineseCalendar extends Calendar {
      * {@inheritDoc}
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide original deprecated method
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public boolean haveDefaultCentury() {

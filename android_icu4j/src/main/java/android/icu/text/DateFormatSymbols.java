@@ -102,6 +102,8 @@ public class DateFormatSymbols implements Serializable, Cloneable {
      * is only supported for leapMonthPatterns.
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide original deprecated method
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public static final int NUMERIC = 2;
@@ -110,6 +112,8 @@ public class DateFormatSymbols implements Serializable, Cloneable {
      * {{@literal @}icu} Constant for context.
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide original deprecated method
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public static final int DT_CONTEXT_COUNT = 3;
@@ -144,6 +148,8 @@ public class DateFormatSymbols implements Serializable, Cloneable {
      * {{@literal @}icu} Constant for width.
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide original deprecated method
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public static final int DT_WIDTH_COUNT = 4;
@@ -151,48 +157,56 @@ public class DateFormatSymbols implements Serializable, Cloneable {
     /**
      * {{@literal @}icu} Somewhat temporary constant for leap month pattern type, adequate for Chinese calendar.
      * {@literal @}internal
+     * @hide draft / provisional / internal are hidden on Android
      */
     static final int DT_LEAP_MONTH_PATTERN_FORMAT_WIDE = 0;
 
     /**
      * {{@literal @}icu} Somewhat temporary constant for leap month pattern type, adequate for Chinese calendar.
      * {@literal @}internal
+     * @hide draft / provisional / internal are hidden on Android
      */
     static final int DT_LEAP_MONTH_PATTERN_FORMAT_ABBREV = 1;
 
     /**
      * {{@literal @}icu} Somewhat temporary constant for leap month pattern type, adequate for Chinese calendar.
      * {@literal @}internal
+     * @hide draft / provisional / internal are hidden on Android
      */
     static final int DT_LEAP_MONTH_PATTERN_FORMAT_NARROW = 2;
 
     /**
      * {{@literal @}icu} Somewhat temporary constant for leap month pattern type, adequate for Chinese calendar.
      * {@literal @}internal
+     * @hide draft / provisional / internal are hidden on Android
      */
     static final int DT_LEAP_MONTH_PATTERN_STANDALONE_WIDE = 3;
 
     /**
      * {{@literal @}icu} Somewhat temporary constant for leap month pattern type, adequate for Chinese calendar.
      * {@literal @}internal
+     * @hide draft / provisional / internal are hidden on Android
      */
     static final int DT_LEAP_MONTH_PATTERN_STANDALONE_ABBREV = 4;
 
     /**
      * {{@literal @}icu} Somewhat temporary constant for leap month pattern type, adequate for Chinese calendar.
      * {@literal @}internal
+     * @hide draft / provisional / internal are hidden on Android
      */
     static final int DT_LEAP_MONTH_PATTERN_STANDALONE_NARROW = 5;
 
     /**
      * {{@literal @}icu} Somewhat temporary constant for leap month pattern type, adequate for Chinese calendar.
      * {@literal @}internal
+     * @hide draft / provisional / internal are hidden on Android
      */
     static final int DT_LEAP_MONTH_PATTERN_NUMERIC = 6;
 
     /**
      * {{@literal @}icu} Somewhat temporary constant for month pattern count, adequate for Chinese calendar.
      * {@literal @}internal
+     * @hide draft / provisional / internal are hidden on Android
      */
     static final int DT_MONTH_PATTERN_COUNT = 7;
 
@@ -200,12 +214,14 @@ public class DateFormatSymbols implements Serializable, Cloneable {
      * {{@literal @}icu} This default time separator is used for formatting when the locale
      * doesn't specify any time separator, and always recognized when parsing.
      * {@literal @}internal
+     * @hide draft / provisional / internal are hidden on Android
      */
     static final String DEFAULT_TIME_SEPARATOR = ":";
 
     /**
      * {{@literal @}icu} This alternate time separator is always recognized when parsing.
      * {@literal @}internal
+     * @hide draft / provisional / internal are hidden on Android
      */
     static final String ALTERNATE_TIME_SEPARATOR = ".";
 
@@ -326,6 +342,7 @@ public class DateFormatSymbols implements Serializable, Cloneable {
      * <code>DateFormatSymbols</code> instances are available.
      * {@literal @}draft ICU 3.8 (retain)
      * {@literal @}provisional This API might change or be removed in a future release.
+     * @hide draft / provisional / internal are hidden on Android
      */
     public static ULocale[] getAvailableULocales() {
         return ICUResourceBundle.getAvailableULocales();
@@ -629,6 +646,7 @@ public class DateFormatSymbols implements Serializable, Cloneable {
      * {{@literal @}icu} Constants for capitalization context usage types
      * related to date formatting.
      * {@literal @}internal
+     * @hide draft / provisional / internal are hidden on Android
      */
     enum CapitalizationContextUsage {
         OTHER, 
@@ -1136,6 +1154,8 @@ public class DateFormatSymbols implements Serializable, Cloneable {
      *                  this calendar.
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide original deprecated method
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public String getLeapMonthPattern(int context, int width) {
@@ -1189,6 +1209,8 @@ public class DateFormatSymbols implements Serializable, Cloneable {
      * @param width     The name width: WIDE, ABBREVIATED, NARROW.
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide original deprecated method
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public void setLeapMonthPattern(String leapMonthPattern, int context, int width) {
@@ -1260,6 +1282,7 @@ public class DateFormatSymbols implements Serializable, Cloneable {
      * @return the time separator string.
      * {@literal @}draft ICU 55
      * {@literal @}provisional This API might change or be removed in a future release.
+     * @hide draft / provisional / internal are hidden on Android
      */
     public String getTimeSeparatorString() {
         return timeSeparator;
@@ -1270,6 +1293,7 @@ public class DateFormatSymbols implements Serializable, Cloneable {
      * @param newTimeSeparator the new time separator string.
      * {@literal @}draft ICU 55
      * {@literal @}provisional This API might change or be removed in a future release.
+     * @hide draft / provisional / internal are hidden on Android
      */
     public void setTimeSeparatorString(String newTimeSeparator) {
         timeSeparator = newTimeSeparator;
@@ -1525,6 +1549,8 @@ public class DateFormatSymbols implements Serializable, Cloneable {
      * @param calData       The calendar resource data
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide original deprecated method
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     // This API was accidentally marked as @stable ICU 3.0 formerly.
@@ -1961,6 +1987,7 @@ public class DateFormatSymbols implements Serializable, Cloneable {
      * <b>Note:</b>Because of the structural changes in the ICU locale bundle,
      * this API no longer works as described.  This method always returns null.
      * @deprecated ICU 4.0
+     * @hide original deprecated method
      */
     @Deprecated
     // This API was formerly @stable ICU 2.0
@@ -1983,6 +2010,7 @@ public class DateFormatSymbols implements Serializable, Cloneable {
      * <b>Note:</b>Because of the structural changes in the ICU locale bundle,
      * this API no longer works as described.  This method always returns null.
      * @deprecated ICU 4.0
+     * @hide original deprecated method
      */
     @Deprecated
     // This API was formerly @stable ICU 3.2
@@ -2000,6 +2028,7 @@ public class DateFormatSymbols implements Serializable, Cloneable {
      * this API no longer works as described.  This method always returns null.
      * @see #getDateFormatBundle(java.lang.Class, java.util.Locale)
      * @deprecated ICU 4.0
+     * @hide original deprecated method
      */
     @Deprecated
     // This API was formerly @stable ICU 2.2
@@ -2016,6 +2045,7 @@ public class DateFormatSymbols implements Serializable, Cloneable {
      * this API no longer works as described.  This method always returns null.
      * @see #getDateFormatBundle(java.lang.Class, java.util.Locale)
      * @deprecated ICU 4.0
+     * @hide original deprecated method
      */
     @Deprecated
     // This API was formerly @stable ICU 3.2
@@ -2049,6 +2079,7 @@ public class DateFormatSymbols implements Serializable, Cloneable {
      * @see android.icu.util.ULocale#ACTUAL_LOCALE
      * {@literal @}draft ICU 2.8 (retain)
      * {@literal @}provisional This API might change or be removed in a future release.
+     * @hide draft / provisional / internal are hidden on Android
      */
     public final ULocale getLocale(ULocale.Type type) {
         return type == ULocale.ACTUAL_LOCALE ?

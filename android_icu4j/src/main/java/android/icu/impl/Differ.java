@@ -12,6 +12,7 @@ package android.icu.impl;
  * lets you know where they are different.
  * @author Mark Davis
  * @version 1.0
+ * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
  */
 

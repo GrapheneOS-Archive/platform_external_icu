@@ -21,6 +21,7 @@ import android.icu.util.ICUUncheckedIOException;
  * An instance of this class is unmodifiable/immutable.
  * @stable ICU 4.4
  * @author Markus W. Scherer
+ * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
  */
 public class FilteredNormalizer2 extends Normalizer2 {

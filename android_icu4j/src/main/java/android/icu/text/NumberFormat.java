@@ -233,6 +233,7 @@ public abstract class NumberFormat extends UFormat {
      * Overrides any style specified using -cf- key in locale.
      * {@literal @}draft ICU 56
      * {@literal @}provisional This API might change or be removed in a future release. 
+     * @hide draft / provisional / internal are hidden on Android
      */
     public static final int STANDARDCURRENCYSTYLE = 9;
 
@@ -988,6 +989,7 @@ public abstract class NumberFormat extends UFormat {
      * @return the available locales
      * {@literal @}draft ICU 3.2 (retain)
      * {@literal @}provisional This API might change or be removed in a future release.
+     * @hide draft / provisional / internal are hidden on Android
      */
     public static ULocale[] getAvailableULocales() {
         if (shim == null) {
@@ -1266,6 +1268,8 @@ public abstract class NumberFormat extends UFormat {
      * @return a non-null Currency
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide original deprecated method
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     protected Currency getEffectiveCurrency() {
@@ -1436,6 +1440,7 @@ public abstract class NumberFormat extends UFormat {
      * @param choice the pattern format.
      * @return the pattern
      * @deprecated ICU 3.4 subclassers should override getPattern(ULocale, int) instead of this method.
+     * @hide original deprecated method
      */
     @Deprecated
     protected static String getPattern(Locale forLocale, int choice) {

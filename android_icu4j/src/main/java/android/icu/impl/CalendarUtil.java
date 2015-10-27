@@ -21,6 +21,7 @@ import android.icu.util.UResourceBundle;
  * cannot be used.  This class is added in com.ibm.icu.impl
  * package for sharing some calendar internal code for calendar
  * and date format.
+ * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
  */
 public class CalendarUtil {

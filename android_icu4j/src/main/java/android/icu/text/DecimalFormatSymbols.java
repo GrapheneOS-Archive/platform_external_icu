@@ -154,6 +154,7 @@ public class DecimalFormatSymbols implements Cloneable, Serializable {
      * <code>DecimalFormatSymbols</code> instances are available.
      * @stable ICU 3.8 (retain)
      * {@literal @}provisional This API might change or be removed in a future release.
+     * @hide draft / provisional / internal are hidden on Android
      */
     public static ULocale[] getAvailableULocales() {
         return ICUResourceBundle.getAvailableULocales();
@@ -411,6 +412,8 @@ public class DecimalFormatSymbols implements Cloneable, Serializable {
      * @return the minus sign string
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide original deprecated method
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public String getMinusString() {
@@ -605,6 +608,8 @@ public class DecimalFormatSymbols implements Cloneable, Serializable {
      * @return the plus sign string
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide original deprecated method
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public String getPlusString() {
@@ -1348,6 +1353,7 @@ public class DecimalFormatSymbols implements Cloneable, Serializable {
      * @see android.icu.util.ULocale#ACTUAL_LOCALE
      * {@literal @}draft ICU 2.8 (retain)
      * {@literal @}provisional This API might change or be removed in a future release.
+     * @hide draft / provisional / internal are hidden on Android
      */
     public final ULocale getLocale(ULocale.Type type) {
         return type == ULocale.ACTUAL_LOCALE ?

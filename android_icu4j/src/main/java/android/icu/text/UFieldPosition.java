@@ -14,6 +14,8 @@ import java.text.Format.Field;
  * Adds the ability to get the decimal digits
  * {@literal @}internal
  * @deprecated This API is ICU internal only.
+ * @hide Only a subset of ICU is exposed in Android
+ * @hide draft / provisional / internal are hidden on Android
  * @hide All android.icu classes are currently hidden
  */
 @Deprecated
@@ -24,6 +26,7 @@ public class UFieldPosition extends FieldPosition {
     /**
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public UFieldPosition() {
@@ -33,6 +36,7 @@ public class UFieldPosition extends FieldPosition {
     /**
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public UFieldPosition(int field) {
@@ -42,6 +46,7 @@ public class UFieldPosition extends FieldPosition {
     /**
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public UFieldPosition(Field attribute, int fieldID) {
@@ -51,6 +56,7 @@ public class UFieldPosition extends FieldPosition {
     /**
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public UFieldPosition(Field attribute) {
@@ -60,6 +66,7 @@ public class UFieldPosition extends FieldPosition {
     /**
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public void setFractionDigits(int countVisibleFractionDigits, long fractionDigits ) {
@@ -70,6 +77,7 @@ public class UFieldPosition extends FieldPosition {
     /**
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public int getCountVisibleFractionDigits() {
@@ -79,6 +87,7 @@ public class UFieldPosition extends FieldPosition {
     /**
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public long getFractionDigits() {

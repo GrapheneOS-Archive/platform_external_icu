@@ -25,6 +25,7 @@ import android.icu.text.UTF16;
  * match).  Escapes are processed using standard ICU unescaping.
  *
  * <p>2015-sep-03 TODO: Only used in com.ibm.icu.dev.test.format, move there.
+ * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
  */
 public class TokenIterator {

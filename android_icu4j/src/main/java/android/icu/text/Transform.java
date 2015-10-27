@@ -14,6 +14,7 @@ package android.icu.text;
  * @author markdavis
  * @stable ICU 4.4
 
+ * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
  */
 

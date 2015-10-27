@@ -18,6 +18,7 @@ import android.icu.util.Currency.CurrencyUsage;
 
 /**
  * ICU's currency meta info data.
+ * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
  */
 public class ICUCurrencyMetaInfo extends CurrencyMetaInfo {

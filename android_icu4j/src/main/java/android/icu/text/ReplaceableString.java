@@ -20,6 +20,7 @@ package android.icu.text;
  * @see Replaceable
  * @author Alan Liu
  * @stable ICU 2.0
+ * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
  */
 public class ReplaceableString implements Replaceable {

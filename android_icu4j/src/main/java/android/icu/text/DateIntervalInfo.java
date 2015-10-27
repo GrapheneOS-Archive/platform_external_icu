@@ -264,6 +264,7 @@ public class DateIntervalInfo implements Cloneable, Freezable<DateIntervalInfo>,
          * {@inheritDoc}
          * {@literal @}internal
          * @deprecated This API is ICU internal only.
+         * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
         @Override
@@ -330,6 +331,8 @@ public class DateIntervalInfo implements Cloneable, Freezable<DateIntervalInfo>,
      * date interval formatter.
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide original deprecated method
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public DateIntervalInfo() 
@@ -713,6 +716,8 @@ public class DateIntervalInfo implements Cloneable, Freezable<DateIntervalInfo>,
      * @return                 pattern info object
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide original deprecated method
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public static PatternInfo genPatternInfo(String intervalPattern, 
@@ -1048,6 +1053,8 @@ public class DateIntervalInfo implements Cloneable, Freezable<DateIntervalInfo>,
     /**
      * {@literal @}internal CLDR
      * @deprecated This API is ICU internal only.
+     * @hide original deprecated method
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public Map<String,Set<String>> getPatterns() {
@@ -1062,6 +1069,8 @@ public class DateIntervalInfo implements Cloneable, Freezable<DateIntervalInfo>,
      * Get the internal patterns, with a deep clone for safety.
      * {@literal @}internal CLDR
      * @deprecated This API is ICU internal only.
+     * @hide original deprecated method
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public Map<String, Map<String, PatternInfo>> getRawPatterns() {

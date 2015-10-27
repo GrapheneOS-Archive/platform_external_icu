@@ -29,6 +29,7 @@ import android.icu.impl.Grego;
  * @see      TimeZone
  * @author   David Goldsmith, Mark Davis, Chen-Lieh Huang, Alan Liu
  * @stable ICU 2.0
+ * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
  */
 public class SimpleTimeZone extends BasicTimeZone {
@@ -661,6 +662,7 @@ public class SimpleTimeZone extends BasicTimeZone {
     /**
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public int getOffset(int era, int year, int month, int day,
@@ -790,6 +792,7 @@ public class SimpleTimeZone extends BasicTimeZone {
      * {@inheritDoc}
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public void getOffsetFromLocal(long date,

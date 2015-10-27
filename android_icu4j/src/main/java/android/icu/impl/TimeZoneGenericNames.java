@@ -39,6 +39,7 @@ import android.icu.util.ULocale;
  * to format and parse time zone's generic display names.
  * It is not recommended to use this class directly, instead
  * use com.ibm.icu.text.TimeZoneFormat.
+ * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
  */
 public class TimeZoneGenericNames implements Serializable, Freezable<TimeZoneGenericNames> {

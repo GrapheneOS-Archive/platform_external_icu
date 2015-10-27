@@ -17,6 +17,8 @@ import android.icu.util.ULocale.Category;
  * 
  * {@literal @}internal
  * @deprecated This API is ICU internal only.
+ * @hide Only a subset of ICU is exposed in Android
+ * @hide draft / provisional / internal are hidden on Android
  * @hide All android.icu classes are currently hidden
  */
 @Deprecated
@@ -85,6 +87,7 @@ public class DangiCalendar extends ChineseCalendar {
      * 
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public DangiCalendar() {
@@ -98,6 +101,7 @@ public class DangiCalendar extends ChineseCalendar {
      * 
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public DangiCalendar(Date date) {
@@ -113,6 +117,7 @@ public class DangiCalendar extends ChineseCalendar {
      * 
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public DangiCalendar(TimeZone zone, ULocale locale) {
@@ -124,6 +129,7 @@ public class DangiCalendar extends ChineseCalendar {
      * 
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public String getType() {

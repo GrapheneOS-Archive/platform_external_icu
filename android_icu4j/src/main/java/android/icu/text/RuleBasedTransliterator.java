@@ -273,6 +273,8 @@ import java.util.Map;
  * @author Alan Liu
  * {@literal @}internal
  * @deprecated This API is ICU internal only.
+ * @hide Only a subset of ICU is exposed in Android
+ * @hide draft / provisional / internal are hidden on Android
  * @hide All android.icu classes are currently hidden
  */
 @Deprecated
@@ -326,6 +328,7 @@ public class RuleBasedTransliterator extends Transliterator {
      * Implements {@link Transliterator#handleTransliterate}.
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     protected void handleTransliterate(Replaceable text,
@@ -443,6 +446,7 @@ public class RuleBasedTransliterator extends Transliterator {
      * @return rules string
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public String toRules(boolean escapeUnprintable) {
@@ -468,6 +472,7 @@ public class RuleBasedTransliterator extends Transliterator {
     /**
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     @Override
@@ -479,6 +484,7 @@ public class RuleBasedTransliterator extends Transliterator {
      * Temporary hack for registry problem. Needs to be replaced by better architecture.
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public Transliterator safeClone() {

@@ -3634,6 +3634,7 @@ public final class UCharacter implements ECharacterCategory, ECharacterDirection
      * @return true if the code point is a space character as
      * defined by java.lang.Character.isSpace.
      * @deprecated ICU 3.4 (Java)
+     * @hide original deprecated method
      */
     @Deprecated
     public static boolean isSpace(int ch) {
@@ -3754,6 +3755,7 @@ public final class UCharacter implements ECharacterCategory, ECharacterDirection
      * @param cp the code point
      * @return true if the code point can start a java identifier.
      * @deprecated ICU 3.4 (Java)
+     * @hide original deprecated method
      */
     @Deprecated
     public static boolean isJavaLetter(int cp) {
@@ -3767,6 +3769,7 @@ public final class UCharacter implements ECharacterCategory, ECharacterDirection
      * @param cp the code point
      * @return true if the code point can continue a java identifier.
      * @deprecated ICU 3.4 (Java)
+     * @hide original deprecated method
      */
     @Deprecated
     public static boolean isJavaLetterOrDigit(int cp) {
@@ -4379,6 +4382,7 @@ public final class UCharacter implements ECharacterCategory, ECharacterDirection
      * @param ch the code point for which to get the name
      * @return null
      * @deprecated ICU 49
+     * @hide original deprecated method
      */
     @Deprecated
     public static String getName1_0(int ch)
@@ -4433,6 +4437,7 @@ public final class UCharacter implements ECharacterCategory, ECharacterDirection
      *           It must be the case that {@code 0 <= ch <= 0x10ffff}.
      * @return null
      * @deprecated ICU 49
+     * @hide original deprecated method
      */
     @Deprecated
     public static String getISOComment(int ch)
@@ -4464,6 +4469,7 @@ public final class UCharacter implements ECharacterCategory, ECharacterDirection
      * @return -1
      * @deprecated ICU 49
      * @see #getName1_0(int)
+     * @hide original deprecated method
      */
     @Deprecated
     public static int getCharFromName1_0(String name){
@@ -4694,6 +4700,8 @@ public final class UCharacter implements ECharacterCategory, ECharacterDirection
      * @return returns UProperty.UNDEFINED if the value is not valid, otherwise the value.
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide original deprecated method
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public static int getPropertyValueEnumNoThrow(int property, CharSequence valueAlias) {
@@ -5220,6 +5228,8 @@ public final class UCharacter implements ECharacterCategory, ECharacterDirection
      * @return the modified string, or the original if no modifications were necessary. 
      * {@literal @}internal 
      * @deprecated ICU internal only
+     * @hide original deprecated method
+     * @hide draft / provisional / internal are hidden on Android
      */ 
     @Deprecated 
     public static String toTitleFirst(ULocale locale, String str) { 
@@ -5592,6 +5602,7 @@ public final class UCharacter implements ECharacterCategory, ECharacterDirection
      * @return an empty iterator
      * @deprecated ICU 49
      * @see #getName1_0(int)
+     * @hide original deprecated method
      */
     @Deprecated
     public static ValueIterator getName1_0Iterator(){
@@ -5778,6 +5789,8 @@ public final class UCharacter implements ECharacterCategory, ECharacterDirection
      * @return value as string
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide original deprecated method
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     ///CLOVER:OFF

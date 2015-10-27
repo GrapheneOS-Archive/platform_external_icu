@@ -26,6 +26,7 @@ import android.icu.util.ICUCloneNotSupportedException;
  *
  * @see CharacterIterator
  * @deprecated ICU 2.4. Use java.text.StringCharacterIterator instead.
+ * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
  */
 @Deprecated

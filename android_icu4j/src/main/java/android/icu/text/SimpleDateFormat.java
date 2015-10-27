@@ -1030,6 +1030,8 @@ public class SimpleDateFormat extends DateFormat {
     /**
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide original deprecated method
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public SimpleDateFormat(String pattern, DateFormatSymbols formatData, ULocale loc)
@@ -1069,6 +1071,8 @@ public class SimpleDateFormat extends DateFormat {
      * @return A SimpleDateFormat instance
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide original deprecated method
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public static SimpleDateFormat getInstance(Calendar.FormatConfiguration formatConfig) {
@@ -1489,6 +1493,8 @@ public class SimpleDateFormat extends DateFormat {
      *
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide original deprecated method
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     protected String subFormat(char ch, int count, int beginOffset,
@@ -1512,6 +1518,8 @@ public class SimpleDateFormat extends DateFormat {
      *
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide original deprecated method
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     @SuppressWarnings("fallthrough")
@@ -2035,6 +2043,8 @@ public class SimpleDateFormat extends DateFormat {
      * instead of creating a String on the heap for each call.
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide original deprecated method
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     protected void zeroPaddingNumber(NumberFormat nf,StringBuffer buf, int value,
@@ -2656,6 +2666,7 @@ public class SimpleDateFormat extends DateFormat {
      * of the best match, if matching succeeded.
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     private int matchString(String text, int start, int field, String[] data, String monthPattern, Calendar cal)
@@ -2824,6 +2835,7 @@ public class SimpleDateFormat extends DateFormat {
      * value.
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     @SuppressWarnings("fallthrough")
@@ -3821,6 +3833,8 @@ public class SimpleDateFormat extends DateFormat {
      * @return                  Reference to 'appendTo' parameter.
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide original deprecated method
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public final StringBuffer intervalFormatByAlgorithm(Calendar fromCalendar,

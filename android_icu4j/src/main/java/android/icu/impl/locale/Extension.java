@@ -8,7 +8,9 @@
 package android.icu.impl.locale;
 
 
-/** @hide All android.icu classes are currently hidden */
+/** @hide Only a subset of ICU is exposed in Android
+* @hide All android.icu classes are currently hidden
+ */
 public class Extension {
     private char _key;
     protected String _value;

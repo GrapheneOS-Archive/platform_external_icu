@@ -19,6 +19,8 @@ import java.util.Date;
  * Western and Orthodox methods for calculating Easter.
  * {@literal @}draft ICU 2.8 (retainAll)
  * {@literal @}provisional This API might change or be removed in a future release.
+ * @hide Only a subset of ICU is exposed in Android
+ * @hide draft / provisional / internal are hidden on Android
  * @hide All android.icu classes are currently hidden
  */
 public class EasterHoliday extends Holiday
@@ -29,6 +31,7 @@ public class EasterHoliday extends Holiday
      * @param name The name of the holiday
      * {@literal @}draft ICU 2.8
      * {@literal @}provisional This API might change or be removed in a future release.
+     * @hide draft / provisional / internal are hidden on Android
      */
     public EasterHoliday(String name)
     {
@@ -43,6 +46,7 @@ public class EasterHoliday extends Holiday
      * @param name      The name of the holiday
      * {@literal @}draft ICU 2.8
      * {@literal @}provisional This API might change or be removed in a future release.
+     * @hide draft / provisional / internal are hidden on Android
      */
     public EasterHoliday(int daysAfter, String name)
     {
@@ -59,6 +63,7 @@ public class EasterHoliday extends Holiday
      * @param name      The name of the holiday
      * {@literal @}draft ICU 2.8
      * {@literal @}provisional This API might change or be removed in a future release.
+     * @hide draft / provisional / internal are hidden on Android
      */
     public EasterHoliday(int daysAfter, boolean orthodox, String name)
     {
@@ -69,6 +74,7 @@ public class EasterHoliday extends Holiday
      * Shrove Tuesday, aka Mardi Gras, 48 days before Easter
      * {@literal @}draft ICU 2.8
      * {@literal @}provisional This API might change or be removed in a future release.
+     * @hide draft / provisional / internal are hidden on Android
      */
     static public final EasterHoliday SHROVE_TUESDAY  = new EasterHoliday(-48,    "Shrove Tuesday");
 
@@ -76,6 +82,7 @@ public class EasterHoliday extends Holiday
      * Ash Wednesday, start of Lent, 47 days before Easter
      * {@literal @}draft ICU 2.8
      * {@literal @}provisional This API might change or be removed in a future release.
+     * @hide draft / provisional / internal are hidden on Android
      */
     static public final EasterHoliday ASH_WEDNESDAY   = new EasterHoliday(-47,    "Ash Wednesday");
 
@@ -83,6 +90,7 @@ public class EasterHoliday extends Holiday
      * Palm Sunday, 7 days before Easter
      * {@literal @}draft ICU 2.8
      * {@literal @}provisional This API might change or be removed in a future release.
+     * @hide draft / provisional / internal are hidden on Android
      */
     static public final EasterHoliday PALM_SUNDAY     = new EasterHoliday( -7,    "Palm Sunday");
 
@@ -90,6 +98,7 @@ public class EasterHoliday extends Holiday
      * Maundy Thursday, 3 days before Easter
      * {@literal @}draft ICU 2.8
      * {@literal @}provisional This API might change or be removed in a future release.
+     * @hide draft / provisional / internal are hidden on Android
      */
     static public final EasterHoliday MAUNDY_THURSDAY = new EasterHoliday( -3,    "Maundy Thursday");
 
@@ -97,6 +106,7 @@ public class EasterHoliday extends Holiday
      * Good Friday, 2 days before Easter
      * {@literal @}draft ICU 2.8
      * {@literal @}provisional This API might change or be removed in a future release.
+     * @hide draft / provisional / internal are hidden on Android
      */
     static public final EasterHoliday GOOD_FRIDAY     = new EasterHoliday( -2,    "Good Friday");
 
@@ -104,6 +114,7 @@ public class EasterHoliday extends Holiday
      * Easter Sunday
      * {@literal @}draft ICU 2.8
      * {@literal @}provisional This API might change or be removed in a future release.
+     * @hide draft / provisional / internal are hidden on Android
      */
     static public final EasterHoliday EASTER_SUNDAY   = new EasterHoliday(  0,    "Easter Sunday");
 
@@ -111,6 +122,7 @@ public class EasterHoliday extends Holiday
      * Easter Monday, 1 day after Easter
      * {@literal @}draft ICU 2.8
      * {@literal @}provisional This API might change or be removed in a future release.
+     * @hide draft / provisional / internal are hidden on Android
      */
     static public final EasterHoliday EASTER_MONDAY   = new EasterHoliday(  1,    "Easter Monday");
 
@@ -118,6 +130,7 @@ public class EasterHoliday extends Holiday
      * Ascension, 39 days after Easter
      * {@literal @}draft ICU 2.8
      * {@literal @}provisional This API might change or be removed in a future release.
+     * @hide draft / provisional / internal are hidden on Android
      */
     static public final EasterHoliday ASCENSION       = new EasterHoliday( 39,    "Ascension");
 
@@ -125,6 +138,7 @@ public class EasterHoliday extends Holiday
      * Pentecost (aka Whit Sunday), 49 days after Easter
      * {@literal @}draft ICU 2.8
      * {@literal @}provisional This API might change or be removed in a future release.
+     * @hide draft / provisional / internal are hidden on Android
      */
     static public final EasterHoliday PENTECOST       = new EasterHoliday( 49,    "Pentecost");
 
@@ -132,6 +146,7 @@ public class EasterHoliday extends Holiday
      * Whit Sunday (aka Pentecost), 49 days after Easter
      * {@literal @}draft ICU 2.8
      * {@literal @}provisional This API might change or be removed in a future release.
+     * @hide draft / provisional / internal are hidden on Android
      */
     static public final EasterHoliday WHIT_SUNDAY     = new EasterHoliday( 49,    "Whit Sunday");
 
@@ -139,6 +154,7 @@ public class EasterHoliday extends Holiday
      * Whit Monday, 50 days after Easter
      * {@literal @}draft ICU 2.8
      * {@literal @}provisional This API might change or be removed in a future release.
+     * @hide draft / provisional / internal are hidden on Android
      */
     static public final EasterHoliday WHIT_MONDAY     = new EasterHoliday( 50,    "Whit Monday");
 
@@ -146,6 +162,7 @@ public class EasterHoliday extends Holiday
      * Corpus Christi, 60 days after Easter
      * {@literal @}draft ICU 2.8
      * {@literal @}provisional This API might change or be removed in a future release.
+     * @hide draft / provisional / internal are hidden on Android
      */
     static public final EasterHoliday CORPUS_CHRISTI  = new EasterHoliday( 60,    "Corpus Christi");
 }

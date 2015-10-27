@@ -30,6 +30,7 @@ import android.icu.util.ICUException;
  * UTS #46 (IDNA2008) implementation.
  * @author Markus Scherer
  * @since 2010jul09
+ * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
  */
 public final class UTS46 extends IDNA {

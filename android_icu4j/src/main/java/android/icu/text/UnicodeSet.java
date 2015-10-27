@@ -1033,6 +1033,8 @@ public class UnicodeSet extends UnicodeFilter implements Iterable<String>, Compa
      * Tests whether the text matches at the offset. If so, returns the end of the longest substring that it matches. If not, returns -1. 
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide original deprecated method
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public int matchesAt(CharSequence text, int offset) {
@@ -2015,6 +2017,8 @@ public class UnicodeSet extends UnicodeFilter implements Iterable<String>, Compa
      * @return regex pattern equivalent to this UnicodeSet
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide original deprecated method
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public String getRegexEquivalent() {
@@ -2396,6 +2400,8 @@ public class UnicodeSet extends UnicodeFilter implements Iterable<String>, Compa
      * @exception java.lang.IllegalArgumentException if the parse fails.
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide original deprecated method
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public UnicodeSet applyPattern(String pattern,
@@ -3910,18 +3916,21 @@ public class UnicodeSet extends UnicodeFilter implements Iterable<String>, Compa
      * {@literal @}draft ICU3.8 (retain)
      * {@literal @}provisional This API might change or be removed in a future release.
      * @author medavis
+     * @hide draft / provisional / internal are hidden on Android
      */
     abstract public static class XSymbolTable implements SymbolTable {
         /**
          * Default constructor
          * {@literal @}draft ICU3.8 (retain)
          * {@literal @}provisional This API might change or be removed in a future release.
+         * @hide draft / provisional / internal are hidden on Android
          */
         public XSymbolTable(){}
         /**
          * Supplies default implementation for SymbolTable (no action).
          * {@literal @}draft ICU3.8 (retain)
          * {@literal @}provisional This API might change or be removed in a future release.
+         * @hide draft / provisional / internal are hidden on Android
          */
         public UnicodeMatcher lookupMatcher(int i) {
             return null;
@@ -3945,6 +3954,7 @@ public class UnicodeSet extends UnicodeFilter implements Iterable<String>, Compa
          *         propertyName+propertyValue combination is not recognized (in which case result is unaltered).
          * {@literal @}draft ICU3.8 (retain)
          * {@literal @}provisional This API might change or be removed in a future release.
+         * @hide draft / provisional / internal are hidden on Android
          */
         public boolean applyPropertyAlias(String propertyName, String propertyValue, UnicodeSet result) {
             return false;
@@ -3953,6 +3963,7 @@ public class UnicodeSet extends UnicodeFilter implements Iterable<String>, Compa
          * Supplies default implementation for SymbolTable (no action).
          * {@literal @}draft ICU3.8 (retain)
          * {@literal @}provisional This API might change or be removed in a future release.
+         * @hide draft / provisional / internal are hidden on Android
          */
         public char[] lookup(String s) {
             return null;
@@ -3961,6 +3972,7 @@ public class UnicodeSet extends UnicodeFilter implements Iterable<String>, Compa
          * Supplies default implementation for SymbolTable (no action).
          * {@literal @}draft ICU3.8 (retain)
          * {@literal @}provisional This API might change or be removed in a future release.
+         * @hide draft / provisional / internal are hidden on Android
          */
         public String parseReference(String text, ParsePosition pos, int limit) {
             return null;
@@ -4074,6 +4086,8 @@ public class UnicodeSet extends UnicodeFilter implements Iterable<String>, Compa
      * @return the limit (exclusive end) of the span
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide original deprecated method
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public int spanAndCount(CharSequence s, int start, SpanCondition spanCondition, OutputInt outCount) {
@@ -4576,6 +4590,8 @@ public class UnicodeSet extends UnicodeFilter implements Iterable<String>, Compa
      * Collection satisfies the right criteria, so it is left to the user to avoid those circumstances.
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide original deprecated method
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public static <T extends Comparable<T>> int compare(Iterator<T> first, Iterator<T> other) {
@@ -4649,6 +4665,8 @@ public class UnicodeSet extends UnicodeFilter implements Iterable<String>, Compa
      * Return the value of the first code point, if the string is exactly one code point. Otherwise return Integer.MAX_VALUE.
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide original deprecated method
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public static int getSingleCodePoint(CharSequence s) {
@@ -4663,6 +4681,8 @@ public class UnicodeSet extends UnicodeFilter implements Iterable<String>, Compa
      * @return the input set, modified
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide original deprecated method
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public UnicodeSet addBridges(UnicodeSet dontCare) {
@@ -4681,6 +4701,8 @@ public class UnicodeSet extends UnicodeFilter implements Iterable<String>, Compa
      * If there is no match, length is returned.
      * {@literal @}internal
      * @deprecated This API is ICU internal only. Use span instead.
+     * @hide original deprecated method
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public int findIn(CharSequence value, int fromIndex, boolean findNot) {
@@ -4702,6 +4724,8 @@ public class UnicodeSet extends UnicodeFilter implements Iterable<String>, Compa
      * BEFORE index is not in the UnicodeSet.
      * {@literal @}internal
      * @deprecated This API is ICU internal only. Use spanBack instead.
+     * @hide original deprecated method
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public int findLastIn(CharSequence value, int fromIndex, boolean findNot) {
@@ -4724,6 +4748,8 @@ public class UnicodeSet extends UnicodeFilter implements Iterable<String>, Compa
      * @return The string after it has been stripped.
      * {@literal @}internal
      * @deprecated This API is ICU internal only. Use replaceFrom.
+     * @hide original deprecated method
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public String stripFrom(CharSequence source, boolean matches) {
@@ -4839,6 +4865,8 @@ public class UnicodeSet extends UnicodeFilter implements Iterable<String>, Compa
      * @return the symbol table
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide original deprecated method
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public static XSymbolTable getDefaultXSymbolTable() {
@@ -4857,6 +4885,8 @@ public class UnicodeSet extends UnicodeFilter implements Iterable<String>, Compa
      * @param xSymbolTable the new default symbol table.
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide original deprecated method
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public static void setDefaultXSymbolTable(XSymbolTable xSymbolTable) {

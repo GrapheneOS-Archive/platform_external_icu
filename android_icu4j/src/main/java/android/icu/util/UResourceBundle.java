@@ -91,6 +91,7 @@ import android.icu.impl.SimpleCache;
  * </note>
  * @stable ICU 3.0
  * @author ram
+ * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
  */
 public abstract class UResourceBundle extends ResourceBundle {
@@ -325,6 +326,7 @@ public abstract class UResourceBundle extends ResourceBundle {
     /**
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public static void resetBundleCache() {
@@ -348,6 +350,7 @@ public abstract class UResourceBundle extends ResourceBundle {
      * bundle, that one will be retained and returned.
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     protected static UResourceBundle addToCache(String fullName, ULocale defaultLocale, UResourceBundle b) {
@@ -366,6 +369,7 @@ public abstract class UResourceBundle extends ResourceBundle {
      * Method used by sub classes to load a resource bundle object from the managed cache
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     protected static UResourceBundle loadFromCache(String fullName, ULocale defaultLocale) {
@@ -703,6 +707,7 @@ public abstract class UResourceBundle extends ResourceBundle {
      * @see #get(String)
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     protected UResourceBundle findTopLevel(String aKey) {
@@ -771,6 +776,7 @@ public abstract class UResourceBundle extends ResourceBundle {
      * @see #get(int)
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     protected UResourceBundle findTopLevel(int index) {
@@ -806,6 +812,7 @@ public abstract class UResourceBundle extends ResourceBundle {
      *         which is empty if this is not a bundle or a table resource
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public Set<String> keySet() {
@@ -857,6 +864,7 @@ public abstract class UResourceBundle extends ResourceBundle {
      *         which is empty if this is not a bundle or a table resource
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     protected Set<String> handleKeySet() {
@@ -1082,6 +1090,7 @@ public abstract class UResourceBundle extends ResourceBundle {
      * The status is analogous to the warning status in ICU4C.
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     protected abstract void setLoadingStatus(int newStatus);
@@ -1091,6 +1100,7 @@ public abstract class UResourceBundle extends ResourceBundle {
      * @return true if this is a top-level resource
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     protected boolean isTopLevelResource() {

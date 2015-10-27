@@ -11,6 +11,7 @@ package android.icu.impl.duration;
 /**
  * 'Enum' for individual time units.  Not an actual enum so that it can be 
  * used by Java 1.4.
+ * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
  */
 public final class TimeUnit {

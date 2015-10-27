@@ -12,6 +12,7 @@ package android.icu.text;
  * Used by RBNF to leniently parse a string.
  *
  * @deprecated ICU 54
+ * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
  */
 @Deprecated

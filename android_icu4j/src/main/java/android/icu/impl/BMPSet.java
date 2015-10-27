@@ -20,6 +20,7 @@ import android.icu.util.OutputInt;
  * 2-byte characters: Bits organized vertically.
  * 3-byte characters: Use zero/one/mixed data per 64-block in U+0000..U+FFFF, with mixed for illegal ranges.
  * Supplementary characters: Call contains() on the parent set.
+ * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
  */
 public final class BMPSet {

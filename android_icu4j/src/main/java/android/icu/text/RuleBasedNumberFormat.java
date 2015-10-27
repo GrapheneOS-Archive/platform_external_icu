@@ -534,6 +534,7 @@ import android.icu.util.UResourceBundleIterator;
  * @see PluralFormat
  * @see PluralRules
  * @stable ICU 2.0
+ * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
  */
 public class RuleBasedNumberFormat extends NumberFormat {
@@ -942,6 +943,7 @@ public class RuleBasedNumberFormat extends NumberFormat {
      * value. When Java assertion is enabled, this method triggers an assertion failure.
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public int hashCode() {
@@ -1515,6 +1517,7 @@ public class RuleBasedNumberFormat extends NumberFormat {
      * @see #setRoundingMode
      * @see java.math.BigDecimal
      * {@literal @}draft ICU 56
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Override
     public int getRoundingMode() {
@@ -1531,6 +1534,7 @@ public class RuleBasedNumberFormat extends NumberFormat {
      * @see #getRoundingMode
      * @see java.math.BigDecimal
      * {@literal @}draft ICU 56
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Override
     public void setRoundingMode(int roundingMode) {
