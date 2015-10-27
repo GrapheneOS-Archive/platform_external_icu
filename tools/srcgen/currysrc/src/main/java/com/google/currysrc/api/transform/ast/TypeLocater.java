@@ -17,6 +17,7 @@ package com.google.currysrc.api.transform.ast;
 
 import com.google.common.base.Splitter;
 import com.google.common.collect.Lists;
+import com.google.currysrc.api.match.TypeName;
 
 import org.eclipse.jdt.core.dom.ASTNode;
 import org.eclipse.jdt.core.dom.AbstractTypeDeclaration;
@@ -36,6 +37,30 @@ public final class TypeLocater implements BodyDeclarationLocater {
 
   private final List<String> classNameElements;
 
+  /**
+   * Creates a {@code TypeLocater} for a fully-qualified class name.
+   *
+   * @param fullyQualifiedClassName the package name (if any) and the class,
+   *     e.g. foo.bar.baz.FooBar$Baz
+   */
+  public TypeLocater(String fullyQualifiedClassName) {
+    this(TypeName.fromFullyQualifiedClassName(fullyQualifiedClassName));
+  }
+
+  /**
+   * Creates a {@code TypeLocater} for a {@link TypeName}.
+   */
+  public TypeLocater(TypeName typeName) {
+    this(typeName.packageName(), typeName.className());
+  }
+
+  /**
+   * Creates a {@code TypeLocater} using an explicit package and class name spec.
+   *
+   * @param packageName the fully-qualified package name. e.g. foo.bar.baz, or ""
+   * @param className the class name with $ as the separator for nested/inner classes. e.g. FooBar,
+   *     FooBar$Baz.
+   */
   public TypeLocater(String packageName, String className) {
     this.packageMatcher = new PackageMatcher(packageName);
     this.classNameElements = classNameElements(className);
