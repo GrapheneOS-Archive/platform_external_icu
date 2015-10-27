@@ -19,7 +19,6 @@ import android.icu.util.ULocale;
  * @see android.icu.util.ULocale
  * @author weiv
  * @author Alan Liu
- * @stable ICU 2.8
  * @hide All android.icu classes are currently hidden
  */
 public abstract class UFormat extends Format {
@@ -28,8 +27,6 @@ public abstract class UFormat extends Format {
 
     /**
      * Default constructor.
-     *
-     * @stable ICU 2.8
      */
     public UFormat() {}
 

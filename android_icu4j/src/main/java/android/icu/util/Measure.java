@@ -27,7 +27,6 @@ package android.icu.util;
  * @see android.icu.util.MeasureUnit
  * @see android.icu.text.MeasureFormat
  * @author Alan Liu
- * @stable ICU 3.0
  * @hide All android.icu classes are currently hidden
  */
 public class Measure {
@@ -39,7 +38,6 @@ public class Measure {
      * Constructs a new object given a number and a unit.
      * @param number the number
      * @param unit the unit
-     * @stable ICU 3.0
      */
     public Measure(Number number, MeasureUnit unit) {
         if (number == null || unit == null) {
@@ -52,7 +50,6 @@ public class Measure {
     /**
      * Returns true if the given object is equal to this object.
      * @return true if this object is equal to the given object
-     * @stable ICU 3.0
      */
     public boolean equals(Object obj) {
         if (obj == this) {
@@ -85,7 +82,6 @@ public class Measure {
     /**
      * Returns a hashcode for this object.
      * @return a 32-bit hash
-     * @stable ICU 3.0
      */
     public int hashCode() {
         return 31 * Double.valueOf(number.doubleValue()).hashCode() + unit.hashCode();
@@ -95,7 +91,6 @@ public class Measure {
      * Returns a string representation of this object.
      * @return a string representation consisting of the ISO currency
      * code together with the numeric amount
-     * @stable ICU 3.0
      */
     public String toString() {
         return number.toString() + ' ' + unit.toString();
@@ -104,7 +99,6 @@ public class Measure {
     /**
      * Returns the numeric value of this object.
      * @return this object's Number
-     * @stable ICU 3.0
      */
     public Number getNumber() {
         return number;
@@ -113,7 +107,6 @@ public class Measure {
     /**
      * Returns the unit of this object.
      * @return this object's Unit
-     * @stable ICU 3.0
      */
     public MeasureUnit getUnit() {
         return unit;

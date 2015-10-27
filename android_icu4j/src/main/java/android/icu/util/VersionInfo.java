@@ -13,7 +13,6 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  * Class to store version numbers of the form major.minor.milli.micro.
  * @author synwee
- * @stable ICU 2.6
  * @hide All android.icu classes are currently hidden
  */
 public final class VersionInfo implements Comparable<VersionInfo>
@@ -22,150 +21,123 @@ public final class VersionInfo implements Comparable<VersionInfo>
 
     /**
      * Unicode 1.0 version
-     * @stable ICU 2.6
      */
     public static final VersionInfo UNICODE_1_0;
     /**
      * Unicode 1.0.1 version
-     * @stable ICU 2.6
      */
     public static final VersionInfo UNICODE_1_0_1;
     /**
      * Unicode 1.1.0 version
-     * @stable ICU 2.6
      */
     public static final VersionInfo UNICODE_1_1_0;
     /**
      * Unicode 1.1.5 version
-     * @stable ICU 2.6
      */
     public static final VersionInfo UNICODE_1_1_5;
     /**
      * Unicode 2.0 version
-     * @stable ICU 2.6
      */
     public static final VersionInfo UNICODE_2_0;
     /**
      * Unicode 2.1.2 version
-     * @stable ICU 2.6
      */
     public static final VersionInfo UNICODE_2_1_2;
     /**
      * Unicode 2.1.5 version
-     * @stable ICU 2.6
      */
     public static final VersionInfo UNICODE_2_1_5;
     /**
      * Unicode 2.1.8 version
-     * @stable ICU 2.6
      */
     public static final VersionInfo UNICODE_2_1_8;
     /**
      * Unicode 2.1.9 version
-     * @stable ICU 2.6
      */
     public static final VersionInfo UNICODE_2_1_9;
     /**
      * Unicode 3.0 version
-     * @stable ICU 2.6
      */
     public static final VersionInfo UNICODE_3_0;
     /**
      * Unicode 3.0.1 version
-     * @stable ICU 2.6
      */
     public static final VersionInfo UNICODE_3_0_1;
     /**
      * Unicode 3.1.0 version
-     * @stable ICU 2.6
      */
     public static final VersionInfo UNICODE_3_1_0;
     /**
      * Unicode 3.1.1 version
-     * @stable ICU 2.6
      */
     public static final VersionInfo UNICODE_3_1_1;
     /**
      * Unicode 3.2 version
-     * @stable ICU 2.6
      */
     public static final VersionInfo UNICODE_3_2;
 
     /**
      * Unicode 4.0 version
-     * @stable ICU 2.6
      */
     public static final VersionInfo UNICODE_4_0;
 
     /**
      * Unicode 4.0.1 version
-     * @stable ICU 3.4
      */
     public static final VersionInfo UNICODE_4_0_1;
 
     /**
      * Unicode 4.1 version
-     * @stable ICU 3.4
      */
     public static final VersionInfo UNICODE_4_1;
 
     /**
      * Unicode 5.0 version
-     * @stable ICU 3.4
      */
     public static final VersionInfo UNICODE_5_0;
 
     /**
      * Unicode 5.1 version
-     * @stable ICU 4.2
      */
     public static final VersionInfo UNICODE_5_1;
 
     /**
      * Unicode 5.2 version
-     * @stable ICU 4.4
      */
     public static final VersionInfo UNICODE_5_2;
 
     /**
      * Unicode 6.0 version
-     * @stable ICU 4.6
      */
     public static final VersionInfo UNICODE_6_0;
 
     /**
      * Unicode 6.1 version
-     * @stable ICU 49
      */
     public static final VersionInfo UNICODE_6_1;
 
     /**
      * Unicode 6.2 version
-     * @stable ICU 50
      */
     public static final VersionInfo UNICODE_6_2;
 
     /**
      * Unicode 6.3 version
-     * @stable ICU 52
      */
     public static final VersionInfo UNICODE_6_3;
 
     /**
      * Unicode 7.0 version
-     * @stable ICU 54
      */
     public static final VersionInfo UNICODE_7_0;
 
     /**
      * Unicode 8.0 version
-     * @stable ICU 56
      */
     public static final VersionInfo UNICODE_8_0;
 
     /**
      * ICU4J current release version
-     * @stable ICU 2.8
      */
     public static final VersionInfo ICU_VERSION;
 
@@ -194,7 +166,6 @@ public final class VersionInfo implements Comparable<VersionInfo>
      * Collation runtime version (sort key generator, string comparisons).
      * If the version is different, sort keys for the same string could be different.
      * This value may change in subsequent releases of ICU.
-     * @stable ICU 2.8
      */
     public static final VersionInfo UCOL_RUNTIME_VERSION;
 
@@ -203,7 +174,6 @@ public final class VersionInfo implements Comparable<VersionInfo>
      * When this is different, the same tailoring might result
      * in assigning different collation elements to code points.
      * This value may change in subsequent releases of ICU.
-     * @stable ICU 2.8
      */
     public static final VersionInfo UCOL_BUILDER_VERSION;
 
@@ -231,7 +201,6 @@ public final class VersionInfo implements Comparable<VersionInfo>
      * @return an instance of VersionInfo with the argument version.
      * @exception IllegalArgumentException when the argument version
      *                is not in the right format
-     * @stable ICU 2.6
      */
     public static VersionInfo getInstance(String version)
     {
@@ -275,7 +244,6 @@ public final class VersionInfo implements Comparable<VersionInfo>
      * @param milli milli version, non-negative number <= 255.
      * @param micro micro version, non-negative number <= 255.
      * @exception IllegalArgumentException when either arguments are negative or > 255
-     * @stable ICU 2.6
      */
     public static VersionInfo getInstance(int major, int minor, int milli,
                                           int micro)
@@ -307,7 +275,6 @@ public final class VersionInfo implements Comparable<VersionInfo>
      * @param milli milli version, non-negative number <= 255.
      * @exception IllegalArgumentException when either arguments are
      *                                     negative or > 255
-     * @stable ICU 2.6
      */
     public static VersionInfo getInstance(int major, int minor, int milli)
     {
@@ -321,7 +288,6 @@ public final class VersionInfo implements Comparable<VersionInfo>
      * @param minor minor version, non-negative number <= 255.
      * @exception IllegalArgumentException when either arguments are
      *                                     negative or > 255
-     * @stable ICU 2.6
      */
     public static VersionInfo getInstance(int major, int minor)
     {
@@ -334,7 +300,6 @@ public final class VersionInfo implements Comparable<VersionInfo>
      * @param major major version, non-negative number <= 255.
      * @exception IllegalArgumentException when either arguments are
      *                                     negative or > 255
-     * @stable ICU 2.6
      */
     public static VersionInfo getInstance(int major)
     {
@@ -397,7 +362,6 @@ public final class VersionInfo implements Comparable<VersionInfo>
      * Returns the String representative of VersionInfo in the format of
      * "major.minor.milli.micro"
      * @return String representative of VersionInfo
-     * @stable ICU 2.6
      */
     public String toString()
     {
@@ -415,7 +379,6 @@ public final class VersionInfo implements Comparable<VersionInfo>
     /**
      * Returns the major version number
      * @return the major version number
-     * @stable ICU 2.6
      */
     public int getMajor()
     {
@@ -425,7 +388,6 @@ public final class VersionInfo implements Comparable<VersionInfo>
     /**
      * Returns the minor version number
      * @return the minor version number
-     * @stable ICU 2.6
      */
     public int getMinor()
     {
@@ -435,7 +397,6 @@ public final class VersionInfo implements Comparable<VersionInfo>
     /**
      * Returns the milli version number
      * @return the milli version number
-     * @stable ICU 2.6
      */
     public int getMilli()
     {
@@ -445,7 +406,6 @@ public final class VersionInfo implements Comparable<VersionInfo>
     /**
      * Returns the micro version number
      * @return the micro version number
-     * @stable ICU 2.6
      */
     public int getMicro()
     {
@@ -457,7 +417,6 @@ public final class VersionInfo implements Comparable<VersionInfo>
      * @param other object to be compared
      * @return true if other is equals to this object's version information,
      *         false otherwise
-     * @stable ICU 2.6
      */
     public boolean equals(Object other)
     {
@@ -473,7 +432,6 @@ public final class VersionInfo implements Comparable<VersionInfo>
      *           version information greater than this object.
      *           Greater than 0 if the argument is a VersionInfo object that
      *           has version information less than this object.
-     * @stable ICU 2.6
      */
     public int compareTo(VersionInfo other)
     {
@@ -576,7 +534,6 @@ public final class VersionInfo implements Comparable<VersionInfo>
     /**
      * Main method prints out ICU version information
      * @param args arguments (currently not used)
-     * @stable ICU 4.6
      */
     public static void main(String[] args) {
         String icuApiVer;

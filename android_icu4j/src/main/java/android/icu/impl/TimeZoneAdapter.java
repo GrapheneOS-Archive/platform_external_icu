@@ -16,12 +16,12 @@ import java.util.Date;
 import android.icu.util.TimeZone;
 
 /**
- * <code>TimeZoneAdapter</code> wraps a com.ibm.icu.util.TimeZone
+ * <code>TimeZoneAdapter</code> wraps a android.icu.util.TimeZone
  * subclass and inherits from java.util.TimeZone.
  * Without this class, we would need to 'port' java.util.Date to
- * com.ibm.icu.util as well, so that Date could interoperate properly
- * with the com.ibm.icu.util TimeZone and Calendar classes.  With this
- * class, we can use java.util.Date together with com.ibm.icu.util
+ * android.icu.util as well, so that Date could interoperate properly
+ * with the android.icu.util TimeZone and Calendar classes.  With this
+ * class, we can use java.util.Date together with android.icu.util
  * classes.
  *
  * @see android.icu.util.TimeZone#setDefault
@@ -36,14 +36,14 @@ public class TimeZoneAdapter extends java.util.TimeZone {
     static final long serialVersionUID = -2040072218820018557L;
     
     /**
-     * The contained com.ibm.icu.util.TimeZone object.  Must not be null.
+     * The contained android.icu.util.TimeZone object.  Must not be null.
      * We delegate all methods to this object.
      */
     private TimeZone zone;
     
     /**
      * Given a java.util.TimeZone, wrap it in the appropriate adapter
-     * subclass of com.ibm.icu.util.TimeZone and return the adapter.
+     * subclass of android.icu.util.TimeZone and return the adapter.
      */
     public static java.util.TimeZone wrap(android.icu.util.TimeZone tz) {
         return new TimeZoneAdapter(tz);
@@ -57,7 +57,7 @@ public class TimeZoneAdapter extends java.util.TimeZone {
     }
 
     /**
-     * Constructs an adapter for a com.ibm.icu.util.TimeZone object.
+     * Constructs an adapter for a android.icu.util.TimeZone object.
      */
     public TimeZoneAdapter(TimeZone zone) {
         this.zone = zone;

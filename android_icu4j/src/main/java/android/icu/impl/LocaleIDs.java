@@ -21,7 +21,6 @@ public class LocaleIDs {
     /**
      * Returns a list of all 2-letter country codes defined in ISO 3166.
      * Can be used to create Locales.
-     * @stable ICU 3.0
      */
     public static String[] getISOCountries() {
         return _countries.clone();
@@ -35,7 +34,6 @@ public class LocaleIDs {
      * [NOTE:  ISO 639 is not a stable standard-- some languages' codes have changed.
      * The list this function returns includes both the new and the old codes for the
      * languages whose codes have changed.]
-     * @stable ICU 3.0
      */
     public static String[] getISOLanguages() {
         return _languages.clone();
@@ -47,7 +45,6 @@ public class LocaleIDs {
      * an uppercase ISO 3166 3-letter country code.
      * @exception MissingResourceException Throws MissingResourceException if the
      * three-letter country abbreviation is not available for this locale.
-     * @stable ICU 3.0
      */
     public static String getISO3Country(String country){
 
@@ -70,7 +67,6 @@ public class LocaleIDs {
      *   <a href="ftp://dkuug.dk/i18n/iso-639-2.txt"><code>ftp://dkuug.dk/i18n/iso-639-2.txt</code></a>
      * @exception MissingResourceException Throws MissingResourceException if the
      * three-letter language abbreviation is not available for this locale.
-     * @stable ICU 3.0
      */
     public static String getISO3Language(String language) {
 

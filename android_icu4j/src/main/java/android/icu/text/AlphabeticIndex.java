@@ -120,7 +120,6 @@ import android.icu.util.ULocale;
  * </ul>
  *
  * @author Mark Davis
- * @stable ICU 4.8
  * @hide All android.icu classes are currently hidden
  */
 public final class AlphabeticIndex<V> implements Iterable<Bucket<V>> {
@@ -166,7 +165,6 @@ public final class AlphabeticIndex<V> implements Iterable<Bucket<V>> {
      *
      * @param <V> The Record value type is unused. It can be omitted for this class
      * if it was omitted for the AlphabeticIndex that built it.
-     * @stable ICU 51
      */
     public static final class ImmutableIndex<V> implements Iterable<Bucket<V>> {
         private final BucketList<V> buckets;
@@ -181,7 +179,6 @@ public final class AlphabeticIndex<V> implements Iterable<Bucket<V>> {
          * Returns the number of index buckets and labels, including underflow/inflow/overflow.
          *
          * @return the number of index buckets
-         * @stable ICU 51
          */
         public int getBucketCount() {
             return buckets.getBucketCount();
@@ -193,7 +190,6 @@ public final class AlphabeticIndex<V> implements Iterable<Bucket<V>> {
          *
          * @param name the string to be sorted into an index bucket
          * @return the bucket number for the name
-         * @stable ICU 51
          */
         public int getBucketIndex(CharSequence name) {
             return buckets.getBucketIndex(name, collatorPrimaryOnly);
@@ -204,7 +200,6 @@ public final class AlphabeticIndex<V> implements Iterable<Bucket<V>> {
          *
          * @param index bucket number
          * @return the index-th bucket
-         * @stable ICU 51
          */
         public Bucket<V> getBucket(int index) {
             if (0 <= index && index < buckets.getBucketCount()) {
@@ -216,7 +211,6 @@ public final class AlphabeticIndex<V> implements Iterable<Bucket<V>> {
 
         /**
          * {@inheritDoc}
-         * @stable ICU 51
          */
         public Iterator<Bucket<V>> iterator() {
             return buckets.iterator();
@@ -228,7 +222,6 @@ public final class AlphabeticIndex<V> implements Iterable<Bucket<V>> {
      * 
      * @param locale
      *            The locale for the index.
-     * @stable ICU 4.8
      */
     public AlphabeticIndex(ULocale locale) {
         this(locale, null);
@@ -239,7 +232,6 @@ public final class AlphabeticIndex<V> implements Iterable<Bucket<V>> {
      * 
      * @param locale
      *            The locale for the index.
-     * @stable ICU 4.8
      */
     public AlphabeticIndex(Locale locale) {
         this(ULocale.forLocale(locale), null);
@@ -256,7 +248,6 @@ public final class AlphabeticIndex<V> implements Iterable<Bucket<V>> {
      * collator provided to the AlphabeticIndex remains unchanged after creation of the index.
      * 
      * @param collator The collator to use to order the contents of this index.
-     * @stable ICU 51
      */
     public AlphabeticIndex(RuleBasedCollator collator) {
         this(null, collator);
@@ -303,7 +294,6 @@ public final class AlphabeticIndex<V> implements Iterable<Bucket<V>> {
      * Add more index characters (aside from what are in the locale)
      * @param additions additional characters to add to the index, such as A-Z.
      * @return this, for chaining
-     * @stable ICU 4.8
      */
     public AlphabeticIndex<V> addLabels(UnicodeSet additions) {
         initialLabels.addAll(additions);
@@ -315,7 +305,6 @@ public final class AlphabeticIndex<V> implements Iterable<Bucket<V>> {
      * Add more index characters (aside from what are in the locale)
      * @param additions additional characters to add to the index, such as those in Swedish.
      * @return this, for chaining
-     * @stable ICU 4.8
      */
     public AlphabeticIndex<V> addLabels(ULocale... additions) {
         for (ULocale addition : additions) {
@@ -329,7 +318,6 @@ public final class AlphabeticIndex<V> implements Iterable<Bucket<V>> {
      * Add more index characters (aside from what are in the locale)
      * @param additions additional characters to add to the index, such as those in Swedish.
      * @return this, for chaining
-     * @stable ICU 4.8
      */
     public AlphabeticIndex<V> addLabels(Locale... additions) {
         for (Locale addition : additions) {
@@ -343,7 +331,6 @@ public final class AlphabeticIndex<V> implements Iterable<Bucket<V>> {
      * Set the overflow label
      * @param overflowLabel see class description
      * @return this, for chaining
-     * @stable ICU 4.8
      */
     public AlphabeticIndex<V> setOverflowLabel(String overflowLabel) {
         this.overflowLabel = overflowLabel;
@@ -355,7 +342,6 @@ public final class AlphabeticIndex<V> implements Iterable<Bucket<V>> {
      * Get the default label used in the IndexCharacters' locale for underflow, eg the last item in: X Y Z ...
      * 
      * @return underflow label
-     * @stable ICU 4.8
      */
     public String getUnderflowLabel() {
         return underflowLabel; // TODO get localized version
@@ -366,7 +352,6 @@ public final class AlphabeticIndex<V> implements Iterable<Bucket<V>> {
      * Set the underflowLabel label
      * @param underflowLabel see class description
      * @return this, for chaining
-     * @stable ICU 4.8
      */
     public AlphabeticIndex<V> setUnderflowLabel(String underflowLabel) {
         this.underflowLabel = underflowLabel;
@@ -378,7 +363,6 @@ public final class AlphabeticIndex<V> implements Iterable<Bucket<V>> {
      * Get the default label used in the IndexCharacters' locale for overflow, eg the first item in: ... A B C
      * 
      * @return overflow label
-     * @stable ICU 4.8
      */
     public String getOverflowLabel() {
         return overflowLabel; // TODO get localized version
@@ -389,7 +373,6 @@ public final class AlphabeticIndex<V> implements Iterable<Bucket<V>> {
      * Set the inflowLabel label
      * @param inflowLabel see class description
      * @return this, for chaining
-     * @stable ICU 4.8
      */
     public AlphabeticIndex<V> setInflowLabel(String inflowLabel) {
         this.inflowLabel = inflowLabel;
@@ -402,7 +385,6 @@ public final class AlphabeticIndex<V> implements Iterable<Bucket<V>> {
      * for Latin and Greek are used: X Y Z ... &#x0391; &#x0392; &#x0393;.
      * 
      * @return inflow label
-     * @stable ICU 4.8
      */
     public String getInflowLabel() {
         return inflowLabel; // TODO get localized version
@@ -413,7 +395,6 @@ public final class AlphabeticIndex<V> implements Iterable<Bucket<V>> {
      * Get the limit on the number of labels in the index. The number of buckets can be slightly larger: see getBucketCount().
      * 
      * @return maxLabelCount maximum number of labels.
-     * @stable ICU 4.8
      */
     public int getMaxLabelCount() {
         return maxLabelCount;
@@ -427,7 +408,6 @@ public final class AlphabeticIndex<V> implements Iterable<Bucket<V>> {
      *         nth item is removed to bring the count down. A more sophisticated mechanism may be available in the
      *         future.
      * @return this, for chaining
-     * @stable ICU 4.8
      */
     public AlphabeticIndex<V> setMaxLabelCount(int maxLabelCount) {
         this.maxLabelCount = maxLabelCount;
@@ -611,7 +591,6 @@ public final class AlphabeticIndex<V> implements Iterable<Bucket<V>> {
      * Builds an immutable, thread-safe version of this instance, without data records.
      *
      * @return an immutable index instance
-     * @stable ICU 51
      */
     public ImmutableIndex<V> buildImmutableIndex() {
         // The current AlphabeticIndex Java code never modifies the bucket list once built.
@@ -634,7 +613,6 @@ public final class AlphabeticIndex<V> implements Iterable<Bucket<V>> {
      * Get the labels.
      * 
      * @return The list of bucket labels, after processing.
-     * @stable ICU 4.8
      */
     public List<String> getBucketLabels() {
         initBuckets();
@@ -653,7 +631,6 @@ public final class AlphabeticIndex<V> implements Iterable<Bucket<V>> {
      * synchronizing.</i></b>
      * 
      * @return a clone of the collator used internally
-     * @stable ICU 4.8
      */
     public RuleBasedCollator getCollator() {
         if (collatorExternal == null) {
@@ -677,7 +654,6 @@ public final class AlphabeticIndex<V> implements Iterable<Bucket<V>> {
      * @param data
      *            Data, such as an address or link
      * @return this, for chaining
-     * @stable ICU 4.8
      */
     public AlphabeticIndex<V> addRecord(CharSequence name, V data) {
         // TODO instead of invalidating, just add to unprocessed list.
@@ -702,7 +678,6 @@ public final class AlphabeticIndex<V> implements Iterable<Bucket<V>> {
      * @param name
      *            Name, such as a name
      * @return the bucket index for the name
-     * @stable ICU 4.8
      */
     public int getBucketIndex(CharSequence name) {
         initBuckets();
@@ -713,7 +688,6 @@ public final class AlphabeticIndex<V> implements Iterable<Bucket<V>> {
      * Clear the index.
      * 
      * @return this, for chaining
-     * @stable ICU 4.8
      */
     public AlphabeticIndex<V> clearRecords() {
         if (inputList != null && !inputList.isEmpty()) {
@@ -727,7 +701,6 @@ public final class AlphabeticIndex<V> implements Iterable<Bucket<V>> {
      * Return the number of buckets in the index. This will be the same as the number of labels, plus buckets for the underflow, overflow, and inflow(s).
      * 
      * @return number of buckets
-     * @stable ICU 4.8
      */
     public int getBucketCount() {
         initBuckets();
@@ -738,7 +711,6 @@ public final class AlphabeticIndex<V> implements Iterable<Bucket<V>> {
      * Return the number of records in the index: that is, the total number of distinct <name,data> pairs added with addRecord(...), over all the buckets.
      * 
      * @return total number of records in buckets
-     * @stable ICU 4.8
      */
     public int getRecordCount() {
         return inputList != null ? inputList.size() : 0;
@@ -748,7 +720,6 @@ public final class AlphabeticIndex<V> implements Iterable<Bucket<V>> {
      * Return an iterator over the buckets.
      * 
      * @return iterator over buckets.
-     * @stable ICU 4.8
      */
     public Iterator<Bucket<V>> iterator() {
         initBuckets();
@@ -839,8 +810,6 @@ public final class AlphabeticIndex<V> implements Iterable<Bucket<V>> {
     /**
      * A (name, data) pair, to be sorted by name into one of the index buckets.
      * The user data is not used by the index implementation.
-     * 
-     * @stable ICU 4.8
      */
     public static class Record<V> {
         private final CharSequence name;
@@ -855,7 +824,6 @@ public final class AlphabeticIndex<V> implements Iterable<Bucket<V>> {
          * Get the name
          * 
          * @return the name
-         * @stable ICU 4.8
          */
         public CharSequence getName() {
             return name;
@@ -865,7 +833,6 @@ public final class AlphabeticIndex<V> implements Iterable<Bucket<V>> {
          * Get the data
          * 
          * @return the data
-         * @stable ICU 4.8
          */
         public V getData() {
             return data;
@@ -873,7 +840,6 @@ public final class AlphabeticIndex<V> implements Iterable<Bucket<V>> {
 
         /**
          * Standard toString()
-         * @stable ICU 4.8
          */
         public String toString() {
             return name + "=" + data;
@@ -890,7 +856,6 @@ public final class AlphabeticIndex<V> implements Iterable<Bucket<V>> {
      * 
      * @param <V>
      *            Data type
-     * @stable ICU 4.8
      */
     public static class Bucket<V> implements Iterable<Record<V>> {
         private final String label;
@@ -902,28 +867,22 @@ public final class AlphabeticIndex<V> implements Iterable<Bucket<V>> {
 
         /**
          * Type of the label
-         * 
-         * @stable ICU 4.8
          */
         public enum LabelType {
             /**
              * Normal
-             * @stable ICU 4.8
              */
             NORMAL,
             /**
              * Underflow (before the first)
-             * @stable ICU 4.8
              */
             UNDERFLOW,
             /**
              * Inflow (between scripts)
-             * @stable ICU 4.8
              */
             INFLOW,
             /**
              * Overflow (after the last)
-             * @stable ICU 4.8
              */
             OVERFLOW
         }
@@ -935,7 +894,6 @@ public final class AlphabeticIndex<V> implements Iterable<Bucket<V>> {
          *            label for the bucket
          * @param labelType
          *            is an underflow, overflow, or inflow bucket
-         * @stable ICU 4.8
          */
         private Bucket(String label, String lowerBoundary, LabelType labelType) {
             this.label = label;
@@ -947,7 +905,6 @@ public final class AlphabeticIndex<V> implements Iterable<Bucket<V>> {
          * Get the label
          * 
          * @return label for the bucket
-         * @stable ICU 4.8
          */
         public String getLabel() {
             return label;
@@ -957,7 +914,6 @@ public final class AlphabeticIndex<V> implements Iterable<Bucket<V>> {
          * Is a normal, underflow, overflow, or inflow bucket
          * 
          * @return is an underflow, overflow, or inflow bucket
-         * @stable ICU 4.8
          */
         public LabelType getLabelType() {
             return labelType;
@@ -967,7 +923,6 @@ public final class AlphabeticIndex<V> implements Iterable<Bucket<V>> {
          * Get the number of records in the bucket.
          * 
          * @return number of records in bucket
-         * @stable ICU 4.8
          */
         public int size() {
             return records == null ? 0 : records.size();
@@ -975,7 +930,6 @@ public final class AlphabeticIndex<V> implements Iterable<Bucket<V>> {
 
         /**
          * Iterator over the records in the bucket
-         * @stable ICU 4.8
          */
         public Iterator<Record<V>> iterator() {
             if (records == null) {
@@ -986,7 +940,6 @@ public final class AlphabeticIndex<V> implements Iterable<Bucket<V>> {
 
         /**
          * Standard toString()
-         * @stable ICU 4.8
          */
         @Override
         public String toString() {

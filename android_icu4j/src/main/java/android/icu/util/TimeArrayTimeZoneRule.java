@@ -13,7 +13,6 @@ import java.util.Date;
  * <code>TimeArrayTimeZoneRule</code> represents a time zone rule whose start times are
  * defined by an array of milliseconds since the standard base time.
  * 
- * @stable ICU 3.8
  * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
  */
@@ -39,8 +38,6 @@ public class TimeArrayTimeZoneRule extends TimeZoneRule {
      * @param timeType      The time type of the start times, which is one of
      *                      <code>DataTimeRule.WALL_TIME</code>, <code>STANDARD_TIME</code>
      *                      and <code>UTC_TIME</code>.
-     * 
-     * @stable ICU 3.8
      */
     public TimeArrayTimeZoneRule(String name, int rawOffset, int dstSavings, long[] startTimes, int timeType) {
         super(name, rawOffset, dstSavings);
@@ -58,7 +55,6 @@ public class TimeArrayTimeZoneRule extends TimeZoneRule {
      * 
      * @return  An array of the start times in milliseconds since the base time
      *          (January 1, 1970, 00:00:00 GMT).
-     * @stable ICU 3.8
      */
     public long[] getStartTimes() {
         return startTimes.clone();
@@ -70,7 +66,6 @@ public class TimeArrayTimeZoneRule extends TimeZoneRule {
      * or <code>DateTimeRule.UTC_TIME</code>.
      * 
      * @return The time type used of the start times used by this rule.
-     * @stable ICU 3.8
      */
     public int getTimeType() {
         return timeType;
@@ -78,7 +73,6 @@ public class TimeArrayTimeZoneRule extends TimeZoneRule {
 
     /**
      * {@inheritDoc}
-     * @stable ICU 3.8
      */
     public Date getFirstStart(int prevRawOffset, int prevDSTSavings) {
         return new Date(getUTC(startTimes[0], prevRawOffset, prevDSTSavings));
@@ -86,7 +80,6 @@ public class TimeArrayTimeZoneRule extends TimeZoneRule {
 
     /**
      * {@inheritDoc}
-     * @stable ICU 3.8
      */
     public Date getFinalStart(int prevRawOffset, int prevDSTSavings) {
         return new Date(getUTC(startTimes[startTimes.length - 1], prevRawOffset, prevDSTSavings));
@@ -94,7 +87,6 @@ public class TimeArrayTimeZoneRule extends TimeZoneRule {
 
     /**
      * {@inheritDoc}
-     * @stable ICU 3.8
      */
     public Date getNextStart(long base, int prevOffset, int prevDSTSavings, boolean inclusive) {
         int i = startTimes.length - 1;
@@ -112,7 +104,6 @@ public class TimeArrayTimeZoneRule extends TimeZoneRule {
 
     /**
      * {@inheritDoc}
-     * @stable ICU 3.8
      */
     public Date getPreviousStart(long base, int prevOffset, int prevDSTSavings, boolean inclusive) {
         int i = startTimes.length - 1;
@@ -127,7 +118,6 @@ public class TimeArrayTimeZoneRule extends TimeZoneRule {
 
     /**
      * {@inheritDoc}
-     * @stable ICU 3.8
      */
     public boolean isEquivalentTo(TimeZoneRule other) {
         if (!(other instanceof TimeArrayTimeZoneRule)) {
@@ -143,7 +133,6 @@ public class TimeArrayTimeZoneRule extends TimeZoneRule {
     /**
      * {@inheritDoc}<br><br>
      * Note: This method in <code>TimeArrayTimeZoneRule</code> always returns true.
-     * @stable ICU 3.8
      */
     public boolean isTransitionRule() {
         return true;
@@ -164,8 +153,6 @@ public class TimeArrayTimeZoneRule extends TimeZoneRule {
      * Returns a <code>String</code> representation of this <code>TimeArrayTimeZoneRule</code> object.
      * This method is used for debugging purpose only.  The string representation can be changed
      * in future version of ICU without any notice.
-     * 
-     * @stable ICU 3.8
      */
     public String toString() {
         StringBuilder buf = new StringBuilder();

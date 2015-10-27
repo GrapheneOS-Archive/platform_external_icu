@@ -165,7 +165,7 @@ class UCharacterNameIterator implements ValueIterator
     * Constructor
     * @param name name data
     * @param choice name choice from the class
-    *               com.ibm.icu.lang.UCharacterNameChoice
+    *               android.icu.lang.UCharacterNameChoice
     */
     protected UCharacterNameIterator(UCharacterName name, int choice)
     {

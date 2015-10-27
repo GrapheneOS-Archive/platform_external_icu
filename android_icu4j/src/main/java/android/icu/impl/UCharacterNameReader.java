@@ -17,7 +17,7 @@ import java.util.Arrays;
 * Unicode codepoint name data.</p> 
 * <p>This class simply reads unames.icu, authenticates that it is a valid
 * ICU data file and split its contents up into blocks of data for use in
-* <a href=UCharacterName.html>com.ibm.icu.impl.UCharacterName</a>.
+* <a href=UCharacterName.html>android.icu.impl.UCharacterName</a>.
 * </p> 
 * <p>unames.icu which is in big-endian format is jared together with this 
 * package.</p>

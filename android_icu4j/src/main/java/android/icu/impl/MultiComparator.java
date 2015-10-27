@@ -10,7 +10,7 @@ package android.icu.impl;
 import java.util.Comparator;
 
 /**
- * TODO: Move to com.ibm.icu.dev.somewhere.
+ * TODO: Move to android.icu.dev.somewhere.
  * 2015-sep-03: This is used there, and also in CLDR and in UnicodeTools.
  * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden

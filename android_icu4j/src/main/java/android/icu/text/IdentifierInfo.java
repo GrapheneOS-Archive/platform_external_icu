@@ -649,20 +649,20 @@ public class IdentifierInfo {
     // super.xor(set);
     // }
     // /* (non-Javadoc)
-    // * @see com.ibm.icu.util.Freezable#isFrozen()
+    // * @see android.icu.util.Freezable#isFrozen()
     // */
     // public boolean isFrozen() {
     // return frozen;
     // }
     // /* (non-Javadoc)
-    // * @see com.ibm.icu.util.Freezable#freeze()
+    // * @see android.icu.util.Freezable#freeze()
     // */
     // public FreezableBitSet freeze() {
     // frozen = true;
     // return this;
     // }
     // /* (non-Javadoc)
-    // * @see com.ibm.icu.util.Freezable#cloneAsThawed()
+    // * @see android.icu.util.Freezable#cloneAsThawed()
     // */
     // public FreezableBitSet cloneAsThawed() {
     // FreezableBitSet result = new FreezableBitSet(size());

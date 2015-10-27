@@ -193,7 +193,6 @@ import android.icu.util.VersionInfo;
  * </p>
  * 
  * @author Syn Wee Quek
- * @stable ICU 2.8
  * @hide All android.icu classes are currently hidden
  */
 public final class RuleBasedCollator extends Collator {
@@ -215,7 +214,6 @@ public final class RuleBasedCollator extends Collator {
      * @exception ParseException
      *                and IOException thrown. ParseException thrown when argument rules have an invalid syntax.
      *                IOException thrown when an error occurred while reading internal data.
-     * @stable ICU 2.8
      */
     public RuleBasedCollator(String rules) throws Exception {
         if (rules == null) {
@@ -256,7 +254,6 @@ public final class RuleBasedCollator extends Collator {
      * Clones the RuleBasedCollator
      * 
      * @return a new instance of this RuleBasedCollator object
-     * @stable ICU 2.8
      */
     @Override
     public Object clone() throws CloneNotSupportedException {
@@ -278,7 +275,6 @@ public final class RuleBasedCollator extends Collator {
      * Return a CollationElementIterator for the given String.
      * 
      * @see CollationElementIterator
-     * @stable ICU 2.8
      */
     public CollationElementIterator getCollationElementIterator(String source) {
         initMaxExpansions();
@@ -290,7 +286,6 @@ public final class RuleBasedCollator extends Collator {
      * preserved since a new copy will be created for use.
      * 
      * @see CollationElementIterator
-     * @stable ICU 2.8
      */
     public CollationElementIterator getCollationElementIterator(CharacterIterator source) {
         initMaxExpansions();
@@ -303,7 +298,6 @@ public final class RuleBasedCollator extends Collator {
      * preserved since a new copy will be created for use.
      * 
      * @see CollationElementIterator
-     * @stable ICU 2.8
      */
     public CollationElementIterator getCollationElementIterator(UCharacterIterator source) {
         initMaxExpansions();
@@ -317,8 +311,6 @@ public final class RuleBasedCollator extends Collator {
      *
      * <p>An unfrozen Collator is mutable and not thread-safe.
      * A frozen Collator is immutable and thread-safe.
-     *
-     * @stable ICU 4.8
      */
     @Override
     public boolean isFrozen() {
@@ -328,7 +320,6 @@ public final class RuleBasedCollator extends Collator {
     /**
      * Freezes the collator.
      * @return the collator itself.
-     * @stable ICU 4.8
      */
     @Override
     public Collator freeze() {
@@ -343,7 +334,6 @@ public final class RuleBasedCollator extends Collator {
 
     /**
      * Provides for the clone operation. Any clone is initially unfrozen.
-     * @stable ICU 4.8
      */
     @Override
     public RuleBasedCollator cloneAsThawed() {
@@ -431,7 +421,6 @@ public final class RuleBasedCollator extends Collator {
      * @see #isUpperCaseFirst
      * @see #setLowerCaseFirst
      * @see #setCaseFirstDefault
-     * @stable ICU 2.8
      */
     public void setUpperCaseFirst(boolean upperfirst) {
         checkNotFrozen();
@@ -453,7 +442,6 @@ public final class RuleBasedCollator extends Collator {
      * @see #isUpperCaseFirst
      * @see #setUpperCaseFirst
      * @see #setCaseFirstDefault
-     * @stable ICU 2.8
      */
     public void setLowerCaseFirst(boolean lowerfirst) {
         checkNotFrozen();
@@ -471,7 +459,6 @@ public final class RuleBasedCollator extends Collator {
      * @see #isUpperCaseFirst
      * @see #setLowerCaseFirst(boolean)
      * @see #setUpperCaseFirst(boolean)
-     * @stable ICU 2.8
      */
     public final void setCaseFirstDefault() {
         checkNotFrozen();
@@ -488,7 +475,6 @@ public final class RuleBasedCollator extends Collator {
      * 
      * @see #setAlternateHandlingShifted(boolean)
      * @see #isAlternateHandlingShifted()
-     * @stable ICU 2.8
      */
     public void setAlternateHandlingDefault() {
         checkNotFrozen();
@@ -505,7 +491,6 @@ public final class RuleBasedCollator extends Collator {
      * 
      * @see #setCaseLevel(boolean)
      * @see #isCaseLevel
-     * @stable ICU 2.8
      */
     public void setCaseLevelDefault() {
         checkNotFrozen();
@@ -522,7 +507,6 @@ public final class RuleBasedCollator extends Collator {
      * 
      * @see #getDecomposition
      * @see #setDecomposition(int)
-     * @stable ICU 2.8
      */
     public void setDecompositionDefault() {
         checkNotFrozen();
@@ -539,7 +523,6 @@ public final class RuleBasedCollator extends Collator {
      * 
      * @see #isFrenchCollation
      * @see #setFrenchCollation(boolean)
-     * @stable ICU 2.8
      */
     public void setFrenchCollationDefault() {
         checkNotFrozen();
@@ -556,7 +539,6 @@ public final class RuleBasedCollator extends Collator {
      * 
      * @see #setStrength(int)
      * @see #getStrength
-     * @stable ICU 2.8
      */
     public void setStrengthDefault() {
         checkNotFrozen();
@@ -572,7 +554,6 @@ public final class RuleBasedCollator extends Collator {
      *
      * @see #getNumericCollation
      * @see #setNumericCollation
-     * @stable ICU 2.8
      */
     public void setNumericCollationDefault() {
         checkNotFrozen();
@@ -591,7 +572,6 @@ public final class RuleBasedCollator extends Collator {
      * 
      * @param flag
      *            true to set the French collation on, false to set it off
-     * @stable ICU 2.8
      * @see #isFrenchCollation
      * @see #setFrenchCollationDefault
      */
@@ -616,7 +596,6 @@ public final class RuleBasedCollator extends Collator {
      *            true if SHIFTED behavior for alternate handling is desired, false for the NON_IGNORABLE behavior.
      * @see #isAlternateHandlingShifted
      * @see #setAlternateHandlingDefault
-     * @stable ICU 2.8
      */
     public void setAlternateHandlingShifted(boolean shifted) {
         checkNotFrozen();
@@ -642,7 +621,6 @@ public final class RuleBasedCollator extends Collator {
      * 
      * @param flag
      *            true if case level sorting is required, false otherwise
-     * @stable ICU 2.8
      * @see #setCaseLevelDefault
      * @see #isCaseLevel
      */
@@ -682,7 +660,6 @@ public final class RuleBasedCollator extends Collator {
      * @see #CANONICAL_DECOMPOSITION
      * @throws IllegalArgumentException If the given value is not a valid
      *            decomposition mode.
-     * @stable ICU 2.8
      */
     @Override
     public void setDecomposition(int decomposition)
@@ -722,7 +699,6 @@ public final class RuleBasedCollator extends Collator {
      * @see #IDENTICAL
      * @exception IllegalArgumentException
      *                If the new strength value is not one of PRIMARY, SECONDARY, TERTIARY, QUATERNARY or IDENTICAL.
-     * @stable ICU 2.8
      */
     @Override
     public void setStrength(int newStrength) {
@@ -743,7 +719,6 @@ public final class RuleBasedCollator extends Collator {
      *              or Collator.ReorderCodes.DEFAULT to restore the default max variable group
      * @return this
      * @see #getMaxVariable
-     * @stable ICU 53
      */
     @Override
     public RuleBasedCollator setMaxVariable(int group) {
@@ -784,7 +759,6 @@ public final class RuleBasedCollator extends Collator {
      * the alternate handling behavior.
      * @return the maximum variable reordering group.
      * @see #setMaxVariable
-     * @stable ICU 53
      */
     @Override
     public int getMaxVariable() {
@@ -904,7 +878,6 @@ public final class RuleBasedCollator extends Collator {
      *            true to turn numeric collation on and false to turn it off
      * @see #getNumericCollation
      * @see #setNumericCollationDefault
-     * @stable ICU 2.8
      */
     public void setNumericCollation(boolean flag) {
         checkNotFrozen();
@@ -925,7 +898,6 @@ public final class RuleBasedCollator extends Collator {
      * @see Collator#getEquivalentReorderCodes
      * @see Collator.ReorderCodes
      * @see UScript
-     * @stable ICU 4.8
      */
     @Override
     public void setReorderCodes(int... order) {
@@ -970,7 +942,6 @@ public final class RuleBasedCollator extends Collator {
      * 
      * @return the collation tailoring rules
      * @see #getRules(boolean)
-     * @stable ICU 2.8
      */
     public String getRules() {
         return tailoring.getRules();
@@ -992,7 +963,6 @@ public final class RuleBasedCollator extends Collator {
      *            returning only the tailored rules
      * @return the current rules that defines this Collator.
      * @see #getRules()
-     * @stable ICU 2.6
      */
     public String getRules(boolean fullrules) {
         if (!fullrules) {
@@ -1006,7 +976,6 @@ public final class RuleBasedCollator extends Collator {
      * 
      * @return a pointer to a UnicodeSet object containing all the code points and sequences that may sort differently
      *         than in the root collator.
-     * @stable ICU 2.4
      */
     @Override
     public UnicodeSet getTailoredSet() {
@@ -1028,7 +997,6 @@ public final class RuleBasedCollator extends Collator {
      *            add the prefix contextual elements to contractions
      * @throws Exception
      *             Throws an exception if any errors occurs.
-     * @stable ICU 3.4
      */
     public void getContractionsAndExpansions(UnicodeSet contractions, UnicodeSet expansions, boolean addPrefixes)
             throws Exception {
@@ -1074,7 +1042,6 @@ public final class RuleBasedCollator extends Collator {
      * @see CollationKey
      * @see #compare(String, String)
      * @see #getRawCollationKey
-     * @stable ICU 2.8
      */
     @Override
     public CollationKey getCollationKey(String source) {
@@ -1107,7 +1074,6 @@ public final class RuleBasedCollator extends Collator {
      * @see #getCollationKey
      * @see #compare(String, String)
      * @see RawCollationKey
-     * @stable ICU 2.8
      */
     @Override
     public RawCollationKey getRawCollationKey(String source, RawCollationKey key) {
@@ -1265,7 +1231,6 @@ public final class RuleBasedCollator extends Collator {
      * @see #TERTIARY
      * @see #QUATERNARY
      * @see #IDENTICAL
-     * @stable ICU 2.8
      */
     @Override
     public int getStrength() {
@@ -1282,7 +1247,6 @@ public final class RuleBasedCollator extends Collator {
      * @see #setDecomposition
      * @see #NO_DECOMPOSITION
      * @see #CANONICAL_DECOMPOSITION
-     * @stable ICU 2.8
      */
     @Override
     public int getDecomposition() {
@@ -1299,7 +1263,6 @@ public final class RuleBasedCollator extends Collator {
      * @see #isLowerCaseFirst
      * @see #setCaseFirstDefault
      * @return true if upper cased characters are sorted before lower cased characters, false otherwise
-     * @stable ICU 2.8
      */
     public boolean isUpperCaseFirst() {
         return (settings.readOnly().getCaseFirst() == CollationSettings.CASE_FIRST_AND_UPPER_MASK);
@@ -1314,7 +1277,6 @@ public final class RuleBasedCollator extends Collator {
      * @see #isUpperCaseFirst
      * @see #setCaseFirstDefault
      * @return true lower cased characters are sorted before upper cased characters, false otherwise
-     * @stable ICU 2.8
      */
     public boolean isLowerCaseFirst() {
         return (settings.readOnly().getCaseFirst() == CollationSettings.CASE_FIRST);
@@ -1329,7 +1291,6 @@ public final class RuleBasedCollator extends Collator {
      * @return true or false
      * @see #setAlternateHandlingShifted(boolean)
      * @see #setAlternateHandlingDefault
-     * @stable ICU 2.8
      */
     public boolean isAlternateHandlingShifted() {
         return settings.readOnly().getAlternateHandling();
@@ -1342,7 +1303,6 @@ public final class RuleBasedCollator extends Collator {
      * @see #setCaseLevelDefault
      * @see #isCaseLevel
      * @see #setCaseLevel(boolean)
-     * @stable ICU 2.8
      */
     public boolean isCaseLevel() {
         return (settings.readOnly().options & CollationSettings.CASE_LEVEL) != 0;
@@ -1354,7 +1314,6 @@ public final class RuleBasedCollator extends Collator {
      * @return true if French Collation is set to true, false otherwise
      * @see #setFrenchCollation(boolean)
      * @see #setFrenchCollationDefault
-     * @stable ICU 2.8
      */
     public boolean isFrenchCollation() {
         return (settings.readOnly().options & CollationSettings.BACKWARD_SECONDARY) != 0;
@@ -1384,7 +1343,6 @@ public final class RuleBasedCollator extends Collator {
      * 
      * @return the variable top primary weight
      * @see #getMaxVariable
-     * @stable ICU 2.6
      */
     @Override
     public int getVariableTop() {
@@ -1398,7 +1356,6 @@ public final class RuleBasedCollator extends Collator {
      * @see #setNumericCollation
      * @see #setNumericCollationDefault
      * @return true if numeric collation is turned on, false otherwise
-     * @stable ICU 2.8
      */
     public boolean getNumericCollation() {
         return (settings.readOnly().options & CollationSettings.NUMERIC) != 0;
@@ -1411,7 +1368,6 @@ public final class RuleBasedCollator extends Collator {
      * if none are set then returns an empty array
      * @see #setReorderCodes
      * @see Collator#getEquivalentReorderCodes
-     * @stable ICU 4.8
      */ 
     @Override
     public int[] getReorderCodes() {
@@ -1422,7 +1378,6 @@ public final class RuleBasedCollator extends Collator {
 
     /**
      * {@inheritDoc}
-     * @stable ICU 2.8
      */
     @Override
     public boolean equals(Object obj) {
@@ -1464,7 +1419,6 @@ public final class RuleBasedCollator extends Collator {
      * Generates a unique hash code for this RuleBasedCollator.
      * 
      * @return the unique hash code for this Collator
-     * @stable ICU 2.8
      */
     @Override
     public int hashCode() {
@@ -1504,7 +1458,6 @@ public final class RuleBasedCollator extends Collator {
      *         and target are equal, value is greater than zero if source is greater than target.
      * @see CollationKey
      * @see #getCollationKey
-     * @stable ICU 2.8
      */
     @Override
     public int compare(String source, String target) {
@@ -1816,7 +1769,6 @@ public final class RuleBasedCollator extends Collator {
      * Get the version of this collator object.
      * 
      * @return the version object associated with this collator
-     * @stable ICU 2.8
      */
     @Override
     public VersionInfo getVersion() {
@@ -1831,7 +1783,6 @@ public final class RuleBasedCollator extends Collator {
      * Get the UCA version of this collator object.
      * 
      * @return the version object associated with this collator
-     * @stable ICU 2.8
      */
     @Override
     public VersionInfo getUCAVersion() {

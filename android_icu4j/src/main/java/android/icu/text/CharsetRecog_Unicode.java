@@ -16,12 +16,12 @@ package android.icu.text;
 abstract class CharsetRecog_Unicode extends CharsetRecognizer {
 
     /* (non-Javadoc)
-     * @see com.ibm.icu.text.CharsetRecognizer#getName()
+     * @see android.icu.text.CharsetRecognizer#getName()
      */
     abstract String getName();
 
     /* (non-Javadoc)
-     * @see com.ibm.icu.text.CharsetRecognizer#match(com.ibm.icu.text.CharsetDetector)
+     * @see android.icu.text.CharsetRecognizer#match(android.icu.text.CharsetDetector)
      */
     abstract CharsetMatch match(CharsetDetector det);
     

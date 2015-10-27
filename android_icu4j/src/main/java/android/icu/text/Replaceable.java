@@ -51,14 +51,12 @@ package android.icu.text;
  * <p>Copyright &copy; IBM Corporation 1999.  All rights reserved.
  *
  * @author Alan Liu
- * @stable ICU 2.0
  * @hide All android.icu classes are currently hidden
  */
 public interface Replaceable {
     /**
      * Returns the number of 16-bit code units in the text.
      * @return number of 16-bit code units in text
-     * @stable ICU 2.0
      */ 
     int length();
 
@@ -67,7 +65,6 @@ public interface Replaceable {
      * @param offset an integer between 0 and <code>length()</code>-1
      * inclusive
      * @return 16-bit code unit of text at given offset
-     * @stable ICU 2.0
      */
     char charAt(int offset);
 
@@ -79,11 +76,10 @@ public interface Replaceable {
      * code point of the surrogate pair.
      *
      * <p>Most subclasses can return
-     * <code>com.ibm.icu.text.UTF16.charAt(this, offset)</code>.
+     * <code>android.icu.text.UTF16.charAt(this, offset)</code>.
      * @param offset an integer between 0 and <code>length()</code>-1
      * inclusive
      * @return 32-bit code point of text at given offset
-     * @stable ICU 2.0
      */
     int char32At(int offset);
 
@@ -103,7 +99,6 @@ public interface Replaceable {
      * <code>start <= limit <= length()</code>.
      * @param dst the destination array.
      * @param dstStart the start offset in the destination array.
-     * @stable ICU 2.0
      */
     void getChars(int srcStart, int srcLimit, char dst[], int dstStart);
 
@@ -123,7 +118,6 @@ public interface Replaceable {
      * <= length()</code>.
      * @param text the text to replace characters <code>start</code>
      * to <code>limit - 1</code>
-     * @stable ICU 2.0
      */
     void replace(int start, int limit, String text);
 
@@ -146,7 +140,6 @@ public interface Replaceable {
      * @param charsStart the beginning index into <code>chars</code>,
      * inclusive; <code>0 <= start <= limit</code>.
      * @param charsLen the number of characters of <code>chars</code>.
-     * @stable ICU 2.0
      */
     void replace(int start, int limit, char[] chars,
                  int charsStart, int charsLen);
@@ -172,7 +165,6 @@ public interface Replaceable {
      * <code>start..limit-1</code> will be copied to <code>dest</code>.
      * Implementations of this method may assume that <code>dest <= start ||
      * dest >= limit</code>.
-     * @stable ICU 2.0
      */
     void copy(int start, int limit, int dest);
     
@@ -182,7 +174,6 @@ public interface Replaceable {
      * must be made so as to preserve metadata.  If it does not, calls
      * to the Replaceable API may be optimized to improve performance.
      * @return true if this object contains metadata
-     * @stable ICU 2.2
      */
     boolean hasMetaData();
 }

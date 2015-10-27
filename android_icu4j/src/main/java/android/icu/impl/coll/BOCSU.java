@@ -24,7 +24,7 @@ import android.icu.util.ByteArrayWrapper;
  * 2.</p>
  * 
  * <p>One example of a use of BOCU is in 
- * com.ibm.icu.text.Collator#getCollationKey(String) for a RuleBasedCollator object with 
+ * android.icu.text.Collator#getCollationKey(String) for a RuleBasedCollator object with 
  * collation strength IDENTICAL. The result CollationKey will consist of the 
  * collation order of the source string followed by the BOCU result of the 
  * source string. 

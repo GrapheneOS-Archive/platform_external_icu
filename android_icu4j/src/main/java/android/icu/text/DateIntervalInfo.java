@@ -148,8 +148,6 @@ import android.icu.util.UResourceBundle;
  * Data for a calendar is loaded out of resource bundles. 
  * Through ICU 4.4, date interval patterns are only supported in the Gregoria
  * calendar; non-Gregorian calendars are supported from ICU 4.4.1.  
- * 
- * @stable ICU 4.0
  * @hide All android.icu classes are currently hidden
  */
 
@@ -174,7 +172,6 @@ public class DateIntervalInfo implements Cloneable, Freezable<DateIntervalInfo>,
     /**
      * PatternInfo class saves the first and second part of interval pattern,
      * and whether the interval pattern is earlier date first.
-     * @stable ICU 4.0
      */
     public static final class PatternInfo implements Cloneable, Serializable {
         static final int currentSerialVersion = 1;
@@ -198,7 +195,6 @@ public class DateIntervalInfo implements Cloneable, Freezable<DateIntervalInfo>,
 
         /**
          * constructor
-         * @stable ICU 4.0
          */
         public PatternInfo(String firstPart, String secondPart,
                            boolean firstDateInPtnIsLaterDate) {
@@ -209,7 +205,6 @@ public class DateIntervalInfo implements Cloneable, Freezable<DateIntervalInfo>,
 
         /**
          * accessor
-         * @stable ICU 4.0
          */
         public String getFirstPart() {
             return fIntervalPatternFirstPart;
@@ -217,7 +212,6 @@ public class DateIntervalInfo implements Cloneable, Freezable<DateIntervalInfo>,
 
         /**
          * accessor
-         * @stable ICU 4.0
          */
         public String getSecondPart() {
             return fIntervalPatternSecondPart;
@@ -225,7 +219,6 @@ public class DateIntervalInfo implements Cloneable, Freezable<DateIntervalInfo>,
 
         /**
          * accessor
-         * @stable ICU 4.0
          */
         public boolean firstDateInPtnIsLaterDate() {
             return fFirstDateInPtnIsLaterDate;
@@ -233,7 +226,6 @@ public class DateIntervalInfo implements Cloneable, Freezable<DateIntervalInfo>,
 
         /**
          * Override equals
-         * @stable ICU 4.0
          */
         public boolean equals(Object a) {
             if ( a instanceof PatternInfo ) {
@@ -247,7 +239,6 @@ public class DateIntervalInfo implements Cloneable, Freezable<DateIntervalInfo>,
 
         /**
          * Override hashcode
-         * @stable ICU 4.0
          */
         public int hashCode() {
             int hash = fIntervalPatternFirstPart != null ? fIntervalPatternFirstPart.hashCode() : 0;
@@ -347,7 +338,6 @@ public class DateIntervalInfo implements Cloneable, Freezable<DateIntervalInfo>,
      * @param locale  the interval patterns are loaded from the appropriate 
      *                calendar data (specified calendar or default calendar)
      *                in this locale.
-     * @stable ICU 4.0
      */
     public DateIntervalInfo(ULocale locale) 
     {
@@ -360,7 +350,6 @@ public class DateIntervalInfo implements Cloneable, Freezable<DateIntervalInfo>,
      * @param locale  the interval patterns are loaded from the appropriate 
      *                calendar data (specified calendar or default calendar)
      *                in this locale.
-     * @stable ICU 54
      */
     public DateIntervalInfo(Locale locale) 
     {
@@ -615,7 +604,6 @@ public class DateIntervalInfo implements Cloneable, Freezable<DateIntervalInfo>,
      *                            a calendar field that is smaller
      *                            than the MINIMUM_SUPPORTED_CALENDAR_FIELD 
      * @throws UnsupportedOperationException  if the object is frozen
-     * @stable ICU 4.0
      */
     public void setIntervalPattern(String skeleton, 
                                    int lrgDiffCalUnit, 
@@ -742,7 +730,6 @@ public class DateIntervalInfo implements Cloneable, Freezable<DateIntervalInfo>,
      * @throws IllegalArgumentException  if getting interval pattern on 
      *                            a calendar field that is smaller
      *                            than the MINIMUM_SUPPORTED_CALENDAR_FIELD 
-     * @stable ICU 4.0
      */
     public PatternInfo getIntervalPattern(String skeleton, int field) 
     {
@@ -765,7 +752,6 @@ public class DateIntervalInfo implements Cloneable, Freezable<DateIntervalInfo>,
     /**
      * Get the fallback interval pattern.
      * @return fallback interval pattern
-     * @stable ICU 4.0
      */
     public String getFallbackIntervalPattern()
     {
@@ -786,8 +772,6 @@ public class DateIntervalInfo implements Cloneable, Freezable<DateIntervalInfo>,
      * @throws UnsupportedOperationException  if the object is frozen
      * @throws IllegalArgumentException       if there is no pattern {0} or 
      *                                        pattern {1} in fallbakckPattern
-     *                   
-     * @stable ICU 4.0
      */
     public void setFallbackIntervalPattern(String fallbackPattern)
     {
@@ -812,7 +796,6 @@ public class DateIntervalInfo implements Cloneable, Freezable<DateIntervalInfo>,
      *
      * return default date ordering in interval pattern. TRUE if the first date 
      *        in pattern is later date, FALSE otherwise.
-     * @stable ICU 4.0
      */
     public boolean getDefaultOrder()
     {
@@ -823,7 +806,6 @@ public class DateIntervalInfo implements Cloneable, Freezable<DateIntervalInfo>,
     /**
      * Boilerplate. Clone this object.
      * @return     a copy of the object
-     * @stable ICU4.0
      */
     public Object clone() 
     {
@@ -881,7 +863,6 @@ public class DateIntervalInfo implements Cloneable, Freezable<DateIntervalInfo>,
     
     /**
      * Boilerplate for Freezable
-     * @stable ICU 4.0
      */
     public boolean isFrozen() {
         return frozen;
@@ -889,7 +870,6 @@ public class DateIntervalInfo implements Cloneable, Freezable<DateIntervalInfo>,
     
     /**
      * Boilerplate for Freezable
-     * @stable ICU 4.4
      */
     public DateIntervalInfo freeze() {
         fIntervalPatternsReadOnly = true;
@@ -899,7 +879,6 @@ public class DateIntervalInfo implements Cloneable, Freezable<DateIntervalInfo>,
     
     /**
      * Boilerplate for Freezable
-     * @stable ICU 4.4
      */
     public DateIntervalInfo cloneAsThawed() {
         DateIntervalInfo result = (DateIntervalInfo) (this.cloneUnfrozenDII());
@@ -1032,7 +1011,6 @@ public class DateIntervalInfo implements Cloneable, Freezable<DateIntervalInfo>,
 
     /**
      * Override equals
-     * @stable ICU 4.0
      */
     public boolean equals(Object a) {
         if ( a instanceof DateIntervalInfo ) {
@@ -1044,7 +1022,6 @@ public class DateIntervalInfo implements Cloneable, Freezable<DateIntervalInfo>,
 
     /**
      * Override hashcode
-     * @stable ICU 4.0
      */
     public int hashCode() {
         return fIntervalPatterns.hashCode();

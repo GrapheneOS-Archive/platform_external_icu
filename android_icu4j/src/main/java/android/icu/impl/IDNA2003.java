@@ -13,7 +13,7 @@ import android.icu.text.StringPrepParseException;
 import android.icu.text.UCharacterIterator;
 
 /**
- * IDNA2003 implementation code, moved out of com.ibm.icu.text.IDNA.java
+ * IDNA2003 implementation code, moved out of android.icu.text.IDNA.java
  * while extending that class to support IDNA2008/UTS #46 as well.
  * @author Ram Viswanadha
  * @hide Only a subset of ICU is exposed in Android
@@ -138,7 +138,6 @@ public final class IDNA2003 {
      * 
      * @param ch The code point to be ascertained
      * @return true if the char is a label separator
-     * @stable ICU 2.8
      */
     private static boolean isLabelSeparator(int ch){
         switch(ch){

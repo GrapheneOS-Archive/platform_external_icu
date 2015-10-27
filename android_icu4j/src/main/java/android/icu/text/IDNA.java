@@ -50,14 +50,12 @@ import android.icu.impl.UTS46;
  * ToASCII(ToASCII(ToASCII...(ToASCII(string))) == ToASCII(string).
  * 
  * @author Ram Viswanadha, Markus Scherer
- * @stable ICU 2.8
  * @hide All android.icu classes are currently hidden
  */
 public abstract class IDNA {
     /** 
      * Default options value: None of the other options are set.
      * For use in static worker and factory methods.
-     * @stable ICU 2.8
      */
     public static final int DEFAULT = 0;
     /** 
@@ -75,7 +73,6 @@ public abstract class IDNA {
      * for example the restriction of labels to LDH characters
      * (ASCII Letters, Digits and Hyphen-Minus).
      * For use in static worker and factory methods.
-     * @stable ICU 2.8
      */
     public static final int USE_STD3_RULES = 2;
     /**
@@ -83,7 +80,6 @@ public abstract class IDNA {
      * For use in static worker and factory methods.
      * <p>This option is ignored by the IDNA2003 implementation.
      * (IDNA2003 always performs a BiDi check.)
-     * @stable ICU 4.6
      */
     public static final int CHECK_BIDI = 4;
     /**
@@ -91,7 +87,6 @@ public abstract class IDNA {
      * For use in static worker and factory methods.
      * <p>This option is ignored by the IDNA2003 implementation.
      * (The CONTEXTJ check is new in IDNA2008.)
-     * @stable ICU 4.6
      */
     public static final int CHECK_CONTEXTJ = 8;
     /**
@@ -100,7 +95,6 @@ public abstract class IDNA {
      * <p>By default, ToASCII() uses transitional processing.
      * <p>This option is ignored by the IDNA2003 implementation.
      * (This is only relevant for compatibility of newer IDNA implementations with IDNA2003.)
-     * @stable ICU 4.6
      */
     public static final int NONTRANSITIONAL_TO_ASCII = 0x10;
     /**
@@ -109,7 +103,6 @@ public abstract class IDNA {
      * <p>By default, ToUnicode() uses transitional processing.
      * <p>This option is ignored by the IDNA2003 implementation.
      * (This is only relevant for compatibility of newer IDNA implementations with IDNA2003.)
-     * @stable ICU 4.6
      */
     public static final int NONTRANSITIONAL_TO_UNICODE = 0x20;
     /**
@@ -119,7 +112,6 @@ public abstract class IDNA {
      * (The CONTEXTO check is new in IDNA2008.)
      * <p>This is for use by registries for IDNA2008 conformance.
      * UTS #46 does not require the CONTEXTO check.
-     * @stable ICU 49
      */
     public static final int CHECK_CONTEXTO = 0x40;
 
@@ -148,7 +140,6 @@ public abstract class IDNA {
      *
      * @param options Bit set to modify the processing and error checking.
      * @return the UTS #46 IDNA instance, if successful
-     * @stable ICU 4.6
      */
     public static IDNA getUTS46Instance(int options) {
         return new UTS46(options);
@@ -165,7 +156,6 @@ public abstract class IDNA {
      * @param dest Destination string object
      * @param info Output container of IDNA processing details.
      * @return dest
-     * @stable ICU 4.6
      */
     public abstract StringBuilder labelToASCII(CharSequence label, StringBuilder dest, Info info);
 
@@ -178,7 +168,6 @@ public abstract class IDNA {
      * @param dest Destination string object
      * @param info Output container of IDNA processing details.
      * @return dest
-     * @stable ICU 4.6
      */
     public abstract StringBuilder labelToUnicode(CharSequence label, StringBuilder dest, Info info);
 
@@ -193,7 +182,6 @@ public abstract class IDNA {
      * @param dest Destination string object
      * @param info Output container of IDNA processing details.
      * @return dest
-     * @stable ICU 4.6
      */
     public abstract StringBuilder nameToASCII(CharSequence name, StringBuilder dest, Info info);
 
@@ -206,19 +194,16 @@ public abstract class IDNA {
      * @param dest Destination string object
      * @param info Output container of IDNA processing details.
      * @return dest
-     * @stable ICU 4.6
      */
     public abstract StringBuilder nameToUnicode(CharSequence name, StringBuilder dest, Info info);
 
     /**
      * Output container for IDNA processing errors.
      * The Info class is not suitable for subclassing.
-     * @stable ICU 4.6
      */
     public static final class Info {
         /**
          * Constructor.
-         * @stable ICU 4.6
          */
         public Info() {
             errors=EnumSet.noneOf(Error.class);
@@ -230,13 +215,11 @@ public abstract class IDNA {
         /**
          * Were there IDNA processing errors?
          * @return true if there were processing errors
-         * @stable ICU 4.6
          */
         public boolean hasErrors() { return !errors.isEmpty(); }
         /**
          * Returns a set indicating IDNA processing errors.
          * @return set of processing errors (modifiable, and not null)
-         * @stable ICU 4.6
          */
         public Set<Error> getErrors() { return errors; }
         /**
@@ -250,7 +233,6 @@ public abstract class IDNA {
          * mapped (sharp s/sigma) or removed (joiner/nonjoiner).
          * </ul>
          * @return true if transitional and nontransitional processing produce different results
-         * @stable ICU 4.6
          */
         public boolean isTransitionalDifferent() { return isTransDiff; }
 
@@ -389,63 +371,52 @@ public abstract class IDNA {
      * IDNA error bit set values.
      * When a domain name or label fails a processing step or does not meet the
      * validity criteria, then one or more of these error bits are set.
-     * @stable ICU 4.6
      */
     public static enum Error {
         /**
          * A non-final domain name label (or the whole domain name) is empty.
-         * @stable ICU 4.6
          */
         EMPTY_LABEL,
         /**
          * A domain name label is longer than 63 bytes.
          * (See STD13/RFC1034 3.1. Name space specifications and terminology.)
          * This is only checked in ToASCII operations, and only if the output label is all-ASCII.
-         * @stable ICU 4.6
          */
         LABEL_TOO_LONG,
         /**
          * A domain name is longer than 255 bytes in its storage form.
          * (See STD13/RFC1034 3.1. Name space specifications and terminology.)
          * This is only checked in ToASCII operations, and only if the output domain name is all-ASCII.
-         * @stable ICU 4.6
          */
         DOMAIN_NAME_TOO_LONG,
         /**
          * A label starts with a hyphen-minus ('-').
-         * @stable ICU 4.6
          */
         LEADING_HYPHEN,
         /**
          * A label ends with a hyphen-minus ('-').
-         * @stable ICU 4.6
          */
         TRAILING_HYPHEN,
         /**
          * A label contains hyphen-minus ('-') in the third and fourth positions.
-         * @stable ICU 4.6
          */
         HYPHEN_3_4,
         /**
          * A label starts with a combining mark.
-         * @stable ICU 4.6
          */
         LEADING_COMBINING_MARK,
         /**
          * A label or domain name contains disallowed characters.
-         * @stable ICU 4.6
          */
         DISALLOWED,
         /**
          * A label starts with "xn--" but does not contain valid Punycode.
          * That is, an xn-- label failed Punycode decoding.
-         * @stable ICU 4.6
          */
         PUNYCODE,
         /**
          * A label contains a dot=full stop.
          * This can occur in an input string for a single-label function.
-         * @stable ICU 4.6
          */
         LABEL_HAS_DOT,
         /**
@@ -454,30 +425,25 @@ public abstract class IDNA {
          * string had severe validation errors. For example,
          * it might contain characters that are not allowed in ACE labels,
          * or it might not be normalized.
-         * @stable ICU 4.6
          */
         INVALID_ACE_LABEL,
         /**
          * A label does not meet the IDNA BiDi requirements (for right-to-left characters).
-         * @stable ICU 4.6
          */
         BIDI,
         /**
          * A label does not meet the IDNA CONTEXTJ requirements.
-         * @stable ICU 4.6
          */
         CONTEXTJ,
         /**
          * A label does not meet the IDNA CONTEXTO requirements for punctuation characters.
          * Some punctuation characters "Would otherwise have been DISALLOWED"
          * but are allowed in certain contexts. (RFC 5892)
-         * @stable ICU 49
          */
         CONTEXTO_PUNCTUATION,
         /**
          * A label does not meet the IDNA CONTEXTO requirements for digits.
          * Arabic-Indic Digits (U+066x) must not be mixed with Extended Arabic-Indic Digits (U+06Fx).
-         * @stable ICU 49
          */
         CONTEXTO_DIGITS
     }

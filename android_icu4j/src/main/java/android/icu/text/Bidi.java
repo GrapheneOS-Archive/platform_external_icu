@@ -152,8 +152,6 @@ import android.icu.lang.UProperty;
  * </ul>
  *
  *
- * @author Simon Montagu, Matitiahu Allouche (ported from C code written by Markus W. Scherer)
- * @stable ICU 3.8
  *
  *
  * <h4> Sample code for the ICU Bidi API </h4>
@@ -181,10 +179,10 @@ import android.icu.lang.UProperty;
  *
  * <pre>
  *
- *  package com.ibm.icu.dev.test.bidi;
+ *  package android.icu.dev.test.bidi;
  *
- *  import com.ibm.icu.text.Bidi;
- *  import com.ibm.icu.text.BidiRun;
+ *  import android.icu.text.Bidi;
+ *  import android.icu.text.BidiRun;
  *
  *  public class Sample {
  *
@@ -584,7 +582,6 @@ public class Bidi {
      * the original source text).
      * @see #REORDER_INVERSE_LIKE_DIRECT
      * @see #REORDER_INVERSE_FOR_NUMBERS_SPECIAL
-     * @stable ICU 3.8
      */
     public static final byte LEVEL_DEFAULT_LTR = (byte)0x7e;
 
@@ -611,21 +608,18 @@ public class Bidi {
      * the original source text).
      * @see #REORDER_INVERSE_LIKE_DIRECT
      * @see #REORDER_INVERSE_FOR_NUMBERS_SPECIAL
-     * @stable ICU 3.8
      */
     public static final byte LEVEL_DEFAULT_RTL = (byte)0x7f;
 
     /**
      * Maximum explicit embedding level.
      * (The maximum resolved level can be up to <code>MAX_EXPLICIT_LEVEL+1</code>).
-     * @stable ICU 3.8
      */
     public static final byte MAX_EXPLICIT_LEVEL = 125;
 
     /**
      * Bit flag for level input.
      * Overrides directional properties.
-     * @stable ICU 3.8
      */
     public static final byte LEVEL_OVERRIDE = (byte)0x80;
 
@@ -643,7 +637,6 @@ public class Bidi {
      * @see #getLogicalMap
      * @see #OPTION_INSERT_MARKS
      * @see #OPTION_REMOVE_CONTROLS
-     * @stable ICU 3.8
      */
     public static final int MAP_NOWHERE = -1;
 
@@ -657,7 +650,6 @@ public class Bidi {
      *     means that the first strong character of the source string has
      *     a left-to-right direction.
      * </ul>
-     * @stable ICU 3.8
      */
     public static final byte LTR = 0;
 
@@ -671,7 +663,6 @@ public class Bidi {
      *     means that the first strong character of the source string has
      *     a right-to-left direction.
      * </ul>
-     * @stable ICU 3.8
      */
     public static final byte RTL = 1;
 
@@ -680,7 +671,6 @@ public class Bidi {
      * <p>As return value for <code>getDirection()</code>, it means
      *    that the source string contains both left-to-right and
      *    right-to-left characters.
-     * @stable ICU 3.8
      */
     public static final byte MIXED = 2;
 
@@ -689,7 +679,6 @@ public class Bidi {
      * <p>As return value for <code>getBaseDirection()</code>, it means
      *    that the source string is missing or empty, or contains neither
      *    left-to-right nor right-to-left characters.
-     * @stable ICU 4.6
      */
     public static final byte NEUTRAL = 3;
 
@@ -698,7 +687,6 @@ public class Bidi {
      * keep combining characters after their base characters in RTL runs
      *
      * @see #writeReordered
-     * @stable ICU 3.8
      */
     public static final short KEEP_BASE_COMBINING = 1;
 
@@ -708,7 +696,6 @@ public class Bidi {
      * by their mirror-image mappings
      *
      * @see #writeReordered
-     * @stable ICU 3.8
      */
     public static final short DO_MIRRORING = 2;
 
@@ -722,7 +709,6 @@ public class Bidi {
      *
      * @see #setInverse
      * @see #writeReordered
-     * @stable ICU 3.8
      */
     public static final short INSERT_LRM_FOR_NUMERIC = 4;
 
@@ -736,7 +722,6 @@ public class Bidi {
      *
      * @see #writeReordered
      * @see #INSERT_LRM_FOR_NUMERIC
-     * @stable ICU 3.8
      */
     public static final short REMOVE_BIDI_CONTROLS = 8;
 
@@ -752,27 +737,23 @@ public class Bidi {
      * is designed for RTL scripts and stores text in reverse order.</p>
      *
      * @see #writeReordered
-     * @stable ICU 3.8
      */
     public static final short OUTPUT_REVERSE = 16;
 
     /** Reordering mode: Regular Logical to Visual Bidi algorithm according to Unicode.
      * @see #setReorderingMode
-     * @stable ICU 3.8
      */
     public static final short REORDER_DEFAULT = 0;
 
     /** Reordering mode: Logical to Visual algorithm which handles numbers in
      * a way which mimicks the behavior of Windows XP.
      * @see #setReorderingMode
-     * @stable ICU 3.8
      */
     public static final short REORDER_NUMBERS_SPECIAL = 1;
 
     /** Reordering mode: Logical to Visual algorithm grouping numbers with
      * adjacent R characters (reversible algorithm).
      * @see #setReorderingMode
-     * @stable ICU 3.8
      */
     public static final short REORDER_GROUP_NUMBERS_WITH_R = 2;
 
@@ -784,7 +765,6 @@ public class Bidi {
      * minimum combination which has the required display.
      * @see #OPTION_INSERT_MARKS
      * @see #setReorderingMode
-     * @stable ICU 3.8
      */
     public static final short REORDER_RUNS_ONLY = 3;
 
@@ -792,21 +772,18 @@ public class Bidi {
      * like L (same algorithm as selected by <code>setInverse(true)</code>.
      * @see #setInverse
      * @see #setReorderingMode
-     * @stable ICU 3.8
      */
     public static final short REORDER_INVERSE_NUMBERS_AS_L = 4;
 
     /** Reordering mode: Visual to Logical algorithm equivalent to the regular
      * Logical to Visual algorithm.
      * @see #setReorderingMode
-     * @stable ICU 3.8
      */
     public static final short REORDER_INVERSE_LIKE_DIRECT = 5;
 
     /** Reordering mode: Inverse Bidi (Visual to Logical) algorithm for the
      * <code>REORDER_NUMBERS_SPECIAL</code> Bidi algorithm.
      * @see #setReorderingMode
-     * @stable ICU 3.8
      */
     public static final short REORDER_INVERSE_FOR_NUMBERS_SPECIAL = 6;
 
@@ -823,7 +800,6 @@ public class Bidi {
      * Option value for <code>setReorderingOptions</code>:
      * disable all the options which can be set with this method
      * @see #setReorderingOptions
-     * @stable ICU 3.8
      */
     public static final int OPTION_DEFAULT = 0;
 
@@ -877,7 +853,6 @@ public class Bidi {
      * @see #REORDER_INVERSE_NUMBERS_AS_L
      * @see #REORDER_INVERSE_LIKE_DIRECT
      * @see #REORDER_INVERSE_FOR_NUMBERS_SPECIAL
-     * @stable ICU 3.8
      */
     public static final int OPTION_INSERT_MARKS = 1;
 
@@ -899,7 +874,6 @@ public class Bidi {
      * @see #OPTION_INSERT_MARKS
      * @see #INSERT_LRM_FOR_NUMERIC
      * @see #REMOVE_BIDI_CONTROLS
-     * @stable ICU 3.8
      */
     public static final int OPTION_REMOVE_CONTROLS = 2;
 
@@ -946,7 +920,6 @@ public class Bidi {
      * @see #setReorderingMode
      * @see #setReorderingOptions
      * @see #getProcessedLength
-     * @stable ICU 3.8
      */
     public static final int OPTION_STREAMING = 4;
 
@@ -985,7 +958,6 @@ public class Bidi {
      * Value returned by <code>BidiClassifier</code> when there is no need to
      * override the standard Bidi class for a given code point.
      * @see BidiClassifier
-     * @stable ICU 3.8
      */
     public static final int CLASS_DEFAULT = UCharacterDirection
                                             .CHAR_DIRECTION_COUNT;
@@ -1242,8 +1214,6 @@ public class Bidi {
      * This object can be reused.<p>
      * <code>setPara()</code> and <code>setLine()</code> will allocate
      * additional memory for internal structures as necessary.
-     *
-     * @stable ICU 3.8
      */
     public Bidi()
     {
@@ -1278,7 +1248,6 @@ public class Bidi {
      *        1 and <code>maxLength</code>. It is typically small.
      *
      * @throws IllegalArgumentException if maxLength or maxRunCount is less than 0
-     * @stable ICU 3.8
      */
     public Bidi(int maxLength, int maxRunCount)
     {
@@ -1454,7 +1423,6 @@ public class Bidi {
      * @see #setReorderingMode
      * @see #REORDER_INVERSE_NUMBERS_AS_L
      * @see #REORDER_DEFAULT
-     * @stable ICU 3.8
      */
     public void setInverse(boolean isInverse) {
         this.isInverse = (isInverse);
@@ -1477,7 +1445,6 @@ public class Bidi {
      * @see #setInverse
      * @see #setReorderingMode
      * @see #REORDER_INVERSE_NUMBERS_AS_L
-     * @stable ICU 3.8
      */
     public boolean isInverse() {
         return isInverse;
@@ -1643,7 +1610,6 @@ public class Bidi {
      * @see #REORDER_INVERSE_NUMBERS_AS_L
      * @see #REORDER_INVERSE_LIKE_DIRECT
      * @see #REORDER_INVERSE_FOR_NUMBERS_SPECIAL
-     * @stable ICU 3.8
      */
     public void setReorderingMode(int reorderingMode) {
         if ((reorderingMode < REORDER_DEFAULT) ||
@@ -1660,7 +1626,6 @@ public class Bidi {
      * @return the current reordering mode of the Bidi object
      *
      * @see #setReorderingMode
-     * @stable ICU 3.8
      */
     public int getReorderingMode() {
         return this.reorderingMode;
@@ -1680,7 +1645,6 @@ public class Bidi {
      * @see #OPTION_INSERT_MARKS
      * @see #OPTION_REMOVE_CONTROLS
      * @see #OPTION_STREAMING
-     * @stable ICU 3.8
      */
     public void setReorderingOptions(int options) {
         if ((options & OPTION_REMOVE_CONTROLS) != 0) {
@@ -1696,7 +1660,6 @@ public class Bidi {
      * @return the current reordering options of the Bidi object
      *
      * @see #setReorderingOptions
-     * @stable ICU 3.8
      */
     public int getReorderingOptions() {
         return this.reorderingOptions;
@@ -1716,7 +1679,6 @@ public class Bidi {
      * @see #LTR
      * @see #RTL
      * @see #NEUTRAL
-     * @stable ICU 4.6
      */
     public static byte getBaseDirection(CharSequence paragraph) {
         if (paragraph == null || paragraph.length() == 0) {
@@ -3643,7 +3605,6 @@ public class Bidi {
      *        this parameter can be <code>null</code>.
      *
      * @see #setPara
-     * @stable ICU 4.8
      */
     public void setContext(String prologue, String epilogue) {
         this.prologue = prologue != null && prologue.length() > 0 ? prologue : null;
@@ -3891,7 +3852,6 @@ public class Bidi {
      * @see #LEVEL_DEFAULT_RTL
      * @see #LEVEL_OVERRIDE
      * @see #MAX_EXPLICIT_LEVEL
-     * @stable ICU 3.8
      */
     public void setPara(String text, byte paraLevel, byte[] embeddingLevels)
     {
@@ -3975,7 +3935,6 @@ public class Bidi {
      * @see #LEVEL_DEFAULT_RTL
      * @see #LEVEL_OVERRIDE
      * @see #MAX_EXPLICIT_LEVEL
-     * @stable ICU 3.8
      */
     public void setPara(char[] chars, byte paraLevel, byte[] embeddingLevels)
     {
@@ -4275,7 +4234,6 @@ public class Bidi {
      *
      * @param paragraph a paragraph of text with optional character and
      *        paragraph attribute information
-     * @stable ICU 3.8
      */
     public void setPara(AttributedCharacterIterator paragraph)
     {
@@ -4336,7 +4294,6 @@ public class Bidi {
      * receive level 0, so that successive paragraphs progress from left to right.
      *
      * @see #setPara
-     * @stable ICU 3.8
      */
     public void orderParagraphsLTR(boolean ordarParaLTR) {
         orderParagraphsLTR = ordarParaLTR;
@@ -4348,8 +4305,6 @@ public class Bidi {
      *
      * @return <code>true</code> if the <code>Bidi</code> object is set to
      *         allocate level 0 to block separators.
-     *
-     * @stable ICU 3.8
      */
     public boolean isOrderParagraphsLTR() {
         return orderParagraphsLTR;
@@ -4369,7 +4324,6 @@ public class Bidi {
      * @see #LTR
      * @see #RTL
      * @see #MIXED
-     * @stable ICU 3.8
      */
     public byte getDirection()
     {
@@ -4388,7 +4342,6 @@ public class Bidi {
      *
      * @see #setPara
      * @see #setLine
-     * @stable ICU 3.8
      */
     public String getTextAsString()
     {
@@ -4407,7 +4360,6 @@ public class Bidi {
      *
      * @see #setPara
      * @see #setLine
-     * @stable ICU 3.8
      */
     public char[] getText()
     {
@@ -4423,7 +4375,6 @@ public class Bidi {
      *
      * @throws IllegalStateException if this call is not preceded by a successful
      *         call to <code>setPara</code> or <code>setLine</code>
-     * @stable ICU 3.8
      */
     public int getLength()
     {
@@ -4469,7 +4420,6 @@ public class Bidi {
      *
      * @see #setPara
      * @see #OPTION_STREAMING
-     * @stable ICU 3.8
      */
     public int getProcessedLength() {
         verifyValidParaOrLine();
@@ -4503,7 +4453,6 @@ public class Bidi {
      * @see #OPTION_INSERT_MARKS
      * @see #OPTION_REMOVE_CONTROLS
      * @see #REORDER_INVERSE_NUMBERS_AS_L
-     * @stable ICU 3.8
      */
     public int getResultLength() {
         verifyValidParaOrLine();
@@ -4527,7 +4476,6 @@ public class Bidi {
      * @see #LEVEL_DEFAULT_RTL
      * @see #getParagraph
      * @see #getParagraphByIndex
-     * @stable ICU 3.8
      */
     public byte getParaLevel()
     {
@@ -4542,7 +4490,6 @@ public class Bidi {
      *
      * @throws IllegalStateException if this call is not preceded by a successful
      *         call to <code>setPara</code> or <code>setLine</code>
-     * @stable ICU 3.8
      */
     public int countParagraphs()
     {
@@ -4570,7 +4517,6 @@ public class Bidi {
      *        <code>[0..countParagraphs()-1]</code>
      *
      * @see android.icu.text.BidiRun
-     * @stable ICU 3.8
      */
     public BidiRun getParagraphByIndex(int paraIndex)
     {
@@ -4613,7 +4559,6 @@ public class Bidi {
      * @see android.icu.text.BidiRun
      * @see #getParagraphByIndex
      * @see #getProcessedLength
-     * @stable ICU 3.8
      */
     public BidiRun getParagraph(int charIndex)
     {
@@ -4641,7 +4586,6 @@ public class Bidi {
      *
      * @see android.icu.text.BidiRun
      * @see #getProcessedLength
-     * @stable ICU 3.8
      */
     public int getParagraphIndex(int charIndex)
     {
@@ -4661,7 +4605,6 @@ public class Bidi {
      * @param classifier A new custom classifier. This can be null.
      *
      * @see #getCustomClassifier
-     * @stable ICU 3.8
      */
     public void setCustomClassifier(BidiClassifier classifier) {
         this.customClassifier = classifier;
@@ -4674,7 +4617,6 @@ public class Bidi {
      * @return An instance of class <code>BidiClassifier</code>
      *
      * @see #setCustomClassifier
-     * @stable ICU 3.8
      */
     public BidiClassifier getCustomClassifier() {
         return this.customClassifier;
@@ -4692,7 +4634,6 @@ public class Bidi {
      *         for this <code>Bidi</code> instance.
      *
      * @see BidiClassifier
-     * @stable ICU 3.8
      */
     public int getCustomizedClass(int c) {
         int dir;
@@ -4743,7 +4684,6 @@ public class Bidi {
      *
      * @see #setPara
      * @see #getProcessedLength
-     * @stable ICU 3.8
      */
     public Bidi setLine(int start, int limit)
     {
@@ -4770,7 +4710,6 @@ public class Bidi {
      *         <code>0&lt;=charIndex&lt;getProcessedLength()</code>
      *
      * @see #getProcessedLength
-     * @stable ICU 3.8
      */
     public byte getLevelAt(int charIndex)
     {
@@ -4790,7 +4729,6 @@ public class Bidi {
      *
      * @throws IllegalStateException if this call is not preceded by a successful
      *         call to <code>setPara</code> or <code>setLine</code>
-     * @stable ICU 3.8
      */
     public byte[] getLevels()
     {
@@ -4823,8 +4761,6 @@ public class Bidi {
      * @see android.icu.text.BidiRun#getStart()
      * @see android.icu.text.BidiRun#getLimit()
      * @see android.icu.text.BidiRun#getEmbeddingLevel()
-     *
-     * @stable ICU 3.8
      */
     public BidiRun getLogicalRun(int logicalPosition)
     {
@@ -4845,7 +4781,6 @@ public class Bidi {
      *
      * @throws IllegalStateException if this call is not preceded by a successful
      *         call to <code>setPara</code> or <code>setLine</code>
-     * @stable ICU 3.8
      */
     public int countRuns()
     {
@@ -4916,7 +4851,6 @@ public class Bidi {
      * @see android.icu.text.BidiRun#getStart()
      * @see android.icu.text.BidiRun#getLength()
      * @see android.icu.text.BidiRun#getEmbeddingLevel()
-     * @stable ICU 3.8
      */
     public BidiRun getVisualRun(int runIndex)
     {
@@ -4966,7 +4900,6 @@ public class Bidi {
      * @see #MAP_NOWHERE
      * @see #OPTION_REMOVE_CONTROLS
      * @see #writeReordered
-     * @stable ICU 3.8
      */
     public int getVisualIndex(int logicalIndex)
     {
@@ -5011,7 +4944,6 @@ public class Bidi {
      * @see #MAP_NOWHERE
      * @see #OPTION_INSERT_MARKS
      * @see #writeReordered
-     * @stable ICU 3.8
      */
     public int getLogicalIndex(int visualIndex)
     {
@@ -5067,7 +4999,6 @@ public class Bidi {
      * @see #MAP_NOWHERE
      * @see #OPTION_REMOVE_CONTROLS
      * @see #writeReordered
-     * @stable ICU 3.8
      */
     public int[] getLogicalMap()
     {
@@ -5109,7 +5040,6 @@ public class Bidi {
      * @see #MAP_NOWHERE
      * @see #OPTION_INSERT_MARKS
      * @see #writeReordered
-     * @stable ICU 3.8
      */
     public int[] getVisualMap()
     {
@@ -5136,8 +5066,6 @@ public class Bidi {
      *        The index map will result in
      *        <code>indexMap[logicalIndex]==visualIndex</code>, where
      *        <code>indexMap</code> represents the returned array.
-     *
-     * @stable ICU 3.8
      */
     public static int[] reorderLogical(byte[] levels)
     {
@@ -5159,8 +5087,6 @@ public class Bidi {
      *        The index map will result in
      *        <code>indexMap[visualIndex]==logicalIndex</code>, where
      *        <code>indexMap</code> represents the returned array.
-     *
-     * @stable ICU 3.8
      */
     public static int[] reorderVisual(byte[] levels)
     {
@@ -5199,7 +5125,6 @@ public class Bidi {
      *         inverse map will have a value equal to <code>MAP_NOWHERE</code>.
      *
      * @see #MAP_NOWHERE
-     * @stable ICU 3.8
      */
     public static int[] invertMap(int[] srcMap)
     {
@@ -5216,13 +5141,11 @@ public class Bidi {
 
     /**
      * Constant indicating base direction is left-to-right.
-     * @stable ICU 3.8
      */
     public static final int DIRECTION_LEFT_TO_RIGHT = LTR;
 
     /**
      * Constant indicating base direction is right-to-left.
-     * @stable ICU 3.8
      */
     public static final int DIRECTION_RIGHT_TO_LEFT = RTL;
 
@@ -5231,7 +5154,6 @@ public class Bidi {
      * directional character in the text according to the Unicode Bidirectional
      * Algorithm. If no strong directional character is present, the base
      * direction is left-to-right.
-     * @stable ICU 3.8
      */
     public static final int DIRECTION_DEFAULT_LEFT_TO_RIGHT = LEVEL_DEFAULT_LTR;
 
@@ -5240,7 +5162,6 @@ public class Bidi {
      * directional character in the text according to the Unicode Bidirectional
      * Algorithm. If no strong directional character is present, the base
      * direction is right-to-left.
-     * @stable ICU 3.8
      */
     public static final int DIRECTION_DEFAULT_RIGHT_TO_LEFT = LEVEL_DEFAULT_RTL;
 
@@ -5256,7 +5177,6 @@ public class Bidi {
      * @see #DIRECTION_RIGHT_TO_LEFT
      * @see #DIRECTION_DEFAULT_LEFT_TO_RIGHT
      * @see #DIRECTION_DEFAULT_RIGHT_TO_LEFT
-     * @stable ICU 3.8
      */
     public Bidi(String paragraph, int flags)
     {
@@ -5287,7 +5207,6 @@ public class Bidi {
      *
      * @param paragraph a paragraph of text with optional character and
      *        paragraph attribute information
-     * @stable ICU 3.8
      */
     public Bidi(AttributedCharacterIterator paragraph)
     {
@@ -5327,7 +5246,6 @@ public class Bidi {
      * @see #DIRECTION_RIGHT_TO_LEFT
      * @see #DIRECTION_DEFAULT_LEFT_TO_RIGHT
      * @see #DIRECTION_DEFAULT_RIGHT_TO_LEFT
-     * @stable ICU 3.8
      */
     public Bidi(char[] text,
             int textStart,
@@ -5396,7 +5314,6 @@ public class Bidi {
      * @throws IllegalArgumentException if lineStart and lineLimit are not in the range
      *         <code>0&lt;=lineStart&lt;lineLimit&lt;=getProcessedLength()</code>,
      *         or if the specified line crosses a paragraph boundary
-     * @stable ICU 3.8
      */
     public Bidi createLineBidi(int lineStart, int lineLimit)
     {
@@ -5412,7 +5329,6 @@ public class Bidi {
      *
      * @throws IllegalStateException if this call is not preceded by a successful
      *         call to <code>setPara</code>
-     * @stable ICU 3.8
      */
     public boolean isMixed()
     {
@@ -5428,7 +5344,6 @@ public class Bidi {
      *
      * @throws IllegalStateException if this call is not preceded by a successful
      *         call to <code>setPara</code>
-     * @stable ICU 3.8
      */
     public boolean isLeftToRight()
     {
@@ -5444,7 +5359,6 @@ public class Bidi {
      *
      * @throws IllegalStateException if this call is not preceded by a successful
      *         call to <code>setPara</code>
-     * @stable ICU 3.8
      */
     public boolean isRightToLeft()
     {
@@ -5458,8 +5372,6 @@ public class Bidi {
      *
      * @throws IllegalStateException if this call is not preceded by a successful
      *         call to <code>setPara</code> or <code>setLine</code>
-     *
-     * @stable ICU 3.8
      */
     public boolean baseIsLeftToRight()
     {
@@ -5473,8 +5385,6 @@ public class Bidi {
      *
      * @throws IllegalStateException if this call is not preceded by a successful
      *         call to <code>setPara</code> or <code>setLine</code>
-     *
-     * @stable ICU 3.8
      */
     public int getBaseLevel()
     {
@@ -5488,8 +5398,6 @@ public class Bidi {
      *
      * @throws IllegalStateException if this call is not preceded by a successful
      *         call to <code>setPara</code> or <code>setLine</code>
-     *
-     * @stable ICU 3.8
      */
     public int getRunCount()
     {
@@ -5532,7 +5440,6 @@ public class Bidi {
      *         call to <code>setPara</code> or <code>setLine</code>
      * @throws IllegalArgumentException if <code>run</code> is not in
      *         the range <code>0&lt;=run&lt;countRuns()</code>
-     * @stable ICU 3.8
      */
     public int getRunLevel(int run)
     {
@@ -5555,7 +5462,6 @@ public class Bidi {
      *         call to <code>setPara</code> or <code>setLine</code>
      * @throws IllegalArgumentException if <code>run</code> is not in
      *         the range <code>0&lt;=run&lt;countRuns()</code>
-     * @stable ICU 3.8
      */
     public int getRunStart(int run)
     {
@@ -5579,7 +5485,6 @@ public class Bidi {
      *         call to <code>setPara</code> or <code>setLine</code>
      * @throws IllegalArgumentException if <code>run</code> is not in
      *         the range <code>0&lt;=run&lt;countRuns()</code>
-     * @stable ICU 3.8
      */
     public int getRunLimit(int run)
     {
@@ -5605,8 +5510,6 @@ public class Bidi {
      * @param limit the limit of the range of characters to test
      *
      * @return true if the range of characters requires bidi analysis
-     *
-     * @stable ICU 3.8
      */
     public static boolean requiresBidi(char[] text,
             int start,
@@ -5641,7 +5544,6 @@ public class Bidi {
      * @param objects the array of objects to be reordered into visual order
      * @param objectStart the start position in the objects array
      * @param count the number of objects to reorder
-     * @stable ICU 3.8
      */
     public static void reorderVisually(byte[] levels,
             int levelStart,
@@ -5715,7 +5617,6 @@ public class Bidi {
      * @see #REMOVE_BIDI_CONTROLS
      * @see #OPTION_STREAMING
      * @see #getProcessedLength
-     * @stable ICU 3.8
      */
     public String writeReordered(int options)
     {
@@ -5762,7 +5663,6 @@ public class Bidi {
      *         <code>src.length()</code>.
      *
      * @throws IllegalArgumentException if <code>src</code> is null.
-     * @stable ICU 3.8
      */
     public static String writeReverse(String src, int options)
     {

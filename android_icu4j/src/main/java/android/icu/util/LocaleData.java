@@ -16,7 +16,6 @@ import android.icu.util.ULocale.Category;
 /**
  * A class for accessing miscellaneous data in the locale bundles
  * @author ram
- * @stable ICU 2.8
  * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
  */
@@ -36,7 +35,6 @@ public final class LocaleData {
      * EXType for {@link #getExemplarSet(int, int)}.
      * Corresponds to the 'main' (aka 'standard') CLDR exemplars in 
      * {@link "http://www.unicode.org/reports/tr35/tr35-general.html#Character_Elements"}.
-     * @stable ICU 3.4
      */
     public static final int ES_STANDARD = 0;
 
@@ -44,7 +42,6 @@ public final class LocaleData {
      * EXType for {@link #getExemplarSet(int, int)}.
      * Corresponds to the 'auxiliary' CLDR exemplars in 
      * {@link "http://www.unicode.org/reports/tr35/tr35-general.html#Character_Elements"}.
-     * @stable ICU 3.4
      */
     public static final int ES_AUXILIARY = 1;
 
@@ -52,7 +49,6 @@ public final class LocaleData {
      * EXType for {@link #getExemplarSet(int, int)}.
      * Corresponds to the 'index' CLDR exemplars in 
      * {@link "http://www.unicode.org/reports/tr35/tr35-general.html#Character_Elements"}.
-     * @stable ICU 4.4
      */
     public static final int ES_INDEX = 2;
 
@@ -70,43 +66,36 @@ public final class LocaleData {
      * Corresponds to the 'punctuation' CLDR exemplars in 
      * {@link "http://www.unicode.org/reports/tr35/tr35-general.html#Character_Elements"}.
      * EXType for {@link #getExemplarSet(int, int)}.
-     * @stable ICU 49
      */
     public static final int ES_PUNCTUATION = 4;
 
     /**
      * Count of EXTypes for {@link #getExemplarSet(int, int)}.
-     * @stable ICU 3.4
      */
     public static final int ES_COUNT = 5;
 
     /**
      * Delimiter type for {@link #getDelimiter(int)}.
-     * @stable ICU 3.4
      */
     public static final int QUOTATION_START = 0;
 
     /**
      * Delimiter type for {@link #getDelimiter(int)}.
-     * @stable ICU 3.4
      */
     public static final int QUOTATION_END = 1;
 
     /**
      * Delimiter type for {@link #getDelimiter(int)}.
-     * @stable ICU 3.4
      */
     public static final int ALT_QUOTATION_START = 2;
 
     /**
      * Delimiter type for {@link #getDelimiter(int)}.
-     * @stable ICU 3.4
      */
     public static final int ALT_QUOTATION_END = 3;
 
     /**
      * Count of delimiter types for {@link #getDelimiter(int)}.
-     * @stable ICU 3.4
      */
     public static final int DELIMITER_COUNT = 4;
 
@@ -130,7 +119,6 @@ public final class LocaleData {
      *                  IGNORE_SPACE bit is always set, regardless of the
      *                  value of 'options'.
      * @return          The set of exemplar characters for the given locale.
-     * @stable ICU 3.0
      */
     public static UnicodeSet getExemplarSet(ULocale locale, int options) {
         return LocaleData.getInstance(locale).getExemplarSet(options, ES_STANDARD);
@@ -152,7 +140,6 @@ public final class LocaleData {
      *                  value of 'options'.
      * @param extype    The type of exemplar character set to retrieve.
      * @return          The set of exemplar characters for the given locale.
-     * @stable ICU 3.0
      */
     public static UnicodeSet getExemplarSet(ULocale locale, int options, int extype) {
         return LocaleData.getInstance(locale).getExemplarSet(options, extype);
@@ -176,7 +163,6 @@ public final class LocaleData {
      *                  then null is returned if {@link #getNoSubstitute()} is true, otherwise the 
      *                  root value is returned (which may be UnicodeSet.EMPTY).
      * @exception       RuntimeException if the extype is invalid.
-     * @stable ICU 3.4
      */
     public UnicodeSet getExemplarSet(int options, int extype) {
         String [] exemplarSetTypes = { 
@@ -213,7 +199,6 @@ public final class LocaleData {
      *
      * @param locale    Locale with thich the locale data object is associated.
      * @return          A locale data object.
-     * @stable ICU 3.4
      */
     public static final LocaleData getInstance(ULocale locale) {
         LocaleData ld = new LocaleData();
@@ -228,7 +213,6 @@ public final class LocaleData {
      *
      * @return          A locale data object.
      * @see Category#FORMAT
-     * @stable ICU 3.4
      */
     public static final LocaleData getInstance() {
         return LocaleData.getInstance(ULocale.getDefault(Category.FORMAT));
@@ -241,7 +225,6 @@ public final class LocaleData {
      *                  methods of this locale data object will return
      *                  an error when no data is available for that method,
      *                  given the locale ID supplied to the constructor.
-     * @stable ICU 3.4
      */
     public void setNoSubstitute(boolean setting) {
         noSubstitute = setting;
@@ -254,7 +237,6 @@ public final class LocaleData {
      *                  methods of this locale data object will return
      *                  an error when no data is available for that method,
      *                  given the locale ID supplied to the constructor.
-     * @stable ICU 3.4
      */
     public boolean getNoSubstitute() {
         return noSubstitute;
@@ -274,7 +256,6 @@ public final class LocaleData {
      *                  the valid choices are QUOTATION_START, QUOTATION_END,
      *                  ALT_QUOTATION_START, or ALT_QUOTATION_END.
      * @return          The desired delimiter string.
-     * @stable ICU 3.4
      */
     public String getDelimiter(int type) {
         ICUResourceBundle delimitersBundle = (ICUResourceBundle) bundle.get("delimiters");
@@ -319,25 +300,21 @@ public final class LocaleData {
 
     /**
      * Enumeration for representing the measurement systems.
-     * @stable ICU 2.8
      */
     public static final class MeasurementSystem{
         /**
          * Measurement system specified by Le Syst&#x00E8;me International d'Unit&#x00E9;s (SI)
          * otherwise known as Metric system. 
-         * @stable ICU 2.8
          */
         public static final MeasurementSystem SI = new MeasurementSystem(0);
 
         /**
          * Measurement system followed in the United States of America. 
-         * @stable ICU 2.8
          */
         public static final MeasurementSystem US = new MeasurementSystem(1);
 
         /**
          * Mix of metric and imperial units used in Great Britain.
-         * @stable ICU 55
          */
         public static final MeasurementSystem UK = new MeasurementSystem(2);
 
@@ -356,7 +333,6 @@ public final class LocaleData {
      *
      * @param locale      The locale for which the measurement system to be retrieved.
      * @return MeasurementSystem the measurement system used in the locale.
-     * @stable ICU 3.0
      */
     public static final MeasurementSystem getMeasurementSystem(ULocale locale){
         UResourceBundle sysBundle = measurementTypeBundleForLocale(locale, MEASUREMENT_SYSTEM);
@@ -379,7 +355,6 @@ public final class LocaleData {
     /**
      * A class that represents the size of letter head 
      * used in the country
-     * @stable ICU 2.8
      */
     public static final class PaperSize{
         private int height;
@@ -392,7 +367,6 @@ public final class LocaleData {
         /** 
          * Retruns the height of the paper
          * @return the height 
-         * @stable ICU 2.8
          */
         public int getHeight(){
             return height;
@@ -400,7 +374,6 @@ public final class LocaleData {
         /**
          * Returns the width of the paper
          * @return the width
-         * @stable ICU 2.8
          */
         public int getWidth(){
             return width;
@@ -412,7 +385,6 @@ public final class LocaleData {
      * <em> milli-meters<em>.
      * @param locale The locale for which the measurement system to be retrieved. 
      * @return The paper size used in the locale
-     * @stable ICU 3.0
      */
     public static final PaperSize getPaperSize(ULocale locale){
         UResourceBundle obj = measurementTypeBundleForLocale(locale, PAPER_SIZE);
@@ -423,7 +395,6 @@ public final class LocaleData {
     /**
      * Returns LocaleDisplayPattern for this locale, e.g., {0}({1})
      * @return locale display pattern as a String.
-     * @stable ICU 4.2
      */ 
     public String getLocaleDisplayPattern() {
         ICUResourceBundle locDispBundle = (ICUResourceBundle) langBundle.get(LOCALE_DISPLAY_PATTERN);
@@ -434,7 +405,6 @@ public final class LocaleData {
     /**
      * Returns LocaleDisplaySeparator for this locale.
      * @return locale display separator as a char.
-     * @stable ICU 4.2
      */ 
     public String getLocaleSeparator() {
         String sub0 = "{0}";
@@ -453,7 +423,6 @@ public final class LocaleData {
 
     /**
      * Returns the current CLDR version
-     * @stable ICU 4.2
      */
     public static VersionInfo getCLDRVersion() {
         // fetching this data should be idempotent.

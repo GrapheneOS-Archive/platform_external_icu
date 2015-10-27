@@ -34,7 +34,6 @@ import android.icu.lang.UScript;
  * Rule Based Break Iterator 
  * This is a port of the C++ class RuleBasedBreakIterator from ICU4C.
  * 
- * @stable ICU 2.0
  * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
  */
@@ -65,7 +64,6 @@ public class RuleBasedBreakIterator extends BreakIterator {
      * @param is an input stream supplying the compiled binary rules.
      * @throws IOException if there is an error while reading the rules from the InputStream.
      * @see    #compileRules(String, OutputStream)
-     * @stable ICU 4.8
      */
     public static RuleBasedBreakIterator getInstanceFromCompiledRules(InputStream is) throws IOException {
         RuleBasedBreakIterator  This = new RuleBasedBreakIterator();
@@ -100,7 +98,6 @@ public class RuleBasedBreakIterator extends BreakIterator {
     /**
      * Construct a RuleBasedBreakIterator from a set of rules supplied as a string.
      * @param rules The break rules to be used.
-     * @stable ICU 2.2
      */
     public RuleBasedBreakIterator(String rules)  {
         this();
@@ -127,7 +124,6 @@ public class RuleBasedBreakIterator extends BreakIterator {
      * Clones this iterator.
      * @return A newly-constructed RuleBasedBreakIterator with the same
      * behavior as this one.
-     * @stable ICU 2.0
      */
     public Object clone()
     {
@@ -141,7 +137,6 @@ public class RuleBasedBreakIterator extends BreakIterator {
     /**
      * Returns true if both BreakIterators are of the same class, have the same
      * rules, and iterate over the same text.
-     * @stable ICU 2.0
      */
     public boolean equals(Object that) {
         if (that == null) {
@@ -175,7 +170,6 @@ public class RuleBasedBreakIterator extends BreakIterator {
     /**
      * Returns the description (rules) used to create this iterator.
      * (In ICU4C, the same function is RuleBasedBreakIterator::getRules())
-     * @stable ICU 2.0
      */
     public String toString() {
         String retStr = "";
@@ -188,7 +182,6 @@ public class RuleBasedBreakIterator extends BreakIterator {
     /**
      * Compute a hashcode for this BreakIterator
      * @return A hash code
-     * @stable ICU 2.0
      */
     public int hashCode()
     {
@@ -315,7 +308,6 @@ public class RuleBasedBreakIterator extends BreakIterator {
      * @param ruleBinary  An output stream to receive the compiled rules.
      * @throws IOException If there is an error writing the output.
      * @see #getInstanceFromCompiledRules(InputStream)
-     * @stable ICU 4.8
      */
     public static void compileRules(String rules, OutputStream ruleBinary) throws IOException {
         RBBIRuleBuilder.compileRules(rules, ruleBinary);
@@ -329,7 +321,6 @@ public class RuleBasedBreakIterator extends BreakIterator {
      * Sets the current iteration position to the beginning of the text.
      * (i.e., the CharacterIterator's starting offset).
      * @return The offset of the beginning of the text.
-     * @stable ICU 2.0
      */
     public int first() {
         fCachedBreakPositions = null;
@@ -348,7 +339,6 @@ public class RuleBasedBreakIterator extends BreakIterator {
      * Sets the current iteration position to the end of the text.
      * (i.e., the CharacterIterator's ending offset).
      * @return The text's past-the-end offset.
-     * @stable ICU 2.0
      */
     public int last() {
         fCachedBreakPositions = null;
@@ -379,7 +369,6 @@ public class RuleBasedBreakIterator extends BreakIterator {
      * (negative is backwards, and positive is forwards).
      * @return The character offset of the boundary position n boundaries away from
      * the current one.
-     * @stable ICU 2.0
      */
     public int next(int n) {
         int result = current();
@@ -397,7 +386,6 @@ public class RuleBasedBreakIterator extends BreakIterator {
     /**
      * Advances the iterator to the next boundary position.
      * @return The position of the first boundary after this one.
-     * @stable ICU 2.0
      */
     public int next() {
         // if we have cached break positions and we're still in the range
@@ -586,7 +574,6 @@ public class RuleBasedBreakIterator extends BreakIterator {
     /**
      * Moves the iterator backwards, to the last boundary preceding this one.
      * @return The position of the last boundary position preceding this one.
-     * @stable ICU 2.0
      */
     public int previous() {
         int result;
@@ -684,7 +671,6 @@ public class RuleBasedBreakIterator extends BreakIterator {
      * the specified position.
      * @param offset The position from which to begin searching for a break position.
      * @return The position of the first break after the current position.
-     * @stable ICU 2.0
      */
     public int following(int offset) {
         CharacterIterator text = getText();
@@ -798,7 +784,6 @@ public class RuleBasedBreakIterator extends BreakIterator {
      * specified position.
      * @param offset The position to begin searching for a break from.
      * @return The position of the last boundary before the starting position.
-     * @stable ICU 2.0
      */
     public int preceding(int offset) {
         CharacterIterator text = getText();
@@ -892,7 +877,6 @@ public class RuleBasedBreakIterator extends BreakIterator {
 
     /**
      * Throw IllegalArgumentException unless begin <= offset < end.
-     * @stable ICU 2.0
      */
     protected static final void checkOffset(int offset, CharacterIterator text) {
         if (offset < text.getBeginIndex() || offset > text.getEndIndex()) {
@@ -907,7 +891,6 @@ public class RuleBasedBreakIterator extends BreakIterator {
      * or after "offset".
      * @param offset the offset to check.
      * @return True if "offset" is a boundary position.
-     * @stable ICU 2.0
      */
     public boolean isBoundary(int offset) {
         checkOffset(offset, fText);
@@ -940,7 +923,6 @@ public class RuleBasedBreakIterator extends BreakIterator {
     /**
      * Returns the current iteration position.
      * @return The current iteration position.
-     * @stable ICU 2.0
      */
     public int current() {
         return (fText != null) ? fText.getIndex() : BreakIterator.DONE;
@@ -1049,7 +1031,6 @@ public class RuleBasedBreakIterator extends BreakIterator {
      * Changing the state of this iterator can have undefined consequences.  If
      * you need to change it, clone it first.
      * @return An iterator over the text being analyzed.
-     * @stable ICU 2.0
      */
     public CharacterIterator getText() {
         return fText;
@@ -1059,7 +1040,6 @@ public class RuleBasedBreakIterator extends BreakIterator {
      * Set the iterator to analyze a new piece of text.  This function resets
      * the current iteration position to the beginning of the text.
      * @param newText An iterator over the text to analyze.
-     * @stable ICU 2.0
      */
     public void setText(CharacterIterator newText) {
         fText = newText;

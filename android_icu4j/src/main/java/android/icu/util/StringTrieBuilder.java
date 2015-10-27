@@ -19,19 +19,16 @@ import java.util.HashMap;
  * <p>This class is not intended for public subclassing.
  *
  * @author Markus W. Scherer
- * @stable ICU 4.8
  * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
  */
 public abstract class StringTrieBuilder {
     /**
      * Build options for BytesTrieBuilder and CharsTrieBuilder.
-     * @stable ICU 4.8
      */
     public enum Option {
         /**
          * Builds a trie quickly.
-         * @stable ICU 4.8
          */
         FAST,
         /**
@@ -42,7 +39,6 @@ public abstract class StringTrieBuilder {
          * <p>This option can be effective when many integer values are the same
          * and string/byte sequence suffixes can be shared.
          * Runtime speed is not expected to improve.
-         * @stable ICU 4.8
          */
         SMALL
     }

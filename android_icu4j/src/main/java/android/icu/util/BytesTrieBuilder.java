@@ -18,7 +18,6 @@ import java.nio.ByteBuffer;
  *
  * <p>This class is not intended for public subclassing.
  *
- * @stable ICU 4.8
  * @author Markus W. Scherer
  * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
@@ -26,7 +25,6 @@ import java.nio.ByteBuffer;
 public final class BytesTrieBuilder extends StringTrieBuilder {
     /**
      * Constructs an empty builder.
-     * @stable ICU 4.8
      */
     public BytesTrieBuilder() {}
 
@@ -53,7 +51,6 @@ public final class BytesTrieBuilder extends StringTrieBuilder {
      * @param length The length of the byte sequence.
      * @param value The value associated with this byte sequence.
      * @return this
-     * @stable ICU 4.8
      */
     public BytesTrieBuilder add(byte[] sequence, int length, int value) {
         addImpl(new BytesAsCharSequence(sequence, length), value);
@@ -73,7 +70,6 @@ public final class BytesTrieBuilder extends StringTrieBuilder {
      * After clear() has been called, a new array will be used.
      * @param buildOption Build option, see StringTrieBuilder.Option.
      * @return A new BytesTrie for the add()ed data.
-     * @stable ICU 4.8
      */
     public BytesTrie build(StringTrieBuilder.Option buildOption) {
         buildBytes(buildOption);
@@ -97,7 +93,6 @@ public final class BytesTrieBuilder extends StringTrieBuilder {
      * @param buildOption Build option, see StringTrieBuilder.Option.
      * @return A ByteBuffer with the byte-serialized BytesTrie for the add()ed data.
      *         The buffer is not read-only and array() can be called.
-     * @stable ICU 4.8
      */
     public ByteBuffer buildByteBuffer(StringTrieBuilder.Option buildOption) {
         buildBytes(buildOption);
@@ -116,7 +111,6 @@ public final class BytesTrieBuilder extends StringTrieBuilder {
      * Removes all (byte sequence, value) pairs.
      * New data can then be add()ed and a new trie can be built.
      * @return this
-     * @stable ICU 4.8
      */
     public BytesTrieBuilder clear() {
         clearImpl();

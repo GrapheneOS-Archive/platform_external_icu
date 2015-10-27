@@ -12,8 +12,6 @@ package android.icu.text;
  * APIs that take Transliterator or StringTransform, but only depend on the transformation should use this interface in the API instead.
  *
  * @author markdavis
- * @stable ICU 4.4
-
  * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
  */
@@ -23,7 +21,6 @@ public interface Transform<S,D> {
      * Transform the input in some way, to be determined by the subclass.
      * @param source to be transformed (eg lowercased)
      * @return result
-     * @stable ICU 4.4
      */
     public D transform(S source);
 }

@@ -10,7 +10,6 @@ package android.icu.text;
 
 /**
  * Thrown by ArabicShaping when there is a shaping error.
- * @stable ICU 2.0
  * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
  */
@@ -21,7 +20,6 @@ public final class ArabicShapingException extends Exception {
     /**
      * Construct the exception with the given message
      * @param message the error message for this exception
-     * @stable ICU 3.8
      */
     public ArabicShapingException(String message) {
         super(message);

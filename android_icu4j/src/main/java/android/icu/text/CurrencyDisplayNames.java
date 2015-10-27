@@ -18,7 +18,6 @@ import android.icu.util.ULocale;
  * 
  * This class is not intended for public subclassing.
  * 
- * @stable ICU 4.4
  * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
  */
@@ -33,7 +32,6 @@ public abstract class CurrencyDisplayNames {
      * 
      * @param locale the locale into which to localize the names
      * @return a CurrencyDisplayNames
-     * @stable ICU 4.4
      */
     public static CurrencyDisplayNames getInstance(ULocale locale) {
         return CurrencyData.provider.getInstance(locale, true);
@@ -49,7 +47,6 @@ public abstract class CurrencyDisplayNames {
      * 
      * @param locale the locale into which to localize the names
      * @return a CurrencyDisplayNames
-     * @stable ICU 54
      */
     public static CurrencyDisplayNames getInstance(Locale locale) {
         return getInstance(locale, true);
@@ -67,7 +64,6 @@ public abstract class CurrencyDisplayNames {
      * @param locale the locale into which to localize the names
      * @param noSubstitute if true, do not return substitute values.
      * @return a CurrencyDisplayNames
-     * @stable ICU 49
      */
     public static CurrencyDisplayNames getInstance(ULocale locale, boolean noSubstitute) {
         return CurrencyData.provider.getInstance(locale, !noSubstitute);
@@ -85,7 +81,6 @@ public abstract class CurrencyDisplayNames {
      * @param locale the JDK locale into which to localize the names
      * @param noSubstitute if true, do not return substitute values.
      * @return a CurrencyDisplayNames
-     * @stable ICU 54
      */
     public static CurrencyDisplayNames getInstance(Locale locale, boolean noSubstitute) {
         return getInstance(ULocale.forLocale(locale), noSubstitute);
@@ -107,7 +102,6 @@ public abstract class CurrencyDisplayNames {
      * Returns the locale used to determine how to translate the currency names.
      * This is not necessarily the same locale passed to {@link #getInstance(ULocale)}.
      * @return the display locale
-     * @stable ICU 49
      */
     public abstract ULocale getULocale();
 
@@ -117,7 +111,6 @@ public abstract class CurrencyDisplayNames {
      * 
      * @param isoCode the three-letter ISO code.
      * @return the display name.
-     * @stable ICU 4.4
      */
     public abstract String getSymbol(String isoCode);
 
@@ -127,7 +120,6 @@ public abstract class CurrencyDisplayNames {
      * 
      * @param isoCode the three-letter ISO code
      * @return the display name
-     * @stable ICU 4.4
      */
     public abstract String getName(String isoCode);
 
@@ -141,7 +133,6 @@ public abstract class CurrencyDisplayNames {
      * @param pluralKey the plural key, for example "one", "other"
      * @return the display name
      * @see android.icu.text.PluralRules
-     * @stable ICU 4.4
      */
     public abstract String getPluralName(String isoCode, String pluralKey);
 
@@ -149,7 +140,6 @@ public abstract class CurrencyDisplayNames {
      * Returns a mapping from localized symbols and currency codes to currency codes.
      * The returned map is unmodifiable.
      * @return the map
-     * @stable ICU 4.4
      */
     public abstract Map<String, String> symbolMap();
 
@@ -157,7 +147,6 @@ public abstract class CurrencyDisplayNames {
      * Returns a mapping from localized names (standard and plural) to currency codes.
      * The returned map is unmodifiable.
      * @return the map
-     * @stable ICU 4.4
      */
     public abstract Map<String, String> nameMap();
 

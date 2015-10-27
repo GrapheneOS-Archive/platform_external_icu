@@ -330,7 +330,6 @@ import android.icu.util.ULocale.Category;
  * @see          SelectFormat
  * @author       Mark Davis
  * @author       Markus Scherer
- * @stable ICU 3.0
  * @hide All android.icu classes are currently hidden
  */
 public class MessageFormat extends UFormat {
@@ -346,7 +345,6 @@ public class MessageFormat extends UFormat {
      * @param pattern the pattern for this message format
      * @exception IllegalArgumentException if the pattern is invalid
      * @see Category#FORMAT
-     * @stable ICU 3.0
      */
     public MessageFormat(String pattern) {
         this.ulocale = ULocale.getDefault(Category.FORMAT);
@@ -361,7 +359,6 @@ public class MessageFormat extends UFormat {
      * @param pattern the pattern for this message format
      * @param locale the locale for this message format
      * @exception IllegalArgumentException if the pattern is invalid
-     * @stable ICU 3.0
      */
     public MessageFormat(String pattern, Locale locale) {
         this(pattern, ULocale.forLocale(locale));
@@ -375,7 +372,6 @@ public class MessageFormat extends UFormat {
      * @param pattern the pattern for this message format
      * @param locale the locale for this message format
      * @exception IllegalArgumentException if the pattern is invalid
-     * @stable ICU 3.2
      */
     public MessageFormat(String pattern, ULocale locale) {
         this.ulocale = locale;
@@ -389,7 +385,6 @@ public class MessageFormat extends UFormat {
      * {@link #formatToCharacterIterator formatToCharacterIterator} methods.
      *
      * @param locale the locale to be used when creating or comparing subformats
-     * @stable ICU 3.0
      */
     public void setLocale(Locale locale) {
         setLocale(ULocale.forLocale(locale));
@@ -402,7 +397,6 @@ public class MessageFormat extends UFormat {
      * {@link #formatToCharacterIterator formatToCharacterIterator} methods.
      *
      * @param locale the locale to be used when creating or comparing subformats
-     * @stable ICU 3.2
      */
     public void setLocale(ULocale locale) {
         /* Save the pattern, and then reapply so that */
@@ -423,7 +417,6 @@ public class MessageFormat extends UFormat {
      * Returns the locale that's used when creating or comparing subformats.
      *
      * @return the locale used when creating or comparing subformats
-     * @stable ICU 3.0
      */
     public Locale getLocale() {
         return ulocale.toLocale();
@@ -433,7 +426,6 @@ public class MessageFormat extends UFormat {
      * {{@literal @}icu} Returns the locale that's used when creating argument Format objects.
      *
      * @return the locale used when creating or comparing subformats
-     * @stable ICU 3.2
      */
     public ULocale getULocale() {
         return ulocale;
@@ -447,7 +439,6 @@ public class MessageFormat extends UFormat {
      *
      * @param pttrn the pattern for this message format
      * @throws IllegalArgumentException if the pattern is invalid
-     * @stable ICU 3.0
      */
     public void applyPattern(String pttrn) {
         try {
@@ -477,7 +468,6 @@ public class MessageFormat extends UFormat {
      * @param aposMode the new ApostropheMode
      * @throws IllegalArgumentException if the pattern is invalid
      * @see MessagePattern.ApostropheMode
-     * @stable ICU 4.8
      */
     public void applyPattern(String pattern, MessagePattern.ApostropheMode aposMode) {
         if (msgPattern == null) {
@@ -491,7 +481,6 @@ public class MessageFormat extends UFormat {
     /**
      * {{@literal @}icu}
      * @return this instance's ApostropheMode.
-     * @stable ICU 4.8
      */
     public MessagePattern.ApostropheMode getApostropheMode() {
         if (msgPattern == null) {
@@ -505,7 +494,6 @@ public class MessageFormat extends UFormat {
      * @return the pattern string
      * @throws IllegalStateException after custom Format objects have been set
      *         via setFormat() or similar APIs
-     * @stable ICU 3.0
      */
     public String toPattern() {
         // Return the original, applied pattern string, or else "".
@@ -586,7 +574,6 @@ public class MessageFormat extends UFormat {
      * @param newFormats the new formats to use
      * @throws NullPointerException if <code>newFormats</code> is null
      * @throws IllegalArgumentException if this formatter uses named arguments
-     * @stable ICU 3.0
      */
     public void setFormatsByArgumentIndex(Format[] newFormats) {
         if (msgPattern.hasNamedArguments()) {
@@ -621,7 +608,6 @@ public class MessageFormat extends UFormat {
      *
      * @param newFormats a map from String to Format providing new
      *        formats for named arguments.
-     * @stable ICU 3.8
      */
     public void setFormatsByArgumentName(Map<String, Format> newFormats) {
         for (int partIndex = 0; (partIndex = nextTopLevelArgStart(partIndex)) >= 0;) {
@@ -653,7 +639,6 @@ public class MessageFormat extends UFormat {
      *
      * @param newFormats the new formats to use
      * @exception NullPointerException if <code>newFormats</code> is null
-     * @stable ICU 3.0
      */
     public void setFormats(Format[] newFormats) {
         int formatNumber = 0;
@@ -685,7 +670,6 @@ public class MessageFormat extends UFormat {
      * @param argumentIndex the argument index for which to use the new format
      * @param newFormat the new format to use
      * @throws IllegalArgumentException if this format uses named arguments
-     * @stable ICU 3.0
      */
     public void setFormatByArgumentIndex(int argumentIndex, Format newFormat) {
         if (msgPattern.hasNamedArguments()) {
@@ -717,7 +701,6 @@ public class MessageFormat extends UFormat {
      *
      * @param argumentName the name of the argument to change
      * @param newFormat the new format to use
-     * @stable ICU 3.8
      */
     public void setFormatByArgumentName(String argumentName, Format newFormat) {
         int argNumber = MessagePattern.validateArgumentName(argumentName);
@@ -747,7 +730,6 @@ public class MessageFormat extends UFormat {
      * @param newFormat the format to use for the specified format element
      * @exception ArrayIndexOutOfBoundsException if formatElementIndex is equal to or
      *            larger than the number of format elements in the pattern string
-     * @stable ICU 3.0
      */
     public void setFormat(int formatElementIndex, Format newFormat) {
         int formatNumber = 0;
@@ -783,7 +765,6 @@ public class MessageFormat extends UFormat {
      *
      * @return the formats used for the arguments within the pattern
      * @throws IllegalArgumentException if this format uses named arguments
-     * @stable ICU 3.0
      */
     public Format[] getFormatsByArgumentIndex() {
         if (msgPattern.hasNamedArguments()) {
@@ -821,7 +802,6 @@ public class MessageFormat extends UFormat {
      *
      * @return the formats used for the format elements in the pattern
      * @throws IllegalArgumentException if this format uses named arguments
-     * @stable ICU 3.0
      */
     public Format[] getFormats() {
         ArrayList<Format> list = new ArrayList<Format>();
@@ -835,7 +815,6 @@ public class MessageFormat extends UFormat {
      * {{@literal @}icu} Returns the top-level argument names. For more details, see
      * {@link #setFormatByArgumentName(String, Format)}.
      * @return a Set of argument names
-     * @stable ICU 4.8
      */
     public Set<String> getArgumentNames() {
         Set<String> result = new HashSet<String>();
@@ -850,7 +829,6 @@ public class MessageFormat extends UFormat {
      * For more details, see {@link #setFormatByArgumentName(String, Format)}.
      * @param argumentName The name of the desired argument.
      * @return the Format associated with the name, or null if there isn't one.
-     * @stable ICU 4.8
      */
     public Format getFormatByArgumentName(String argumentName) {
         if (cachedFormatters == null) {
@@ -936,7 +914,6 @@ public class MessageFormat extends UFormat {
      *         <code>arguments</code> array is not of the type
      *         expected by the corresponding argument or custom Format object.
      * @throws IllegalArgumentException if this format uses named arguments
-     * @stable ICU 3.0
      */
     public final StringBuffer format(Object[] arguments, StringBuffer result,
                                      FieldPosition pos)
@@ -971,7 +948,6 @@ public class MessageFormat extends UFormat {
      *         <code>arguments</code> array is not of the type
      *         expected by the corresponding argument or custom Format object.
      * @return the passed-in StringBuffer
-     * @stable ICU 3.8
      */
     public final StringBuffer format(Map<String, Object> arguments, StringBuffer result,
                                      FieldPosition pos) {
@@ -993,7 +969,6 @@ public class MessageFormat extends UFormat {
      *         <code>arguments</code> array is not of the type
      *         expected by the corresponding argument or custom Format object.
      * @throws IllegalArgumentException if this format uses named arguments
-     * @stable ICU 3.0
      */
     public static String format(String pattern, Object... arguments) {
         MessageFormat temp = new MessageFormat(pattern);
@@ -1011,7 +986,6 @@ public class MessageFormat extends UFormat {
      *         expected by the corresponding argument or custom Format object.
      * @see #format(Map, StringBuffer, FieldPosition)
      * @see #format(String, Object[])
-     * @stable ICU 3.8
      */
     public static String format(String pattern, Map<String, Object> arguments) {
         MessageFormat temp = new MessageFormat(pattern);
@@ -1023,7 +997,6 @@ public class MessageFormat extends UFormat {
      * and false otherwise.  See class description.
      *
      * @return true if named arguments are used.
-     * @stable ICU 3.8
      */
     public boolean usesNamedArguments() {
         return msgPattern.hasNamedArguments();
@@ -1052,7 +1025,6 @@ public class MessageFormat extends UFormat {
      *         expected by the format element(s) that use it
      * @throws IllegalArgumentException if <code>arguments<code> is
      *         an array of Object and this format uses named arguments
-     * @stable ICU 3.0
      */
     public final StringBuffer format(Object arguments, StringBuffer result,
                                      FieldPosition pos)
@@ -1095,7 +1067,6 @@ public class MessageFormat extends UFormat {
      * @throws IllegalArgumentException if a value in the
      *         <code>arguments</code> array is not of the type
      *         expected by the corresponding argument or custom Format object.
-     * @stable ICU 3.8
      */
     public AttributedCharacterIterator formatToCharacterIterator(Object arguments) {
         if (arguments == null) {
@@ -1141,7 +1112,6 @@ public class MessageFormat extends UFormat {
      * If the source is null, return an empty array.
      *
      * @throws IllegalArgumentException if this format uses named arguments
-     * @stable ICU 3.0
      */
     public Object[] parse(String source, ParsePosition pos) {
         if (msgPattern.hasNamedArguments()) {
@@ -1180,7 +1150,6 @@ public class MessageFormat extends UFormat {
      * @param pos the position at which to start parsing.  on return,
      *        contains the result of the parse.
      * @return a Map containing key/value pairs for each parsed argument.
-     * @stable ICU 3.8
      */
     public Map<String, Object> parseToMap(String source, ParsePosition pos)  {
         Map<String, Object> result = new HashMap<String, Object>();
@@ -1204,7 +1173,6 @@ public class MessageFormat extends UFormat {
      * @return An <code>Object</code> array parsed from the string.
      * @exception ParseException if the beginning of the specified string cannot be parsed.
      * @exception IllegalArgumentException if this format uses named arguments
-     * @stable ICU 3.0
      */
     public Object[] parse(String source) throws ParseException {
         ParsePosition pos = new ParsePosition(0);
@@ -1366,7 +1334,6 @@ public class MessageFormat extends UFormat {
      * @throws ParseException if the beginning of the specified string cannot
      *         be parsed.
      * @see #parseToMap(String, ParsePosition)
-     * @stable ICU 3.8
      */
     public Map<String, Object> parseToMap(String source) throws ParseException {
         ParsePosition pos = new ParsePosition(0);
@@ -1404,7 +1371,6 @@ public class MessageFormat extends UFormat {
      *         arguments are used.  This can be queried using <code>usesNamedArguments</code>.
      *         In case of error, returns null.
      * @throws NullPointerException if <code>pos</code> is null.
-     * @stable ICU 3.0
      */
     public Object parseObject(String source, ParsePosition pos) {
         if (!msgPattern.hasNamedArguments()) {
@@ -1416,7 +1382,6 @@ public class MessageFormat extends UFormat {
 
     /**
      * {@inheritDoc}
-     * @stable ICU 3.0
      */
     @Override
     public Object clone() {
@@ -1455,7 +1420,6 @@ public class MessageFormat extends UFormat {
 
     /**
      * {@inheritDoc}
-     * @stable ICU 3.0
      */
     @Override
     public boolean equals(Object obj) {
@@ -1474,7 +1438,6 @@ public class MessageFormat extends UFormat {
 
     /**
      * {@inheritDoc}
-     * @stable ICU 3.0
      */
     @Override
     public int hashCode() {
@@ -1485,8 +1448,6 @@ public class MessageFormat extends UFormat {
      * Defines constants that are used as attribute keys in the
      * <code>AttributedCharacterIterator</code> returned
      * from <code>MessageFormat.formatToCharacterIterator</code>.
-     *
-     * @stable ICU 3.8
      */
     public static class Field extends Format.Field {
 
@@ -1496,8 +1457,6 @@ public class MessageFormat extends UFormat {
          * Create a <code>Field</code> with the specified name.
          *
          * @param name The name of the attribute
-         *
-         * @stable ICU 3.8
          */
         protected Field(String name) {
             super(name);
@@ -1508,8 +1467,6 @@ public class MessageFormat extends UFormat {
          *
          * @return resolved MessageFormat.Field constant
          * @throws InvalidObjectException if the constant could not be resolved.
-         *
-         * @stable ICU 3.8
          */
         protected Object readResolve() throws InvalidObjectException {
             if (this.getClass() != MessageFormat.Field.class) {
@@ -1529,8 +1486,6 @@ public class MessageFormat extends UFormat {
          * The value associated with the key will be an <code>Integer</code>
          * indicating the index in the <code>arguments</code> array of the
          * argument from which the text was generated.
-         *
-         * @stable ICU 3.8
          */
         public static final Field ARGUMENT = new Field("message argument field");
     }
@@ -2478,7 +2433,6 @@ public class MessageFormat extends UFormat {
      *
      * @param pattern the 'apostrophe-friendly' pattern to convert
      * @return the standard equivalent of the original pattern
-     * @stable ICU 3.4
      */
     public static String autoQuoteApostrophe(String pattern) {
         StringBuilder buf = new StringBuilder(pattern.length() * 2);

@@ -19,7 +19,7 @@ import android.icu.util.ULocale;
 public class TimeZoneNamesFactoryImpl extends Factory {
 
     /* (non-Javadoc)
-     * @see com.ibm.icu.text.TimeZoneNames.Factory#getTimeZoneNames(com.ibm.icu.util.ULocale)
+     * @see android.icu.text.TimeZoneNames.Factory#getTimeZoneNames(android.icu.util.ULocale)
      */
     @Override
     public TimeZoneNames getTimeZoneNames(ULocale locale) {

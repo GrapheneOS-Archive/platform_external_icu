@@ -18,7 +18,6 @@ import java.nio.CharBuffer;
  *
  * <p>This class is not intended for public subclassing.
  *
- * @stable ICU 4.8
  * @author Markus W. Scherer
  * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
@@ -26,7 +25,6 @@ import java.nio.CharBuffer;
 public final class CharsTrieBuilder extends StringTrieBuilder {
     /**
      * Constructs an empty builder.
-     * @stable ICU 4.8
      */
     public CharsTrieBuilder() {}
 
@@ -38,7 +36,6 @@ public final class CharsTrieBuilder extends StringTrieBuilder {
      * @param s The input string.
      * @param value The value associated with this char sequence.
      * @return this
-     * @stable ICU 4.8
      */
     public CharsTrieBuilder add(CharSequence s, int value) {
         addImpl(s, value);
@@ -57,7 +54,6 @@ public final class CharsTrieBuilder extends StringTrieBuilder {
      * After clear() has been called, a new array will be used.
      * @param buildOption Build option, see StringTrieBuilder.Option.
      * @return A new CharsTrie for the add()ed data.
-     * @stable ICU 4.8
      */
     public CharsTrie build(StringTrieBuilder.Option buildOption) {
         return new CharsTrie(buildCharSequence(buildOption), 0);
@@ -75,7 +71,6 @@ public final class CharsTrieBuilder extends StringTrieBuilder {
      * After clear() has been called, a new array will be used.
      * @param buildOption Build option, see StringTrieBuilder.Option.
      * @return A CharSequence with the char-serialized CharsTrie for the add()ed data.
-     * @stable ICU 4.8
      */
     public CharSequence buildCharSequence(StringTrieBuilder.Option buildOption) {
         buildChars(buildOption);
@@ -94,7 +89,6 @@ public final class CharsTrieBuilder extends StringTrieBuilder {
      * Removes all (string, value) pairs.
      * New data can then be add()ed and a new trie can be built.
      * @return this
-     * @stable ICU 4.8
      */
     public CharsTrieBuilder clear() {
         clearImpl();

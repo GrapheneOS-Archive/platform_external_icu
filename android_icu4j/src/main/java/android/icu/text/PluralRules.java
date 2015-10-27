@@ -164,8 +164,6 @@ import android.icu.util.ULocale;
  * includes all values. Using 'within' with a range_list consisting entirely of values is the same as using 'in' (it's
  * not an error).
  * </p>
- * 
- * @stable ICU 3.8
  * @hide All android.icu classes are currently hidden
  */
 public class PluralRules implements Serializable {
@@ -310,31 +308,26 @@ public class PluralRules implements Serializable {
 
     /**
      * Common name for the 'zero' plural form.
-     * @stable ICU 3.8
      */
     public static final String KEYWORD_ZERO = "zero";
 
     /**
      * Common name for the 'singular' plural form.
-     * @stable ICU 3.8
      */
     public static final String KEYWORD_ONE = "one";
 
     /**
      * Common name for the 'dual' plural form.
-     * @stable ICU 3.8
      */
     public static final String KEYWORD_TWO = "two";
 
     /**
      * Common name for the 'paucal' or other special plural form.
-     * @stable ICU 3.8
      */
     public static final String KEYWORD_FEW = "few";
 
     /**
      * Common name for the arabic (11 to 99) plural form.
-     * @stable ICU 3.8
      */
     public static final String KEYWORD_MANY = "many";
 
@@ -342,30 +335,25 @@ public class PluralRules implements Serializable {
      * Common name for the default plural form.  This name is returned
      * for values to which no other form in the rule applies.  It
      * can additionally be assigned rules of its own.
-     * @stable ICU 3.8
      */
     public static final String KEYWORD_OTHER = "other";
 
     /**
      * Value returned by {@link #getUniqueKeywordValue} when there is no
      * unique value to return.
-     * @stable ICU 4.8
      */
     public static final double NO_UNIQUE_VALUE = -0.00123456777;
 
     /**
      * Type of plurals and PluralRules.
-     * @stable ICU 50
      */
     public enum PluralType {
         /**
          * Plural rules for cardinal numbers: 1 file vs. 2 files.
-         * @stable ICU 50
          */
         CARDINAL,
         /**
          * Plural rules for ordinal numbers: 1st file, 2nd file, 3rd file, 4th file, etc.
-         * @stable ICU 50
          */
         ORDINAL
     };
@@ -399,7 +387,6 @@ public class PluralRules implements Serializable {
      * @param description the rule description.
      * @throws ParseException if the description cannot be parsed.
      *    The exception index is typically not set, it will be -1.
-     * @stable ICU 3.8
      */
     public static PluralRules parseDescription(String description)
             throws ParseException {
@@ -413,7 +400,6 @@ public class PluralRules implements Serializable {
      * otherwise returns null.
      * @param description the rule description.
      * @return the PluralRules
-     * @stable ICU 3.8
      */
     public static PluralRules createRules(String description) {
         try {
@@ -426,7 +412,6 @@ public class PluralRules implements Serializable {
     /**
      * The default rules that accept any number and return
      * {@link #KEYWORD_OTHER}.
-     * @stable ICU 3.8
      */
     public static final PluralRules DEFAULT = new PluralRules(new RuleList().addRule(DEFAULT_RULE));
 
@@ -2020,7 +2005,6 @@ public class PluralRules implements Serializable {
      *   for the closest parent in the locale hierarchy that has one will
      *   be returned.  The final fallback always returns the default
      *   rules.
-     * @stable ICU 3.8
      */
     public static PluralRules forLocale(ULocale locale) {
         return Factory.getDefaultFactory().forLocale(locale, PluralType.CARDINAL);
@@ -2042,7 +2026,6 @@ public class PluralRules implements Serializable {
      *   for the closest parent in the locale hierarchy that has one will
      *   be returned.  The final fallback always returns the default
      *   rules.
-     * @stable ICU 54
      */
     public static PluralRules forLocale(Locale locale) {
         return forLocale(ULocale.forLocale(locale));
@@ -2064,7 +2047,6 @@ public class PluralRules implements Serializable {
      *   for the closest parent in the locale hierarchy that has one will
      *   be returned.  The final fallback always returns the default
      *   rules.
-     * @stable ICU 50
      */
     public static PluralRules forLocale(ULocale locale, PluralType type) {
         return Factory.getDefaultFactory().forLocale(locale, type);
@@ -2086,7 +2068,6 @@ public class PluralRules implements Serializable {
      *   for the closest parent in the locale hierarchy that has one will
      *   be returned.  The final fallback always returns the default
      *   rules.
-     * @stable ICU 54
      */
     public static PluralRules forLocale(Locale locale, PluralType type) {
         return forLocale(ULocale.forLocale(locale), type);
@@ -2127,7 +2108,6 @@ public class PluralRules implements Serializable {
      *
      * @param number The number for which the rule has to be determined.
      * @return The keyword of the selected rule.
-     * @stable ICU 4.0
      */
     public String select(double number) {
         return rules.select(new FixedDecimal(number));
@@ -2186,7 +2166,6 @@ public class PluralRules implements Serializable {
      * object.  The rule "other" is always present by default.
      *
      * @return The set of keywords.
-     * @stable ICU 3.8
      */
     public Set<String> getKeywords() {
         return keywords;
@@ -2198,7 +2177,6 @@ public class PluralRules implements Serializable {
      *
      * @param keyword the keyword to check for a unique value
      * @return The unique value for the keyword, or NO_UNIQUE_VALUE.
-     * @stable ICU 4.8
      */
     public double getUniqueKeywordValue(String keyword) {
         Collection<Double> values = getAllKeywordValues(keyword);
@@ -2215,7 +2193,6 @@ public class PluralRules implements Serializable {
      * @param keyword the keyword
      * @return the values that trigger this keyword, or null.  The returned collection
      * is immutable. It will be empty if the keyword is not defined.
-     * @stable ICU 4.8
      */
     public Collection<Double> getAllKeywordValues(String keyword) {
         return getAllKeywordValues(keyword, SampleType.INTEGER);
@@ -2252,7 +2229,6 @@ public class PluralRules implements Serializable {
      *
      * @param keyword the keyword to test
      * @return a list of values matching the keyword.
-     * @stable ICU 4.8
      */
     public Collection<Double> getSamples(String keyword) {
         return getSamples(keyword, SampleType.INTEGER);
@@ -2384,7 +2360,6 @@ public class PluralRules implements Serializable {
 
     /**
      * {@inheritDoc}
-     * @stable ICU 3.8
      */
     public String toString() {
         return rules.toString();
@@ -2392,7 +2367,6 @@ public class PluralRules implements Serializable {
 
     /**
      * {@inheritDoc}
-     * @stable ICU 3.8
      */
     public boolean equals(Object rhs) {
         return rhs instanceof PluralRules && equals((PluralRules)rhs);
@@ -2402,7 +2376,6 @@ public class PluralRules implements Serializable {
      * Returns true if rhs is equal to this.
      * @param rhs the PluralRules to compare to.
      * @return true if this and rhs are equal.
-     * @stable ICU 3.8
      */
     // TODO Optimize this
     public boolean equals(PluralRules rhs) {

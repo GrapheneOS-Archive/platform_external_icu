@@ -38,750 +38,607 @@ import android.icu.util.ULocale;
  * to ensure that their script names are stable and match the names of the constants.
  * Script codes like Latf and Aran that are not subject to separate encoding
  * may be added at any time.
- *
- * @stable ICU 2.4
  * @hide All android.icu classes are currently hidden
  */
 public final class UScript {
     /**
      * Invalid code
-     * @stable ICU 2.4
      */
     public static final int INVALID_CODE = -1;
     /**
      * Common
-     * @stable ICU 2.4
      */
     public static final int COMMON       =  0;  /* Zyyy */
     /**
      * Inherited
-     * @stable ICU 2.4
      */
     public static final int INHERITED    =  1;  /* Zinh */ /* "Code for inherited script", for non-spacing combining marks; also Qaai */
     /**
      * Arabic
-     * @stable ICU 2.4
      */
     public static final int ARABIC       =  2;  /* Arab */
     /**
      * Armenian
-     * @stable ICU 2.4
      */
     public static final int ARMENIAN     =  3;  /* Armn */
     /**
      * Bengali
-     * @stable ICU 2.4
      */
     public static final int BENGALI      =  4;  /* Beng */
     /**
      * Bopomofo
-     * @stable ICU 2.4
      */
     public static final int BOPOMOFO     =  5;  /* Bopo */
     /**
      * Cherokee
-     * @stable ICU 2.4
      */
     public static final int CHEROKEE     =  6;  /* Cher */
     /**
      * Coptic
-     * @stable ICU 2.4
      */
     public static final int COPTIC       =  7;  /* Qaac */
     /**
      * Cyrillic
-     * @stable ICU 2.4
      */
     public static final int CYRILLIC     =  8;  /* Cyrl (Cyrs) */
     /**
      * Deseret
-     * @stable ICU 2.4
      */
     public static final int DESERET      =  9;  /* Dsrt */
     /**
      * Devanagari
-     * @stable ICU 2.4
      */
     public static final int DEVANAGARI   = 10;  /* Deva */
     /**
      * Ethiopic
-     * @stable ICU 2.4
      */
     public static final int ETHIOPIC     = 11;  /* Ethi */
     /**
      * Georgian
-     * @stable ICU 2.4
      */
     public static final int GEORGIAN     = 12;  /* Geor (Geon; Geoa) */
     /**
      * Gothic
-     * @stable ICU 2.4
      */
     public static final int GOTHIC       = 13;  /* Goth */
     /**
      * Greek
-     * @stable ICU 2.4
      */
     public static final int GREEK        = 14;  /* Grek */
     /**
      * Gujarati
-     * @stable ICU 2.4
      */
     public static final int GUJARATI     = 15;  /* Gujr */
     /**
      * Gurmukhi
-     * @stable ICU 2.4
      */
     public static final int GURMUKHI     = 16;  /* Guru */
     /**
      * Han
-     * @stable ICU 2.4
      */
     public static final int HAN          = 17;  /* Hani */
     /**
      * Hangul
-     * @stable ICU 2.4
      */
     public static final int HANGUL       = 18;  /* Hang */
     /**
      * Hebrew
-     * @stable ICU 2.4
      */
     public static final int HEBREW       = 19;  /* Hebr */
     /**
      * Hiragana
-     * @stable ICU 2.4
      */
     public static final int HIRAGANA     = 20;  /* Hira */
     /**
      * Kannada
-     * @stable ICU 2.4
      */
     public static final int KANNADA      = 21;  /* Knda */
     /**
      * Katakana
-     * @stable ICU 2.4
      */
     public static final int KATAKANA     = 22;  /* Kana */
     /**
      * Khmer
-     * @stable ICU 2.4
      */
     public static final int KHMER        = 23;  /* Khmr */
     /**
      * Lao
-     * @stable ICU 2.4
      */
     public static final int LAO          = 24;  /* Laoo */
     /**
      * Latin
-     * @stable ICU 2.4
      */
     public static final int LATIN        = 25;  /* Latn (Latf; Latg) */
     /**
      * Malayalam
-     * @stable ICU 2.4
      */
     public static final int MALAYALAM    = 26;  /* Mlym */
     /**
      * Mangolian
-     * @stable ICU 2.4
      */
     public static final int MONGOLIAN    = 27;  /* Mong */
     /**
      * Myammar
-     * @stable ICU 2.4
      */
     public static final int MYANMAR      = 28;  /* Mymr */
     /**
      * Ogham
-     * @stable ICU 2.4
      */
     public static final int OGHAM        = 29;  /* Ogam */
     /**
      * Old Itallic
-     * @stable ICU 2.4
      */
     public static final int OLD_ITALIC   = 30;  /* Ital */
     /**
      * Oriya
-     * @stable ICU 2.4
      */
     public static final int ORIYA        = 31;  /* Orya */
     /**
      * Runic
-     * @stable ICU 2.4
      */
     public static final int RUNIC        = 32;  /* Runr */
     /**
      * Sinhala
-     * @stable ICU 2.4
      */
     public static final int SINHALA      = 33;  /* Sinh */
     /**
      * Syriac
-     * @stable ICU 2.4
      */
     public static final int SYRIAC       = 34;  /* Syrc (Syrj; Syrn; Syre) */
     /**
      * Tamil
-     * @stable ICU 2.4
      */
     public static final int TAMIL        = 35;  /* Taml */
     /**
      * Telugu
-     * @stable ICU 2.4
      */
     public static final int TELUGU       = 36;  /* Telu */
     /**
      * Thana
-     * @stable ICU 2.4
      */
     public static final int THAANA       = 37;  /* Thaa */
     /**
      * Thai
-     * @stable ICU 2.4
      */
     public static final int THAI         = 38;  /* Thai */
     /**
      * Tibetan
-     * @stable ICU 2.4
      */
     public static final int TIBETAN      = 39;  /* Tibt */
     /**
      * Unified Canadian Aboriginal Symbols
-     * @stable ICU 2.6
      */
     public static final int CANADIAN_ABORIGINAL = 40;  /* Cans */
     /**
      * Unified Canadian Aboriginal Symbols (alias)
-     * @stable ICU 2.4
      */
     public static final int UCAS         = CANADIAN_ABORIGINAL;  /* Cans */
     /**
      * Yi syllables
-     * @stable ICU 2.4
      */
     public static final int YI           = 41;  /* Yiii */
     /**
      * Tagalog
-     * @stable ICU 2.4
      */
     public static final int TAGALOG      = 42;  /* Tglg */
     /**
      * Hanunooo
-     * @stable ICU 2.4
      */
     public static final int HANUNOO      = 43;  /* Hano */
     /**
      * Buhid
-     * @stable ICU 2.4
      */
     public static final int BUHID        = 44;  /* Buhd */
     /**
      * Tagbanwa
-     * @stable ICU 2.4
      */
     public static final int TAGBANWA     = 45;  /* Tagb */
     /**
      * Braille
      * Script in Unicode 4 
-     * @stable ICU 2.6 
      * 
      */ 
     public static final int BRAILLE      = 46;  /* Brai */
     /**
      * Cypriot
      * Script in Unicode 4 
-     * @stable ICU 2.6 
      * 
      */  
     public static final int CYPRIOT              = 47;  /* Cprt */ 
     /**
      * Limbu
      * Script in Unicode 4 
-     * @stable ICU 2.6 
      * 
      */       
     public static final int LIMBU                = 48;  /* Limb */ 
     /**
      * Linear B
      * Script in Unicode 4 
-     * @stable ICU 2.6 
      * 
      */ 
     public static final int LINEAR_B     = 49;  /* Linb */ 
     /**
      * Osmanya
      * Script in Unicode 4 
-     * @stable ICU 2.6 
      * 
      */ 
     public static final int OSMANYA              = 50;  /* Osma */ 
     /**
      * Shavian
      * Script in Unicode 4 
-     * @stable ICU 2.6 
      * 
      */ 
     public static final int SHAVIAN              = 51;  /* Shaw */ 
     /**
      * Tai Le
      * Script in Unicode 4 
-     * @stable ICU 2.6 
      * 
      */ 
     public static final int TAI_LE               = 52;  /* Tale */ 
     /**
      * Ugaritic
      * Script in Unicode 4 
-     * @stable ICU 2.6 
      * 
      */ 
     public static final int UGARITIC     = 53;  /* Ugar */ 
     /**
      * Script in Unicode 4.0.1
-     * @stable ICU 3.0
      */
     public static final int KATAKANA_OR_HIRAGANA = 54;  /*Hrkt */
 
     /**
      * Script in Unicode 4.1
-     * @stable ICU 3.4
      */
     public static final int BUGINESE = 55;           /* Bugi */
     /**
      * Script in Unicode 4.1
-     * @stable ICU 3.4
      */
     public static final int GLAGOLITIC = 56;         /* Glag */
     /**
      * Script in Unicode 4.1
-     * @stable ICU 3.4
      */
     public static final int KHAROSHTHI = 57;         /* Khar */
     /**
      * Script in Unicode 4.1
-     * @stable ICU 3.4
      */
     public static final int SYLOTI_NAGRI = 58;       /* Sylo */
     /**
      * Script in Unicode 4.1
-     * @stable ICU 3.4
      */
     public static final int NEW_TAI_LUE = 59;        /* Talu */
     /**
      * Script in Unicode 4.1
-     * @stable ICU 3.4
      */
     public static final int TIFINAGH = 60;           /* Tfng */
     /**
      * Script in Unicode 4.1
-     * @stable ICU 3.4
      */
     public static final int OLD_PERSIAN = 61;        /* Xpeo */
 
 
     /**
      * ISO 15924 script code
-     * @stable ICU 3.6
      */
     public static final int BALINESE                      = 62; /* Bali */
     /**
      * ISO 15924 script code
-     * @stable ICU 3.6
      */
     public static final int BATAK                         = 63; /* Batk */
     /**
      * ISO 15924 script code
-     * @stable ICU 3.6
      */
     public static final int BLISSYMBOLS                   = 64; /* Blis */
     /**
      * ISO 15924 script code
-     * @stable ICU 3.6
      */
     public static final int BRAHMI                        = 65; /* Brah */
     /**
      * ISO 15924 script code
-     * @stable ICU 3.6
      */
     public static final int CHAM                          = 66; /* Cham */
     /**
      * ISO 15924 script code
-     * @stable ICU 3.6
      */
     public static final int CIRTH                         = 67; /* Cirt */
     /**
      * ISO 15924 script code
-     * @stable ICU 3.6
      */
     public static final int OLD_CHURCH_SLAVONIC_CYRILLIC  = 68; /* Cyrs */
     /**
      * ISO 15924 script code
-     * @stable ICU 3.6
      */
     public static final int DEMOTIC_EGYPTIAN              = 69; /* Egyd */
     /**
      * ISO 15924 script code
-     * @stable ICU 3.6
      */
     public static final int HIERATIC_EGYPTIAN             = 70; /* Egyh */
     /**
      * ISO 15924 script code
-     * @stable ICU 3.6
      */
     public static final int EGYPTIAN_HIEROGLYPHS          = 71; /* Egyp */
     /**
      * ISO 15924 script code
-     * @stable ICU 3.6
      */
     public static final int KHUTSURI                      = 72; /* Geok */
     /**
      * ISO 15924 script code
-     * @stable ICU 3.6
      */
     public static final int SIMPLIFIED_HAN                = 73; /* Hans */
     /**
      * ISO 15924 script code
-     * @stable ICU 3.6
      */
     public static final int TRADITIONAL_HAN               = 74; /* Hant */
     /**
      * ISO 15924 script code
-     * @stable ICU 3.6
      */
     public static final int PAHAWH_HMONG                  = 75; /* Hmng */
     /**
      * ISO 15924 script code
-     * @stable ICU 3.6
      */
     public static final int OLD_HUNGARIAN                 = 76; /* Hung */
     /**
      * ISO 15924 script code
-     * @stable ICU 3.6
      */
     public static final int HARAPPAN_INDUS                = 77; /* Inds */
     /**
      * ISO 15924 script code
-     * @stable ICU 3.6
      */
     public static final int JAVANESE                      = 78; /* Java */
     /**
      * ISO 15924 script code
-     * @stable ICU 3.6
      */
     public static final int KAYAH_LI                      = 79; /* Kali */
     /**
      * ISO 15924 script code
-     * @stable ICU 3.6
      */
     public static final int LATIN_FRAKTUR                 = 80; /* Latf */
     /**
      * ISO 15924 script code
-     * @stable ICU 3.6
      */
     public static final int LATIN_GAELIC                  = 81; /* Latg */
     /**
      * ISO 15924 script code
-     * @stable ICU 3.6
      */
     public static final int LEPCHA                        = 82; /* Lepc */
     /**
      * ISO 15924 script code
-     * @stable ICU 3.6
      */
     public static final int LINEAR_A                      = 83; /* Lina */
     /**
      * ISO 15924 script code
-     * @stable ICU 4.6
      */
     public static final int MANDAIC                       = 84; /* Mand */
     /**
      * ISO 15924 script code
-     * @stable ICU 3.6
      */
     public static final int MANDAEAN                      = MANDAIC;
     /**
      * ISO 15924 script code
-     * @stable ICU 3.6
      */
     public static final int MAYAN_HIEROGLYPHS             = 85; /* Maya */
     /**
      * ISO 15924 script code
-     * @stable ICU 4.6
      */
     public static final int MEROITIC_HIEROGLYPHS          = 86; /* Mero */
     /**
      * ISO 15924 script code
-     * @stable ICU 3.6
      */
     public static final int MEROITIC                      = MEROITIC_HIEROGLYPHS;
     /**
      * ISO 15924 script code
-     * @stable ICU 3.6
      */
     public static final int NKO                           = 87; /* Nkoo */
     /**
      * ISO 15924 script code
-     * @stable ICU 3.6
      */
     public static final int ORKHON                        = 88; /* Orkh */
     /**
      * ISO 15924 script code
-     * @stable ICU 3.6
      */
     public static final int OLD_PERMIC                    = 89; /* Perm */
     /**
      * ISO 15924 script code
-     * @stable ICU 3.6
      */
     public static final int PHAGS_PA                      = 90; /* Phag */
     /**
      * ISO 15924 script code
-     * @stable ICU 3.6
      */
     public static final int PHOENICIAN                    = 91; /* Phnx */
     /**
      * ISO 15924 script code
-     * @stable ICU 52
      */
     public static final int MIAO                          = 92; /* Plrd */
     /**
      * ISO 15924 script code
-     * @stable ICU 3.6
      */
     public static final int PHONETIC_POLLARD              = MIAO;
     /**
      * ISO 15924 script code
-     * @stable ICU 3.6
      */
     public static final int RONGORONGO                    = 93; /* Roro */
     /**
      * ISO 15924 script code
-     * @stable ICU 3.6
      */
     public static final int SARATI                        = 94; /* Sara */
     /**
      * ISO 15924 script code
-     * @stable ICU 3.6
      */
     public static final int ESTRANGELO_SYRIAC             = 95; /* Syre */
     /**
      * ISO 15924 script code
-     * @stable ICU 3.6
      */
     public static final int WESTERN_SYRIAC                = 96; /* Syrj */
     /**
      * ISO 15924 script code
-     * @stable ICU 3.6
      */
     public static final int EASTERN_SYRIAC                = 97; /* Syrn */
     /**
      * ISO 15924 script code
-     * @stable ICU 3.6
      */
     public static final int TENGWAR                       = 98; /* Teng */
     /**
      * ISO 15924 script code
-     * @stable ICU 3.6
      */
     public static final int VAI                           = 99; /* Vaii */
     /**
      * ISO 15924 script code
-     * @stable ICU 3.6
      */
     public static final int VISIBLE_SPEECH                = 100;/* Visp */
     /**
      * ISO 15924 script code
-     * @stable ICU 3.6
      */
     public static final int CUNEIFORM                     = 101;/* Xsux */
     /**
      * ISO 15924 script code
-     * @stable ICU 3.6
      */
     public static final int UNWRITTEN_LANGUAGES           = 102;/* Zxxx */
     /**
      * ISO 15924 script code
-     * @stable ICU 3.6
      */
     public static final int UNKNOWN                       = 103;/* Zzzz */ /* Unknown="Code for uncoded script", for unassigned code points */
 
     /**
      * ISO 15924 script code
-     * @stable ICU 3.8
      */ 
     public static final int CARIAN                        = 104;/* Cari */
     /**
      * ISO 15924 script code
-     * @stable ICU 3.8
      */
     public static final int JAPANESE                      = 105;/* Jpan */
     /**
      * ISO 15924 script code
-     * @stable ICU 3.8
      */
     public static final int LANNA                         = 106;/* Lana */
     /**
      * ISO 15924 script code
-     * @stable ICU 3.8
      */
     public static final int LYCIAN                        = 107;/* Lyci */
     /**
      * ISO 15924 script code
-     * @stable ICU 3.8
      */
     public static final int LYDIAN                        = 108;/* Lydi */
     /**
      * ISO 15924 script code
-     * @stable ICU 3.8
      */
     public static final int OL_CHIKI                      = 109;/* Olck */
     /**
      * ISO 15924 script code
-     * @stable ICU 3.8
      */
     public static final int REJANG                        = 110;/* Rjng */
     /**
      * ISO 15924 script code
-     * @stable ICU 3.8
      */
     public static final int SAURASHTRA                    = 111;/* Saur */
     /**
      * ISO 15924 script code for Sutton SignWriting
-     * @stable ICU 3.8
      */
     public static final int SIGN_WRITING                  = 112;/* Sgnw */
     /**
      * ISO 15924 script code
-     * @stable ICU 3.8
      */
     public static final int SUNDANESE                     = 113;/* Sund */
     /**
      * ISO 15924 script code
-     * @stable ICU 3.8
      */
     public static final int MOON                          = 114;/* Moon */
     /**
      * ISO 15924 script code
-     * @stable ICU 3.8
      */
     public static final int MEITEI_MAYEK                  = 115;/* Mtei */
 
     /**
      * ISO 15924 script code
-     * @stable ICU 4.0
      */
     public static final int IMPERIAL_ARAMAIC              = 116;/* Armi */
 
     /**
      * ISO 15924 script code
-     * @stable ICU 4.0
      */
     public static final int AVESTAN                       = 117;/* Avst */
 
     /**
      * ISO 15924 script code
-     * @stable ICU 4.0
      */
     public static final int CHAKMA                        = 118;/* Cakm */
 
     /**
      * ISO 15924 script code
-     * @stable ICU 4.0
      */
     public static final int KOREAN                        = 119;/* Kore */
 
     /**
      * ISO 15924 script code
-     * @stable ICU 4.0
      */
     public static final int KAITHI                        = 120;/* Kthi */
 
     /**
      * ISO 15924 script code
-     * @stable ICU 4.0
      */
     public static final int MANICHAEAN                    = 121;/* Mani */
 
     /**
      * ISO 15924 script code
-     * @stable ICU 4.0
      */
     public static final int INSCRIPTIONAL_PAHLAVI         = 122;/* Phli */
 
     /**
      * ISO 15924 script code
-     * @stable ICU 4.0
      */
     public static final int PSALTER_PAHLAVI               = 123;/* Phlp */
 
     /**
      * ISO 15924 script code
-     * @stable ICU 4.0
      */
     public static final int BOOK_PAHLAVI                  = 124;/* Phlv */
 
     /**
      * ISO 15924 script code
-     * @stable ICU 4.0
      */
     public static final int INSCRIPTIONAL_PARTHIAN        = 125;/* Prti */
 
     /**
      * ISO 15924 script code
-     * @stable ICU 4.0
      */
     public static final int SAMARITAN                     = 126;/* Samr */
 
     /**
      * ISO 15924 script code
-     * @stable ICU 4.0
      */
     public static final int TAI_VIET                      = 127;/* Tavt */
 
     /**
      * ISO 15924 script code
-     * @stable ICU 4.0
      */
     public static final int MATHEMATICAL_NOTATION         = 128;/* Zmth */
 
     /**
      * ISO 15924 script code
-     * @stable ICU 4.0
      */
     public static final int SYMBOLS                       = 129;/* Zsym */
 
     /**
      * ISO 15924 script code
-     * @stable ICU 4.4
      */
     public static final int BAMUM                         = 130;/* Bamu */
     /**
      * ISO 15924 script code
-     * @stable ICU 4.4
      */
     public static final int LISU                          = 131;/* Lisu */
     /**
      * ISO 15924 script code
-     * @stable ICU 4.4
      */
     public static final int NAKHI_GEBA                    = 132;/* Nkgb */
     /**
      * ISO 15924 script code
-     * @stable ICU 4.4
      */
     public static final int OLD_SOUTH_ARABIAN             = 133;/* Sarb */
 
     /**
      * ISO 15924 script code
-     * @stable ICU 4.6
      */
     public static final int BASSA_VAH                     = 134;/* Bass */
     /**
      * ISO 15924 script code
-     * @stable ICU 54
      */
     public static final int DUPLOYAN                      = 135;/* Dupl */
     /**
@@ -793,166 +650,134 @@ public final class UScript {
     public static final int DUPLOYAN_SHORTAND             = DUPLOYAN;
     /**
      * ISO 15924 script code
-     * @stable ICU 4.6
      */
     public static final int ELBASAN                       = 136;/* Elba */
     /**
      * ISO 15924 script code
-     * @stable ICU 4.6
      */
     public static final int GRANTHA                       = 137;/* Gran */
     /**
      * ISO 15924 script code
-     * @stable ICU 4.6
      */
     public static final int KPELLE                        = 138;/* Kpel */
     /**
      * ISO 15924 script code
-     * @stable ICU 4.6
      */
     public static final int LOMA                          = 139;/* Loma */
     /**
      * Mende Kikakui
      * ISO 15924 script code
-     * @stable ICU 4.6
      */
     public static final int MENDE                         = 140;/* Mend */
     /**
      * ISO 15924 script code
-     * @stable ICU 4.6
      */
     public static final int MEROITIC_CURSIVE              = 141;/* Merc */
     /**
      * ISO 15924 script code
-     * @stable ICU 4.6
      */
     public static final int OLD_NORTH_ARABIAN             = 142;/* Narb */
     /**
      * ISO 15924 script code
-     * @stable ICU 4.6
      */
     public static final int NABATAEAN                     = 143;/* Nbat */
     /**
      * ISO 15924 script code
-     * @stable ICU 4.6
      */
     public static final int PALMYRENE                     = 144;/* Palm */
     /**
      * ISO 15924 script code
-     * @stable ICU 54
      */
     public static final int KHUDAWADI                     = 145;/* Sind */
     /**
      * ISO 15924 script code
-     * @stable ICU 4.6
      */
     public static final int SINDHI = KHUDAWADI;
     /**
      * ISO 15924 script code
-     * @stable ICU 4.6
      */
     public static final int WARANG_CITI                   = 146;/* Wara */
 
     /**
      * ISO 15924 script code
-     * @stable ICU 4.8
      */
     public static final int AFAKA = 147;/* Afak */
     /**
      * ISO 15924 script code
-     * @stable ICU 4.8
      */
     public static final int JURCHEN = 148;/* Jurc */
     /**
      * ISO 15924 script code
-     * @stable ICU 4.8
      */
     public static final int MRO = 149;/* Mroo */
     /**
      * ISO 15924 script code
-     * @stable ICU 4.8
      */
     public static final int NUSHU = 150;/* Nshu */
     /**
      * ISO 15924 script code
-     * @stable ICU 4.8
      */
     public static final int SHARADA = 151;/* Shrd */
     /**
      * ISO 15924 script code
-     * @stable ICU 4.8
      */
     public static final int SORA_SOMPENG = 152;/* Sora */
     /**
      * ISO 15924 script code
-     * @stable ICU 4.8
      */
     public static final int TAKRI = 153;/* Takr */
     /**
      * ISO 15924 script code
-     * @stable ICU 4.8
      */
     public static final int TANGUT = 154;/* Tang */
     /**
      * ISO 15924 script code
-     * @stable ICU 4.8
      */
     public static final int WOLEAI = 155;/* Wole */
 
     /**
      * ISO 15924 script code
-     * @stable ICU 49
      */
     public static final int ANATOLIAN_HIEROGLYPHS = 156;/* Hluw */
     /**
      * ISO 15924 script code
-     * @stable ICU 49
      */
     public static final int KHOJKI = 157;/* Khoj */
     /**
      * ISO 15924 script code
-     * @stable ICU 49
      */
     public static final int TIRHUTA = 158;/* Tirh */
     /**
      * ISO 15924 script code
-     * @stable ICU 52
      */
     public static final int CAUCASIAN_ALBANIAN = 159; /* Aghb */
     /**
      * ISO 15924 script code
-     * @stable ICU 52
      */
     public static final int MAHAJANI = 160; /* Mahj */
 
     /**
      * ISO 15924 script code
-     * @stable ICU 54
      */
     public static final int AHOM = 161; /* Ahom */
     /**
      * ISO 15924 script code
-     * @stable ICU 54
      */
     public static final int HATRAN = 162; /* Hatr */
     /**
      * ISO 15924 script code
-     * @stable ICU 54
      */
     public static final int MODI = 163; /* Modi */
     /**
      * ISO 15924 script code
-     * @stable ICU 54
      */
     public static final int MULTANI = 164; /* Mult */
     /**
      * ISO 15924 script code
-     * @stable ICU 54
      */
     public static final int PAU_CIN_HAU = 165; /* Pauc */
     /**
      * ISO 15924 script code
-     * @stable ICU 54
      */
     public static final int SIDDHAM = 166; /* Sidd */
 
@@ -964,8 +789,6 @@ public final class UScript {
      * There are constants for ISO 15924 script codes assigned on or before 2013-10-12.
      * There are no constants for private use codes from Qaaa - Qabx
      * except as used in the UCD.
-     *
-     * @stable ICU 2.4
      */
     public static final int CODE_LIMIT   = 167;
 
@@ -1015,7 +838,6 @@ public final class UScript {
      * Returns LATIN given "en" OR "en_US"
      * @param locale Locale
      * @return The script codes array. null if the the code cannot be found.
-     * @stable ICU 2.4
      */
     public static final int[] getCode(Locale locale){
         return findCodeFromLocale(ULocale.forLocale(locale));
@@ -1026,7 +848,6 @@ public final class UScript {
      * Returns LATIN given "en" OR "en_US"
      * @param locale ULocale
      * @return The script codes array. null if the the code cannot be found.
-     * @stable ICU 3.0
      */
     public static final int[] getCode(ULocale locale){
         return findCodeFromLocale(locale);
@@ -1042,7 +863,6 @@ public final class UScript {
      *
      * @param nameOrAbbrOrLocale name of the script or ISO 15924 code or locale
      * @return The script codes array. null if the the code cannot be found.
-     * @stable ICU 2.4
      */
     public static final int[] getCode(String nameOrAbbrOrLocale) {
         boolean triedCode = false;
@@ -1074,7 +894,6 @@ public final class UScript {
      *
      * @param nameOrAbbr name of the script or ISO 15924 code
      * @return The script code value, or INVALID_CODE if the code cannot be found.
-     * @stable ICU 54
      */
     public static final int getCodeFromName(String nameOrAbbr) {
         int propNum = UCharacter.getPropertyValueEnumNoThrow(UProperty.SCRIPT, nameOrAbbr);
@@ -1086,7 +905,6 @@ public final class UScript {
      * Returns UScript.MALAYAM given 0x0D02
      * @param codepoint UChar32 codepoint
      * @return The script code
-     * @stable ICU 2.4
      */
     public static final int getScript(int codepoint){
         if (codepoint >= UCharacter.MIN_VALUE & codepoint <= UCharacter.MAX_VALUE) {
@@ -1118,7 +936,6 @@ public final class UScript {
      * @param c code point
      * @param sc script code
      * @return true if sc is in Script_Extensions(c)
-     * @stable ICU 49
      */
     public static final boolean hasScript(int c, int sc) {
         int scriptX=UCharacterProperty.INSTANCE.getAdditional(c, 0)&UCharacterProperty.SCRIPT_X_MASK;
@@ -1168,7 +985,6 @@ public final class UScript {
      *            corresponding to c's Script_Extensions
      * @return negative number of script codes in c's Script_Extensions,
      *         or the non-negative single Script value
-     * @stable ICU 49
      */
     public static final int getScriptExtensions(int c, BitSet set) {
         set.clear();
@@ -1202,7 +1018,6 @@ public final class UScript {
      * @param scriptCode int script code
      * @return long script name as given in PropertyValueAliases.txt, or the 4-letter code
      * @throws IllegalArgumentException if the script code is not valid
-     * @stable ICU 2.4
      */
     public static final String getName(int scriptCode){
         return UCharacter.getPropertyValueName(UProperty.SCRIPT,
@@ -1218,7 +1033,6 @@ public final class UScript {
      * @param scriptCode int script code
      * @return short script name (4-letter code)
      * @throws IllegalArgumentException if the script code is not valid
-     * @stable ICU 2.4
      */
     public static final String getShortName(int scriptCode){
         return UCharacter.getPropertyValueName(UProperty.SCRIPT,
@@ -1433,38 +1247,30 @@ public final class UScript {
      * Script usage constants.
      * See UAX #31 Unicode Identifier and Pattern Syntax.
      * http://www.unicode.org/reports/tr31/#Table_Candidate_Characters_for_Exclusion_from_Identifiers
-     *
-     * @stable ICU 51
      */
     public enum ScriptUsage {
         /**
          * Not encoded in Unicode.
-         * @stable ICU 51
          */
         NOT_ENCODED,
         /**
          * Unknown script usage.
-         * @stable ICU 51
          */
         UNKNOWN,
         /**
          * Candidate for Exclusion from Identifiers.
-         * @stable ICU 51
          */
         EXCLUDED,
         /**
          * Limited Use script.
-         * @stable ICU 51
          */
         LIMITED_USE,
         /**
          * Aspirational Use script.
-         * @stable ICU 51
          */
         ASPIRATIONAL,
         /**
          * Recommended script.
-         * @stable ICU 51
          */
         RECOMMENDED
     }
@@ -1477,7 +1283,6 @@ public final class UScript {
      *
      * @param script script code
      * @return the sample character string
-     * @stable ICU 51
      */
     public static final String getSampleString(int script) {
         int sampleChar = ScriptMetadata.getScriptProps(script) & 0x1fffff;
@@ -1494,7 +1299,6 @@ public final class UScript {
      * @param script script code
      * @return script usage
      * @see ScriptUsage
-     * @stable ICU 51
      */
     public static final ScriptUsage getUsage(int script) {
         return usageValues[(ScriptMetadata.getScriptProps(script) >> 21) & 7];
@@ -1506,7 +1310,6 @@ public final class UScript {
      *
      * @param script script code
      * @return true if the script is right-to-left
-     * @stable ICU 51
      */
     public static final boolean isRightToLeft(int script) {
         return (ScriptMetadata.getScriptProps(script) & ScriptMetadata.RTL) != 0;
@@ -1519,7 +1322,6 @@ public final class UScript {
      *
      * @param script script code
      * @return true if the script allows line breaks between letters
-     * @stable ICU 51
      */
     public static final boolean breaksBetweenLetters(int script) {
         return (ScriptMetadata.getScriptProps(script) & ScriptMetadata.LB_LETTERS) != 0;
@@ -1531,7 +1333,6 @@ public final class UScript {
      *
      * @param script script code
      * @return true if the script is cased
-     * @stable ICU 51
      */
     public static final boolean isCased(int script) {
         return (ScriptMetadata.getScriptProps(script) & ScriptMetadata.CASED) != 0;

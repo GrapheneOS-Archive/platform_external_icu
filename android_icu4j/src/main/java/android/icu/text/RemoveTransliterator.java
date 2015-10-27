@@ -52,7 +52,7 @@ class RemoveTransliterator extends Transliterator {
     }
 
     /* (non-Javadoc)
-     * @see com.ibm.icu.text.Transliterator#addSourceTargetSet(boolean, com.ibm.icu.text.UnicodeSet, com.ibm.icu.text.UnicodeSet)
+     * @see android.icu.text.Transliterator#addSourceTargetSet(boolean, android.icu.text.UnicodeSet, android.icu.text.UnicodeSet)
      */
     @Override
     public void addSourceTargetSet(UnicodeSet inputFilter, UnicodeSet sourceSet, UnicodeSet targetSet) {

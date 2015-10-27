@@ -74,7 +74,6 @@ import android.icu.util.ICUCloneNotSupportedException;
  * <p>
  * This class is not intended for public subclassing.
  *
- * @stable ICU 4.8
  * @author Markus Scherer
  * @hide All android.icu classes are currently hidden
  */
@@ -112,7 +111,6 @@ public final class MessagePattern implements Cloneable, Freezable<MessagePattern
      *     <td>I don''t know</td>
      *   </tr>
      * </table>
-     * @stable ICU 4.8
      */
     public enum ApostropheMode {
         /**
@@ -124,7 +122,6 @@ public final class MessagePattern implements Cloneable, Freezable<MessagePattern
          * or a pound symbol # if inside a plural format.
          * <p>
          * This is the default behavior starting with ICU 4.8.
-         * @stable ICU 4.8
          */
         DOUBLE_OPTIONAL,
         /**
@@ -133,14 +130,12 @@ public final class MessagePattern implements Cloneable, Freezable<MessagePattern
          * A single apostrophe always starts quoted literal text.
          * <p>
          * This is the behavior of ICU 4.6 and earlier, and of the JDK.
-         * @stable ICU 4.8
          */
         DOUBLE_REQUIRED
     }
 
     /**
      * Constructs an empty MessagePattern with default ApostropheMode.
-     * @stable ICU 4.8
      */
     public MessagePattern() {
         aposMode=defaultAposMode;
@@ -149,7 +144,6 @@ public final class MessagePattern implements Cloneable, Freezable<MessagePattern
     /**
      * Constructs an empty MessagePattern.
      * @param mode Explicit ApostropheMode.
-     * @stable ICU 4.8
      */
     public MessagePattern(ApostropheMode mode) {
         aposMode=mode;
@@ -163,7 +157,6 @@ public final class MessagePattern implements Cloneable, Freezable<MessagePattern
      * @throws IndexOutOfBoundsException if certain limits are exceeded
      *         (e.g., argument number too high, argument name too long, etc.)
      * @throws NumberFormatException if a number could not be parsed
-     * @stable ICU 4.8
      */
     public MessagePattern(String pattern) {
         aposMode=defaultAposMode;
@@ -178,7 +171,6 @@ public final class MessagePattern implements Cloneable, Freezable<MessagePattern
      * @throws IndexOutOfBoundsException if certain limits are exceeded
      *         (e.g., argument number too high, argument name too long, etc.)
      * @throws NumberFormatException if a number could not be parsed
-     * @stable ICU 4.8
      */
     public MessagePattern parse(String pattern) {
         preParse(pattern);
@@ -195,7 +187,6 @@ public final class MessagePattern implements Cloneable, Freezable<MessagePattern
      * @throws IndexOutOfBoundsException if certain limits are exceeded
      *         (e.g., argument number too high, argument name too long, etc.)
      * @throws NumberFormatException if a number could not be parsed
-     * @stable ICU 4.8
      */
     public MessagePattern parseChoiceStyle(String pattern) {
         preParse(pattern);
@@ -212,7 +203,6 @@ public final class MessagePattern implements Cloneable, Freezable<MessagePattern
      * @throws IndexOutOfBoundsException if certain limits are exceeded
      *         (e.g., argument number too high, argument name too long, etc.)
      * @throws NumberFormatException if a number could not be parsed
-     * @stable ICU 4.8
      */
     public MessagePattern parsePluralStyle(String pattern) {
         preParse(pattern);
@@ -229,7 +219,6 @@ public final class MessagePattern implements Cloneable, Freezable<MessagePattern
      * @throws IndexOutOfBoundsException if certain limits are exceeded
      *         (e.g., argument number too high, argument name too long, etc.)
      * @throws NumberFormatException if a number could not be parsed
-     * @stable ICU 4.8
      */
     public MessagePattern parseSelectStyle(String pattern) {
         preParse(pattern);
@@ -241,7 +230,6 @@ public final class MessagePattern implements Cloneable, Freezable<MessagePattern
     /**
      * Clears this MessagePattern.
      * countParts() will return 0.
-     * @stable ICU 4.8
      */
     public void clear() {
         // Mostly the same as preParse().
@@ -262,7 +250,6 @@ public final class MessagePattern implements Cloneable, Freezable<MessagePattern
      * Clears this MessagePattern and sets the ApostropheMode.
      * countParts() will return 0.
      * @param mode The new ApostropheMode.
-     * @stable ICU 4.8
      */
     public void clearPatternAndSetApostropheMode(ApostropheMode mode) {
         clear();
@@ -272,7 +259,6 @@ public final class MessagePattern implements Cloneable, Freezable<MessagePattern
     /**
      * @param other another object to compare with.
      * @return true if this object is equivalent to the other one.
-     * @stable ICU 4.8
      */
     @Override
     public boolean equals(Object other) {
@@ -292,7 +278,6 @@ public final class MessagePattern implements Cloneable, Freezable<MessagePattern
 
     /**
      * {@inheritDoc}
-     * @stable ICU 4.8
      */
     @Override
     public int hashCode() {
@@ -301,7 +286,6 @@ public final class MessagePattern implements Cloneable, Freezable<MessagePattern
 
     /**
      * @return this instance's ApostropheMode.
-     * @stable ICU 4.8
      */
     public ApostropheMode getApostropheMode() {
         return aposMode;
@@ -318,7 +302,6 @@ public final class MessagePattern implements Cloneable, Freezable<MessagePattern
 
     /**
      * @return the parsed pattern string (null if none was parsed).
-     * @stable ICU 4.8
      */
     public String getPatternString() {
         return msg;
@@ -327,7 +310,6 @@ public final class MessagePattern implements Cloneable, Freezable<MessagePattern
     /**
      * Does the parsed pattern have named arguments like {first_name}?
      * @return true if the parsed pattern has at least one named argument.
-     * @stable ICU 4.8
      */
     public boolean hasNamedArguments() {
         return hasArgNames;
@@ -336,7 +318,6 @@ public final class MessagePattern implements Cloneable, Freezable<MessagePattern
     /**
      * Does the parsed pattern have numbered arguments like {2}?
      * @return true if the parsed pattern has at least one numbered argument.
-     * @stable ICU 4.8
      */
     public boolean hasNumberedArguments() {
         return hasArgNumbers;
@@ -344,7 +325,6 @@ public final class MessagePattern implements Cloneable, Freezable<MessagePattern
 
     /**
      * {@inheritDoc}
-     * @stable ICU 4.8
      */
     @Override
     public String toString() {
@@ -360,7 +340,6 @@ public final class MessagePattern implements Cloneable, Freezable<MessagePattern
      * @return &gt;=0 if the name is a valid number,
      *         ARG_NAME_NOT_NUMBER (-1) if it is a "pattern identifier" but not all ASCII digits,
      *         ARG_NAME_NOT_VALID (-2) if it is neither.
-     * @stable ICU 4.8
      */
     public static int validateArgumentName(String name) {
         if(!PatternProps.isIdentifier(name)) {
@@ -372,7 +351,6 @@ public final class MessagePattern implements Cloneable, Freezable<MessagePattern
     /**
      * Return value from {@link #validateArgumentName(String)} for when
      * the string is a valid "pattern identifier" but not a number.
-     * @stable ICU 4.8
      */
     public static final int ARG_NAME_NOT_NUMBER=-1;
 
@@ -381,7 +359,6 @@ public final class MessagePattern implements Cloneable, Freezable<MessagePattern
      * the string is invalid.
      * It might not be a valid "pattern identifier",
      * or it have only ASCII digits but there is a leading zero or the number is too large.
-     * @stable ICU 4.8
      */
     public static final int ARG_NAME_NOT_VALID=-2;
 
@@ -393,7 +370,6 @@ public final class MessagePattern implements Cloneable, Freezable<MessagePattern
      * into "I don''t '{know}' {gender,select,female{h''er}other{h''im}}."
      * @return the deep-auto-quoted version of the parsed pattern string.
      * @see MessageFormat#autoQuoteApostrophe(String)
-     * @stable ICU 4.8
      */
     public String autoQuoteApostropheDeep() {
         if(!needsAutoQuoting) {
@@ -422,7 +398,6 @@ public final class MessagePattern implements Cloneable, Freezable<MessagePattern
      * Returns the number of "parts" created by parsing the pattern string.
      * Returns 0 if no pattern has been parsed or clear() was called.
      * @return the number of pattern parts.
-     * @stable ICU 4.8
      */
     public int countParts() {
         return parts.size();
@@ -433,7 +408,6 @@ public final class MessagePattern implements Cloneable, Freezable<MessagePattern
      * @param i The index of the Part data. (0..countParts()-1)
      * @return the i-th pattern "part".
      * @throws IndexOutOfBoundsException if i is outside the (0..countParts()-1) range
-     * @stable ICU 4.8
      */
     public Part getPart(int i) {
         return parts.get(i);
@@ -445,7 +419,6 @@ public final class MessagePattern implements Cloneable, Freezable<MessagePattern
      * @param i The index of the Part data. (0..countParts()-1)
      * @return The Part.Type of the i-th Part.
      * @throws IndexOutOfBoundsException if i is outside the (0..countParts()-1) range
-     * @stable ICU 4.8
      */
     public Part.Type getPartType(int i) {
         return parts.get(i).type;
@@ -457,7 +430,6 @@ public final class MessagePattern implements Cloneable, Freezable<MessagePattern
      * @param partIndex The index of the Part data. (0..countParts()-1)
      * @return The pattern index of this Part.
      * @throws IndexOutOfBoundsException if partIndex is outside the (0..countParts()-1) range
-     * @stable ICU 4.8
      */
     public int getPatternIndex(int partIndex) {
         return parts.get(partIndex).index;
@@ -468,7 +440,6 @@ public final class MessagePattern implements Cloneable, Freezable<MessagePattern
      * Convenience method for getPatternString().substring(part.getIndex(), part.getLimit()).
      * @param part a part of this MessagePattern.
      * @return the substring associated with part.
-     * @stable ICU 4.8
      */
     public String getSubstring(Part part) {
         int index=part.index;
@@ -480,7 +451,6 @@ public final class MessagePattern implements Cloneable, Freezable<MessagePattern
      * @param part a part of this MessagePattern.
      * @param s a string.
      * @return true if getSubstring(part).equals(s).
-     * @stable ICU 4.8
      */
     public boolean partSubstringMatches(Part part, String s) {
         return msg.regionMatches(part.index, s, 0, part.length);
@@ -490,7 +460,6 @@ public final class MessagePattern implements Cloneable, Freezable<MessagePattern
      * Returns the numeric value associated with an ARG_INT or ARG_DOUBLE.
      * @param part a part of this MessagePattern.
      * @return the part's numeric value, or NO_NUMERIC_VALUE if this is not a numeric part.
-     * @stable ICU 4.8
      */
     public double getNumericValue(Part part) {
         Part.Type type=part.type;
@@ -507,7 +476,6 @@ public final class MessagePattern implements Cloneable, Freezable<MessagePattern
      * Special value that is returned by getNumericValue(Part) when no
      * numeric value is defined for a part.
      * @see #getNumericValue
-     * @stable ICU 4.8
      */
     public static final double NO_NUMERIC_VALUE=-123456789;
 
@@ -516,7 +484,6 @@ public final class MessagePattern implements Cloneable, Freezable<MessagePattern
      * @param pluralStart the index of the first PluralFormat argument style part. (0..countParts()-1)
      * @return the "offset:" value.
      * @throws IndexOutOfBoundsException if pluralStart is outside the (0..countParts()-1) range
-     * @stable ICU 4.8
      */
     public double getPluralOffset(int pluralStart) {
         Part part=parts.get(pluralStart);
@@ -534,7 +501,6 @@ public final class MessagePattern implements Cloneable, Freezable<MessagePattern
      * @return The first i>start where getPart(i).getType()==ARG|MSG_LIMIT at the same nesting level,
      *         or start itself if getPartType(msgStart)!=ARG|MSG_START.
      * @throws IndexOutOfBoundsException if start is outside the (0..countParts()-1) range
-     * @stable ICU 4.8
      */
     public int getLimitPartIndex(int start) {
         int limit=parts.get(start).limitPartIndex;
@@ -549,7 +515,6 @@ public final class MessagePattern implements Cloneable, Freezable<MessagePattern
      * There is a part for the start and end of a message or argument,
      * for quoting and escaping of and with ASCII apostrophes,
      * and for syntax elements of "complex" arguments.
-     * @stable ICU 4.8
      */
     public static final class Part {
         private Part(Type t, int i, int l, int v) {
@@ -562,7 +527,6 @@ public final class MessagePattern implements Cloneable, Freezable<MessagePattern
         /**
          * Returns the type of this part.
          * @return the part type.
-         * @stable ICU 4.8
          */
         public Type getType() {
             return type;
@@ -571,7 +535,6 @@ public final class MessagePattern implements Cloneable, Freezable<MessagePattern
         /**
          * Returns the pattern string index associated with this Part.
          * @return this part's pattern string index.
-         * @stable ICU 4.8
          */
         public int getIndex() {
             return index;
@@ -581,7 +544,6 @@ public final class MessagePattern implements Cloneable, Freezable<MessagePattern
          * Returns the length of the pattern substring associated with this Part.
          * This is 0 for some parts.
          * @return this part's pattern substring length.
-         * @stable ICU 4.8
          */
         public int getLength() {
             return length;
@@ -591,7 +553,6 @@ public final class MessagePattern implements Cloneable, Freezable<MessagePattern
          * Returns the pattern string limit (exclusive-end) index associated with this Part.
          * Convenience method for getIndex()+getLength().
          * @return this part's pattern string limit index, same as getIndex()+getLength().
-         * @stable ICU 4.8
          */
         public int getLimit() {
             return index+length;
@@ -601,7 +562,6 @@ public final class MessagePattern implements Cloneable, Freezable<MessagePattern
          * Returns a value associated with this part.
          * See the documentation of each part type for details.
          * @return the part value.
-         * @stable ICU 4.8
          */
         public int getValue() {
             return value;
@@ -611,7 +571,6 @@ public final class MessagePattern implements Cloneable, Freezable<MessagePattern
          * Returns the argument type if this part is of type ARG_START or ARG_LIMIT,
          * otherwise ArgType.NONE.
          * @return the argument type for this part.
-         * @stable ICU 4.8
          */
         public ArgType getArgType() {
             Type type=getType();
@@ -624,7 +583,6 @@ public final class MessagePattern implements Cloneable, Freezable<MessagePattern
 
         /**
          * Part type constants.
-         * @stable ICU 4.8
          */
         public enum Type {
             /**
@@ -634,7 +592,6 @@ public final class MessagePattern implements Cloneable, Freezable<MessagePattern
              * The value indicates the nesting level, starting with 0 for the main message.
              * <p>
              * There is always a later MSG_LIMIT part.
-             * @stable ICU 4.8
              */
             MSG_START,
             /**
@@ -643,7 +600,6 @@ public final class MessagePattern implements Cloneable, Freezable<MessagePattern
              * the last sub-message of a choice argument,
              * otherwise 1 for the '}' or (in a choice argument style) the '|'.
              * The value indicates the nesting level, starting with 0 for the main message.
-             * @stable ICU 4.8
              */
             MSG_LIMIT,
             /**
@@ -651,14 +607,12 @@ public final class MessagePattern implements Cloneable, Freezable<MessagePattern
              * For example, an apostrophe that begins or ends quoted text
              * would be indicated with such a part.
              * The value is undefined and currently always 0.
-             * @stable ICU 4.8
              */
             SKIP_SYNTAX,
             /**
              * Indicates that a syntax character needs to be inserted for auto-quoting.
              * The length is 0.
              * The value is the character code of the insertion character. (U+0027=APOSTROPHE)
-             * @stable ICU 4.8
              */
             INSERT_CHAR,
             /**
@@ -666,7 +620,6 @@ public final class MessagePattern implements Cloneable, Freezable<MessagePattern
              * When formatting, replace this part's substring with the
              * (value-offset) for the plural argument value.
              * The value is undefined and currently always 0.
-             * @stable ICU 4.8
              */
             REPLACE_NUMBER,
             /**
@@ -677,50 +630,42 @@ public final class MessagePattern implements Cloneable, Freezable<MessagePattern
              * This part is followed by either an ARG_NUMBER or ARG_NAME,
              * followed by optional argument sub-parts (see ArgType constants)
              * and finally an ARG_LIMIT part.
-             * @stable ICU 4.8
              */
             ARG_START,
             /**
              * End of an argument.
              * The length is 1 for the '}'.
              * The value is the ordinal value of the ArgType. Use getArgType().
-             * @stable ICU 4.8
              */
             ARG_LIMIT,
             /**
              * The argument number, provided by the value.
-             * @stable ICU 4.8
              */
             ARG_NUMBER,
             /**
              * The argument name.
              * The value is undefined and currently always 0.
-             * @stable ICU 4.8
              */
             ARG_NAME,
             /**
              * The argument type.
              * The value is undefined and currently always 0.
-             * @stable ICU 4.8
              */
             ARG_TYPE,
             /**
              * The argument style text.
              * The value is undefined and currently always 0.
-             * @stable ICU 4.8
              */
             ARG_STYLE,
             /**
              * A selector substring in a "complex" argument style.
              * The value is undefined and currently always 0.
-             * @stable ICU 4.8
              */
             ARG_SELECTOR,
             /**
              * An integer value, for example the offset or an explicit selector value
              * in a PluralFormat style.
              * The part value is the integer value.
-             * @stable ICU 4.8
              */
             ARG_INT,
             /**
@@ -728,7 +673,6 @@ public final class MessagePattern implements Cloneable, Freezable<MessagePattern
              * in a PluralFormat style.
              * The part value is an index into an internal array of numeric values;
              * use getNumericValue().
-             * @stable ICU 4.8
              */
             ARG_DOUBLE;
 
@@ -736,7 +680,6 @@ public final class MessagePattern implements Cloneable, Freezable<MessagePattern
              * Indicates whether this part has a numeric value.
              * If so, then that numeric value can be retrieved via {@link MessagePattern#getNumericValue(Part)}.
              * @return true if this part has a numeric value.
-             * @stable ICU 4.8
              */
             public boolean hasNumericValue() {
                 return this==ARG_INT || this==ARG_DOUBLE;
@@ -745,7 +688,6 @@ public final class MessagePattern implements Cloneable, Freezable<MessagePattern
 
         /**
          * @return a string representation of this part.
-         * @stable ICU 4.8
          */
         @Override
         public String toString() {
@@ -757,7 +699,6 @@ public final class MessagePattern implements Cloneable, Freezable<MessagePattern
         /**
          * @param other another object to compare with.
          * @return true if this object is equivalent to the other one.
-         * @stable ICU 4.8
          */
         @Override
         public boolean equals(Object other) {
@@ -778,7 +719,6 @@ public final class MessagePattern implements Cloneable, Freezable<MessagePattern
 
         /**
          * {@inheritDoc}
-         * @stable ICU 4.8
          */
         @Override
         public int hashCode() {
@@ -803,24 +743,20 @@ public final class MessagePattern implements Cloneable, Freezable<MessagePattern
      *
      * Messages nested inside an argument are each delimited by MSG_START and MSG_LIMIT,
      * with a nesting level one greater than the surrounding message.
-     * @stable ICU 4.8
      */
     public enum ArgType {
         /**
          * The argument has no specified type.
-         * @stable ICU 4.8
          */
         NONE,
         /**
          * The argument has a "simple" type which is provided by the ARG_TYPE part.
          * An ARG_STYLE part might follow that.
-         * @stable ICU 4.8
          */
         SIMPLE,
         /**
          * The argument is a ChoiceFormat with one or more
          * ((ARG_INT | ARG_DOUBLE), ARG_SELECTOR, message) tuples.
-         * @stable ICU 4.8
          */
         CHOICE,
         /**
@@ -830,25 +766,21 @@ public final class MessagePattern implements Cloneable, Freezable<MessagePattern
          * If the selector has an explicit value (e.g., =2), then
          * that value is provided by the ARG_INT or ARG_DOUBLE part preceding the message.
          * Otherwise the message immediately follows the ARG_SELECTOR.
-         * @stable ICU 4.8
          */
         PLURAL,
         /**
          * The argument is a SelectFormat with one or more (ARG_SELECTOR, message) pairs.
-         * @stable ICU 4.8
          */
         SELECT,
         /**
          * The argument is an ordinal-number PluralFormat
          * with the same style parts sequence and semantics as {@link ArgType#PLURAL}.
-         * @stable ICU 50
          */
         SELECTORDINAL;
 
         /**
          * @return true if the argument type has a plural style part sequence and semantics,
          * for example {@link ArgType#PLURAL} and {@link ArgType#SELECTORDINAL}.
-         * @stable ICU 50
          */
         public boolean hasPluralStyle() {
             return this == PLURAL || this == SELECTORDINAL;
@@ -858,7 +790,6 @@ public final class MessagePattern implements Cloneable, Freezable<MessagePattern
     /**
      * Creates and returns a copy of this object.
      * @return a copy of this object (or itself if frozen).
-     * @stable ICU 4.8
      */
     @Override
     public Object clone() {
@@ -872,7 +803,6 @@ public final class MessagePattern implements Cloneable, Freezable<MessagePattern
     /**
      * Creates and returns an unfrozen copy of this object.
      * @return a copy of this object.
-     * @stable ICU 4.8
      */
     @SuppressWarnings("unchecked")
     public MessagePattern cloneAsThawed() {
@@ -893,7 +823,6 @@ public final class MessagePattern implements Cloneable, Freezable<MessagePattern
     /**
      * Freezes this object, making it immutable and thread-safe.
      * @return this 
-     * @stable ICU 4.8
      */
     public MessagePattern freeze() {
         frozen=true;
@@ -903,7 +832,6 @@ public final class MessagePattern implements Cloneable, Freezable<MessagePattern
     /**
      * Determines whether this object is frozen (immutable) or not.
      * @return true if this object is frozen.
-     * @stable ICU 4.8
      */
     public boolean isFrozen() {
         return frozen;

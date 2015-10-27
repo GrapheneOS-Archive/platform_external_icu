@@ -64,7 +64,7 @@ public abstract class Trie2 implements Iterable<Trie2.Range> {
          //     * UTrie2Header header;
          //     * uint16_t index[header.index2Length];
          //     * uint16_t data[header.shiftedDataLength<<2];  -- or uint32_t data[...]
-         //     * {@literal @}internal
+         //     * @internal
          //     */
          //    typedef struct UTrie2Header {
          //        /** "Tri2" in big-endian US-ASCII (0x54726932) */

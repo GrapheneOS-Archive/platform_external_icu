@@ -19,7 +19,6 @@ import android.icu.util.ICUUncheckedIOException;
  * Not-in-the-filter text is treated as "is normalized" and "quick check yes".
  * This class implements all of (and only) the Normalizer2 API.
  * An instance of this class is unmodifiable/immutable.
- * @stable ICU 4.4
  * @author Markus W. Scherer
  * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
@@ -33,7 +32,6 @@ public class FilteredNormalizer2 extends Normalizer2 {
      * The filter set should be frozen; otherwise the performance will suffer greatly.
      * @param n2 wrapped Normalizer2 instance
      * @param filterSet UnicodeSet which determines the characters to be normalized
-     * @stable ICU 4.4
      */
     public FilteredNormalizer2(Normalizer2 n2, UnicodeSet filterSet) {
         norm2=n2;
@@ -42,7 +40,6 @@ public class FilteredNormalizer2 extends Normalizer2 {
 
     /**
      * {@inheritDoc}
-     * @stable ICU 4.4
      */
     @Override
     public StringBuilder normalize(CharSequence src, StringBuilder dest) {
@@ -55,7 +52,6 @@ public class FilteredNormalizer2 extends Normalizer2 {
     }
     /**
      * {@inheritDoc}
-     * @stable ICU 4.6
      */
     @Override
     public Appendable normalize(CharSequence src, Appendable dest) {
@@ -67,7 +63,6 @@ public class FilteredNormalizer2 extends Normalizer2 {
 
     /**
      * {@inheritDoc}
-     * @stable ICU 4.4
      */
     @Override
     public StringBuilder normalizeSecondAndAppend(
@@ -76,7 +71,6 @@ public class FilteredNormalizer2 extends Normalizer2 {
     }
     /**
      * {@inheritDoc}
-     * @stable ICU 4.4
      */
     @Override
     public StringBuilder append(StringBuilder first, CharSequence second) {
@@ -85,7 +79,6 @@ public class FilteredNormalizer2 extends Normalizer2 {
 
     /**
      * {@inheritDoc}
-     * @stable ICU 4.6
      */
     @Override
     public String getDecomposition(int c) {
@@ -94,7 +87,6 @@ public class FilteredNormalizer2 extends Normalizer2 {
 
     /**
      * {@inheritDoc}
-     * @stable ICU 49
      */
     @Override
     public String getRawDecomposition(int c) {
@@ -103,7 +95,6 @@ public class FilteredNormalizer2 extends Normalizer2 {
 
     /**
      * {@inheritDoc}
-     * @stable ICU 49
      */
     @Override
     public int composePair(int a, int b) {
@@ -112,7 +103,6 @@ public class FilteredNormalizer2 extends Normalizer2 {
 
     /**
      * {@inheritDoc}
-     * @stable ICU 49
      */
     @Override
     public int getCombiningClass(int c) {
@@ -121,7 +111,6 @@ public class FilteredNormalizer2 extends Normalizer2 {
 
     /**
      * {@inheritDoc}
-     * @stable ICU 4.4
      */
     @Override
     public boolean isNormalized(CharSequence s) {
@@ -143,7 +132,6 @@ public class FilteredNormalizer2 extends Normalizer2 {
 
     /**
      * {@inheritDoc}
-     * @stable ICU 4.4
      */
     @Override
     public Normalizer.QuickCheckResult quickCheck(CharSequence s) {
@@ -169,7 +157,6 @@ public class FilteredNormalizer2 extends Normalizer2 {
     }
     /**
      * {@inheritDoc}
-     * @stable ICU 4.4
      */
     @Override
     public int spanQuickCheckYes(CharSequence s) {
@@ -194,7 +181,6 @@ public class FilteredNormalizer2 extends Normalizer2 {
 
     /**
      * {@inheritDoc}
-     * @stable ICU 4.4
      */
     @Override
     public boolean hasBoundaryBefore(int c) {
@@ -203,7 +189,6 @@ public class FilteredNormalizer2 extends Normalizer2 {
 
     /**
      * {@inheritDoc}
-     * @stable ICU 4.4
      */
     @Override
     public boolean hasBoundaryAfter(int c) {
@@ -212,7 +197,6 @@ public class FilteredNormalizer2 extends Normalizer2 {
 
     /**
      * {@inheritDoc}
-     * @stable ICU 4.4
      */
     @Override
     public boolean isInert(int c) {
