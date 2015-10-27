@@ -15,9 +15,6 @@
  */
 package com.google.currysrc;
 
-import com.google.currysrc.api.transform.AstTransformRule;
-import com.google.currysrc.api.transform.DocumentTransformRule;
-
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.core.dom.*;
 import org.eclipse.jdt.core.dom.rewrite.ASTRewrite;
@@ -28,6 +25,7 @@ import org.eclipse.text.edits.TextEdit;
 import com.google.currysrc.api.Rules;
 import com.google.currysrc.api.input.InputFileGenerator;
 import com.google.currysrc.api.output.OutputSourceFileGenerator;
+import com.google.currysrc.api.transform.TransformRule;
 
 import java.io.*;
 import java.nio.charset.Charset;
@@ -57,99 +55,25 @@ public class Main {
     OutputSourceFileGenerator outputSourceFileGenerator = rules.getOutputSourceFileGenerator();
     for (File file : inputFileGenerator.generate()) {
       System.out.println("Processing: " + file);
+
       String source = readSource(file);
-      Document document = new Document(source);
+      CompilationUnitHandler compilationUnitHandler =
+          new CompilationUnitHandler(file, parser, source);
+      compilationUnitHandler.setDebug(debug);
 
-      CompilationUnit cu = parseDocument(file, parser, document);
-      List<AstTransformRule> astTransformerRules = rules.getAstTransformRules(file);
-      if (!astTransformerRules.isEmpty()) {
-        TrackingASTRewrite rewrite = createTrackingASTRewrite(cu);
-        for (AstTransformRule astTransformRule : astTransformerRules) {
-          if (astTransformRule.matches(cu)) {
-            astTransformRule.transform(cu, rewrite);
-            if (debug) {
-              System.out.println(
-                  "AST Transformer: " + astTransformRule + ", rewrite: " + (rewrite.isEmpty()
-                      ? "None" : rewrite.toString()));
-            }
-            if (astTransformRule.mustModify() && rewrite.isEmpty()) {
-              throw new RuntimeException("AST Transformer Rule: " + astTransformRule
-                  + " did not modify compilation unit as it should");
-            }
-            cu = applyRewrite(file + " after " + astTransformRule, parser, document, rewrite);
-            rewrite = createTrackingASTRewrite(cu);
-          }
-        }
-      }
-      List<DocumentTransformRule> documentTransformRules = rules.getDocumentTransformRules(file);
-      if (!documentTransformRules.isEmpty()) {
-        for (DocumentTransformRule documentTransformRule : documentTransformRules) {
-          if (documentTransformRule.matches(cu)) {
-            String before = document.get();
-            documentTransformRule.transform(cu, document);
-            String after = document.get();
-            if (documentTransformRule.mustModify() && before.equals(after)) {
-              throw new RuntimeException("Document Transformer Rule: " + documentTransformRule
-                  + " did not modify document as it should");
-            }
-            if (debug) {
-              System.out.println(
-                  "Document Transformer: " + documentTransformRule + ", diff: " + generateDiff(
-                      before, after));
-            }
-            // Regenerate the AST
-            cu = parseDocument(file + " after document transformer " + documentTransformRule,
-                parser, document);
-          }
+      List<TransformRule> transformRules = rules.getTransformRules(file);
+      if (!transformRules.isEmpty()) {
+        for (TransformRule transformRule : transformRules) {
+          compilationUnitHandler.apply(transformRule);
         }
       }
 
-      File outputFile = outputSourceFileGenerator.generate(cu);
+      File outputFile =
+          outputSourceFileGenerator.generate(compilationUnitHandler.getCompilationUnit());
       if (outputFile != null) {
-        writeSource(document, outputFile);
+        writeSource(compilationUnitHandler.getDocument(), outputFile);
       }
     }
-  }
-
-  private static TrackingASTRewrite createTrackingASTRewrite(CompilationUnit cu) {
-    return new TrackingASTRewrite(cu.getAST());
-  }
-
-  private static String generateDiff(String before, String after) {
-    if (before.equals(after)) {
-      return "No diff";
-    }
-    // TODO Implement this
-    return "Diff. DIFF NOT IMPLEMENTED";
-  }
-
-  private static CompilationUnit applyRewrite(Object documentId, ASTParser parser,
-      Document document, ASTRewrite rewrite) throws BadLocationException {
-    TextEdit textEdit = rewrite.rewriteAST(document, null);
-    textEdit.apply(document, TextEdit.UPDATE_REGIONS);
-    // Reparse the document.
-    return parseDocument(documentId, parser, document);
-  }
-
-  private static CompilationUnit parseDocument(Object documentId, ASTParser parser,
-      Document document) {
-    parser.setSource(document.get().toCharArray());
-    configureParser(parser);
-
-    CompilationUnit cu = (CompilationUnit) parser.createAST(null /* progressMonitor */);
-    if (cu.getProblems().length > 0) {
-      System.err.println("Error parsing:" + documentId + ": " + Arrays.toString(cu.getProblems()));
-      throw new RuntimeException("Unable to parse document. Stopping.");
-    }
-    return cu;
-  }
-
-  private static void configureParser(ASTParser parser) {
-    Map<String, String> options = JavaCore.getOptions();
-    options.put(JavaCore.COMPILER_COMPLIANCE, JavaCore.VERSION_1_7);
-    options.put(JavaCore.COMPILER_SOURCE, JavaCore.VERSION_1_7);
-    options.put(JavaCore.COMPILER_DOC_COMMENT_SUPPORT, JavaCore.ENABLED);
-    parser.setCompilerOptions(options);
   }
 
   private static void writeSource(Document document, File outputFile) throws IOException {
@@ -187,6 +111,176 @@ public class Main {
       }
     }
     return sb.toString();
+  }
+
+  private static class CompilationUnitHandler implements TransformRule.Context {
+
+    private final File file;
+    private final ASTParser parser;
+    private boolean debug;
+
+    private Document documentBefore;
+    private CompilationUnit compilationUnitBefore;
+
+    private Document documentRequested;
+    private TrackingASTRewrite rewriteRequested;
+
+    public CompilationUnitHandler(File file, ASTParser parser, String source) {
+      this.file = file;
+      this.parser = parser;
+
+      // Initialize source / AST state.
+      documentBefore = new Document(source);
+      compilationUnitBefore = parseDocument(file, parser, documentBefore);
+    }
+
+    public void setDebug(boolean debug) {
+      this.debug = debug;
+    }
+
+    public void apply(TransformRule transformRule) throws BadLocationException {
+      if (documentRequested != null || rewriteRequested != null) {
+        throw new AssertionError("Handler state not reset properly");
+      }
+
+      if (transformRule.matches(compilationUnitBefore)) {
+        // Apply the rule.
+        transformRule.transform(this, compilationUnitBefore);
+
+        // Work out what happened, report/error as needed and reset the state.
+        CompilationUnit compilationUnitAfter;
+        Document documentAfter;
+        if (ruleUsedRewrite()) {
+          if (debug) {
+            System.out.println("AST Transform: " + transformRule + ", rewrite: " +
+                (rewriteRequested.isEmpty() ? "None" : rewriteRequested.toString()));
+          }
+          if (rewriteRequested.isEmpty()) {
+            if (transformRule.mustModify()) {
+              throw new RuntimeException("AST Transformer Rule: " + transformRule
+                  + " did not modify the compilation unit as it should");
+            }
+            documentAfter = documentBefore;
+            compilationUnitAfter = compilationUnitBefore;
+          } else {
+            Document documentToRewrite = new Document(documentBefore.get());
+            compilationUnitAfter = applyRewrite(file + " after " + transformRule, parser,
+                documentToRewrite, rewriteRequested);
+            documentAfter = documentToRewrite;
+          }
+        } else if (ruleUsedDocument()) {
+          String sourceBefore = documentBefore.get();
+          String sourceAfter = documentRequested.get();
+          if (debug) {
+            System.out.println(
+                "Document Transformer: " + transformRule + ", diff: " +
+                    generateDiff(sourceBefore, sourceAfter));
+          }
+          if (sourceBefore.equals(sourceAfter)) {
+            if (transformRule.mustModify()) {
+              throw new RuntimeException("Document Transformer Rule: " + transformRule
+                  + " did not modify document as it should");
+            }
+            documentAfter = documentBefore;
+            compilationUnitAfter = compilationUnitBefore;
+          } else {
+            // Regenerate the AST from the modified document.
+            compilationUnitAfter = parseDocument(
+                file + " after document transformer " + transformRule, parser, documentRequested);
+            documentAfter = documentRequested;
+          }
+        } else {
+          // The rule didn't request anything.... should this be an error?
+          compilationUnitAfter = compilationUnitBefore;
+          documentAfter = documentBefore;
+        }
+
+        // Reset document / compilation state for the next round.
+        documentBefore = documentAfter;
+        compilationUnitBefore = compilationUnitAfter;
+        documentRequested = null;
+        rewriteRequested = null;
+      }
+    }
+
+    @Override public ASTRewrite rewrite() {
+      if (documentRequested != null) {
+        throw new IllegalStateException("document() already called.");
+      }
+      if (rewriteRequested != null) {
+        throw new IllegalStateException("rewrite() already called.");
+      }
+      rewriteRequested = createTrackingASTRewrite(compilationUnitBefore);
+      return rewriteRequested;
+    }
+
+    @Override public Document document() {
+      if (rewriteRequested != null) {
+        throw new IllegalStateException("rewrite() already called.");
+      }
+      if (documentRequested != null) {
+        throw new IllegalStateException("document() already called.");
+      }
+      documentRequested = new Document(documentBefore.get());
+      return documentRequested;
+    }
+
+    public CompilationUnit getCompilationUnit() {
+      return compilationUnitBefore;
+    }
+
+    public Document getDocument() {
+      return documentBefore;
+    }
+
+    private boolean ruleUsedRewrite() {
+      return rewriteRequested != null;
+    }
+
+    private boolean ruleUsedDocument() {
+      return documentRequested != null;
+    }
+
+    private static CompilationUnit applyRewrite(Object documentId, ASTParser parser,
+        Document document, ASTRewrite rewrite) throws BadLocationException {
+      TextEdit textEdit = rewrite.rewriteAST(document, null);
+      textEdit.apply(document, TextEdit.UPDATE_REGIONS);
+      // Reparse the document.
+      return parseDocument(documentId, parser, document);
+    }
+
+    private static CompilationUnit parseDocument(Object documentId, ASTParser parser,
+        Document document) {
+      parser.setSource(document.get().toCharArray());
+      configureParser(parser);
+
+      CompilationUnit cu = (CompilationUnit) parser.createAST(null /* progressMonitor */);
+      if (cu.getProblems().length > 0) {
+        System.err.println("Error parsing:" + documentId + ": " + Arrays.toString(cu.getProblems()));
+        throw new RuntimeException("Unable to parse document. Stopping.");
+      }
+      return cu;
+    }
+
+    private static void configureParser(ASTParser parser) {
+      Map<String, String> options = JavaCore.getOptions();
+      options.put(JavaCore.COMPILER_COMPLIANCE, JavaCore.VERSION_1_7);
+      options.put(JavaCore.COMPILER_SOURCE, JavaCore.VERSION_1_7);
+      options.put(JavaCore.COMPILER_DOC_COMMENT_SUPPORT, JavaCore.ENABLED);
+      parser.setCompilerOptions(options);
+    }
+
+    private static TrackingASTRewrite createTrackingASTRewrite(CompilationUnit cu) {
+      return new TrackingASTRewrite(cu.getAST());
+    }
+
+    private static String generateDiff(String before, String after) {
+      if (before.equals(after)) {
+        return "No diff";
+      }
+      // TODO Implement this
+      return "Diff. DIFF NOT IMPLEMENTED";
+    }
   }
 
   private static class TrackingASTRewrite extends ASTRewrite {

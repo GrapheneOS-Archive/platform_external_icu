@@ -25,31 +25,20 @@ import org.eclipse.jface.text.Document;
  * compilations units the transformer will be applied to, and a flag that indicates whether the
  * transformer is <em>required</em> to make a modification.
  */
-public final class DocumentTransformRule {
+public final class DocumentTransformRule extends BaseTransformRule {
 
   private final DocumentTransformer transformer;
 
-  private final SourceMatcher matcher;
-
-  private final boolean mustModify;
-
   public DocumentTransformRule(DocumentTransformer transformer, SourceMatcher matcher,
       boolean mustModify) {
+    super (matcher, mustModify);
     this.transformer = transformer;
-    this.matcher = matcher;
-    this.mustModify = mustModify;
   }
 
-  public void transform(CompilationUnit cu, Document document) {
+  @Override
+  public void transform(Context context, CompilationUnit cu) {
+    Document document = context.document();
     transformer.transform(cu, document);
-  }
-
-  public boolean mustModify() {
-    return mustModify;
-  }
-
-  public boolean matches(CompilationUnit cu) {
-    return matcher.matches(cu);
   }
 
   @Override
