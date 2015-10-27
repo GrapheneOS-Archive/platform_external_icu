@@ -718,6 +718,8 @@ public final class CollationElementIterator
      * value. When Java assertion is enabled, this method triggers an assertion failure.
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide original deprecated method
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public int hashCode() {
@@ -728,6 +730,8 @@ public final class CollationElementIterator
     /**
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide original deprecated method
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public RuleBasedCollator getRuleBasedCollator() {

@@ -25,7 +25,9 @@ import android.icu.text.UnicodeSet;
 import android.icu.text.UnicodeSetIterator;
 import android.icu.util.ULocale;
 
-/** @hide All android.icu classes are currently hidden */
+/** @hide Only a subset of ICU is exposed in Android
+* @hide All android.icu classes are currently hidden
+ */
 public final class CollationBuilder extends CollationRuleParser.Sink {
     private static final boolean DEBUG = false;
     private static final class BundleImporter implements CollationRuleParser.Importer {

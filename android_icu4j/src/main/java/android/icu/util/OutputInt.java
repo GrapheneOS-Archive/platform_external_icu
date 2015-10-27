@@ -13,6 +13,8 @@ package android.icu.util;
  *
  * {@literal @}internal but could become public
  * @deprecated This API is ICU internal only.
+ * @hide Only a subset of ICU is exposed in Android
+ * @hide draft / provisional / internal are hidden on Android
  * @hide All android.icu classes are currently hidden
  */
 @Deprecated
@@ -22,6 +24,7 @@ public class OutputInt {
      *
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public int value;
@@ -31,6 +34,7 @@ public class OutputInt {
      *
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public OutputInt() {
@@ -42,6 +46,7 @@ public class OutputInt {
      * @param value the initial value
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public OutputInt(int value) {
@@ -52,6 +57,7 @@ public class OutputInt {
      * {@inheritDoc}
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public String toString() {

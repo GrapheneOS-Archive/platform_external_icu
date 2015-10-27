@@ -35,6 +35,8 @@ import android.icu.util.ULocale;
  * 
  * {@literal @}internal ICU 54 technology preview
  * @deprecated This API might change or be removed in a future release.
+ * @hide Only a subset of ICU is exposed in Android
+ * @hide draft / provisional / internal are hidden on Android
  * @hide All android.icu classes are currently hidden
  */
 @Deprecated
@@ -51,6 +53,7 @@ public abstract class FilteredBreakIteratorBuilder {
      * @return the new builder
      * {@literal @}internal ICU 54 technology preview
      * @deprecated This API might change or be removed in a future release.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public static FilteredBreakIteratorBuilder createInstance(ULocale where) {
@@ -64,6 +67,7 @@ public abstract class FilteredBreakIteratorBuilder {
      * @return the new builder
      * {@literal @}internal ICU 54 technology preview
      * @deprecated This API might change or be removed in a future release.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public static FilteredBreakIteratorBuilder createInstance() {
@@ -80,6 +84,7 @@ public abstract class FilteredBreakIteratorBuilder {
      * false if the call was a no-op because the string was already being suppressed.
      * {@literal @}internal ICU 54 technology preview
      * @deprecated This API might change or be removed in a future release.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public abstract boolean suppressBreakAfter(String str);
@@ -94,6 +99,7 @@ public abstract class FilteredBreakIteratorBuilder {
      * false if the call was a no-op because the string was not being suppressed.
      * {@literal @}internal ICU 54 technology preview
      * @deprecated This API might change or be removed in a future release.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public abstract boolean unsuppressBreakAfter(String str);
@@ -109,6 +115,7 @@ public abstract class FilteredBreakIteratorBuilder {
      * @return the new BreakIterator, owned by the caller.
      * {@literal @}internal ICU 54 technology preview
      * @deprecated This API might change or be removed in a future release.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public abstract BreakIterator build(BreakIterator adoptBreakIterator);
@@ -117,6 +124,7 @@ public abstract class FilteredBreakIteratorBuilder {
      * For subclass use
      * {@literal @}internal ICU 54 technology preview
      * @deprecated This API might change or be removed in a future release.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     protected FilteredBreakIteratorBuilder() {}

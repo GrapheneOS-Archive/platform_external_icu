@@ -36,6 +36,8 @@ import android.icu.text.SpoofChecker.RestrictionLevel;
  * @author markdavis
  * {@literal @}internal
  * @deprecated This API is ICU internal only.
+ * @hide Only a subset of ICU is exposed in Android
+ * @hide draft / provisional / internal are hidden on Android
  * @hide All android.icu classes are currently hidden
  */
 @Deprecated
@@ -55,6 +57,7 @@ public class IdentifierInfo {
      * {@link #setIdentifierProfile(UnicodeSet)}
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public IdentifierInfo() {
@@ -76,6 +79,7 @@ public class IdentifierInfo {
      * @return self
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     
@@ -90,6 +94,7 @@ public class IdentifierInfo {
      * @return The characters that are to be allowed in the identifier.
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     
@@ -104,6 +109,7 @@ public class IdentifierInfo {
      * @return self
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated    
     public IdentifierInfo setIdentifier(String identifier) {
@@ -174,6 +180,7 @@ public class IdentifierInfo {
      * @return the identifier that was analyzed.
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public String getIdentifier() {
@@ -186,6 +193,7 @@ public class IdentifierInfo {
      * @return the set of explicit scripts.
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public BitSet getScripts() {
@@ -199,6 +207,7 @@ public class IdentifierInfo {
      * @return the set of explicit scripts.
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public Set<BitSet> getAlternates() {
@@ -215,6 +224,7 @@ public class IdentifierInfo {
      * @return the set of explicit scripts.
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public UnicodeSet getNumerics() {
@@ -227,6 +237,7 @@ public class IdentifierInfo {
      * @return the set of scripts that are in common among the alternates.
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public BitSet getCommonAmongAlternates() {
@@ -248,6 +259,7 @@ public class IdentifierInfo {
      * @return the restriction level.
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public RestrictionLevel getRestrictionLevel() {
@@ -291,6 +303,7 @@ public class IdentifierInfo {
      * @return the number of scripts.
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public int getScriptCount() {
@@ -305,6 +318,7 @@ public class IdentifierInfo {
      * See Object.toString()
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     @Override
@@ -333,6 +347,7 @@ public class IdentifierInfo {
      * @return display form
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public static String displayAlternates(Set<BitSet> alternates) {
@@ -356,6 +371,7 @@ public class IdentifierInfo {
      * Order BitSets, first by shortest, then by items.
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public static final Comparator<BitSet> BITSET_COMPARATOR = new Comparator<BitSet>() {
@@ -381,6 +397,7 @@ public class IdentifierInfo {
      * @return a readable string of a set of scripts
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public static String displayScripts(BitSet scripts) {
@@ -401,6 +418,7 @@ public class IdentifierInfo {
      * @return BitSet of UScript values.
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public static BitSet parseScripts(String scriptsString) {
@@ -420,6 +438,7 @@ public class IdentifierInfo {
      * @return a set of BitSets of UScript values
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public static Set<BitSet> parseAlternates(String scriptsSetString) {
@@ -440,6 +459,7 @@ public class IdentifierInfo {
      * @return true if container contains containee
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public static final boolean contains(BitSet container, BitSet containee) {
@@ -459,6 +479,7 @@ public class IdentifierInfo {
      * @return modified bitset.
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public static final BitSet set(BitSet bitset, int... values) {

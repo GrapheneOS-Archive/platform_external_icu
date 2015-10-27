@@ -144,6 +144,7 @@ import android.icu.util.ULocale;
  *     are normally used with text from many different scripts. </blockquote>
  *
  * @stable ICU 4.6
+ * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
  */
 public class SpoofChecker {
@@ -200,6 +201,7 @@ public class SpoofChecker {
      * Will probably be replaced by UnicodeSet property.
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public static final UnicodeSet INCLUSION = new UnicodeSet("[" +
@@ -212,6 +214,7 @@ public class SpoofChecker {
      * Will probably be replaced by UnicodeSet property.
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public static final UnicodeSet RECOMMENDED = new UnicodeSet(
@@ -335,6 +338,7 @@ public class SpoofChecker {
      *
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public static final int RESTRICTION_LEVEL = 16;
@@ -370,6 +374,7 @@ public class SpoofChecker {
      *
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public static final int MIXED_NUMBERS = 128;
@@ -638,6 +643,7 @@ public class SpoofChecker {
          * @return self
          * {@literal @}internal
          * @deprecated This API is ICU internal only.
+         * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
         public Builder setRestrictionLevel(RestrictionLevel restrictionLevel) {
@@ -1462,6 +1468,7 @@ public class SpoofChecker {
      * @return The restriction level
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public RestrictionLevel getRestrictionLevel() {
@@ -1551,6 +1558,7 @@ public class SpoofChecker {
          *
          * {@literal @}internal
          * @deprecated This API is ICU internal only.
+         * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
         public UnicodeSet numerics;
@@ -1559,6 +1567,7 @@ public class SpoofChecker {
          *
          * {@literal @}internal
          * @deprecated This API is ICU internal only.
+         * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
         public RestrictionLevel restrictionLevel;
@@ -1933,6 +1942,7 @@ public class SpoofChecker {
      *   @return true if the two SpoofCheckers are equal.
      *   {@literal @}internal
      *   @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     @Override
@@ -1965,6 +1975,7 @@ public class SpoofChecker {
      * This is a stub implementation and not designed for generic use.
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     @Override

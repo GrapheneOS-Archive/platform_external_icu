@@ -13,6 +13,7 @@ package android.icu.impl;
  * A Trie2Writable is a modifiable, or build-time Trie2.
  * Functions for reading data from the Trie are all from class Trie2.
  * 
+ * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
  */
 public class Trie2Writable extends Trie2 {
@@ -267,6 +268,7 @@ public class Trie2Writable extends Trie2 {
      * No error checking for illegal arguments.
      * 
      * {@literal @}internal
+     * @hide draft / provisional / internal are hidden on Android
      */
     private int getDataBlock(int c, boolean forLSCP) {
         int i2, oldBlock, newBlock;
@@ -358,6 +360,7 @@ public class Trie2Writable extends Trie2 {
     /**
      * initialValue is ignored if overwrite=TRUE
      * {@literal @}internal
+     * @hide draft / provisional / internal are hidden on Android
      */
     private void fillBlock(int block, /*UChar32*/ int start, /*UChar32*/ int limit,
               int value, int initialValue, boolean overwrite) {

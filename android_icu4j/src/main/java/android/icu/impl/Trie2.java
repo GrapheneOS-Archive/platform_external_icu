@@ -26,6 +26,7 @@ import java.util.NoSuchElementException;
  *
  * This is the second common version of a Unicode trie (hence the name Trie2).
  * 
+ * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
  */
 public abstract class Trie2 implements Iterable<Trie2.Range> {
@@ -623,6 +624,7 @@ public abstract class Trie2 implements Iterable<Trie2.Range> {
      * (The C version just places a struct over the raw serialized data.)
      * 
      * {@literal @}internal
+     * @hide draft / provisional / internal are hidden on Android
      */
     static class UTrie2Header {
         /** "Tri2" in big-endian US-ASCII (0x54726932) */
@@ -840,6 +842,7 @@ public abstract class Trie2 implements Iterable<Trie2.Range> {
      *   then returns the special alternate values for the lead surrogates
      *     
      * {@literal @}internal
+     * @hide draft / provisional / internal are hidden on Android
      */
     class Trie2Iterator implements Iterator<Range> {
         // The normal constructor that configures the iterator to cover the complete

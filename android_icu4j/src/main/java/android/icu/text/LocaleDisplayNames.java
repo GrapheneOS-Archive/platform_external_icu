@@ -210,6 +210,8 @@ public abstract class LocaleDisplayNames {
      * @return the display name of the provided script code
      * {@literal @}internal ICU 49
      * @deprecated This API is ICU internal only.
+     * @hide original deprecated method
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public String scriptDisplayNameInContext(String script) {
@@ -270,6 +272,7 @@ public abstract class LocaleDisplayNames {
      * @throws IllformedLocaleException if any of the locales in localeSet are malformed.
      * {@literal @}draft ICU 55
      * {@literal @}provisional This API might change or be removed in a future release.
+     * @hide draft / provisional / internal are hidden on Android
      */ 
     public List<UiListItem> getUiList(Set<ULocale> localeSet, boolean inSelf, Comparator<Object> collator) { 
         return getUiListCompareWholeItems(localeSet, UiListItem.getComparator(collator, inSelf)); 
@@ -284,6 +287,7 @@ public abstract class LocaleDisplayNames {
      * @throws IllformedLocaleException if any of the locales in localeSet are malformed.
      * {@literal @}draft ICU 55
      * {@literal @}provisional This API might change or be removed in a future release.
+     * @hide draft / provisional / internal are hidden on Android
      */
     public abstract List<UiListItem> getUiListCompareWholeItems(Set<ULocale> localeSet, Comparator<UiListItem> comparator);
 
@@ -291,30 +295,35 @@ public abstract class LocaleDisplayNames {
      * Struct-like class used to return information for constructing a UI list, each corresponding to a locale. 
      * {@literal @}draft ICU 55
      * {@literal @}provisional This API might change or be removed in a future release.
+     * @hide draft / provisional / internal are hidden on Android
      */
     public static class UiListItem { 
         /** 
          * Returns the minimized locale for an input locale, such as sr-Cyrl → sr 
          * {@literal @}draft ICU 55
          * {@literal @}provisional This API might change or be removed in a future release.
+         * @hide draft / provisional / internal are hidden on Android
          */
         public final ULocale minimized; 
         /** 
          * Returns the modified locale for an input locale, such as sr → sr-Cyrl, where there is also an sr-Latn in the list 
          * {@literal @}draft ICU 55
          * {@literal @}provisional This API might change or be removed in a future release.
+         * @hide draft / provisional / internal are hidden on Android
          */
         public final ULocale modified; 
         /** 
          * Returns the name of the modified locale in the display locale, such as "Englisch (VS)" (for 'en-US', where the display locale is 'de'). 
          * {@literal @}draft ICU 55
          * {@literal @}provisional This API might change or be removed in a future release.
+         * @hide draft / provisional / internal are hidden on Android
          */
         public final String nameInDisplayLocale; 
         /** 
          * Returns the name of the modified locale in itself, such as "English (US)" (for 'en-US'). 
          * {@literal @}draft ICU 55
          * {@literal @}provisional This API might change or be removed in a future release.
+         * @hide draft / provisional / internal are hidden on Android
          */
         public final String nameInSelf; 
 
@@ -326,6 +335,7 @@ public abstract class LocaleDisplayNames {
          * @param nameInSelf name of the modified locale in itself 
          * {@literal @}draft ICU 55
          * {@literal @}provisional This API might change or be removed in a future release.
+         * @hide draft / provisional / internal are hidden on Android
          */
         public UiListItem(ULocale minimized, ULocale modified, String nameInDisplayLocale, String nameInSelf) { 
             this.minimized = minimized; 
@@ -339,6 +349,7 @@ public abstract class LocaleDisplayNames {
          * 
          * {@literal @}draft ICU 55
          * {@literal @}provisional This API might change or be removed in a future release.
+         * @hide draft / provisional / internal are hidden on Android
          */
         @Override 
         public boolean equals(Object obj) { 
@@ -354,6 +365,7 @@ public abstract class LocaleDisplayNames {
          * 
          * {@literal @}draft ICU 55
          * {@literal @}provisional This API might change or be removed in a future release.
+         * @hide draft / provisional / internal are hidden on Android
          */
         @Override 
         public int hashCode() { 
@@ -365,6 +377,7 @@ public abstract class LocaleDisplayNames {
          * 
          * {@literal @}draft ICU 55
          * {@literal @}provisional This API might change or be removed in a future release.
+         * @hide draft / provisional / internal are hidden on Android
          */
         @Override 
         public String toString() { 
@@ -379,6 +392,7 @@ public abstract class LocaleDisplayNames {
          * @return UiListItem comparator
          * {@literal @}draft ICU 55
          * {@literal @}provisional This API might change or be removed in a future release.
+         * @hide draft / provisional / internal are hidden on Android
          */
         public static Comparator<UiListItem> getComparator(Comparator<Object> comparator, boolean inSelf) {
             return new UiListItemComparator(comparator, inSelf);
@@ -403,6 +417,8 @@ public abstract class LocaleDisplayNames {
      * typically implicit.)
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide original deprecated method
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     protected LocaleDisplayNames() {

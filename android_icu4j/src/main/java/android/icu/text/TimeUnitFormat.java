@@ -60,6 +60,7 @@ import android.icu.util.UResourceBundle;
  * @see MeasureFormat
  * @author markdavis
  * @deprecated ICU 53 use {@link MeasureFormat} instead.
+ * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
  */
 @Deprecated
@@ -536,6 +537,7 @@ public class TimeUnitFormat extends MeasureFormat {
     /**
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     @Override
@@ -547,6 +549,7 @@ public class TimeUnitFormat extends MeasureFormat {
     /**
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     @Override
@@ -557,6 +560,7 @@ public class TimeUnitFormat extends MeasureFormat {
     /**
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     @Override
@@ -567,6 +571,7 @@ public class TimeUnitFormat extends MeasureFormat {
     /**
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     @Override

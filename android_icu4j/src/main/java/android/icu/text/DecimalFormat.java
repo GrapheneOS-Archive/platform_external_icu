@@ -945,6 +945,7 @@ public class DecimalFormat extends NumberFormat {
      * with negative sign stripped off.
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     double adjustNumberAsInFormatting(double number) {
@@ -973,6 +974,7 @@ public class DecimalFormat extends NumberFormat {
       * @return True if number is negative.
       * {@literal @}internal
       * @deprecated This API is ICU internal only.
+      * @hide draft / provisional / internal are hidden on Android
       */
      @Deprecated
      boolean isNumberNegative(double number) {
@@ -5462,6 +5464,8 @@ public class DecimalFormat extends NumberFormat {
      *
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide original deprecated method
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     @Override

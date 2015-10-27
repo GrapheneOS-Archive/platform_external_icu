@@ -29,6 +29,8 @@ import android.icu.impl.Utility;
  * @author             Helena Shih
  * {@literal @}internal
  * @deprecated This API is ICU internal only.
+ * @hide Only a subset of ICU is exposed in Android
+ * @hide draft / provisional / internal are hidden on Android
  * @hide All android.icu classes are currently hidden
  */
 @Deprecated
@@ -38,6 +40,7 @@ public final class CompactByteArray implements Cloneable {
      * The total number of Unicode characters.
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public static  final int UNICODECOUNT =65536;
@@ -47,6 +50,7 @@ public final class CompactByteArray implements Cloneable {
      * compact array is 0.
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public CompactByteArray()
@@ -59,6 +63,7 @@ public final class CompactByteArray implements Cloneable {
      * @param defaultValue the default value of the compact array.
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public CompactByteArray(byte defaultValue)
@@ -86,6 +91,7 @@ public final class CompactByteArray implements Cloneable {
      * @exception IllegalArgumentException If the index is out of range.
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public CompactByteArray(char indexArray[],
@@ -114,6 +120,7 @@ public final class CompactByteArray implements Cloneable {
      *          the wrong size.
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public CompactByteArray(String indexArray,
@@ -129,6 +136,7 @@ public final class CompactByteArray implements Cloneable {
      * @return the mapped value of the given character
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public byte elementAt(char index)
@@ -144,6 +152,7 @@ public final class CompactByteArray implements Cloneable {
      * @param value the new mapped value
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public void setElementAt(char index, byte value)
@@ -162,6 +171,7 @@ public final class CompactByteArray implements Cloneable {
      * @param value the new mapped value
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public void setElementAt(char start, char end, byte value)
@@ -179,6 +189,7 @@ public final class CompactByteArray implements Cloneable {
      * Compact the array.
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public void compact() {
@@ -189,6 +200,7 @@ public final class CompactByteArray implements Cloneable {
      * Compact the array.
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public void compact(boolean exhaustive)
@@ -283,6 +295,7 @@ public final class CompactByteArray implements Cloneable {
      * modified results are undefined.
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public char[] getIndexArray()
@@ -295,6 +308,7 @@ public final class CompactByteArray implements Cloneable {
      * modified results are undefined.
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public byte[] getValueArray()
@@ -306,6 +320,7 @@ public final class CompactByteArray implements Cloneable {
      * Overrides Cloneable
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public Object clone()
@@ -328,6 +343,7 @@ public final class CompactByteArray implements Cloneable {
      * as the compact array object obj; false otherwise.
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public boolean equals(Object obj) {
@@ -349,6 +365,7 @@ public final class CompactByteArray implements Cloneable {
      * Generates the hash code for the compact array object
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public int hashCode() {

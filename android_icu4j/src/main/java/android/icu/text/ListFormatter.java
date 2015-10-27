@@ -28,6 +28,7 @@ import android.icu.util.UResourceBundle;
  *
  * @author Mark Davis
  * @stable ICU 50
+ * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
  */
 final public class ListFormatter {
@@ -41,6 +42,7 @@ final public class ListFormatter {
      * Indicates the style of Listformatter
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public enum Style {
@@ -48,6 +50,7 @@ final public class ListFormatter {
          * Standard style.
          * {@literal @}internal
          * @deprecated This API is ICU internal only.
+         * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
         STANDARD("standard"),
@@ -55,6 +58,7 @@ final public class ListFormatter {
          * Style for full durations
          * {@literal @}internal
          * @deprecated This API is ICU internal only.
+         * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
         DURATION("unit"),
@@ -62,6 +66,7 @@ final public class ListFormatter {
          * Style for durations in abbrevated form
          * {@literal @}internal
          * @deprecated This API is ICU internal only.
+         * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
         DURATION_SHORT("unit-short"),
@@ -69,6 +74,7 @@ final public class ListFormatter {
          * Style for durations in narrow form
          * {@literal @}internal
          * @deprecated This API is ICU internal only.
+         * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
         DURATION_NARROW("unit-narrow");
@@ -81,6 +87,7 @@ final public class ListFormatter {
         /**
          * {@literal @}internal
          * @deprecated This API is ICU internal only.
+         * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
         public String getName() {
@@ -107,6 +114,7 @@ final public class ListFormatter {
      *            first part of the list, and {1} for the last item.
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public ListFormatter(String two, String start, String middle, String end) {
@@ -159,6 +167,7 @@ final public class ListFormatter {
      * @return ListFormatter
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public static ListFormatter getInstance(ULocale locale, Style style) {
@@ -245,6 +254,7 @@ final public class ListFormatter {
      * Returns the locale of this object.
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public ULocale getLocale() {

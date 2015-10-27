@@ -341,6 +341,7 @@ public abstract class TimeZoneNames implements Serializable {
      * @see MatchInfo
      * {@literal @}draft ICU 49 (Retain)
      * {@literal @}provisional This API might change or be removed in a future release.
+     * @hide draft / provisional / internal are hidden on Android
      */
     public Collection<MatchInfo> find(CharSequence text, int start, EnumSet<NameType> types) {
         throw new UnsupportedOperationException("The method is not implemented in TimeZoneNames base class.");
@@ -351,6 +352,7 @@ public abstract class TimeZoneNames implements Serializable {
      * {@link TimeZoneNames#find(CharSequence, int, EnumSet)}.
      * {@literal @}draft ICU 49 (Retain)
      * {@literal @}provisional This API might change or be removed in a future release.
+     * @hide draft / provisional / internal are hidden on Android
      */
     public static class MatchInfo {
         private NameType _nameType;
@@ -371,6 +373,7 @@ public abstract class TimeZoneNames implements Serializable {
          * @see NameType
          * {@literal @}draft ICU 49 (Retain)
          * {@literal @}provisional This API might change or be removed in a future release.
+         * @hide draft / provisional / internal are hidden on Android
          */
         public MatchInfo(NameType nameType, String tzID, String mzID, int matchLength) {
             if (nameType == null) {
@@ -398,6 +401,7 @@ public abstract class TimeZoneNames implements Serializable {
          * @see #mzID()
          * {@literal @}draft ICU 49 (Retain)
          * {@literal @}provisional This API might change or be removed in a future release.
+         * @hide draft / provisional / internal are hidden on Android
          */
         public String tzID() {
             return _tzID;
@@ -413,6 +417,7 @@ public abstract class TimeZoneNames implements Serializable {
          * @see #tzID()
          * {@literal @}draft ICU 49 (Retain)
          * {@literal @}provisional This API might change or be removed in a future release.
+         * @hide draft / provisional / internal are hidden on Android
          */
         public String mzID() {
             return _mzID;
@@ -424,6 +429,7 @@ public abstract class TimeZoneNames implements Serializable {
          * @see NameType
          * {@literal @}draft ICU 49 (Retain)
          * {@literal @}provisional This API might change or be removed in a future release.
+         * @hide draft / provisional / internal are hidden on Android
          */
         public NameType nameType() {
             return _nameType;
@@ -434,6 +440,7 @@ public abstract class TimeZoneNames implements Serializable {
          * @return the match length.
          * {@literal @}draft ICU 49 (Retain)
          * {@literal @}provisional This API might change or be removed in a future release.
+         * @hide draft / provisional / internal are hidden on Android
          */
         public int matchLength() {
             return _matchLength;
@@ -443,6 +450,8 @@ public abstract class TimeZoneNames implements Serializable {
     /**
      * {@literal @}internal For specific users only until proposed publicly.
      * @deprecated This API is ICU internal only.
+     * @hide original deprecated method
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public void loadAllDisplayNames() {}
@@ -450,6 +459,8 @@ public abstract class TimeZoneNames implements Serializable {
     /**
      * {@literal @}internal For specific users only until proposed publicly.
      * @deprecated This API is ICU internal only.
+     * @hide original deprecated method
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public void getDisplayNames(String tzID, NameType[] types, long date,
@@ -476,6 +487,7 @@ public abstract class TimeZoneNames implements Serializable {
      * 
      * {@literal @}draft ICU 49 (Retain)
      * {@literal @}provisional This API might change or be removed in a future release.
+     * @hide draft / provisional / internal are hidden on Android
      */
     protected TimeZoneNames() {
     }
@@ -485,6 +497,8 @@ public abstract class TimeZoneNames implements Serializable {
      * 
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide original deprecated method
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public static abstract class Factory {
@@ -496,6 +510,8 @@ public abstract class TimeZoneNames implements Serializable {
          * @return An instance of <code>TimeZoneNames</code>.
          * {@literal @}internal
          * @deprecated This API is ICU internal only.
+         * @hide original deprecated method
+         * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
         public abstract TimeZoneNames getTimeZoneNames(ULocale locale);
@@ -504,6 +520,8 @@ public abstract class TimeZoneNames implements Serializable {
          * Sole constructor
          * {@literal @}internal
          * @deprecated This API is ICU internal only.
+         * @hide original deprecated method
+         * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
         protected Factory() {

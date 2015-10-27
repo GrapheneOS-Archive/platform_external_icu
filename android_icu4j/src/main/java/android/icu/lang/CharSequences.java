@@ -23,6 +23,8 @@ package android.icu.lang;
  * @author markdavis
  * {@literal @}internal
  * @deprecated This API is ICU internal only.
+ * @hide Only a subset of ICU is exposed in Android
+ * @hide draft / provisional / internal are hidden on Android
  * @hide All android.icu classes are currently hidden
  */
 @Deprecated
@@ -48,6 +50,7 @@ public class CharSequences {
      * Find the longest n such that a[aIndex,n] = b[bIndex,n], and n is on a character boundary.
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public static int matchAfter(CharSequence a, CharSequence b, int aIndex, int bIndex) {
@@ -73,6 +76,7 @@ public class CharSequences {
      * Count the code point length. Unpaired surrogates count as 1.
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public int codePointLength(CharSequence s) {
@@ -96,6 +100,7 @@ public class CharSequences {
      * 
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public static final boolean equals(int codepoint, CharSequence other) {
@@ -112,6 +117,7 @@ public class CharSequences {
     /**
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public static final boolean equals(CharSequence other, int codepoint) {
@@ -127,6 +133,7 @@ public class CharSequences {
      * 
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public static int compare(CharSequence string, int codePoint) {
@@ -171,6 +178,7 @@ public class CharSequences {
      * 
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public static int compare(int codepoint, CharSequence a) {
@@ -182,6 +190,7 @@ public class CharSequences {
      * 
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public static int getSingleCodePoint(CharSequence s) {
@@ -199,6 +208,7 @@ public class CharSequences {
      * 
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public static final <T extends Object> boolean equals(T a, T b) {
@@ -212,6 +222,7 @@ public class CharSequences {
      * 
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public static int compare(CharSequence a, CharSequence b) {
@@ -232,6 +243,7 @@ public class CharSequences {
      * 
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public static boolean equalsChars(CharSequence a, CharSequence b) {
@@ -244,6 +256,7 @@ public class CharSequences {
      * 
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public static boolean onCharacterBoundary(CharSequence s, int i) {
@@ -258,6 +271,7 @@ public class CharSequences {
      * 
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public static int indexOf(CharSequence s, int codePoint) {
@@ -281,6 +295,7 @@ public class CharSequences {
      * 
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public static int[] codePoints(CharSequence s) {

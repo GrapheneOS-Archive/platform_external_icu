@@ -144,6 +144,8 @@ public class StringPrepParseException extends ParseException {
      * value. When Java assertion is enabled, this method triggers an assertion failure.
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide original deprecated method
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public int hashCode() {

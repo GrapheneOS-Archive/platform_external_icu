@@ -54,6 +54,7 @@ import android.icu.impl.ICUResourceBundle;
  *  
  * @author       John Emmons
  * @stable ICU 50
+ * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
  */
 

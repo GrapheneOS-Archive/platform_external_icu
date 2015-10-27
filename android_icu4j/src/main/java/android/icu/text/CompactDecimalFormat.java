@@ -159,6 +159,7 @@ public class CompactDecimalFormat extends DecimalFormat {
      *            collection instead of throwing exceptions.
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public CompactDecimalFormat(String pattern, DecimalFormatSymbols formatSymbols, 

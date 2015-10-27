@@ -23,6 +23,8 @@ import android.icu.impl.SimpleCache;
  * @author markdavis
  * {@literal @}internal
  * @deprecated This API is ICU internal only.
+ * @hide Only a subset of ICU is exposed in Android
+ * @hide draft / provisional / internal are hidden on Android
  * @hide All android.icu classes are currently hidden
  */
 @Deprecated
@@ -34,24 +36,28 @@ public class GenderInfo {
      * Gender: OTHER means either the information is unavailable, or the person has declined to state MALE or FEMALE.
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public enum Gender {
         /**
          * {@literal @}internal
          * @deprecated This API is ICU internal only.
+         * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
         MALE,
         /**
          * {@literal @}internal
          * @deprecated This API is ICU internal only.
+         * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
         FEMALE,
         /**
          * {@literal @}internal
          * @deprecated This API is ICU internal only.
+         * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
         OTHER
@@ -62,6 +68,7 @@ public class GenderInfo {
      * @param uLocale desired locale
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public static GenderInfo getInstance(ULocale uLocale) {
@@ -73,6 +80,7 @@ public class GenderInfo {
      * @param locale desired locale
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public static GenderInfo getInstance(Locale locale) {
@@ -85,6 +93,7 @@ public class GenderInfo {
      * of the list always equals the gender of that sole item.
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public enum ListGenderStyle {
@@ -94,6 +103,7 @@ public class GenderInfo {
          * Otherwise always OTHER.
          * {@literal @}internal
          * @deprecated This API is ICU internal only.
+         * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
         NEUTRAL,
@@ -104,6 +114,7 @@ public class GenderInfo {
          * So any 'other' value makes the overall gender be 'other'.
          * {@literal @}internal
          * @deprecated This API is ICU internal only.
+         * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
         MIXED_NEUTRAL,
@@ -114,6 +125,7 @@ public class GenderInfo {
          * So for more than one item, any 'other' value makes the overall gender be 'male'.
          * {@literal @}internal
          * @deprecated This API is ICU internal only.
+         * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
         MALE_TAINTS;
@@ -130,6 +142,7 @@ public class GenderInfo {
         /**
          * {@literal @}internal
          * @deprecated This API is ICU internal only.
+         * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
         public static ListGenderStyle fromName(String name) {
@@ -147,6 +160,7 @@ public class GenderInfo {
      * @return the gender of the list.
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public Gender getListGender(Gender... genders) {
@@ -159,6 +173,7 @@ public class GenderInfo {
      * @return the gender of the list.
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public Gender getListGender(List<Gender> genders) {
@@ -211,6 +226,7 @@ public class GenderInfo {
      * @param genderStyle gender style
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public GenderInfo(ListGenderStyle genderStyle) {

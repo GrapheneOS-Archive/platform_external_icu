@@ -31,6 +31,8 @@ import android.icu.util.Output;
  * 
  * {@literal @}internal
  * @deprecated This API is ICU internal only.
+ * @hide Only a subset of ICU is exposed in Android
+ * @hide draft / provisional / internal are hidden on Android
  * @hide All android.icu classes are currently hidden
  */
 @Deprecated
@@ -42,6 +44,7 @@ public class PluralSamples {
     /**
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public final Map<String, Boolean> _keyLimitedMap;
@@ -51,6 +54,7 @@ public class PluralSamples {
     /**
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public PluralSamples(PluralRules pluralRules) {
@@ -253,6 +257,7 @@ public class PluralSamples {
     /**
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public KeywordStatus getStatus(String keyword, int offset, Set<Double> explicits, Output<Double> uniqueValue) {

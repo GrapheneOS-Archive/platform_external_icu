@@ -13,6 +13,7 @@ package android.icu.util;
  * into this unchecked version.
  *
  * @stable ICU 53
+ * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
  */
 public class ICUCloneNotSupportedException extends ICUException {

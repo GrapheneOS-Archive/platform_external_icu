@@ -23,6 +23,7 @@ import android.icu.util.ULocale.Category;
  *
  * @see android.icu.util.Calendar
  * @stable ICU 3.4
+ * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
  */
 public final class EthiopicCalendar extends CECalendar 
@@ -295,6 +296,7 @@ public final class EthiopicCalendar extends CECalendar
      * {@inheritDoc}
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     protected int handleGetExtendedYear() {
@@ -322,6 +324,7 @@ public final class EthiopicCalendar extends CECalendar
      * {@inheritDoc}
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     protected void handleComputeFields(int julianDay) {
@@ -358,6 +361,7 @@ public final class EthiopicCalendar extends CECalendar
      * {@inheritDoc}
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     protected int handleGetLimit(int field, int limitType) {
@@ -371,6 +375,7 @@ public final class EthiopicCalendar extends CECalendar
      * {@inheritDoc}
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     protected int getJDEpochOffset() {
@@ -386,6 +391,7 @@ public final class EthiopicCalendar extends CECalendar
      *
      * {@literal @}draft ICU 3.4 (retain)
      * {@literal @}provisional This API might change or be removed in a future release.
+     * @hide draft / provisional / internal are hidden on Android
      */
     // The equivalent operation can be done by public Calendar API.
     // This API was accidentally marked as {@literal @}draft, but we have no good

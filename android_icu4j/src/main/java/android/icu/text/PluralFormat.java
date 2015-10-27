@@ -538,6 +538,7 @@ public class PluralFormat extends UFormat {
      * Therefore, PluralRules is not marked to implement this non-public interface,
      * to avoid confusing users.
      * {@literal @}internal
+     * @hide draft / provisional / internal are hidden on Android
      */
     /*package*/ interface PluralSelector {
         /**
@@ -786,6 +787,7 @@ public class PluralFormat extends UFormat {
      * @deprecated ICU 50 This method clears the pattern and might create
      *             a different kind of PluralRules instance;
      *             use one of the constructors to create a new instance instead.
+     * @hide original deprecated method
      */
     @Deprecated
     public void setLocale(ULocale ulocale) {

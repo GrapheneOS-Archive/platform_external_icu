@@ -237,6 +237,7 @@ public class JapaneseCalendar extends GregorianCalendar {
      * {@literal @}provisional ICU 3.6
      * {@literal @}draft ICU 3.6 (retain)
      * @see #MONTH
+     * @hide draft / provisional / internal are hidden on Android
      */
     protected int getDefaultMonthInYear(int extendedYear)
     {
@@ -261,6 +262,7 @@ public class JapaneseCalendar extends GregorianCalendar {
      * {@literal @}draft ICU 3.6 (retain)
      * {@literal @}provisional ICU 3.6
      * @see #DAY_OF_MONTH
+     * @hide draft / provisional / internal are hidden on Android
      */
     protected int getDefaultDayInMonth(int extendedYear, int month) {
       int era = internalGet(ERA, CURRENT_ERA);
@@ -642,6 +644,8 @@ public class JapaneseCalendar extends GregorianCalendar {
      * {@inheritDoc}
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide original deprecated method
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public boolean haveDefaultCentury() {

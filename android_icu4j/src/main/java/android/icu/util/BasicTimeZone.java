@@ -25,6 +25,7 @@ import android.icu.impl.Grego;
  * @see android.icu.util.TimeZoneTransition
  *
  * @stable ICU 3.8
+ * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
  */
 public abstract class BasicTimeZone extends TimeZone {
@@ -540,6 +541,7 @@ public abstract class BasicTimeZone extends TimeZone {
      * {@link #getOffsetFromLocal(long, int, int, int[])}
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public static final int LOCAL_STD = 0x01;
@@ -549,6 +551,7 @@ public abstract class BasicTimeZone extends TimeZone {
      * {@link #getOffsetFromLocal(long, int, int, int[])}
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public static final int LOCAL_DST = 0x03;
@@ -558,6 +561,7 @@ public abstract class BasicTimeZone extends TimeZone {
      * {@link #getOffsetFromLocal(long, int, int, int[])}
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public static final int LOCAL_FORMER = 0x04;
@@ -567,6 +571,7 @@ public abstract class BasicTimeZone extends TimeZone {
      * {@link #getOffsetFromLocal(long, int, int, int[])}
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public static final int LOCAL_LATTER = 0x0C;
@@ -576,6 +581,7 @@ public abstract class BasicTimeZone extends TimeZone {
      * {@link #getOffsetFromLocal(long, int, int, int[])}
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     protected static final int STD_DST_MASK = 0x03;
@@ -585,6 +591,7 @@ public abstract class BasicTimeZone extends TimeZone {
      * {@link #getOffsetFromLocal(long, int, int, int[])}
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     protected static final int FORMER_LATTER_MASK = 0x0C;
@@ -593,6 +600,7 @@ public abstract class BasicTimeZone extends TimeZone {
      * {{@literal @}icu} Returns time zone offsets from local wall time.
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public void getOffsetFromLocal(long date,
@@ -612,6 +620,7 @@ public abstract class BasicTimeZone extends TimeZone {
      * @param ID the time zone ID.
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     protected BasicTimeZone(String ID) {

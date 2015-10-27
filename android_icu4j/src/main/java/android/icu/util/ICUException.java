@@ -11,6 +11,7 @@ package android.icu.util;
  * Base class for unchecked, ICU-specific exceptions.
  *
  * @stable ICU 53
+ * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
  */
 public class ICUException extends RuntimeException {

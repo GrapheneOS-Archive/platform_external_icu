@@ -651,6 +651,8 @@ public class Currency extends MeasureUnit {
      *
      * {@literal @}internal
      * @deprecated This API is ICU internal only.
+     * @hide original deprecated method
+     * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public static String parse(ULocale locale, String text, int type, ParsePosition pos) {
