@@ -99,7 +99,6 @@ public final class CharsTrieBuilder extends StringTrieBuilder {
 
     /**
      * {@inheritDoc}
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -109,7 +108,6 @@ public final class CharsTrieBuilder extends StringTrieBuilder {
 
     /**
      * {@inheritDoc}
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -118,7 +116,6 @@ public final class CharsTrieBuilder extends StringTrieBuilder {
     protected int getMaxBranchLinearSubNodeLength() /*const*/ { return CharsTrie.kMaxBranchLinearSubNodeLength; }
     /**
      * {@inheritDoc}
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -127,7 +124,6 @@ public final class CharsTrieBuilder extends StringTrieBuilder {
     protected int getMinLinearMatch() /*const*/ { return CharsTrie.kMinLinearMatch; }
     /**
      * {@inheritDoc}
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -149,7 +145,6 @@ public final class CharsTrieBuilder extends StringTrieBuilder {
     }
     /**
      * {@inheritDoc}
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -164,7 +159,6 @@ public final class CharsTrieBuilder extends StringTrieBuilder {
     }
     /**
      * {@inheritDoc}
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -194,7 +188,6 @@ public final class CharsTrieBuilder extends StringTrieBuilder {
 
     /**
      * {@inheritDoc}
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -223,7 +216,6 @@ public final class CharsTrieBuilder extends StringTrieBuilder {
     }
     /**
      * {@inheritDoc}
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -252,7 +244,6 @@ public final class CharsTrieBuilder extends StringTrieBuilder {
     }
     /**
      * {@inheritDoc}
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */

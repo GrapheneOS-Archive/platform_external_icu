@@ -39,7 +39,6 @@ final public class ListFormatter {
     
     /**
      * Indicates the style of Listformatter
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -47,7 +46,6 @@ final public class ListFormatter {
     public enum Style {
         /**
          * Standard style.
-         * {@literal @}internal
          * @deprecated This API is ICU internal only.
          * @hide draft / provisional / internal are hidden on Android
          */
@@ -55,7 +53,6 @@ final public class ListFormatter {
         STANDARD("standard"),
         /**
          * Style for full durations
-         * {@literal @}internal
          * @deprecated This API is ICU internal only.
          * @hide draft / provisional / internal are hidden on Android
          */
@@ -63,7 +60,6 @@ final public class ListFormatter {
         DURATION("unit"),
         /**
          * Style for durations in abbrevated form
-         * {@literal @}internal
          * @deprecated This API is ICU internal only.
          * @hide draft / provisional / internal are hidden on Android
          */
@@ -71,7 +67,6 @@ final public class ListFormatter {
         DURATION_SHORT("unit-short"),
         /**
          * Style for durations in narrow form
-         * {@literal @}internal
          * @deprecated This API is ICU internal only.
          * @hide draft / provisional / internal are hidden on Android
          */
@@ -84,7 +79,6 @@ final public class ListFormatter {
             this.name = name;
         }
         /**
-         * {@literal @}internal
          * @deprecated This API is ICU internal only.
          * @hide draft / provisional / internal are hidden on Android
          */
@@ -111,7 +105,6 @@ final public class ListFormatter {
      * @param end
      *            string for the end of a list items, containing {0} for the
      *            first part of the list, and {1} for the last item.
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -162,7 +155,6 @@ final public class ListFormatter {
      * @param locale the locale in question.
      * @param style the style
      * @return ListFormatter
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -245,7 +237,6 @@ final public class ListFormatter {
     
     /**
      * Returns the locale of this object.
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */

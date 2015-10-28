@@ -15,7 +15,6 @@ import android.icu.util.ULocale.Category;
  * <code>DangiCalendar</code> is a concrete subclass of {@link Calendar}
  * that implements a traditional Korean calendar.
  * 
- * {@literal @}internal
  * @deprecated This API is ICU internal only.
  * @hide Only a subset of ICU is exposed in Android
  * @hide draft / provisional / internal are hidden on Android
@@ -85,7 +84,6 @@ public class DangiCalendar extends ChineseCalendar {
     /**
      * Construct a <code>DangiCalendar</code> with the default time zone and locale.
      * 
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -99,7 +97,6 @@ public class DangiCalendar extends ChineseCalendar {
      * with the default locale.
      * @param date The date to which the new calendar is set.
      * 
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -115,7 +112,6 @@ public class DangiCalendar extends ChineseCalendar {
      * @param zone the given time zone
      * @param locale the given locale
      * 
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -127,7 +123,6 @@ public class DangiCalendar extends ChineseCalendar {
     /**
      * {@inheritDoc}
      * 
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */

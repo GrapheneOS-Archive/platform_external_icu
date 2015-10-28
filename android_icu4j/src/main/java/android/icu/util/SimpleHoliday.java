@@ -17,8 +17,6 @@ import java.util.Date;
  * A holiday whose date can be represented by a month, day, and optionally day of week
  * in the Gregorian calendar.
  *
- * {@literal @}draft ICU 2.8 (retainAll)
- * {@literal @}provisional This API might change or be removed in a future release.
  * @hide Only a subset of ICU is exposed in Android
  * @hide draft / provisional / internal are hidden on Android
  * @hide All android.icu classes are currently hidden
@@ -36,8 +34,6 @@ public class SimpleHoliday extends Holiday {
      *              getDisplayName will return this string instead.
      *
      * @see Holiday#getDisplayName(java.util.Locale)
-     * {@literal @}draft ICU 2.8
-     * {@literal @}provisional This API might change or be removed in a future release.
      * @hide draft / provisional / internal are hidden on Android
      */
     public SimpleHoliday(int month, int dayOfMonth, String name)
@@ -57,8 +53,6 @@ public class SimpleHoliday extends Holiday {
      *              getDisplayName will return this string instead.
      *
      * @see Holiday#getDisplayName(java.util.Locale)
-     * {@literal @}draft ICU 2.8
-     * {@literal @}provisional This API might change or be removed in a future release.
      * @hide draft / provisional / internal are hidden on Android
      */
     public SimpleHoliday(int month, int dayOfMonth, String name,
@@ -79,8 +73,6 @@ public class SimpleHoliday extends Holiday {
      *              getDisplayName will return this string instead.
      *
      * @see Holiday#getDisplayName(java.util.Locale)
-     * {@literal @}draft ICU 2.8
-     * {@literal @}provisional This API might change or be removed in a future release.
      * @hide draft / provisional / internal are hidden on Android
      */
     public SimpleHoliday(int month, int dayOfMonth, String name,
@@ -111,8 +103,6 @@ public class SimpleHoliday extends Holiday {
      *              getDisplayName will return this string instead.
      *
      * @see Holiday#getDisplayName(java.util.Locale)
-     * {@literal @}draft ICU 2.8
-     * {@literal @}provisional This API might change or be removed in a future release.
      * @hide draft / provisional / internal are hidden on Android
      */
     public SimpleHoliday(int month, int dayOfMonth, int dayOfWeek, String name)
@@ -123,8 +113,6 @@ public class SimpleHoliday extends Holiday {
     }
 
     /**
-     * {@literal @}draft ICU 2.8
-     * {@literal @}provisional This API might change or be removed in a future release.
      * @hide draft / provisional / internal are hidden on Android
      */
     public SimpleHoliday(int month, int dayOfMonth, int dayOfWeek, String name,
@@ -138,8 +126,6 @@ public class SimpleHoliday extends Holiday {
 
 
     /**
-     * {@literal @}draft ICU 2.8
-     * {@literal @}provisional This API might change or be removed in a future release.
      * @hide draft / provisional / internal are hidden on Android
      */
     public SimpleHoliday(int month, int dayOfMonth, int dayOfWeek, String name,
@@ -178,8 +164,6 @@ public class SimpleHoliday extends Holiday {
 
     /**
      * New Year's Day - January 1st
-     * {@literal @}draft ICU 2.8
-     * {@literal @}provisional This API might change or be removed in a future release.
      * @hide draft / provisional / internal are hidden on Android
      */
     public static final SimpleHoliday NEW_YEARS_DAY =
@@ -187,8 +171,6 @@ public class SimpleHoliday extends Holiday {
 
     /**
      * Epiphany, January 6th
-     * {@literal @}draft ICU 2.8
-     * {@literal @}provisional This API might change or be removed in a future release.
      * @hide draft / provisional / internal are hidden on Android
      */
     public static final SimpleHoliday EPIPHANY =
@@ -196,8 +178,6 @@ public class SimpleHoliday extends Holiday {
 
     /**
      * May Day, May 1st
-     * {@literal @}draft ICU 2.8
-     * {@literal @}provisional This API might change or be removed in a future release.
      * @hide draft / provisional / internal are hidden on Android
      */
     public static final SimpleHoliday MAY_DAY =
@@ -205,8 +185,6 @@ public class SimpleHoliday extends Holiday {
 
     /**
      * Assumption, August 15th
-     * {@literal @}draft ICU 2.8
-     * {@literal @}provisional This API might change or be removed in a future release.
      * @hide draft / provisional / internal are hidden on Android
      */
     public static final SimpleHoliday ASSUMPTION =
@@ -214,8 +192,6 @@ public class SimpleHoliday extends Holiday {
 
     /**
      * All Saints' Day, November 1st
-     * {@literal @}draft ICU 2.8
-     * {@literal @}provisional This API might change or be removed in a future release.
      * @hide draft / provisional / internal are hidden on Android
      */
     public static final SimpleHoliday ALL_SAINTS_DAY =
@@ -223,8 +199,6 @@ public class SimpleHoliday extends Holiday {
 
     /**
      * All Souls' Day, November 1st
-     * {@literal @}draft ICU 2.8
-     * {@literal @}provisional This API might change or be removed in a future release.
      * @hide draft / provisional / internal are hidden on Android
      */
     public static final SimpleHoliday ALL_SOULS_DAY =
@@ -232,8 +206,6 @@ public class SimpleHoliday extends Holiday {
 
     /**
      * Immaculate Conception, December 8th
-     * {@literal @}draft ICU 2.8
-     * {@literal @}provisional This API might change or be removed in a future release.
      * @hide draft / provisional / internal are hidden on Android
      */
     public static final SimpleHoliday IMMACULATE_CONCEPTION =
@@ -241,8 +213,6 @@ public class SimpleHoliday extends Holiday {
 
     /**
      * Christmas Eve, December 24th
-     * {@literal @}draft ICU 2.8
-     * {@literal @}provisional This API might change or be removed in a future release.
      * @hide draft / provisional / internal are hidden on Android
      */
     public static final SimpleHoliday CHRISTMAS_EVE =
@@ -250,8 +220,6 @@ public class SimpleHoliday extends Holiday {
 
     /**
      * Christmas, December 25th
-     * {@literal @}draft ICU 2.8
-     * {@literal @}provisional This API might change or be removed in a future release.
      * @hide draft / provisional / internal are hidden on Android
      */
     public static final SimpleHoliday CHRISTMAS =
@@ -259,8 +227,6 @@ public class SimpleHoliday extends Holiday {
 
     /**
      * Boxing Day, December 26th
-     * {@literal @}draft ICU 2.8
-     * {@literal @}provisional This API might change or be removed in a future release.
      * @hide draft / provisional / internal are hidden on Android
      */
     public static final SimpleHoliday BOXING_DAY =
@@ -268,8 +234,6 @@ public class SimpleHoliday extends Holiday {
 
     /**
      * Saint Stephen's Day, December 26th
-     * {@literal @}draft ICU 2.8
-     * {@literal @}provisional This API might change or be removed in a future release.
      * @hide draft / provisional / internal are hidden on Android
      */
     public static final SimpleHoliday ST_STEPHENS_DAY =
@@ -277,8 +241,6 @@ public class SimpleHoliday extends Holiday {
 
     /**
      * New Year's Eve, December 31st
-     * {@literal @}draft ICU 2.8
-     * {@literal @}provisional This API might change or be removed in a future release.
      * @hide draft / provisional / internal are hidden on Android
      */
     public static final SimpleHoliday NEW_YEARS_EVE =

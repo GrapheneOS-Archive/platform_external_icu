@@ -497,7 +497,6 @@ public class CharsetDetector {
      * @return an array of the names of charsets that can be recognized by this CharsetDetector
      * instance.
      *
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -526,7 +525,6 @@ public class CharsetDetector {
      * @throws IllegalArgumentException when the name of charset encoding is
      * not supported.
      *
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */

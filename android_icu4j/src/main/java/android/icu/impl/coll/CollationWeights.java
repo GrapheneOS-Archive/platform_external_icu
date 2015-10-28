@@ -156,9 +156,7 @@ public final class CollationWeights {
         }
     }
 
-    /** {@literal @}internal
-    * @hide draft / provisional / internal are hidden on Android
-     */
+    /** @hide draft / provisional / internal are hidden on Android*/
     private static final class WeightRange implements Comparable<WeightRange> {
         long start, end;
         int length, count;

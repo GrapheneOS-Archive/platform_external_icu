@@ -17,8 +17,9 @@ import android.icu.text.Replaceable;
 import android.icu.text.UTF16;
 import android.icu.text.UnicodeMatcher;
 
-/** @hide Only a subset of ICU is exposed in Android
-* @hide All android.icu classes are currently hidden
+/**
+ * @hide Only a subset of ICU is exposed in Android
+ * @hide All android.icu classes are currently hidden
  */
 public final class Utility {
 

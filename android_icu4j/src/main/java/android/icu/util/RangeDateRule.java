@@ -17,16 +17,12 @@ import java.util.List;
  * Despite its age, is still draft API, and clients should treat it as such.
  * 
  * Implementation of DateRule that takes a range.
- * {@literal @}draft ICU 2.8 (retainAll)
- * {@literal @}provisional This API might change or be removed in a future release.
  * @hide Only a subset of ICU is exposed in Android
  * @hide draft / provisional / internal are hidden on Android
  * @hide All android.icu classes are currently hidden
  */
 public class RangeDateRule implements DateRule {
     /**
-     * {@literal @}draft ICU 2.8
-     * {@literal @}provisional This API might change or be removed in a future release.
      * @hide draft / provisional / internal are hidden on Android
      */
     public RangeDateRule() {
@@ -41,8 +37,6 @@ public class RangeDateRule implements DateRule {
 //    }
 
     /**
-     * {@literal @}draft ICU 2.8
-     * {@literal @}provisional This API might change or be removed in a future release.
      * @hide draft / provisional / internal are hidden on Android
      */
     public void add(DateRule rule) {
@@ -50,8 +44,6 @@ public class RangeDateRule implements DateRule {
     }
 
     /**
-     * {@literal @}draft ICU 2.8
-     * {@literal @}provisional This API might change or be removed in a future release.
      * @hide draft / provisional / internal are hidden on Android
      */
     public void add(Date start, DateRule rule) {
@@ -63,8 +55,6 @@ public class RangeDateRule implements DateRule {
     //-----------------------------------------------------------------------
 
     /**
-     * {@literal @}draft ICU 2.8
-     * {@literal @}provisional This API might change or be removed in a future release.
      * @hide draft / provisional / internal are hidden on Android
      */
     public Date firstAfter(Date start) {
@@ -90,8 +80,6 @@ public class RangeDateRule implements DateRule {
     }
 
     /**
-     * {@literal @}draft ICU 2.8
-     * {@literal @}provisional This API might change or be removed in a future release.
      * @hide draft / provisional / internal are hidden on Android
      */
     public Date firstBetween(Date start, Date end) {
@@ -120,8 +108,6 @@ public class RangeDateRule implements DateRule {
     }
 
     /**
-     * {@literal @}draft ICU 2.8
-     * {@literal @}provisional This API might change or be removed in a future release.
      * @hide draft / provisional / internal are hidden on Android
      */
     public boolean isOn(Date date) {
@@ -132,8 +118,6 @@ public class RangeDateRule implements DateRule {
     /**
      * Check whether this event occurs at least once between the two
      * dates given.
-     * {@literal @}draft ICU 2.8
-     * {@literal @}provisional This API might change or be removed in a future release.
      * @hide draft / provisional / internal are hidden on Android
      */
     public boolean isBetween(Date start, Date end) {

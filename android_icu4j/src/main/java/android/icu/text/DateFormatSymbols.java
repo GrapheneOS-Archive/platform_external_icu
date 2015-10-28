@@ -33,7 +33,7 @@ import android.icu.util.UResourceBundle;
 import android.icu.util.UResourceBundleIterator;
 
 /**
- * {{@literal @}icuenhanced java.text.DateFormatSymbols}.{{@literal @}icu _usage_}
+ * <strong>[icu enhancement]</strong> ICU's replacement for {@link java.text.DateFormatSymbols}.&nbsp;Methods, fields, and other functionality specific to ICU are labeled '<strong>[icu]</strong>'.
  *
  * <p><code>DateFormatSymbols</code> is a public class for encapsulating
  * localizable date-time formatting data, such as the names of the
@@ -85,19 +85,18 @@ public class DateFormatSymbols implements Serializable, Cloneable {
 
     // Constants for context
     /**
-     * {{@literal @}icu} Constant for context.
+     * <strong>[icu]</strong> Constant for context.
      */
     public static final int FORMAT = 0;
 
     /**
-     * {{@literal @}icu} Constant for context.
+     * <strong>[icu]</strong> Constant for context.
      */
     public static final int STANDALONE = 1;
 
     /**
-     * {{@literal @}icu} Constant for context. NUMERIC context
+     * <strong>[icu]</strong> Constant for context. NUMERIC context
      * is only supported for leapMonthPatterns.
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide original deprecated method
      * @hide draft / provisional / internal are hidden on Android
@@ -106,8 +105,7 @@ public class DateFormatSymbols implements Serializable, Cloneable {
     public static final int NUMERIC = 2;
 
     /**
-     * {{@literal @}icu} Constant for context.
-     * {@literal @}internal
+     * <strong>[icu]</strong> Constant for context.
      * @deprecated This API is ICU internal only.
      * @hide original deprecated method
      * @hide draft / provisional / internal are hidden on Android
@@ -118,28 +116,27 @@ public class DateFormatSymbols implements Serializable, Cloneable {
     // Constants for width
 
     /**
-     * {{@literal @}icu} Constant for width.
+     * <strong>[icu]</strong> Constant for width.
      */
     public static final int ABBREVIATED = 0;
 
     /**
-     * {{@literal @}icu} Constant for width.
+     * <strong>[icu]</strong> Constant for width.
      */
     public static final int WIDE = 1;
 
     /**
-     * {{@literal @}icu} Constant for width.
+     * <strong>[icu]</strong> Constant for width.
      */
     public static final int NARROW = 2;
 
     /**
-     * {{@literal @}icu} Constant for width; only supported for weekdays.
+     * <strong>[icu]</strong> Constant for width; only supported for weekdays.
      */
     public static final int SHORT = 3;
 
     /**
-     * {{@literal @}icu} Constant for width.
-     * {@literal @}internal
+     * <strong>[icu]</strong> Constant for width.
      * @deprecated This API is ICU internal only.
      * @hide original deprecated method
      * @hide draft / provisional / internal are hidden on Android
@@ -148,72 +145,62 @@ public class DateFormatSymbols implements Serializable, Cloneable {
     public static final int DT_WIDTH_COUNT = 4;
 
     /**
-     * {{@literal @}icu} Somewhat temporary constant for leap month pattern type, adequate for Chinese calendar.
-     * {@literal @}internal
+     * <strong>[icu]</strong> Somewhat temporary constant for leap month pattern type, adequate for Chinese calendar.
      * @hide draft / provisional / internal are hidden on Android
      */
     static final int DT_LEAP_MONTH_PATTERN_FORMAT_WIDE = 0;
 
     /**
-     * {{@literal @}icu} Somewhat temporary constant for leap month pattern type, adequate for Chinese calendar.
-     * {@literal @}internal
+     * <strong>[icu]</strong> Somewhat temporary constant for leap month pattern type, adequate for Chinese calendar.
      * @hide draft / provisional / internal are hidden on Android
      */
     static final int DT_LEAP_MONTH_PATTERN_FORMAT_ABBREV = 1;
 
     /**
-     * {{@literal @}icu} Somewhat temporary constant for leap month pattern type, adequate for Chinese calendar.
-     * {@literal @}internal
+     * <strong>[icu]</strong> Somewhat temporary constant for leap month pattern type, adequate for Chinese calendar.
      * @hide draft / provisional / internal are hidden on Android
      */
     static final int DT_LEAP_MONTH_PATTERN_FORMAT_NARROW = 2;
 
     /**
-     * {{@literal @}icu} Somewhat temporary constant for leap month pattern type, adequate for Chinese calendar.
-     * {@literal @}internal
+     * <strong>[icu]</strong> Somewhat temporary constant for leap month pattern type, adequate for Chinese calendar.
      * @hide draft / provisional / internal are hidden on Android
      */
     static final int DT_LEAP_MONTH_PATTERN_STANDALONE_WIDE = 3;
 
     /**
-     * {{@literal @}icu} Somewhat temporary constant for leap month pattern type, adequate for Chinese calendar.
-     * {@literal @}internal
+     * <strong>[icu]</strong> Somewhat temporary constant for leap month pattern type, adequate for Chinese calendar.
      * @hide draft / provisional / internal are hidden on Android
      */
     static final int DT_LEAP_MONTH_PATTERN_STANDALONE_ABBREV = 4;
 
     /**
-     * {{@literal @}icu} Somewhat temporary constant for leap month pattern type, adequate for Chinese calendar.
-     * {@literal @}internal
+     * <strong>[icu]</strong> Somewhat temporary constant for leap month pattern type, adequate for Chinese calendar.
      * @hide draft / provisional / internal are hidden on Android
      */
     static final int DT_LEAP_MONTH_PATTERN_STANDALONE_NARROW = 5;
 
     /**
-     * {{@literal @}icu} Somewhat temporary constant for leap month pattern type, adequate for Chinese calendar.
-     * {@literal @}internal
+     * <strong>[icu]</strong> Somewhat temporary constant for leap month pattern type, adequate for Chinese calendar.
      * @hide draft / provisional / internal are hidden on Android
      */
     static final int DT_LEAP_MONTH_PATTERN_NUMERIC = 6;
 
     /**
-     * {{@literal @}icu} Somewhat temporary constant for month pattern count, adequate for Chinese calendar.
-     * {@literal @}internal
+     * <strong>[icu]</strong> Somewhat temporary constant for month pattern count, adequate for Chinese calendar.
      * @hide draft / provisional / internal are hidden on Android
      */
     static final int DT_MONTH_PATTERN_COUNT = 7;
 
     /**
-     * {{@literal @}icu} This default time separator is used for formatting when the locale
+     * <strong>[icu]</strong> This default time separator is used for formatting when the locale
      * doesn't specify any time separator, and always recognized when parsing.
-     * {@literal @}internal
      * @hide draft / provisional / internal are hidden on Android
      */
     static final String DEFAULT_TIME_SEPARATOR = ":";
 
     /**
-     * {{@literal @}icu} This alternate time separator is always recognized when parsing.
-     * {@literal @}internal
+     * <strong>[icu]</strong> This alternate time separator is always recognized when parsing.
      * @hide draft / provisional / internal are hidden on Android
      */
     static final String ALTERNATE_TIME_SEPARATOR = ".";
@@ -244,7 +231,7 @@ public class DateFormatSymbols implements Serializable, Cloneable {
     }
 
     /**
-     * {{@literal @}icu} Constructs a DateFormatSymbols object by loading format data from
+     * <strong>[icu]</strong> Constructs a DateFormatSymbols object by loading format data from
      * resources for the given ulocale.
      *
      * @throws java.util.MissingResourceException if the resources for the specified
@@ -258,7 +245,7 @@ public class DateFormatSymbols implements Serializable, Cloneable {
     /**
      * Returns a DateFormatSymbols instance for the default locale.
      *
-     * {{@literal @}icunote} Unlike <code>java.text.DateFormatSymbols#getInstance</code>,
+     * <strong>[icu] Note:</strong> Unlike <code>java.text.DateFormatSymbols#getInstance</code>,
      * this method simply returns <code>new android.icu.text.DateFormatSymbols()</code>.
      * ICU does not support <code>DateFormatSymbolsProvider</code> introduced in Java 6
      * or its equivalent implementation for now.
@@ -272,7 +259,7 @@ public class DateFormatSymbols implements Serializable, Cloneable {
     /**
      * Returns a DateFormatSymbols instance for the given locale.
      *
-     * {{@literal @}icunote} Unlike <code>java.text.DateFormatSymbols#getInstance</code>,
+     * <strong>[icu] Note:</strong> Unlike <code>java.text.DateFormatSymbols#getInstance</code>,
      * this method simply returns <code>new android.icu.text.DateFormatSymbols(locale)</code>.
      * ICU does not support <code>DateFormatSymbolsProvider</code> introduced in Java 6
      * or its equivalent implementation for now.
@@ -285,9 +272,9 @@ public class DateFormatSymbols implements Serializable, Cloneable {
     }
 
     /**
-     * {{@literal @}icu} Returns a DateFormatSymbols instance for the given locale.
+     * <strong>[icu]</strong> Returns a DateFormatSymbols instance for the given locale.
      *
-     * {{@literal @}icunote} Unlike <code>java.text.DateFormatSymbols#getInstance</code>,
+     * <strong>[icu] Note:</strong> Unlike <code>java.text.DateFormatSymbols#getInstance</code>,
      * this method simply returns <code>new android.icu.text.DateFormatSymbols(locale)</code>.
      * ICU does not support <code>DateFormatSymbolsProvider</code> introduced in Java 6
      * or its equivalent implementation for now.
@@ -303,7 +290,7 @@ public class DateFormatSymbols implements Serializable, Cloneable {
      * Returns an array of all locales for which the <code>getInstance</code> methods of
      * this class can return localized instances.
      *
-     * {{@literal @}icunote} Unlike <code>java.text.DateFormatSymbols#getAvailableLocales</code>,
+     * <strong>[icu] Note:</strong> Unlike <code>java.text.DateFormatSymbols#getAvailableLocales</code>,
      * this method simply returns the array of <code>Locale</code>s available in this
      * class.  ICU does not support <code>DateFormatSymbolsProvider</code> introduced in
      * Java 6 or its equivalent implementation for now.
@@ -316,18 +303,16 @@ public class DateFormatSymbols implements Serializable, Cloneable {
     }
 
     /**
-     * {{@literal @}icu} Returns an array of all locales for which the <code>getInstance</code>
+     * <strong>[icu]</strong> Returns an array of all locales for which the <code>getInstance</code>
      * methods of this class can return localized instances.
      *
-     * {{@literal @}icunote} Unlike <code>java.text.DateFormatSymbols#getAvailableLocales</code>,
+     * <strong>[icu] Note:</strong> Unlike <code>java.text.DateFormatSymbols#getAvailableLocales</code>,
      * this method simply returns the array of <code>ULocale</code>s available in this
      * class.  ICU does not support <code>DateFormatSymbolsProvider</code> introduced in
      * Java 6 or its equivalent implementation for now.
      *
      * @return An array of <code>ULocale</code>s for which localized
      * <code>DateFormatSymbols</code> instances are available.
-     * {@literal @}draft ICU 3.8 (retain)
-     * {@literal @}provisional This API might change or be removed in a future release.
      * @hide draft / provisional / internal are hidden on Android
      */
     public static ULocale[] getAvailableULocales() {
@@ -629,9 +614,8 @@ public class DateFormatSymbols implements Serializable, Cloneable {
     };
 
     /**
-     * {{@literal @}icu} Constants for capitalization context usage types
+     * <strong>[icu]</strong> Constants for capitalization context usage types
      * related to date formatting.
-     * {@literal @}internal
      * @hide draft / provisional / internal are hidden on Android
      */
     enum CapitalizationContextUsage {
@@ -696,7 +680,7 @@ public class DateFormatSymbols implements Serializable, Cloneable {
     }
 
     /**
-     * {{@literal @}icu} Returns era name strings. For example: "Anno Domini" and "Before Christ".
+     * <strong>[icu]</strong> Returns era name strings. For example: "Anno Domini" and "Before Christ".
      * @return the era strings.
      */
     public String[] getEraNames() {
@@ -704,7 +688,7 @@ public class DateFormatSymbols implements Serializable, Cloneable {
     }
 
     /**
-     * {{@literal @}icu} Sets era name strings. For example: "Anno Domini" and "Before Christ".
+     * <strong>[icu]</strong> Sets era name strings. For example: "Anno Domini" and "Before Christ".
      * @param newEraNames the new era strings.
      */
     public void setEraNames(String[] newEraNames) {
@@ -966,7 +950,7 @@ public class DateFormatSymbols implements Serializable, Cloneable {
         shortWeekdays = duplicate(newAbbrevWeekdays);
     }
     /**
-     * {{@literal @}icu} Returns quarter strings. For example: "1st Quarter", "2nd Quarter", etc.
+     * <strong>[icu]</strong> Returns quarter strings. For example: "1st Quarter", "2nd Quarter", etc.
      * @param context    The quarter context, FORMAT or STANDALONE.
      * @param width      The width or the returned quarter string,
      *                   either WIDE or ABBREVIATED. There are no NARROW quarters.
@@ -1012,7 +996,7 @@ public class DateFormatSymbols implements Serializable, Cloneable {
     }
 
     /**
-     * {{@literal @}icu} Sets quarter strings. For example: "1st Quarter", "2nd Quarter", etc.
+     * <strong>[icu]</strong> Sets quarter strings. For example: "1st Quarter", "2nd Quarter", etc.
      * @param newQuarters the new quarter strings.
      * @param context    The formatting context, FORMAT or STANDALONE.
      * @param width      The width of the quarter string,
@@ -1116,7 +1100,6 @@ public class DateFormatSymbols implements Serializable, Cloneable {
      * @param width     The requested pattern width: WIDE, ABBREVIATED, SHORT, NARROW.
      * @return          The leapMonthPattern, or null if not available for
      *                  this calendar.
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide original deprecated method
      * @hide draft / provisional / internal are hidden on Android
@@ -1171,7 +1154,6 @@ public class DateFormatSymbols implements Serializable, Cloneable {
      * @param leapMonthPattern  The new leapMonthPattern.
      * @param context   The usage context: FORMAT, STANDALONE, NUMERIC.
      * @param width     The name width: WIDE, ABBREVIATED, NARROW.
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide original deprecated method
      * @hide draft / provisional / internal are hidden on Android
@@ -1242,8 +1224,6 @@ public class DateFormatSymbols implements Serializable, Cloneable {
     /**
      * Returns the time separator string. For example: ":".
      * @return the time separator string.
-     * {@literal @}draft ICU 55
-     * {@literal @}provisional This API might change or be removed in a future release.
      * @hide draft / provisional / internal are hidden on Android
      */
     public String getTimeSeparatorString() {
@@ -1253,8 +1233,6 @@ public class DateFormatSymbols implements Serializable, Cloneable {
     /**
      * Sets the time separator string. For example: ":".
      * @param newTimeSeparator the new time separator string.
-     * {@literal @}draft ICU 55
-     * {@literal @}provisional This API might change or be removed in a future release.
      * @hide draft / provisional / internal are hidden on Android
      */
     public void setTimeSeparatorString(String newTimeSeparator) {
@@ -1501,7 +1479,6 @@ public class DateFormatSymbols implements Serializable, Cloneable {
      * Initializes format symbols for the locale and calendar type
      * @param desiredLocale The locale whose symbols are desired.
      * @param calData       The calendar resource data
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide original deprecated method
      * @hide draft / provisional / internal are hidden on Android
@@ -2025,8 +2002,6 @@ public class DateFormatSymbols implements Serializable, Cloneable {
      * @see android.icu.util.ULocale
      * @see android.icu.util.ULocale#VALID_LOCALE
      * @see android.icu.util.ULocale#ACTUAL_LOCALE
-     * {@literal @}draft ICU 2.8 (retain)
-     * {@literal @}provisional This API might change or be removed in a future release.
      * @hide draft / provisional / internal are hidden on Android
      */
     public final ULocale getLocale(ULocale.Type type) {

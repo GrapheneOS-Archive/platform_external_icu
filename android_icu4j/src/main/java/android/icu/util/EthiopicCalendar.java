@@ -268,7 +268,6 @@ public final class EthiopicCalendar extends CECalendar
 
     /**
      * {@inheritDoc}
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -296,7 +295,6 @@ public final class EthiopicCalendar extends CECalendar
 
     /**
      * {@inheritDoc}
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -333,7 +331,6 @@ public final class EthiopicCalendar extends CECalendar
 
     /**
      * {@inheritDoc}
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -347,7 +344,6 @@ public final class EthiopicCalendar extends CECalendar
 
     /**
      * {@inheritDoc}
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -363,8 +359,6 @@ public final class EthiopicCalendar extends CECalendar
      * @param month the month
      * @param date the day
      *
-     * {@literal @}draft ICU 3.4 (retain)
-     * {@literal @}provisional This API might change or be removed in a future release.
      * @hide draft / provisional / internal are hidden on Android
      */
     // The equivalent operation can be done by public Calendar API.

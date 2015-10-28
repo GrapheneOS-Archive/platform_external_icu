@@ -52,7 +52,6 @@ import android.icu.impl.Utility;
 public class LocaleMatcher {
 
     /**
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -104,7 +103,6 @@ public class LocaleMatcher {
      * Internal testing function; may expose API later.
      * @param languagePriorityList LocalePriorityList to match
      * @param matcherData Internal matching data
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -117,7 +115,6 @@ public class LocaleMatcher {
      * Internal testing function; may expose API later.
      * @param languagePriorityList LocalePriorityList to match
      * @param matcherData Internal matching data
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -222,7 +219,6 @@ public class LocaleMatcher {
     }
 
     /**
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -288,7 +284,6 @@ public class LocaleMatcher {
     }
     
     /**
-     * {@literal @}internal 
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -595,7 +590,6 @@ public class LocaleMatcher {
 
     /**
      * Only for testing and use by tools. Interface may change!!
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -609,7 +603,6 @@ public class LocaleMatcher {
 
 
         /**
-         * {@literal @}internal
          * @deprecated This API is ICU internal only.
          * @hide draft / provisional / internal are hidden on Android
          */
@@ -618,7 +611,6 @@ public class LocaleMatcher {
         }
 
         /**
-         * {@literal @}internal
          * @deprecated This API is ICU internal only.
          * @hide draft / provisional / internal are hidden on Android
          */
@@ -628,7 +620,6 @@ public class LocaleMatcher {
         }
 
         /**
-         * {@literal @}internal
          * @deprecated This API is ICU internal only.
          * @hide draft / provisional / internal are hidden on Android
          */
@@ -638,7 +629,6 @@ public class LocaleMatcher {
         }
 
         /**
-         * {@literal @}internal
          * @deprecated This API is ICU internal only.
          * @hide draft / provisional / internal are hidden on Android
          */
@@ -673,7 +663,6 @@ public class LocaleMatcher {
          * symmetric. We don't bother producing an equivalence class because there are
          * so few cases; this function depends on the other permutations being
          * added specifically.
-         * {@literal @}internal
          * @deprecated This API is ICU internal only.
          * @hide draft / provisional / internal are hidden on Android
          */
@@ -683,7 +672,6 @@ public class LocaleMatcher {
             return addDistance(desired, supported, percent, false, null);
         }
         /**
-         * {@literal @}internal
          * @deprecated This API is ICU internal only.
          * @hide draft / provisional / internal are hidden on Android
          */
@@ -692,7 +680,6 @@ public class LocaleMatcher {
             return addDistance(desired, supported, percent, false, comment);
         }
         /**
-         * {@literal @}internal
          * @deprecated This API is ICU internal only.
          * @hide draft / provisional / internal are hidden on Android
          */
@@ -761,7 +748,6 @@ public class LocaleMatcher {
 
         /** 
          * {@inheritDoc}
-         * {@literal @}internal
          * @deprecated This API is ICU internal only.
          * @hide draft / provisional / internal are hidden on Android
          */
@@ -782,7 +768,6 @@ public class LocaleMatcher {
 
         /** 
          * {@inheritDoc}
-         * {@literal @}internal
          * @deprecated This API is ICU internal only.
          * @hide draft / provisional / internal are hidden on Android
          */
@@ -798,7 +783,6 @@ public class LocaleMatcher {
 
         /** 
          * {@inheritDoc}
-         * {@literal @}internal
          * @deprecated This API is ICU internal only.
          * @hide draft / provisional / internal are hidden on Android
          */
@@ -840,7 +824,6 @@ public class LocaleMatcher {
     }
 
     /**
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -854,7 +837,6 @@ public class LocaleMatcher {
     }
 
     /**
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */

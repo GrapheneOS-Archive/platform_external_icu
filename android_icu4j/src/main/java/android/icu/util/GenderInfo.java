@@ -21,7 +21,6 @@ import android.icu.impl.SimpleCache;
 /**
  * Provide information about gender in locales based on data in CLDR. Currently supplies gender of lists.
  * @author markdavis
- * {@literal @}internal
  * @deprecated This API is ICU internal only.
  * @hide Only a subset of ICU is exposed in Android
  * @hide draft / provisional / internal are hidden on Android
@@ -34,28 +33,24 @@ public class GenderInfo {
 
     /**
      * Gender: OTHER means either the information is unavailable, or the person has declined to state MALE or FEMALE.
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public enum Gender {
         /**
-         * {@literal @}internal
          * @deprecated This API is ICU internal only.
          * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
         MALE,
         /**
-         * {@literal @}internal
          * @deprecated This API is ICU internal only.
          * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
         FEMALE,
         /**
-         * {@literal @}internal
          * @deprecated This API is ICU internal only.
          * @hide draft / provisional / internal are hidden on Android
          */
@@ -66,7 +61,6 @@ public class GenderInfo {
     /**
      * Create GenderInfo from a ULocale.
      * @param uLocale desired locale
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -78,7 +72,6 @@ public class GenderInfo {
     /**
      * Create GenderInfo from a Locale.
      * @param locale desired locale
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -91,7 +84,6 @@ public class GenderInfo {
      * Enum only meant for use in CLDR and in testing. Indicates the category for the locale.
      * This only affects gender for lists more than one. For lists of 1 item, the gender
      * of the list always equals the gender of that sole item.
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -101,7 +93,6 @@ public class GenderInfo {
          * For an empty list, returns OTHER;
          * For a single item, returns its gender;
          * Otherwise always OTHER.
-         * {@literal @}internal
          * @deprecated This API is ICU internal only.
          * @hide draft / provisional / internal are hidden on Android
          */
@@ -112,7 +103,6 @@ public class GenderInfo {
          * For a single item, returns its gender;
          * Otherwise gender(all male) = male, gender(all female) = female, otherwise gender(list) = other.
          * So any 'other' value makes the overall gender be 'other'.
-         * {@literal @}internal
          * @deprecated This API is ICU internal only.
          * @hide draft / provisional / internal are hidden on Android
          */
@@ -123,7 +113,6 @@ public class GenderInfo {
          * For a single item, returns its gender;
          * Otherwise, gender(all female) = female, otherwise gender(list) = male.
          * So for more than one item, any 'other' value makes the overall gender be 'male'.
-         * {@literal @}internal
          * @deprecated This API is ICU internal only.
          * @hide draft / provisional / internal are hidden on Android
          */
@@ -140,7 +129,6 @@ public class GenderInfo {
         }
 
         /**
-         * {@literal @}internal
          * @deprecated This API is ICU internal only.
          * @hide draft / provisional / internal are hidden on Android
          */
@@ -158,7 +146,6 @@ public class GenderInfo {
      * Get the gender of a list, based on locale usage.
      * @param genders a list of genders.
      * @return the gender of the list.
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -171,7 +158,6 @@ public class GenderInfo {
      * Get the gender of a list, based on locale usage.
      * @param genders a list of genders.
      * @return the gender of the list.
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -224,7 +210,6 @@ public class GenderInfo {
     /**
      * Only for testing and use with CLDR.
      * @param genderStyle gender style
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */

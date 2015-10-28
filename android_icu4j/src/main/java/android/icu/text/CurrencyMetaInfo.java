@@ -54,7 +54,6 @@ public class CurrencyMetaInfo {
     /**
      * Returns true if there is data for the currency meta info.
      * @return true if there is actual data
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -65,7 +64,6 @@ public class CurrencyMetaInfo {
 
     /**
      * Subclass constructor.
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -99,7 +97,6 @@ public class CurrencyMetaInfo {
         
         /**
          * true if we are filtering only for currencies used as legal tender.
-         * {@literal @}internal
          * @deprecated This API is ICU internal only.
          * @hide draft / provisional / internal are hidden on Android
          */
@@ -424,7 +421,6 @@ public class CurrencyMetaInfo {
         /**
          * Constructs a currency info.
          * 
-         * {@literal @}internal
          * @deprecated This API is ICU internal only.
          * @hide draft / provisional / internal are hidden on Android
          */
@@ -514,7 +510,6 @@ public class CurrencyMetaInfo {
     }
 
     /**
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */

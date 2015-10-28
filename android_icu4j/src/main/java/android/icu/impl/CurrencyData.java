@@ -13,8 +13,9 @@ import java.util.Map;
 import android.icu.text.CurrencyDisplayNames;
 import android.icu.util.ULocale;
 
-/** @hide Only a subset of ICU is exposed in Android
-* @hide All android.icu classes are currently hidden
+/**
+ * @hide Only a subset of ICU is exposed in Android
+ * @hide All android.icu classes are currently hidden
  */
 public class CurrencyData {
     public static final CurrencyDisplayInfoProvider provider;

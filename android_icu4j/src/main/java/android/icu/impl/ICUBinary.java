@@ -25,8 +25,9 @@ import java.util.Set;
 import android.icu.util.ICUUncheckedIOException;
 import android.icu.util.VersionInfo;
 
-/** @hide Only a subset of ICU is exposed in Android
-* @hide All android.icu classes are currently hidden
+/**
+ * @hide Only a subset of ICU is exposed in Android
+ * @hide All android.icu classes are currently hidden
  */
 public final class ICUBinary {
     /**

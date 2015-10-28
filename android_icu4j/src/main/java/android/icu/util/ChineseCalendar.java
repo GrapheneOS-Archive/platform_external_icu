@@ -323,7 +323,6 @@ public class ChineseCalendar extends Calendar {
      * Construct a <code>ChineseCalenar</code> based on the current time
      * with the given time zone, the locale, the epoch year and the time zone
      * used for astronomical calculation.
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide original deprecated method
      * @hide draft / provisional / internal are hidden on Android
@@ -1001,7 +1000,6 @@ public class ChineseCalendar extends Calendar {
 
     /**
      * {@inheritDoc}
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide original deprecated method
      * @hide draft / provisional / internal are hidden on Android

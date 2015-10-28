@@ -34,7 +34,6 @@ import android.icu.text.SpoofChecker.RestrictionLevel;
  * </ol>
  * 
  * @author markdavis
- * {@literal @}internal
  * @deprecated This API is ICU internal only.
  * @hide Only a subset of ICU is exposed in Android
  * @hide draft / provisional / internal are hidden on Android
@@ -55,7 +54,6 @@ public class IdentifierInfo {
     /**
      * Create an identifier info object. Subsequently, call {@link #setIdentifier(String)}, etc.
      * {@link #setIdentifierProfile(UnicodeSet)}
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -77,7 +75,6 @@ public class IdentifierInfo {
      * 
      * @param identifierProfile the characters that are to be allowed in the identifier
      * @return self
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -92,7 +89,6 @@ public class IdentifierInfo {
      * Get the identifier profile: the characters that are to be allowed in the identifier.
      * 
      * @return The characters that are to be allowed in the identifier.
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -107,7 +103,6 @@ public class IdentifierInfo {
      * 
      * @param identifier the identifier to analyze
      * @return self
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -178,7 +173,6 @@ public class IdentifierInfo {
      * Get the identifier that was analyzed.
      * 
      * @return the identifier that was analyzed.
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -191,7 +185,6 @@ public class IdentifierInfo {
      * Get the scripts found in the identifiers.
      * 
      * @return the set of explicit scripts.
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -205,7 +198,6 @@ public class IdentifierInfo {
      * the set consisting of those scripts will be returned.
      * 
      * @return the set of explicit scripts.
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -222,7 +214,6 @@ public class IdentifierInfo {
      * Get the representative characters (zeros) for the numerics found in the identifier.
      * 
      * @return the set of explicit scripts.
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -235,7 +226,6 @@ public class IdentifierInfo {
      * Find out which scripts are in common among the alternates.
      * 
      * @return the set of scripts that are in common among the alternates.
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -257,7 +247,6 @@ public class IdentifierInfo {
      * Find the "tightest" restriction level that the identifier satisfies.
      * 
      * @return the restriction level.
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -301,7 +290,6 @@ public class IdentifierInfo {
      *         The alternate script computation may not be perfect. The distinction
      *         between 0, 1 and > 1 scripts will be valid, however.
      * @return the number of scripts.
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -316,7 +304,6 @@ public class IdentifierInfo {
 
     /**
      * See Object.toString()
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -345,7 +332,6 @@ public class IdentifierInfo {
      * 
      * @param alternates a set of BitSets of script values.
      * @return display form
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -369,7 +355,6 @@ public class IdentifierInfo {
     
     /**
      * Order BitSets, first by shortest, then by items.
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -395,7 +380,6 @@ public class IdentifierInfo {
      * 
      * @param scripts a BitSet of UScript values
      * @return a readable string of a set of scripts
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -416,7 +400,6 @@ public class IdentifierInfo {
      * 
      * @param scriptsString the string to be parsed
      * @return BitSet of UScript values.
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -436,7 +419,6 @@ public class IdentifierInfo {
      * 
      * @param scriptsSetString a list of alternates, separated by ;
      * @return a set of BitSets of UScript values
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -457,7 +439,6 @@ public class IdentifierInfo {
      * @param container possible container to be tested
      * @param containee possible containee to be tested
      * @return true if container contains containee
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -477,7 +458,6 @@ public class IdentifierInfo {
      * @param bitset bitset to be affected
      * @param values values to be set in the bitset
      * @return modified bitset.
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */

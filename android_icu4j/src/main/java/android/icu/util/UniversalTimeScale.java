@@ -186,7 +186,6 @@ public final class UniversalTimeScale
      * 
      * @see #getTimeScaleValue
      *
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -201,7 +200,6 @@ public final class UniversalTimeScale
      * 
      * @see #getTimeScaleValue
      *
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -216,7 +214,6 @@ public final class UniversalTimeScale
      * 
      * @see #getTimeScaleValue
      *
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -231,7 +228,6 @@ public final class UniversalTimeScale
      * 
      * @see #getTimeScaleValue
      *
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -245,7 +241,6 @@ public final class UniversalTimeScale
      * 
      * @see #getTimeScaleValue
      *
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -598,7 +593,6 @@ public final class UniversalTimeScale
      * @param timeScale the time scale to convert to
      * @return the time in the given time scale
      * 
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
