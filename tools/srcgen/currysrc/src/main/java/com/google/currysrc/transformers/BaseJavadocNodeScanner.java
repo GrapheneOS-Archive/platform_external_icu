@@ -16,39 +16,30 @@
 package com.google.currysrc.transformers;
 
 import com.google.common.collect.Lists;
-import com.google.currysrc.api.transform.DocumentTransformer;
-import com.google.currysrc.api.transform.JavadocUtils;
+import com.google.currysrc.api.transform.AstTransformer;
 
 import org.eclipse.jdt.core.dom.Comment;
 import org.eclipse.jdt.core.dom.CompilationUnit;
 import org.eclipse.jdt.core.dom.Javadoc;
-import org.eclipse.jface.text.Document;
+import org.eclipse.jdt.core.dom.rewrite.ASTRewrite;
 
 import java.util.List;
 
 /**
- * Inserts the tag text to the Javadoc for any Javadoc comment that matches
- * {@link #mustTag(org.eclipse.jdt.core.dom.Javadoc)}.
+ * A base class for AstTransformers that modify Javadoc nodes. All Javadoc nodes in a
+ * {@code CompilationUnit} are considered.
  */
-public abstract class JavadocTagJavadoc implements DocumentTransformer {
+public abstract class BaseJavadocNodeScanner implements AstTransformer {
 
-  private final String tagText;
-
-  protected JavadocTagJavadoc(String tagText) {
-    this.tagText = tagText;
-  }
-
-  @Override
-  public void transform(CompilationUnit cu, Document document) {
-    for (Comment comment : Lists.reverse((List<Comment>) cu.getCommentList())) {
-      if (comment.isDocComment()) {
+  @Override public final void transform(CompilationUnit cu, ASTRewrite rewrite) {
+    List<Comment> comments = cu.getCommentList();
+    for (Comment comment : Lists.reverse(comments)) {
+      if (comment instanceof Javadoc) {
         Javadoc javadoc = (Javadoc) comment;
-        if (mustTag(javadoc)) {
-          JavadocUtils.insertCommentText(document, javadoc, tagText);
-        }
+        visit(javadoc, rewrite);
       }
     }
   }
 
-  protected abstract boolean mustTag(Javadoc node);
+  protected abstract void visit(Javadoc javadoc, ASTRewrite rewrite);
 }

@@ -16,7 +16,7 @@
 package com.android.icu4j.srcgen;
 
 import com.google.common.collect.ImmutableSet;
-import com.google.currysrc.transformers.JavadocTagJavadoc;
+import com.google.currysrc.transformers.BaseJavadocTagJavadoc;
 
 import org.eclipse.jdt.core.dom.Javadoc;
 import org.eclipse.jdt.core.dom.TagElement;
@@ -28,7 +28,7 @@ import java.util.Set;
  * Adds {@literal @}hide to all JavaDoc comments that contain any of {@literal @}draft,
  * {@literal @}provisional, {@literal @}internal}.
  */
-public class HideDraftProvisionalInternal extends JavadocTagJavadoc {
+public class HideDraftProvisionalInternal extends BaseJavadocTagJavadoc {
   private static final Set<String> toMatch = ImmutableSet.of("@draft", "@provisional", "@internal");
   private static final String HIDE_HIDDEN_ON_ANDROID =
       "@hide draft / provisional / internal are hidden on Android";
@@ -46,5 +46,9 @@ public class HideDraftProvisionalInternal extends JavadocTagJavadoc {
       }
     }
     return false;
+  }
+
+  @Override public String toString() {
+    return "HideDraftProvisionalInternal{}";
   }
 }

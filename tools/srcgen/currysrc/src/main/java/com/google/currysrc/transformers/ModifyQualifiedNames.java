@@ -24,7 +24,7 @@ import com.google.currysrc.api.transform.AstTransformer;
  * Changes any qualified names in the AST that start with {@code oldPrefix} to start with
  * {@code newPrefix} instead.
  */
-public class ModifyQualifiedNames implements AstTransformer {
+public final class ModifyQualifiedNames implements AstTransformer {
 
   private final String oldPrefix;
 
