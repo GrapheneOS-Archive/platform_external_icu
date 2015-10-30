@@ -21,7 +21,6 @@ package android.icu.lang;
  * <li>{@link java.lang.Character#toCodePoint(char, char)}</li>
  * </ul>
  * @author markdavis
- * {@literal @}internal
  * @deprecated This API is ICU internal only.
  * @hide Only a subset of ICU is exposed in Android
  * @hide draft / provisional / internal are hidden on Android
@@ -48,7 +47,6 @@ public class CharSequences {
 
     /**
      * Find the longest n such that a[aIndex,n] = b[bIndex,n], and n is on a character boundary.
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -74,7 +72,6 @@ public class CharSequences {
     
     /**
      * Count the code point length. Unpaired surrogates count as 1.
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -98,7 +95,6 @@ public class CharSequences {
      * Utility function for comparing codepoint to string without generating new
      * string.
      * 
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -115,7 +111,6 @@ public class CharSequences {
     }
 
     /**
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -131,7 +126,6 @@ public class CharSequences {
      * Actually, there is one difference; a null compares as less.
      * Note that this (=String) order is UTF-16 order -- *not* code point order.
      * 
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -176,7 +170,6 @@ public class CharSequences {
      * Actually, there is one difference; a null compares as less.
      * Note that this (=String) order is UTF-16 order -- *not* code point order.
      * 
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -188,7 +181,6 @@ public class CharSequences {
     /**
      * Return the value of the first code point, if the string is exactly one code point. Otherwise return Integer.MAX_VALUE.
      * 
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -206,7 +198,6 @@ public class CharSequences {
      * Utility function for comparing objects that may be null
      * string.
      * 
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -220,7 +211,6 @@ public class CharSequences {
     /**
      * Utility for comparing the contents of CharSequences
      * 
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -241,7 +231,6 @@ public class CharSequences {
     /**
      * Utility for comparing the contents of CharSequences
      * 
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -254,7 +243,6 @@ public class CharSequences {
     /**
      * Are we on a character boundary?
      * 
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -269,7 +257,6 @@ public class CharSequences {
     /**
      * Find code point in string.
      * 
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -293,7 +280,6 @@ public class CharSequences {
      *   }
      * </pre>
      * 
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */

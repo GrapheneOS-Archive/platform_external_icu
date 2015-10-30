@@ -30,11 +30,9 @@ import android.icu.util.ULocale;
  * System.out.println(fmt.format(1.23456e-78));
  * </pre>
  *
- * {@literal @}draft ICU 55
- * {@literal @}provisional This API might change or be removed in a future release.
- *
  * @hide draft / provisional / internal are hidden on Android
  * @hide All android.icu classes are currently hidden
+ *
  */
 public final class ScientificNumberFormatter {
     
@@ -48,8 +46,6 @@ public final class ScientificNumberFormatter {
      * @param locale The locale
      * @return The ScientificNumberFormatter instance.
      * 
-     * {@literal @}draft ICU 55
-     * {@literal @}provisional This API might change or be removed in a future release.
      * @hide draft / provisional / internal are hidden on Android
      */
     public static ScientificNumberFormatter getSuperscriptInstance(ULocale locale) {
@@ -64,8 +60,6 @@ public final class ScientificNumberFormatter {
      *   clones it when creating the ScientificNumberFormatter.
      * @return the ScientificNumberFormatter instance.
      * 
-     * {@literal @}draft ICU 55
-     * {@literal @}provisional This API might change or be removed in a future release.
      * @hide draft / provisional / internal are hidden on Android
      */ 
      public static ScientificNumberFormatter getSuperscriptInstance(
@@ -81,8 +75,6 @@ public final class ScientificNumberFormatter {
       * @param endMarkup the markup to end superscript e.g {@code </sup>}
       * @return The ScientificNumberFormatter instance.
       * 
-      * {@literal @}draft ICU 55
-      * {@literal @}provisional This API might change or be removed in a future release.
       * @hide draft / provisional / internal are hidden on Android
       */
      public static ScientificNumberFormatter getMarkupInstance(
@@ -103,8 +95,6 @@ public final class ScientificNumberFormatter {
       * @param endMarkup the markup to end superscript e.g {@code </sup>}
       * @return The ScientificNumberFormatter instance.
       * 
-      * {@literal @}draft ICU 55
-      * {@literal @}provisional This API might change or be removed in a future release.
       * @hide draft / provisional / internal are hidden on Android
       */
      public static ScientificNumberFormatter getMarkupInstance(
@@ -121,8 +111,6 @@ public final class ScientificNumberFormatter {
       *  anything that DecimalFormat#format(Object) accepts.
       * @return the formatted string.
       *
-      * {@literal @}draft ICU 55
-      * {@literal @}provisional This API might change or be removed in a future release.
       * @hide draft / provisional / internal are hidden on Android
       */
      public String format(Object number) {

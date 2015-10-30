@@ -19,7 +19,7 @@ import android.icu.util.ICUCloneNotSupportedException;
 import android.icu.util.ULocale;
 
 /**
- * {{@literal @}icuenhanced java.text.BreakIterator}.{{@literal @}icu _usage_}
+ * <strong>[icu enhancement]</strong> ICU's replacement for {@link java.text.BreakIterator}.&nbsp;Methods, fields, and other functionality specific to ICU are labeled '<strong>[icu]</strong>'.
  *
  * <p>A class that locates boundaries in text.  This class defines a protocol for
  * objects that break up a piece of natural-language text according to a set
@@ -206,8 +206,8 @@ import android.icu.util.ULocale;
  * </blockquote>
  *
  * @see CharacterIterator
- *
  * @hide All android.icu classes are currently hidden
+ *
  */
 
 public abstract class BreakIterator implements Cloneable
@@ -499,23 +499,23 @@ public abstract class BreakIterator implements Cloneable
     public abstract void setText(CharacterIterator newText);
 
     /**
-     * {{@literal @}icu}
+     * <strong>[icu]</strong>
      */
     public static final int KIND_CHARACTER = 0;
     /**
-     * {{@literal @}icu}
+     * <strong>[icu]</strong>
      */
     public static final int KIND_WORD = 1;
     /**
-     * {{@literal @}icu}
+     * <strong>[icu]</strong>
      */
     public static final int KIND_LINE = 2;
     /**
-     * {{@literal @}icu}
+     * <strong>[icu]</strong>
      */
     public static final int KIND_SENTENCE = 3;
     /**
-     * {{@literal @}icu}
+     * <strong>[icu]</strong>
      */
     public static final int KIND_TITLE = 4;
 
@@ -550,7 +550,7 @@ public abstract class BreakIterator implements Cloneable
     }
 
     /**
-     * {{@literal @}icu} Returns a new instance of BreakIterator that locates word boundaries.
+     * <strong>[icu]</strong> Returns a new instance of BreakIterator that locates word boundaries.
      * @param where A locale specifying the language of the text to be
      * analyzed.
      * @return An instance of BreakIterator that locates word boundaries.
@@ -587,7 +587,7 @@ public abstract class BreakIterator implements Cloneable
     }
 
     /**
-     * {{@literal @}icu} Returns a new instance of BreakIterator that locates legal line-
+     * <strong>[icu]</strong> Returns a new instance of BreakIterator that locates legal line-
      * wrapping positions.
      * @param where A Locale specifying the language of the text being broken.
      * @return A new instance of BreakIterator that locates legal
@@ -625,7 +625,7 @@ public abstract class BreakIterator implements Cloneable
     }
 
     /**
-     * {{@literal @}icu} Returns a new instance of BreakIterator that locates logical-character
+     * <strong>[icu]</strong> Returns a new instance of BreakIterator that locates logical-character
      * boundaries.
      * @param where A Locale specifying the language of the text being analyzed.
      * @return A new instance of BreakIterator that locates logical-character
@@ -660,7 +660,7 @@ public abstract class BreakIterator implements Cloneable
     }
 
     /**
-     * {{@literal @}icu} Returns a new instance of BreakIterator that locates sentence boundaries.
+     * <strong>[icu]</strong> Returns a new instance of BreakIterator that locates sentence boundaries.
      * @param where A Locale specifying the language of the text being analyzed.
      * @return A new instance of BreakIterator that locates sentence boundaries.
      * @throws NullPointerException if <code>where</code> is null.
@@ -671,7 +671,7 @@ public abstract class BreakIterator implements Cloneable
     }
 
     /**
-     * {{@literal @}icu} Returns a new instance of BreakIterator that locates title boundaries.
+     * <strong>[icu]</strong> Returns a new instance of BreakIterator that locates title boundaries.
      * This function assumes the text being analyzed is in the default locale's
      * language. The iterator returned locates title boundaries as described for
      * Unicode 3.2 only. For Unicode 4.0 and above title boundary iteration,
@@ -684,7 +684,7 @@ public abstract class BreakIterator implements Cloneable
     }
 
     /**
-     * {{@literal @}icu} Returns a new instance of BreakIterator that locates title boundaries.
+     * <strong>[icu]</strong> Returns a new instance of BreakIterator that locates title boundaries.
      * The iterator returned locates title boundaries as described for
      * Unicode 3.2 only. For Unicode 4.0 and above title boundary iteration,
      * please use Word Boundary iterator.{@link #getWordInstance}
@@ -698,7 +698,7 @@ public abstract class BreakIterator implements Cloneable
     }
 
     /**
-     * {{@literal @}icu} Returns a new instance of BreakIterator that locates title boundaries.
+     * <strong>[icu]</strong> Returns a new instance of BreakIterator that locates title boundaries.
      * The iterator returned locates title boundaries as described for
      * Unicode 3.2 only. For Unicode 4.0 and above title boundary iteration,
      * please use Word Boundary iterator.{@link #getWordInstance}
@@ -711,7 +711,7 @@ public abstract class BreakIterator implements Cloneable
     }
 
     /**
-     * {{@literal @}icu} Registers a new break iterator of the indicated kind, to use in the given
+     * <strong>[icu]</strong> Registers a new break iterator of the indicated kind, to use in the given
      * locale.  Clones of the iterator will be returned if a request for a break iterator
      * of the given kind matches or falls back to this locale.
      * 
@@ -729,7 +729,7 @@ public abstract class BreakIterator implements Cloneable
     }
 
     /**
-     * {{@literal @}icu} Registers a new break iterator of the indicated kind, to use in the given
+     * <strong>[icu]</strong> Registers a new break iterator of the indicated kind, to use in the given
      * locale.  Clones of the iterator will be returned if a request for a break iterator
      * of the given kind matches or falls back to this locale.
      * 
@@ -757,7 +757,7 @@ public abstract class BreakIterator implements Cloneable
     }
 
     /**
-     * {{@literal @}icu} Unregisters a previously-registered BreakIterator using the key returned
+     * <strong>[icu]</strong> Unregisters a previously-registered BreakIterator using the key returned
      * from the register call.  Key becomes invalid after this call and should not be used
      * again.
      * @param key the registry key returned by a previous call to registerInstance
@@ -795,7 +795,6 @@ public abstract class BreakIterator implements Cloneable
     /**
      * Returns a particular kind of BreakIterator for a locale.
      * Avoids writing a switch statement with getXYZInstance(where) calls.
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide original deprecated method
      * @hide draft / provisional / internal are hidden on Android
@@ -840,11 +839,9 @@ public abstract class BreakIterator implements Cloneable
     }
 
     /**
-     * {{@literal @}icu} Returns a list of locales for which BreakIterators can be used.
+     * <strong>[icu]</strong> Returns a list of locales for which BreakIterators can be used.
      * @return An array of Locales.  All of the locales in the array can
      * be used when creating a BreakIterator.
-     * {@literal @}draft ICU 3.2 (retain)
-     * {@literal @}provisional This API might change or be removed in a future release.
      * @hide draft / provisional / internal are hidden on Android
      */
     public static synchronized ULocale[] getAvailableULocales()
@@ -910,7 +907,7 @@ public abstract class BreakIterator implements Cloneable
     // -------- BEGIN ULocale boilerplate --------
 
     /**
-     * {{@literal @}icu} Returns the locale that was used to create this object, or null.
+     * <strong>[icu]</strong> Returns the locale that was used to create this object, or null.
      * This may may differ from the locale requested at the time of
      * this object's creation.  For example, if an object is created
      * for locale <tt>en_US_CALIFORNIA</tt>, the actual data may be
@@ -928,8 +925,6 @@ public abstract class BreakIterator implements Cloneable
      * @see android.icu.util.ULocale
      * @see android.icu.util.ULocale#VALID_LOCALE
      * @see android.icu.util.ULocale#ACTUAL_LOCALE
-     * {@literal @}draft ICU 2.8 (retain)
-     * {@literal @}provisional This API might change or be removed in a future release.
      * @hide draft / provisional / internal are hidden on Android
      */
     public final ULocale getLocale(ULocale.Type type) {

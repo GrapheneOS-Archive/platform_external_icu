@@ -14,8 +14,9 @@ import java.util.ListResourceBundle;
 import android.icu.util.Holiday;
 import android.icu.util.SimpleHoliday;
 
-/** @hide Only a subset of ICU is exposed in Android
-* @hide All android.icu classes are currently hidden
+/**
+ * @hide Only a subset of ICU is exposed in Android
+ * @hide All android.icu classes are currently hidden
  */
 public class HolidayBundle_ja_JP extends ListResourceBundle {
     static private final Holiday[] fHolidays = {

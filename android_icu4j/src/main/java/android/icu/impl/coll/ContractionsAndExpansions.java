@@ -19,8 +19,9 @@ import android.icu.text.UnicodeSet;
 import android.icu.util.CharsTrie;
 import android.icu.util.CharsTrie.Entry;
 
-/** @hide Only a subset of ICU is exposed in Android
-* @hide All android.icu classes are currently hidden
+/**
+ * @hide Only a subset of ICU is exposed in Android
+ * @hide All android.icu classes are currently hidden
  */
 public final class ContractionsAndExpansions {
     // C++: The following fields are @internal, only public for access by callback.

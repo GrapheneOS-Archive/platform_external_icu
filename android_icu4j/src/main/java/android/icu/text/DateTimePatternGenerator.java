@@ -99,7 +99,6 @@ public class DateTimePatternGenerator implements Freezable<DateTimePatternGenera
      * factory method.
      * @param uLocale The locale to pass.
      * @return A frozen DateTimePatternGenerator.
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide original deprecated method
      * @hide draft / provisional / internal are hidden on Android
@@ -249,7 +248,6 @@ public class DateTimePatternGenerator implements Freezable<DateTimePatternGenera
     }
 
     /**
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide original deprecated method
      * @hide draft / provisional / internal are hidden on Android
@@ -260,7 +258,6 @@ public class DateTimePatternGenerator implements Freezable<DateTimePatternGenera
     }
 
     /**
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide original deprecated method
      * @hide draft / provisional / internal are hidden on Android
@@ -342,7 +339,6 @@ public class DateTimePatternGenerator implements Freezable<DateTimePatternGenera
     }*/
 
     /**
-     * {@literal @}internal CLDR
      * @deprecated This API is ICU internal only.
      * @hide original deprecated method
      * @hide draft / provisional / internal are hidden on Android
@@ -501,7 +497,6 @@ public class DateTimePatternGenerator implements Freezable<DateTimePatternGenera
      * derived (i.e. entries derived from the standard date/time patters for the specified locale).
      * 3. When adding the pattern (skeleton2pattern.put, basePattern_pattern.put), we set a field to indicate that the added
      * entry had a specified skeleton.
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide original deprecated method
      * @hide draft / provisional / internal are hidden on Android
@@ -571,7 +566,6 @@ public class DateTimePatternGenerator implements Freezable<DateTimePatternGenera
      * 
      * @param pattern Input pattern, such as "dd/MMM"
      * @return skeleton, such as "MMMdd"
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide original deprecated method
      * @hide draft / provisional / internal are hidden on Android
@@ -590,7 +584,6 @@ public class DateTimePatternGenerator implements Freezable<DateTimePatternGenera
      * 
      * @param pattern Input pattern, such as "ccc, d LLL"
      * @return skeleton, such as "MMMEd"
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide original deprecated method
      * @hide draft / provisional / internal are hidden on Android
@@ -759,7 +752,6 @@ public class DateTimePatternGenerator implements Freezable<DateTimePatternGenera
      *            in internal order, supply a LinkedHashSet. If null, a
      *            collection is allocated.
      * @return the collection with added elements.
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide original deprecated method
      * @hide draft / provisional / internal are hidden on Android
@@ -895,7 +887,6 @@ public class DateTimePatternGenerator implements Freezable<DateTimePatternGenera
 
     /**
      * Option mask for forcing  the width of minute field.
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide original deprecated method
      * @hide draft / provisional / internal are hidden on Android
@@ -905,7 +896,6 @@ public class DateTimePatternGenerator implements Freezable<DateTimePatternGenera
 
     /**
      * Option mask for forcing  the width of second field.
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide original deprecated method
      * @hide draft / provisional / internal are hidden on Android
@@ -984,7 +974,6 @@ public class DateTimePatternGenerator implements Freezable<DateTimePatternGenera
      * 
      * @param skeleton The skeleton to determine if it contains a single field.
      * @return true or not
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide original deprecated method
      * @hide draft / provisional / internal are hidden on Android
@@ -1077,7 +1066,6 @@ public class DateTimePatternGenerator implements Freezable<DateTimePatternGenera
      * date format fields. For example, "VVVV" is valid while "V4" is not, nor
      * is "44".
      * 
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide original deprecated method
      * @hide draft / provisional / internal are hidden on Android
@@ -1090,7 +1078,6 @@ public class DateTimePatternGenerator implements Freezable<DateTimePatternGenera
         /**
          * Create a variable field: equivalent to VariableField(string,false);
          * @param string The string for the variable field.
-         * {@literal @}internal
          * @deprecated This API is ICU internal only.
          * @hide original deprecated method
          * @hide draft / provisional / internal are hidden on Android
@@ -1104,7 +1091,6 @@ public class DateTimePatternGenerator implements Freezable<DateTimePatternGenera
          * @param string The string for the variable field
          * @param strict If true, then only allows exactly those lengths specified by CLDR for variables. For example, "hh:mm aa" would throw an exception.
          * @throws IllegalArgumentException if the variable field is not valid.
-         * {@literal @}internal
          * @deprecated This API is ICU internal only.
          * @hide original deprecated method
          * @hide draft / provisional / internal are hidden on Android
@@ -1124,7 +1110,6 @@ public class DateTimePatternGenerator implements Freezable<DateTimePatternGenera
          * MONTH, DAY, WEEK_OF_YEAR, WEEK_OF_MONTH, WEEKDAY, DAY, DAYPERIOD
          * (am/pm), HOUR, MINUTE, SECOND,FRACTIONAL_SECOND, ZONE. 
          * @return main type.
-         * {@literal @}internal
          * @deprecated This API is ICU internal only.
          * @hide original deprecated method
          * @hide draft / provisional / internal are hidden on Android
@@ -1135,7 +1120,6 @@ public class DateTimePatternGenerator implements Freezable<DateTimePatternGenera
         }
 
         /**
-         * {@literal @}internal
          * @deprecated This API is ICU internal only.
          * @hide original deprecated method
          * @hide draft / provisional / internal are hidden on Android
@@ -1151,7 +1135,6 @@ public class DateTimePatternGenerator implements Freezable<DateTimePatternGenera
         /**
          * Check if the type of this variable field is numeric.
          * @return true if the type of this variable field is numeric.
-         * {@literal @}internal
          * @deprecated This API is ICU internal only.
          * @hide original deprecated method
          * @hide draft / provisional / internal are hidden on Android
@@ -1170,7 +1153,6 @@ public class DateTimePatternGenerator implements Freezable<DateTimePatternGenera
 
         /**
          * Get the string represented by this variable.
-         * {@literal @}internal
          * @deprecated This API is ICU internal only.
          * @hide original deprecated method
          * @hide draft / provisional / internal are hidden on Android
@@ -1204,7 +1186,6 @@ public class DateTimePatternGenerator implements Freezable<DateTimePatternGenera
         return false;
     }
      *  </pre>
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide original deprecated method
      * @hide draft / provisional / internal are hidden on Android
@@ -1221,7 +1202,6 @@ public class DateTimePatternGenerator implements Freezable<DateTimePatternGenera
 
         /**
          * Construct an empty date format parser, to which strings and variables can be added with set(...).
-         * {@literal @}internal
          * @deprecated This API is ICU internal only.
          * @hide original deprecated method
          * @hide draft / provisional / internal are hidden on Android
@@ -1234,7 +1214,6 @@ public class DateTimePatternGenerator implements Freezable<DateTimePatternGenera
          * Parses the string into a list of items.
          * @param string The string to parse.
          * @return this, for chaining
-         * {@literal @}internal
          * @deprecated This API is ICU internal only.
          * @hide original deprecated method
          * @hide draft / provisional / internal are hidden on Android
@@ -1249,7 +1228,6 @@ public class DateTimePatternGenerator implements Freezable<DateTimePatternGenera
          * @param string  The string to parse.
          * @param strict If true, then only allows exactly those lengths specified by CLDR for variables. For example, "hh:mm aa" would throw an exception.
          * @return this, for chaining
-         * {@literal @}internal
          * @deprecated This API is ICU internal only.
          * @hide original deprecated method
          * @hide draft / provisional / internal are hidden on Android
@@ -1331,7 +1309,6 @@ public class DateTimePatternGenerator implements Freezable<DateTimePatternGenera
          * </pre>
          * The list is modifiable, so you can add any strings or variables to it, or remove any items.
          * @return modifiable list of items.
-         * {@literal @}internal
          * @deprecated This API is ICU internal only.
          * @hide original deprecated method
          * @hide draft / provisional / internal are hidden on Android
@@ -1343,7 +1320,6 @@ public class DateTimePatternGenerator implements Freezable<DateTimePatternGenera
 
         /** Provide display form of formatted input. Each literal string is quoted if necessary.. That is, if the input was "hh':'mm", the result would be "hh:mm", since the ":" doesn't need quoting. See quoteLiteral().
          * @return printable output string
-         * {@literal @}internal
          * @deprecated This API is ICU internal only.
          * @hide original deprecated method
          * @hide draft / provisional / internal are hidden on Android
@@ -1358,7 +1334,6 @@ public class DateTimePatternGenerator implements Freezable<DateTimePatternGenera
          * @param start item to start from
          * @param limit last item +1
          * @return printable output string
-         * {@literal @}internal
          * @deprecated This API is ICU internal only.
          * @hide original deprecated method
          * @hide draft / provisional / internal are hidden on Android
@@ -1381,7 +1356,6 @@ public class DateTimePatternGenerator implements Freezable<DateTimePatternGenera
         /**
          * Returns true if it has a mixture of date and time variable fields: that is, at least one date variable and at least one time variable.
          * @return true or false
-         * {@literal @}internal
          * @deprecated This API is ICU internal only.
          * @hide original deprecated method
          * @hide draft / provisional / internal are hidden on Android
@@ -1495,7 +1469,6 @@ public class DateTimePatternGenerator implements Freezable<DateTimePatternGenera
          *  Each literal string is quoted as needed. That is, the ' quote marks will only be added if needed. The exact pattern of quoting is not guaranteed, thus " de la " could be quoted as " 'de la' " or as " 'de' 'la' ".
          * @param string The string to check.
          * @return string with quoted literals
-         * {@literal @}internal
          * @deprecated This API is ICU internal only.
          * @hide original deprecated method
          * @hide draft / provisional / internal are hidden on Android
@@ -1520,10 +1493,9 @@ public class DateTimePatternGenerator implements Freezable<DateTimePatternGenera
     * in these skeletons all fields are normalized to the canonical pattern
     * char for those fields - M or L to M, E or c to E, y or U to y, etc. -
     * so corresponding fields will sort in the same way for both TreeMaps.
-    * {@literal @}internal
     * @deprecated This API is ICU internal only.
-    * @hide original deprecated method
-    * @hide draft / provisional / internal are hidden on Android
+     * @hide original deprecated method
+     * @hide draft / provisional / internal are hidden on Android
     */
     @Deprecated
     public boolean skeletonsAreSimilar(String id, String skeleton) {
@@ -1831,7 +1803,6 @@ public class DateTimePatternGenerator implements Freezable<DateTimePatternGenera
      * internal routine
      * @param pattern The pattern that is passed.
      * @return field value
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide original deprecated method
      * @hide draft / provisional / internal are hidden on Android

@@ -225,7 +225,6 @@ public class UnicodeSetIterator {
     private int range = 0;
     
     /**
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide original deprecated method
      * @hide draft / provisional / internal are hidden on Android
@@ -236,7 +235,6 @@ public class UnicodeSetIterator {
     }
     
     /**
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide original deprecated method
      * @hide draft / provisional / internal are hidden on Android
@@ -244,7 +242,6 @@ public class UnicodeSetIterator {
     @Deprecated
     protected int endElement;
     /**
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide original deprecated method
      * @hide draft / provisional / internal are hidden on Android
@@ -258,7 +255,6 @@ public class UnicodeSetIterator {
      */
 
     /**
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide original deprecated method
      * @hide draft / provisional / internal are hidden on Android

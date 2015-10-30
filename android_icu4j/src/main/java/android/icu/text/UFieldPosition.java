@@ -12,7 +12,6 @@ import java.text.Format.Field;
 
 /**
  * Adds the ability to get the decimal digits
- * {@literal @}internal
  * @deprecated This API is ICU internal only.
  * @hide Only a subset of ICU is exposed in Android
  * @hide draft / provisional / internal are hidden on Android
@@ -24,7 +23,6 @@ public class UFieldPosition extends FieldPosition {
     private long fractionDigits = 0;
 
     /**
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -34,7 +32,6 @@ public class UFieldPosition extends FieldPosition {
     }
 
     /**
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -44,7 +41,6 @@ public class UFieldPosition extends FieldPosition {
     }
 
     /**
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -54,7 +50,6 @@ public class UFieldPosition extends FieldPosition {
     }
 
     /**
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -64,7 +59,6 @@ public class UFieldPosition extends FieldPosition {
     }
 
     /**
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -75,7 +69,6 @@ public class UFieldPosition extends FieldPosition {
     }
 
     /**
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -85,7 +78,6 @@ public class UFieldPosition extends FieldPosition {
     }
 
     /**
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */

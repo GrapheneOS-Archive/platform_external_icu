@@ -118,7 +118,6 @@ public class ChineseDateFormat extends SimpleDateFormat {
 
     /**
      * {@inheritDoc}
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */

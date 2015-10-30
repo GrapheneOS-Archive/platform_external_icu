@@ -13,8 +13,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-/** @hide Only a subset of ICU is exposed in Android
-* @hide All android.icu classes are currently hidden
+/**
+ * @hide Only a subset of ICU is exposed in Android
+ * @hide All android.icu classes are currently hidden
  */
 public final class InternalLocaleBuilder {
 

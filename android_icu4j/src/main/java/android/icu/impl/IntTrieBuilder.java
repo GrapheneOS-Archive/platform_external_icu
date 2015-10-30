@@ -770,7 +770,6 @@ public class IntTrieBuilder extends TrieBuilder
     }
     
     /**
-     * {@literal @}internal
      * @hide draft / provisional / internal are hidden on Android
      */
     private void fillBlock(int block, int start, int limit, int value, 

@@ -73,8 +73,6 @@ import android.icu.text.SimpleDateFormat;
  * locale that will ask the services to use the host platform's values).</li>
  * </ul>
  *
- * {@literal @}draft ICU 3.6 (retainAll)
- * {@literal @}provisional This API might change or be removed in a future release.
  * @hide Only a subset of ICU is exposed in Android
  * @hide draft / provisional / internal are hidden on Android
  * @hide All android.icu classes are currently hidden
@@ -91,15 +89,11 @@ public class GlobalizationPreferences implements Freezable<GlobalizationPreferen
     
     /**
      * Default constructor
-     * {@literal @}draft ICU 3.6
-     * {@literal @}provisional This API might change or be removed in a future release.
      * @hide draft / provisional / internal are hidden on Android
      */
     public GlobalizationPreferences(){}
     /**
      * Number Format type
-     * {@literal @}draft ICU 3.6
-     * {@literal @}provisional This API might change or be removed in a future release.
      * @hide draft / provisional / internal are hidden on Android
      */
     public static final int 
@@ -113,8 +107,6 @@ public class GlobalizationPreferences implements Freezable<GlobalizationPreferen
 
     /**
      * Date Format type
-     * {@literal @}draft ICU 3.6
-     * {@literal @}provisional This API might change or be removed in a future release.
      * @hide draft / provisional / internal are hidden on Android
      */
     public static final int
@@ -128,8 +120,6 @@ public class GlobalizationPreferences implements Freezable<GlobalizationPreferen
 
     /**
      * For selecting a choice of display names
-     * {@literal @}draft ICU 3.6
-     * {@literal @}provisional This API might change or be removed in a future release.
      * @hide draft / provisional / internal are hidden on Android
      */
     public static final int
@@ -148,8 +138,6 @@ public class GlobalizationPreferences implements Freezable<GlobalizationPreferen
 
     /**
      * Break iterator type
-     * {@literal @}draft ICU 3.6
-     * {@literal @}provisional This API might change or be removed in a future release.
      * @hide draft / provisional / internal are hidden on Android
      */
     public static final int
@@ -171,8 +159,6 @@ public class GlobalizationPreferences implements Freezable<GlobalizationPreferen
      * @param inputLocales list of locales in priority order, eg {"be", "fr"} 
      *     for Breton first, then French if that fails.
      * @return this, for chaining
-     * {@literal @}draft ICU 3.6
-     * {@literal @}provisional This API might change or be removed in a future release.
      * @hide draft / provisional / internal are hidden on Android
      */
     public GlobalizationPreferences setLocales(List<ULocale> inputLocales) {
@@ -187,8 +173,6 @@ public class GlobalizationPreferences implements Freezable<GlobalizationPreferen
      * Get a copy of the language/locale priority list
      * 
      * @return a copy of the language/locale priority list.
-     * {@literal @}draft ICU 3.6
-     * {@literal @}provisional This API might change or be removed in a future release.
      * @hide draft / provisional / internal are hidden on Android
      */
     public List<ULocale> getLocales() {
@@ -206,8 +190,6 @@ public class GlobalizationPreferences implements Freezable<GlobalizationPreferen
      * Convenience function for getting the locales in priority order
      * @param index The index (0..n) of the desired item.
      * @return desired item. null if index is out of range
-     * {@literal @}draft ICU 3.6
-     * {@literal @}provisional This API might change or be removed in a future release.
      * @hide draft / provisional / internal are hidden on Android
      */
     public ULocale getLocale(int index) {
@@ -228,8 +210,6 @@ public class GlobalizationPreferences implements Freezable<GlobalizationPreferen
      * @see #setLocales(List locales)
      * @param uLocales list of locales in an array
      * @return this, for chaining
-     * {@literal @}draft ICU 3.6
-     * {@literal @}provisional This API might change or be removed in a future release.
      * @hide draft / provisional / internal are hidden on Android
      */
     public GlobalizationPreferences setLocales(ULocale[] uLocales) {
@@ -246,8 +226,6 @@ public class GlobalizationPreferences implements Freezable<GlobalizationPreferen
      * @see #setLocales(List locales)
      * @param uLocale single locale
      * @return this, for chaining
-     * {@literal @}draft ICU 3.6
-     * {@literal @}provisional This API might change or be removed in a future release.
      * @hide draft / provisional / internal are hidden on Android
      */
     public GlobalizationPreferences setLocale(ULocale uLocale) {
@@ -264,8 +242,6 @@ public class GlobalizationPreferences implements Freezable<GlobalizationPreferen
      * @param acceptLanguageString Accept-Language list, as defined by 
      *     Section 14.4 of the RFC 2616 (HTTP 1.1)
      * @return this, for chaining
-     * {@literal @}draft ICU 3.6
-     * {@literal @}provisional This API might change or be removed in a future release.
      * @hide draft / provisional / internal are hidden on Android
      */
     public GlobalizationPreferences setLocales(String acceptLanguageString) {
@@ -291,8 +267,6 @@ public class GlobalizationPreferences implements Freezable<GlobalizationPreferen
      * class name
      * @return a resource bundle for the given base name and locale based on the
      * language/locale priority list stored in this object
-     * {@literal @}draft ICU 3.6
-     * {@literal @}provisional This API might change or be removed in a future release.
      * @hide draft / provisional / internal are hidden on Android
      */
     public ResourceBundle getResourceBundle(String baseName) {
@@ -309,8 +283,6 @@ public class GlobalizationPreferences implements Freezable<GlobalizationPreferen
      * @param loader the class object from which to load the resource bundle
      * @return a resource bundle for the given base name and locale based on the
      * language/locale priority list stored in this object
-     * {@literal @}draft ICU 3.6
-     * {@literal @}provisional This API might change or be removed in a future release.
      * @hide draft / provisional / internal are hidden on Android
      */
     public ResourceBundle getResourceBundle(String baseName, ClassLoader loader) {
@@ -365,8 +337,6 @@ public class GlobalizationPreferences implements Freezable<GlobalizationPreferen
      * 
      * @param territory code
      * @return this, for chaining
-     * {@literal @}draft ICU 3.6
-     * {@literal @}provisional This API might change or be removed in a future release.
      * @hide draft / provisional / internal are hidden on Android
      */
     public GlobalizationPreferences setTerritory(String territory) {
@@ -382,8 +352,6 @@ public class GlobalizationPreferences implements Freezable<GlobalizationPreferen
      * computed from the general locale setting.
      * 
      * @return territory code, explicit or implicit.
-     * {@literal @}draft ICU 3.6
-     * {@literal @}provisional This API might change or be removed in a future release.
      * @hide draft / provisional / internal are hidden on Android
      */
     public String getTerritory() {
@@ -398,8 +366,6 @@ public class GlobalizationPreferences implements Freezable<GlobalizationPreferen
      * 
      * @param currency Valid ISO 4217 currency code.
      * @return this, for chaining
-     * {@literal @}draft ICU 3.6
-     * {@literal @}provisional This API might change or be removed in a future release.
      * @hide draft / provisional / internal are hidden on Android
      */
     public GlobalizationPreferences setCurrency(Currency currency) {
@@ -414,8 +380,6 @@ public class GlobalizationPreferences implements Freezable<GlobalizationPreferen
      * Get a copy of the currency computed according to the settings.
      * 
      * @return currency code, explicit or implicit.
-     * {@literal @}draft ICU 3.6
-     * {@literal @}provisional This API might change or be removed in a future release.
      * @hide draft / provisional / internal are hidden on Android
      */
     public Currency getCurrency() {
@@ -430,8 +394,6 @@ public class GlobalizationPreferences implements Freezable<GlobalizationPreferen
      * 
      * @param calendar arbitrary calendar
      * @return this, for chaining
-     * {@literal @}draft ICU 3.6
-     * {@literal @}provisional This API might change or be removed in a future release.
      * @hide draft / provisional / internal are hidden on Android
      */
     public GlobalizationPreferences setCalendar(Calendar calendar) {
@@ -446,8 +408,6 @@ public class GlobalizationPreferences implements Freezable<GlobalizationPreferen
      * Get a copy of the calendar according to the settings. 
      * 
      * @return calendar explicit or implicit.
-     * {@literal @}draft ICU 3.6
-     * {@literal @}provisional This API might change or be removed in a future release.
      * @hide draft / provisional / internal are hidden on Android
      */
     public Calendar getCalendar() {
@@ -465,8 +425,6 @@ public class GlobalizationPreferences implements Freezable<GlobalizationPreferen
      * 
      * @param timezone a valid TZID (see UTS#35).
      * @return this, for chaining
-     * {@literal @}draft ICU 3.6
-     * {@literal @}provisional This API might change or be removed in a future release.
      * @hide draft / provisional / internal are hidden on Android
      */
     public GlobalizationPreferences setTimeZone(TimeZone timezone) {
@@ -482,8 +440,6 @@ public class GlobalizationPreferences implements Freezable<GlobalizationPreferen
      * heuristically computed from other settings.
      * 
      * @return timezone, either implicitly or explicitly set
-     * {@literal @}draft ICU 3.6
-     * {@literal @}provisional This API might change or be removed in a future release.
      * @hide draft / provisional / internal are hidden on Android
      */
     public TimeZone getTimeZone() {
@@ -497,8 +453,6 @@ public class GlobalizationPreferences implements Freezable<GlobalizationPreferen
      * Get a copy of the collator according to the settings. 
      * 
      * @return collator explicit or implicit.
-     * {@literal @}draft ICU 3.6
-     * {@literal @}provisional This API might change or be removed in a future release.
      * @hide draft / provisional / internal are hidden on Android
      */
     public Collator getCollator() {
@@ -516,8 +470,6 @@ public class GlobalizationPreferences implements Freezable<GlobalizationPreferen
      * Explicitly set the collator for this object.
      * @param collator The collator object to be passed.
      * @return this, for chaining
-     * {@literal @}draft ICU 3.6
-     * {@literal @}provisional This API might change or be removed in a future release.
      * @hide draft / provisional / internal are hidden on Android
      */
     public GlobalizationPreferences setCollator(Collator collator) {
@@ -538,8 +490,6 @@ public class GlobalizationPreferences implements Freezable<GlobalizationPreferen
      * 
      * @param type break type - BI_CHARACTER or BI_WORD, BI_LINE, BI_SENTENCE, BI_TITLE
      * @return break iterator explicit or implicit
-     * {@literal @}draft ICU 3.6
-     * {@literal @}provisional This API might change or be removed in a future release.
      * @hide draft / provisional / internal are hidden on Android
      */
     public BreakIterator getBreakIterator(int type) {
@@ -558,8 +508,6 @@ public class GlobalizationPreferences implements Freezable<GlobalizationPreferen
      * @param type break type - BI_CHARACTER or BI_WORD, BI_LINE, BI_SENTENCE, BI_TITLE
      * @param iterator a break iterator
      * @return this, for chaining
-     * {@literal @}draft ICU 3.6
-     * {@literal @}provisional This API might change or be removed in a future release.
      * @hide draft / provisional / internal are hidden on Android
      */
     public GlobalizationPreferences setBreakIterator(int type, BreakIterator iterator) {
@@ -582,8 +530,6 @@ public class GlobalizationPreferences implements Freezable<GlobalizationPreferen
      * @param id language code, script code, ...
      * @param type specifies the type of the ID: ID_LANGUAGE, etc.
      * @return the display name
-     * {@literal @}draft ICU 3.6
-     * {@literal @}provisional This API might change or be removed in a future release.
      * @hide draft / provisional / internal are hidden on Android
      */
     public String getDisplayName(String id, int type) {
@@ -687,8 +633,6 @@ public class GlobalizationPreferences implements Freezable<GlobalizationPreferen
      * @param timeStyle DF_FULL, DF_LONG, DF_MEDIUM, DF_SHORT or DF_NONE
      * @param format The date format
      * @return this, for chaining
-     * {@literal @}draft ICU 3.6
-     * {@literal @}provisional This API might change or be removed in a future release.
      * @hide draft / provisional / internal are hidden on Android
      */
     public GlobalizationPreferences setDateFormat(int dateStyle, int timeStyle, DateFormat format) {
@@ -712,8 +656,6 @@ public class GlobalizationPreferences implements Freezable<GlobalizationPreferen
      * @param dateStyle DF_FULL, DF_LONG, DF_MEDIUM, DF_SHORT or DF_NONE
      * @param timeStyle DF_FULL, DF_LONG, DF_MEDIUM, DF_SHORT or DF_NONE
      * @return a DateFormat, according to the above description
-     * {@literal @}draft ICU 3.6
-     * {@literal @}provisional This API might change or be removed in a future release.
      * @hide draft / provisional / internal are hidden on Android
      */
     public DateFormat getDateFormat(int dateStyle, int timeStyle) {
@@ -743,8 +685,6 @@ public class GlobalizationPreferences implements Freezable<GlobalizationPreferen
      * used.
      * 
      * @param style NF_NUMBER, NF_CURRENCY, NF_PERCENT, NF_SCIENTIFIC, NF_INTEGER
-     * {@literal @}draft ICU 3.6
-     * {@literal @}provisional This API might change or be removed in a future release.
      * @hide draft / provisional / internal are hidden on Android
      */
     public NumberFormat getNumberFormat(int style) {
@@ -769,8 +709,6 @@ public class GlobalizationPreferences implements Freezable<GlobalizationPreferen
      * @param style NF_NUMBER, NF_CURRENCY, NF_PERCENT, NF_SCIENTIFIC, NF_INTEGER
      * @param format The number format
      * @return this, for chaining
-     * {@literal @}draft ICU 3.6
-     * {@literal @}provisional This API might change or be removed in a future release.
      * @hide draft / provisional / internal are hidden on Android
      */
     public GlobalizationPreferences setNumberFormat(int style, NumberFormat format) {
@@ -788,8 +726,6 @@ public class GlobalizationPreferences implements Freezable<GlobalizationPreferen
      * Restore the object to the initial state.
      * 
      * @return this, for chaining
-     * {@literal @}draft ICU 3.6
-     * {@literal @}provisional This API might change or be removed in a future release.
      * @hide draft / provisional / internal are hidden on Android
      */
     public GlobalizationPreferences reset() {
@@ -844,8 +780,6 @@ public class GlobalizationPreferences implements Freezable<GlobalizationPreferen
      * to customize the algorithm used for populating the locale list.
      * 
      * @param inputLocales The list of input locales
-     * {@literal @}draft ICU 3.6
-     * {@literal @}provisional This API might change or be removed in a future release.
      * @hide draft / provisional / internal are hidden on Android
      */
     protected List<ULocale> processLocales(List<ULocale> inputLocales) {
@@ -976,8 +910,6 @@ public class GlobalizationPreferences implements Freezable<GlobalizationPreferen
      * 
      * @param dateStyle
      * @param timeStyle
-     * {@literal @}draft ICU 3.6
-     * {@literal @}provisional This API might change or be removed in a future release.
      * @hide draft / provisional / internal are hidden on Android
      */
     protected DateFormat guessDateFormat(int dateStyle, int timeStyle) {
@@ -1002,8 +934,6 @@ public class GlobalizationPreferences implements Freezable<GlobalizationPreferen
      * one whose modification will not affect this object.</b>
      * 
      * @param style
-     * {@literal @}draft ICU 3.6
-     * {@literal @}provisional This API might change or be removed in a future release.
      * @hide draft / provisional / internal are hidden on Android
      */
     protected NumberFormat guessNumberFormat(int style) {
@@ -1038,8 +968,6 @@ public class GlobalizationPreferences implements Freezable<GlobalizationPreferen
     /**
      * This function can be overridden by subclasses to use different heuristics.
      * 
-     * {@literal @}draft ICU 3.6
-     * {@literal @}provisional This API might change or be removed in a future release.
      * @hide draft / provisional / internal are hidden on Android
      */
     protected String guessTerritory() {
@@ -1074,8 +1002,6 @@ public class GlobalizationPreferences implements Freezable<GlobalizationPreferen
     /**
      * This function can be overridden by subclasses to use different heuristics
      * 
-     * {@literal @}draft ICU 3.6
-     * {@literal @}provisional This API might change or be removed in a future release.
      * @hide draft / provisional / internal are hidden on Android
      */
     protected Currency guessCurrency() {
@@ -1087,8 +1013,6 @@ public class GlobalizationPreferences implements Freezable<GlobalizationPreferen
      * <b>It MUST return a 'safe' value,
      * one whose modification will not affect this object.</b>
      * 
-     * {@literal @}draft ICU 3.6
-     * {@literal @}provisional This API might change or be removed in a future release.
      * @hide draft / provisional / internal are hidden on Android
      */
     protected List<ULocale> guessLocales() {
@@ -1105,8 +1029,6 @@ public class GlobalizationPreferences implements Freezable<GlobalizationPreferen
      * <b>It MUST return a 'safe' value,
      * one whose modification will not affect this object.</b>
      * 
-     * {@literal @}draft ICU 3.6
-     * {@literal @}provisional This API might change or be removed in a future release.
      * @hide draft / provisional / internal are hidden on Android
      */
     protected Collator guessCollator() {
@@ -1123,8 +1045,6 @@ public class GlobalizationPreferences implements Freezable<GlobalizationPreferen
      * one whose modification will not affect this object.</b>
      * 
      * @param type
-     * {@literal @}draft ICU 3.6
-     * {@literal @}provisional This API might change or be removed in a future release.
      * @hide draft / provisional / internal are hidden on Android
      */
     protected BreakIterator guessBreakIterator(int type) {
@@ -1160,8 +1080,6 @@ public class GlobalizationPreferences implements Freezable<GlobalizationPreferen
      * <b>It MUST return a 'safe' value,
      * one whose modification will not affect this object.</b>
      * 
-     * {@literal @}draft ICU 3.6
-     * {@literal @}provisional This API might change or be removed in a future release.
      * @hide draft / provisional / internal are hidden on Android
      */
     protected TimeZone guessTimeZone() {
@@ -1195,8 +1113,6 @@ public class GlobalizationPreferences implements Freezable<GlobalizationPreferen
      * <b>It MUST return a 'safe' value,
      * one whose modification will not affect this object.</b>
      * 
-     * {@literal @}draft ICU 3.6
-     * {@literal @}provisional This API might change or be removed in a future release.
      * @hide draft / provisional / internal are hidden on Android
      */
     protected Calendar guessCalendar() {
@@ -1524,8 +1440,6 @@ public class GlobalizationPreferences implements Freezable<GlobalizationPreferen
     private volatile boolean frozen;
 
     /**
-     * {@literal @}draft ICU 3.6
-     * {@literal @}provisional This API might change or be removed in a future release.
      * @hide draft / provisional / internal are hidden on Android
      */
     public boolean isFrozen() {
@@ -1533,8 +1447,6 @@ public class GlobalizationPreferences implements Freezable<GlobalizationPreferen
     }
 
     /**
-     * {@literal @}draft ICU 4.4
-     * {@literal @}provisional This API might change or be removed in a future release.
      * @hide draft / provisional / internal are hidden on Android
      */
     public GlobalizationPreferences freeze() {
@@ -1543,8 +1455,6 @@ public class GlobalizationPreferences implements Freezable<GlobalizationPreferen
     }
 
     /**
-     * {@literal @}draft ICU 4.4
-     * {@literal @}provisional This API might change or be removed in a future release.
      * @hide draft / provisional / internal are hidden on Android
      */
     public GlobalizationPreferences cloneAsThawed() {

@@ -15,8 +15,9 @@ import android.icu.text.Normalizer;
 import android.icu.text.Normalizer2;
 import android.icu.util.ICUUncheckedIOException;
 
-/** @hide Only a subset of ICU is exposed in Android
-* @hide All android.icu classes are currently hidden
+/**
+ * @hide Only a subset of ICU is exposed in Android
+ * @hide All android.icu classes are currently hidden
  */
 public final class Norm2AllModes {
     // Public API dispatch via Normalizer2 subclasses -------------------------- ***

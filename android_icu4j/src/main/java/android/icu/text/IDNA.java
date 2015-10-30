@@ -254,7 +254,6 @@ public abstract class IDNA {
     // The IDNAInfo also provides intermediate state that is publicly invisible,
     // avoiding the allocation of another worker object.
     /**
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide original deprecated method
      * @hide draft / provisional / internal are hidden on Android
@@ -264,7 +263,6 @@ public abstract class IDNA {
         info.reset();
     }
     /**
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide original deprecated method
      * @hide draft / provisional / internal are hidden on Android
@@ -274,7 +272,6 @@ public abstract class IDNA {
         return !info.errors.isEmpty() && !Collections.disjoint(info.errors, errors);
     }
     /**
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide original deprecated method
      * @hide draft / provisional / internal are hidden on Android
@@ -284,7 +281,6 @@ public abstract class IDNA {
         return !info.labelErrors.isEmpty() && !Collections.disjoint(info.labelErrors, errors);
     }
     /**
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide original deprecated method
      * @hide draft / provisional / internal are hidden on Android
@@ -294,7 +290,6 @@ public abstract class IDNA {
         info.labelErrors.add(error);
     }
     /**
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide original deprecated method
      * @hide draft / provisional / internal are hidden on Android
@@ -307,7 +302,6 @@ public abstract class IDNA {
         }
     }
     /**
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide original deprecated method
      * @hide draft / provisional / internal are hidden on Android
@@ -317,7 +311,6 @@ public abstract class IDNA {
         info.errors.add(error);
     }
     /**
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide original deprecated method
      * @hide draft / provisional / internal are hidden on Android
@@ -327,7 +320,6 @@ public abstract class IDNA {
         info.isTransDiff=true;
     }
     /**
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide original deprecated method
      * @hide draft / provisional / internal are hidden on Android
@@ -337,7 +329,6 @@ public abstract class IDNA {
         info.isBiDi=true;
     }
     /**
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide original deprecated method
      * @hide draft / provisional / internal are hidden on Android
@@ -347,7 +338,6 @@ public abstract class IDNA {
         return info.isBiDi;
     }
     /**
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide original deprecated method
      * @hide draft / provisional / internal are hidden on Android
@@ -357,7 +347,6 @@ public abstract class IDNA {
         info.isOkBiDi=false;
     }
     /**
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide original deprecated method
      * @hide draft / provisional / internal are hidden on Android
@@ -450,7 +439,6 @@ public abstract class IDNA {
 
     /**
      * Sole constructor. (For invocation by subclass constructors, typically implicit.)
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide original deprecated method
      * @hide draft / provisional / internal are hidden on Android

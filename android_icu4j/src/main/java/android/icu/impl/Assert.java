@@ -8,8 +8,9 @@
 package android.icu.impl;
 
 // 1.3 compatibility layer
-/** @hide Only a subset of ICU is exposed in Android
-* @hide All android.icu classes are currently hidden
+/**
+ * @hide Only a subset of ICU is exposed in Android
+ * @hide All android.icu classes are currently hidden
  */
 public class Assert {
     public static void fail(Exception e) {

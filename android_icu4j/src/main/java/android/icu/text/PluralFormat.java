@@ -521,7 +521,6 @@ public class PluralFormat extends UFormat {
      * only MessageFormat and PluralFormat have PluralSelector implementations.
      * Therefore, PluralRules is not marked to implement this non-public interface,
      * to avoid confusing users.
-     * {@literal @}internal
      * @hide draft / provisional / internal are hidden on Android
      */
     /*package*/ interface PluralSelector {

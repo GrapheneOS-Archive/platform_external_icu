@@ -43,7 +43,7 @@ import android.icu.util.ULocale.Category;
 
 
 /**
- * {{@literal @}icuenhanced java.text.SimpleDateFormat}.{{@literal @}icu _usage_}
+ * <strong>[icu enhancement]</strong> ICU's replacement for {@link java.text.SimpleDateFormat}.&nbsp;Methods, fields, and other functionality specific to ICU are labeled '<strong>[icu]</strong>'.
  *
  * <p><code>SimpleDateFormat</code> is a concrete class for formatting and
  * parsing dates in a locale-sensitive manner. It allows for formatting
@@ -1021,7 +1021,6 @@ public class SimpleDateFormat extends DateFormat {
     }
 
     /**
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide original deprecated method
      * @hide draft / provisional / internal are hidden on Android
@@ -1062,7 +1061,6 @@ public class SimpleDateFormat extends DateFormat {
      * Creates an instance of SimpleDateFormat for the given format configuration
      * @param formatConfig the format configuration
      * @return A SimpleDateFormat instance
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide original deprecated method
      * @hide draft / provisional / internal are hidden on Android
@@ -1251,7 +1249,7 @@ public class SimpleDateFormat extends DateFormat {
     }
 
     /**
-     * {{@literal @}icu} Set a particular DisplayContext value in the formatter,
+     * <strong>[icu]</strong> Set a particular DisplayContext value in the formatter,
      * such as CAPITALIZATION_FOR_STANDALONE. Note: For getContext, see 
      * DateFormat.
      * 
@@ -1477,7 +1475,6 @@ public class SimpleDateFormat extends DateFormat {
      * Formats a single field. This is the version called internally; it
      * adds fieldNum and capitalizationContext parameters.
      *
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide original deprecated method
      * @hide draft / provisional / internal are hidden on Android
@@ -1502,10 +1499,9 @@ public class SimpleDateFormat extends DateFormat {
      * the need to support the slow subFormat variant (above) which
      * has to pass it in to us.
      *
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
-     * @hide original deprecated method
-     * @hide draft / provisional / internal are hidden on Android
+ * @hide original deprecated method
+ * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     @SuppressWarnings("fallthrough")
@@ -2027,7 +2023,6 @@ public class SimpleDateFormat extends DateFormat {
     /**
      * Internal high-speed method.  Reuses a StringBuffer for results
      * instead of creating a String on the heap for each call.
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide original deprecated method
      * @hide draft / provisional / internal are hidden on Android
@@ -2645,7 +2640,6 @@ public class SimpleDateFormat extends DateFormat {
      * number indicating matching failure, otherwise.  As a side effect,
      * sets the <code>cal</code> field <code>field</code> to the index
      * of the best match, if matching succeeded.
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -2812,7 +2806,6 @@ public class SimpleDateFormat extends DateFormat {
      * number indicating matching failure, otherwise.  As a side effect,
      * set the appropriate field of <code>cal</code> with the parsed
      * value.
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -3548,7 +3541,7 @@ public class SimpleDateFormat extends DateFormat {
     }
 
     /**
-     * {{@literal @}icu} Gets the time zone formatter which this date/time
+     * <strong>[icu]</strong> Gets the time zone formatter which this date/time
      * formatter uses to format and parse a time zone.
      * 
      * @return the time zone formatter which this date/time
@@ -3559,7 +3552,7 @@ public class SimpleDateFormat extends DateFormat {
     }
 
     /**
-     * {{@literal @}icu} Allows you to set the time zone formatter.
+     * <strong>[icu]</strong> Allows you to set the time zone formatter.
      * 
      * @param tzfmt the new time zone formatter
      */
@@ -3796,7 +3789,6 @@ public class SimpleDateFormat extends DateFormat {
      * @exception IllegalArgumentException when there is non-recognized
      *                                     pattern letter
      * @return                  Reference to 'appendTo' parameter.
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide original deprecated method
      * @hide draft / provisional / internal are hidden on Android

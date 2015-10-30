@@ -26,8 +26,9 @@ import android.icu.util.UResourceBundle;
  * used by SimpleDateFormat implementation.
  * This class is not thread-safe.
  */
-/** @hide Only a subset of ICU is exposed in Android
-* @hide All android.icu classes are currently hidden
+/**
+ * @hide Only a subset of ICU is exposed in Android
+ * @hide All android.icu classes are currently hidden
  */
 public final class DateNumberFormat extends NumberFormat {
 

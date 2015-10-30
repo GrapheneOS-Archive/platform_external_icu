@@ -306,7 +306,6 @@ class CompoundTransliterator extends Transliterator {
     }
 
     /**
-     * {@literal @}internal
      * @hide draft / provisional / internal are hidden on Android
      */
     @Override

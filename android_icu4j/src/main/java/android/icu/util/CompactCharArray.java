@@ -28,7 +28,6 @@ import android.icu.impl.Utility;
  * array contains the indicies of Unicode characters to the value array.
  * @see                CompactByteArray
  * @author             Helena Shih
- * {@literal @}internal
  * @deprecated This API is ICU internal only.
  * @hide Only a subset of ICU is exposed in Android
  * @hide draft / provisional / internal are hidden on Android
@@ -39,7 +38,6 @@ public final class CompactCharArray implements Cloneable {
 
     /**
      * The total number of Unicode characters.
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -49,7 +47,6 @@ public final class CompactCharArray implements Cloneable {
     /**
      * Default constructor for CompactCharArray, the default value of the
      * compact array is 0.
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -62,7 +59,6 @@ public final class CompactCharArray implements Cloneable {
     /**
      * Constructor for CompactCharArray.
      * @param defaultValue the default value of the compact array.
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -90,7 +86,6 @@ public final class CompactCharArray implements Cloneable {
      * @param indexArray the indicies of the compact array.
      * @param newValues the values of the compact array.
      * @exception IllegalArgumentException If the index is out of range.
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -119,7 +114,6 @@ public final class CompactCharArray implements Cloneable {
      *
      * @throws IllegalArgumentException if the index or value array is
      *          the wrong size.
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -135,7 +129,6 @@ public final class CompactCharArray implements Cloneable {
      * Get the mapped value of a Unicode character.
      * @param index the character to get the mapped value with
      * @return the mapped value of the given character
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -152,7 +145,6 @@ public final class CompactCharArray implements Cloneable {
      * Set automatically expands the array if it is compacted.
      * @param index the character to set the mapped value with
      * @param value the new mapped value
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -171,7 +163,6 @@ public final class CompactCharArray implements Cloneable {
      * @param start the starting offset of the range
      * @param end the ending offset of the range
      * @param value the new mapped value
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -189,7 +180,6 @@ public final class CompactCharArray implements Cloneable {
     }
     /**
      * Compact the array
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -200,7 +190,6 @@ public final class CompactCharArray implements Cloneable {
 
     /**
      * Compact the array.
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -317,7 +306,6 @@ public final class CompactCharArray implements Cloneable {
     /**
      * For internal use only.  Do not modify the result, the behavior of
      * modified results are undefined.
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -330,7 +318,6 @@ public final class CompactCharArray implements Cloneable {
     /**
      * For internal use only.  Do not modify the result, the behavior of
      * modified results are undefined.
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -342,7 +329,6 @@ public final class CompactCharArray implements Cloneable {
 
     /**
      * Overrides Cloneable
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -365,7 +351,6 @@ public final class CompactCharArray implements Cloneable {
      * @param obj the compact array object to be compared with this.
      * @return true if the current compact array object is the same
      * as the compact array object obj; false otherwise.
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -387,7 +372,6 @@ public final class CompactCharArray implements Cloneable {
 
     /**
      * Generates the hash code for the compact array object
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -428,7 +412,6 @@ public final class CompactCharArray implements Cloneable {
         }
     }
     /**
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */

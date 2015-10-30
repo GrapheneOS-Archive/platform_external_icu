@@ -23,9 +23,9 @@ import android.icu.util.UResourceBundle;
 /**
  * just a wrapper for Java ListResourceBundles and 
  * @author ram
- *
  * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
+ *
  */
 public class ResourceBundleWrapper extends UResourceBundle {
     private ResourceBundle bundle = null;

@@ -16,7 +16,6 @@ import android.icu.util.UResourceBundleIterator;
 
 /**
  * This class abstracts access to calendar (Calendar and DateFormat) data.
- * {@literal @}internal ICU 3.0
  * @hide Only a subset of ICU is exposed in Android
  * @hide draft / provisional / internal are hidden on Android
  * @hide All android.icu classes are currently hidden
@@ -47,7 +46,6 @@ public class CalendarData {
      * Load data for calendar. Note, this object owns the resources, do NOT call ures_close()!
      *
      * @param key Resource key to data
-     * {@literal @}internal
      * @hide draft / provisional / internal are hidden on Android
      */
     public ICUResourceBundle get(String key) {
@@ -70,7 +68,6 @@ public class CalendarData {
      *
      * @param key Resource key to data
      * @param subKey Resource key to data
-     * {@literal @}internal
      * @hide draft / provisional / internal are hidden on Android
      */
     public ICUResourceBundle get(String key, String subKey) {
@@ -93,7 +90,6 @@ public class CalendarData {
      * @param key Resource key to data
      * @param contextKey Resource key to data
      * @param subKey Resource key to data
-     * {@literal @}internal
      * @hide draft / provisional / internal are hidden on Android
      */
     public ICUResourceBundle get(String key, String contextKey, String subKey) {
@@ -117,7 +113,6 @@ public class CalendarData {
      * @param set Resource key to data
      * @param contextKey Resource key to data
      * @param subKey Resource key to data
-     * {@literal @}internal
      * @hide draft / provisional / internal are hidden on Android
      */
     public ICUResourceBundle get(String key, String set, String contextKey, String subKey) {

@@ -29,7 +29,6 @@ import android.icu.util.Output;
  * @author markdavis
  * Refactor samples as first step to moving into CLDR
  * 
- * {@literal @}internal
  * @deprecated This API is ICU internal only.
  * @hide Only a subset of ICU is exposed in Android
  * @hide draft / provisional / internal are hidden on Android
@@ -42,7 +41,6 @@ public class PluralSamples {
     private final Map<String, List<Double>> _keySamplesMap;
 
     /**
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -52,7 +50,6 @@ public class PluralSamples {
     private final Set<FixedDecimal> _fractionSamples;
 
     /**
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -255,7 +252,6 @@ public class PluralSamples {
     };
 
     /**
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
