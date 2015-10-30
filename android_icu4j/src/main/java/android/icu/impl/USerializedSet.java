@@ -17,7 +17,6 @@ package android.icu.impl;
  * Simple class for handling serialized USet/UnicodeSet structures
  * without object creation. See ICU4C icu/source/common/uset.c.
  *
- * {@literal @}internal
  * @hide Only a subset of ICU is exposed in Android
  * @hide draft / provisional / internal are hidden on Android
  * @hide All android.icu classes are currently hidden

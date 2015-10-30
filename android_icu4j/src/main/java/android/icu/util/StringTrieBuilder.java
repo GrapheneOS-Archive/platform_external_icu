@@ -44,7 +44,6 @@ public abstract class StringTrieBuilder {
     }
 
     /**
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -52,7 +51,6 @@ public abstract class StringTrieBuilder {
     protected StringTrieBuilder() {}
 
     /**
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -74,7 +72,6 @@ public abstract class StringTrieBuilder {
     }
 
     /**
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -120,7 +117,6 @@ public abstract class StringTrieBuilder {
     }
 
     /**
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -818,7 +814,6 @@ public abstract class StringTrieBuilder {
     }
 
     /**
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -826,21 +821,18 @@ public abstract class StringTrieBuilder {
     protected abstract boolean matchNodesCanHaveValues() /*const*/;
 
     /**
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     protected abstract int getMaxBranchLinearSubNodeLength() /*const*/;
     /**
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     protected abstract int getMinLinearMatch() /*const*/;
     /**
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -848,35 +840,30 @@ public abstract class StringTrieBuilder {
     protected abstract int getMaxLinearMatchLength() /*const*/;
 
     /**
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     protected abstract int write(int unit);
     /**
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     protected abstract int write(int offset, int length);
     /**
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     protected abstract int writeValueAndFinal(int i, boolean isFinal);
     /**
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     protected abstract int writeValueAndType(boolean hasValue, int value, int node);
     /**
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -890,7 +877,6 @@ public abstract class StringTrieBuilder {
 
     // Strings and sub-strings for linear-match nodes.
     /**
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */

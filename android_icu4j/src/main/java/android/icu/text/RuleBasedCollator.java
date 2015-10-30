@@ -710,7 +710,7 @@ public final class RuleBasedCollator extends Collator {
     }
 
     /**
-     * {{@literal @}icu} Sets the variable top to the top of the specified reordering group.
+     * <strong>[icu]</strong> Sets the variable top to the top of the specified reordering group.
      * The variable top determines the highest-sorting character
      * which is affected by the alternate handling behavior.
      * If that attribute is set to NON_IGNORABLE, then the variable top has no effect.
@@ -755,7 +755,7 @@ public final class RuleBasedCollator extends Collator {
     }
 
     /**
-     * {{@literal @}icu} Returns the maximum reordering group whose characters are affected by
+     * <strong>[icu]</strong> Returns the maximum reordering group whose characters are affected by
      * the alternate handling behavior.
      * @return the maximum variable reordering group.
      * @see #setMaxVariable
@@ -766,7 +766,7 @@ public final class RuleBasedCollator extends Collator {
     }
 
     /**
-     * {{@literal @}icu} Sets the variable top to the primary weight of the specified string.
+     * <strong>[icu]</strong> Sets the variable top to the primary weight of the specified string.
      *
      * <p>Beginning with ICU 53, the variable top is pinned to
      * the top of one of the supported reordering groups,
@@ -816,7 +816,7 @@ public final class RuleBasedCollator extends Collator {
     }
 
     /**
-     * {{@literal @}icu} Sets the variable top to the specified primary weight.
+     * <strong>[icu]</strong> Sets the variable top to the specified primary weight.
      *
      * <p>Beginning with ICU 53, the variable top is pinned to
      * the top of one of the supported reordering groups,
@@ -859,7 +859,7 @@ public final class RuleBasedCollator extends Collator {
     }
 
     /**
-     * {{@literal @}icu} When numeric collation is turned on, this Collator makes
+     * <strong>[icu]</strong> When numeric collation is turned on, this Collator makes
      * substrings of digits sort according to their numeric values.
      *
      * <p>This is a way to get '100' to sort AFTER '2'. Note that the longest
@@ -1012,7 +1012,6 @@ public final class RuleBasedCollator extends Collator {
     /**
      * Adds the contractions that start with character c to the set.
      * Ignores prefixes. Used by AlphabeticIndex.
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -1186,7 +1185,6 @@ public final class RuleBasedCollator extends Collator {
     /**
      * Returns the CEs for the string.
      * @param str the string
-     * {@literal @}internal for tests & tools
      * @deprecated This API is ICU internal only.
      * @hide original deprecated method
      * @hide draft / provisional / internal are hidden on Android
@@ -1219,7 +1217,7 @@ public final class RuleBasedCollator extends Collator {
      * Returns this Collator's strength attribute. The strength attribute
      * determines the minimum level of difference considered significant.
      *
-     * <p>{{@literal @}icunote} This can return QUATERNARY strength, which is not supported by the
+     * <p><strong>[icu] Note:</strong> This can return QUATERNARY strength, which is not supported by the
      * JDK version.
      *
      * <p>See the Collator class description for more details.
@@ -1339,7 +1337,7 @@ public final class RuleBasedCollator extends Collator {
     }
 
     /**
-     * {{@literal @}icu} Gets the variable top value of a Collator.
+     * <strong>[icu]</strong> Gets the variable top value of a Collator.
      * 
      * @return the variable top primary weight
      * @see #getMaxVariable
@@ -1601,7 +1599,6 @@ public final class RuleBasedCollator extends Collator {
 
     /**
      * Compares two CharSequences.
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide original deprecated method
      * @hide draft / provisional / internal are hidden on Android
@@ -1816,8 +1813,6 @@ public final class RuleBasedCollator extends Collator {
 
     /**
      * {@inheritDoc}
-     * {@literal @}draft ICU 53 (retain)
-     * {@literal @}provisional This API might change or be removed in a future release.
      * @hide draft / provisional / internal are hidden on Android
      */
     @Override

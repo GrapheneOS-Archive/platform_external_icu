@@ -354,7 +354,6 @@ public class DateIntervalFormat extends UFormat {
      * @param dtItvInfo  the DateIntervalInfo object to be adopted.
      * @param simpleDateFormat will be used for formatting
      * 
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide original deprecated method
      * @hide draft / provisional / internal are hidden on Android
@@ -622,7 +621,6 @@ public class DateIntervalFormat extends UFormat {
     }
 
     /**
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide original deprecated method
      * @hide draft / provisional / internal are hidden on Android
@@ -918,7 +916,6 @@ public class DateIntervalFormat extends UFormat {
      *                  is supported, upon return this param is unchanged.
      * @return          A newly created Formattable* object, or NULL
      *                  on failure.
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide original deprecated method
      * @hide draft / provisional / internal are hidden on Android
@@ -1831,7 +1828,6 @@ public class DateIntervalFormat extends UFormat {
     
     /**
      * Get the internal patterns for the skeleton
-     * {@literal @}internal CLDR
      * @deprecated This API is ICU internal only.
      * @hide original deprecated method
      * @hide draft / provisional / internal are hidden on Android

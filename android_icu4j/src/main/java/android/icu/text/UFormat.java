@@ -53,8 +53,6 @@ public abstract class UFormat extends Format {
      * @see android.icu.util.ULocale
      * @see android.icu.util.ULocale#VALID_LOCALE
      * @see android.icu.util.ULocale#ACTUAL_LOCALE
-     * {@literal @}draft ICU 2.8 (retain)
-     * {@literal @}provisional This API might change or be removed in a future release.
      * @hide draft / provisional / internal are hidden on Android
      */
     public final ULocale getLocale(ULocale.Type type) {

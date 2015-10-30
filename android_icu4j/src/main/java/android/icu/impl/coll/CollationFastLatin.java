@@ -15,8 +15,9 @@ package android.icu.impl.coll;
 import android.icu.lang.UScript;
 import android.icu.text.Collator;
 
-/** @hide Only a subset of ICU is exposed in Android
-* @hide All android.icu classes are currently hidden
+/**
+ * @hide Only a subset of ICU is exposed in Android
+ * @hide All android.icu classes are currently hidden
  */
 public final class CollationFastLatin /* all static */ {
     /**

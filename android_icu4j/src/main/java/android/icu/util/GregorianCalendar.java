@@ -12,7 +12,7 @@ import java.util.Locale;
 import android.icu.util.ULocale.Category;
 
 /**
- * {{@literal @}icuenhanced java.util.GregorianCalendar}.{{@literal @}icu _usage_}
+ * <strong>[icu enhancement]</strong> ICU's replacement for {@link java.util.GregorianCalendar}.&nbsp;Methods, fields, and other functionality specific to ICU are labeled '<strong>[icu]</strong>'.
  *
  * <p><code>GregorianCalendar</code> is a concrete subclass of
  * {@link Calendar}
@@ -353,7 +353,7 @@ public class GregorianCalendar extends Calendar {
     }
 
     /**
-     * {{@literal @}icu} Constructs a GregorianCalendar based on the current time
+     * <strong>[icu]</strong> Constructs a GregorianCalendar based on the current time
      * in the default time zone with the given locale.
      * @param locale the given ulocale.
      */
@@ -362,7 +362,7 @@ public class GregorianCalendar extends Calendar {
     }
 
     /**
-     * {{@literal @}icu} Constructs a GregorianCalendar based on the current time
+     * <strong>[icu]</strong> Constructs a GregorianCalendar based on the current time
      * in the given time zone with the given locale.
      * @param zone the given time zone.
      * @param aLocale the given locale.

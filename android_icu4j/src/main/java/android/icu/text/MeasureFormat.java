@@ -329,8 +329,6 @@ public class MeasureFormat extends UFormat {
      * Parses text from a string to produce a <code>Measure</code>.
      * @see java.text.Format#parseObject(java.lang.String, java.text.ParsePosition)
      * @throws UnsupportedOperationException Not supported.
-     * {@literal @}draft ICU 53 (Retain)
-     * {@literal @}provisional This API might change or be removed in a future release.
      * @hide draft / provisional / internal are hidden on Android
      */
     @Override
@@ -368,7 +366,6 @@ public class MeasureFormat extends UFormat {
      * @param lowValue low value in range
      * @param highValue high value in range
      * @return the formatted string.
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide original deprecated method
      * @hide draft / provisional / internal are hidden on Android
@@ -483,8 +480,6 @@ public class MeasureFormat extends UFormat {
      * @param appendTo formatted string appended here.
      * @param pos      The field position.
      * @return appendTo.
-     * {@literal @}draft ICU 55
-     * {@literal @}provisional This API might change or be removed in a future release.
      * @hide draft / provisional / internal are hidden on Android
      */
     public StringBuilder formatMeasurePerUnit(
@@ -1243,7 +1238,6 @@ public class MeasureFormat extends UFormat {
      * @param forLocale locale to get the format for
      * @param width the format width
      * @return range formatter, such as "{0}–{1}"
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide original deprecated method
      * @hide draft / provisional / internal are hidden on Android
@@ -1291,7 +1285,6 @@ public class MeasureFormat extends UFormat {
      * @param forLocale locale to get the range pattern for
      * @param width the format width.
      * @return range pattern
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide original deprecated method
      * @hide draft / provisional / internal are hidden on Android

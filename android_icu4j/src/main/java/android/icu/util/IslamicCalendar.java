@@ -916,8 +916,6 @@ public class IslamicCalendar extends Calendar {
     /**
      * sets the calculation type for this calendar.
      * 
-     * {@literal @}draft ICU 55
-     * {@literal @}provisional This API might change or be removed in a future release.
      * @hide draft / provisional / internal are hidden on Android
      */
     public void setCalculationType(CalculationType type) {
@@ -933,8 +931,6 @@ public class IslamicCalendar extends Calendar {
     /**
      * gets the calculation type for this calendar.
      * 
-     * {@literal @}draft ICU 55
-     * {@literal @}provisional This API might change or be removed in a future release.
      * @hide draft / provisional / internal are hidden on Android
      */
     public CalculationType getCalculationType() {

@@ -89,7 +89,6 @@ public abstract class CurrencyDisplayNames {
     /**
      * Returns true if currency display name data is available.
      * @return true if currency display name data is available
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -153,7 +152,6 @@ public abstract class CurrencyDisplayNames {
     /**
      * Sole constructor.  (For invocation by subclass constructors,
      * typically implicit.)
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */

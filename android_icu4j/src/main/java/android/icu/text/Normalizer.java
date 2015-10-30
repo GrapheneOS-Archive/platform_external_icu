@@ -231,7 +231,6 @@ public final class Normalizer implements Cloneable {
     public static abstract class Mode {
         /**
          * Sole constructor
-         * {@literal @}internal
          * @deprecated This API is ICU internal only.
          * @hide original deprecated method
          * @hide draft / provisional / internal are hidden on Android
@@ -241,7 +240,6 @@ public final class Normalizer implements Cloneable {
         }
 
         /**
-         * {@literal @}internal
          * @deprecated This API is ICU internal only.
          * @hide original deprecated method
          * @hide draft / provisional / internal are hidden on Android
@@ -1609,7 +1607,7 @@ public final class Normalizer implements Cloneable {
      * @throws IllegalArgumentException if the given index is less than
      *          {@link #getBeginIndex} or greater than {@link #getEndIndex}.
      * @deprecated ICU 3.2
-     * {@literal @}obsolete ICU 3.2
+     * @obsolete ICU 3.2
      * @hide original deprecated method
      */
     @Deprecated

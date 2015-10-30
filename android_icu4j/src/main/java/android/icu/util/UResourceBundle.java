@@ -27,7 +27,7 @@ import android.icu.impl.ResourceBundleWrapper;
 import android.icu.impl.SimpleCache;
 
 /**
- * {{@literal @}icuenhanced java.util.ResourceBundle}.{{@literal @}icu _usage_}
+ * <strong>[icu enhancement]</strong> ICU's replacement for {@link java.util.ResourceBundle}.&nbsp;Methods, fields, and other functionality specific to ICU are labeled '<strong>[icu]</strong>'.
  *
  * <p>A class representing a collection of resource information pertaining to a given
  * locale. A resource bundle provides a way of accessing locale- specific information in a
@@ -97,7 +97,7 @@ public abstract class UResourceBundle extends ResourceBundle {
 
 
     /**
-     * {{@literal @}icu} Creates a resource bundle using the specified base name and locale.
+     * <strong>[icu]</strong> Creates a resource bundle using the specified base name and locale.
      * ICU_DATA_CLASS is used as the default root.
      * @param baseName the base name of the resource bundle, a fully qualified class name
      * @param localeName the locale for which a resource bundle is desired
@@ -111,7 +111,7 @@ public abstract class UResourceBundle extends ResourceBundle {
     }
 
     /**
-     * {{@literal @}icu} Creates a resource bundle using the specified base name, locale, and class root.
+     * <strong>[icu]</strong> Creates a resource bundle using the specified base name, locale, and class root.
      *
      * @param baseName the base name of the resource bundle, a fully qualified class name
      * @param localeName the locale for which a resource bundle is desired
@@ -126,7 +126,7 @@ public abstract class UResourceBundle extends ResourceBundle {
     }
 
     /**
-     * {{@literal @}icu} Creates a resource bundle using the specified base name, locale, and class
+     * <strong>[icu]</strong> Creates a resource bundle using the specified base name, locale, and class
      * root.
      *
      * @param baseName the base name of the resource bundle, a fully qualified class name
@@ -145,7 +145,7 @@ public abstract class UResourceBundle extends ResourceBundle {
     }
 
     /**
-     * {{@literal @}icu} Sole constructor.  (For invocation by subclass constructors, typically
+     * <strong>[icu]</strong> Sole constructor.  (For invocation by subclass constructors, typically
      * implicit.)  This is public for compatibility with Java, whose compiler
      * will generate public default constructors for an abstract class.
      */
@@ -153,7 +153,7 @@ public abstract class UResourceBundle extends ResourceBundle {
     }
 
     /**
-     * {{@literal @}icu} Creates a UResourceBundle for the locale specified, from which users can extract
+     * <strong>[icu]</strong> Creates a UResourceBundle for the locale specified, from which users can extract
      * resources by using their corresponding keys.
      * @param locale  specifies the locale for which we want to open the resource.
      *                If null the bundle for default locale is opened.
@@ -168,7 +168,7 @@ public abstract class UResourceBundle extends ResourceBundle {
     }
 
     /**
-     * {{@literal @}icu} Creates a UResourceBundle for the default locale and specified base name,
+     * <strong>[icu]</strong> Creates a UResourceBundle for the default locale and specified base name,
      * from which users can extract resources by using their corresponding keys.
      * @param baseName  specifies the locale for which we want to open the resource.
      *                If null the bundle for default locale is opened.
@@ -184,7 +184,7 @@ public abstract class UResourceBundle extends ResourceBundle {
     }
 
     /**
-     * {{@literal @}icu} Creates a UResourceBundle for the specified locale and specified base name,
+     * <strong>[icu]</strong> Creates a UResourceBundle for the specified locale and specified base name,
      * from which users can extract resources by using their corresponding keys.
      * @param baseName  specifies the locale for which we want to open the resource.
      *                If null the bundle for default locale is opened.
@@ -204,7 +204,7 @@ public abstract class UResourceBundle extends ResourceBundle {
     }
 
     /**
-     * {{@literal @}icu} Creates a UResourceBundle, from which users can extract resources by using
+     * <strong>[icu]</strong> Creates a UResourceBundle, from which users can extract resources by using
      * their corresponding keys.
      * @param baseName string containing the name of the data package.
      *                    If null the default ICU package name is used.
@@ -224,7 +224,7 @@ public abstract class UResourceBundle extends ResourceBundle {
     }
 
     /**
-     * {{@literal @}icu} Creates a UResourceBundle for the specified locale and specified base name,
+     * <strong>[icu]</strong> Creates a UResourceBundle for the specified locale and specified base name,
      * from which users can extract resources by using their corresponding keys.
      * @param baseName  specifies the locale for which we want to open the resource.
      *                If null the bundle for default locale is opened.
@@ -243,7 +243,7 @@ public abstract class UResourceBundle extends ResourceBundle {
     }
 
     /**
-     * {{@literal @}icu} Creates a UResourceBundle, from which users can extract resources by using
+     * <strong>[icu]</strong> Creates a UResourceBundle, from which users can extract resources by using
      * their corresponding keys.<br><br>
      * Note: Please use this API for loading non-ICU resources. Java security does not
      * allow loading of resources across jar files. You must provide your class loader
@@ -267,7 +267,7 @@ public abstract class UResourceBundle extends ResourceBundle {
     }
 
     /**
-     * {{@literal @}icu} Returns the RFC 3066 conformant locale id of this resource bundle.
+     * <strong>[icu]</strong> Returns the RFC 3066 conformant locale id of this resource bundle.
      * This method can be used after a call to getBundleInstance() to
      * determine whether the resource bundle returned really
      * corresponds to the requested locale or is a fallback.
@@ -277,19 +277,19 @@ public abstract class UResourceBundle extends ResourceBundle {
     public abstract ULocale getULocale();
 
     /**
-     * {{@literal @}icu} Returns the localeID
+     * <strong>[icu]</strong> Returns the localeID
      * @return The string representation of the localeID
      */
     protected abstract String getLocaleID();
 
     /**
-     * {{@literal @}icu} Returns the base name of the resource bundle
+     * <strong>[icu]</strong> Returns the base name of the resource bundle
      * @return The string representation of the base name
      */
     protected abstract String getBaseName();
 
     /**
-     * {{@literal @}icu} Returns the parent bundle
+     * <strong>[icu]</strong> Returns the parent bundle
      * @return The parent bundle
      */
     protected abstract UResourceBundle getParent();
@@ -308,7 +308,6 @@ public abstract class UResourceBundle extends ResourceBundle {
         new SimpleCache<ResourceCacheKey, UResourceBundle>();
 
     /**
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -332,7 +331,6 @@ public abstract class UResourceBundle extends ResourceBundle {
      * Method used by subclasses to add a resource bundle object to the managed
      * cache.  Works like a putIfAbsent(): If the cache already contains a matching
      * bundle, that one will be retained and returned.
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -351,7 +349,6 @@ public abstract class UResourceBundle extends ResourceBundle {
 
     /**
      * Method used by sub classes to load a resource bundle object from the managed cache
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -507,7 +504,7 @@ public abstract class UResourceBundle extends ResourceBundle {
     }
 
     /**
-     * {{@literal @}icu} Loads a new resource bundle for the given base name, locale and class loader.
+     * <strong>[icu]</strong> Loads a new resource bundle for the given base name, locale and class loader.
      * Optionally will disable loading of fallback bundles.
      * @param baseName the base name of the resource bundle, a fully qualified class name
      * @param localeName the locale for which a resource bundle is desired
@@ -560,7 +557,7 @@ public abstract class UResourceBundle extends ResourceBundle {
     }
 
     /**
-     * {{@literal @}icu} Returns a binary data item from a binary resource, as a read-only ByteBuffer.
+     * <strong>[icu]</strong> Returns a binary data item from a binary resource, as a read-only ByteBuffer.
      *
      * @return a pointer to a chunk of unsigned bytes which live in a memory mapped/DLL
      * file.
@@ -601,7 +598,7 @@ public abstract class UResourceBundle extends ResourceBundle {
     }
 
     /**
-     * {{@literal @}icu} Returns a binary data from a binary resource, as a byte array with a copy
+     * <strong>[icu]</strong> Returns a binary data from a binary resource, as a byte array with a copy
      * of the bytes from the resource bundle.
      *
      * @param ba  The byte array to write the bytes to. A null variable is OK.
@@ -616,7 +613,7 @@ public abstract class UResourceBundle extends ResourceBundle {
     }
 
     /**
-     * {{@literal @}icu} Returns a 32 bit integer array from a resource.
+     * <strong>[icu]</strong> Returns a 32 bit integer array from a resource.
      *
      * @return a pointer to a chunk of unsigned bytes which live in a memory mapped/DLL file.
      * @see #getBinary()
@@ -629,7 +626,7 @@ public abstract class UResourceBundle extends ResourceBundle {
     }
 
     /**
-     * {{@literal @}icu} Returns a signed integer from a resource.
+     * <strong>[icu]</strong> Returns a signed integer from a resource.
      *
      * @return an integer value
      * @see #getIntVector
@@ -642,7 +639,7 @@ public abstract class UResourceBundle extends ResourceBundle {
     }
 
     /**
-     * {{@literal @}icu} Returns a unsigned integer from a resource.
+     * <strong>[icu]</strong> Returns a unsigned integer from a resource.
      * This integer is originally 28 bit and the sign gets propagated.
      *
      * @return an integer value
@@ -656,7 +653,7 @@ public abstract class UResourceBundle extends ResourceBundle {
     }
 
     /**
-     * {{@literal @}icu} Returns a resource in a given resource that has a given key.
+     * <strong>[icu]</strong> Returns a resource in a given resource that has a given key.
      *
      * @param aKey               a key associated with the wanted resource
      * @return                  a resource bundle object representing the resource
@@ -680,7 +677,6 @@ public abstract class UResourceBundle extends ResourceBundle {
      * @param aKey the key associated with the wanted resource
      * @return the resource, or null
      * @see #get(String)
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -716,7 +712,7 @@ public abstract class UResourceBundle extends ResourceBundle {
     }
 
     /**
-     * {{@literal @}icu} Returns the resource in a given resource at the specified index.
+     * <strong>[icu]</strong> Returns the resource in a given resource at the specified index.
      *
      * @param index an index to the wanted resource.
      * @return the sub resource UResourceBundle object
@@ -747,7 +743,6 @@ public abstract class UResourceBundle extends ResourceBundle {
      * @param index the index of the resource
      * @return the resource, or null
      * @see #get(int)
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -782,7 +777,6 @@ public abstract class UResourceBundle extends ResourceBundle {
      * Returns a Set of all keys contained in this ResourceBundle and its parent bundles.
      * @return a Set of all keys contained in this ResourceBundle and its parent bundles,
      *         which is empty if this is not a bundle or a table resource
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -834,7 +828,6 @@ public abstract class UResourceBundle extends ResourceBundle {
      * This does not include further keys from parent bundles.
      * @return a Set of the keys contained only in this ResourceBundle,
      *         which is empty if this is not a bundle or a table resource
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -844,7 +837,7 @@ public abstract class UResourceBundle extends ResourceBundle {
     }
 
     /**
-     * {{@literal @}icu} Returns the size of a resource. Size for scalar types is always 1, and for
+     * <strong>[icu]</strong> Returns the size of a resource. Size for scalar types is always 1, and for
      * vector/table types is the number of child resources.
      * 
      * <br><b>Note:</b> Integer array is treated as a scalar type. There are no APIs to
@@ -856,7 +849,7 @@ public abstract class UResourceBundle extends ResourceBundle {
     }
 
     /**
-     * {{@literal @}icu} Returns the type of a resource.
+     * <strong>[icu]</strong> Returns the type of a resource.
      * Available types are {@link #INT INT}, {@link #ARRAY ARRAY},
      * {@link #BINARY BINARY}, {@link #INT_VECTOR INT_VECTOR},
      * {@link #STRING STRING}, {@link #TABLE TABLE}.
@@ -868,7 +861,7 @@ public abstract class UResourceBundle extends ResourceBundle {
     }
 
     /**
-     * {{@literal @}icu} Return the version number associated with this UResourceBundle as an
+     * <strong>[icu]</strong> Return the version number associated with this UResourceBundle as an
      * VersionInfo object.
      * @return VersionInfo object containing the version of the bundle
      */
@@ -877,7 +870,7 @@ public abstract class UResourceBundle extends ResourceBundle {
     }
 
     /**
-     * {{@literal @}icu} Returns the iterator which iterates over this
+     * <strong>[icu]</strong> Returns the iterator which iterates over this
      * resource bundle
      * @return UResourceBundleIterator that iterates over the resources in the bundle
      */
@@ -886,7 +879,7 @@ public abstract class UResourceBundle extends ResourceBundle {
     }
 
     /**
-     * {{@literal @}icu} Returns the key associated with a given resource. Not all the resources have
+     * <strong>[icu]</strong> Returns the key associated with a given resource. Not all the resources have
      * a key - only those that are members of a table.
      * @return a key associated to this resource, or null if it doesn't have a key
      */
@@ -895,34 +888,34 @@ public abstract class UResourceBundle extends ResourceBundle {
     }
 
     /**
-     * {{@literal @}icu} Resource type constant for "no resource".
+     * <strong>[icu]</strong> Resource type constant for "no resource".
      */
     public static final int NONE = -1;
 
     /**
-     * {{@literal @}icu} Resource type constant for strings.
+     * <strong>[icu]</strong> Resource type constant for strings.
      */
     public static final int STRING = 0;
 
     /**
-     * {{@literal @}icu} Resource type constant for binary data.
+     * <strong>[icu]</strong> Resource type constant for binary data.
      */
     public static final int BINARY = 1;
 
     /**
-     * {{@literal @}icu} Resource type constant for tables of key-value pairs.
+     * <strong>[icu]</strong> Resource type constant for tables of key-value pairs.
      */
     public static final int TABLE = 2;
 
     /**
-     * {{@literal @}icu} Resource type constant for a single 28-bit integer, interpreted as
+     * <strong>[icu]</strong> Resource type constant for a single 28-bit integer, interpreted as
      * signed or unsigned by the getInt() function.
      * @see #getInt
      */
     public static final int INT = 7;
 
     /**
-     * {{@literal @}icu} Resource type constant for arrays of resources.
+     * <strong>[icu]</strong> Resource type constant for arrays of resources.
      */
     public static final int ARRAY = 8;
 
@@ -935,7 +928,7 @@ public abstract class UResourceBundle extends ResourceBundle {
     //====== protected members ==============
 
     /**
-     * {{@literal @}icu} Actual worker method for fetching a resource based on the given key.
+     * <strong>[icu]</strong> Actual worker method for fetching a resource based on the given key.
      * Sub classes must override this method if they support resources with keys.
      * @param aKey the key string of the resource to be fetched
      * @param aliasesVisited hashtable object to hold references of resources already seen
@@ -950,7 +943,7 @@ public abstract class UResourceBundle extends ResourceBundle {
     }
 
     /**
-     * {{@literal @}icu} Actual worker method for fetching a resource based on the given index.
+     * <strong>[icu]</strong> Actual worker method for fetching a resource based on the given index.
      * Sub classes must override this method if they support arrays of resources.
      * @param index the index of the resource to be fetched
      * @param aliasesVisited hashtable object to hold references of resources already seen
@@ -965,7 +958,7 @@ public abstract class UResourceBundle extends ResourceBundle {
     }
 
     /**
-     * {{@literal @}icu} Actual worker method for fetching the array of strings in a resource.
+     * <strong>[icu]</strong> Actual worker method for fetching the array of strings in a resource.
      * Sub classes must override this method if they support arrays of strings.
      * @return String[] An array of strings containing strings
      */
@@ -974,7 +967,7 @@ public abstract class UResourceBundle extends ResourceBundle {
     }
 
     /**
-     * {{@literal @}icu} Actual worker method for fetching the keys of resources contained in the resource.
+     * <strong>[icu]</strong> Actual worker method for fetching the keys of resources contained in the resource.
      * Sub classes must override this method if they support keys and associated resources.
      *
      * @return Enumeration An enumeration of all the keys in this resource.
@@ -1043,7 +1036,6 @@ public abstract class UResourceBundle extends ResourceBundle {
     /**
      * This method is for setting the loading status of the resource.
      * The status is analogous to the warning status in ICU4C.
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -1053,7 +1045,6 @@ public abstract class UResourceBundle extends ResourceBundle {
     /**
      * Is this a top-level resource, that is, a whole bundle?
      * @return true if this is a top-level resource
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */

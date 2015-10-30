@@ -29,7 +29,7 @@ import android.icu.text.TimeZoneNames.NameType;
 import android.icu.util.ULocale.Category;
 
 /**
- * {{@literal @}icuenhanced java.util.TimeZone}.{{@literal @}icu _usage_}
+ * <strong>[icu enhancement]</strong> ICU's replacement for {@link java.util.TimeZone}.&nbsp;Methods, fields, and other functionality specific to ICU are labeled '<strong>[icu]</strong>'.
  *
  * <p><code>TimeZone</code> represents a time zone offset, and also computes daylight
  * savings.
@@ -131,7 +131,6 @@ abstract public class TimeZone implements Serializable, Cloneable, Freezable<Tim
     /**
      * Constructing a TimeZone with the given time zone ID.
      * @param ID the time zone ID.
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide original deprecated method
      * @hide draft / provisional / internal are hidden on Android
@@ -145,13 +144,13 @@ abstract public class TimeZone implements Serializable, Cloneable, Freezable<Tim
     }
 
     /**
-     * {{@literal @}icu} A time zone implementation type indicating ICU's own TimeZone used by
+     * <strong>[icu]</strong> A time zone implementation type indicating ICU's own TimeZone used by
      * <code>getTimeZone</code>, <code>setDefaultTimeZoneType</code>
      * and <code>getDefaultTimeZoneType</code>.
      */
     public static final int TIMEZONE_ICU = 0;
     /**
-     * {{@literal @}icu} A time zone implementation type indicating JDK TimeZone used by
+     * <strong>[icu]</strong> A time zone implementation type indicating JDK TimeZone used by
      * <code>getTimeZone</code>, <code>setDefaultTimeZoneType</code>
      * and <code>getDefaultTimeZoneType</code>.
      */
@@ -172,35 +171,35 @@ abstract public class TimeZone implements Serializable, Cloneable, Freezable<Tim
     public static final int LONG  = 1;
 
     /**
-     * {{@literal @}icu} A style specifier for <code>getDisplayName()</code> indicating
+     * <strong>[icu]</strong> A style specifier for <code>getDisplayName()</code> indicating
      * a short generic name, such as "PT."
      * @see #LONG_GENERIC
      */
     public static final int SHORT_GENERIC = 2;
 
     /**
-     * {{@literal @}icu} A style specifier for <code>getDisplayName()</code> indicating
+     * <strong>[icu]</strong> A style specifier for <code>getDisplayName()</code> indicating
      * a long generic name, such as "Pacific Time."
      * @see #SHORT_GENERIC
      */
     public static final int LONG_GENERIC = 3;
 
     /**
-     * {{@literal @}icu} A style specifier for <code>getDisplayName()</code> indicating
+     * <strong>[icu]</strong> A style specifier for <code>getDisplayName()</code> indicating
      * a short name derived from the timezone's offset, such as "-0800."
      * @see #LONG_GMT
      */
     public static final int SHORT_GMT = 4;
 
     /**
-     * {{@literal @}icu} A style specifier for <code>getDisplayName()</code> indicating
+     * <strong>[icu]</strong> A style specifier for <code>getDisplayName()</code> indicating
      * a long name derived from the timezone's offset, such as "GMT-08:00."
      * @see #SHORT_GMT
      */
     public static final int LONG_GMT = 5;
 
     /**
-     * {{@literal @}icu} A style specifier for <code>getDisplayName()</code> indicating
+     * <strong>[icu]</strong> A style specifier for <code>getDisplayName()</code> indicating
      * a short name derived from the timezone's short standard or daylight
      * timezone name ignoring commonlyUsed, such as "PDT."
      */
@@ -208,14 +207,14 @@ abstract public class TimeZone implements Serializable, Cloneable, Freezable<Tim
     public static final int SHORT_COMMONLY_USED = 6;
 
     /**
-     * {{@literal @}icu} A style specifier for <code>getDisplayName()</code> indicating
+     * <strong>[icu]</strong> A style specifier for <code>getDisplayName()</code> indicating
      * a long name derived from the timezone's fallback name, such as
      * "United States (Los Angeles)."
      */
     public static final int GENERIC_LOCATION = 7;
 
     /**
-     * {{@literal @}icu} The time zone ID reserved for unknown time zone.
+     * <strong>[icu]</strong> The time zone ID reserved for unknown time zone.
      * @see #getTimeZone(String)
      */
     public static final String UNKNOWN_ZONE_ID = "Etc/Unknown";
@@ -226,7 +225,7 @@ abstract public class TimeZone implements Serializable, Cloneable, Freezable<Tim
     static final String GMT_ZONE_ID = "Etc/GMT";
 
     /**
-     * {{@literal @}icu} The immutable (frozen) "unknown" time zone.
+     * <strong>[icu]</strong> The immutable (frozen) "unknown" time zone.
      * It behaves like the GMT/UTC time zone but has the UNKNOWN_ZONE_ID = "Etc/Unknown".
      * {@link TimeZone#getTimeZone(String)} returns a mutable clone of this
      * time zone if the input ID is not recognized.
@@ -237,32 +236,29 @@ abstract public class TimeZone implements Serializable, Cloneable, Freezable<Tim
     public static final TimeZone UNKNOWN_ZONE = new ConstantZone(0, UNKNOWN_ZONE_ID).freeze();
 
     /**
-     * {{@literal @}icu} The immutable GMT (=UTC) time zone. Its ID is "Etc/GMT".
+     * <strong>[icu]</strong> The immutable GMT (=UTC) time zone. Its ID is "Etc/GMT".
      */
     public static final TimeZone GMT_ZONE = new ConstantZone(0, GMT_ZONE_ID).freeze();
 
     /**
-     * {{@literal @}icu} System time zone type constants used by filtering zones in
+     * <strong>[icu]</strong> System time zone type constants used by filtering zones in
      * {@link TimeZone#getAvailableIDs(SystemTimeZoneType, String, Integer)}
      */
     public enum SystemTimeZoneType {
         /**
          * Any system zones.
-         * {@literal @}provisional This API might change or be removed in a future release.
          * @hide draft / provisional / internal are hidden on Android
          */
         ANY,
 
         /**
          * Canonical system zones.
-         * {@literal @}provisional This API might change or be removed in a future release.
          * @hide draft / provisional / internal are hidden on Android
          */
         CANONICAL,
 
         /**
          * Canonical system zones associated with actual locations.
-         * {@literal @}provisional This API might change or be removed in a future release.
          * @hide draft / provisional / internal are hidden on Android
          */
         CANONICAL_LOCATION,
@@ -756,7 +752,7 @@ abstract public class TimeZone implements Serializable, Cloneable, Freezable<Tim
     }
 
     /**
-     * {{@literal @}icu} Returns the default time zone type currently used.
+     * <strong>[icu]</strong> Returns the default time zone type currently used.
      * @return The default time zone type, either <code>TIMEZONE_ICU</code> or
      * <code>TIMEZONE_JDK</code>.
      */
@@ -765,7 +761,7 @@ abstract public class TimeZone implements Serializable, Cloneable, Freezable<Tim
     }
 
     /** 
-     * {{@literal @}icu} Returns a set of time zone ID strings with the given filter conditions. 
+     * <strong>[icu]</strong> Returns a set of time zone ID strings with the given filter conditions. 
      * <p><b>Note:</b>A <code>Set</code> returned by this method is
      * immutable.
      * @param zoneType      The system time zone type.
@@ -826,7 +822,7 @@ abstract public class TimeZone implements Serializable, Cloneable, Freezable<Tim
     }
 
     /**
-     * {{@literal @}icu} Returns the number of IDs in the equivalency group that
+     * <strong>[icu]</strong> Returns the number of IDs in the equivalency group that
      * includes the given ID.  An equivalency group contains zones
      * that have the same GMT offset and rules.
      *
@@ -977,7 +973,7 @@ abstract public class TimeZone implements Serializable, Cloneable, Freezable<Tim
     }
 
     /**
-     * {{@literal @}icu} Returns the time zone data version currently used by ICU.
+     * <strong>[icu]</strong> Returns the time zone data version currently used by ICU.
      *
      * @return the version string, such as "2007f"
      * @throws MissingResourceException if ICU time zone resource bundle
@@ -989,7 +985,7 @@ abstract public class TimeZone implements Serializable, Cloneable, Freezable<Tim
     }
 
     /**
-     * {{@literal @}icu} Returns the canonical system time zone ID or the normalized
+     * <strong>[icu]</strong> Returns the canonical system time zone ID or the normalized
      * custom time zone ID for the given time zone ID.
      * @param id The input time zone ID to be canonicalized.
      * @return The canonical system time zone ID or the custom time zone ID
@@ -1002,7 +998,7 @@ abstract public class TimeZone implements Serializable, Cloneable, Freezable<Tim
     }
 
     /**
-     * {{@literal @}icu} Returns the canonical system time zone ID or the normalized
+     * <strong>[icu]</strong> Returns the canonical system time zone ID or the normalized
      * custom time zone ID for the given time zone ID.
      * @param id The input time zone ID to be canonicalized.
      * @param isSystemID When non-null boolean array is specified and
@@ -1036,7 +1032,7 @@ abstract public class TimeZone implements Serializable, Cloneable, Freezable<Tim
     }
 
     /** 
-     * {{@literal @}icu} Returns the region code associated with the given 
+     * <strong>[icu]</strong> Returns the region code associated with the given 
      * system time zone ID. The region code is either ISO 3166 
      * 2-letter country code or UN M.49 3-digit area code. 
      * When the time zone is not associated with a specific location, 
@@ -1063,7 +1059,7 @@ abstract public class TimeZone implements Serializable, Cloneable, Freezable<Tim
     }
 
     /**
-     * {{@literal @}icu} Converts a system time zone ID to an equivalent Windows time zone ID. For example,
+     * <strong>[icu]</strong> Converts a system time zone ID to an equivalent Windows time zone ID. For example,
      * Windows time zone ID "Pacific Standard Time" is returned for input "America/Los_Angeles".
      * 
      * <p>There are system time zones that cannot be mapped to Windows zones. When the input
@@ -1118,7 +1114,7 @@ abstract public class TimeZone implements Serializable, Cloneable, Freezable<Tim
     }
 
     /**
-     * {{@literal @}icu} Converts a Windows time zone ID to an equivalent system time zone ID
+     * <strong>[icu]</strong> Converts a Windows time zone ID to an equivalent system time zone ID
      * for a region. For example, system time zone ID "America/Los_Angeles" is returned 
      * for input Windows ID "Pacific Standard Time" and region "US" (or <code>null</code>),
      * "America/Vancouver" is returned for the same Windows ID "Pacific Standard Time" and

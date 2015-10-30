@@ -48,7 +48,6 @@ public class UnicodeRegex implements Cloneable, Freezable<UnicodeRegex>, StringT
 
     /**
      * Set the symbol table for internal processing
-     * {@literal @}internal
      * @hide draft / provisional / internal are hidden on Android
      */
     public SymbolTable getSymbolTable() {
@@ -57,7 +56,6 @@ public class UnicodeRegex implements Cloneable, Freezable<UnicodeRegex>, StringT
 
     /**
      * Get the symbol table for internal processing
-     * {@literal @}internal
      * @hide draft / provisional / internal are hidden on Android
      */
     public UnicodeRegex setSymbolTable(SymbolTable symbolTable) {

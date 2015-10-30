@@ -185,7 +185,6 @@ public class SpoofChecker {
     /**
      * Security Profile constant from UAX 31 for use in setAllowedChars.
      * Will probably be replaced by UnicodeSet property.
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -198,7 +197,6 @@ public class SpoofChecker {
     /**
      * Security Profile constant from UAX 31 for use in setAllowedChars.
      * Will probably be replaced by UnicodeSet property.
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -314,7 +312,6 @@ public class SpoofChecker {
      * Check that an identifier is no looser than the specified RestrictionLevel.
      * The default if this is not called is HIGHLY_RESTRICTIVE.
      *
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -346,7 +343,6 @@ public class SpoofChecker {
     /**
      * Check that an identifier does not mix numbers.
      *
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -602,7 +598,6 @@ public class SpoofChecker {
          * This method also sets RESTRICTION_LEVEL.
          * @param restrictionLevel The loosest restriction level allowed.
          * @return self
-         * {@literal @}internal
          * @deprecated This API is ICU internal only.
          * @hide draft / provisional / internal are hidden on Android
          */
@@ -1427,7 +1422,6 @@ public class SpoofChecker {
      * Get the Restriction Level that is being tested.
      *
      * @return The restriction level
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -1508,7 +1502,6 @@ public class SpoofChecker {
         /**
          * The numerics found in the string, if MIXED_NUMBERS was set; otherwise null;
          *
-         * {@literal @}internal
          * @deprecated This API is ICU internal only.
          * @hide draft / provisional / internal are hidden on Android
          */
@@ -1517,7 +1510,6 @@ public class SpoofChecker {
         /**
          * The restriction level that the text meets, if RESTRICTION_LEVEL is set; otherwise null.
          *
-         * {@literal @}internal
          * @deprecated This API is ICU internal only.
          * @hide draft / provisional / internal are hidden on Android
          */
@@ -1885,7 +1877,6 @@ public class SpoofChecker {
      *
      *   @param other the SpoofChecker being compared with.
      *   @return true if the two SpoofCheckers are equal.
-     *   {@literal @}internal
      *   @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -1918,7 +1909,6 @@ public class SpoofChecker {
 
     /**
      * This is a stub implementation and not designed for generic use.
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */

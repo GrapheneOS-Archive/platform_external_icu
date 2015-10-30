@@ -1178,7 +1178,6 @@ public final class AlphabeticIndex<V> implements Iterable<Bucket<V>> {
      * Return a list of the first character in each script. Only exposed for testing.
      *
      * @return list of first characters in each script
-     * {@literal @}internal
      * @deprecated This API is ICU internal, only for testing.
      * @hide original deprecated method
      * @hide draft / provisional / internal are hidden on Android

@@ -14,8 +14,9 @@ package android.icu.impl.coll;
 
 import android.icu.text.Collator;
 
-/** @hide Only a subset of ICU is exposed in Android
-* @hide All android.icu classes are currently hidden
+/**
+ * @hide Only a subset of ICU is exposed in Android
+ * @hide All android.icu classes are currently hidden
  */
 public final class CollationKeys /* all methods are static */ {
 
