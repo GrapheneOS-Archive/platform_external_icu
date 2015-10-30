@@ -16,11 +16,7 @@
 package com.google.currysrc.transformers;
 
 import com.google.common.collect.ImmutableSet;
-import com.google.common.collect.Lists;
-import com.google.currysrc.api.transform.AstTransformer;
 
-import org.eclipse.jdt.core.dom.Comment;
-import org.eclipse.jdt.core.dom.CompilationUnit;
 import org.eclipse.jdt.core.dom.Javadoc;
 import org.eclipse.jdt.core.dom.TagElement;
 import org.eclipse.jdt.core.dom.rewrite.ASTRewrite;
@@ -31,7 +27,7 @@ import java.util.Set;
 /**
  * Remove the specified JavaDoc tags from the AST. Assumes the Javadoc is well-formed.
  */
-public class RemoveJavaDocTags implements AstTransformer {
+public final class RemoveJavaDocTags extends BaseJavadocNodeScanner {
 
   private final Set<String> tagsToRemove;
 
@@ -43,22 +39,22 @@ public class RemoveJavaDocTags implements AstTransformer {
     tagsToRemove = builder.build();
   }
 
-  @Override public void transform(CompilationUnit cu, ASTRewrite rewrite) {
-    List<Comment> comments = cu.getCommentList();
-    for (Comment comment : Lists.reverse(comments)) {
-      if (comment instanceof Javadoc) {
-        Javadoc javadoc = (Javadoc) comment;
-        for (TagElement tagElement : (List<TagElement>) javadoc.tags()) {
-          String tagName = tagElement.getTagName();
-          if (tagName == null) {
-            continue;
-          }
-          if (tagsToRemove.contains(tagName.toLowerCase())) {
-            rewrite.remove(tagElement, null /* editGroup */);
-          }
-        }
+  @Override
+  protected void visit(Javadoc javadoc, ASTRewrite rewrite) {
+    for (TagElement tagElement : (List<TagElement>) javadoc.tags()) {
+      String tagName = tagElement.getTagName();
+      if (tagName == null) {
+        continue;
+      }
+      if (tagsToRemove.contains(tagName.toLowerCase())) {
+        rewrite.remove(tagElement, null /* editGroup */);
       }
     }
   }
 
+  @Override public String toString() {
+    return "RemoveJavaDocTags{" +
+        "tagsToRemove=" + tagsToRemove +
+        '}';
+  }
 }

@@ -25,7 +25,7 @@ import java.util.List;
  * An {@link InputFileGenerator} that can combine the output of other {@link InputFileGenerator}
  * instances.
  */
-public class CompoundDirectoryInputFileGenerator implements InputFileGenerator {
+public final class CompoundDirectoryInputFileGenerator implements InputFileGenerator {
 
   private List<InputFileGenerator> generators;
 

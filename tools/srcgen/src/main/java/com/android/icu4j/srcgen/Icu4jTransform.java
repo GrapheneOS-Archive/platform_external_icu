@@ -502,7 +502,7 @@ public class Icu4jTransform {
       "method:android.icu.util.VersionInfo#javaVersion()",
   };
 
-  private static final boolean DEBUG = true;
+  private static final boolean DEBUG = false;
 
   private static final String ORIGINAL_ICU_PACKAGE = "com.ibm.icu";
 
@@ -550,12 +550,12 @@ public class Icu4jTransform {
 
           // Doc change: Insert a warning about the source code being generated.
           createMandatoryRule(new InsertHeader(SOURCE_CODE_HEADER)),
-          // Doc change: Hide all ICU public classes except those in the whitelist.
+          // AST change: Hide all ICU public classes except those in the whitelist.
           createHidePublicClassesRule(),
-          // Doc change: Hide ICU methods that are deprecated and Android does not want to make
+          // AST change: Hide ICU methods that are deprecated and Android does not want to make
           // public.
           createHideOriginalDeprecatedClassesRule(),
-          // Doc change: Explicitly hide any elements that are marked as
+          // AST change: Explicitly hide any elements that are marked as
           // @draft / @provisional / @internal
           createOptionalRule(new HideDraftProvisionalInternal()),
           // Doc change: Switch all embedded documentation references from com.ibm.icu to
@@ -567,12 +567,18 @@ public class Icu4jTransform {
           // Doc change: Hack around javadoc @stable / @author placement error upstream: this should
           // be fixed upstream.
           createFixupBidiClassDocRule(),
-          // AST change: Remove JavaDoc tags that Android has no need of.
-          createOptionalRule(new RemoveJavaDocTags("@stable")),
+          // AST change: Remove JavaDoc tags that Android has no need of:
+          // @hide has been added in place of @draft, @provisional and @internal
+          // @stable <ICU version> will not mean much on Android.
+          createOptionalRule(new RemoveJavaDocTags(
+              "@stable", "@draft", "@provisional", "@internal")),
+          // AST change: Replace @icu and @icuenhanced with standard text.
+          createOptionalRule(new ReplaceIcuTags()),
+
           // Doc change: Escape ICU tags we can't currently deal with.
           createOptionalRule(new MungeIcuJavaDocTags()),
 
-          // Doc change: Hide every public class until we're ready to make the Android subset
+          // AST change: Hide every public class until we're ready to make the Android subset
           // public. Comment the line below to see what Android docs look like with ICU as part of
           // the public API.
           createOptionalRule(new HidePublicClasses(Collections.<TypeLocater>emptyList(),
@@ -581,7 +587,7 @@ public class Icu4jTransform {
       return Lists.newArrayList(rules);
     }
 
-    private DocumentTransformRule createHideOriginalDeprecatedClassesRule() {
+    private TransformRule createHideOriginalDeprecatedClassesRule() {
       ImmutableList.Builder<BodyDeclarationLocater> deprecationBlacklistBuilder = ImmutableList
           .builder();
       for (String deprecatedElementLocaterString : INITIAL_DEPRECATED_SET) {
@@ -594,7 +600,7 @@ public class Icu4jTransform {
           new HideOriginalDeprecatedSet(deprecationBlacklistBuilder.build()));
     }
 
-    private DocumentTransformRule createHidePublicClassesRule() {
+    private TransformRule createHidePublicClassesRule() {
       ImmutableList.Builder<TypeLocater> apiClassesWhitelistBuilder = ImmutableList.builder();
       for (String publicClassName : PUBLIC_API_CLASSES) {
         apiClassesWhitelistBuilder.add(new TypeLocater(publicClassName));

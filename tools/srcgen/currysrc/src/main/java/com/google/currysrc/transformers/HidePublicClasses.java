@@ -25,7 +25,7 @@ import java.util.List;
 /**
  * Hides any public class that is not found in the whitelist.
  */
-public class HidePublicClasses extends JavadocTagClasses {
+public final class HidePublicClasses extends BaseJavadocTagClasses {
 
   private final List<TypeLocater> whitelist;
 

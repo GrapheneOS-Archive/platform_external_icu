@@ -16,7 +16,7 @@
 package com.google.currysrc.transformers;
 
 import com.google.common.collect.Lists;
-import com.google.currysrc.api.transform.DocumentTransformer;
+import com.google.currysrc.api.transform.AstTransformer;
 import com.google.currysrc.api.transform.JavadocUtils;
 
 import org.eclipse.jdt.core.dom.ASTVisitor;
@@ -24,7 +24,7 @@ import org.eclipse.jdt.core.dom.AbstractTypeDeclaration;
 import org.eclipse.jdt.core.dom.CompilationUnit;
 import org.eclipse.jdt.core.dom.EnumDeclaration;
 import org.eclipse.jdt.core.dom.TypeDeclaration;
-import org.eclipse.jface.text.Document;
+import org.eclipse.jdt.core.dom.rewrite.ASTRewrite;
 
 import java.util.List;
 
@@ -32,16 +32,15 @@ import java.util.List;
  * Inserts the tag text to the Javadoc for any type declaration that matches
  * {@link #mustTag(AbstractTypeDeclaration)}.
  */
-public abstract class JavadocTagClasses implements DocumentTransformer {
+public abstract class BaseJavadocTagClasses implements AstTransformer {
 
   private final String tagText;
 
-  protected JavadocTagClasses(String tagText) {
+  protected BaseJavadocTagClasses(String tagText) {
     this.tagText = tagText;
   }
 
-  @Override
-  public void transform(CompilationUnit cu, final Document document) {
+  @Override public final void transform(CompilationUnit cu, ASTRewrite rewrite) {
     final List<AbstractTypeDeclaration> toHide = Lists.newArrayList();
     cu.accept(new ASTVisitor() {
       @Override
@@ -61,10 +60,8 @@ public abstract class JavadocTagClasses implements DocumentTransformer {
         return false;
       }
     });
-    // To avoid screwing up the offsets, attack in reverse order.
-    // TODO Is there a better way?
     for (AbstractTypeDeclaration node : Lists.reverse(toHide)) {
-      JavadocUtils.insertCommentText(document, node, tagText);
+      JavadocUtils.addJavadocTag(rewrite, node, tagText);
     }
   }
 

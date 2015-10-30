@@ -159,7 +159,8 @@ public class CaptureDeprecatedElements {
     }
 
     private void trackDeprecationsRecursively(AbstractTypeDeclaration matchedType) {
-      for (BodyDeclaration bodyDeclaration : (List<BodyDeclaration>) matchedType.bodyDeclarations()) {
+      for (BodyDeclaration bodyDeclaration
+          : (List<BodyDeclaration>) matchedType.bodyDeclarations()) {
         if (isApiVisible(bodyDeclaration) && isDeprecated(bodyDeclaration)) {
           deprecatedElements.add(BodyDeclarationLocaters.toLocaterStringForm(bodyDeclaration));
           if (bodyDeclaration instanceof AbstractTypeDeclaration) {

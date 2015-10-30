@@ -15,8 +15,14 @@
  */
 package com.google.currysrc.api.transform;
 
+import com.google.currysrc.api.transform.ast.AstNodes;
+
+import org.eclipse.jdt.core.dom.AST;
 import org.eclipse.jdt.core.dom.BodyDeclaration;
 import org.eclipse.jdt.core.dom.Javadoc;
+import org.eclipse.jdt.core.dom.TagElement;
+import org.eclipse.jdt.core.dom.rewrite.ASTRewrite;
+import org.eclipse.jdt.core.dom.rewrite.ListRewrite;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.Document;
 import org.eclipse.jface.text.IRegion;
@@ -29,61 +35,20 @@ public final class JavadocUtils {
   private JavadocUtils() {
   }
 
-  public static void insertCommentText(Document document, BodyDeclaration bodyDeclaration,
-      String text) {
-    Javadoc comment = bodyDeclaration.getJavadoc();
-    if (comment == null) {
-      try {
-        document.replace(bodyDeclaration.getStartPosition(), 0, "/** " + text + " */\n");
-      } catch (BadLocationException e) {
-        throw new AssertionError(e);
-      }
-    } else {
-      insertCommentText(document, comment, text);
+  public static void addJavadocTag(ASTRewrite rewrite, BodyDeclaration node, String tagText) {
+    Javadoc javadoc = node.getJavadoc();
+    if (javadoc == null) {
+      AST ast = node.getAST();
+      javadoc = (Javadoc) ast.createInstance(Javadoc.class);
+      rewrite.set(node, node.getJavadocProperty(), javadoc, null /* editGroup */);
     }
+    addJavadocTag(rewrite, javadoc, tagText);
   }
 
-  private static String determineIndent(String line) {
-    StringBuilder indentBuilder = new StringBuilder();
-    for (int i = 0; i < line.length(); i++) {
-      char c = line.charAt(i);
-      if (!Character.isWhitespace(c)) {
-        break;
-      }
-      indentBuilder.append(c);
-    }
-    return indentBuilder.toString();
-  }
-
-  public static void insertCommentText(Document document, Javadoc javadoc, String text) {
-    try {
-      int insertPosition;
-      String insertText;
-      int firstLineIndex = document.getLineOfOffset(javadoc.getStartPosition());
-      int lastLineIndex = document
-          .getLineOfOffset(javadoc.getStartPosition() + javadoc.getLength() - 1);
-      if (firstLineIndex == lastLineIndex) {
-        // Single line comment: /** foo */
-        IRegion lineInfo = document
-            .getLineInformationOfOffset(javadoc.getStartPosition() + javadoc.getLength() - 1);
-        String line = document.get(lineInfo.getOffset(), lineInfo.getLength());
-        String indent = determineIndent(line);
-        insertPosition = lineInfo.getOffset() + lineInfo.getLength() - 1 - "*/".length();
-        insertText = document.getDefaultLineDelimiter() + indent + "* " + text + document
-            .getDefaultLineDelimiter() + indent;
-      } else {
-        // TODO - write a decent Javadoc comment parser / generator instead.
-        IRegion lastLineInfo = document
-            .getLineInformationOfOffset(javadoc.getStartPosition() + javadoc.getLength() - 1);
-        String lastLine = document.get(lastLineInfo.getOffset(), lastLineInfo.getLength());
-        String indent = determineIndent(lastLine);
-        insertPosition = lastLineInfo.getOffset();
-        insertText = indent + "* " + text + document.getDefaultLineDelimiter();
-      }
-
-      document.replace(insertPosition, 0, insertText);
-    } catch (BadLocationException e) {
-      throw new AssertionError(e);
-    }
+  public static void addJavadocTag(ASTRewrite rewrite, Javadoc javadoc, String tagText) {
+    AST ast = javadoc.getAST();
+    TagElement tagElement = AstNodes.createTextTagElement(ast, tagText);
+    ListRewrite listRewrite = rewrite.getListRewrite(javadoc, Javadoc.TAGS_PROPERTY);
+    listRewrite.insertLast(tagElement, null /* editGroup */);
   }
 }

@@ -21,7 +21,7 @@ import org.eclipse.jdt.core.dom.PackageDeclaration;
 /**
  * Matches the package name associated with ASTNodes.
  */
-public class PackageMatcher {
+public final class PackageMatcher {
 
   protected final String packageName;
 
