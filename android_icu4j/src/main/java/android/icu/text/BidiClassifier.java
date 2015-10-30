@@ -33,7 +33,6 @@ package android.icu.text;
  * to be determined.</p>
  *
  * @see Bidi#setCustomClassifier
- * @stable ICU 3.8
  * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
  */
@@ -47,14 +46,12 @@ public /*abstract*/ class BidiClassifier {
      * For instance, this object can be used to save a reference to
      * a previous custom BidiClassifier while setting a new one, so as to
      * allow chaining between them.
-     * @stable ICU 3.8
      */
     protected Object context;
 
     /**
      * @param context Context for this classifier instance.
      *                May be null.
-     * @stable ICU 3.8
      */
     public BidiClassifier(Object context) {
         this.context = context;
@@ -66,7 +63,6 @@ public /*abstract*/ class BidiClassifier {
      *
      * @param context Context for this classifier instance.
      *                May be null.
-     * @stable ICU 3.8
      */
     public void setContext(Object context) {
         this.context = context;
@@ -74,7 +70,6 @@ public /*abstract*/ class BidiClassifier {
 
     /**
      * Returns the current classifier context.
-     * @stable ICU 3.8
      */
     public Object getContext() {
         return this.context;
@@ -91,7 +86,6 @@ public /*abstract*/ class BidiClassifier {
      *         that there is no need to override the standard Bidi class for
      *         the given code point.
      * @see Bidi#CLASS_DEFAULT
-     * @stable ICU 3.8
      */
     public int classify(int c) {
         return Bidi.CLASS_DEFAULT;

@@ -106,7 +106,6 @@ import android.icu.impl.coll.UVector32;
  * @see RuleBasedCollator
  * @see StringSearch
  * @author Syn Wee Quek
- * @stable ICU 2.8
  * @hide All android.icu classes are currently hidden
  */
 public final class CollationElementIterator
@@ -136,7 +135,6 @@ public final class CollationElementIterator
      * collation elements to return.</p>
      *
      * <p>See class documentation for an example of use.</p>
-     * @stable ICU 2.8
      * @see #next
      * @see #previous */
     public final static int NULLORDER = 0xffffffff;
@@ -147,7 +145,6 @@ public final class CollationElementIterator
      * ignored.</p>
      *
      * <p>See class documentation for an example of use.</p>
-     * @stable ICU 2.8
      * @see #next
      * @see #previous */
     public static final int IGNORABLE = 0;
@@ -157,7 +154,6 @@ public final class CollationElementIterator
      * i.e. the first 16 bits.  This value is unsigned.
      * @param ce the collation element
      * @return the element's 16 bits primary order.
-     * @stable ICU 2.8
      */
     public final static int primaryOrder(int ce) {
         return (ce >>> 16) & 0xffff;
@@ -168,7 +164,6 @@ public final class CollationElementIterator
      * i.e. the 16th to 23th bits, inclusive.  This value is unsigned.
      * @param ce the collation element
      * @return the element's 8 bits secondary order
-     * @stable ICU 2.8
      */
     public final static int secondaryOrder(int ce) {
         return (ce >>> 8) & 0xff;
@@ -179,7 +174,6 @@ public final class CollationElementIterator
      * 8 bits.  This value is unsigned.
      * @param ce the collation element
      * @return the element's 8 bits tertiary order
-     * @stable ICU 2.8
      */
     public final static int tertiaryOrder(int ce) {
         return ce & 0xff;
@@ -215,7 +209,6 @@ public final class CollationElementIterator
      *
      * @param source the source string.
      * @param collator the RuleBasedCollator
-     * @stable ICU 2.8
      */
     CollationElementIterator(String source, RuleBasedCollator collator) {
         this(collator);
@@ -239,7 +232,6 @@ public final class CollationElementIterator
      *
      * @param source the source string iterator.
      * @param collator the RuleBasedCollator
-     * @stable ICU 2.8
      */
     CollationElementIterator(CharacterIterator source, RuleBasedCollator collator) {
         this(collator);
@@ -255,7 +247,6 @@ public final class CollationElementIterator
      *
      * @param source the source string iterator.
      * @param collator the RuleBasedCollator
-     * @stable ICU 2.8
      */
     CollationElementIterator(UCharacterIterator source, RuleBasedCollator collator) {
         this(collator);
@@ -287,7 +278,6 @@ public final class CollationElementIterator
      * @return The character offset in the source string corresponding to the
      *         collation element that will be returned by the next call to
      *         next() or previous().
-     * @stable ICU 2.8
      */
     public int getOffset() {
         if (dir_ < 0 && offsets_ != null && !offsets_.isEmpty()) {
@@ -320,7 +310,6 @@ public final class CollationElementIterator
      *
      * @return the next collation element or NULLORDER if the end of the
      *         iteration has been reached.
-     * @stable ICU 2.8
      */
     public int next() {
         if (dir_ > 1) {
@@ -375,7 +364,6 @@ public final class CollationElementIterator
      *
      * @return the previous collation element, or NULLORDER when the start of
      *             the iteration has been reached.
-     * @stable ICU 2.8
      */
     public int previous() {
         if (dir_ < 0) {
@@ -434,8 +422,6 @@ public final class CollationElementIterator
      * <p>If the RuleBasedCollator used by this iterator has had its
      * attributes changed, calling reset() will reinitialize the
      * iterator to use the new attributes.</p>
-     *
-     * @stable ICU 2.8
      */
     public void reset() {
         iter_ .resetToOffset(0);
@@ -463,7 +449,6 @@ public final class CollationElementIterator
      * @param newOffset the character offset into the original source string to
      *        set. Note that this is not an offset into the corresponding
      *        sequence of collation elements.
-     * @stable ICU 2.8
      */
     public void setOffset(int newOffset) {
         if (0 < newOffset && newOffset < string_.length()) {
@@ -506,7 +491,6 @@ public final class CollationElementIterator
      * to the beginning of the text.</p>
      *
      * @param source the new source string for iteration.
-     * @stable ICU 2.8
      */
     public void setText(String source) {
         string_ = source; // TODO: do we need to remember the source string in a field?
@@ -529,7 +513,6 @@ public final class CollationElementIterator
      * <p>The source iterator's integrity will be preserved since a new copy
      * will be created for use.</p>
      * @param source the new source string iterator for iteration.
-     * @stable ICU 2.8
      */
     public void setText(UCharacterIterator source) {
         string_ = source.getText(); // TODO: do we need to remember the source string in a field?
@@ -565,7 +548,6 @@ public final class CollationElementIterator
      * offset to the beginning of the text.
      * </p>
      * @param source the new source string iterator for iteration.
-     * @stable ICU 2.8
      */
     public void setText(CharacterIterator source) {
         // Note: In C++, we just setText(source.getText()).
@@ -663,7 +645,6 @@ public final class CollationElementIterator
      * @param ce a collation element returned by previous() or next().
      * @return the maximum length of any expansion sequence ending
      *         with the specified collation element.
-     * @stable ICU 2.8
      */
     public int getMaxExpansion(int ce) {
         return getMaxExpansion(rbc_.tailoring.maxExpansions, ce);
@@ -696,7 +677,6 @@ public final class CollationElementIterator
      * the same source text and have the same current position in iteration.
      * @param that object to test if it is equals to this
      *             CollationElementIterator
-     * @stable ICU 2.8
      */
     public boolean equals(Object that) {
         if (that == this) {

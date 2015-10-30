@@ -711,7 +711,6 @@ import android.icu.util.ULocale.Category;
  * @see          DecimalFormat
  * @see          TimeZoneFormat
  * @author       Mark Davis, Chen-Lieh Huang, Alan Liu
- * @stable ICU 2.0
  * @hide All android.icu classes are currently hidden
  */
 public class SimpleDateFormat extends DateFormat {
@@ -958,7 +957,6 @@ public class SimpleDateFormat extends DateFormat {
      *
      * @see DateFormat
      * @see Category#FORMAT
-     * @stable ICU 2.0
      */
     public SimpleDateFormat() {
         this(getDefaultPattern(), null, null, null, null, true, null);
@@ -969,7 +967,6 @@ public class SimpleDateFormat extends DateFormat {
      * locale.  <b>Note:</b> Not all locales support SimpleDateFormat; for full
      * generality, use the factory methods in the DateFormat class.
      * @see Category#FORMAT
-     * @stable ICU 2.0
      */
     public SimpleDateFormat(String pattern)
     {
@@ -980,7 +977,6 @@ public class SimpleDateFormat extends DateFormat {
      * Constructs a SimpleDateFormat using the given pattern and locale.
      * <b>Note:</b> Not all locales support SimpleDateFormat; for full
      * generality, use the factory methods in the DateFormat class.
-     * @stable ICU 2.0
      */
     public SimpleDateFormat(String pattern, Locale loc)
     {
@@ -991,7 +987,6 @@ public class SimpleDateFormat extends DateFormat {
      * Constructs a SimpleDateFormat using the given pattern and locale.
      * <b>Note:</b> Not all locales support SimpleDateFormat; for full
      * generality, use the factory methods in the DateFormat class.
-     * @stable ICU 3.2
      */
     public SimpleDateFormat(String pattern, ULocale loc)
     {
@@ -1009,7 +1004,6 @@ public class SimpleDateFormat extends DateFormat {
      *         string by separating them with a semi-colon. For example, the override string "m=thai;y=deva" would format using
      *         Thai digits for the month and Devanagari digits for the year.
      * @param loc The locale to be used
-     * @stable ICU 4.2
      */
     public SimpleDateFormat(String pattern, String override, ULocale loc)
     {
@@ -1020,7 +1014,6 @@ public class SimpleDateFormat extends DateFormat {
      * Constructs a SimpleDateFormat using the given pattern and
      * locale-specific symbol data.
      * Warning: uses default <code>FORMAT</code> locale for digits!
-     * @stable ICU 2.0
      */
     public SimpleDateFormat(String pattern, DateFormatSymbols formatData)
     {
@@ -1242,7 +1235,6 @@ public class SimpleDateFormat extends DateFormat {
      * to begin on the date the user specifies.
      * @param startDate During parsing, two digit years will be placed in the range
      * <code>startDate</code> to <code>startDate + 100 years</code>.
-     * @stable ICU 2.0
      */
     public void set2DigitYearStart(Date startDate) {
         parseAmbiguousDatesAsAfter(startDate);
@@ -1253,7 +1245,6 @@ public class SimpleDateFormat extends DateFormat {
      * as being within.
      * @return the start of the 100-year period into which two digit years are
      * parsed
-     * @stable ICU 2.0
      */
     public Date get2DigitYearStart() {
         return getDefaultCenturyStart();
@@ -1265,7 +1256,6 @@ public class SimpleDateFormat extends DateFormat {
      * DateFormat.
      * 
      * @param context The DisplayContext value to set. 
-     * @stable ICU 53
      */
     // Here we override the DateFormat implementation in order to lazily initialize relevant items
     public void setContext(DisplayContext context) {
@@ -1288,7 +1278,6 @@ public class SimpleDateFormat extends DateFormat {
      * if desired. On output: the offsets of the alignment field.
      * @return the formatted date-time string.
      * @see DateFormat
-     * @stable ICU 2.0
      */
     public StringBuffer format(Calendar cal, StringBuffer toAppendTo,
                                FieldPosition pos) {
@@ -1455,8 +1444,6 @@ public class SimpleDateFormat extends DateFormat {
      *
      * @param ch The pattern character
      * @return DateFormat.Field associated with the pattern character
-     *
-     * @stable ICU 3.8
      */
     protected DateFormat.Field patternCharToDateFormatField(char ch) {
         int patternCharIndex = getIndexFromChar(ch);
@@ -1476,7 +1463,6 @@ public class SimpleDateFormat extends DateFormat {
      * this field; used to set pos when appropriate
      * @param pos receives the position of a field, when appropriate
      * @param fmtData the symbols for this formatter
-     * @stable ICU 2.0
      */
     protected String subFormat(char ch, int count, int beginOffset,
                                FieldPosition pos, DateFormatSymbols fmtData,
@@ -2065,8 +2051,6 @@ public class SimpleDateFormat extends DateFormat {
      * Overrides superclass method and
      * This method also clears per field NumberFormat instances 
      * previously set by {@link #setNumberFormat(String, NumberFormat)} 
-     * 
-     * @stable ICU 2.0
      */
     public void setNumberFormat(NumberFormat newNumberFormat) {
         // Override this method to update local zero padding number formatter
@@ -2146,7 +2130,6 @@ public class SimpleDateFormat extends DateFormat {
 
     /**
      * Formats a number with the specified minimum and maximum number of digits.
-     * @stable ICU 2.0
      */
     protected String zeroPaddingNumber(long value, int minDigits, int maxDigits)
     {
@@ -2178,7 +2161,6 @@ public class SimpleDateFormat extends DateFormat {
     /**
      * Overrides DateFormat
      * @see DateFormat
-     * @stable ICU 2.0
      */
     public void parse(String text, Calendar cal, ParsePosition parsePos)
     {
@@ -2640,7 +2622,6 @@ public class SimpleDateFormat extends DateFormat {
      * number indicating matching failure, otherwise.  As a side effect,
      * sets the <code>cal</code> field <code>field</code> to the index
      * of the best match, if matching succeeded.
-     * @stable ICU 2.0
      */
     protected int matchString(String text, int start, int field, String[] data, Calendar cal)
     {
@@ -2752,7 +2733,6 @@ public class SimpleDateFormat extends DateFormat {
      * number indicating matching failure, otherwise.  As a side effect,
      * sets the <code>cal</code> field <code>field</code> to the index
      * of the best match, if matching succeeded.
-     * @stable ICU 2.0
      */
     protected int matchQuarterString(String text, int start, int field, String[] data, Calendar cal)
     {
@@ -2803,7 +2783,6 @@ public class SimpleDateFormat extends DateFormat {
      * number indicating matching failure, otherwise.  As a side effect,
      * set the appropriate field of <code>cal</code> with the parsed
      * value.
-     * @stable ICU 2.0
      */
     protected int subParse(String text, int start, char ch, int count,
                            boolean obeyCount, boolean allowNegative,
@@ -3507,7 +3486,6 @@ public class SimpleDateFormat extends DateFormat {
 
     /**
      * Return a pattern string describing this date format.
-     * @stable ICU 2.0
      */
     public String toPattern() {
         return pattern;
@@ -3515,7 +3493,6 @@ public class SimpleDateFormat extends DateFormat {
 
     /**
      * Return a localized pattern string describing this date format.
-     * @stable ICU 2.0
      */
     public String toLocalizedPattern() {
         return translatePattern(pattern,
@@ -3525,7 +3502,6 @@ public class SimpleDateFormat extends DateFormat {
 
     /**
      * Apply the given unlocalized pattern string to this date format.
-     * @stable ICU 2.0
      */
     public void applyPattern(String pat)
     {
@@ -3537,7 +3513,6 @@ public class SimpleDateFormat extends DateFormat {
 
     /**
      * Apply the given localized pattern string to this date format.
-     * @stable ICU 2.0
      */
     public void applyLocalizedPattern(String pat) {
         this.pattern = translatePattern(pat,
@@ -3550,7 +3525,6 @@ public class SimpleDateFormat extends DateFormat {
      * Gets the date/time formatting data.
      * @return a copy of the date-time formatting data associated
      * with this date-time formatter.
-     * @stable ICU 2.0
      */
     public DateFormatSymbols getDateFormatSymbols()
     {
@@ -3560,7 +3534,6 @@ public class SimpleDateFormat extends DateFormat {
     /**
      * Allows you to set the date/time formatting data.
      * @param newFormatSymbols the new symbols
-     * @stable ICU 2.0
      */
     public void setDateFormatSymbols(DateFormatSymbols newFormatSymbols)
     {
@@ -3569,7 +3542,6 @@ public class SimpleDateFormat extends DateFormat {
 
     /**
      * Method for subclasses to access the DateFormatSymbols.
-     * @stable ICU 2.0
      */
     protected DateFormatSymbols getSymbols() {
         return formatData;
@@ -3581,7 +3553,6 @@ public class SimpleDateFormat extends DateFormat {
      * 
      * @return the time zone formatter which this date/time
      * formatter uses.
-     * @stable ICU 49
      */
     public TimeZoneFormat getTimeZoneFormat() {
         return tzFormat().freeze();
@@ -3591,7 +3562,6 @@ public class SimpleDateFormat extends DateFormat {
      * {{@literal @}icu} Allows you to set the time zone formatter.
      * 
      * @param tzfmt the new time zone formatter
-     * @stable ICU 49
      */
     public void setTimeZoneFormat(TimeZoneFormat tzfmt) {
         if (tzfmt.isFrozen()) {
@@ -3605,7 +3575,6 @@ public class SimpleDateFormat extends DateFormat {
 
     /**
      * Overrides Cloneable
-     * @stable ICU 2.0
      */
     public Object clone() {
         SimpleDateFormat other = (SimpleDateFormat) super.clone();
@@ -3621,7 +3590,6 @@ public class SimpleDateFormat extends DateFormat {
     /**
      * Override hashCode.
      * Generates the hash code for the SimpleDateFormat object
-     * @stable ICU 2.0
      */
     public int hashCode()
     {
@@ -3631,7 +3599,6 @@ public class SimpleDateFormat extends DateFormat {
 
     /**
      * Override equals.
-     * @stable ICU 2.0
      */
     public boolean equals(Object obj)
     {
@@ -3708,8 +3675,6 @@ public class SimpleDateFormat extends DateFormat {
      *
      * @param obj The object to format
      * @return <code>AttributedCharacterIterator</code> describing the formatted value.
-     *
-     * @stable ICU 3.8
      */
     public AttributedCharacterIterator formatToCharacterIterator(Object obj) {
         Calendar cal = calendar;
@@ -4070,7 +4035,6 @@ public class SimpleDateFormat extends DateFormat {
      * @param fields the fields to override
      * @param overrideNF the NumbeferFormat used 
      * @exception IllegalArgumentException when the fields contain invalid field
-     * @stable ICU 54
      */
     public void setNumberFormat(String fields, NumberFormat overrideNF) {
         overrideNF.setGroupingUsed(false);
@@ -4104,7 +4068,6 @@ public class SimpleDateFormat extends DateFormat {
      *
      * @param field the field the user wants
      * @return override NumberFormat used for the field
-     * @stable ICU 54
      */
     public NumberFormat getNumberFormat(char field) {
         Character ovrField;

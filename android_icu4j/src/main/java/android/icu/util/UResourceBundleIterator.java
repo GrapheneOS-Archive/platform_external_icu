@@ -32,7 +32,6 @@ import java.util.NoSuchElementException;
  * }
  * </pre>
  * @author ram
- * @stable ICU 3.8
  * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
  */
@@ -45,7 +44,6 @@ public class UResourceBundleIterator{
      * given resource bundle
      * 
      * @param bndl The resource bundle to iterate over
-     * @stable ICU 3.8
      */
     public UResourceBundleIterator(UResourceBundle bndl){
         bundle = bndl;   
@@ -56,7 +54,6 @@ public class UResourceBundleIterator{
      * Returns the next element of this iterator if this iterator object has at least one more element to provide
      * @return the UResourceBundle object
      * @throws NoSuchElementException If there does not exist such an element.
-     * @stable ICU 3.8
      */
     public UResourceBundle next()throws NoSuchElementException{
         if(index<size){
@@ -69,7 +66,6 @@ public class UResourceBundleIterator{
      * @return the UResourceBundle object
      * @throws NoSuchElementException If there does not exist such an element.
      * @throws UResourceTypeMismatchException If resource has a type mismatch.
-     * @stable ICU 3.8
      */
     public String nextString()throws NoSuchElementException, UResourceTypeMismatchException{
         if(index<size){
@@ -80,7 +76,6 @@ public class UResourceBundleIterator{
     
     /**
      * Resets the internal context of a resource so that iteration starts from the first element.
-     * @stable ICU 3.8
      */
     public void reset(){
         //reset the internal context   
@@ -90,7 +85,6 @@ public class UResourceBundleIterator{
     /**
      * Checks whether the given resource has another element to iterate over.
      * @return TRUE if there are more elements, FALSE if there is no more elements
-     * @stable ICU 3.8
      */
     public boolean hasNext(){
         return index < size;   

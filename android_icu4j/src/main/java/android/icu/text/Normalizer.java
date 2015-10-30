@@ -126,8 +126,6 @@ import android.icu.util.ICUCloneNotSupportedException;
  * between characters returned by next() and previous() and the indices
  * passed to and returned from setIndex() and getIndex().
  * It is for this reason that Normalizer does not implement the CharacterIterator interface.
- *
- * @stable ICU 2.8
  * @hide All android.icu classes are currently hidden
  */
 public final class Normalizer implements Cloneable {
@@ -472,7 +470,6 @@ public final class Normalizer implements Cloneable {
     /**
      * Result values for quickCheck().
      * For details see Unicode Technical Report 15.
-     * @stable ICU 2.8
      */
     public static final class QuickCheckResult{
         //private int resultValue;
@@ -482,48 +479,41 @@ public final class Normalizer implements Cloneable {
     }
     /** 
      * Indicates that string is not in the normalized format
-     * @stable ICU 2.8
      */
     public static final QuickCheckResult NO = new QuickCheckResult(0);
         
     /** 
      * Indicates that string is in the normalized format
-     * @stable ICU 2.8
      */
     public static final QuickCheckResult YES = new QuickCheckResult(1);
 
     /** 
      * Indicates it cannot be determined if string is in the normalized 
      * format without further thorough checks.
-     * @stable ICU 2.8
      */
     public static final QuickCheckResult MAYBE = new QuickCheckResult(2);
     
     /**
      * Option bit for compare:
      * Case sensitively compare the strings
-     * @stable ICU 2.8
      */
     public static final int FOLD_CASE_DEFAULT =  UCharacter.FOLD_CASE_DEFAULT;
     
     /**
      * Option bit for compare:
      * Both input strings are assumed to fulfill FCD conditions.
-     * @stable ICU 2.8
      */
     public static final int INPUT_IS_FCD    =      0x20000;
         
     /**
      * Option bit for compare:
      * Perform case-insensitive comparison.
-     * @stable ICU 2.8
      */
     public static final int COMPARE_IGNORE_CASE  =     0x10000;
         
     /**
      * Option bit for compare:
      * Compare strings in code point order instead of code unit order.
-     * @stable ICU 2.8
      */
     public static final int COMPARE_CODE_POINT_ORDER = 0x8000;
 
@@ -532,7 +522,6 @@ public final class Normalizer implements Cloneable {
      * Use the modified set of mappings provided in CaseFolding.txt to handle dotted I
      * and dotless i appropriately for Turkic languages (tr, az).
      * @see UCharacter#FOLD_CASE_EXCLUDE_SPECIAL_I
-     * @stable ICU 2.8
      */
     public static final int FOLD_CASE_EXCLUDE_SPECIAL_I = UCharacter.FOLD_CASE_EXCLUDE_SPECIAL_I;
 
@@ -1186,7 +1175,6 @@ public final class Normalizer implements Cloneable {
      *
      * @see #normalize
      * @see #FCD
-     * @stable ICU 2.8
      */
     public static int compare(char[] s1, int s1Start, int s1Limit,
                               char[] s2, int s2Start, int s2Limit,
@@ -1247,7 +1235,6 @@ public final class Normalizer implements Cloneable {
      *
      * @see #normalize
      * @see #FCD
-     * @stable ICU 2.8
      */
     public static int compare(String s1, String s2, int options) {
         return internalCompare(s1, s2, options);
@@ -1284,7 +1271,6 @@ public final class Normalizer implements Cloneable {
      *
      * @see #normalize
      * @see #FCD
-     * @stable ICU 2.8
      */
     public static int compare(char[] s1, char[] s2, int options) {
         return internalCompare(CharBuffer.wrap(s1), CharBuffer.wrap(s2), options);
@@ -1296,7 +1282,6 @@ public final class Normalizer implements Cloneable {
      * @param char32a    the first code point to be checked against the
      * @param char32b    the second code point
      * @param options    A bit set of options
-     * @stable ICU 2.8
      */
     public static int compare(int char32a, int char32b, int options) {
         return internalCompare(UTF16.valueOf(char32a), UTF16.valueOf(char32b), options|INPUT_IS_FCD);
@@ -1308,7 +1293,6 @@ public final class Normalizer implements Cloneable {
      * @param char32a   the first code point to be checked against
      * @param str2      the second string
      * @param options   A bit set of options
-     * @stable ICU 2.8
      */
     public static int compare(int char32a, String str2, int options) {
         return internalCompare(UTF16.valueOf(char32a), str2, options);

@@ -33,7 +33,7 @@ import android.icu.util.Freezable;
  * Contains utilities to supplement the JDK Regex, since it doesn't handle
  * Unicode well.
  *
- * <p>TODO: Move to com.ibm.icu.dev.somewhere.
+ * <p>TODO: Move to android.icu.dev.somewhere.
  * 2015-sep-03: This is used there, and also in CLDR and in UnicodeTools.
  *
  * @author markdavis
@@ -307,7 +307,7 @@ public class UnicodeRegex implements Cloneable, Freezable<UnicodeRegex>, StringT
     
 
     /* (non-Javadoc)
-     * @see com.ibm.icu.util.Freezable#cloneAsThawed()
+     * @see android.icu.util.Freezable#cloneAsThawed()
      */
     public UnicodeRegex cloneAsThawed() {
         // TODO Auto-generated method stub
@@ -319,7 +319,7 @@ public class UnicodeRegex implements Cloneable, Freezable<UnicodeRegex>, StringT
     }
 
     /* (non-Javadoc)
-     * @see com.ibm.icu.util.Freezable#freeze()
+     * @see android.icu.util.Freezable#freeze()
      */
     public UnicodeRegex freeze() {
         // no action needed now.
@@ -327,7 +327,7 @@ public class UnicodeRegex implements Cloneable, Freezable<UnicodeRegex>, StringT
     }
 
     /* (non-Javadoc)
-     * @see com.ibm.icu.util.Freezable#isFrozen()
+     * @see android.icu.util.Freezable#isFrozen()
      */
     public boolean isFrozen() {
         // at this point, always true

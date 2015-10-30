@@ -94,13 +94,13 @@ import android.icu.util.ULocale.Category;
  * # The default TimeZone implementation type used by the ICU TimeZone
  * # factory method. [ ICU | JDK ]
  * #
- * com.ibm.icu.util.TimeZone.DefaultTimeZoneType = ICU
+ * android.icu.util.TimeZone.DefaultTimeZoneType = ICU
  * </pre>
  * </blockquote>
  *
- * <p>This property is included in ICUConfig.properties in com.ibm.icu package.  When the
+ * <p>This property is included in ICUConfig.properties in android.icu package.  When the
  * <code>TimeZone</code> class is loaded, the initialization code checks if the property
- * <code>com.ibm.icu.util.TimeZone.DefaultTimeZoneType=xxx</code> is defined by the system
+ * <code>android.icu.util.TimeZone.DefaultTimeZoneType=xxx</code> is defined by the system
  * properties.  If not available, then it loads ICUConfig.properties to get the default
  * time zone implementation type.  The property setting is only used for the initial
  * default value and you can change the default type by calling
@@ -110,7 +110,6 @@ import android.icu.util.ULocale.Category;
  * @see          GregorianCalendar
  * @see          SimpleTimeZone
  * @author       Mark Davis, David Goldsmith, Chen-Lieh Huang, Alan Liu
- * @stable ICU 2.0
  * @hide All android.icu classes are currently hidden
  */
 abstract public class TimeZone implements Serializable, Cloneable, Freezable<TimeZone> {
@@ -125,7 +124,6 @@ abstract public class TimeZone implements Serializable, Cloneable, Freezable<Tim
     /**
      * Default constructor.  (For invocation by subclass constructors,
      * typically implicit.)
-     * @stable ICU 2.8
      */
     public TimeZone() {
     }
@@ -150,14 +148,12 @@ abstract public class TimeZone implements Serializable, Cloneable, Freezable<Tim
      * {{@literal @}icu} A time zone implementation type indicating ICU's own TimeZone used by
      * <code>getTimeZone</code>, <code>setDefaultTimeZoneType</code>
      * and <code>getDefaultTimeZoneType</code>.
-     * @stable ICU 4.0
      */
     public static final int TIMEZONE_ICU = 0;
     /**
      * {{@literal @}icu} A time zone implementation type indicating JDK TimeZone used by
      * <code>getTimeZone</code>, <code>setDefaultTimeZoneType</code>
      * and <code>getDefaultTimeZoneType</code>.
-     * @stable ICU 4.0
      */
     public static final int TIMEZONE_JDK = 1;
 
@@ -165,7 +161,6 @@ abstract public class TimeZone implements Serializable, Cloneable, Freezable<Tim
      * A style specifier for <code>getDisplayName()</code> indicating
      * a short name, such as "PST."
      * @see #LONG
-     * @stable ICU 2.0
      */
     public static final int SHORT = 0;
 
@@ -173,7 +168,6 @@ abstract public class TimeZone implements Serializable, Cloneable, Freezable<Tim
      * A style specifier for <code>getDisplayName()</code> indicating
      * a long name, such as "Pacific Standard Time."
      * @see #SHORT
-     * @stable ICU 2.0
      */
     public static final int LONG  = 1;
 
@@ -181,7 +175,6 @@ abstract public class TimeZone implements Serializable, Cloneable, Freezable<Tim
      * {{@literal @}icu} A style specifier for <code>getDisplayName()</code> indicating
      * a short generic name, such as "PT."
      * @see #LONG_GENERIC
-     * @stable ICU 4.4
      */
     public static final int SHORT_GENERIC = 2;
 
@@ -189,7 +182,6 @@ abstract public class TimeZone implements Serializable, Cloneable, Freezable<Tim
      * {{@literal @}icu} A style specifier for <code>getDisplayName()</code> indicating
      * a long generic name, such as "Pacific Time."
      * @see #SHORT_GENERIC
-     * @stable ICU 4.4
      */
     public static final int LONG_GENERIC = 3;
 
@@ -197,7 +189,6 @@ abstract public class TimeZone implements Serializable, Cloneable, Freezable<Tim
      * {{@literal @}icu} A style specifier for <code>getDisplayName()</code> indicating
      * a short name derived from the timezone's offset, such as "-0800."
      * @see #LONG_GMT
-     * @stable ICU 4.4
      */
     public static final int SHORT_GMT = 4;
 
@@ -205,7 +196,6 @@ abstract public class TimeZone implements Serializable, Cloneable, Freezable<Tim
      * {{@literal @}icu} A style specifier for <code>getDisplayName()</code> indicating
      * a long name derived from the timezone's offset, such as "GMT-08:00."
      * @see #SHORT_GMT
-     * @stable ICU 4.4
      */
     public static final int LONG_GMT = 5;
 
@@ -213,7 +203,6 @@ abstract public class TimeZone implements Serializable, Cloneable, Freezable<Tim
      * {{@literal @}icu} A style specifier for <code>getDisplayName()</code> indicating
      * a short name derived from the timezone's short standard or daylight
      * timezone name ignoring commonlyUsed, such as "PDT."
-     * @stable ICU 4.4
      */
 
     public static final int SHORT_COMMONLY_USED = 6;
@@ -222,15 +211,12 @@ abstract public class TimeZone implements Serializable, Cloneable, Freezable<Tim
      * {{@literal @}icu} A style specifier for <code>getDisplayName()</code> indicating
      * a long name derived from the timezone's fallback name, such as
      * "United States (Los Angeles)."
-     * @stable ICU 4.4
      */
     public static final int GENERIC_LOCATION = 7;
 
     /**
      * {{@literal @}icu} The time zone ID reserved for unknown time zone.
      * @see #getTimeZone(String)
-     * 
-     * @stable ICU 4.8
      */
     public static final String UNKNOWN_ZONE_ID = "Etc/Unknown";
 
@@ -247,28 +233,21 @@ abstract public class TimeZone implements Serializable, Cloneable, Freezable<Tim
      *
      * @see #UNKNOWN_ZONE_ID
      * @see #getTimeZone(String)
-     * 
-     * @stable ICU 49
      */
     public static final TimeZone UNKNOWN_ZONE = new ConstantZone(0, UNKNOWN_ZONE_ID).freeze();
 
     /**
      * {{@literal @}icu} The immutable GMT (=UTC) time zone. Its ID is "Etc/GMT".
-     *
-     * @stable ICU 49
      */
     public static final TimeZone GMT_ZONE = new ConstantZone(0, GMT_ZONE_ID).freeze();
 
     /**
      * {{@literal @}icu} System time zone type constants used by filtering zones in
      * {@link TimeZone#getAvailableIDs(SystemTimeZoneType, String, Integer)}
-     *
-     * @stable ICU 4.8
      */
     public enum SystemTimeZoneType {
         /**
          * Any system zones.
-         * @stable ICU 4.8
          * {@literal @}provisional This API might change or be removed in a future release.
          * @hide draft / provisional / internal are hidden on Android
          */
@@ -276,7 +255,6 @@ abstract public class TimeZone implements Serializable, Cloneable, Freezable<Tim
 
         /**
          * Canonical system zones.
-         * @stable ICU 4.8
          * {@literal @}provisional This API might change or be removed in a future release.
          * @hide draft / provisional / internal are hidden on Android
          */
@@ -284,7 +262,6 @@ abstract public class TimeZone implements Serializable, Cloneable, Freezable<Tim
 
         /**
          * Canonical system zones associated with actual locations.
-         * @stable ICU 4.8
          * {@literal @}provisional This API might change or be removed in a future release.
          * @hide draft / provisional / internal are hidden on Android
          */
@@ -302,7 +279,6 @@ abstract public class TimeZone implements Serializable, Cloneable, Freezable<Tim
      * @param dayOfWeek the day-of-week of the given date.
      * @param milliseconds the millis in day in <em>standard</em> local time.
      * @return the offset to add *to* GMT to get local time.
-     * @stable ICU 2.0
      */
     abstract public int getOffset(int era, int year, int month, int day,
                                   int dayOfWeek, int milliseconds);
@@ -320,7 +296,6 @@ abstract public class TimeZone implements Serializable, Cloneable, Freezable<Tim
      * @see Calendar#ZONE_OFFSET
      * @see Calendar#DST_OFFSET
      * @see #getOffset(long, boolean, int[])
-     * @stable ICU 2.8
      */
     public int getOffset(long date) {
         int[] result = new int[2];
@@ -346,8 +321,6 @@ abstract public class TimeZone implements Serializable, Cloneable, Freezable<Tim
      * `rawOffset' to obtain the total offset between local and GMT
      * time, in offsets[1]. If DST is not in effect, the DST offset is
      * zero; otherwise it is a positive value, typically one hour.
-     *
-     * @stable ICU 2.8
      */
     public void getOffset(long date, boolean local, int[] offsets) {
         offsets[0] = getRawOffset();
@@ -386,7 +359,6 @@ abstract public class TimeZone implements Serializable, Cloneable, Freezable<Tim
      * Sets the base time zone offset to GMT.
      * This is the offset to add *to* UTC to get local time.
      * @param offsetMillis the given base time zone offset to GMT.
-     * @stable ICU 2.0
      */
     abstract public void setRawOffset(int offsetMillis);
 
@@ -394,14 +366,12 @@ abstract public class TimeZone implements Serializable, Cloneable, Freezable<Tim
      * Gets unmodified offset, NOT modified in case of daylight savings.
      * This is the offset to add *to* UTC to get local time.
      * @return the unmodified offset to add *to* UTC to get local time.
-     * @stable ICU 2.0
      */
     abstract public int getRawOffset();
 
     /**
      * Gets the ID of this time zone.
      * @return the ID of this time zone.
-     * @stable ICU 2.0
      */
     public String getID() {
         return ID;
@@ -411,7 +381,6 @@ abstract public class TimeZone implements Serializable, Cloneable, Freezable<Tim
      * Sets the time zone ID. This does not change any other data in
      * the time zone object.
      * @param ID the new time zone ID.
-     * @stable ICU 2.0
      */
     public void setID(String ID) {
         if (ID == null) {
@@ -431,7 +400,6 @@ abstract public class TimeZone implements Serializable, Cloneable, Freezable<Tim
      * a fallback based on the country, city, or time zone id will be used.
      * @return the human-readable name of this time zone in the default locale.
      * @see Category#DISPLAY
-     * @stable ICU 2.0
      */
     public final String getDisplayName() {
         return _getDisplayName(LONG_GENERIC, false, ULocale.getDefault(Category.DISPLAY));
@@ -446,7 +414,6 @@ abstract public class TimeZone implements Serializable, Cloneable, Freezable<Tim
      * @param locale the locale in which to supply the display name.
      * @return the human-readable name of this time zone in the given locale
      * or in the default locale if the given locale is not recognized.
-     * @stable ICU 2.0
      */
     public final String getDisplayName(Locale locale) {
         return _getDisplayName(LONG_GENERIC, false, ULocale.forLocale(locale));
@@ -461,7 +428,6 @@ abstract public class TimeZone implements Serializable, Cloneable, Freezable<Tim
      * @param locale the ulocale in which to supply the display name.
      * @return the human-readable name of this time zone in the given locale
      * or in the default ulocale if the given ulocale is not recognized.
-     * @stable ICU 3.2
      */
     public final String getDisplayName(ULocale locale) {
         return _getDisplayName(LONG_GENERIC, false, locale);
@@ -480,7 +446,6 @@ abstract public class TimeZone implements Serializable, Cloneable, Freezable<Tim
      * <code>SHORT_COMMONLY_USED</code> or <code>GENERIC_LOCATION</code>.
      * @return the human-readable name of this time zone in the default locale.
      * @see Category#DISPLAY
-     * @stable ICU 2.0
      */
     public final String getDisplayName(boolean daylight, int style) {
         return getDisplayName(daylight, style, ULocale.getDefault(Category.DISPLAY));
@@ -501,7 +466,6 @@ abstract public class TimeZone implements Serializable, Cloneable, Freezable<Tim
      * @return the human-readable name of this time zone in the given locale
      * or in the default locale if the given locale is not recognized.
      * @exception IllegalArgumentException style is invalid.
-     * @stable ICU 2.0
      */
     public String getDisplayName(boolean daylight, int style, Locale locale) {
         return getDisplayName(daylight, style, ULocale.forLocale(locale));
@@ -522,7 +486,6 @@ abstract public class TimeZone implements Serializable, Cloneable, Freezable<Tim
      * @return the human-readable name of this time zone in the given locale
      * or in the default locale if the given locale is not recognized.
      * @exception IllegalArgumentException style is invalid.
-     * @stable ICU 3.2
      */
     public String getDisplayName(boolean daylight, int style, ULocale locale) {
         if (style < SHORT || style > GENERIC_LOCATION) {
@@ -628,7 +591,6 @@ abstract public class TimeZone implements Serializable, Cloneable, Freezable<Tim
      * the known latest daylight saving value.
      *
      * @return the amount of saving time in milliseconds
-     * @stable ICU 2.8
      */
     public int getDSTSavings() {
         if (useDaylightTime()) {
@@ -651,7 +613,6 @@ abstract public class TimeZone implements Serializable, Cloneable, Freezable<Tim
      * The default implementation of this method returns <code>true</code>
      * when the time zone uses daylight savings time in the current
      * (Gregorian) calendar year.
-     * @stable ICU 2.0
      */
     abstract public boolean useDaylightTime();
 
@@ -678,7 +639,6 @@ abstract public class TimeZone implements Serializable, Cloneable, Freezable<Tim
      * @return <code>true</code> if this time zone is in daylight saving time or will observe
      * daylight saving time at any future time.
      * @see #useDaylightTime
-     * @stable ICU 49
      */
     public boolean observesDaylightTime() {
         return useDaylightTime() || inDaylightTime(new Date());
@@ -690,7 +650,6 @@ abstract public class TimeZone implements Serializable, Cloneable, Freezable<Tim
      * @param date the given Date.
      * @return true if the given date is in daylight savings time,
      * false, otherwise.
-     * @stable ICU 2.0
      */
     abstract public boolean inDaylightTime(Date date);
 
@@ -704,7 +663,6 @@ abstract public class TimeZone implements Serializable, Cloneable, Freezable<Tim
      * @return the specified <code>TimeZone</code>, or a mutable clone of the UNKNOWN_ZONE
      * if the given ID cannot be understood or if the given ID is "Etc/Unknown".
      * @see #UNKNOWN_ZONE
-     * @stable ICU 2.0
      */
     public static TimeZone getTimeZone(String ID) {
         return getTimeZone(ID, TZ_IMPL, false);
@@ -723,7 +681,6 @@ abstract public class TimeZone implements Serializable, Cloneable, Freezable<Tim
      * @return the specified <code>TimeZone</code>, or the UNKNOWN_ZONE
      * if the given ID cannot be understood.
      * @see #UNKNOWN_ZONE
-     * @stable ICU 49
      */
     public static TimeZone getFrozenTimeZone(String ID) {
         return getTimeZone(ID, TZ_IMPL, true);
@@ -739,7 +696,6 @@ abstract public class TimeZone implements Serializable, Cloneable, Freezable<Tim
      * @return the specified <code>TimeZone</code>, or a mutable clone of the UNKNOWN_ZONE if the given ID
      * cannot be understood or if the given ID is "Etc/Unknown".
      * @see #UNKNOWN_ZONE
-     * @stable ICU 4.0
      */
     public static TimeZone getTimeZone(String ID, int type) {
         return getTimeZone(ID, type, false);
@@ -791,7 +747,6 @@ abstract public class TimeZone implements Serializable, Cloneable, Freezable<Tim
      * Sets the default time zone type used by <code>getTimeZone</code>.
      * @param type time zone type, either <code>TIMEZONE_ICU</code> or
      * <code>TIMEZONE_JDK</code>.
-     * @stable ICU 4.0
      */
     public static synchronized void setDefaultTimeZoneType(int type) {
         if (type != TIMEZONE_ICU && type != TIMEZONE_JDK) {
@@ -804,7 +759,6 @@ abstract public class TimeZone implements Serializable, Cloneable, Freezable<Tim
      * {{@literal @}icu} Returns the default time zone type currently used.
      * @return The default time zone type, either <code>TIMEZONE_ICU</code> or
      * <code>TIMEZONE_JDK</code>.
-     * @stable ICU 4.0
      */
     public static int getDefaultTimeZoneType() {
         return TZ_IMPL;
@@ -821,8 +775,6 @@ abstract public class TimeZone implements Serializable, Cloneable, Freezable<Tim
      *                      time, if any. When null, no filtering done by zone offset. 
      * @return an immutable set of system time zone IDs.
      * @see SystemTimeZoneType
-     * 
-     * @stable ICU 4.8
      */ 
     public static Set<String> getAvailableIDs(SystemTimeZoneType zoneType,
             String region, Integer rawOffset) {
@@ -838,8 +790,6 @@ abstract public class TimeZone implements Serializable, Cloneable, Freezable<Tim
      * @return an array of IDs for system TimeZones with the given
      * raw offset.  If there are none, return a zero-length array.
      * @see #getAvailableIDs(SystemTimeZoneType, String, Integer)
-     * 
-     * @stable ICU 2.0
      */
     public static String[] getAvailableIDs(int rawOffset) {
         Set<String> ids = getAvailableIDs(SystemTimeZoneType.ANY, null, Integer.valueOf(rawOffset));
@@ -856,8 +806,6 @@ abstract public class TimeZone implements Serializable, Cloneable, Freezable<Tim
      * @return an array of IDs for system TimeZones in the given
      * country.  If there are none, return a zero-length array.
      * @see #getAvailableIDs(SystemTimeZoneType, String, Integer)
-     * 
-     * @stable ICU 2.0
      */
     public static String[] getAvailableIDs(String country) {
         Set<String> ids = getAvailableIDs(SystemTimeZoneType.ANY, country, null);
@@ -871,8 +819,6 @@ abstract public class TimeZone implements Serializable, Cloneable, Freezable<Tim
      * object.
      * @return an array of all system TimeZone IDs
      * @see #getAvailableIDs(SystemTimeZoneType, String, Integer)
-     * 
-     * @stable ICU 2.0
      */
     public static String[] getAvailableIDs() {
         Set<String> ids = getAvailableIDs(SystemTimeZoneType.ANY, null, null);
@@ -891,7 +837,6 @@ abstract public class TimeZone implements Serializable, Cloneable, Freezable<Tim
      * @return the number of zones in the equivalency group containing
      * 'id', or zero if 'id' is not a valid system ID
      * @see #getEquivalentID
-     * @stable ICU 2.0
      */
     public static int countEquivalentIDs(String id) {
         return ZoneMeta.countEquivalentIDs(id);
@@ -914,7 +859,6 @@ abstract public class TimeZone implements Serializable, Cloneable, Freezable<Tim
      * containing 'id', or an empty string if 'id' is not a valid
      * system ID or 'index' is out of range
      * @see #countEquivalentIDs
-     * @stable ICU 2.0
      */
     public static String getEquivalentID(String id, int index) {
         return ZoneMeta.getEquivalentID(id, index);
@@ -925,7 +869,6 @@ abstract public class TimeZone implements Serializable, Cloneable, Freezable<Tim
      * The source of the default <code>TimeZone</code>
      * may vary with implementation.
      * @return a default <code>TimeZone</code>.
-     * @stable ICU 2.0
      */
     public static TimeZone getDefault() {
         if (defaultZone == null) {
@@ -949,7 +892,6 @@ abstract public class TimeZone implements Serializable, Cloneable, Freezable<Tim
      * is null, reset the default to the value it had originally when the
      * VM first started.
      * @param tz the new default time zone
-     * @stable ICU 2.0
      */
     public static synchronized void setDefault(TimeZone tz) {
         defaultZone = tz;
@@ -958,7 +900,7 @@ abstract public class TimeZone implements Serializable, Cloneable, Freezable<Tim
             jdkZone = ((JavaTimeZone)defaultZone).unwrap();
         } else {
             // Keep java.util.TimeZone default in sync so java.util.Date
-            // can interoperate with com.ibm.icu.util classes.
+            // can interoperate with android.icu.util classes.
 
             if (tz != null) {
                 if (tz instanceof android.icu.impl.OlsonTimeZone) {
@@ -1001,7 +943,6 @@ abstract public class TimeZone implements Serializable, Cloneable, Freezable<Tim
      * @param other the <code>TimeZone</code> object to be compared with
      * @return true if the other zone is not null and is the same as this one,
      * with the possible exception of the ID
-     * @stable ICU 2.0
      */
     public boolean hasSameRules(TimeZone other) {
         return other != null &&
@@ -1011,7 +952,6 @@ abstract public class TimeZone implements Serializable, Cloneable, Freezable<Tim
 
     /**
      * Overrides clone.
-     * @stable ICU 2.0
      */
     public Object clone() {
         if (isFrozen()) {
@@ -1022,7 +962,6 @@ abstract public class TimeZone implements Serializable, Cloneable, Freezable<Tim
 
     /**
      * Overrides equals.
-     * @stable ICU 3.6
      */
     public boolean equals(Object obj){
         if (this == obj) return true;
@@ -1032,7 +971,6 @@ abstract public class TimeZone implements Serializable, Cloneable, Freezable<Tim
 
     /**
      * Overrides hashCode.
-     * @stable ICU 3.6
      */
     public int hashCode(){
         return ID.hashCode();
@@ -1044,8 +982,6 @@ abstract public class TimeZone implements Serializable, Cloneable, Freezable<Tim
      * @return the version string, such as "2007f"
      * @throws MissingResourceException if ICU time zone resource bundle
      * is missing or the version information is not available.
-     *
-     * @stable ICU 3.8
      */
     public static String getTZDataVersion() {
         // The implementation had been moved to VersionInfo.
@@ -1060,7 +996,6 @@ abstract public class TimeZone implements Serializable, Cloneable, Freezable<Tim
      * in normalized format for the given time zone ID.  When the given time zone ID
      * is neither a known system time zone ID nor a valid custom time zone ID,
      * null is returned.
-     * @stable ICU 4.0
      */
     public static String getCanonicalID(String id) {
         return getCanonicalID(id, null);
@@ -1076,7 +1011,6 @@ abstract public class TimeZone implements Serializable, Cloneable, Freezable<Tim
      * in normalized format for the given time zone ID.  When the given time zone ID
      * is neither a known system time zone ID nor a valid custom time zone ID,
      * null is returned.
-     * @stable ICU 4.0
      */
     public static String getCanonicalID(String id, boolean[] isSystemID) {
         String canonicalID = null;
@@ -1113,8 +1047,6 @@ abstract public class TimeZone implements Serializable, Cloneable, Freezable<Tim
      * system time zone ID. 
      * @throws IllegalArgumentException if <code>id</code> is not a known system ID. 
      * @see #getAvailableIDs(String) 
-     * 
-     * @stable ICU 4.8
      */ 
     public static String getRegion(String id) {
         String region = null;
@@ -1147,8 +1079,6 @@ abstract public class TimeZone implements Serializable, Cloneable, Freezable<Tim
      * @return A Windows time zone ID mapped from the input system time zone ID,
      * or <code>null</code> when the input ID is unknown or unmappable.
      * @see #getIDForWindowsID(String, String)
-     * 
-     * @stable ICU 52
      */
     public static String getWindowsID(String id) {
         // canonicalize the input ID
@@ -1208,8 +1138,6 @@ abstract public class TimeZone implements Serializable, Cloneable, Freezable<Tim
      * @return A system time zone ID mapped from the input Windows time zone ID,
      * or <code>null</code> when the input ID is unknown or unmappable.
      * @see #getWindowsID(String)
-     * 
-     * @stable ICU 52
      */
     public static String getIDForWindowsID(String winid, String region) {
         String id = null;
@@ -1248,7 +1176,6 @@ abstract public class TimeZone implements Serializable, Cloneable, Freezable<Tim
 
     /**
      * {@inheritDoc}
-     * @stable ICU 49
      */
     public boolean isFrozen() {
         return false;
@@ -1256,7 +1183,6 @@ abstract public class TimeZone implements Serializable, Cloneable, Freezable<Tim
 
     /**
      * {@inheritDoc}
-     * @stable ICU 49
      */
     public TimeZone freeze() {
         throw new UnsupportedOperationException("Needs to be implemented by the subclass.");
@@ -1264,7 +1190,6 @@ abstract public class TimeZone implements Serializable, Cloneable, Freezable<Tim
 
     /**
      * {@inheritDoc}
-     * @stable ICU 49
      */
     public TimeZone cloneAsThawed() {
         try {

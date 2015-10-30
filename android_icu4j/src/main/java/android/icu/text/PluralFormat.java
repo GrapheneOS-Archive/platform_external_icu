@@ -129,7 +129,6 @@ import android.icu.util.ULocale.Category;
  * </p>
  *
  * @author tschumann (Tim Schumann)
- * @stable ICU 3.8
  * @hide All android.icu classes are currently hidden
  */
 public class PluralFormat extends UFormat {
@@ -185,7 +184,6 @@ public class PluralFormat extends UFormat {
      * This locale will be used to get the set of plural rules and for standard
      * number formatting.
      * @see Category#FORMAT
-     * @stable ICU 3.8
      */
     public PluralFormat() {
         init(null, PluralType.CARDINAL, ULocale.getDefault(Category.FORMAT), null);
@@ -196,7 +194,6 @@ public class PluralFormat extends UFormat {
      * @param ulocale the <code>PluralFormat</code> will be configured with
      *        rules for this locale. This locale will also be used for standard
      *        number formatting.
-     * @stable ICU 3.8
      */
     public PluralFormat(ULocale ulocale) {
         init(null, PluralType.CARDINAL, ulocale, null);
@@ -207,7 +204,6 @@ public class PluralFormat extends UFormat {
      * @param locale the <code>PluralFormat</code> will be configured with
      *        rules for this locale. This locale will also be used for standard
      *        number formatting.
-     * @stable ICU 54
      */
     public PluralFormat(Locale locale) {
         this(ULocale.forLocale(locale));
@@ -219,7 +215,6 @@ public class PluralFormat extends UFormat {
      * @param rules defines the behavior of the <code>PluralFormat</code>
      *        object.
      * @see Category#FORMAT
-     * @stable ICU 3.8
      */
     public PluralFormat(PluralRules rules) {
         init(rules, PluralType.CARDINAL, ULocale.getDefault(Category.FORMAT), null);
@@ -232,7 +227,6 @@ public class PluralFormat extends UFormat {
      *        locale.
      * @param rules defines the behavior of the <code>PluralFormat</code>
      *        object.
-     * @stable ICU 3.8
      */
     public PluralFormat(ULocale ulocale, PluralRules rules) {
         init(rules, PluralType.CARDINAL, ulocale, null);
@@ -245,7 +239,6 @@ public class PluralFormat extends UFormat {
      *        locale.
      * @param rules defines the behavior of the <code>PluralFormat</code>
      *        object.
-     * @stable ICU 54
      */
     public PluralFormat(Locale locale, PluralRules rules) {
         this(ULocale.forLocale(locale), rules);
@@ -257,7 +250,6 @@ public class PluralFormat extends UFormat {
      * @param ulocale the default number formatting will be done using this
      *        locale.
      * @param type The plural type (e.g., cardinal or ordinal).
-     * @stable ICU 50
      */
     public PluralFormat(ULocale ulocale, PluralType type) {
         init(null, type, ulocale, null);
@@ -269,7 +261,6 @@ public class PluralFormat extends UFormat {
      * @param locale the default number formatting will be done using this
      *        locale.
      * @param type The plural type (e.g., cardinal or ordinal).
-     * @stable ICU 54
      */
     public PluralFormat(Locale locale, PluralType type) {
         this(ULocale.forLocale(locale), type);
@@ -282,7 +273,6 @@ public class PluralFormat extends UFormat {
      * @param  pattern the pattern for this <code>PluralFormat</code>.
      * @throws IllegalArgumentException if the pattern is invalid.
      * @see Category#FORMAT
-     * @stable ICU 3.8
      */
     public PluralFormat(String pattern) {
         init(null, PluralType.CARDINAL, ULocale.getDefault(Category.FORMAT), null);
@@ -294,13 +284,12 @@ public class PluralFormat extends UFormat {
      * locale.
      * The locale will be used to get the set of plural rules and for
      * standard number formatting.
-     * <p>Example code:{{@literal @}.jcite com.ibm.icu.samples.text.pluralformat.PluralFormatSample:---PluralFormatExample}
+     * <p>Example code:{{@literal @}.jcite android.icu.samples.text.pluralformat.PluralFormatSample:---PluralFormatExample}
      * @param ulocale the <code>PluralFormat</code> will be configured with
      *        rules for this locale. This locale will also be used for standard
      *        number formatting.
      * @param  pattern the pattern for this <code>PluralFormat</code>.
      * @throws IllegalArgumentException if the pattern is invalid.
-     * @stable ICU 3.8
      */
     public PluralFormat(ULocale ulocale, String pattern) {
         init(null, PluralType.CARDINAL, ulocale, null);
@@ -316,7 +305,6 @@ public class PluralFormat extends UFormat {
      * @param  pattern the pattern for this <code>PluralFormat</code>.
      * @throws IllegalArgumentException if the pattern is invalid.
      * @see Category#FORMAT
-     * @stable ICU 3.8
      */
     public PluralFormat(PluralRules rules, String pattern) {
         init(rules, PluralType.CARDINAL, ULocale.getDefault(Category.FORMAT), null);
@@ -333,7 +321,6 @@ public class PluralFormat extends UFormat {
      *        object.
      * @param  pattern the pattern for this <code>PluralFormat</code>.
      * @throws IllegalArgumentException if the pattern is invalid.
-     * @stable ICU 3.8
      */
     public PluralFormat(ULocale ulocale, PluralRules rules, String pattern) {
         init(rules, PluralType.CARDINAL, ulocale, null);
@@ -349,7 +336,6 @@ public class PluralFormat extends UFormat {
      * @param type The plural type (e.g., cardinal or ordinal).
      * @param  pattern the pattern for this <code>PluralFormat</code>.
      * @throws IllegalArgumentException if the pattern is invalid.
-     * @stable ICU 50
      */
     public PluralFormat(ULocale ulocale, PluralType type, String pattern) {
         init(null, type, ulocale, null);
@@ -409,7 +395,6 @@ public class PluralFormat extends UFormat {
      *
      * @param pattern the pattern for this plural format.
      * @throws IllegalArgumentException if the pattern is invalid.
-     * @stable ICU 3.8
      */
     public void applyPattern(String pattern) {
         this.pattern = pattern;
@@ -429,7 +414,6 @@ public class PluralFormat extends UFormat {
      * Returns the pattern for this PluralFormat.
      *
      * @return the pattern string
-     * @stable ICU 4.2
      */
     public String toPattern() {
         return pattern;
@@ -571,7 +555,6 @@ public class PluralFormat extends UFormat {
      *        <code>PluralFormat</code> object yet, the formatted number will
      *        be returned.
      * @return the string containing the formatted plural message.
-     * @stable ICU 4.0
      */
     public final String format(double number) {
         return format(number, number);
@@ -592,7 +575,6 @@ public class PluralFormat extends UFormat {
      * @return the string buffer passed in as toAppendTo, with formatted text
      *         appended.
      * @throws IllegalArgumentException if number is not an instance of Number
-     * @stable ICU 3.8
      */
     public StringBuffer format(Object number, StringBuffer toAppendTo,
             FieldPosition pos) {
@@ -673,7 +655,6 @@ public class PluralFormat extends UFormat {
      * has not changed upon return, then parsing failed.
      * @return nothing because this method is not yet implemented.
      * @throws UnsupportedOperationException will always be thrown by this method.
-     * @stable ICU 3.8
      */
     public Number parse(String text, ParsePosition parsePosition) {
         // You get number ranges from this. You can't get an exact number.
@@ -688,7 +669,6 @@ public class PluralFormat extends UFormat {
      * has not changed upon return, then parsing failed.
      * @return nothing because this method is not yet implemented.
      * @throws UnsupportedOperationException will always be thrown by this method.
-     * @stable ICU 3.8
      */
     public Object parseObject(String source, ParsePosition pos) {
         throw new UnsupportedOperationException();
@@ -802,7 +782,6 @@ public class PluralFormat extends UFormat {
      * call this if you want a different number format than the default
      * formatter for the locale.
      * @param format the number format to use.
-     * @stable ICU 3.8
      */
     public void setNumberFormat(NumberFormat format) {
         numberFormat = format;
@@ -810,7 +789,6 @@ public class PluralFormat extends UFormat {
 
     /**
      * {@inheritDoc}
-     * @stable ICU 3.8
      */
     @Override
     public boolean equals(Object rhs) {
@@ -832,7 +810,6 @@ public class PluralFormat extends UFormat {
      * Returns true if this equals the provided PluralFormat.
      * @param rhs the PluralFormat to compare against
      * @return true if this equals rhs
-     * @stable ICU 3.8
      */
     public boolean equals(PluralFormat rhs) {
         return equals((Object)rhs);
@@ -840,7 +817,6 @@ public class PluralFormat extends UFormat {
 
     /**
      * {@inheritDoc}
-     * @stable ICU 3.8
      */
     @Override
     public int hashCode() {
@@ -849,7 +825,6 @@ public class PluralFormat extends UFormat {
 
     /**
      * {@inheritDoc}
-     * @stable ICU 3.8
      */
     @Override
     public String toString() {

@@ -61,7 +61,7 @@ public class TZDBTimeZoneNames extends TimeZoneNames {
     }
 
     /* (non-Javadoc)
-     * @see com.ibm.icu.text.TimeZoneNames#getAvailableMetaZoneIDs()
+     * @see android.icu.text.TimeZoneNames#getAvailableMetaZoneIDs()
      */
     @Override
     public Set<String> getAvailableMetaZoneIDs() {
@@ -69,7 +69,7 @@ public class TZDBTimeZoneNames extends TimeZoneNames {
     }
 
     /* (non-Javadoc)
-     * @see com.ibm.icu.text.TimeZoneNames#getAvailableMetaZoneIDs(java.lang.String)
+     * @see android.icu.text.TimeZoneNames#getAvailableMetaZoneIDs(java.lang.String)
      */
     @Override
     public Set<String> getAvailableMetaZoneIDs(String tzID) {
@@ -77,7 +77,7 @@ public class TZDBTimeZoneNames extends TimeZoneNames {
     }
 
     /* (non-Javadoc)
-     * @see com.ibm.icu.text.TimeZoneNames#getMetaZoneID(java.lang.String, long)
+     * @see android.icu.text.TimeZoneNames#getMetaZoneID(java.lang.String, long)
      */
     @Override
     public String getMetaZoneID(String tzID, long date) {
@@ -85,7 +85,7 @@ public class TZDBTimeZoneNames extends TimeZoneNames {
     }
 
     /* (non-Javadoc)
-     * @see com.ibm.icu.text.TimeZoneNames#getReferenceZoneID(java.lang.String, java.lang.String)
+     * @see android.icu.text.TimeZoneNames#getReferenceZoneID(java.lang.String, java.lang.String)
      */
     @Override
     public String getReferenceZoneID(String mzID, String region) {
@@ -93,8 +93,8 @@ public class TZDBTimeZoneNames extends TimeZoneNames {
     }
 
     /* (non-Javadoc)
-     * @see com.ibm.icu.text.TimeZoneNames#getMetaZoneDisplayName(java.lang.String,
-     *      com.ibm.icu.text.TimeZoneNames.NameType)
+     * @see android.icu.text.TimeZoneNames#getMetaZoneDisplayName(java.lang.String,
+     *      android.icu.text.TimeZoneNames.NameType)
      */
     @Override
     public String getMetaZoneDisplayName(String mzID, NameType type) {
@@ -106,8 +106,8 @@ public class TZDBTimeZoneNames extends TimeZoneNames {
     }
 
     /* (non-Javadoc)
-     * @see com.ibm.icu.text.TimeZoneNames#getTimeZoneDisplayName(java.lang.String,
-     *      com.ibm.icu.text.TimeZoneNames.NameType)
+     * @see android.icu.text.TimeZoneNames#getTimeZoneDisplayName(java.lang.String,
+     *      android.icu.text.TimeZoneNames.NameType)
      */
     @Override
     public String getTimeZoneDisplayName(String tzID, NameType type) {
@@ -116,14 +116,14 @@ public class TZDBTimeZoneNames extends TimeZoneNames {
     }
 
 //    /* (non-Javadoc)
-//     * @see com.ibm.icu.text.TimeZoneNames#getExemplarLocationName(java.lang.String)
+//     * @see android.icu.text.TimeZoneNames#getExemplarLocationName(java.lang.String)
 //     */
 //    public String getExemplarLocationName(String tzID) {
 //        return super.getExemplarLocationName(tzID);
 //    }
 
     /* (non-Javadoc)
-     * @see com.ibm.icu.text.TimeZoneNames#find(java.lang.CharSequence, int, java.util.EnumSet)
+     * @see android.icu.text.TimeZoneNames#find(java.lang.CharSequence, int, java.util.EnumSet)
      */
     @Override
     public Collection<MatchInfo> find(CharSequence text, int start, EnumSet<NameType> nameTypes) {
@@ -233,7 +233,7 @@ public class TZDBTimeZoneNames extends TimeZoneNames {
         }
 
         /* (non-Javadoc)
-         * @see com.ibm.icu.impl.TextTrieMap.ResultHandler#handlePrefixMatch(int,
+         * @see android.icu.impl.TextTrieMap.ResultHandler#handlePrefixMatch(int,
          *      java.util.Iterator)
          */
         public boolean handlePrefixMatch(int matchLength, Iterator<TZDBNameInfo> values) {

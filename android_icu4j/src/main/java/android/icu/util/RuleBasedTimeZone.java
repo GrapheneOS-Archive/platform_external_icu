@@ -19,7 +19,6 @@ import android.icu.impl.Grego;
  * 
  * @see android.icu.util.TimeZoneRule
  * 
- * @stable ICU 3.8
  * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
  */
@@ -40,8 +39,6 @@ public class RuleBasedTimeZone extends BasicTimeZone {
      * 
      * @param id                The time zone ID.
      * @param initialRule       The initial time zone rule.
-     * 
-     * @stable ICU 3.8
      */
     public RuleBasedTimeZone(String id, InitialTimeZoneRule initialRule) {
         super(id);
@@ -55,8 +52,6 @@ public class RuleBasedTimeZone extends BasicTimeZone {
      * Otherwise, <code>IllegalArgumentException</code> is thrown.
      * 
      * @param rule The <code>TimeZoneRule</code>.
-     * 
-     * @stable ICU 3.8
      */
     public void addTransitionRule(TimeZoneRule rule) {
         if (isFrozen()) {
@@ -91,8 +86,6 @@ public class RuleBasedTimeZone extends BasicTimeZone {
 
     /**
      * {@inheritDoc}
-     * 
-     * @stable ICU 3.8
      */
     @Override
     public int getOffset(int era, int year, int month, int day, int dayOfWeek,
@@ -109,8 +102,6 @@ public class RuleBasedTimeZone extends BasicTimeZone {
 
     /**
      * {@inheritDoc}
-     * 
-     * @stable ICU 3.8
      */
     @Override
     public void getOffset(long time, boolean local, int[] offsets) {
@@ -132,8 +123,6 @@ public class RuleBasedTimeZone extends BasicTimeZone {
     
     /**
      * {@inheritDoc}
-     * 
-     * @stable ICU 3.8
      */
     @Override
     public int getRawOffset() {
@@ -147,8 +136,6 @@ public class RuleBasedTimeZone extends BasicTimeZone {
 
     /**
      * {@inheritDoc}
-     * 
-     * @stable ICU 3.8
      */
     @Override
     public boolean inDaylightTime(Date date) {
@@ -159,8 +146,6 @@ public class RuleBasedTimeZone extends BasicTimeZone {
 
     /**
      * {@inheritDoc}
-     * 
-     * @stable ICU 3.8
      */
     @Override
     ///CLOVER:OFF
@@ -172,8 +157,6 @@ public class RuleBasedTimeZone extends BasicTimeZone {
 
     /**
      * {@inheritDoc}
-     * 
-     * @stable ICU 3.8
      */
     @Override
     public boolean useDaylightTime() {
@@ -196,7 +179,6 @@ public class RuleBasedTimeZone extends BasicTimeZone {
 
     /**
      * {@inheritDoc}
-     * @stable ICU 49
      */
     @Override
     public boolean observesDaylightTime() {
@@ -240,8 +222,6 @@ public class RuleBasedTimeZone extends BasicTimeZone {
 
     /**
      * {@inheritDoc}
-     * 
-     * @stable ICU 3.8
      */
     @Override
     public boolean hasSameRules(TimeZone other) {
@@ -304,8 +284,6 @@ public class RuleBasedTimeZone extends BasicTimeZone {
 
     /**
      * {@inheritDoc}
-     * 
-     * @stable ICU 3.8
      */
     @Override
     public TimeZoneRule[] getTimeZoneRules() {
@@ -341,8 +319,6 @@ public class RuleBasedTimeZone extends BasicTimeZone {
 
     /**
      * {@inheritDoc}
-     * 
-     * @stable ICU 3.8
      */
     @Override
     public TimeZoneTransition getNextTransition(long base, boolean inclusive) {
@@ -415,8 +391,6 @@ public class RuleBasedTimeZone extends BasicTimeZone {
 
     /**
      * {@inheritDoc}
-     * 
-     * @stable ICU 3.8
      */
     @Override
     public TimeZoneTransition getPreviousTransition(long base, boolean inclusive) {
@@ -481,7 +455,6 @@ public class RuleBasedTimeZone extends BasicTimeZone {
     
     /**
      * {@inheritDoc}
-     * @stable ICU 3.8
      */
     @Override
     public Object clone() {
@@ -768,7 +741,6 @@ public class RuleBasedTimeZone extends BasicTimeZone {
 
     /**
      * {@inheritDoc}
-     * @stable ICU 49
      */
     public boolean isFrozen() {
         return isFrozen;
@@ -776,7 +748,6 @@ public class RuleBasedTimeZone extends BasicTimeZone {
 
     /**
      * {@inheritDoc}
-     * @stable ICU 49
      */
     public TimeZone freeze() {
         complete();
@@ -786,7 +757,6 @@ public class RuleBasedTimeZone extends BasicTimeZone {
 
     /**
      * {@inheritDoc}
-     * @stable ICU 49
      */
     public TimeZone cloneAsThawed() {
         RuleBasedTimeZone tz = (RuleBasedTimeZone)super.cloneAsThawed();

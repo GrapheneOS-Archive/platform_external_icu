@@ -32,7 +32,6 @@ import android.icu.impl.Grego;
  * decode or encode Non-ASCII text.  Methods reading/writing VTIMEZONE data in this class
  * do nothing with MIME encoding.
  * 
- * @stable ICU 3.8
  * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
  */
@@ -46,8 +45,6 @@ public class VTimeZone extends BasicTimeZone {
      * @param tzid The time zone ID, such as America/New_York
      * @return A <code>VTimeZone</code> initialized by the time zone ID, or null
      * when the ID is unknown.
-     * 
-     * @stable ICU 3.8
      */
     public static VTimeZone create(String tzid) {
         VTimeZone vtz = new VTimeZone(tzid);
@@ -63,8 +60,6 @@ public class VTimeZone extends BasicTimeZone {
      * @param reader The Reader for VTIMEZONE data input stream
      * @return A <code>VTimeZone</code> initialized by the VTIMEZONE data or
      * null if failed to load the rule from the VTIMEZONE data.
-     * 
-     * @stable ICU 3.8
      */
     public static VTimeZone create(Reader reader) {
         VTimeZone vtz = new VTimeZone();
@@ -76,7 +71,6 @@ public class VTimeZone extends BasicTimeZone {
 
     /**
      * {@inheritDoc}
-     * @stable ICU 3.8
      */
     @Override
     public int getOffset(int era, int year, int month, int day, int dayOfWeek,
@@ -86,7 +80,6 @@ public class VTimeZone extends BasicTimeZone {
 
     /**
      * {@inheritDoc}
-     * @stable ICU 3.8
      */
     @Override
     public void getOffset(long date, boolean local, int[] offsets) {
@@ -108,7 +101,6 @@ public class VTimeZone extends BasicTimeZone {
 
     /**
      * {@inheritDoc}
-     * @stable ICU 3.8
      */
     @Override
     public int getRawOffset() {
@@ -117,7 +109,6 @@ public class VTimeZone extends BasicTimeZone {
 
     /**
      * {@inheritDoc}
-     * @stable ICU 3.8
      */
     @Override
     public boolean inDaylightTime(Date date) {
@@ -126,7 +117,6 @@ public class VTimeZone extends BasicTimeZone {
 
     /**
      * {@inheritDoc}
-     * @stable ICU 3.8
      */
     @Override
     public void setRawOffset(int offsetMillis) {
@@ -138,7 +128,6 @@ public class VTimeZone extends BasicTimeZone {
 
     /**
      * {@inheritDoc}
-     * @stable ICU 3.8
      */
     @Override
     public boolean useDaylightTime() {
@@ -147,7 +136,6 @@ public class VTimeZone extends BasicTimeZone {
 
     /**
      * {@inheritDoc}
-     * @stable ICU 49
      */
     @Override
     public boolean observesDaylightTime() {
@@ -156,7 +144,6 @@ public class VTimeZone extends BasicTimeZone {
 
     /**
      * {@inheritDoc}
-     * @stable ICU 3.8
      */
     @Override
     public boolean hasSameRules(TimeZone other) {
@@ -175,8 +162,6 @@ public class VTimeZone extends BasicTimeZone {
      * the initial value is null.
      * 
      * @return The RFC2445 TZURL property value
-     * 
-     * @stable ICU 3.8
      */
     public String getTZURL() {
         return tzurl;
@@ -186,8 +171,6 @@ public class VTimeZone extends BasicTimeZone {
      * Sets the RFC2445 TZURL property value.
      * 
      * @param url The TZURL property value.
-     * 
-     * @stable ICU 3.8
      */
     public void setTZURL(String url) {
         if (isFrozen()) {
@@ -202,8 +185,6 @@ public class VTimeZone extends BasicTimeZone {
      * Otherwise, the initial value is null.
      * 
      * @return The Date represents the RFC2445 LAST-MODIFIED date.
-     * 
-     * @stable ICU 3.8
      */
     public Date getLastModified() {
         return lastmod;
@@ -213,8 +194,6 @@ public class VTimeZone extends BasicTimeZone {
      * Sets the date used for RFC2445 LAST-MODIFIED property value.
      * 
      * @param date The <code>Date</code> object represents the date for RFC2445 LAST-MODIFIED property value.
-     * 
-     * @stable ICU 3.8
      */
     public void setLastModified(Date date) {
         if (isFrozen()) {
@@ -228,8 +207,6 @@ public class VTimeZone extends BasicTimeZone {
      * 
      * @param writer A <code>Writer</code> used for the output
      * @throws IOException If there were problems creating a buffered writer or writing to it.
-     * 
-     * @stable ICU 3.8
      */
     public void write(Writer writer) throws IOException {
         BufferedWriter bw = new BufferedWriter(writer);
@@ -273,8 +250,6 @@ public class VTimeZone extends BasicTimeZone {
      * @param start     The start time
      * 
      * @throws IOException If there were problems reading and writing to the writer.
-     * 
-     * @stable ICU 3.8
      */
     public void write(Writer writer, long start) throws IOException {
         // Extract rules applicable to dates after the start time
@@ -307,8 +282,6 @@ public class VTimeZone extends BasicTimeZone {
      * @param time      The date
      * 
      * @throws IOException If there were problems reading or writing to the writer.
-     * 
-     * @stable ICU 3.8
      */
     public void writeSimple(Writer writer, long time) throws IOException {
         // Extract simple rules
@@ -332,7 +305,6 @@ public class VTimeZone extends BasicTimeZone {
 
     /**
      * {@inheritDoc}
-     * @stable ICU 3.8
      */
     @Override
     public TimeZoneTransition getNextTransition(long base, boolean inclusive) {
@@ -341,7 +313,6 @@ public class VTimeZone extends BasicTimeZone {
 
     /**
      * {@inheritDoc}
-     * @stable ICU 3.8
      */
     @Override
     public TimeZoneTransition getPreviousTransition(long base, boolean inclusive) {
@@ -350,7 +321,6 @@ public class VTimeZone extends BasicTimeZone {
 
     /**
      * {@inheritDoc}
-     * @stable ICU 3.8
      */
     @Override
     public boolean hasEquivalentTransitions(TimeZone other, long start, long end) {
@@ -362,7 +332,6 @@ public class VTimeZone extends BasicTimeZone {
 
     /**
      * {@inheritDoc}
-     * @stable ICU 3.8
      */
     @Override
     public TimeZoneRule[] getTimeZoneRules() {
@@ -371,7 +340,6 @@ public class VTimeZone extends BasicTimeZone {
 
     /**
      * {@inheritDoc}
-     * @stable ICU 3.8
      */
     @Override
     public TimeZoneRule[] getTimeZoneRules(long start) {
@@ -380,7 +348,6 @@ public class VTimeZone extends BasicTimeZone {
 
     /**
      * {@inheritDoc}
-     * @stable ICU 3.8
      */
     @Override
     public Object clone() {
@@ -2103,7 +2070,6 @@ public class VTimeZone extends BasicTimeZone {
 
     /**
      * {@inheritDoc}
-     * @stable ICU 49
      */
     public boolean isFrozen() {
         return isFrozen;
@@ -2111,7 +2077,6 @@ public class VTimeZone extends BasicTimeZone {
 
     /**
      * {@inheritDoc}
-     * @stable ICU 49
      */
     public TimeZone freeze() {
         isFrozen = true;
@@ -2120,7 +2085,6 @@ public class VTimeZone extends BasicTimeZone {
 
     /**
      * {@inheritDoc}
-     * @stable ICU 49
      */
     public TimeZone cloneAsThawed() {
         VTimeZone vtz = (VTimeZone)super.cloneAsThawed();

@@ -282,7 +282,7 @@ public final class ICUBinary {
     private static final List<DataFile> icuDataFiles = new ArrayList<DataFile>();
 
     static {
-        // Normally com.ibm.icu.impl.ICUBinary.dataPath.
+        // Normally android.icu.impl.ICUBinary.dataPath.
         String dataPath = ICUConfig.get(ICUBinary.class.getName() + ".dataPath");
         if (dataPath != null) {
             addDataFilesFromPath(dataPath, icuDataFiles);

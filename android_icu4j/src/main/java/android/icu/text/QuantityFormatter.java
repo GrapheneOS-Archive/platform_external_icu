@@ -17,7 +17,7 @@ import android.icu.impl.SimplePatternFormatter;
  * in terms of that something. For example, a QuantityFormatter that represents X apples may
  * format 1 as "1 apple" and 3 as "3 apples" 
  * <p>
- * QuanitityFormatter appears here instead of in com.ibm.icu.impl because it depends on
+ * QuanitityFormatter appears here instead of in android.icu.impl because it depends on
  * PluralRules and DecimalFormat. It is package-protected as it is not meant for public use.
  */
 class QuantityFormatter {

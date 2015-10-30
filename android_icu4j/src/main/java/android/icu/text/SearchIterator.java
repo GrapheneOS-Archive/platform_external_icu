@@ -45,7 +45,6 @@ import java.text.CharacterIterator;
  * </code></pre>
  * 
  * @author Laura Werner, synwee
- * @stable ICU 2.0
  * @see BreakIterator
  * @see RuleBasedCollator
  * @hide All android.icu classes are currently hidden
@@ -59,7 +58,6 @@ public abstract class SearchIterator
      * @see #setBreakIterator(BreakIterator)
      * @see #getBreakIterator
      * @see BreakIterator
-     * @stable ICU 2.0
      */
     protected BreakIterator breakIterator; 
 
@@ -67,7 +65,6 @@ public abstract class SearchIterator
      * Target text for searching.
      * @see #setTarget(CharacterIterator)
      * @see #getTarget
-     * @stable ICU 2.0
      */
     protected CharacterIterator targetText;
     /**
@@ -75,7 +72,6 @@ public abstract class SearchIterator
      * Value 0 is the default value.
      * @see #setMatchLength
      * @see #getMatchLength
-     * @stable ICU 2.0
      */
     protected int matchLength;
 
@@ -166,7 +162,6 @@ public abstract class SearchIterator
      * been returned, and by first() and last() if there are no matches at all.
      * @see #previous
      * @see #next
-     * @stable ICU 2.0
      */
     public static final int DONE = -1;
 
@@ -183,7 +178,6 @@ public abstract class SearchIterator
      * @exception IndexOutOfBoundsException thrown if argument position is out
      *            of the target text range.
      * @see #getIndex
-     * @stable ICU 2.8
      */
     public void setIndex(int position) {
         if (position < search_.beginIndex() 
@@ -205,7 +199,6 @@ public abstract class SearchIterator
      * 
      * @param allowOverlap flag indicator if overlapping matches are allowed
      * @see #isOverlapping
-     * @stable ICU 2.8
      */
     public void setOverlapping(boolean allowOverlap) {
         search_.isOverlap_ = allowOverlap;
@@ -223,7 +216,6 @@ public abstract class SearchIterator
      *                for. If this parameter is <tt>null</tt>, no break
      *                detection is attempted.
      * @see BreakIterator
-     * @stable ICU 2.0
      */
     public void setBreakIterator(BreakIterator breakiter) {
         search_.setBreakIter(breakiter);
@@ -245,7 +237,6 @@ public abstract class SearchIterator
      * @exception IllegalArgumentException thrown when text is null or has
      *               0 length
      * @see #getTarget
-     * @stable ICU 2.4
      */
     public void setTarget(CharacterIterator text)
     {
@@ -289,7 +280,6 @@ public abstract class SearchIterator
     * @see #next
     * @see #previous
     * @see #last
-    * @stable ICU 2.0
     */
     public int getMatchStart() {
         return search_.matchedIndex_;
@@ -302,7 +292,6 @@ public abstract class SearchIterator
      * is returned.
      * 
      * @return current index in the text being searched.
-     * @stable ICU 2.8
      */
     public abstract int getIndex();
 
@@ -319,7 +308,6 @@ public abstract class SearchIterator
      * @see #next
      * @see #previous
      * @see #last
-     * @stable ICU 2.0
      */
     public int getMatchLength() {
         return search_.matchedLength();
@@ -335,7 +323,6 @@ public abstract class SearchIterator
      * @return the BreakIterator set to restrict logic matches
      * @see #setBreakIterator
      * @see BreakIterator
-     * @stable ICU 2.0
      */
     public BreakIterator getBreakIterator() {
         return search_.breakIter();
@@ -344,7 +331,6 @@ public abstract class SearchIterator
     /**
      * Return the string text to be searched.
      * @return text string to be searched.
-     * @stable ICU 2.0
      */
     public CharacterIterator getTarget() {
         return search_.text();
@@ -363,7 +349,6 @@ public abstract class SearchIterator
      * @see #next
      * @see #previous
      * @see #last
-     * @stable ICU 2.0
      */
     public String getMatchedText() {
         if (search_.matchedLength() > 0) {
@@ -395,7 +380,6 @@ public abstract class SearchIterator
      * @return The index of the next match after the current position,
      *          or {@link #DONE} if there are no more matches.
      * @see #getIndex
-     * @stable ICU 2.0
      */
     public int next() {
         int index = getIndex(); // offset = getOffset() in ICU4C
@@ -447,7 +431,6 @@ public abstract class SearchIterator
      * @return The index of the previous match before the current position,
      *          or {@link #DONE} if there are no more matches.
      * @see #getIndex
-     * @stable ICU 2.0
      */
     public int previous() {
         int index;  // offset in ICU4C
@@ -497,7 +480,6 @@ public abstract class SearchIterator
      * 
      * @see #setOverlapping
      * @return true if the overlapping property has been set, false otherwise
-     * @stable ICU 2.8
      */
     public boolean isOverlapping() {
         return search_.isOverlap_;
@@ -512,8 +494,6 @@ public abstract class SearchIterator
     * iteration is initiated before a backwards iteration. Otherwise if a
     * backwards iteration is initiated before a forwards iteration, the
     * search will begin at the end of the text string.
-    * 
-    * @stable ICU 2.0
     */
     public void reset() {
         setMatchNotFound();
@@ -537,7 +517,6 @@ public abstract class SearchIterator
      *         {@link #DONE} if there are no matches.
      * 
      * @see #getIndex
-     * @stable ICU 2.0
      */
     public final int first() {
         int startIdx = search_.beginIndex();
@@ -559,7 +538,6 @@ public abstract class SearchIterator
      * @throws IndexOutOfBoundsException    If position is less than or greater
      *      than the text range for searching.
      * @see #getIndex
-     * @stable ICU 2.0
      */
     public final int following(int position) {
         setIndex(position);
@@ -577,7 +555,6 @@ public abstract class SearchIterator
      * @return The index of the first match, or {@link #DONE} if 
      *         there are no matches.
      * @see #getIndex
-     * @stable ICU 2.0
      */
     public final int last() {
         int endIdx = search_.endIndex();
@@ -605,7 +582,6 @@ public abstract class SearchIterator
      * @throws IndexOutOfBoundsException If position is less than or greater than
      *                                   the text range for searching
      * @see #getIndex
-     * @stable ICU 2.0
      */
     public final int preceding(int position) {
         setIndex(position);
@@ -627,7 +603,6 @@ public abstract class SearchIterator
      * @exception IllegalArgumentException thrown when argument target is null,
      *            or of length 0
      * @see BreakIterator  
-     * @stable ICU 2.0
      */
     protected SearchIterator(CharacterIterator target, BreakIterator breaker)
     {
@@ -663,7 +638,6 @@ public abstract class SearchIterator
      * @param length new length to set
      * @see #handleNext
      * @see #handlePrevious
-     * @stable ICU 2.0
      */
     protected void setMatchLength(int length)
     {
@@ -686,7 +660,6 @@ public abstract class SearchIterator
      * @return index at which the match starts, else if match is not found 
      *         {@link #DONE} is returned
      * @see #setMatchLength
-     * @stable ICU 2.0
      */
     protected abstract int handleNext(int start);
 
@@ -706,7 +679,6 @@ public abstract class SearchIterator
      * @return index at which the match starts, else if match is not found 
      *         {@link #DONE} is returned
      * @see #setMatchLength
-     * @stable ICU 2.0
      */
     protected abstract int handlePrevious(int startAt);
 
@@ -736,13 +708,10 @@ public abstract class SearchIterator
      * 
      * @see #setElementComparisonType(ElementComparisonType)
      * @see #getElementComparisonType()
-     * @stable ICU 53
      */
     public enum ElementComparisonType {
         /**
          * Standard collation element comparison at the specified collator strength.
-         * 
-         * @stable ICU 53
          */
         STANDARD_ELEMENT_COMPARISON,
         /**
@@ -756,8 +725,6 @@ public abstract class SearchIterator
          * a plain e or an e with any diacritic in the searched text, but an e with
          * diacritic in the pattern will only match an e with the same diacritic in
          * the searched text.
-         * 
-         * @stable ICU 53
          */
         PATTERN_BASE_WEIGHT_IS_WILDCARD,
 
@@ -772,8 +739,6 @@ public abstract class SearchIterator
          * a plain e or an e with any diacritic in the searched text, but an e with
          * diacritic in the pattern will only match an e with the same diacritic or a
          * plain e in the searched text.
-         * 
-         * @stable ICU 53
          */
         ANY_BASE_WEIGHT_IS_WILDCARD
     }
@@ -785,7 +750,6 @@ public abstract class SearchIterator
      * 
      * @see ElementComparisonType
      * @see #getElementComparisonType()
-     * @stable ICU 53
      */
     public void setElementComparisonType(ElementComparisonType type) {
         search_.elementComparisonType_ = type;
@@ -796,7 +760,6 @@ public abstract class SearchIterator
      * 
      * @see ElementComparisonType
      * @see #setElementComparisonType(ElementComparisonType)
-     * @stable ICU 53
      */
     public ElementComparisonType getElementComparisonType() {
         return search_.elementComparisonType_;

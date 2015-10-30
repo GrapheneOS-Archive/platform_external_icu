@@ -28,7 +28,6 @@ import android.icu.impl.Grego;
  * @see      GregorianCalendar
  * @see      TimeZone
  * @author   David Goldsmith, Mark Davis, Chen-Lieh Huang, Alan Liu
- * @stable ICU 2.0
  * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
  */
@@ -37,19 +36,16 @@ public class SimpleTimeZone extends BasicTimeZone {
 
     /**
      * Constant for a mode of start or end time specified as local wall time.
-     * @stable ICU 3.8
      */
     public static final int WALL_TIME = 0;
 
     /**
      * Constant for a mode of start or end time specified as local standard time.
-     * @stable ICU 3.8
      */
     public static final int STANDARD_TIME = 1;
 
     /**
      * Constant for a mode of start or end time specified as UTC.
-     * @stable ICU 3.8
      */
     public static final int UTC_TIME = 2;
 
@@ -62,7 +58,6 @@ public class SimpleTimeZone extends BasicTimeZone {
      * @param rawOffset  The given base time zone offset to GMT.
      * @param ID         The time zone ID which is obtained from
      *                   TimeZone.getAvailableIDs.
-     * @stable ICU 2.0
      */
     public SimpleTimeZone(int rawOffset, String ID) {
         super(ID);
@@ -129,7 +124,6 @@ public class SimpleTimeZone extends BasicTimeZone {
      *                        member description for an example.
      * @throws IllegalArgumentException the month, day, dayOfWeek, or time
      * parameters are out of range for the start or end rule
-     * @stable ICU 2.0
      */
     public SimpleTimeZone(int rawOffset, String ID,
                           int startMonth, int startDay, int startDayOfWeek, int startTime,
@@ -176,7 +170,6 @@ public class SimpleTimeZone extends BasicTimeZone {
      * @param dstSavings      The amount of time in ms saved during DST.
      * @throws IllegalArgumentException the month, day, dayOfWeek, or time
      * parameters are out of range for the start or end rule
-     * @stable ICU 3.8
      */
     public SimpleTimeZone(int rawOffset,  String ID,
                           int startMonth, int startDay,
@@ -222,7 +215,6 @@ public class SimpleTimeZone extends BasicTimeZone {
      * @param dstSavings      The amount of time in ms saved during DST.
      * @throws IllegalArgumentException the month, day, dayOfWeek, or time
      * parameters are out of range for the start or end rule
-     * @stable ICU 2.0
      */
     public SimpleTimeZone(int rawOffset, String ID,
                           int startMonth, int startDay, int startDayOfWeek, int startTime,
@@ -239,8 +231,6 @@ public class SimpleTimeZone extends BasicTimeZone {
 
     /**
      * {@inheritDoc}
-     *
-     * @stable ICU 3.8
      */
     @Override
     public void setID(String ID) {
@@ -256,7 +246,6 @@ public class SimpleTimeZone extends BasicTimeZone {
      * Sets the base time zone offset to GMT.
      * This is the offset to add "to" UTC to get local time.
      * @param offsetMillis the raw offset of the time zone
-     * @stable ICU 2.0
      */
     @Override
     public void setRawOffset(int offsetMillis) {
@@ -272,7 +261,6 @@ public class SimpleTimeZone extends BasicTimeZone {
      * Overrides TimeZone
      * Gets the GMT offset for this time zone.
      * @return the raw offset
-     * @stable ICU 2.0
      */
     @Override
     public int getRawOffset() {
@@ -283,7 +271,6 @@ public class SimpleTimeZone extends BasicTimeZone {
      * Sets the daylight savings starting year.
      *
      * @param year  The daylight savings starting year.
-     * @stable ICU 2.0
      */
     public void setStartYear(int year) {
         if (isFrozen()) {
@@ -314,7 +301,6 @@ public class SimpleTimeZone extends BasicTimeZone {
      *                          the member description for an example.
      * @throws IllegalArgumentException the month, dayOfWeekInMonth,
      * dayOfWeek, or time parameters are out of range
-     * @stable ICU 2.0
      */
     public void setStartRule(int month, int dayOfWeekInMonth, int dayOfWeek,
                              int time) {
@@ -387,7 +373,6 @@ public class SimpleTimeZone extends BasicTimeZone {
      *                      standard time in this case.
      * @throws IllegalArgumentException the month,
      * dayOfMonth, or time parameters are out of range
-     * @stable ICU 2.0
      */
     public void setStartRule(int month, int dayOfMonth, int time) {
         if (isFrozen()) {
@@ -413,7 +398,6 @@ public class SimpleTimeZone extends BasicTimeZone {
      *                      the last dayOfWeek on or before dayOfMonth.
      * @throws IllegalArgumentException the month, dayOfMonth,
      * dayOfWeek, or time parameters are out of range
-     * @stable ICU 2.0
      */
     public void setStartRule(int month, int dayOfMonth, int dayOfWeek, int time, boolean after) {
         if (isFrozen()) {
@@ -443,7 +427,6 @@ public class SimpleTimeZone extends BasicTimeZone {
      *                          member description for an example.
      * @throws IllegalArgumentException the month, dayOfWeekInMonth,
      * dayOfWeek, or time parameters are out of range
-     * @stable ICU 2.0
      */
     public void setEndRule(int month, int dayOfWeekInMonth, int dayOfWeek, int time) {
         if (isFrozen()) {
@@ -464,7 +447,6 @@ public class SimpleTimeZone extends BasicTimeZone {
      *                      time in this case.
      * @throws IllegalArgumentException the month,
      * dayOfMonth, or time parameters are out of range
-     * @stable ICU 2.0
      */
     public void setEndRule(int month, int dayOfMonth, int time) {
         if (isFrozen()) {
@@ -490,7 +472,6 @@ public class SimpleTimeZone extends BasicTimeZone {
      *                      the last dayOfWeek on or before dayOfMonth.
      * @throws IllegalArgumentException the month, dayOfMonth,
      * dayOfWeek, or time parameters are out of range
-     * @stable ICU 2.0
      */
     public void setEndRule(int month, int dayOfMonth, int dayOfWeek, int time, boolean after) {
         if (isFrozen()) {
@@ -542,7 +523,6 @@ public class SimpleTimeZone extends BasicTimeZone {
      * @param millisSavedDuringDST the number of milliseconds the time is
      * advanced with respect to standard time when the daylight savings rules
      * are in effect. A positive number, typically one hour (3600000).
-     * @stable ICU 2.0
      */
     public void setDSTSavings(int millisSavedDuringDST) {
         if (isFrozen()) {
@@ -562,7 +542,6 @@ public class SimpleTimeZone extends BasicTimeZone {
      * @return the number of milliseconds the time is
      * advanced with respect to standard time when the daylight savings rules
      * are in effect. A positive number, typically one hour (3600000).
-     * @stable ICU 2.0
      */
     @Override
     public int getDSTSavings() {
@@ -611,7 +590,6 @@ public class SimpleTimeZone extends BasicTimeZone {
     /**
      * Returns a string representation of this object.
      * @return  a string representation of this object
-     * @stable ICU 3.6
      */
     @Override
     public String toString() {
@@ -639,7 +617,6 @@ public class SimpleTimeZone extends BasicTimeZone {
 
     /**
      * {@inheritDoc}
-     * @stable ICU 2.0
      */
     @Override
     public int getOffset(int era, int year, int month, int day,
@@ -956,7 +933,6 @@ public class SimpleTimeZone extends BasicTimeZone {
     /**
      * Overrides TimeZone
      * Queries if this time zone uses Daylight Saving Time.
-     * @stable ICU 2.0
      */
     @Override
     public boolean useDaylightTime(){
@@ -965,7 +941,6 @@ public class SimpleTimeZone extends BasicTimeZone {
 
     /**
      * {@inheritDoc}
-     * @stable ICU 49
      */
     public boolean observesDaylightTime() {
         return useDaylight;
@@ -974,7 +949,6 @@ public class SimpleTimeZone extends BasicTimeZone {
     /**
      * Overrides TimeZone
      * Queries if the give date is in Daylight Saving Time.
-     * @stable ICU 2.0
      */
     @Override
     public boolean inDaylightTime(Date date){
@@ -1139,7 +1113,6 @@ public class SimpleTimeZone extends BasicTimeZone {
     /**
      * Overrides equals.
      * @return true if obj is a SimpleTimeZone equivalent to this
-     * @stable ICU 3.6
      */
     @Override
     public boolean equals(Object obj){
@@ -1179,7 +1152,6 @@ public class SimpleTimeZone extends BasicTimeZone {
 
     /**
      * Overrides hashCode.
-     * @stable ICU 3.6
      */
     @Override
     public int hashCode(){
@@ -1207,7 +1179,6 @@ public class SimpleTimeZone extends BasicTimeZone {
 
     /**
      * Overrides clone.
-     * @stable ICU 3.6
      */
     @Override
     public Object clone() {
@@ -1221,7 +1192,6 @@ public class SimpleTimeZone extends BasicTimeZone {
      * Returns true if this zone has the same rules and offset as another zone.
      * @param othr the TimeZone object to be compared with
      * @return true if the given zone has the same rules and offset as this one
-     * @stable ICU 2.0
      */
     @Override
     public boolean hasSameRules(TimeZone othr) {
@@ -1257,7 +1227,6 @@ public class SimpleTimeZone extends BasicTimeZone {
 
     /**
      * {@inheritDoc}
-     * @stable ICU 3.8
      */
     @Override
     public TimeZoneTransition getNextTransition(long base, boolean inclusive) {
@@ -1285,7 +1254,6 @@ public class SimpleTimeZone extends BasicTimeZone {
 
     /**
      * {@inheritDoc}
-     * @stable ICU 3.8
      */
     @Override
     public TimeZoneTransition getPreviousTransition(long base, boolean inclusive) {
@@ -1313,7 +1281,6 @@ public class SimpleTimeZone extends BasicTimeZone {
 
     /**
      * {@inheritDoc}
-     * @stable ICU 3.8
      */
     @Override
     public TimeZoneRule[] getTimeZoneRules() {
@@ -1419,7 +1386,6 @@ public class SimpleTimeZone extends BasicTimeZone {
 
     /**
      * {@inheritDoc}
-     * @stable ICU 49
      */
     public boolean isFrozen() {
         return isFrozen;
@@ -1427,7 +1393,6 @@ public class SimpleTimeZone extends BasicTimeZone {
 
     /**
      * {@inheritDoc}
-     * @stable ICU 49
      */
     public TimeZone freeze() {
         isFrozen = true;
@@ -1436,7 +1401,6 @@ public class SimpleTimeZone extends BasicTimeZone {
 
     /**
      * {@inheritDoc}
-     * @stable ICU 49
      */
     public TimeZone cloneAsThawed() {
         SimpleTimeZone tz = (SimpleTimeZone)super.cloneAsThawed();

@@ -54,8 +54,6 @@ package android.icu.text;
  *  }
  * </code>
  * </p>
- * @stable ICU 2.4
- *
  * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
  */
@@ -64,7 +62,6 @@ public interface UForwardCharacterIterator {
       
     /**
      * Indicator that we have reached the ends of the UTF16 text.
-     * @stable ICU 2.4
      */
     public static final int DONE = -1;
     /**
@@ -74,7 +71,6 @@ public interface UForwardCharacterIterator {
      * of the text.
      * @return the next UTF16 code unit, or DONE if the index is at the limit
      *         of the text.
-     * @stable ICU 2.4  
      */
     public int next();
 
@@ -87,7 +83,6 @@ public interface UForwardCharacterIterator {
      * is returned.
      * @return the next codepoint in text, or DONE if the index is at
      *         the limit of the text.
-     * @stable ICU 2.4  
      */
     public int nextCodePoint();
 

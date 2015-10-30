@@ -206,7 +206,6 @@ import android.icu.util.ULocale;
  * </blockquote>
  *
  * @see CharacterIterator
- * @stable ICU 2.0
  *
  * @hide All android.icu classes are currently hidden
  */
@@ -219,7 +218,6 @@ public abstract class BreakIterator implements Cloneable
     /**
      * Default constructor.  There is no state that is carried by this abstract
      * base class.
-     * @stable ICU 2.0
      */
     protected BreakIterator()
     {
@@ -229,7 +227,6 @@ public abstract class BreakIterator implements Cloneable
      * Clone method.  Creates another BreakIterator with the same behavior and
      * current state as this one.
      * @return The clone.
-     * @stable ICU 2.0
      */
     public Object clone()
     {
@@ -246,7 +243,6 @@ public abstract class BreakIterator implements Cloneable
     /**
      * DONE is returned by previous() and next() after all valid
      * boundaries have been returned.
-     * @stable ICU 2.0
      */
     public static final int DONE = -1;
 
@@ -257,7 +253,6 @@ public abstract class BreakIterator implements Cloneable
      * always return 0.
      * @return The character offset of the beginning of the stretch of text
      * being broken.
-     * @stable ICU 2.0
      */
     public abstract int first();
 
@@ -268,7 +263,6 @@ public abstract class BreakIterator implements Cloneable
      * will always return text.length().
      * @return The character offset of the end of the stretch of text
      * being broken.
-     * @stable ICU 2.0
      */
     public abstract int last();
 
@@ -285,7 +279,6 @@ public abstract class BreakIterator implements Cloneable
      * @return The position of the boundary n boundaries from the current
      * iteration position, or DONE if moving n boundaries causes the iterator
      * to advance off either end of the text.
-     * @stable ICU 2.0
      */
     public abstract int next(int n);
 
@@ -298,7 +291,6 @@ public abstract class BreakIterator implements Cloneable
      * DONE.
      * @return The position of the first boundary position following the
      * iteration position.
-     * @stable ICU 2.0
      */
     public abstract int next();
 
@@ -311,7 +303,6 @@ public abstract class BreakIterator implements Cloneable
      * DONE.
      * @return The position of the last boundary position preceding the
      * iteration position.
-     * @stable ICU 2.0
      */
     public abstract int previous();
 
@@ -326,7 +317,6 @@ public abstract class BreakIterator implements Cloneable
      * @return The position of the first boundary position following
      * "offset" (whether or not "offset" itself is a boundary position),
      * or DONE if "offset" is the past-the-end offset.
-     * @stable ICU 2.0
      */
     public abstract int following(int offset);
 
@@ -341,7 +331,6 @@ public abstract class BreakIterator implements Cloneable
      * @return The position of the last boundary position preceding
      * "offset" (whether of not "offset" itself is a boundary position),
      * or DONE if "offset" is the starting offset of the iterator.
-     * @stable ICU 2.0
      */
     public int preceding(int offset) {
         // NOTE:  This implementation is here solely because we can't add new
@@ -360,7 +349,6 @@ public abstract class BreakIterator implements Cloneable
      * iteration position is set as though following() had been called.
      * @param offset the offset to check.
      * @return True if "offset" is a boundary position.
-     * @stable ICU 2.0
      */
     public boolean isBoundary(int offset) {
         // Again, this is the default implementation, which is provided solely because
@@ -376,7 +364,6 @@ public abstract class BreakIterator implements Cloneable
     /**
      * Return the iterator's current position.
      * @return The iterator's current position.
-     * @stable ICU 2.0
      */
     public abstract int current();
 
@@ -384,62 +371,52 @@ public abstract class BreakIterator implements Cloneable
     /** 
      * Tag value for "words" that do not fit into any of other categories. 
      * Includes spaces and most punctuation. 
-     * @stable ICU 53
      */
     public static final int WORD_NONE           = 0;
 
     /**
      * Upper bound for tags for uncategorized words. 
-     * @stable ICU 53
      */
     public static final int WORD_NONE_LIMIT     = 100;
 
     /**
      * Tag value for words that appear to be numbers, lower limit. 
-     * @stable ICU 53
      */
     public static final int WORD_NUMBER         = 100;
 
     /** 
      * Tag value for words that appear to be numbers, upper limit.
-     * @stable ICU 53
      */
     public static final int WORD_NUMBER_LIMIT   = 200;
 
     /** 
      * Tag value for words that contain letters, excluding
      * hiragana, katakana or ideographic characters, lower limit. 
-     * @stable ICU 53
      */
     public static final int WORD_LETTER         = 200;
 
     /** 
      * Tag value for words containing letters, upper limit 
-     * @stable ICU 53
      */
     public static final int WORD_LETTER_LIMIT   = 300;
 
     /** 
      * Tag value for words containing kana characters, lower limit
-     * @stable ICU 53
      */
     public static final int WORD_KANA           = 300;
 
     /** 
      * Tag value for words containing kana characters, upper limit
-     * @stable ICU 53
      */
     public static final int WORD_KANA_LIMIT     = 400;
 
     /**
      * Tag value for words containing ideographic characters, lower limit
-     * @stable ICU 53
      */
     public static final int WORD_IDEO           = 400;
 
     /**
      * Tag value for words containing ideographic characters, upper limit
-     * @stable ICU 53
      */
     public static final int WORD_IDEO_LIMIT     = 500;
 
@@ -453,8 +430,6 @@ public abstract class BreakIterator implements Cloneable
      * <p>
      * @return The status from the break rule that determined the most recently
      *         returned break position.
-     *
-     * @stable ICU 52
      */
 
     public int  getRuleStatus() {
@@ -478,7 +453,6 @@ public abstract class BreakIterator implements Cloneable
      *                  In the event that the array is too small, the return value
      *                  is the total number of status values that were available,
      *                  not the reduced number that were actually returned.
-     * @stable ICU 52
      */
     public int getRuleStatusVec(int[] fillInArray) {
         if (fillInArray != null && fillInArray.length > 0) {
@@ -496,7 +470,6 @@ public abstract class BreakIterator implements Cloneable
      * of this iterator when it is returned.  If you need to move that
      * position to examine the text, clone this function's return value first.
      * @return A CharacterIterator over the text being analyzed.
-     * @stable ICU 2.0
      */
     public abstract CharacterIterator getText();
 
@@ -507,7 +480,6 @@ public abstract class BreakIterator implements Cloneable
      * (The old text is dropped.)
      * @param newText A String containing the text to analyze with
      * this BreakIterator.
-     * @stable ICU 2.0
      */
     public void setText(String newText)
     {
@@ -523,33 +495,27 @@ public abstract class BreakIterator implements Cloneable
      * @param newText A CharacterIterator referring to the text
      * to analyze with this BreakIterator (the iterator's current
      * position is ignored, but its other state is significant).
-     * @stable ICU 2.0
      */
     public abstract void setText(CharacterIterator newText);
 
     /**
      * {{@literal @}icu}
-     * @stable ICU 2.4
      */
     public static final int KIND_CHARACTER = 0;
     /**
      * {{@literal @}icu}
-     * @stable ICU 2.4
      */
     public static final int KIND_WORD = 1;
     /**
      * {{@literal @}icu}
-     * @stable ICU 2.4
      */
     public static final int KIND_LINE = 2;
     /**
      * {{@literal @}icu}
-     * @stable ICU 2.4
      */
     public static final int KIND_SENTENCE = 3;
     /**
      * {{@literal @}icu}
-     * @stable ICU 2.4
      */
     public static final int KIND_TITLE = 4;
 
@@ -565,7 +531,6 @@ public abstract class BreakIterator implements Cloneable
      * This function assumes that the text being analyzed is in the default
      * locale's language.
      * @return An instance of BreakIterator that locates word boundaries.
-     * @stable ICU 2.0
      */
     public static BreakIterator getWordInstance()
     {
@@ -578,7 +543,6 @@ public abstract class BreakIterator implements Cloneable
      * analyzed.
      * @return An instance of BreakIterator that locates word boundaries.
      * @throws NullPointerException if <code>where</code> is null.
-     * @stable ICU 2.0
      */
     public static BreakIterator getWordInstance(Locale where)
     {
@@ -591,7 +555,6 @@ public abstract class BreakIterator implements Cloneable
      * analyzed.
      * @return An instance of BreakIterator that locates word boundaries.
      * @throws NullPointerException if <code>where</code> is null.
-     * @stable ICU 3.2
      */
     public static BreakIterator getWordInstance(ULocale where)
     {
@@ -604,7 +567,6 @@ public abstract class BreakIterator implements Cloneable
      * is in the default locale's language.
      * @return A new instance of BreakIterator that locates legal
      * line-wrapping positions.
-     * @stable ICU 2.0
      */
     public static BreakIterator getLineInstance()
     {
@@ -618,7 +580,6 @@ public abstract class BreakIterator implements Cloneable
      * @return A new instance of BreakIterator that locates legal
      * line-wrapping positions.
      * @throws NullPointerException if <code>where</code> is null.
-     * @stable ICU 2.0
      */
     public static BreakIterator getLineInstance(Locale where)
     {
@@ -632,7 +593,6 @@ public abstract class BreakIterator implements Cloneable
      * @return A new instance of BreakIterator that locates legal
      * line-wrapping positions.
      * @throws NullPointerException if <code>where</code> is null.
-     * @stable ICU 3.2
      */
     public static BreakIterator getLineInstance(ULocale where)
     {
@@ -645,7 +605,6 @@ public abstract class BreakIterator implements Cloneable
      * in the default locale's language.
      * @return A new instance of BreakIterator that locates logical-character
      * boundaries.
-     * @stable ICU 2.0
      */
     public static BreakIterator getCharacterInstance()
     {
@@ -659,7 +618,6 @@ public abstract class BreakIterator implements Cloneable
      * @return A new instance of BreakIterator that locates logical-character
      * boundaries.
      * @throws NullPointerException if <code>where</code> is null.
-     * @stable ICU 2.0
      */
     public static BreakIterator getCharacterInstance(Locale where)
     {
@@ -673,7 +631,6 @@ public abstract class BreakIterator implements Cloneable
      * @return A new instance of BreakIterator that locates logical-character
      * boundaries.
      * @throws NullPointerException if <code>where</code> is null.
-     * @stable ICU 3.2
      */
     public static BreakIterator getCharacterInstance(ULocale where)
     {
@@ -685,7 +642,6 @@ public abstract class BreakIterator implements Cloneable
      * This function assumes the text being analyzed is in the default locale's
      * language.
      * @return A new instance of BreakIterator that locates sentence boundaries.
-     * @stable ICU 2.0
      */
     public static BreakIterator getSentenceInstance()
     {
@@ -697,7 +653,6 @@ public abstract class BreakIterator implements Cloneable
      * @param where A Locale specifying the language of the text being analyzed.
      * @return A new instance of BreakIterator that locates sentence boundaries.
      * @throws NullPointerException if <code>where</code> is null.
-     * @stable ICU 2.0
      */
     public static BreakIterator getSentenceInstance(Locale where)
     {
@@ -709,7 +664,6 @@ public abstract class BreakIterator implements Cloneable
      * @param where A Locale specifying the language of the text being analyzed.
      * @return A new instance of BreakIterator that locates sentence boundaries.
      * @throws NullPointerException if <code>where</code> is null.
-     * @stable ICU 3.2
      */
     public static BreakIterator getSentenceInstance(ULocale where)
     {
@@ -723,7 +677,6 @@ public abstract class BreakIterator implements Cloneable
      * Unicode 3.2 only. For Unicode 4.0 and above title boundary iteration,
      * please use a word boundary iterator. {@link #getWordInstance}
      * @return A new instance of BreakIterator that locates title boundaries.
-     * @stable ICU 2.0
      */
     public static BreakIterator getTitleInstance()
     {
@@ -738,7 +691,6 @@ public abstract class BreakIterator implements Cloneable
      * @param where A Locale specifying the language of the text being analyzed.
      * @return A new instance of BreakIterator that locates title boundaries.
      * @throws NullPointerException if <code>where</code> is null.
-     * @stable ICU 2.0
      */
     public static BreakIterator getTitleInstance(Locale where)
     {
@@ -752,9 +704,7 @@ public abstract class BreakIterator implements Cloneable
      * please use Word Boundary iterator.{@link #getWordInstance}
      * @param where A Locale specifying the language of the text being analyzed.
      * @return A new instance of BreakIterator that locates title boundaries.
-     * @throws NullPointerException if <code>where</code> is null.
-     * @stable ICU 3.2
-s     */
+     * @throws NullPointerException if <code>where</code> is null.*/
     public static BreakIterator getTitleInstance(ULocale where)
     {
         return getBreakInstance(where, KIND_TITLE);
@@ -773,7 +723,6 @@ s     */
      * @param locale the Locale for which this instance is to be registered
      * @param kind the type of iterator for which this instance is to be registered
      * @return a registry key that can be used to unregister this instance
-     * @stable ICU 2.4
      */
     public static Object registerInstance(BreakIterator iter, Locale locale, int kind) {
         return registerInstance(iter, ULocale.forLocale(locale), kind);
@@ -792,7 +741,6 @@ s     */
      * @param locale the Locale for which this instance is to be registered
      * @param kind the type of iterator for which this instance is to be registered
      * @return a registry key that can be used to unregister this instance
-     * @stable ICU 3.2
      */
     public static Object registerInstance(BreakIterator iter, ULocale locale, int kind) {
         // If the registered object matches the one in the cache, then
@@ -814,7 +762,6 @@ s     */
      * again.
      * @param key the registry key returned by a previous call to registerInstance
      * @return true if the iterator for the key was successfully unregistered
-     * @stable ICU 2.4
      */
     public static boolean unregister(Object key) {
         if (key == null) {
@@ -885,7 +832,6 @@ s     */
      * Returns a list of locales for which BreakIterators can be used.
      * @return An array of Locales.  All of the locales in the array can
      * be used when creating a BreakIterator.
-     * @stable ICU 2.6
      */
     public static synchronized Locale[] getAvailableLocales()
     {

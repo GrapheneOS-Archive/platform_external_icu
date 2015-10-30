@@ -17,7 +17,7 @@ class CharsetRecog_UTF8 extends CharsetRecognizer {
     }
 
     /* (non-Javadoc)
-     * @see com.ibm.icu.text.CharsetRecognizer#match(com.ibm.icu.text.CharsetDetector)
+     * @see android.icu.text.CharsetRecognizer#match(android.icu.text.CharsetDetector)
      */
     CharsetMatch match(CharsetDetector det) {
         boolean     hasBOM = false;

@@ -38,14 +38,14 @@ import android.icu.util.ULocale;
  * This class interact with TimeZoneNames and LocaleDisplayNames
  * to format and parse time zone's generic display names.
  * It is not recommended to use this class directly, instead
- * use com.ibm.icu.text.TimeZoneFormat.
+ * use android.icu.text.TimeZoneFormat.
  * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
  */
 public class TimeZoneGenericNames implements Serializable, Freezable<TimeZoneGenericNames> {
 
     // Note: This class implements Serializable, but we no longer serialize instance of
-    // TimeZoneGenericNames in ICU 49. ICU 4.8 com.ibm.icu.text.TimeZoneFormat used to
+    // TimeZoneGenericNames in ICU 49. ICU 4.8 android.icu.text.TimeZoneFormat used to
     // serialize TimeZoneGenericNames field. TimeZoneFormat no longer read TimeZoneGenericNames
     // field, we have to keep TimeZoneGenericNames Serializable. Otherwise it fails to read
     // (unused) TimeZoneGenericNames serialized data.
@@ -633,7 +633,7 @@ public class TimeZoneGenericNames implements Serializable, Freezable<TimeZoneGen
         }
 
         /* (non-Javadoc)
-         * @see com.ibm.icu.impl.TextTrieMap.ResultHandler#handlePrefixMatch(int, java.util.Iterator)
+         * @see android.icu.impl.TextTrieMap.ResultHandler#handlePrefixMatch(int, java.util.Iterator)
          */
         public boolean handlePrefixMatch(int matchLength, Iterator<NameInfo> values) {
             while (values.hasNext()) {
@@ -890,7 +890,7 @@ public class TimeZoneGenericNames implements Serializable, Freezable<TimeZoneGen
     private static class Cache extends SoftCache<String, TimeZoneGenericNames, ULocale> {
 
         /* (non-Javadoc)
-         * @see com.ibm.icu.impl.CacheBase#createInstance(java.lang.Object, java.lang.Object)
+         * @see android.icu.impl.CacheBase#createInstance(java.lang.Object, java.lang.Object)
          */
         @Override
         protected TimeZoneGenericNames createInstance(String key, ULocale data) {

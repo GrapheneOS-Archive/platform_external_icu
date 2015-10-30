@@ -223,7 +223,6 @@ import android.icu.util.UResourceBundle;
  * Copyright &copy; IBM Corporation 1999. All rights reserved.
  * 
  * @author Alan Liu
- * @stable ICU 2.0
  * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
  */
@@ -233,7 +232,6 @@ public abstract class Transliterator implements StringTransform  {
      * e.g., the forward rules of a RuleBasedTransliterator.  An "A-B"
      * transliterator transliterates A to B when operating in the forward
      * direction, and B to A when operating in the reverse direction.
-     * @stable ICU 2.0
      */
     public static final int FORWARD = 0;
 
@@ -242,7 +240,6 @@ public abstract class Transliterator implements StringTransform  {
      * e.g., the reverse rules of a RuleBasedTransliterator.  An "A-B"
      * transliterator transliterates A to B when operating in the forward
      * direction, and B to A when operating in the reverse direction.
-     * @stable ICU 2.0
      */
     public static final int REVERSE = 1;
 
@@ -265,7 +262,6 @@ public abstract class Transliterator implements StringTransform  {
      * boundaries.  That is, none of them may occur between two code units
      * of a surrogate pair.  If any index does split a surrogate pair,
      * results are unspecified.
-     * @stable ICU 2.0
      */
     public static class Position {
 
@@ -275,7 +271,6 @@ public abstract class Transliterator implements StringTransform  {
          * anything before this index.  INPUT/OUTPUT parameter: This parameter
          * is updated by a transliteration operation to reflect the maximum
          * amount of antecontext needed by a transliterator.
-         * @stable ICU 2.0
          */
         public int contextStart;
 
@@ -285,7 +280,6 @@ public abstract class Transliterator implements StringTransform  {
          * anything at or after this index.  INPUT/OUTPUT parameter: This
          * parameter is updated to reflect changes in the length of the
          * text, but points to the same logical position in the text.
-         * @stable ICU 2.0
          */
         public int contextLimit;
 
@@ -294,7 +288,6 @@ public abstract class Transliterator implements StringTransform  {
          * INPUT/OUTPUT parameter: This parameter is advanced past
          * characters that have already been transliterated by a
          * transliteration operation.
-         * @stable ICU 2.0
          */
         public int start;
 
@@ -303,14 +296,12 @@ public abstract class Transliterator implements StringTransform  {
          * INPUT/OUTPUT parameter: This parameter is updated to reflect
          * changes in the length of the text, but points to the same
          * logical position in the text.
-         * @stable ICU 2.0
          */
         public int limit;
 
         /**
          * Constructs a Position object with start, limit,
          * contextStart, and contextLimit all equal to zero.
-         * @stable ICU 2.0
          */
         public Position() {
             this(0, 0, 0, 0);
@@ -320,7 +311,6 @@ public abstract class Transliterator implements StringTransform  {
          * Constructs a Position object with the given start,
          * contextStart, and contextLimit.  The limit is set to the
          * contextLimit.
-         * @stable ICU 2.0
          */
         public Position(int contextStart, int contextLimit, int start) {
             this(contextStart, contextLimit, start, contextLimit);
@@ -329,7 +319,6 @@ public abstract class Transliterator implements StringTransform  {
         /**
          * Constructs a Position object with the given start, limit,
          * contextStart, and contextLimit.
-         * @stable ICU 2.0
          */
         public Position(int contextStart, int contextLimit,
                         int start, int limit) {
@@ -341,7 +330,6 @@ public abstract class Transliterator implements StringTransform  {
 
         /**
          * Constructs a Position object that is a copy of another.
-         * @stable ICU 2.6
          */
         public Position(Position pos) {
             set(pos);
@@ -349,7 +337,6 @@ public abstract class Transliterator implements StringTransform  {
 
         /**
          * Copies the indices of this position from another.
-         * @stable ICU 2.6
          */
         public void set(Position pos) {
             contextStart = pos.contextStart;
@@ -360,7 +347,6 @@ public abstract class Transliterator implements StringTransform  {
 
         /**
          * Returns true if this Position is equal to the given object.
-         * @stable ICU 2.6
          */
         public boolean equals(Object obj) {
             if (obj instanceof Position) {
@@ -388,7 +374,6 @@ public abstract class Transliterator implements StringTransform  {
 
         /**
          * Returns a string representation of this Position.
-         * @stable ICU 2.6
          */
         public String toString() {
             return "[cs=" + contextStart
@@ -403,7 +388,6 @@ public abstract class Transliterator implements StringTransform  {
          * @param length the length of the string this object applies to
          * @exception IllegalArgumentException if any indices are out
          * of bounds
-         * @stable ICU 2.0
          */
         public final void validate(int length) {
             if (contextStart < 0 ||
@@ -484,7 +468,7 @@ public abstract class Transliterator implements StringTransform  {
      * To enable debugging output in the Transliterator component, set
      * DEBUG to true.
      *
-     * N.B. Make sure to recompile all of the com.ibm.icu.text package
+     * N.B. Make sure to recompile all of the android.icu.text package
      * after changing this.  Easiest way to do this is 'ant clean
      * core' ('ant' will NOT pick up the dependency automatically).
      *
@@ -499,7 +483,6 @@ public abstract class Transliterator implements StringTransform  {
      * <tt>filter.contains()</tt> returns <tt>false</tt> will not be
      * altered by this transliterator.  If <tt>filter</tt> is
      * <tt>null</tt> then no filtering is applied.
-     * @stable ICU 2.0
      */
     protected Transliterator(String ID, UnicodeFilter filter) {
         if (ID == null) {
@@ -522,7 +505,6 @@ public abstract class Transliterator implements StringTransform  {
      * length, at <code>[start, </code><em>new-limit</em><code>)</code>, where
      * <em>new-limit</em> is the return value. If the input offsets are out of bounds,
      * the returned value is -1 and the input string remains unchanged.
-     * @stable ICU 2.0
      */
     public final int transliterate(Replaceable text, int start, int limit) {
         if (start < 0 ||
@@ -539,7 +521,6 @@ public abstract class Transliterator implements StringTransform  {
     /**
      * Transliterates an entire string in place. Convenience method.
      * @param text the string to be transliterated
-     * @stable ICU 2.0
      */
     public final void transliterate(Replaceable text) {
         transliterate(text, 0, text.length());
@@ -550,7 +531,6 @@ public abstract class Transliterator implements StringTransform  {
      *
      * @param text the string to be transliterated
      * @return The transliterated text
-     * @stable ICU 2.0
      */
     public final String transliterate(String text) {
         ReplaceableString result = new ReplaceableString(text);
@@ -604,7 +584,6 @@ public abstract class Transliterator implements StringTransform  {
      * @see #handleTransliterate
      * @exception IllegalArgumentException if <code>index</code>
      * is invalid
-     * @stable ICU 2.0
      */
     public final void transliterate(Replaceable text, Position index,
                                     String insertion) {
@@ -650,7 +629,6 @@ public abstract class Transliterator implements StringTransform  {
      * transliterated into the translation buffer at
      * <code>index.contextLimit</code>.
      * @see #transliterate(Replaceable, Transliterator.Position, String)
-     * @stable ICU 2.0
      */
     public final void transliterate(Replaceable text, Position index,
                                     int insertion) {
@@ -667,7 +645,6 @@ public abstract class Transliterator implements StringTransform  {
      * @param index the start and limit of the text, the position
      * of the cursor, and the start and limit of transliteration.
      * @see #transliterate(Replaceable, Transliterator.Position, String)
-     * @stable ICU 2.0
      */
     public final void transliterate(Replaceable text, Position index) {
         transliterate(text, index, null);
@@ -682,7 +659,6 @@ public abstract class Transliterator implements StringTransform  {
      * untransliterated text.
      * @param index the array of indices previously passed to {@link
      * #transliterate}
-     * @stable ICU 2.0
      */
     public final void finishTransliteration(Replaceable text,
                                             Position index) {
@@ -767,7 +743,6 @@ public abstract class Transliterator implements StringTransform  {
      * <code>pos.limit</code>.
      *
      * @see #transliterate
-     * @stable ICU 2.0
      */
     protected abstract void handleTransliterate(Replaceable text,
                                                 Position pos, boolean incremental);
@@ -1111,7 +1086,6 @@ public abstract class Transliterator implements StringTransform  {
      * @param incremental if TRUE, then assume more characters may be inserted
      * at index.limit, and postpone processing to accomodate future incoming
      * characters
-     * @stable ICU 2.0
      */
     public void filteredTransliterate(Replaceable text,
                                          Position index,
@@ -1129,7 +1103,6 @@ public abstract class Transliterator implements StringTransform  {
      *
      * @return The maximum number of preceding context characters this
      * transliterator needs to examine
-     * @stable ICU 2.0
      */
     public final int getMaximumContextLength() {
         return maximumContextLength;
@@ -1138,7 +1111,6 @@ public abstract class Transliterator implements StringTransform  {
     /**
      * Method for subclasses to use to set the maximum context length.
      * @see #getMaximumContextLength
-     * @stable ICU 2.0
      */
     protected void setMaximumContextLength(int a) {
         if (a < 0) {
@@ -1153,7 +1125,6 @@ public abstract class Transliterator implements StringTransform  {
      * will return this object, if it has been registered.
      * @see #registerClass
      * @see #getAvailableIDs
-     * @stable ICU 2.0
      */
     public final String getID() {
         return ID;
@@ -1162,7 +1133,6 @@ public abstract class Transliterator implements StringTransform  {
     /**
      * Set the programmatic identifier for this transliterator.  Only
      * for use by subclasses.
-     * @stable ICU 2.0
      */
     protected final void setID(String id) {
         ID = id;
@@ -1173,7 +1143,6 @@ public abstract class Transliterator implements StringTransform  {
      * display to the user in the default <code>DISPLAY</code> locale.  See {@link
      * #getDisplayName(String,Locale)} for details.
      * @see android.icu.util.ULocale.Category#DISPLAY
-     * @stable ICU 2.0
      */
     public final static String getDisplayName(String ID) {
         return getDisplayName(ID, ULocale.getDefault(Category.DISPLAY));
@@ -1196,7 +1165,6 @@ public abstract class Transliterator implements StringTransform  {
      * @param inLocale the Locale in which the display name should be
      * localized.
      * @see java.text.MessageFormat
-     * @stable ICU 2.0
      */
     public static String getDisplayName(String id, Locale inLocale) {
         return getDisplayName(id, ULocale.forLocale(inLocale));
@@ -1219,7 +1187,6 @@ public abstract class Transliterator implements StringTransform  {
      * @param inLocale the ULocale in which the display name should be
      * localized.
      * @see java.text.MessageFormat
-     * @stable ICU 3.2
      */
     public static String getDisplayName(String id, ULocale inLocale) {
 
@@ -1286,7 +1253,6 @@ public abstract class Transliterator implements StringTransform  {
     /**
      * Returns the filter used by this transliterator, or <tt>null</tt>
      * if this transliterator uses no filter.
-     * @stable ICU 2.0
      */
     public final UnicodeFilter getFilter() {
         return filter;
@@ -1299,7 +1265,6 @@ public abstract class Transliterator implements StringTransform  {
      * <p>Callers must take care if a transliterator is in use by
      * multiple threads.  The filter should not be changed by one
      * thread while another thread may be transliterating.
-     * @stable ICU 2.0
      */
     public void setFilter(UnicodeFilter filter) {
         if (filter == null) {
@@ -1324,7 +1289,6 @@ public abstract class Transliterator implements StringTransform  {
      * @param ID a valid ID, as enumerated by <code>getAvailableIDs()</code>
      * @return A <code>Transliterator</code> object with the given ID
      * @exception IllegalArgumentException if the given ID is invalid.
-     * @stable ICU 2.0
      */
     public static final Transliterator getInstance(String ID) {
         return getInstance(ID, FORWARD);
@@ -1343,7 +1307,6 @@ public abstract class Transliterator implements StringTransform  {
      * @see #registerClass
      * @see #getAvailableIDs
      * @see #getID
-     * @stable ICU 2.0
      */
     public static Transliterator getInstance(String ID,
                                              int dir) {
@@ -1408,7 +1371,6 @@ public abstract class Transliterator implements StringTransform  {
      * CompoundTransliterator, if it contains ID blocks, or a
      * NullTransliterator, if it contains ID blocks which parse as
      * empty for the given direction.
-     * @stable ICU 2.0
      */
     public static final Transliterator createFromRules(String ID, String rules, int dir) {
         Transliterator t = null;
@@ -1474,7 +1436,6 @@ public abstract class Transliterator implements StringTransform  {
      * @param escapeUnprintable if true, then unprintable characters
      * will be converted to escape form backslash-'u' or
      * backslash-'U'.
-     * @stable ICU 2.0
      */
     public String toRules(boolean escapeUnprintable) {
         return baseToRules(escapeUnprintable);
@@ -1488,7 +1449,6 @@ public abstract class Transliterator implements StringTransform  {
      * @param escapeUnprintable if true, then unprintable characters
      * will be converted to escape form backslash-'u' or
      * backslash-'U'.
-     * @stable ICU 2.0
      */
     protected final String baseToRules(boolean escapeUnprintable) {
         // The base class implementation of toRules munges the ID into
@@ -1523,7 +1483,6 @@ public abstract class Transliterator implements StringTransform  {
      * length one containing a reference to this transliterator.
      * @return an array of one or more transliterators that make up
      * this transliterator
-     * @stable ICU 3.0
      */
     public Transliterator[] getElements() {
         Transliterator result[];
@@ -1550,7 +1509,6 @@ public abstract class Transliterator implements StringTransform  {
      * use by tests, tools, or utilities.
      * @see #getTargetSet
      * @see #handleGetSourceSet
-     * @stable ICU 2.2
      */
     public final UnicodeSet getSourceSet() {
         UnicodeSet result = new UnicodeSet();
@@ -1569,7 +1527,6 @@ public abstract class Transliterator implements StringTransform  {
      * newly-created object.
      * @see #getSourceSet
      * @see #getTargetSet
-     * @stable ICU 2.2
      */
     protected UnicodeSet handleGetSourceSet() {
         return new UnicodeSet();
@@ -1594,7 +1551,6 @@ public abstract class Transliterator implements StringTransform  {
      * [Pp]{([\u03A3\u03C2\u03C3\u03F7\u03F8\u03FA\u03FB])} > \' | $1;
      * </pre>
      * @see #getTargetSet
-     * @stable ICU 2.2
      */
     public UnicodeSet getTargetSet() {
         UnicodeSet result = new UnicodeSet();
@@ -1693,7 +1649,6 @@ public abstract class Transliterator implements StringTransform  {
      * exact, of this transliterator, or <code>null</code> if no such
      * transliterator is registered.
      * @see #registerClass
-     * @stable ICU 2.0
      */
     public final Transliterator getInverse() {
         return getInstance(ID, REVERSE);
@@ -1710,7 +1665,6 @@ public abstract class Transliterator implements StringTransform  {
      * transliterator
      * @param transClass a subclass of <code>Transliterator</code>
      * @see #unregister
-     * @stable ICU 2.0
      */
     public static void registerClass(String ID, Class<? extends Transliterator> transClass, String displayName) {
         registry.put(ID, transClass, true);
@@ -1729,7 +1683,6 @@ public abstract class Transliterator implements StringTransform  {
      * 
      * @param ID the ID of this transliterator
      * @param factory the factory object
-     * @stable ICU 2.0
      */
     public static void registerFactory(String ID, Factory factory) {
         registry.put(ID, factory, true);
@@ -1743,7 +1696,6 @@ public abstract class Transliterator implements StringTransform  {
      * Transliterator.getInstance to avoid undefined behavior.
      * 
      * @param trans the Transliterator object
-     * @stable ICU 2.2
      */
     public static void registerInstance(Transliterator trans) {
         registry.put(trans.getID(), trans, true);
@@ -1774,7 +1726,6 @@ public abstract class Transliterator implements StringTransform  {
      * 
      * @param aliasID The new ID being registered.
      * @param realID The existing ID that the new ID should be an alias of.
-     * @stable ICU 3.6
      */
     public static void registerAlias(String aliasID, String realID) {
         registry.put(aliasID, realID, true);
@@ -1824,7 +1775,6 @@ public abstract class Transliterator implements StringTransform  {
      *
      * @param ID the ID of the transliterator or class
      * @see #registerClass
-     * @stable ICU 2.0
      */
     public static void unregister(String ID) {
         displayNameCache.remove(new CaseInsensitiveString(ID));
@@ -1841,7 +1791,6 @@ public abstract class Transliterator implements StringTransform  {
      * @return An <code>Enumeration</code> over <code>String</code> objects
      * @see #getInstance
      * @see #registerClass
-     * @stable ICU 2.0
      */
     public static final Enumeration<String> getAvailableIDs() {
         return registry.getAvailableIDs();
@@ -1852,7 +1801,6 @@ public abstract class Transliterator implements StringTransform  {
      * transliterators.  Source names may be passed to
      * getAvailableTargets() to obtain available targets for each
      * source.
-     * @stable ICU 2.0
      */
     public static final Enumeration<String> getAvailableSources() {
         return registry.getAvailableSources();
@@ -1863,7 +1811,6 @@ public abstract class Transliterator implements StringTransform  {
      * transliterators having a given source name.  Target names may
      * be passed to getAvailableVariants() to obtain available
      * variants for each source and target pair.
-     * @stable ICU 2.0
      */
     public static final Enumeration<String> getAvailableTargets(String source) {
         return registry.getAvailableTargets(source);
@@ -1872,7 +1819,6 @@ public abstract class Transliterator implements StringTransform  {
     /**
      * Returns an enumeration over the variant names of registered
      * transliterators having a given source name and target name.
-     * @stable ICU 2.0
      */
     public static final Enumeration<String> getAvailableVariants(String source,
                                                          String target) {
@@ -1999,12 +1945,10 @@ public abstract class Transliterator implements StringTransform  {
      * makes it possible to register one factory method to more than
      * one ID, or for a factory method to parameterize its result
      * based on the variant.
-     * @stable ICU 2.0
      */
     public static interface Factory {
         /**
          * Return a transliterator for the given ID.
-         * @stable ICU 2.0
          */
         Transliterator getInstance(String ID);
     }
@@ -2013,7 +1957,6 @@ public abstract class Transliterator implements StringTransform  {
      * Implements StringTransform via this method.
      * @param source text to be transformed (eg lowercased)
      * @return result
-     * @stable ICU 3.8
      */
     public String transform(String source) {
         return transliterate(source);

@@ -15,8 +15,6 @@ package android.icu.util;
  * <p>This currently extends {@link RuntimeException},
  * but when ICU can rely on Java 8 this class should be changed to extend
  * java.io.UncheckedIOException instead.
- *
- * @stable ICU 53
  * @hide All android.icu classes are currently hidden
  */
 public class ICUUncheckedIOException extends RuntimeException {
@@ -24,8 +22,6 @@ public class ICUUncheckedIOException extends RuntimeException {
 
     /**
      * Default constructor.
-     *
-     * @stable ICU 53
      */
     public ICUUncheckedIOException() {
     }
@@ -34,7 +30,6 @@ public class ICUUncheckedIOException extends RuntimeException {
      * Constructor.
      *
      * @param message exception message string
-     * @stable ICU 53
      */
     public ICUUncheckedIOException(String message) {
         super(message);
@@ -44,7 +39,6 @@ public class ICUUncheckedIOException extends RuntimeException {
      * Constructor.
      *
      * @param cause original exception (normally a {@link java.io.IOException})
-     * @stable ICU 53
      */
     public ICUUncheckedIOException(Throwable cause) {
         super(cause);
@@ -55,7 +49,6 @@ public class ICUUncheckedIOException extends RuntimeException {
      *
      * @param message exception message string
      * @param cause original exception (normally a {@link java.io.IOException})
-     * @stable ICU 53
      */
     public ICUUncheckedIOException(String message, Throwable cause) {
         super(message, cause);

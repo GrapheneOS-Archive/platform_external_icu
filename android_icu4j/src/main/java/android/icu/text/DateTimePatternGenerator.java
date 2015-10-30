@@ -46,7 +46,6 @@ import android.icu.util.UResourceBundle;
  * The main method people will use is getBestPattern(String skeleton), since
  * normally this class is pre-built with data from a particular locale. However,
  * generators can be built directly from other data as well.
- * @stable ICU 3.6
  * @hide All android.icu classes are currently hidden
  */
 public class DateTimePatternGenerator implements Freezable<DateTimePatternGenerator>, Cloneable {
@@ -58,7 +57,6 @@ public class DateTimePatternGenerator implements Freezable<DateTimePatternGenera
 
     /**
      * Create empty generator, to be constructed with addPattern(...) etc.
-     * @stable ICU 3.6
      */
     public static DateTimePatternGenerator getEmptyInstance() {
         return new DateTimePatternGenerator();
@@ -66,7 +64,6 @@ public class DateTimePatternGenerator implements Freezable<DateTimePatternGenera
 
     /**
      * Only for use by subclasses
-     * @stable ICU 3.6
      */
     protected DateTimePatternGenerator() {
     }
@@ -74,7 +71,6 @@ public class DateTimePatternGenerator implements Freezable<DateTimePatternGenera
     /**
      * Construct a flexible generator according to data for the default <code>FORMAT</code> locale.
      * @see Category#FORMAT
-     * @stable ICU 3.6
      */
     public static DateTimePatternGenerator getInstance() {
         return getInstance(ULocale.getDefault(Category.FORMAT));
@@ -83,7 +79,6 @@ public class DateTimePatternGenerator implements Freezable<DateTimePatternGenera
     /**
      * Construct a flexible generator according to data for a given locale.
      * @param uLocale The locale to pass.
-     * @stable ICU 3.6
      */
     public static DateTimePatternGenerator getInstance(ULocale uLocale) {
         return getFrozenInstance(uLocale).cloneAsThawed();
@@ -92,7 +87,6 @@ public class DateTimePatternGenerator implements Freezable<DateTimePatternGenera
     /**
      * Construct a flexible generator according to data for a given locale.
      * @param locale The JDK locale to pass.
-     * @stable ICU 54
      */
     public static DateTimePatternGenerator getInstance(Locale locale) {
         return getInstance(ULocale.forLocale(locale));
@@ -377,11 +371,10 @@ public class DateTimePatternGenerator implements Freezable<DateTimePatternGenera
     /**
      * Return the best pattern matching the input skeleton. It is guaranteed to
      * have all of the fields in the skeleton.
-     * <p>Example code:{{@literal @}.jcite com.ibm.icu.samples.text.datetimepatterngenerator.DateTimePatternGeneratorSample:---getBestPatternExample}
+     * <p>Example code:{{@literal @}.jcite android.icu.samples.text.datetimepatterngenerator.DateTimePatternGeneratorSample:---getBestPatternExample}
      * @param skeleton The skeleton is a pattern containing only the variable fields.
      *            For example, "MMMdd" and "mmhh" are skeletons.
      * @return Best pattern matching the input skeleton.
-     * @stable ICU 3.6
      */
     public String getBestPattern(String skeleton) {
         return getBestPattern(skeleton, null, MATCH_NO_OPTIONS);
@@ -397,7 +390,6 @@ public class DateTimePatternGenerator implements Freezable<DateTimePatternGenera
      *            the returned pattern to match those in the skeleton (when this would
      *            not happen otherwise). For default behavior, use MATCH_NO_OPTIONS.
      * @return Best pattern matching the input skeleton (and options).
-     * @stable ICU 4.4
      */
     public String getBestPattern(String skeleton, int options) {
         return getBestPattern(skeleton, null, options);
@@ -451,38 +443,30 @@ public class DateTimePatternGenerator implements Freezable<DateTimePatternGenera
      * PatternInfo supplies output parameters for addPattern(...). It is used because
      * Java doesn't have real output parameters. It is treated like a struct (eg
      * Point), so all fields are public.
-     * 
-     * @stable ICU 3.6
      */
     public static final class PatternInfo { // struct for return information
         /**
-         * @stable ICU 3.6
          */
         public static final int OK = 0;
 
         /**
-         * @stable ICU 3.6
          */
         public static final int BASE_CONFLICT = 1;
 
         /**
-         * @stable ICU 3.6
          */
         public static final int CONFLICT = 2;
 
         /**
-         * @stable ICU 3.6
          */
         public int status;
 
         /**
-         * @stable ICU 3.6
          */
         public String conflictingPattern;
 
         /**
          * Simple constructor, since this is treated like a struct.
-         * @stable ICU 3.6
          */
         public PatternInfo() {
         }
@@ -496,12 +480,11 @@ public class DateTimePatternGenerator implements Freezable<DateTimePatternGenera
      * <p>
      * Note that single-field patterns (like "MMM") are automatically added, and
      * don't need to be added explicitly!
-     * * <p>Example code:{{@literal @}.jcite com.ibm.icu.samples.text.datetimepatterngenerator.DateTimePatternGeneratorSample:---addPatternExample}
+     * * <p>Example code:{{@literal @}.jcite android.icu.samples.text.datetimepatterngenerator.DateTimePatternGeneratorSample:---addPatternExample}
      * @param pattern Pattern to add.
      * @param override When existing values are to be overridden use true, otherwise
      *            use false.
      * @param returnInfo Returned information.
-     * @stable ICU 3.6
      */
     public DateTimePatternGenerator addPattern(String pattern, boolean override, PatternInfo returnInfo) {
         return addPatternWithSkeleton(pattern, null, override, returnInfo);
@@ -575,7 +558,6 @@ public class DateTimePatternGenerator implements Freezable<DateTimePatternGenera
      * 
      * @param pattern Input pattern, such as "dd/MMM"
      * @return skeleton, such as "MMMdd"
-     * @stable ICU 3.6
      */
     public String getSkeleton(String pattern) {
         synchronized (this) { // synchronized since a getter must be thread-safe
@@ -630,7 +612,6 @@ public class DateTimePatternGenerator implements Freezable<DateTimePatternGenera
      * 
      * @param pattern Input pattern, such as "dd/MMM"
      * @return skeleton, such as "MMMdd"
-     * @stable ICU 3.6
      */
     public String getBaseSkeleton(String pattern) {
         synchronized (this) { // synchronized since a getter must be thread-safe
@@ -652,7 +633,6 @@ public class DateTimePatternGenerator implements Freezable<DateTimePatternGenera
      *            the skeletons, and then have a separate routine to get from
      *            skeleton to pattern.</i>
      * @return the input Map containing the values.
-     * @stable ICU 3.6
      */
     public Map<String, String> getSkeletons(Map<String, String> result) {
         if (result == null) {
@@ -671,7 +651,6 @@ public class DateTimePatternGenerator implements Freezable<DateTimePatternGenera
 
     /**
      * Return a list of all the base skeletons (in canonical form) from this class
-     * @stable ICU 3.6
      */
     public Set<String> getBaseSkeletons(Set<String> result) {
         if (result == null) {
@@ -687,11 +666,10 @@ public class DateTimePatternGenerator implements Freezable<DateTimePatternGenera
      * skeleton of "MMMMddhhmm", then the input pattern is adjusted to be
      * "dd-MMMM hh:mm". This is used internally to get the best match for the
      * input skeleton, but can also be used externally.
-     * <p>Example code:{{@literal @}.jcite com.ibm.icu.samples.text.datetimepatterngenerator.DateTimePatternGeneratorSample:---replaceFieldTypesExample}
+     * <p>Example code:{{@literal @}.jcite android.icu.samples.text.datetimepatterngenerator.DateTimePatternGeneratorSample:---replaceFieldTypesExample}
      * @param pattern input pattern
      * @param skeleton For the pattern to match to.
      * @return pattern adjusted to match the skeleton fields widths and subtypes.
-     * @stable ICU 3.6
      */
     public String replaceFieldTypes(String pattern, String skeleton) {
         return replaceFieldTypes(pattern, skeleton, MATCH_NO_OPTIONS);
@@ -710,7 +688,6 @@ public class DateTimePatternGenerator implements Freezable<DateTimePatternGenera
      *            the returned pattern to match those in the skeleton (when this would
      *            not happen otherwise). For default behavior, use MATCH_NO_OPTIONS.
      * @return pattern adjusted to match the skeleton fields widths and subtypes.
-     * @stable ICU 4.4
      */
     public String replaceFieldTypes(String pattern, String skeleton, int options) {
         synchronized (this) { // synchronized since a getter must be thread-safe
@@ -735,7 +712,6 @@ public class DateTimePatternGenerator implements Freezable<DateTimePatternGenera
      * 
      * @param dateTimeFormat message format pattern, where {1} will be replaced by the date
      *            pattern and {0} will be replaced by the time pattern.
-     * @stable ICU 3.6
      */
     public void setDateTimeFormat(String dateTimeFormat) {
         checkFrozen();
@@ -746,7 +722,6 @@ public class DateTimePatternGenerator implements Freezable<DateTimePatternGenera
      * Getter corresponding to setDateTimeFormat.
      * 
      * @return pattern
-     * @stable ICU 3.6
      */
     public String getDateTimeFormat() {
         return dateTimeFormat;
@@ -761,7 +736,6 @@ public class DateTimePatternGenerator implements Freezable<DateTimePatternGenera
      * "H:mm:ss,SSSS"
      * 
      * @param decimal The decimal to set to.
-     * @stable ICU 3.6
      */
     public void setDecimal(String decimal) {
         checkFrozen();
@@ -771,7 +745,6 @@ public class DateTimePatternGenerator implements Freezable<DateTimePatternGenera
     /**
      * Getter corresponding to setDecimal.
      * @return string corresponding to the decimal point
-     * @stable ICU 3.6
      */
     public String getDecimal() {
         return decimal;
@@ -836,87 +809,70 @@ public class DateTimePatternGenerator implements Freezable<DateTimePatternGenera
     // Field numbers, used for AppendItem functions
 
     /**
-     * @stable ICU 3.6
      */
     static final public int ERA = 0;
 
     /**
-     * @stable ICU 3.6
      */
     static final public int YEAR = 1; 
 
     /**
-     * @stable ICU 3.6
      */
     static final public int QUARTER = 2; 
 
     /**
-     * @stable ICU 3.6
      */
     static final public int MONTH = 3;
 
     /**
-     * @stable ICU 3.6
      */
     static final public int WEEK_OF_YEAR = 4; 
 
     /**
-     * @stable ICU 3.6
      */
     static final public int WEEK_OF_MONTH = 5; 
 
     /**
-     * @stable ICU 3.6
      */
     static final public int WEEKDAY = 6; 
 
     /**
-     * @stable ICU 3.6
      */
     static final public int DAY = 7;
 
     /**
-     * @stable ICU 3.6
      */
     static final public int DAY_OF_YEAR = 8; 
 
     /**
-     * @stable ICU 3.6
      */
     static final public int DAY_OF_WEEK_IN_MONTH = 9; 
 
     /**
-     * @stable ICU 3.6
      */
     static final public int DAYPERIOD = 10;
 
     /**
-     * @stable ICU 3.6
      */
     static final public int HOUR = 11; 
 
     /**
-     * @stable ICU 3.6
      */
     static final public int MINUTE = 12; 
 
     /**
-     * @stable ICU 3.6
      */
     static final public int SECOND = 13; 
 
     /**
-     * @stable ICU 3.6
      */
     static final public int FRACTIONAL_SECOND = 14;
 
     /**
-     * @stable ICU 3.6
      */
     static final public int ZONE = 15; 
 
     /**
-     * @stable ICU 3.6
      */
     static final public int TYPE_LIMIT = 16;
 
@@ -925,7 +881,6 @@ public class DateTimePatternGenerator implements Freezable<DateTimePatternGenera
     /**
      * Default option mask used for {@link #getBestPattern(String, int)}
      * and {@link #replaceFieldTypes(String, String, int)}.
-     * @stable ICU 4.4
      * @see #getBestPattern(String, int)
      * @see #replaceFieldTypes(String, String, int)
      */
@@ -933,7 +888,6 @@ public class DateTimePatternGenerator implements Freezable<DateTimePatternGenera
 
     /**
      * Option mask for forcing the width of hour field.
-     * @stable ICU 4.4
      * @see #getBestPattern(String, int)
      * @see #replaceFieldTypes(String, String, int)
      */
@@ -961,7 +915,6 @@ public class DateTimePatternGenerator implements Freezable<DateTimePatternGenera
 
     /**
      * Option mask for forcing the width of all date and time fields.
-     * @stable ICU 4.4
      * @see #getBestPattern(String, int)
      * @see #replaceFieldTypes(String, String, int)
      */
@@ -983,7 +936,6 @@ public class DateTimePatternGenerator implements Freezable<DateTimePatternGenera
      * 
      * @param field such as ERA
      * @param value pattern, such as "{0}, {1}"
-     * @stable ICU 3.6
      */
     public void setAppendItemFormat(int field, String value) {
         checkFrozen();
@@ -996,7 +948,6 @@ public class DateTimePatternGenerator implements Freezable<DateTimePatternGenera
      * 
      * @param field The index to retrieve the append item formats.
      * @return append pattern for field
-     * @stable ICU 3.6
      */
     public String getAppendItemFormat(int field) {
         return appendItemFormats[field];
@@ -1011,7 +962,6 @@ public class DateTimePatternGenerator implements Freezable<DateTimePatternGenera
      * 
      * @param field Index of the append item names.
      * @param value The value to set the item to.
-     * @stable ICU 3.6
      */
     public void setAppendItemName(int field, String value) {
         checkFrozen();
@@ -1024,7 +974,6 @@ public class DateTimePatternGenerator implements Freezable<DateTimePatternGenera
      * 
      * @param field The index to get the append item name.
      * @return name for field
-     * @stable ICU 3.6
      */
     public String getAppendItemName(int field) {
         return appendItemNames[field];
@@ -1053,7 +1002,6 @@ public class DateTimePatternGenerator implements Freezable<DateTimePatternGenera
      * Add key to HashSet cldrAvailableFormatKeys.
      * 
      * @param key of the availableFormats in CLDR
-     * @stable ICU 3.6
      */
     private void setAvailableFormat(String key) {
         checkFrozen();
@@ -1069,7 +1017,6 @@ public class DateTimePatternGenerator implements Freezable<DateTimePatternGenera
      * @param key of the availableFormatMask in CLDR
      * @return TRUE if the corresponding slot of CLDR_AVAIL_FORMAT_KEY[]
      * has been added to DateTimePatternGenerator.
-     * @stable ICU 3.6
      */
     private boolean isAvailableFormatSet(String key) {
         return cldrAvailableFormatKeys.contains(key);
@@ -1077,7 +1024,6 @@ public class DateTimePatternGenerator implements Freezable<DateTimePatternGenera
 
     /**
      * Boilerplate for Freezable
-     * @stable ICU 3.6
      */
     public boolean isFrozen() {
         return frozen;
@@ -1085,7 +1031,6 @@ public class DateTimePatternGenerator implements Freezable<DateTimePatternGenera
 
     /**
      * Boilerplate for Freezable
-     * @stable ICU 4.4
      */
     public DateTimePatternGenerator freeze() {
         frozen = true;
@@ -1094,7 +1039,6 @@ public class DateTimePatternGenerator implements Freezable<DateTimePatternGenera
 
     /**
      * Boilerplate for Freezable
-     * @stable ICU 4.4
      */
     public DateTimePatternGenerator cloneAsThawed() {
         DateTimePatternGenerator result = (DateTimePatternGenerator) (this.clone());
@@ -1104,7 +1048,6 @@ public class DateTimePatternGenerator implements Freezable<DateTimePatternGenera
 
     /**
      * Boilerplate
-     * @stable ICU 3.6
      */
     @SuppressWarnings("unchecked")
     public Object clone() {

@@ -17,7 +17,6 @@ import android.icu.lang.UCharacterEnums.ECharacterDirection;
  * This class is not subclassable
  * </p>
  * @author Syn Wee Quek
- * @stable ICU 2.1
  * @hide All android.icu classes are currently hidden
  */
 
@@ -37,7 +36,6 @@ public final class UCharacterDirection implements ECharacterDirection {
      * Gets the name of the argument direction
      * @param dir direction type to retrieve name
      * @return directional name
-     * @stable ICU 2.1
      */
     public static String toString(int dir) {
         switch(dir)

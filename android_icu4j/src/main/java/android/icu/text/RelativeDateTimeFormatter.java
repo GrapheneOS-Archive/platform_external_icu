@@ -61,34 +61,28 @@ import android.icu.util.UResourceBundle;
  * <p>
  * In the future, we may add more forms, such as abbreviated/short forms
  * (3 secs ago), and relative day periods ("yesterday afternoon"), etc.
- * 
- * @stable ICU 53
  * @hide All android.icu classes are currently hidden
  */
 public final class RelativeDateTimeFormatter {
     
     /**
      * The formatting style
-     * @stable ICU 54
      *
      */
     public static enum Style {
         
         /**
          * Everything spelled out.
-         * @stable ICU 54
          */
         LONG,
         
         /**
          * Abbreviations used when possible.
-         * @stable ICU 54
          */
         SHORT,
         
         /**
          * Use single letters when possible.
-         * @stable ICU 54
          */
         NARROW,
     }
@@ -96,128 +90,107 @@ public final class RelativeDateTimeFormatter {
     /**
      * Represents the unit for formatting a relative date. e.g "in 5 days"
      * or "in 3 months"
-     * @stable ICU 53
      */
     public static enum RelativeUnit {
         
         /**
          * Seconds
-         * @stable ICU 53
          */
         SECONDS,
         
         /**
          * Minutes
-         * @stable ICU 53
          */
         MINUTES,
         
        /**
         * Hours
-        * @stable ICU 53
         */
         HOURS,
         
         /**
          * Days
-         * @stable ICU 53
          */
         DAYS,
         
         /**
          * Weeks
-         * @stable ICU 53
          */
         WEEKS,
         
         /**
          * Months
-         * @stable ICU 53
          */
         MONTHS,
         
         /**
          * Years
-         * @stable ICU 53
          */
         YEARS,
     }
     
     /**
      * Represents an absolute unit.
-     * @stable ICU 53
      */
     public static enum AbsoluteUnit {
         
        /**
         * Sunday
-        * @stable ICU 53
         */
         SUNDAY,
         
         /**
          * Monday
-         * @stable ICU 53
          */
         MONDAY,
         
         /**
          * Tuesday
-         * @stable ICU 53
          */
         TUESDAY,
         
         /**
          * Wednesday
-         * @stable ICU 53
          */
         WEDNESDAY,
         
         /**
          * Thursday
-         * @stable ICU 53
          */
         THURSDAY,
         
         /**
          * Friday
-         * @stable ICU 53
          */
         FRIDAY,
         
         /**
          * Saturday
-         * @stable ICU 53
          */
         SATURDAY,
         
         /**
          * Day
-         * @stable ICU 53
          */
         DAY,
         
         /**
          * Week
-         * @stable ICU 53
          */
         WEEK,
         
         /**
          * Month
-         * @stable ICU 53
          */
         MONTH,
         
         /**
          * Year
-         * @stable ICU 53
          */
         YEAR,
         
         /**
          * Now
-         * @stable ICU 53
          */
         NOW,
       }
@@ -225,50 +198,42 @@ public final class RelativeDateTimeFormatter {
       /**
        * Represents a direction for an absolute unit e.g "Next Tuesday"
        * or "Last Tuesday"
-       * @stable ICU 53
        */
       public static enum Direction {
           
           /**
            * Two before. Not fully supported in every locale
-           * @stable ICU 53
            */
           LAST_2,
 
           /**
            * Last
-           * @stable ICU 53
            */  
           LAST,
 
           /**
            * This
-           * @stable ICU 53
            */
           THIS,
 
           /**
            * Next
-           * @stable ICU 53
            */
           NEXT,
 
           /**
            * Two after. Not fully supported in every locale
-           * @stable ICU 53
            */
           NEXT_2,
 
           /**
            * Plain, which means the absence of a qualifier
-           * @stable ICU 53
            */
           PLAIN;
       }
 
     /**
      * Returns a RelativeDateTimeFormatter for the default locale.
-     * @stable ICU 53
      */
     public static RelativeDateTimeFormatter getInstance() {
         return getInstance(ULocale.getDefault(), null, Style.LONG, DisplayContext.CAPITALIZATION_NONE);
@@ -279,7 +244,6 @@ public final class RelativeDateTimeFormatter {
      * 
      * @param locale the locale.
      * @return An instance of RelativeDateTimeFormatter.
-     * @stable ICU 53
      */
     public static RelativeDateTimeFormatter getInstance(ULocale locale) {
         return getInstance(locale, null, Style.LONG, DisplayContext.CAPITALIZATION_NONE);
@@ -290,7 +254,6 @@ public final class RelativeDateTimeFormatter {
      * 
      * @param locale the JDK locale.
      * @return An instance of RelativeDateTimeFormatter.
-     * @stable ICU 54
      */
     public static RelativeDateTimeFormatter getInstance(Locale locale) {
         return getInstance(ULocale.forLocale(locale));
@@ -304,7 +267,6 @@ public final class RelativeDateTimeFormatter {
      * @param nf the number format object. It is defensively copied to ensure thread-safety
      * and immutability of this class. 
      * @return An instance of RelativeDateTimeFormatter.
-     * @stable ICU 53
      */
     public static RelativeDateTimeFormatter getInstance(ULocale locale, NumberFormat nf) {
         return getInstance(locale, nf, Style.LONG, DisplayContext.CAPITALIZATION_NONE);
@@ -319,7 +281,6 @@ public final class RelativeDateTimeFormatter {
      * and immutability of this class. May be null.
      * @param style the style.
      * @param capitalizationContext the capitalization context.
-     * @stable ICU 54
      */
     public static RelativeDateTimeFormatter getInstance(
             ULocale locale,
@@ -354,7 +315,6 @@ public final class RelativeDateTimeFormatter {
      * @param nf the number format object. It is defensively copied to ensure thread-safety
      * and immutability of this class. 
      * @return An instance of RelativeDateTimeFormatter.
-     * @stable ICU 54
      */
     public static RelativeDateTimeFormatter getInstance(Locale locale, NumberFormat nf) {
         return getInstance(ULocale.forLocale(locale), nf);
@@ -371,7 +331,6 @@ public final class RelativeDateTimeFormatter {
      * @return the formatted string
      * @throws IllegalArgumentException if direction is something other than
      * NEXT or LAST.
-     * @stable ICU 53
      */
     public String format(double quantity, Direction direction, RelativeUnit unit) {
         if (direction != Direction.LAST && direction != Direction.NEXT) {
@@ -398,7 +357,6 @@ public final class RelativeDateTimeFormatter {
      *  return null to signal that no formatted string is available.
      * @throws IllegalArgumentException if the direction is incompatible with
      * unit this can occur with NOW which can only take PLAIN.
-     * @stable ICU 53
      */
     public String format(Direction direction, AbsoluteUnit unit) {
         if (unit == AbsoluteUnit.NOW && direction != Direction.PLAIN) {
@@ -416,7 +374,6 @@ public final class RelativeDateTimeFormatter {
      * @param timeString the time e.g '3:45'
      * @return the date and time concatenated according to the default
      * calendar in this locale e.g 'yesterday, 3:45'
-     * @stable ICU 53
      */
     public String combineDateAndTime(String relativeDateString, String timeString) {
         return this.combinedDateAndTime.format(
@@ -426,7 +383,6 @@ public final class RelativeDateTimeFormatter {
     /**
      * Returns a copy of the NumberFormat this object is using.
      * @return A copy of the NumberFormat.
-     * @stable ICU 53
      */
     public NumberFormat getNumberFormat() {
         // This class is thread-safe, yet numberFormat is not. To ensure thread-safety of this
@@ -438,8 +394,6 @@ public final class RelativeDateTimeFormatter {
     
     /**
      * Return capitalization context.
-     *
-     * @stable ICU 54
      */
     public DisplayContext getCapitalizationContext() {
         return capitalizationContext;
@@ -447,8 +401,6 @@ public final class RelativeDateTimeFormatter {
 
     /**
      * Return style
-     *
-     * @stable ICU 54
      */
     public Style getFormatStyle() {
         return style;

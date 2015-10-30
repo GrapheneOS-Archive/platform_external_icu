@@ -72,8 +72,6 @@ import android.icu.util.ULocale;
  * locales. Therefore, the behavior of {@link #getAvailableMetaZoneIDs()}, {@link #getAvailableMetaZoneIDs(String)},
  * {@link #getMetaZoneID(String, long)}, and {@link #getReferenceZoneID(String, String)} won't be changed no matter
  * what locale is used for getting an instance of <code>TimeZoneNames</code>.
- *
- * @stable ICU 49
  * @hide All android.icu classes are currently hidden
  */
 public abstract class TimeZoneNames implements Serializable {
@@ -82,50 +80,34 @@ public abstract class TimeZoneNames implements Serializable {
 
     /**
      * Time zone display name types
-     * 
-     * @stable ICU 49
      */
     public enum NameType {
         /**
          * Long display name, such as "Eastern Time".
-         * 
-         * @stable ICU 49
          */
         LONG_GENERIC,
         /**
          * Long display name for standard time, such as "Eastern Standard Time".
-         * 
-         * @stable ICU 49
          */
         LONG_STANDARD,
         /**
          * Long display name for daylight saving time, such as "Eastern Daylight Time".
-         * 
-         * @stable ICU 49
          */
         LONG_DAYLIGHT,
         /**
          * Short display name, such as "ET".
-         * 
-         * @stable ICU 49
          */
         SHORT_GENERIC,
         /**
          * Short display name for standard time, such as "EST".
-         * 
-         * @stable ICU 49
          */
         SHORT_STANDARD,
         /**
          * Short display name for daylight saving time, such as "EDT".
-         * 
-         * @stable ICU 49
          */
         SHORT_DAYLIGHT,
         /**
          * Exemplar location name, such as "Los Angeles".
-         * 
-         * @stable ICU 51
          */
         EXEMPLAR_LOCATION,
     }
@@ -168,7 +150,6 @@ public abstract class TimeZoneNames implements Serializable {
      * @param locale
      *            The locale.
      * @return An instance of <code>TimeZoneNames</code>
-     * @stable ICU 49
      */
     public static TimeZoneNames getInstance(ULocale locale) {
         String key = locale.getBaseName();
@@ -181,7 +162,6 @@ public abstract class TimeZoneNames implements Serializable {
      * @param locale
      *            The JDK locale.
      * @return An instance of <code>TimeZoneDisplayNames</code>
-     * @stable ICU 54
      */
     public static TimeZoneNames getInstance(Locale locale) {
         return getInstance(ULocale.forLocale(locale));
@@ -195,8 +175,6 @@ public abstract class TimeZoneNames implements Serializable {
      * Note: The input locale is used for resolving ambiguous names (e.g. "IST" is parsed
      * as Israel Standard Time for Israel, while it is parsed as India Standard Time for
      * all other regions). The zone names returned by this instance are not localized.
-     * 
-     * @stable ICU 54
      */
     public static TimeZoneNames getTZDBInstance(ULocale locale) {
         return new TZDBTimeZoneNames(locale);
@@ -205,7 +183,6 @@ public abstract class TimeZoneNames implements Serializable {
     /**
      * Returns an immutable set of all available meta zone IDs.
      * @return An immutable set of all available meta zone IDs.
-     * @stable ICU 49
      */
     public abstract Set<String> getAvailableMetaZoneIDs();
 
@@ -215,7 +192,6 @@ public abstract class TimeZoneNames implements Serializable {
      * @param tzID
      *            The canonical time zone ID.
      * @return An immutable set of all available meta zone IDs used by the given time zone.
-     * @stable ICU 49
      */
     public abstract Set<String> getAvailableMetaZoneIDs(String tzID);
 
@@ -229,7 +205,6 @@ public abstract class TimeZoneNames implements Serializable {
      * @return The meta zone ID for the given time zone ID at the given date. If the time zone does not have a
      *         corresponding meta zone at the given date or the implementation does not support meta zones, null is
      *         returned.
-     * @stable ICU 49
      */
     public abstract String getMetaZoneID(String tzID, long date);
 
@@ -247,7 +222,6 @@ public abstract class TimeZoneNames implements Serializable {
      *            The region.
      * @return The reference zone ID ("golden zone" in the LDML specification) for the given time zone ID for the
      *         region. If the meta zone is unknown or the implementation does not support meta zones, null is returned.
-     * @stable ICU 49
      */
     public abstract String getReferenceZoneID(String mzID, String region);
 
@@ -261,7 +235,6 @@ public abstract class TimeZoneNames implements Serializable {
      * @return The display name of the meta zone. When this object does not have a localized display name for the given
      *         meta zone with the specified type or the implementation does not provide any display names associated
      *         with meta zones, null is returned.
-     * @stable ICU 49
      */
     public abstract String getMetaZoneDisplayName(String mzID, NameType type);
 
@@ -281,7 +254,6 @@ public abstract class TimeZoneNames implements Serializable {
      *            The date
      * @return The display name for the time zone at the given date. When this object does not have a localized display
      *         name for the time zone with the specified type and date, null is returned.
-     * @stable ICU 49
      */
     public final String getDisplayName(String tzID, NameType type, long date) {
         String name = getTimeZoneDisplayName(tzID, type);
@@ -302,7 +274,6 @@ public abstract class TimeZoneNames implements Serializable {
      *            The display name type. See {@link TimeZoneNames.NameType}.
      * @return The display name for the time zone. When this object does not have a localized display name for the given
      *         time zone with the specified type, null is returned.
-     * @stable ICU 49
      */
     public abstract String getTimeZoneDisplayName(String tzID, NameType type);
 
@@ -323,7 +294,6 @@ public abstract class TimeZoneNames implements Serializable {
      *            The canonical time zone ID
      * @return The exemplar location name for the given time zone, or null when a localized location name is not
      *         available and the fallback logic described above cannot extract location from the ID.
-     * @stable ICU 49
      */
     public String getExemplarLocationName(String tzID) {
         return TimeZoneNamesImpl.getDefaultExemplarLocationName(tzID);
@@ -536,7 +506,7 @@ public abstract class TimeZoneNames implements Serializable {
         /*
          * (non-Javadoc)
          * 
-         * @see com.ibm.icu.impl.CacheBase#createInstance(java.lang.Object, java.lang.Object)
+         * @see android.icu.impl.CacheBase#createInstance(java.lang.Object, java.lang.Object)
          */
         @Override
         protected TimeZoneNames createInstance(String key, ULocale data) {
@@ -557,7 +527,7 @@ public abstract class TimeZoneNames implements Serializable {
         public static final DefaultTimeZoneNames INSTANCE = new DefaultTimeZoneNames();
 
         /* (non-Javadoc)
-         * @see com.ibm.icu.text.TimeZoneNames#getAvailableMetaZoneIDs()
+         * @see android.icu.text.TimeZoneNames#getAvailableMetaZoneIDs()
          */
         @Override
         public Set<String> getAvailableMetaZoneIDs() {
@@ -565,7 +535,7 @@ public abstract class TimeZoneNames implements Serializable {
         }
 
         /* (non-Javadoc)
-         * @see com.ibm.icu.text.TimeZoneNames#getAvailableMetaZoneIDs(java.lang.String)
+         * @see android.icu.text.TimeZoneNames#getAvailableMetaZoneIDs(java.lang.String)
          */
         @Override
         public Set<String> getAvailableMetaZoneIDs(String tzID) {
@@ -575,7 +545,7 @@ public abstract class TimeZoneNames implements Serializable {
         /*
          * (non-Javadoc)
          * 
-         * @see com.ibm.icu.text.TimeZoneNames#getMetaZoneID (java.lang.String, long)
+         * @see android.icu.text.TimeZoneNames#getMetaZoneID (java.lang.String, long)
          */
         @Override
         public String getMetaZoneID(String tzID, long date) {
@@ -585,7 +555,7 @@ public abstract class TimeZoneNames implements Serializable {
         /*
          * (non-Javadoc)
          * 
-         * @see com.ibm.icu.text.TimeZoneNames#getReferenceZoneID(java.lang.String, java.lang.String)
+         * @see android.icu.text.TimeZoneNames#getReferenceZoneID(java.lang.String, java.lang.String)
          */
         @Override
         public String getReferenceZoneID(String mzID, String region) {
@@ -594,7 +564,7 @@ public abstract class TimeZoneNames implements Serializable {
 
         /*
          *  (non-Javadoc)
-         * @see com.ibm.icu.text.TimeZoneNames#getMetaZoneDisplayName(java.lang.String, com.ibm.icu.text.TimeZoneNames.NameType)
+         * @see android.icu.text.TimeZoneNames#getMetaZoneDisplayName(java.lang.String, android.icu.text.TimeZoneNames.NameType)
          */
         @Override
         public String getMetaZoneDisplayName(String mzID, NameType type) {
@@ -603,7 +573,7 @@ public abstract class TimeZoneNames implements Serializable {
 
         /*
          * (non-Javadoc)
-         * @see com.ibm.icu.text.TimeZoneNames#getTimeZoneDisplayName(java.lang.String, com.ibm.icu.text.TimeZoneNames.NameType)
+         * @see android.icu.text.TimeZoneNames#getTimeZoneDisplayName(java.lang.String, android.icu.text.TimeZoneNames.NameType)
          */
         @Override
         public String getTimeZoneDisplayName(String tzID, NameType type) {
@@ -611,7 +581,7 @@ public abstract class TimeZoneNames implements Serializable {
         }
 
         /* (non-Javadoc)
-         * @see com.ibm.icu.text.TimeZoneNames#find(java.lang.CharSequence, int, com.ibm.icu.text.TimeZoneNames.NameType[])
+         * @see android.icu.text.TimeZoneNames#find(java.lang.CharSequence, int, android.icu.text.TimeZoneNames.NameType[])
          */
         @Override
         public Collection<MatchInfo> find(CharSequence text, int start, EnumSet<NameType> nameTypes) {
@@ -627,7 +597,7 @@ public abstract class TimeZoneNames implements Serializable {
             /*
              * (non-Javadoc)
              * 
-             * @see com.ibm.icu.text.TimeZoneNames.Factory#getTimeZoneNames (com.ibm.icu.util.ULocale)
+             * @see android.icu.text.TimeZoneNames.Factory#getTimeZoneNames (android.icu.util.ULocale)
              */
             @Override
             public TimeZoneNames getTimeZoneNames(ULocale locale) {

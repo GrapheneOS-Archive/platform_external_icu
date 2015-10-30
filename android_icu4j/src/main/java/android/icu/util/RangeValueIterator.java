@@ -44,7 +44,6 @@ package android.icu.util;
  * }
  * </pre>
  * @author synwee
- * @stable ICU 2.6
  * @hide All android.icu classes are currently hidden
  */
 public interface RangeValueIterator
@@ -52,10 +51,9 @@ public interface RangeValueIterator
     // public inner class ---------------------------------------------
 
     /**
-    * Return result wrapper for com.ibm.icu.util.RangeValueIterator.
+    * Return result wrapper for android.icu.util.RangeValueIterator.
     * Stores the start and limit of the continous result range and the
     * common value all integers between [start, limit - 1] has.
-    * @stable ICU 2.6
     */
     public class Element
     {
@@ -64,18 +62,15 @@ public interface RangeValueIterator
         /**
         * Starting integer of the continuous result range that has the same
         * value
-        * @stable ICU 2.6
         */
         public int start;
         /**
         * (End + 1) integer of continuous result range that has the same
         * value
-        * @stable ICU 2.6
         */
         public int limit;
         /**
         * Gets the common value of the continous result range
-        * @stable ICU 2.6
         */
         public int value;
 
@@ -83,7 +78,6 @@ public interface RangeValueIterator
 
         /**
          * Empty default constructor to make javadoc happy
-         * @stable ICU 2.4
          */
         public Element()
         {
@@ -100,13 +94,11 @@ public interface RangeValueIterator
     * @param element for storing the result range and value
     * @return true if we are not at the end of the iteration, false otherwise.
     * @see Element
-    * @stable ICU 2.6
     */
     public boolean next(Element element);
 
     /**
     * Resets the iterator to the beginning of the iteration.
-    * @stable ICU 2.6
     */
     public void reset();
 }
