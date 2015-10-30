@@ -22,7 +22,7 @@ import java.io.File;
 /**
  * Always returns {@code null}, preventing output file generation.
  */
-public class NullOutputSourceFileGenerator implements OutputSourceFileGenerator {
+public final class NullOutputSourceFileGenerator implements OutputSourceFileGenerator {
 
   /** The instance to use. */
   public final static NullOutputSourceFileGenerator INSTANCE = new NullOutputSourceFileGenerator();

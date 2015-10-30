@@ -34,9 +34,7 @@ import java.util.regex.Pattern;
 public class MungeIcuJavaDocTags extends BaseModifyCommentScanner {
 
   /** The set of problem tags. The pattern contains a capturing group for the "@". */
-  private final static Pattern PATTERN =
-      Pattern.compile(
-          "(@)(?:icu|internal|draft|provisional|icuenhanced|icunote|\\.jcite|obsolete)");
+  private final static Pattern PATTERN = Pattern.compile("(@)(?:\\.jcite)");
 
   @Override protected String generateReplacementText(Comment commentNode, String commentText) {
     if (!commentNode.isDocComment()) {
@@ -61,5 +59,9 @@ public class MungeIcuJavaDocTags extends BaseModifyCommentScanner {
       adjustedCommentString.replace(offset, offset + 1, "{@literal @}");
     }
     return adjustedCommentString.toString();
+  }
+
+  @Override public String toString() {
+    return "MungeIcuJavaDocTags{" + PATTERN + "}";
   }
 }

@@ -109,8 +109,8 @@ public final class TypeLocater implements BodyDeclarationLocater {
 
     Iterator<String> classNameIterator = classNameElements.iterator();
     String topLevelClassName = classNameIterator.next();
-    for (AbstractTypeDeclaration abstractTypeDeclaration : (List<AbstractTypeDeclaration>) cu
-        .types()) {
+    for (AbstractTypeDeclaration abstractTypeDeclaration
+        : (List<AbstractTypeDeclaration>) cu.types()) {
       if (abstractTypeDeclaration.getName().getFullyQualifiedName().equals(topLevelClassName)) {
         // Top-level interface / class / enum match.
         return findNested(classNameIterator, abstractTypeDeclaration);
@@ -126,8 +126,8 @@ public final class TypeLocater implements BodyDeclarationLocater {
     }
 
     String subClassName = classNameIterator.next();
-    for (BodyDeclaration bodyDeclaration : (List<BodyDeclaration>) typeDeclaration
-        .bodyDeclarations()) {
+    for (BodyDeclaration bodyDeclaration
+        : (List<BodyDeclaration>) typeDeclaration.bodyDeclarations()) {
       if (bodyDeclaration instanceof AbstractTypeDeclaration) {
         AbstractTypeDeclaration subTypeDeclaration = (AbstractTypeDeclaration) bodyDeclaration;
         if (subTypeDeclaration.getName().getFullyQualifiedName().equals(subClassName)) {

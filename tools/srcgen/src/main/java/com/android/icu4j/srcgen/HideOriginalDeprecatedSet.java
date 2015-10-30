@@ -16,14 +16,14 @@
 package com.android.icu4j.srcgen;
 
 import com.google.common.collect.Lists;
-import com.google.currysrc.api.transform.DocumentTransformer;
+import com.google.currysrc.api.transform.AstTransformer;
 import com.google.currysrc.api.transform.JavadocUtils;
 import com.google.currysrc.api.transform.ast.BodyDeclarationLocater;
 import com.google.currysrc.api.transform.ast.StartPositionComparator;
 
 import org.eclipse.jdt.core.dom.BodyDeclaration;
 import org.eclipse.jdt.core.dom.CompilationUnit;
-import org.eclipse.jface.text.Document;
+import org.eclipse.jdt.core.dom.rewrite.ASTRewrite;
 
 import java.util.Collections;
 import java.util.List;
@@ -33,7 +33,7 @@ import java.util.List;
  * blacklist. Used to hide all the deprecated methods that existed when Android made ICU public,
  * but does not touch those that were deprecated afterwards.
  */
-public class HideOriginalDeprecatedSet implements DocumentTransformer {
+public class HideOriginalDeprecatedSet implements AstTransformer {
   private static final String HIDDEN_TAG_COMMENT = "@hide original deprecated method";
   private final List<BodyDeclarationLocater> blacklist;
 
@@ -41,8 +41,7 @@ public class HideOriginalDeprecatedSet implements DocumentTransformer {
     this.blacklist = blacklist;
   }
 
-  @Override
-  public void transform(CompilationUnit cu, Document document) {
+  @Override public void transform(CompilationUnit cu, ASTRewrite rewrite) {
     List<BodyDeclaration> matchingNodes = Lists.newArrayList();
     // This is inefficient but it is very simple.
     for (BodyDeclarationLocater locater : blacklist) {
@@ -54,7 +53,14 @@ public class HideOriginalDeprecatedSet implements DocumentTransformer {
     // Tackle nodes in reverse order to avoid messing up the ASTNode offsets.
     Collections.sort(matchingNodes, new StartPositionComparator());
     for (BodyDeclaration bodyDeclaration : Lists.reverse(matchingNodes)) {
-      JavadocUtils.insertCommentText(document, bodyDeclaration, HIDDEN_TAG_COMMENT);
+      JavadocUtils.addJavadocTag(rewrite, bodyDeclaration, HIDDEN_TAG_COMMENT);
     }
+  }
+
+
+  @Override public String toString() {
+    return "HideOriginalDeprecatedSet{" +
+        "blacklist=" + blacklist +
+        '}';
   }
 }
