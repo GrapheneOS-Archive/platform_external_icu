@@ -31,7 +31,6 @@ package android.icu.util;
  * }
  * </pre>
  * @author synwee
- * @stable ICU 2.6
  * @hide All android.icu classes are currently hidden
  */
 public interface ValueIterator
@@ -41,7 +40,6 @@ public interface ValueIterator
     /**
     * <p>The return result container of each iteration. Stores the next
     * integer index and its associated value Object.</p>
-    * @stable ICU 2.6
     */
     public static final class Element
     {
@@ -49,12 +47,10 @@ public interface ValueIterator
 
         /**
         * Integer index of the current iteration
-        * @stable ICU 2.6
         */
         public int integer;
         /**
         * Gets the Object value associated with the integer index.
-        * @stable ICU 2.6
         */
         public Object value;
 
@@ -62,7 +58,6 @@ public interface ValueIterator
 
         /**
          * Empty default constructor to make javadoc happy
-         * @stable ICU 2.4
          */
         public Element()
         {
@@ -79,7 +74,6 @@ public interface ValueIterator
     * @param element for storing the result index and value
     * @return true if we are not at the end of the iteration, false otherwise.
     * @see Element
-    * @stable ICU 2.6
     */
     public boolean next(Element element);
 
@@ -87,7 +81,6 @@ public interface ValueIterator
     * <p>Resets the iterator to start iterating from the integer index
     * Integer.MIN_VALUE or X if a setRange(X, Y) has been called previously.
     * </p>
-    * @stable ICU 2.6
     */
     public void reset();
 
@@ -105,7 +98,6 @@ public interface ValueIterator
      * @param limit one more than the last integer in the range
      * @exception IllegalArgumentException thrown when attempting to set an
      *            illegal range. E.g limit <= start
-     * @stable ICU 2.6
      */
     public void setRange(int start, int limit);
 }

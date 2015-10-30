@@ -30,7 +30,6 @@ import android.icu.util.UResourceBundleIterator;
  * as Hebrew numbering or Chinese numbering.
  *
  * @author       John Emmons
- * @stable ICU 4.2
  * @hide All android.icu classes are currently hidden
  */
 public class NumberingSystem {
@@ -38,7 +37,6 @@ public class NumberingSystem {
     /**
      * Default constructor.  Returns a numbering system that uses the Western decimal
      * digits 0 through 9.
-     * @stable ICU 4.2
      */
     public NumberingSystem() {
         radix = 10;
@@ -59,7 +57,6 @@ public class NumberingSystem {
      * systems, the string contains the name of the RBNF ruleset in the locale's
      * NumberingSystemRules section that will be used to format numbers using
      * this numbering system.
-     * @stable ICU 4.2
      */
     public static NumberingSystem getInstance(int radix_in, boolean isAlgorithmic_in, String desc_in ) {
         return getInstance(null,radix_in,isAlgorithmic_in,desc_in);
@@ -78,7 +75,6 @@ public class NumberingSystem {
      * systems, the string contains the name of the RBNF ruleset in the locale's
      * NumberingSystemRules section that will be used to format numbers using
      * this numbering system.
-     * @stable ICU 4.6
      */
    
     private static NumberingSystem getInstance(String name_in, int radix_in, boolean isAlgorithmic_in, String desc_in ) {
@@ -101,7 +97,6 @@ public class NumberingSystem {
 
     /**
      * Returns the default numbering system for the specified locale.
-     * @stable ICU 4.2
      */
     public static NumberingSystem getInstance(Locale inLocale) {
         return getInstance(ULocale.forLocale(inLocale));
@@ -109,7 +104,6 @@ public class NumberingSystem {
 
     /**
      * Returns the default numbering system for the specified ULocale.
-     * @stable ICU 4.2
      */
     public static NumberingSystem getInstance(ULocale locale) {
         
@@ -186,7 +180,6 @@ public class NumberingSystem {
     /**
      * Returns the default numbering system for the default <code>FORMAT</code> locale.
      * @see Category#FORMAT
-     * @stable ICU 4.2
      */
     public static NumberingSystem getInstance() {
         return getInstance(ULocale.getDefault(Category.FORMAT));
@@ -200,7 +193,6 @@ public class NumberingSystem {
      * @param name The name of the desired numbering system.  Numbering system
      * names often correspond with the name of the script they are associated
      * with.  For example, "thai" for Thai digits, "hebr" for Hebrew numerals.
-     * @stable ICU 4.2
      */
     public static NumberingSystem getInstanceByName(String name) {
         int radix;
@@ -238,7 +230,6 @@ public class NumberingSystem {
     /**
      * Returns a string array containing a list of the names of numbering systems
      * currently known to ICU.
-     * @stable ICU 4.2
      */
     public static String [] getAvailableNames() {
     
@@ -262,7 +253,6 @@ public class NumberingSystem {
      * descriptor of a numeric ( non-algorithmic ) numbering system.  In order for
      * a digit string to be valid, it must meet the following criteria:
      * 1. Digits must be in Unicode's basic multilingual plane.
-     * @stable ICU 4.2
      */
     public static boolean isValidDigitString(String str) {
 
@@ -285,7 +275,6 @@ public class NumberingSystem {
 
     /**
      * Returns the radix of the current numbering system.
-     * @stable ICU 4.2
      */
     public int getRadix() {
         return radix;
@@ -299,7 +288,6 @@ public class NumberingSystem {
      * systems, the string contains the name of the RBNF ruleset in the locale's
      * NumberingSystemRules section that will be used to format numbers using
      * this numbering system.
-     * @stable ICU 4.2
      */
     public String getDescription() {
         return desc;
@@ -307,7 +295,6 @@ public class NumberingSystem {
 
     /**
      * Returns the string representing the name of the numbering system.
-     * @stable ICU 4.6
      */
     public String getName() {
         return name;
@@ -317,7 +304,6 @@ public class NumberingSystem {
      * the numbering system is algorithmic and uses an RBNF formatter to
      * format numerals.  If false, the numbering system is numeric and
      * uses a fixed set of digits. 
-     * @stable ICU 4.2
      */
     public boolean isAlgorithmic() {
         return algorithmic;

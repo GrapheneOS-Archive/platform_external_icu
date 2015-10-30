@@ -62,8 +62,6 @@ import android.icu.util.ULocale.Category;
  * 
  * @see android.icu.util.Calendar
  * @see android.icu.util.GregorianCalendar
- *
- * @stable ICU 3.8
  * @hide All android.icu classes are currently hidden
  */
 public class IndianCalendar extends Calendar {
@@ -72,73 +70,61 @@ public class IndianCalendar extends Calendar {
 
     /** 
      * Constant for Chaitra, the 1st month of the Indian year. 
-     * @stable ICU 3.8
      */
     public static final int CHAITRA = 0;
 
     /** 
      * Constant for Vaisakha, the 2nd month of the Indian year. 
-     * @stable ICU 3.8
      */
     public static final int VAISAKHA = 1;
 
     /** 
      * Constant for Jyaistha, the 3rd month of the Indian year. 
-     * @stable ICU 3.8
      */
     public static final int JYAISTHA = 2;
 
     /** 
      * Constant for Asadha, the 4th month of the Indian year. 
-     * @stable ICU 3.8
      */
     public static final int ASADHA = 3; 
 
     /** 
      * Constant for Sravana, the 5th month of the Indian year. 
-     * @stable ICU 3.8
      */
     public static final int SRAVANA = 4 ;
 
     /** 
      * Constant for Bhadra, the 6th month of the Indian year. 
-     * @stable ICU 3.8
      */
     public static final int BHADRA = 5 ;
 
     /** 
      * Constant for Asvina, the 7th month of the Indian year. 
-     * @stable ICU 3.8
      */
     public static final int ASVINA = 6 ;
 
     /** 
      * Constant for Kartika, the 8th month of the Indian year. 
-     * @stable ICU 3.8
      */
     public static final int KARTIKA = 7 ;
 
     /** 
      * Constant for Agrahayana, the 9th month of the Indian year. 
-     * @stable ICU 3.8
      */
     public static final int AGRAHAYANA = 8 ;
 
     /** 
      * Constant for Pausa, the 10th month of the Indian year. 
-     * @stable ICU 3.8
      */
     public static final int PAUSA = 9 ;
 
     /** 
      * Constant for Magha, the 11th month of the Indian year. 
-     * @stable ICU 3.8
      */
     public static final int MAGHA = 10;
 
     /** 
      * Constant for Phalguna, the 12th month of the Indian year. 
-     * @stable ICU 3.8
      */
     public static final int PHALGUNA = 11;
     
@@ -151,7 +137,6 @@ public class IndianCalendar extends Calendar {
      * value for the Indian calendar.
      *
      * @see android.icu.util.Calendar#ERA
-     * @stable ICU 3.8
      */
     public static final int IE = 0;
     
@@ -159,7 +144,6 @@ public class IndianCalendar extends Calendar {
      * Constructs a <code>IndianCalendar</code> using the current time
      * in the default time zone with the default <code>FORMAT</code> locale.
      * @see Category#FORMAT
-     * @stable ICU 3.8
      */
     public IndianCalendar() {
        this(TimeZone.getDefault(), ULocale.getDefault(Category.FORMAT));
@@ -171,7 +155,6 @@ public class IndianCalendar extends Calendar {
      *
      * @param zone the given time zone.
      * @see Category#FORMAT
-     * @stable ICU 3.8
      */
     public IndianCalendar(TimeZone zone) {
        this(zone, ULocale.getDefault(Category.FORMAT));
@@ -182,7 +165,6 @@ public class IndianCalendar extends Calendar {
      * in the default time zone with the given locale.
      *
      * @param aLocale the given locale.
-     * @stable ICU 3.8
      */
     public IndianCalendar(Locale aLocale) {
         this(TimeZone.getDefault(), aLocale);
@@ -193,7 +175,6 @@ public class IndianCalendar extends Calendar {
      * in the default time zone with the given locale.
      *
      * @param locale the given ulocale.
-     * @stable ICU 3.8
      */
     public IndianCalendar(ULocale locale) {
        this(TimeZone.getDefault(), locale);
@@ -206,7 +187,6 @@ public class IndianCalendar extends Calendar {
      * @param zone the given time zone.
      *
      * @param aLocale the given locale.
-     * @stable ICU 3.8
      */
     public IndianCalendar(TimeZone zone, Locale aLocale) {
         super(zone, aLocale);
@@ -220,7 +200,6 @@ public class IndianCalendar extends Calendar {
      * @param zone the given time zone.
      *
      * @param locale the given ulocale.
-     * @stable ICU 3.8
      */
     public IndianCalendar(TimeZone zone, ULocale locale) {
         super(zone, locale);
@@ -233,7 +212,6 @@ public class IndianCalendar extends Calendar {
      *
      * @param date      The date to which the new calendar is set.
      * @see Category#FORMAT
-     * @stable ICU 3.8
      */
     public IndianCalendar(Date date) {
         super(TimeZone.getDefault(), ULocale.getDefault(Category.FORMAT));
@@ -251,7 +229,6 @@ public class IndianCalendar extends Calendar {
      *
      * @param date      The value used to set the calendar's {@link #DATE DATE} time field.
      * @see Category#FORMAT
-     * @stable ICU 3.8
      */
     public IndianCalendar(int year, int month, int date) {
        super(TimeZone.getDefault(), ULocale.getDefault(Category.FORMAT));
@@ -278,7 +255,6 @@ public class IndianCalendar extends Calendar {
      *
      * @param second    The value used to set the calendar's {@link #SECOND SECOND} time field.
      * @see Category#FORMAT
-     * @stable ICU 3.8
      */
     public IndianCalendar(int year, int month, int date, int hour,
                              int minute, int second)
@@ -307,7 +283,6 @@ public class IndianCalendar extends Calendar {
 
     /**
      * {@inheritDoc}
-     * @stable ICU 3.8
      */
     protected int handleGetExtendedYear() {
         int year;
@@ -324,7 +299,6 @@ public class IndianCalendar extends Calendar {
 
     /**
      * {@inheritDoc}
-     * @stable ICU 3.8
      */
     protected int handleGetYearLength(int extendedYear) {
        return super.handleGetYearLength(extendedYear);
@@ -332,7 +306,6 @@ public class IndianCalendar extends Calendar {
 
     /**
      * {@inheritDoc}
-     * @stable ICU 3.8
      */
     protected int handleGetMonthLength(int extendedYear, int month) {
         if (month < 0 || month > 11) {
@@ -354,7 +327,6 @@ public class IndianCalendar extends Calendar {
 
     /**
      * {@inheritDoc}
-     * @stable ICU 3.8
      */
     protected void handleComputeFields(int julianDay){
         double jdAtStartOfGregYear;
@@ -429,7 +401,6 @@ public class IndianCalendar extends Calendar {
 
     /**
      * {@inheritDoc}
-     * @stable ICU 3.8
      */
     protected int handleGetLimit(int field, int limitType) {
        return LIMITS[field][limitType];
@@ -437,7 +408,6 @@ public class IndianCalendar extends Calendar {
 
     /**
      * {@inheritDoc}
-     * @stable ICU 3.8
      */
     protected int handleComputeMonthStart(int year, int month, boolean useMonth) {
 
@@ -578,7 +548,6 @@ public class IndianCalendar extends Calendar {
     
     /**
      * {@inheritDoc}
-     * @stable ICU 3.8
      */
     public String getType() {
         return "indian";

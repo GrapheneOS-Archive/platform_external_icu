@@ -36,7 +36,6 @@ import android.icu.util.ByteArrayWrapper;
  * <p><strong>Note:</strong> Comparison between RawCollationKeys created by 
  * different Collators might return incorrect results.  
  * See class documentation for Collator.</p>
- * @stable ICU 2.8
  * @see RuleBasedCollator
  * @see CollationKey
  * @hide All android.icu classes are currently hidden
@@ -47,7 +46,6 @@ public final class RawCollationKey extends ByteArrayWrapper
     
     /**
      * Default constructor, internal byte array is null and its size set to 0.
-     * @stable ICU 2.8
      */
     public RawCollationKey() 
     {
@@ -57,7 +55,6 @@ public final class RawCollationKey extends ByteArrayWrapper
      * RawCollationKey created with an empty internal byte array of length 
      * capacity. Size of the internal byte array will be set to 0.
      * @param capacity length of internal byte array
-     * @stable ICU 2.8
      */
     public RawCollationKey(int capacity) 
     {
@@ -68,7 +65,6 @@ public final class RawCollationKey extends ByteArrayWrapper
      * RawCollationKey created, adopting bytes as the internal byte array.
      * Size of the internal byte array will be set to 0.
      * @param bytes byte array to be adopted by RawCollationKey
-     * @stable ICU 2.8
      */
     public RawCollationKey(byte[] bytes) 
     {
@@ -81,7 +77,6 @@ public final class RawCollationKey extends ByteArrayWrapper
      * @param size the length of valid data in the byte array
      * @throws IndexOutOfBoundsException if bytesToAdopt == null and size != 0, or
      * size < 0, or size > bytesToAdopt.length.
-     * @stable ICU 2.8
      */
     public RawCollationKey(byte[] bytesToAdopt, int size) 
     {
@@ -95,7 +90,6 @@ public final class RawCollationKey extends ByteArrayWrapper
      * @return -1, 0, or 1 as this compares less than, equal to, or
      * greater than rhs.
      * @throws ClassCastException if the other object is not a RawCollationKey.
-     * @stable ICU 4.4
      */
     public int compareTo(RawCollationKey rhs) {
         int result = super.compareTo(rhs);

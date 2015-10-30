@@ -15,10 +15,10 @@ import android.icu.util.UResourceBundle;
 /**
  * Calendar utilities.
  * 
- * Date/time format service classes in com.ibm.icu.text packages
+ * Date/time format service classes in android.icu.text packages
  * sometimes need to access calendar internal APIs.  But calendar
- * classes are in com.ibm.icu.util package, so the package local
- * cannot be used.  This class is added in com.ibm.icu.impl
+ * classes are in android.icu.util package, so the package local
+ * cannot be used.  This class is added in android.icu.impl
  * package for sharing some calendar internal code for calendar
  * and date format.
  * @hide Only a subset of ICU is exposed in Android

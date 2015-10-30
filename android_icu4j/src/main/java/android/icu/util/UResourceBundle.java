@@ -89,7 +89,6 @@ import android.icu.impl.SimpleCache;
  * allow loading of resources across jar files. You must provide your class loader
  * to load the resources
  * </note>
- * @stable ICU 3.0
  * @author ram
  * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
@@ -105,7 +104,6 @@ public abstract class UResourceBundle extends ResourceBundle {
      * @throws MissingResourceException If no resource bundle for the specified base name
      * can be found
      * @return a resource bundle for the given base name and locale
-     * @stable ICU 3.0
      */
     public static UResourceBundle getBundleInstance(String baseName, String localeName){
         return getBundleInstance(baseName, localeName, ICUResourceBundle.ICU_DATA_CLASS_LOADER, 
@@ -121,7 +119,6 @@ public abstract class UResourceBundle extends ResourceBundle {
      * @throws MissingResourceException If no resource bundle for the specified base name
      * can be found
      * @return a resource bundle for the given base name and locale
-     * @stable ICU 3.0
      */
     public static UResourceBundle getBundleInstance(String baseName, String localeName, 
                                                     ClassLoader root){
@@ -140,7 +137,6 @@ public abstract class UResourceBundle extends ResourceBundle {
      * @throws MissingResourceException
      *     if no resource bundle for the specified base name can be found
      * @return a resource bundle for the given base name and locale
-     * @stable ICU 3.0
      *
      */
     protected static UResourceBundle getBundleInstance(String baseName, String localeName, 
@@ -152,7 +148,6 @@ public abstract class UResourceBundle extends ResourceBundle {
      * {{@literal @}icu} Sole constructor.  (For invocation by subclass constructors, typically
      * implicit.)  This is public for compatibility with Java, whose compiler
      * will generate public default constructors for an abstract class.
-     * @stable ICU 3.0
      */
     public UResourceBundle() {
     }
@@ -163,7 +158,6 @@ public abstract class UResourceBundle extends ResourceBundle {
      * @param locale  specifies the locale for which we want to open the resource.
      *                If null the bundle for default locale is opened.
      * @return a resource bundle for the given locale
-     * @stable ICU 3.0
      */
     public static UResourceBundle getBundleInstance(ULocale locale) {
         if (locale==null) {
@@ -179,7 +173,6 @@ public abstract class UResourceBundle extends ResourceBundle {
      * @param baseName  specifies the locale for which we want to open the resource.
      *                If null the bundle for default locale is opened.
      * @return a resource bundle for the given base name and default locale
-     * @stable ICU 3.0
      */
     public static UResourceBundle getBundleInstance(String baseName) {
         if (baseName == null) {
@@ -198,7 +191,6 @@ public abstract class UResourceBundle extends ResourceBundle {
      * @param locale  specifies the locale for which we want to open the resource.
      *                If null the bundle for default locale is opened.
      * @return a resource bundle for the given base name and locale
-     * @stable ICU 3.0
      */
 
     public static UResourceBundle getBundleInstance(String baseName, Locale locale) {
@@ -219,7 +211,6 @@ public abstract class UResourceBundle extends ResourceBundle {
      * @param locale  specifies the locale for which we want to open the resource.
      *                If null the bundle for default locale is opened.
      * @return a resource bundle for the given base name and locale
-     * @stable ICU 3.0
      */
     public static UResourceBundle getBundleInstance(String baseName, ULocale locale) {
         if (baseName == null) {
@@ -241,7 +232,6 @@ public abstract class UResourceBundle extends ResourceBundle {
      *                If null the bundle for default locale is opened.
      * @param loader  the loader to use
      * @return a resource bundle for the given base name and locale
-     * @stable ICU 3.8
      */
     public static UResourceBundle getBundleInstance(String baseName, Locale locale, 
                                                     ClassLoader loader) {
@@ -264,7 +254,6 @@ public abstract class UResourceBundle extends ResourceBundle {
      *                If null the bundle for default locale is opened.
      * @param loader  the loader to use
      * @return a resource bundle for the given base name and locale
-     * @stable ICU 3.8
      */
     public static UResourceBundle getBundleInstance(String baseName, ULocale locale, 
                                                     ClassLoader loader) {
@@ -284,28 +273,24 @@ public abstract class UResourceBundle extends ResourceBundle {
      * corresponds to the requested locale or is a fallback.
      *
      * @return the locale of this resource bundle
-     * @stable ICU 3.0
      */
     public abstract ULocale getULocale();
 
     /**
      * {{@literal @}icu} Returns the localeID
      * @return The string representation of the localeID
-     * @stable ICU 3.0
      */
     protected abstract String getLocaleID();
 
     /**
      * {{@literal @}icu} Returns the base name of the resource bundle
      * @return The string representation of the base name
-     * @stable ICU 3.0
      */
     protected abstract String getBaseName();
 
     /**
      * {{@literal @}icu} Returns the parent bundle
      * @return The parent bundle
-     * @stable ICU 3.0
      */
     protected abstract UResourceBundle getParent();
 
@@ -313,7 +298,6 @@ public abstract class UResourceBundle extends ResourceBundle {
     /**
      * Returns the locale of this bundle
      * @return the locale of this resource bundle
-     * @stable ICU 3.0
      */
     public Locale getLocale(){
         return getULocale().toLocale();
@@ -532,7 +516,6 @@ public abstract class UResourceBundle extends ResourceBundle {
      * @throws MissingResourceException If no resource bundle for the specified base name
      * can be found
      * @return a resource bundle for the given base name and locale
-     * @stable ICU 3.0
      */
     protected static UResourceBundle instantiateBundle(String baseName, String localeName,
                                                        ClassLoader root, boolean disableFallback) {
@@ -585,7 +568,6 @@ public abstract class UResourceBundle extends ResourceBundle {
      * @see #getInt
      * @throws MissingResourceException If no resource bundle can be found.
      * @throws UResourceTypeMismatchException If the resource has a type mismatch.
-     * @stable ICU 3.8
      */
     public ByteBuffer getBinary() {
         throw new UResourceTypeMismatchException("");
@@ -600,7 +582,6 @@ public abstract class UResourceBundle extends ResourceBundle {
      * @see #getInt
      * @throws MissingResourceException If resource bundle is missing.
      * @throws UResourceTypeMismatchException If resource bundle has a type mismatch.
-     * @stable ICU 3.8
      */
     public String getString() {
         throw new UResourceTypeMismatchException("");
@@ -614,7 +595,6 @@ public abstract class UResourceBundle extends ResourceBundle {
      * @see #getIntVector
      * @throws MissingResourceException If resource bundle is missing.
      * @throws UResourceTypeMismatchException If resource bundle has a type mismatch.
-     * @stable ICU 3.8
      */
     public String[] getStringArray() {
         throw new UResourceTypeMismatchException("");
@@ -630,7 +610,6 @@ public abstract class UResourceBundle extends ResourceBundle {
      * @see #getInt
      * @throws MissingResourceException If resource bundle is missing.
      * @throws UResourceTypeMismatchException If resource bundle has a type mismatch.
-     * @stable ICU 3.8
      */
     public byte[] getBinary(byte[] ba) {
         throw new UResourceTypeMismatchException("");
@@ -644,7 +623,6 @@ public abstract class UResourceBundle extends ResourceBundle {
      * @see #getInt
      * @throws MissingResourceException If resource bundle is missing.
      * @throws UResourceTypeMismatchException If resource bundle has a type mismatch.
-     * @stable ICU 3.8
      */
     public int[] getIntVector() {
         throw new UResourceTypeMismatchException("");
@@ -658,7 +636,6 @@ public abstract class UResourceBundle extends ResourceBundle {
      * @see #getBinary()
      * @throws MissingResourceException If resource bundle is missing.
      * @throws UResourceTypeMismatchException If resource bundle type mismatch.
-     * @stable ICU 3.8
      */
     public int getInt() {
         throw new UResourceTypeMismatchException("");
@@ -673,7 +650,6 @@ public abstract class UResourceBundle extends ResourceBundle {
      * @see #getBinary()
      * @throws MissingResourceException If resource bundle is missing.
      * @throws UResourceTypeMismatchException If resource bundle type mismatch.
-     * @stable ICU 3.8
      */
     public int getUInt() {
         throw new UResourceTypeMismatchException("");
@@ -685,7 +661,6 @@ public abstract class UResourceBundle extends ResourceBundle {
      * @param aKey               a key associated with the wanted resource
      * @return                  a resource bundle object representing the resource
      * @throws MissingResourceException If resource bundle is missing.
-     * @stable ICU 3.8
      */
     public UResourceBundle get(String aKey) {
         UResourceBundle obj = findTopLevel(aKey);
@@ -731,7 +706,6 @@ public abstract class UResourceBundle extends ResourceBundle {
      * @return a string which lives in the resource.
      * @throws IndexOutOfBoundsException If the index value is out of bounds of accepted values.
      * @throws UResourceTypeMismatchException If resource bundle type mismatch.
-     * @stable ICU 3.8
      */
     public String getString(int index) {
         ICUResourceBundle temp = (ICUResourceBundle)get(index);
@@ -748,7 +722,6 @@ public abstract class UResourceBundle extends ResourceBundle {
      * @return the sub resource UResourceBundle object
      * @throws IndexOutOfBoundsException If the index value is out of bounds of accepted values.
      * @throws MissingResourceException If the resource bundle is missing.
-     * @stable ICU 3.8
      */
     public UResourceBundle get(int index) {
         UResourceBundle obj = handleGet(index, null, this);
@@ -800,7 +773,6 @@ public abstract class UResourceBundle extends ResourceBundle {
      * Returns the keys in this bundle as an enumeration
      * @return an enumeration containing key strings,
      *         which is empty if this is not a bundle or a table resource
-     * @stable ICU 3.8
      */
     public Enumeration<String> getKeys() {
         return Collections.enumeration(keySet());
@@ -878,7 +850,6 @@ public abstract class UResourceBundle extends ResourceBundle {
      * <br><b>Note:</b> Integer array is treated as a scalar type. There are no APIs to
      * access individual members of an integer array. It is always returned as a whole.
      * @return number of resources in a given resource.
-     * @stable ICU 3.8
      */
     public int getSize() {
         return 1;
@@ -891,7 +862,6 @@ public abstract class UResourceBundle extends ResourceBundle {
      * {@link #STRING STRING}, {@link #TABLE TABLE}.
      *
      * @return type of the given resource.
-     * @stable ICU 3.8
      */
     public int getType() {
         return NONE;
@@ -901,7 +871,6 @@ public abstract class UResourceBundle extends ResourceBundle {
      * {{@literal @}icu} Return the version number associated with this UResourceBundle as an
      * VersionInfo object.
      * @return VersionInfo object containing the version of the bundle
-     * @stable ICU 3.8
      */
     public VersionInfo getVersion() {
         return null;
@@ -911,7 +880,6 @@ public abstract class UResourceBundle extends ResourceBundle {
      * {{@literal @}icu} Returns the iterator which iterates over this
      * resource bundle
      * @return UResourceBundleIterator that iterates over the resources in the bundle
-     * @stable ICU 3.8
      */
     public UResourceBundleIterator getIterator() {
         return new UResourceBundleIterator(this);
@@ -921,7 +889,6 @@ public abstract class UResourceBundle extends ResourceBundle {
      * {{@literal @}icu} Returns the key associated with a given resource. Not all the resources have
      * a key - only those that are members of a table.
      * @return a key associated to this resource, or null if it doesn't have a key
-     * @stable ICU 3.8
      */
     public String getKey() {
         return null;
@@ -929,25 +896,21 @@ public abstract class UResourceBundle extends ResourceBundle {
 
     /**
      * {{@literal @}icu} Resource type constant for "no resource".
-     * @stable ICU 3.8
      */
     public static final int NONE = -1;
 
     /**
      * {{@literal @}icu} Resource type constant for strings.
-     * @stable ICU 3.8
      */
     public static final int STRING = 0;
 
     /**
      * {{@literal @}icu} Resource type constant for binary data.
-     * @stable ICU 3.8
      */
     public static final int BINARY = 1;
 
     /**
      * {{@literal @}icu} Resource type constant for tables of key-value pairs.
-     * @stable ICU 3.8
      */
     public static final int TABLE = 2;
 
@@ -955,20 +918,17 @@ public abstract class UResourceBundle extends ResourceBundle {
      * {{@literal @}icu} Resource type constant for a single 28-bit integer, interpreted as
      * signed or unsigned by the getInt() function.
      * @see #getInt
-     * @stable ICU 3.8
      */
     public static final int INT = 7;
 
     /**
      * {{@literal @}icu} Resource type constant for arrays of resources.
-     * @stable ICU 3.8
      */
     public static final int ARRAY = 8;
 
     /**
      * Resource type constant for vectors of 32-bit integers.
      * @see #getIntVector
-     * @stable ICU 3.8
      */
     public static final int INT_VECTOR = 14;
 
@@ -983,7 +943,6 @@ public abstract class UResourceBundle extends ResourceBundle {
      *                  The requested bundle and the bundle on which this method is invoked
      *                  are the same, except in the cases where aliases are involved.
      * @return UResourceBundle a resource associated with the key
-     * @stable ICU 3.8
      */
     protected UResourceBundle handleGet(String aKey, HashMap<String, String> aliasesVisited, 
                                         UResourceBundle requested) {
@@ -999,7 +958,6 @@ public abstract class UResourceBundle extends ResourceBundle {
      *                  The requested bundle and the bundle on which this method is invoked
      *                  are the same, except in the cases where aliases are involved.
      * @return UResourceBundle a resource associated with the index
-     * @stable ICU 3.8
      */
     protected UResourceBundle handleGet(int index, HashMap<String, String> aliasesVisited, 
                                         UResourceBundle requested) {
@@ -1010,7 +968,6 @@ public abstract class UResourceBundle extends ResourceBundle {
      * {{@literal @}icu} Actual worker method for fetching the array of strings in a resource.
      * Sub classes must override this method if they support arrays of strings.
      * @return String[] An array of strings containing strings
-     * @stable ICU 3.8
      */
     protected String[] handleGetStringArray() {
         return null;
@@ -1021,7 +978,6 @@ public abstract class UResourceBundle extends ResourceBundle {
      * Sub classes must override this method if they support keys and associated resources.
      *
      * @return Enumeration An enumeration of all the keys in this resource.
-     * @stable ICU 3.8
      */
     protected Enumeration<String> handleGetKeys(){
         return null;
@@ -1029,7 +985,6 @@ public abstract class UResourceBundle extends ResourceBundle {
 
     /**
      * {@inheritDoc}
-     * @stable ICU 3.8
      */
     // this method is declared in ResourceBundle class
     // so cannot change the signature

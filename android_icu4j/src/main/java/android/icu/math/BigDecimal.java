@@ -74,7 +74,7 @@ import android.icu.lang.UCharacter;
 /* 1998.07.07 scaled division  [divide(BigDecimal, int, int)]         */
 /* 1998.07.08 setScale, faster equals                                 */
 /* 1998.07.11 allow 1E6 (no sign) <sigh>; new double/float conversion */
-/* 1998.10.12 change package to com.ibm.icu.math                          */
+/* 1998.10.12 change package to android.icu.math                          */
 /* 1998.12.14 power operator no longer rounds RHS [to match ANSI]     */
 /*            add toBigDecimal() and BigDecimal(java.math.BigDecimal) */
 /* 1998.12.29 improve byteaddsub by using table lookup                */
@@ -217,7 +217,6 @@ import android.icu.lang.UCharacter;
  * 
  * @see MathContext
  * @author Mike Cowlishaw
- * @stable ICU 2.0
  * @hide All android.icu classes are currently hidden
  */
 
@@ -231,7 +230,6 @@ public class BigDecimal extends java.lang.Number implements java.io.Serializable
      * 
      * @see #ONE
      * @see #TEN
-     * @stable ICU 2.0
      */
     public static final android.icu.math.BigDecimal ZERO = new android.icu.math.BigDecimal((long) 0); // use long as we
                                                                                                       // want the int
@@ -243,7 +241,6 @@ public class BigDecimal extends java.lang.Number implements java.io.Serializable
      * 
      * @see #TEN
      * @see #ZERO
-     * @stable ICU 2.0
      */
     public static final android.icu.math.BigDecimal ONE = new android.icu.math.BigDecimal((long) 1); // use long as we
                                                                                                      // want the int
@@ -255,7 +252,6 @@ public class BigDecimal extends java.lang.Number implements java.io.Serializable
      * 
      * @see #ONE
      * @see #ZERO
-     * @stable ICU 2.0
      */
     public static final android.icu.math.BigDecimal TEN = new android.icu.math.BigDecimal(10);
 
@@ -264,7 +260,6 @@ public class BigDecimal extends java.lang.Number implements java.io.Serializable
      * Rounding mode to round to a more positive number.
      * 
      * @see MathContext#ROUND_CEILING
-     * @stable ICU 2.0
      */
     public static final int ROUND_CEILING = android.icu.math.MathContext.ROUND_CEILING;
 
@@ -272,7 +267,6 @@ public class BigDecimal extends java.lang.Number implements java.io.Serializable
      * Rounding mode to round towards zero.
      * 
      * @see MathContext#ROUND_DOWN
-     * @stable ICU 2.0
      */
     public static final int ROUND_DOWN = android.icu.math.MathContext.ROUND_DOWN;
 
@@ -280,7 +274,6 @@ public class BigDecimal extends java.lang.Number implements java.io.Serializable
      * Rounding mode to round to a more negative number.
      * 
      * @see MathContext#ROUND_FLOOR
-     * @stable ICU 2.0
      */
     public static final int ROUND_FLOOR = android.icu.math.MathContext.ROUND_FLOOR;
 
@@ -288,7 +281,6 @@ public class BigDecimal extends java.lang.Number implements java.io.Serializable
      * Rounding mode to round to nearest neighbor, where an equidistant value is rounded down.
      * 
      * @see MathContext#ROUND_HALF_DOWN
-     * @stable ICU 2.0
      */
     public static final int ROUND_HALF_DOWN = android.icu.math.MathContext.ROUND_HALF_DOWN;
 
@@ -296,7 +288,6 @@ public class BigDecimal extends java.lang.Number implements java.io.Serializable
      * Rounding mode to round to nearest neighbor, where an equidistant value is rounded to the nearest even neighbor.
      * 
      * @see MathContext#ROUND_HALF_EVEN
-     * @stable ICU 2.0
      */
     public static final int ROUND_HALF_EVEN = android.icu.math.MathContext.ROUND_HALF_EVEN;
 
@@ -304,7 +295,6 @@ public class BigDecimal extends java.lang.Number implements java.io.Serializable
      * Rounding mode to round to nearest neighbor, where an equidistant value is rounded up.
      * 
      * @see MathContext#ROUND_HALF_UP
-     * @stable ICU 2.0
      */
     public static final int ROUND_HALF_UP = android.icu.math.MathContext.ROUND_HALF_UP;
 
@@ -312,7 +302,6 @@ public class BigDecimal extends java.lang.Number implements java.io.Serializable
      * Rounding mode to assert that no rounding is necessary.
      * 
      * @see MathContext#ROUND_UNNECESSARY
-     * @stable ICU 2.0
      */
     public static final int ROUND_UNNECESSARY = android.icu.math.MathContext.ROUND_UNNECESSARY;
 
@@ -320,7 +309,6 @@ public class BigDecimal extends java.lang.Number implements java.io.Serializable
      * Rounding mode to round away from zero.
      * 
      * @see MathContext#ROUND_UP
-     * @stable ICU 2.0
      */
     public static final int ROUND_UP = android.icu.math.MathContext.ROUND_UP;
 
@@ -420,11 +408,10 @@ public class BigDecimal extends java.lang.Number implements java.io.Serializable
      * its <code>toString</code> method) and the {@link #BigDecimal(java.lang.String)} constructor had then been used.
      * The parameter must not be <code>null</code>.
      * <p>
-     * <i>(Note: this constructor is provided only in the <code>com.ibm.icu.math</code> version of the BigDecimal class.
+     * <i>(Note: this constructor is provided only in the <code>android.icu.math</code> version of the BigDecimal class.
      * It would not be present in a <code>java.math</code> version.)</i>
      * 
      * @param bd The <code>BigDecimal</code> to be translated.
-     * @stable ICU 2.0
      */
 
     public BigDecimal(java.math.BigDecimal bd) {
@@ -443,7 +430,6 @@ public class BigDecimal extends java.lang.Number implements java.io.Serializable
      * <code>BigInteger</code> is negative. A leading zero will be present only if the <code>BigInteger</code> is zero.
      * 
      * @param bi The <code>BigInteger</code> to be converted.
-     * @stable ICU 2.0
      */
 
     public BigDecimal(java.math.BigInteger bi) {
@@ -468,7 +454,6 @@ public class BigDecimal extends java.lang.Number implements java.io.Serializable
      * @param bi The <code>BigInteger</code> to be converted.
      * @param scale The <code>int</code> specifying the scale.
      * @throws NumberFormatException If the scale is negative.
-     * @stable ICU 2.0
      */
 
     public BigDecimal(java.math.BigInteger bi, int scale) {
@@ -491,7 +476,6 @@ public class BigDecimal extends java.lang.Number implements java.io.Serializable
      * 
      * @param inchars The <code>char[]</code> array containing the number to be converted.
      * @throws NumberFormatException If the parameter is not a valid number.
-     * @stable ICU 2.0
      */
 
     public BigDecimal(char inchars[]) {
@@ -513,7 +497,6 @@ public class BigDecimal extends java.lang.Number implements java.io.Serializable
      * @param offset The <code>int</code> offset into the array of the start of the number to be converted.
      * @param length The <code>int</code> length of the number.
      * @throws NumberFormatException If the parameter is not a valid number for any reason.
-     * @stable ICU 2.0
      */
 
     public BigDecimal(char inchars[], int offset, int length) {
@@ -746,7 +729,6 @@ public class BigDecimal extends java.lang.Number implements java.io.Serializable
      * 
      * @param num The <code>double</code> to be converted.
      * @throws NumberFormatException If the parameter is infinite or not a number.
-     * @stable ICU 2.0
      */
 
     public BigDecimal(double num) {
@@ -766,7 +748,6 @@ public class BigDecimal extends java.lang.Number implements java.io.Serializable
      * sign (hyphen) if the parameter is negative. A leading zero will be present only if the parameter is zero.
      * 
      * @param num The <code>int</code> to be converted.
-     * @stable ICU 2.0
      */
 
     public BigDecimal(int num) {
@@ -845,7 +826,6 @@ public class BigDecimal extends java.lang.Number implements java.io.Serializable
      * sign (hyphen) if the parameter is negative. A leading zero will be present only if the parameter is zero.
      * 
      * @param num The <code>long</code> to be converted.
-     * @stable ICU 2.0
      */
 
     public BigDecimal(long num) {
@@ -923,7 +903,6 @@ public class BigDecimal extends java.lang.Number implements java.io.Serializable
      * 
      * @param string The <code>String</code> to be converted.
      * @throws NumberFormatException If the parameter is not a valid number.
-     * @stable ICU 2.0
      */
 
     public BigDecimal(java.lang.String string) {
@@ -950,7 +929,6 @@ public class BigDecimal extends java.lang.Number implements java.io.Serializable
      * The length of the decimal part (the scale) of the result will be <code>this.scale()</code>
      * 
      * @return A <code>BigDecimal</code> whose value is the absolute value of this <code>BigDecimal</code>.
-     * @stable ICU 2.0
      */
 
     public android.icu.math.BigDecimal abs() {
@@ -966,7 +944,6 @@ public class BigDecimal extends java.lang.Number implements java.io.Serializable
      * 
      * @param set The <code>MathContext</code> arithmetic settings.
      * @return A <code>BigDecimal</code> whose value is the absolute value of this <code>BigDecimal</code>.
-     * @stable ICU 2.0
      */
 
     public android.icu.math.BigDecimal abs(android.icu.math.MathContext set) {
@@ -985,7 +962,6 @@ public class BigDecimal extends java.lang.Number implements java.io.Serializable
      * 
      * @param rhs The <code>BigDecimal</code> for the right hand side of the addition.
      * @return A <code>BigDecimal</code> whose value is <code>this+rhs</code>, using fixed point arithmetic.
-     * @stable ICU 2.0
      */
 
     public android.icu.math.BigDecimal add(android.icu.math.BigDecimal rhs) {
@@ -1001,7 +977,6 @@ public class BigDecimal extends java.lang.Number implements java.io.Serializable
      * @param rhs The <code>BigDecimal</code> for the right hand side of the addition.
      * @param set The <code>MathContext</code> arithmetic settings.
      * @return A <code>BigDecimal</code> whose value is <code>this+rhs</code>.
-     * @stable ICU 2.0
      */
 
     public android.icu.math.BigDecimal add(android.icu.math.BigDecimal rhs, android.icu.math.MathContext set) {
@@ -1222,7 +1197,6 @@ public class BigDecimal extends java.lang.Number implements java.io.Serializable
      * @param rhs The <code>BigDecimal</code> for the right hand side of the comparison.
      * @return An <code>int</code> whose value is -1, 0, or 1 as <code>this</code> is numerically less than, equal to,
      *         or greater than <code>rhs</code>.
-     * @stable ICU 2.0
      */
 
     public int compareTo(android.icu.math.BigDecimal rhs) {
@@ -1254,7 +1228,6 @@ public class BigDecimal extends java.lang.Number implements java.io.Serializable
      * @param set The <code>MathContext</code> arithmetic settings.
      * @return An <code>int</code> whose value is -1, 0, or 1 as <code>this</code> is numerically less than, equal to,
      *         or greater than <code>rhs</code>.
-     * @stable ICU 2.0
      */
 
     public int compareTo(android.icu.math.BigDecimal rhs, android.icu.math.MathContext set) {
@@ -1315,7 +1288,6 @@ public class BigDecimal extends java.lang.Number implements java.io.Serializable
      * @param rhs The <code>BigDecimal</code> for the right hand side of the division.
      * @return A plain <code>BigDecimal</code> whose value is <code>this/rhs</code>, using fixed point arithmetic.
      * @throws ArithmeticException If <code>rhs</code> is zero.
-     * @stable ICU 2.0
      */
 
     public android.icu.math.BigDecimal divide(android.icu.math.BigDecimal rhs) {
@@ -1340,7 +1312,6 @@ public class BigDecimal extends java.lang.Number implements java.io.Serializable
      * @throws IllegalArgumentException if <code>round</code> is not a valid rounding mode.
      * @throws ArithmeticException if <code>rhs</code> is zero.
      * @throws ArithmeticException if <code>round</code> is {@link MathContext#ROUND_UNNECESSARY} and <code>this.scale()</code> is insufficient to represent the result exactly.
-     * @stable ICU 2.0
      */
 
     public android.icu.math.BigDecimal divide(android.icu.math.BigDecimal rhs, int round) {
@@ -1372,7 +1343,6 @@ public class BigDecimal extends java.lang.Number implements java.io.Serializable
      * @throws ArithmeticException if <code>scale</code> is negative.
      * @throws ArithmeticException if <code>round</code> is {@link MathContext#ROUND_UNNECESSARY} and <code>scale</code> is insufficient
      *             to represent the result exactly.
-     * @stable ICU 2.0
      */
 
     public android.icu.math.BigDecimal divide(android.icu.math.BigDecimal rhs, int scale, int round) {
@@ -1393,7 +1363,6 @@ public class BigDecimal extends java.lang.Number implements java.io.Serializable
      * @param set The <code>MathContext</code> arithmetic settings.
      * @return A <code>BigDecimal</code> whose value is <code>this/rhs</code>.
      * @throws ArithmeticException if <code>rhs</code> is zero.
-     * @stable ICU 2.0
      */
 
     public android.icu.math.BigDecimal divide(android.icu.math.BigDecimal rhs, android.icu.math.MathContext set) {
@@ -1409,7 +1378,6 @@ public class BigDecimal extends java.lang.Number implements java.io.Serializable
      * @param rhs The <code>BigDecimal</code> for the right hand side of the integer division.
      * @return A <code>BigDecimal</code> whose value is the integer part of <code>this/rhs</code>.
      * @throws ArithmeticException if <code>rhs</code> is zero.
-     * @stable ICU 2.0
      */
 
     public android.icu.math.BigDecimal divideInteger(android.icu.math.BigDecimal rhs) {
@@ -1428,7 +1396,6 @@ public class BigDecimal extends java.lang.Number implements java.io.Serializable
      * @return A <code>BigDecimal</code> whose value is the integer part of <code>this/rhs</code>.
      * @throws ArithmeticException if <code>rhs</code> is zero.
      * @throws ArithmeticException if the result will not fit in the number of digits specified for the context.
-     * @stable ICU 2.0
      */
 
     public android.icu.math.BigDecimal divideInteger(android.icu.math.BigDecimal rhs, android.icu.math.MathContext set) {
@@ -1444,7 +1411,6 @@ public class BigDecimal extends java.lang.Number implements java.io.Serializable
      * 
      * @param rhs The <code>BigDecimal</code> for the right hand side of the comparison.
      * @return A <code>BigDecimal</code> whose value is the maximum of <code>this</code> and <code>rhs</code>.
-     * @stable ICU 2.0
      */
 
     public android.icu.math.BigDecimal max(android.icu.math.BigDecimal rhs) {
@@ -1465,7 +1431,6 @@ public class BigDecimal extends java.lang.Number implements java.io.Serializable
      * @param rhs The <code>BigDecimal</code> for the right hand side of the comparison.
      * @param set The <code>MathContext</code> arithmetic settings.
      * @return A <code>BigDecimal</code> whose value is the maximum of <code>this</code> and <code>rhs</code>.
-     * @stable ICU 2.0
      */
 
     public android.icu.math.BigDecimal max(android.icu.math.BigDecimal rhs, android.icu.math.MathContext set) {
@@ -1483,7 +1448,6 @@ public class BigDecimal extends java.lang.Number implements java.io.Serializable
      * 
      * @param rhs The <code>BigDecimal</code> for the right hand side of the comparison.
      * @return A <code>BigDecimal</code> whose value is the minimum of <code>this</code> and <code>rhs</code>.
-     * @stable ICU 2.0
      */
 
     public android.icu.math.BigDecimal min(android.icu.math.BigDecimal rhs) {
@@ -1504,7 +1468,6 @@ public class BigDecimal extends java.lang.Number implements java.io.Serializable
      * @param rhs The <code>BigDecimal</code> for the right hand side of the comparison.
      * @param set The <code>MathContext</code> arithmetic settings.
      * @return A <code>BigDecimal</code> whose value is the minimum of <code>this</code> and <code>rhs</code>.
-     * @stable ICU 2.0
      */
 
     public android.icu.math.BigDecimal min(android.icu.math.BigDecimal rhs, android.icu.math.MathContext set) {
@@ -1525,7 +1488,6 @@ public class BigDecimal extends java.lang.Number implements java.io.Serializable
      * 
      * @param rhs The <code>BigDecimal</code> for the right hand side of the multiplication.
      * @return A <code>BigDecimal</code> whose value is <code>this*rhs</code>, using fixed point arithmetic.
-     * @stable ICU 2.0
      */
 
     public android.icu.math.BigDecimal multiply(android.icu.math.BigDecimal rhs) {
@@ -1541,7 +1503,6 @@ public class BigDecimal extends java.lang.Number implements java.io.Serializable
      * @param rhs The <code>BigDecimal</code> for the right hand side of the multiplication.
      * @param set The <code>MathContext</code> arithmetic settings.
      * @return A <code>BigDecimal</code> whose value is <code>this*rhs</code>.
-     * @stable ICU 2.0
      */
 
     public android.icu.math.BigDecimal multiply(android.icu.math.BigDecimal rhs, android.icu.math.MathContext set) {
@@ -1641,7 +1602,6 @@ public class BigDecimal extends java.lang.Number implements java.io.Serializable
      * 
      * 
      * @return A <code>BigDecimal</code> whose value is <code>-this</code>.
-     * @stable ICU 2.0
      */
 
     public android.icu.math.BigDecimal negate() {
@@ -1656,7 +1616,6 @@ public class BigDecimal extends java.lang.Number implements java.io.Serializable
      * 
      * @param set The <code>MathContext</code> arithmetic settings.
      * @return A <code>BigDecimal</code> whose value is <code>-this</code>.
-     * @stable ICU 2.0
      */
 
     public android.icu.math.BigDecimal negate(android.icu.math.MathContext set) {
@@ -1679,7 +1638,6 @@ public class BigDecimal extends java.lang.Number implements java.io.Serializable
      * The length of the decimal part (the scale) of the result will be be <code>this.scale()</code>
      * 
      * @return A <code>BigDecimal</code> whose value is <code>+this</code>.
-     * @stable ICU 2.0
      */
 
     public android.icu.math.BigDecimal plus() {
@@ -1696,7 +1654,6 @@ public class BigDecimal extends java.lang.Number implements java.io.Serializable
      * 
      * @param set The <code>MathContext</code> arithmetic settings.
      * @return A <code>BigDecimal</code> whose value is <code>+this</code>.
-     * @stable ICU 2.0
      */
 
     public android.icu.math.BigDecimal plus(android.icu.math.MathContext set) {
@@ -1731,7 +1688,6 @@ public class BigDecimal extends java.lang.Number implements java.io.Serializable
      * @param rhs The <code>BigDecimal</code> for the right hand side of the operation (the power).
      * @return A <code>BigDecimal</code> whose value is <code>this**rhs</code>, using fixed point arithmetic.
      * @throws ArithmeticException if <code>rhs</code> is out of range or is not a whole number.
-     * @stable ICU 2.0
      */
 
     public android.icu.math.BigDecimal pow(android.icu.math.BigDecimal rhs) {
@@ -1758,7 +1714,6 @@ public class BigDecimal extends java.lang.Number implements java.io.Serializable
      * @param set The <code>MathContext</code> arithmetic settings.
      * @return A <code>BigDecimal</code> whose value is <code>this**rhs</code>.
      * @throws ArithmeticException if <code>rhs</code> is out of range or is not a whole number.
-     * @stable ICU 2.0
      */
 
     public android.icu.math.BigDecimal pow(android.icu.math.BigDecimal rhs, android.icu.math.MathContext set) {
@@ -1838,7 +1793,6 @@ public class BigDecimal extends java.lang.Number implements java.io.Serializable
      * @return A <code>BigDecimal</code> whose value is the remainder of <code>this/rhs</code>, using fixed point
      *         arithmetic.
      * @throws ArithmeticException if <code>rhs</code> is zero.
-     * @stable ICU 2.0
      */
 
     public android.icu.math.BigDecimal remainder(android.icu.math.BigDecimal rhs) {
@@ -1858,7 +1812,6 @@ public class BigDecimal extends java.lang.Number implements java.io.Serializable
      * @return A <code>BigDecimal</code> whose value is the remainder of <code>this+rhs</code>.
      * @throws ArithmeticException if <code>rhs</code> is zero.
      * @throws ArithmeticException  if the integer part of the result will not fit in the number of digits specified for the context.
-     * @stable ICU 2.0
      */
 
     public android.icu.math.BigDecimal remainder(android.icu.math.BigDecimal rhs, android.icu.math.MathContext set) {
@@ -1875,7 +1828,6 @@ public class BigDecimal extends java.lang.Number implements java.io.Serializable
      * 
      * @param rhs The <code>BigDecimal</code> for the right hand side of the subtraction.
      * @return A <code>BigDecimal</code> whose value is <code>this-rhs</code>, using fixed point arithmetic.
-     * @stable ICU 2.0
      */
 
     public android.icu.math.BigDecimal subtract(android.icu.math.BigDecimal rhs) {
@@ -1891,7 +1843,6 @@ public class BigDecimal extends java.lang.Number implements java.io.Serializable
      * @param rhs The <code>BigDecimal</code> for the right hand side of the subtraction.
      * @param set The <code>MathContext</code> arithmetic settings.
      * @return A <code>BigDecimal</code> whose value is <code>this-rhs</code>.
-     * @stable ICU 2.0
      */
 
     public android.icu.math.BigDecimal subtract(android.icu.math.BigDecimal rhs, android.icu.math.MathContext set) {
@@ -1917,7 +1868,6 @@ public class BigDecimal extends java.lang.Number implements java.io.Serializable
      * 
      * @return A <code>byte</code> equal in value to <code>this</code>.
      * @throws ArithmeticException if <code>this</code> has a non-zero decimal part, or will not fit in a <code>byte</code>.
-     * @stable ICU 2.0
      */
 
     public byte byteValueExact() {
@@ -1938,7 +1888,6 @@ public class BigDecimal extends java.lang.Number implements java.io.Serializable
      * Double.NEGATIVE_INFINITY</code> or <code>Double.POSITIVE_INFINITY</code>.
      * 
      * @return A <code>double</code> corresponding to <code>this</code>.
-     * @stable ICU 2.0
      */
 
     public double doubleValue() {
@@ -1962,7 +1911,6 @@ public class BigDecimal extends java.lang.Number implements java.io.Serializable
      * @return A <code>boolean</code> whose value <i>true</i> if and only if the operands have identical string
      *         representations.
      * @throws ClassCastException if <code>rhs</code> cannot be cast to a <code>BigDecimal</code> object.
-     * @stable ICU 2.0
      * @see #compareTo(BigDecimal)
      * @see #compareTo(BigDecimal, MathContext)
      */
@@ -2020,7 +1968,6 @@ public class BigDecimal extends java.lang.Number implements java.io.Serializable
      * Float.NEGATIVE_INFINITY</code> or <code>Float.POSITIVE_INFINITY</code>.
      * 
      * @return A <code>float</code> corresponding to <code>this</code>.
-     * @stable ICU 2.0
      */
 
     public float floatValue() {
@@ -2062,7 +2009,6 @@ public class BigDecimal extends java.lang.Number implements java.io.Serializable
      * @return A <code>String</code> representing this <code>BigDecimal</code>, laid out according to the specified parameters
      * @throws ArithmeticException if the number cannot be laid out as requested.
      * @throws IllegalArgumentException if a parameter is out of range.
-     * @stable ICU 2.0
      * @see #toString
      * @see #toCharArray
      */
@@ -2138,7 +2084,6 @@ public class BigDecimal extends java.lang.Number implements java.io.Serializable
      * @throws IllegalArgumentException if a parameter is out of range.
      * @see #toString
      * @see #toCharArray
-     * @stable ICU 2.0
      */
 
     public java.lang.String format(int before, int after, int explaces, int exdigits, int exformint, int exround) {
@@ -2366,7 +2311,6 @@ public class BigDecimal extends java.lang.Number implements java.io.Serializable
      * identical -- they have the same characters in the same sequence).
      * 
      * @return An <code>int</code> that is the hashcode for <code>this</code>.
-     * @stable ICU 2.0
      */
 
     public int hashCode() {
@@ -2383,7 +2327,6 @@ public class BigDecimal extends java.lang.Number implements java.io.Serializable
      * method.
      * 
      * @return An <code>int</code> converted from <code>this</code>, truncated and decapitated if necessary.
-     * @stable ICU 2.0
      */
 
     public int intValue() {
@@ -2397,7 +2340,6 @@ public class BigDecimal extends java.lang.Number implements java.io.Serializable
      * 
      * @return An <code>int</code> equal in value to <code>this</code>.
      * @throws ArithmeticException if <code>this</code> has a non-zero decimal part, or will not fit in an <code>int</code>.
-     * @stable ICU 2.0
      */
 
     public int intValueExact() {
@@ -2467,7 +2409,6 @@ public class BigDecimal extends java.lang.Number implements java.io.Serializable
      * method.
      * 
      * @return A <code>long</code> converted from <code>this</code>, truncated and decapitated if necessary.
-     * @stable ICU 2.0
      */
 
     public long longValue() {
@@ -2481,7 +2422,6 @@ public class BigDecimal extends java.lang.Number implements java.io.Serializable
      * 
      * @return A <code>long</code> equal in value to <code>this</code>.
      * @throws ArithmeticException if <code>this</code> has a non-zero decimal part, or will not fit in a <code>long</code>.
-     * @stable ICU 2.0
      */
 
     public long longValueExact() {
@@ -2560,7 +2500,6 @@ public class BigDecimal extends java.lang.Number implements java.io.Serializable
      * @param n The <code>int</code> specifying the number of places to move the decimal point leftwards.
      * @return A <code>BigDecimal</code> derived from <code>this</code>, with the decimal point moved <code>n</code>
      *         places to the left.
-     * @stable ICU 2.0
      */
 
     public android.icu.math.BigDecimal movePointLeft(int n) {
@@ -2584,7 +2523,6 @@ public class BigDecimal extends java.lang.Number implements java.io.Serializable
      * @param n The <code>int</code> specifying the number of places to move the decimal point rightwards.
      * @return A <code>BigDecimal</code> derived from <code>this</code>, with the decimal point moved <code>n</code>
      *         places to the right.
-     * @stable ICU 2.0
      */
 
     public android.icu.math.BigDecimal movePointRight(int n) {
@@ -2600,7 +2538,6 @@ public class BigDecimal extends java.lang.Number implements java.io.Serializable
      * without exponential notation.
      * 
      * @return An <code>int</code> whose value is the scale of this <code>BigDecimal</code>.
-     * @stable ICU 2.0
      */
 
     public int scale() {
@@ -2626,7 +2563,6 @@ public class BigDecimal extends java.lang.Number implements java.io.Serializable
      * @return A plain <code>BigDecimal</code> with the given scale.
      * @throws ArithmeticException if <code>scale</code> is negative.
      * @throws ArithmeticException if reducing scale would discard non-zero digits.
-     * @stable ICU 2.0
      */
 
     public android.icu.math.BigDecimal setScale(int scale) {
@@ -2654,7 +2590,6 @@ public class BigDecimal extends java.lang.Number implements java.io.Serializable
      * @throws ArithmeticException if <code>scale</code> is negative.
      * @throws ArithmeticException if <code>round</code> is <code>MathContext.ROUND_UNNECESSARY</code>, and reducing scale would discard
      *             non-zero digits.
-     * @stable ICU 2.0
      */
 
     public android.icu.math.BigDecimal setScale(int scale, int round) {
@@ -2701,7 +2636,6 @@ public class BigDecimal extends java.lang.Number implements java.io.Serializable
      * 
      * @return A <code>short</code> equal in value to <code>this</code>.
      * @throws ArithmeticException if <code>this</code> has a non-zero decimal part, or will not fit in a <code>short</code>.
-     * @stable ICU 2.0
      */
 
     public short shortValueExact() {
@@ -2719,7 +2653,6 @@ public class BigDecimal extends java.lang.Number implements java.io.Serializable
      * 
      * @return An <code>int</code> which is -1 if the <code>BigDecimal</code> is negative, 0 if it is numerically equal
      *         to zero, or 1 if it is positive.
-     * @stable ICU 2.0
      */
 
     public int signum() {
@@ -2733,11 +2666,10 @@ public class BigDecimal extends java.lang.Number implements java.io.Serializable
      * number without any rounding or exponent and then the <code>java.math.BigDecimal(java.lang.String)</code>
      * constructor were used to construct the result.
      * <p>
-     * <i>(Note: this method is provided only in the <code>com.ibm.icu.math</code> version of the BigDecimal class. It
+     * <i>(Note: this method is provided only in the <code>android.icu.math</code> version of the BigDecimal class. It
      * would not be present in a <code>java.math</code> version.)</i>
      * 
      * @return The <code>java.math.BigDecimal</code> equal in value to this <code>BigDecimal</code>.
-     * @stable ICU 2.0
      */
 
     public java.math.BigDecimal toBigDecimal() {
@@ -2751,7 +2683,6 @@ public class BigDecimal extends java.lang.Number implements java.io.Serializable
      * {@link #toBigIntegerExact()}.
      * 
      * @return The <code>java.math.BigInteger</code> equal in value to the integer part of this <code>BigDecimal</code>.
-     * @stable ICU 2.0
      */
 
     public java.math.BigInteger toBigInteger() {
@@ -2792,7 +2723,6 @@ public class BigDecimal extends java.lang.Number implements java.io.Serializable
      * 
      * @return The <code>java.math.BigInteger</code> equal in value to the integer part of this <code>BigDecimal</code>.
      * @throws ArithmeticException if <code>this</code> has a non-zero decimal part.
-     * @stable ICU 2.0
      */
 
     public java.math.BigInteger toBigIntegerExact() {
@@ -2811,7 +2741,6 @@ public class BigDecimal extends java.lang.Number implements java.io.Serializable
      * <code>char[]</code> objects.
      * 
      * @return The <code>char[]</code> array corresponding to this <code>BigDecimal</code>.
-     * @stable ICU 2.0
      */
 
     public char[] toCharArray() {
@@ -2830,7 +2759,6 @@ public class BigDecimal extends java.lang.Number implements java.io.Serializable
      * @see #format(int, int)
      * @see #format(int, int, int, int, int, int)
      * @see #toCharArray()
-     * @stable ICU 2.0
      */
 
     public java.lang.String toString() {
@@ -2844,7 +2772,6 @@ public class BigDecimal extends java.lang.Number implements java.io.Serializable
      * 
      * @return The <code>java.math.BigInteger</code> equal in value to this <code>BigDecimal</code> multiplied by ten to
      *         the power of <code>this.scale()</code>.
-     * @stable ICU 2.0
      */
 
     public java.math.BigInteger unscaledValue() {
@@ -2872,7 +2799,6 @@ public class BigDecimal extends java.lang.Number implements java.io.Serializable
      * @param dub The <code>double</code> to be translated.
      * @return The <code>BigDecimal</code> equal in value to <code>dub</code>.
      * @throws NumberFormatException if the parameter is infinite or not a number.
-     * @stable ICU 2.0
      */
 
     public static android.icu.math.BigDecimal valueOf(double dub) {
@@ -2888,7 +2814,6 @@ public class BigDecimal extends java.lang.Number implements java.io.Serializable
      * 
      * @param lint The <code>long</code> to be translated.
      * @return The <code>BigDecimal</code> equal in value to <code>lint</code>.
-     * @stable ICU 2.0
      */
 
     public static android.icu.math.BigDecimal valueOf(long lint) {
@@ -2910,7 +2835,6 @@ public class BigDecimal extends java.lang.Number implements java.io.Serializable
      * @param scale The <code>int</code> scale to be applied.
      * @return The <code>BigDecimal</code> equal in value to <code>lint</code>.
      * @throws NumberFormatException if the scale is negative.
-     * @stable ICU 2.0
      */
 
     public static android.icu.math.BigDecimal valueOf(long lint, int scale) {

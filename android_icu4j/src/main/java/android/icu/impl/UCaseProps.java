@@ -1251,7 +1251,7 @@ public final class UCaseProps {
      * We use a shared StringBuilder to avoid allocating a new one in each call.
      * We remove its contents each time so that it does not grow large over time.
      *
-     * {@literal @}internal
+     * @internal
      */
     public static final StringBuilder dummyStringBuilder = new StringBuilder();
 

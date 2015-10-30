@@ -68,7 +68,6 @@ package android.icu.text;
 * @see UnicodeCompressor
 *
 * @author Stephen F. Booth
-* @stable ICU 2.4
 * @hide Only a subset of ICU is exposed in Android
 * @hide All android.icu classes are currently hidden
 */
@@ -101,7 +100,6 @@ public final class UnicodeDecompressor implements SCSU
      * Create a UnicodeDecompressor.
      * Sets all windows to their default values.
      * @see #reset
-     * @stable ICU 2.4
      */
     public UnicodeDecompressor(){
         reset();              // initialize to defaults
@@ -112,7 +110,6 @@ public final class UnicodeDecompressor implements SCSU
      * @param buffer The byte array to decompress.
      * @return A String containing the decompressed characters.
      * @see #decompress(byte [], int, int)
-     * @stable ICU 2.4
      */
     public static String decompress(byte [] buffer){
         char [] buf = decompress(buffer, 0, buffer.length);
@@ -126,7 +123,6 @@ public final class UnicodeDecompressor implements SCSU
      * @param limit The limit of the byte run to decompress.
      * @return A character array containing the decompressed bytes.
      * @see #decompress(byte [])
-     * @stable ICU 2.4
      */
     public static char [] decompress(byte [] buffer, int start, int limit) {
         UnicodeDecompressor comp = new UnicodeDecompressor();
@@ -163,7 +159,6 @@ public final class UnicodeDecompressor implements SCSU
      * @param charBufferLimit The limiting offset for writing 
      * decompressed data.
      * @return The number of Unicode characters written to charBuffer.
-     * @stable ICU 2.4
      */
     public int decompress(byte []    byteBuffer,
               int        byteBufferStart,
@@ -538,7 +533,6 @@ public final class UnicodeDecompressor implements SCSU
 
     /** 
      * Reset the decompressor to its initial state. 
-     * @stable ICU 2.4
      */
     public void reset()
     {

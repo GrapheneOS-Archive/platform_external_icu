@@ -53,7 +53,6 @@ import android.icu.impl.ICUResourceBundle;
  *  ( WORLD, CONTINENT, or SUBCONTINENT ) will always be the containing region instead.
  *  
  * @author       John Emmons
- * @stable ICU 50
  * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
  */
@@ -63,48 +62,39 @@ public class Region implements Comparable<Region> {
     /**
      * RegionType is an enumeration defining the different types of regions.  Current possible
      * values are WORLD, CONTINENT, SUBCONTINENT, TERRITORY, GROUPING, DEPRECATED, and UNKNOWN.
-     * 
-     * @stable ICU 50
      */
 
     public enum RegionType {
         /**
          * Type representing the unknown region.
-         * @stable ICU 50
          */
         UNKNOWN,
 
         /**
          * Type representing a territory.
-         * @stable ICU 50
          */
         TERRITORY,
 
         /**
          * Type representing the whole world.
-         * @stable ICU 50
          */
         WORLD,
         /**
          * Type representing a continent.
-         * @stable ICU 50
          */
         CONTINENT,
         /**
          * Type representing a sub-continent.
-         * @stable ICU 50
          */
         SUBCONTINENT,
         /**
          * Type representing a grouping of territories that is not to be used in
          * the normal WORLD/CONTINENT/SUBCONTINENT/TERRITORY containment tree.
-         * @stable ICU 50
          */
         GROUPING,
         /**
          * Type representing a region whose code has been deprecated, usually
          * due to a country splitting into multiple territories or changing its name.
-         * @stable ICU 50
          */
         DEPRECATED,
     }
@@ -367,7 +357,6 @@ public class Region implements Comparable<Region> {
      * @return The corresponding region.
      * @throws NullPointerException if the supplied id is null.
      * @throws IllegalArgumentException if the supplied ID cannot be canonicalized to a Region ID that is known by ICU.
-     * @stable ICU 50
      */
 
     public static Region getInstance(String id) {
@@ -400,7 +389,6 @@ public class Region implements Comparable<Region> {
      * @param code The numeric code of the region to be retrieved.
      * @return The corresponding region.
      * @throws IllegalArgumentException if the supplied numeric code is not recognized.
-     * @stable ICU 50
      */
 
     public static Region getInstance(int code) {
@@ -436,7 +424,6 @@ public class Region implements Comparable<Region> {
      * 
      * @param type The type of regions to be returned ( TERRITORY, MACROREGION, etc. )
      * @return An unmodifiable set of all known regions that match the given type.
-     * @stable ICU 50
      */
 
     public static Set<Region> getAvailable(RegionType type) {
@@ -451,7 +438,6 @@ public class Region implements Comparable<Region> {
      * @return The region that geographically contains this region.  Returns NULL if this region is
      *  code "001" (World) or "ZZ" (Unknown region).  For example, calling this method with region "IT" (Italy)
      *  returns the region "039" (Southern Europe).    
-     * @stable ICU 50
      */
 
     public Region getContainingRegion() {
@@ -464,7 +450,6 @@ public class Region implements Comparable<Region> {
      * @return The region that geographically contains this region and matches the given type.  May return NULL if 
      *  no containing region can be found that matches the given type.  For example, calling this method with region "IT" (Italy)
      *  and type CONTINENT returns the region "150" (Europe).    
-     * @stable ICU 50
      */
 
     public Region getContainingRegion(RegionType type) {
@@ -488,8 +473,6 @@ public class Region implements Comparable<Region> {
      * For example, calling this method with region "150" (Europe) returns a set containing
      * the various sub regions of Europe - "039" (Southern Europe) - "151" (Eastern Europe) 
      * - "154" (Northern Europe) and "155" (Western Europe).
-     *
-     * @stable ICU 50
      */
 
     public Set<Region> getContainedRegions() {
@@ -504,7 +487,6 @@ public class Region implements Comparable<Region> {
      * if this region doesn't have any sub-regions that match the given type.
      * For example, calling this method with region "150" (Europe) and type "TERRITORY" returns a set
      *  containing all the territories in Europe ( "FR" (France) - "IT" (Italy) - "DE" (Germany) etc. )
-     * @stable ICU 50
      */
 
     public Set<Region> getContainedRegions(RegionType type) {
@@ -528,8 +510,6 @@ public class Region implements Comparable<Region> {
      * @return For deprecated regions, return an unmodifiable list of the regions that are the preferred replacement regions for this region.  
      * Returns null for a non-deprecated region.  For example, calling this method with region "SU" (Soviet Union) would 
      * return a list of the regions containing "RU" (Russia), "AM" (Armenia), "AZ" (Azerbaijan), etc... 
-     * 
-     * @stable ICU 50
      */
     public List<Region> getPreferredValues() {
 
@@ -544,8 +524,6 @@ public class Region implements Comparable<Region> {
 
     /**
      * @return Returns true if this region contains the supplied other region anywhere in the region hierarchy.
-     * 
-     * @stable ICU 50
      */
     public boolean contains(Region other) {
 
@@ -567,8 +545,6 @@ public class Region implements Comparable<Region> {
     /** Returns the string representation of this region
      * 
      * @return The string representation of this region, which is its ID.
-     *
-     * @stable ICU 50
      */
 
     public String toString() {
@@ -580,8 +556,6 @@ public class Region implements Comparable<Region> {
      * 
      * @return The numeric code for this region. Returns a negative value if the given region does not have a numeric
      *         code assigned to it. This is a very rare case and only occurs for a few very small territories.
-     * 
-     * @stable ICU 50
      */
 
     public int getNumericCode() {
@@ -591,8 +565,6 @@ public class Region implements Comparable<Region> {
     /** Returns this region's type.
      * 
      * @return This region's type classification, such as MACROREGION or TERRITORY.
-     *
-     * @stable ICU 50
      */
 
     public RegionType getType() {
@@ -601,7 +573,6 @@ public class Region implements Comparable<Region> {
 
     /**
      * {@inheritDoc}
-     * @stable ICU 50
      */
     public int compareTo(Region other) {
         return id.compareTo(other.id);

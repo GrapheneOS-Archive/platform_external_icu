@@ -14,7 +14,6 @@ import java.io.Serializable;
 /**
  * This class represents date interval.
  * It is a pair of long representing from date 1 to date 2.
- * @stable ICU 4.0
  * @hide All android.icu classes are currently hidden
  */
 public final class DateInterval implements Serializable {
@@ -28,7 +27,6 @@ public final class DateInterval implements Serializable {
      * Constructor given from date and to date.
      * @param from      The from date in date interval.
      * @param to        The to date in date interval.
-     * @stable ICU 4.0
      */
     public DateInterval(long from, long to)
     {
@@ -39,7 +37,6 @@ public final class DateInterval implements Serializable {
     /** 
      * Get the from date.
      * @return  the from date in dateInterval.
-     * @stable ICU 4.0
      */
     public long getFromDate()
     {
@@ -49,7 +46,6 @@ public final class DateInterval implements Serializable {
     /** 
      * Get the to date.
      * @return  the to date in dateInterval.
-     * @stable ICU 4.0
      */
     public long getToDate()
     {
@@ -58,7 +54,6 @@ public final class DateInterval implements Serializable {
 
     /**
      * Override equals
-     * @stable ICU 4.0
      */
     public boolean equals(Object a) {
         if ( a instanceof DateInterval ) {
@@ -70,7 +65,6 @@ public final class DateInterval implements Serializable {
 
     /**
      * Override hashcode
-     * @stable ICU 4.0
      */
     public int hashCode() {
         return (int)(fromDate + toDate);
@@ -78,7 +72,6 @@ public final class DateInterval implements Serializable {
 
     /**
      * Override toString
-     * @stable ICU 4.0
      */
     public String toString() {
         return String.valueOf(fromDate) + " " + String.valueOf(toDate);

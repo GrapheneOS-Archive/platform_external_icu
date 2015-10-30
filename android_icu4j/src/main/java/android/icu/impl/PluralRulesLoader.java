@@ -234,7 +234,7 @@ public class PluralRulesLoader extends PluralRules.Factory {
 
     /**
      * Returns the plural rules for the the locale. If we don't have data,
-     * com.ibm.icu.text.PluralRules.DEFAULT is returned.
+     * android.icu.text.PluralRules.DEFAULT is returned.
      */
     public PluralRules forLocale(ULocale locale, PluralRules.PluralType type) {
         String rulesId = getRulesIdForLocale(locale, type);
@@ -254,7 +254,7 @@ public class PluralRulesLoader extends PluralRules.Factory {
     public static final PluralRulesLoader loader = new PluralRulesLoader();
 
     /* (non-Javadoc)
-     * @see com.ibm.icu.text.PluralRules.Factory#hasOverride(com.ibm.icu.util.ULocale)
+     * @see android.icu.text.PluralRules.Factory#hasOverride(android.icu.util.ULocale)
      */
     @Override
     public boolean hasOverride(ULocale locale) {

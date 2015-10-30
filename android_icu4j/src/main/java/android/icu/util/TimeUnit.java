@@ -16,7 +16,6 @@ import java.io.ObjectStreamException;
  * @see TimeUnitAmount
  * @see TimeUnit
  * @author markdavis
- * @stable ICU 4.0
  * @hide All android.icu classes are currently hidden
  */
 public class TimeUnit extends MeasureUnit {
@@ -34,7 +33,6 @@ public class TimeUnit extends MeasureUnit {
 
     /**
      * @return the available values
-     * @stable ICU 4.0
      */
     public static TimeUnit[] values() {
         return new TimeUnit[] { SECOND, MINUTE, HOUR, DAY, WEEK, MONTH, YEAR };

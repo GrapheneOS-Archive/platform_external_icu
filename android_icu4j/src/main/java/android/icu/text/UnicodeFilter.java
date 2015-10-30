@@ -11,10 +11,9 @@ package android.icu.text;
  * <code>UnicodeFilter</code> defines a protocol for selecting a
  * subset of the full range (U+0000 to U+FFFF) of Unicode characters.
  * Currently, filters are used in conjunction with classes like
- * <a href="Transliterator.html" title="class in com.ibm.icu.text"><code>Transliterator</code></a>
+ * <a href="Transliterator.html" title="class in android.icu.text"><code>Transliterator</code></a>
  * to only process selected characters through a
  * transformation.
- * @stable ICU 2.0
  * @hide All android.icu classes are currently hidden
  */
 public abstract class UnicodeFilter implements UnicodeMatcher {
@@ -24,14 +23,12 @@ public abstract class UnicodeFilter implements UnicodeMatcher {
      * subset.  In other words, if a character is <b>to be
      * filtered</b>, then <tt>contains()</tt> returns
      * <b><tt>false</tt></b>.
-     * @stable ICU 2.0
      */
     public abstract boolean contains(int c);
 
     /**
      * Default implementation of UnicodeMatcher::matches() for Unicode
      * filters.  Matches a single 16-bit code unit at offset.
-     * @stable ICU 2.0
      */
     public int matches(Replaceable text,
                        int[] offset,

@@ -84,7 +84,6 @@ import android.icu.impl.coll.Collation;
  * @see Collator
  * @see RuleBasedCollator
  * @author Syn Wee Quek
- * @stable ICU 2.8 
  * @hide All android.icu classes are currently hidden
  */
 public final class CollationKey implements Comparable<CollationKey>
@@ -94,7 +93,6 @@ public final class CollationKey implements Comparable<CollationKey>
     /** 
      * Options that used in the API CollationKey.getBound() for getting a 
      * CollationKey based on the bound mode requested.
-     * @stable ICU 2.6
      */
     public static final class BoundMode 
     {
@@ -105,26 +103,22 @@ public final class CollationKey implements Comparable<CollationKey>
          
         /** 
          * Lower bound
-         * @stable ICU 2.6
          */
         public static final int LOWER = 0;
 
         /** 
          * Upper bound that will match strings of exact size
-         * @stable ICU 2.6
          */
         public static final int UPPER = 1;
 
         /** 
          * Upper bound that will match all the strings that have the same 
          * initial substring as the given string
-         * @stable ICU 2.6
          */
         public static final int UPPER_LONG = 2;
 
         /**
          * Number of bound mode
-         * @stable ICU 2.6
          */
         public static final int COUNT = 3;
         
@@ -147,7 +141,6 @@ public final class CollationKey implements Comparable<CollationKey>
      * @param key array of bytes that represent the collation order of argument
      *            source terminated by a null
      * @see Collator
-     * @stable ICU 2.8
      */
     public CollationKey(String source, byte key[])
     {
@@ -175,7 +168,6 @@ public final class CollationKey implements Comparable<CollationKey>
      *            argument source. 
      * @see Collator
      * @see RawCollationKey
-     * @stable ICU 2.8 
      */
     public CollationKey(String source, RawCollationKey key)
     {
@@ -191,7 +183,6 @@ public final class CollationKey implements Comparable<CollationKey>
     /**
      * Return the source string that this CollationKey represents.
      * @return source string that this CollationKey represents
-     * @stable ICU 2.8
      */
     public String getSourceString() 
     {
@@ -227,7 +218,6 @@ public final class CollationKey implements Comparable<CollationKey>
      * </p>  
      * @return CollationKey value in a sequence of big-endian byte bytes 
      *         terminated by a null.
-     * @stable ICU 2.8
      */
     public byte[] toByteArray() 
     {
@@ -255,7 +245,6 @@ public final class CollationKey implements Comparable<CollationKey>
      *         than target.
      * @exception NullPointerException is thrown if argument is null.
      * @see Collator#compare(String, String)
-     * @stable ICU 2.8 
      */
     public int compareTo(CollationKey target)
     {
@@ -286,7 +275,6 @@ public final class CollationKey implements Comparable<CollationKey>
      * @exception ClassCastException is thrown when the argument is not 
      *            a CollationKey.  NullPointerException is thrown when the argument 
      *            is null.
-     * @stable ICU 2.8 
      */
     public boolean equals(Object target) 
     {
@@ -310,7 +298,6 @@ public final class CollationKey implements Comparable<CollationKey>
      * @param target the CollationKey to compare to.
      * @return true if two objects are equal, false otherwise.
      * @exception NullPointerException is thrown when the argument is null.
-     * @stable ICU 2.8
      */
     public boolean equals(CollationKey target) 
     {
@@ -342,7 +329,6 @@ public final class CollationKey implements Comparable<CollationKey>
      * hash table.
      * </p>
      * @return the hash value.
-     * @stable ICU 2.8
      */
     public int hashCode() 
     {
@@ -422,7 +408,6 @@ public final class CollationKey implements Comparable<CollationKey>
      * @see Collator#TERTIARY
      * @see Collator#QUATERNARY
      * @see Collator#IDENTICAL
-     * @stable ICU 2.6
      */
     public CollationKey getBound(int boundType, int noOfLevels) 
     {
@@ -520,7 +505,6 @@ public final class CollationKey implements Comparable<CollationKey>
      *         i.e. <tt>new CollationKey(null, merged_sort_keys)</tt>
      * @exception IllegalArgumentException thrown if source CollationKey
      *            argument is null or of 0 length.
-     * @stable ICU 2.6
      */
     public CollationKey merge(CollationKey source)
     {

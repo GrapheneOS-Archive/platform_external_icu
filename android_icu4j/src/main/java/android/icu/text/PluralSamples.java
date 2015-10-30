@@ -326,7 +326,6 @@ public class PluralSamples {
      * @param keyword the keyword
      * @return the values that trigger this keyword, or null.  The returned collection
      * is immutable. It will be empty if the keyword is not defined.
-     * @stable ICU 4.8
      */
 
     Collection<Double> getAllKeywordValues(String keyword) {

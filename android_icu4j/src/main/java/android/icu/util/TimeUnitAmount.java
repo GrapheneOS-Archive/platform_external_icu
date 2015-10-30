@@ -13,7 +13,6 @@ package android.icu.util;
  * @see TimeUnitAmount
  * @see android.icu.text.TimeUnitFormat
  * @author markdavis
- * @stable ICU 4.0
  * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
  */
@@ -21,7 +20,6 @@ public class TimeUnitAmount extends Measure {
 
     /**
      * Create from a number and unit.
-     * @stable ICU 4.0
      */
     public TimeUnitAmount(Number number, TimeUnit unit) {
         super(number, unit);
@@ -29,7 +27,6 @@ public class TimeUnitAmount extends Measure {
 
     /**
      * Create from a number and unit.
-     * @stable ICU 4.0
      */
     public TimeUnitAmount(double number, TimeUnit unit) {
         super(new Double(number), unit);
@@ -37,7 +34,6 @@ public class TimeUnitAmount extends Measure {
 
     /**
      * Get the unit (convenience to avoid cast).
-     * @stable ICU 4.0
      */
     public TimeUnit getTimeUnit() {
         return (TimeUnit) getUnit();

@@ -548,7 +548,7 @@ public final class ZoneMeta {
     private static class SystemTimeZoneCache extends SoftCache<String, OlsonTimeZone, String> {
 
         /* (non-Javadoc)
-         * @see com.ibm.icu.impl.CacheBase#createInstance(java.lang.Object, java.lang.Object)
+         * @see android.icu.impl.CacheBase#createInstance(java.lang.Object, java.lang.Object)
          */
         @Override
         protected OlsonTimeZone createInstance(String key, String data) {
@@ -589,7 +589,7 @@ public final class ZoneMeta {
     private static class CustomTimeZoneCache extends SoftCache<Integer, SimpleTimeZone, int[]> {
 
         /* (non-Javadoc)
-         * @see com.ibm.icu.impl.CacheBase#createInstance(java.lang.Object, java.lang.Object)
+         * @see android.icu.impl.CacheBase#createInstance(java.lang.Object, java.lang.Object)
          */
         @Override
         protected SimpleTimeZone createInstance(Integer key, int[] data) {

@@ -32,8 +32,6 @@ import android.icu.util.ULocale.Category;
  * locale information,
  * plural rule of the locale,
  * currency plural pattern of the locale.
- *
- * @stable ICU 4.2
  * @hide All android.icu classes are currently hidden
  */
 
@@ -43,7 +41,6 @@ public class CurrencyPluralInfo implements Cloneable, Serializable {
     /**
      * Create a CurrencyPluralInfo object for the default <code>FORMAT</code> locale.
      * @see Category#FORMAT
-     * @stable ICU 4.2
      */
     public CurrencyPluralInfo() {
         initialize(ULocale.getDefault(Category.FORMAT));
@@ -52,7 +49,6 @@ public class CurrencyPluralInfo implements Cloneable, Serializable {
     /**
      * Create a CurrencyPluralInfo object for the given locale.
      * @param locale the locale
-     * @stable ICU 4.2
      */
     public CurrencyPluralInfo(Locale locale) {
         initialize(ULocale.forLocale(locale));
@@ -61,7 +57,6 @@ public class CurrencyPluralInfo implements Cloneable, Serializable {
     /**
      * Create a CurrencyPluralInfo object for the given locale.
      * @param locale the locale
-     * @stable ICU 4.2
      */
     public CurrencyPluralInfo(ULocale locale) {
         initialize(locale);
@@ -71,7 +66,6 @@ public class CurrencyPluralInfo implements Cloneable, Serializable {
      * Gets a CurrencyPluralInfo instance for the default locale.
      *
      * @return A CurrencyPluralInfo instance.
-     * @stable ICU 4.2
      */
     public static CurrencyPluralInfo getInstance() {
         return new CurrencyPluralInfo();
@@ -82,7 +76,6 @@ public class CurrencyPluralInfo implements Cloneable, Serializable {
      *
      * @param locale the locale.
      * @return A CurrencyPluralInfo instance.
-     * @stable ICU 4.2
      */
     public static CurrencyPluralInfo getInstance(Locale locale) {
         return new CurrencyPluralInfo(locale);
@@ -93,7 +86,6 @@ public class CurrencyPluralInfo implements Cloneable, Serializable {
      *
      * @param locale the locale.
      * @return A CurrencyPluralInfo instance.
-     * @stable ICU 4.2
      */
     public static CurrencyPluralInfo getInstance(ULocale locale) {
         return new CurrencyPluralInfo(locale);
@@ -103,7 +95,6 @@ public class CurrencyPluralInfo implements Cloneable, Serializable {
      * Gets plural rules of this locale, used for currency plural format
      *
      * @return plural rule
-     * @stable ICU 4.2
      */
     public PluralRules getPluralRules() {
         return pluralRules;
@@ -115,7 +106,6 @@ public class CurrencyPluralInfo implements Cloneable, Serializable {
      *
      * @param  pluralCount currency plural count
      * @return a currency plural pattern based on plural count
-     * @stable ICU 4.2
      */
     public String getCurrencyPluralPattern(String pluralCount) {
         String currencyPluralPattern = pluralCountToCurrencyUnitPattern.get(pluralCount);
@@ -140,8 +130,6 @@ public class CurrencyPluralInfo implements Cloneable, Serializable {
      * Get locale
      *
      * @return locale
-     *
-     * @stable ICU 4.2
      */
     public ULocale getLocale() {
         return ulocale;
@@ -152,7 +140,6 @@ public class CurrencyPluralInfo implements Cloneable, Serializable {
      * and usually do not need to be changed.
      *
      * @param ruleDescription new plural rule description
-     * @stable ICU 4.2
      */
     public void setPluralRules(String ruleDescription) {
         pluralRules = PluralRules.createRules(ruleDescription);
@@ -165,7 +152,6 @@ public class CurrencyPluralInfo implements Cloneable, Serializable {
      * @param pluralCount the plural count for which the currency pattern will
      *                    be overridden.
      * @param pattern     the new currency plural pattern
-     * @stable ICU 4.2
      */
     public void setCurrencyPluralPattern(String pluralCount, String pattern) {
         pluralCountToCurrencyUnitPattern.put(pluralCount, pattern);
@@ -176,7 +162,6 @@ public class CurrencyPluralInfo implements Cloneable, Serializable {
      * the defaults for the locale.
      *
      * @param loc the new locale to set
-     * @stable ICU 4.2
      */
     public void setLocale(ULocale loc) {
         ulocale = loc;
@@ -185,8 +170,6 @@ public class CurrencyPluralInfo implements Cloneable, Serializable {
 
     /**
      * Standard override
-     *
-     * @stable ICU 4.2
      */
     public Object clone() {
         try {
@@ -210,8 +193,6 @@ public class CurrencyPluralInfo implements Cloneable, Serializable {
 
     /**
      * Override equals
-     *
-     * @stable ICU 4.2
      */
     public boolean equals(Object a) {
         if (a instanceof CurrencyPluralInfo) {

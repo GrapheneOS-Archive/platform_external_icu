@@ -124,7 +124,6 @@ import android.icu.util.ULocale;
  * @see SearchIterator
  * @see RuleBasedCollator
  * @author Laura Werner, synwee
- * @stable ICU 2.0
  * @hide All android.icu classes are currently hidden
  */
 // internal notes: all methods do not guarantee the correct status of the 
@@ -171,7 +170,6 @@ public final class StringSearch extends SearchIterator {
      *            or of length 0
      * @see BreakIterator
      * @see RuleBasedCollator
-     * @stable ICU 2.0
      */
     public StringSearch(String pattern, CharacterIterator target, RuleBasedCollator collator,
             BreakIterator breakiter) {
@@ -228,7 +226,6 @@ public final class StringSearch extends SearchIterator {
      * @throws IllegalArgumentException thrown when argument target is null,
      *            or of length 0
      * @see RuleBasedCollator
-     * @stable ICU 2.0
      */
     public StringSearch(String pattern, CharacterIterator target, RuleBasedCollator collator) {
         this(pattern, target, collator, null);
@@ -244,7 +241,6 @@ public final class StringSearch extends SearchIterator {
      * @throws IllegalArgumentException thrown when argument target is null,
      *            or of length 0. ClassCastException thrown if the collator for 
      *            the specified locale is not a RuleBasedCollator.
-     * @stable ICU 2.0
      */
     public StringSearch(String pattern, CharacterIterator target, Locale locale) {
         this(pattern, target, ULocale.forLocale(locale));
@@ -265,7 +261,6 @@ public final class StringSearch extends SearchIterator {
      * @see BreakIterator
      * @see RuleBasedCollator
      * @see SearchIterator
-     * @stable ICU 3.2
      */
     public StringSearch(String pattern, CharacterIterator target, ULocale locale) {
         this(pattern, target, (RuleBasedCollator) Collator.getInstance(locale), null);
@@ -280,7 +275,6 @@ public final class StringSearch extends SearchIterator {
      * @throws IllegalArgumentException thrown when argument target is null,
      *            or of length 0. ClassCastException thrown if the collator for 
      *            the default locale is not a RuleBasedCollator.
-     * @stable ICU 2.0
      */
     public StringSearch(String pattern, String target) {
         this(pattern, new StringCharacterIterator(target),
@@ -298,7 +292,6 @@ public final class StringSearch extends SearchIterator {
      * @return {@link RuleBasedCollator} used by this <tt>StringSearch</tt>
      * @see RuleBasedCollator
      * @see #setCollator
-     * @stable ICU 2.0
      */
     public RuleBasedCollator getCollator() {
         return collator_;
@@ -311,7 +304,6 @@ public final class StringSearch extends SearchIterator {
      * @param collator to use for this <tt>StringSearch</tt>
      * @throws IllegalArgumentException thrown when collator is null
      * @see #getCollator
-     * @stable ICU 2.0
      */
     public void setCollator(RuleBasedCollator collator) {
         if (collator == null) {
@@ -336,7 +328,6 @@ public final class StringSearch extends SearchIterator {
     /**
      * Returns the pattern for which <tt>StringSearch</tt> is searching for.
      * @return the pattern searched for
-     * @stable ICU 2.0
      */
     public String getPattern() {
         return pattern_.text_;
@@ -349,7 +340,6 @@ public final class StringSearch extends SearchIterator {
      * @see #getPattern
      * @exception IllegalArgumentException thrown if pattern is null or of
      *               length 0
-     * @stable ICU 2.0
      */
     public void setPattern(String pattern) {
         if (pattern == null || pattern.length() <= 0) {
@@ -366,7 +356,6 @@ public final class StringSearch extends SearchIterator {
      * See setCanonical(boolean) for more information.
      * @see #setCanonical
      * @return true if canonical matches is set, false otherwise
-     * @stable ICU 2.8
      */
     //TODO: hoist this to SearchIterator
     public boolean isCanonical() {
@@ -378,7 +367,6 @@ public final class StringSearch extends SearchIterator {
      * The default setting for this property is false.
      * @param allowCanonical flag indicator if canonical matches are allowed
      * @see #isCanonical
-     * @stable ICU 2.8
      */
     //TODO: hoist this to SearchIterator
     public void setCanonical(boolean allowCanonical) {
@@ -387,7 +375,6 @@ public final class StringSearch extends SearchIterator {
 
     /**
      * {@inheritDoc}
-     * @stable ICU 2.8
      */
     @Override
     public void setTarget(CharacterIterator text) {
@@ -397,7 +384,6 @@ public final class StringSearch extends SearchIterator {
 
     /**
      * {@inheritDoc}
-     * @stable ICU 2.8
      */
     @Override
     public int getIndex() {
@@ -410,7 +396,6 @@ public final class StringSearch extends SearchIterator {
 
     /**
      * {@inheritDoc}
-     * @stable ICU 2.8
      */
     @Override
     public void setIndex(int position) {
@@ -424,7 +409,6 @@ public final class StringSearch extends SearchIterator {
 
     /** 
      * {@inheritDoc}
-     * @stable ICU 2.8
      */
     @Override
     public void reset() {
@@ -480,7 +464,6 @@ public final class StringSearch extends SearchIterator {
 
     /**
      * {@inheritDoc}
-     * @stable ICU 2.8
      */
     @Override
     protected int handleNext(int position) {
@@ -530,7 +513,6 @@ public final class StringSearch extends SearchIterator {
 
     /**
      * {@inheritDoc}
-     * @stable ICU 2.8
      */
     @Override
     protected int handlePrevious(int position) {

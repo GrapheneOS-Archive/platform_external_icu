@@ -17,7 +17,7 @@ import java.util.TreeSet;
 import android.icu.util.TimeZone;
 
 /**
- * JavaTimeZone inherits com.ibm.icu.util.TimeZone and wraps java.util.TimeZone.
+ * JavaTimeZone inherits android.icu.util.TimeZone and wraps java.util.TimeZone.
  * We used to have JDKTimeZone which wrapped Java TimeZone and used it as primary
  * TimeZone implementation until ICU4J 3.4.1.  This class works exactly like
  * JDKTimeZone and allows ICU users who use ICU4J and JDK date/time/calendar
@@ -106,14 +106,14 @@ public class JavaTimeZone extends TimeZone {
     }
 
     /* (non-Javadoc)
-     * @see com.ibm.icu.util.TimeZone#getOffset(int, int, int, int, int, int)
+     * @see android.icu.util.TimeZone#getOffset(int, int, int, int, int, int)
      */
     public int getOffset(int era, int year, int month, int day, int dayOfWeek, int milliseconds) {
         return javatz.getOffset(era, year, month, day, dayOfWeek, milliseconds);
     }
 
     /* (non-Javadoc)
-     * @see com.ibm.icu.util.TimeZone#getOffset(long, boolean, int[])
+     * @see android.icu.util.TimeZone#getOffset(long, boolean, int[])
      */
     public void getOffset(long date, boolean local, int[] offsets) {
         synchronized (javacal) {
@@ -158,21 +158,21 @@ public class JavaTimeZone extends TimeZone {
     }
 
     /* (non-Javadoc)
-     * @see com.ibm.icu.util.TimeZone#getRawOffset()
+     * @see android.icu.util.TimeZone#getRawOffset()
      */
     public int getRawOffset() {
         return javatz.getRawOffset();
     }
 
     /* (non-Javadoc)
-     * @see com.ibm.icu.util.TimeZone#inDaylightTime(java.util.Date)
+     * @see android.icu.util.TimeZone#inDaylightTime(java.util.Date)
      */
     public boolean inDaylightTime(Date date) {
         return javatz.inDaylightTime(date);
     }
 
     /* (non-Javadoc)
-     * @see com.ibm.icu.util.TimeZone#setRawOffset(int)
+     * @see android.icu.util.TimeZone#setRawOffset(int)
      */
     public void setRawOffset(int offsetMillis) {
         if (isFrozen()) {
@@ -182,14 +182,14 @@ public class JavaTimeZone extends TimeZone {
     }
 
     /* (non-Javadoc)
-     * @see com.ibm.icu.util.TimeZone#useDaylightTime()
+     * @see android.icu.util.TimeZone#useDaylightTime()
      */
     public boolean useDaylightTime() {
         return javatz.useDaylightTime();
     }
 
     /* (non-Javadoc)
-     * @see com.ibm.icu.util.TimeZone#observesDaylightTime()
+     * @see android.icu.util.TimeZone#observesDaylightTime()
      */
     public boolean observesDaylightTime() {
         if (mObservesDaylightTime != null) {
@@ -205,7 +205,7 @@ public class JavaTimeZone extends TimeZone {
     }
 
     /* (non-Javadoc)
-     * @see com.ibm.icu.util.TimeZone#getDSTSavings()
+     * @see android.icu.util.TimeZone#getDSTSavings()
      */
     public int getDSTSavings() {
         return javatz.getDSTSavings();
@@ -216,7 +216,7 @@ public class JavaTimeZone extends TimeZone {
     }
 
     /* (non-Javadoc)
-     * @see com.ibm.icu.util.TimeZone#clone()
+     * @see android.icu.util.TimeZone#clone()
      */
     public Object clone() {
         if (isFrozen()) {
@@ -226,7 +226,7 @@ public class JavaTimeZone extends TimeZone {
     }
 
     /* (non-Javadoc)
-     * @see com.ibm.icu.util.TimeZone#hashCode()
+     * @see android.icu.util.TimeZone#hashCode()
      */
     public int hashCode() {
         return super.hashCode() + javatz.hashCode();
@@ -241,14 +241,14 @@ public class JavaTimeZone extends TimeZone {
     private transient volatile boolean isFrozen = false;
 
     /* (non-Javadoc)
-     * @see com.ibm.icu.util.TimeZone#isFrozen()
+     * @see android.icu.util.TimeZone#isFrozen()
      */
     public boolean isFrozen() {
         return isFrozen;
     }
 
     /* (non-Javadoc)
-     * @see com.ibm.icu.util.TimeZone#freeze()
+     * @see android.icu.util.TimeZone#freeze()
      */
     public TimeZone freeze() {
         isFrozen = true;
@@ -256,7 +256,7 @@ public class JavaTimeZone extends TimeZone {
     }
 
     /* (non-Javadoc)
-     * @see com.ibm.icu.util.TimeZone#cloneAsThawed()
+     * @see android.icu.util.TimeZone#cloneAsThawed()
      */
     public TimeZone cloneAsThawed() {
         JavaTimeZone tz = (JavaTimeZone)super.cloneAsThawed();

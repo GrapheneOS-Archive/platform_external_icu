@@ -22,7 +22,6 @@ import android.icu.util.ULocale.Category;
  * with the tag <code>"@calendar=ethiopic"</code>.</p>
  *
  * @see android.icu.util.Calendar
- * @stable ICU 3.4
  * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
  */
@@ -33,79 +32,66 @@ public final class EthiopicCalendar extends CECalendar
 
     /** 
      * Constant for &#x1218;&#x1235;&#x12a8;&#x1228;&#x121d;, the 1st month of the Ethiopic year.
-     * @stable ICU 3.4
      */
     public static final int MESKEREM = 0;
 
     /** 
      * Constant for &#x1325;&#x1245;&#x121d;&#x1275;, the 2nd month of the Ethiopic year. 
-     * @stable ICU 3.4
      */
     public static final int TEKEMT = 1;
 
     /** 
      * Constant for &#x1285;&#x12f3;&#x122d;, the 3rd month of the Ethiopic year. 
-     * @stable ICU 3.4
      */
     public static final int HEDAR = 2;
 
     /** 
      * Constant for &#x1273;&#x1285;&#x1223;&#x1225;, the 4th month of the Ethiopic year. 
-     * @stable ICU 3.4
      */
     public static final int TAHSAS = 3;
 
     /** 
      * Constant for &#x1325;&#x122d;, the 5th month of the Ethiopic year. 
-     * @stable ICU 3.4
      */
     public static final int TER = 4;
 
     /** 
      * Constant for &#x12e8;&#x12ab;&#x1272;&#x1275;, the 6th month of the Ethiopic year. 
-     * @stable ICU 3.4
      */
     public static final int YEKATIT = 5;
 
     /** 
      * Constant for &#x1218;&#x130b;&#x1262;&#x1275;, the 7th month of the Ethiopic year. 
-     * @stable ICU 3.4
      */
     public static final int MEGABIT = 6;
 
     /** 
      * Constant for &#x121a;&#x12eb;&#x12dd;&#x12eb;, the 8th month of the Ethiopic year. 
-     * @stable ICU 3.4
      */
     public static final int MIAZIA = 7;
 
     /** 
      * Constant for &#x130d;&#x1295;&#x1266;&#x1275;, the 9th month of the Ethiopic year. 
-     * @stable ICU 3.4
      */
     public static final int GENBOT = 8;
 
     /** 
      * Constant for &#x1230;&#x1294;, the 10th month of the Ethiopic year. 
-     * @stable ICU 3.4
      */
     public static final int SENE = 9;
 
     /** 
      * Constant for &#x1210;&#x121d;&#x120c;, the 11th month of the Ethiopic year. 
-     * @stable ICU 3.4
      */
     public static final int HAMLE = 10;
 
     /** 
      * Constant for &#x1290;&#x1210;&#x1234;, the 12th month of the Ethiopic year. 
-     * @stable ICU 3.4
      */
     public static final int NEHASSE = 11;
 
     /** 
      * Constant for &#x1333;&#x1309;&#x121c;&#x1295;, the 13th month of the Ethiopic year. 
-     * @stable ICU 3.4
      */
     public static final int PAGUMEN = 12;
  
@@ -153,7 +139,6 @@ public final class EthiopicCalendar extends CECalendar
     /**
      * Constructs a default <code>EthiopicCalendar</code> using the current time
      * in the default time zone with the default locale.
-     * @stable ICU 3.4
      */
     public EthiopicCalendar() {
         this(TimeZone.getDefault(), ULocale.getDefault(Category.FORMAT));
@@ -164,7 +149,6 @@ public final class EthiopicCalendar extends CECalendar
      * in the given time zone with the default locale.
      *
      * @param zone The time zone for the new calendar.
-     * @stable ICU 3.4
      */
     public EthiopicCalendar(TimeZone zone) {
         this(zone, ULocale.getDefault(Category.FORMAT));
@@ -175,7 +159,6 @@ public final class EthiopicCalendar extends CECalendar
      * in the default time zone with the given locale.
      *
      * @param aLocale The locale for the new calendar.
-     * @stable ICU 3.4
      */
     public EthiopicCalendar(Locale aLocale) {
         this(TimeZone.getDefault(), aLocale);
@@ -186,7 +169,6 @@ public final class EthiopicCalendar extends CECalendar
      * in the default time zone with the given locale.
      *
      * @param locale The icu locale for the new calendar.
-     * @stable ICU 3.4
      */
     public EthiopicCalendar(ULocale locale) {
         this(TimeZone.getDefault(), locale);
@@ -198,7 +180,6 @@ public final class EthiopicCalendar extends CECalendar
      *
      * @param zone The time zone for the new calendar.
      * @param aLocale The locale for the new calendar.
-     * @stable ICU 3.4
      */
     public EthiopicCalendar(TimeZone zone, Locale aLocale) {
         this(zone, ULocale.forLocale(aLocale));
@@ -210,7 +191,6 @@ public final class EthiopicCalendar extends CECalendar
      *
      * @param zone The time zone for the new calendar.
      * @param locale The icu locale for the new calendar.
-     * @stable ICU 3.4
      */
     public EthiopicCalendar(TimeZone zone, ULocale locale) {
         super(zone, locale);
@@ -225,7 +205,6 @@ public final class EthiopicCalendar extends CECalendar
      * @param month     The value used to set the calendar's {@link #MONTH MONTH} time field.
      *                  The value is 0-based. e.g., 0 for Meskerem.
      * @param date      The value used to set the calendar's {@link #DATE DATE} time field.
-     * @stable ICU 3.4
      */
     public EthiopicCalendar(int year, int month, int date) {
         super(year, month, date);
@@ -236,7 +215,6 @@ public final class EthiopicCalendar extends CECalendar
      * in the default time zone with the default locale.
      *
      * @param date      The date to which the new calendar is set.
-     * @stable ICU 3.4
      */
     public EthiopicCalendar(Date date) {
         super(date);
@@ -253,7 +231,6 @@ public final class EthiopicCalendar extends CECalendar
      * @param hour      The value used to set the calendar's {@link #HOUR_OF_DAY HOUR_OF_DAY} time field.
      * @param minute    The value used to set the calendar's {@link #MINUTE MINUTE} time field.
      * @param second    The value used to set the calendar's {@link #SECOND SECOND} time field.
-     * @stable ICU 3.4
      */
     public EthiopicCalendar(int year, int month, int date, int hour,
                             int minute, int second)
@@ -263,7 +240,6 @@ public final class EthiopicCalendar extends CECalendar
 
     /**
      * {@inheritDoc}
-     * @stable ICU 3.8
      */
     public String getType() {
         if (isAmeteAlemEra()) {
@@ -276,7 +252,6 @@ public final class EthiopicCalendar extends CECalendar
      * Set Alem or Mihret era.
      *
      * @param onOff Set Amete Alem era if true, otherwise set Amete Mihret era.
-     * @stable ICU 3.4
      */
     public void setAmeteAlemEra(boolean onOff) {
         eraType = onOff ? AMETE_ALEM_ERA : AMETE_MIHRET_ERA;
@@ -286,7 +261,6 @@ public final class EthiopicCalendar extends CECalendar
      * Return true if this calendar is set to the Amete Alem era.
      *
      * @return true if set to the Amete Alem era.
-     * @stable ICU 3.4
      */
     public boolean isAmeteAlemEra() {
         return (eraType == AMETE_ALEM_ERA);
@@ -394,7 +368,7 @@ public final class EthiopicCalendar extends CECalendar
      * @hide draft / provisional / internal are hidden on Android
      */
     // The equivalent operation can be done by public Calendar API.
-    // This API was accidentally marked as {@literal @}draft, but we have no good
+    // This API was accidentally marked as @draft, but we have no good
     // reason to keep this.  For now, we leave it as is, but may be
     // removed in future.  2008-03-21 yoshito
     public static int EthiopicToJD(long year, int month, int date) {

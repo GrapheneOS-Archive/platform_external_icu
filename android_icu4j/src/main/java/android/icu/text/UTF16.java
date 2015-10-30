@@ -76,7 +76,6 @@ package android.icu.text;
  * </ul>
  * 
  * @author Mark Davis, with help from Markus Scherer
- * @stable ICU 2.1
  * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
  */
@@ -89,72 +88,52 @@ public final class UTF16 {
      * bounds()</a></code>.
      * These values are chosen specifically so that it actually represents the position of the
      * character [offset16 - (value >> 2), offset16 + (value & 3)]
-     * 
-     * @stable ICU 2.1
      */
     public static final int SINGLE_CHAR_BOUNDARY = 1, LEAD_SURROGATE_BOUNDARY = 2,
             TRAIL_SURROGATE_BOUNDARY = 5;
 
     /**
      * The lowest Unicode code point value.
-     * 
-     * @stable ICU 2.1
      */
     public static final int CODEPOINT_MIN_VALUE = 0;
 
     /**
      * The highest Unicode code point value (scalar value) according to the Unicode Standard.
-     * 
-     * @stable ICU 2.1
      */
     public static final int CODEPOINT_MAX_VALUE = 0x10ffff;
 
     /**
      * The minimum value for Supplementary code points
-     * 
-     * @stable ICU 2.1
      */
     public static final int SUPPLEMENTARY_MIN_VALUE = 0x10000;
 
     /**
      * Lead surrogate minimum value
-     * 
-     * @stable ICU 2.1
      */
     public static final int LEAD_SURROGATE_MIN_VALUE = 0xD800;
 
     /**
      * Trail surrogate minimum value
-     * 
-     * @stable ICU 2.1
      */
     public static final int TRAIL_SURROGATE_MIN_VALUE = 0xDC00;
 
     /**
      * Lead surrogate maximum value
-     * 
-     * @stable ICU 2.1
      */
     public static final int LEAD_SURROGATE_MAX_VALUE = 0xDBFF;
 
     /**
      * Trail surrogate maximum value
-     * 
-     * @stable ICU 2.1
      */
     public static final int TRAIL_SURROGATE_MAX_VALUE = 0xDFFF;
 
     /**
      * Surrogate minimum value
-     * 
-     * @stable ICU 2.1
      */
     public static final int SURROGATE_MIN_VALUE = LEAD_SURROGATE_MIN_VALUE;
 
     /**
      * Maximum surrogate value
-     * 
-     * @stable ICU 2.1
      */
     public static final int SURROGATE_MAX_VALUE = TRAIL_SURROGATE_MAX_VALUE;
 
@@ -214,7 +193,6 @@ public final class UTF16 {
      * @return UTF-32 value for the UTF-32 value that contains the char at offset16. The boundaries
      *         of that codepoint are the same as in <code>bounds32()</code>.
      * @exception IndexOutOfBoundsException Thrown if offset16 is out of bounds.
-     * @stable ICU 2.1
      */
     public static int charAt(String source, int offset16) {
         char single = source.charAt(offset16);
@@ -268,7 +246,6 @@ public final class UTF16 {
      * @return UTF-32 value for the UTF-32 value that contains the char at offset16. The boundaries
      *         of that codepoint are the same as in <code>bounds32()</code>.
      * @exception IndexOutOfBoundsException Thrown if offset16 is out of bounds.
-     * @stable ICU 2.1
      */
     public static int charAt(CharSequence source, int offset16) {
         char single = source.charAt(offset16);
@@ -324,7 +301,6 @@ public final class UTF16 {
      * @return UTF-32 value for the UTF-32 value that contains the char at offset16. The boundaries
      *         of that codepoint are the same as in <code>bounds32()</code>.
      * @exception IndexOutOfBoundsException Thrown if offset16 is out of bounds.
-     * @stable ICU 2.1
      */
     public static int charAt(StringBuffer source, int offset16) {
         if (offset16 < 0 || offset16 >= source.length()) {
@@ -376,7 +352,6 @@ public final class UTF16 {
      * @return UTF-32 value for the UTF-32 value that contains the char at offset16. The boundaries
      *         of that codepoint are the same as in <code>bounds32()</code>.
      * @exception IndexOutOfBoundsException Thrown if offset16 is not within the range of start and limit.
-     * @stable ICU 2.1
      */
     public static int charAt(char source[], int start, int limit, int offset16) {
         offset16 += start;
@@ -427,7 +402,6 @@ public final class UTF16 {
      * @return UTF-32 value for the UTF-32 value that contains the char at offset16. The boundaries
      *         of that codepoint are the same as in <code>bounds32()</code>.
      * @exception IndexOutOfBoundsException Thrown if offset16 is out of bounds.
-     * @stable ICU 2.1
      */
     public static int charAt(Replaceable source, int offset16) {
         if (offset16 < 0 || offset16 >= source.length()) {
@@ -470,7 +444,6 @@ public final class UTF16 {
      * 
      * @param char32 The input codepoint.
      * @return 2 if is in supplementary space, otherwise 1.
-     * @stable ICU 2.1
      */
     public static int getCharCount(int char32) {
         if (char32 < SUPPLEMENTARY_MIN_VALUE) {
@@ -495,7 +468,6 @@ public final class UTF16 {
      *            For bit-twiddlers, the return values for these are chosen so that the boundaries
      *            can be gotten by: [offset16 - (value >> 2), offset16 + (value & 3)].
      * @exception IndexOutOfBoundsException If offset16 is out of bounds.
-     * @stable ICU 2.1
      */
     public static int bounds(String source, int offset16) {
         char ch = source.charAt(offset16);
@@ -531,7 +503,6 @@ public final class UTF16 {
      *            For bit-twiddlers, the return values for these are chosen so that the boundaries
      *            can be gotten by: [offset16 - (value >> 2), offset16 + (value & 3)].
      * @exception IndexOutOfBoundsException If offset16 is out of bounds.
-     * @stable ICU 2.1
      */
     public static int bounds(StringBuffer source, int offset16) {
         char ch = source.charAt(offset16);
@@ -571,7 +542,6 @@ public final class UTF16 {
      *            For bit-twiddlers, the boundary values for these are chosen so that the boundaries
      *            can be gotten by: [offset16 - (boundvalue >> 2), offset16 + (boundvalue & 3)].
      * @exception IndexOutOfBoundsException If offset16 is not within the range of start and limit.
-     * @stable ICU 2.1
      */
     public static int bounds(char source[], int start, int limit, int offset16) {
         offset16 += start;
@@ -600,7 +570,6 @@ public final class UTF16 {
      * 
      * @param char16 The input character.
      * @return true If the input character is a surrogate.
-     * @stable ICU 2.1
      */
     public static boolean isSurrogate(char char16) {
         return (char16 & SURROGATE_BITMASK) == SURROGATE_BITS;
@@ -611,7 +580,6 @@ public final class UTF16 {
      * 
      * @param char16 The input character.
      * @return true If the input character is a trail surrogate.
-     * @stable ICU 2.1
      */
     public static boolean isTrailSurrogate(char char16) {
         return (char16 & TRAIL_SURROGATE_BITMASK) == TRAIL_SURROGATE_BITS;
@@ -622,7 +590,6 @@ public final class UTF16 {
      * 
      * @param char16 The input character.
      * @return true If the input character is a lead surrogate
-     * @stable ICU 2.1
      */
     public static boolean isLeadSurrogate(char char16) {
         return (char16 & LEAD_SURROGATE_BITMASK) == LEAD_SURROGATE_BITS;
@@ -636,7 +603,6 @@ public final class UTF16 {
      * @param char32 The input character.
      * @return lead surrogate if the getCharCount(ch) is 2; <br>
      *         and 0 otherwise (note: 0 is not a valid lead surrogate).
-     * @stable ICU 2.1
      */
     public static char getLeadSurrogate(int char32) {
         if (char32 >= SUPPLEMENTARY_MIN_VALUE) {
@@ -653,7 +619,6 @@ public final class UTF16 {
      * @param char32 The input character.
      * @return the trail surrogate if the getCharCount(ch) is 2; <br>
      *         otherwise the character itself
-     * @stable ICU 2.1
      */
     public static char getTrailSurrogate(int char32) {
         if (char32 >= SUPPLEMENTARY_MIN_VALUE) {
@@ -670,7 +635,6 @@ public final class UTF16 {
      * @param char32 The input character.
      * @return string value of char32 in UTF16 format
      * @exception IllegalArgumentException Thrown if char32 is a invalid codepoint.
-     * @stable ICU 2.1
      */
     public static String valueOf(int char32) {
         if (char32 < CODEPOINT_MIN_VALUE || char32 > CODEPOINT_MAX_VALUE) {
@@ -690,7 +654,6 @@ public final class UTF16 {
      * @param source The input string.
      * @param offset16 The UTF16 index to the codepoint in source
      * @return string value of char32 in UTF16 format
-     * @stable ICU 2.1
      */
     public static String valueOf(String source, int offset16) {
         switch (bounds(source, offset16)) {
@@ -714,7 +677,6 @@ public final class UTF16 {
      * @param source The input string buffer.
      * @param offset16 The UTF16 index to the codepoint in source
      * @return string value of char32 in UTF16 format
-     * @stable ICU 2.1
      */
     public static String valueOf(StringBuffer source, int offset16) {
         switch (bounds(source, offset16)) {
@@ -742,7 +704,6 @@ public final class UTF16 {
      * @param limit End index of the subarray
      * @param offset16 The UTF16 index to the codepoint in source relative to start
      * @return string value of char32 in UTF16 format
-     * @stable ICU 2.1
      */
     public static String valueOf(char source[], int start, int limit, int offset16) {
         switch (bounds(source, start, limit, offset16)) {
@@ -762,7 +723,6 @@ public final class UTF16 {
      * @param offset32 UTF-32 offset
      * @return UTF-16 offset
      * @exception IndexOutOfBoundsException If offset32 is out of bounds.
-     * @stable ICU 2.1
      */
     public static int findOffsetFromCodePoint(String source, int offset32) {
         char ch;
@@ -794,7 +754,6 @@ public final class UTF16 {
      * @param offset32 UTF-32 offset
      * @return UTF-16 offset
      * @exception IndexOutOfBoundsException If offset32 is out of bounds.
-     * @stable ICU 2.1
      */
     public static int findOffsetFromCodePoint(StringBuffer source, int offset32) {
         char ch;
@@ -828,7 +787,6 @@ public final class UTF16 {
      * @param offset32 UTF-32 offset relative to start
      * @return UTF-16 offset relative to start
      * @exception IndexOutOfBoundsException If offset32 is out of bounds.
-     * @stable ICU 2.1
      */
     public static int findOffsetFromCodePoint(char source[], int start, int limit, int offset32) {
         char ch;
@@ -872,7 +830,6 @@ public final class UTF16 {
      * @param offset16 UTF-16 offset < source text length.
      * @return UTF-32 offset
      * @exception IndexOutOfBoundsException If offset16 is out of bounds.
-     * @stable ICU 2.1
      */
     public static int findCodePointOffset(String source, int offset16) {
         if (offset16 < 0 || offset16 > source.length()) {
@@ -926,7 +883,6 @@ public final class UTF16 {
      * @param offset16 UTF-16 offset < source text length.
      * @return UTF-32 offset
      * @exception IndexOutOfBoundsException If offset16 is out of bounds.
-     * @stable ICU 2.1
      */
     public static int findCodePointOffset(StringBuffer source, int offset16) {
         if (offset16 < 0 || offset16 > source.length()) {
@@ -982,7 +938,6 @@ public final class UTF16 {
      * @param offset16 UTF-16 relative to start
      * @return UTF-32 offset relative to start
      * @exception IndexOutOfBoundsException If offset16 is not within the range of start and limit.
-     * @stable ICU 2.1
      */
     public static int findCodePointOffset(char source[], int start, int limit, int offset16) {
         offset16 += start;
@@ -1026,7 +981,6 @@ public final class UTF16 {
      * @param char32 Value to append.
      * @return the updated StringBuffer
      * @exception IllegalArgumentException Thrown when char32 does not lie within the range of the Unicode codepoints
-     * @stable ICU 2.1
      */
     public static StringBuffer append(StringBuffer target, int char32) {
         // Check for irregular values
@@ -1052,7 +1006,6 @@ public final class UTF16 {
      * @param cp The code point to append
      * @return the updated StringBuffer
      * @throws IllegalArgumentException If cp is not a valid code point
-     * @stable ICU 3.0
      */
     public static StringBuffer appendCodePoint(StringBuffer target, int cp) {
         return append(target, cp);
@@ -1067,7 +1020,6 @@ public final class UTF16 {
      * @return offset after char32 in the array.
      * @exception IllegalArgumentException Thrown if there is not enough space for the append, or when char32 does not
      *                lie within the range of the Unicode codepoints.
-     * @stable ICU 2.1
      */
     public static int append(char[] target, int limit, int char32) {
         // Check for irregular values
@@ -1089,7 +1041,6 @@ public final class UTF16 {
      * 
      * @param source UTF16 string
      * @return number of codepoint in string
-     * @stable ICU 2.1
      */
     public static int countCodePoint(String source) {
         if (source == null || source.length() == 0) {
@@ -1103,7 +1054,6 @@ public final class UTF16 {
      * 
      * @param source UTF16 string buffer
      * @return number of codepoint in string
-     * @stable ICU 2.1
      */
     public static int countCodePoint(StringBuffer source) {
         if (source == null || source.length() == 0) {
@@ -1120,7 +1070,6 @@ public final class UTF16 {
      * @param limit Offset of the substring
      * @return number of codepoint in the substring
      * @exception IndexOutOfBoundsException If start and limit are not valid.
-     * @stable ICU 2.1
      */
     public static int countCodePoint(char source[], int start, int limit) {
         if (source == null || source.length == 0) {
@@ -1136,7 +1085,6 @@ public final class UTF16 {
      * @param target Stringbuffer
      * @param offset16 UTF16 position to insert into
      * @param char32 Code point
-     * @stable ICU 2.1
      */
     public static void setCharAt(StringBuffer target, int offset16, int char32) {
         int count = 1;
@@ -1171,7 +1119,6 @@ public final class UTF16 {
      * @param char32 code point
      * @return new number of chars in target that represents a string
      * @exception IndexOutOfBoundsException if offset16 is out of range
-     * @stable ICU 2.1
      */
     public static int setCharAt(char target[], int limit, int offset16, int char32) {
         if (offset16 >= limit) {
@@ -1235,7 +1182,6 @@ public final class UTF16 {
      * @param shift32 number of codepoints to shift
      * @return new shifted offset16
      * @exception IndexOutOfBoundsException if the new offset16 is out of bounds.
-     * @stable ICU 2.1
      */
     public static int moveCodePointOffset(String source, int offset16, int shift32) {
         int result = offset16;
@@ -1289,7 +1235,6 @@ public final class UTF16 {
      * @param shift32 Number of codepoints to shift
      * @return new shifted offset16
      * @exception IndexOutOfBoundsException If the new offset16 is out of bounds.
-     * @stable ICU 2.1
      */
     public static int moveCodePointOffset(StringBuffer source, int offset16, int shift32) {
         int result = offset16;
@@ -1346,7 +1291,6 @@ public final class UTF16 {
      * @return new shifted offset16 relative to start
      * @exception IndexOutOfBoundsException If the new offset16 is out of bounds with respect to the subarray or the
      *                subarray bounds are out of range.
-     * @stable ICU 2.1
      */
     public static int moveCodePointOffset(char source[], int start, int limit, int offset16,
             int shift32) {
@@ -1418,7 +1362,6 @@ public final class UTF16 {
      * @param char32 Codepoint to be inserted
      * @return a reference to target
      * @exception IndexOutOfBoundsException Thrown if offset16 is invalid.
-     * @stable ICU 2.1
      */
     public static StringBuffer insert(StringBuffer target, int offset16, int char32) {
         String str = valueOf(char32);
@@ -1447,7 +1390,6 @@ public final class UTF16 {
      * @param char32 Codepoint to be inserted
      * @return new limit size
      * @exception IndexOutOfBoundsException Thrown if offset16 is invalid.
-     * @stable ICU 2.1
      */
     public static int insert(char target[], int limit, int offset16, int char32) {
         String str = valueOf(char32);
@@ -1474,7 +1416,6 @@ public final class UTF16 {
      * @param offset16 Offset which the codepoint will be removed
      * @return a reference to target
      * @exception IndexOutOfBoundsException Thrown if offset16 is invalid.
-     * @stable ICU 2.1
      */
     public static StringBuffer delete(StringBuffer target, int offset16) {
         int count = 1;
@@ -1500,7 +1441,6 @@ public final class UTF16 {
      * @param offset16 Offset which the codepoint will be removed
      * @return a new limit size
      * @exception IndexOutOfBoundsException Thrown if offset16 is invalid.
-     * @stable ICU 2.1
      */
     public static int delete(char target[], int limit, int offset16) {
         int count = 1;
@@ -1539,7 +1479,6 @@ public final class UTF16 {
      * @param char32 Codepoint to search for
      * @return the index of the first occurrence of the codepoint in the argument Unicode string, or
      *         -1 if the codepoint does not occur.
-     * @stable ICU 2.6
      */
     public static int indexOf(String source, int char32) {
         if (char32 < CODEPOINT_MIN_VALUE || char32 > CODEPOINT_MAX_VALUE) {
@@ -1593,7 +1532,6 @@ public final class UTF16 {
      * @param str UTF16 format Unicode string to search for
      * @return the index of the first occurrence of the codepoint in the argument Unicode string, or
      *         -1 if the codepoint does not occur.
-     * @stable ICU 2.6
      */
     public static int indexOf(String source, String str) {
         int strLength = str.length();
@@ -1640,7 +1578,6 @@ public final class UTF16 {
      * @param fromIndex The index to start the search from.
      * @return the index of the first occurrence of the codepoint in the argument Unicode string at
      *         or after fromIndex, or -1 if the codepoint does not occur.
-     * @stable ICU 2.6
      */
     public static int indexOf(String source, int char32, int fromIndex) {
         if (char32 < CODEPOINT_MIN_VALUE || char32 > CODEPOINT_MAX_VALUE) {
@@ -1696,7 +1633,6 @@ public final class UTF16 {
      * @param fromIndex The index to start the search from.
      * @return the index of the first occurrence of the codepoint in the argument Unicode string, or
      *         -1 if the codepoint does not occur.
-     * @stable ICU 2.6
      */
     public static int indexOf(String source, String str, int fromIndex) {
         int strLength = str.length();
@@ -1742,7 +1678,6 @@ public final class UTF16 {
      * @param char32 Codepoint to search for
      * @return the index of the last occurrence of the codepoint in source, or -1 if the codepoint
      *         does not occur.
-     * @stable ICU 2.6
      */
     public static int lastIndexOf(String source, int char32) {
         if (char32 < CODEPOINT_MIN_VALUE || char32 > CODEPOINT_MAX_VALUE) {
@@ -1796,7 +1731,6 @@ public final class UTF16 {
      * @param str UTF16 format Unicode string to search for
      * @return the index of the last occurrence of the codepoint in source, or -1 if the codepoint
      *         does not occur.
-     * @stable ICU 2.6
      */
     public static int lastIndexOf(String source, String str) {
         int strLength = str.length();
@@ -1853,7 +1787,6 @@ public final class UTF16 {
      *            were -1: -1 is returned.
      * @return the index of the last occurrence of the codepoint in source, or -1 if the codepoint
      *         does not occur.
-     * @stable ICU 2.6
      */
     public static int lastIndexOf(String source, int char32, int fromIndex) {
         if (char32 < CODEPOINT_MIN_VALUE || char32 > CODEPOINT_MAX_VALUE) {
@@ -1919,7 +1852,6 @@ public final class UTF16 {
      *            were -1: -1 is returned.
      * @return the index of the last occurrence of the codepoint in source, or -1 if the codepoint
      *         does not occur.
-     * @stable ICU 2.6
      */
     public static int lastIndexOf(String source, String str, int fromIndex) {
         int strLength = str.length();
@@ -1970,7 +1902,6 @@ public final class UTF16 {
      * @param newChar32 The new codepoint to replace oldChar32
      * @return new String derived from source by replacing every occurrence of oldChar32 with
      *         newChar32, unless when no oldChar32 is found in source then source will be returned.
-     * @stable ICU 2.6
      */
     public static String replace(String source, int oldChar32, int newChar32) {
         if (oldChar32 <= 0 || oldChar32 > CODEPOINT_MAX_VALUE) {
@@ -2031,7 +1962,6 @@ public final class UTF16 {
      * @param newStr The new string to replace oldStr
      * @return new String derived from source by replacing every occurrence of oldStr with newStr.
      *         When no oldStr is found in source, then source will be returned.
-     * @stable ICU 2.6
      */
     public static String replace(String source, String oldStr, String newStr) {
         int index = indexOf(source, oldStr);
@@ -2063,7 +1993,6 @@ public final class UTF16 {
      * 
      * @param source The source StringBuffer that contains UTF16 format Unicode string to be reversed
      * @return a modified source with reversed UTF16 format Unicode string.
-     * @stable ICU 2.6
      */
     public static StringBuffer reverse(StringBuffer source) {
         int length = source.length();
@@ -2096,7 +2025,6 @@ public final class UTF16 {
      * @param number The number of code points in the string is compared against the 'number'
      *            parameter.
      * @return boolean value for whether the string contains more Unicode code points than 'number'.
-     * @stable ICU 2.4
      */
     public static boolean hasMoreCodePointsThan(String source, int number) {
         if (number < 0) {
@@ -2161,7 +2089,6 @@ public final class UTF16 {
      *            parameter.
      * @return boolean value for whether the string contains more Unicode code points than 'number'.
      * @exception IndexOutOfBoundsException Thrown when limit &lt; start
-     * @stable ICU 2.4
      */
     public static boolean hasMoreCodePointsThan(char source[], int start, int limit, int number) {
         int length = limit - start;
@@ -2226,7 +2153,6 @@ public final class UTF16 {
      *            parameter.
      * @return boolean value for whether the string buffer contains more Unicode code points than
      *         'number'.
-     * @stable ICU 2.4
      */
     public static boolean hasMoreCodePointsThan(StringBuffer source, int number) {
         if (number < 0) {
@@ -2284,7 +2210,6 @@ public final class UTF16 {
      * @return a String representing the code points between offset and count
      * @throws IllegalArgumentException If an invalid code point is encountered
      * @throws IndexOutOfBoundsException If the offset or count are out of bounds.
-     * @stable ICU 3.0
      */
     public static String newString(int[] codePoints, int offset, int count) {
         if (count < 0) {
@@ -2340,15 +2265,12 @@ public final class UTF16 {
      * 
      * @see #FOLD_CASE_DEFAULT
      * @see #FOLD_CASE_EXCLUDE_SPECIAL_I
-     * @stable ICU 2.1
      */
     public static final class StringComparator implements java.util.Comparator<String> {
         // public constructor ------------------------------------------------
 
         /**
          * Default constructor that does code unit comparison and case sensitive comparison.
-         * 
-         * @stable ICU 2.1
          */
         public StringComparator() {
             this(false, false, FOLD_CASE_DEFAULT);
@@ -2366,7 +2288,6 @@ public final class UTF16 {
          * @see #FOLD_CASE_DEFAULT
          * @see #FOLD_CASE_EXCLUDE_SPECIAL_I
          * @throws IllegalArgumentException If foldcaseoption is out of range
-         * @stable ICU 2.4
          */
         public StringComparator(boolean codepointcompare, boolean ignorecase, int foldcaseoption) {
             setCodePointCompare(codepointcompare);
@@ -2384,8 +2305,6 @@ public final class UTF16 {
          *
          * <p>Comparison is case insensitive, strings are folded using default mappings defined in
          * Unicode data file CaseFolding.txt, before comparison.
-         * 
-         * @stable ICU 2.4
          */
         public static final int FOLD_CASE_DEFAULT = 0;
 
@@ -2397,7 +2316,6 @@ public final class UTF16 {
          * <p>Comparison is case insensitive, strings are folded using modified mappings defined in
          * Unicode data file CaseFolding.txt, before comparison.
          * 
-         * @stable ICU 2.4
          * @see android.icu.lang.UCharacter#FOLD_CASE_EXCLUDE_SPECIAL_I
          */
         public static final int FOLD_CASE_EXCLUDE_SPECIAL_I = 1;
@@ -2411,7 +2329,6 @@ public final class UTF16 {
          * is set to code unit compare
          * 
          * @param flag True for code point compare, false for code unit compare
-         * @stable ICU 2.4
          */
         public void setCodePointCompare(boolean flag) {
             if (flag) {
@@ -2431,7 +2348,6 @@ public final class UTF16 {
          *            ignored.
          * @see #FOLD_CASE_DEFAULT
          * @see #FOLD_CASE_EXCLUDE_SPECIAL_I
-         * @stable ICU 2.4
          */
         public void setIgnoreCase(boolean ignorecase, int foldcaseoption) {
             m_ignoreCase_ = ignorecase;
@@ -2447,7 +2363,6 @@ public final class UTF16 {
          * Checks if the comparison mode is code point compare.
          * 
          * @return true for code point compare, false for code unit compare
-         * @stable ICU 2.4
          */
         public boolean getCodePointCompare() {
             return m_codePointCompare_ == Normalizer.COMPARE_CODE_POINT_ORDER;
@@ -2457,7 +2372,6 @@ public final class UTF16 {
          * Checks if Comparator is in the case insensitive mode.
          * 
          * @return true if Comparator performs case insensitive comparison, false otherwise
-         * @stable ICU 2.4
          */
         public boolean getIgnoreCase() {
             return m_ignoreCase_;
@@ -2469,7 +2383,6 @@ public final class UTF16 {
          * @return either FOLD_CASE_DEFAULT or FOLD_CASE_EXCLUDE_SPECIAL_I
          * @see #FOLD_CASE_DEFAULT
          * @see #FOLD_CASE_EXCLUDE_SPECIAL_I
-         * @stable ICU 2.4
          */
         public int getIgnoreCaseOption() {
             return m_foldCase_;
@@ -2485,7 +2398,6 @@ public final class UTF16 {
          * @return 0 returned if a == b. If a < b, a negative value is returned. Otherwise if a > b,
          *         a positive value is returned.
          * @exception ClassCastException thrown when either a or b is not a String object
-         * @stable ICU 4.4
          */
         public int compare(String a, String b) {
             if (a == b) {
@@ -2618,7 +2530,6 @@ public final class UTF16 {
      * @return the code point IF the string is non-null and consists of a single code point.
      * otherwise returns -1.
      * @param s to test
-     * @stable ICU 54
      */
     public static int getSingleCodePoint(CharSequence s) {
         if (s == null || s.length() == 0) {
@@ -2652,7 +2563,6 @@ public final class UTF16 {
      * @param codePoint to test
      * @param s to test
      * @return equivalent of code point comparator comparing two strings.
-     * @stable ICU 54
      */
     public static int compareCodePoint(int codePoint, CharSequence s) {
         if (s == null) {

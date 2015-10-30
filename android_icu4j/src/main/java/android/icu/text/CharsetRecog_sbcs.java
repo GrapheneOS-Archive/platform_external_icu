@@ -16,7 +16,7 @@ package android.icu.text;
 abstract class CharsetRecog_sbcs extends CharsetRecognizer {
 
     /* (non-Javadoc)
-     * @see com.ibm.icu.text.CharsetRecognizer#getName()
+     * @see android.icu.text.CharsetRecognizer#getName()
      */
     abstract String getName();
 

@@ -38,8 +38,6 @@ import android.icu.util.OutputInt;
  * <tr><th>NOT_CONTAINED</th><td>xxxabcyyy|</td></tr>
  * </table>
  * </p>The entire string is traversed.
- * 
- * @stable ICU 54
  * @hide All android.icu classes are currently hidden
  */
 public class UnicodeSetSpanner {
@@ -52,8 +50,6 @@ public class UnicodeSetSpanner {
      * 
      * @param source
      *            the original UnicodeSet
-     *
-     * @stable ICU 54
      */
     public UnicodeSetSpanner(UnicodeSet source) {
         unicodeSet = source;
@@ -63,8 +59,6 @@ public class UnicodeSetSpanner {
      * Returns the UnicodeSet used for processing. It is frozen iff the original was.
      * 
      * @return the construction set.
-     *
-     * @stable ICU 54
      */
     public UnicodeSet getUnicodeSet() {
         return unicodeSet;
@@ -73,8 +67,6 @@ public class UnicodeSetSpanner {
 
     /**
      * {@inheritDoc}
-     * 
-     * @stable ICU 54
      */
     @Override
     public boolean equals(Object other) {
@@ -83,8 +75,6 @@ public class UnicodeSetSpanner {
 
     /**
      * {@inheritDoc}
-     * 
-     * @stable ICU 54
      */
     @Override
     public int hashCode() {
@@ -94,15 +84,11 @@ public class UnicodeSetSpanner {
     /**
      * Options for replaceFrom and countIn to control how to treat each matched span. 
      * It is similar to whether one is replacing [abc] by x, or [abc]* by x.
-     * 
-     * @stable ICU 54
      */
     public enum CountMethod {
         /**
          * Collapse spans. That is, modify/count the entire matching span as a single item, instead of separate
          * set elements.
-         *
-         * @stable ICU 54
          */
         WHOLE_SPAN,
         /**
@@ -115,8 +101,6 @@ public class UnicodeSetSpanner {
          * <li>spanning with [{ab}] will count two MIN_ELEMENTS.</li>
          * <li>spanning with [ab{ab}] will also count two MIN_ELEMENTS.</li>
          * </ul>
-         *
-         * @stable ICU 54
          */
         MIN_ELEMENTS,
         // Note: could in the future have an additional option MAX_ELEMENTS
@@ -129,8 +113,6 @@ public class UnicodeSetSpanner {
      * @param sequence
      *            the sequence to count characters in
      * @return the count. Zero if there are none.
-     * 
-     * @stable ICU 54
      */
     public int countIn(CharSequence sequence) {
         return countIn(sequence, CountMethod.MIN_ELEMENTS, SpanCondition.SIMPLE);
@@ -144,8 +126,6 @@ public class UnicodeSetSpanner {
      * @param countMethod
      *            whether to treat an entire span as a match, or individual elements as matches
      * @return the count. Zero if there are none.
-     * 
-     * @stable ICU 54
      */
     public int countIn(CharSequence sequence, CountMethod countMethod) {
         return countIn(sequence, countMethod, SpanCondition.SIMPLE);
@@ -163,8 +143,6 @@ public class UnicodeSetSpanner {
      *            NOT_CONTAINED is the reverse.
      *            <br><b>WARNING: </b> when a UnicodeSet contains strings, there may be unexpected behavior in edge cases.
      * @return the count. Zero if there are none.
-     * 
-     * @stable ICU 54
      */
     public int countIn(CharSequence sequence, CountMethod countMethod, SpanCondition spanCondition) {
         int count = 0;
@@ -198,8 +176,6 @@ public class UnicodeSetSpanner {
      * @param sequence
      *            charsequence to replace matching spans in.
      * @return modified string.
-     * 
-     * @stable ICU 54
      */
     public String deleteFrom(CharSequence sequence) {
         return replaceFrom(sequence, "", CountMethod.WHOLE_SPAN, SpanCondition.SIMPLE);
@@ -213,8 +189,6 @@ public class UnicodeSetSpanner {
      * @param spanCondition
      *            specify whether to modify the matching spans (CONTAINED or SIMPLE) or the non-matching (NOT_CONTAINED)
      * @return modified string.
-     * 
-     * @stable ICU 54
      */
     public String deleteFrom(CharSequence sequence, SpanCondition spanCondition) {
         return replaceFrom(sequence, "", CountMethod.WHOLE_SPAN, spanCondition);
@@ -229,8 +203,6 @@ public class UnicodeSetSpanner {
      * @param replacement
      *            replacement sequence. To delete, use ""
      * @return modified string.
-     * 
-     * @stable ICU 54
      */
     public String replaceFrom(CharSequence sequence, CharSequence replacement) {
         return replaceFrom(sequence, replacement, CountMethod.MIN_ELEMENTS, SpanCondition.SIMPLE);
@@ -247,8 +219,6 @@ public class UnicodeSetSpanner {
      * @param countMethod
      *            whether to treat an entire span as a match, or individual elements as matches
      * @return modified string.
-     * 
-     * @stable ICU 54
      */
     public String replaceFrom(CharSequence sequence, CharSequence replacement, CountMethod countMethod) {
         return replaceFrom(sequence, replacement, countMethod, SpanCondition.SIMPLE);
@@ -267,8 +237,6 @@ public class UnicodeSetSpanner {
      *            specify whether to modify the matching spans (CONTAINED or SIMPLE) or the non-matching
      *            (NOT_CONTAINED)
      * @return modified string.
-     * 
-     * @stable ICU 54
      */
     public String replaceFrom(CharSequence sequence, CharSequence replacement, CountMethod countMethod,
             SpanCondition spanCondition) {
@@ -311,26 +279,18 @@ public class UnicodeSetSpanner {
 
     /**
      * Options for the trim() method
-     * 
-     * @stable ICU 54
      */
     public enum TrimOption {
         /**
          * Trim leading spans.
-         * 
-         * @stable ICU 54
          */
         LEADING,
         /**
          * Trim leading and trailing spans.
-         * 
-         * @stable ICU 54
          */
         BOTH,
         /**
          * Trim trailing spans.
-         * 
-         * @stable ICU 54
          */
         TRAILING;
     }
@@ -349,8 +309,6 @@ public class UnicodeSetSpanner {
      * @param sequence
      *            the sequence to trim
      * @return a subsequence
-     * 
-     * @stable ICU 54
      */
     public CharSequence trim(CharSequence sequence) {
         return trim(sequence, TrimOption.BOTH, SpanCondition.SIMPLE);
@@ -373,8 +331,6 @@ public class UnicodeSetSpanner {
      * @param trimOption
      *            LEADING, TRAILING, or BOTH
      * @return a subsequence
-     * 
-     * @stable ICU 54
      */
     public CharSequence trim(CharSequence sequence, TrimOption trimOption) {
         return trim(sequence, trimOption, SpanCondition.SIMPLE);
@@ -399,8 +355,6 @@ public class UnicodeSetSpanner {
      * @param spanCondition
      *            SIMPLE, CONTAINED or NOT_CONTAINED
      * @return a subsequence
-     * 
-     * @stable ICU 54
      */
     public CharSequence trim(CharSequence sequence, TrimOption trimOption, SpanCondition spanCondition) {
         int endLeadContained, startTrailContained;

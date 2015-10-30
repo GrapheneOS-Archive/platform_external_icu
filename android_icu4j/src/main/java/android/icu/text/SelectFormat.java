@@ -145,8 +145,6 @@ import android.icu.impl.PatternProps;
  * Produces the output:<br/>
  * <code>Kirti est all&#u00E9;e &#u00E0; Paris.</code>
  * </p>
- *
- * @stable ICU 4.4
  * @hide All android.icu classes are currently hidden
  */
 
@@ -167,7 +165,6 @@ public class SelectFormat extends Format{
     /**
      * Creates a new <code>SelectFormat</code> for a given pattern string.
      * @param  pattern the pattern for this <code>SelectFormat</code>.
-     * @stable ICU 4.4
      */
     public SelectFormat(String pattern) {
         applyPattern(pattern);
@@ -189,7 +186,6 @@ public class SelectFormat extends Format{
      *
      * @param pattern the pattern for this select format.
      * @throws IllegalArgumentException when the pattern is not a valid select format pattern.
-     * @stable ICU 4.4
      */
     public void applyPattern(String pattern) {
         this.pattern = pattern;
@@ -208,7 +204,6 @@ public class SelectFormat extends Format{
      * Returns the pattern for this <code>SelectFormat</code>
      *
      * @return the pattern string
-     * @stable ICU 4.4
      */
     public String toPattern() {
         return pattern;
@@ -250,7 +245,6 @@ public class SelectFormat extends Format{
      * @param keyword a phrase selection keyword.
      * @return the string containing the formatted select message.
      * @throws IllegalArgumentException when the given keyword is not a "pattern identifier"
-     * @stable ICU 4.4
      */
     public final String format(String keyword) {
         //Check for the validity of the keyword
@@ -313,7 +307,6 @@ public class SelectFormat extends Format{
      *         or not a "pattern identifier"
      * @return the string buffer passed in as toAppendTo, with formatted text
      *         appended.
-     * @stable ICU 4.4
      */
     public StringBuffer format(Object keyword, StringBuffer toAppendTo,
             FieldPosition pos) {
@@ -333,7 +326,6 @@ public class SelectFormat extends Format{
      * has not changed upon return, then parsing failed.
      * @return nothing because this method is not supported.
      * @throws UnsupportedOperationException thrown always.
-     * @stable ICU 4.4
      */
     public Object parseObject(String source, ParsePosition pos) {
         throw new UnsupportedOperationException();
@@ -341,7 +333,6 @@ public class SelectFormat extends Format{
 
     /**
      * {@inheritDoc}
-     * @stable ICU 4.4
      */
     @Override
     public boolean equals(Object obj) {
@@ -357,7 +348,6 @@ public class SelectFormat extends Format{
 
     /**
      * {@inheritDoc}
-     * @stable ICU 4.4
      */
     @Override
     public int hashCode() {
@@ -369,7 +359,6 @@ public class SelectFormat extends Format{
 
     /**
      * {@inheritDoc}
-     * @stable ICU 4.4
      */
     @Override
     public String toString() {

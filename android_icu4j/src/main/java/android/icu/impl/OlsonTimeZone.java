@@ -121,7 +121,7 @@ public class OlsonTimeZone extends BasicTimeZone {
     static final long serialVersionUID = -6281977362477515376L;
 
     /* (non-Javadoc)
-     * @see com.ibm.icu.util.TimeZone#getOffset(int, int, int, int, int, int)
+     * @see android.icu.util.TimeZone#getOffset(int, int, int, int, int, int)
      */
     @Override
     public int getOffset(int era, int year, int month, int day, int dayOfWeek, int milliseconds) {
@@ -168,7 +168,7 @@ public class OlsonTimeZone extends BasicTimeZone {
     }
 
     /* (non-Javadoc)
-     * @see com.ibm.icu.util.TimeZone#setRawOffset(int)
+     * @see android.icu.util.TimeZone#setRawOffset(int)
      */
     @Override
     public void setRawOffset(int offsetMillis) {
@@ -290,7 +290,7 @@ public class OlsonTimeZone extends BasicTimeZone {
     }
 
     /* (non-Javadoc)
-     * @see com.ibm.icu.util.TimeZone#getRawOffset()
+     * @see android.icu.util.TimeZone#getRawOffset()
      */
     @Override
     public int getRawOffset() {
@@ -300,7 +300,7 @@ public class OlsonTimeZone extends BasicTimeZone {
     }
 
     /* (non-Javadoc)
-     * @see com.ibm.icu.util.TimeZone#useDaylightTime()
+     * @see android.icu.util.TimeZone#useDaylightTime()
      */
     @Override
     public boolean useDaylightTime() {
@@ -336,7 +336,7 @@ public class OlsonTimeZone extends BasicTimeZone {
     }
 
     /* (non-Javadoc)
-     * @see com.ibm.icu.util.TimeZone#observesDaylightTime()
+     * @see android.icu.util.TimeZone#observesDaylightTime()
      */
     @Override
     public boolean observesDaylightTime() {
@@ -381,7 +381,7 @@ public class OlsonTimeZone extends BasicTimeZone {
     }
 
     /* (non-Javadoc)
-     * @see com.ibm.icu.util.TimeZone#inDaylightTime(java.util.Date)
+     * @see android.icu.util.TimeZone#inDaylightTime(java.util.Date)
      */
     @Override
     public boolean inDaylightTime(Date date) {
@@ -391,7 +391,7 @@ public class OlsonTimeZone extends BasicTimeZone {
     }
 
     /* (non-Javadoc)
-     * @see com.ibm.icu.util.TimeZone#hasSameRules(com.ibm.icu.util.TimeZone)
+     * @see android.icu.util.TimeZone#hasSameRules(android.icu.util.TimeZone)
      */
     @Override
     public boolean hasSameRules(TimeZone other) {
@@ -646,7 +646,7 @@ public class OlsonTimeZone extends BasicTimeZone {
     }
 
     /* (non-Javadoc)
-     * @see com.ibm.icu.util.TimeZone#setID(java.lang.String)
+     * @see android.icu.util.TimeZone#setID(java.lang.String)
      */
     @Override
     public void setID(String id){
@@ -945,7 +945,7 @@ public class OlsonTimeZone extends BasicTimeZone {
     //
 
     /* (non-Javadoc)
-     * @see com.ibm.icu.util.BasicTimeZone#getNextTransition(long, boolean)
+     * @see android.icu.util.BasicTimeZone#getNextTransition(long, boolean)
      */
     @Override
     public TimeZoneTransition getNextTransition(long base, boolean inclusive) {
@@ -996,7 +996,7 @@ public class OlsonTimeZone extends BasicTimeZone {
     }
 
     /* (non-Javadoc)
-     * @see com.ibm.icu.util.BasicTimeZone#getPreviousTransition(long, boolean)
+     * @see android.icu.util.BasicTimeZone#getPreviousTransition(long, boolean)
      */
     @Override
     public TimeZoneTransition getPreviousTransition(long base, boolean inclusive) {
@@ -1048,7 +1048,7 @@ public class OlsonTimeZone extends BasicTimeZone {
     }
 
     /* (non-Javadoc)
-     * @see com.ibm.icu.util.BasicTimeZone#getTimeZoneRules()
+     * @see android.icu.util.BasicTimeZone#getTimeZoneRules()
      */
     @Override
     public TimeZoneRule[] getTimeZoneRules() {
@@ -1267,14 +1267,14 @@ public class OlsonTimeZone extends BasicTimeZone {
     private transient volatile boolean isFrozen = false;
 
     /* (non-Javadoc)
-     * @see com.ibm.icu.util.TimeZone#isFrozen()
+     * @see android.icu.util.TimeZone#isFrozen()
      */
     public boolean isFrozen() {
         return isFrozen;
     }
 
     /* (non-Javadoc)
-     * @see com.ibm.icu.util.TimeZone#freeze()
+     * @see android.icu.util.TimeZone#freeze()
      */
     public TimeZone freeze() {
         isFrozen = true;
@@ -1282,7 +1282,7 @@ public class OlsonTimeZone extends BasicTimeZone {
     }
 
     /* (non-Javadoc)
-     * @see com.ibm.icu.util.TimeZone#cloneAsThawed()
+     * @see android.icu.util.TimeZone#cloneAsThawed()
      */
     public TimeZone cloneAsThawed() {
         OlsonTimeZone tz = (OlsonTimeZone)super.cloneAsThawed();

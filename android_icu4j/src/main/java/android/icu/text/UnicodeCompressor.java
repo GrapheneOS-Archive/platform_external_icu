@@ -72,7 +72,6 @@ package android.icu.text;
 * @see UnicodeDecompressor
 *
 * @author Stephen F. Booth
-* @stable ICU 2.4
 * @hide Only a subset of ICU is exposed in Android
 * @hide All android.icu classes are currently hidden
 */
@@ -287,7 +286,6 @@ public final class UnicodeCompressor implements SCSU
      * Create a UnicodeCompressor.
      * Sets all windows to their default values.
      * @see #reset
-     * @stable ICU 2.4
      */
     public UnicodeCompressor()
     {
@@ -299,7 +297,6 @@ public final class UnicodeCompressor implements SCSU
      * @param buffer The string to compress.
      * @return A byte array containing the compressed characters.
      * @see #compress(char [], int, int)
-     * @stable ICU 2.4
      */
     public static byte [] compress(String buffer)
     {
@@ -313,7 +310,6 @@ public final class UnicodeCompressor implements SCSU
      * @param limit The limit of the character run to compress.
      * @return A byte array containing the compressed characters.
      * @see #compress(String)
-     * @stable ICU 2.4
      */
     public static byte [] compress(char [] buffer,
                    int start,
@@ -354,7 +350,6 @@ public final class UnicodeCompressor implements SCSU
      * compressed data.
      * @param byteBufferLimit The limiting offset for writing compressed data.
      * @return The number of bytes written to byteBuffer.
-     * @stable ICU 2.4
      */
     public int compress(char []     charBuffer,
             int         charBufferStart,
@@ -821,7 +816,6 @@ public final class UnicodeCompressor implements SCSU
 
     /** 
      * Reset the compressor to its initial state.
-     * @stable ICU 2.4
      */
     public void reset()
     {

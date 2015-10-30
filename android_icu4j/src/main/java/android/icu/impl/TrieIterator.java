@@ -28,7 +28,7 @@ import android.icu.util.RangeValueIterator;
  * <p>TrieIterator is designed to be a generic iterator for the CharTrie
  * and the IntTrie, hence to accommodate both types of data, the return 
  * result will be in terms of int (32 bit) values.</p>
- * <p>See com.ibm.icu.text.UCharacterTypeIterator for examples of use.</p>
+ * <p>See android.icu.text.UCharacterTypeIterator for examples of use.</p>
  * <p>Notes for porting utrie_enum from icu4c to icu4j:<br>
  * Internally, icu4c's utrie_enum performs all iterations in its body. In Java
  * sense, the caller will have to pass a object with a callback function 

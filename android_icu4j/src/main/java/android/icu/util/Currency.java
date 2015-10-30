@@ -51,7 +51,6 @@ import android.icu.util.ULocale.Category;
  * <tt>java.util.Currency</tt> but it has a completely independent
  * implementation, and adds features not present in the JDK.
  * @author Alan Liu
- * @stable ICU 2.2
  * @hide All android.icu classes are currently hidden
  */
 public class Currency extends MeasureUnit {
@@ -65,14 +64,12 @@ public class Currency extends MeasureUnit {
     /**
      * Selector for getName() indicating a symbolic name for a
      * currency, such as "$" for USD.
-     * @stable ICU 2.6
      */
     public static final int SYMBOL_NAME = 0;
 
     /**
      * Selector for getName() indicating the long name for a
      * currency, such as "US Dollar" for USD.
-     * @stable ICU 2.6
      */
     public static final int LONG_NAME = 1;
    
@@ -80,7 +77,6 @@ public class Currency extends MeasureUnit {
      * Selector for getName() indicating the plural long name for a 
      * currency, such as "US dollar" for USD in "1 US dollar", 
      * and "US dollars" for USD in "2 US dollars".
-     * @stable ICU 4.2
      */
     public static final int PLURAL_LONG_NAME = 2;
     
@@ -93,20 +89,17 @@ public class Currency extends MeasureUnit {
 
     /**
      * Currency Usage used for Decimal Format
-     * @stable ICU 54
      */
     public enum CurrencyUsage{
         /**
          * a setting to specify currency usage which determines currency digit and rounding
          * for standard usage, for example: "50.00 NT$"
-         * @stable ICU 54
          */
         STANDARD,
         
         /**
          * a setting to specify currency usage which determines currency digit and rounding
          * for cash usage, for example: "50 NT$"
-         * @stable ICU 54
          */
         CASH
     }
@@ -148,7 +141,6 @@ public class Currency extends MeasureUnit {
      * locale.
      * @param locale the locale
      * @return the currency object for this locale
-     * @stable ICU 2.2
      */
     public static Currency getInstance(Locale locale) {
         return getInstance(ULocale.forLocale(locale));
@@ -157,7 +149,6 @@ public class Currency extends MeasureUnit {
     /**
      * Returns a currency object for the default currency in the given
      * locale.
-     * @stable ICU 3.2
      */
     public static Currency getInstance(ULocale locale) {
         String currency = locale.getKeywordValue("currency");
@@ -180,7 +171,6 @@ public class Currency extends MeasureUnit {
      * @param loc the locale for which to retrieve currency codes.
      * @param d the date for which to retrieve currency codes for the given locale.
      * @return The array of ISO currency codes.
-     * @stable ICU 4.0
      */
     public static String[] getAvailableCurrencyCodes(ULocale loc, Date d) {
         CurrencyFilter filter = CurrencyFilter.onDate(d).withRegion(loc.getCountry());
@@ -201,7 +191,6 @@ public class Currency extends MeasureUnit {
      * @param loc the JDK locale for which to retrieve currency codes.
      * @param d the date for which to retrieve currency codes for the given locale.
      * @return The array of ISO currency codes.
-     * @stable ICU 54
      */
     public static String[] getAvailableCurrencyCodes(Locale loc, Date d) {
         return getAvailableCurrencyCodes(ULocale.forLocale(loc), d);
@@ -214,8 +203,6 @@ public class Currency extends MeasureUnit {
      * 
      * @return The set of available currencies. The returned set could be empty if there is no
      * currency data available.
-     * 
-     * @stable ICU 49
      */
     public static Set<Currency> getAvailableCurrencies() {
         CurrencyMetaInfo info = CurrencyMetaInfo.getInstance();
@@ -270,7 +257,6 @@ public class Currency extends MeasureUnit {
      * @throws NullPointerException if <code>theISOCode</code> is null.
      * @throws IllegalArgumentException if <code>theISOCode</code> is not a
      *         3-letter alpha code.
-     * @stable ICU 2.2
      */
     public static Currency getInstance(String theISOCode) {
         if (theISOCode == null) {
@@ -310,7 +296,6 @@ public class Currency extends MeasureUnit {
      * @param locale the ulocale under which to register the currency
      * @return a registry key that can be used to unregister this currency
      * @see #unregister
-     * @stable ICU 3.2
      */
     public static Object registerInstance(Currency currency, ULocale locale) {
         return getShim().registerInstance(currency, locale);
@@ -321,7 +306,6 @@ public class Currency extends MeasureUnit {
      * registerInstance).
      * @param registryKey the registry key returned from registerInstance
      * @see #registerInstance
-     * @stable ICU 2.6
      */
     public static boolean unregister(Object registryKey) {
         if (registryKey == null) {
@@ -337,7 +321,6 @@ public class Currency extends MeasureUnit {
      * Return an array of the locales for which a currency
      * is defined.
      * @return an array of the available locales
-     * @stable ICU 2.2
      */
     public static Locale[] getAvailableLocales() {
         if (shim == null) {
@@ -351,7 +334,6 @@ public class Currency extends MeasureUnit {
      * Return an array of the ulocales for which a currency
      * is defined.
      * @return an array of the available ulocales
-     * @stable ICU 3.2
      */
     public static ULocale[] getAvailableULocales() {
         if (shim == null) {
@@ -389,7 +371,6 @@ public class Currency extends MeasureUnit {
      *                      Otherwise returns all values.
      * @return an array of values for the given key and the locale.  If there is no data, the
      *   array will be empty.
-     * @stable ICU 4.2
      */
     public static final String[] getKeywordValuesForLocale(String key, ULocale locale, 
             boolean commonlyUsed) {
@@ -434,7 +415,6 @@ public class Currency extends MeasureUnit {
 
     /**
      * Returns the ISO 4217 3-letter code for this currency object.
-     * @stable ICU 2.2
      */
     public String getCurrencyCode() {
         return subType;
@@ -445,7 +425,6 @@ public class Currency extends MeasureUnit {
      * <p>Note: If the ISO 4217 numeric code is not assigned for the currency or
      * the currency is unknown, this method returns 0.</p>
      * @return The ISO 4217 numeric code of this currency.
-     * @stable ICU 49
      */
     public int getNumericCode() {
         int result = 0;
@@ -468,7 +447,6 @@ public class Currency extends MeasureUnit {
      * requests the symbol name for the default <code>DISPLAY</code> locale.
      * @see #getName
      * @see Category#DISPLAY
-     * @stable ICU 3.4
      */
     public String getSymbol() {
         return getSymbol(ULocale.getDefault(Category.DISPLAY));
@@ -479,7 +457,6 @@ public class Currency extends MeasureUnit {
      * requests the symbol name.
      * @param loc the Locale for the symbol
      * @see #getName
-     * @stable ICU 3.4
      */
     public String getSymbol(Locale loc) {
         return getSymbol(ULocale.forLocale(loc));
@@ -490,7 +467,6 @@ public class Currency extends MeasureUnit {
      * requests the symbol name.
      * @param uloc the ULocale for the symbol
      * @see #getName
-     * @stable ICU 3.4
      */
     public String getSymbol(ULocale uloc) {
         return getName(uloc, SYMBOL_NAME, new boolean[1]);
@@ -501,7 +477,6 @@ public class Currency extends MeasureUnit {
      * given locale.  
      * This is a convenient method for 
      * getName(ULocale, int, boolean[]); 
-     * @stable ICU 3.2
      */
     public String getName(Locale locale,
                           int nameStyle,
@@ -530,7 +505,6 @@ public class Currency extends MeasureUnit {
      * @throws  IllegalArgumentException  if the nameStyle is not SYMBOL_NAME
      *                                    or LONG_NAME.
      * @see #getName(ULocale, int, String, boolean[])
-     * @stable ICU 3.2
      */
     public String getName(ULocale locale, int nameStyle, boolean[] isChoiceFormat) {
         if (!(nameStyle == SYMBOL_NAME || nameStyle == LONG_NAME)) {
@@ -550,7 +524,6 @@ public class Currency extends MeasureUnit {
     /**
      * Returns the display name for the given currency in the given locale.  
      * This is a convenience overload of getName(ULocale, int, String, boolean[]);
-     * @stable ICU 4.2
      */
     public String getName(Locale locale, int nameStyle, String pluralCount,
             boolean[] isChoiceFormat) {
@@ -579,7 +552,6 @@ public class Currency extends MeasureUnit {
      * in isChoiceFormat is always false.
      * @throws  IllegalArgumentException  if the nameStyle is not SYMBOL_NAME,
      *                                    LONG_NAME, or PLURAL_LONG_NAME.
-     * @stable ICU 4.2
      */
     public String getName(ULocale locale, int nameStyle, String pluralCount,
             boolean[] isChoiceFormat) {
@@ -607,7 +579,6 @@ public class Currency extends MeasureUnit {
      * @return The display name of this currency
      * @see #getDisplayName(Locale)
      * @see #getName(Locale, int, boolean[])
-     * @stable ICU 49
      */
     public String getDisplayName() {
         return getName(Locale.getDefault(), LONG_NAME, null);
@@ -625,7 +596,6 @@ public class Currency extends MeasureUnit {
      * @return The display name of this currency for the specified locale
      * @see #getDisplayName(Locale)
      * @see #getName(Locale, int, boolean[])
-     * @stable ICU 49
      */
     public String getDisplayName(Locale locale) {
         return getName(locale, LONG_NAME, null);
@@ -770,7 +740,6 @@ public class Currency extends MeasureUnit {
      * This is equivalent to getDefaultFractionDigits(CurrencyUsage.STANDARD);
      * @return a non-negative number of fraction digits to be
      * displayed
-     * @stable ICU 2.2
      */
     public int getDefaultFractionDigits() {
         return getDefaultFractionDigits(CurrencyUsage.STANDARD);
@@ -782,7 +751,6 @@ public class Currency extends MeasureUnit {
      * @param Usage the usage of currency(Standard or Cash)
      * @return a non-negative number of fraction digits to be
      * displayed
-     * @stable ICU 54
      */
     public int getDefaultFractionDigits(CurrencyUsage Usage) {
         CurrencyMetaInfo info = CurrencyMetaInfo.getInstance();
@@ -795,7 +763,6 @@ public class Currency extends MeasureUnit {
      * rounding is done by this currency.
      * This is equivalent to getRoundingIncrement(CurrencyUsage.STANDARD);
      * @return the non-negative rounding increment, or 0.0 if none
-     * @stable ICU 2.2
      */
     public double getRoundingIncrement() {
         return getRoundingIncrement(CurrencyUsage.STANDARD);
@@ -806,7 +773,6 @@ public class Currency extends MeasureUnit {
      * rounding is done by this currency with the Usage.
      * @param Usage the usage of currency(Standard or Cash)
      * @return the non-negative rounding increment, or 0.0 if none
-     * @stable ICU 54
      */
     public double getRoundingIncrement(CurrencyUsage Usage) {
         CurrencyMetaInfo info = CurrencyMetaInfo.getInstance();
@@ -834,7 +800,6 @@ public class Currency extends MeasureUnit {
 
     /**
      * Returns the ISO 4217 code for this currency.
-     * @stable ICU 2.2
      */
     public String toString() {
         return subType;
@@ -845,7 +810,6 @@ public class Currency extends MeasureUnit {
      * code.  This constructor assumes that the code is valid.
      * 
      * @param theISOCode The iso code used to construct the currency.
-     * @stable ICU 3.4
      */
     protected Currency(String theISOCode) {
         super("currency", theISOCode);
@@ -907,8 +871,6 @@ public class Currency extends MeasureUnit {
      *            the currency any date after <code>from</code>
      * @return true if the given ISO 4217 3-letter code is supported on the specified date range.
      * @throws IllegalArgumentException when <code>to</code> is before <code>from</code>.
-     * 
-     * @stable ICU 4.6
      */
     public static boolean isAvailable(String code, Date from, Date to) {
         if (!isAlpha3Code(code)) {
