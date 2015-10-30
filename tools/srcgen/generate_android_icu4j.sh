@@ -28,7 +28,7 @@ rm -rf ${DEST_RESOURCE_DIR}
 mkdir -p ${DEST_RESOURCE_DIR}
 
 # Generate the source code needed by Android.
-java -cp ${CLASSPATH} com.android.icu4j.srcgen.Icu4jTransform ${INPUT_DIRS} ${DEST_SRC_DIR}
+java ${SRCGEN_JAVA_ARGS} -cp ${CLASSPATH} com.android.icu4j.srcgen.Icu4jTransform ${INPUT_DIRS} ${DEST_SRC_DIR}
 
 # Copy / transform the resources needed by the code.
 for INPUT_DIR in ${INPUT_DIRS}; do
