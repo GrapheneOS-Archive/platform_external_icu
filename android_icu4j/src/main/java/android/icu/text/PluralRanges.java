@@ -19,7 +19,6 @@ import android.icu.util.Output;
  * be chosen. The rules for determining this value vary widely across locales.
  * 
  * @author markdavis
- * {@literal @}internal
  * @deprecated This API is ICU internal only.
  * @hide Only a subset of ICU is exposed in Android
  * @hide draft / provisional / internal are hidden on Android
@@ -35,7 +34,6 @@ public final class PluralRanges implements Freezable<PluralRanges>, Comparable<P
     /**
      * Constructor
      * 
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -196,7 +194,6 @@ public final class PluralRanges implements Freezable<PluralRanges>, Comparable<P
      *            plural category for the end of the range
      * @param result
      *            the resulting plural category
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -239,7 +236,6 @@ public final class PluralRanges implements Freezable<PluralRanges>, Comparable<P
      * @param end
      *            plural category for the end of the range
      * @return the resulting plural category, or 'end' if there is no data.
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -258,7 +254,6 @@ public final class PluralRanges implements Freezable<PluralRanges>, Comparable<P
      * @param end
      *            plural category for the end of the range
      * @return whether the value for (start,end) is explicit or not.
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -273,7 +268,6 @@ public final class PluralRanges implements Freezable<PluralRanges>, Comparable<P
      * @param count
      *            plural category to test
      * @return true if set
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -284,7 +278,6 @@ public final class PluralRanges implements Freezable<PluralRanges>, Comparable<P
 
     /**
      * {@inheritDoc}
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -303,7 +296,6 @@ public final class PluralRanges implements Freezable<PluralRanges>, Comparable<P
 
     /**
      * {@inheritDoc}
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -315,7 +307,6 @@ public final class PluralRanges implements Freezable<PluralRanges>, Comparable<P
 
     /**
      * {@inheritDoc}
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -326,7 +317,6 @@ public final class PluralRanges implements Freezable<PluralRanges>, Comparable<P
 
     /**
      * {@inheritDoc}
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -337,7 +327,6 @@ public final class PluralRanges implements Freezable<PluralRanges>, Comparable<P
 
     /**
      * {@inheritDoc}
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -349,7 +338,6 @@ public final class PluralRanges implements Freezable<PluralRanges>, Comparable<P
 
     /**
      * {@inheritDoc}
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -363,7 +351,6 @@ public final class PluralRanges implements Freezable<PluralRanges>, Comparable<P
 
     /**
      * {@inheritDoc}
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */

@@ -151,7 +151,6 @@ public class CompactDecimalFormat extends DecimalFormat {
      * @param debugCreationErrors
      *            A collection of strings for debugging. If null on input, then any errors found will be added to that
      *            collection instead of throwing exceptions.
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */

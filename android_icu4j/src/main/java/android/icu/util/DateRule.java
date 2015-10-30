@@ -20,8 +20,6 @@ import java.util.Date;
  * Daylight Savings Time rules, and other events such as meetings.
  *
  * @see SimpleDateRule
- * {@literal @}draft ICU 2.8 (retainAll)
- * {@literal @}provisional This API might change or be removed in a future release.
  * @hide Only a subset of ICU is exposed in Android
  * @hide draft / provisional / internal are hidden on Android
  * @hide All android.icu classes are currently hidden
@@ -38,8 +36,6 @@ public interface DateRule
      *              does not occur on or after the start date.
      *
      * @see #firstBetween
-     * {@literal @}draft ICU 2.8
-     * {@literal @}provisional This API might change or be removed in a future release.
      * @hide draft / provisional / internal are hidden on Android
      */
     abstract public Date    firstAfter(Date start);
@@ -56,8 +52,6 @@ public interface DateRule
      *              does not occur between the start and end dates.
      *
      * @see #firstAfter
-     * {@literal @}draft ICU 2.8
-     * {@literal @}provisional This API might change or be removed in a future release.
      * @hide draft / provisional / internal are hidden on Android
      */
     abstract public Date    firstBetween(Date start, Date end);
@@ -71,8 +65,6 @@ public interface DateRule
      *
      * @param date  The date to check.
      * @return      true if this event occurs on the given date.
-     * {@literal @}draft ICU 2.8
-     * {@literal @}provisional This API might change or be removed in a future release.
      * @hide draft / provisional / internal are hidden on Android
      */
     abstract public boolean isOn(Date date);
@@ -80,8 +72,6 @@ public interface DateRule
     /**
      * Check whether this event occurs at least once between the two
      * dates given.
-     * {@literal @}draft ICU 2.8
-     * {@literal @}provisional This API might change or be removed in a future release.
      * @hide draft / provisional / internal are hidden on Android
      */
     abstract public boolean isBetween(Date start, Date end);

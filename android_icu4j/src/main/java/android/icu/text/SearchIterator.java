@@ -683,7 +683,6 @@ public abstract class SearchIterator
     protected abstract int handlePrevious(int startAt);
 
     /**
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide original deprecated method
      * @hide draft / provisional / internal are hidden on Android

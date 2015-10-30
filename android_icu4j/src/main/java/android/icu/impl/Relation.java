@@ -27,9 +27,9 @@ import android.icu.util.Freezable;
  * Unlike Map, there is not guaranteed to be a single value per key.
  * The Map-like APIs return collections for values.
  * @author medavis
-
  * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
+
  */
 public class Relation<K, V> implements Freezable<Relation<K,V>> { // TODO: add , Map<K, Collection<V>>, but requires API changes
     private Map<K, Set<V>> data;

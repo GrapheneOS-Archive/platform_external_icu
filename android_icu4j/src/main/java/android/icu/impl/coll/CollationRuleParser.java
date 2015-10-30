@@ -25,8 +25,9 @@ import android.icu.text.UTF16;
 import android.icu.text.UnicodeSet;
 import android.icu.util.ULocale;
 
-/** @hide Only a subset of ICU is exposed in Android
-* @hide All android.icu classes are currently hidden
+/**
+ * @hide Only a subset of ICU is exposed in Android
+ * @hide All android.icu classes are currently hidden
  */
 public final class CollationRuleParser {
     /** Special reset positions. */

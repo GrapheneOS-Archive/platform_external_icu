@@ -660,7 +660,6 @@ public class HebrewCalendar extends Calendar {
      *
      * The rule here is that if (year % 19) == 0, 3, 6, 8, 11, 14, or 17.
      * The formula below performs the same test, believe it or not.
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide original deprecated method
      * @hide draft / provisional / internal are hidden on Android
@@ -728,7 +727,6 @@ public class HebrewCalendar extends Calendar {
      * <p>
      * Overrides {@link Calendar#validateField(int)} to provide
      * special handling for month validation for Hebrew calendar.
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide original deprecated method
      * @hide draft / provisional / internal are hidden on Android

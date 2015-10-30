@@ -62,7 +62,6 @@ public abstract class UnicodeFilter implements UnicodeMatcher {
      * happy.  Java inserts a synthetic constructor and CheckTags
      * can't tell that it's synthetic.)
      *
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide original deprecated method
      * @hide draft / provisional / internal are hidden on Android

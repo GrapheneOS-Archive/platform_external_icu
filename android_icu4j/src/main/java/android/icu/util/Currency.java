@@ -619,7 +619,6 @@ public class Currency extends MeasureUnit {
      * @return the ISO 4217 code, as a string, of the best match, or
      * null if there is no match
      *
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide original deprecated method
      * @hide draft / provisional / internal are hidden on Android

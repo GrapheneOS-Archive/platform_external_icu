@@ -44,7 +44,6 @@ public abstract class DurationFormat extends UFormat {
 
     /**
      * Subclass interface
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -54,7 +53,6 @@ public abstract class DurationFormat extends UFormat {
     
     /**
      * Subclass interface
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */

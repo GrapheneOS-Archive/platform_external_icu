@@ -362,7 +362,6 @@ public abstract class Transliterator implements StringTransform  {
         /**
          * Mock implementation of hashCode(). This implementation always returns a constant
          * value. When Java assertion is enabled, this method triggers an assertion failure.
-         * {@literal @}internal
          * @deprecated This API is ICU internal only.
          * @hide draft / provisional / internal are hidden on Android
          */
@@ -1588,7 +1587,6 @@ public abstract class Transliterator implements StringTransform  {
      * change the global filter as we go.
      * @param targetSet TODO
      * @see #getTargetSet
-     * {@literal @}internal
      * @deprecated  This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -1611,7 +1609,6 @@ public abstract class Transliterator implements StringTransform  {
      * Returns the intersectionof this instance's filter intersected with an external filter. 
      * The externalFilter must be frozen (it is frozen if not).
      * The result may be frozen, so don't attempt to modify.
-     * {@literal @}internal
      * @deprecated  This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -1928,7 +1925,6 @@ public abstract class Transliterator implements StringTransform  {
     
     /**
      * Register the script-based "Any" transliterators: Any-Latin, Any-Greek
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */

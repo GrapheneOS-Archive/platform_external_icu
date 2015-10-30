@@ -31,8 +31,9 @@ import android.icu.util.UResourceBundle;
 import android.icu.util.UResourceBundleIterator;
 import android.icu.util.UResourceTypeMismatchException;
 
-/** @hide Only a subset of ICU is exposed in Android
-* @hide All android.icu classes are currently hidden
+/**
+ * @hide Only a subset of ICU is exposed in Android
+ * @hide All android.icu classes are currently hidden
  */
 public  class ICUResourceBundle extends UResourceBundle {
     /**
@@ -192,7 +193,6 @@ public  class ICUResourceBundle extends UResourceBundle {
      * @param omitDefault  if true, omit keyword and value if default.
      * 'de_DE\@collation=standard' -> 'de_DE'
      * @return the locale
-     * {@literal @}internal ICU 3.0
      * @hide draft / provisional / internal are hidden on Android
      */
     public static final ULocale getFunctionalEquivalent(String baseName, ClassLoader loader,
@@ -333,7 +333,6 @@ public  class ICUResourceBundle extends UResourceBundle {
      * @param baseName resource specifier
      * @param keyword a particular keyword to consider, must match a top level resource name
      * within the tree. (i.e. "collations")
-     * {@literal @}internal ICU 3.0
      * @hide draft / provisional / internal are hidden on Android
      */
     public static final String[] getKeywordValues(String baseName, String keyword) {
@@ -1579,7 +1578,6 @@ public  class ICUResourceBundle extends UResourceBundle {
     }
 
     /**
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -1588,7 +1586,6 @@ public  class ICUResourceBundle extends UResourceBundle {
     }
 
     /**
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */

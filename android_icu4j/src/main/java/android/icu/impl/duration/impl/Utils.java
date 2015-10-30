@@ -10,8 +10,9 @@ package android.icu.impl.duration.impl;
 
 import java.util.Locale;
 
-/** @hide Only a subset of ICU is exposed in Android
-* @hide All android.icu classes are currently hidden
+/**
+ * @hide Only a subset of ICU is exposed in Android
+ * @hide All android.icu classes are currently hidden
  */
 public class Utils {
   public static final Locale localeFromString(String s) {

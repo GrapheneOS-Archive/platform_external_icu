@@ -15,7 +15,7 @@ import android.icu.text.UTF16;
 import android.icu.text.UnicodeSet;
 
 /**
- * {{@literal @}icuenhanced java.util.Calendar}.{{@literal @}icu _usage_}
+ * <strong>[icu enhancement]</strong> ICU's replacement for {@link java.util.Calendar}.&nbsp;Methods, fields, and other functionality specific to ICU are labeled '<strong>[icu]</strong>'.
  *
  * <p>The string tokenizer class allows an application to break a string 
  * into tokens by performing code point comparison. 
@@ -107,7 +107,7 @@ public final class StringTokenizer implements Enumeration<Object>
     // public constructors ---------------------------------------------
      
     /**
-     * {{@literal @}icu} Constructs a string tokenizer for the specified string. All 
+     * <strong>[icu]</strong> Constructs a string tokenizer for the specified string. All 
      * characters in the delim argument are the delimiters for separating 
      * tokens. 
      * <p>If the returnDelims flag is false, the delimiter characters are 
@@ -126,7 +126,7 @@ public final class StringTokenizer implements Enumeration<Object>
     }
 
     /**
-     * {{@literal @}icu} Constructs a string tokenizer for the specified string. All 
+     * <strong>[icu]</strong> Constructs a string tokenizer for the specified string. All 
      * characters in the delim argument are the delimiters for separating 
      * tokens. 
      * <p>If the returnDelims flag is false, the delimiter characters are 
@@ -144,7 +144,6 @@ public final class StringTokenizer implements Enumeration<Object>
      *        delimiters as a single token or as one token per delimiter.  
      *        This only takes effect if returndelims is true.
      * @exception NullPointerException if str is null
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -176,7 +175,7 @@ public final class StringTokenizer implements Enumeration<Object>
     }
     
     /**
-     * {{@literal @}icu} Constructs a string tokenizer for the specified string. The 
+     * <strong>[icu]</strong> Constructs a string tokenizer for the specified string. The 
      * characters in the delim argument are the delimiters for separating 
      * tokens. 
      * <p>Delimiter characters themselves will not be treated as tokens.</p>
@@ -227,7 +226,6 @@ public final class StringTokenizer implements Enumeration<Object>
      *        delimiters as a single token or as one token per delimiter.  
      *        This only takes effect if returndelims is true.
      * @exception NullPointerException if str is null
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -406,7 +404,7 @@ public final class StringTokenizer implements Enumeration<Object>
     }
     
     /**
-     * {{@literal @}icu} Returns the next token in this string tokenizer's string. First, 
+     * <strong>[icu]</strong> Returns the next token in this string tokenizer's string. First, 
      * the set of characters considered to be delimiters by this 
      * <tt>StringTokenizer</tt> object is changed to be the characters in 
      * the string <tt>delim</tt>. Then the next token in the string

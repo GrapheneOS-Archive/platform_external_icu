@@ -155,7 +155,6 @@ public final class CanonicalIterator {
      * @param source the string to find permutations for
      * @param skipZeros set to true to skip characters with canonical combining class zero
      * @param output the set to add the results to
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */

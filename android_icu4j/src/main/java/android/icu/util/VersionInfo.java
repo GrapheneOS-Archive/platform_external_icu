@@ -144,7 +144,6 @@ public final class VersionInfo implements Comparable<VersionInfo>
     /**
      * Data version string for ICU's internal data.
      * Used for appending to data path (e.g. icudt43b)
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide original deprecated method
      * @hide draft / provisional / internal are hidden on Android
@@ -154,7 +153,6 @@ public final class VersionInfo implements Comparable<VersionInfo>
     
     /**
      * Data version in ICU4J.
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide original deprecated method
      * @hide draft / provisional / internal are hidden on Android
@@ -309,7 +307,6 @@ public final class VersionInfo implements Comparable<VersionInfo>
     private static volatile VersionInfo javaVersion;
 
     /**
-     * {@literal @}internal
      * @deprecated This API is ICU internal only.
      * @hide original deprecated method
      * @hide draft / provisional / internal are hidden on Android
@@ -577,7 +574,6 @@ public final class VersionInfo implements Comparable<VersionInfo>
      * @param minDigits Minimum number of version digits
      * @param maxDigits Maximum number of version digits
      * @return A tailored version string
-     * {@literal @}internal
      * @deprecated This API is ICU internal only. (For use in CLDR, etc.)
      * @hide original deprecated method
      * @hide draft / provisional / internal are hidden on Android
