@@ -15,15 +15,9 @@
  */
 package com.google.currysrc.api;
 
-import com.google.currysrc.api.transform.AstTransformRule;
-import com.google.currysrc.api.transform.DocumentTransformRule;
-
-import org.eclipse.jdt.core.dom.CompilationUnit;
-
 import com.google.currysrc.api.input.InputFileGenerator;
 import com.google.currysrc.api.output.OutputSourceFileGenerator;
-import com.google.currysrc.api.transform.AstTransformer;
-import com.google.currysrc.api.transform.DocumentTransformer;
+import com.google.currysrc.api.transform.TransformRule;
 
 import java.io.File;
 import java.util.List;
@@ -35,9 +29,7 @@ public interface Rules {
 
   InputFileGenerator getInputFileGenerator();
 
-  List<AstTransformRule> getAstTransformRules(File file);
-
-  List<DocumentTransformRule> getDocumentTransformRules(File file);
+  List<TransformRule> getTransformRules(File file);
 
   OutputSourceFileGenerator getOutputSourceFileGenerator();
 }
