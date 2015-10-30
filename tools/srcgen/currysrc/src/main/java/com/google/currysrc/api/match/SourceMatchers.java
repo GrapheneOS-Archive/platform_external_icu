@@ -15,6 +15,8 @@
  */
 package com.google.currysrc.api.match;
 
+import com.google.currysrc.api.transform.ast.BodyDeclarationLocater;
+
 import org.eclipse.jdt.core.dom.CompilationUnit;
 
 /**
@@ -39,6 +41,18 @@ public final class SourceMatchers {
   /** Returns a {@link SourceMatcher} that matches any {@link CompilationUnit}. */
   public static SourceMatcher all() {
     return ALL_MATCHER;
+  }
+
+  /**
+   * Returns a {@link SourceMatcher} that matches a {@link CompilationUnit} if it contains the
+   * body declaration located by {@code locater}.
+   */
+  public static SourceMatcher contains(final BodyDeclarationLocater locater) {
+    return new SourceMatcher() {
+      @Override public boolean matches(CompilationUnit cu) {
+        return locater.find(cu) != null;
+      }
+    };
   }
 
 }

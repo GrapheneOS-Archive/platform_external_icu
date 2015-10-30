@@ -25,9 +25,9 @@ import com.google.currysrc.api.input.InputFileGenerator;
 import com.google.currysrc.api.match.SourceMatchers;
 import com.google.currysrc.api.output.NullOutputSourceFileGenerator;
 import com.google.currysrc.api.output.OutputSourceFileGenerator;
-import com.google.currysrc.api.transform.AstTransformRule;
 import com.google.currysrc.api.transform.DocumentTransformRule;
 import com.google.currysrc.api.transform.DocumentTransformer;
+import com.google.currysrc.api.transform.TransformRule;
 import com.google.currysrc.api.transform.ast.BodyDeclarationLocaters;
 import com.google.currysrc.api.transform.ast.TypeLocater;
 
@@ -99,14 +99,9 @@ public class CaptureDeprecatedElements {
       captureTransformer = new CaptureDeprecatedTransformer(apiClassesWhitelistBuilder.build());
     }
 
-    public List<AstTransformRule> getAstTransformRules(File file) {
-      return Lists.newArrayList();
-    }
-
     @Override
-    public List<DocumentTransformRule> getDocumentTransformRules(File file) {
-
-      return Lists.newArrayList(
+    public List<TransformRule> getTransformRules(File file) {
+      return Lists.<TransformRule>newArrayList(
           new DocumentTransformRule(captureTransformer, SourceMatchers.all(), false /* mustModify*/));
     }
 

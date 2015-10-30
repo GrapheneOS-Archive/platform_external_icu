@@ -22,35 +22,22 @@ import org.eclipse.jdt.core.dom.rewrite.ASTRewrite;
 
 /**
  * A rule for transforming the AST. Consists of a transformer, a matcher to determine which
- * compilations units
- * the transformer will be applied to, and a flag that indicates whether the transformer is
- * <em>required</em>
- * to make a modification.
+ * compilations units the transformer will be applied to, and a flag that indicates whether the
+ * transformer is <em>required</em> to make a modification.
  */
-public final class AstTransformRule {
+public final class AstTransformRule extends BaseTransformRule {
 
   private final AstTransformer transformer;
 
-  private final SourceMatcher matcher;
-
-  private final boolean mustModify;
-
   public AstTransformRule(AstTransformer transformer, SourceMatcher matcher, boolean mustModify) {
+    super(matcher, mustModify);
     this.transformer = transformer;
-    this.matcher = matcher;
-    this.mustModify = mustModify;
   }
 
-  public boolean matches(CompilationUnit cu) {
-    return matcher.matches(cu);
-  }
-
-  public void transform(CompilationUnit cu, ASTRewrite rewrite) {
+  @Override
+  public void transform(Context context, CompilationUnit cu) {
+    ASTRewrite rewrite = context.rewrite();
     transformer.transform(cu, rewrite);
-  }
-
-  public boolean mustModify() {
-    return mustModify;
   }
 
   @Override
