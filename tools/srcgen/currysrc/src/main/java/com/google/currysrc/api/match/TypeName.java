@@ -19,7 +19,7 @@ package com.google.currysrc.api.match;
  * The name of a type: a class or an enum. The className is expected to contain $ to indicate
  * nested / inner classes.
  */
-public class TypeName {
+public final class TypeName {
 
   private final String packageName;
 

@@ -37,7 +37,7 @@ import java.util.Map;
 /**
  * The main execution API for users of currysrc.
  */
-public class Main {
+public final class Main {
 
   private static final Charset JAVA_SOURCE_CHARSET = StandardCharsets.UTF_8;
 
