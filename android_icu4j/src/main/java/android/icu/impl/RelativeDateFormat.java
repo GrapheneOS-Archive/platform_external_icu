@@ -105,7 +105,7 @@ public class RelativeDateFormat extends DateFormat {
     private static final long serialVersionUID = 1131984966440549435L;
 
     /* (non-Javadoc)
-     * @see com.ibm.icu.text.DateFormat#format(com.ibm.icu.util.Calendar, java.lang.StringBuffer, java.text.FieldPosition)
+     * @see android.icu.text.DateFormat#format(android.icu.util.Calendar, java.lang.StringBuffer, java.text.FieldPosition)
      */
     public StringBuffer format(Calendar cal, StringBuffer toAppendTo,
             FieldPosition fieldPosition) {
@@ -182,14 +182,14 @@ public class RelativeDateFormat extends DateFormat {
     }
 
     /* (non-Javadoc)
-     * @see com.ibm.icu.text.DateFormat#parse(java.lang.String, com.ibm.icu.util.Calendar, java.text.ParsePosition)
+     * @see android.icu.text.DateFormat#parse(java.lang.String, android.icu.util.Calendar, java.text.ParsePosition)
      */
     public void parse(String text, Calendar cal, ParsePosition pos) {
         throw new UnsupportedOperationException("Relative Date parse is not implemented yet");
     }
 
     /* (non-Javadoc)
-     * @see com.ibm.icu.text.DateFormat#setContext(com.ibm.icu.text.DisplayContext)
+     * @see android.icu.text.DateFormat#setContext(android.icu.text.DisplayContext)
      * Here we override the DateFormat implementation in order to
      * lazily initialize relevant items 
      */

@@ -18,7 +18,6 @@ import java.util.Date;
  * @see android.icu.util.TimeZoneTransition
  * @see android.icu.util.RuleBasedTimeZone
  * 
- * @stable ICU 3.8
  * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
  */
@@ -38,8 +37,6 @@ public abstract class TimeZoneRule implements Serializable {
      * @param rawOffset     The UTC offset of its standard time in milliseconds.
      * @param dstSavings    The amount of daylight saving offset adjustment in milliseconds.
      *                      If this is a rule for standard time, the value of this argument is 0.
-     * 
-     * @stable ICU 3.8
      */
     public TimeZoneRule(String name, int rawOffset, int dstSavings) {
         this.name = name;
@@ -51,8 +48,6 @@ public abstract class TimeZoneRule implements Serializable {
      * Gets the name of this time zone.
      * 
      * @return The name of this time zone.
-     * 
-     * @stable ICU 3.8
      */
     public String getName() {
         return name;
@@ -62,8 +57,6 @@ public abstract class TimeZoneRule implements Serializable {
      * Gets the standard time offset.
      * 
      * @return The standard time offset from UTC in milliseconds.
-     * 
-     * @stable ICU 3.8
      */
     public int getRawOffset() {
         return rawOffset;
@@ -74,8 +67,6 @@ public abstract class TimeZoneRule implements Serializable {
      * 
      * @return  The amount of daylight saving offset used by this rule
      *          in milliseconds.
-     * 
-     * @stable ICU 3.8
      */
     public int getDSTSavings() {
         return dstSavings;
@@ -88,8 +79,6 @@ public abstract class TimeZoneRule implements Serializable {
      *
      * @param other The <code>TimeZoneRule</code> object to be compared with.
      * @return true if the other <code>TimeZoneRule</code> is the same as this one.
-     * 
-     * @stable ICU 3.8
      */
     public boolean isEquivalentTo(TimeZoneRule other) {
         if (rawOffset == other.rawOffset && dstSavings == other.dstSavings) {
@@ -107,8 +96,6 @@ public abstract class TimeZoneRule implements Serializable {
      *                          standard time. 
      * 
      * @return  The very first time when this rule takes effect.
-     * 
-     * @stable ICU 3.8
      */
     public abstract Date getFirstStart(int prevRawOffset, int prevDSTSavings);
 
@@ -122,8 +109,6 @@ public abstract class TimeZoneRule implements Serializable {
      * 
      * @return  The very last time when this rule takes effect,
      *          or null if this rule is applied for future dates infinitely.
-     * 
-     * @stable ICU 3.8
      */
     public abstract Date getFinalStart(int prevRawOffset, int prevDSTSavings);
 
@@ -139,8 +124,6 @@ public abstract class TimeZoneRule implements Serializable {
      * 
      * @return  The first time when this rule takes effect after the specified time,
      *          or null when this rule never takes effect after the specified time.
-     * 
-     * @stable ICU 3.8
      */
     public abstract Date getNextStart(long base, int prevRawOffset, int prevDSTSavings, boolean inclusive);
 
@@ -157,8 +140,6 @@ public abstract class TimeZoneRule implements Serializable {
      * 
      * @return  The most recent time when this rule takes effect before the specified time,
      *          or null when this rule never takes effect before the specified time.
-     * 
-     * @stable ICU 3.8
      */
     public abstract Date getPreviousStart(long base, int prevRawOffset, int prevDSTSavings, boolean inclusive);
 
@@ -166,8 +147,6 @@ public abstract class TimeZoneRule implements Serializable {
      * Returns if this <code>TimeZoneRule</code> has one or more start times.
      * 
      * @return true if this <TimeZoneRule</code> has one or more start times.
-     * 
-     * @stable ICU 3.8
      */
     public abstract boolean isTransitionRule();
 
@@ -175,7 +154,6 @@ public abstract class TimeZoneRule implements Serializable {
      * Returns a <code>String</code> representation of this <code>TimeZoneRule</code> object.
      * This method is used for debugging purpose only.  The string representation can be changed
      * in future version of ICU without any notice.
-     * @stable ICU 3.8
      */
     public String toString() {
         StringBuilder buf = new StringBuilder();

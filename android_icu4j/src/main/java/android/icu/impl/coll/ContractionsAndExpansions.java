@@ -23,7 +23,7 @@ import android.icu.util.CharsTrie.Entry;
 * @hide All android.icu classes are currently hidden
  */
 public final class ContractionsAndExpansions {
-    // C++: The following fields are {@literal @}internal, only public for access by callback.
+    // C++: The following fields are @internal, only public for access by callback.
     private CollationData data;
     private UnicodeSet contractions;
     private UnicodeSet expansions;

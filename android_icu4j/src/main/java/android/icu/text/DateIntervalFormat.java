@@ -208,8 +208,8 @@ import android.icu.util.ULocale.Category;
  * Code Sample: for powerful users who wants to use their own interval pattern
  * <pre>
  *
- *     import com.ibm.icu.text.DateIntervalInfo;
- *     import com.ibm.icu.text.DateIntervalFormat;
+ *     import android.icu.text.DateIntervalInfo;
+ *     import android.icu.text.DateIntervalFormat;
  *     ....................
  *     
  *     // Get DateIntervalFormat instance using default locale
@@ -248,7 +248,6 @@ import android.icu.util.ULocale.Category;
  * 
  *
  * </pre>
- * @stable ICU 4.0
  * @hide All android.icu classes are currently hidden
  */
 
@@ -398,7 +397,6 @@ public class DateIntervalFormat extends UFormat {
      * @param skeleton  the skeleton on which interval format based.
      * @return          a date time interval formatter.
      * @see Category#FORMAT
-     * @stable ICU 4.0
      */
     public static final DateIntervalFormat 
         getInstance(String skeleton)
@@ -414,11 +412,10 @@ public class DateIntervalFormat extends UFormat {
      * This is a convenient override of 
      * getInstance(String skeleton, ULocale locale)  
      *
-     * <p>Example code:{{@literal @}.jcite com.ibm.icu.samples.text.dateintervalformat.DateIntervalFormatSample:---dtitvfmtPreDefinedExample}
+     * <p>Example code:{{@literal @}.jcite android.icu.samples.text.dateintervalformat.DateIntervalFormatSample:---dtitvfmtPreDefinedExample}
      * @param skeleton  the skeleton on which interval format based.
      * @param locale    the given locale
      * @return          a date time interval formatter.
-     * @stable ICU 4.0
      */
     public static final DateIntervalFormat 
         getInstance(String skeleton, Locale locale)  
@@ -454,7 +451,6 @@ public class DateIntervalFormat extends UFormat {
      * @param skeleton  the skeleton on which interval format based.
      * @param locale    the given locale
      * @return          a date time interval formatter.
-     * @stable ICU 4.0
      */
     public static final DateIntervalFormat 
         getInstance(String skeleton, ULocale locale)  
@@ -477,7 +473,6 @@ public class DateIntervalFormat extends UFormat {
      * @param dtitvinf  the DateIntervalInfo object to be adopted.
      * @return          a date time interval formatter.
      * @see Category#FORMAT
-     * @stable ICU 4.0
      */
     public static final DateIntervalFormat getInstance(String skeleton, 
                                                    DateIntervalInfo dtitvinf)
@@ -494,12 +489,11 @@ public class DateIntervalFormat extends UFormat {
      * This is a convenient override of
      * getInstance(String skeleton, ULocale locale, DateIntervalInfo dtitvinf)
      * 
-     * <p>Example code:{{@literal @}.jcite com.ibm.icu.samples.text.dateintervalformat.DateIntervalFormatSample:---dtitvfmtCustomizedExample}
+     * <p>Example code:{{@literal @}.jcite android.icu.samples.text.dateintervalformat.DateIntervalFormatSample:---dtitvfmtCustomizedExample}
      * @param skeleton  the skeleton on which interval format based.
      * @param locale    the given locale
      * @param dtitvinf  the DateIntervalInfo object to be adopted.
      * @return          a date time interval formatter.
-     * @stable ICU 4.0
      */
     public static final DateIntervalFormat getInstance(String skeleton,
                                                  Locale locale, 
@@ -544,7 +538,6 @@ public class DateIntervalFormat extends UFormat {
      * @param locale    the given locale
      * @param dtitvinf  the DateIntervalInfo object to be adopted.
      * @return          a date time interval formatter.
-     * @stable ICU 4.0
      */
     public static final DateIntervalFormat getInstance(String skeleton,
                                                  ULocale locale, 
@@ -561,7 +554,6 @@ public class DateIntervalFormat extends UFormat {
     /**
      * Clone this Format object polymorphically. 
      * @return    A copy of the object.
-     * @stable ICU 4.0
      */
     public Object clone()
     {
@@ -595,7 +587,6 @@ public class DateIntervalFormat extends UFormat {
      * @return                  Reference to 'appendTo' parameter.
      * @throws    IllegalArgumentException  if the formatted object is not 
      *                                      DateInterval object
-     * @stable ICU 4.0
      */
     public final StringBuffer 
         format(Object obj, StringBuffer appendTo, FieldPosition fieldPosition)
@@ -620,7 +611,6 @@ public class DateIntervalFormat extends UFormat {
      *                          in an interval format; in this case the fieldPosition
      *                          offsets refer to the first instance.
      * @return                  Reference to 'appendTo' parameter.
-     * @stable ICU 4.0
      */
     public final StringBuffer format(DateInterval dtInterval,
                                      StringBuffer appendTo,
@@ -690,7 +680,6 @@ public class DateIntervalFormat extends UFormat {
      *                          offsets refer to the first instance.
      * @return                  Reference to 'appendTo' parameter.
      * @throws    IllegalArgumentException  if the two calendars are not equivalent.
-     * @stable ICU 4.0
      */
     public final StringBuffer format(Calendar fromCalendar,
                                      Calendar toCalendar,
@@ -945,7 +934,6 @@ public class DateIntervalFormat extends UFormat {
      * Gets the date time interval patterns.
      * @return a copy of the date time interval patterns associated with
      * this date interval formatter.
-     * @stable ICU 4.0
      */
     public DateIntervalInfo getDateIntervalInfo()
     {
@@ -956,7 +944,6 @@ public class DateIntervalFormat extends UFormat {
     /**
      * Set the date time interval patterns. 
      * @param newItvPattern   the given interval patterns to copy.
-     * @stable ICU 4.0
      */
     public void setDateIntervalInfo(DateIntervalInfo newItvPattern)
     {
@@ -973,7 +960,6 @@ public class DateIntervalFormat extends UFormat {
     /**
      * Get the TimeZone
      * @return A copy of the TimeZone associated with this date interval formatter.
-     * @stable ICU 53
      */
     public TimeZone getTimeZone()
     {
@@ -991,7 +977,6 @@ public class DateIntervalFormat extends UFormat {
     /**
      * Set the TimeZone for the calendar used by this DateIntervalFormat object.
      * @param zone The new TimeZone, will be cloned for use by this DateIntervalFormat.
-     * @stable ICU 53
      */
     public void setTimeZone(TimeZone zone)
     {
@@ -1014,7 +999,6 @@ public class DateIntervalFormat extends UFormat {
      * Gets the date formatter
      * @return a copy of the date formatter associated with
      * this date interval formatter.
-     * @stable ICU 4.0
      */
     public DateFormat getDateFormat()
     {

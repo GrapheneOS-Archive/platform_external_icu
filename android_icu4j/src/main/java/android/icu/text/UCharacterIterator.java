@@ -28,7 +28,6 @@ import android.icu.impl.UCharacterIteratorWrapper;
  * iteration, <code>java.text.CharacterIterator</code> can only iterate over 
  * code units and is limited to BMP (0 - 0xFFFF)
  * @author Ram
- * @stable ICU 2.4
  * @hide All android.icu classes are currently hidden
  */
 public abstract class UCharacterIterator 
@@ -36,7 +35,6 @@ public abstract class UCharacterIterator
 
     /**
      * Protected default constructor for the subclasses
-     * @stable ICU 2.4
      */
     protected UCharacterIterator(){
     }
@@ -49,7 +47,6 @@ public abstract class UCharacterIterator
      * @param source a valid source as a <code>Replaceable</code> object
      * @return UCharacterIterator object
      * @exception IllegalArgumentException if the argument is null
-     * @stable ICU 2.4
      */
     public static final UCharacterIterator getInstance(Replaceable source){
         return new ReplaceableUCharacterIterator(source);
@@ -61,7 +58,6 @@ public abstract class UCharacterIterator
      * @param source a string
      * @return UCharacterIterator object
      * @exception IllegalArgumentException if the argument is null
-     * @stable ICU 2.4
      */
     public static final UCharacterIterator getInstance(String source){
         return new ReplaceableUCharacterIterator(source);
@@ -73,7 +69,6 @@ public abstract class UCharacterIterator
      * @param source an array of UTF-16 code units
      * @return UCharacterIterator object
      * @exception IllegalArgumentException if the argument is null
-     * @stable ICU 2.4
      */
     public static final UCharacterIterator getInstance(char[] source){
         return getInstance(source,0,source.length);
@@ -85,7 +80,6 @@ public abstract class UCharacterIterator
      * @param source an array of UTF-16 code units
      * @return UCharacterIterator object
      * @exception IllegalArgumentException if the argument is null
-     * @stable ICU 2.4
      */
     public static final UCharacterIterator getInstance(char[] source, int start, int limit){
         return new UCharArrayIterator(source,start,limit);
@@ -96,7 +90,6 @@ public abstract class UCharacterIterator
      * @param source an string buffer of UTF-16 code units
      * @return UCharacterIterator object
      * @exception IllegalArgumentException if the argument is null
-     * @stable ICU 2.4
      */
     public static final UCharacterIterator getInstance(StringBuffer source){
         return new ReplaceableUCharacterIterator(source);
@@ -108,7 +101,6 @@ public abstract class UCharacterIterator
      * @param source a valid CharacterIterator object.
      * @return UCharacterIterator object
      * @exception IllegalArgumentException if the argument is null
-     * @stable ICU 2.4
      */    
     public static final UCharacterIterator getInstance(CharacterIterator source){
         return new CharacterIteratorWrapper(source);
@@ -120,7 +112,6 @@ public abstract class UCharacterIterator
      * the underlying text of this iterator.  The returned iterator is
      * independent of this iterator.
      * @return java.text.CharacterIterator object
-     * @stable ICU 2.4 
      */
     public CharacterIterator getCharacterIterator(){
         return new UCharacterIteratorWrapper(this);
@@ -130,7 +121,6 @@ public abstract class UCharacterIterator
      * Returns the code unit at the current index.  If index is out
      * of range, returns DONE.  Index is not changed.
      * @return current code unit
-     * @stable ICU 2.4
      */
     public abstract int current();
     
@@ -141,7 +131,6 @@ public abstract class UCharacterIterator
      * trail surrogate, then the code point is returned.  Otherwise, the code
      * unit at index is returned.  Index is not changed. 
      * @return current codepoint
-     * @stable ICU 2.4
      */
     public int currentCodePoint(){
         int ch = current();
@@ -169,7 +158,6 @@ public abstract class UCharacterIterator
     /**
      * Returns the length of the text
      * @return length of the text
-     * @stable ICU 2.4
      */
     public abstract int getLength();
 
@@ -177,7 +165,6 @@ public abstract class UCharacterIterator
     /**
      * Gets the current index in text.
      * @return current index in text.
-     * @stable ICU 2.4
      */
     public abstract int getIndex();
 
@@ -189,7 +176,6 @@ public abstract class UCharacterIterator
      * of the text.
      * @return the next UTF16 code unit, or DONE if the index is at the limit
      *         of the text.
-     * @stable ICU 2.4  
      */
     public abstract int next();
 
@@ -202,7 +188,6 @@ public abstract class UCharacterIterator
      * is returned.
      * @return the next codepoint in text, or DONE if the index is at
      *         the limit of the text.
-     * @stable ICU 2.4  
      */
     public int nextCodePoint(){
         int ch1 = next();
@@ -225,7 +210,6 @@ public abstract class UCharacterIterator
      * DONE is returned.
      * @return the previous code unit in the text, or DONE if the new
      *         index is before the start of the text.
-     * @stable ICU 2.4  
      */
     public abstract int previous();
 
@@ -239,7 +223,6 @@ public abstract class UCharacterIterator
      * point represented by the pair is returned.
      * @return the previous code point in the text, or DONE if the new
      *         index is before the start of the text.
-     * @stable ICU 2.4  
      */
     public int previousCodePoint(){
         int ch1 = previous();
@@ -260,13 +243,11 @@ public abstract class UCharacterIterator
      * @param index the index within the text. 
      * @exception IndexOutOfBoundsException is thrown if an invalid index is 
      *            supplied
-     * @stable ICU 2.4
      */
     public abstract void setIndex(int index);
 
     /**
      * Sets the current index to the limit.
-     * @stable ICU 2.4
      */
     public void setToLimit() {
         setIndex(getLength());
@@ -274,7 +255,6 @@ public abstract class UCharacterIterator
     
     /**
      * Sets the current index to the start.
-     * @stable ICU 2.4
      */
     public void setToStart() {
         setIndex(0);
@@ -313,7 +293,6 @@ public abstract class UCharacterIterator
      * @return the number of code units added to fillIn, as a convenience
      * @exception IndexOutOfBoundsException exception if there is not enough
      *            room after offset in the array, or if offset < 0.
-     * @stable ICU 2.4  
      */
     public abstract int getText(char[] fillIn, int offset); 
 
@@ -325,7 +304,6 @@ public abstract class UCharacterIterator
      * @return the number of code units added to fillIn, as a convenience
      * @exception IndexOutOfBoundsException exception if there is not enough
      *            room in the array.
-     * @stable ICU 2.4  
      */
     public final int getText(char[] fillIn) {
         return getText(fillIn, 0);
@@ -334,7 +312,6 @@ public abstract class UCharacterIterator
     /**
      * Convenience method for returning the underlying text storage as as string
      * @return the underlying text storage in the iterator as a string
-     * @stable ICU 2.4
      */
     public String getText() {
         char[] text = new char[getLength()];
@@ -355,7 +332,6 @@ public abstract class UCharacterIterator
      * @return the new index.
      * @exception IndexOutOfBoundsException is thrown if an invalid index is 
      *            supplied 
-     * @stable ICU 2.4 
      * 
      */
     public int moveIndex(int delta) {
@@ -377,7 +353,6 @@ public abstract class UCharacterIterator
      * @return the new index  
      * @exception IndexOutOfBoundsException is thrown if an invalid delta is 
      *            supplied
-     * @stable ICU 2.4
      */
     public int moveCodePointIndex(int delta){
         if(delta>0){
@@ -396,7 +371,6 @@ public abstract class UCharacterIterator
      * Creates a copy of this iterator, independent from other iterators.
      * If it is not possible to clone the iterator, returns null.
      * @return copy of this iterator
-     * @stable ICU 2.4
      */
     public Object clone() throws CloneNotSupportedException{
         return super.clone();

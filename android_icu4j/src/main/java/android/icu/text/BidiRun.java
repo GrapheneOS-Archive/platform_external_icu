@@ -26,7 +26,6 @@ package android.icu.text;
  * modified by users.
  *
  * @see android.icu.text.Bidi
- * @stable ICU 3.8
  * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
  */
@@ -80,7 +79,6 @@ public class BidiRun {
 
     /**
      * Get the first logical position of the run in the source text
-     * @stable ICU 3.8
      */
     public int getStart()
     {
@@ -89,7 +87,6 @@ public class BidiRun {
 
     /**
      * Get position of one character after the end of the run in the source text
-     * @stable ICU 3.8
      */
     public int getLimit()
     {
@@ -98,7 +95,6 @@ public class BidiRun {
 
     /**
      * Get length of run
-     * @stable ICU 3.8
      */
     public int getLength()
     {
@@ -107,7 +103,6 @@ public class BidiRun {
 
     /**
      * Get level of run
-     * @stable ICU 3.8
      */
     public byte getEmbeddingLevel()
     {
@@ -118,7 +113,6 @@ public class BidiRun {
      * Check if run level is odd
      * @return true if the embedding level of this run is odd, i.e. it is a
      *  right-to-left run.
-     * @stable ICU 3.8
      */
     public boolean isOddRun()
     {
@@ -129,7 +123,6 @@ public class BidiRun {
      * Check if run level is even
      * @return true if the embedding level of this run is even, i.e. it is a
      *  left-to-right run.
-     * @stable ICU 3.8
      */
     public boolean isEvenRun()
     {
@@ -138,7 +131,6 @@ public class BidiRun {
 
     /**
      * Get direction of run
-     * @stable ICU 3.8
      */
     public byte getDirection()
     {
@@ -147,7 +139,6 @@ public class BidiRun {
 
     /**
      * String to display run
-     * @stable ICU 3.8
      */
     public String toString()
     {

@@ -143,7 +143,6 @@ import android.icu.util.ULocale;
  *     the script of an identifier. Common characters include digits and symbols that
  *     are normally used with text from many different scripts. </blockquote>
  *
- * @stable ICU 4.6
  * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
  */
@@ -151,46 +150,33 @@ public class SpoofChecker {
 
     /**
      * Constants from UAX 31 for use in setRestrictionLevel.
-     * @stable ICU 53
      */
     public enum RestrictionLevel {
         /**
          * Only ASCII characters: U+0000..U+007F
-         *
-         * @stable ICU 53
          */
         ASCII,
         /**
          * All characters in each identifier must be from a single script.
-         * 
-         * @stable ICU 53
          */
         SINGLE_SCRIPT_RESTRICTIVE,
          /**
          * All characters in each identifier must be from a single script, or from the combinations: Latin + Han +
          * Hiragana + Katakana; Latin + Han + Bopomofo; or Latin + Han + Hangul. Note that this level will satisfy the
          * vast majority of Latin-script users; also that TR36 has ASCII instead of Latin.
-         *
-         * @stable ICU 53
          */
         HIGHLY_RESTRICTIVE,
         /**
          * Allow Latin with other scripts except Cyrillic, Greek, Cherokee Otherwise, the same as Highly Restrictive
-         *
-         * @stable ICU 53
          */
         MODERATELY_RESTRICTIVE,
         /**
          * Allow arbitrary mixtures of scripts, such as Ωmega, Teχ, HλLF-LIFE, Toys-Я-Us. Otherwise, the same as
          * Moderately Restrictive
-         *
-         * @stable ICU 53
          */
         MINIMALLY_RESTRICTIVE,
         /**
          * Any valid identifiers, including characters outside of the Identifier Profile, such as I♥NY.org
-         *
-         * @stable ICU 53
          */
         UNRESTRICTIVE
     }
@@ -290,8 +276,6 @@ public class SpoofChecker {
      * Single script confusable test. When testing whether two identifiers are confusable, report that they are if both
      * are from the same script and they are visually confusable. Note: this test is not applicable to a check of a
      * single identifier.
-     *
-     * @stable ICU 4.6
      */
     public static final int SINGLE_SCRIPT_CONFUSABLE = 1;
 
@@ -303,8 +287,6 @@ public class SpoofChecker {
      *
      * <p>When testing whether two identifiers are confusable, report that they are if the two IDs are visually confusable,
      * and and at least one contains characters from more than one script.
-     *
-     * @stable ICU 4.6
      */
     public static final int MIXED_SCRIPT_CONFUSABLE = 2;
 
@@ -316,8 +298,6 @@ public class SpoofChecker {
      *
      * <p>When testing whether two Identifiers are confusable, report that they are if each is of a single script, the
      * scripts of the two identifiers are different, and the identifiers are visually confusable.
-     *
-     * @stable ICU 4.6
      */
     public static final int WHOLE_SCRIPT_CONFUSABLE = 4;
 
@@ -327,8 +307,6 @@ public class SpoofChecker {
      * <p>When specified, consider all characters, of any case, when looking for confusables. If ANY_CASE is not specified,
      * identifiers being checked are assumed to have been case folded, and upper case conusable characters will not be
      * checked.
-     *
-     * @stable ICU 4.6
      */
     public static final int ANY_CASE = 8;
 
@@ -356,16 +334,12 @@ public class SpoofChecker {
      * Check an identifier for the presence of invisible characters, such as zero-width spaces, or character sequences
      * that are likely not to display, such as multiple occurrences of the same non-spacing mark. This check does not
      * test the input string as a whole for conformance to any particular syntax for identifiers.
-     *
-     * @stable ICU 4.6
      */
     public static final int INVISIBLE = 32;
 
     /**
      * Check that an identifier contains only characters from a specified set of acceptable characters. See
      * Builder.setAllowedChars() and Builder.setAllowedLocales().
-     *
-     * @stable ICU 4.6
      */
     public static final int CHAR_LIMIT = 64;
 
@@ -383,8 +357,6 @@ public class SpoofChecker {
 
     /**
      * Enable all spoof checks.
-     *
-     * @stable ICU 4.6
      */
     public static final int ALL_CHECKS = 0xFFFFFFFF;
 
@@ -401,8 +373,6 @@ public class SpoofChecker {
     /**
      * SpoofChecker Builder. To create a SpoofChecker, first instantiate a SpoofChecker.Builder, set the desired
      * checking options on the builder, then call the build() function to create a SpoofChecker instance.
-     *
-     * @stable ICU 4.6
      */
     public static class Builder {
         int fChecks; // Bit vector of checks to perform.
@@ -416,8 +386,6 @@ public class SpoofChecker {
          * Constructor: Create a default Unicode Spoof Checker Builder, configured to perform all checks except for
          * LOCALE_LIMIT and CHAR_LIMIT. Note that additional checks may be added in the future, resulting in the changes
          * to the default checking behavior.
-         *
-         * @stable ICU 4.6
          */
         public Builder() {
             fChecks = ALL_CHECKS;
@@ -430,7 +398,6 @@ public class SpoofChecker {
          *
          * @param src
          *            The existing checker.
-         * @stable ICU 4.6
          */
         public Builder(SpoofChecker src) {
             fChecks = src.fChecks;
@@ -447,7 +414,6 @@ public class SpoofChecker {
          * Create a SpoofChecker with current configuration.
          *
          * @return SpoofChecker
-         * @stable ICU 4.6
          */
         public SpoofChecker build() {
             if (fSpoofData == null) { // read binary file
@@ -487,7 +453,6 @@ public class SpoofChecker {
          *            xonfusablesWholeScript.txt from unicode.org.
          * @throws ParseException
          *             To report syntax errors in the input.
-         * @stable ICU 4.6
          */
         public Builder setData(Reader confusables, Reader confusablesWholeScript) throws ParseException,
         java.io.IOException {
@@ -509,7 +474,6 @@ public class SpoofChecker {
          *            The set of checks that this spoof checker will perform. The value is an 'or' of the desired
          *            checks.
          * @return self
-         * @stable ICU 4.6
          */
         public Builder setChecks(int checks) {
             // Verify that the requested checks are all ones (bits) that
@@ -547,7 +511,6 @@ public class SpoofChecker {
          *            is null, no restrictions will be placed on the allowed characters.
          *
          * @return self
-         * @stable ICU 4.6
          */
         public Builder setAllowedLocales(Set<ULocale> locales) {
             fAllowedCharsSet.clear();
@@ -591,7 +554,6 @@ public class SpoofChecker {
          *            is null, no restrictions will be placed on the allowed characters.
          *
          * @return self
-         * @stable ICU 54
          */
         public Builder setAllowedJavaLocales(Set<Locale> locales) {
             HashSet<ULocale> ulocales = new HashSet<ULocale>(locales.size());
@@ -626,7 +588,6 @@ public class SpoofChecker {
          *            this function, so there are no restrictions on modifying or deleting the UnicodeSet after calling
          *            this function. Note that this clears the allowedLocales set.
          * @return self
-         * @stable ICU 4.6
          */
         public Builder setAllowedChars(UnicodeSet chars) {
             fAllowedCharsSet.set(chars);
@@ -1479,7 +1440,6 @@ public class SpoofChecker {
      * Get the set of checks that this Spoof Checker has been configured to perform.
      *
      * @return The set of checks that this spoof checker will perform.
-     * @stable ICU 4.6
      */
     public int getChecks() {
         return fChecks;
@@ -1495,8 +1455,6 @@ public class SpoofChecker {
      * the information other than languages from the originally specified locales may be omitted.
      *
      * @return A set of locales corresponding to the acceptable scripts.
-     *
-     * @stable ICU 4.6
      */
     public Set<ULocale> getAllowedLocales() {
         return Collections.unmodifiableSet(fAllowedLocales);
@@ -1507,7 +1465,6 @@ public class SpoofChecker {
      * have been specified, an empty set will be returned.
      *
      * @return A set of locales corresponding to the acceptable scripts.
-     * @stable ICU 54
      */
     public Set<Locale> getAllowedJavaLocales() {
         HashSet<Locale> locales = new HashSet<Locale>(fAllowedLocales.size());
@@ -1525,7 +1482,6 @@ public class SpoofChecker {
      * The returned set will be frozen, meaning that it cannot be modified by the caller.
      *
      * @return A UnicodeSet containing the characters that are permitted by the CHAR_LIMIT test.
-     * @stable ICU 4.6
      */
     public UnicodeSet getAllowedChars() {
         return fAllowedCharsSet;
@@ -1534,16 +1490,12 @@ public class SpoofChecker {
     /**
      * A struct-like class to hold the results of a Spoof Check operation.
      * Tells which check(s) have failed.
-     *
-     * @stable ICU 4.6
      */
     public static class CheckResult {
         /**
          * Indicate which of the spoof check(s) has failed.  The value is a bitwise OR
          * of the constants for the tests in question, SINGLE_SCRIPT_CONFUSABLE,
          * MIXED_SCRIPT_CONFUSABLE, WHOLE_SCRIPT_CONFUSABLE, and so on.
-         *
-         * @stable ICU 4.6
          */
         public int checks;
         /**
@@ -1574,7 +1526,6 @@ public class SpoofChecker {
 
         /**
          *  Default constructor
-         *  @stable ICU 4.6
          */
         public CheckResult() {
             checks = 0;
@@ -1583,7 +1534,6 @@ public class SpoofChecker {
 
         /**
          * {@inheritDoc}
-         * @stable ICU 4.6
          */
         @Override
         public String toString() {
@@ -1636,7 +1586,6 @@ public class SpoofChecker {
      *            Output parameter, indicates which specific tests failed.
      *            May be null if the information is not wanted.
      * @return True there any issue is found with the input string.
-     * @stable ICU 4.8
      */
     public boolean failsChecks(String text, CheckResult checkResult) {
         int length = text.length();
@@ -1779,7 +1728,6 @@ public class SpoofChecker {
      * @param text
      *            A String to be checked for possible security issues.
      * @return True there any issue is found with the input string.
-     * @stable ICU 4.8
      */
     public boolean failsChecks(String text) {
         return failsChecks(text, null);
@@ -1802,7 +1750,6 @@ public class SpoofChecker {
      *            The second of the two strings to be compared for confusability.
      * @return Non-zero if s1 and s1 are confusable. If not 0, the value will indicate the type(s) of confusability
      *         found, as defined by spoof check test constants.
-     * @stable ICU 4.6
      */
     public int areConfusable(String s1, String s2) {
         //
@@ -1893,8 +1840,6 @@ public class SpoofChecker {
      * @param id
      *            The input identifier whose skeleton will be genereated.
      * @return The output skeleton string.
-     *
-     * @stable ICU 4.6
      */
     public String getSkeleton(int type, String id) {
         int tableMask = 0;

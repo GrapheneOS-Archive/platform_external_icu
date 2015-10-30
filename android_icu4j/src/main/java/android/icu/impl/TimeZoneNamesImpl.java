@@ -68,7 +68,7 @@ public class TimeZoneNamesImpl extends TimeZoneNames {
     }
 
     /* (non-Javadoc)
-     * @see com.ibm.icu.text.TimeZoneNames#getAvailableMetaZoneIDs()
+     * @see android.icu.text.TimeZoneNames#getAvailableMetaZoneIDs()
      */
     @Override
     public Set<String> getAvailableMetaZoneIDs() {
@@ -90,7 +90,7 @@ public class TimeZoneNamesImpl extends TimeZoneNames {
     }
 
     /* (non-Javadoc)
-     * @see com.ibm.icu.text.TimeZoneNames#getAvailableMetaZoneIDs(java.lang.String)
+     * @see android.icu.text.TimeZoneNames#getAvailableMetaZoneIDs(java.lang.String)
      */
     @Override
     public Set<String> getAvailableMetaZoneIDs(String tzID) {
@@ -114,7 +114,7 @@ public class TimeZoneNamesImpl extends TimeZoneNames {
     }
 
     /* (non-Javadoc)
-     * @see com.ibm.icu.text.TimeZoneNames#getMetaZoneID(java.lang.String, long)
+     * @see android.icu.text.TimeZoneNames#getMetaZoneID(java.lang.String, long)
      */
     @Override
     public String getMetaZoneID(String tzID, long date) {
@@ -137,7 +137,7 @@ public class TimeZoneNamesImpl extends TimeZoneNames {
     }
 
     /* (non-Javadoc)
-     * @see com.ibm.icu.text.TimeZoneNames#getReferenceZoneID(java.lang.String, java.lang.String)
+     * @see android.icu.text.TimeZoneNames#getReferenceZoneID(java.lang.String, java.lang.String)
      */
     @Override
     public String getReferenceZoneID(String mzID, String region) {
@@ -161,7 +161,7 @@ public class TimeZoneNamesImpl extends TimeZoneNames {
 
     /*
      * (non-Javadoc)
-     * @see com.ibm.icu.text.TimeZoneNames#getMetaZoneDisplayName(java.lang.String, com.ibm.icu.text.TimeZoneNames.NameType)
+     * @see android.icu.text.TimeZoneNames#getMetaZoneDisplayName(java.lang.String, android.icu.text.TimeZoneNames.NameType)
      */
     @Override
     public String getMetaZoneDisplayName(String mzID, NameType type) {
@@ -173,7 +173,7 @@ public class TimeZoneNamesImpl extends TimeZoneNames {
 
     /*
      * (non-Javadoc)
-     * @see com.ibm.icu.text.TimeZoneNames#getTimeZoneDisplayName(java.lang.String, com.ibm.icu.text.TimeZoneNames.NameType)
+     * @see android.icu.text.TimeZoneNames#getTimeZoneDisplayName(java.lang.String, android.icu.text.TimeZoneNames.NameType)
      */
     @Override
     public String getTimeZoneDisplayName(String tzID, NameType type) {
@@ -184,7 +184,7 @@ public class TimeZoneNamesImpl extends TimeZoneNames {
     }
 
     /* (non-Javadoc)
-     * @see com.ibm.icu.text.TimeZoneNames#getExemplarLocationName(java.lang.String)
+     * @see android.icu.text.TimeZoneNames#getExemplarLocationName(java.lang.String)
      */
     @Override
     public String getExemplarLocationName(String tzID) {
@@ -196,7 +196,7 @@ public class TimeZoneNamesImpl extends TimeZoneNames {
     }
 
     /* (non-Javadoc)
-     * @see com.ibm.icu.text.TimeZoneNames#find(java.lang.CharSequence, int, java.util.Set)
+     * @see android.icu.text.TimeZoneNames#find(java.lang.CharSequence, int, java.util.Set)
      */
     @Override
     public synchronized Collection<MatchInfo> find(CharSequence text, int start, EnumSet<NameType> nameTypes) {
@@ -521,7 +521,7 @@ public class TimeZoneNamesImpl extends TimeZoneNames {
         }
 
         /* (non-Javadoc)
-         * @see com.ibm.icu.impl.TextTrieMap.ResultHandler#handlePrefixMatch(int, java.util.Iterator)
+         * @see android.icu.impl.TextTrieMap.ResultHandler#handlePrefixMatch(int, java.util.Iterator)
          */
         public boolean handlePrefixMatch(int matchLength, Iterator<NameInfo> values) {
             while (values.hasNext()) {
@@ -792,7 +792,7 @@ public class TimeZoneNamesImpl extends TimeZoneNames {
 
     private static class TZ2MZsCache extends SoftCache<String, List<MZMapEntry>, String> {
         /* (non-Javadoc)
-         * @see com.ibm.icu.impl.CacheBase#createInstance(java.lang.Object, java.lang.Object)
+         * @see android.icu.impl.CacheBase#createInstance(java.lang.Object, java.lang.Object)
          */
         @Override
         protected List<MZMapEntry> createInstance(String key, String data) {
@@ -899,7 +899,7 @@ public class TimeZoneNamesImpl extends TimeZoneNames {
     private static class MZ2TZsCache extends SoftCache<String, Map<String, String>, String> {
 
         /* (non-Javadoc)
-         * @see com.ibm.icu.impl.CacheBase#createInstance(java.lang.Object, java.lang.Object)
+         * @see android.icu.impl.CacheBase#createInstance(java.lang.Object, java.lang.Object)
          */
         @Override
         protected Map<String, String> createInstance(String key, String data) {

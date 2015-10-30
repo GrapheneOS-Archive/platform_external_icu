@@ -25,7 +25,6 @@ import java.io.Reader;
  * Note:  this class has a natural ordering that is inconsistent with equals.
  *        The natural ordering is based on the match confidence value.
  *
- * @stable ICU 3.4
  * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
  */
@@ -42,8 +41,6 @@ public class CharsetMatch implements Comparable<CharsetMatch> {
      * the InputStream and create InputStreamReaders itself, based on the charset name.
      *
      * @return the Reader for the Unicode character data.
-     *
-     * @stable ICU 3.4
      */
     public Reader getReader() {
         InputStream inputStream = fInputStream;
@@ -65,8 +62,6 @@ public class CharsetMatch implements Comparable<CharsetMatch> {
      * to the original byte data supplied to the Charset detect operation.
      *
      * @return a String created from the converted input data.
-     *
-     * @stable ICU 3.4
      */
     public String getString()  throws java.io.IOException {
         return getString(-1);
@@ -84,8 +79,6 @@ public class CharsetMatch implements Comparable<CharsetMatch> {
      *                  source of the data is an input stream, or -1 for
      *                  unlimited length.
      * @return a String created from the converted input data.
-     *
-     * @stable ICU 3.4
      */
     public String getString(int maxLength) throws java.io.IOException {
         String result = null;
@@ -128,8 +121,6 @@ public class CharsetMatch implements Comparable<CharsetMatch> {
      * charset.
      *
      * @return the confidence in the charset match
-     *
-     * @stable ICU 3.4
      */
     public int getConfidence() {
         return fConfidence;
@@ -147,8 +138,6 @@ public class CharsetMatch implements Comparable<CharsetMatch> {
      * @see java.io.InputStreamReader
      *
      * @return The name of the charset.
-     *
-     * @stable ICU 3.4
      */
     public String getName() {
         return fCharsetName;
@@ -158,8 +147,6 @@ public class CharsetMatch implements Comparable<CharsetMatch> {
      * Get the ISO code for the language of the detected charset.  
      *
      * @return The ISO code for the language or <code>null</code> if the language cannot be determined.
-     *
-     * @stable ICU 3.4
      */
     public String getLanguage() {
         return fLang;
@@ -176,7 +163,6 @@ public class CharsetMatch implements Comparable<CharsetMatch> {
      *          is less than, equal to, or greater than that of
      *          the argument.
      * @throws ClassCastException if the argument is not a CharsetMatch.
-     * @stable ICU 4.4
      */
     public int compareTo (CharsetMatch other) {
         int compareResult = 0;

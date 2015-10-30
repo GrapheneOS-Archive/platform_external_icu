@@ -64,21 +64,21 @@ public class BasicDurationFormat extends DurationFormat {
     }
 
     /* (non-Javadoc)
-     * @see com.ibm.icu.text.DurationFormat#formatDurationFrom(long, long)
+     * @see android.icu.text.DurationFormat#formatDurationFrom(long, long)
      */
     public String formatDurationFrom(long duration, long referenceDate) {
         return formatter.formatDurationFrom(duration, referenceDate);
     }
 
     /* (non-Javadoc)
-     * @see com.ibm.icu.text.DurationFormat#formatDurationFromNow(long)
+     * @see android.icu.text.DurationFormat#formatDurationFromNow(long)
      */
     public String formatDurationFromNow(long duration) {
         return formatter.formatDurationFromNow(duration);
     }
 
     /* (non-Javadoc)
-     * @see com.ibm.icu.text.DurationFormat#formatDurationFromNowTo(java.util.Date)
+     * @see android.icu.text.DurationFormat#formatDurationFromNowTo(java.util.Date)
      */
     public String formatDurationFromNowTo(Date targetDate) {
         return formatter.formatDurationFromNowTo(targetDate);

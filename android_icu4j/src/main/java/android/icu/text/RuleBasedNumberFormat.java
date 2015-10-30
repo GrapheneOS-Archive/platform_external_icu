@@ -533,7 +533,6 @@ import android.icu.util.UResourceBundleIterator;
  * @see DecimalFormat
  * @see PluralFormat
  * @see PluralRules
- * @stable ICU 2.0
  * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
  */
@@ -548,25 +547,21 @@ public class RuleBasedNumberFormat extends NumberFormat {
 
     /**
      * Selector code that tells the constructor to create a spellout formatter
-     * @stable ICU 2.0
      */
     public static final int SPELLOUT = 1;
 
     /**
      * Selector code that tells the constructor to create an ordinal formatter
-     * @stable ICU 2.0
      */
     public static final int ORDINAL = 2;
 
     /**
      * Selector code that tells the constructor to create a duration formatter
-     * @stable ICU 2.0
      */
     public static final int DURATION = 3;
 
     /**
      * Selector code that tells the constructor to create a numbering system formatter
-     * @stable ICU 4.2
      */
     public static final int NUMBERING_SYSTEM = 4;
 
@@ -696,7 +691,6 @@ public class RuleBasedNumberFormat extends NumberFormat {
      * See the class documentation for a complete explanation of the description
      * syntax.
      * @see Category#FORMAT
-     * @stable ICU 2.0
      */
     public RuleBasedNumberFormat(String description) {
         locale = ULocale.getDefault(Category.FORMAT);
@@ -723,7 +717,6 @@ public class RuleBasedNumberFormat extends NumberFormat {
      * @param localizations a list of localizations for the rule set
      * names in the description.
      * @see Category#FORMAT
-     * @stable ICU 3.2
      */
     public RuleBasedNumberFormat(String description, String[][] localizations) {
         locale = ULocale.getDefault(Category.FORMAT);
@@ -741,7 +734,6 @@ public class RuleBasedNumberFormat extends NumberFormat {
      * @param locale A locale, which governs which characters are used for
      * formatting values in numerals, and which characters are equivalent in
      * lenient parsing.
-     * @stable ICU 2.0
      */
     public RuleBasedNumberFormat(String description, Locale locale) {
         this(description, ULocale.forLocale(locale));
@@ -758,7 +750,6 @@ public class RuleBasedNumberFormat extends NumberFormat {
      * @param locale A locale, which governs which characters are used for
      * formatting values in numerals, and which characters are equivalent in
      * lenient parsing.
-     * @stable ICU 3.2
      */
     public RuleBasedNumberFormat(String description, ULocale locale) {
         this.locale = locale;
@@ -788,7 +779,6 @@ public class RuleBasedNumberFormat extends NumberFormat {
      * @param locale A ULocale that governs which characters are used for
      * formatting values in numerals, and determines which characters are equivalent in
      * lenient parsing.
-     * @stable ICU 3.2
      */
     public RuleBasedNumberFormat(String description, String[][] localizations, ULocale locale) {
         this.locale = locale;
@@ -805,7 +795,6 @@ public class RuleBasedNumberFormat extends NumberFormat {
      * spells out a value in words in the desired language, ORDINAL, which attaches
      * an ordinal suffix from the desired language to the end of a number (e.g. "123rd"),
      * and DURATION, which formats a duration in seconds as hours, minutes, and seconds.
-     * @stable ICU 2.0
      */
     public RuleBasedNumberFormat(Locale locale, int format) {
         this(ULocale.forLocale(locale), format);
@@ -823,7 +812,6 @@ public class RuleBasedNumberFormat extends NumberFormat {
      * DURATION, which formats a duration in seconds as hours, minutes, and seconds, and
      * NUMBERING_SYSTEM, which is used to invoke rules for alternate numbering
      * systems such as the Hebrew numbering system, or for Roman numerals, etc..
-     * @stable ICU 3.2
      */
     public RuleBasedNumberFormat(ULocale locale, int format) {
         this.locale = locale;
@@ -881,7 +869,6 @@ public class RuleBasedNumberFormat extends NumberFormat {
      * DURATION, which formats a duration in seconds as hours, minutes, and seconds always rounding down.
      * or NUMBERING_SYSTEM, which is used for alternate numbering systems such as Hebrew.
      * @see Category#FORMAT
-     * @stable ICU 2.0
      */
     public RuleBasedNumberFormat(int format) {
         this(ULocale.getDefault(Category.FORMAT), format);
@@ -894,7 +881,6 @@ public class RuleBasedNumberFormat extends NumberFormat {
     /**
      * Duplicates this formatter.
      * @return A RuleBasedNumberFormat that is equal to this one.
-     * @stable ICU 2.0
      */
     public Object clone() {
         return super.clone();
@@ -904,7 +890,6 @@ public class RuleBasedNumberFormat extends NumberFormat {
      * Tests two RuleBasedNumberFormats for equality.
      * @param that The formatter to compare against this one.
      * @return true if the two formatters have identical behavior.
-     * @stable ICU 2.0
      */
     public boolean equals(Object that) {
         // if the other object isn't a RuleBasedNumberFormat, that's
@@ -956,7 +941,6 @@ public class RuleBasedNumberFormat extends NumberFormat {
      * with identical behavior to this one.  This won't necessarily be identical
      * to the rule set description that was originally passed in, but will produce
      * the same result.
-     * @stable ICU 2.0
      */
     public String toString() {
 
@@ -1027,7 +1011,6 @@ public class RuleBasedNumberFormat extends NumberFormat {
     /**
      * Returns a list of the names of all of this formatter's public rule sets.
      * @return A list of the names of all of this formatter's public rule sets.
-     * @stable ICU 2.0
      */
     public String[] getRuleSetNames() {
         return publicRuleSetNames.clone();
@@ -1037,7 +1020,6 @@ public class RuleBasedNumberFormat extends NumberFormat {
      * Return a list of locales for which there are locale-specific display names
      * for the rule sets in this formatter.  If there are no localized display names, return null.
      * @return an array of the ULocales for which there is rule set display name information
-     * @stable ICU 3.2
      */
     public ULocale[] getRuleSetDisplayNameLocales() {
         if (ruleSetDisplayNames != null) {
@@ -1077,7 +1059,6 @@ public class RuleBasedNumberFormat extends NumberFormat {
      * the leading '%'.)
      * @return an array of the locales that have display name information
      * @see #getRuleSetNames
-     * @stable ICU 3.2
      */
     public String[] getRuleSetDisplayNames(ULocale loc) {
         String[] names = getNameListForLocale(loc);
@@ -1096,7 +1077,6 @@ public class RuleBasedNumberFormat extends NumberFormat {
      * @return an array of the display names
      * @see #getRuleSetDisplayNames(ULocale)
      * @see Category#DISPLAY
-     * @stable ICU 3.2
      */
     public String[] getRuleSetDisplayNames() {
         return getRuleSetDisplayNames(ULocale.getDefault(Category.DISPLAY));
@@ -1109,7 +1089,6 @@ public class RuleBasedNumberFormat extends NumberFormat {
      * @return the display name for the rule set
      * @see #getRuleSetDisplayNames
      * @throws IllegalArgumentException if ruleSetName is not a valid rule set name for this format
-     * @stable ICU 3.2
      */
     public String getRuleSetDisplayName(String ruleSetName, ULocale loc) {
         String[] rsnames = publicRuleSetNames;
@@ -1130,7 +1109,6 @@ public class RuleBasedNumberFormat extends NumberFormat {
      * @return the display name for the rule set
      * @see #getRuleSetDisplayName(String,ULocale)
      * @see Category#DISPLAY
-     * @stable ICU 3.2
      */
     public String getRuleSetDisplayName(String ruleSetName) {
         return getRuleSetDisplayName(ruleSetName, ULocale.getDefault(Category.DISPLAY));
@@ -1142,7 +1120,6 @@ public class RuleBasedNumberFormat extends NumberFormat {
      * @param ruleSet The name of the rule set to format the number with.
      * This must be the name of a valid public rule set for this formatter.
      * @return A textual representation of the number.
-     * @stable ICU 2.0
      */
     public String format(double number, String ruleSet) throws IllegalArgumentException {
         if (ruleSet.startsWith("%%")) {
@@ -1161,7 +1138,6 @@ public class RuleBasedNumberFormat extends NumberFormat {
      * @param ruleSet The name of the rule set to format the number with.
      * This must be the name of a valid public rule set for this formatter.
      * @return A textual representation of the number.
-     * @stable ICU 2.0
      */
     public String format(long number, String ruleSet) throws IllegalArgumentException {
         if (ruleSet.startsWith("%%")) {
@@ -1177,7 +1153,6 @@ public class RuleBasedNumberFormat extends NumberFormat {
      * @param toAppendTo A StringBuffer that the result should be appended to.
      * @param ignore This function doesn't examine or update the field position.
      * @return toAppendTo
-     * @stable ICU 2.0
      */
     public StringBuffer format(double number,
                                StringBuffer toAppendTo,
@@ -1206,7 +1181,6 @@ public class RuleBasedNumberFormat extends NumberFormat {
      * @param toAppendTo A StringBuffer that the result should be appended to.
      * @param ignore This function doesn't examine or update the field position.
      * @return toAppendTo
-     * @stable ICU 2.0
      */
     public StringBuffer format(long number,
                                StringBuffer toAppendTo,
@@ -1225,9 +1199,8 @@ public class RuleBasedNumberFormat extends NumberFormat {
 
     /**
      * <strong><font face=helvetica color=red>NEW</font></strong>
-     * Implement com.ibm.icu.text.NumberFormat:
+     * Implement android.icu.text.NumberFormat:
      * Format a BigInteger.
-     * @stable ICU 2.0
      */
     public StringBuffer format(BigInteger number,
                                StringBuffer toAppendTo,
@@ -1237,9 +1210,8 @@ public class RuleBasedNumberFormat extends NumberFormat {
 
     /**
      * <strong><font face=helvetica color=red>NEW</font></strong>
-     * Implement com.ibm.icu.text.NumberFormat:
+     * Implement android.icu.text.NumberFormat:
      * Format a BigDecimal.
-     * @stable ICU 2.0
      */
     public StringBuffer format(java.math.BigDecimal number,
                                StringBuffer toAppendTo,
@@ -1249,9 +1221,8 @@ public class RuleBasedNumberFormat extends NumberFormat {
 
     /**
      * <strong><font face=helvetica color=red>NEW</font></strong>
-     * Implement com.ibm.icu.text.NumberFormat:
+     * Implement android.icu.text.NumberFormat:
      * Format a BigDecimal.
-     * @stable ICU 2.0
      */
     public StringBuffer format(android.icu.math.BigDecimal number,
                                StringBuffer toAppendTo,
@@ -1274,7 +1245,6 @@ public class RuleBasedNumberFormat extends NumberFormat {
      * instance of either Long or Double, depending on whether the result has a
      * fractional part.
      * @see #setLenientParseMode
-     * @stable ICU 2.0
      */
     public Number parse(String text, ParsePosition parsePosition) {
 
@@ -1346,7 +1316,6 @@ public class RuleBasedNumberFormat extends NumberFormat {
      * @param enabled If true, turns lenient-parse mode on; if false, turns it off.
      * @see RbnfLenientScanner
      * @see RbnfLenientScannerProvider
-     * @stable ICU 2.0
      */
     public void setLenientParseMode(boolean enabled) {
         lenientParse = enabled;
@@ -1357,7 +1326,6 @@ public class RuleBasedNumberFormat extends NumberFormat {
      * by default.
      * @return true if lenient-parse mode is turned on.
      * @see #setLenientParseMode
-     * @stable ICU 2.0
      */
     public boolean lenientParseEnabled() {
         return lenientParse;
@@ -1370,7 +1338,6 @@ public class RuleBasedNumberFormat extends NumberFormat {
      * @param scannerProvider the provider
      * @see #setLenientParseMode
      * @see #getLenientScannerProvider
-     * @stable ICU 4.4
      */
     public void setLenientScannerProvider(RbnfLenientScannerProvider scannerProvider) {
         this.scannerProvider = scannerProvider;
@@ -1382,7 +1349,6 @@ public class RuleBasedNumberFormat extends NumberFormat {
      * it was successful.  Otherwise this returns false.
      *
      * @see #setLenientScannerProvider
-     * @stable ICU 4.4
      */
     public RbnfLenientScannerProvider getLenientScannerProvider() {
         // there's a potential race condition if two threads try to set/get the scanner at
@@ -1408,7 +1374,6 @@ public class RuleBasedNumberFormat extends NumberFormat {
      * to the initial default rule set.
      * @param ruleSetName the name of the rule set, or null to reset the initial default.
      * @throws IllegalArgumentException if ruleSetName is not the name of a public ruleset.
-     * @stable ICU 2.0
      */
     public void setDefaultRuleSet(String ruleSetName) {
         if (ruleSetName == null) {
@@ -1446,7 +1411,6 @@ public class RuleBasedNumberFormat extends NumberFormat {
     /**
      * Return the name of the current default rule set.
      * @return the name of the current default rule set, if it is public, else the empty string.
-     * @stable ICU 3.0
      */
     public String getDefaultRuleSetName() {
         if (defaultRuleSet != null && defaultRuleSet.isPublic()) {
@@ -1461,7 +1425,6 @@ public class RuleBasedNumberFormat extends NumberFormat {
      * 
      * @param newSymbols desired DecimalFormatSymbols
      * @see DecimalFormatSymbols
-     * @stable ICU 49
      */
     public void setDecimalFormatSymbols(DecimalFormatSymbols newSymbols) {
         if (newSymbols != null) {
@@ -1491,7 +1454,6 @@ public class RuleBasedNumberFormat extends NumberFormat {
      * NumberFormat.
      * 
      * @param context The DisplayContext value to set. 
-     * @stable ICU 53
      */
     // Here we override the NumberFormat implementation in order to
     // lazily initialize relevant items 

@@ -24,7 +24,6 @@ import android.icu.impl.Grego;
  * @see android.icu.util.TimeZoneRule
  * @see android.icu.util.TimeZoneTransition
  *
- * @stable ICU 3.8
  * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
  */
@@ -36,7 +35,7 @@ public abstract class BasicTimeZone extends TimeZone {
 
     /**
      * {{@literal @}icu} Returns the first time zone transition after the base time.
-     * <p>Example code:{{@literal @}.jcite com.ibm.icu.samples.util.timezone.BasicTimeZoneExample:---getNextTransitionExample}
+     * <p>Example code:{{@literal @}.jcite android.icu.samples.util.timezone.BasicTimeZoneExample:---getNextTransitionExample}
      * 
      * @param base      The base time.
      * @param inclusive Whether the base time is inclusive or not.
@@ -44,14 +43,12 @@ public abstract class BasicTimeZone extends TimeZone {
      * @return  A <code>Date</code> holding the first time zone transition time
      *          after the given base time, or null if no time zone transitions
      *          are available after the base time.
-     *
-     * @stable ICU 3.8
      */
     public abstract TimeZoneTransition getNextTransition(long base, boolean inclusive);
 
     /**
      * {{@literal @}icu} Returns the last time zone transition before the base time.
-     * <p>Example code:{{@literal @}.jcite com.ibm.icu.samples.util.timezone.BasicTimeZoneExample:---getPreviousTransitionExample}
+     * <p>Example code:{{@literal @}.jcite android.icu.samples.util.timezone.BasicTimeZoneExample:---getPreviousTransitionExample}
      *
      * @param base      The base time.
      * @param inclusive Whether the base time is inclusive or not.
@@ -59,8 +56,6 @@ public abstract class BasicTimeZone extends TimeZone {
      * @return  A <code>Date</code> holding the last time zone transition time
      *          before the given base time, or null if no time zone transitions
      *          are available before the base time.
-     *
-     * @stable ICU 3.8
      */
     public abstract TimeZoneTransition getPreviousTransition(long base, boolean inclusive);
 
@@ -69,7 +64,7 @@ public abstract class BasicTimeZone extends TimeZone {
      * This method returns true when all of transition times, from/to standard
      * offsets and DST savings used by this time zone match the other in the
      * time range.
-     * <p>Example code:{{@literal @}.jcite com.ibm.icu.samples.util.timezone.BasicTimeZoneExample:---hasEquivalentTransitionsExample}
+     * <p>Example code:{{@literal @}.jcite android.icu.samples.util.timezone.BasicTimeZoneExample:---hasEquivalentTransitionsExample}
      *
      * @param tz    The instance of <code>TimeZone</code>
      * @param start The start time of the evaluated time range (inclusive)
@@ -78,8 +73,6 @@ public abstract class BasicTimeZone extends TimeZone {
      * @return true if the other time zone has the equivalent transitions in the
      * time range.  When tz is not a <code>BasicTimeZone</code>, this method
      * returns false.
-     *
-     * @stable ICU 3.8
      */
     public boolean hasEquivalentTransitions(TimeZone tz, long start, long end) {
         return hasEquivalentTransitions(tz, start, end, false);
@@ -103,8 +96,6 @@ public abstract class BasicTimeZone extends TimeZone {
      * @return true if the other time zone has the equivalent transitions in the
      * time range.  When tz is not a <code>BasicTimeZone</code>, this method
      * returns false.
-     *
-     * @stable ICU 3.8
      */
     public boolean hasEquivalentTransitions(TimeZone tz, long start, long end, 
                                             boolean ignoreDstAmount) {
@@ -216,8 +207,6 @@ public abstract class BasicTimeZone extends TimeZone {
      *
      * @return  The array of <code>TimeZoneRule</code> which represents this
      *          time zone.
-     *
-     * @stable ICU 3.8
      */
     public abstract TimeZoneRule[] getTimeZoneRules();
 
@@ -228,13 +217,11 @@ public abstract class BasicTimeZone extends TimeZone {
      * instance for the initial rule.  The rest will be either
      * <code>AnnualTimeZoneRule</code> or <code>TimeArrayTimeZoneRule</code>
      * instances representing transitions.
-     * <p>Example code:{{@literal @}.jcite com.ibm.icu.samples.util.timezone.BasicTimeZoneExample:---getTimeZoneRulesExample}
+     * <p>Example code:{{@literal @}.jcite android.icu.samples.util.timezone.BasicTimeZoneExample:---getTimeZoneRulesExample}
      *
      * @param start The start time (inclusive).
      * @return  The array of <code>TimeZoneRule</code> which represents this
      *          time zone since the start time.
-     *
-     * @stable ICU 3.8
      */
     public TimeZoneRule[] getTimeZoneRules(long start) {
         TimeZoneRule[] all = getTimeZoneRules();
@@ -387,8 +374,6 @@ public abstract class BasicTimeZone extends TimeZone {
      * <code>InitialTimeZoneRule</code> object, or a pair of <code>AnnualTimeZoneRule</code>
      * with a single <code>InitialTimeZoneRule</code>.  The first element in the
      * array is always a <code>InitialTimeZoneRule</code>.
-     *
-     * @stable ICU 3.8
      */
     public TimeZoneRule[] getSimpleTimeZoneRulesNear(long date) {
         AnnualTimeZoneRule[] annualRules = null;
@@ -610,7 +595,6 @@ public abstract class BasicTimeZone extends TimeZone {
 
     /**
      * Protected no arg constructor.
-     * @stable ICU 3.8
      */
     protected BasicTimeZone() {
     }

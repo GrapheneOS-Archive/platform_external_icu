@@ -32,7 +32,6 @@ import java.util.Locale;
  * @author Laura Werner
  * @author Alan Liu
  * @author Steven R. Loomis
- * @stable ICU 3.8
  * @hide All android.icu classes are currently hidden
  */
 public class TaiwanCalendar extends GregorianCalendar {
@@ -49,7 +48,6 @@ public class TaiwanCalendar extends GregorianCalendar {
      * and so on.
      *
      * @see android.icu.util.Calendar#ERA
-     * @stable ICU 3.8
      */
     public static final int BEFORE_MINGUO = 0;
 
@@ -58,14 +56,12 @@ public class TaiwanCalendar extends GregorianCalendar {
      * Gregorian calendar.
      *
      * @see android.icu.util.Calendar#ERA
-     * @stable ICU 3.8
      */
     public static final int MINGUO = 1;
 
     /**
      * Constructs a <code>TaiwanCalendar</code> using the current time
      * in the default time zone with the default locale.
-     * @stable ICU 3.8
      */
     public TaiwanCalendar() {
         super();
@@ -76,7 +72,6 @@ public class TaiwanCalendar extends GregorianCalendar {
      * in the given time zone with the default locale.
      *
      * @param zone the given time zone.
-     * @stable ICU 3.8
      */
     public TaiwanCalendar(TimeZone zone) {
         super(zone);
@@ -87,7 +82,6 @@ public class TaiwanCalendar extends GregorianCalendar {
      * in the default time zone with the given locale.
      *
      * @param aLocale the given locale.
-     * @stable ICU 3.8
      */
     public TaiwanCalendar(Locale aLocale) {
         super(aLocale);
@@ -98,7 +92,6 @@ public class TaiwanCalendar extends GregorianCalendar {
      * in the default time zone with the given locale.
      *
      * @param locale the given ulocale.
-     * @stable ICU 3.8
      */
     public TaiwanCalendar(ULocale locale) {
         super(locale);
@@ -109,8 +102,6 @@ public class TaiwanCalendar extends GregorianCalendar {
      * in the given time zone with the given locale.
      *
      * @param zone the given time zone.
-     *
-     * @stable ICU 3.8
      */
     public TaiwanCalendar(TimeZone zone, Locale aLocale) {
         super(zone, aLocale);
@@ -122,7 +113,6 @@ public class TaiwanCalendar extends GregorianCalendar {
      *
      * @param zone the given time zone.
      * @param locale the given ulocale.
-     * @stable ICU 3.8
      */
     public TaiwanCalendar(TimeZone zone, ULocale locale) {
         super(zone, locale);
@@ -133,7 +123,6 @@ public class TaiwanCalendar extends GregorianCalendar {
      * in the default time zone with the default locale.
      *
      * @param date      The date to which the new calendar is set.
-     * @stable ICU 3.8
      */
     public TaiwanCalendar(Date date) {
         this();
@@ -150,7 +139,6 @@ public class TaiwanCalendar extends GregorianCalendar {
      *                  The value is 0-based. e.g., 0 for January.
      *
      * @param date      The value used to set the calendar's {@link #DATE DATE} time field.
-     * @stable ICU 3.8
      */
     public TaiwanCalendar(int year, int month, int date) {
         super(year, month, date);
@@ -168,7 +156,6 @@ public class TaiwanCalendar extends GregorianCalendar {
      * @param hour      The value used to set the calendar's {@link #HOUR_OF_DAY HOUR_OF_DAY} time field.
      * @param minute    The value used to set the calendar's {@link #MINUTE MINUTE} time field.
      * @param second    The value used to set the calendar's {@link #SECOND SECOND} time field.
-     * @stable ICU 3.8
      */
     public TaiwanCalendar(int year, int month, int date, int hour,
                              int minute, int second)
@@ -191,7 +178,6 @@ public class TaiwanCalendar extends GregorianCalendar {
 
     /**
      * {@inheritDoc}
-     * @stable ICU 3.8
      */    
     protected int handleGetExtendedYear() {
         // EXTENDED_YEAR in TaiwanCalendar is a Gregorian year
@@ -213,7 +199,6 @@ public class TaiwanCalendar extends GregorianCalendar {
 
     /**
      * {@inheritDoc}
-     * @stable ICU 3.8
      */
     protected void handleComputeFields(int julianDay) {
         super.handleComputeFields(julianDay);
@@ -231,7 +216,6 @@ public class TaiwanCalendar extends GregorianCalendar {
      * Override GregorianCalendar.  There is only one Taiwan ERA.  We
      * should really handle YEAR, YEAR_WOY, and EXTENDED_YEAR here too to
      * implement the 1..5000000 range, but it's not critical.
-     * @stable ICU 3.8
      */
     protected int handleGetLimit(int field, int limitType) {
         if (field == ERA) {
@@ -246,7 +230,6 @@ public class TaiwanCalendar extends GregorianCalendar {
     
     /**
      * {@inheritDoc}
-     * @stable ICU 3.8
      */
     public String getType() {
         return "roc";

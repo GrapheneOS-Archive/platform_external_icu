@@ -12,7 +12,6 @@ package android.icu.util;
  * Exception thrown when the requested resource type 
  * is not the same type as the available resource
  * @author ram
- * @stable ICU 3.0
  * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
  */
@@ -23,7 +22,6 @@ public class UResourceTypeMismatchException extends RuntimeException {
     /**
      * Constuct the exception with the given message
      * @param msg the error message for this exception
-     * @stable ICU 3.0
      */
     public UResourceTypeMismatchException(String msg){
         super(msg);       

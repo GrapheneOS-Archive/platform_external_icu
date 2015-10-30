@@ -53,7 +53,6 @@ import android.icu.util.VersionInfo;
  *           error.  </li>
  * </ol>
  * @author Ram Viswanadha
- * @stable ICU 2.8
  * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
  */
@@ -62,7 +61,6 @@ public final class StringPrep {
      * Option to prohibit processing of unassigned code points in the input
      * 
      * @see   #prepare
-     * @stable ICU 2.8
      */
     public static final int DEFAULT = 0x0000;
 
@@ -70,98 +68,84 @@ public final class StringPrep {
      * Option to allow processing of unassigned code points in the input
      * 
      * @see   #prepare
-     * @stable ICU 2.8
      */
     public static final int ALLOW_UNASSIGNED = 0x0001;
 
     /**
      * Profile type: RFC3491 Nameprep
      * @see #getInstance(int)
-     * @stable ICU 4.2
      */
     public static final int RFC3491_NAMEPREP = 0;
 
     /**
      * Profile type: RFC3530 nfs4_cs_prep
      * @see #getInstance(int)
-     * @stable ICU 4.2
      */
     public static final int RFC3530_NFS4_CS_PREP = 1;
 
     /**
      * Profile type: RFC3530 nfs4_cs_prep with case insensitive option
      * @see #getInstance(int)
-     * @stable ICU 4.2
      */
     public static final int RFC3530_NFS4_CS_PREP_CI = 2;
 
     /**
      * Profile type: RFC3530 nfs4_cis_prep
      * @see #getInstance(int)
-     * @stable ICU 4.2
      */
     public static final int RFC3530_NFS4_CIS_PREP = 3;
 
     /**
      * Profile type: RFC3530 nfs4_mixed_prep for prefix
      * @see #getInstance(int)
-     * @stable ICU 4.2
      */
     public static final int RFC3530_NFS4_MIXED_PREP_PREFIX = 4;
 
     /**
      * Profile type: RFC3530 nfs4_mixed_prep for suffix
      * @see #getInstance(int)
-     * @stable ICU 4.2
      */
     public static final int RFC3530_NFS4_MIXED_PREP_SUFFIX = 5;
 
     /**
      * Profile type: RFC3722 iSCSI
      * @see #getInstance(int)
-     * @stable ICU 4.2
      */
     public static final int RFC3722_ISCSI = 6;
 
     /**
      * Profile type: RFC3920 XMPP Nodeprep
      * @see #getInstance(int)
-     * @stable ICU 4.2
      */
     public static final int RFC3920_NODEPREP = 7;
 
     /**
      * Profile type: RFC3920 XMPP Resourceprep
      * @see #getInstance(int)
-     * @stable ICU 4.2
      */
     public static final int RFC3920_RESOURCEPREP = 8;
 
     /**
      * Profile type: RFC4011 Policy MIB Stringprep
      * @see #getInstance(int)
-     * @stable ICU 4.2
      */
     public static final int RFC4011_MIB = 9;
 
     /**
      * Profile type: RFC4013 SASLprep
      * @see #getInstance(int)
-     * @stable ICU 4.2
      */
     public static final int RFC4013_SASLPREP = 10;
 
     /**
      * Profile type: RFC4505 trace
      * @see #getInstance(int)
-     * @stable ICU 4.2
      */
     public static final int RFC4505_TRACE = 11;
 
     /**
      * Profile type: RFC4518 LDAP
      * @see #getInstance(int)
-     * @stable ICU 4.2
      */
     public static final int RFC4518_LDAP = 12;
 
@@ -169,7 +153,6 @@ public final class StringPrep {
      * Profile type: RFC4518 LDAP for case ignore, numeric and stored prefix
      * matching rules
      * @see #getInstance(int)
-     * @stable ICU 4.2
      */
     public static final int RFC4518_LDAP_CI = 13;
 
@@ -269,7 +252,6 @@ public final class StringPrep {
      *
      * @param inputStream The stream for reading the StringPrep profile binarySun
      * @throws IOException An exception occurs when I/O of the inputstream is invalid
-     * @stable ICU 2.8
      */
     public StringPrep(InputStream inputStream) throws IOException{
         // TODO: Add a public constructor that takes ByteBuffer directly.
@@ -313,7 +295,6 @@ public final class StringPrep {
      * Gets a StringPrep instance for the specified profile
      * 
      * @param profile The profile passed to find the StringPrep instance.
-     * @stable ICU 4.2
      */
     public static StringPrep getInstance(int profile) {
         if (profile < 0 || profile > MAX_PROFILE) {
@@ -517,7 +498,6 @@ public final class StringPrep {
      *   </ul>
      * @return StringBuffer A StringBuffer containing the output
      * @throws StringPrepParseException An exception occurs when parsing a string is invalid.
-     * @stable ICU 2.8
      */
     public StringBuffer prepare(UCharacterIterator src, int options)
                         throws StringPrepParseException{
@@ -600,7 +580,6 @@ public final class StringPrep {
      *   </ul>
      * @return String A String containing the output
      * @throws StringPrepParseException An exception when parsing or preparing a string is invalid.
-     * @stable ICU 4.2
      */
     public String prepare(String src, int options)
         throws StringPrepParseException{

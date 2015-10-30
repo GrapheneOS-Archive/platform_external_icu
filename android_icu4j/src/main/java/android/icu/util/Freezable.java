@@ -298,26 +298,22 @@ package android.icu.util;
  * </pre>
  * 
  * </blockquote>
- * @stable ICU 3.8
  * @hide All android.icu classes are currently hidden
  */
 public interface Freezable<T> extends Cloneable {
     /**
      * Determines whether the object has been frozen or not.
-     * @stable ICU 3.8
      */
     public boolean isFrozen();
 
     /**
      * Freezes the object.
      * @return the object itself.
-     * @stable ICU 3.8
      */
     public T freeze();
 
     /**
      * Provides for the clone operation. Any clone is initially unfrozen.
-     * @stable ICU 3.8
      */
     public T cloneAsThawed();
 }

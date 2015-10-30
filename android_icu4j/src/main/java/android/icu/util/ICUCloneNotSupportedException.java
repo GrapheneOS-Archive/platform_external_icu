@@ -12,7 +12,6 @@ package android.icu.util;
  * Some ICU APIs do not throw the standard exception but instead wrap it
  * into this unchecked version.
  *
- * @stable ICU 53
  * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
  */
@@ -21,8 +20,6 @@ public class ICUCloneNotSupportedException extends ICUException {
 
     /**
      * Default constructor.
-     *
-     * @stable ICU 53
      */
     public ICUCloneNotSupportedException() {
     }
@@ -31,7 +28,6 @@ public class ICUCloneNotSupportedException extends ICUException {
      * Constructor.
      *
      * @param message exception message string
-     * @stable ICU 53
      */
     public ICUCloneNotSupportedException(String message) {
         super(message);
@@ -41,7 +37,6 @@ public class ICUCloneNotSupportedException extends ICUException {
      * Constructor.
      *
      * @param cause original exception (normally a {@link CloneNotSupportedException})
-     * @stable ICU 53
      */
     public ICUCloneNotSupportedException(Throwable cause) {
         super(cause);
@@ -52,7 +47,6 @@ public class ICUCloneNotSupportedException extends ICUException {
      *
      * @param message exception message string
      * @param cause original exception (normally a {@link CloneNotSupportedException})
-     * @stable ICU 53
      */
     public ICUCloneNotSupportedException(String message, Throwable cause) {
         super(message, cause);

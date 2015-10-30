@@ -106,7 +106,6 @@ import android.icu.util.UResourceBundle;
  *
  * @see android.icu.text.UFormat
  * @author Alan Liu
- * @stable ICU 3.0
  * @hide All android.icu classes are currently hidden
  */
 public class MeasureFormat extends UFormat {
@@ -157,8 +156,6 @@ public class MeasureFormat extends UFormat {
 
     /**
      * Formatting width enum.
-     * 
-     * @stable ICU 53
      */
     // Be sure to update MeasureUnitTest.TestSerialFormatWidthEnum
     // when adding an enum value.
@@ -166,22 +163,16 @@ public class MeasureFormat extends UFormat {
 
         /**
          * Spell out everything.
-         * 
-         * @stable ICU 53
          */
         WIDE("units", ListFormatter.Style.DURATION, NumberFormat.PLURALCURRENCYSTYLE), 
 
         /**
          * Abbreviate when possible.
-         * 
-         * @stable ICU 53
          */
         SHORT("unitsShort", ListFormatter.Style.DURATION_SHORT, NumberFormat.ISOCURRENCYSTYLE), 
 
         /**
          * Brief. Use only a symbol for the unit when possible.
-         * 
-         * @stable ICU 53
          */
         NARROW("unitsNarrow", ListFormatter.Style.DURATION_NARROW, NumberFormat.CURRENCYSTYLE),
 
@@ -189,8 +180,6 @@ public class MeasureFormat extends UFormat {
          * Identical to NARROW except when formatMeasures is called with
          * an hour and minute; minute and second; or hour, minute, and second Measures.
          * In these cases formatMeasures formats as 5:37:23 instead of 5h, 37m, 23s.
-         * 
-         * @stable ICU 53
          */
         NUMERIC("unitsNarrow", ListFormatter.Style.DURATION_NARROW, NumberFormat.CURRENCYSTYLE);
 
@@ -222,7 +211,6 @@ public class MeasureFormat extends UFormat {
      * @param locale the locale.
      * @param formatWidth hints how long formatted strings should be.
      * @return The new MeasureFormat object.
-     * @stable ICU 53
      */
     public static MeasureFormat getInstance(ULocale locale, FormatWidth formatWidth) {
         return getInstance(locale, formatWidth, NumberFormat.getInstance(locale));
@@ -234,7 +222,6 @@ public class MeasureFormat extends UFormat {
      * @param locale the JDK locale.
      * @param formatWidth hints how long formatted strings should be.
      * @return The new MeasureFormat object.
-     * @stable ICU 54
      */
     public static MeasureFormat getInstance(Locale locale, FormatWidth formatWidth) {
         return getInstance(ULocale.forLocale(locale), formatWidth);
@@ -247,7 +234,6 @@ public class MeasureFormat extends UFormat {
      * @param formatWidth hints how long formatted strings should be.
      * @param format This is defensively copied.
      * @return The new MeasureFormat object.
-     * @stable ICU 53
      */
     public static MeasureFormat getInstance(ULocale locale, FormatWidth formatWidth, NumberFormat format) {
         PluralRules rules = PluralRules.forLocale(locale);
@@ -288,7 +274,6 @@ public class MeasureFormat extends UFormat {
      * @param formatWidth hints how long formatted strings should be.
      * @param format This is defensively copied.
      * @return The new MeasureFormat object.
-     * @stable ICU 54
      */
     public static MeasureFormat getInstance(Locale locale, FormatWidth formatWidth, NumberFormat format) {
         return getInstance(ULocale.forLocale(locale), formatWidth, format);
@@ -309,8 +294,6 @@ public class MeasureFormat extends UFormat {
      * @param toAppendTo Formatted string appended here.
      * @param pos Identifies a field in the formatted text.
      * @see java.text.Format#format(java.lang.Object, java.lang.StringBuffer, java.text.FieldPosition)
-     * 
-     * @stable ICU53
      */
     @Override
     public StringBuffer format(Object obj, StringBuffer toAppendTo, FieldPosition pos) {
@@ -366,7 +349,6 @@ public class MeasureFormat extends UFormat {
      * 
      * @param measures a sequence of one or more measures.
      * @return the formatted string.
-     * @stable ICU 53
      */
     public final String formatMeasures(Measure... measures) {
         return formatMeasures(
@@ -541,7 +523,6 @@ public class MeasureFormat extends UFormat {
      * @param measures the measures to format.
      * @return appendTo.
      * @see MeasureFormat#formatMeasures(Measure...)
-     * @stable ICU 53
      */
     public StringBuilder formatMeasures(
             StringBuilder appendTo, FieldPosition fieldPosition, Measure... measures) {
@@ -581,7 +562,6 @@ public class MeasureFormat extends UFormat {
     /**
      * Two MeasureFormats, a and b, are equal if and only if they have the same formatWidth,
      * locale, and equal number formats.
-     * @stable ICU 53
      */
     @Override
     public final boolean equals(Object other) {
@@ -600,7 +580,6 @@ public class MeasureFormat extends UFormat {
 
     /**
      * {@inheritDoc}
-     * @stable ICU 53
      */
     @Override
     public final int hashCode() {
@@ -611,7 +590,6 @@ public class MeasureFormat extends UFormat {
 
     /**
      * Get the format width this instance is using.
-     * @stable ICU 53
      */
     public MeasureFormat.FormatWidth getWidth() {
         return formatWidth;
@@ -619,7 +597,6 @@ public class MeasureFormat extends UFormat {
 
     /**
      * Get the locale of this instance.
-     * @stable ICU 53
      */
     public final ULocale getLocale() {
         return getLocale(ULocale.VALID_LOCALE);
@@ -627,7 +604,6 @@ public class MeasureFormat extends UFormat {
 
     /**
      * Get a copy of the number format.
-     * @stable ICU 53
      */
     public NumberFormat getNumberFormat() {
         return numberFormat.get();
@@ -638,7 +614,6 @@ public class MeasureFormat extends UFormat {
      * locale.
      * @param locale desired locale
      * @return a formatter object
-     * @stable ICU 3.0
      */
     public static MeasureFormat getCurrencyFormat(ULocale locale) {
         return new CurrencyFormat(locale);
@@ -649,7 +624,6 @@ public class MeasureFormat extends UFormat {
      * JDK locale.
      * @param locale desired JDK locale
      * @return a formatter object
-     * @stable ICU 54
      */
     public static MeasureFormat getCurrencyFormat(Locale locale) {
         return getCurrencyFormat(ULocale.forLocale(locale));
@@ -660,7 +634,6 @@ public class MeasureFormat extends UFormat {
      * <code>FORMAT</code> locale.
      * @return a formatter object
      * @see Category#FORMAT
-     * @stable ICU 3.0
      */
     public static MeasureFormat getCurrencyFormat() {
         return getCurrencyFormat(ULocale.getDefault(Category.FORMAT));

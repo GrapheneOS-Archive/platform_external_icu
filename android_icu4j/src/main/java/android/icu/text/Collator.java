@@ -129,7 +129,6 @@ import android.icu.util.VersionInfo;
 * @see RuleBasedCollator
 * @see CollationKey
 * @author Syn Wee Quek
-* @stable ICU 2.8
 * @hide All android.icu classes are currently hidden
 */
 public abstract class Collator implements Comparator<Object>, Freezable<Collator>, Cloneable
@@ -141,7 +140,6 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
      * between base characters. See class documentation for more explanation.
      * @see #setStrength
      * @see #getStrength
-     * @stable ICU 2.8
      */
     public final static int PRIMARY = 0;
 
@@ -153,7 +151,6 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
      * See class documentation for more explanation.
      * @see #setStrength
      * @see #getStrength
-     * @stable ICU 2.8
      */
     public final static int SECONDARY = 1;
 
@@ -165,7 +162,6 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
      * See class documentation for more explanation.
      * @see #setStrength
      * @see #getStrength
-     * @stable ICU 2.8
      */
     public final static int TERTIARY = 2;
 
@@ -179,7 +175,6 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
      * See class documentation for more explanation.
      * @see #setStrength
      * @see #getStrength
-     * @stable ICU 2.8
      */
     public final static int QUATERNARY = 3;
 
@@ -193,7 +188,6 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
      * <p>
      * Note this value is different from JDK's
      * </p>
-     * @stable ICU 2.8
      */
     public final static int IDENTICAL = 15;
 
@@ -201,7 +195,6 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
      * {{@literal @}icunote} This is for backwards compatibility with Java APIs only.  It
      * should not be used, IDENTICAL should be used instead.  ICU's
      * collation does not support Java's FULL_DECOMPOSITION mode.
-     * @stable ICU 3.4
      */
     public final static int FULL_DECOMPOSITION = IDENTICAL;
 
@@ -215,7 +208,6 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
      * @see #CANONICAL_DECOMPOSITION
      * @see #getDecomposition
      * @see #setDecomposition
-     * @stable ICU 2.8
      */
     public final static int NO_DECOMPOSITION = 16;
 
@@ -231,7 +223,6 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
      * @see #NO_DECOMPOSITION
      * @see #getDecomposition
      * @see #setDecomposition
-     * @stable ICU 2.8
      */
     public final static int CANONICAL_DECOMPOSITION = 17;
 
@@ -241,65 +232,54 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
      * @see #getReorderCodes
      * @see #setReorderCodes
      * @see #getEquivalentReorderCodes
-     * @stable ICU 4.8
      */
     public static interface ReorderCodes {
         /**
          * A special reordering code that is used to specify the default reordering codes for a locale.
-         * @stable ICU 4.8
          */
         public final static int DEFAULT          = -1;  // == UScript.INVALID_CODE
         /**
          * A special reordering code that is used to specify no reordering codes.
-         * @stable ICU 4.8
          */
         public final static int NONE          = UScript.UNKNOWN;
         /**
          * A special reordering code that is used to specify all other codes used for reordering except 
          * for the codes listed as ReorderingCodes and those listed explicitly in a reordering.
-         * @stable ICU 4.8
          */
         public final static int OTHERS          = UScript.UNKNOWN;
         /**
          * Characters with the space property.
          * This is equivalent to the rule value "space".
-         * @stable ICU 4.8
          */
         public final static int SPACE          = 0x1000;
         /**
          * The first entry in the enumeration of reordering groups. This is intended for use in
          * range checking and enumeration of the reorder codes.
-         * @stable ICU 4.8
          */
         public final static int FIRST          = SPACE;
         /**
          * Characters with the punctuation property.
          * This is equivalent to the rule value "punct".
-         * @stable ICU 4.8
          */
         public final static int PUNCTUATION    = 0x1001;
         /**
          * Characters with the symbol property.
          * This is equivalent to the rule value "symbol".
-         * @stable ICU 4.8
          */
         public final static int SYMBOL         = 0x1002;
         /**
          * Characters with the currency property.
          * This is equivalent to the rule value "currency".
-         * @stable ICU 4.8
          */
         public final static int CURRENCY       = 0x1003;
         /**
          * Characters with the digit property.
          * This is equivalent to the rule value "digit".
-         * @stable ICU 4.8
          */
         public final static int DIGIT          = 0x1004;
         /**
          * The limit of the reorder codes. This is intended for use in range checking 
          * and enumeration of the reorder codes.
-         * @stable ICU 4.8
          */
         public final static int LIMIT          = 0x1005;        
     }
@@ -315,7 +295,6 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
      *
      * @param obj the Collator to compare to.
      * @return true if this Collator has exactly the same collation behavior as obj, false otherwise.
-     * @stable ICU 2.8
      */
     @Override
     public boolean equals(Object obj) {
@@ -347,7 +326,6 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
      * @see #QUATERNARY
      * @see #IDENTICAL
      * @throws IllegalArgumentException if the new strength value is not valid.
-     * @stable ICU 2.8
      */
     public void setStrength(int newStrength)
     {
@@ -394,7 +372,6 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
      * @see #CANONICAL_DECOMPOSITION
      * @throws IllegalArgumentException If the given value is not a valid
      *            decomposition mode.
-     * @stable ICU 2.8
      */
     public void setDecomposition(int decomposition)
     {
@@ -438,7 +415,6 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
      * @see #getEquivalentReorderCodes
      * @see Collator.ReorderCodes
      * @see UScript
-     * @stable ICU 4.8
      */ 
     public void setReorderCodes(int... order) 
     { 
@@ -456,7 +432,6 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
      *         will be returned.
      * @see java.util.Locale#getDefault()
      * @see #getInstance(Locale)
-     * @stable ICU 2.8
      */
     public static final Collator getInstance()
     {
@@ -465,7 +440,6 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
 
     /**
      * Clones the collator.
-     * @stable ICU 2.6
      * @return a clone of this collator.
      */
     public Object clone() throws CloneNotSupportedException {
@@ -483,7 +457,6 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
      * new implementations should override createCollator(ULocale).  Note that
      * one of these two methods <b>MUST</b> be overridden or else an infinite
      * loop will occur.
-     * @stable ICU 2.6
      */
     public static abstract class CollatorFactory {
         /**
@@ -492,7 +465,6 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
          * be listed by getAvailableLocales.
          *
          * @return true if this factory is visible
-         * @stable ICU 2.6
          */
         public boolean visible() {
             return true;
@@ -505,7 +477,6 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
          * this method instead of createCollator(Locale).
          * @param loc the locale for which this collator is to be created.
          * @return the newly created collator.
-         * @stable ICU 3.2
          */
         public Collator createCollator(ULocale loc) {
             return createCollator(loc.toLocale());
@@ -520,7 +491,6 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
          * and instead delegates to createCollator(ULocale).
          * @param loc the locale for which this collator is to be created.
          * @return the newly created collator.
-         * @stable ICU 2.6
          */
          public Collator createCollator(Locale loc) {
             return createCollator(ULocale.forLocale(loc));
@@ -532,7 +502,6 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
          * @param objectLocale the locale identifying the collator
          * @param displayLocale the locale for which the display name of the collator should be localized
          * @return the display name
-         * @stable ICU 2.6
          */
         public String getDisplayName(Locale objectLocale, Locale displayLocale) {
             return getDisplayName(ULocale.forLocale(objectLocale), ULocale.forLocale(displayLocale));
@@ -544,7 +513,6 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
          * @param objectLocale the locale identifying the collator
          * @param displayLocale the locale for which the display name of the collator should be localized
          * @return the display name
-         * @stable ICU 3.2
          */
         public String getDisplayName(ULocale objectLocale, ULocale displayLocale) {
             if (visible()) {
@@ -562,13 +530,11 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
          * supported by this factory.
          *
          * @return the set of supported locale IDs.
-         * @stable ICU 2.6
          */
         public abstract Set<String> getSupportedLocaleIDs();
 
         /**
          * Empty default constructor.
-         * @stable ICU 2.6
          */
         protected CollatorFactory() {
         }
@@ -805,7 +771,6 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
      * @see java.util.ResourceBundle
      * @see #getInstance(Locale)
      * @see #getInstance()
-     * @stable ICU 3.0
      */
     public static final Collator getInstance(ULocale locale) {
         // fetching from service cache is faster than instantiation
@@ -839,7 +804,6 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
      * @see java.util.ResourceBundle
      * @see #getInstance(ULocale)
      * @see #getInstance()
-     * @stable ICU 2.8
      */
     public static final Collator getInstance(Locale locale) {
         return getInstance(ULocale.forLocale(locale));
@@ -856,8 +820,6 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
      * @param collator the collator to register
      * @param locale the locale for which this is the default collator
      * @return an object that can be used to unregister the registered collator.
-     *
-     * @stable ICU 3.2
      */
     public static final Object registerInstance(Collator collator, ULocale locale) {
         return getShim().registerInstance(collator, locale);
@@ -872,8 +834,6 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
      *
      * @param factory the factory to register
      * @return an object that can be used to unregister the registered factory.
-     *
-     * @stable ICU 2.6
      */
     public static final Object registerFactory(CollatorFactory factory) {
         return getShim().registerFactory(factory);
@@ -883,7 +843,6 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
      * {{@literal @}icu} Unregisters a collator previously registered using registerInstance.
      * @param registryKey the object previously returned by registerInstance.
      * @return true if the collator was successfully unregistered.
-     * @stable ICU 2.6
      */
     public static final boolean unregister(Object registryKey) {
         if (shim == null) {
@@ -898,7 +857,6 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
      * @return the list of locales in which collators are installed.
      * This list includes any that have been registered, in addition to
      * those that are installed with ICU4J.
-     * @stable ICU 2.4
      */
     public static Locale[] getAvailableLocales() {
         // TODO make this wrap getAvailableULocales later
@@ -915,7 +873,6 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
      * @return the list of locales in which collators are installed.
      * This list includes any that have been registered, in addition to
      * those that are installed with ICU4J.
-     * @stable ICU 3.0
      */
     public static final ULocale[] getAvailableULocales() {
         if (shim == null) {
@@ -952,7 +909,6 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
      * service is "collation".
      * @return an array of valid collation keywords.
      * @see #getKeywordValues
-     * @stable ICU 3.0
      */
     public static final String[] getKeywords() {
         return KEYWORDS;
@@ -963,7 +919,6 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
      * that keyword that are currently in use.
      * @param keyword one of the keywords returned by getKeywords.
      * @see #getKeywords
-     * @stable ICU 3.0
      */
     public static final String[] getKeywordValues(String keyword) {
         if (!keyword.equals(KEYWORDS[0])) {
@@ -985,7 +940,6 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
      *                      with the given locale in preferred order.  Otherwise,
      *                      it will return all the available values for the locale.
      * @return an array of string values for the given key and the locale.
-     * @stable ICU 4.2
      */
     public static final String[] getKeywordValuesForLocale(String key, ULocale locale, 
                                                            boolean commonlyUsed) {
@@ -1054,7 +1008,6 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
      * 'available' to the collation service. If non-null, isAvailable
      * must have length >= 1.
      * @return the locale
-     * @stable ICU 3.0
      */
     public static final ULocale getFunctionalEquivalent(String keyword,
                                                         ULocale locID,
@@ -1072,7 +1025,6 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
      * @param locID The requested locale
      * @return the locale
      * @see #getFunctionalEquivalent(String,ULocale,boolean[])
-     * @stable ICU 3.0
      */
     public static final ULocale getFunctionalEquivalent(String keyword,
                                                         ULocale locID) {
@@ -1085,7 +1037,6 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
      * @param objectLocale the locale of the collator
      * @param displayLocale the locale for the collator's display name
      * @return the display name
-     * @stable ICU 2.6
      */
     static public String getDisplayName(Locale objectLocale, Locale displayLocale) {
         return getShim().getDisplayName(ULocale.forLocale(objectLocale),
@@ -1098,7 +1049,6 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
      * @param objectLocale the locale of the collator
      * @param displayLocale the locale for the collator's display name
      * @return the display name
-     * @stable ICU 3.2
      */
     static public String getDisplayName(ULocale objectLocale, ULocale displayLocale) {
         return getShim().getDisplayName(objectLocale, displayLocale);
@@ -1110,7 +1060,6 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
      * @param objectLocale the locale of the collator
      * @return the display name
      * @see android.icu.util.ULocale.Category#DISPLAY
-     * @stable ICU 2.6
      */
     static public String getDisplayName(Locale objectLocale) {
         return getShim().getDisplayName(ULocale.forLocale(objectLocale), ULocale.getDefault(Category.DISPLAY));
@@ -1122,7 +1071,6 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
      * @param objectLocale the locale of the collator
      * @return the display name
      * @see android.icu.util.ULocale.Category#DISPLAY
-     * @stable ICU 3.2
      */
     static public String getDisplayName(ULocale objectLocale) {
         return getShim().getDisplayName(objectLocale, ULocale.getDefault(Category.DISPLAY));
@@ -1147,7 +1095,6 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
      * @see #TERTIARY
      * @see #QUATERNARY
      * @see #IDENTICAL
-     * @stable ICU 2.8
      */
     public int getStrength()
     {
@@ -1168,7 +1115,6 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
      * @see #setDecomposition
      * @see #NO_DECOMPOSITION
      * @see #CANONICAL_DECOMPOSITION
-     * @stable ICU 2.8
      */
     public int getDecomposition()
     {
@@ -1186,7 +1132,6 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
      *         rules, otherwise false.
      * @see #compare
      * @throws NullPointerException thrown if either arguments is null.
-     * @stable ICU 2.8
      */
     public boolean equals(String source, String target)
     {
@@ -1199,7 +1144,6 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
      * @return a pointer to a UnicodeSet object containing all the
      *         code points and sequences that may sort differently than
      *         in the root collator.
-     * @stable ICU 2.4
      */
     public UnicodeSet getTailoredSet()
     {
@@ -1222,7 +1166,6 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
      * @see CollationKey
      * @see #getCollationKey
      * @throws NullPointerException thrown if either argument is null.
-     * @stable ICU 2.8
      */
     public abstract int compare(String source, String target);
 
@@ -1235,7 +1178,6 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
      *         less than target, value is zero if source and target are equal,
      *         value is greater than zero if source is greater than target.
      * @throws ClassCastException thrown if either arguments cannot be cast to CharSequence.
-     * @stable ICU 4.2
      */
     public int compare(Object source, Object target) {
         return doCompare((CharSequence)source, (CharSequence)target);
@@ -1272,7 +1214,6 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
      * @see CollationKey
      * @see #compare(String, String)
      * @see #getRawCollationKey
-     * @stable ICU 2.8
      */
     public abstract CollationKey getCollationKey(String source);
 
@@ -1292,7 +1233,6 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
      * @see #compare(String, String)
      * @see #getCollationKey
      * @see RawCollationKey
-     * @stable ICU 2.8
      */
     public abstract RawCollationKey getRawCollationKey(String source,
                                                        RawCollationKey key);
@@ -1309,7 +1249,6 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
      *              or Collator.ReorderCodes.DEFAULT to restore the default max variable group
      * @return this
      * @see #getMaxVariable
-     * @stable ICU 53
      */
     public Collator setMaxVariable(int group) {
         throw new UnsupportedOperationException("Needs to be implemented by the subclass.");
@@ -1322,7 +1261,6 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
      * <p>The base class implementation returns Collator.ReorderCodes.PUNCTUATION.
      * @return the maximum variable reordering group.
      * @see #setMaxVariable
-     * @stable ICU 53
      */
     public int getMaxVariable() {
         return Collator.ReorderCodes.PUNCTUATION;
@@ -1361,7 +1299,6 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
      * 
      * @return the variable top primary weight
      * @see #getMaxVariable
-     * @stable ICU 2.6
      */
     public abstract int getVariableTop();
 
@@ -1385,14 +1322,12 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
     /**
      * {{@literal @}icu} Returns the version of this collator object.
      * @return the version object associated with this collator
-     * @stable ICU 2.8
      */
     public abstract VersionInfo getVersion();
 
     /**
      * {{@literal @}icu} Returns the UCA version of this collator object.
      * @return the version object associated with this collator
-     * @stable ICU 2.8
      */
     public abstract VersionInfo getUCAVersion();
     
@@ -1405,7 +1340,6 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
      * @see #getEquivalentReorderCodes
      * @see Collator.ReorderCodes
      * @see UScript
-     * @stable ICU 4.8
      */ 
     public int[] getReorderCodes() 
     { 
@@ -1424,7 +1358,6 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
      * @see #getReorderCodes
      * @see Collator.ReorderCodes
      * @see UScript
-     * @stable ICU 4.8
      */
     public static int[] getEquivalentReorderCodes(int reorderCode) {
         CollationData baseData = CollationRoot.getData();
@@ -1439,8 +1372,6 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
      *
      * <p>An unfrozen Collator is mutable and not thread-safe.
      * A frozen Collator is immutable and thread-safe.
-     *
-     * @stable ICU 4.8
      */
     public boolean isFrozen() {
         return false;
@@ -1449,7 +1380,6 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
     /**
      * Freezes the collator.
      * @return the collator itself.
-     * @stable ICU 4.8
      */
     public Collator freeze() {
         throw new UnsupportedOperationException("Needs to be implemented by the subclass.");
@@ -1457,7 +1387,6 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
 
     /**
      * Provides for the clone operation. Any clone is initially unfrozen.
-     * @stable ICU 4.8
      */
     public Collator cloneAsThawed() {
         throw new UnsupportedOperationException("Needs to be implemented by the subclass.");
@@ -1465,7 +1394,6 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
     
     /**
      * Empty default constructor to make javadocs happy
-     * @stable ICU 2.4
      */
     protected Collator()
     {

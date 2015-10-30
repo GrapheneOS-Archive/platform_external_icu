@@ -177,7 +177,7 @@ public final class ICUResourceBundleReader {
 
     private static class ReaderCache extends SoftCache<ReaderCacheKey, ICUResourceBundleReader, ClassLoader> {
         /* (non-Javadoc)
-         * @see com.ibm.icu.impl.CacheBase#createInstance(java.lang.Object, java.lang.Object)
+         * @see android.icu.impl.CacheBase#createInstance(java.lang.Object, java.lang.Object)
          */
         @Override
         protected ICUResourceBundleReader createInstance(ReaderCacheKey key, ClassLoader loader) {

@@ -10,7 +10,6 @@ package android.icu.util;
 /**
  * Base class for unchecked, ICU-specific exceptions.
  *
- * @stable ICU 53
  * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
  */
@@ -19,8 +18,6 @@ public class ICUException extends RuntimeException {
 
     /**
      * Default constructor.
-     *
-     * @stable ICU 53
      */
     public ICUException() {
     }
@@ -29,7 +26,6 @@ public class ICUException extends RuntimeException {
      * Constructor.
      *
      * @param message exception message string
-     * @stable ICU 53
      */
     public ICUException(String message) {
         super(message);
@@ -39,7 +35,6 @@ public class ICUException extends RuntimeException {
      * Constructor.
      *
      * @param cause original exception
-     * @stable ICU 53
      */
     public ICUException(Throwable cause) {
         super(cause);
@@ -50,7 +45,6 @@ public class ICUException extends RuntimeException {
      *
      * @param message exception message string
      * @param cause original exception
-     * @stable ICU 53
      */
     public ICUException(String message, Throwable cause) {
         super(message, cause);

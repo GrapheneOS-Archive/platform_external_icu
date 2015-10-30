@@ -11,7 +11,6 @@ package android.icu.util;
  * An instance has a time of transition and rules for both before and
  * after the transition.
  * 
- * @stable ICU 3.8
  * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
  */
@@ -27,8 +26,6 @@ public class TimeZoneTransition {
      * @param time  The time of transition in milliseconds since the base time.
      * @param from  The time zone rule used before the transition.
      * @param to    The time zone rule used after the transition.
-     * 
-     * @stable ICU 3.8
      */
     public TimeZoneTransition(long time, TimeZoneRule from, TimeZoneRule to) {
         this.time = time;
@@ -40,8 +37,6 @@ public class TimeZoneTransition {
      * Returns the time of transition in milliseconds since the base time.
      * 
      * @return The time of the transition in milliseconds since the base time.
-     * 
-     * @stable ICU 3.8
      */
     public long getTime() {
         return time;
@@ -51,8 +46,6 @@ public class TimeZoneTransition {
      * Returns the rule used after the transition.
      * 
      * @return The time zone rule used after the transition.
-     * 
-     * @stable ICU 3.8
      */
     public TimeZoneRule getTo() {
         return to;
@@ -62,8 +55,6 @@ public class TimeZoneTransition {
      * Returns the rule used before the transition.
      * 
      * @return The time zone rule used after the transition.
-     * 
-     * @stable ICU 3.8
      */
     public TimeZoneRule getFrom() {
         return from;
@@ -73,8 +64,6 @@ public class TimeZoneTransition {
      * Returns a <code>String</code> representation of this <code>TimeZoneTransition</code> object.
      * This method is used for debugging purpose only.  The string representation can be changed
      * in future version of ICU without any notice.
-     * 
-     * @stable ICU 3.8
      */
     public String toString() {
         StringBuilder buf = new StringBuilder();

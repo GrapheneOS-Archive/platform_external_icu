@@ -25,7 +25,6 @@ import android.icu.lang.UCharacterEnums.ECharacterCategory;
  * This class is not subclassable
  * </p>
  * @author Syn Wee Quek
- * @stable ICU 2.1
  * @hide All android.icu classes are currently hidden
  */
 
@@ -35,7 +34,6 @@ public final class UCharacterCategory implements ECharacterCategory
      * Gets the name of the argument category
      * @param category to retrieve name
      * @return category name
-     * @stable ICU 2.1
      */
     public static String toString(int category)
     {

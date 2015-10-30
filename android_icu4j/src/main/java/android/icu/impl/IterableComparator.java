@@ -11,7 +11,7 @@ import java.util.Comparator;
 import java.util.Iterator;
 
 /**
- * TODO: Move to com.ibm.icu.dev.somewhere.
+ * TODO: Move to android.icu.dev.somewhere.
  * 2015-sep-03: Not used in ICU but used in CLDR and in UnicodeTools.
  * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden

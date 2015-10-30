@@ -21,7 +21,7 @@ import android.icu.text.UTF16;
  * to <b>retrieve the offsets to the actual data</b>.</p>
  * <p>Data will be the form of an array of basic types, char or int.</p>
  * <p>The actual data format will have to be specified by the user in the
- * inner static interface com.ibm.icu.impl.Trie.DataManipulate.</p>
+ * inner static interface android.icu.impl.Trie.DataManipulate.</p>
  * <p>This trie implementation is optimized for getting offset while walking
  * forward through a UTF-16 string.
  * Therefore, the simplest and fastest access macros are the
@@ -34,10 +34,10 @@ import android.icu.text.UTF16;
  * to the fromOffsetTrail() methods.
  * To handle such supplementary codepoints, some offset information are kept
  * in the data.</p>
- * <p>Methods in com.ibm.icu.impl.Trie.DataManipulate are called to retrieve 
+ * <p>Methods in android.icu.impl.Trie.DataManipulate are called to retrieve 
  * that offset from the folded value for the lead surrogate unit.</p>
- * <p>For examples of use, see com.ibm.icu.impl.CharTrie or 
- * com.ibm.icu.impl.IntTrie.</p>
+ * <p>For examples of use, see android.icu.impl.CharTrie or 
+ * android.icu.impl.IntTrie.</p>
  * @author synwee
  * @see android.icu.impl.CharTrie
  * @see android.icu.impl.IntTrie
@@ -59,7 +59,7 @@ public abstract class Trie
     public static interface DataManipulate
     {
         /**
-        * Called by com.ibm.icu.impl.Trie to extract from a lead surrogate's 
+        * Called by android.icu.impl.Trie to extract from a lead surrogate's 
         * data
         * the index array offset of the indexes for that lead surrogate.
         * @param value data value for a surrogate from the trie, including the

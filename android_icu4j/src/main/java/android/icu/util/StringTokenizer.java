@@ -99,7 +99,6 @@ import android.icu.text.UnicodeSet;
  * </pre></blockquote>
  * </p>
  * @author syn wee
- * @stable ICU 2.4
  * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
  */
@@ -120,7 +119,6 @@ public final class StringTokenizer implements Enumeration<Object>
      * @param returndelims flag indicating whether to return the delimiters 
      *        as tokens.
      * @exception NullPointerException if str is null
-     * @stable ICU 2.4
      */
     public StringTokenizer(String str, UnicodeSet delim, boolean returndelims)
     {
@@ -185,7 +183,6 @@ public final class StringTokenizer implements Enumeration<Object>
      * @param str a string to be parsed.
      * @param delim the delimiters.
      * @exception NullPointerException if str is null
-     * @stable ICU 2.4
      */
     public StringTokenizer(String str, UnicodeSet delim)
     {
@@ -205,7 +202,6 @@ public final class StringTokenizer implements Enumeration<Object>
      * @param returndelims flag indicating whether to return the delimiters 
      *        as tokens.
      * @exception NullPointerException if str is null
-     * @stable ICU 2.4
      */
     public StringTokenizer(String str, String delim, boolean returndelims)
     {
@@ -271,7 +267,6 @@ public final class StringTokenizer implements Enumeration<Object>
      * @param str a string to be parsed.
      * @param delim the delimiters.
      * @exception NullPointerException if str is null
-     * @stable ICU 2.4
      */
     public StringTokenizer(String str, String delim)
     {
@@ -288,7 +283,6 @@ public final class StringTokenizer implements Enumeration<Object>
      * <p>Delimiter characters themselves will not be treated as tokens.</p>
      * @param str a string to be parsed
      * @exception NullPointerException if str is null
-     * @stable ICU 2.4
      */
     public StringTokenizer(String str) 
     {
@@ -305,7 +299,6 @@ public final class StringTokenizer implements Enumeration<Object>
      * @return <code>true</code> if and only if there is at least one token 
      *         in the string after the current position; <code>false</code> 
      *         otherwise.
-     * @stable ICU 2.4
      */
     public boolean hasMoreTokens() 
     {
@@ -317,7 +310,6 @@ public final class StringTokenizer implements Enumeration<Object>
      * @return the next token from this string tokenizer.
      * @exception NoSuchElementException if there are no more tokens in 
      *            this tokenizer's string.
-     * @stable ICU 2.4
      */
     public String nextToken() 
     {
@@ -402,7 +394,6 @@ public final class StringTokenizer implements Enumeration<Object>
      * @return the next token, after switching to the new delimiter set.
      * @exception NoSuchElementException if there are no more tokens in 
      *            this tokenizer's string.
-     * @stable ICU 2.4
      */
     public String nextToken(String delim) 
     {
@@ -426,7 +417,6 @@ public final class StringTokenizer implements Enumeration<Object>
      * @return the next token, after switching to the new delimiter set.
      * @exception NoSuchElementException if there are no more tokens in 
      *            this tokenizer's string.
-     * @stable ICU 2.4
      */
     public String nextToken(UnicodeSet delim) 
     {
@@ -447,7 +437,6 @@ public final class StringTokenizer implements Enumeration<Object>
      * @return <code>true</code> if there are more tokens;
      *         <code>false</code> otherwise.
      * @see #hasMoreTokens()
-     * @stable ICU 2.4
      */
     public boolean hasMoreElements() 
     {
@@ -463,7 +452,6 @@ public final class StringTokenizer implements Enumeration<Object>
      * @exception NoSuchElementException if there are no more tokens in 
      *            this tokenizer's string.
      * @see #nextToken()
-     * @stable ICU 2.4
      */
     public Object nextElement() 
     {
@@ -477,7 +465,6 @@ public final class StringTokenizer implements Enumeration<Object>
      * @return the number of tokens remaining in the string using the 
      *         current delimiter set.
      * @see #nextToken()
-     * @stable ICU 2.4
      */
     public int countTokens() 
     {

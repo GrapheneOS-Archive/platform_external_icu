@@ -33,7 +33,6 @@ import android.icu.text.UnicodeSet;
  *
  * @see android.icu.util.Measure
  * @author Alan Liu
- * @stable ICU 3.0
  * @hide All android.icu classes are currently hidden
  */
 public class MeasureUnit implements Serializable {
@@ -77,8 +76,6 @@ public class MeasureUnit implements Serializable {
     
     /**
      * Get the type, such as "length"
-     * 
-     * @stable ICU 53
      */
     public String getType() {
         return type;
@@ -87,8 +84,6 @@ public class MeasureUnit implements Serializable {
 
     /**
      * Get the subType, such as “foot”.
-     *
-     * @stable ICU 53
      */
     public String getSubtype() {
         return subType;
@@ -98,8 +93,6 @@ public class MeasureUnit implements Serializable {
 
     /**
      * {@inheritDoc}
-     * 
-     * @stable ICU 53
      */
     @Override
     public int hashCode() {
@@ -108,8 +101,6 @@ public class MeasureUnit implements Serializable {
     
     /**
      * {@inheritDoc}
-     * 
-     * @stable ICU 53
      */
     @Override
     public boolean equals(Object rhs) {
@@ -125,8 +116,6 @@ public class MeasureUnit implements Serializable {
     
     /**
      * {@inheritDoc}
-     * 
-     * @stable ICU 53
      */
     @Override
     public String toString() {
@@ -135,8 +124,6 @@ public class MeasureUnit implements Serializable {
     
     /**
      * Get all of the available units' types. Returned set is unmodifiable.
-     * 
-     * @stable ICU 53
      */
     public synchronized static Set<String> getAvailableTypes() {
         return Collections.unmodifiableSet(cache.keySet());
@@ -146,7 +133,6 @@ public class MeasureUnit implements Serializable {
      * For the given type, return the available units.
      * @param type the type
      * @return the available units for type. Returned set is unmodifiable.
-     * @stable ICU 53
      */
     public synchronized static Set<MeasureUnit> getAvailable(String type) {
         Map<String, MeasureUnit> units = cache.get(type);
@@ -158,8 +144,6 @@ public class MeasureUnit implements Serializable {
 
     /**
      * Get all of the available units. Returned set is unmodifiable.
-     *
-     * @stable ICU 53
      */
     public synchronized static Set<MeasureUnit> getAvailable() {
         Set<MeasureUnit> result = new HashSet<MeasureUnit>();
@@ -342,37 +326,31 @@ public class MeasureUnit implements Serializable {
     
     /**
      * Constant for unit of acceleration: g-force
-     * @stable ICU 53
      */
     public static final MeasureUnit G_FORCE = MeasureUnit.internalGetInstance("acceleration", "g-force");
 
     /**
      * Constant for unit of acceleration: meter-per-second-squared
-     * @stable ICU 54
      */
     public static final MeasureUnit METER_PER_SECOND_SQUARED = MeasureUnit.internalGetInstance("acceleration", "meter-per-second-squared");
 
     /**
      * Constant for unit of angle: arc-minute
-     * @stable ICU 53
      */
     public static final MeasureUnit ARC_MINUTE = MeasureUnit.internalGetInstance("angle", "arc-minute");
 
     /**
      * Constant for unit of angle: arc-second
-     * @stable ICU 53
      */
     public static final MeasureUnit ARC_SECOND = MeasureUnit.internalGetInstance("angle", "arc-second");
 
     /**
      * Constant for unit of angle: degree
-     * @stable ICU 53
      */
     public static final MeasureUnit DEGREE = MeasureUnit.internalGetInstance("angle", "degree");
 
     /**
      * Constant for unit of angle: radian
-     * @stable ICU 54
      */
     public static final MeasureUnit RADIAN = MeasureUnit.internalGetInstance("angle", "radian");
 
@@ -386,55 +364,46 @@ public class MeasureUnit implements Serializable {
 
     /**
      * Constant for unit of area: acre
-     * @stable ICU 53
      */
     public static final MeasureUnit ACRE = MeasureUnit.internalGetInstance("area", "acre");
 
     /**
      * Constant for unit of area: hectare
-     * @stable ICU 53
      */
     public static final MeasureUnit HECTARE = MeasureUnit.internalGetInstance("area", "hectare");
 
     /**
      * Constant for unit of area: square-centimeter
-     * @stable ICU 54
      */
     public static final MeasureUnit SQUARE_CENTIMETER = MeasureUnit.internalGetInstance("area", "square-centimeter");
 
     /**
      * Constant for unit of area: square-foot
-     * @stable ICU 53
      */
     public static final MeasureUnit SQUARE_FOOT = MeasureUnit.internalGetInstance("area", "square-foot");
 
     /**
      * Constant for unit of area: square-inch
-     * @stable ICU 54
      */
     public static final MeasureUnit SQUARE_INCH = MeasureUnit.internalGetInstance("area", "square-inch");
 
     /**
      * Constant for unit of area: square-kilometer
-     * @stable ICU 53
      */
     public static final MeasureUnit SQUARE_KILOMETER = MeasureUnit.internalGetInstance("area", "square-kilometer");
 
     /**
      * Constant for unit of area: square-meter
-     * @stable ICU 53
      */
     public static final MeasureUnit SQUARE_METER = MeasureUnit.internalGetInstance("area", "square-meter");
 
     /**
      * Constant for unit of area: square-mile
-     * @stable ICU 53
      */
     public static final MeasureUnit SQUARE_MILE = MeasureUnit.internalGetInstance("area", "square-mile");
 
     /**
      * Constant for unit of area: square-yard
-     * @stable ICU 54
      */
     public static final MeasureUnit SQUARE_YARD = MeasureUnit.internalGetInstance("area", "square-yard");
 
@@ -448,73 +417,61 @@ public class MeasureUnit implements Serializable {
 
     /**
      * Constant for unit of consumption: liter-per-kilometer
-     * @stable ICU 54
      */
     public static final MeasureUnit LITER_PER_KILOMETER = MeasureUnit.internalGetInstance("consumption", "liter-per-kilometer");
 
     /**
      * Constant for unit of consumption: mile-per-gallon
-     * @stable ICU 54
      */
     public static final MeasureUnit MILE_PER_GALLON = MeasureUnit.internalGetInstance("consumption", "mile-per-gallon");
 
     /**
      * Constant for unit of digital: bit
-     * @stable ICU 54
      */
     public static final MeasureUnit BIT = MeasureUnit.internalGetInstance("digital", "bit");
 
     /**
      * Constant for unit of digital: byte
-     * @stable ICU 54
      */
     public static final MeasureUnit BYTE = MeasureUnit.internalGetInstance("digital", "byte");
 
     /**
      * Constant for unit of digital: gigabit
-     * @stable ICU 54
      */
     public static final MeasureUnit GIGABIT = MeasureUnit.internalGetInstance("digital", "gigabit");
 
     /**
      * Constant for unit of digital: gigabyte
-     * @stable ICU 54
      */
     public static final MeasureUnit GIGABYTE = MeasureUnit.internalGetInstance("digital", "gigabyte");
 
     /**
      * Constant for unit of digital: kilobit
-     * @stable ICU 54
      */
     public static final MeasureUnit KILOBIT = MeasureUnit.internalGetInstance("digital", "kilobit");
 
     /**
      * Constant for unit of digital: kilobyte
-     * @stable ICU 54
      */
     public static final MeasureUnit KILOBYTE = MeasureUnit.internalGetInstance("digital", "kilobyte");
 
     /**
      * Constant for unit of digital: megabit
-     * @stable ICU 54
      */
     public static final MeasureUnit MEGABIT = MeasureUnit.internalGetInstance("digital", "megabit");
 
     /**
      * Constant for unit of digital: megabyte
-     * @stable ICU 54
      */
     public static final MeasureUnit MEGABYTE = MeasureUnit.internalGetInstance("digital", "megabyte");
 
     /**
      * Constant for unit of digital: terabit
-     * @stable ICU 54
      */
     public static final MeasureUnit TERABIT = MeasureUnit.internalGetInstance("digital", "terabit");
 
     /**
      * Constant for unit of digital: terabyte
-     * @stable ICU 54
      */
     public static final MeasureUnit TERABYTE = MeasureUnit.internalGetInstance("digital", "terabyte");
 
@@ -528,217 +485,181 @@ public class MeasureUnit implements Serializable {
 
     /**
      * Constant for unit of duration: day
-     * @stable ICU 4.0
      */
     public static final TimeUnit DAY = (TimeUnit) MeasureUnit.internalGetInstance("duration", "day");
 
     /**
      * Constant for unit of duration: hour
-     * @stable ICU 4.0
      */
     public static final TimeUnit HOUR = (TimeUnit) MeasureUnit.internalGetInstance("duration", "hour");
 
     /**
      * Constant for unit of duration: microsecond
-     * @stable ICU 54
      */
     public static final MeasureUnit MICROSECOND = MeasureUnit.internalGetInstance("duration", "microsecond");
 
     /**
      * Constant for unit of duration: millisecond
-     * @stable ICU 53
      */
     public static final MeasureUnit MILLISECOND = MeasureUnit.internalGetInstance("duration", "millisecond");
 
     /**
      * Constant for unit of duration: minute
-     * @stable ICU 4.0
      */
     public static final TimeUnit MINUTE = (TimeUnit) MeasureUnit.internalGetInstance("duration", "minute");
 
     /**
      * Constant for unit of duration: month
-     * @stable ICU 4.0
      */
     public static final TimeUnit MONTH = (TimeUnit) MeasureUnit.internalGetInstance("duration", "month");
 
     /**
      * Constant for unit of duration: nanosecond
-     * @stable ICU 54
      */
     public static final MeasureUnit NANOSECOND = MeasureUnit.internalGetInstance("duration", "nanosecond");
 
     /**
      * Constant for unit of duration: second
-     * @stable ICU 4.0
      */
     public static final TimeUnit SECOND = (TimeUnit) MeasureUnit.internalGetInstance("duration", "second");
 
     /**
      * Constant for unit of duration: week
-     * @stable ICU 4.0
      */
     public static final TimeUnit WEEK = (TimeUnit) MeasureUnit.internalGetInstance("duration", "week");
 
     /**
      * Constant for unit of duration: year
-     * @stable ICU 4.0
      */
     public static final TimeUnit YEAR = (TimeUnit) MeasureUnit.internalGetInstance("duration", "year");
 
     /**
      * Constant for unit of electric: ampere
-     * @stable ICU 54
      */
     public static final MeasureUnit AMPERE = MeasureUnit.internalGetInstance("electric", "ampere");
 
     /**
      * Constant for unit of electric: milliampere
-     * @stable ICU 54
      */
     public static final MeasureUnit MILLIAMPERE = MeasureUnit.internalGetInstance("electric", "milliampere");
 
     /**
      * Constant for unit of electric: ohm
-     * @stable ICU 54
      */
     public static final MeasureUnit OHM = MeasureUnit.internalGetInstance("electric", "ohm");
 
     /**
      * Constant for unit of electric: volt
-     * @stable ICU 54
      */
     public static final MeasureUnit VOLT = MeasureUnit.internalGetInstance("electric", "volt");
 
     /**
      * Constant for unit of energy: calorie
-     * @stable ICU 54
      */
     public static final MeasureUnit CALORIE = MeasureUnit.internalGetInstance("energy", "calorie");
 
     /**
      * Constant for unit of energy: foodcalorie
-     * @stable ICU 54
      */
     public static final MeasureUnit FOODCALORIE = MeasureUnit.internalGetInstance("energy", "foodcalorie");
 
     /**
      * Constant for unit of energy: joule
-     * @stable ICU 54
      */
     public static final MeasureUnit JOULE = MeasureUnit.internalGetInstance("energy", "joule");
 
     /**
      * Constant for unit of energy: kilocalorie
-     * @stable ICU 54
      */
     public static final MeasureUnit KILOCALORIE = MeasureUnit.internalGetInstance("energy", "kilocalorie");
 
     /**
      * Constant for unit of energy: kilojoule
-     * @stable ICU 54
      */
     public static final MeasureUnit KILOJOULE = MeasureUnit.internalGetInstance("energy", "kilojoule");
 
     /**
      * Constant for unit of energy: kilowatt-hour
-     * @stable ICU 54
      */
     public static final MeasureUnit KILOWATT_HOUR = MeasureUnit.internalGetInstance("energy", "kilowatt-hour");
 
     /**
      * Constant for unit of frequency: gigahertz
-     * @stable ICU 54
      */
     public static final MeasureUnit GIGAHERTZ = MeasureUnit.internalGetInstance("frequency", "gigahertz");
 
     /**
      * Constant for unit of frequency: hertz
-     * @stable ICU 54
      */
     public static final MeasureUnit HERTZ = MeasureUnit.internalGetInstance("frequency", "hertz");
 
     /**
      * Constant for unit of frequency: kilohertz
-     * @stable ICU 54
      */
     public static final MeasureUnit KILOHERTZ = MeasureUnit.internalGetInstance("frequency", "kilohertz");
 
     /**
      * Constant for unit of frequency: megahertz
-     * @stable ICU 54
      */
     public static final MeasureUnit MEGAHERTZ = MeasureUnit.internalGetInstance("frequency", "megahertz");
 
     /**
      * Constant for unit of length: astronomical-unit
-     * @stable ICU 54
      */
     public static final MeasureUnit ASTRONOMICAL_UNIT = MeasureUnit.internalGetInstance("length", "astronomical-unit");
 
     /**
      * Constant for unit of length: centimeter
-     * @stable ICU 53
      */
     public static final MeasureUnit CENTIMETER = MeasureUnit.internalGetInstance("length", "centimeter");
 
     /**
      * Constant for unit of length: decimeter
-     * @stable ICU 54
      */
     public static final MeasureUnit DECIMETER = MeasureUnit.internalGetInstance("length", "decimeter");
 
     /**
      * Constant for unit of length: fathom
-     * @stable ICU 54
      */
     public static final MeasureUnit FATHOM = MeasureUnit.internalGetInstance("length", "fathom");
 
     /**
      * Constant for unit of length: foot
-     * @stable ICU 53
      */
     public static final MeasureUnit FOOT = MeasureUnit.internalGetInstance("length", "foot");
 
     /**
      * Constant for unit of length: furlong
-     * @stable ICU 54
      */
     public static final MeasureUnit FURLONG = MeasureUnit.internalGetInstance("length", "furlong");
 
     /**
      * Constant for unit of length: inch
-     * @stable ICU 53
      */
     public static final MeasureUnit INCH = MeasureUnit.internalGetInstance("length", "inch");
 
     /**
      * Constant for unit of length: kilometer
-     * @stable ICU 53
      */
     public static final MeasureUnit KILOMETER = MeasureUnit.internalGetInstance("length", "kilometer");
 
     /**
      * Constant for unit of length: light-year
-     * @stable ICU 53
      */
     public static final MeasureUnit LIGHT_YEAR = MeasureUnit.internalGetInstance("length", "light-year");
 
     /**
      * Constant for unit of length: meter
-     * @stable ICU 53
      */
     public static final MeasureUnit METER = MeasureUnit.internalGetInstance("length", "meter");
 
     /**
      * Constant for unit of length: micrometer
-     * @stable ICU 54
      */
     public static final MeasureUnit MICROMETER = MeasureUnit.internalGetInstance("length", "micrometer");
 
     /**
      * Constant for unit of length: mile
-     * @stable ICU 53
      */
     public static final MeasureUnit MILE = MeasureUnit.internalGetInstance("length", "mile");
 
@@ -752,187 +673,156 @@ public class MeasureUnit implements Serializable {
 
     /**
      * Constant for unit of length: millimeter
-     * @stable ICU 53
      */
     public static final MeasureUnit MILLIMETER = MeasureUnit.internalGetInstance("length", "millimeter");
 
     /**
      * Constant for unit of length: nanometer
-     * @stable ICU 54
      */
     public static final MeasureUnit NANOMETER = MeasureUnit.internalGetInstance("length", "nanometer");
 
     /**
      * Constant for unit of length: nautical-mile
-     * @stable ICU 54
      */
     public static final MeasureUnit NAUTICAL_MILE = MeasureUnit.internalGetInstance("length", "nautical-mile");
 
     /**
      * Constant for unit of length: parsec
-     * @stable ICU 54
      */
     public static final MeasureUnit PARSEC = MeasureUnit.internalGetInstance("length", "parsec");
 
     /**
      * Constant for unit of length: picometer
-     * @stable ICU 53
      */
     public static final MeasureUnit PICOMETER = MeasureUnit.internalGetInstance("length", "picometer");
 
     /**
      * Constant for unit of length: yard
-     * @stable ICU 53
      */
     public static final MeasureUnit YARD = MeasureUnit.internalGetInstance("length", "yard");
 
     /**
      * Constant for unit of light: lux
-     * @stable ICU 54
      */
     public static final MeasureUnit LUX = MeasureUnit.internalGetInstance("light", "lux");
 
     /**
      * Constant for unit of mass: carat
-     * @stable ICU 54
      */
     public static final MeasureUnit CARAT = MeasureUnit.internalGetInstance("mass", "carat");
 
     /**
      * Constant for unit of mass: gram
-     * @stable ICU 53
      */
     public static final MeasureUnit GRAM = MeasureUnit.internalGetInstance("mass", "gram");
 
     /**
      * Constant for unit of mass: kilogram
-     * @stable ICU 53
      */
     public static final MeasureUnit KILOGRAM = MeasureUnit.internalGetInstance("mass", "kilogram");
 
     /**
      * Constant for unit of mass: metric-ton
-     * @stable ICU 54
      */
     public static final MeasureUnit METRIC_TON = MeasureUnit.internalGetInstance("mass", "metric-ton");
 
     /**
      * Constant for unit of mass: microgram
-     * @stable ICU 54
      */
     public static final MeasureUnit MICROGRAM = MeasureUnit.internalGetInstance("mass", "microgram");
 
     /**
      * Constant for unit of mass: milligram
-     * @stable ICU 54
      */
     public static final MeasureUnit MILLIGRAM = MeasureUnit.internalGetInstance("mass", "milligram");
 
     /**
      * Constant for unit of mass: ounce
-     * @stable ICU 53
      */
     public static final MeasureUnit OUNCE = MeasureUnit.internalGetInstance("mass", "ounce");
 
     /**
      * Constant for unit of mass: ounce-troy
-     * @stable ICU 54
      */
     public static final MeasureUnit OUNCE_TROY = MeasureUnit.internalGetInstance("mass", "ounce-troy");
 
     /**
      * Constant for unit of mass: pound
-     * @stable ICU 53
      */
     public static final MeasureUnit POUND = MeasureUnit.internalGetInstance("mass", "pound");
 
     /**
      * Constant for unit of mass: stone
-     * @stable ICU 54
      */
     public static final MeasureUnit STONE = MeasureUnit.internalGetInstance("mass", "stone");
 
     /**
      * Constant for unit of mass: ton
-     * @stable ICU 54
      */
     public static final MeasureUnit TON = MeasureUnit.internalGetInstance("mass", "ton");
 
     /**
      * Constant for unit of power: gigawatt
-     * @stable ICU 54
      */
     public static final MeasureUnit GIGAWATT = MeasureUnit.internalGetInstance("power", "gigawatt");
 
     /**
      * Constant for unit of power: horsepower
-     * @stable ICU 53
      */
     public static final MeasureUnit HORSEPOWER = MeasureUnit.internalGetInstance("power", "horsepower");
 
     /**
      * Constant for unit of power: kilowatt
-     * @stable ICU 53
      */
     public static final MeasureUnit KILOWATT = MeasureUnit.internalGetInstance("power", "kilowatt");
 
     /**
      * Constant for unit of power: megawatt
-     * @stable ICU 54
      */
     public static final MeasureUnit MEGAWATT = MeasureUnit.internalGetInstance("power", "megawatt");
 
     /**
      * Constant for unit of power: milliwatt
-     * @stable ICU 54
      */
     public static final MeasureUnit MILLIWATT = MeasureUnit.internalGetInstance("power", "milliwatt");
 
     /**
      * Constant for unit of power: watt
-     * @stable ICU 53
      */
     public static final MeasureUnit WATT = MeasureUnit.internalGetInstance("power", "watt");
 
     /**
      * Constant for unit of pressure: hectopascal
-     * @stable ICU 53
      */
     public static final MeasureUnit HECTOPASCAL = MeasureUnit.internalGetInstance("pressure", "hectopascal");
 
     /**
      * Constant for unit of pressure: inch-hg
-     * @stable ICU 53
      */
     public static final MeasureUnit INCH_HG = MeasureUnit.internalGetInstance("pressure", "inch-hg");
 
     /**
      * Constant for unit of pressure: millibar
-     * @stable ICU 53
      */
     public static final MeasureUnit MILLIBAR = MeasureUnit.internalGetInstance("pressure", "millibar");
 
     /**
      * Constant for unit of pressure: millimeter-of-mercury
-     * @stable ICU 54
      */
     public static final MeasureUnit MILLIMETER_OF_MERCURY = MeasureUnit.internalGetInstance("pressure", "millimeter-of-mercury");
 
     /**
      * Constant for unit of pressure: pound-per-square-inch
-     * @stable ICU 54
      */
     public static final MeasureUnit POUND_PER_SQUARE_INCH = MeasureUnit.internalGetInstance("pressure", "pound-per-square-inch");
 
     /**
      * Constant for unit of proportion: karat
-     * @stable ICU 54
      */
     public static final MeasureUnit KARAT = MeasureUnit.internalGetInstance("proportion", "karat");
 
     /**
      * Constant for unit of speed: kilometer-per-hour
-     * @stable ICU 53
      */
     public static final MeasureUnit KILOMETER_PER_HOUR = MeasureUnit.internalGetInstance("speed", "kilometer-per-hour");
 
@@ -946,25 +836,21 @@ public class MeasureUnit implements Serializable {
 
     /**
      * Constant for unit of speed: meter-per-second
-     * @stable ICU 53
      */
     public static final MeasureUnit METER_PER_SECOND = MeasureUnit.internalGetInstance("speed", "meter-per-second");
 
     /**
      * Constant for unit of speed: mile-per-hour
-     * @stable ICU 53
      */
     public static final MeasureUnit MILE_PER_HOUR = MeasureUnit.internalGetInstance("speed", "mile-per-hour");
 
     /**
      * Constant for unit of temperature: celsius
-     * @stable ICU 53
      */
     public static final MeasureUnit CELSIUS = MeasureUnit.internalGetInstance("temperature", "celsius");
 
     /**
      * Constant for unit of temperature: fahrenheit
-     * @stable ICU 53
      */
     public static final MeasureUnit FAHRENHEIT = MeasureUnit.internalGetInstance("temperature", "fahrenheit");
 
@@ -978,73 +864,61 @@ public class MeasureUnit implements Serializable {
 
     /**
      * Constant for unit of temperature: kelvin
-     * @stable ICU 54
      */
     public static final MeasureUnit KELVIN = MeasureUnit.internalGetInstance("temperature", "kelvin");
 
     /**
      * Constant for unit of volume: acre-foot
-     * @stable ICU 54
      */
     public static final MeasureUnit ACRE_FOOT = MeasureUnit.internalGetInstance("volume", "acre-foot");
 
     /**
      * Constant for unit of volume: bushel
-     * @stable ICU 54
      */
     public static final MeasureUnit BUSHEL = MeasureUnit.internalGetInstance("volume", "bushel");
 
     /**
      * Constant for unit of volume: centiliter
-     * @stable ICU 54
      */
     public static final MeasureUnit CENTILITER = MeasureUnit.internalGetInstance("volume", "centiliter");
 
     /**
      * Constant for unit of volume: cubic-centimeter
-     * @stable ICU 54
      */
     public static final MeasureUnit CUBIC_CENTIMETER = MeasureUnit.internalGetInstance("volume", "cubic-centimeter");
 
     /**
      * Constant for unit of volume: cubic-foot
-     * @stable ICU 54
      */
     public static final MeasureUnit CUBIC_FOOT = MeasureUnit.internalGetInstance("volume", "cubic-foot");
 
     /**
      * Constant for unit of volume: cubic-inch
-     * @stable ICU 54
      */
     public static final MeasureUnit CUBIC_INCH = MeasureUnit.internalGetInstance("volume", "cubic-inch");
 
     /**
      * Constant for unit of volume: cubic-kilometer
-     * @stable ICU 53
      */
     public static final MeasureUnit CUBIC_KILOMETER = MeasureUnit.internalGetInstance("volume", "cubic-kilometer");
 
     /**
      * Constant for unit of volume: cubic-meter
-     * @stable ICU 54
      */
     public static final MeasureUnit CUBIC_METER = MeasureUnit.internalGetInstance("volume", "cubic-meter");
 
     /**
      * Constant for unit of volume: cubic-mile
-     * @stable ICU 53
      */
     public static final MeasureUnit CUBIC_MILE = MeasureUnit.internalGetInstance("volume", "cubic-mile");
 
     /**
      * Constant for unit of volume: cubic-yard
-     * @stable ICU 54
      */
     public static final MeasureUnit CUBIC_YARD = MeasureUnit.internalGetInstance("volume", "cubic-yard");
 
     /**
      * Constant for unit of volume: cup
-     * @stable ICU 54
      */
     public static final MeasureUnit CUP = MeasureUnit.internalGetInstance("volume", "cup");
 
@@ -1058,49 +932,41 @@ public class MeasureUnit implements Serializable {
 
     /**
      * Constant for unit of volume: deciliter
-     * @stable ICU 54
      */
     public static final MeasureUnit DECILITER = MeasureUnit.internalGetInstance("volume", "deciliter");
 
     /**
      * Constant for unit of volume: fluid-ounce
-     * @stable ICU 54
      */
     public static final MeasureUnit FLUID_OUNCE = MeasureUnit.internalGetInstance("volume", "fluid-ounce");
 
     /**
      * Constant for unit of volume: gallon
-     * @stable ICU 54
      */
     public static final MeasureUnit GALLON = MeasureUnit.internalGetInstance("volume", "gallon");
 
     /**
      * Constant for unit of volume: hectoliter
-     * @stable ICU 54
      */
     public static final MeasureUnit HECTOLITER = MeasureUnit.internalGetInstance("volume", "hectoliter");
 
     /**
      * Constant for unit of volume: liter
-     * @stable ICU 53
      */
     public static final MeasureUnit LITER = MeasureUnit.internalGetInstance("volume", "liter");
 
     /**
      * Constant for unit of volume: megaliter
-     * @stable ICU 54
      */
     public static final MeasureUnit MEGALITER = MeasureUnit.internalGetInstance("volume", "megaliter");
 
     /**
      * Constant for unit of volume: milliliter
-     * @stable ICU 54
      */
     public static final MeasureUnit MILLILITER = MeasureUnit.internalGetInstance("volume", "milliliter");
 
     /**
      * Constant for unit of volume: pint
-     * @stable ICU 54
      */
     public static final MeasureUnit PINT = MeasureUnit.internalGetInstance("volume", "pint");
 
@@ -1114,19 +980,16 @@ public class MeasureUnit implements Serializable {
 
     /**
      * Constant for unit of volume: quart
-     * @stable ICU 54
      */
     public static final MeasureUnit QUART = MeasureUnit.internalGetInstance("volume", "quart");
 
     /**
      * Constant for unit of volume: tablespoon
-     * @stable ICU 54
      */
     public static final MeasureUnit TABLESPOON = MeasureUnit.internalGetInstance("volume", "tablespoon");
 
     /**
      * Constant for unit of volume: teaspoon
-     * @stable ICU 54
      */
     public static final MeasureUnit TEASPOON = MeasureUnit.internalGetInstance("volume", "teaspoon");
 

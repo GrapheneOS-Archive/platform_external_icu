@@ -49,7 +49,6 @@ import android.icu.util.ULocale;
  * NumberFormat.
  *
  * @author markdavis
- * @stable ICU 49
  * @hide All android.icu classes are currently hidden
  */
 public class CompactDecimalFormat extends DecimalFormat {
@@ -68,17 +67,14 @@ public class CompactDecimalFormat extends DecimalFormat {
 
     /**
      * Style parameter for CompactDecimalFormat.
-     * @stable ICU 50
      */
     public enum CompactStyle {
         /**
          * Short version, like "1.2T"
-         * @stable ICU 50
          */
         SHORT,
         /**
          * Longer version, like "1.2 trillion", if available. May return same result as SHORT if not.
-         * @stable ICU 50
          */
         LONG
     }
@@ -89,7 +85,6 @@ public class CompactDecimalFormat extends DecimalFormat {
      *
      * @param locale the desired locale
      * @param style the compact style
-     * @stable ICU 50
      */
     public static CompactDecimalFormat getInstance(ULocale locale, CompactStyle style) {
         return new CompactDecimalFormat(locale, style);
@@ -101,7 +96,6 @@ public class CompactDecimalFormat extends DecimalFormat {
      *
      * @param locale the desired locale
      * @param style the compact style
-     * @stable ICU 50
      */
     public static CompactDecimalFormat getInstance(Locale locale, CompactStyle style) {
         return new CompactDecimalFormat(ULocale.forLocale(locale), style);
@@ -198,7 +192,6 @@ public class CompactDecimalFormat extends DecimalFormat {
 
     /**
      * {@inheritDoc}
-     * @stable ICU 49
      */
     @Override
     public boolean equals(Object obj) {
@@ -231,7 +224,6 @@ public class CompactDecimalFormat extends DecimalFormat {
 
     /**
      * {@inheritDoc}
-     * @stable ICU 49
      */
     @Override
     public StringBuffer format(double number, StringBuffer toAppendTo, FieldPosition pos) {
@@ -252,7 +244,6 @@ public class CompactDecimalFormat extends DecimalFormat {
 
     /**
      * {@inheritDoc}
-     * @stable ICU 50
      */
     @Override
     public AttributedCharacterIterator formatToCharacterIterator(Object obj) {
@@ -266,7 +257,6 @@ public class CompactDecimalFormat extends DecimalFormat {
 
     /**
      * {@inheritDoc}
-     * @stable ICU 49
      */
     @Override
     public StringBuffer format(long number, StringBuffer toAppendTo, FieldPosition pos) {
@@ -275,7 +265,6 @@ public class CompactDecimalFormat extends DecimalFormat {
 
     /**
      * {@inheritDoc}
-     * @stable ICU 49
      */
     @Override
     public StringBuffer format(BigInteger number, StringBuffer toAppendTo, FieldPosition pos) {
@@ -284,7 +273,6 @@ public class CompactDecimalFormat extends DecimalFormat {
 
     /**
      * {@inheritDoc}
-     * @stable ICU 49
      */
     @Override
     public StringBuffer format(BigDecimal number, StringBuffer toAppendTo, FieldPosition pos) {
@@ -293,7 +281,6 @@ public class CompactDecimalFormat extends DecimalFormat {
 
     /**
      * {@inheritDoc}
-     * @stable ICU 49
      */
     @Override
     public StringBuffer format(android.icu.math.BigDecimal number, StringBuffer toAppendTo, FieldPosition pos) {
@@ -302,7 +289,6 @@ public class CompactDecimalFormat extends DecimalFormat {
 
     /**
      * Parsing is currently unsupported, and throws an UnsupportedOperationException.
-     * @stable ICU 49
      */
     @Override
     public Number parse(String text, ParsePosition parsePosition) {

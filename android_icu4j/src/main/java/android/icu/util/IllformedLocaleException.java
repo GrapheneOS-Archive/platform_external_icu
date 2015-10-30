@@ -12,7 +12,6 @@ package android.icu.util;
  * indicate that an argument is not a well-formed BCP 47 tag.
  * 
  * @see ULocale
- * @stable ICU 4.2
  * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
  */
@@ -25,7 +24,6 @@ public class IllformedLocaleException extends RuntimeException {
     /**
      * Constructs a new <code>IllformedLocaleException</code> with no
      * detail message and -1 as the error index.
-     * @stable ICU 4.6
      */
     public IllformedLocaleException() {
         super();
@@ -36,7 +34,6 @@ public class IllformedLocaleException extends RuntimeException {
      * given message and -1 as the error index.
      *
      * @param message the message
-     * @stable ICU 4.2
      */
     public IllformedLocaleException(String message) {
         super(message);
@@ -51,7 +48,6 @@ public class IllformedLocaleException extends RuntimeException {
      *
      * @param message the message
      * @param errorIndex the index
-     * @stable ICU 4.2
      */
     public IllformedLocaleException(String message, int errorIndex) {
         super(message + ((errorIndex < 0) ? "" : " [at index " + errorIndex + "]"));
@@ -63,7 +59,6 @@ public class IllformedLocaleException extends RuntimeException {
      * either the error index is not applicable or unknown.
      *
      * @return the error index
-     * @stable ICU 4.2
      */
     public int getErrorIndex() {
         return _errIdx;

@@ -27,7 +27,6 @@ import android.icu.util.UResourceBundle;
  * separately). The class is not subclassable.
  *
  * @author Mark Davis
- * @stable ICU 50
  * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
  */
@@ -141,7 +140,6 @@ final public class ListFormatter {
      * @param locale
      *            the locale in question.
      * @return ListFormatter
-     * @stable ICU 50
      */
     public static ListFormatter getInstance(ULocale locale) {
       return getInstance(locale, Style.STANDARD);
@@ -153,7 +151,6 @@ final public class ListFormatter {
      * @param locale
      *            the locale in question.
      * @return ListFormatter
-     * @stable ICU 50
      */
     public static ListFormatter getInstance(Locale locale) {
         return getInstance(ULocale.forLocale(locale), Style.STANDARD);
@@ -178,7 +175,6 @@ final public class ListFormatter {
      * Create a list formatter that is appropriate for the default FORMAT locale.
      *
      * @return ListFormatter
-     * @stable ICU 50
      */
     public static ListFormatter getInstance() {
         return getInstance(ULocale.getDefault(ULocale.Category.FORMAT));
@@ -190,7 +186,6 @@ final public class ListFormatter {
      * @param items
      *            items to format. The toString() method is called on each.
      * @return items formatted into a string
-     * @stable ICU 50
      */
     public String format(Object... items) {
         return format(Arrays.asList(items));
@@ -202,7 +197,6 @@ final public class ListFormatter {
      * @param items
      *            items to format. The toString() method is called on each.
      * @return items formatted into a string
-     * @stable ICU 50
      */
     public String format(Collection<?> items) {
         return format(items, -1).toString();
@@ -237,7 +231,6 @@ final public class ListFormatter {
      * @return the pattern with {0}, {1}, {2}, etc. For English,
      * getPatternForNumItems(3) == "{0}, {1}, and {2}"
      * @throws IllegalArgumentException when count is 0 or negative.
-     * @stable ICU 52
      */
     public String getPatternForNumItems(int count) {
         if (count <= 0) {

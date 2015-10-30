@@ -51,7 +51,6 @@ import android.icu.lang.UCharacterDirection;
  * length of the text to be constant. They expect extra spaces to be added
  * or consumed either next to the affected character or at the end of the
  * text.</p>
- * @stable ICU 2.0
  * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
  */
@@ -84,7 +83,6 @@ public final class ArabicShaping {
      *   If an error occurs, then no output was written, or it may be
      *   incomplete.
      * @throws ArabicShapingException if the text cannot be converted according to the options.
-     * @stable ICU 2.0
      */
     public int shape(char[] source, int sourceStart, int sourceLength,
                      char[] dest, int destStart, int destSize) throws ArabicShapingException {
@@ -141,7 +139,6 @@ public final class ArabicShaping {
      * @param start The start of the range of text to convert
      * @param length The length of the range of text to convert
      * @throws ArabicShapingException if the text cannot be converted according to the options.
-     * @stable ICU 2.0
      */
     public void shape(char[] source, int start, int length) throws ArabicShapingException {
         if ((options & LAMALEF_MASK) == LAMALEF_RESIZE) {
@@ -156,7 +153,6 @@ public final class ArabicShaping {
      * @param text the string to convert
      * @return the converted string
      * @throws ArabicShapingException if the string cannot be converted according to the options.
-     * @stable ICU 2.0
      */
     public String shape(String text) throws ArabicShapingException {
         char[] src = text.toCharArray();
@@ -185,7 +181,6 @@ public final class ArabicShaping {
      * European to Arabic-Indic or vice-versa.<br>
      * 'DIGIT_TYPE' flags control whether standard or extended Arabic-Indic
      * digits are used when performing digit conversion.
-     * @stable ICU 2.0
      */
     public ArabicShaping(int options) {
         this.options = options;
@@ -213,12 +208,10 @@ public final class ArabicShaping {
      * De-shaping mode: Any Seen character followed by Tail character will be
      *                  replaced by one cell Seen and a space will replace the Tail.
      * Affects: Seen options
-     * @stable ICU 4.2
      */
     public static final int SEEN_TWOCELL_NEAR = 0x200000;
 
     /** Bit mask for Seen memory options. 
-     * @stable ICU 4.2
      */
     public static final int SEEN_MASK = 0x700000;
 
@@ -232,13 +225,11 @@ public final class ArabicShaping {
      * De-shaping mode: Any Yeh (final or isolated) character followed by Hamza character will be
      *                  replaced by one cell YehHamza and space will replace the Hamza.
      * Affects: YehHamza options
-     * @stable ICU 4.2 
      */
     public static final int YEHHAMZA_TWOCELL_NEAR  = 0x1000000;
 
 
     /** Bit mask for YehHamza memory options. 
-     * @stable ICU 4.2
      */
     public static final int YEHHAMZA_MASK = 0x3800000;
 
@@ -250,7 +241,6 @@ public final class ArabicShaping {
      *
      * De-shaping mode: N/A
      * Affects: Tashkeel options
-     * @stable ICU 4.2
      */
     public static final int TASHKEEL_BEGIN = 0x40000;
 
@@ -261,7 +251,6 @@ public final class ArabicShaping {
      *
      * De-shaping mode: N/A
      * Affects: Tashkeel options
-     * @stable ICU 4.2
      */
     public static final int TASHKEEL_END = 0x60000;
 
@@ -271,7 +260,6 @@ public final class ArabicShaping {
      * De-shaping mode: N/A 
      *
      * Affects: Tashkeel options
-     * @stable ICU 4.2
      */
     public static final int TASHKEEL_RESIZE = 0x80000;
 
@@ -282,12 +270,10 @@ public final class ArabicShaping {
      *
      * De-shaping mode: N/A
      * Affects: YehHamza options
-     * @stable ICU 4.2
      */
     public static final int TASHKEEL_REPLACE_BY_TATWEEL = 0xC0000;
 
     /** Bit mask for Tashkeel replacement with Space or Tatweel memory options. 
-     *  @stable ICU 4.2
      */
     public static final int TASHKEEL_MASK  = 0xE0000;
     
@@ -309,12 +295,10 @@ public final class ArabicShaping {
      *      the physical memory address beginning, same as BEGIN in default behavior) 
      *    D. END For Logical text: Same as END in default behavior. 
      * Affects: All LamAlef BEGIN, END and AUTO options.
-     * @stable ICU 4.2 
      */
     public static final int SPACES_RELATIVE_TO_TEXT_BEGIN_END = 0x4000000;
 
     /** Bit mask for swapping BEGIN and END for Visual LTR text 
-     * @stable ICU 4.2
      */
     public static final int SPACES_RELATIVE_TO_TEXT_MASK = 0x4000000;
     
@@ -328,18 +312,15 @@ public final class ArabicShaping {
      * Shaping Mode: Only shaping.
      * De-shaping Mode: N/A.
      * Affects: All Seen options
-     * @stable ICU 4.2
      */
     public static final int SHAPE_TAIL_NEW_UNICODE = 0x8000000;
 
     /** Bit mask for new Unicode Tail option 
-     * @stable ICU 4.2
      */
     public static final int SHAPE_TAIL_TYPE_MASK = 0x8000000;
 
     /**
      * Memory option: allow the result to have a different length than the source.
-     * @stable ICU 2.0
      */
     public static final int LENGTH_GROW_SHRINK = 0;
 
@@ -347,14 +328,12 @@ public final class ArabicShaping {
      * Memory option: allow the result to have a different length than the source.
      * Affects: LamAlef options
      * This option is an alias to LENGTH_GROW_SHRINK
-     * @stable ICU 4.2
      */
     public static final int LAMALEF_RESIZE   = 0;
     
     /**
      * Memory option: the result must have the same length as the source.
      * If more room is necessary, then try to consume spaces next to modified characters.
-     * @stable ICU 2.0
      */
     public static final int LENGTH_FIXED_SPACES_NEAR = 1;
 
@@ -363,14 +342,12 @@ public final class ArabicShaping {
      * If more room is necessary, then try to consume spaces next to modified characters.
      * Affects: LamAlef options
      * This option is an alias to LENGTH_FIXED_SPACES_NEAR
-     * @stable ICU 4.2
      */
     public static final int LAMALEF_NEAR = 1 ;
         
     /**
      * Memory option: the result must have the same length as the source.
      * If more room is necessary, then try to consume spaces at the end of the text.
-     * @stable ICU 2.0
      */
     public static final int LENGTH_FIXED_SPACES_AT_END = 2;
 
@@ -380,14 +357,12 @@ public final class ArabicShaping {
      * If more room is necessary, then try to consume spaces at the end of the text.
      * Affects: LamAlef options
      * This option is an alias to LENGTH_FIXED_SPACES_AT_END
-     * @stable ICU 4.2
      */
     public static final int LAMALEF_END = 2;
     
     /**
      * Memory option: the result must have the same length as the source.
      * If more room is necessary, then try to consume spaces at the beginning of the text.
-     * @stable ICU 2.0
      */
     public static final int LENGTH_FIXED_SPACES_AT_BEGINNING = 3;
 
@@ -396,7 +371,6 @@ public final class ArabicShaping {
      * If more room is necessary, then try to consume spaces at the beginning of the text.
      * Affects: LamAlef options
      * This option is an alias to LENGTH_FIXED_SPACES_AT_BEGINNING
-     * @stable ICU 4.2
      */
     public static final int LAMALEF_BEGIN = 3; 
 
@@ -409,25 +383,21 @@ public final class ArabicShaping {
      *
      * Deshaping Mode: Perform the same function as the flag equals LAMALEF_END. 
      * Affects: LamAlef options
-     * @stable ICU 4.2
      */
     public static final int LAMALEF_AUTO  = 0x10000; 
     
     /** 
      * Bit mask for memory options. 
-     * @stable ICU 2.0
      */
     public static final int LENGTH_MASK = 0x10003;
 
     /** Bit mask for LamAlef memory options. 
-     * @stable ICU 4.2
      */
 
     public static final int LAMALEF_MASK  = 0x10003;
 
     /** 
      * Direction indicator: the source is in logical (keyboard) order. 
-     * @stable ICU 2.0
      */
     public static final int TEXT_DIRECTION_LOGICAL = 0;
 
@@ -435,27 +405,23 @@ public final class ArabicShaping {
      * Direction indicator:the source is in visual RTL order,
      * the rightmost displayed character stored first.
      * This option is an alias to U_SHAPE_TEXT_DIRECTION_LOGICAL
-     * @stable ICU 4.2
      */
     public static final int TEXT_DIRECTION_VISUAL_RTL = 0;
     
     /** 
      * Direction indicator: the source is in visual (display) order, that is,
      * the leftmost displayed character is stored first.
-     * @stable ICU 2.0
      */
     public static final int TEXT_DIRECTION_VISUAL_LTR = 4;
 
     /** 
      * Bit mask for direction indicators. 
-     * @stable ICU 2.0
      */
     public static final int TEXT_DIRECTION_MASK = 4;
 
 
     /**
      * Letter shaping option: do not perform letter shaping. 
-     * @stable ICU 2.0
      */
     public static final int LETTERS_NOOP = 0;
 
@@ -463,7 +429,6 @@ public final class ArabicShaping {
      * Letter shaping option: replace normative letter characters in the U+0600 (Arabic) block,
      * by shaped ones in the U+FE70 (Presentation Forms B) block. Performs Lam-Alef ligature
      * substitution.
-     * @stable ICU 2.0
      */
     public static final int LETTERS_SHAPE = 8;
 
@@ -471,7 +436,6 @@ public final class ArabicShaping {
      * Letter shaping option: replace shaped letter characters in the U+FE70 (Presentation Forms B) block
      * by normative ones in the U+0600 (Arabic) block.  Converts Lam-Alef ligatures to pairs of Lam and
      * Alef characters, consuming spaces if required.
-     * @stable ICU 2.0
      */
     public static final int LETTERS_UNSHAPE = 0x10;
 
@@ -480,32 +444,27 @@ public final class ArabicShaping {
      * except for the TASHKEEL characters at U+064B...U+0652, by shaped ones in the U+Fe70
      * (Presentation Forms B) block.  The TASHKEEL characters will always be converted to
      * the isolated forms rather than to their correct shape.
-     * @stable ICU 2.0
      */
     public static final int LETTERS_SHAPE_TASHKEEL_ISOLATED = 0x18;
 
     /** 
      * Bit mask for letter shaping options. 
-     * @stable ICU 2.0
      */
     public static final int LETTERS_MASK = 0x18;
 
 
     /** 
      * Digit shaping option: do not perform digit shaping. 
-     * @stable ICU 2.0
      */
     public static final int DIGITS_NOOP = 0;
 
     /**
      * Digit shaping option: Replace European digits (U+0030...U+0039) by Arabic-Indic digits.
-     * @stable ICU 2.0
      */
     public static final int DIGITS_EN2AN = 0x20;
 
     /**
      * Digit shaping option: Replace Arabic-Indic digits by European digits (U+0030...U+0039).
-     * @stable ICU 2.0
      */
     public static final int DIGITS_AN2EN = 0x40;
 
@@ -517,7 +476,6 @@ public final class ArabicShaping {
      * The initial state at the start of the text is assumed to be not an Arabic,
      * letter, so European digits at the start of the text will not change.
      * Compare to DIGITS_ALEN2AN_INIT_AL.
-     * @stable ICU 2.0
      */
     public static final int DIGITS_EN2AN_INIT_LR = 0x60;
 
@@ -529,7 +487,6 @@ public final class ArabicShaping {
      * The initial state at the start of the text is assumed to be an Arabic,
      * letter, so European digits at the start of the text will change.
      * Compare to DIGITS_ALEN2AN_INT_LR.
-     * @stable ICU 2.0
      */
     public static final int DIGITS_EN2AN_INIT_AL = 0x80;
 
@@ -538,25 +495,21 @@ public final class ArabicShaping {
 
     /** 
      * Bit mask for digit shaping options. 
-     * @stable ICU 2.0
      */
     public static final int DIGITS_MASK = 0xe0;
 
     /** 
      * Digit type option: Use Arabic-Indic digits (U+0660...U+0669). 
-     * @stable ICU 2.0
      */
     public static final int DIGIT_TYPE_AN = 0;
 
     /** 
      * Digit type option: Use Eastern (Extended) Arabic-Indic digits (U+06f0...U+06f9). 
-     * @stable ICU 2.0
      */
     public static final int DIGIT_TYPE_AN_EXTENDED = 0x100;
 
     /** 
      * Bit mask for digit type options. 
-     * @stable ICU 2.0
      */
     public static final int DIGIT_TYPE_MASK = 0x0100; // 0x3f00?
 
@@ -581,7 +534,6 @@ public final class ArabicShaping {
     private static final int DESHAPE_MODE    = 1;
 
     /**
-     * @stable ICU 2.0
      */
     public boolean equals(Object rhs) {
         return rhs != null && 
@@ -590,7 +542,6 @@ public final class ArabicShaping {
     }
 
     /**
-     * @stable ICU 2.0
      */
      ///CLOVER:OFF
     public int hashCode() {
@@ -598,7 +549,6 @@ public final class ArabicShaping {
     }
 
     /**
-     * @stable ICU 2.0
      */
     public String toString() {
         StringBuilder buf = new StringBuilder(super.toString());

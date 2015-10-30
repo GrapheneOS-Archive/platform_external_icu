@@ -94,7 +94,7 @@ import android.icu.text.LocaleDisplayNames.DialectHandling;
  * including {@link android.icu.util.Calendar}, {@link
  * android.icu.util.Currency}, {@link android.icu.text.UFormat},
  * {@link android.icu.text.BreakIterator},
- * <a href="../text/Collator.html" title="class in com.ibm.icu.text"><code>Collator</code></a>,
+ * <a href="../text/Collator.html" title="class in android.icu.text"><code>Collator</code></a>,
  * {@link android.icu.text.DateFormatSymbols}, and {@link
  * android.icu.text.DecimalFormatSymbols} and their subclasses, if
  * any.  Once an object of one of these classes has been created,
@@ -108,7 +108,6 @@ import android.icu.text.LocaleDisplayNames.DialectHandling;
  * @author weiv
  * @author Alan Liu
  * @author Ram Viswanadha
- * @stable ICU 2.8
  * @hide All android.icu classes are currently hidden
  */
 public final class ULocale implements Serializable, Comparable<ULocale> {
@@ -119,43 +118,36 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
 
     /**
      * Useful constant for language.
-     * @stable ICU 3.0
      */
     public static final ULocale ENGLISH = new ULocale("en", Locale.ENGLISH);
 
     /**
      * Useful constant for language.
-     * @stable ICU 3.0
      */
     public static final ULocale FRENCH = new ULocale("fr", Locale.FRENCH);
 
     /**
      * Useful constant for language.
-     * @stable ICU 3.0
      */
     public static final ULocale GERMAN = new ULocale("de", Locale.GERMAN);
 
     /**
      * Useful constant for language.
-     * @stable ICU 3.0
      */
     public static final ULocale ITALIAN = new ULocale("it", Locale.ITALIAN);
 
     /**
      * Useful constant for language.
-     * @stable ICU 3.0
      */
     public static final ULocale JAPANESE = new ULocale("ja", Locale.JAPANESE);
 
     /**
      * Useful constant for language.
-     * @stable ICU 3.0
      */
     public static final ULocale KOREAN = new ULocale("ko", Locale.KOREAN);
 
     /**
      * Useful constant for language.
-     * @stable ICU 3.0
      */
     public static final ULocale CHINESE = new ULocale("zh", Locale.CHINESE);
 
@@ -184,86 +176,72 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
 
     /**
      * Useful constant for language.
-     * @stable ICU 3.0
      */
     public static final ULocale SIMPLIFIED_CHINESE = new ULocale("zh_Hans");
 
 
     /**
      * Useful constant for language.
-     * @stable ICU 3.0
      */
     public static final ULocale TRADITIONAL_CHINESE = new ULocale("zh_Hant");
 
     /**
      * Useful constant for country/region.
-     * @stable ICU 3.0
      */
     public static final ULocale FRANCE = new ULocale("fr_FR", Locale.FRANCE);
 
     /**
      * Useful constant for country/region.
-     * @stable ICU 3.0
      */
     public static final ULocale GERMANY = new ULocale("de_DE", Locale.GERMANY);
 
     /**
      * Useful constant for country/region.
-     * @stable ICU 3.0
      */
     public static final ULocale ITALY = new ULocale("it_IT", Locale.ITALY);
 
     /**
      * Useful constant for country/region.
-     * @stable ICU 3.0
      */
     public static final ULocale JAPAN = new ULocale("ja_JP", Locale.JAPAN);
 
     /**
      * Useful constant for country/region.
-     * @stable ICU 3.0
      */
     public static final ULocale KOREA = new ULocale("ko_KR", Locale.KOREA);
 
     /**
      * Useful constant for country/region.
-     * @stable ICU 3.0
      */
     public static final ULocale CHINA = new ULocale("zh_Hans_CN");
 
     /**
      * Useful constant for country/region.
-     * @stable ICU 3.0
      */
     public static final ULocale PRC = CHINA;
 
     /**
      * Useful constant for country/region.
-     * @stable ICU 3.0
      */
     public static final ULocale TAIWAN = new ULocale("zh_Hant_TW");
 
     /**
      * Useful constant for country/region.
-     * @stable ICU 3.0
      */
     public static final ULocale UK = new ULocale("en_GB", Locale.UK);
 
     /**
      * Useful constant for country/region.
-     * @stable ICU 3.0
      */
     public static final ULocale US = new ULocale("en_US", Locale.US);
 
     /**
      * Useful constant for country/region.
-     * @stable ICU 3.0
      */
     public static final ULocale CANADA = new ULocale("en_CA", Locale.CANADA);
 
     /**
      * Useful constant for country/region.
-     * @stable ICU 3.0
      */
     public static final ULocale CANADA_FRENCH = new ULocale("fr_CA", Locale.CANADA_FRENCH);
 
@@ -283,24 +261,20 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
 
     /**
      * The root ULocale.
-     * @stable ICU 2.8
      */
     public static final ULocale ROOT = new ULocale("", EMPTY_LOCALE);
 
     /**
      * Enum for locale categories. These locale categories are used to get/set the default locale for
      * the specific functionality represented by the category.
-     * @stable ICU 49
      */
     public enum Category {
         /**
          * Category used to represent the default locale for displaying user interfaces.
-         * @stable ICU 49
          */
         DISPLAY,
         /**
          * Category used to represent the default locale for formatting date, number and/or currency.
-         * @stable ICU 49
          */
         FORMAT
     }
@@ -436,7 +410,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      * {{@literal @}icu} Returns a ULocale object for a {@link java.util.Locale}.
      * The ULocale is canonicalized.
      * @param loc a JDK locale
-     * @stable ICU 3.2
      */
     public static ULocale forLocale(Locale loc) {
         if (loc == null) {
@@ -468,7 +441,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      *
      * @param localeID string representation of the locale, e.g:
      * "en_US", "sy_Cyrl_YU", "zh__pinyin", "es_ES@currency=EUR;collation=traditional"
-     * @stable ICU 2.8
      */
     public ULocale(String localeID) {
         this.localeID = getName(localeID);
@@ -478,7 +450,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      * Convenience overload of ULocale(String, String, String) for
      * compatibility with java.util.Locale.
      * @see #ULocale(String, String, String)
-     * @stable ICU 3.4
      */
     public ULocale(String a, String b) {
         this(a, b, null);
@@ -502,7 +473,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      * @param b second component of the locale id
      * @param c third component of the locale id
      * @see #ULocale(String)
-     * @stable ICU 3.0
      */
     public ULocale(String a, String b, String c) {
         localeID = getName(lscvToID(a, b, c, EMPTY_STRING));
@@ -512,7 +482,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      * {{@literal @}icu} Creates a ULocale from the id by first canonicalizing the id.
      * @param nonCanonicalID the locale id to canonicalize
      * @return the locale created from the canonical version of the ID.
-     * @stable ICU 3.0
      */
     public static ULocale createCanonical(String nonCanonicalID) {
         return new ULocale(canonicalize(nonCanonicalID), (Locale)null);
@@ -546,7 +515,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      * {{@literal @}icu} Converts this ULocale object to a {@link java.util.Locale}.
      * @return a JDK locale that either exactly represents this object
      * or is the closest approximation.
-     * @stable ICU 2.8
      */
     public Locale toLocale() {
         if (locale == null) {
@@ -630,7 +598,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      * used on Java 7, or if the current Java default Locale is changed after start up.
      * 
      * @return the default ULocale.
-     * @stable ICU 2.8
      */
     public static ULocale getDefault() {
         synchronized (ULocale.class) {
@@ -680,7 +647,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      * @see SecurityManager#checkPermission(java.security.Permission)
      * @see java.util.PropertyPermission
      * @see ULocale#setDefault(Category, ULocale)
-     * @stable ICU 3.0
      */
     public static synchronized void setDefault(ULocale newLocale){
         defaultLocale = newLocale.toLocale();
@@ -697,7 +663,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      * 
      * @param category the category
      * @return the default ULocale for the specified category.
-     * @stable ICU 49
      */
     public static ULocale getDefault(Category category) {
         synchronized (ULocale.class) {
@@ -757,7 +722,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      * @param newLocale the new default locale
      * @see SecurityManager#checkPermission(java.security.Permission)
      * @see java.util.PropertyPermission
-     * @stable ICU 49
      */
     public static synchronized void setDefault(Category category, ULocale newLocale) {
         Locale newJavaDefault = newLocale.toLocale();
@@ -770,7 +734,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
     /**
      * This is for compatibility with Locale-- in actuality, since ULocale is
      * immutable, there is no reason to clone it, so this API returns 'this'.
-     * @stable ICU 3.0
      */
     public Object clone() {
         return this;
@@ -778,7 +741,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
 
     /**
      * Returns the hashCode.
-     * @stable ICU 3.0
      */
     public int hashCode() {
         return localeID.hashCode();
@@ -791,7 +753,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      * function identically might not compare equal.
      *
      * @return true if this Locale is equal to the specified object.
-     * @stable ICU 3.0
      */
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -811,8 +772,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      * @return a negative integer, zero, or a positive integer as this ULocale is less than, equal to, or greater
      * than the specified ULocale.
      * @throws NullPointerException if <code>other</code> is null.
-     * 
-     * @stable ICU 53
      */
     public int compareTo(ULocale other) {
         if (this == other) {
@@ -884,7 +843,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
     /**
      * {{@literal @}icunote} Unlike the Locale API, this returns an array of <code>ULocale</code>,
      * not <code>Locale</code>.  Returns a list of all installed locales.
-     * @stable ICU 3.0
      */
     public static ULocale[] getAvailableLocales() {
         return ICUResourceBundle.getAvailableULocales();
@@ -893,7 +851,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
     /**
      * Returns a list of all 2-letter country codes defined in ISO 3166.
      * Can be used to create Locales.
-     * @stable ICU 3.0
      */
     public static String[] getISOCountries() {
         return LocaleIDs.getISOCountries();
@@ -905,7 +862,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      * [NOTE:  ISO 639 is not a stable standard-- some languages' codes have changed.
      * The list this function returns includes both the new and the old codes for the
      * languages whose codes have changed.]
-     * @stable ICU 3.0
      */
     public static String[] getISOLanguages() {
         return LocaleIDs.getISOLanguages();
@@ -916,7 +872,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      * or a lowercase ISO 639 code.
      * @see #getDisplayLanguage()
      * @see #getDisplayLanguage(ULocale)
-     * @stable ICU 3.0
      */
     public String getLanguage() {
         return base().getLanguage();
@@ -928,7 +883,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      * or a lowercase ISO 639 code.
      * @see #getDisplayLanguage()
      * @see #getDisplayLanguage(ULocale)
-     * @stable ICU 3.0
      */
     public static String getLanguage(String localeID) {
         return new LocaleIDParser(localeID).getLanguage();
@@ -938,7 +892,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      * Returns the script code for this locale, which might be the empty string.
      * @see #getDisplayScript()
      * @see #getDisplayScript(ULocale)
-     * @stable ICU 3.0
      */
     public String getScript() {
         return base().getScript();
@@ -949,7 +902,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      * string.
      * @see #getDisplayScript()
      * @see #getDisplayScript(ULocale)
-     * @stable ICU 3.0
      */
     public static String getScript(String localeID) {
         return new LocaleIDParser(localeID).getScript();
@@ -960,7 +912,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      * or an uppercase ISO 3166 2-letter code.
      * @see #getDisplayCountry()
      * @see #getDisplayCountry(ULocale)
-     * @stable ICU 3.0
      */
     public String getCountry() {
         return base().getRegion();
@@ -972,7 +923,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      * @param localeID The locale identification string.
      * @see #getDisplayCountry()
      * @see #getDisplayCountry(ULocale)
-     * @stable ICU 3.0
      */
     public static String getCountry(String localeID) {
         return new LocaleIDParser(localeID).getCountry();
@@ -982,7 +932,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      * Returns the variant code for this locale, which might be the empty string.
      * @see #getDisplayVariant()
      * @see #getDisplayVariant(ULocale)
-     * @stable ICU 3.0
      */
     public String getVariant() {
         return base().getVariant();
@@ -992,7 +941,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      * {{@literal @}icu} Returns the variant code for the specified locale, which might be the empty string.
      * @see #getDisplayVariant()
      * @see #getDisplayVariant(ULocale)
-     * @stable ICU 3.0
      */
     public static String getVariant(String localeID) {
         return new LocaleIDParser(localeID).getVariant();
@@ -1001,7 +949,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
     /**
      * {{@literal @}icu} Returns the fallback locale for the specified locale, which might be the
      * empty string.
-     * @stable ICU 3.2
      */
     public static String getFallback(String localeID) {
         return getFallbackString(getName(localeID));
@@ -1010,7 +957,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
     /**
      * {{@literal @}icu} Returns the fallback locale for this locale.  If this locale is root,
      * returns null.
-     * @stable ICU 3.2
      */
     public ULocale getFallback() {
         if (localeID.length() == 0 || localeID.charAt(0) == '@') {
@@ -1047,7 +993,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      * like {@link #getName()}, but without keywords.
      *
      * @return the base name as a String.
-     * @stable ICU 3.0
      */
     public String getBaseName() {
         return getBaseName(localeID);
@@ -1059,7 +1004,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      *
      * @param localeID the locale ID as a string
      * @return the base name as a String.
-     * @stable ICU 3.0
      */
     public static String getBaseName(String localeID){
         if (localeID.indexOf('@') == -1) {
@@ -1072,7 +1016,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      * {{@literal @}icu} Returns the (normalized) full name for this locale.
      *
      * @return String the full name of the localeID
-     * @stable ICU 3.0
      */
     public String getName() {
         return localeID; // always normalized
@@ -1113,7 +1056,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      *
      * @param localeID the localeID as a string
      * @return String the full name of the localeID
-     * @stable ICU 3.0
      */
     public static String getName(String localeID){
         String tmpLocaleID;
@@ -1136,7 +1078,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
 
     /**
      * Returns a string representation of this object.
-     * @stable ICU 3.0
      */
     public String toString() {
         return localeID;
@@ -1146,7 +1087,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      * {{@literal @}icu} Returns an iterator over keywords for this locale.  If there
      * are no keywords, returns null.
      * @return iterator over keywords, or null if there are no keywords.
-     * @stable ICU 3.0
      */
     public Iterator<String> getKeywords() {
         return getKeywords(localeID);
@@ -1157,7 +1097,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      * are no keywords, returns null.
      * @return an iterator over the keywords in the specified locale, or null
      * if there are no keywords.
-     * @stable ICU 3.0
      */
     public static Iterator<String> getKeywords(String localeID){
         return new LocaleIDParser(localeID).getKeywords();
@@ -1168,7 +1107,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      * defined, returns null.
      * @param keywordName name of the keyword whose value is desired. Case insensitive.
      * @return the value of the keyword, or null.
-     * @stable ICU 3.0
      */
     public String getKeywordValue(String keywordName){
         return getKeywordValue(localeID, keywordName);
@@ -1179,7 +1117,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      * not defined, returns null.  The locale name does not need to be normalized.
      * @param keywordName name of the keyword whose value is desired. Case insensitive.
      * @return String the value of the keyword as a string
-     * @stable ICU 3.0
      */
     public static String getKeywordValue(String localeID, String keywordName) {
         return new LocaleIDParser(localeID).getKeywordValue(keywordName);
@@ -1190,7 +1127,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      * convert POSIX and other grandfathered IDs to standard ICU form.
      * @param localeID the locale id
      * @return the canonicalized id
-     * @stable ICU 3.0
      */
     public static String canonicalize(String localeID){
         LocaleIDParser parser = new LocaleIDParser(localeID, true);
@@ -1263,7 +1199,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      * @param keyword the keyword to add/remove, or null to remove all keywords.
      * @param value the value to add/set, or null to remove this particular keyword.
      * @return the updated locale
-     * @stable ICU 3.2
      */
     public ULocale setKeywordValue(String keyword, String value) {
         return new ULocale(setKeywordValue(localeID, keyword, value), (Locale)null);
@@ -1282,7 +1217,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      * @param keyword the keyword to add/remove, or null to remove all keywords.
      * @param value the value to add/set, or null to remove this particular keyword.
      * @return the updated locale id
-     * @stable ICU 3.2
      */
     public static String setKeywordValue(String localeID, String keyword, String value) {
         LocaleIDParser parser = new LocaleIDParser(localeID);
@@ -1313,7 +1247,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      *   <a href="ftp://dkuug.dk/i18n/iso-639-2.txt"><code>ftp://dkuug.dk/i18n/iso-639-2.txt</code></a>
      * @exception MissingResourceException Throws MissingResourceException if the
      * three-letter language abbreviation is not available for this locale.
-     * @stable ICU 3.0
      */
     public String getISO3Language(){
         return getISO3Language(localeID);
@@ -1327,7 +1260,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      *   <a href="ftp://dkuug.dk/i18n/iso-639-2.txt"><code>ftp://dkuug.dk/i18n/iso-639-2.txt</code></a>
      * @exception MissingResourceException Throws MissingResourceException if the
      * three-letter language abbreviation is not available for this locale.
-     * @stable ICU 3.0
      */
     public static String getISO3Language(String localeID) {
         return LocaleIDs.getISO3Language(getLanguage(localeID));
@@ -1339,7 +1271,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      * an uppercase ISO 3166 3-letter country code.
      * @exception MissingResourceException Throws MissingResourceException if the
      * three-letter country abbreviation is not available for this locale.
-     * @stable ICU 3.0
      */
     public String getISO3Country() {
         return getISO3Country(localeID);
@@ -1351,7 +1282,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      * an uppercase ISO 3166 3-letter country code.
      * @exception MissingResourceException Throws MissingResourceException if the
      * three-letter country abbreviation is not available for this locale.
-     * @stable ICU 3.0
      */
     public static String getISO3Country(String localeID) {
         return LocaleIDs.getISO3Country(getCountry(localeID));
@@ -1376,7 +1306,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      * <p>Returns true for "ar" and "en-Hebr", false for "zh" and "fa-Cyrl".
      *
      * @return true if the locale's script is written right-to-left
-     * @stable ICU 54
      */
     public boolean isRightToLeft() {
         String script = getScript();
@@ -1412,7 +1341,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      * Returns this locale's language localized for display in the default <code>DISPLAY</code> locale.
      * @return the localized language name.
      * @see Category#DISPLAY
-     * @stable ICU 3.0
      */
     public String getDisplayLanguage() {
         return getDisplayLanguageInternal(this, getDefault(Category.DISPLAY), false);
@@ -1422,7 +1350,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      * Returns this locale's language localized for display in the provided locale.
      * @param displayLocale the locale in which to display the name.
      * @return the localized language name.
-     * @stable ICU 3.0
      */
     public String getDisplayLanguage(ULocale displayLocale) {
         return getDisplayLanguageInternal(this, displayLocale, false);
@@ -1434,7 +1361,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      * @param localeID the id of the locale whose language will be displayed
      * @param displayLocaleID the id of the locale in which to display the name.
      * @return the localized language name.
-     * @stable ICU 3.0
      */
     public static String getDisplayLanguage(String localeID, String displayLocaleID) {
         return getDisplayLanguageInternal(new ULocale(localeID), new ULocale(displayLocaleID),
@@ -1447,7 +1373,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      * @param localeID the id of the locale whose language will be displayed.
      * @param displayLocale the locale in which to display the name.
      * @return the localized language name.
-     * @stable ICU 3.0
      */
     public static String getDisplayLanguage(String localeID, ULocale displayLocale) {
         return getDisplayLanguageInternal(new ULocale(localeID), displayLocale, false);
@@ -1457,7 +1382,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      * If a dialect name is present in the data, then it is returned.
      * @return the localized language name.
      * @see Category#DISPLAY
-     * @stable ICU 4.4
      */
     public String getDisplayLanguageWithDialect() {
         return getDisplayLanguageInternal(this, getDefault(Category.DISPLAY), true);
@@ -1468,7 +1392,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      * If a dialect name is present in the data, then it is returned.
      * @param displayLocale the locale in which to display the name.
      * @return the localized language name.
-     * @stable ICU 4.4
      */
     public String getDisplayLanguageWithDialect(ULocale displayLocale) {
         return getDisplayLanguageInternal(this, displayLocale, true);
@@ -1481,7 +1404,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      * @param localeID the id of the locale whose language will be displayed
      * @param displayLocaleID the id of the locale in which to display the name.
      * @return the localized language name.
-     * @stable ICU 4.4
      */
     public static String getDisplayLanguageWithDialect(String localeID, String displayLocaleID) {
         return getDisplayLanguageInternal(new ULocale(localeID), new ULocale(displayLocaleID),
@@ -1495,7 +1417,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      * @param localeID the id of the locale whose language will be displayed.
      * @param displayLocale the locale in which to display the name.
      * @return the localized language name.
-     * @stable ICU 4.4
      */
     public static String getDisplayLanguageWithDialect(String localeID, ULocale displayLocale) {
         return getDisplayLanguageInternal(new ULocale(localeID), displayLocale, true);
@@ -1511,7 +1432,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      * Returns this locale's script localized for display in the default <code>DISPLAY</code> locale.
      * @return the localized script name.
      * @see Category#DISPLAY
-     * @stable ICU 3.0
      */
     public String getDisplayScript() {
         return getDisplayScriptInternal(this, getDefault(Category.DISPLAY));
@@ -1535,7 +1455,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      * Returns this locale's script localized for display in the provided locale.
      * @param displayLocale the locale in which to display the name.
      * @return the localized script name.
-     * @stable ICU 3.0
      */
     public String getDisplayScript(ULocale displayLocale) {
         return getDisplayScriptInternal(this, displayLocale);
@@ -1561,7 +1480,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      * @param localeID the id of the locale whose script will be displayed
      * @param displayLocaleID the id of the locale in which to display the name.
      * @return the localized script name.
-     * @stable ICU 3.0
      */
     public static String getDisplayScript(String localeID, String displayLocaleID) {
         return getDisplayScriptInternal(new ULocale(localeID), new ULocale(displayLocaleID));
@@ -1587,7 +1505,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      * @param localeID the id of the locale whose script will be displayed.
      * @param displayLocale the locale in which to display the name.
      * @return the localized script name.
-     * @stable ICU 3.0
      */
     public static String getDisplayScript(String localeID, ULocale displayLocale) {
         return getDisplayScriptInternal(new ULocale(localeID), displayLocale);
@@ -1624,7 +1541,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      * To get the display name for a region alone, or for other options, use {@link LocaleDisplayNames} instead.
      * @return the localized country name.
      * @see Category#DISPLAY
-     * @stable ICU 3.0
      */
     public String getDisplayCountry() {
         return getDisplayCountryInternal(this, getDefault(Category.DISPLAY));
@@ -1636,7 +1552,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      * To get the display name for a region alone, or for other options, use {@link LocaleDisplayNames} instead.
      * @param displayLocale the locale in which to display the name.
      * @return the localized country name.
-     * @stable ICU 3.0
      */
     public String getDisplayCountry(ULocale displayLocale){
         return getDisplayCountryInternal(this, displayLocale);
@@ -1650,7 +1565,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      * @param localeID the id of the locale whose country will be displayed
      * @param displayLocaleID the id of the locale in which to display the name.
      * @return the localized country name.
-     * @stable ICU 3.0
      */
     public static String getDisplayCountry(String localeID, String displayLocaleID) {
         return getDisplayCountryInternal(new ULocale(localeID), new ULocale(displayLocaleID));
@@ -1664,7 +1578,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      * @param localeID the id of the locale whose country will be displayed.
      * @param displayLocale the locale in which to display the name.
      * @return the localized country name.
-     * @stable ICU 3.0
      */
     public static String getDisplayCountry(String localeID, ULocale displayLocale) {
         return getDisplayCountryInternal(new ULocale(localeID), displayLocale);
@@ -1680,7 +1593,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      * Returns this locale's variant localized for display in the default <code>DISPLAY</code> locale.
      * @return the localized variant name.
      * @see Category#DISPLAY
-     * @stable ICU 3.0
      */
     public String getDisplayVariant() {
         return getDisplayVariantInternal(this, getDefault(Category.DISPLAY));
@@ -1690,7 +1602,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      * Returns this locale's variant localized for display in the provided locale.
      * @param displayLocale the locale in which to display the name.
      * @return the localized variant name.
-     * @stable ICU 3.0
      */
     public String getDisplayVariant(ULocale displayLocale) {
         return getDisplayVariantInternal(this, displayLocale);
@@ -1702,7 +1613,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      * @param localeID the id of the locale whose variant will be displayed
      * @param displayLocaleID the id of the locale in which to display the name.
      * @return the localized variant name.
-     * @stable ICU 3.0
      */
     public static String getDisplayVariant(String localeID, String displayLocaleID){
         return getDisplayVariantInternal(new ULocale(localeID), new ULocale(displayLocaleID));
@@ -1714,7 +1624,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      * @param localeID the id of the locale whose variant will be displayed.
      * @param displayLocale the locale in which to display the name.
      * @return the localized variant name.
-     * @stable ICU 3.0
      */
     public static String getDisplayVariant(String localeID, ULocale displayLocale) {
         return getDisplayVariantInternal(new ULocale(localeID), displayLocale);
@@ -1731,7 +1640,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      * @return the localized keyword name.
      * @see #getKeywords()
      * @see Category#DISPLAY
-     * @stable ICU 3.0
      */
     public static String getDisplayKeyword(String keyword) {
         return getDisplayKeywordInternal(keyword, getDefault(Category.DISPLAY));
@@ -1743,7 +1651,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      * @param displayLocaleID the id of the locale in which to display the keyword.
      * @return the localized keyword name.
      * @see #getKeywords(String)
-     * @stable ICU 3.0
      */
     public static String getDisplayKeyword(String keyword, String displayLocaleID) {
         return getDisplayKeywordInternal(keyword, new ULocale(displayLocaleID));
@@ -1755,7 +1662,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      * @param displayLocale the locale in which to display the keyword.
      * @return the localized keyword name.
      * @see #getKeywords(String)
-     * @stable ICU 3.0
      */
     public static String getDisplayKeyword(String keyword, ULocale displayLocale) {
         return getDisplayKeywordInternal(keyword, displayLocale);
@@ -1770,7 +1676,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      * @param keyword the keyword whose value is to be displayed.
      * @return the localized value name.
      * @see Category#DISPLAY
-     * @stable ICU 3.0
      */
     public String getDisplayKeywordValue(String keyword) {
         return getDisplayKeywordValueInternal(this, keyword, getDefault(Category.DISPLAY));
@@ -1781,7 +1686,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      * @param keyword the keyword whose value is to be displayed.
      * @param displayLocale the locale in which to display the value.
      * @return the localized value name.
-     * @stable ICU 3.0
      */
     public String getDisplayKeywordValue(String keyword, ULocale displayLocale) {
         return getDisplayKeywordValueInternal(this, keyword, displayLocale);
@@ -1794,7 +1698,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      * @param keyword the keyword whose value is to be displayed.
      * @param displayLocaleID the id of the locale in which to display the value.
      * @return the localized value name.
-     * @stable ICU 3.0
      */
     public static String getDisplayKeywordValue(String localeID, String keyword,
             String displayLocaleID) {
@@ -1809,7 +1712,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      * @param keyword the keyword whose value is to be displayed.
      * @param displayLocale the id of the locale in which to display the value.
      * @return the localized value name.
-     * @stable ICU 3.0
      */
     public static String getDisplayKeywordValue(String localeID, String keyword,
             ULocale displayLocale) {
@@ -1828,7 +1730,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      * Returns this locale name localized for display in the default <code>DISPLAY</code> locale.
      * @return the localized locale name.
      * @see Category#DISPLAY
-     * @stable ICU 3.0
      */
     public String getDisplayName() {
         return getDisplayNameInternal(this, getDefault(Category.DISPLAY));
@@ -1838,7 +1739,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      * Returns this locale name localized for display in the provided locale.
      * @param displayLocale the locale in which to display the locale name.
      * @return the localized locale name.
-     * @stable ICU 3.0
      */
     public String getDisplayName(ULocale displayLocale) {
         return getDisplayNameInternal(this, displayLocale);
@@ -1850,7 +1750,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      * @param localeID the locale whose name is to be displayed.
      * @param displayLocaleID the id of the locale in which to display the locale name.
      * @return the localized locale name.
-     * @stable ICU 3.0
      */
     public static String getDisplayName(String localeID, String displayLocaleID) {
         return getDisplayNameInternal(new ULocale(localeID), new ULocale(displayLocaleID));
@@ -1862,7 +1761,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      * @param localeID the locale whose name is to be displayed.
      * @param displayLocale the locale in which to display the locale name.
      * @return the localized locale name.
-     * @stable ICU 3.0
      */
     public static String getDisplayName(String localeID, ULocale displayLocale) {
         return getDisplayNameInternal(new ULocale(localeID), displayLocale);
@@ -1877,7 +1775,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      * If a dialect name is present in the locale data, then it is returned.
      * @return the localized locale name.
      * @see Category#DISPLAY
-     * @stable ICU 4.4
      */
     public String getDisplayNameWithDialect() {
         return getDisplayNameWithDialectInternal(this, getDefault(Category.DISPLAY));
@@ -1888,7 +1785,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      * If a dialect name is present in the locale data, then it is returned.
      * @param displayLocale the locale in which to display the locale name.
      * @return the localized locale name.
-     * @stable ICU 4.4
      */
     public String getDisplayNameWithDialect(ULocale displayLocale) {
         return getDisplayNameWithDialectInternal(this, displayLocale);
@@ -1901,7 +1797,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      * @param localeID the locale whose name is to be displayed.
      * @param displayLocaleID the id of the locale in which to display the locale name.
      * @return the localized locale name.
-     * @stable ICU 4.4
      */
     public static String getDisplayNameWithDialect(String localeID, String displayLocaleID) {
         return getDisplayNameWithDialectInternal(new ULocale(localeID),
@@ -1915,7 +1810,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      * @param localeID the locale whose name is to be displayed.
      * @param displayLocale the locale in which to display the locale name.
      * @return the localized locale name.
-     * @stable ICU 4.4
      */
     public static String getDisplayNameWithDialect(String localeID, ULocale displayLocale) {
         return getDisplayNameWithDialectInternal(new ULocale(localeID), displayLocale);
@@ -1931,7 +1825,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      * values are "left-to-right", "right-to-left", "top-to-bottom" or
      * "bottom-to-top".
      * @return The locale's layout orientation for characters.
-     * @stable ICU 4.0
      */
     public String getCharacterOrientation() {
         return ICUResourceTableAccess.getTableString(ICUResourceBundle.ICU_BASE_NAME, this,
@@ -1943,7 +1836,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      * values are "left-to-right", "right-to-left", "top-to-bottom" or
      * "bottom-to-top".
      * @return The locale's layout orientation for lines.
-     * @stable ICU 4.0
      */
     public String getLineOrientation() {
         return ICUResourceTableAccess.getTableString(ICUResourceBundle.ICU_BASE_NAME, this,
@@ -2008,7 +1900,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      * @param fallback if non-null, a 1-element array containing a boolean to be set with
      * the fallback status
      * @return one of the locales from the availableLocales list, or null if none match
-     * @stable ICU 3.4
      */
     public static ULocale acceptLanguage(String acceptLanguageList, ULocale[] availableLocales,
             boolean[] fallback) {
@@ -2040,7 +1931,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      * @param fallback if non-null, a 1-element array containing a boolean to be set with
      * the fallback status
      * @return one of the locales from the availableLocales list, or null if none match
-     * @stable ICU 3.4
      */
 
     public static ULocale acceptLanguage(ULocale[] acceptLanguageList, ULocale[]
@@ -2105,7 +1995,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      * the fallback status
      * @return one of the locales from the ULocale.getAvailableLocales() list, or null if
      * none match
-     * @stable ICU 3.4
      */
     public static ULocale acceptLanguage(String acceptLanguageList, boolean[] fallback) {
         return acceptLanguage(acceptLanguageList, ULocale.getAvailableLocales(),
@@ -2126,7 +2015,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      * @param fallback if non-null, a 1-element array containing a boolean to be set with
      * the fallback status
      * @return one of the locales from the ULocale.getAvailableLocales() list, or null if none match
-     * @stable ICU 3.4
      */
     public static ULocale acceptLanguage(ULocale[] acceptLanguageList, boolean[] fallback) {
         return acceptLanguage(acceptLanguageList, ULocale.getAvailableLocales(),
@@ -2419,7 +2307,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      *
      * @param loc The ULocale to maximize
      * @return The maximized ULocale instance.
-     * @stable ICU 4.0
      */
     public static ULocale addLikelySubtags(ULocale loc) {
         String[] tags = new String[3];
@@ -2468,7 +2355,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      *
      * @param loc The ULocale to minimize
      * @return The minimized ULocale instance.
-     * @stable ICU 4.0
      */
     public static ULocale minimizeSubtags(ULocale loc) {
         return minimizeSubtags(loc, Minimize.FAVOR_REGION); 
@@ -3078,8 +2964,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      *
      * @see #getExtension(char)
      * @see Builder#setExtension(char, String)
-     *
-     * @stable ICU 4.2
      */
     public static final char PRIVATE_USE_EXTENSION = 'x';
 
@@ -3088,8 +2972,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      *
      * @see #getExtension(char)
      * @see Builder#setExtension(char, String)
-     *
-     * @stable ICU 4.2
      */
     public static final char UNICODE_LOCALE_EXTENSION = 'u';
 
@@ -3106,8 +2988,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      * @throws IllegalArgumentException if key is not well-formed
      * @see #PRIVATE_USE_EXTENSION
      * @see #UNICODE_LOCALE_EXTENSION
-     *
-     * @stable ICU 4.2
      */
     public String getExtension(char key) {
         if (!LocaleExtensions.isValidKey(key)) {
@@ -3123,7 +3003,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      *
      * @return the set of extension keys, or the empty set if this locale has
      * no extensions
-     * @stable ICU 4.2
      */
     public Set<Character> getExtensionKeys() {
         return extensions().getKeys();
@@ -3135,7 +3014,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      * returned set is unmodifiable.
      *
      * @return The set of attributes.
-     * @stable ICU 4.6
      */
     public Set<String> getUnicodeLocaleAttributes() {
         return extensions().getUnicodeLocaleAttributes();
@@ -3153,8 +3031,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      * locale does not define the key.
      * @throws IllegalArgumentException if the key is not well-formed
      * @throws NullPointerException if <code>key</code> is null
-     * 
-     * @stable ICU 4.4
      */
     public String getUnicodeLocaleType(String key) {
         if (!LocaleExtensions.isValidUnicodeLocaleKey(key)) {
@@ -3169,8 +3045,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      *
      * @return The set of Unicode locale keys, or the empty set if this locale has
      * no Unicode locale keywords.
-     * 
-     * @stable ICU 4.4
      */
     public Set<String> getUnicodeLocaleKeys() {
         return extensions().getUnicodeLocaleKeys();
@@ -3228,8 +3102,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      *
      * @return a BCP47 language tag representing the locale
      * @see #forLanguageTag(String)
-     *
-     * @stable ICU 4.2
      */
     public String toLanguageTag() {
         BaseLocale base = base();
@@ -3398,8 +3270,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      * @throws NullPointerException if <code>languageTag</code> is <code>null</code>
      * @see #toLanguageTag()
      * @see ULocale.Builder#setLanguageTag(String)
-     *
-     * @stable ICU 4.2
      */
     public static ULocale forLanguageTag(String languageTag) {
         LanguageTag tag = LanguageTag.parse(languageTag, null);
@@ -3426,7 +3296,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      *                      or null if the specified locale keyword cannot be mapped
      *                      to a well-formed BCP 47 Unicode locale extension key. 
      * @see #toLegacyKey(String)
-     * @stable ICU 54
      */
     public static String toUnicodeLocaleKey(String keyword) {
         String bcpKey = KeyTypeData.toBcpKey(keyword);
@@ -3462,7 +3331,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      *                      or null if the locale keyword value cannot be mapped to
      *                      a well-formed BCP 47 Unicode locale extension type.
      * @see #toLegacyType(String, String)
-     * @stable ICU 54
      */
     public static String toUnicodeLocaleType(String keyword, String value) {
         String bcpType = KeyTypeData.toBcpType(keyword, value, null, null);
@@ -3483,7 +3351,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      * @return              the well-formed legacy key, or null if the specified
      *                      keyword cannot be mapped to a well-formed legacy key.
      * @see #toUnicodeLocaleKey(String)
-     * @stable ICU 54
      */
     public static String toLegacyKey(String keyword) {
         String legacyKey = KeyTypeData.toLegacyKey(keyword);
@@ -3527,7 +3394,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      *                      keyword value cannot be mapped to a well-formed legacy
      *                      type.
      * @see #toUnicodeLocaleType(String, String)
-     * @stable ICU 54
      */
     public static String toLegacyType(String keyword, String value) {
         String legacyType = KeyTypeData.toLegacyType(keyword, value, null, null);
@@ -3579,8 +3445,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      * fields to their default values.
      *
      * @see ULocale#toLanguageTag()
-     *
-     * @stable ICU 4.2
      */
     public static final class Builder {
 
@@ -3590,8 +3454,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
          * Constructs an empty Builder. The default value of all
          * fields, extensions, and private use information is the
          * empty string.
-         *
-         * @stable ICU 4.2
          */
         public Builder() {
             _locbld = new InternalLocaleBuilder();
@@ -3611,8 +3473,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
          * @throws IllformedLocaleException if <code>locale</code> has
          * any ill-formed fields.
          * @throws NullPointerException if <code>locale</code> is null.
-         *
-         * @stable ICU 4.2
          */
         public Builder setLocale(ULocale locale) {
             try {
@@ -3639,8 +3499,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
          * @return This builder.
          * @throws IllformedLocaleException if <code>languageTag</code> is ill-formed
          * @see ULocale#forLanguageTag(String)
-         *
-         * @stable ICU 4.2
          */
         public Builder setLanguageTag(String languageTag) {
             ParseStatus sts = new ParseStatus();
@@ -3665,8 +3523,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
          * @param language the language
          * @return This builder.
          * @throws IllformedLocaleException if <code>language</code> is ill-formed
-         *
-         * @stable ICU 4.2
          */
         public Builder setLanguage(String language) {
             try {
@@ -3687,8 +3543,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
          * @param script the script
          * @return This builder.
          * @throws IllformedLocaleException if <code>script</code> is ill-formed
-         *
-         * @stable ICU 4.2
          */
         public Builder setScript(String script) {
             try {
@@ -3713,8 +3567,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
          * @param region the region
          * @return This builder.
          * @throws IllformedLocaleException if <code>region</code> is ill-formed
-         *
-         * @stable ICU 4.2
          */
         public Builder setRegion(String region) {
             try {
@@ -3740,8 +3592,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
          * @param variant the variant
          * @return This builder.
          * @throws IllformedLocaleException if <code>variant</code> is ill-formed
-         *
-         * @stable ICU 4.2
          */
         public Builder setVariant(String variant) {
             try {
@@ -3773,8 +3623,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
          * @throws IllformedLocaleException if <code>key</code> is illegal
          * or <code>value</code> is ill-formed
          * @see #setUnicodeLocaleKeyword(String, String)
-         *
-         * @stable ICU 4.2
          */
         public Builder setExtension(char key, String value) {
             try {
@@ -3804,8 +3652,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
          * is ill-formed
          * @throws NullPointerException if <code>key</code> is null
          * @see #setExtension(char, String)
-         *
-         * @stable ICU 4.4
          */
         public Builder setUnicodeLocaleKeyword(String key, String type) {
             try {
@@ -3826,8 +3672,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
          * @throws NullPointerException if <code>attribute</code> is null
          * @throws IllformedLocaleException if <code>attribute</code> is ill-formed
          * @see #setExtension(char, String)
-         *
-         * @stable ICU 4.6
          */
         public Builder addUnicodeLocaleAttribute(String attribute) {
             try {
@@ -3850,8 +3694,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
          * @throws NullPointerException if <code>attribute</code> is null
          * @throws IllformedLocaleException if <code>attribute</code> is ill-formed
          * @see #setExtension(char, String)
-         *
-         * @stable ICU 4.6
          */
         public Builder removeUnicodeLocaleAttribute(String attribute) {
             try {
@@ -3866,8 +3708,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
          * Resets the builder to its initial, empty state.
          *
          * @return this builder
-         *
-         * @stable ICU 4.2
          */
         public Builder clear() {
             _locbld.clear();
@@ -3880,8 +3720,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
          *
          * @return this builder
          * @see #setExtension(char, String)
-         *
-         * @stable ICU 4.2
          */
         public Builder clearExtensions() {
             _locbld.clearExtensions();
@@ -3893,8 +3731,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
          * on this builder.
          *
          * @return a new Locale
-         *
-         * @stable ICU 4.4
          */
         public ULocale build() {
             return getInstance(_locbld.getBaseLocale(), _locbld.getLocaleExtensions());
