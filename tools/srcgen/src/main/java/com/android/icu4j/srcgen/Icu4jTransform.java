@@ -19,16 +19,11 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import com.google.currysrc.Main;
 import com.google.currysrc.api.Rules;
-import com.google.currysrc.api.input.CompoundDirectoryInputFileGenerator;
-import com.google.currysrc.api.input.DirectoryInputFileGenerator;
 import com.google.currysrc.api.input.InputFileGenerator;
-import com.google.currysrc.api.match.SourceMatchers;
 import com.google.currysrc.api.output.BasicOutputSourceFileGenerator;
 import com.google.currysrc.api.output.OutputSourceFileGenerator;
 import com.google.currysrc.api.transform.AstTransformRule;
-import com.google.currysrc.api.transform.AstTransformer;
 import com.google.currysrc.api.transform.DocumentTransformRule;
-import com.google.currysrc.api.transform.DocumentTransformer;
 import com.google.currysrc.api.transform.TransformRule;
 import com.google.currysrc.api.transform.ast.BodyDeclarationLocater;
 import com.google.currysrc.api.transform.ast.BodyDeclarationLocaters;
@@ -42,9 +37,12 @@ import com.google.currysrc.transformers.RenamePackage;
 import com.google.currysrc.transformers.ReplaceTextCommentScanner;
 
 import java.io.File;
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+
+import static com.android.icu4j.srcgen.Icu4jTransformRules.createMandatoryRule;
+import static com.android.icu4j.srcgen.Icu4jTransformRules.createOptionalRule;
 
 /**
  * Applies Android's ICU4J source code transformation rules. If you make any changes to this class
@@ -52,7 +50,7 @@ import java.util.List;
  */
 public class Icu4jTransform {
 
-  // The list of public ICU API classes exposed on Android. If you change this, you should change
+    // The list of public ICU API classes exposed on Android. If you change this, you should change
   // the INITIAL_DEPRECATED_SET below to include entries from the new classes.
   static final String[] PUBLIC_API_CLASSES = new String[] {
       /* ASCII order please. */
@@ -129,6 +127,7 @@ public class Icu4jTransform {
       "android.icu.util.JapaneseCalendar",
       "android.icu.util.Measure",
       "android.icu.util.MeasureUnit",
+      "android.icu.util.Output",
       "android.icu.util.RangeValueIterator",
       "android.icu.util.TaiwanCalendar",
       "android.icu.util.TimeUnit",
@@ -502,6 +501,22 @@ public class Icu4jTransform {
       "method:android.icu.util.VersionInfo#javaVersion()",
   };
 
+  // The declarations with JavaDocs that have @jcite tags that should be transformed to doclava
+  // @sample tags. Ones not on this list will just be escaped and could show up in the generated
+  // docs. It is assumed that the complete set of ones that should appear in the public API are
+  // listed below and it's ok to escape those that are not.
+  private static final String[] JCITE_TRANSFORM_SET = {
+      "method:android.icu.text.DateIntervalFormat#getInstance(String,Locale)",
+      "method:android.icu.text.DateIntervalFormat#getInstance(String,Locale,DateIntervalInfo)",
+      "method:android.icu.text.DateTimePatternGenerator#addPattern(String,boolean,PatternInfo)",
+      "method:android.icu.text.DateTimePatternGenerator#getBestPattern(String)",
+      "method:android.icu.text.DateTimePatternGenerator#replaceFieldTypes(String,String)",
+      "method:android.icu.text.PluralFormat#PluralFormat(ULocale,String)",
+  };
+  public static final String ANDROID_ICU4J_SAMPLE_DIR =
+      "external/icu/android_icu4j/src/samples/java";
+
+
   private static final boolean DEBUG = false;
 
   private static final String ORIGINAL_ICU_PACKAGE = "com.ibm.icu";
@@ -513,13 +528,13 @@ public class Icu4jTransform {
 
   /**
    * Usage:
-   * java com.android.icu4j.srcgen.Icu4JTransform {one or more source directories} {target dir}
+   * java com.android.icu4j.srcgen.Icu4JTransform {source files/directories} {target dir}
    */
   public static void main(String[] args) throws Exception {
     new Main(DEBUG).execute(new Icu4jRules(args));
   }
 
-  private static class Icu4jRules implements Rules {
+  static class Icu4jRules implements Rules {
 
     private static final String SOURCE_CODE_HEADER = "/* GENERATED SOURCE. DO NOT MODIFY. */\n";
 
@@ -532,13 +547,17 @@ public class Icu4jTransform {
         throw new IllegalArgumentException("At least 2 arguments required.");
       }
 
-      inputFileGenerator = createInputFileGenerator(args);
-      outputSourceFileGenerator = createOutputFileGenerator(args[args.length - 1]);
+      inputFileGenerator = Icu4jTransformRules.createInputFileGenerator(args);
+      outputSourceFileGenerator =
+          Icu4jTransformRules.createOutputFileGenerator(args[args.length - 1]);
     }
 
-    @Override
-    public List<TransformRule> getTransformRules(File file) {
-      TransformRule[] rules = new TransformRule[] {
+    // Rules for migrating com.ibm.icu source over to android.icu. Pulled out separately so they
+    // can be used for modifying ICU4J sample code as well.
+    static TransformRule[] getRepackagingRules() {
+      return new TransformRule[] {
+          // Doc change: Insert a warning about the source code being generated.
+          createMandatoryRule(new InsertHeader(SOURCE_CODE_HEADER)),
           // AST change: Change the package of each CompilationUnit from com.ibm.icu to android.icu.
           createMandatoryRule(new RenamePackage(ORIGINAL_ICU_PACKAGE, ANDROID_ICU_PACKAGE)),
           // AST change: Change all qualified names in code and javadoc.
@@ -547,9 +566,24 @@ public class Icu4jTransform {
           createOptionalRule(new ModifyStringLiterals(ORIGINAL_ICU_PACKAGE, ANDROID_ICU_PACKAGE)),
           // AST change: Change all string literals containing paths in code.
           createOptionalRule(new ModifyStringLiterals("com/ibm/icu", "android/icu")),
+          // Doc change: Switch all embedded documentation references from com.ibm.icu to
+          // android.icu. e.g. importantly in <code> blocks and unimportantly in non-Javadoc
+          // comments.
+          createOptionalRule(
+              new ReplaceTextCommentScanner(ORIGINAL_ICU_PACKAGE, ANDROID_ICU_PACKAGE)),
+      };
+    }
 
-          // Doc change: Insert a warning about the source code being generated.
-          createMandatoryRule(new InsertHeader(SOURCE_CODE_HEADER)),
+    @Override
+    public List<TransformRule> getTransformRules(File file) {
+      // The rules needed to repackage source code that declares or references com.ibm.icu code
+      // so it references android.icu instead.
+      TransformRule[] repackageRules = getRepackagingRules();
+
+      // The rules needed to fix up Android's documentation rules.
+      TransformRule[] apiDocsRules = new TransformRule[] {
+          // Below are the fixes that ensure the Android API documentation generation can be run over the source.
+
           // AST change: Hide all ICU public classes except those in the whitelist.
           createHidePublicClassesRule(),
           // AST change: Hide ICU methods that are deprecated and Android does not want to make
@@ -558,11 +592,6 @@ public class Icu4jTransform {
           // AST change: Explicitly hide any elements that are marked as
           // @draft / @provisional / @internal
           createOptionalRule(new HideDraftProvisionalInternal()),
-          // Doc change: Switch all embedded documentation references from com.ibm.icu to
-          // android.icu. e.g. importantly in <code> blocks and unimportantly in non-Javadoc
-          // comments.
-          createOptionalRule(
-              new ReplaceTextCommentScanner(ORIGINAL_ICU_PACKAGE, ANDROID_ICU_PACKAGE)),
 
           // Doc change: Hack around javadoc @stable / @author placement error upstream: this should
           // be fixed upstream.
@@ -575,29 +604,35 @@ public class Icu4jTransform {
           // AST change: Replace @icu and @icuenhanced with standard text.
           createOptionalRule(new ReplaceIcuTags()),
 
-          // Doc change: Escape ICU tags we can't currently deal with.
-          createOptionalRule(new MungeIcuJavaDocTags()),
-
-          // AST change: Hide every public class until we're ready to make the Android subset
-          // public. Comment the line below to see what Android docs look like with ICU as part of
-          // the public API.
-          createOptionalRule(new HidePublicClasses(Collections.<TypeLocater>emptyList(),
-              "All android.icu classes are currently hidden")),
+          // AST change: Translate some of the @.jcite tags used by ICU into @sample tags used by
+          // doclava. Those that are not translated are escaped.
+          createTranslateJciteInclusionRule(),
       };
-      return Lists.newArrayList(rules);
+
+      List<TransformRule> rulesList = Lists.newArrayList(repackageRules);
+      rulesList.addAll(Arrays.asList(apiDocsRules));
+
+      // Comment/remove the lines below to make ICU part of the Android public API.
+      rulesList.add(
+          // AST change: Hide every public class until we're ready to make the Android subset
+          // public.
+          createOptionalRule(new HidePublicClasses(Collections.<TypeLocater>emptyList(),
+              "All android.icu classes are currently hidden")));
+      return rulesList;
+    }
+
+    private AstTransformRule createTranslateJciteInclusionRule() {
+      List<BodyDeclarationLocater> whitelist =
+          BodyDeclarationLocaters.createLocatersFromStrings(JCITE_TRANSFORM_SET);
+      TranslateJcite.InclusionHandler transformer =
+          new TranslateJcite.InclusionHandler(ANDROID_ICU4J_SAMPLE_DIR, whitelist);
+      return createOptionalRule(transformer);
     }
 
     private TransformRule createHideOriginalDeprecatedClassesRule() {
-      ImmutableList.Builder<BodyDeclarationLocater> deprecationBlacklistBuilder = ImmutableList
-          .builder();
-      for (String deprecatedElementLocaterString : INITIAL_DEPRECATED_SET) {
-        BodyDeclarationLocater locater =
-            BodyDeclarationLocaters.fromStringForm(deprecatedElementLocaterString);
-        deprecationBlacklistBuilder.add(locater);
-      }
-
-      return createOptionalRule(
-          new HideOriginalDeprecatedSet(deprecationBlacklistBuilder.build()));
+      List<BodyDeclarationLocater> blacklist =
+          BodyDeclarationLocaters.createLocatersFromStrings(INITIAL_DEPRECATED_SET);
+      return createOptionalRule(new HideOriginalDeprecatedSet(blacklist));
     }
 
     private TransformRule createHidePublicClassesRule() {
@@ -616,22 +651,6 @@ public class Icu4jTransform {
       return new DocumentTransformRule(transformer, transformer.matcher(), true /* mustModify */);
     }
 
-    private static AstTransformRule createMandatoryRule(AstTransformer transformer) {
-      return new AstTransformRule(transformer, SourceMatchers.all(), true /* mustModify */);
-    }
-
-    private static AstTransformRule createOptionalRule(AstTransformer transformer) {
-      return new AstTransformRule(transformer, SourceMatchers.all(), false /* mustModify */);
-    }
-
-    private static DocumentTransformRule createMandatoryRule(DocumentTransformer transformer) {
-      return new DocumentTransformRule(transformer, SourceMatchers.all(), true /* mustModify */);
-    }
-
-    private static DocumentTransformRule createOptionalRule(DocumentTransformer transformer) {
-      return new DocumentTransformRule(transformer, SourceMatchers.all(), false /* mustModify*/);
-    }
-
     @Override
     public InputFileGenerator getInputFileGenerator() {
       return inputFileGenerator;
@@ -642,28 +661,5 @@ public class Icu4jTransform {
       return outputSourceFileGenerator;
     }
 
-    private static CompoundDirectoryInputFileGenerator createInputFileGenerator(String[] args) {
-      List<InputFileGenerator> dirs = new ArrayList<>(args.length - 1);
-      for (int i = 0; i < args.length - 1; i++) {
-        File inputDir = new File(args[i]);
-        if (!isValidDir(inputDir)) {
-          throw new IllegalArgumentException("Input dir [" + inputDir + "] does not exist.");
-        }
-        dirs.add(new DirectoryInputFileGenerator(inputDir));
-      }
-      return new CompoundDirectoryInputFileGenerator(dirs);
-    }
-
-    private static BasicOutputSourceFileGenerator createOutputFileGenerator(String outputDirName) {
-      File outputDir = new File(outputDirName);
-      if (!isValidDir(outputDir)) {
-        throw new IllegalArgumentException("Output dir [" + outputDir + "] does not exist.");
-      }
-      return new BasicOutputSourceFileGenerator(outputDir);
-    }
-
-    private static boolean isValidDir(File outputDir) {
-      return outputDir.exists() && outputDir.isDirectory();
-    }
   }
 }

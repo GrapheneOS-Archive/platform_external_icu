@@ -32,6 +32,7 @@ import java.util.List;
 public abstract class BaseJavadocNodeScanner implements AstTransformer {
 
   @Override public final void transform(CompilationUnit cu, ASTRewrite rewrite) {
+    // This could just call cu.visit() but iterating over the comments should be more efficient.
     List<Comment> comments = cu.getCommentList();
     for (Comment comment : Lists.reverse(comments)) {
       if (comment instanceof Javadoc) {
