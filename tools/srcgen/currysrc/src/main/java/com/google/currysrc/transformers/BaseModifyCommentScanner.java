@@ -48,6 +48,10 @@ public abstract class BaseModifyCommentScanner implements DocumentTransformer {
     }
   }
 
-  /** Generates new text for the comment, or returns {@code null} if there is nothing to do. */
+  /**
+   * Generates new text for the comment, or returns {@code null} if there is nothing to do.
+   * Comments are passed in the reverse order that they appear in source code to ensure that
+   * document offsets remain valid.
+   */
   protected abstract String generateReplacementText(Comment commentNode, String commentText);
 }

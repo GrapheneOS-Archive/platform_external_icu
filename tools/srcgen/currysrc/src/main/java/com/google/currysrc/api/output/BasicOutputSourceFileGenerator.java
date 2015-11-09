@@ -37,28 +37,28 @@ public final class BasicOutputSourceFileGenerator implements OutputSourceFileGen
   public File generate(CompilationUnit cu) {
     PackageDeclaration outputPackage = cu.getPackage();
     List<AbstractTypeDeclaration> types = (List<AbstractTypeDeclaration>) cu.types();
+    String sourceFileName;
     if (types.isEmpty()) {
-      // TODO logging / output
-      System.err.println("Error generating output file for:" + cu);
-      return null;
-    }
-
-    AbstractTypeDeclaration firstClass = types.get(0);
-    AbstractTypeDeclaration publicClass = null;
-    for (AbstractTypeDeclaration type : types) {
-      if ((type.getModifiers() & Modifier.PUBLIC) > 0) {
-        publicClass = type;
-        break;
+      System.out.println("No types found in CompilationUnit. Assuming package-info.java");
+      sourceFileName = "package-info.java";
+    } else {
+      AbstractTypeDeclaration firstClass = types.get(0);
+      AbstractTypeDeclaration publicClass = null;
+      for (AbstractTypeDeclaration type : types) {
+        if ((type.getModifiers() & Modifier.PUBLIC) > 0) {
+          publicClass = type;
+          break;
+        }
       }
-    }
-    AbstractTypeDeclaration sourceNameType = publicClass;
-    if (sourceNameType == null) {
-      sourceNameType = firstClass;
+      AbstractTypeDeclaration sourceNameType = publicClass;
+      if (sourceNameType == null) {
+        sourceNameType = firstClass;
+      }
+      sourceFileName = sourceNameType.getName().getIdentifier() + ".java";
     }
 
     String fqn = outputPackage.getName().getFullyQualifiedName();
     String packageSubDir = fqn.replace(".", File.separator);
-    String sourceFileName = sourceNameType.getName().getIdentifier() + ".java";
     return new File(new File(baseDir, packageSubDir), sourceFileName);
   }
 }

@@ -30,15 +30,23 @@ mm -j32
 cd ${ANDROID_BUILD_TOP}/external/icu/tools/srcgen
 mm -j32
 
+ICU4J_DIR=${ANDROID_BUILD_TOP}/external/icu/icu4j
 ANDROID_ICU4J_DIR=${ANDROID_BUILD_TOP}/external/icu/android_icu4j
 
-# Generate the source code needed by Android.
 CLASSPATH=${ANDROID_BUILD_TOP}/out/host/common/obj/JAVA_LIBRARIES/currysrc_intermediates/javalib.jar:${ANDROID_BUILD_TOP}/out/host/common/obj/JAVA_LIBRARIES/android_icu4j_srcgen_intermediates/javalib.jar
 INPUT_DIRS="\
-    ${ANDROID_BUILD_TOP}/external/icu/icu4j/main/classes/collate/src \
-    ${ANDROID_BUILD_TOP}/external/icu/icu4j/main/classes/core/src \
-    ${ANDROID_BUILD_TOP}/external/icu/icu4j/main/classes/currdata/src \
-    ${ANDROID_BUILD_TOP}/external/icu/icu4j/main/classes/langdata/src \
-    ${ANDROID_BUILD_TOP}/external/icu/icu4j/main/classes/regiondata/src \
-    ${ANDROID_BUILD_TOP}/external/icu/icu4j/main/classes/translit/src \
+    ${ICU4J_DIR}/main/classes/collate/src \
+    ${ICU4J_DIR}/main/classes/core/src \
+    ${ICU4J_DIR}/main/classes/currdata/src \
+    ${ICU4J_DIR}/main/classes/langdata/src \
+    ${ICU4J_DIR}/main/classes/regiondata/src \
+    ${ICU4J_DIR}/main/classes/translit/src \
+    "
+
+SAMPLE_INPUT_DIR=${ICU4J_DIR}/samples/src/com/ibm/icu/samples
+# Only generate sample files for code we know should compile on Android with the public APIs.
+SAMPLE_INPUT_FILES="\
+    ${SAMPLE_INPUT_DIR}/text/dateintervalformat/DateIntervalFormatSample.java \
+    ${SAMPLE_INPUT_DIR}/text/datetimepatterngenerator/DateTimePatternGeneratorSample.java \
+    ${SAMPLE_INPUT_DIR}/text/pluralformat/PluralFormatSample.java \
     "

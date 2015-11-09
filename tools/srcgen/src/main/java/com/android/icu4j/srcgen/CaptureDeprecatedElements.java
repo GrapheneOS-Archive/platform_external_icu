@@ -19,8 +19,6 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import com.google.currysrc.Main;
 import com.google.currysrc.api.Rules;
-import com.google.currysrc.api.input.CompoundDirectoryInputFileGenerator;
-import com.google.currysrc.api.input.DirectoryInputFileGenerator;
 import com.google.currysrc.api.input.InputFileGenerator;
 import com.google.currysrc.api.match.SourceMatchers;
 import com.google.currysrc.api.output.NullOutputSourceFileGenerator;
@@ -40,7 +38,6 @@ import org.eclipse.jface.text.Document;
 
 import java.io.File;
 import java.lang.reflect.Modifier;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -88,7 +85,7 @@ public class CaptureDeprecatedElements {
       if (args.length < 1) {
         throw new IllegalArgumentException("At least 1 argument required.");
       }
-      inputFileGenerator = createInputFileGenerator(args);
+      inputFileGenerator = Icu4jTransformRules.createInputFileGenerator(args);
 
       ImmutableList.Builder<TypeLocater> apiClassesWhitelistBuilder = ImmutableList.builder();
       for (String publicClassName : Icu4jTransform.PUBLIC_API_CLASSES) {
@@ -102,7 +99,8 @@ public class CaptureDeprecatedElements {
     @Override
     public List<TransformRule> getTransformRules(File file) {
       return Lists.<TransformRule>newArrayList(
-          new DocumentTransformRule(captureTransformer, SourceMatchers.all(), false /* mustModify*/));
+          new DocumentTransformRule(
+              captureTransformer, SourceMatchers.all(), false /* mustModify*/));
     }
 
     @Override
@@ -113,22 +111,6 @@ public class CaptureDeprecatedElements {
     @Override
     public OutputSourceFileGenerator getOutputSourceFileGenerator() {
       return NullOutputSourceFileGenerator.INSTANCE;
-    }
-
-    private static CompoundDirectoryInputFileGenerator createInputFileGenerator(String[] args) {
-      List<InputFileGenerator> dirs = new ArrayList<>(args.length - 1);
-      for (int i = 0; i < args.length - 1; i++) {
-        File inputDir = new File(args[i]);
-        if (!isValidDir(inputDir)) {
-          throw new IllegalArgumentException("Input dir [" + inputDir + "] does not exist.");
-        }
-        dirs.add(new DirectoryInputFileGenerator(inputDir));
-      }
-      return new CompoundDirectoryInputFileGenerator(dirs);
-    }
-
-    private static boolean isValidDir(File outputDir) {
-      return outputDir.exists() && outputDir.isDirectory();
     }
 
     public CaptureDeprecatedTransformer getCaptureRule() {
