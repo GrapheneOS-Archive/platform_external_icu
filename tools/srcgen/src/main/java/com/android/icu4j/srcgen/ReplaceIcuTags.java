@@ -16,11 +16,10 @@
 package com.android.icu4j.srcgen;
 
 import com.google.currysrc.api.transform.ast.AstNodes;
-import com.google.currysrc.transformers.BaseJavadocNodeScanner;
+import com.google.currysrc.transformers.BaseTagElementNodeScanner;
 
 import org.eclipse.jdt.core.dom.AST;
 import org.eclipse.jdt.core.dom.IDocElement;
-import org.eclipse.jdt.core.dom.Javadoc;
 import org.eclipse.jdt.core.dom.TagElement;
 import org.eclipse.jdt.core.dom.rewrite.ASTRewrite;
 
@@ -29,19 +28,14 @@ import java.util.List;
 /**
  * Replaces {@icu}, {@icuenhanced} and {@icunote} with text.
  */
-public class ReplaceIcuTags extends BaseJavadocNodeScanner {
+public class ReplaceIcuTags extends BaseTagElementNodeScanner {
 
-  @Override protected void visit(Javadoc javadoc, ASTRewrite rewrite) {
-    AST ast = javadoc.getAST();
-    for (TagElement tag : (List<TagElement>) javadoc.tags()) {
-      recursivelyHandleTagElements(rewrite, ast, tag);
-    }
-  }
-
-  private void recursivelyHandleTagElements(ASTRewrite rewrite, AST ast, TagElement tag) {
+  @Override
+  protected boolean visitTagElement(ASTRewrite rewrite, TagElement tag) {
     String tagName = tag.getTagName();
-    List<IDocElement> fragments = tag.fragments();
     if (tagName != null) {
+      AST ast = tag.getAST();
+      List<IDocElement> fragments = tag.fragments();
       if (tagName.equalsIgnoreCase("@icu")) {
         // ICU replaces {@icu __usage__} with "Methods, fields, and other functionality specific to
         // ICU are labeled '[icu]'"
@@ -56,25 +50,20 @@ public class ReplaceIcuTags extends BaseJavadocNodeScanner {
             throw new AssertionError("Unknown Javadoc tag: " + tag);
           }
         }
-        return;
+        return false;
       } else if (tagName.equalsIgnoreCase("@icuenhanced")) {
         // ICU replaces {@icuenhanced <classname>} with "[icu enhancement] ICU's replacement for
         // <classname>"
         IDocElement element = fragments.get(0);
         rewrite.replace(tag, createIcuEnhancementText(ast, element), null /* editGroup */);
-        return;
+        return false;
       } else if (tagName.equalsIgnoreCase("@icunote")) {
         // ICU replaces {@icunote} with "[icu] Note:"
         rewrite.replace(tag, createIcuNoteText(ast), null /* editGroup */);
-        return;
+        return false;
       }
     }
-
-    for (IDocElement fragment : fragments) {
-      if (fragment instanceof TagElement) {
-        recursivelyHandleTagElements(rewrite, ast, (TagElement) fragment);
-      }
-    }
+    return true;
   }
 
   private static TagElement createIcuEnhancementText(AST ast, IDocElement fragment) {
@@ -97,5 +86,4 @@ public class ReplaceIcuTags extends BaseJavadocNodeScanner {
   private static TagElement createIcuMarker(AST ast) {
     return AstNodes.createTextTagElement(ast, "<strong>[icu]</strong>");
   }
-
 }

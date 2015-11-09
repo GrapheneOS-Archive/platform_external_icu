@@ -19,6 +19,7 @@ import com.google.common.base.Joiner;
 import com.google.common.base.Splitter;
 import com.google.common.collect.BiMap;
 import com.google.common.collect.ImmutableBiMap;
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 
 import org.eclipse.jdt.core.dom.ASTNode;
@@ -51,6 +52,15 @@ public final class BodyDeclarationLocaters {
           .build();
 
   private BodyDeclarationLocaters() {
+  }
+
+  public static List<BodyDeclarationLocater> createLocatersFromStrings(String[] locaterStrings) {
+    ImmutableList.Builder<BodyDeclarationLocater> locaterListBuilder = ImmutableList.builder();
+    for (String locaterString : locaterStrings) {
+      BodyDeclarationLocater locater = BodyDeclarationLocaters.fromStringForm(locaterString);
+      locaterListBuilder.add(locater);
+    }
+    return locaterListBuilder.build();
   }
 
   /**
@@ -94,6 +104,28 @@ public final class BodyDeclarationLocaters {
       default:
         throw new IllegalArgumentException("Unsupported node type: " + nodeType);
     }
+  }
+
+  public static boolean matchesAny(List<BodyDeclarationLocater> locaters, BodyDeclaration node) {
+    for (BodyDeclarationLocater locater : locaters) {
+      if (locater.matches(node)) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  /**
+   * Finds the declaration associated with a given node. If the node is not a child of a declaration
+   * {@code null} is returned.
+   */
+  public static BodyDeclaration findDeclarationNode(ASTNode node) {
+    ASTNode ancestor = node;
+    while (ancestor != null && !(ancestor instanceof BodyDeclaration)) {
+      ancestor = ancestor.getParent();
+    }
+
+    return ancestor instanceof BodyDeclaration ? (BodyDeclaration) ancestor : null;
   }
 
   private static String getDeclarationTypeString(BodyDeclaration bodyDeclaration) {

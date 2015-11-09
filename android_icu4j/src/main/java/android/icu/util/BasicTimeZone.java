@@ -35,7 +35,7 @@ public abstract class BasicTimeZone extends TimeZone {
 
     /**
      * <strong>[icu]</strong> Returns the first time zone transition after the base time.
-     * <p>Example code:{{@literal @}.jcite android.icu.samples.util.timezone.BasicTimeZoneExample:---getNextTransitionExample}
+     * <p>Example code:{{@literal @}.jcite  android.icu.samples.util.timezone.BasicTimeZoneExample:---getNextTransitionExample}
      * 
      * @param base      The base time.
      * @param inclusive Whether the base time is inclusive or not.
@@ -48,7 +48,7 @@ public abstract class BasicTimeZone extends TimeZone {
 
     /**
      * <strong>[icu]</strong> Returns the last time zone transition before the base time.
-     * <p>Example code:{{@literal @}.jcite android.icu.samples.util.timezone.BasicTimeZoneExample:---getPreviousTransitionExample}
+     * <p>Example code:{{@literal @}.jcite  android.icu.samples.util.timezone.BasicTimeZoneExample:---getPreviousTransitionExample}
      *
      * @param base      The base time.
      * @param inclusive Whether the base time is inclusive or not.
@@ -64,7 +64,7 @@ public abstract class BasicTimeZone extends TimeZone {
      * This method returns true when all of transition times, from/to standard
      * offsets and DST savings used by this time zone match the other in the
      * time range.
-     * <p>Example code:{{@literal @}.jcite android.icu.samples.util.timezone.BasicTimeZoneExample:---hasEquivalentTransitionsExample}
+     * <p>Example code:{{@literal @}.jcite  android.icu.samples.util.timezone.BasicTimeZoneExample:---hasEquivalentTransitionsExample}
      *
      * @param tz    The instance of <code>TimeZone</code>
      * @param start The start time of the evaluated time range (inclusive)
@@ -217,7 +217,7 @@ public abstract class BasicTimeZone extends TimeZone {
      * instance for the initial rule.  The rest will be either
      * <code>AnnualTimeZoneRule</code> or <code>TimeArrayTimeZoneRule</code>
      * instances representing transitions.
-     * <p>Example code:{{@literal @}.jcite android.icu.samples.util.timezone.BasicTimeZoneExample:---getTimeZoneRulesExample}
+     * <p>Example code:{{@literal @}.jcite  android.icu.samples.util.timezone.BasicTimeZoneExample:---getTimeZoneRulesExample}
      *
      * @param start The start time (inclusive).
      * @return  The array of <code>TimeZoneRule</code> which represents this
