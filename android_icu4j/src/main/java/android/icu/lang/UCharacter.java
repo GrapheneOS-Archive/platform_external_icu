@@ -50,16 +50,6 @@ import android.icu.util.VersionInfo;
  * more convenient in Java to have a separate primitive datatype for them,
  * ints suffice in the meantime.
  *
- * <p>To use this class please add the jar file name icu4j.jar to the
- * class path, since it contains data files which supply the information used
- * by this file.<br>
- * E.g. In Windows <br>
- * <code>set CLASSPATH=%CLASSPATH%;$JAR_FILE_PATH/ucharacter.jar</code>.<br>
- * Otherwise, another method would be to copy the files uprops.dat and
- * unames.icu from the icu4j source subdirectory
- * <i>$ICU4J_SRC/src/android.icu.impl.data</i> to your class directory
- * <i>$ICU4J_CLASS/android.icu.impl.data</i>.
- *
  * <p>Aside from the additions for UTF-16 support, and the updated Unicode
  * properties, the main differences between UCharacter and Character are:
  * <ul>
@@ -80,12 +70,6 @@ import android.icu.util.VersionInfo;
  *      getUnicodeNumericValue do not treat the above code points
  *      as having numeric values.  This is a semantic change from ICU4J 1.3.1.
  * </ul>
- * <p>
- * Further detail on differences can be determined using the program
- *        <a href=
- * "http://source.icu-project.org/repos/icu/icu4j/trunk/src/com/ibm/icu/dev/test/lang/UCharacterCompare.java">
- *        android.icu.dev.test.lang.UCharacterCompare</a>
- * </p>
  * <p>
  * In addition to Java compatibility functions, which calculate derived properties,
  * this API provides low-level access to the Unicode Character Database.
@@ -132,9 +116,9 @@ import android.icu.util.VersionInfo;
  * - alpha:     isUAlphabetic(c) or hasBinaryProperty(c, UProperty.ALPHABETIC)
  * - lower:     isULowercase(c) or hasBinaryProperty(c, UProperty.LOWERCASE)
  * - upper:     isUUppercase(c) or hasBinaryProperty(c, UProperty.UPPERCASE)
- * - punct:     ((1<<getType(c)) & ((1<<DASH_PUNCTUATION)|(1<<START_PUNCTUATION)|
- *               (1<<END_PUNCTUATION)|(1<<CONNECTOR_PUNCTUATION)|(1<<OTHER_PUNCTUATION)|
- *               (1<<INITIAL_PUNCTUATION)|(1<<FINAL_PUNCTUATION)))!=0
+ * - punct:     ((1&lt;&lt;getType(c)) & ((1&lt;&lt;DASH_PUNCTUATION)|(1&lt;&lt;START_PUNCTUATION)|
+ *               (1&lt;&lt;END_PUNCTUATION)|(1&lt;&lt;CONNECTOR_PUNCTUATION)|(1&lt;&lt;OTHER_PUNCTUATION)|
+ *               (1&lt;&lt;INITIAL_PUNCTUATION)|(1&lt;&lt;FINAL_PUNCTUATION)))!=0
  * - digit:     isDigit(c) or getType(c)==DECIMAL_DIGIT_NUMBER
  * - xdigit:    hasBinaryProperty(c, UProperty.POSIX_XDIGIT)
  * - alnum:     hasBinaryProperty(c, UProperty.POSIX_ALNUM)
