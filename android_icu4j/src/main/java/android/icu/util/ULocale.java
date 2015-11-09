@@ -88,19 +88,6 @@ import android.icu.text.LocaleDisplayNames.DialectHandling;
  * to canonical form, or the <code>canonicalInstance</code> factory method
  * can be called.</p>
  *
- * <p>This class provides selectors {@link #VALID_LOCALE} and {@link
- * #ACTUAL_LOCALE} intended for use in methods named
- * <tt>getLocale()</tt>.  These methods exist in several ICU classes,
- * including {@link android.icu.util.Calendar}, {@link
- * android.icu.util.Currency}, {@link android.icu.text.UFormat},
- * {@link android.icu.text.BreakIterator},
- * <a href="../text/Collator.html" title="class in android.icu.text"><code>Collator</code></a>,
- * {@link android.icu.text.DateFormatSymbols}, and {@link
- * android.icu.text.DecimalFormatSymbols} and their subclasses, if
- * any.  Once an object of one of these classes has been created,
- * <tt>getLocale()</tt> may be called on it to determine the valid and
- * actual locale arrived at during the object's construction.
- *
  * <p>Note: The <i>actual</i> locale is returned correctly, but the <i>valid</i>
  * locale is not, in most cases.
  *
