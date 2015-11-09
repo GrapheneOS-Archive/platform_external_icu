@@ -284,7 +284,7 @@ public class PluralFormat extends UFormat {
      * locale.
      * The locale will be used to get the set of plural rules and for
      * standard number formatting.
-     * <p>Example code:{{@literal @}.jcite android.icu.samples.text.pluralformat.PluralFormatSample:---PluralFormatExample}
+     * <p>Example code:{@sample external/icu/android_icu4j/src/samples/java/android/icu/samples/text/pluralformat/PluralFormatSample.java PluralFormatExample}
      * @param ulocale the <code>PluralFormat</code> will be configured with
      *        rules for this locale. This locale will also be used for standard
      *        number formatting.

@@ -30,7 +30,7 @@ mkdir -p ${DEST_RESOURCE_DIR}
 # Generate the source code needed by Android.
 java ${SRCGEN_JAVA_ARGS} -cp ${CLASSPATH} com.android.icu4j.srcgen.Icu4jTransform ${INPUT_DIRS} ${DEST_SRC_DIR}
 
-# Copy / transform the resources needed by the code.
+# Copy / transform the resources needed by the android_icu4j code.
 for INPUT_DIR in ${INPUT_DIRS}; do
   RESOURCES=$(find ${INPUT_DIR} -type f | egrep -v '(\.java|\/package\.html|\/ICUConfig\.properties)' || true )
   for RESOURCE in ${RESOURCES}; do
@@ -46,3 +46,12 @@ done
 # Create the ICUConfig.properties for Android.
 mkdir -p ${ANDROID_ICU4J_DIR}/resources/android/icu
 sed 's,com.ibm.icu,android.icu,' ${ANDROID_BUILD_TOP}/external/icu/icu4j/main/classes/core/src/com/ibm/icu/ICUConfig.properties > ${ANDROID_ICU4J_DIR}/resources/android/icu/ICUConfig.properties
+
+# Clean out previous generated sample code.
+SAMPLE_DEST_DIR=${ANDROID_ICU4J_DIR}/src/samples/java
+rm -rf ${SAMPLE_DEST_DIR}
+mkdir -p ${SAMPLE_DEST_DIR}
+
+echo Processing sample code
+# Create the android_icu4j sample code
+java ${SRCGEN_JAVA_ARGS} -cp ${CLASSPATH} com.android.icu4j.srcgen.Icu4jSampleTransform ${SAMPLE_INPUT_FILES} ${SAMPLE_DEST_DIR}

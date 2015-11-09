@@ -367,7 +367,7 @@ public class DateTimePatternGenerator implements Freezable<DateTimePatternGenera
     /**
      * Return the best pattern matching the input skeleton. It is guaranteed to
      * have all of the fields in the skeleton.
-     * <p>Example code:{{@literal @}.jcite android.icu.samples.text.datetimepatterngenerator.DateTimePatternGeneratorSample:---getBestPatternExample}
+     * <p>Example code:{@sample external/icu/android_icu4j/src/samples/java/android/icu/samples/text/datetimepatterngenerator/DateTimePatternGeneratorSample.java getBestPatternExample}
      * @param skeleton The skeleton is a pattern containing only the variable fields.
      *            For example, "MMMdd" and "mmhh" are skeletons.
      * @return Best pattern matching the input skeleton.
@@ -476,7 +476,7 @@ public class DateTimePatternGenerator implements Freezable<DateTimePatternGenera
      * <p>
      * Note that single-field patterns (like "MMM") are automatically added, and
      * don't need to be added explicitly!
-     * * <p>Example code:{{@literal @}.jcite android.icu.samples.text.datetimepatterngenerator.DateTimePatternGeneratorSample:---addPatternExample}
+     * * <p>Example code:{@sample external/icu/android_icu4j/src/samples/java/android/icu/samples/text/datetimepatterngenerator/DateTimePatternGeneratorSample.java addPatternExample}
      * @param pattern Pattern to add.
      * @param override When existing values are to be overridden use true, otherwise
      *            use false.
@@ -659,7 +659,7 @@ public class DateTimePatternGenerator implements Freezable<DateTimePatternGenera
      * skeleton of "MMMMddhhmm", then the input pattern is adjusted to be
      * "dd-MMMM hh:mm". This is used internally to get the best match for the
      * input skeleton, but can also be used externally.
-     * <p>Example code:{{@literal @}.jcite android.icu.samples.text.datetimepatterngenerator.DateTimePatternGeneratorSample:---replaceFieldTypesExample}
+     * <p>Example code:{@sample external/icu/android_icu4j/src/samples/java/android/icu/samples/text/datetimepatterngenerator/DateTimePatternGeneratorSample.java replaceFieldTypesExample}
      * @param pattern input pattern
      * @param skeleton For the pattern to match to.
      * @return pattern adjusted to match the skeleton fields widths and subtypes.
