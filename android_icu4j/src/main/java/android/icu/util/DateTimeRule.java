@@ -15,7 +15,6 @@ import java.io.Serializable;
  * time in the day.
  * 
  * @hide Only a subset of ICU is exposed in Android
- * @hide All android.icu classes are currently hidden
  */
 public class DateTimeRule implements Serializable {
 

@@ -17,7 +17,6 @@ import android.icu.lang.UCharacter;
 
 /**
  * @hide Only a subset of ICU is exposed in Android
- * @hide All android.icu classes are currently hidden
  */
 public class XMLRecordWriter implements RecordWriter {
     private Writer w;

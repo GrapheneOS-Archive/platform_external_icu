@@ -31,7 +31,6 @@ package android.icu.util;
  * }
  * </pre>
  * @author synwee
- * @hide All android.icu classes are currently hidden
  */
 public interface ValueIterator
 {

@@ -19,7 +19,6 @@ package android.icu.util;
  * @see java.lang.Number
  * @see Currency
  * @author Alan Liu
- * @hide All android.icu classes are currently hidden
  */
 public class CurrencyAmount extends Measure {
     

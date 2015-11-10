@@ -38,7 +38,6 @@ import android.icu.util.ByteArrayWrapper;
  * See class documentation for Collator.</p>
  * @see RuleBasedCollator
  * @see CollationKey
- * @hide All android.icu classes are currently hidden
  */
 public final class RawCollationKey extends ByteArrayWrapper
 {

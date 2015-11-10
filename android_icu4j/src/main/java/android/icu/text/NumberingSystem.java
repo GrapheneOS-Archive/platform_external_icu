@@ -30,7 +30,6 @@ import android.icu.util.UResourceBundleIterator;
  * as Hebrew numbering or Chinese numbering.
  *
  * @author       John Emmons
- * @hide All android.icu classes are currently hidden
  */
 public class NumberingSystem {
 

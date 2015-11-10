@@ -26,7 +26,6 @@ import java.util.NoSuchElementException;
  *
  * This is the second common version of a Unicode trie (hence the name Trie2).
  * @hide Only a subset of ICU is exposed in Android
- * @hide All android.icu classes are currently hidden
  * 
  */
 public abstract class Trie2 implements Iterable<Trie2.Range> {

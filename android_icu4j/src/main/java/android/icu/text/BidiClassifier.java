@@ -34,7 +34,6 @@ package android.icu.text;
  *
  * @see Bidi#setCustomClassifier
  * @hide Only a subset of ICU is exposed in Android
- * @hide All android.icu classes are currently hidden
  */
 
 public /*abstract*/ class BidiClassifier {

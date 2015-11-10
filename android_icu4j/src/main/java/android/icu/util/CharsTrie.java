@@ -27,7 +27,6 @@ import android.icu.util.BytesTrie.Result;
  *
  * @author Markus W. Scherer
  * @hide Only a subset of ICU is exposed in Android
- * @hide All android.icu classes are currently hidden
  */
 public final class CharsTrie implements Cloneable, Iterable<CharsTrie.Entry> {
     /**

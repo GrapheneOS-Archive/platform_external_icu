@@ -50,7 +50,6 @@ import android.icu.impl.UTS46;
  * ToASCII(ToASCII(ToASCII...(ToASCII(string))) == ToASCII(string).
  * 
  * @author Ram Viswanadha, Markus Scherer
- * @hide All android.icu classes are currently hidden
  */
 public abstract class IDNA {
     /** 

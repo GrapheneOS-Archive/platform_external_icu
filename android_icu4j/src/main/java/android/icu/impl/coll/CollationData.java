@@ -26,7 +26,6 @@ import android.icu.util.ICUException;
  *
  * Includes data for the collation base (root/default), aliased if this is not the base.
  * @hide Only a subset of ICU is exposed in Android
- * @hide All android.icu classes are currently hidden
  */
 public final class CollationData {
     // Note: The ucadata.icu loader could discover the reserved ranges by setting an array

@@ -126,7 +126,6 @@ import android.icu.util.ICUCloneNotSupportedException;
  * between characters returned by next() and previous() and the indices
  * passed to and returned from setIndex() and getIndex().
  * It is for this reason that Normalizer does not implement the CharacterIterator interface.
- * @hide All android.icu classes are currently hidden
  */
 public final class Normalizer implements Cloneable {
     // The input text and our position in it

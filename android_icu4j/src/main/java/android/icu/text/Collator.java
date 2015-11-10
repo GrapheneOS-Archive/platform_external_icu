@@ -129,7 +129,6 @@ import android.icu.util.VersionInfo;
 * @see RuleBasedCollator
 * @see CollationKey
 * @author Syn Wee Quek
- * @hide All android.icu classes are currently hidden
 */
 public abstract class Collator implements Comparator<Object>, Freezable<Collator>, Cloneable
 {

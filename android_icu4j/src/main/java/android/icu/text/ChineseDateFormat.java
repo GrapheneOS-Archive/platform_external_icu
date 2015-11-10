@@ -43,7 +43,6 @@ import android.icu.util.ULocale;
  * @author Alan Liu
  * @deprecated ICU 50 Use SimpleDateFormat instead.
  * @hide Only a subset of ICU is exposed in Android
- * @hide All android.icu classes are currently hidden
  */
 @Deprecated
 public class ChineseDateFormat extends SimpleDateFormat {

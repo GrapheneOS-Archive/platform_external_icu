@@ -57,7 +57,6 @@ import android.icu.util.ICUUncheckedIOException;
  * complete: There may be more boundaries that could be returned.
  * Different functions may return different boundaries.
  * @author Markus W. Scherer
- * @hide All android.icu classes are currently hidden
  */
 public abstract class Normalizer2 {
     /**

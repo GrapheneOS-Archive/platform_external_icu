@@ -18,7 +18,6 @@ import java.util.TimeZone;
  * <p>
  * None of the operations on PeriodBuilder change the current builder.
  * @hide Only a subset of ICU is exposed in Android
- * @hide All android.icu classes are currently hidden
  */
 public interface PeriodBuilder {
   /**

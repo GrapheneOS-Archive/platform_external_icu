@@ -16,7 +16,6 @@ import java.security.PrivilegedAction;
  * a given class. getClassLoader always returns a non-null ClassLoader
  * even a class is loaded through the bootstrap class loader of JRE.
  * @hide Only a subset of ICU is exposed in Android
- * @hide All android.icu classes are currently hidden
  */
 public class ClassLoaderUtil {
 

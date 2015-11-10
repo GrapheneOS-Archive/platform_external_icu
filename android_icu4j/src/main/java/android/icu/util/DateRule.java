@@ -22,7 +22,6 @@ import java.util.Date;
  * @see SimpleDateRule
  * @hide Only a subset of ICU is exposed in Android
  * @hide draft / provisional / internal are hidden on Android
- * @hide All android.icu classes are currently hidden
  */
 public interface DateRule
 {

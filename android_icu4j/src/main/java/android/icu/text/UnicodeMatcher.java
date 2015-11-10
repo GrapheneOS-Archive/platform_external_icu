@@ -10,7 +10,6 @@ package android.icu.text;
 /**
  * <code>UnicodeMatcher</code> defines a protocol for objects that can
  * match a range of characters in a Replaceable string.
- * @hide All android.icu classes are currently hidden
  */
 public interface UnicodeMatcher {
 

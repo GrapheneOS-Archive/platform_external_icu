@@ -248,7 +248,6 @@ import android.icu.util.ULocale.Category;
  * 
  *
  * </pre>
- * @hide All android.icu classes are currently hidden
  */
 
 public class DateIntervalFormat extends UFormat {

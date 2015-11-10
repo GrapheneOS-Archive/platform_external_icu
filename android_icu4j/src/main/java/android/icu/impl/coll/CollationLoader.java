@@ -27,7 +27,6 @@ import android.icu.util.UResourceBundle;
 /**
  * Convenience string denoting the Collation data tree
  * @hide Only a subset of ICU is exposed in Android
- * @hide All android.icu classes are currently hidden
  */
 public final class CollationLoader {
 

@@ -166,7 +166,6 @@ import android.icu.util.ULocale.Category;
  * @see          Calendar
  * @see          TimeZone
  * @author David Goldsmith, Mark Davis, Chen-Lieh Huang, Alan Liu
- * @hide All android.icu classes are currently hidden
  */
 public class GregorianCalendar extends Calendar {
     // jdk1.4.2 serialver

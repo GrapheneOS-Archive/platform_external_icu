@@ -55,7 +55,6 @@ package android.icu.text;
  * </code>
  * </p>
  * @hide Only a subset of ICU is exposed in Android
- * @hide All android.icu classes are currently hidden
  *
  */
 

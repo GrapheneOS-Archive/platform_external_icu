@@ -22,7 +22,6 @@ import android.icu.util.Output;
  * @deprecated This API is ICU internal only.
  * @hide Only a subset of ICU is exposed in Android
  * @hide draft / provisional / internal are hidden on Android
- * @hide All android.icu classes are currently hidden
  */
 @Deprecated
 public final class PluralRanges implements Freezable<PluralRanges>, Comparable<PluralRanges> {

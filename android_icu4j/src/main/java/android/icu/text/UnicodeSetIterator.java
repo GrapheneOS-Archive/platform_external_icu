@@ -36,7 +36,6 @@ import java.util.Iterator;
  * <p><b>Warning: </b>For speed, UnicodeSet iteration does not check for concurrent modification. 
  * Do not alter the UnicodeSet while iterating.
  * @author M. Davis
- * @hide All android.icu classes are currently hidden
  */
 public class UnicodeSetIterator {
     

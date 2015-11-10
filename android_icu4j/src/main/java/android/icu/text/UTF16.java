@@ -77,7 +77,6 @@ package android.icu.text;
  * 
  * @author Mark Davis, with help from Markus Scherer
  * @hide Only a subset of ICU is exposed in Android
- * @hide All android.icu classes are currently hidden
  */
 
 public final class UTF16 {

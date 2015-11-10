@@ -28,7 +28,6 @@ import android.icu.util.VersionInfo;
  *
  * For the file format documentation see ICU4C's source/common/uresdata.h file.
  * @hide Only a subset of ICU is exposed in Android
- * @hide All android.icu classes are currently hidden
  */
 public final class ICUResourceBundleReader {
     /**

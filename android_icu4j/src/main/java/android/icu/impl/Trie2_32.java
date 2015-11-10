@@ -27,7 +27,6 @@ import java.nio.ByteBuffer;
  * the intent that applications might gain a little extra performance, when compared
  * with calling the same methods via the abstract UTrie2 base class.
  * @hide Only a subset of ICU is exposed in Android
- * @hide All android.icu classes are currently hidden
  */
 
 public class Trie2_32 extends Trie2 {

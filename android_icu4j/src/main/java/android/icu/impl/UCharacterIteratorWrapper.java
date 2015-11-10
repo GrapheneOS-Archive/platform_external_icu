@@ -17,7 +17,6 @@ import android.icu.text.UCharacterIterator;
  * CharacterIterator protocol
  * @author ram
  * @hide Only a subset of ICU is exposed in Android
- * @hide All android.icu classes are currently hidden
  */
 public class UCharacterIteratorWrapper implements CharacterIterator{
     

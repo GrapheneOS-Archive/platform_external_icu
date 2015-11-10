@@ -28,7 +28,6 @@ import java.util.List;
  * NotifyListener should cast the listener to the appropriate 
  * type and call the appropriate method on the listener.
  * @hide Only a subset of ICU is exposed in Android
- * @hide All android.icu classes are currently hidden
  */
 public abstract class ICUNotifier {
     private final Object notifyLock = new Object();

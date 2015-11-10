@@ -32,7 +32,6 @@ import android.icu.impl.PatternProps;
  *
  * @author Alan Liu
  * @hide Only a subset of ICU is exposed in Android
- * @hide All android.icu classes are currently hidden
  */
 public class ResourceReader implements Closeable {
     private BufferedReader reader = null;

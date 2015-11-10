@@ -29,7 +29,6 @@ package android.icu.impl;
  *    \u3001-\u3003\u3008-\u3020\u3030\uFD3E\uFD3F\uFE45\uFE46]
  * @author mscherer
  * @hide Only a subset of ICU is exposed in Android
- * @hide All android.icu classes are currently hidden
  */
 public final class PatternProps {
     /**

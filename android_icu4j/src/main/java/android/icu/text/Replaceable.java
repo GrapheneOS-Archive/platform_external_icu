@@ -51,7 +51,6 @@ package android.icu.text;
  * <p>Copyright &copy; IBM Corporation 1999.  All rights reserved.
  *
  * @author Alan Liu
- * @hide All android.icu classes are currently hidden
  */
 public interface Replaceable {
     /**

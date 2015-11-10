@@ -14,7 +14,6 @@ import android.icu.lang.UCharacter;
  * collections.  It retains case information, but its equals() and
  * hashCode() methods ignore case.
  * @hide Only a subset of ICU is exposed in Android
- * @hide All android.icu classes are currently hidden
  */
 public class CaseInsensitiveString {
     

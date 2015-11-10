@@ -31,7 +31,6 @@ import android.icu.impl.duration.impl.DataRecord.ScopeData;
  * An instance of PeriodFormatterData is usually created by requesting
  * data for a given locale from an PeriodFormatterDataService.
  * @hide Only a subset of ICU is exposed in Android
- * @hide All android.icu classes are currently hidden
  */
 public class PeriodFormatterData {
   final DataRecord dr;

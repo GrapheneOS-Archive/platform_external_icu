@@ -164,7 +164,6 @@ import android.icu.util.ULocale;
  * includes all values. Using 'within' with a range_list consisting entirely of values is the same as using 'in' (it's
  * not an error).
  * </p>
- * @hide All android.icu classes are currently hidden
  */
 public class PluralRules implements Serializable {
 

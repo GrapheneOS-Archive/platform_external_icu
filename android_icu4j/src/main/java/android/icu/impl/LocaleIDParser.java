@@ -19,7 +19,6 @@ import android.icu.impl.locale.AsciiUtil;
 /**
  * Utility class to parse and normalize locale ids (including POSIX style)
  * @hide Only a subset of ICU is exposed in Android
- * @hide All android.icu classes are currently hidden
  */
 public final class LocaleIDParser {
     

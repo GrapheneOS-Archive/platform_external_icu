@@ -633,13 +633,6 @@ public class Icu4jTransform {
 
       List<Rule> rulesList = Lists.newArrayList(repackageRules);
       rulesList.addAll(Arrays.asList(apiDocsRules));
-
-      // Comment/remove the lines below to make ICU part of the Android public API.
-      rulesList.add(
-          // AST change: Hide every public class until we're ready to make the Android subset
-          // public.
-          createOptionalRule(new HidePublicClasses(Collections.<TypeLocator>emptyList(),
-              "All android.icu classes are currently hidden")));
       return rulesList;
     }
 

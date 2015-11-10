@@ -75,7 +75,6 @@ package android.icu.math;
  *
  * @see     BigDecimal
  * @author  Mike Cowlishaw
- * @hide All android.icu classes are currently hidden
  */
 
 public final class MathContext implements java.io.Serializable{
