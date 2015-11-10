@@ -23,7 +23,6 @@ import android.icu.util.OutputInt;
  */
 /**
  * @hide Only a subset of ICU is exposed in Android
- * @hide All android.icu classes are currently hidden
  */
 public class UnicodeSetStringSpan {
 

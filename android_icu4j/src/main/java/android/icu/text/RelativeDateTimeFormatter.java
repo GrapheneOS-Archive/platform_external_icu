@@ -61,7 +61,6 @@ import android.icu.util.UResourceBundle;
  * <p>
  * In the future, we may add more forms, such as abbreviated/short forms
  * (3 secs ago), and relative day periods ("yesterday afternoon"), etc.
- * @hide All android.icu classes are currently hidden
  */
 public final class RelativeDateTimeFormatter {
     

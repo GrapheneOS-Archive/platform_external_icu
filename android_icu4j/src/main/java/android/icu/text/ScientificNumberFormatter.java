@@ -31,7 +31,6 @@ import android.icu.util.ULocale;
  * </pre>
  *
  * @hide draft / provisional / internal are hidden on Android
- * @hide All android.icu classes are currently hidden
  *
  */
 public final class ScientificNumberFormatter {

@@ -10,7 +10,6 @@ package android.icu.text;
 /**
  * Display context settings.
  * Note, the specific numeric values are internal and may change.
- * @hide All android.icu classes are currently hidden
  */
 public enum DisplayContext {
     /**

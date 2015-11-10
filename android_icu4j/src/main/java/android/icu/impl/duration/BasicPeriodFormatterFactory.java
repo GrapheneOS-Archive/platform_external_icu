@@ -53,7 +53,6 @@ import android.icu.impl.duration.impl.PeriodFormatterDataService;
  *
  * </ul>
  * @hide Only a subset of ICU is exposed in Android
- * @hide All android.icu classes are currently hidden
  */
 public class BasicPeriodFormatterFactory implements PeriodFormatterFactory {
   private final PeriodFormatterDataService ds;

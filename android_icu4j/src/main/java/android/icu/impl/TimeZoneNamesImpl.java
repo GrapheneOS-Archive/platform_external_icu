@@ -36,7 +36,6 @@ import android.icu.util.UResourceBundle;
 /**
  * The standard ICU implementation of TimeZoneNames
  * @hide Only a subset of ICU is exposed in Android
- * @hide All android.icu classes are currently hidden
  */
 public class TimeZoneNamesImpl extends TimeZoneNames {
 

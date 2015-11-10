@@ -30,7 +30,6 @@ import android.icu.util.ICUUncheckedIOException;
  * after the locale, for example, 'pfd_he_IL.txt' specifies an period formatter
  * data file for Hebrew as spoken in Israel. Data is in a JSON-like format.
  * @hide Only a subset of ICU is exposed in Android
- * @hide All android.icu classes are currently hidden
  */
 public class ResourceBasedPeriodFormatterDataService extends
         PeriodFormatterDataService {

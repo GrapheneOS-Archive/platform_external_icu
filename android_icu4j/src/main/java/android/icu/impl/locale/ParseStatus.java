@@ -9,7 +9,6 @@ package android.icu.impl.locale;
 
 /**
  * @hide Only a subset of ICU is exposed in Android
- * @hide All android.icu classes are currently hidden
  */
 public class ParseStatus {
     int _parseLength = 0;

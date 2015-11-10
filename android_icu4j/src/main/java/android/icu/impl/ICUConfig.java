@@ -18,7 +18,6 @@ import java.util.Properties;
 /**
  * ICUConfig is a class used for accessing ICU4J runtime configuration.
  * @hide Only a subset of ICU is exposed in Android
- * @hide All android.icu classes are currently hidden
  */
 public class ICUConfig {
     public static final String CONFIG_PROPS_FILE = "/android/icu/ICUConfig.properties";

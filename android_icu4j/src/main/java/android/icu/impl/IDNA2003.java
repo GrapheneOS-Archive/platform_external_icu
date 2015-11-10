@@ -17,7 +17,6 @@ import android.icu.text.UCharacterIterator;
  * while extending that class to support IDNA2008/UTS #46 as well.
  * @author Ram Viswanadha
  * @hide Only a subset of ICU is exposed in Android
- * @hide All android.icu classes are currently hidden
  */
 public final class IDNA2003 {
     /* IDNA ACE Prefix is "xn--" */

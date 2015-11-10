@@ -106,7 +106,6 @@ import android.icu.util.UResourceBundle;
  *
  * @see android.icu.text.UFormat
  * @author Alan Liu
- * @hide All android.icu classes are currently hidden
  */
 public class MeasureFormat extends UFormat {
 

@@ -15,7 +15,6 @@ package android.icu.util;
  * <p>This currently extends {@link RuntimeException},
  * but when ICU can rely on Java 8 this class should be changed to extend
  * java.io.UncheckedIOException instead.
- * @hide All android.icu classes are currently hidden
  */
 public class ICUUncheckedIOException extends RuntimeException {
     private static final long serialVersionUID = 1210263498513384449L;

@@ -21,7 +21,6 @@ import android.icu.util.ICUException;
 
 /**
  * @hide Only a subset of ICU is exposed in Android
- * @hide All android.icu classes are currently hidden
  */
 @SuppressWarnings("deprecation")
 public class StringRange {

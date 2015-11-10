@@ -38,7 +38,6 @@ import android.icu.util.VersionInfo;
 * <a href=UCharacter.html>UCharacter</a>.</p>
 * @author Syn Wee Quek
 * @hide Only a subset of ICU is exposed in Android
- * @hide All android.icu classes are currently hidden
 */
 
 public final class UCharacterProperty

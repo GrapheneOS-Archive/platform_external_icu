@@ -27,7 +27,6 @@ import java.util.concurrent.ConcurrentHashMap;
  *
  * @author Markus Scherer, Mark Davis
  * @hide Only a subset of ICU is exposed in Android
- * @hide All android.icu classes are currently hidden
  */
 public abstract class SoftCache<K, V, D> extends CacheBase<K, V, D> {
     @Override

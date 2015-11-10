@@ -32,7 +32,6 @@ import android.icu.util.ULocale.Category;
  * locale information,
  * plural rule of the locale,
  * currency plural pattern of the locale.
- * @hide All android.icu classes are currently hidden
  */
 
 public class CurrencyPluralInfo implements Cloneable, Serializable {

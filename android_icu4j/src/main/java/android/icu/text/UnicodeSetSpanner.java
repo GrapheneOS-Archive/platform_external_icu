@@ -38,7 +38,6 @@ import android.icu.util.OutputInt;
  * <tr><th>NOT_CONTAINED</th><td>xxxabcyyy|</td></tr>
  * </table>
  * </p>The entire string is traversed.
- * @hide All android.icu classes are currently hidden
  */
 public class UnicodeSetSpanner {
 

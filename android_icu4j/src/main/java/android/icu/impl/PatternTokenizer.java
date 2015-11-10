@@ -20,7 +20,6 @@ import android.icu.text.UnicodeSet;
  * <li>Other characters are treated as literals</li>
  * </ul>
  * @hide Only a subset of ICU is exposed in Android
- * @hide All android.icu classes are currently hidden
  */
 public class PatternTokenizer {
     // settings used in the interpretation of the pattern

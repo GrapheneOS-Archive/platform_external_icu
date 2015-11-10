@@ -40,7 +40,6 @@ import android.icu.util.ULocale;
  * It is not recommended to use this class directly, instead
  * use android.icu.text.TimeZoneFormat.
  * @hide Only a subset of ICU is exposed in Android
- * @hide All android.icu classes are currently hidden
  */
 public class TimeZoneGenericNames implements Serializable, Freezable<TimeZoneGenericNames> {
 

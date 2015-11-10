@@ -32,7 +32,6 @@ import android.icu.text.UnicodeSet;
 * Note : 0 - 0x1F are control characters without names in Unicode 3.0
 * @author Syn Wee Quek
 * @hide Only a subset of ICU is exposed in Android
- * @hide All android.icu classes are currently hidden
 */
 
 public final class UCharacterName

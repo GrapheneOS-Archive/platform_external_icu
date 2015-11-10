@@ -51,7 +51,6 @@ import android.icu.util.ULocale.Category;
  * <tt>java.util.Currency</tt> but it has a completely independent
  * implementation, and adds features not present in the JDK.
  * @author Alan Liu
- * @hide All android.icu classes are currently hidden
  */
 public class Currency extends MeasureUnit {
     private static final long serialVersionUID = -5839973855554750484L;

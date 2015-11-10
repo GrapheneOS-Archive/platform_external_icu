@@ -14,7 +14,6 @@ package android.icu.text;
  * <a href="Transliterator.html" title="class in android.icu.text"><code>Transliterator</code></a>
  * to only process selected characters through a
  * transformation.
- * @hide All android.icu classes are currently hidden
  */
 public abstract class UnicodeFilter implements UnicodeMatcher {
 

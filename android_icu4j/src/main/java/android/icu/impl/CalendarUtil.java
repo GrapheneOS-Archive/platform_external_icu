@@ -22,7 +22,6 @@ import android.icu.util.UResourceBundle;
  * package for sharing some calendar internal code for calendar
  * and date format.
  * @hide Only a subset of ICU is exposed in Android
- * @hide All android.icu classes are currently hidden
  */
 public class CalendarUtil {
 

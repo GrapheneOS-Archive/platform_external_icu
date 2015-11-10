@@ -26,7 +26,6 @@ import java.io.Reader;
  *        The natural ordering is based on the match confidence value.
  *
  * @hide Only a subset of ICU is exposed in Android
- * @hide All android.icu classes are currently hidden
  */
 public class CharsetMatch implements Comparable<CharsetMatch> {
 

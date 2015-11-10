@@ -26,7 +26,6 @@ import android.icu.text.UTF16;
  *
  * <p>2015-sep-03 TODO: Only used in android.icu.dev.test.format, move there.
  * @hide Only a subset of ICU is exposed in Android
- * @hide All android.icu classes are currently hidden
  */
 public class TokenIterator {
 

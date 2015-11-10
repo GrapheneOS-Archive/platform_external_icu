@@ -76,7 +76,6 @@ import android.icu.util.ByteArrayWrapper;
  *
  * @author Syn Wee Quek
  * @hide Only a subset of ICU is exposed in Android
- * @hide All android.icu classes are currently hidden
  */
 public class BOCSU 
 {      

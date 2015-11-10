@@ -91,7 +91,6 @@ import android.icu.impl.SimpleCache;
  * </note>
  * @author ram
  * @hide Only a subset of ICU is exposed in Android
- * @hide All android.icu classes are currently hidden
  */
 public abstract class UResourceBundle extends ResourceBundle {
 

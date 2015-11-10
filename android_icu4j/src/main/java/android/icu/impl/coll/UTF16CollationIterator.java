@@ -17,7 +17,6 @@ package android.icu.impl.coll;
  * Handles normalized UTF-16 text, with length or NUL-terminated.
  * Unnormalized text is handled by a subclass.
  * @hide Only a subset of ICU is exposed in Android
- * @hide All android.icu classes are currently hidden
  */
 public class UTF16CollationIterator extends CollationIterator {
     /**

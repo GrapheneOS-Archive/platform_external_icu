@@ -13,7 +13,6 @@ package android.icu.impl;
  * A Trie2Writable is a modifiable, or build-time Trie2.
  * Functions for reading data from the Trie are all from class Trie2.
  * @hide Only a subset of ICU is exposed in Android
- * @hide All android.icu classes are currently hidden
  * 
  */
 public class Trie2Writable extends Trie2 {

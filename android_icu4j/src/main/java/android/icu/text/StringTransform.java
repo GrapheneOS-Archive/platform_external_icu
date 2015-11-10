@@ -12,7 +12,6 @@ package android.icu.text;
  *
  * @author markdavis
  * @hide Only a subset of ICU is exposed in Android
- * @hide All android.icu classes are currently hidden
  *
  */
 public interface StringTransform extends Transform<String,String> {

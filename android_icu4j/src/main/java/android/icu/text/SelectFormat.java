@@ -145,7 +145,6 @@ import android.icu.impl.PatternProps;
  * Produces the output:<br/>
  * <code>Kirti est all&#u00E9;e &#u00E0; Paris.</code>
  * </p>
- * @hide All android.icu classes are currently hidden
  */
 
 public class SelectFormat extends Format{

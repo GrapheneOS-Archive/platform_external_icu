@@ -63,7 +63,6 @@ import java.util.ResourceBundle;
  * @deprecated ICU 2.4. This class may be removed or modified.
  * @hide Only a subset of ICU is exposed in Android
  * @hide draft / provisional / internal are hidden on Android
- * @hide All android.icu classes are currently hidden
  */
 @Deprecated
 // prepare to deprecate in next release

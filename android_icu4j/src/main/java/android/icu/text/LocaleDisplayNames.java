@@ -25,7 +25,6 @@ import android.icu.util.ULocale;
  * Returns display names of ULocales and components of ULocales. For
  * more information on language, script, region, variant, key, and
  * values, see {@link android.icu.util.ULocale}.
- * @hide All android.icu classes are currently hidden
  */
 public abstract class LocaleDisplayNames {
     /**
