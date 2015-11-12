@@ -16,10 +16,11 @@
 package com.android.icu4j.srcgen;
 
 import com.google.common.collect.Lists;
-import com.google.currysrc.api.transform.AstTransformer;
-import com.google.currysrc.api.transform.JavadocUtils;
-import com.google.currysrc.api.transform.ast.BodyDeclarationLocater;
-import com.google.currysrc.api.transform.ast.StartPositionComparator;
+import com.google.currysrc.api.process.Context;
+import com.google.currysrc.api.process.JavadocUtils;
+import com.google.currysrc.api.process.Processor;
+import com.google.currysrc.api.process.ast.BodyDeclarationLocator;
+import com.google.currysrc.api.process.ast.StartPositionComparator;
 
 import org.eclipse.jdt.core.dom.BodyDeclaration;
 import org.eclipse.jdt.core.dom.CompilationUnit;
@@ -33,18 +34,18 @@ import java.util.List;
  * blacklist. Used to hide all the deprecated methods that existed when Android made ICU public,
  * but does not touch those that were deprecated afterwards.
  */
-public class HideOriginalDeprecatedSet implements AstTransformer {
+public class HideOriginalDeprecatedSet implements Processor {
   private static final String HIDDEN_TAG_COMMENT = "@hide original deprecated declaration";
-  private final List<BodyDeclarationLocater> blacklist;
+  private final List<BodyDeclarationLocator> blacklist;
 
-  public HideOriginalDeprecatedSet(List<BodyDeclarationLocater> blacklist) {
+  public HideOriginalDeprecatedSet(List<BodyDeclarationLocator> blacklist) {
     this.blacklist = blacklist;
   }
 
-  @Override public void transform(CompilationUnit cu, ASTRewrite rewrite) {
+  @Override public void process(Context context, CompilationUnit cu) {
     List<BodyDeclaration> matchingNodes = Lists.newArrayList();
     // This is inefficient but it is very simple.
-    for (BodyDeclarationLocater locater : blacklist) {
+    for (BodyDeclarationLocator locater : blacklist) {
       BodyDeclaration bodyDeclaration = locater.find(cu);
       if (bodyDeclaration != null) {
         matchingNodes.add(bodyDeclaration);
@@ -52,6 +53,7 @@ public class HideOriginalDeprecatedSet implements AstTransformer {
     }
     // Tackle nodes in reverse order to avoid messing up the ASTNode offsets.
     Collections.sort(matchingNodes, new StartPositionComparator());
+    ASTRewrite rewrite = context.rewrite();
     for (BodyDeclaration bodyDeclaration : Lists.reverse(matchingNodes)) {
       JavadocUtils.addJavadocTag(rewrite, bodyDeclaration, HIDDEN_TAG_COMMENT);
     }

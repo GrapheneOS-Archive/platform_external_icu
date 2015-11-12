@@ -13,23 +13,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.google.currysrc.api;
+package com.google.currysrc.api.process;
 
-import com.google.currysrc.api.input.InputFileGenerator;
-import com.google.currysrc.api.output.OutputSourceFileGenerator;
-import com.google.currysrc.api.process.Rule;
-
-import java.io.File;
-import java.util.List;
+import org.eclipse.jdt.core.dom.rewrite.ASTRewrite;
+import org.eclipse.jface.text.Document;
 
 /**
- * Rules to apply to a set of source files.
+ * Enables a {@link Processor} to request what it needs to support transformation and/or reporting.
+ * Only one method of {@link #rewrite()} or {@link #document()} can be called.
  */
-public interface Rules {
+public interface Context {
+  /** Returns an ASTRewrite for AST modifications. */
+  ASTRewrite rewrite();
 
-  InputFileGenerator getInputFileGenerator();
+  /** Returns a Document for direct text manipulation. */
+  Document document();
 
-  List<Rule> getRuleList(File file);
-
-  OutputSourceFileGenerator getOutputSourceFileGenerator();
+  /** Returns an object that can be used to report information or warnings. */
+  Reporter reporter();
 }

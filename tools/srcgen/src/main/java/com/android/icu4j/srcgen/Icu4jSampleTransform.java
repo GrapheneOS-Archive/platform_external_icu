@@ -21,8 +21,8 @@ import com.google.currysrc.api.Rules;
 import com.google.currysrc.api.input.InputFileGenerator;
 import com.google.currysrc.api.output.BasicOutputSourceFileGenerator;
 import com.google.currysrc.api.output.OutputSourceFileGenerator;
-import com.google.currysrc.api.transform.TransformRule;
-import com.google.currysrc.transformers.ReplaceTextCommentScanner;
+import com.google.currysrc.api.process.Rule;
+import com.google.currysrc.processors.ReplaceTextCommentScanner;
 
 import java.io.File;
 import java.util.List;
@@ -52,7 +52,7 @@ public class Icu4jSampleTransform {
 
     private final InputFileGenerator inputFileGenerator;
 
-    private final List<TransformRule> transformRules;
+    private final List<Rule> rules;
 
     private final BasicOutputSourceFileGenerator outputSourceFileGenerator;
 
@@ -64,14 +64,14 @@ public class Icu4jSampleTransform {
       String[] inputDirNames = new String[args.length - 1];
       System.arraycopy(args, 0, inputDirNames, 0, args.length - 1);
       inputFileGenerator = Icu4jTransformRules.createInputFileGenerator(inputDirNames);
-      transformRules = createTransformRules();
+      rules = createTransformRules();
       outputSourceFileGenerator = Icu4jTransformRules.createOutputFileGenerator(
           args[args.length - 1]);
     }
 
     @Override
-    public List<TransformRule> getTransformRules(File ignored) {
-      return transformRules;
+    public List<Rule> getRuleList(File ignored) {
+      return rules;
     }
 
     @Override
@@ -84,19 +84,19 @@ public class Icu4jSampleTransform {
       return outputSourceFileGenerator;
     }
 
-    private static List<TransformRule> createTransformRules() {
-      List<TransformRule> transformRules =
+    private static List<Rule> createTransformRules() {
+      List<Rule> rules =
           Lists.newArrayList(Icu4jTransform.Icu4jRules.getRepackagingRules());
 
       // Switch all embedded comment references from com.ibm.icu to android.icu.
-      transformRules.add(
+      rules.add(
           createOptionalRule(new ReplaceTextCommentScanner(
               Icu4jTransform.ORIGINAL_ICU_PACKAGE, Icu4jTransform.ANDROID_ICU_PACKAGE)));
 
       // Change sample jcite begin / end tags ---XYZ to Androids 'BEGIN(XYZ)' / 'END(XYZ)'
-      transformRules.add(createOptionalRule(new TranslateJcite.BeginEndTagsHandler()));
+      rules.add(createOptionalRule(new TranslateJcite.BeginEndTagsHandler()));
 
-      return transformRules;
+      return rules;
     }
   }
 }
