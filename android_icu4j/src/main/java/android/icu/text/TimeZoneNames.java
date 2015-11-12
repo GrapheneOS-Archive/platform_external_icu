@@ -405,7 +405,7 @@ public abstract class TimeZoneNames implements Serializable {
 
     /**
      * @deprecated This API is ICU internal only.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
@@ -413,7 +413,7 @@ public abstract class TimeZoneNames implements Serializable {
 
     /**
      * @deprecated This API is ICU internal only.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
@@ -448,7 +448,7 @@ public abstract class TimeZoneNames implements Serializable {
      * The super class of <code>TimeZoneNames</code> service factory classes.
      * 
      * @deprecated This API is ICU internal only.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
@@ -460,7 +460,7 @@ public abstract class TimeZoneNames implements Serializable {
          *            The display locale
          * @return An instance of <code>TimeZoneNames</code>.
          * @deprecated This API is ICU internal only.
-         * @hide original deprecated method
+         * @hide original deprecated declaration
          * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
@@ -469,7 +469,7 @@ public abstract class TimeZoneNames implements Serializable {
         /**
          * Sole constructor
          * @deprecated This API is ICU internal only.
-         * @hide original deprecated method
+         * @hide original deprecated declaration
          * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated

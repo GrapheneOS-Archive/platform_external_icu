@@ -27,4 +27,25 @@ public interface BodyDeclarationLocater {
   boolean matches(BodyDeclaration node);
 
   BodyDeclaration find(CompilationUnit cu);
+
+  /**
+   * The prefix used to identify the {@link BodyDeclarationLocater} in string form. e.g. "method",
+   * "field".
+   */
+  String getStringFormType();
+
+  /**
+   * Generates a string form of the locater that identifies the declaration being targeted. e.g.
+   * {@code com.foo.Bar#baz}, {@code com.foo.Bar$Baz}, {@code com.foo.Bar#baz()}. Note, it differs
+   * from Javadoc locaters used in {@literal @}see and {@literal @}link by using '$' to delineate
+   * classes from package separators. Used by {@link BodyDeclarationLocaters}.
+   */
+  String getStringFormTarget();
+
+  /**
+   * Returns the {@link TypeLocater} for the type declaration associated with this
+   * locater. e.g. for a {@link MethodLocater} it returns a type locater that can find the
+   * declaring type of the method. When called on a {@link TypeLocater} it returns {@code this}.
+   */
+  TypeLocater getTypeLocater();
 }

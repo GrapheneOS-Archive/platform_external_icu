@@ -61,7 +61,9 @@ public class Icu4jSampleTransform {
         throw new IllegalArgumentException("At least 2 arguments required.");
       }
 
-      inputFileGenerator = Icu4jTransformRules.createInputFileGenerator(args);
+      String[] inputDirNames = new String[args.length - 1];
+      System.arraycopy(args, 0, inputDirNames, 0, args.length - 1);
+      inputFileGenerator = Icu4jTransformRules.createInputFileGenerator(inputDirNames);
       transformRules = createTransformRules();
       outputSourceFileGenerator = Icu4jTransformRules.createOutputFileGenerator(
           args[args.length - 1]);

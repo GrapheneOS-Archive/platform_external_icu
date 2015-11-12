@@ -1429,7 +1429,7 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      * @return the localized script name.
      * @see Category#DISPLAY
      * @deprecated This API is ICU internal only.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
@@ -1451,7 +1451,7 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      * @param displayLocale the locale in which to display the name.
      * @return the localized script name.
      * @deprecated This API is ICU internal only.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
@@ -1476,7 +1476,7 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      * @param displayLocaleID the id of the locale in which to display the name.
      * @return the localized script name.
      * @deprecated This API is ICU internal only.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
@@ -1499,7 +1499,7 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      * @param displayLocale the locale in which to display the name.
      * @return the localized script name.
      * @deprecated This API is ICU internal only.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
@@ -2340,7 +2340,7 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
     /** 
      * Options for minimizeSubtags. 
      * @deprecated This API is ICU internal only.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */ 
     @Deprecated
@@ -2389,7 +2389,7 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      * @param fieldToFavor Indicate which should be preferred, when either the region <b>or</b> the script could be suppressed, but not both. 
      * @return The minimized ULocale instance. 
      * @deprecated This API is ICU internal only.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */ 
     @Deprecated

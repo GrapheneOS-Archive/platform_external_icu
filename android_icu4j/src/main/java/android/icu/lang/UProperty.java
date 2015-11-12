@@ -34,7 +34,7 @@ public interface UProperty
     /**
      * Special value indicating undefined property.
      * @deprecated This API is ICU internal only.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
@@ -686,7 +686,7 @@ public interface UProperty
      * Deprecated string property ISO_Comment.
      * Corresponds to UCharacter.getISOComment(int).
      * @deprecated ICU 49
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      */
     @Deprecated
     public static final int ISO_COMMENT = 0x4003;
@@ -739,7 +739,7 @@ public interface UProperty
      * Beginning with ICU 49, ICU APIs return null or an empty string for this property.
      * Corresponds to UCharacter.getName1_0(int).
      * @deprecated ICU 49
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      */
     @Deprecated
     public static final int UNICODE_1_NAME = 0x400B;

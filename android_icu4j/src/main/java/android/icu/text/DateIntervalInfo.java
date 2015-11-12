@@ -320,7 +320,7 @@ public class DateIntervalInfo implements Cloneable, Freezable<DateIntervalInfo>,
      * wants to create their own interval patterns and use them to create
      * date interval formatter.
      * @deprecated This API is ICU internal only.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
@@ -701,7 +701,7 @@ public class DateIntervalInfo implements Cloneable, Freezable<DateIntervalInfo>,
      *                         is earlier date or later date
      * @return                 pattern info object
      * @deprecated This API is ICU internal only.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
@@ -1026,7 +1026,7 @@ public class DateIntervalInfo implements Cloneable, Freezable<DateIntervalInfo>,
     
     /**
      * @deprecated This API is ICU internal only.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
@@ -1041,7 +1041,7 @@ public class DateIntervalInfo implements Cloneable, Freezable<DateIntervalInfo>,
     /**
      * Get the internal patterns, with a deep clone for safety.
      * @deprecated This API is ICU internal only.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated

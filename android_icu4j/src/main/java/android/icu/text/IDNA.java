@@ -64,7 +64,7 @@ public abstract class IDNA {
      * <p>This option is ignored by the UTS46 implementation.
      * (UTS #46 disallows unassigned code points.)
      * @deprecated ICU 55 Use UTS 46 instead via {@link #getUTS46Instance(int)}.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      */
     @Deprecated
     public static final int ALLOW_UNASSIGNED = 1;
@@ -255,7 +255,7 @@ public abstract class IDNA {
     // avoiding the allocation of another worker object.
     /**
      * @deprecated This API is ICU internal only.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
@@ -264,7 +264,7 @@ public abstract class IDNA {
     }
     /**
      * @deprecated This API is ICU internal only.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
@@ -273,7 +273,7 @@ public abstract class IDNA {
     }
     /**
      * @deprecated This API is ICU internal only.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
@@ -282,7 +282,7 @@ public abstract class IDNA {
     }
     /**
      * @deprecated This API is ICU internal only.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
@@ -291,7 +291,7 @@ public abstract class IDNA {
     }
     /**
      * @deprecated This API is ICU internal only.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
@@ -303,7 +303,7 @@ public abstract class IDNA {
     }
     /**
      * @deprecated This API is ICU internal only.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
@@ -312,7 +312,7 @@ public abstract class IDNA {
     }
     /**
      * @deprecated This API is ICU internal only.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
@@ -321,7 +321,7 @@ public abstract class IDNA {
     }
     /**
      * @deprecated This API is ICU internal only.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
@@ -330,7 +330,7 @@ public abstract class IDNA {
     }
     /**
      * @deprecated This API is ICU internal only.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
@@ -339,7 +339,7 @@ public abstract class IDNA {
     }
     /**
      * @deprecated This API is ICU internal only.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
@@ -348,7 +348,7 @@ public abstract class IDNA {
     }
     /**
      * @deprecated This API is ICU internal only.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
@@ -440,7 +440,7 @@ public abstract class IDNA {
     /**
      * Sole constructor. (For invocation by subclass constructors, typically implicit.)
      * @deprecated This API is ICU internal only.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
@@ -473,7 +473,7 @@ public abstract class IDNA {
      * @return StringBuffer the converted String
      * @throws StringPrepParseException When an error occurs for parsing a string.
      * @deprecated ICU 55 Use UTS 46 instead via {@link #getUTS46Instance(int)}.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      */
     @Deprecated
     public static StringBuffer convertToASCII(String src, int options)
@@ -505,7 +505,7 @@ public abstract class IDNA {
      *                              the operation will fail with ParseException
      * @return StringBuffer the converted String
      * @deprecated ICU 55 Use UTS 46 instead via {@link #getUTS46Instance(int)}.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      */
     @Deprecated
     public static StringBuffer convertToASCII(StringBuffer src, int options)
@@ -537,7 +537,7 @@ public abstract class IDNA {
      *                              the operation will fail with ParseException
      * @return StringBuffer the converted String
      * @deprecated ICU 55 Use UTS 46 instead via {@link #getUTS46Instance(int)}.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      */
     @Deprecated
     public static StringBuffer convertToASCII(UCharacterIterator src, int options)
@@ -573,7 +573,7 @@ public abstract class IDNA {
      *                              the operation will fail with ParseException
      * @return StringBuffer the converted String
      * @deprecated ICU 55 Use UTS 46 instead via {@link #getUTS46Instance(int)}.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      */
     @Deprecated
     public static StringBuffer convertIDNToASCII(UCharacterIterator src, int options)
@@ -609,7 +609,7 @@ public abstract class IDNA {
      *                              the operation will fail with ParseException
      * @return StringBuffer the converted String
      * @deprecated ICU 55 Use UTS 46 instead via {@link #getUTS46Instance(int)}.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      */
     @Deprecated
     public static StringBuffer convertIDNToASCII(StringBuffer src, int options)
@@ -645,7 +645,7 @@ public abstract class IDNA {
      *                              the operation will fail with ParseException
      * @return StringBuffer the converted String
      * @deprecated ICU 55 Use UTS 46 instead via {@link #getUTS46Instance(int)}.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      */
     @Deprecated
     public static StringBuffer convertIDNToASCII(String src,int options)
@@ -677,7 +677,7 @@ public abstract class IDNA {
      *                              the operation will fail with ParseException
      * @return StringBuffer the converted String
      * @deprecated ICU 55 Use UTS 46 instead via {@link #getUTS46Instance(int)}.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      */
     @Deprecated
     public static StringBuffer convertToUnicode(String src, int options)
@@ -709,7 +709,7 @@ public abstract class IDNA {
      *                              the operation will fail with ParseException
      * @return StringBuffer the converted String
      * @deprecated ICU 55 Use UTS 46 instead via {@link #getUTS46Instance(int)}.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      */
     @Deprecated
     public static StringBuffer convertToUnicode(StringBuffer src, int options)
@@ -741,7 +741,7 @@ public abstract class IDNA {
      *                              the operation will fail with ParseException
      * @return StringBuffer the converted String
      * @deprecated ICU 55 Use UTS 46 instead via {@link #getUTS46Instance(int)}.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      */
     @Deprecated
     public static StringBuffer convertToUnicode(UCharacterIterator src, int options)
@@ -774,7 +774,7 @@ public abstract class IDNA {
      *                              the operation will fail with ParseException
      * @return StringBuffer the converted String
      * @deprecated ICU 55 Use UTS 46 instead via {@link #getUTS46Instance(int)}.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      */
     @Deprecated
     public static StringBuffer convertIDNToUnicode(UCharacterIterator src, int options)
@@ -807,7 +807,7 @@ public abstract class IDNA {
      *                              the operation will fail with ParseException
      * @return StringBuffer the converted String
      * @deprecated ICU 55 Use UTS 46 instead via {@link #getUTS46Instance(int)}.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      */
     @Deprecated
     public static StringBuffer convertIDNToUnicode(StringBuffer src, int options)
@@ -840,7 +840,7 @@ public abstract class IDNA {
      *                              the operation will fail with ParseException
      * @return StringBuffer the converted String
      * @deprecated ICU 55 Use UTS 46 instead via {@link #getUTS46Instance(int)}.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      */
     @Deprecated
     public static StringBuffer convertIDNToUnicode(String src, int options)
@@ -874,7 +874,7 @@ public abstract class IDNA {
      *                              the operation will fail with ParseException
      * @return 0 if the strings are equal, > 0 if s1 > s2 and < 0 if s1 < s2
      * @deprecated ICU 55 Use UTS 46 instead via {@link #getUTS46Instance(int)}.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      */
     @Deprecated
     public static int compare(StringBuffer s1, StringBuffer s2, int options)
@@ -911,7 +911,7 @@ public abstract class IDNA {
      *                              the operation will fail with ParseException
      * @return 0 if the strings are equal, > 0 if s1 > s2 and < 0 if s1 < s2
      * @deprecated ICU 55 Use UTS 46 instead via {@link #getUTS46Instance(int)}.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      */
     @Deprecated
     public static int compare(String s1, String s2, int options) throws StringPrepParseException{
@@ -946,7 +946,7 @@ public abstract class IDNA {
      *                              the operation will fail with ParseException
      * @return 0 if the strings are equal, > 0 if i1 > i2 and < 0 if i1 < i2
      * @deprecated ICU 55 Use UTS 46 instead via {@link #getUTS46Instance(int)}.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      */
     @Deprecated
     public static int compare(UCharacterIterator s1, UCharacterIterator s2, int options)

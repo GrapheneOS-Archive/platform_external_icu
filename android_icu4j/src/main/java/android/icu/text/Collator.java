@@ -335,7 +335,7 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
     /**
      * @return this, for chaining
      * @deprecated This API is ICU internal only.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
@@ -1187,7 +1187,7 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
      * The base class just calls compare(left.toString(), right.toString()).
      * Subclasses should instead implement this method and have the String API call this method.
      * @deprecated This API is ICU internal only.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
@@ -1287,7 +1287,7 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
      * @see #getVariableTop
      * @see RuleBasedCollator#setAlternateHandlingShifted
      * @deprecated ICU 53 Call {@link #setMaxVariable(int)} instead.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      */
     @Deprecated
     public abstract int setVariableTop(String varTop);
@@ -1312,7 +1312,7 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
      * @see #getVariableTop
      * @see #setVariableTop(String)
      * @deprecated ICU 53 Call setMaxVariable() instead.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      */
     @Deprecated
     public abstract void setVariableTop(int varTop);

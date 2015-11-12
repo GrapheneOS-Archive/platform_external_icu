@@ -21,6 +21,7 @@ import org.eclipse.jdt.core.dom.CompilationUnit;
 import org.eclipse.jdt.core.dom.FieldDeclaration;
 import org.eclipse.jdt.core.dom.VariableDeclarationFragment;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -28,6 +29,8 @@ import java.util.List;
  * declaration.
  */
 public final class FieldLocater implements BodyDeclarationLocater {
+
+  static final String LOCATER_TYPE_NAME = "field";
 
   private final TypeLocater typeLocater;
 
@@ -40,6 +43,10 @@ public final class FieldLocater implements BodyDeclarationLocater {
   public FieldLocater(TypeLocater typeLocater, String fieldName) {
     this.typeLocater = typeLocater;
     this.fieldName = fieldName;
+  }
+
+  @Override public TypeLocater getTypeLocater() {
+    return typeLocater;
   }
 
   @Override
@@ -78,6 +85,26 @@ public final class FieldLocater implements BodyDeclarationLocater {
       }
     }
     return null;
+  }
+
+  @Override public String getStringFormType() {
+    return LOCATER_TYPE_NAME;
+  }
+
+  @Override public String getStringFormTarget() {
+    return typeLocater.getStringFormTarget() + "#" + fieldName;
+  }
+
+  /**
+   * Returns the names of the fields declared in the supplied {@code fieldDeclarationNode}.
+   */
+  public static List<String> getFieldNames(FieldDeclaration fieldDeclarationNode) {
+    List<VariableDeclarationFragment> fieldDeclarations = fieldDeclarationNode.fragments();
+    List<String> fieldNames = new ArrayList<>(fieldDeclarations.size());
+    for (VariableDeclarationFragment fieldDeclaration : fieldDeclarations) {
+      fieldNames.add(fieldDeclaration.getName().getIdentifier());
+    }
+    return fieldNames;
   }
 
   @Override

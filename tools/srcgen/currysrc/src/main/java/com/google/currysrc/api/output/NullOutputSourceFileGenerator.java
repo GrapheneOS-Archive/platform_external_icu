@@ -30,7 +30,7 @@ public final class NullOutputSourceFileGenerator implements OutputSourceFileGene
   protected NullOutputSourceFileGenerator() {
   }
 
-  @Override public File generate(CompilationUnit cu) {
+  @Override public File generate(CompilationUnit cu, File inputFile) {
     return null;
   }
 }
