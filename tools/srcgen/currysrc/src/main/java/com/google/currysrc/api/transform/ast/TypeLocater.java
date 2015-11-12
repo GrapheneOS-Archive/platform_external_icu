@@ -15,6 +15,7 @@
  */
 package com.google.currysrc.api.transform.ast;
 
+import com.google.common.base.Joiner;
 import com.google.common.base.Splitter;
 import com.google.common.collect.Lists;
 import com.google.currysrc.api.match.TypeName;
@@ -33,8 +34,9 @@ import java.util.List;
  */
 public final class TypeLocater implements BodyDeclarationLocater {
 
-  private final PackageMatcher packageMatcher;
+  static final String LOCATER_TYPE_NAME = "type";
 
+  private final PackageMatcher packageMatcher;
   private final List<String> classNameElements;
 
   /**
@@ -67,6 +69,44 @@ public final class TypeLocater implements BodyDeclarationLocater {
     if (classNameElements.isEmpty()) {
       throw new IllegalArgumentException("Empty className");
     }
+  }
+
+  /**
+   * Creates a {@code TypeLocater} for the specified {@link ASTNode}.
+   */
+  public TypeLocater(final AbstractTypeDeclaration typeDeclaration) {
+    if (typeDeclaration.isLocalTypeDeclaration()) {
+      throw new IllegalArgumentException("Local types not supported: " + typeDeclaration);
+    }
+
+    CompilationUnit cu = (CompilationUnit) typeDeclaration.getRoot();
+    this.packageMatcher = new PackageMatcher(PackageMatcher.getPackageName(cu));
+
+    // Traverse the type declarations towards the root, building up a list of type names in
+    // reverse order.
+    List<String> typeNames = Lists.newArrayList();
+    AbstractTypeDeclaration currentNode = typeDeclaration;
+    while (typeDeclaration != null) {
+      typeNames.add(currentNode.getName().getFullyQualifiedName());
+      // Handle nested / inner classes.
+      ASTNode parentNode = currentNode.getParent();
+      if (parentNode != null) {
+        if (parentNode == cu) {
+          break;
+        }
+        if (!(parentNode instanceof AbstractTypeDeclaration)) {
+          throw new AssertionError(
+              "Unexpected parent for nested/inner class: parent=" + parentNode + " of "
+                  + currentNode);
+        }
+      }
+      currentNode = (AbstractTypeDeclaration) parentNode;
+    }
+    this.classNameElements = Lists.reverse(typeNames);
+  }
+
+  @Override public TypeLocater getTypeLocater() {
+    return this;
   }
 
   @Override
@@ -119,6 +159,14 @@ public final class TypeLocater implements BodyDeclarationLocater {
     return null;
   }
 
+  @Override public String getStringFormType() {
+    return LOCATER_TYPE_NAME;
+  }
+
+  @Override public String getStringFormTarget() {
+    return packageMatcher.toStringForm() + "." + Joiner.on('$').join(classNameElements);
+  }
+
   private AbstractTypeDeclaration findNested(Iterator<String> classNameIterator,
       AbstractTypeDeclaration typeDeclaration) {
     if (!classNameIterator.hasNext()) {
@@ -146,7 +194,34 @@ public final class TypeLocater implements BodyDeclarationLocater {
         '}';
   }
 
+  /** Returns the enclosing type for nested/inner classes, {@code null} otherwise. */
+  public static AbstractTypeDeclaration findEnclosingTypeDeclaration(
+      AbstractTypeDeclaration typeDeclaration) {
+    if (typeDeclaration.isPackageMemberTypeDeclaration()) {
+      return null;
+    }
+    ASTNode enclosingNode = typeDeclaration.getParent();
+    return enclosingNode instanceof AbstractTypeDeclaration
+        ? (AbstractTypeDeclaration) enclosingNode : null;
+  }
+
+  /**
+   * Finds the type declaration associated with the supplied {@code bodyDeclaration}. Can
+   * return {@code bodyDeclaration} if the node itself is a type declaration. Can return null (e.g.)
+   * if the bodyDeclaration is declared on an anonymous type.
+   */
+  public static AbstractTypeDeclaration findTypeDeclarationNode(BodyDeclaration bodyDeclaration) {
+    if (bodyDeclaration instanceof AbstractTypeDeclaration) {
+      return (AbstractTypeDeclaration) bodyDeclaration;
+    }
+    ASTNode parentNode = bodyDeclaration.getParent();
+    if (parentNode instanceof AbstractTypeDeclaration) {
+      return (AbstractTypeDeclaration) parentNode;
+    }
+    return null;
+  }
+
   private static List<String> classNameElements(String className) {
-    return Splitter.on("$").splitToList(className);
+    return Splitter.on('$').splitToList(className);
   }
 }

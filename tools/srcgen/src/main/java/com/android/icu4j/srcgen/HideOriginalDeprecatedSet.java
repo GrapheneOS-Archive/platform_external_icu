@@ -34,7 +34,7 @@ import java.util.List;
  * but does not touch those that were deprecated afterwards.
  */
 public class HideOriginalDeprecatedSet implements AstTransformer {
-  private static final String HIDDEN_TAG_COMMENT = "@hide original deprecated method";
+  private static final String HIDDEN_TAG_COMMENT = "@hide original deprecated declaration";
   private final List<BodyDeclarationLocater> blacklist;
 
   public HideOriginalDeprecatedSet(List<BodyDeclarationLocater> blacklist) {

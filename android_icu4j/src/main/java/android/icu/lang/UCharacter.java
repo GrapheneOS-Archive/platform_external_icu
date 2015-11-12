@@ -3048,7 +3048,7 @@ public final class UCharacter implements ECharacterCategory, ECharacterDirection
      * @return true if the code point is a space character as
      * defined by java.lang.Character.isSpace.
      * @deprecated ICU 3.4 (Java)
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      */
     @Deprecated
     public static boolean isSpace(int ch) {
@@ -3163,7 +3163,7 @@ public final class UCharacter implements ECharacterCategory, ECharacterDirection
      * @param cp the code point
      * @return true if the code point can start a java identifier.
      * @deprecated ICU 3.4 (Java)
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      */
     @Deprecated
     public static boolean isJavaLetter(int cp) {
@@ -3177,7 +3177,7 @@ public final class UCharacter implements ECharacterCategory, ECharacterDirection
      * @param cp the code point
      * @return true if the code point can continue a java identifier.
      * @deprecated ICU 3.4 (Java)
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      */
     @Deprecated
     public static boolean isJavaLetterOrDigit(int cp) {
@@ -3762,7 +3762,7 @@ public final class UCharacter implements ECharacterCategory, ECharacterDirection
      * @param ch the code point for which to get the name
      * @return null
      * @deprecated ICU 49
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      */
     @Deprecated
     public static String getName1_0(int ch)
@@ -3815,7 +3815,7 @@ public final class UCharacter implements ECharacterCategory, ECharacterDirection
      *           It must be the case that {@code 0 <= ch <= 0x10ffff}.
      * @return null
      * @deprecated ICU 49
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      */
     @Deprecated
     public static String getISOComment(int ch)
@@ -3846,7 +3846,7 @@ public final class UCharacter implements ECharacterCategory, ECharacterDirection
      * @return -1
      * @deprecated ICU 49
      * @see #getName1_0(int)
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      */
     @Deprecated
     public static int getCharFromName1_0(String name){
@@ -4070,7 +4070,7 @@ public final class UCharacter implements ECharacterCategory, ECharacterDirection
      * @param valueAlias    Same as {@link #getPropertyValueEnum(int, CharSequence)}
      * @return returns UProperty.UNDEFINED if the value is not valid, otherwise the value.
      * @deprecated This API is ICU internal only.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
@@ -4585,7 +4585,7 @@ public final class UCharacter implements ECharacterCategory, ECharacterDirection
      * @param str the source string to change 
      * @return the modified string, or the original if no modifications were necessary. 
      * @deprecated ICU internal only
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */ 
     @Deprecated 
@@ -4948,7 +4948,7 @@ public final class UCharacter implements ECharacterCategory, ECharacterDirection
      * @return an empty iterator
      * @deprecated ICU 49
      * @see #getName1_0(int)
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      */
     @Deprecated
     public static ValueIterator getName1_0Iterator(){
@@ -5126,7 +5126,7 @@ public final class UCharacter implements ECharacterCategory, ECharacterDirection
      * @param nameChoice The choice of the name.
      * @return value as string
      * @deprecated This API is ICU internal only.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated

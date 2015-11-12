@@ -620,7 +620,7 @@ public class Currency extends MeasureUnit {
      * null if there is no match
      *
      * @deprecated This API is ICU internal only.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated

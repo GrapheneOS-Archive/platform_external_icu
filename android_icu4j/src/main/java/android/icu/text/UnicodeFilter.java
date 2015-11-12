@@ -63,7 +63,7 @@ public abstract class UnicodeFilter implements UnicodeMatcher {
      * can't tell that it's synthetic.)
      *
      * @deprecated This API is ICU internal only.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated

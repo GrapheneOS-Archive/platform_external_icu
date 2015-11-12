@@ -15,9 +15,12 @@
  */
 package com.google.currysrc.api.transform.ast;
 
+import com.google.common.base.Joiner;
+
 import org.eclipse.jdt.core.dom.MethodDeclaration;
 import org.eclipse.jdt.core.dom.SingleVariableDeclaration;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -32,20 +35,40 @@ public final class ParameterMatcher {
   }
 
   public boolean matches(MethodDeclaration methodDeclaration) {
-    List<SingleVariableDeclaration> actualParameters =
-        (List<SingleVariableDeclaration>) methodDeclaration.parameters();
-    if (actualParameters.size() != parameterTypes.size()) {
+    List<String> actualParameterTypes = getParameterTypeNames(methodDeclaration);
+    if (actualParameterTypes.size() != parameterTypes.size()) {
       return false;
     }
-
     for (int i = 0; i < parameterTypes.size(); i++) {
-      String actualTypeName = actualParameters.get(i).getType().toString();
+      String actualTypeName = actualParameterTypes.get(i);
       String expectedTypeName = parameterTypes.get(i);
       if (!actualTypeName.equals(expectedTypeName)) {
         return false;
       }
     }
     return true;
+  }
+
+  /**
+   * Returns the (simple) type names of the parameters for the supplied {@code methodDeclaration}.
+   */
+  public static List<String> getParameterTypeNames(MethodDeclaration methodDeclaration) {
+    List<SingleVariableDeclaration> parameters =
+        (List<SingleVariableDeclaration>) methodDeclaration.parameters();
+    List<String> toReturn = new ArrayList<>(parameters.size());
+    for (SingleVariableDeclaration singleVariableDeclaration : parameters) {
+      // toString() does the right thing in all cases.
+      String actualTypeName = singleVariableDeclaration.getType().toString();
+      toReturn.add(actualTypeName);
+    }
+    return toReturn;
+  }
+
+  /**
+   * Returns the parameter types of this matcher in a comma separated list.
+   */
+  public String toStringForm() {
+    return Joiner.on(",").join(parameterTypes);
   }
 
   @Override

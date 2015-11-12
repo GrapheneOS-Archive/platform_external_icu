@@ -32,8 +32,10 @@ import com.google.currysrc.api.transform.ast.TypeLocater;
 import org.eclipse.jdt.core.dom.AbstractTypeDeclaration;
 import org.eclipse.jdt.core.dom.BodyDeclaration;
 import org.eclipse.jdt.core.dom.CompilationUnit;
+import org.eclipse.jdt.core.dom.EnumConstantDeclaration;
 import org.eclipse.jdt.core.dom.Javadoc;
 import org.eclipse.jdt.core.dom.TagElement;
+import org.eclipse.jdt.core.dom.TypeDeclaration;
 import org.eclipse.jface.text.Document;
 
 import java.io.File;
@@ -132,8 +134,8 @@ public class CaptureDeprecatedElements {
         AbstractTypeDeclaration matchedType = publicClassLocater.find(cu);
         if (matchedType != null) {
           if (isDeprecated(matchedType)) {
-            String typeName = BodyDeclarationLocaters.toLocaterStringForm(matchedType);
-            deprecatedElements.add(typeName);
+            List<String> locaterStrings = BodyDeclarationLocaters.toLocaterStringForms(matchedType);
+            deprecatedElements.addAll(locaterStrings);
           }
           trackDeprecationsRecursively(matchedType);
         }
@@ -143,8 +145,8 @@ public class CaptureDeprecatedElements {
     private void trackDeprecationsRecursively(AbstractTypeDeclaration matchedType) {
       for (BodyDeclaration bodyDeclaration
           : (List<BodyDeclaration>) matchedType.bodyDeclarations()) {
-        if (isApiVisible(bodyDeclaration) && isDeprecated(bodyDeclaration)) {
-          deprecatedElements.add(BodyDeclarationLocaters.toLocaterStringForm(bodyDeclaration));
+        if (isApiVisible(matchedType, bodyDeclaration) && isDeprecated(bodyDeclaration)) {
+          deprecatedElements.addAll(BodyDeclarationLocaters.toLocaterStringForms(bodyDeclaration));
           if (bodyDeclaration instanceof AbstractTypeDeclaration) {
             trackDeprecationsRecursively((AbstractTypeDeclaration) bodyDeclaration);
           }
@@ -152,8 +154,21 @@ public class CaptureDeprecatedElements {
       }
     }
 
-    private boolean isApiVisible(BodyDeclaration bodyDeclaration) {
-      // public elements and those that might be inherited are ones that might show up in the APIs.
+    private boolean isApiVisible(
+        AbstractTypeDeclaration matchedType, BodyDeclaration bodyDeclaration) {
+      // public members and those that might be inherited are ones that might show up in the APIs.
+      if (matchedType instanceof TypeDeclaration) {
+        TypeDeclaration typeDeclaration = (TypeDeclaration) matchedType;
+        if (typeDeclaration.isInterface()) {
+          // Interface declarations are public regardless of whether they are explicitly marked as
+          // such.
+          return true;
+        }
+      }
+      if (bodyDeclaration instanceof EnumConstantDeclaration) {
+        return true;
+      }
+
       return (bodyDeclaration.getModifiers() & (Modifier.PROTECTED | Modifier.PUBLIC)) > 0;
     }
 

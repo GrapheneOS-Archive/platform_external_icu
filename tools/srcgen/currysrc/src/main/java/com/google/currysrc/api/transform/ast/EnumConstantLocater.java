@@ -29,6 +29,8 @@ import java.util.List;
  */
 public final class EnumConstantLocater implements BodyDeclarationLocater {
 
+  static final String LOCATER_TYPE_NAME = "enumConstant";
+
   private final TypeLocater enumTypeLocater;
 
   private final String constantName;
@@ -40,6 +42,10 @@ public final class EnumConstantLocater implements BodyDeclarationLocater {
   public EnumConstantLocater(TypeLocater enumTypeLocater, String constantName) {
     this.enumTypeLocater = enumTypeLocater;
     this.constantName = constantName;
+  }
+
+  @Override public TypeLocater getTypeLocater() {
+    return enumTypeLocater;
   }
 
   @Override
@@ -59,7 +65,6 @@ public final class EnumConstantLocater implements BodyDeclarationLocater {
 
   @Override
   public BodyDeclaration find(CompilationUnit cu) {
-
     AbstractTypeDeclaration typeDeclaration = enumTypeLocater.find(cu);
     if (typeDeclaration == null || !(typeDeclaration instanceof EnumDeclaration)) {
       return null;
@@ -71,6 +76,14 @@ public final class EnumConstantLocater implements BodyDeclarationLocater {
       }
     }
     return null;
+  }
+
+  @Override public String getStringFormType() {
+    return LOCATER_TYPE_NAME;
+  }
+
+  @Override public String getStringFormTarget() {
+    return enumTypeLocater.getStringFormTarget() + "#" + constantName;
   }
 
   @Override

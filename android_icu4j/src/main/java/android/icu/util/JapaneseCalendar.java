@@ -619,7 +619,7 @@ public class JapaneseCalendar extends GregorianCalendar {
     /**
      * {@inheritDoc}
      * @deprecated This API is ICU internal only.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated

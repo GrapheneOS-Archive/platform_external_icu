@@ -3,7 +3,7 @@
 # This is a version of the upstream UCharacter docs from ICU56 with some changes:
 # Removal of paragraphs that make no sense on Android.
 # Escaped '<' (&lt;)
---class:android.icu.lang.UCharacter
+--type:android.icu.lang.UCharacter
 /**
  * {@icuenhanced java.lang.Character}.{@icu _usage_}
  *

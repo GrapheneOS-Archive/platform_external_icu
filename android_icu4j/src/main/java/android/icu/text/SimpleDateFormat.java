@@ -1022,7 +1022,7 @@ public class SimpleDateFormat extends DateFormat {
 
     /**
      * @deprecated This API is ICU internal only.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
@@ -1062,7 +1062,7 @@ public class SimpleDateFormat extends DateFormat {
      * @param formatConfig the format configuration
      * @return A SimpleDateFormat instance
      * @deprecated This API is ICU internal only.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
@@ -1476,7 +1476,7 @@ public class SimpleDateFormat extends DateFormat {
      * adds fieldNum and capitalizationContext parameters.
      *
      * @deprecated This API is ICU internal only.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
@@ -1500,7 +1500,7 @@ public class SimpleDateFormat extends DateFormat {
      * has to pass it in to us.
      *
      * @deprecated This API is ICU internal only.
- * @hide original deprecated method
+ * @hide original deprecated declaration
  * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
@@ -2024,7 +2024,7 @@ public class SimpleDateFormat extends DateFormat {
      * Internal high-speed method.  Reuses a StringBuffer for results
      * instead of creating a String on the heap for each call.
      * @deprecated This API is ICU internal only.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
@@ -3790,7 +3790,7 @@ public class SimpleDateFormat extends DateFormat {
      *                                     pattern letter
      * @return                  Reference to 'appendTo' parameter.
      * @deprecated This API is ICU internal only.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
