@@ -207,7 +207,7 @@ public class CurrencyPluralInfo implements Cloneable, Serializable {
      * Mock implementation of hashCode(). This implementation always returns a constant
      * value. When Java assertion is enabled, this method triggers an assertion failure.
      * @deprecated This API is ICU internal only.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated

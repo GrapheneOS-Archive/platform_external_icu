@@ -383,7 +383,7 @@ public final class RuleBasedCollator extends Collator {
      * @see #setHiraganaQuaternaryDefault
      * @see #isHiraganaQuaternary
      * @deprecated ICU 50 Implementation detail, cannot be set via API, was removed from implementation.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      */
     @Deprecated
     public void setHiraganaQuaternary(boolean flag) {
@@ -402,7 +402,7 @@ public final class RuleBasedCollator extends Collator {
      * @see #setHiraganaQuaternary(boolean)
      * @see #isHiraganaQuaternary
      * @deprecated ICU 50 Implementation detail, cannot be set via API, was removed from implementation.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      */
     @Deprecated
     public void setHiraganaQuaternaryDefault() {
@@ -788,7 +788,7 @@ public final class RuleBasedCollator extends Collator {
      * @see #getVariableTop
      * @see RuleBasedCollator#setAlternateHandlingShifted
      * @deprecated ICU 53 Call {@link #setMaxVariable(int)} instead.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      */
     @Override
     @Deprecated
@@ -827,7 +827,7 @@ public final class RuleBasedCollator extends Collator {
      * @see #getVariableTop
      * @see #setVariableTop(String)
      * @deprecated ICU 53 Call setMaxVariable() instead.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      */
     @Override
     @Deprecated
@@ -1186,7 +1186,7 @@ public final class RuleBasedCollator extends Collator {
      * Returns the CEs for the string.
      * @param str the string
      * @deprecated This API is ICU internal only.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
@@ -1329,7 +1329,7 @@ public final class RuleBasedCollator extends Collator {
      * @see #setHiraganaQuaternaryDefault
      * @see #setHiraganaQuaternary(boolean)
      * @deprecated ICU 50 Implementation detail, cannot be set via API, was removed from implementation.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      */
     @Deprecated
     public boolean isHiraganaQuaternary() {
@@ -1600,7 +1600,7 @@ public final class RuleBasedCollator extends Collator {
     /**
      * Compares two CharSequences.
      * @deprecated This API is ICU internal only.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
     @Override

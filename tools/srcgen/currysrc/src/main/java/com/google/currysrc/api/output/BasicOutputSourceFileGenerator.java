@@ -15,15 +15,14 @@
  */
 package com.google.currysrc.api.output;
 
-import org.eclipse.jdt.core.dom.*;
+import com.google.currysrc.api.transform.ast.PackageMatcher;
 
-import com.google.currysrc.api.output.OutputSourceFileGenerator;
+import org.eclipse.jdt.core.dom.CompilationUnit;
 
 import java.io.File;
-import java.util.List;
 
 /**
- * Generate the output source file name from a CompilationUnit's type information.
+ * Generate the output source file name from a CompilationUnit's package information.
  */
 public final class BasicOutputSourceFileGenerator implements OutputSourceFileGenerator {
 
@@ -34,30 +33,9 @@ public final class BasicOutputSourceFileGenerator implements OutputSourceFileGen
   }
 
   @Override
-  public File generate(CompilationUnit cu) {
-    PackageDeclaration outputPackage = cu.getPackage();
-    List<AbstractTypeDeclaration> types = (List<AbstractTypeDeclaration>) cu.types();
-    String sourceFileName;
-    if (types.isEmpty()) {
-      System.out.println("No types found in CompilationUnit. Assuming package-info.java");
-      sourceFileName = "package-info.java";
-    } else {
-      AbstractTypeDeclaration firstClass = types.get(0);
-      AbstractTypeDeclaration publicClass = null;
-      for (AbstractTypeDeclaration type : types) {
-        if ((type.getModifiers() & Modifier.PUBLIC) > 0) {
-          publicClass = type;
-          break;
-        }
-      }
-      AbstractTypeDeclaration sourceNameType = publicClass;
-      if (sourceNameType == null) {
-        sourceNameType = firstClass;
-      }
-      sourceFileName = sourceNameType.getName().getIdentifier() + ".java";
-    }
-
-    String fqn = outputPackage.getName().getFullyQualifiedName();
+  public File generate(CompilationUnit cu, File inputFile) {
+    String sourceFileName = inputFile.getName();
+    String fqn = PackageMatcher.getPackageName(cu);
     String packageSubDir = fqn.replace(".", File.separator);
     return new File(new File(baseDir, packageSubDir), sourceFileName);
   }

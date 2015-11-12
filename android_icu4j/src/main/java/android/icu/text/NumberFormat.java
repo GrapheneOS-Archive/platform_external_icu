@@ -1171,7 +1171,7 @@ public abstract class NumberFormat extends UFormat {
      * this method should never return null.
      * @return a non-null Currency
      * @deprecated This API is ICU internal only.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
@@ -1340,7 +1340,7 @@ public abstract class NumberFormat extends UFormat {
      * @param choice the pattern format.
      * @return the pattern
      * @deprecated ICU 3.4 subclassers should override getPattern(ULocale, int) instead of this method.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      */
     @Deprecated
     protected static String getPattern(Locale forLocale, int choice) {

@@ -24,5 +24,5 @@ import java.io.File;
  */
 public interface OutputSourceFileGenerator {
 
-  File generate(CompilationUnit cu);
+  File generate(CompilationUnit cu, File inputFile);
 }

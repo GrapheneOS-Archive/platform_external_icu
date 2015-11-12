@@ -28,6 +28,8 @@ import java.util.List;
  */
 public final class MethodLocater implements BodyDeclarationLocater {
 
+  static final String LOCATER_TYPE_NAME = "method";
+
   private final TypeLocater typeLocater;
 
   private final String methodName;
@@ -38,6 +40,10 @@ public final class MethodLocater implements BodyDeclarationLocater {
     this.typeLocater = typeLocater;
     this.methodName = methodName;
     this.parameterMatcher = new ParameterMatcher(parameterTypes);
+  }
+
+  @Override public TypeLocater getTypeLocater() {
+    return typeLocater;
   }
 
   @Override
@@ -69,6 +75,15 @@ public final class MethodLocater implements BodyDeclarationLocater {
       }
     }
     return null;
+  }
+
+  @Override public String getStringFormType() {
+    return LOCATER_TYPE_NAME;
+  }
+
+  @Override public String getStringFormTarget() {
+    return typeLocater.getStringFormTarget() + "#" + methodName
+        + "(" + parameterMatcher.toStringForm() + ")";
   }
 
   @Override

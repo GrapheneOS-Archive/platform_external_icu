@@ -1080,7 +1080,7 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
      * @see #WEEKEND_CEASE
      * @see #getDayOfWeekType
      * @deprecated ICU 54 use {@link #getWeekDataForRegion(String)}, {@link #getWeekData()}, {@link #setWeekData(WeekData)}
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      */
     @Deprecated
     public static final int WEEKDAY = 0;
@@ -1093,7 +1093,7 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
      * @see #WEEKEND_CEASE
      * @see #getDayOfWeekType
      * @deprecated  ICU 54 use {@link #getWeekDataForRegion(String)}, {@link #getWeekData()}, {@link #setWeekData(WeekData)}
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      */
     @Deprecated
     public static final int WEEKEND = 1;
@@ -1107,7 +1107,7 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
      * @see #WEEKEND_CEASE
      * @see #getDayOfWeekType
      * @deprecated ICU 54 use {@link #getWeekDataForRegion(String)}, {@link #getWeekData()}, {@link #setWeekData(WeekData)}
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      */
     @Deprecated
     public static final int WEEKEND_ONSET = 2;
@@ -1121,7 +1121,7 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
      * @see #WEEKEND_ONSET
      * @see #getDayOfWeekType
      * @deprecated ICU 54 use {@link #getWeekDataForRegion(String)}, {@link #getWeekData()}, {@link #setWeekData(WeekData)}
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      */
     @Deprecated
     public static final int WEEKEND_CEASE = 3;
@@ -2097,7 +2097,7 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
 
     /**
      * @deprecated This API is ICU internal only.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
@@ -2173,7 +2173,7 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
 
     /**
      * @deprecated This API is ICU internal only.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
@@ -3518,7 +3518,7 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
 
     /**
      * @deprecated This API is ICU internal only.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
@@ -3587,7 +3587,7 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
      * SimpleDateFormat factory method.
      *
      * @deprecated This API is ICU internal only.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
@@ -3606,7 +3606,7 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
          * Returns the pattern string
          * @return the format pattern string
          * @deprecated This API is ICU internal only.
-         * @hide original deprecated method
+         * @hide original deprecated declaration
          * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
@@ -3616,7 +3616,7 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
 
         /**
          * @deprecated This API is ICU internal only.
-         * @hide original deprecated method
+         * @hide original deprecated declaration
          * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
@@ -3628,7 +3628,7 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
          * Returns the calendar
          * @return the calendar
          * @deprecated This API is ICU internal only.
-         * @hide original deprecated method
+         * @hide original deprecated declaration
          * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
@@ -3640,7 +3640,7 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
          * Returns the locale
          * @return the locale
          * @deprecated This API is ICU internal only.
-         * @hide original deprecated method
+         * @hide original deprecated declaration
          * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
@@ -3652,7 +3652,7 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
          * Returns the format symbols
          * @return the format symbols
          * @deprecated This API is ICU internal only.
-         * @hide original deprecated method
+         * @hide original deprecated declaration
          * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
@@ -4354,7 +4354,7 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
      * @see #isWeekend(Date)
      * @see #isWeekend()
      * @deprecated ICU 54 use {@link #getWeekDataForRegion(String)}, {@link #getWeekData()}, {@link #setWeekData(WeekData)}
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      */
     @Deprecated
     public int getDayOfWeekType(int dayOfWeek) {
@@ -4400,7 +4400,7 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
      * @see #isWeekend(Date)
      * @see #isWeekend()
      * @deprecated ICU 54 use {@link #getWeekDataForRegion(String)}, {@link #getWeekData()}, {@link #setWeekData(WeekData)}
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      */
     @Deprecated
     public int getWeekendTransition(int dayOfWeek) {
@@ -6102,7 +6102,7 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
      * 
      * @return <code>true<code> if this calendar has a default century.
      * @deprecated This API is ICU internal only.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated

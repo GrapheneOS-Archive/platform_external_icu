@@ -379,7 +379,7 @@ public class DecimalFormatSymbols implements Cloneable, Serializable {
      * Returns the string used to represent minus sign.
      * @return the minus sign string
      * @deprecated This API is ICU internal only.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
@@ -557,7 +557,7 @@ public class DecimalFormatSymbols implements Cloneable, Serializable {
      * Returns the string used to represent plus sign.
      * @return the plus sign string
      * @deprecated This API is ICU internal only.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated

@@ -766,7 +766,7 @@ public class PluralFormat extends UFormat {
      * @deprecated ICU 50 This method clears the pattern and might create
      *             a different kind of PluralRules instance;
      *             use one of the constructors to create a new instance instead.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      */
     @Deprecated
     public void setLocale(ULocale ulocale) {

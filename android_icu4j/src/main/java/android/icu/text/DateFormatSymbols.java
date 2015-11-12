@@ -98,7 +98,7 @@ public class DateFormatSymbols implements Serializable, Cloneable {
      * <strong>[icu]</strong> Constant for context. NUMERIC context
      * is only supported for leapMonthPatterns.
      * @deprecated This API is ICU internal only.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
@@ -107,7 +107,7 @@ public class DateFormatSymbols implements Serializable, Cloneable {
     /**
      * <strong>[icu]</strong> Constant for context.
      * @deprecated This API is ICU internal only.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
@@ -138,7 +138,7 @@ public class DateFormatSymbols implements Serializable, Cloneable {
     /**
      * <strong>[icu]</strong> Constant for width.
      * @deprecated This API is ICU internal only.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
@@ -1101,7 +1101,7 @@ public class DateFormatSymbols implements Serializable, Cloneable {
      * @return          The leapMonthPattern, or null if not available for
      *                  this calendar.
      * @deprecated This API is ICU internal only.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
@@ -1155,7 +1155,7 @@ public class DateFormatSymbols implements Serializable, Cloneable {
      * @param context   The usage context: FORMAT, STANDALONE, NUMERIC.
      * @param width     The name width: WIDE, ABBREVIATED, NARROW.
      * @deprecated This API is ICU internal only.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
@@ -1480,7 +1480,7 @@ public class DateFormatSymbols implements Serializable, Cloneable {
      * @param desiredLocale The locale whose symbols are desired.
      * @param calData       The calendar resource data
      * @deprecated This API is ICU internal only.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
@@ -1912,7 +1912,7 @@ public class DateFormatSymbols implements Serializable, Cloneable {
      * <b>Note:</b>Because of the structural changes in the ICU locale bundle,
      * this API no longer works as described.  This method always returns null.
      * @deprecated ICU 4.0
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      */
     @Deprecated
     // This API was formerly @stable ICU 2.0
@@ -1935,7 +1935,7 @@ public class DateFormatSymbols implements Serializable, Cloneable {
      * <b>Note:</b>Because of the structural changes in the ICU locale bundle,
      * this API no longer works as described.  This method always returns null.
      * @deprecated ICU 4.0
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      */
     @Deprecated
     // This API was formerly @stable ICU 3.2
@@ -1953,7 +1953,7 @@ public class DateFormatSymbols implements Serializable, Cloneable {
      * this API no longer works as described.  This method always returns null.
      * @see #getDateFormatBundle(java.lang.Class, java.util.Locale)
      * @deprecated ICU 4.0
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      */
     @Deprecated
     // This API was formerly @stable ICU 2.2
@@ -1970,7 +1970,7 @@ public class DateFormatSymbols implements Serializable, Cloneable {
      * this API no longer works as described.  This method always returns null.
      * @see #getDateFormatBundle(java.lang.Class, java.util.Locale)
      * @deprecated ICU 4.0
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      */
     @Deprecated
     // This API was formerly @stable ICU 3.2
