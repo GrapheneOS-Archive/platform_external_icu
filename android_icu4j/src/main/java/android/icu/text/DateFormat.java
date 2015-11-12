@@ -969,7 +969,7 @@ public abstract class DateFormat extends UFormat {
      * List of all of the date skeleton constants for iteration.
      * Note that this is fragile; be sure to add any values that are added above.
      * @deprecated This API is ICU internal only.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
@@ -1061,7 +1061,7 @@ public abstract class DateFormat extends UFormat {
      * List of all of the time skeleton constants for iteration.
      * Note that this is fragile; be sure to add any values that are added above.
      * @deprecated This API is ICU internal only.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
@@ -1132,7 +1132,7 @@ public abstract class DateFormat extends UFormat {
      * List of all of the zone skeleton constants for iteration.
      * Note that this is fragile; be sure to add any values that are added above.
      * @deprecated This API is ICU internal only.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
@@ -1151,7 +1151,7 @@ public abstract class DateFormat extends UFormat {
     /**
      * <strong>[icu]</strong> Constant for date skeleton with standalone month.
      * @deprecated ICU 50 Use {@link #MONTH} instead.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      */
     @Deprecated
     public static final String STANDALONE_MONTH = "LLLL";
@@ -1159,7 +1159,7 @@ public abstract class DateFormat extends UFormat {
     /**
      * <strong>[icu]</strong> Constant for date skeleton with standalone abbreviated month.
      * @deprecated ICU 50 Use {@link #ABBR_MONTH} instead.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      */
     @Deprecated
     public static final String ABBR_STANDALONE_MONTH = "LLL";
@@ -1167,7 +1167,7 @@ public abstract class DateFormat extends UFormat {
     /**
      * <strong>[icu]</strong> Constant for date skeleton with hour, minute, and generic timezone.
      * @deprecated ICU 50 Use instead {@link #HOUR_MINUTE}+{@link #ABBR_GENERIC_TZ} or some other timezone presentation.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      */
     @Deprecated
     public static final String HOUR_MINUTE_GENERIC_TZ = "jmv";
@@ -1175,7 +1175,7 @@ public abstract class DateFormat extends UFormat {
     /**
      * <strong>[icu]</strong> Constant for date skeleton with hour, minute, and timezone.
      * @deprecated ICU 50 Use instead {@link #HOUR_MINUTE}+{@link #ABBR_SPECIFIC_TZ} or some other timezone presentation.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      */
     @Deprecated
     public static final String HOUR_MINUTE_TZ = "jmz";
@@ -1183,7 +1183,7 @@ public abstract class DateFormat extends UFormat {
     /**
      * <strong>[icu]</strong> Constant for date skeleton with hour and generic timezone.
      * @deprecated ICU 50 Use instead {@link #HOUR}+{@link #ABBR_GENERIC_TZ} or some other timezone presentation.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      */
     @Deprecated
     public static final String HOUR_GENERIC_TZ = "jv";
@@ -1191,7 +1191,7 @@ public abstract class DateFormat extends UFormat {
     /**
      * <strong>[icu]</strong> Constant for date skeleton with hour and timezone.
      * @deprecated ICU 50 Use instead {@link #HOUR}+{@link #ABBR_SPECIFIC_TZ} or some other timezone presentation.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      */
     @Deprecated
     public static final String HOUR_TZ = "jz";

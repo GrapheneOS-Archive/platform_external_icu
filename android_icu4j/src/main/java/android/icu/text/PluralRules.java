@@ -173,14 +173,14 @@ public class PluralRules implements Serializable {
     // TODO Remove RulesList by moving its API and fields into PluralRules.
     /**
      * @deprecated This API is ICU internal only.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public static final String CATEGORY_SEPARATOR = ";  ";
     /**
      * @deprecated This API is ICU internal only.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
@@ -195,7 +195,7 @@ public class PluralRules implements Serializable {
      * Provides a factory for returning plural rules
      * 
      * @deprecated This API is ICU internal only.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
@@ -203,7 +203,7 @@ public class PluralRules implements Serializable {
         /**
          * Sole constructor
          * @deprecated This API is ICU internal only.
-         * @hide original deprecated method
+         * @hide original deprecated declaration
          * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
@@ -225,7 +225,7 @@ public class PluralRules implements Serializable {
          *         this locale, the rules for the closest parent in the locale hierarchy that has one will be returned.
          *         The final fallback always returns the default rules.
          * @deprecated This API is ICU internal only.
-         * @hide original deprecated method
+         * @hide original deprecated declaration
          * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
@@ -236,7 +236,7 @@ public class PluralRules implements Serializable {
          * @param locale the locale
          * @return plural rules.
          * @deprecated This API is ICU internal only.
-         * @hide original deprecated method
+         * @hide original deprecated declaration
          * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
@@ -248,7 +248,7 @@ public class PluralRules implements Serializable {
          * Returns the locales for which there is plurals data.
          * 
          * @deprecated This API is ICU internal only.
-         * @hide original deprecated method
+         * @hide original deprecated declaration
          * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
@@ -268,7 +268,7 @@ public class PluralRules implements Serializable {
          *            (without fallback) as having plural rules
          * @return the functionally-equivalent locale
          * @deprecated This API is ICU internal only.
-         * @hide original deprecated method
+         * @hide original deprecated declaration
          * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
@@ -277,7 +277,7 @@ public class PluralRules implements Serializable {
         /**
          * Returns the default factory.
          * @deprecated This API is ICU internal only.
-         * @hide original deprecated method
+         * @hide original deprecated declaration
          * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
@@ -288,7 +288,7 @@ public class PluralRules implements Serializable {
         /**
          * Returns whether or not there are overrides.
          * @deprecated This API is ICU internal only.
-         * @hide original deprecated method
+         * @hide original deprecated declaration
          * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
@@ -418,7 +418,7 @@ public class PluralRules implements Serializable {
 
     /**
      * @deprecated This API is ICU internal only.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
@@ -426,56 +426,56 @@ public class PluralRules implements Serializable {
         private static final long serialVersionUID = -4756200506571685661L;
         /**
          * @deprecated This API is ICU internal only.
-         * @hide original deprecated method
+         * @hide original deprecated declaration
          * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
         public final double source;
         /**
          * @deprecated This API is ICU internal only.
-         * @hide original deprecated method
+         * @hide original deprecated declaration
          * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
         public final int visibleDecimalDigitCount;
         /**
          * @deprecated This API is ICU internal only.
-         * @hide original deprecated method
+         * @hide original deprecated declaration
          * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
         public final int visibleDecimalDigitCountWithoutTrailingZeros;
         /**
          * @deprecated This API is ICU internal only.
-         * @hide original deprecated method
+         * @hide original deprecated declaration
          * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
         public final long decimalDigits;
         /**
          * @deprecated This API is ICU internal only.
-         * @hide original deprecated method
+         * @hide original deprecated declaration
          * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
         public final long decimalDigitsWithoutTrailingZeros;
         /**
          * @deprecated This API is ICU internal only.
-         * @hide original deprecated method
+         * @hide original deprecated declaration
          * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
         public final long integerValue;
         /**
          * @deprecated This API is ICU internal only.
-         * @hide original deprecated method
+         * @hide original deprecated declaration
          * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
         public final boolean hasIntegerValue;
         /**
          * @deprecated This API is ICU internal only.
-         * @hide original deprecated method
+         * @hide original deprecated declaration
          * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
@@ -484,7 +484,7 @@ public class PluralRules implements Serializable {
 
         /**
          * @deprecated This API is ICU internal only.
-         * @hide original deprecated method
+         * @hide original deprecated declaration
          * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
@@ -494,7 +494,7 @@ public class PluralRules implements Serializable {
 
         /**
          * @deprecated This API is ICU internal only.
-         * @hide original deprecated method
+         * @hide original deprecated declaration
          * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
@@ -504,7 +504,7 @@ public class PluralRules implements Serializable {
 
         /**
          * @deprecated This API is ICU internal only.
-         * @hide original deprecated method
+         * @hide original deprecated declaration
          * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
@@ -514,7 +514,7 @@ public class PluralRules implements Serializable {
 
         /**
          * @deprecated This API is ICU internal only.
-         * @hide original deprecated method
+         * @hide original deprecated declaration
          * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
@@ -524,7 +524,7 @@ public class PluralRules implements Serializable {
 
         /**
          * @deprecated This API is ICU internal only.
-         * @hide original deprecated method
+         * @hide original deprecated declaration
          * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
@@ -534,7 +534,7 @@ public class PluralRules implements Serializable {
 
         /**
          * @deprecated This API is ICU internal only.
-         * @hide original deprecated method
+         * @hide original deprecated declaration
          * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
@@ -544,7 +544,7 @@ public class PluralRules implements Serializable {
 
         /**
          * @deprecated This API is ICU internal only.
-         * @hide original deprecated method
+         * @hide original deprecated declaration
          * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
@@ -554,7 +554,7 @@ public class PluralRules implements Serializable {
 
         /**
          * @deprecated This API is ICU internal only.
-         * @hide original deprecated method
+         * @hide original deprecated declaration
          * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
@@ -564,7 +564,7 @@ public class PluralRules implements Serializable {
 
         /**
          * @deprecated This API is ICU internal only.
-         * @hide original deprecated method
+         * @hide original deprecated declaration
          * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
@@ -580,7 +580,7 @@ public class PluralRules implements Serializable {
          * @param v number of digits to the right of the decimal place. e.g 1.00 = 2 25. = 0
          * @param f Corresponds to f in the plural rules grammar.
          *   The digits to the right of the decimal place as an integer. e.g 1.10 = 10
-         * @hide original deprecated method
+         * @hide original deprecated declaration
          * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
@@ -624,7 +624,7 @@ public class PluralRules implements Serializable {
 
         /**
          * @deprecated This API is ICU internal only.
-         * @hide original deprecated method
+         * @hide original deprecated declaration
          * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
@@ -647,7 +647,7 @@ public class PluralRules implements Serializable {
 
         /**
          * @deprecated This API is ICU internal only.
-         * @hide original deprecated method
+         * @hide original deprecated declaration
          * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
@@ -657,7 +657,7 @@ public class PluralRules implements Serializable {
 
         /**
          * @deprecated This API is ICU internal only.
-         * @hide original deprecated method
+         * @hide original deprecated declaration
          * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
@@ -671,7 +671,7 @@ public class PluralRules implements Serializable {
          * always supply the decimals explicitly if possible. Currently, it is up to 6 decimals (without trailing zeros).
          * Returns 0 for infinities and nans.
          * @deprecated This API is ICU internal only.
-         * @hide original deprecated method
+         * @hide original deprecated declaration
          * @hide draft / provisional / internal are hidden on Android
          * 
          */
@@ -720,7 +720,7 @@ public class PluralRules implements Serializable {
 
         /**
          * @deprecated This API is ICU internal only.
-         * @hide original deprecated method
+         * @hide original deprecated declaration
          * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
@@ -741,7 +741,7 @@ public class PluralRules implements Serializable {
 
         /**
          * @deprecated This API is ICU internal only.
-         * @hide original deprecated method
+         * @hide original deprecated declaration
          * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
@@ -758,7 +758,7 @@ public class PluralRules implements Serializable {
 
         /**
          * @deprecated This API is ICU internal only.
-         * @hide original deprecated method
+         * @hide original deprecated declaration
          * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
@@ -769,7 +769,7 @@ public class PluralRules implements Serializable {
         /**
          * We're not going to care about NaN.
          * @deprecated This API is ICU internal only.
-         * @hide original deprecated method
+         * @hide original deprecated declaration
          * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
@@ -792,7 +792,7 @@ public class PluralRules implements Serializable {
 
         /**
          * @deprecated This API is ICU internal only.
-         * @hide original deprecated method
+         * @hide original deprecated declaration
          * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
@@ -813,7 +813,7 @@ public class PluralRules implements Serializable {
 
         /**
          * @deprecated This API is ICU internal only.
-         * @hide original deprecated method
+         * @hide original deprecated declaration
          * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
@@ -825,7 +825,7 @@ public class PluralRules implements Serializable {
 
         /**
          * @deprecated This API is ICU internal only.
-         * @hide original deprecated method
+         * @hide original deprecated declaration
          * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
@@ -836,7 +836,7 @@ public class PluralRules implements Serializable {
 
         /**
          * @deprecated This API is ICU internal only.
-         * @hide original deprecated method
+         * @hide original deprecated declaration
          * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
@@ -846,7 +846,7 @@ public class PluralRules implements Serializable {
 
         /**
          * @deprecated This API is ICU internal only.
-         * @hide original deprecated method
+         * @hide original deprecated declaration
          * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
@@ -858,7 +858,7 @@ public class PluralRules implements Serializable {
 
         /**
          * @deprecated This API is ICU internal only.
-         * @hide original deprecated method
+         * @hide original deprecated declaration
          * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
@@ -869,7 +869,7 @@ public class PluralRules implements Serializable {
 
         /**
          * @deprecated This API is ICU internal only.
-         * @hide original deprecated method
+         * @hide original deprecated declaration
          * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
@@ -880,7 +880,7 @@ public class PluralRules implements Serializable {
 
         /**
          * @deprecated This API is ICU internal only.
-         * @hide original deprecated method
+         * @hide original deprecated declaration
          * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
@@ -891,7 +891,7 @@ public class PluralRules implements Serializable {
 
         /**
          * @deprecated This API is ICU internal only.
-         * @hide original deprecated method
+         * @hide original deprecated declaration
          * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
@@ -914,7 +914,7 @@ public class PluralRules implements Serializable {
     /**
      * Selection parameter for either integer-only or decimal-only.
      * @deprecated This API is ICU internal only.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
@@ -936,28 +936,28 @@ public class PluralRules implements Serializable {
     /**
      * A range of NumberInfo that includes all values with the same visibleFractionDigitCount.
      * @deprecated This API is ICU internal only.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public static class FixedDecimalRange {
         /**
          * @deprecated This API is ICU internal only.
-         * @hide original deprecated method
+         * @hide original deprecated declaration
          * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
         public final FixedDecimal start;
         /**
          * @deprecated This API is ICU internal only.
-         * @hide original deprecated method
+         * @hide original deprecated declaration
          * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
         public final FixedDecimal end;
         /**
          * @deprecated This API is ICU internal only.
-         * @hide original deprecated method
+         * @hide original deprecated declaration
          * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
@@ -970,7 +970,7 @@ public class PluralRules implements Serializable {
         }
         /**
          * @deprecated This API is ICU internal only.
-         * @hide original deprecated method
+         * @hide original deprecated declaration
          * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
@@ -983,28 +983,28 @@ public class PluralRules implements Serializable {
     /**
      * A list of NumberInfo that includes all values with the same visibleFractionDigitCount.
      * @deprecated This API is ICU internal only.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     public static class FixedDecimalSamples {
         /**
          * @deprecated This API is ICU internal only.
-         * @hide original deprecated method
+         * @hide original deprecated declaration
          * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
         public final SampleType sampleType;
         /**
          * @deprecated This API is ICU internal only.
-         * @hide original deprecated method
+         * @hide original deprecated declaration
          * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
         public final Set<FixedDecimalRange> samples;
         /**
          * @deprecated This API is ICU internal only.
-         * @hide original deprecated method
+         * @hide original deprecated declaration
          * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
@@ -1075,7 +1075,7 @@ public class PluralRules implements Serializable {
 
         /**
          * @deprecated This API is ICU internal only.
-         * @hide original deprecated method
+         * @hide original deprecated declaration
          * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
@@ -1094,7 +1094,7 @@ public class PluralRules implements Serializable {
 
         /**
          * @deprecated This API is ICU internal only.
-         * @hide original deprecated method
+         * @hide original deprecated declaration
          * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
@@ -1118,7 +1118,7 @@ public class PluralRules implements Serializable {
 
         /**
          * @deprecated This API is ICU internal only.
-         * @hide original deprecated method
+         * @hide original deprecated declaration
          * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
@@ -1128,7 +1128,7 @@ public class PluralRules implements Serializable {
 
         /**
          * @deprecated This API is ICU internal only.
-         * @hide original deprecated method
+         * @hide original deprecated declaration
          * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
@@ -1830,7 +1830,7 @@ public class PluralRules implements Serializable {
 
     /**
      * @deprecated This API is ICU internal only.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
@@ -1873,7 +1873,7 @@ public class PluralRules implements Serializable {
         other;
         /**
          * @deprecated This API is ICU internal only.
-         * @hide original deprecated method
+         * @hide original deprecated declaration
          * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
@@ -1881,7 +1881,7 @@ public class PluralRules implements Serializable {
         = Collections.unmodifiableList(Arrays.asList(values()));
         /**
          * @deprecated This API is ICU internal only.
-         * @hide original deprecated method
+         * @hide original deprecated declaration
          * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
@@ -2021,7 +2021,7 @@ public class PluralRules implements Serializable {
 
     /**
      * @deprecated This API is ICU internal only.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
@@ -2047,7 +2047,7 @@ public class PluralRules implements Serializable {
      * @param number The number for which the rule has to be determined.
      * @return The keyword of the selected rule.
      * @deprecated This API is ICU internal only.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
@@ -2062,7 +2062,7 @@ public class PluralRules implements Serializable {
      * @param sample The number information for which the rule has to be determined.
      * @return The keyword of the selected rule.
      * @deprecated This API is ICU internal only.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
@@ -2077,7 +2077,7 @@ public class PluralRules implements Serializable {
      * @param sample The number information for which the rule has to be determined.
      * @param keyword The keyword to filter on
      * @deprecated This API is ICU internal only.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
@@ -2132,7 +2132,7 @@ public class PluralRules implements Serializable {
      * is immutable. It will be empty if the keyword is not defined.
      * 
      * @deprecated This API is ICU internal only.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
@@ -2169,7 +2169,7 @@ public class PluralRules implements Serializable {
      * @param sampleType the type of samples requested, INTEGER or DECIMAL
      * @return a list of values matching the keyword.
      * @deprecated ICU internal only
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
@@ -2211,7 +2211,7 @@ public class PluralRules implements Serializable {
 
     /**
      * @deprecated This API is ICU internal only.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
@@ -2237,7 +2237,7 @@ public class PluralRules implements Serializable {
      * @param sampleType the type of samples requested, INTEGER or DECIMAL
      * @return a list of values matching the keyword.
      * @deprecated This API is ICU internal only.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
@@ -2371,7 +2371,7 @@ public class PluralRules implements Serializable {
      *            If non null, set to the unique value.
      * @return the KeywordStatus
      * @deprecated This API is ICU internal only.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
@@ -2428,7 +2428,7 @@ public class PluralRules implements Serializable {
 
     /**
      * @deprecated This API is ICU internal only.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
@@ -2453,7 +2453,7 @@ public class PluralRules implements Serializable {
 
     /**
      * @deprecated internal
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
@@ -2463,7 +2463,7 @@ public class PluralRules implements Serializable {
 
     /**
      * @deprecated internal
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
@@ -2473,7 +2473,7 @@ public class PluralRules implements Serializable {
 
     /**
      * @deprecated internal
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
@@ -2483,7 +2483,7 @@ public class PluralRules implements Serializable {
 
     /**
      * @deprecated internal
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated

@@ -148,19 +148,6 @@ public class Icu4jTransform {
   // ICU56 with the original PUBLIC_API_CLASSES.
   private static final String[] INITIAL_DEPRECATED_SET = new String[] {
       /* ASCII order please. */
-      "class:android.icu.text.DateTimePatternGenerator$FormatParser",
-      "class:android.icu.text.DateTimePatternGenerator$VariableField",
-      "class:android.icu.text.Normalizer$Mode",
-      "class:android.icu.text.PluralRules$Factory",
-      "class:android.icu.text.PluralRules$FixedDecimal",
-      "class:android.icu.text.PluralRules$FixedDecimalRange",
-      "class:android.icu.text.PluralRules$FixedDecimalSamples",
-      "class:android.icu.text.TimeZoneNames$Factory",
-      "class:android.icu.util.Calendar$FormatConfiguration",
-      "class:android.icu.util.MeasureUnit$Factory",
-      "enum:android.icu.text.PluralRules$SampleType",
-      "enum:android.icu.text.PluralRules$StandardPluralCategories",
-      "enum:android.icu.util.ULocale$Minimize",
       "field:android.icu.lang.UProperty#ISO_COMMENT",
       "field:android.icu.lang.UProperty#UNDEFINED",
       "field:android.icu.lang.UProperty#UNICODE_1_NAME",
@@ -493,6 +480,7 @@ public class Icu4jTransform {
       "method:android.icu.util.MeasureUnit#addUnit(String,String,Factory)",
       "method:android.icu.util.MeasureUnit#internalGetInstance(String,String)",
       "method:android.icu.util.MeasureUnit#resolveUnitPerUnit(MeasureUnit,MeasureUnit)",
+      "method:android.icu.util.MeasureUnit$Factory#create(String,String)",
       "method:android.icu.util.TimeZone#TimeZone(String)",
       "method:android.icu.util.ULocale#getDisplayScriptInContext()",
       "method:android.icu.util.ULocale#getDisplayScriptInContext(String,String)",
@@ -501,9 +489,22 @@ public class Icu4jTransform {
       "method:android.icu.util.ULocale#minimizeSubtags(ULocale,Minimize)",
       "method:android.icu.util.VersionInfo#getVersionString(int,int)",
       "method:android.icu.util.VersionInfo#javaVersion()",
+      "type:android.icu.text.DateTimePatternGenerator$FormatParser",
+      "type:android.icu.text.DateTimePatternGenerator$VariableField",
+      "type:android.icu.text.Normalizer$Mode",
+      "type:android.icu.text.PluralRules$Factory",
+      "type:android.icu.text.PluralRules$FixedDecimal",
+      "type:android.icu.text.PluralRules$FixedDecimalRange",
+      "type:android.icu.text.PluralRules$FixedDecimalSamples",
+      "type:android.icu.text.PluralRules$SampleType",
+      "type:android.icu.text.PluralRules$StandardPluralCategories",
+      "type:android.icu.text.TimeZoneNames$Factory",
+      "type:android.icu.util.Calendar$FormatConfiguration",
+      "type:android.icu.util.MeasureUnit$Factory",
+      "type:android.icu.util.ULocale$Minimize",
   };
 
-  // The declarations with JavaDocs that have @jcite tags that should be transformed to doclava
+  // The declarations with JavaDocs that have @.jcite tags that should be transformed to doclava
   // @sample tags. Ones not on this list will just be escaped and could show up in the generated
   // docs. It is assumed that the complete set of ones that should appear in the public API are
   // listed below and it's ok to escape those that are not.
@@ -549,7 +550,9 @@ public class Icu4jTransform {
         throw new IllegalArgumentException("At least 2 arguments required.");
       }
 
-      inputFileGenerator = Icu4jTransformRules.createInputFileGenerator(args);
+      String[] inputDirNames = new String[args.length - 1];
+      System.arraycopy(args, 0, inputDirNames, 0, args.length - 1);
+      inputFileGenerator = Icu4jTransformRules.createInputFileGenerator(inputDirNames);
       transformRules = createTransformRules();
       outputSourceFileGenerator =
           Icu4jTransformRules.createOutputFileGenerator(args[args.length - 1]);

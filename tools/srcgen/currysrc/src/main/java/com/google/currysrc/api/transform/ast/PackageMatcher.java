@@ -15,6 +15,7 @@
  */
 package com.google.currysrc.api.transform.ast;
 
+import org.eclipse.jdt.core.dom.ASTNode;
 import org.eclipse.jdt.core.dom.CompilationUnit;
 import org.eclipse.jdt.core.dom.PackageDeclaration;
 
@@ -44,5 +45,21 @@ public final class PackageMatcher {
     return "PackageMatcher{" +
         "packageName='" + packageName + '\'' +
         '}';
+  }
+
+  public String toStringForm() {
+    return packageName;
+  }
+
+  /**
+   * Returns the package name of the compilation unit associated with the supplied node.
+   */
+  public static String getPackageName(ASTNode node) {
+    CompilationUnit compilationUnit = (CompilationUnit) node.getRoot();
+    PackageDeclaration packageDeclaration = compilationUnit.getPackage();
+    if (packageDeclaration == null) {
+      return "";
+    }
+    return packageDeclaration.getName().getFullyQualifiedName();
   }
 }
