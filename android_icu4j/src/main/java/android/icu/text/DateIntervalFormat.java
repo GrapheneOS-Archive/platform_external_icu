@@ -355,7 +355,7 @@ public class DateIntervalFormat extends UFormat {
      * @param simpleDateFormat will be used for formatting
      * 
      * @deprecated This API is ICU internal only.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
@@ -622,7 +622,7 @@ public class DateIntervalFormat extends UFormat {
 
     /**
      * @deprecated This API is ICU internal only.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
@@ -917,7 +917,7 @@ public class DateIntervalFormat extends UFormat {
      * @return          A newly created Formattable* object, or NULL
      *                  on failure.
      * @deprecated This API is ICU internal only.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
@@ -1829,7 +1829,7 @@ public class DateIntervalFormat extends UFormat {
     /**
      * Get the internal patterns for the skeleton
      * @deprecated This API is ICU internal only.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated

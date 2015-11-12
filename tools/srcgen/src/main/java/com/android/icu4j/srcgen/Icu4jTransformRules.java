@@ -36,10 +36,10 @@ import java.util.List;
 class Icu4jTransformRules {
   private Icu4jTransformRules() {}
 
-  static CompoundDirectoryInputFileGenerator createInputFileGenerator(String[] args) {
-    List<InputFileGenerator> dirs = new ArrayList<>(args.length - 1);
-    for (int i = 0; i < args.length - 1; i++) {
-      File inputFile = new File(args[i]);
+  static CompoundDirectoryInputFileGenerator createInputFileGenerator(String[] dirNames) {
+    List<InputFileGenerator> dirs = new ArrayList<>(dirNames.length);
+    for (int i = 0; i < dirNames.length; i++) {
+      File inputFile = new File(dirNames[i]);
       InputFileGenerator inputFileGenerator;
       if (isValidDir(inputFile)) {
         inputFileGenerator = new DirectoryInputFileGenerator(inputFile);

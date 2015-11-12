@@ -53,23 +53,23 @@ public final class Main {
 
     InputFileGenerator inputFileGenerator = rules.getInputFileGenerator();
     OutputSourceFileGenerator outputSourceFileGenerator = rules.getOutputSourceFileGenerator();
-    for (File file : inputFileGenerator.generate()) {
-      System.out.println("Processing: " + file);
+    for (File inputFile : inputFileGenerator.generate()) {
+      System.out.println("Processing: " + inputFile);
 
-      String source = readSource(file);
+      String source = readSource(inputFile);
       CompilationUnitHandler compilationUnitHandler =
-          new CompilationUnitHandler(file, parser, source);
+          new CompilationUnitHandler(inputFile, parser, source);
       compilationUnitHandler.setDebug(debug);
 
-      List<TransformRule> transformRules = rules.getTransformRules(file);
+      List<TransformRule> transformRules = rules.getTransformRules(inputFile);
       if (!transformRules.isEmpty()) {
         for (TransformRule transformRule : transformRules) {
           compilationUnitHandler.apply(transformRule);
         }
       }
 
-      File outputFile =
-          outputSourceFileGenerator.generate(compilationUnitHandler.getCompilationUnit());
+      File outputFile = outputSourceFileGenerator.generate(
+          compilationUnitHandler.getCompilationUnit(), inputFile);
       if (outputFile != null) {
         writeSource(compilationUnitHandler.getDocument(), outputFile);
       }

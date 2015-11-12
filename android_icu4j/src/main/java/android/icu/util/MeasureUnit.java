@@ -46,7 +46,7 @@ public class MeasureUnit implements Serializable {
 
     /**
      * @deprecated This API is ICU internal only.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
@@ -54,7 +54,7 @@ public class MeasureUnit implements Serializable {
     
     /**
      * @deprecated This API is ICU internal only.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
@@ -62,7 +62,7 @@ public class MeasureUnit implements Serializable {
     
     /**
      * @deprecated This API is ICU internal only.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
@@ -162,7 +162,7 @@ public class MeasureUnit implements Serializable {
      * However, for special purposes (such as CLDR tooling), it is available.
      *
      * @deprecated This API is ICU internal only.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
@@ -189,7 +189,7 @@ public class MeasureUnit implements Serializable {
     /**
      * For ICU use only.
      * @deprecated This API is ICU internal only.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
@@ -202,13 +202,14 @@ public class MeasureUnit implements Serializable {
 
     /**
      * @deprecated This API is ICU internal only.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     protected interface Factory {
         /**
          * @deprecated This API is ICU internal only.
+         * @hide original deprecated declaration
          * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
@@ -284,7 +285,7 @@ public class MeasureUnit implements Serializable {
     // Must only be called at static initialization, or inside synchronized block.
     /**
      * @deprecated This API is ICU internal only.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated

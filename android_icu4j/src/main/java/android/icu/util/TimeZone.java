@@ -132,7 +132,7 @@ abstract public class TimeZone implements Serializable, Cloneable, Freezable<Tim
      * Constructing a TimeZone with the given time zone ID.
      * @param ID the time zone ID.
      * @deprecated This API is ICU internal only.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated

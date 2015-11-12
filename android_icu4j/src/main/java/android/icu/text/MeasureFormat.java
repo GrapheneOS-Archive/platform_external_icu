@@ -367,7 +367,7 @@ public class MeasureFormat extends UFormat {
      * @param highValue high value in range
      * @return the formatted string.
      * @deprecated This API is ICU internal only.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
@@ -1239,7 +1239,7 @@ public class MeasureFormat extends UFormat {
      * @param width the format width
      * @return range formatter, such as "{0}–{1}"
      * @deprecated This API is ICU internal only.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
@@ -1286,7 +1286,7 @@ public class MeasureFormat extends UFormat {
      * @param width the format width.
      * @return range pattern
      * @deprecated This API is ICU internal only.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated

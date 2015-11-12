@@ -18,14 +18,12 @@ package com.google.currysrc.api.transform;
 import com.google.currysrc.api.transform.ast.AstNodes;
 
 import org.eclipse.jdt.core.dom.AST;
+import org.eclipse.jdt.core.dom.ASTNode;
 import org.eclipse.jdt.core.dom.BodyDeclaration;
 import org.eclipse.jdt.core.dom.Javadoc;
 import org.eclipse.jdt.core.dom.TagElement;
 import org.eclipse.jdt.core.dom.rewrite.ASTRewrite;
 import org.eclipse.jdt.core.dom.rewrite.ListRewrite;
-import org.eclipse.jface.text.BadLocationException;
-import org.eclipse.jface.text.Document;
-import org.eclipse.jface.text.IRegion;
 
 /**
  * Basic utility methods for modifying Javadoc.
@@ -50,5 +48,14 @@ public final class JavadocUtils {
     TagElement tagElement = AstNodes.createTextTagElement(ast, tagText);
     ListRewrite listRewrite = rewrite.getListRewrite(javadoc, Javadoc.TAGS_PROPERTY);
     listRewrite.insertLast(tagElement, null /* editGroup */);
+  }
+
+  /**
+   * Returns {@code true} if the BodyDeclaration is one that is normally documented. e.g. returns
+   * false for initializers.
+   */
+  public static boolean isNormallyDocumented(BodyDeclaration node) {
+    int nodeType = node.getNodeType();
+    return nodeType != ASTNode.INITIALIZER;
   }
 }

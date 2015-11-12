@@ -5378,7 +5378,7 @@ public class DecimalFormat extends NumberFormat {
      * method as needed. Unlike getCurrency(), this method should never return null.
      *
      * @deprecated This API is ICU internal only.
-     * @hide original deprecated method
+     * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
