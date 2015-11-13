@@ -13,42 +13,49 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.android.icu4j.srcgen;
+package com.google.currysrc.processors;
 
 import com.google.common.collect.ImmutableSet;
-import com.google.currysrc.processors.BaseJavadocTagJavadoc;
+import com.google.currysrc.api.process.Reporter;
 
 import org.eclipse.jdt.core.dom.Javadoc;
 import org.eclipse.jdt.core.dom.TagElement;
+import org.eclipse.jdt.core.dom.rewrite.ASTRewrite;
 
 import java.util.List;
 import java.util.Set;
 
 /**
- * Adds {@literal @}hide to all JavaDoc comments that contain any of {@literal @}draft,
- * {@literal @}provisional, {@literal @}internal}.
+ * Remove the specified JavaDoc tags from the AST. Assumes the Javadoc is well-formed.
  */
-public class HideDraftProvisionalInternal extends BaseJavadocTagJavadoc {
-  private static final Set<String> toMatch = ImmutableSet.of("@draft", "@provisional", "@internal");
-  private static final String HIDE_HIDDEN_ON_ANDROID =
-      "@hide draft / provisional / internal are hidden on Android";
+public final class RemoveJavaDocTags extends BaseJavadocNodeScanner {
 
-  public HideDraftProvisionalInternal() {
-    super(HIDE_HIDDEN_ON_ANDROID);
+  private final Set<String> tagsToRemove;
+
+  public RemoveJavaDocTags(String... tags) {
+    ImmutableSet.Builder<String> builder = ImmutableSet.builder();
+    for (String tag : tags) {
+      builder.add(tag.toLowerCase());
+    }
+    tagsToRemove = builder.build();
   }
 
   @Override
-  protected boolean mustTag(Javadoc javadoc) {
+  protected void visit(Reporter reporter, Javadoc javadoc, ASTRewrite rewrite) {
     for (TagElement tagElement : (List<TagElement>) javadoc.tags()) {
-      if (tagElement.getTagName() != null
-          && HideDraftProvisionalInternal.toMatch.contains(tagElement.getTagName().toLowerCase())) {
-        return true;
+      String tagName = tagElement.getTagName();
+      if (tagName == null) {
+        continue;
+      }
+      if (tagsToRemove.contains(tagName.toLowerCase())) {
+        rewrite.remove(tagElement, null /* editGroup */);
       }
     }
-    return false;
   }
 
   @Override public String toString() {
-    return "HideDraftProvisionalInternal{}";
+    return "RemoveJavaDocTags{" +
+        "tagsToRemove=" + tagsToRemove +
+        '}';
   }
 }

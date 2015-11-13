@@ -20,14 +20,13 @@ import com.google.common.collect.Lists;
 import com.google.currysrc.Main;
 import com.google.currysrc.api.Rules;
 import com.google.currysrc.api.input.InputFileGenerator;
-import com.google.currysrc.api.match.SourceMatchers;
 import com.google.currysrc.api.output.NullOutputSourceFileGenerator;
 import com.google.currysrc.api.output.OutputSourceFileGenerator;
-import com.google.currysrc.api.transform.DocumentTransformRule;
-import com.google.currysrc.api.transform.DocumentTransformer;
-import com.google.currysrc.api.transform.TransformRule;
-import com.google.currysrc.api.transform.ast.BodyDeclarationLocaters;
-import com.google.currysrc.api.transform.ast.TypeLocater;
+import com.google.currysrc.api.process.Context;
+import com.google.currysrc.api.process.Processor;
+import com.google.currysrc.api.process.Rule;
+import com.google.currysrc.api.process.ast.BodyDeclarationLocators;
+import com.google.currysrc.api.process.ast.TypeLocator;
 
 import org.eclipse.jdt.core.dom.AbstractTypeDeclaration;
 import org.eclipse.jdt.core.dom.BodyDeclaration;
@@ -36,7 +35,6 @@ import org.eclipse.jdt.core.dom.EnumConstantDeclaration;
 import org.eclipse.jdt.core.dom.Javadoc;
 import org.eclipse.jdt.core.dom.TagElement;
 import org.eclipse.jdt.core.dom.TypeDeclaration;
-import org.eclipse.jface.text.Document;
 
 import java.io.File;
 import java.lang.reflect.Modifier;
@@ -81,7 +79,7 @@ public class CaptureDeprecatedElements {
 
     private final InputFileGenerator inputFileGenerator;
 
-    private final CaptureDeprecatedTransformer captureTransformer;
+    private final CaptureDeprecatedProcessor captureTransformer;
 
     public CaptureDeprecatedMethodsRules(String[] args) {
       if (args.length < 1) {
@@ -89,20 +87,19 @@ public class CaptureDeprecatedElements {
       }
       inputFileGenerator = Icu4jTransformRules.createInputFileGenerator(args);
 
-      ImmutableList.Builder<TypeLocater> apiClassesWhitelistBuilder = ImmutableList.builder();
+      ImmutableList.Builder<TypeLocator> apiClassesWhitelistBuilder = ImmutableList.builder();
       for (String publicClassName : Icu4jTransform.PUBLIC_API_CLASSES) {
         String originalIcuClassName = publicClassName.replace(ANDROID_ICU_PREFIX,
             ORIGINAL_ICU_PREFIX);
-        apiClassesWhitelistBuilder.add(new TypeLocater(originalIcuClassName));
+        apiClassesWhitelistBuilder.add(new TypeLocator(originalIcuClassName));
       }
-      captureTransformer = new CaptureDeprecatedTransformer(apiClassesWhitelistBuilder.build());
+      captureTransformer = new CaptureDeprecatedProcessor(apiClassesWhitelistBuilder.build());
     }
 
     @Override
-    public List<TransformRule> getTransformRules(File file) {
-      return Lists.<TransformRule>newArrayList(
-          new DocumentTransformRule(
-              captureTransformer, SourceMatchers.all(), false /* mustModify*/));
+    public List<Rule> getRuleList(File file) {
+      return Lists.<Rule>newArrayList(
+          Icu4jTransformRules.createOptionalRule(captureTransformer));
     }
 
     @Override
@@ -115,26 +112,26 @@ public class CaptureDeprecatedElements {
       return NullOutputSourceFileGenerator.INSTANCE;
     }
 
-    public CaptureDeprecatedTransformer getCaptureRule() {
+    public CaptureDeprecatedProcessor getCaptureRule() {
       return captureTransformer;
     }
   }
 
-  private static class CaptureDeprecatedTransformer implements DocumentTransformer {
+  private static class CaptureDeprecatedProcessor implements Processor {
 
-    private final List<TypeLocater> publicClassLocaters;
+    private final List<TypeLocator> publicClassLocaters;
     private final List<String> deprecatedElements = Lists.newArrayList();
 
-    public CaptureDeprecatedTransformer(List<TypeLocater> publicClassLocaters) {
+    public CaptureDeprecatedProcessor(List<TypeLocator> publicClassLocaters) {
       this.publicClassLocaters = publicClassLocaters;
     }
 
-    @Override public void transform(CompilationUnit cu, Document document) {
-      for (TypeLocater publicClassLocater : publicClassLocaters) {
+    @Override public void process(Context context, CompilationUnit cu) {
+      for (TypeLocator publicClassLocater : publicClassLocaters) {
         AbstractTypeDeclaration matchedType = publicClassLocater.find(cu);
         if (matchedType != null) {
           if (isDeprecated(matchedType)) {
-            List<String> locaterStrings = BodyDeclarationLocaters.toLocaterStringForms(matchedType);
+            List<String> locaterStrings = BodyDeclarationLocators.toLocatorStringForms(matchedType);
             deprecatedElements.addAll(locaterStrings);
           }
           trackDeprecationsRecursively(matchedType);
@@ -146,7 +143,7 @@ public class CaptureDeprecatedElements {
       for (BodyDeclaration bodyDeclaration
           : (List<BodyDeclaration>) matchedType.bodyDeclarations()) {
         if (isApiVisible(matchedType, bodyDeclaration) && isDeprecated(bodyDeclaration)) {
-          deprecatedElements.addAll(BodyDeclarationLocaters.toLocaterStringForms(bodyDeclaration));
+          deprecatedElements.addAll(BodyDeclarationLocators.toLocatorStringForms(bodyDeclaration));
           if (bodyDeclaration instanceof AbstractTypeDeclaration) {
             trackDeprecationsRecursively((AbstractTypeDeclaration) bodyDeclaration);
           }

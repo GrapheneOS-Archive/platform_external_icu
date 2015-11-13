@@ -15,8 +15,9 @@
  */
 package com.android.icu4j.srcgen;
 
-import com.google.currysrc.api.transform.ast.AstNodes;
-import com.google.currysrc.transformers.BaseTagElementNodeScanner;
+import com.google.currysrc.api.process.Reporter;
+import com.google.currysrc.api.process.ast.AstNodes;
+import com.google.currysrc.processors.BaseTagElementNodeScanner;
 
 import org.eclipse.jdt.core.dom.AST;
 import org.eclipse.jdt.core.dom.IDocElement;
@@ -31,7 +32,7 @@ import java.util.List;
 public class ReplaceIcuTags extends BaseTagElementNodeScanner {
 
   @Override
-  protected boolean visitTagElement(ASTRewrite rewrite, TagElement tag) {
+  protected boolean visitTagElement(Reporter reporter, ASTRewrite rewrite, TagElement tag) {
     String tagName = tag.getTagName();
     if (tagName != null) {
       AST ast = tag.getAST();
