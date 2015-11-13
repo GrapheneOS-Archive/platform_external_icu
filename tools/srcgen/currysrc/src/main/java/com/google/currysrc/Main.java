@@ -15,19 +15,32 @@
  */
 package com.google.currysrc;
 
+import com.google.currysrc.api.Rules;
+import com.google.currysrc.api.input.InputFileGenerator;
+import com.google.currysrc.api.output.OutputSourceFileGenerator;
+import com.google.currysrc.api.process.Context;
+import com.google.currysrc.api.process.Reporter;
+import com.google.currysrc.api.process.Rule;
+
 import org.eclipse.jdt.core.JavaCore;
-import org.eclipse.jdt.core.dom.*;
+import org.eclipse.jdt.core.dom.AST;
+import org.eclipse.jdt.core.dom.ASTNode;
+import org.eclipse.jdt.core.dom.ASTParser;
+import org.eclipse.jdt.core.dom.CompilationUnit;
 import org.eclipse.jdt.core.dom.rewrite.ASTRewrite;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.Document;
 import org.eclipse.text.edits.TextEdit;
 
-import com.google.currysrc.api.Rules;
-import com.google.currysrc.api.input.InputFileGenerator;
-import com.google.currysrc.api.output.OutputSourceFileGenerator;
-import com.google.currysrc.api.transform.TransformRule;
-
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+import java.io.Writer;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
@@ -48,6 +61,10 @@ public final class Main {
   }
 
   public void execute(Rules rules) throws Exception {
+    execute(rules, new OutputStreamWriter(System.out));
+  }
+
+  public void execute(Rules rules, Writer reportWriter) throws Exception {
     ASTParser parser = ASTParser.newParser(AST.JLS8);
     parser.setKind(ASTParser.K_COMPILATION_UNIT);
 
@@ -58,13 +75,13 @@ public final class Main {
 
       String source = readSource(inputFile);
       CompilationUnitHandler compilationUnitHandler =
-          new CompilationUnitHandler(inputFile, parser, source);
+          new CompilationUnitHandler(inputFile, parser, source, new PrintWriter(reportWriter));
       compilationUnitHandler.setDebug(debug);
 
-      List<TransformRule> transformRules = rules.getTransformRules(inputFile);
-      if (!transformRules.isEmpty()) {
-        for (TransformRule transformRule : transformRules) {
-          compilationUnitHandler.apply(transformRule);
+      List<Rule> ruleList = rules.getRuleList(inputFile);
+      if (!ruleList.isEmpty()) {
+        for (Rule rule : ruleList) {
+          compilationUnitHandler.apply(rule);
         }
       }
 
@@ -113,10 +130,12 @@ public final class Main {
     return sb.toString();
   }
 
-  private static class CompilationUnitHandler implements TransformRule.Context {
+  private static class CompilationUnitHandler implements Context {
 
     private final File file;
     private final ASTParser parser;
+    private final Reporter reporter;
+
     private boolean debug;
 
     private Document documentBefore;
@@ -125,9 +144,11 @@ public final class Main {
     private Document documentRequested;
     private TrackingASTRewrite rewriteRequested;
 
-    public CompilationUnitHandler(File file, ASTParser parser, String source) {
+    public CompilationUnitHandler(File file, ASTParser parser, String source,
+        PrintWriter reportWriter) {
       this.file = file;
       this.parser = parser;
+      this.reporter = new ReporterImpl(reportWriter);
 
       // Initialize source / AST state.
       documentBefore = new Document(source);
@@ -138,33 +159,33 @@ public final class Main {
       this.debug = debug;
     }
 
-    public void apply(TransformRule transformRule) throws BadLocationException {
+    public void apply(Rule rule) throws BadLocationException {
       if (documentRequested != null || rewriteRequested != null) {
         throw new AssertionError("Handler state not reset properly");
       }
 
-      if (transformRule.matches(compilationUnitBefore)) {
+      if (rule.matches(compilationUnitBefore)) {
         // Apply the rule.
-        transformRule.transform(this, compilationUnitBefore);
+        rule.process(this, compilationUnitBefore);
 
         // Work out what happened, report/error as needed and reset the state.
         CompilationUnit compilationUnitAfter;
         Document documentAfter;
         if (ruleUsedRewrite()) {
           if (debug) {
-            System.out.println("AST Transform: " + transformRule + ", rewrite: " +
+            System.out.println("AST processor: " + rule + ", rewrite: " +
                 (rewriteRequested.isEmpty() ? "None" : rewriteRequested.toString()));
           }
           if (rewriteRequested.isEmpty()) {
-            if (transformRule.mustModify()) {
-              throw new RuntimeException("AST Transformer Rule: " + transformRule
+            if (rule.mustModify()) {
+              throw new RuntimeException("AST processor Rule: " + rule
                   + " did not modify the compilation unit as it should");
             }
             documentAfter = documentBefore;
             compilationUnitAfter = compilationUnitBefore;
           } else {
             Document documentToRewrite = new Document(documentBefore.get());
-            compilationUnitAfter = applyRewrite(file + " after " + transformRule, parser,
+            compilationUnitAfter = applyRewrite(file + " after " + rule, parser,
                 documentToRewrite, rewriteRequested);
             documentAfter = documentToRewrite;
           }
@@ -173,12 +194,12 @@ public final class Main {
           String sourceAfter = documentRequested.get();
           if (debug) {
             System.out.println(
-                "Document Transformer: " + transformRule + ", diff: " +
+                "Document processor: " + rule + ", diff: " +
                     generateDiff(sourceBefore, sourceAfter));
           }
           if (sourceBefore.equals(sourceAfter)) {
-            if (transformRule.mustModify()) {
-              throw new RuntimeException("Document Transformer Rule: " + transformRule
+            if (rule.mustModify()) {
+              throw new RuntimeException("Document processor Rule: " + rule
                   + " did not modify document as it should");
             }
             documentAfter = documentBefore;
@@ -186,7 +207,7 @@ public final class Main {
           } else {
             // Regenerate the AST from the modified document.
             compilationUnitAfter = parseDocument(
-                file + " after document transformer " + transformRule, parser, documentRequested);
+                file + " after document processor " + rule, parser, documentRequested);
             documentAfter = documentRequested;
           }
         } else {
@@ -223,6 +244,10 @@ public final class Main {
       }
       documentRequested = new Document(documentBefore.get());
       return documentRequested;
+    }
+
+    @Override public Reporter reporter() {
+      return reporter;
     }
 
     public CompilationUnit getCompilationUnit() {
@@ -280,6 +305,47 @@ public final class Main {
       }
       // TODO Implement this
       return "Diff. DIFF NOT IMPLEMENTED";
+    }
+
+    private class ReporterImpl implements Reporter {
+
+      private final PrintWriter reportWriter;
+
+      public ReporterImpl(PrintWriter reportWriter) {
+        this.reportWriter = reportWriter;
+      }
+
+      @Override public void info(String message) {
+        reportInternal(compilationUnitIdentifier(), message);
+      }
+
+      @Override
+      public void info(ASTNode node, String message) {
+        reportInternal(nodeIdentifier(node), message);
+      }
+
+      private void reportInternal(String locationIdentifier, String message) {
+        reportWriter
+            .append(locationIdentifier)
+            .append(": ")
+            .append(message)
+            .append('\n');
+      }
+
+      private String compilationUnitIdentifier() {
+        return file.getPath();
+      }
+
+      private String nodeIdentifier(ASTNode node) {
+        String approximateNodeLocation;
+        try {
+          approximateNodeLocation = "line approx. " +
+              documentBefore.getLineOfOffset(node.getStartPosition());
+        } catch (BadLocationException e) {
+          approximateNodeLocation = "unknown location";
+        }
+        return file.getPath() + "(" + approximateNodeLocation + ")";
+      }
     }
   }
 

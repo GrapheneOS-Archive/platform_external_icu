@@ -22,20 +22,19 @@ import com.google.currysrc.api.Rules;
 import com.google.currysrc.api.input.InputFileGenerator;
 import com.google.currysrc.api.output.BasicOutputSourceFileGenerator;
 import com.google.currysrc.api.output.OutputSourceFileGenerator;
-import com.google.currysrc.api.transform.AstTransformRule;
-import com.google.currysrc.api.transform.DocumentTransformRule;
-import com.google.currysrc.api.transform.TransformRule;
-import com.google.currysrc.api.transform.ast.BodyDeclarationLocater;
-import com.google.currysrc.api.transform.ast.BodyDeclarationLocaters;
-import com.google.currysrc.api.transform.ast.TypeLocater;
-import com.google.currysrc.transformers.HidePublicClasses;
-import com.google.currysrc.transformers.InsertHeader;
-import com.google.currysrc.transformers.ModifyQualifiedNames;
-import com.google.currysrc.transformers.ModifyStringLiterals;
-import com.google.currysrc.transformers.RemoveJavaDocTags;
-import com.google.currysrc.transformers.RenamePackage;
-import com.google.currysrc.transformers.ReplaceSelectedJavadoc;
-import com.google.currysrc.transformers.ReplaceTextCommentScanner;
+import com.google.currysrc.api.process.DefaultRule;
+import com.google.currysrc.api.process.Rule;
+import com.google.currysrc.api.process.ast.BodyDeclarationLocator;
+import com.google.currysrc.api.process.ast.BodyDeclarationLocators;
+import com.google.currysrc.api.process.ast.TypeLocator;
+import com.google.currysrc.processors.HidePublicClasses;
+import com.google.currysrc.processors.InsertHeader;
+import com.google.currysrc.processors.ModifyQualifiedNames;
+import com.google.currysrc.processors.ModifyStringLiterals;
+import com.google.currysrc.processors.RemoveJavaDocTags;
+import com.google.currysrc.processors.RenamePackage;
+import com.google.currysrc.processors.ReplaceSelectedJavadoc;
+import com.google.currysrc.processors.ReplaceTextCommentScanner;
 
 import java.io.File;
 import java.io.IOException;
@@ -542,7 +541,7 @@ public class Icu4jTransform {
     private static final String REPLACEMENT_JAVADOC_RESOURCE = "replacements.txt";
 
     private final InputFileGenerator inputFileGenerator;
-    private final List<TransformRule> transformRules;
+    private final List<Rule> rules;
     private final BasicOutputSourceFileGenerator outputSourceFileGenerator;
 
     public Icu4jRules(String[] args) throws IOException {
@@ -553,14 +552,14 @@ public class Icu4jTransform {
       String[] inputDirNames = new String[args.length - 1];
       System.arraycopy(args, 0, inputDirNames, 0, args.length - 1);
       inputFileGenerator = Icu4jTransformRules.createInputFileGenerator(inputDirNames);
-      transformRules = createTransformRules();
+      rules = createTransformRules();
       outputSourceFileGenerator =
           Icu4jTransformRules.createOutputFileGenerator(args[args.length - 1]);
     }
 
     @Override
-    public List<TransformRule> getTransformRules(File ignored) {
-      return transformRules;
+    public List<Rule> getRuleList(File ignored) {
+      return rules;
     }
 
     @Override
@@ -575,8 +574,8 @@ public class Icu4jTransform {
 
     // Rules for migrating com.ibm.icu source over to android.icu. Pulled out separately so they
     // can be used for modifying ICU4J sample code as well.
-    static TransformRule[] getRepackagingRules() {
-      return new TransformRule[] {
+    static Rule[] getRepackagingRules() {
+      return new Rule[] {
           // Doc change: Insert a warning about the source code being generated.
           createMandatoryRule(new InsertHeader(SOURCE_CODE_HEADER)),
           // AST change: Change the package of each CompilationUnit from com.ibm.icu to android.icu.
@@ -590,13 +589,13 @@ public class Icu4jTransform {
       };
     }
 
-    private static List<TransformRule> createTransformRules() throws IOException {
+    private static List<Rule> createTransformRules() throws IOException {
       // The rules needed to repackage source code that declares or references com.ibm.icu code
       // so it references android.icu instead.
-      TransformRule[] repackageRules = getRepackagingRules();
+      Rule[] repackageRules = getRepackagingRules();
 
       // The rules needed to fix up Android's documentation rules.
-      TransformRule[] apiDocsRules = new TransformRule[] {
+      Rule[] apiDocsRules = new Rule[] {
           // Below are the fixes that ensure the Android API documentation generation can be run
           // over the source.
 
@@ -633,41 +632,41 @@ public class Icu4jTransform {
           createTranslateJciteInclusionRule(),
       };
 
-      List<TransformRule> rulesList = Lists.newArrayList(repackageRules);
+      List<Rule> rulesList = Lists.newArrayList(repackageRules);
       rulesList.addAll(Arrays.asList(apiDocsRules));
 
       // Comment/remove the lines below to make ICU part of the Android public API.
       rulesList.add(
           // AST change: Hide every public class until we're ready to make the Android subset
           // public.
-          createOptionalRule(new HidePublicClasses(Collections.<TypeLocater>emptyList(),
+          createOptionalRule(new HidePublicClasses(Collections.<TypeLocator>emptyList(),
               "All android.icu classes are currently hidden")));
       return rulesList;
     }
 
-    private static TransformRule createReplaceSelectedJavadocRule() throws IOException {
+    private static Rule createReplaceSelectedJavadocRule() throws IOException {
       return createOptionalRule(
           ReplaceSelectedJavadoc.createFromResource(REPLACEMENT_JAVADOC_RESOURCE));
     }
 
-    private static AstTransformRule createTranslateJciteInclusionRule() {
-      List<BodyDeclarationLocater> whitelist =
-          BodyDeclarationLocaters.createLocatersFromStrings(JCITE_TRANSFORM_SET);
+    private static Rule createTranslateJciteInclusionRule() {
+      List<BodyDeclarationLocator> whitelist =
+          BodyDeclarationLocators.createLocatorsFromStrings(JCITE_TRANSFORM_SET);
       TranslateJcite.InclusionHandler transformer =
           new TranslateJcite.InclusionHandler(ANDROID_ICU4J_SAMPLE_DIR, whitelist);
       return createOptionalRule(transformer);
     }
 
-    private static TransformRule createHideOriginalDeprecatedClassesRule() {
-      List<BodyDeclarationLocater> blacklist =
-          BodyDeclarationLocaters.createLocatersFromStrings(INITIAL_DEPRECATED_SET);
+    private static Rule createHideOriginalDeprecatedClassesRule() {
+      List<BodyDeclarationLocator> blacklist =
+          BodyDeclarationLocators.createLocatorsFromStrings(INITIAL_DEPRECATED_SET);
       return createOptionalRule(new HideOriginalDeprecatedSet(blacklist));
     }
 
-    private static TransformRule createHidePublicClassesRule() {
-      ImmutableList.Builder<TypeLocater> apiClassesWhitelistBuilder = ImmutableList.builder();
+    private static Rule createHidePublicClassesRule() {
+      ImmutableList.Builder<TypeLocator> apiClassesWhitelistBuilder = ImmutableList.builder();
       for (String publicClassName : PUBLIC_API_CLASSES) {
-        apiClassesWhitelistBuilder.add(new TypeLocater(publicClassName));
+        apiClassesWhitelistBuilder.add(new TypeLocator(publicClassName));
       }
       return createOptionalRule(
           new HidePublicClasses(
@@ -675,9 +674,9 @@ public class Icu4jTransform {
               "Only a subset of ICU is exposed in Android"));
     }
 
-    private static TransformRule createFixupBidiClassDocRule() {
+    private static Rule createFixupBidiClassDocRule() {
       FixupBidiClassDoc transformer = new FixupBidiClassDoc();
-      return new DocumentTransformRule(transformer, transformer.matcher(), true /* mustModify */);
+      return new DefaultRule(transformer, transformer.matcher(), true /* mustModify */);
     }
   }
 }

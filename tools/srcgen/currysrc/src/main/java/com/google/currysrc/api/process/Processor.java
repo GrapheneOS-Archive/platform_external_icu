@@ -13,23 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.google.currysrc.api;
+package com.google.currysrc.api.process;
 
-import com.google.currysrc.api.input.InputFileGenerator;
-import com.google.currysrc.api.output.OutputSourceFileGenerator;
-import com.google.currysrc.api.process.Rule;
-
-import java.io.File;
-import java.util.List;
+import org.eclipse.jdt.core.dom.CompilationUnit;
 
 /**
- * Rules to apply to a set of source files.
+ * An interface for objects that process a {@link CompilationUnit}.
  */
-public interface Rules {
+public interface Processor {
 
-  InputFileGenerator getInputFileGenerator();
-
-  List<Rule> getRuleList(File file);
-
-  OutputSourceFileGenerator getOutputSourceFileGenerator();
+  void process(Context context, CompilationUnit cu);
 }

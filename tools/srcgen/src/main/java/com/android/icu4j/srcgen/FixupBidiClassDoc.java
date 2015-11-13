@@ -17,8 +17,9 @@ package com.android.icu4j.srcgen;
 
 import com.google.currysrc.api.match.SourceMatcher;
 import com.google.currysrc.api.match.SourceMatchers;
-import com.google.currysrc.api.transform.DocumentTransformer;
-import com.google.currysrc.api.transform.ast.TypeLocater;
+import com.google.currysrc.api.process.Context;
+import com.google.currysrc.api.process.Processor;
+import com.google.currysrc.api.process.ast.TypeLocator;
 
 import org.eclipse.jdt.core.dom.CompilationUnit;
 import org.eclipse.jdt.core.dom.Javadoc;
@@ -30,9 +31,9 @@ import org.eclipse.jface.text.Document;
  * Hack to fix upstream code comments before removing @stable tags. Failure to do this would cause
  * use to remove all the text that followed.
  */
-public class FixupBidiClassDoc implements DocumentTransformer {
+public class FixupBidiClassDoc implements Processor {
 
-  private final static TypeLocater LOCATER = new TypeLocater("android.icu.text.Bidi");
+  private final static TypeLocator LOCATER = new TypeLocator("android.icu.text.Bidi");
 
   /**
    * These tags appear in the middle of some javadoc, making the parser think they are related to
@@ -46,10 +47,11 @@ public class FixupBidiClassDoc implements DocumentTransformer {
     return SourceMatchers.contains(LOCATER);
   }
 
-  @Override public void transform(CompilationUnit cu, Document document) {
+  @Override public void process(Context context, CompilationUnit cu) {
     TypeDeclaration classNode = (TypeDeclaration) LOCATER.find(cu);
     Javadoc javadoc = classNode.getJavadoc();
     try {
+      Document document = context.document();
       String commentText = document.get(javadoc.getStartPosition(), javadoc.getLength());
       String newCommentText = commentText.replace(BAD_TEXT, "");
       document.replace(javadoc.getStartPosition(), javadoc.getLength(), newCommentText);
