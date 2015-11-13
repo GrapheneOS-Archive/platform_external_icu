@@ -17,10 +17,11 @@ package com.android.icu4j.srcgen;
 
 import com.google.common.base.Splitter;
 import com.google.common.collect.Sets;
-import com.google.currysrc.api.transform.ast.AstNodes;
-import com.google.currysrc.api.transform.ast.BodyDeclarationLocater;
-import com.google.currysrc.transformers.BaseModifyCommentScanner;
-import com.google.currysrc.transformers.BaseTagElementNodeScanner;
+import com.google.currysrc.api.process.Reporter;
+import com.google.currysrc.api.process.ast.AstNodes;
+import com.google.currysrc.api.process.ast.BodyDeclarationLocator;
+import com.google.currysrc.processors.BaseModifyCommentScanner;
+import com.google.currysrc.processors.BaseTagElementNodeScanner;
 
 import org.eclipse.jdt.core.dom.AST;
 import org.eclipse.jdt.core.dom.ASTNode;
@@ -36,13 +37,16 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static com.google.currysrc.api.transform.ast.BodyDeclarationLocaters.findDeclarationNode;
-import static com.google.currysrc.api.transform.ast.BodyDeclarationLocaters.matchesAny;
+import static com.google.currysrc.api.process.ast.BodyDeclarationLocators.findDeclarationNode;
+import static com.google.currysrc.api.process.ast.BodyDeclarationLocators.matchesAny;
 
 /**
  * Classes for handling {@literal @}.jcite tags used by ICU.
  */
 public class TranslateJcite {
+
+  /** The string used to escape a jcite tag. */
+  static final String ESCAPED_JCITE_TAG = "{@literal @}.jcite";
 
   private TranslateJcite() {}
 
@@ -58,7 +62,8 @@ public class TranslateJcite {
     private final Set<String> startedJciteTags = Sets.newHashSet();
     private final Set<String> endedJciteTags = Sets.newHashSet();
 
-    @Override protected String generateReplacementText(Comment commentNode, String commentText) {
+    @Override
+    protected String processComment(Reporter reporter, Comment commentNode, String commentText) {
       if (!(commentNode instanceof LineComment)) {
         return null;
       }
@@ -102,15 +107,15 @@ public class TranslateJcite {
 
     private final String sampleSrcDir;
 
-    private final List<BodyDeclarationLocater> whitelist;
+    private final List<BodyDeclarationLocator> whitelist;
 
-    public InclusionHandler(String sampleSrcDir, List<BodyDeclarationLocater> whitelist) {
+    public InclusionHandler(String sampleSrcDir, List<BodyDeclarationLocator> whitelist) {
       this.sampleSrcDir = sampleSrcDir;
       this.whitelist = whitelist;
     }
 
     @Override
-    protected boolean visitTagElement(ASTRewrite rewrite, TagElement tagNode) {
+    protected boolean visitTagElement(Reporter reporter, ASTRewrite rewrite, TagElement tagNode) {
       String tagName = tagNode.getTagName();
       if (tagName == null || !tagName.equalsIgnoreCase("@.jcite")) {
         return true;
@@ -178,7 +183,7 @@ public class TranslateJcite {
       // name and the rest of the tag. e.g. {@literal @}.jcite  foo.bar.....
       AST ast = tagNode.getAST();
       TagElement replacement = ast.newTagElement();
-      replacement.fragments().add(AstNodes.createTextElement(ast, "{@literal @}.jcite"));
+      replacement.fragments().add(AstNodes.createTextElement(ast, ESCAPED_JCITE_TAG));
       replacement.fragments().addAll(ASTNode.copySubtrees(ast, tagNode.fragments()));
       return replacement;
     }

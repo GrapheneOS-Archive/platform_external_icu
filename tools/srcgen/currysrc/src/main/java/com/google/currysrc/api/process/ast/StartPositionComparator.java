@@ -13,23 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.google.currysrc.api;
+package com.google.currysrc.api.process.ast;
 
-import com.google.currysrc.api.input.InputFileGenerator;
-import com.google.currysrc.api.output.OutputSourceFileGenerator;
-import com.google.currysrc.api.process.Rule;
-
-import java.io.File;
-import java.util.List;
+import org.eclipse.jdt.core.dom.ASTNode;
 
 /**
- * Rules to apply to a set of source files.
+ * A comparator of ASTNode start positions.
  */
-public interface Rules {
-
-  InputFileGenerator getInputFileGenerator();
-
-  List<Rule> getRuleList(File file);
-
-  OutputSourceFileGenerator getOutputSourceFileGenerator();
+public final class StartPositionComparator implements java.util.Comparator<ASTNode> {
+  @Override
+  public int compare(ASTNode o1, ASTNode o2) {
+    return Integer.compare(o1.getStartPosition(), o2.getStartPosition());
+  }
 }

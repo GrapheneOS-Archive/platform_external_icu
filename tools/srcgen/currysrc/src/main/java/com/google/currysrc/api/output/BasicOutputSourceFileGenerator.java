@@ -15,7 +15,7 @@
  */
 package com.google.currysrc.api.output;
 
-import com.google.currysrc.api.transform.ast.PackageMatcher;
+import com.google.currysrc.api.process.ast.PackageMatcher;
 
 import org.eclipse.jdt.core.dom.CompilationUnit;
 
