@@ -13,23 +13,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.google.currysrc.api;
+package com.google.currysrc.api.process;
 
-import com.google.currysrc.api.input.InputFileGenerator;
-import com.google.currysrc.api.output.OutputSourceFileGenerator;
-import com.google.currysrc.api.process.Rule;
-
-import java.io.File;
-import java.util.List;
+import org.eclipse.jdt.core.dom.ASTNode;
 
 /**
- * Rules to apply to a set of source files.
+ * Used for reporting information to the execution environment.
  */
-public interface Rules {
+public interface Reporter {
 
-  InputFileGenerator getInputFileGenerator();
+  /**
+   * Report general information.
+   */
+  void info(String message);
 
-  List<Rule> getRuleList(File file);
+  /**
+   * Report information about a node.
+   */
+  void info(ASTNode node, String message);
 
-  OutputSourceFileGenerator getOutputSourceFileGenerator();
 }
