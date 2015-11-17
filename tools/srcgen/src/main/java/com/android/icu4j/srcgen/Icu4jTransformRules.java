@@ -31,10 +31,10 @@ import java.util.List;
 /**
  * Useful chunks of {@link com.google.currysrc.api.Rules} code shared between various tools.
  */
-class Icu4jTransformRules {
+public class Icu4jTransformRules {
   private Icu4jTransformRules() {}
 
-  static CompoundDirectoryInputFileGenerator createInputFileGenerator(String[] dirNames) {
+  public static CompoundDirectoryInputFileGenerator createInputFileGenerator(String[] dirNames) {
     List<InputFileGenerator> dirs = new ArrayList<>(dirNames.length);
     for (int i = 0; i < dirNames.length; i++) {
       File inputFile = new File(dirNames[i]);
@@ -51,7 +51,7 @@ class Icu4jTransformRules {
     return new CompoundDirectoryInputFileGenerator(dirs);
   }
 
-  static BasicOutputSourceFileGenerator createOutputFileGenerator(String outputDirName) {
+  public static BasicOutputSourceFileGenerator createOutputFileGenerator(String outputDirName) {
     File outputDir = new File(outputDirName);
     if (!isValidDir(outputDir)) {
       throw new IllegalArgumentException("Output dir [" + outputDir + "] does not exist.");
@@ -59,11 +59,11 @@ class Icu4jTransformRules {
     return new BasicOutputSourceFileGenerator(outputDir);
   }
 
-  static DefaultRule createMandatoryRule(Processor processor) {
+  public static DefaultRule createMandatoryRule(Processor processor) {
     return new DefaultRule(processor, SourceMatchers.all(), true /* mustModify */);
   }
 
-  static DefaultRule createOptionalRule(Processor processor) {
+  public static DefaultRule createOptionalRule(Processor processor) {
     return new DefaultRule(processor, SourceMatchers.all(), false /* mustModify */);
   }
 

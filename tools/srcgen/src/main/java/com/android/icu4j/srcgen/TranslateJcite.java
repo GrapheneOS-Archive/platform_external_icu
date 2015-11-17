@@ -46,7 +46,7 @@ import static com.google.currysrc.api.process.ast.BodyDeclarationLocators.matche
 public class TranslateJcite {
 
   /** The string used to escape a jcite tag. */
-  static final String ESCAPED_JCITE_TAG = "{@literal @}.jcite";
+  public static final String ESCAPED_JCITE_TAG = "{@literal @}.jcite";
 
   private TranslateJcite() {}
 
