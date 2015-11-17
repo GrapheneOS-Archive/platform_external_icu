@@ -1653,7 +1653,6 @@ public abstract class NumberFormat extends UFormat {
      * Currency object used to format currencies.  Subclasses may
      * ignore this if they are not currency formats.  This will be
      * null unless a subclass sets it to a non-null value.
-     * @since ICU 2.6
      */
     private Currency currency;
 

@@ -884,14 +884,12 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
     /**
      * The list of keywords for this service.  This must be kept in sync with
      * the resource data.
-     * @since ICU 3.0
      */
     private static final String[] KEYWORDS = { "collation" };
 
     /**
      * The resource name for this service.  Note that this is not the same as
      * the keyword for this service.
-     * @since ICU 3.0
      */
     private static final String RESOURCE = "collations";
 

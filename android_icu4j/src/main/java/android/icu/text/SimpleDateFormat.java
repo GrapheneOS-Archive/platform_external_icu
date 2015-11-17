@@ -886,7 +886,6 @@ public class SimpleDateFormat extends DateFormat {
      * <code>defaultCenturyStart</code>, which may be any date.  May
      * not be null.
      * @serial
-     * @since JDK1.1.4
      */
     private Date defaultCenturyStart;
 

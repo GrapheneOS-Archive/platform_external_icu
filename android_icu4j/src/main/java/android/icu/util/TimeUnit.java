@@ -13,7 +13,6 @@ import java.io.ObjectStreamException;
 
 /**
  * Measurement unit for time units.
- * @see TimeUnitAmount
  * @see TimeUnit
  * @author markdavis
  * @hide All android.icu classes are currently hidden

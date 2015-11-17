@@ -22,7 +22,6 @@ import java.util.Arrays;
 * <p>unames.icu which is in big-endian format is jared together with this 
 * package.</p>
 * @author Syn Wee Quek
-* @since release 2.1, February 1st 2002
 */
 
 final class UCharacterNameReader implements ICUBinary.Authenticate
