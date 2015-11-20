@@ -121,3 +121,13 @@
  * @see com.ibm.icu.lang.UCharacterEnums
  */
 --
+
+# Remove @see reference to non-public class TimeUnitAmount.
+--type:android.icu.util.TimeUnit
+/**
+ * Measurement unit for time units.
+ * @see TimeUnit
+ * @author markdavis
+ * @stable ICU 4.0
+ */
+--

@@ -16,7 +16,6 @@ import android.icu.text.UTF16;
  * Trie implementation which stores data in char, 16 bits.
  * @author synwee
  * @see android.icu.impl.Trie
- * @since release 2.1, Jan 01 2002
  * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
  */

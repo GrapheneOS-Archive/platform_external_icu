@@ -21,7 +21,6 @@ import android.icu.text.UTF16;
  * <em>not</em> related to any of the JDK or ICU4J character iterator classes
  * in order to minimize complexity.
  * @author Alan Liu
- * @since ICU 2.8
  * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
  */
