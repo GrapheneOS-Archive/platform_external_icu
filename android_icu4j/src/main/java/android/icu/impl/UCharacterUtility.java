@@ -11,8 +11,7 @@ package android.icu.impl;
 * Internal character utility class for simple data type conversion and String 
 * parsing functions. Does not have an analog in the JDK.
 * @author Syn Wee Quek
-* @since sep2900
- * @hide Only a subset of ICU is exposed in Android
+* @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
 */
 

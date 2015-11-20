@@ -520,7 +520,6 @@ public abstract class BreakIterator implements Cloneable
     public static final int KIND_TITLE = 4;
 
     /**
-     * @since ICU 2.8
      */
     private static final int KIND_COUNT = 5;
 

@@ -75,7 +75,6 @@ import android.icu.util.ByteArrayWrapper;
  * need an example.)</p>
  *
  * @author Syn Wee Quek
- * @since release 2.2, May 3rd 2002
  * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
  */
