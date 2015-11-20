@@ -37,7 +37,6 @@ import android.icu.lang.UScript;
  * the system, as determined by examining the registered script
  * transliterators.
  *
- * @since ICU 2.2
  * @author Alan Liu
  */
 class AnyTransliterator extends Transliterator {

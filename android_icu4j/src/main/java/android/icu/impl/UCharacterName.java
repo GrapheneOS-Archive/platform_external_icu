@@ -31,8 +31,7 @@ import android.icu.text.UnicodeSet;
 * <a href=../lang/UCharacter.html>UCharacter</a> acts as a public facade for this class
 * Note : 0 - 0x1F are control characters without names in Unicode 3.0
 * @author Syn Wee Quek
-* @since nov0700
- * @hide Only a subset of ICU is exposed in Android
+* @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
 */
 

@@ -42,7 +42,6 @@ import android.icu.util.BytesTrie;
  * singleton instance and cache it.
  *
  * @author Alan Liu
- * @since ICU 2.4
  * @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
  */

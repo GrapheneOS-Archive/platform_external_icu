@@ -623,7 +623,7 @@ public class Icu4jTransform {
           // @hide has been added in place of @draft, @provisional and @internal
           // @stable <ICU version> will not mean much on Android.
           createOptionalRule(new RemoveJavaDocTags(
-              "@stable", "@draft", "@provisional", "@internal")),
+              "@stable", "@draft", "@provisional", "@internal", "@since")),
           // AST change: Replace @icu and @icuenhanced with standard text.
           createOptionalRule(new ReplaceIcuTags()),
 
