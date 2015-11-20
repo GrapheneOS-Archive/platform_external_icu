@@ -37,8 +37,7 @@ import android.icu.util.VersionInfo;
 * <p>Responsibility for molding the binary data into more meaning form lies on
 * <a href=UCharacter.html>UCharacter</a>.</p>
 * @author Syn Wee Quek
-* @since release 2.1, february 1st 2002
- * @hide Only a subset of ICU is exposed in Android
+* @hide Only a subset of ICU is exposed in Android
  * @hide All android.icu classes are currently hidden
 */
 

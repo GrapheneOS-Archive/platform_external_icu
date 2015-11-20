@@ -18,7 +18,6 @@ import android.icu.util.ValueIterator;
  * name.</p>
  * <p>See UCharacter.getNameIterator() for an example of use.</p>
  * @author synwee
- * @since release 2.1, March 5 2002
  */
 class UCharacterNameIterator implements ValueIterator
 {

@@ -1442,7 +1442,6 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
      * and the highest allowable <code>serialVersionOnStream</code>
      * is written.
      * @serial
-     * @since JDK1.1.6
      */
     // private int             serialVersionOnStream = currentSerialVersion;
 

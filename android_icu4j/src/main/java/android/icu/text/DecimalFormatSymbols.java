@@ -1166,7 +1166,6 @@ public class DecimalFormatSymbols implements Cloneable, Serializable {
      * Note that this supersedes the <code>exponential</code> field.
      *
      * @serial
-     * @since AlphaWorks
      */
     private String exponentSeparator;
 
@@ -1174,34 +1173,29 @@ public class DecimalFormatSymbols implements Cloneable, Serializable {
      * The character used to indicate a padding character in a format,
      * e.g., '*' in a pattern such as "$*_#,##0.00".
      * @serial
-     * @since AlphaWorks
      */
     private char padEscape;
 
     /**
      * The character used to indicate a plus sign.
      * @serial
-     * @since AlphaWorks
      */
     private char plusSign;
 
     /**
      * The locale for which this object was constructed.  Set to the
      * default locale for objects resurrected from old streams.
-     * @since ICU 2.2
      */
     private Locale requestedLocale;
 
     /**
      * The requested ULocale.  We keep the old locale for serialization compatibility.
-     * @since ICU 3.2
      */
     private ULocale ulocale;
 
     /**
      * String versions of some number symbols.
      * @serial
-     * @since ICU 52
      */
     private String minusString = null;
     private String plusString = null;
@@ -1209,7 +1203,6 @@ public class DecimalFormatSymbols implements Cloneable, Serializable {
     /**
      * Exponent multiplication sign. e.g "x"
      * @serial
-     * @since ICU 54
      */
     private String exponentMultiplicationSign = null;
 

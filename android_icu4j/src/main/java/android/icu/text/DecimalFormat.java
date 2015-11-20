@@ -5630,8 +5630,6 @@ public class DecimalFormat extends NumberFormat {
     /**
      * Formatter for ChoiceFormat-based currency names. If this field is not null, then
      * delegate to it to format currency symbols.
-     *
-     * @since ICU 2.6
      */
     private ChoiceFormat currencyChoice;
 
@@ -5685,7 +5683,6 @@ public class DecimalFormat extends NumberFormat {
      * True to use significant digits rather than integer and fraction digit counts.
      *
      * @serial
-     * @since ICU 3.0
      */
     private boolean useSignificantDigits = false;
 
@@ -5694,7 +5691,6 @@ public class DecimalFormat extends NumberFormat {
      * maxSignificantDigits. Ignored unless useSignificantDigits == true.
      *
      * @serial
-     * @since ICU 3.0
      */
     private int minSignificantDigits = 1;
 
@@ -5703,7 +5699,6 @@ public class DecimalFormat extends NumberFormat {
      * minSignficantDigits. Ignored unless useSignificantDigits == true.
      *
      * @serial
-     * @since ICU 3.0
      */
     private int maxSignificantDigits = 6;
 
@@ -5739,7 +5734,6 @@ public class DecimalFormat extends NumberFormat {
      * no effect unless <code>useExponentialNotation</code> is true.
      *
      * @serial
-     * @since AlphaWorks NumberFormat
      */
     private boolean exponentSignAlwaysShown = false;
 
@@ -5750,7 +5744,6 @@ public class DecimalFormat extends NumberFormat {
      * positive value if rounding is in effect. Default value <code>null</code>.
      *
      * @serial
-     * @since AlphaWorks NumberFormat
      */
     // Note: this is kept in sync with roundingIncrementICU.
     // it is only kept around to avoid a conversion when formatting a java.math.BigDecimal
@@ -5764,7 +5757,6 @@ public class DecimalFormat extends NumberFormat {
      * the roundingIncrement value is the one serialized.
      *
      * @serial
-     * @since AlphaWorks NumberFormat
      */
     private transient BigDecimal roundingIncrementICU = null;
 
@@ -5776,7 +5768,6 @@ public class DecimalFormat extends NumberFormat {
      * <code>BigDecimal.ROUND_HALF_EVEN</code>.
      *
      * @serial
-     * @since AlphaWorks NumberFormat
      */
     private int roundingMode = BigDecimal.ROUND_HALF_EVEN;
 
@@ -5796,7 +5787,6 @@ public class DecimalFormat extends NumberFormat {
      * value zero.
      *
      * @serial
-     * @since AlphaWorks NumberFormat
      */
     private int formatWidth = 0;
 
@@ -5805,7 +5795,6 @@ public class DecimalFormat extends NumberFormat {
      * padding is in effect. Default value ' '.
      *
      * @serial
-     * @since AlphaWorks NumberFormat
      */
     private char pad = ' ';
 
@@ -5816,7 +5805,6 @@ public class DecimalFormat extends NumberFormat {
      * <code>PAD_BEFORE_PREFIX</code>.
      *
      * @serial
-     * @since AlphaWorks NumberFormat
      */
     private int padPosition = PAD_BEFORE_PREFIX;
 
@@ -5826,7 +5814,6 @@ public class DecimalFormat extends NumberFormat {
      * J2SE 5 compatibility support.
      *
      * @serial
-     * @since ICU 3.6
      * @see #setParseBigDecimal(boolean)
      * @see #isParseBigDecimal()
      */
@@ -5835,7 +5822,6 @@ public class DecimalFormat extends NumberFormat {
     /**
      * The currency usage for the NumberFormat(standard or cash usage).
      * It is used as STANDARD by default
-     * @since ICU 54
      */
     private CurrencyUsage currencyUsage = CurrencyUsage.STANDARD;
     
