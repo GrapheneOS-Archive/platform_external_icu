@@ -30,6 +30,7 @@ import android.icu.util.ULocale;
  * System.out.println(fmt.format(1.23456e-78));
  * </pre>
  *
+ * @hide Only a subset of ICU is exposed in Android
  * @hide draft / provisional / internal are hidden on Android
  * @hide All android.icu classes are currently hidden
  *

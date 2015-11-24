@@ -93,7 +93,6 @@ public class Icu4jTransform {
       "android.icu.text.RelativeDateTimeFormatter",
       "android.icu.text.Replaceable",
       "android.icu.text.RuleBasedCollator",
-      "android.icu.text.ScientificNumberFormatter",
       "android.icu.text.SearchIterator",
       "android.icu.text.SelectFormat",
       "android.icu.text.SimpleDateFormat",
