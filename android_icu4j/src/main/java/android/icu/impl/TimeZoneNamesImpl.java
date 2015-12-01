@@ -25,8 +25,8 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.regex.Pattern;
 
-import android.icu.impl.ICUResource.TableSink;
 import android.icu.impl.TextTrieMap.ResultHandler;
+import android.icu.impl.UResource.TableSink;
 import android.icu.text.TimeZoneNames;
 import android.icu.util.TimeZone;
 import android.icu.util.TimeZone.SystemTimeZoneType;
@@ -297,21 +297,21 @@ public class TimeZoneNamesImpl extends TimeZoneNames {
     /**
      * Loads all meta zone and time zone names for this TimeZoneNames' locale.
      */
-    private final class ZoneStringsLoader extends ICUResource.TableSink {
+    private final class ZoneStringsLoader extends UResource.TableSink {
         /**
          * Prepare for several hundred time zones and meta zones.
          * _zoneStrings.getSize() is ineffective in a sparsely populated locale like en-GB.
          */
         private static final int INITIAL_NUM_ZONES = 300;
-        private HashMap<ICUResource.Key, ZNamesLoader> keyToLoader =
-                new HashMap<ICUResource.Key, ZNamesLoader>(INITIAL_NUM_ZONES);
+        private HashMap<UResource.Key, ZNamesLoader> keyToLoader =
+                new HashMap<UResource.Key, ZNamesLoader>(INITIAL_NUM_ZONES);
         private StringBuilder sb = new StringBuilder(32);
 
         /** Caller must synchronize. */
         void load() {
             _zoneStrings.getAllTableItemsWithFallback("", this);
-            for (Map.Entry<ICUResource.Key, ZNamesLoader> entry : keyToLoader.entrySet()) {
-                ICUResource.Key key = entry.getKey();
+            for (Map.Entry<UResource.Key, ZNamesLoader> entry : keyToLoader.entrySet()) {
+                UResource.Key key = entry.getKey();
                 ZNamesLoader loader = entry.getValue();
                 if (loader == ZNamesLoader.DUMMY_LOADER) {
                     // skip
@@ -328,7 +328,7 @@ public class TimeZoneNamesImpl extends TimeZoneNames {
         }
 
         @Override
-        public TableSink getOrCreateTableSink(ICUResource.Key key, int initialSize) {
+        public TableSink getOrCreateTableSink(UResource.Key key, int initialSize) {
             ZNamesLoader loader = keyToLoader.get(key);
             if (loader != null) {
                 if (loader == ZNamesLoader.DUMMY_LOADER) {
@@ -359,7 +359,7 @@ public class TimeZoneNamesImpl extends TimeZoneNames {
         }
 
         @Override
-        public void putNoFallback(ICUResource.Key key) {
+        public void putNoFallback(UResource.Key key) {
             if (!keyToLoader.containsKey(key)) {
                 keyToLoader.put(key.clone(), ZNamesLoader.DUMMY_LOADER);
             }
@@ -369,7 +369,7 @@ public class TimeZoneNamesImpl extends TimeZoneNames {
          * Equivalent to key.substring(MZ_PREFIX.length())
          * except reuses our StringBuilder.
          */
-        private String mzIDFromKey(ICUResource.Key key) {
+        private String mzIDFromKey(UResource.Key key) {
             sb.setLength(0);
             for (int i = MZ_PREFIX.length(); i < key.length(); ++i) {
                 sb.append(key.charAt(i));
@@ -377,7 +377,7 @@ public class TimeZoneNamesImpl extends TimeZoneNames {
             return sb.toString();
         }
 
-        private String tzIDFromKey(ICUResource.Key key) {
+        private String tzIDFromKey(UResource.Key key) {
             sb.setLength(0);
             for (int i = 0; i < key.length(); ++i) {
                 char c = key.charAt(i);
@@ -575,7 +575,7 @@ public class TimeZoneNamesImpl extends TimeZoneNames {
         }
     }
 
-    private static final class ZNamesLoader extends ICUResource.TableSink {
+    private static final class ZNamesLoader extends UResource.TableSink {
         private static int NUM_META_ZONE_NAMES = 6;
         private static int NUM_TIME_ZONE_NAMES = 7;  // incl. EXEMPLAR_LOCATION
 
@@ -615,7 +615,7 @@ public class TimeZoneNamesImpl extends TimeZoneNames {
             return getNames();
         }
 
-        private static NameType nameTypeFromKey(ICUResource.Key key) {
+        private static NameType nameTypeFromKey(UResource.Key key) {
             // Avoid key.toString() object creation.
             if (key.length() != 2) {
                 return null;
@@ -637,7 +637,7 @@ public class TimeZoneNamesImpl extends TimeZoneNames {
         }
 
         @Override
-        public void put(ICUResource.Key key, ICUResource.Value value) {
+        public void put(UResource.Key key, UResource.Value value) {
             if (value.getType() == UResourceBundle.STRING) {
                 if (names == null) {
                     names = new String[numNames];
@@ -650,7 +650,7 @@ public class TimeZoneNamesImpl extends TimeZoneNames {
         }
 
         @Override
-        public void putNoFallback(ICUResource.Key key) {
+        public void putNoFallback(UResource.Key key) {
             if (names == null) {
                 names = new String[numNames];
             }
