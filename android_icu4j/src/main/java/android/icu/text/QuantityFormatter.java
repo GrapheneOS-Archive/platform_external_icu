@@ -1,16 +1,14 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 /*
  *******************************************************************************
- * Copyright (C) 2013-2014, International Business Machines Corporation and    *
- * others. All Rights Reserved.                                                *
+ * Copyright (C) 2013-2015, International Business Machines Corporation and
+ * others. All Rights Reserved.
  *******************************************************************************
  */
 package android.icu.text;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import android.icu.impl.SimplePatternFormatter;
+import android.icu.impl.UResource;
 
 /**
  * QuantityFormatter represents an unknown quantity of something and formats a known quantity
@@ -21,92 +19,98 @@ import android.icu.impl.SimplePatternFormatter;
  * PluralRules and DecimalFormat. It is package-protected as it is not meant for public use.
  */
 class QuantityFormatter {
-    
-    private static final Map<String, Integer> INDEX_MAP = new HashMap<String, Integer>();
-    private static final int MAX_INDEX;
-    
-    static {
-        int idx = 0;
-        // Other must be first.
-        INDEX_MAP.put("other", idx++);
-        INDEX_MAP.put("zero", idx++);
-        INDEX_MAP.put("one", idx++);
-        INDEX_MAP.put("two", idx++);
-        INDEX_MAP.put("few", idx++);
-        INDEX_MAP.put("many", idx++);
-        
-        MAX_INDEX = idx;
+    /**
+     * Plural forms in index order: "other", "zero", "one", "two", "few", "many"
+     * "other" must be first.
+     */
+    private static final int getPluralIndex(CharSequence pluralForm) {
+        switch (pluralForm.length()) {
+        case 3:
+            if ("one".contentEquals(pluralForm)) {
+                return 2;
+            } else if ("two".contentEquals(pluralForm)) {
+                return 3;
+            } else if ("few".contentEquals(pluralForm)) {
+                return 4;
+            }
+            break;
+        case 4:
+            if ("many".contentEquals(pluralForm)) {
+                return 5;
+            } else if ("zero".contentEquals(pluralForm)) {
+                return 1;
+            }
+            break;
+        case 5:
+            if ("other".contentEquals(pluralForm)) {
+                return 0;
+            }
+            break;
+        default:
+            break;
+        }
+        return -1;
+    }
+    private static final int INDEX_COUNT = 6;
+
+    private final SimplePatternFormatter[] templates = new SimplePatternFormatter[INDEX_COUNT];
+
+    public QuantityFormatter() {}
+
+    /**
+     * Adds a template if there is none yet for the plural form.
+     *
+     * @param variant the plural variant, e.g "zero", "one", "two", "few", "many", "other"
+     * @param template the text for that plural variant with "{0}" as the quantity. For
+     * example, in English, the template for the "one" variant may be "{0} apple" while the
+     * template for the "other" variant may be "{0} apples"
+     * @throws IllegalArgumentException if variant is not recognized or
+     *  if template has more than just the {0} placeholder.
+     */
+    public void addIfAbsent(CharSequence variant, String template) {
+        addIfAbsent(variant, template, null);
     }
 
     /**
-     * Builder builds a QuantityFormatter.
-     * 
-     * @author rocketman
+     * Adds a template if there is none yet for the plural form.
+     * This version only calls UResource.Value.getString()
+     * if there is no template yet for the plural form.
+     *
+     * @param variant the plural variant, e.g "zero", "one", "two", "few", "many", "other"
+     * @param template the text for that plural variant with "{0}" as the quantity. For
+     * example, in English, the template for the "one" variant may be "{0} apple" while the
+     * template for the "other" variant may be "{0} apples"
+     * @throws IllegalArgumentException if variant is not recognized or
+     *  if template has more than just the {0} placeholder.
      */
-    static class Builder {
-        
-        private SimplePatternFormatter[] templates;
-
-        /**
-         * Adds a template.
-         * @param variant the plural variant, e.g "zero", "one", "two", "few", "many", "other"
-         * @param template the text for that plural variant with "{0}" as the quantity. For
-         * example, in English, the template for the "one" variant may be "{0} apple" while the
-         * template for the "other" variant may be "{0} apples"
-         * @return a reference to this Builder for chaining.
-         * @throws IllegalArgumentException if variant is not recognized or
-         *  if template has more than just the {0} placeholder.
-         */
-        public Builder add(String variant, String template) {
-            ensureCapacity();
-            Integer idx = INDEX_MAP.get(variant);
-            if (idx == null) {
-                throw new IllegalArgumentException(variant);
-            }
-            SimplePatternFormatter newT = SimplePatternFormatter.compile(template);
-            if (newT.getPlaceholderCount() > 1) {
-                throw new IllegalArgumentException(
-                        "Extra placeholders: " + template);
-            }
-            templates[idx.intValue()] = newT;
-            return this;
-        }
-
-        /**
-         * Builds the new QuantityFormatter and resets this Builder to its initial state.
-         * @return the new QuantityFormatter object.
-         * @throws IllegalStateException if no template is specified for the "other" variant.
-         *  When throwing this exception, build leaves this builder in its current state.
-         */
-        public QuantityFormatter build() {
-            if (templates == null || templates[0] == null) {
-                throw new IllegalStateException("At least other variant must be set.");
-            }
-            QuantityFormatter result = new QuantityFormatter(templates);
-            templates = null;
-            return result;          
-        }
-
-        /**
-         * Resets this builder to its initial state.
-         */
-        public Builder reset() {
-            templates = null;
-            return this;
-        }
-        
-        private void ensureCapacity() {
-            if (templates == null) {
-                templates = new SimplePatternFormatter[MAX_INDEX];
-            }
-        }
-
+    public void addIfAbsent(CharSequence variant, UResource.Value template) {
+        addIfAbsent(variant, null, template);
     }
 
-    private final SimplePatternFormatter[] templates;
+    private void addIfAbsent(CharSequence variant, String template, UResource.Value templateValue) {
+        int idx = getPluralIndex(variant);
+        if (idx < 0) {
+            throw new IllegalArgumentException(variant.toString());
+        }
+        if (templates[idx] != null) {
+            return;
+        }
+        if (template == null) {
+            template = templateValue.getString();
+        }
+        SimplePatternFormatter newT = SimplePatternFormatter.compile(template);
+        if (newT.getPlaceholderCount() > 1) {
+            throw new IllegalArgumentException(
+                    "Extra placeholders: " + template);
+        }
+        templates[idx] = newT;
+    }
 
-    private QuantityFormatter(SimplePatternFormatter[] templates) {
-        this.templates = templates;
+    /**
+     * @return true if this object has at least the "other" variant
+     */
+    public boolean isValid() {
+        return templates[0] != null;
     }
 
     /**
@@ -128,9 +132,10 @@ class QuantityFormatter {
      * @param variant "zero", "one", "two", "few", "many", "other"
      * @return the SimplePatternFormatter
      */
-    public SimplePatternFormatter getByVariant(String variant) {
-        Integer idxObj = INDEX_MAP.get(variant);
-        SimplePatternFormatter template = templates[idxObj == null ? 0 : idxObj.intValue()];
+    public SimplePatternFormatter getByVariant(CharSequence variant) {
+        assert isValid();
+        int idx = getPluralIndex(variant);
+        SimplePatternFormatter template = templates[idx < 0 ? 0 : idx];
         return template == null ? templates[0] : template;
     }
  
@@ -140,6 +145,4 @@ class QuantityFormatter {
         }
         return pluralRules.select(quantity);
     }
-
- 
 }

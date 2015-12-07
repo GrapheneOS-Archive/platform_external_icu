@@ -14,8 +14,8 @@ import java.nio.ByteBuffer;
 import java.nio.CharBuffer;
 import java.nio.IntBuffer;
 
-import android.icu.impl.ICUResource.ArraySink;
-import android.icu.impl.ICUResource.TableSink;
+import android.icu.impl.UResource.ArraySink;
+import android.icu.impl.UResource.TableSink;
 import android.icu.util.ICUException;
 import android.icu.util.ICUUncheckedIOException;
 import android.icu.util.ULocale;
@@ -466,14 +466,14 @@ public final class ICUResourceBundleReader {
             return makeKeyStringFromBytes(poolBundleReader.keyBytes, keyOffset & 0x7fffffff);
         }
     }
-    private void setKeyFromKey16(int keyOffset, ICUResource.Key key) {
+    private void setKeyFromKey16(int keyOffset, UResource.Key key) {
         if(keyOffset < localKeyLimit) {
             key.setBytes(keyBytes, keyOffset);
         } else {
             key.setBytes(poolBundleReader.keyBytes, keyOffset - localKeyLimit);
         }
     }
-    private void setKeyFromKey32(int keyOffset, ICUResource.Key key) {
+    private void setKeyFromKey32(int keyOffset, UResource.Key key) {
         if(keyOffset >= 0) {
             key.setBytes(keyBytes, keyOffset);
         } else {
@@ -834,7 +834,7 @@ public final class ICUResourceBundleReader {
         UResourceBundle.NONE
     };
 
-    static class ReaderValue extends ICUResource.Value {
+    static class ReaderValue extends UResource.Value {
         ICUResourceBundleReader reader;
         private int res;
 
@@ -846,6 +846,15 @@ public final class ICUResourceBundleReader {
         @Override
         public String getString() {
             String s = reader.getString(res);
+            if (s == null) {
+                throw new UResourceTypeMismatchException("");
+            }
+            return s;
+        }
+
+        @Override
+        public String getAliasString() {
+            String s = reader.getAlias(res);
             if (s == null) {
                 throw new UResourceTypeMismatchException("");
             }
@@ -893,7 +902,7 @@ public final class ICUResourceBundleReader {
         protected int size;
         protected int itemsOffset;
 
-        int getSize() {
+        final int getSize() {
             return size;
         }
         int getContainerResource(ICUResourceBundleReader reader, int index) {
@@ -928,7 +937,7 @@ public final class ICUResourceBundleReader {
     static class Array extends Container {
         Array() {}
         void getAllItems(ICUResourceBundleReader reader,
-                ICUResource.Key key, ReaderValue value, ArraySink sink) {
+                UResource.Key key, ReaderValue value, ArraySink sink) {
             for (int i = 0; i < size; ++i) {
                 int res = getContainerResource(reader, i);
                 int type = RES_GET_TYPE(res);
@@ -948,14 +957,16 @@ public final class ICUResourceBundleReader {
                         assert(table.size == numItems);
                         table.getAllItems(reader, key, value, subSink);
                     }
+                /* TODO: settle on how to deal with aliases, port to C++
                 } else if (type == ICUResourceBundle.ALIAS) {
                     throw new UnsupportedOperationException(
-                            "aliases not handled in resource enumeration");
+                            "aliases not handled in resource enumeration"); */
                 } else {
                     value.res = res;
                     sink.put(i, value);
                 }
             }
+            sink.leave();
         }
     }
     private static final class Array32 extends Array {
@@ -1022,7 +1033,7 @@ public final class ICUResourceBundleReader {
             return getContainerResource(reader, findTableItem(reader, resKey));
         }
         void getAllItems(ICUResourceBundleReader reader,
-                ICUResource.Key key, ReaderValue value, TableSink sink) {
+                UResource.Key key, ReaderValue value, TableSink sink) {
             for (int i = 0; i < size; ++i) {
                 if (keyOffsets != null) {
                     reader.setKeyFromKey16(keyOffsets[i], key);
@@ -1047,9 +1058,10 @@ public final class ICUResourceBundleReader {
                         assert(table.size == numItems);
                         table.getAllItems(reader, key, value, subSink);
                     }
+                /* TODO: settle on how to deal with aliases, port to C++
                 } else if (type == ICUResourceBundle.ALIAS) {
                     throw new UnsupportedOperationException(
-                            "aliases not handled in resource enumeration");
+                            "aliases not handled in resource enumeration"); */
                 } else if (reader.isNoInheritanceMarker(res)) {
                     sink.putNoFallback(key);
                 } else {
@@ -1057,6 +1069,7 @@ public final class ICUResourceBundleReader {
                     sink.put(key, value);
                 }
             }
+            sink.leave();
         }
         Table() {
         }
