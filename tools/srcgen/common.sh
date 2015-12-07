@@ -25,10 +25,8 @@ fi
 source ${ANDROID_BUILD_TOP}/build/envsetup.sh
 
 # Build the srcgen tools.
-cd ${ANDROID_BUILD_TOP}/external/icu/tools/srcgen/currysrc
-mm -j32
-cd ${ANDROID_BUILD_TOP}/external/icu/tools/srcgen
-mm -j32
+cd ${ANDROID_BUILD_TOP}
+make -j16 android_icu4j_srcgen
 
 ICU4J_DIR=${ANDROID_BUILD_TOP}/external/icu/icu4j
 ANDROID_ICU4J_DIR=${ANDROID_BUILD_TOP}/external/icu/android_icu4j
