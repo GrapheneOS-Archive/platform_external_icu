@@ -119,20 +119,20 @@ public class CaptureDeprecatedElements {
 
   private static class CaptureDeprecatedProcessor implements Processor {
 
-    private final List<TypeLocator> publicClassLocaters;
+    private final List<TypeLocator> publicClassLocators;
     private final List<String> deprecatedElements = Lists.newArrayList();
 
-    public CaptureDeprecatedProcessor(List<TypeLocator> publicClassLocaters) {
-      this.publicClassLocaters = publicClassLocaters;
+    public CaptureDeprecatedProcessor(List<TypeLocator> publicClassLocators) {
+      this.publicClassLocators = publicClassLocators;
     }
 
     @Override public void process(Context context, CompilationUnit cu) {
-      for (TypeLocator publicClassLocater : publicClassLocaters) {
-        AbstractTypeDeclaration matchedType = publicClassLocater.find(cu);
+      for (TypeLocator publicClassLocator : publicClassLocators) {
+        AbstractTypeDeclaration matchedType = publicClassLocator.find(cu);
         if (matchedType != null) {
           if (isDeprecated(matchedType)) {
-            List<String> locaterStrings = BodyDeclarationLocators.toLocatorStringForms(matchedType);
-            deprecatedElements.addAll(locaterStrings);
+            List<String> locatorStrings = BodyDeclarationLocators.toLocatorStringForms(matchedType);
+            deprecatedElements.addAll(locatorStrings);
           }
           trackDeprecationsRecursively(matchedType);
         }
