@@ -14,6 +14,13 @@
 
 LOCAL_PATH := $(call my-dir)
 
+#
+# Subprojects with separate makefiles
+#
+
+subdirs := currysrc
+subdir_makefiles := $(call all-named-subdir-makefiles,$(subdirs))
+
 # build the android_icu4j srcgen jar
 # ============================================================
 
@@ -26,3 +33,5 @@ LOCAL_JAVA_LIBRARIES := currysrc
 LOCAL_JAVA_RESOURCE_FILES := $(LOCAL_PATH)/resources/replacements.txt
 LOCAL_SRC_FILES := $(call all-java-files-under, src/)
 include $(BUILD_HOST_JAVA_LIBRARY)
+
+include $(subdir_makefiles)
