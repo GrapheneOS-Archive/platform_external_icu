@@ -33,7 +33,7 @@ import org.eclipse.jface.text.Document;
  */
 public class FixupBidiClassDoc implements Processor {
 
-  private final static TypeLocator LOCATER = new TypeLocator("android.icu.text.Bidi");
+  private final static TypeLocator LOCATOR = new TypeLocator("android.icu.text.Bidi");
 
   /**
    * These tags appear in the middle of some javadoc, making the parser think they are related to
@@ -44,11 +44,11 @@ public class FixupBidiClassDoc implements Processor {
           + "Scherer)\n * @stable ICU 3.8\n";
 
   public SourceMatcher matcher() {
-    return SourceMatchers.contains(LOCATER);
+    return SourceMatchers.contains(LOCATOR);
   }
 
   @Override public void process(Context context, CompilationUnit cu) {
-    TypeDeclaration classNode = (TypeDeclaration) LOCATER.find(cu);
+    TypeDeclaration classNode = (TypeDeclaration) LOCATOR.find(cu);
     Javadoc javadoc = classNode.getJavadoc();
     try {
       Document document = context.document();

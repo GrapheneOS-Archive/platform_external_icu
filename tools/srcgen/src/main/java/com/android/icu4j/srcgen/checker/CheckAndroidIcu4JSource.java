@@ -58,15 +58,15 @@ public class CheckAndroidIcu4JSource {
     System.out.println("Establishing Android public ICU4J API");
     RecordPublicApiRules recordPublicApiRulesRules = new RecordPublicApiRules(inputFileGenerator);
     main.execute(recordPublicApiRulesRules);
-    List<String> publicMemberLocaterStrings = recordPublicApiRulesRules.publicMembers();
+    List<String> publicMemberLocatorStrings = recordPublicApiRulesRules.publicMembers();
     System.out.println("Public API is:");
-    for (String publicMemberLocaterString : publicMemberLocaterStrings) {
-      System.out.println(publicMemberLocaterString);
+    for (String publicMemberLocatorString : publicMemberLocatorStrings) {
+      System.out.println(publicMemberLocatorString);
     }
 
     // Pass 2: Check for issues.
     System.out.println("Checking for issues");
-    Set<String> publicMembersSet = Sets.newHashSet(publicMemberLocaterStrings);
+    Set<String> publicMembersSet = Sets.newHashSet(publicMemberLocatorStrings);
     File outputReportFile = new File(args[args.length - 1]);
     FileWriter out = new FileWriter(outputReportFile, false /* append */);
     try (BufferedWriter reportWriter = new BufferedWriter(out)) {
