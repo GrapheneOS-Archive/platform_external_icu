@@ -69,7 +69,7 @@ import android.icu.util.ULocale.Category;
  * offset from GMT(=UTC) and does not observe daylight saving
  * time. For example, you might specify GMT+14:00 as a custom
  * time zone ID to create a TimeZone representing 14 hours ahead
- * of GMT (with no daylight saving time). In addition, 
+ * of GMT (with no daylight saving time). In addition,
  * <code>getCanonicalID</code> can also be used to
  * normalize a custom time zone ID.
  *
@@ -79,32 +79,6 @@ import android.icu.util.ULocale.Category;
  * for multiple time zones (for example, "CST" could be U.S. "Central Standard
  * Time" and "China Standard Time"), and the Java platform can then only
  * recognize one of them.
- *
- * <p><strong>Note:</strong> Starting from ICU4J 4.0, you can optionally choose
- * JDK <code>TimeZone</code> as the time zone implementation.  The TimeZone factory
- * method <code>getTimeZone</code> creates an instance of ICU's own <code>TimeZone</code>
- * subclass by default.  If you want to use the JDK implementation always, you can
- * set the default time zone implementation type by the new method
- * <code>setDefaultTimeZoneType</code>.  Alternatively, you can change the initial
- * default implementation type by setting a property below.
- *
- * <blockquote>
- * <pre>
- * #
- * # The default TimeZone implementation type used by the ICU TimeZone
- * # factory method. [ ICU | JDK ]
- * #
- * android.icu.util.TimeZone.DefaultTimeZoneType = ICU
- * </pre>
- * </blockquote>
- *
- * <p>This property is included in ICUConfig.properties in android.icu package.  When the
- * <code>TimeZone</code> class is loaded, the initialization code checks if the property
- * <code>android.icu.util.TimeZone.DefaultTimeZoneType=xxx</code> is defined by the system
- * properties.  If not available, then it loads ICUConfig.properties to get the default
- * time zone implementation type.  The property setting is only used for the initial
- * default value and you can change the default type by calling
- * <code>setDefaultTimeZoneType</code> at runtime.
  *
  * @see          Calendar
  * @see          GregorianCalendar
@@ -146,12 +120,14 @@ abstract public class TimeZone implements Serializable, Cloneable, Freezable<Tim
      * <strong>[icu]</strong> A time zone implementation type indicating ICU's own TimeZone used by
      * <code>getTimeZone</code>, <code>setDefaultTimeZoneType</code>
      * and <code>getDefaultTimeZoneType</code>.
+     * @hide unsupported on Android
      */
     public static final int TIMEZONE_ICU = 0;
     /**
      * <strong>[icu]</strong> A time zone implementation type indicating JDK TimeZone used by
      * <code>getTimeZone</code>, <code>setDefaultTimeZoneType</code>
      * and <code>getDefaultTimeZoneType</code>.
+     * @hide unsupported on Android
      */
     public static final int TIMEZONE_JDK = 1;
 
@@ -742,6 +718,7 @@ abstract public class TimeZone implements Serializable, Cloneable, Freezable<Tim
      * Sets the default time zone type used by <code>getTimeZone</code>.
      * @param type time zone type, either <code>TIMEZONE_ICU</code> or
      * <code>TIMEZONE_JDK</code>.
+     * @hide unsupported on Android
      */
     public static synchronized void setDefaultTimeZoneType(int type) {
         if (type != TIMEZONE_ICU && type != TIMEZONE_JDK) {
@@ -754,6 +731,7 @@ abstract public class TimeZone implements Serializable, Cloneable, Freezable<Tim
      * <strong>[icu]</strong> Returns the default time zone type currently used.
      * @return The default time zone type, either <code>TIMEZONE_ICU</code> or
      * <code>TIMEZONE_JDK</code>.
+     * @hide unsupported on Android
      */
     public static int getDefaultTimeZoneType() {
         return TZ_IMPL;
@@ -887,6 +865,7 @@ abstract public class TimeZone implements Serializable, Cloneable, Freezable<Tim
      * is null, reset the default to the value it had originally when the
      * VM first started.
      * @param tz the new default time zone
+     * @hide unsupported on Android
      */
     public static synchronized void setDefault(TimeZone tz) {
         defaultZone = tz;

@@ -30,23 +30,22 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * Adds {@literal @}hide to the javadoc for all the {@link BodyDeclaration}s in the specified
- * blacklist. Used to hide all the deprecated methods that existed when Android made ICU public,
- * but does not touch those that were deprecated afterwards.
+ * Adds a javadoc tag to {@link BodyDeclaration}s that match a list of locators.
  */
-public class HideOriginalDeprecatedSet implements Processor {
-  private static final String HIDDEN_TAG_COMMENT = "@hide original deprecated declaration";
-  private final List<BodyDeclarationLocator> blacklist;
+public class TagMatchingDeclarations implements Processor {
+  private final List<BodyDeclarationLocator> locatorList;
+  private final String tagComment;
 
-  public HideOriginalDeprecatedSet(List<BodyDeclarationLocator> blacklist) {
-    this.blacklist = blacklist;
+  public TagMatchingDeclarations(List<BodyDeclarationLocator> locatorList, String tagComment) {
+    this.locatorList = locatorList;
+    this.tagComment = tagComment;
   }
 
   @Override public void process(Context context, CompilationUnit cu) {
     List<BodyDeclaration> matchingNodes = Lists.newArrayList();
     // This is inefficient but it is very simple.
-    for (BodyDeclarationLocator locater : blacklist) {
-      BodyDeclaration bodyDeclaration = locater.find(cu);
+    for (BodyDeclarationLocator locator : locatorList) {
+      BodyDeclaration bodyDeclaration = locator.find(cu);
       if (bodyDeclaration != null) {
         matchingNodes.add(bodyDeclaration);
       }
@@ -55,14 +54,15 @@ public class HideOriginalDeprecatedSet implements Processor {
     Collections.sort(matchingNodes, new StartPositionComparator());
     ASTRewrite rewrite = context.rewrite();
     for (BodyDeclaration bodyDeclaration : Lists.reverse(matchingNodes)) {
-      JavadocUtils.addJavadocTag(rewrite, bodyDeclaration, HIDDEN_TAG_COMMENT);
+      JavadocUtils.addJavadocTag(rewrite, bodyDeclaration, tagComment);
     }
   }
 
 
   @Override public String toString() {
-    return "HideOriginalDeprecatedSet{" +
-        "blacklist=" + blacklist +
+    return "TagDeclarations{" +
+        "locatorList=" + locatorList +
+        "tagComment=" + tagComment +
         '}';
   }
 }

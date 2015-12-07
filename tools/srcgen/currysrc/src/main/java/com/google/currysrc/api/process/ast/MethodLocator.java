@@ -49,10 +49,11 @@ public final class MethodLocator implements BodyDeclarationLocator {
   @Override
   public boolean matches(BodyDeclaration node) {
     if (node instanceof MethodDeclaration) {
+      BodyDeclaration parentNode = (BodyDeclaration) node.getParent();
       MethodDeclaration methodDeclaration = (MethodDeclaration) node;
-      if (methodDeclaration.getName().getFullyQualifiedName().equals(methodName)) {
-        return parameterMatcher.matches(methodDeclaration);
-      }
+      return typeLocator.matches(parentNode)
+          && methodDeclaration.getName().getFullyQualifiedName().equals(methodName)
+          && parameterMatcher.matches(methodDeclaration);
     }
     return false;
   }
