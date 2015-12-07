@@ -31,6 +31,7 @@ src_files := \
 	propsvec.c \
 	punycode.cpp \
 	putil.cpp \
+	resource.cpp \
 	sharedobject.cpp \
 	simplepatternformatter.cpp \
 	uarrsort.c \
@@ -83,7 +84,7 @@ src_files := \
 	unames.cpp \
 	uresbund.cpp \
 	ures_cnv.c \
-	uresdata.c \
+	uresdata.cpp \
 	usc_impl.c \
 	uscript.c \
 	uscript_props.cpp \
