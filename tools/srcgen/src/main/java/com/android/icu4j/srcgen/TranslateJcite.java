@@ -161,16 +161,16 @@ public class TranslateJcite {
       }
 
       String className = jciteElements.get(0);
-      String snippetLocater = jciteElements.get(1);
+      String snippetLocator = jciteElements.get(1);
 
       String fileName = sampleSrcDir + '/' + className.replace('.', '/') + ".java";
 
-      String snippetLocaterPrefix = "---";
-      if (!snippetLocater.startsWith(snippetLocaterPrefix)) {
-        throw new AssertionError("Badly formed .jcite tag: expected --- on snippetLocater");
+      String snippetLocatorPrefix = "---";
+      if (!snippetLocator.startsWith(snippetLocatorPrefix)) {
+        throw new AssertionError("Badly formed .jcite tag: expected --- on snippetLocator");
       }
       // See the TranslateJciteBeginEndTags transformer.
-      String newTag = snippetLocater.substring(snippetLocaterPrefix.length());
+      String newTag = snippetLocator.substring(snippetLocatorPrefix.length());
       // Remove any trailing whitespace.
       newTag = newTag.trim();
 
