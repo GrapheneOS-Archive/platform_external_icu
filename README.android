@@ -1,0 +1,15 @@
+This repo contains Android's copy of ICU4C and ICU4J and associated tools and code.
+
+Directories
+===========
+
+icu4j/,icu4c/   - ICU4J and ICU4C with Google and Android-specific patches applied.
+
+android_icu4j/  - A transformed copy of icu4j source repackaged into android.icu.
+                  This is the copy of ICU4J used in the Android platform.
+                  IMPORTANT NOTE: Do not make changes to this code directly.
+                  See tools/README.android.
+
+android_utils/  - ICU4C runtime initialization / Android integration code.
+
+tools/          - Code / data maintenance tools. See tools/README.android.
