@@ -745,8 +745,8 @@ public final class RelativeDateTimeFormatter {
                 ICUResourceBundle timeUnitBundle,
                 RelativeUnit relativeUnit,
                 EnumMap<RelativeUnit, QuantityFormatter[]> quantitativeUnitMap) {
-            QuantityFormatter.Builder future = new QuantityFormatter.Builder();
-            QuantityFormatter.Builder past = new QuantityFormatter.Builder();
+            QuantityFormatter future = new QuantityFormatter();
+            QuantityFormatter past = new QuantityFormatter();
             timeUnitBundle = timeUnitBundle.getWithFallback("relativeTime");
             addTimeUnit(
                     timeUnitBundle.getWithFallback("future"),
@@ -755,15 +755,15 @@ public final class RelativeDateTimeFormatter {
                     timeUnitBundle.getWithFallback("past"),
                     past);
             quantitativeUnitMap.put(
-                    relativeUnit, new QuantityFormatter[] { past.build(), future.build() });
+                    relativeUnit, new QuantityFormatter[] { past, future });
         }
 
         private static void addTimeUnit(
-                ICUResourceBundle pastOrFuture, QuantityFormatter.Builder builder) {
+                ICUResourceBundle pastOrFuture, QuantityFormatter qf) {
             int size = pastOrFuture.getSize();
             for (int i = 0; i < size; i++) {
                 UResourceBundle r = pastOrFuture.get(i);
-                builder.add(r.getKey(), r.getString());
+                qf.addIfAbsent(r.getKey(), r.getString());
             }
         }
         
