@@ -13,7 +13,6 @@ package android.icu.impl;
  * @param <F> first object type
  * @param <S> second object type
  * @hide Only a subset of ICU is exposed in Android
- * @hide All android.icu classes are currently hidden
  */
 public class Pair<F, S> {
     public final F first;

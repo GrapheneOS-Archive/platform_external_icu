@@ -20,7 +20,6 @@ import java.util.HashMap;
  *
  * @author Markus W. Scherer
  * @hide Only a subset of ICU is exposed in Android
- * @hide All android.icu classes are currently hidden
  */
 public abstract class StringTrieBuilder {
     /**

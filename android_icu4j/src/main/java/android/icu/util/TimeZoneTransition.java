@@ -12,7 +12,6 @@ package android.icu.util;
  * after the transition.
  * 
  * @hide Only a subset of ICU is exposed in Android
- * @hide All android.icu classes are currently hidden
  */
 public class TimeZoneTransition {
     private final TimeZoneRule from;

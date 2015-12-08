@@ -138,7 +138,6 @@ import android.icu.util.ULocale.Category;
  * @see android.icu.util.GregorianCalendar
  * @see android.icu.util.TimeZone
  * @author Mark Davis, Chen-Lieh Huang, Alan Liu
- * @hide All android.icu classes are currently hidden
  */
 public abstract class DateFormat extends UFormat {
 

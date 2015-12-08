@@ -18,7 +18,6 @@ import android.icu.util.UResourceTypeMismatchException;
 /**
  * ICU resource bundle key and value types.
  * @hide Only a subset of ICU is exposed in Android
- * @hide All android.icu classes are currently hidden
  */
 public final class UResource {
     /**

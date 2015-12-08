@@ -120,7 +120,6 @@ import android.icu.util.ULocale;
  * </ul>
  *
  * @author Mark Davis
- * @hide All android.icu classes are currently hidden
  */
 public final class AlphabeticIndex<V> implements Iterable<Bucket<V>> {
     /**

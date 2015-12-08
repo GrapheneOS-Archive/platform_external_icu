@@ -72,7 +72,6 @@ import android.icu.util.ULocale;
  * locales. Therefore, the behavior of {@link #getAvailableMetaZoneIDs()}, {@link #getAvailableMetaZoneIDs(String)},
  * {@link #getMetaZoneID(String, long)}, and {@link #getReferenceZoneID(String, String)} won't be changed no matter
  * what locale is used for getting an instance of <code>TimeZoneNames</code>.
- * @hide All android.icu classes are currently hidden
  */
 public abstract class TimeZoneNames implements Serializable {
 

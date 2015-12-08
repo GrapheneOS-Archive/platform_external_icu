@@ -36,7 +36,6 @@ import android.icu.util.ULocale;
  * @deprecated This API might change or be removed in a future release.
  * @hide Only a subset of ICU is exposed in Android
  * @hide draft / provisional / internal are hidden on Android
- * @hide All android.icu classes are currently hidden
  */
 @Deprecated
 public abstract class FilteredBreakIteratorBuilder {

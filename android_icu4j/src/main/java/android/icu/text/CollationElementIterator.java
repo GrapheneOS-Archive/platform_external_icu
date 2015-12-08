@@ -106,7 +106,6 @@ import android.icu.impl.coll.UVector32;
  * @see RuleBasedCollator
  * @see StringSearch
  * @author Syn Wee Quek
- * @hide All android.icu classes are currently hidden
  */
 public final class CollationElementIterator
 {

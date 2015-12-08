@@ -13,7 +13,6 @@ package android.icu.util;
  * into this unchecked version.
  *
  * @hide Only a subset of ICU is exposed in Android
- * @hide All android.icu classes are currently hidden
  */
 public class ICUCloneNotSupportedException extends ICUException {
     private static final long serialVersionUID = -4824446458488194964L;

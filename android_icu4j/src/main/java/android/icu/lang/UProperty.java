@@ -25,7 +25,6 @@ package android.icu.lang;
  * available. Check UCharacter.getUnicodeVersion() to be sure.</p>
  * @author Syn Wee Quek
  * @see android.icu.lang.UCharacter
- * @hide All android.icu classes are currently hidden
  */
 public interface UProperty
 {

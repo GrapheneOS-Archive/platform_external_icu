@@ -10,7 +10,6 @@ package android.icu.util;
 /**
  * Simple struct-like class for output parameters.
  * @param <T> The type of the parameter.
- * @hide All android.icu classes are currently hidden
  */
 public class Output<T> {
     /**

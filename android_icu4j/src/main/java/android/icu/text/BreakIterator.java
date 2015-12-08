@@ -206,7 +206,6 @@ import android.icu.util.ULocale;
  * </blockquote>
  *
  * @see CharacterIterator
- * @hide All android.icu classes are currently hidden
  *
  */
 

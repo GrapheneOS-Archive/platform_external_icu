@@ -148,7 +148,6 @@ import android.icu.util.UResourceBundle;
  * Data for a calendar is loaded out of resource bundles. 
  * Through ICU 4.4, date interval patterns are only supported in the Gregoria
  * calendar; non-Gregorian calendars are supported from ICU 4.4.1.  
- * @hide All android.icu classes are currently hidden
  */
 
 public class DateIntervalInfo implements Cloneable, Freezable<DateIntervalInfo>, Serializable {

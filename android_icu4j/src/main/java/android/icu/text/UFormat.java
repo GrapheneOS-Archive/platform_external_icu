@@ -19,7 +19,6 @@ import android.icu.util.ULocale;
  * @see android.icu.util.ULocale
  * @author weiv
  * @author Alan Liu
- * @hide All android.icu classes are currently hidden
  */
 public abstract class UFormat extends Format {
     // jdk1.4.2 serialver

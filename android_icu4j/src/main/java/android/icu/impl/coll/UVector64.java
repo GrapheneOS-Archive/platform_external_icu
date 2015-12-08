@@ -15,7 +15,6 @@ package android.icu.impl.coll;
 // If & when we start using something else, we might keep this as a thin wrapper for porting.
 /**
  * @hide Only a subset of ICU is exposed in Android
- * @hide All android.icu classes are currently hidden
  */
 public final class UVector64 {
     public UVector64() {}

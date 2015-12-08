@@ -15,7 +15,6 @@ import java.io.ObjectStreamException;
  * Measurement unit for time units.
  * @see TimeUnit
  * @author markdavis
- * @hide All android.icu classes are currently hidden
  */
 public class TimeUnit extends MeasureUnit {
     private static final long serialVersionUID = -2839973855554750484L;

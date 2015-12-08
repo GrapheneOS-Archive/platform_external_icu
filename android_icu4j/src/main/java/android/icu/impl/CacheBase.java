@@ -20,7 +20,6 @@ package android.icu.impl;
  *
  * @author Markus Scherer, Mark Davis
  * @hide Only a subset of ICU is exposed in Android
- * @hide All android.icu classes are currently hidden
  */
 public abstract class CacheBase<K, V, D> {
     /**

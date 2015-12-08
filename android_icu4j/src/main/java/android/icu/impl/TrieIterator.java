@@ -84,7 +84,6 @@ import android.icu.util.RangeValueIterator;
  * @author synwee
  * @see android.icu.impl.Trie
  * @hide Only a subset of ICU is exposed in Android
- * @hide All android.icu classes are currently hidden
  */
 public class TrieIterator implements RangeValueIterator
 

@@ -193,7 +193,6 @@ import android.icu.util.VersionInfo;
  * </p>
  * 
  * @author Syn Wee Quek
- * @hide All android.icu classes are currently hidden
  */
 public final class RuleBasedCollator extends Collator {
     // public constructors ---------------------------------------------------

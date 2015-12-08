@@ -113,7 +113,6 @@ import android.icu.util.UResourceBundle;
  * (UN M.49 - World).  This data is generated from "zone.tab"
  * in the tz database.
  * @hide Only a subset of ICU is exposed in Android
- * @hide All android.icu classes are currently hidden
  */
 public class OlsonTimeZone extends BasicTimeZone {
 

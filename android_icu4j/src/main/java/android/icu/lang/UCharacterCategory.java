@@ -25,7 +25,6 @@ import android.icu.lang.UCharacterEnums.ECharacterCategory;
  * This class is not subclassable
  * </p>
  * @author Syn Wee Quek
- * @hide All android.icu classes are currently hidden
  */
 
 public final class UCharacterCategory implements ECharacterCategory

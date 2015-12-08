@@ -42,7 +42,6 @@ import android.icu.util.UResourceBundle;
  * @see          DecimalFormat
  * @author       Mark Davis
  * @author       Alan Liu
- * @hide All android.icu classes are currently hidden
  */
 public class DecimalFormatSymbols implements Cloneable, Serializable {
     /**

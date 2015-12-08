@@ -54,7 +54,6 @@ import android.icu.util.VersionInfo;
  * </ol>
  * @author Ram Viswanadha
  * @hide Only a subset of ICU is exposed in Android
- * @hide All android.icu classes are currently hidden
  */
 public final class StringPrep {
     /** 

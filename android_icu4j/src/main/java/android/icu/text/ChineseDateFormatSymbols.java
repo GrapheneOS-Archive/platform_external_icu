@@ -25,7 +25,6 @@ import android.icu.util.ULocale.Category;
  * @author Alan Liu
  * @deprecated ICU 50 
  * @hide Only a subset of ICU is exposed in Android
- * @hide All android.icu classes are currently hidden
  */
 @Deprecated
 public class ChineseDateFormatSymbols extends DateFormatSymbols {

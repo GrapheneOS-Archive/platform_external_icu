@@ -9,7 +9,6 @@ package android.icu.impl;
 
 /**
  * @hide Only a subset of ICU is exposed in Android
- * @hide All android.icu classes are currently hidden
  */
 public class ICULangDataTables extends LocaleDisplayNamesImpl.ICUDataTables {
     public ICULangDataTables() {

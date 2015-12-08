@@ -33,7 +33,6 @@ import android.icu.impl.Grego;
  * do nothing with MIME encoding.
  * 
  * @hide Only a subset of ICU is exposed in Android
- * @hide All android.icu classes are currently hidden
  */
 public class VTimeZone extends BasicTimeZone {
 

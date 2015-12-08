@@ -25,7 +25,6 @@ import android.icu.impl.Grego;
  * @see android.icu.util.TimeZoneTransition
  *
  * @hide Only a subset of ICU is exposed in Android
- * @hide All android.icu classes are currently hidden
  */
 public abstract class BasicTimeZone extends TimeZone {
 

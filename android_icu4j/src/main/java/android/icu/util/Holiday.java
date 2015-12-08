@@ -22,7 +22,6 @@ import android.icu.util.ULocale.Category;
  * An abstract class representing a holiday.
  * @hide Only a subset of ICU is exposed in Android
  * @hide draft / provisional / internal are hidden on Android
- * @hide All android.icu classes are currently hidden
  */
 public abstract class Holiday implements DateRule
 {
