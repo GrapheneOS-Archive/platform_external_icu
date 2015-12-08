@@ -124,7 +124,6 @@ import android.icu.util.ULocale;
  * @see SearchIterator
  * @see RuleBasedCollator
  * @author Laura Werner, synwee
- * @hide All android.icu classes are currently hidden
  */
 // internal notes: all methods do not guarantee the correct status of the 
 // characteriterator. the caller has to maintain the original index position

@@ -62,7 +62,6 @@ import android.icu.util.ULocale.Category;
  * 
  * @see android.icu.util.Calendar
  * @see android.icu.util.GregorianCalendar
- * @hide All android.icu classes are currently hidden
  */
 public class IndianCalendar extends Calendar {
     // jdk1.4.2 serialver

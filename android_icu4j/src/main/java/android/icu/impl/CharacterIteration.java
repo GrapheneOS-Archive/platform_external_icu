@@ -13,7 +13,6 @@ import android.icu.text.UTF16;
 
 /**
  * @hide Only a subset of ICU is exposed in Android
- * @hide All android.icu classes are currently hidden
  */
 public final class CharacterIteration {
     // disallow instantiation

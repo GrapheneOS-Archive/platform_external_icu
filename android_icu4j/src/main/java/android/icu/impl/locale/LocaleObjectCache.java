@@ -13,7 +13,6 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @hide Only a subset of ICU is exposed in Android
- * @hide All android.icu classes are currently hidden
  */
 public abstract class LocaleObjectCache<K, V> {
     private ConcurrentHashMap<K, CacheEntry<K, V>> _map;

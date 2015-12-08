@@ -49,7 +49,6 @@ import android.icu.util.ULocale;
  * NumberFormat.
  *
  * @author markdavis
- * @hide All android.icu classes are currently hidden
  */
 public class CompactDecimalFormat extends DecimalFormat {
 

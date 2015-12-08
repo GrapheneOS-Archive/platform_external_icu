@@ -27,7 +27,6 @@ import android.icu.util.Currency.CurrencyUsage;
  * This class is not intended for public subclassing.
  * 
  * @hide Only a subset of ICU is exposed in Android
- * @hide All android.icu classes are currently hidden
  */
 public class CurrencyMetaInfo {
     private static final CurrencyMetaInfo impl;

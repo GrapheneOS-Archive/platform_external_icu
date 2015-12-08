@@ -46,7 +46,6 @@ import android.icu.util.UResourceBundle;
  * The main method people will use is getBestPattern(String skeleton), since
  * normally this class is pre-built with data from a particular locale. However,
  * generators can be built directly from other data as well.
- * @hide All android.icu classes are currently hidden
  */
 public class DateTimePatternGenerator implements Freezable<DateTimePatternGenerator>, Cloneable {
     private static final boolean DEBUG = false;

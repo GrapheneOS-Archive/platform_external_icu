@@ -22,7 +22,6 @@ import android.icu.text.UTF16;
  * @author synwee
  * @see android.icu.impl.Trie
  * @hide Only a subset of ICU is exposed in Android
- * @hide All android.icu classes are currently hidden
  */
 public class IntTrie extends Trie
 {

@@ -15,7 +15,6 @@ import android.icu.util.ULocale;
  *
  * @deprecated ICU 54
  * @hide Only a subset of ICU is exposed in Android
- * @hide All android.icu classes are currently hidden
  */
 @Deprecated
 public interface RbnfLenientScannerProvider {

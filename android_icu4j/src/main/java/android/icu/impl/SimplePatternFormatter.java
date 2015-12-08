@@ -32,7 +32,6 @@ import java.util.List;
  * System.out.println(fmt.format("england", "paul"));
  * </pre>
  * @hide Only a subset of ICU is exposed in Android
- * @hide All android.icu classes are currently hidden
  */
 public class SimplePatternFormatter {
     private final String patternWithoutPlaceholders;

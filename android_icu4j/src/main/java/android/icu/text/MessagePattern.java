@@ -75,7 +75,6 @@ import android.icu.util.ICUCloneNotSupportedException;
  * This class is not intended for public subclassing.
  *
  * @author Markus Scherer
- * @hide All android.icu classes are currently hidden
  */
 public final class MessagePattern implements Cloneable, Freezable<MessagePattern> {
     /**

@@ -35,7 +35,6 @@ import android.icu.lang.UScript;
  * This is a port of the C++ class RuleBasedBreakIterator from ICU4C.
  * 
  * @hide Only a subset of ICU is exposed in Android
- * @hide All android.icu classes are currently hidden
  */
 public class RuleBasedBreakIterator extends BreakIterator {
     //=======================================================================

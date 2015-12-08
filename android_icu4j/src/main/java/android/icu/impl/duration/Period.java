@@ -25,7 +25,6 @@ import android.icu.impl.duration.impl.DataRecord.ETimeLimit;
  * Period p1 = Period.at(3, WEEK).and(2, DAY).inFuture();
  * Period p2 = p1.and(12, HOUR);</pre>
  * @hide Only a subset of ICU is exposed in Android
- * @hide All android.icu classes are currently hidden
  */
 public final class Period {
   final byte timeLimit;

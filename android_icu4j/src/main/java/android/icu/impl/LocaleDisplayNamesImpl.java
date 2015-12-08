@@ -35,7 +35,6 @@ import android.icu.util.UResourceBundleIterator;
 
 /**
  * @hide Only a subset of ICU is exposed in Android
- * @hide All android.icu classes are currently hidden
  */
 public class LocaleDisplayNamesImpl extends LocaleDisplayNames {
     private final ULocale locale;

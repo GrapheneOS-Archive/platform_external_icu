@@ -24,7 +24,6 @@ import java.util.NoSuchElementException;
  *
  * @author Markus W. Scherer
  * @hide Only a subset of ICU is exposed in Android
- * @hide All android.icu classes are currently hidden
  */
 public final class BytesTrie implements Cloneable, Iterable<BytesTrie.Entry> {
     /**

@@ -166,7 +166,6 @@ import android.icu.util.UResourceBundle;
  * @author       Mark Davis
  * @author       Helena Shih
  * @author       Alan Liu
- * @hide All android.icu classes are currently hidden
  */
 public abstract class NumberFormat extends UFormat {
 

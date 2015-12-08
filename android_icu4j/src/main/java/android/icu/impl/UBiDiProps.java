@@ -31,7 +31,6 @@ import android.icu.util.ICUUncheckedIOException;
 
 /**
  * @hide Only a subset of ICU is exposed in Android
- * @hide All android.icu classes are currently hidden
  */
 public final class UBiDiProps {
     // constructors etc. --------------------------------------------------- ***

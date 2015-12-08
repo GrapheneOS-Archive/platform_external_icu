@@ -330,7 +330,6 @@ import android.icu.util.ULocale.Category;
  * @see          SelectFormat
  * @author       Mark Davis
  * @author       Markus Scherer
- * @hide All android.icu classes are currently hidden
  */
 public class MessageFormat extends UFormat {
 

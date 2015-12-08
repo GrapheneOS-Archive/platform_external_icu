@@ -19,7 +19,6 @@ package android.icu.impl;
  *
  * @hide Only a subset of ICU is exposed in Android
  * @hide draft / provisional / internal are hidden on Android
- * @hide All android.icu classes are currently hidden
  */
 public final class USerializedSet {
     /**

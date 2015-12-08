@@ -28,7 +28,6 @@ import android.icu.impl.UCharacterIteratorWrapper;
  * iteration, <code>java.text.CharacterIterator</code> can only iterate over 
  * code units and is limited to BMP (0 - 0xFFFF)
  * @author Ram
- * @hide All android.icu classes are currently hidden
  */
 public abstract class UCharacterIterator 
                       implements Cloneable,UForwardCharacterIterator {

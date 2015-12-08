@@ -90,7 +90,6 @@ import android.icu.util.ULocale.Category;
  * uses Locale names as ids and uses Keys that implement the standard
  * resource bundle fallback strategy.<p>
  * @hide Only a subset of ICU is exposed in Android
- * @hide All android.icu classes are currently hidden
  */
 public class ICUService extends ICUNotifier {
     /**

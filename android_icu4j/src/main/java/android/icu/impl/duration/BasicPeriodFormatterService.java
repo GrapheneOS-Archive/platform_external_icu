@@ -17,7 +17,6 @@ import android.icu.impl.duration.impl.ResourceBasedPeriodFormatterDataService;
  * An implementation of PeriodFormatterService that constructs a
  * BasicPeriodFormatterFactory.
  * @hide Only a subset of ICU is exposed in Android
- * @hide All android.icu classes are currently hidden
  */
 public class BasicPeriodFormatterService implements PeriodFormatterService {
     private static BasicPeriodFormatterService instance;

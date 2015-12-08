@@ -10,7 +10,6 @@ package android.icu.lang;
 
 /**
  * A container for the different 'enumerated types' used by UCharacter.
- * @hide All android.icu classes are currently hidden
  */
 public class UCharacterEnums {
 

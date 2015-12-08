@@ -17,7 +17,6 @@ import android.icu.lang.UCharacterEnums.ECharacterDirection;
  * This class is not subclassable
  * </p>
  * @author Syn Wee Quek
- * @hide All android.icu classes are currently hidden
  */
 
 public final class UCharacterDirection implements ECharacterDirection {

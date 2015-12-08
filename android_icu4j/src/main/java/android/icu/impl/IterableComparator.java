@@ -14,7 +14,6 @@ import java.util.Iterator;
  * TODO: Move to android.icu.dev.somewhere.
  * 2015-sep-03: Not used in ICU but used in CLDR and in UnicodeTools.
  * @hide Only a subset of ICU is exposed in Android
- * @hide All android.icu classes are currently hidden
  */
 public class IterableComparator<T> implements Comparator<Iterable<T>> {
     private final Comparator<T> comparator;

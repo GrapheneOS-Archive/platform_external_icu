@@ -711,7 +711,6 @@ import android.icu.util.ULocale.Category;
  * @see          DecimalFormat
  * @see          TimeZoneFormat
  * @author       Mark Davis, Chen-Lieh Huang, Alan Liu
- * @hide All android.icu classes are currently hidden
  */
 public class SimpleDateFormat extends DateFormat {
 

@@ -34,7 +34,6 @@ import java.text.ParsePosition;
  * When a parser encounters this character, it calls parseReference()
  * with the position immediately following the SYMBOL_REF.  The symbol
  * table parses the name, if there is one, and returns it.
- * @hide All android.icu classes are currently hidden
  */
 public interface SymbolTable {
 

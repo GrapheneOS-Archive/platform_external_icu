@@ -19,7 +19,6 @@ import java.util.Locale;
  * with the tag <code>"@calendar=coptic"</code>.</p>
  *
  * @see android.icu.util.Calendar
- * @hide All android.icu classes are currently hidden
  */
 public final class CopticCalendar extends CECalendar 
 {

@@ -31,7 +31,6 @@ import android.icu.impl.Utility;
  * @deprecated This API is ICU internal only.
  * @hide Only a subset of ICU is exposed in Android
  * @hide draft / provisional / internal are hidden on Android
- * @hide All android.icu classes are currently hidden
  */
 @Deprecated
 public final class CompactCharArray implements Cloneable {

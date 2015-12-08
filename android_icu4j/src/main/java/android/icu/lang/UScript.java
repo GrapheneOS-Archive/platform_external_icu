@@ -38,7 +38,6 @@ import android.icu.util.ULocale;
  * to ensure that their script names are stable and match the names of the constants.
  * Script codes like Latf and Aran that are not subject to separate encoding
  * may be added at any time.
- * @hide All android.icu classes are currently hidden
  */
 public final class UScript {
     /**

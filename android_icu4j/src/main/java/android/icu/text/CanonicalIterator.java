@@ -40,7 +40,6 @@ import android.icu.lang.UCharacter;
  * since it has not been optimized for that situation.
  * @author M. Davis
  * @hide Only a subset of ICU is exposed in Android
- * @hide All android.icu classes are currently hidden
  */
 
 public final class CanonicalIterator {
