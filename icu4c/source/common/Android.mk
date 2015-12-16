@@ -235,7 +235,9 @@ LOCAL_MODULE_TAGS := optional
 LOCAL_MODULE := libicuuc
 LOCAL_RTTI_FLAG := -frtti
 LOCAL_ADDITIONAL_DEPENDENCIES += $(LOCAL_PATH)/Android.mk
+ifndef BRILLO
 LOCAL_REQUIRED_MODULES += icu-data
+endif
 LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)
 ifneq ($(TARGET_ARCH),mips64)
 LOCAL_CLANG := true
@@ -278,7 +280,9 @@ LOCAL_EXPORT_CFLAGS += -DU_STATIC_IMPLEMENTATION=1
 LOCAL_MODULE_TAGS := optional
 LOCAL_MODULE := libicuuc_static
 LOCAL_SRC_FILES += $(src_files)
+ifndef BRILLO
 LOCAL_REQUIRED_MODULES += icu-data
+endif
 ifneq ($(TARGET_ARCH),mips64)
 LOCAL_CLANG := true
 endif
