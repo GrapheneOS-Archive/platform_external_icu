@@ -131,3 +131,78 @@
  * @stable ICU 4.0
  */
 --
+
+# Remove references to setDefault* methods that are hidden on Android.
+--type:android.icu.util.TimeZone
+/**
+ * {@icuenhanced java.util.TimeZone}.{@icu _usage_}
+ *
+ * <p><code>TimeZone</code> represents a time zone offset, and also computes daylight
+ * savings.
+ *
+ * <p>Typically, you get a <code>TimeZone</code> using {@link #getDefault()}
+ * which creates a <code>TimeZone</code> based on the time zone where the program
+ * is running. For example, for a program running in Japan, <code>getDefault</code>
+ * creates a <code>TimeZone</code> object based on Japanese Standard Time.
+ *
+ * <p>You can also get a <code>TimeZone</code> using {@link #getTimeZone(String)}
+ * along with a time zone ID. For instance, the time zone ID for the
+ * U.S. Pacific Time zone is "America/Los_Angeles". So, you can get a
+ * U.S. Pacific Time <code>TimeZone</code> object with:
+ *
+ * <blockquote>
+ * <pre>
+ * TimeZone tz = TimeZone.getTimeZone("America/Los_Angeles");
+ * </pre>
+ * </blockquote>
+ * You can use the {@link #getAvailableIDs()} method to iterate through
+ * all the supported time zone IDs, or getCanonicalID method to check
+ * if a time zone ID is supported or not. You can then choose a
+ * supported ID to get a <code>TimeZone</code>.
+ * If the time zone you want is not represented by one of the
+ * supported IDs, then you can create a custom time zone ID with
+ * the following syntax:
+ *
+ * <blockquote>
+ * <pre>
+ * GMT[+|-]hh[[:]mm]
+ * </pre>
+ * </blockquote>
+ *
+ * For example, you might specify GMT+14:00 as a custom
+ * time zone ID.  The <code>TimeZone</code> that is returned
+ * when you specify a custom time zone ID uses the specified
+ * offset from GMT(=UTC) and does not observe daylight saving
+ * time. For example, you might specify GMT+14:00 as a custom
+ * time zone ID to create a TimeZone representing 14 hours ahead
+ * of GMT (with no daylight saving time). In addition,
+ * <code>getCanonicalID</code> can also be used to
+ * normalize a custom time zone ID.
+ *
+ * <p>For compatibility with JDK 1.1.x, some other three-letter time zone IDs
+ * (such as "PST", "CTT", "AST") are also supported. However, <strong>their
+ * use is deprecated</strong> because the same abbreviation is often used
+ * for multiple time zones (for example, "CST" could be U.S. "Central Standard
+ * Time" and "China Standard Time"), and the Java platform can then only
+ * recognize one of them.
+ *
+ * @see          Calendar
+ * @see          GregorianCalendar
+ * @see          SimpleTimeZone
+ * @author       Mark Davis, David Goldsmith, Chen-Lieh Huang, Alan Liu
+ * @stable ICU 2.0
+ */
+--
+
+# Remove the reference to ULocale.setDefault() and remove system properties information.
+--method:android.icu.util.ULocale#getDefault()
+/**
+     * Returns the current default ULocale.
+     * <p>
+     * The default ULocale is synchronized to the default Java Locale. This method checks
+     * the current default Java Locale and returns an equivalent ULocale.
+     *
+     * @return the default ULocale.
+     * @stable ICU 2.8
+     */
+--

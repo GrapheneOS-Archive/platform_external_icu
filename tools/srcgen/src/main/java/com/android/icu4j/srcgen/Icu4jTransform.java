@@ -39,7 +39,6 @@ import com.google.currysrc.processors.ReplaceTextCommentScanner;
 import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import static com.android.icu4j.srcgen.Icu4jTransformRules.createMandatoryRule;
@@ -51,7 +50,7 @@ import static com.android.icu4j.srcgen.Icu4jTransformRules.createOptionalRule;
  */
 public class Icu4jTransform {
 
-    // The list of public ICU API classes exposed on Android. If you change this, you should change
+  // The list of public ICU API classes exposed on Android. If you change this, you should change
   // the INITIAL_DEPRECATED_SET below to include entries from the new classes.
   static final String[] PUBLIC_API_CLASSES = new String[] {
       /* ASCII order please. */
@@ -502,6 +501,18 @@ public class Icu4jTransform {
       "type:android.icu.util.ULocale$Minimize",
   };
 
+  /** A set of declarations we don't want to expose in Android. */
+  private static final String[] DECLARATIONS_TO_HIDE = {
+      /* ASCII order please. */
+      "field:android.icu.util.TimeZone#TIMEZONE_ICU",
+      "field:android.icu.util.TimeZone#TIMEZONE_JDK",
+      "method:android.icu.util.TimeZone#getDefaultTimeZoneType()",
+      "method:android.icu.util.TimeZone#setDefault(TimeZone)",
+      "method:android.icu.util.TimeZone#setDefaultTimeZoneType(int)",
+      "method:android.icu.util.ULocale#setDefault(Category,ULocale)",
+      "method:android.icu.util.ULocale#setDefault(ULocale)",
+  };
+
   // The declarations with JavaDocs that have @.jcite tags that should be transformed to doclava
   // @sample tags. Ones not on this list will just be escaped and could show up in the generated
   // docs. It is assumed that the complete set of ones that should appear in the public API are
@@ -514,6 +525,7 @@ public class Icu4jTransform {
       "method:android.icu.text.DateTimePatternGenerator#replaceFieldTypes(String,String)",
       "method:android.icu.text.PluralFormat#PluralFormat(ULocale,String)",
   };
+
   public static final String ANDROID_ICU4J_SAMPLE_DIR =
       "external/icu/android_icu4j/src/samples/java";
 
@@ -611,6 +623,10 @@ public class Icu4jTransform {
           // AST change: Hide ICU methods that are deprecated and Android does not want to make
           // public.
           createHideOriginalDeprecatedClassesRule(),
+          // AST change: Explicitly hide blacklisted methods such as those that get/set static
+          // default values that might lead to confusion or strange interactions between Android's
+          // ICU4J and java.text / java.util classes.
+          createHideBlacklistedDeclarationsRule(),
           // AST change: Explicitly hide any elements that are marked as
           // @draft / @provisional / @internal
           createOptionalRule(new HideDraftProvisionalInternal()),
@@ -652,7 +668,15 @@ public class Icu4jTransform {
     private static Rule createHideOriginalDeprecatedClassesRule() {
       List<BodyDeclarationLocator> blacklist =
           BodyDeclarationLocators.createLocatorsFromStrings(INITIAL_DEPRECATED_SET);
-      return createOptionalRule(new HideOriginalDeprecatedSet(blacklist));
+      return createOptionalRule(
+          new TagMatchingDeclarations(blacklist, "@hide original deprecated declaration"));
+    }
+
+    private static Rule createHideBlacklistedDeclarationsRule() {
+      List<BodyDeclarationLocator> blacklist =
+          BodyDeclarationLocators.createLocatorsFromStrings(DECLARATIONS_TO_HIDE);
+      return createOptionalRule(
+          new TagMatchingDeclarations(blacklist, "@hide unsupported on Android"));
     }
 
     private static Rule createHidePublicClassesRule() {
