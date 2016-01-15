@@ -116,9 +116,9 @@ import android.icu.util.VersionInfo;
  * - alpha:     isUAlphabetic(c) or hasBinaryProperty(c, UProperty.ALPHABETIC)
  * - lower:     isULowercase(c) or hasBinaryProperty(c, UProperty.LOWERCASE)
  * - upper:     isUUppercase(c) or hasBinaryProperty(c, UProperty.UPPERCASE)
- * - punct:     ((1&lt;&lt;getType(c)) & ((1&lt;&lt;DASH_PUNCTUATION)|(1&lt;&lt;START_PUNCTUATION)|
- *               (1&lt;&lt;END_PUNCTUATION)|(1&lt;&lt;CONNECTOR_PUNCTUATION)|(1&lt;&lt;OTHER_PUNCTUATION)|
- *               (1&lt;&lt;INITIAL_PUNCTUATION)|(1&lt;&lt;FINAL_PUNCTUATION)))!=0
+ * - punct:     ((1<<getType(c)) & ((1<<DASH_PUNCTUATION)|(1<<START_PUNCTUATION)|
+ *               (1<<END_PUNCTUATION)|(1<<CONNECTOR_PUNCTUATION)|(1<<OTHER_PUNCTUATION)|
+ *               (1<<INITIAL_PUNCTUATION)|(1<<FINAL_PUNCTUATION)))!=0
  * - digit:     isDigit(c) or getType(c)==DECIMAL_DIGIT_NUMBER
  * - xdigit:    hasBinaryProperty(c, UProperty.POSIX_XDIGIT)
  * - alnum:     hasBinaryProperty(c, UProperty.POSIX_ALNUM)
