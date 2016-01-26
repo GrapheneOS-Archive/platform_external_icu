@@ -161,7 +161,6 @@ src_files += \
 	smallintformatter.cpp \
 	smpdtfmt.cpp \
 	smpdtfst.cpp \
-	smpdtfst.h \
 	sortkey.cpp \
 	strmatch.cpp \
 	strrepl.cpp \
@@ -243,7 +242,6 @@ LOCAL_RTTI_FLAG := -frtti
 LOCAL_SHARED_LIBRARIES += libicuuc $(optional_android_logging_libraries)
 LOCAL_MODULE_TAGS := optional
 LOCAL_MODULE := libicui18n
-LOCAL_ADDITIONAL_DEPENDENCIES += $(LOCAL_PATH)/Android.mk
 LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)
 LOCAL_CLANG := true
 include $(BUILD_SHARED_LIBRARY)
@@ -261,7 +259,6 @@ LOCAL_SHARED_LIBRARIES += libicuuc-host $(optional_android_logging_libraries)
 LOCAL_LDLIBS += -lm -lpthread
 LOCAL_MODULE_TAGS := optional
 LOCAL_MODULE := libicui18n-host
-LOCAL_ADDITIONAL_DEPENDENCIES += $(LOCAL_PATH)/Android.mk
 LOCAL_MULTILIB := both
 LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)
 LOCAL_CLANG := true
