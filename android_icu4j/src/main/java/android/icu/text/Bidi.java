@@ -1,7 +1,7 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 /*
 *******************************************************************************
-*   Copyright (C) 2001-2014, International Business Machines
+*   Copyright (C) 2001-2016, International Business Machines
 *   Corporation and others.  All Rights Reserved.
 *******************************************************************************
 */
@@ -150,9 +150,6 @@ import android.icu.lang.UProperty;
  * <li>{@link #OPTION_REMOVE_CONTROLS}
  * <li>{@link #OPTION_STREAMING}
  * </ul>
- *
- *
- *
  *
  * <h4> Sample code for the ICU Bidi API </h4>
  *
@@ -427,6 +424,7 @@ import android.icu.lang.UProperty;
  *  }
  *
  * </pre>
+ *
  * @hide Only a subset of ICU is exposed in Android
  */
 

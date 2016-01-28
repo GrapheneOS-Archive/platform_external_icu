@@ -1,14 +1,17 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 /*
  *******************************************************************************
- * Copyright (C) 2013-2015, International Business Machines Corporation and
+ * Copyright (C) 2013-2016, International Business Machines Corporation and
  * others. All Rights Reserved.
  *******************************************************************************
  */
 package android.icu.text;
 
+import java.text.FieldPosition;
+
 import android.icu.impl.SimplePatternFormatter;
-import android.icu.impl.UResource;
+import android.icu.impl.StandardPlural;
+import android.icu.text.PluralRules.FixedDecimal;
 
 /**
  * QuantityFormatter represents an unknown quantity of something and formats a known quantity
@@ -19,41 +22,8 @@ import android.icu.impl.UResource;
  * PluralRules and DecimalFormat. It is package-protected as it is not meant for public use.
  */
 class QuantityFormatter {
-    /**
-     * Plural forms in index order: "other", "zero", "one", "two", "few", "many"
-     * "other" must be first.
-     */
-    private static final int getPluralIndex(CharSequence pluralForm) {
-        switch (pluralForm.length()) {
-        case 3:
-            if ("one".contentEquals(pluralForm)) {
-                return 2;
-            } else if ("two".contentEquals(pluralForm)) {
-                return 3;
-            } else if ("few".contentEquals(pluralForm)) {
-                return 4;
-            }
-            break;
-        case 4:
-            if ("many".contentEquals(pluralForm)) {
-                return 5;
-            } else if ("zero".contentEquals(pluralForm)) {
-                return 1;
-            }
-            break;
-        case 5:
-            if ("other".contentEquals(pluralForm)) {
-                return 0;
-            }
-            break;
-        default:
-            break;
-        }
-        return -1;
-    }
-    private static final int INDEX_COUNT = 6;
-
-    private final SimplePatternFormatter[] templates = new SimplePatternFormatter[INDEX_COUNT];
+    private final SimplePatternFormatter[] templates =
+            new SimplePatternFormatter[StandardPlural.COUNT];
 
     public QuantityFormatter() {}
 
@@ -68,65 +38,39 @@ class QuantityFormatter {
      *  if template has more than just the {0} placeholder.
      */
     public void addIfAbsent(CharSequence variant, String template) {
-        addIfAbsent(variant, template, null);
-    }
-
-    /**
-     * Adds a template if there is none yet for the plural form.
-     * This version only calls UResource.Value.getString()
-     * if there is no template yet for the plural form.
-     *
-     * @param variant the plural variant, e.g "zero", "one", "two", "few", "many", "other"
-     * @param template the text for that plural variant with "{0}" as the quantity. For
-     * example, in English, the template for the "one" variant may be "{0} apple" while the
-     * template for the "other" variant may be "{0} apples"
-     * @throws IllegalArgumentException if variant is not recognized or
-     *  if template has more than just the {0} placeholder.
-     */
-    public void addIfAbsent(CharSequence variant, UResource.Value template) {
-        addIfAbsent(variant, null, template);
-    }
-
-    private void addIfAbsent(CharSequence variant, String template, UResource.Value templateValue) {
-        int idx = getPluralIndex(variant);
-        if (idx < 0) {
-            throw new IllegalArgumentException(variant.toString());
-        }
+        int idx = StandardPlural.indexFromString(variant);
         if (templates[idx] != null) {
             return;
         }
-        if (template == null) {
-            template = templateValue.getString();
-        }
-        SimplePatternFormatter newT = SimplePatternFormatter.compile(template);
-        if (newT.getPlaceholderCount() > 1) {
-            throw new IllegalArgumentException(
-                    "Extra placeholders: " + template);
-        }
-        templates[idx] = newT;
+        templates[idx] = SimplePatternFormatter.compileMinMaxPlaceholders(template, 0, 1);
     }
 
     /**
      * @return true if this object has at least the "other" variant
      */
     public boolean isValid() {
-        return templates[0] != null;
+        return templates[StandardPlural.OTHER_INDEX] != null;
     }
 
     /**
-     * Format formats a quantity with this object.
-     * @param quantity the quantity to be formatted
-     * @param numberFormat used to actually format the quantity.
-     * @param pluralRules uses the quantity and the numberFormat to determine what plural
+     * Format formats a number with this object.
+     * @param number the number to be formatted
+     * @param numberFormat used to actually format the number.
+     * @param pluralRules uses the number and the numberFormat to determine what plural
      *  variant to use for fetching the formatting template.
      * @return the formatted string e.g '3 apples'
      */
-    public String format(double quantity, NumberFormat numberFormat, PluralRules pluralRules) {
-        String formatStr = numberFormat.format(quantity);
-        String variant = computeVariant(quantity, numberFormat, pluralRules);
-        return getByVariant(variant).format(formatStr);
+    public String format(double number, NumberFormat numberFormat, PluralRules pluralRules) {
+        String formatStr = numberFormat.format(number);
+        StandardPlural p = selectPlural(number, numberFormat, pluralRules);
+        SimplePatternFormatter formatter = templates[p.ordinal()];
+        if (formatter == null) {
+            formatter = templates[StandardPlural.OTHER_INDEX];
+            assert formatter != null;
+        }
+        return formatter.format(formatStr);
     }
-    
+
     /**
      * Gets the SimplePatternFormatter for a particular variant.
      * @param variant "zero", "one", "two", "few", "many", "other"
@@ -134,15 +78,62 @@ class QuantityFormatter {
      */
     public SimplePatternFormatter getByVariant(CharSequence variant) {
         assert isValid();
-        int idx = getPluralIndex(variant);
-        SimplePatternFormatter template = templates[idx < 0 ? 0 : idx];
-        return template == null ? templates[0] : template;
+        int idx = StandardPlural.indexOrOtherIndexFromString(variant);
+        SimplePatternFormatter template = templates[idx];
+        return (template == null && idx != StandardPlural.OTHER_INDEX) ?
+                templates[StandardPlural.OTHER_INDEX] : template;
     }
- 
-    private String computeVariant(double quantity, NumberFormat numberFormat, PluralRules pluralRules) {
+
+    // The following methods live here so that class PluralRules does not depend on number formatting,
+    // and the SimplePatternFormatter does not depend on FieldPosition.
+
+    /**
+     * Selects the standard plural form for the number/formatter/rules.
+     */
+    public static StandardPlural selectPlural(double number, NumberFormat numberFormat, PluralRules rules) {
+        String pluralKeyword;
         if (numberFormat instanceof DecimalFormat) {
-            return pluralRules.select(((DecimalFormat) numberFormat).getFixedDecimal(quantity));            
+            pluralKeyword = rules.select(((DecimalFormat) numberFormat).getFixedDecimal(number));
+        } else {
+            pluralKeyword = rules.select(number);
         }
-        return pluralRules.select(quantity);
+        return StandardPlural.orOtherFromString(pluralKeyword);
+    }
+
+    /**
+     * Selects the standard plural form for the number/formatter/rules.
+     */
+    public static StandardPlural selectPlural(
+            Number number, NumberFormat fmt, PluralRules rules,
+            StringBuffer formattedNumber, FieldPosition pos) {
+        UFieldPosition fpos = new UFieldPosition(pos.getFieldAttribute(), pos.getField());
+        fmt.format(number, formattedNumber, fpos);
+        // TODO: Long, BigDecimal & BigInteger may not fit into doubleValue().
+        FixedDecimal fd = new FixedDecimal(
+                number.doubleValue(),
+                fpos.getCountVisibleFractionDigits(), fpos.getFractionDigits());
+        String pluralKeyword = rules.select(fd);
+        pos.setBeginIndex(fpos.getBeginIndex());
+        pos.setEndIndex(fpos.getEndIndex());
+        return StandardPlural.orOtherFromString(pluralKeyword);
+    }
+
+    /**
+     * Formats the pattern with the value and adjusts the FieldPosition.
+     */
+    public static StringBuilder format(String compiledPattern, CharSequence value,
+            StringBuilder appendTo, FieldPosition pos) {
+        int[] offsets = new int[1];
+        SimplePatternFormatter.formatAndAppend(compiledPattern, appendTo, offsets, value);
+        if (pos.getBeginIndex() != 0 || pos.getEndIndex() != 0) {
+            if (offsets[0] >= 0) {
+                pos.setBeginIndex(pos.getBeginIndex() + offsets[0]);
+                pos.setEndIndex(pos.getEndIndex() + offsets[0]);
+            } else {
+                pos.setBeginIndex(0);
+                pos.setEndIndex(0);
+            }
+        }
+        return appendTo;
     }
 }
