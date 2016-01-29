@@ -119,11 +119,9 @@ en_GB{
             relativeTime{
                 future{
                     one{"in {0} mo"}
-                    other{"in {0} mo"}
                 }
                 past{
                     one{"{0} mo ago"}
-                    other{"{0} mo ago"}
                 }
             }
         }
@@ -145,11 +143,9 @@ en_GB{
             relativeTime{
                 future{
                     one{"in {0} qtr"}
-                    other{"in {0} qtr"}
                 }
                 past{
                     one{"{0} qtr ago"}
-                    other{"{0} qtr ago"}
                 }
             }
         }
@@ -196,7 +192,6 @@ en_GB{
             relativeTime{
                 future{
                     one{"in {0} wk"}
-                    other{"in {0} wk"}
                 }
                 past{
                     one{"{0} wk ago"}
@@ -221,11 +216,9 @@ en_GB{
             relativeTime{
                 future{
                     one{"in {0} yr"}
-                    other{"in {0} yr"}
                 }
                 past{
                     one{"{0} yr ago"}
-                    other{"{0} yr ago"}
                 }
             }
         }
