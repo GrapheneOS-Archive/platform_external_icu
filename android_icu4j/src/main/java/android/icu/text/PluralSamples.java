@@ -1,8 +1,8 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 /*
  *******************************************************************************
- * Copyright (C) 2013-2014, International Business Machines Corporation and    *
- * others. All Rights Reserved.                                                *
+ * Copyright (C) 2013-2015, International Business Machines Corporation and
+ * others. All Rights Reserved.
  *******************************************************************************
  */
 package android.icu.text;
@@ -10,7 +10,6 @@ package android.icu.text;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
@@ -22,7 +21,6 @@ import java.util.TreeSet;
 
 import android.icu.text.PluralRules.FixedDecimal;
 import android.icu.text.PluralRules.KeywordStatus;
-import android.icu.text.PluralRules.StandardPluralCategories;
 import android.icu.util.Output;
 
 /**
@@ -238,17 +236,6 @@ public class PluralSamples {
         }
         return 37;
     }
-
-    @SuppressWarnings("unused")
-    private static final Comparator<String> KEYWORD_COMPARATOR = new Comparator<String> () {
-        public int compare(String arg0, String arg1) {
-            StandardPluralCategories a = StandardPluralCategories.forString(arg0);
-            StandardPluralCategories b = StandardPluralCategories.forString(arg1);
-            return a == null 
-                    ? (b == null ? arg0.compareTo(arg1) : -1)
-                            : (b == null ? 1 : a.compareTo(b));
-        }
-    };
 
     /**
      * @deprecated This API is ICU internal only.

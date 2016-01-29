@@ -1,8 +1,8 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 /*
  *******************************************************************************
- * Copyright (C) 2008-2014, International Business Machines Corporation and    *
- * others. All Rights Reserved.                                                *
+ * Copyright (C) 2008-2015, International Business Machines Corporation and
+ * others. All Rights Reserved.
  *******************************************************************************
  */
 package android.icu.impl;
@@ -19,7 +19,6 @@ import java.util.TreeMap;
 import android.icu.text.PluralRanges;
 import android.icu.text.PluralRules;
 import android.icu.text.PluralRules.PluralType;
-import android.icu.text.PluralRules.StandardPluralCategories;
 import android.icu.util.ULocale;
 import android.icu.util.UResourceBundle;
 
@@ -488,9 +487,9 @@ public class PluralRulesLoader extends PluralRules.Factory {
                 pr = new PluralRanges();
             } else {
                 pr.add(
-                        StandardPluralCategories.valueOf(row[0]),
-                        StandardPluralCategories.valueOf(row[1]),
-                        StandardPluralCategories.valueOf(row[2]));
+                        StandardPlural.fromString(row[0]),
+                        StandardPlural.fromString(row[1]),
+                        StandardPlural.fromString(row[2]));
             }
         }
         // do last one

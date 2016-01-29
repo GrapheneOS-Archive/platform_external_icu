@@ -16,7 +16,6 @@ import java.io.ObjectStreamException;
 import java.io.Serializable;
 import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
@@ -1827,76 +1826,6 @@ public class PluralRules implements Serializable {
         }
     }
 
-    /**
-     * @deprecated This API is ICU internal only.
-     * @hide original deprecated declaration
-     * @hide draft / provisional / internal are hidden on Android
-     */
-    @Deprecated
-    public enum StandardPluralCategories {
-        /**
-         * @deprecated This API is ICU internal only.
-         * @hide draft / provisional / internal are hidden on Android
-         */
-        @Deprecated
-        zero,
-        /**
-         * @deprecated This API is ICU internal only.
-         * @hide draft / provisional / internal are hidden on Android
-         */
-        @Deprecated
-        one,
-        /**
-         * @deprecated This API is ICU internal only.
-         * @hide draft / provisional / internal are hidden on Android
-         */
-        @Deprecated
-        two,
-        /**
-         * @deprecated This API is ICU internal only.
-         * @hide draft / provisional / internal are hidden on Android
-         */
-        @Deprecated
-        few,
-        /**
-         * @deprecated This API is ICU internal only.
-         * @hide draft / provisional / internal are hidden on Android
-         */
-        @Deprecated
-        many,
-        /**
-         * @deprecated This API is ICU internal only.
-         * @hide draft / provisional / internal are hidden on Android
-         */
-        @Deprecated
-        other;
-        /**
-         * @deprecated This API is ICU internal only.
-         * @hide original deprecated declaration
-         * @hide draft / provisional / internal are hidden on Android
-         */
-        @Deprecated
-        public static final List<StandardPluralCategories> VALUES 
-        = Collections.unmodifiableList(Arrays.asList(values()));
-        /**
-         * @deprecated This API is ICU internal only.
-         * @hide original deprecated declaration
-         * @hide draft / provisional / internal are hidden on Android
-         */
-        @Deprecated
-        public static final int COUNT = values().length;
-
-        static StandardPluralCategories forString(String s) {
-            StandardPluralCategories a;
-            try {
-                a = valueOf(s);
-            } catch (Exception e) {
-                return null;
-            }
-            return a;
-        }
-    }
-
     @SuppressWarnings("unused")
     private boolean addConditional(Set<FixedDecimal> toAddTo, Set<FixedDecimal> others, double trial) {
         boolean added;
@@ -2058,17 +1987,16 @@ public class PluralRules implements Serializable {
      * Given a number information, returns the keyword of the first rule that applies to
      * the number.
      *
-     * @param sample The number information for which the rule has to be determined.
+     * @param number The number information for which the rule has to be determined.
      * @return The keyword of the selected rule.
      * @deprecated This API is ICU internal only.
      * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
-    public String select(FixedDecimal sample) {
-        return rules.select(sample);
+    public String select(FixedDecimal number) {
+        return rules.select(number);
     }
-
 
     /**
      * Given a number information, and keyword, return whether the keyword would match the number.
