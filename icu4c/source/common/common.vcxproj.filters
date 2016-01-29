@@ -466,6 +466,9 @@
     <ClCompile Include="cstring.c">
       <Filter>strings</Filter>
     </ClCompile>
+    <ClCompile Include="cstr.cpp">
+      <Filter>strings</Filter>
+    </ClCompile>
     <ClCompile Include="cwchar.c">
       <Filter>strings</Filter>
     </ClCompile>
@@ -833,6 +836,9 @@
       <Filter>strings</Filter>
     </ClInclude>
     <ClInclude Include="cstring.h">
+      <Filter>strings</Filter>
+    </ClInclude>
+    <ClInclude Include="cstr.h">
       <Filter>strings</Filter>
     </ClInclude>
     <ClInclude Include="cwchar.h">
