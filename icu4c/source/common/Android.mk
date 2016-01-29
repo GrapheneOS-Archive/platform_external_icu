@@ -22,6 +22,7 @@ LOCAL_PATH:= $(call my-dir)
 src_files := \
 	cmemory.c \
 	cstring.c \
+	cstr.cpp \
 	cwchar.c \
 	filteredbrk.cpp \
 	icuplug.cpp \

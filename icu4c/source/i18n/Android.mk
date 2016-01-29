@@ -162,6 +162,7 @@ src_files += \
 	smpdtfmt.cpp \
 	smpdtfst.cpp \
 	sortkey.cpp \
+	standardplural.cpp \
 	strmatch.cpp \
 	strrepl.cpp \
 	stsearch.cpp \
