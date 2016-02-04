@@ -1011,14 +1011,14 @@ public class DateTimePatternGenerator implements Freezable<DateTimePatternGenera
     }
 
     /**
-     * Boilerplate for Freezable
+     * {@inheritDoc}
      */
     public boolean isFrozen() {
         return frozen;
     }
 
     /**
-     * Boilerplate for Freezable
+     * {@inheritDoc}
      */
     public DateTimePatternGenerator freeze() {
         frozen = true;
@@ -1026,7 +1026,7 @@ public class DateTimePatternGenerator implements Freezable<DateTimePatternGenera
     }
 
     /**
-     * Boilerplate for Freezable
+     * {@inheritDoc}
      */
     public DateTimePatternGenerator cloneAsThawed() {
         DateTimePatternGenerator result = (DateTimePatternGenerator) (this.clone());
@@ -1035,7 +1035,8 @@ public class DateTimePatternGenerator implements Freezable<DateTimePatternGenera
     }
 
     /**
-     * Boilerplate
+     * Returns a copy of this <code>DateTimePatternGenerator</code> object.
+     * @return A copy of this <code>DateTimePatternGenerator</code> object.
      */
     @SuppressWarnings("unchecked")
     public Object clone() {
