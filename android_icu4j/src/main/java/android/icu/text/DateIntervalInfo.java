@@ -42,7 +42,7 @@ import android.icu.util.UResourceBundle;
  * <P>
  * For power users, who want to create their own date interval patterns,
  * or want to re-set date interval patterns, they could do so by
- * directly creating DateIntervalInfo and manupulating it.
+ * directly creating DateIntervalInfo and manipulating it.
  *
  * <P>
  * Logically, the interval patterns are mappings
@@ -193,7 +193,10 @@ public class DateIntervalInfo implements Cloneable, Freezable<DateIntervalInfo>,
         private final boolean fFirstDateInPtnIsLaterDate;
 
         /**
-         * constructor
+         * Constructs a <code>PatternInfo</code> object.
+         * @param firstPart     The first part of interval pattern.
+         * @param secondPart    The second part of interval pattern.
+         * @param firstDateInPtnIsLaterDate Whether the first date in interval patter is later date or not.
          */
         public PatternInfo(String firstPart, String secondPart,
                            boolean firstDateInPtnIsLaterDate) {
@@ -203,28 +206,33 @@ public class DateIntervalInfo implements Cloneable, Freezable<DateIntervalInfo>,
         }
 
         /**
-         * accessor
+         * Returns the first part of interval pattern.
+         * @return The first part of interval pattern.
          */
         public String getFirstPart() {
             return fIntervalPatternFirstPart;
         }
 
         /**
-         * accessor
+         * Returns the second part of interval pattern.
+         * @return The second part of interval pattern.
          */
         public String getSecondPart() {
             return fIntervalPatternSecondPart;
         }
 
         /**
-         * accessor
+         * Returns whether the first date in interval patter is later date or not.
+         * @return Whether the first date in interval patter is later date or not.
          */
         public boolean firstDateInPtnIsLaterDate() {
             return fFirstDateInPtnIsLaterDate;
         }
 
         /**
-         * Override equals
+         * Compares the specified object with this <code>PatternInfo</code> for equality.
+         * @param a The object to be compared.
+         * @return <code>true</code> if the specified object is equal to this <code>PatternInfo</code>.
          */
         public boolean equals(Object a) {
             if ( a instanceof PatternInfo ) {
@@ -237,7 +245,8 @@ public class DateIntervalInfo implements Cloneable, Freezable<DateIntervalInfo>,
         }
 
         /**
-         * Override hashcode
+         * Returns the hash code of this <code>PatternInfo</code>.
+         * @return A hash code value for this object.
          */
         public int hashCode() {
             int hash = fIntervalPatternFirstPart != null ? fIntervalPatternFirstPart.hashCode() : 0;
@@ -800,7 +809,7 @@ public class DateIntervalInfo implements Cloneable, Freezable<DateIntervalInfo>,
 
 
     /**
-     * Boilerplate. Clone this object.
+     * Clone this object.
      * @return     a copy of the object
      */
     public Object clone() 
@@ -858,14 +867,14 @@ public class DateIntervalInfo implements Cloneable, Freezable<DateIntervalInfo>,
 
     
     /**
-     * Boilerplate for Freezable
+     * {@inheritDoc}
      */
     public boolean isFrozen() {
         return frozen;
     }
     
     /**
-     * Boilerplate for Freezable
+     * {@inheritDoc}
      */
     public DateIntervalInfo freeze() {
         fIntervalPatternsReadOnly = true;
@@ -874,7 +883,7 @@ public class DateIntervalInfo implements Cloneable, Freezable<DateIntervalInfo>,
     }
     
     /**
-     * Boilerplate for Freezable
+     * {@inheritDoc}
      */
     public DateIntervalInfo cloneAsThawed() {
         DateIntervalInfo result = (DateIntervalInfo) (this.cloneUnfrozenDII());

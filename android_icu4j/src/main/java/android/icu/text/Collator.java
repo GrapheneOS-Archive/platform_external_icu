@@ -36,7 +36,7 @@ import android.icu.util.VersionInfo;
 * subclass, RuleBasedCollator, allows customization of the collation
 * ordering by the use of rule sets.</p>
 *
-* <p>A Collator is thread-safe only when frozen. See {{@link #isFrozen()} and {@link Freezable}.
+* <p>A Collator is thread-safe only when frozen. See {@link #isFrozen()} and {@link Freezable}.
 *
 * <p>Following the <a href=http://www.unicode.org>Unicode
 * Consortium</a>'s specifications for the
