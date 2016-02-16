@@ -928,7 +928,9 @@ public class DecimalFormatSymbols implements Cloneable, Serializable {
         decimalSeparator = numberElements[0].charAt(0);
         groupingSeparator = numberElements[1].charAt(0);
         patternSeparator = numberElements[2].charAt(0);
-        percent = numberElements[3].charAt(0);
+        // Android patch (http://b/15476051) begin.
+        percent = numberElements[3].charAt(numberElements[3].length() - 1);
+        // Android patch (http://b/15476051) end.
         minusString = numberElements[4];
         minusSign = (minusString.length() > 1 && isBidiMark(minusString.charAt(0)))? minusString.charAt(1): minusString.charAt(0);
         plusString = numberElements[5];
