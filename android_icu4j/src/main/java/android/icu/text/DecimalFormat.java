@@ -1165,7 +1165,9 @@ public class DecimalFormat extends NumberFormat {
             // acceptably be longer than 309 digits.
             int maxIntDigits;
             if (getMaximumIntegerDigits() == DOUBLE_INTEGER_DIGITS) {
-                maxIntDigits = (digitList.decimalAt == 0) ? 1 : digitList.decimalAt;
+                maxIntDigits = digitList.decimalAt;
+                if (maxIntDigits >= 0)
+                    maxIntDigits++;
             } else {
                 maxIntDigits = getMaximumIntegerDigits();
             }
@@ -1208,7 +1210,9 @@ public class DecimalFormat extends NumberFormat {
             // acceptably be longer than 309 digits.
             int maxIntDigits;
             if (getMaximumIntegerDigits() == DOUBLE_INTEGER_DIGITS) {
-                maxIntDigits = (digitList.decimalAt == 0) ? 1 : digitList.decimalAt;
+                maxIntDigits = digitList.decimalAt;
+                if (maxIntDigits >= 0)
+                    maxIntDigits++;
             } else {
                 maxIntDigits = getMaximumIntegerDigits();
             }
@@ -1250,7 +1254,9 @@ public class DecimalFormat extends NumberFormat {
             // acceptably be longer than 309 digits.
             int maxIntDigits;
             if (getMaximumIntegerDigits() == DOUBLE_INTEGER_DIGITS) {
-                maxIntDigits = (digitList.decimalAt == 0) ? 1 : digitList.decimalAt;
+                maxIntDigits = digitList.decimalAt;
+                if (maxIntDigits >= 0)
+                    maxIntDigits++;
             } else {
                 maxIntDigits = getMaximumIntegerDigits();
             }
