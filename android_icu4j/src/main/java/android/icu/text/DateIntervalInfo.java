@@ -1,7 +1,7 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 /*
  *******************************************************************************
- * Copyright (C) 2008-2015, International Business Machines Corporation and    *
+ * Copyright (C) 2008-2016, International Business Machines Corporation and    *
  * others. All Rights Reserved.                                                *
  *******************************************************************************
  */
@@ -352,7 +352,7 @@ public class DateIntervalInfo implements Cloneable, Freezable<DateIntervalInfo>,
 
 
     /** 
-     * Construct DateIntervalInfo for the given JDK locale,
+     * Construct DateIntervalInfo for the given {@link java.util.Locale}.
      * @param locale  the interval patterns are loaded from the appropriate 
      *                calendar data (specified calendar or default calendar)
      *                in this locale.

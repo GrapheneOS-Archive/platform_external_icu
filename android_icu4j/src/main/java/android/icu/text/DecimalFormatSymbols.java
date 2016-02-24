@@ -432,8 +432,8 @@ public class DecimalFormatSymbols implements Cloneable, Serializable {
     }
 
     /**
-     * Returns the currency symbol, for JDK 1.4 compatibility only.
-     * ICU clients should use the Currency API directly.
+     * Returns the currency symbol, for {@link DecimalFormatSymbols#getCurrency()} API
+     * compatibility only. ICU clients should use the Currency API directly.
      * @return the currency used, or null
      */
     public Currency getCurrency() {

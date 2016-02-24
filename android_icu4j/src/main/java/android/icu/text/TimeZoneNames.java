@@ -1,7 +1,7 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 /*
  *******************************************************************************
- * Copyright (C) 2011-2015, International Business Machines Corporation and
+ * Copyright (C) 2011-2016, International Business Machines Corporation and
  * others. All Rights Reserved.
  *******************************************************************************
  */
@@ -156,10 +156,11 @@ public abstract class TimeZoneNames implements Serializable {
     }
 
     /**
-     * Returns an instance of <code>TimeZoneNames</code> for the specified JDK locale.
+     * Returns an instance of <code>TimeZoneNames</code> for the specified
+     * {@link java.util.Locale}.
      * 
      * @param locale
-     *            The JDK locale.
+     *            The {@link java.util.Locale}.
      * @return An instance of <code>TimeZoneDisplayNames</code>
      */
     public static TimeZoneNames getInstance(Locale locale) {
