@@ -385,7 +385,7 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
 
     /**
      * Construct a ULocale object from a {@link java.util.Locale}.
-     * @param loc a JDK locale
+     * @param loc a {@link java.util.Locale}
      */
     private ULocale(Locale loc) {
         this.localeID = getName(forLocale(loc).toString());
@@ -395,7 +395,7 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
     /**
      * <strong>[icu]</strong> Returns a ULocale object for a {@link java.util.Locale}.
      * The ULocale is canonicalized.
-     * @param loc a JDK locale
+     * @param loc a {@link java.util.Locale}
      */
     public static ULocale forLocale(Locale loc) {
         if (loc == null) {
@@ -499,7 +499,7 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
 
     /**
      * <strong>[icu]</strong> Converts this ULocale object to a {@link java.util.Locale}.
-     * @return a JDK locale that either exactly represents this object
+     * @return a {@link java.util.Locale} that either exactly represents this object
      * or is the closest approximation.
      */
     public Locale toLocale() {
