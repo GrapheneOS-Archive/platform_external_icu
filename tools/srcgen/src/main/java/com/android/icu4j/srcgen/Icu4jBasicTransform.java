@@ -19,7 +19,6 @@ import com.google.common.collect.Lists;
 import com.google.currysrc.Main;
 import com.google.currysrc.api.Rules;
 import com.google.currysrc.api.input.InputFileGenerator;
-import com.google.currysrc.api.output.BasicOutputSourceFileGenerator;
 import com.google.currysrc.api.output.OutputSourceFileGenerator;
 import com.google.currysrc.api.process.Rule;
 import com.google.currysrc.processors.ReplaceTextCommentScanner;
@@ -30,14 +29,16 @@ import java.util.List;
 import static com.android.icu4j.srcgen.Icu4jTransformRules.createOptionalRule;
 
 /**
- * Applies Android's ICU4J source code transformation rules to sample code and fixes up the
+ * Applies basic Android's ICU4J source code transformation rules to code and fixes up the
  * jcite start/end tags so they can be used with doclava.
+ *
+ * <p>Intended for use when transforming sample and test code.
  */
-public class Icu4jSampleTransform {
+public class Icu4jBasicTransform {
 
   private static final boolean DEBUG = false;
 
-  private Icu4jSampleTransform() {
+  private Icu4jBasicTransform() {
   }
 
   /**
@@ -45,18 +46,18 @@ public class Icu4jSampleTransform {
    * java com.android.icu4j.srcgen.Icu4jSampleTransform {source files/directories} {target dir}
    */
   public static void main(String[] args) throws Exception {
-    new Main(DEBUG).execute(new Icu4jSampleRules(args));
+    new Main(DEBUG).execute(new Icu4jBasicRules(args));
   }
 
-  private static class Icu4jSampleRules implements Rules {
+  private static class Icu4jBasicRules implements Rules {
 
     private final InputFileGenerator inputFileGenerator;
 
     private final List<Rule> rules;
 
-    private final BasicOutputSourceFileGenerator outputSourceFileGenerator;
+    private final OutputSourceFileGenerator outputSourceFileGenerator;
 
-    public Icu4jSampleRules(String[] args) {
+    public Icu4jBasicRules(String[] args) {
       if (args.length < 2) {
         throw new IllegalArgumentException("At least 2 arguments required.");
       }
