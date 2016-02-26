@@ -32,6 +32,12 @@ ICU4J_DIR=${ANDROID_BUILD_TOP}/external/icu/icu4j
 ANDROID_ICU4J_DIR=${ANDROID_BUILD_TOP}/external/icu/android_icu4j
 
 CLASSPATH=${ANDROID_BUILD_TOP}/out/host/common/obj/JAVA_LIBRARIES/currysrc_intermediates/javalib.jar:${ANDROID_BUILD_TOP}/out/host/common/obj/JAVA_LIBRARIES/android_icu4j_srcgen_intermediates/javalib.jar
+
+# The parts of ICU4J to include during srcgen.
+#
+# The following are deliberately excluded:
+#   localespi - is not supported on Android
+#   charset - because icu4c is used instead
 INPUT_DIRS="\
     ${ICU4J_DIR}/main/classes/collate/src \
     ${ICU4J_DIR}/main/classes/core/src \
@@ -48,3 +54,14 @@ SAMPLE_INPUT_FILES="\
     ${SAMPLE_INPUT_DIR}/text/datetimepatterngenerator/DateTimePatternGeneratorSample.java \
     ${SAMPLE_INPUT_DIR}/text/pluralformat/PluralFormatSample.java \
     "
+
+# See above for an explanation as to why the tests for charset and localespi are not included here.
+TEST_INPUT_DIR=${ICU4J_DIR}/main/tests
+TEST_INPUT_DIRS="\
+    ${TEST_INPUT_DIR}/collate/src \
+    ${TEST_INPUT_DIR}/framework/src \
+    ${TEST_INPUT_DIR}/testall/src \
+    ${TEST_INPUT_DIR}/translit/src \
+    ${TEST_INPUT_DIR}/core/src \
+    ${TEST_INPUT_DIR}/src \
+    ${TEST_INPUT_DIR}/packaging/src"
