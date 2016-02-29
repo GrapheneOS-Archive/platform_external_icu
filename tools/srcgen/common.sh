@@ -63,5 +63,4 @@ TEST_INPUT_DIRS="\
     ${TEST_INPUT_DIR}/testall/src \
     ${TEST_INPUT_DIR}/translit/src \
     ${TEST_INPUT_DIR}/core/src \
-    ${TEST_INPUT_DIR}/src \
     ${TEST_INPUT_DIR}/packaging/src"
