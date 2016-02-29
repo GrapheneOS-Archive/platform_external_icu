@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-source ./common.sh
+source $(dirname $BASH_SOURCE)/common.sh
 
 # A script for generating the source code of the subset of ICU used by Android in libcore.
 
@@ -54,4 +54,37 @@ mkdir -p ${SAMPLE_DEST_DIR}
 
 echo Processing sample code
 # Create the android_icu4j sample code
-java ${SRCGEN_JAVA_ARGS} -cp ${CLASSPATH} com.android.icu4j.srcgen.Icu4jSampleTransform ${SAMPLE_INPUT_FILES} ${SAMPLE_DEST_DIR}
+java ${SRCGEN_JAVA_ARGS} -cp ${CLASSPATH} com.android.icu4j.srcgen.Icu4jBasicTransform ${SAMPLE_INPUT_FILES} ${SAMPLE_DEST_DIR}
+
+# Clean out previous generated test code.
+TEST_DEST_DIR=${ANDROID_ICU4J_DIR}/src/main/tests
+rm -rf ${TEST_DEST_DIR}
+mkdir -p ${TEST_DEST_DIR}
+
+# Create a temporary directory into which the testdata.jar can be unzipped. It must be called src
+# as that is what is used to determine the root of the directory containing all the files to
+# copy and that is used to calculate the relative path to the file that is used for its output path.
+echo Unpacking testdata.jar
+TESTDATA_DIR=$(mktemp -d)/src
+mkdir -p ${TESTDATA_DIR}
+unzip ${ICU4J_DIR}/main/shared/data/testdata.jar com/ibm/icu/* -d ${TESTDATA_DIR}
+
+echo Processing test code
+# Create the android_icu4j test code
+ALL_TEST_INPUT_DIRS="${TEST_INPUT_DIRS} ${TESTDATA_DIR}"
+java ${SRCGEN_JAVA_ARGS} -cp ${CLASSPATH} com.android.icu4j.srcgen.Icu4jBasicTransform \
+  ${ALL_TEST_INPUT_DIRS} ${TEST_DEST_DIR}
+
+# Copy the data files.
+echo Copying test data
+for INPUT_DIR in ${ALL_TEST_INPUT_DIRS}; do
+  RESOURCES=$(find ${INPUT_DIR} -type f | egrep -v '(\.java|\/package\.html)' || true )
+  for RESOURCE in ${RESOURCES}; do
+    SOURCE_DIR=$(dirname ${RESOURCE})
+    RELATIVE_SOURCE_DIR=$(echo ${SOURCE_DIR} | sed "s,${INPUT_DIR}/,,")
+    RELATIVE_DEST_DIR=$(echo ${RELATIVE_SOURCE_DIR} | sed 's,com/ibm/icu,android/icu,')
+    DEST_DIR=${TEST_DEST_DIR}/${RELATIVE_DEST_DIR}
+    mkdir -p ${DEST_DIR}
+    cp $RESOURCE ${DEST_DIR}
+  done
+done
