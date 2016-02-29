@@ -146,3 +146,24 @@ LOCAL_JARJAR_RULES := $(LOCAL_PATH)/liblayout-jarjar-rules.txt
 LOCAL_JACK_ENABLED := disabled
 LOCAL_MODULE := icu4j-icutzdata-jarjar
 include $(BUILD_STATIC_JAVA_LIBRARY)
+
+# build repackaged ICU tests
+#
+# Builds against core-libart and core-oj so that it can access all the
+# repackaged android.icu classes and methods and not just the ones available
+# through the Android API.
+include $(CLEAR_VARS)
+
+android_icu4j_tests := ../android_icu4j/src/main/tests
+
+# Don't include this package in any target
+LOCAL_MODULE_TAGS := tests
+LOCAL_SRC_FILES := \
+	$(call all-java-files-under,$(android_icu4j_tests))
+LOCAL_JAVA_RESOURCE_DIRS := $(android_icu4j_tests)
+LOCAL_JAVA_LIBRARIES := \
+	core-oj \
+	core-libart
+LOCAL_NO_STANDARD_LIBRARIES := true
+LOCAL_MODULE := android-icu4j-tests
+include $(BUILD_STATIC_JAVA_LIBRARY)
