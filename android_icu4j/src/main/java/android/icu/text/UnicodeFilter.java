@@ -11,7 +11,7 @@ package android.icu.text;
  * <code>UnicodeFilter</code> defines a protocol for selecting a
  * subset of the full range (U+0000 to U+FFFF) of Unicode characters.
  * Currently, filters are used in conjunction with classes like
- * {@link android.icu.text.Transliterator}
+ * <a href="Transliterator.html" title="class in android.icu.text"><code>Transliterator</code></a>
  * to only process selected characters through a
  * transformation.
  */
