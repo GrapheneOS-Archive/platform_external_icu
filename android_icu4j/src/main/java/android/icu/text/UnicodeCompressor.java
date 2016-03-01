@@ -1,7 +1,7 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 /*
  *******************************************************************************
- * Copyright (C) 1996-2009, International Business Machines Corporation and    *
+ * Copyright (C) 1996-2016, International Business Machines Corporation and    *
  * others. All Rights Reserved.                                                *
  *******************************************************************************
  */
@@ -64,7 +64,7 @@ package android.icu.text;
 *    // update the no. of bytes written
 *    totalBytesWritten += bytesWritten;
 *
-*  } while(totalCharsCompressed < len);
+*  } while(totalCharsCompressed &lt; len);
 *
 *  myCompressor.reset(); // reuse compressor
 * </PRE>

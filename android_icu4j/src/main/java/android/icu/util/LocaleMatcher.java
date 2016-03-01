@@ -1,7 +1,7 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 /*
  ****************************************************************************************
- * Copyright (C) 2009-2015, Google, Inc.; International Business Machines Corporation   *
+ * Copyright (C) 2009-2016, Google, Inc.; International Business Machines Corporation   *
  * and others. All Rights Reserved.                                                     *
  ****************************************************************************************
  */
@@ -33,7 +33,7 @@ import android.icu.impl.Utility;
  * LocaleMatcher matcher = new LocaleMatcher("fr, en-GB, en");
  * 
  * // afterwards:
- * matcher.getBestMatch("en-US").toLanguageTag() => "en"
+ * matcher.getBestMatch("en-US").toLanguageTag() =&gt; "en"
  * </pre>
  * 
  * It takes into account when languages are close to one another, such as fil

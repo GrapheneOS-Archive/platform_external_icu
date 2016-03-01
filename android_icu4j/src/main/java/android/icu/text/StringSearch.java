@@ -1,7 +1,7 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 /*
  *******************************************************************************
- * Copyright (C) 1996-2015, International Business Machines Corporation and
+ * Copyright (C) 1996-2016, International Business Machines Corporation and
  * others. All Rights Reserved.
  *******************************************************************************
  */
@@ -111,7 +111,7 @@ import android.icu.util.ULocale;
  * <p> 
  * Restriction: <br>
  * Currently there are no composite characters that consists of a
- * character with combining class > 0 before a character with combining
+ * character with combining class &gt; 0 before a character with combining
  * class == 0. However, if such a character exists in the future,
  * <tt>StringSearch</tt> does not guarantee the results for option 1.
  * <p>
