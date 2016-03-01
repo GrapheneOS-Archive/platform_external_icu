@@ -1,7 +1,7 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 /*
  *******************************************************************************
- * Copyright (C) 2007-2010, International Business Machines Corporation and    *
+ * Copyright (C) 2007-2016, International Business Machines Corporation and    *
  * others. All Rights Reserved.                                                *
  *******************************************************************************
  */
@@ -145,7 +145,7 @@ public abstract class TimeZoneRule implements Serializable {
     /**
      * Returns if this <code>TimeZoneRule</code> has one or more start times.
      * 
-     * @return true if this <TimeZoneRule</code> has one or more start times.
+     * @return true if this <code>TimeZoneRule</code> has one or more start times.
      */
     public abstract boolean isTransitionRule();
 

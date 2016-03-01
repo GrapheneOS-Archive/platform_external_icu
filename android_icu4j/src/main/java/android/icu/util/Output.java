@@ -1,7 +1,7 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 /*
  *******************************************************************************
- * Copyright (C) 2011-2012, International Business Machines Corporation and    *
+ * Copyright (C) 2011-2016, International Business Machines Corporation and    *
  * others. All Rights Reserved.                                                *
  *******************************************************************************
  */
@@ -32,7 +32,7 @@ public class Output<T> {
     }
 
     /**
-     * Constructs an <code>Output</code> withe the given value.
+     * Constructs an <code>Output</code> with the given value.
      * @param value the initial value
      */
     public Output(T value) {

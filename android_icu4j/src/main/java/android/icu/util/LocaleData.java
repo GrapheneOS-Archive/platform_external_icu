@@ -33,28 +33,32 @@ public final class LocaleData {
     /**
      * EXType for {@link #getExemplarSet(int, int)}.
      * Corresponds to the 'main' (aka 'standard') CLDR exemplars in 
-     * {@link "http://www.unicode.org/reports/tr35/tr35-general.html#Character_Elements"}.
+     * <a href="http://www.unicode.org/reports/tr35/tr35-general.html#Character_Elements">
+     *   http://www.unicode.org/reports/tr35/tr35-general.html#Character_Elements</a>.
      */
     public static final int ES_STANDARD = 0;
 
     /**
      * EXType for {@link #getExemplarSet(int, int)}.
      * Corresponds to the 'auxiliary' CLDR exemplars in 
-     * {@link "http://www.unicode.org/reports/tr35/tr35-general.html#Character_Elements"}.
+     * <a href="http://www.unicode.org/reports/tr35/tr35-general.html#Character_Elements">
+     *   http://www.unicode.org/reports/tr35/tr35-general.html#Character_Elements</a>.
      */
     public static final int ES_AUXILIARY = 1;
 
     /**
      * EXType for {@link #getExemplarSet(int, int)}.
      * Corresponds to the 'index' CLDR exemplars in 
-     * {@link "http://www.unicode.org/reports/tr35/tr35-general.html#Character_Elements"}.
+     * <a href="http://www.unicode.org/reports/tr35/tr35-general.html#Character_Elements">
+     *   http://www.unicode.org/reports/tr35/tr35-general.html#Character_Elements</a>.
      */
     public static final int ES_INDEX = 2;
 
     /**
      * EXType for {@link #getExemplarSet(int, int)}.
      * Corresponds to the 'currencySymbol' CLDR exemplars in 
-     * {@link "http://www.unicode.org/reports/tr35/tr35-general.html#Character_Elements"}.
+     * <a href="http://www.unicode.org/reports/tr35/tr35-general.html#Character_Elements">
+     *   http://www.unicode.org/reports/tr35/tr35-general.html#Character_Elements</a>.
      * Note: This type is no longer supported.
      * @deprecated ICU 51
      */
@@ -63,7 +67,8 @@ public final class LocaleData {
 
     /**
      * Corresponds to the 'punctuation' CLDR exemplars in 
-     * {@link "http://www.unicode.org/reports/tr35/tr35-general.html#Character_Elements"}.
+     * <a href="http://www.unicode.org/reports/tr35/tr35-general.html#Character_Elements">
+     *   http://www.unicode.org/reports/tr35/tr35-general.html#Character_Elements</a>.
      * EXType for {@link #getExemplarSet(int, int)}.
      */
     public static final int ES_PUNCTUATION = 4;
@@ -381,7 +386,7 @@ public final class LocaleData {
 
     /**
      * Returns the size of paper used in the locale. The paper sizes returned are always in 
-     * <em> milli-meters<em>.
+     * <em>milli-meters</em>.
      * @param locale The locale for which the measurement system to be retrieved. 
      * @return The paper size used in the locale
      */
