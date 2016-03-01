@@ -89,7 +89,7 @@ import com.ibm.icu.util.ULocale.Category;
  * second (though we do not currently have specific intervalFormat data for
  * skeletons with seconds). 
  * Those calendar fields can be defined in the following order:
- * year >  month > date > hour (in day) > minute > second
+ * year &gt; month &gt; date &gt; hour (in day) &gt; minute &gt; second
  *  
  * The largest different calendar fields between 2 calendars is the
  * first different calendar field in above order.
@@ -907,7 +907,6 @@ public class DateIntervalFormat extends UFormat {
      * This method should handle parsing of
      * date time interval strings into Formattable objects with 
      * DateInterval type, which is a pair of UDate.
-     * <P>
      * <P>
      * Before calling, set parse_pos.index to the offset you want to start
      * parsing at in the source. After calling, parse_pos.index is the end of
