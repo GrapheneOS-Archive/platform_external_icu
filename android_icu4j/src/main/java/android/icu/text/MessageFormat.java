@@ -1,7 +1,7 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 /*
 **********************************************************************
-* Copyright (c) 2004-2014, International Business Machines
+* Copyright (c) 2004-2016, International Business Machines
 * Corporation and others.  All Rights Reserved.
 **********************************************************************
 * Author: Alan Liu
@@ -2410,12 +2410,12 @@ public class MessageFormat extends UFormat {
      * <strong>[icu]</strong> Converts an 'apostrophe-friendly' pattern into a standard
      * pattern.
      * <em>This is obsolete for ICU 4.8 and higher MessageFormat pattern strings.</em>
-     * It can still be useful together with the JDK MessageFormat.
+     * It can still be useful together with {@link java.text.MessageFormat}.
      *
      * <p>See the class description for more about apostrophes and quoting,
-     * and differences between ICU and the JDK.
+     * and differences between ICU and {@link java.text.MessageFormat}.
      *
-     * <p>The JDK MessageFormat and ICU 4.6 and earlier MessageFormat
+     * <p>{@link java.text.MessageFormat} and ICU 4.6 and earlier MessageFormat
      * treat all ASCII apostrophes as
      * quotes, which is problematic in some languages, e.g.
      * French, where apostrophe is commonly used.  This utility

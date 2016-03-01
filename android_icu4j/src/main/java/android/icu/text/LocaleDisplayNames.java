@@ -1,7 +1,7 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 /*
  *******************************************************************************
- * Copyright (C) 2009-2015, International Business Machines Corporation and    *
+ * Copyright (C) 2009-2016, International Business Machines Corporation and    *
  * others. All Rights Reserved.                                                *
  *******************************************************************************
  */
@@ -57,7 +57,7 @@ public abstract class LocaleDisplayNames {
     /**
      * Convenience overload of {@link #getInstance(Locale, DisplayContext...)} that specifies
      * {@link DisplayContext#STANDARD_NAMES}.
-     * @param locale the display JDK locale
+     * @param locale the display {@link java.util.Locale}
      * @return a LocaleDisplayNames instance
      */
     public static LocaleDisplayNames getInstance(Locale locale) {
@@ -116,9 +116,9 @@ public abstract class LocaleDisplayNames {
     }
 
     /**
-     * Returns an instance of LocaleDisplayNames that returns names formatted for the provided JDK
-     * locale, using the provided DisplayContext settings
-     * @param locale the display JDK locale
+     * Returns an instance of LocaleDisplayNames that returns names formatted for the provided
+     * {@link java.util.Locale}, using the provided DisplayContext settings
+     * @param locale the display {@link java.util.Locale}
      * @param contexts one or more context settings (e.g. for dialect
      *              handling, capitalization, etc.
      * @return a LocaleDisplayNames instance
