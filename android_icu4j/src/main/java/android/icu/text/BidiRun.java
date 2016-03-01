@@ -1,7 +1,7 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 /*
 *******************************************************************************
-*   Copyright (C) 2001-2011, International Business Machines
+*   Copyright (C) 2001-2016, International Business Machines
 *   Corporation and others.  All Rights Reserved.
 *******************************************************************************
 */
@@ -14,7 +14,7 @@ package android.icu.text;
 /**
  * A BidiRun represents a sequence of characters at the same embedding level.
  * The Bidi algorithm decomposes a piece of text into sequences of characters
- * at the same embedding level, each such sequence is called a <quote>run</quote>.
+ * at the same embedding level, each such sequence is called a "run".
  *
  * <p>A BidiRun represents such a run by storing its essential properties,
  * but does not duplicate the characters which form the run.
