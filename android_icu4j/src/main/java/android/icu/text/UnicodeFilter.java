@@ -1,7 +1,7 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 /*
  *******************************************************************************
- * Copyright (C) 1996-2014, International Business Machines Corporation and    *
+ * Copyright (C) 1996-2016, International Business Machines Corporation and    *
  * others. All Rights Reserved.                                                *
  *******************************************************************************
  */
@@ -11,7 +11,7 @@ package android.icu.text;
  * <code>UnicodeFilter</code> defines a protocol for selecting a
  * subset of the full range (U+0000 to U+FFFF) of Unicode characters.
  * Currently, filters are used in conjunction with classes like
- * <a href="Transliterator.html" title="class in android.icu.text"><code>Transliterator</code></a>
+ * {@link android.icu.text.Transliterator}
  * to only process selected characters through a
  * transformation.
  */

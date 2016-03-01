@@ -1,7 +1,7 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 /*
  *******************************************************************************
- * Copyright (C) 2003-2014, International Business Machines Corporation and    *
+ * Copyright (C) 2003-2016, International Business Machines Corporation and    *
  * others. All Rights Reserved.                                                *
  *******************************************************************************
  */
@@ -871,7 +871,7 @@ public abstract class IDNA {
      *  - IDNA.USE_STD3_RULES      Use STD3 ASCII rules for host name syntax restrictions
      *                              If this option is set and the input does not satisfy STD3 rules,  
      *                              the operation will fail with ParseException
-     * @return 0 if the strings are equal, > 0 if s1 > s2 and < 0 if s1 < s2
+     * @return 0 if the strings are equal, &gt; 0 if s1 &gt; s2 and &lt; 0 if s1 &lt; s2
      * @deprecated ICU 55 Use UTS 46 instead via {@link #getUTS46Instance(int)}.
      * @hide original deprecated declaration
      */
@@ -908,7 +908,7 @@ public abstract class IDNA {
      *  - IDNA.USE_STD3_RULES      Use STD3 ASCII rules for host name syntax restrictions
      *                              If this option is set and the input does not satisfy STD3 rules,  
      *                              the operation will fail with ParseException
-     * @return 0 if the strings are equal, > 0 if s1 > s2 and < 0 if s1 < s2
+     * @return 0 if the strings are equal, &gt; 0 if s1 &gt; s2 and &lt; 0 if s1 &lt; s2
      * @deprecated ICU 55 Use UTS 46 instead via {@link #getUTS46Instance(int)}.
      * @hide original deprecated declaration
      */
@@ -943,7 +943,7 @@ public abstract class IDNA {
      *  - IDNA.USE_STD3_RULES       Use STD3 ASCII rules for host name syntax restrictions
      *                              If this option is set and the input does not satisfy STD3 rules,  
      *                              the operation will fail with ParseException
-     * @return 0 if the strings are equal, > 0 if i1 > i2 and < 0 if i1 < i2
+     * @return 0 if the strings are equal, &gt; 0 if i1 &gt; i2 and &lt; 0 if i1 &lt; i2
      * @deprecated ICU 55 Use UTS 46 instead via {@link #getUTS46Instance(int)}.
      * @hide original deprecated declaration
      */

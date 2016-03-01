@@ -1,7 +1,7 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 /*
  *******************************************************************************
- * Copyright (C) 2014, International Business Machines Corporation and
+ * Copyright (C) 2014-2016, International Business Machines Corporation and
  * others. All Rights Reserved.
  *******************************************************************************
  */
@@ -24,9 +24,10 @@ import android.icu.util.ULocale;
  * <pre>
  * ULocale en = new ULocale("en");
  * ScientificNumberFormatter fmt = ScientificNumberFormatter.getMarkupInstance(
- *         en, "<sup>", "</sup>");
+ *         en, "&lt;sup&gt;", "&lt;/sup&gt;");
+ * </pre>
  * <pre>
- * // Output: "1.23456×10<sup>-78</sup>"
+ * // Output: "1.23456×10&lt;sup&gt;-78&lt;/sup&gt;"
  * System.out.println(fmt.format(1.23456e-78));
  * </pre>
  *
