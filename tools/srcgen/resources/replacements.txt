@@ -205,3 +205,12 @@
      * @stable ICU 2.8
      */
 --
+
+# Removal of sentence containing link to class that is not exposed in Android API
+--type:android.icu.text.UnicodeFilter
+/**
+ * <code>UnicodeFilter</code> defines a protocol for selecting a
+ * subset of the full range (U+0000 to U+FFFF) of Unicode characters.
+ * @stable ICU 2.0
+ */
+--
