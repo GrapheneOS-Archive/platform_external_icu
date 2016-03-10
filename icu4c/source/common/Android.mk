@@ -27,6 +27,7 @@ src_files := \
 	filteredbrk.cpp \
 	icuplug.cpp \
 	loadednormalizer2impl.cpp \
+	locdspnm.cpp \
 	locmap.c \
 	pluralmap.cpp \
 	propsvec.c \
@@ -34,7 +35,7 @@ src_files := \
 	putil.cpp \
 	resource.cpp \
 	sharedobject.cpp \
-	simplepatternformatter.cpp \
+	simpleformatter.cpp \
 	uarrsort.c \
 	ubidi.c \
 	ubidiln.c \
@@ -68,6 +69,7 @@ src_files := \
 	ucnv_u32.c \
 	ucnv_u7.c \
 	ucnv_u8.c \
+	ucurr.cpp \
 	udatamem.c \
 	udataswp.c \
 	uenum.c \
