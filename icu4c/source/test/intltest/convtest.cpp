@@ -118,15 +118,6 @@ ConversionTest::TestToUnicode() {
                 s.extract(0, 0x7fffffff, charset, sizeof(charset), "");
                 cc.charset=charset;
 
-                // BEGIN android-added
-                // To save space, Android does not build full ISO-2022-CN tables.
-                // We skip the TestGetKeywordValuesForLocale for counting available collations.
-                if (strlen(charset) >= 8 &&
-                    strncmp(charset+4, "2022-CN", 4) == 0) {
-                    continue;
-                }
-                // END android-added
-
                 cc.bytes=testCase->getBinary(cc.bytesLength, "bytes", errorCode);
                 unicode=testCase->getString("unicode", errorCode);
                 cc.unicode=unicode.getBuffer();
@@ -239,15 +230,6 @@ ConversionTest::TestFromUnicode() {
                 s=testCase->getString("charset", errorCode);
                 s.extract(0, 0x7fffffff, charset, sizeof(charset), "");
                 cc.charset=charset;
-
-                // BEGIN android-added
-                // To save space, Android does not build full ISO-2022-CN tables.
-                // We skip the TestGetKeywordValuesForLocale for counting available collations.
-                if (strlen(charset) >= 8 &&
-                    strncmp(charset+4, "2022-CN", 4) == 0) {
-                    continue;
-                }
-                // END android-added
 
                 unicode=testCase->getString("unicode", errorCode);
                 cc.unicode=unicode.getBuffer();
@@ -401,15 +383,6 @@ ConversionTest::TestGetUnicodeSet() {
 
                 s=testCase->getString("charset", errorCode);
                 s.extract(0, 0x7fffffff, charset, sizeof(charset), "");
-
-                // BEGIN android-added
-                // To save space, Android does not build full ISO-2022-CN tables.
-                // We skip the TestGetKeywordValuesForLocale for counting available collations.
-                if (strlen(charset) >= 8 &&
-                    strncmp(charset+4, "2022-CN", 4) == 0) {
-                    continue;
-                }
-                // END android-added
 
                 map=testCase->getString("map", errorCode);
                 mapnot=testCase->getString("mapnot", errorCode);

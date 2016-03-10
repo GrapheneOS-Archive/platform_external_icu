@@ -1,6 +1,6 @@
 ﻿// ***************************************************************************
 // *
-// * Copyright (C) 2015 International Business Machines
+// * Copyright (C) 2016 International Business Machines
 // * Corporation and others. All Rights Reserved.
 // * Tool: org.unicode.cldr.icu.NewLdml2IcuConverter
 // * Source File: <path>/common/main/sr_Latn.xml
@@ -47,7 +47,6 @@ sr_Latn{
         AI{"Angvila"}
         AL{"Albanija"}
         AM{"Jermenija"}
-        AN{"Holandski Antili"}
         AO{"Angola"}
         AQ{"Antarktik"}
         AR{"Argentina"}
@@ -139,7 +138,7 @@ sr_Latn{
         GU{"Guam"}
         GW{"Gvineja-Bisao"}
         GY{"Gvajana"}
-        HK{"Hong Kong"}
+        HK{"SAR Hongkong (Kina)"}
         HM{"Ostrva Herd i Mekdonald"}
         HN{"Honduras"}
         HR{"Hrvatska"}
@@ -193,7 +192,7 @@ sr_Latn{
         ML{"Mali"}
         MM{"Mijanmar (Burma)"}
         MN{"Mongolija"}
-        MO{"Makao"}
+        MO{"SAR Makao (Kina)"}
         MP{"Severna Marijanska Ostrva"}
         MQ{"Martinik"}
         MR{"Mauritanija"}
@@ -228,7 +227,7 @@ sr_Latn{
         PM{"Sen Pjer i Mikelon"}
         PN{"Pitkern"}
         PR{"Portoriko"}
-        PS{"Palestina"}
+        PS{"Palestinske teritorije"}
         PT{"Portugal"}
         PW{"Palau"}
         PY{"Paragvaj"}
@@ -302,6 +301,9 @@ sr_Latn{
     }
     Countries%short{
         GB{"UK"}
+        HK{"Hong Kong"}
+        MO{"Makao"}
+        PS{"Palestina"}
         US{"SAD"}
     }
     Countries%variant{
@@ -310,5 +312,5 @@ sr_Latn{
         FK{"Foklandska (Malvinska) ostrva"}
         MK{"Makedonija (BJRM)"}
     }
-    Version{"2.1.20.4"}
+    Version{"2.1.24.17"}
 }

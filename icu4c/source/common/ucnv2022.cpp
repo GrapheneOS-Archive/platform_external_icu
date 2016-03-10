@@ -1,6 +1,6 @@
 /*
 **********************************************************************
-*   Copyright (C) 2000-2015, International Business Machines
+*   Copyright (C) 2000-2016, International Business Machines
 *   Corporation and others.  All Rights Reserved.
 **********************************************************************
 *   file name:  ucnv2022.cpp
@@ -490,13 +490,8 @@ _ISO2022Open(UConverter *cnv, UConverterLoadArgs *pArgs, UErrorCode *errorCode){
         }
         version = pArgs->options & UCNV_OPTIONS_VERSION_MASK;
         myConverterData->version = version;
-        /* Begin Google-specific change. */
-        /* The "jk" locale ID was made up for KDDI ISO-2022-JP. */
-        /* The "js" locale ID was made up for SoftBank ISO-2022-JP. */
-        if((myLocale[0]=='j' &&
-            (myLocale[1]=='a'|| myLocale[1]=='p' || myLocale[1]=='k' ||
-             myLocale[1]=='s') &&
-            (myLocale[2]=='_' || myLocale[2]=='\0')))
+        if(myLocale[0]=='j' && (myLocale[1]=='a'|| myLocale[1]=='p') &&
+            (myLocale[2]=='_' || myLocale[2]=='\0'))
         {
             /* open the required converters and cache them */
             if(version>MAX_JA_VERSION) {
@@ -510,34 +505,15 @@ _ISO2022Open(UConverter *cnv, UConverterLoadArgs *pArgs, UErrorCode *errorCode){
                 myConverterData->myConverterArray[ISO8859_7] =
                     ucnv_loadSharedData("ISO8859_7", &stackPieces, &stackArgs, errorCode);
             }
-            if (myLocale[1]=='k') {  /* Use KDDI's version. */
-                myConverterData->myConverterArray[JISX208]  =
-                    ucnv_loadSharedData("kddi-jisx-208-2007", &stackPieces, &stackArgs, errorCode);
-            } else if (myLocale[1]=='s') {  /* Use SoftBank's version. */
-                myConverterData->myConverterArray[JISX208]  =
-                    ucnv_loadSharedData("softbank-jisx-208-2007", &stackPieces, &stackArgs, errorCode);
-            } else {
-                /*
-                 * Change for http://b/issue?id=937017 :
-                 * Restore JIS X 0208 ISO-2022-JP mappings from before
-                 * sharing the table with the Shift-JIS converter
-                 * (CL 5963009 and http://bugs.icu-project.org/trac/ticket/5797).
-                 * TODO(mscherer): Create and use a new, unified Google Shift-JIS
-                 * table for both Shift-JIS and ISO-2022-JP.
-                 */
-                myConverterData->myConverterArray[JISX208]  =
-                    ucnv_loadSharedData("jisx-208", &stackPieces, &stackArgs, errorCode);
-            }
-            /* End Google-specific change. */
+            myConverterData->myConverterArray[JISX208] =
+                ucnv_loadSharedData("Shift-JIS", &stackPieces, &stackArgs, errorCode);
             if(jpCharsetMasks[version]&CSM(JISX212)) {
                 myConverterData->myConverterArray[JISX212] =
                     ucnv_loadSharedData("jisx-212", &stackPieces, &stackArgs, errorCode);
             }
             if(jpCharsetMasks[version]&CSM(GB2312)) {
                 myConverterData->myConverterArray[GB2312] =
-                    /* BEGIN android-changed */
-                    ucnv_loadSharedData("noop-gb2312_gl", &stackPieces, &stackArgs, errorCode); /* gb_2312_80-1 */
-                    /* END android-changed */
+                    ucnv_loadSharedData("ibm-5478", &stackPieces, &stackArgs, errorCode);   /* gb_2312_80-1 */
             }
             if(jpCharsetMasks[version]&CSM(KSC5601)) {
                 myConverterData->myConverterArray[KSC5601] =
@@ -568,9 +544,7 @@ _ISO2022Open(UConverter *cnv, UConverterLoadArgs *pArgs, UErrorCode *errorCode){
             if(version==1) {
                 cnvName="icu-internal-25546";
             } else {
-                /* BEGIN android-changed */
-                cnvName="ksc_5601";
-                /* END android-changed */
+                cnvName="ibm-949";
                 myConverterData->version=version=0;
             }
             if(pArgs->onlyTestIsLoadable) {
@@ -614,16 +588,14 @@ _ISO2022Open(UConverter *cnv, UConverterLoadArgs *pArgs, UErrorCode *errorCode){
             }
 
             /* open the required converters and cache them */
-            /* BEGIN android-changed */
             myConverterData->myConverterArray[GB2312_1] =
-                ucnv_loadSharedData("noop-gb2312_gl", &stackPieces, &stackArgs, errorCode);
+                ucnv_loadSharedData("ibm-5478", &stackPieces, &stackArgs, errorCode);
             if(version==1) {
                 myConverterData->myConverterArray[ISO_IR_165] =
-                    ucnv_loadSharedData("noop-iso-ir-165", &stackPieces, &stackArgs, errorCode);
+                    ucnv_loadSharedData("iso-ir-165", &stackPieces, &stackArgs, errorCode);
             }
             myConverterData->myConverterArray[CNS_11643] =
-                ucnv_loadSharedData("noop-cns-11643", &stackPieces, &stackArgs, errorCode);
-            /* END android-changed */
+                ucnv_loadSharedData("cns-11643-1992", &stackPieces, &stackArgs, errorCode);
 
 
             /* set the function pointers to appropriate funtions */
@@ -999,9 +971,9 @@ DONE:
                         *err = U_UNSUPPORTED_ESCAPE_SEQUENCE;
                         break;
                     }
-                    /*fall through*/
+                    U_FALLTHROUGH;
                 case GB2312_1:
-                    /*fall through*/
+                    U_FALLTHROUGH;
                 case CNS_11643_1:
                     myData2022->toU2022State.cs[1]=(int8_t)tempState;
                     break;
@@ -2188,7 +2160,6 @@ escape:
             /* ISO-2022-JP does not use single-byte (C1) SS2 and SS3 */
 
             case CR:
-                /*falls through*/
             case LF:
                 /* automatically reset to single-byte mode */
                 if((StateEnum)pToU2022State->cs[0] != ASCII && (StateEnum)pToU2022State->cs[0] != JISX201) {
@@ -2196,7 +2167,7 @@ escape:
                 }
                 pToU2022State->cs[2] = 0;
                 pToU2022State->g = 0;
-                /* falls through */
+                U_FALLTHROUGH;
             default:
                 /* convert one or two bytes */
                 myData->isEmptySegment = FALSE;
@@ -3371,10 +3342,9 @@ escape:
             /* ISO-2022-CN does not use single-byte (C1) SS2 and SS3 */
 
             case CR:
-                /*falls through*/
             case LF:
                 uprv_memset(pToU2022State, 0, sizeof(ISO2022State));
-                /* falls through */
+                U_FALLTHROUGH;
             default:
                 /* convert one or two bytes */
                 myData->isEmptySegment = FALSE;
@@ -3921,7 +3891,7 @@ static const UConverterStaticData _ISO2022KRStaticData={
     UCNV_IBM,
     UCNV_ISO_2022,
     1,
-    3, /* max 3 bytes per UChar: SO+DBCS */
+    8, /* max 8 bytes per UChar */
     { 0x1a, 0, 0, 0 },
     1,
     FALSE,

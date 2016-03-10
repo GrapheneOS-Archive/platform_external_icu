@@ -1,6 +1,6 @@
 ﻿// ***************************************************************************
 // *
-// * Copyright (C) 2015 International Business Machines
+// * Copyright (C) 2016 International Business Machines
 // * Corporation and others. All Rights Reserved.
 // * Tool: org.unicode.cldr.icu.NewLdml2IcuConverter
 // * Source File: <path>/common/main/lv.xml
@@ -46,7 +46,6 @@ lv{
         AI{"Angilja"}
         AL{"Albānija"}
         AM{"Armēnija"}
-        AN{"Nīderlandes Antiļas"}
         AO{"Angola"}
         AQ{"Antarktika"}
         AR{"Argentīna"}
@@ -138,7 +137,7 @@ lv{
         GU{"Guama"}
         GW{"Gvineja-Bisava"}
         GY{"Gajāna"}
-        HK{"Honkonga"}
+        HK{"Ķīnas īpašās pārvaldes apgabals Honkonga"}
         HM{"Hērda un Makdonalda salas"}
         HN{"Hondurasa"}
         HR{"Horvātija"}
@@ -192,7 +191,7 @@ lv{
         ML{"Mali"}
         MM{"Mjanma (Birma)"}
         MN{"Mongolija"}
-        MO{"Makao"}
+        MO{"Ķīnas īpašās pārvaldes apgabals Makao"}
         MP{"Ziemeļu Marianas salas"}
         MQ{"Martinika"}
         MR{"Mauritānija"}
@@ -301,6 +300,9 @@ lv{
     }
     Countries%short{
         GB{"Lielbritānija"}
+        HK{"Honkonga"}
+        MO{"Makao"}
+        PS{"Palestīna"}
         US{"ASV"}
     }
     Countries%variant{
@@ -310,5 +312,5 @@ lv{
         FK{"Folklenda (Malvinu) salas"}
         MK{"Maķedonija (BDRM)"}
     }
-    Version{"2.1.19.19"}
+    Version{"2.1.23.7"}
 }

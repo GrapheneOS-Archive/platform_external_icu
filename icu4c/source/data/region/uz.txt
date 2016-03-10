@@ -1,6 +1,6 @@
 ﻿// ***************************************************************************
 // *
-// * Copyright (C) 2015 International Business Machines
+// * Copyright (C) 2016 International Business Machines
 // * Corporation and others. All Rights Reserved.
 // * Tool: org.unicode.cldr.icu.NewLdml2IcuConverter
 // * Source File: <path>/common/main/uz.xml
@@ -137,7 +137,7 @@ uz{
         GU{"Guam"}
         GW{"Gvineya-Bisau"}
         GY{"Gayana"}
-        HK{"Gonkong"}
+        HK{"Gonkong (Xitoy MMH)"}
         HM{"Xerd va Makdonald orollari"}
         HN{"Gonduras"}
         HR{"Xorvatiya"}
@@ -191,7 +191,7 @@ uz{
         ML{"Mali"}
         MM{"Myanma (Birma)"}
         MN{"Mongoliya"}
-        MO{"Makao"}
+        MO{"Makao (Xitoy MMH)"}
         MP{"Shimoliy Mariana orollari"}
         MQ{"Martinika"}
         MR{"Mavritaniya"}
@@ -226,7 +226,7 @@ uz{
         PM{"Sent-Pyer va Mikelon"}
         PN{"Pitkern orollari"}
         PR{"Puerto-Riko"}
-        PS{"Falastin"}
+        PS{"Falastin hududi"}
         PT{"Portugaliya"}
         PW{"Palau"}
         PY{"Paragvay"}
@@ -300,6 +300,9 @@ uz{
     }
     Countries%short{
         GB{"B.Q."}
+        HK{"Gonkong"}
+        MO{"Makao"}
+        PS{"Falastin"}
         US{"AQSH"}
     }
     Countries%variant{
@@ -310,5 +313,5 @@ uz{
         MK{"Makedoniya (SYRM)"}
         TL{"Sharqiy Timor"}
     }
-    Version{"2.1.20.4"}
+    Version{"2.1.22.93"}
 }

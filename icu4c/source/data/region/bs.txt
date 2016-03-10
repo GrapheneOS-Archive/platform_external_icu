@@ -1,6 +1,6 @@
 ﻿// ***************************************************************************
 // *
-// * Copyright (C) 2015 International Business Machines
+// * Copyright (C) 2016 International Business Machines
 // * Corporation and others. All Rights Reserved.
 // * Tool: org.unicode.cldr.icu.NewLdml2IcuConverter
 // * Source File: <path>/common/main/bs.xml
@@ -46,7 +46,6 @@ bs{
         AI{"Angvila"}
         AL{"Albanija"}
         AM{"Jermenija"}
-        AN{"Holandski Antili"}
         AO{"Angola"}
         AQ{"Antarktika"}
         AR{"Argentina"}
@@ -138,7 +137,7 @@ bs{
         GU{"Guam"}
         GW{"Gvineja-Bisao"}
         GY{"Gvajana"}
-        HK{"Hong Kong"}
+        HK{"Hong Kong (S. A. R. Kina)"}
         HM{"Heard i arhipelag McDonald"}
         HN{"Honduras"}
         HR{"Hrvatska"}
@@ -192,7 +191,7 @@ bs{
         ML{"Mali"}
         MM{"Mijanmar"}
         MN{"Mongolija"}
-        MO{"Makao"}
+        MO{"Makao (S. A. R. Kina)"}
         MP{"Sjeverna Marijanska Ostrva"}
         MQ{"Martinik"}
         MR{"Mauritanija"}
@@ -227,7 +226,7 @@ bs{
         PM{"Sveti Petar i Mikelon"}
         PN{"Pitkern"}
         PR{"Porto Riko"}
-        PS{"Palestina"}
+        PS{"Palestinska Teritorija"}
         PT{"Portugal"}
         PW{"Palau"}
         PY{"Paragvaj"}
@@ -301,6 +300,9 @@ bs{
     }
     Countries%short{
         GB{"UK"}
+        HK{"Hong Kong"}
+        MO{"Makao"}
+        PS{"Palestina"}
         US{"SAD"}
     }
     Countries%variant{
@@ -311,5 +313,5 @@ bs{
         MK{"Makedonija (BJR)"}
         TL{"Istočni Timor"}
     }
-    Version{"2.1.19.77"}
+    Version{"2.1.23.7"}
 }

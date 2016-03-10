@@ -1,6 +1,6 @@
 ﻿// ***************************************************************************
 // *
-// * Copyright (C) 2015 International Business Machines
+// * Copyright (C) 2016 International Business Machines
 // * Corporation and others. All Rights Reserved.
 // * Tool: org.unicode.cldr.icu.NewLdml2IcuConverter
 // * Source File: <path>/common/main/to.xml
@@ -46,7 +46,6 @@ to{
         AI{"Anikuila"}
         AL{"ʻAlipania"}
         AM{"ʻĀmenia"}
-        AN{"Anitila fakahōlani"}
         AO{"ʻAngikola"}
         AQ{"ʻAnitātika"}
         AR{"ʻAsenitina"}
@@ -138,7 +137,7 @@ to{
         GU{"Kuamu"}
         GW{"Kini-Pisau"}
         GY{"Kuiana"}
-        HK{"Hongi Kongi"}
+        HK{"Hongi Kongi SAR Siaina"}
         HM{"ʻOtumotu Heati mo Makitonali"}
         HN{"Honitulasi"}
         HR{"Kuloisia"}
@@ -192,7 +191,7 @@ to{
         ML{"Māli"}
         MM{"Pema"}
         MN{"Mongokōlia"}
-        MO{"Makau"}
+        MO{"Makau SAR Siaina"}
         MP{"ʻOtumotu Maliana tokelau"}
         MQ{"Māteniki"}
         MR{"Maulitenia"}
@@ -227,7 +226,7 @@ to{
         PM{"Sā Piea mo Mikeloni"}
         PN{"ʻOtumotu Pitikeni"}
         PR{"Pueto Liko"}
-        PS{"Palesitaine"}
+        PS{"Potu Palesitaine"}
         PT{"Potukali"}
         PW{"Palau"}
         PY{"Palakuai"}
@@ -301,6 +300,9 @@ to{
     }
     Countries%short{
         GB{"Pilitānia"}
+        HK{"Hongi Kongi"}
+        MO{"Makau"}
+        PS{"Palesitaine"}
         US{"ʻAmelika"}
     }
     Countries%variant{
@@ -308,5 +310,5 @@ to{
         CG{"Kongo (Lipapilika)"}
         MK{"Masetōnia (FYROM)"}
     }
-    Version{"2.1.19.14"}
+    Version{"2.1.23.79"}
 }

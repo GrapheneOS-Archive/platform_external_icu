@@ -1,6 +1,6 @@
 ﻿// ***************************************************************************
 // *
-// * Copyright (C) 2015 International Business Machines
+// * Copyright (C) 2016 International Business Machines
 // * Corporation and others. All Rights Reserved.
 // * Tool: org.unicode.cldr.icu.NewLdml2IcuConverter
 // * Source File: <path>/common/main/lt.xml
@@ -46,7 +46,6 @@ lt{
         AI{"Angilija"}
         AL{"Albanija"}
         AM{"Armėnija"}
-        AN{"Olandijos Antilai"}
         AO{"Angola"}
         AQ{"Antarktida"}
         AR{"Argentina"}
@@ -138,7 +137,7 @@ lt{
         GU{"Guamas"}
         GW{"Bisau Gvinėja"}
         GY{"Gajana"}
-        HK{"Honkongas"}
+        HK{"Ypatingasis Administracinis Kinijos Regionas Honkongas"}
         HM{"Herdo ir Makdonaldo Salos"}
         HN{"Hondūras"}
         HR{"Kroatija"}
@@ -192,7 +191,7 @@ lt{
         ML{"Malis"}
         MM{"Mianmaras (Birma)"}
         MN{"Mongolija"}
-        MO{"Makao"}
+        MO{"Ypatingasis Administracinis Kinijos Regionas Makao"}
         MP{"Marianos Šiaurinės Salos"}
         MQ{"Martinika"}
         MR{"Mauritanija"}
@@ -227,7 +226,7 @@ lt{
         PM{"Sen Pjeras ir Mikelonas"}
         PN{"Pitkernas"}
         PR{"Puerto Rikas"}
-        PS{"Palestina"}
+        PS{"Palestinos teritorija"}
         PT{"Portugalija"}
         PW{"Palau"}
         PY{"Paragvajus"}
@@ -301,6 +300,9 @@ lt{
     }
     Countries%short{
         GB{"Didžioji Britanija"}
+        HK{"Honkongas"}
+        MO{"Makao"}
+        PS{"Palestina"}
         US{"JAV"}
     }
     Countries%variant{
@@ -310,5 +312,5 @@ lt{
         FK{"Folklando (Malvinų) Salos"}
         MK{"Makedonijos Respublika"}
     }
-    Version{"2.1.19.14"}
+    Version{"2.1.22.93"}
 }

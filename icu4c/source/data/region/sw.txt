@@ -1,6 +1,6 @@
 ﻿// ***************************************************************************
 // *
-// * Copyright (C) 2015 International Business Machines
+// * Copyright (C) 2016 International Business Machines
 // * Corporation and others. All Rights Reserved.
 // * Tool: org.unicode.cldr.icu.NewLdml2IcuConverter
 // * Source File: <path>/common/main/sw.xml
@@ -46,7 +46,6 @@ sw{
         AI{"Anguilla"}
         AL{"Albania"}
         AM{"Armenia"}
-        AN{"Antili za Uholanzi"}
         AO{"Angola"}
         AQ{"Antaktika"}
         AR{"Ajentina"}
@@ -138,7 +137,7 @@ sw{
         GU{"Gwam"}
         GW{"Ginebisau"}
         GY{"Guyana"}
-        HK{"Hong Kong"}
+        HK{"Hong Kong SAR China"}
         HM{"Kisiwa cha Heard na Visiwa vya McDonald"}
         HN{"Hondurasi"}
         HR{"Korasia"}
@@ -192,7 +191,7 @@ sw{
         ML{"Mali"}
         MM{"Myanmar (Burma)"}
         MN{"Mongolia"}
-        MO{"Macau"}
+        MO{"Macau SAR China"}
         MP{"Visiwa vya Mariana vya Kaskazini"}
         MQ{"Martiniki"}
         MR{"Moritania"}
@@ -227,7 +226,7 @@ sw{
         PM{"Santapierre na Miquelon"}
         PN{"Visiwa vya Pitcairn"}
         PR{"Puerto Rico"}
-        PS{"Palestina"}
+        PS{"Maeneo ya Palestina"}
         PT{"Ureno"}
         PW{"Palau"}
         PY{"Paragwai"}
@@ -301,6 +300,9 @@ sw{
     }
     Countries%short{
         GB{"Uingereza"}
+        HK{"Hong Kong"}
+        MO{"Macau"}
+        PS{"Palestina"}
         US{"US"}
     }
     Countries%variant{
@@ -311,5 +313,5 @@ sw{
         MK{"Masedonia (FYROM)"}
         TL{"Timor ya Mashariki"}
     }
-    Version{"2.1.19.14"}
+    Version{"2.1.22.93"}
 }

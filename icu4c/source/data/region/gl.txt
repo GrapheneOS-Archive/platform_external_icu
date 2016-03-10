@@ -1,6 +1,6 @@
 ﻿// ***************************************************************************
 // *
-// * Copyright (C) 2015 International Business Machines
+// * Copyright (C) 2016 International Business Machines
 // * Corporation and others. All Rights Reserved.
 // * Tool: org.unicode.cldr.icu.NewLdml2IcuConverter
 // * Source File: <path>/common/main/gl.xml
@@ -46,7 +46,6 @@ gl{
         AI{"Anguila"}
         AL{"Albania"}
         AM{"Armenia"}
-        AN{"Antillas Holandesas"}
         AO{"Angola"}
         AQ{"Antártida"}
         AR{"Arxentina"}
@@ -138,7 +137,7 @@ gl{
         GU{"Guam"}
         GW{"Guinea-Bissau"}
         GY{"Güiana"}
-        HK{"Hong Kong"}
+        HK{"Hong Kong RAE de China"}
         HM{"Illa Heard e Illas McDonald"}
         HN{"Honduras"}
         HR{"Croacia"}
@@ -192,7 +191,7 @@ gl{
         ML{"Mali"}
         MM{"Myanmar (Birmania)"}
         MN{"Mongolia"}
-        MO{"Macau"}
+        MO{"Macau RAE de China"}
         MP{"Illas Marianas do norte"}
         MQ{"Martinica"}
         MR{"Mauritania"}
@@ -227,7 +226,7 @@ gl{
         PM{"San Pedro e Miguelón"}
         PN{"Illas Pitcairn"}
         PR{"Porto Rico"}
-        PS{"Palestina"}
+        PS{"Territorios palestinos"}
         PT{"Portugal"}
         PW{"Palau"}
         PY{"Paraguai"}
@@ -301,6 +300,9 @@ gl{
     }
     Countries%short{
         GB{"RU"}
+        HK{"Hong Kong"}
+        MO{"Macau"}
+        PS{"Palestina"}
         US{"EUA"}
     }
     Countries%variant{
@@ -310,5 +312,5 @@ gl{
         FK{"Illas Malvinas (Falkland)"}
         MK{"Macedonia (ARIM)"}
     }
-    Version{"2.1.19.94"}
+    Version{"2.1.23.76"}
 }

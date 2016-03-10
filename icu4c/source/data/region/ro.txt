@@ -1,6 +1,6 @@
 ﻿// ***************************************************************************
 // *
-// * Copyright (C) 2015 International Business Machines
+// * Copyright (C) 2016 International Business Machines
 // * Corporation and others. All Rights Reserved.
 // * Tool: org.unicode.cldr.icu.NewLdml2IcuConverter
 // * Source File: <path>/common/main/ro.xml
@@ -46,7 +46,6 @@ ro{
         AI{"Anguilla"}
         AL{"Albania"}
         AM{"Armenia"}
-        AN{"Antilele Olandeze"}
         AO{"Angola"}
         AQ{"Antarctica"}
         AR{"Argentina"}
@@ -138,7 +137,7 @@ ro{
         GU{"Guam"}
         GW{"Guineea-Bissau"}
         GY{"Guyana"}
-        HK{"Hong Kong"}
+        HK{"R.A.S. Hong Kong a Chinei"}
         HM{"Insula Heard și Insulele McDonald"}
         HN{"Honduras"}
         HR{"Croația"}
@@ -192,7 +191,7 @@ ro{
         ML{"Mali"}
         MM{"Myanmar (Birmania)"}
         MN{"Mongolia"}
-        MO{"Macao"}
+        MO{"R.A.S. Macao a Chinei"}
         MP{"Insulele Mariane de Nord"}
         MQ{"Martinica"}
         MR{"Mauritania"}
@@ -227,7 +226,7 @@ ro{
         PM{"Saint-Pierre și Miquelon"}
         PN{"Insulele Pitcairn"}
         PR{"Puerto Rico"}
-        PS{"Palestina"}
+        PS{"Teritoriile Palestiniene"}
         PT{"Portugalia"}
         PW{"Palau"}
         PY{"Paraguay"}
@@ -301,6 +300,9 @@ ro{
     }
     Countries%short{
         GB{"Regatul Unit"}
+        HK{"Hong Kong"}
+        MO{"Macao"}
+        PS{"Palestina"}
         US{"S.U.A."}
     }
     Countries%variant{
@@ -310,5 +312,5 @@ ro{
         FK{"Insulele Falkland (Insulele Malvine)"}
         MK{"Macedonia (FRIM)"}
     }
-    Version{"2.1.19.17"}
+    Version{"2.1.22.93"}
 }

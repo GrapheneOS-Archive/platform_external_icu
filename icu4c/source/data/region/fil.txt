@@ -1,6 +1,6 @@
 ﻿// ***************************************************************************
 // *
-// * Copyright (C) 2015 International Business Machines
+// * Copyright (C) 2016 International Business Machines
 // * Corporation and others. All Rights Reserved.
 // * Tool: org.unicode.cldr.icu.NewLdml2IcuConverter
 // * Source File: <path>/common/main/fil.xml
@@ -46,7 +46,6 @@ fil{
         AI{"Anguilla"}
         AL{"Albania"}
         AM{"Armenia"}
-        AN{"Netherlands Antilles"}
         AO{"Angola"}
         AQ{"Antarctica"}
         AR{"Argentina"}
@@ -138,7 +137,7 @@ fil{
         GU{"Guam"}
         GW{"Guinea-Bissau"}
         GY{"Guyana"}
-        HK{"Hong Kong"}
+        HK{"Hong Kong SAR China"}
         HM{"Heard Island and McDonald Islands"}
         HN{"Honduras"}
         HR{"Croatia"}
@@ -192,7 +191,7 @@ fil{
         ML{"Mali"}
         MM{"Myanmar (Burma)"}
         MN{"Mongolia"}
-        MO{"Macau"}
+        MO{"Macau SAR China"}
         MP{"Northern Mariana Islands"}
         MQ{"Martinique"}
         MR{"Mauritania"}
@@ -227,7 +226,7 @@ fil{
         PM{"Saint Pierre and Miquelon"}
         PN{"Pitcairn Islands"}
         PR{"Puerto Rico"}
-        PS{"Palestine"}
+        PS{"Palestinian Territories"}
         PT{"Portugal"}
         PW{"Palau"}
         PY{"Paraguay"}
@@ -301,6 +300,9 @@ fil{
     }
     Countries%short{
         GB{"U.K."}
+        HK{"Hong Kong"}
+        MO{"Macau"}
+        PS{"Palestine"}
         US{"U.S."}
     }
     Countries%variant{
@@ -311,5 +313,5 @@ fil{
         MK{"Macedonia (FYROM)"}
         TL{"East Timor"}
     }
-    Version{"2.1.19.94"}
+    Version{"2.1.22.93"}
 }

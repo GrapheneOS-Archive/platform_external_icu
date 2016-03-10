@@ -1,7 +1,7 @@
 /*
 ******************************************************************************
 *
-*   Copyright (C) 1997-2015, International Business Machines
+*   Copyright (C) 1997-2016, International Business Machines
 *   Corporation and others.  All Rights Reserved.
 *
 ******************************************************************************
@@ -428,9 +428,12 @@
 #   define U_HAVE_DEBUG_LOCATION_NEW 0
 #endif
 
-/* Compatibility with non clang compilers */
+/* Compatibility with non clang compilers: http://clang.llvm.org/docs/LanguageExtensions.html */
 #ifndef __has_attribute
 #    define __has_attribute(x) 0
+#endif
+#ifndef __has_cpp_attribute
+#    define __has_cpp_attribute(x) 0
 #endif
 #ifndef __has_builtin
 #    define __has_builtin(x) 0
@@ -440,6 +443,9 @@
 #endif
 #ifndef __has_extension
 #    define __has_extension(x) 0
+#endif
+#ifndef __has_warning
+#    define __has_warning(x) 0
 #endif
 
 /**
@@ -520,6 +526,24 @@
 #else
 #   define U_NOEXCEPT
 #endif
+
+/**
+ * \def U_FALLTHROUGH
+ * Annotate intentional fall-through between switch labels.
+ * http://clang.llvm.org/docs/AttributeReference.html#fallthrough-clang-fallthrough
+ * @internal
+ */
+#ifdef __cplusplus
+#   if __has_cpp_attribute(clang::fallthrough) || \
+            (__has_feature(cxx_attributes) && __has_warning("-Wimplicit-fallthrough"))
+#       define U_FALLTHROUGH [[clang::fallthrough]]
+#   else
+#       define U_FALLTHROUGH
+#   endif
+#else
+#   define U_FALLTHROUGH
+#endif
+
 
 /** @} */
 
@@ -614,12 +638,6 @@
 #ifdef U_CHARSET_IS_UTF8
     /* Use the predefined value. */
 #elif U_PLATFORM == U_PF_ANDROID || U_PLATFORM_IS_DARWIN_BASED
-#   define U_CHARSET_IS_UTF8 1
-#elif U_PLATFORM_IS_LINUX_BASED
-   /*
-    * Google-specific: Set to 1 to match the google3 execution environment's
-    * use of UTF-8, on both Linux server and workstation machines.
-    */
 #   define U_CHARSET_IS_UTF8 1
 #else
 #   define U_CHARSET_IS_UTF8 0

@@ -1,6 +1,6 @@
 /*
 **********************************************************************
-* Copyright (c) 2004-2015, International Business Machines
+* Copyright (c) 2004-2016, International Business Machines
 * Corporation and others.  All Rights Reserved.
 **********************************************************************
 * Author: Alan Liu
@@ -78,7 +78,7 @@ class MeasureFormatCacheData;
 class SharedNumberFormat;
 class SharedPluralRules;
 class QuantityFormatter;
-class SimplePatternFormatter;
+class SimpleFormatter;
 class ListFormatter;
 class DateFormat;
 
@@ -186,7 +186,6 @@ class U_I18N_API MeasureFormat : public Format {
             FieldPosition &pos,
             UErrorCode &status) const;
 
-#ifndef U_HIDE_DRAFT_API
     /**
      * Formats a single measure per unit. An example of such a
      * formatted string is 3.5 meters per second.
@@ -198,7 +197,7 @@ class U_I18N_API MeasureFormat : public Format {
      * @param status the error.
      * @return appendTo reference
      *
-     * @draft ICU 55
+     * @stable ICU 55
      */
     UnicodeString &formatMeasurePerUnit(
             const Measure &measure,
@@ -207,7 +206,6 @@ class U_I18N_API MeasureFormat : public Format {
             FieldPosition &pos,
             UErrorCode &status) const;
 
-#endif  /* U_HIDE_DRAFT_API */
 
     /**
      * Return a formatter for CurrencyAmount objects in the given
@@ -327,18 +325,18 @@ class U_I18N_API MeasureFormat : public Format {
     // shared across instances.
     ListFormatter *listFormatter;
 
-    const SimplePatternFormatter *getFormatterOrNull(
+    const SimpleFormatter *getFormatterOrNull(
             const MeasureUnit &unit, UMeasureFormatWidth width, int32_t index) const;
 
-    const SimplePatternFormatter *getFormatter(
+    const SimpleFormatter *getFormatter(
             const MeasureUnit &unit, UMeasureFormatWidth width, int32_t index,
             UErrorCode &errorCode) const;
 
-    const SimplePatternFormatter *getPluralFormatter(
+    const SimpleFormatter *getPluralFormatter(
             const MeasureUnit &unit, UMeasureFormatWidth width, int32_t index,
             UErrorCode &errorCode) const;
 
-    const SimplePatternFormatter *getPerFormatter(
+    const SimpleFormatter *getPerFormatter(
             UMeasureFormatWidth width,
             UErrorCode &status) const;
 

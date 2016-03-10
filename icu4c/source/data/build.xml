@@ -57,8 +57,7 @@
         </taskdef>
     </target>
     <!-- target for generating ICU data -->
-    <!-- Google Patch:  exclude metaZones, windowsZones from "all" -->
-    <target name="all" depends="locales, collation, rbnf, supplementalData, metadata, likelySubtags, plurals, numberingSystems, translit, brkitr, keyTypeData, genderList, dayPeriods" />
+    <target name="all" depends="locales, collation, rbnf, supplementalData, metadata, metaZones, windowsZones, likelySubtags, plurals, numberingSystems, translit, brkitr, keyTypeData, genderList, dayPeriods" />
     <!-- parallel target -->
     <target name="pall" depends="init">
         <parallel threadsPerProcessor ="1">
@@ -107,7 +106,6 @@
                     <arg name="--specialsdir"     value="${env.ICU4C_DIR}/source/data/xml/main"/>
                     <arg name="--supplementaldir" value="${env.CLDR_DIR}/common/supplemental" />
                     <arg name="--type" value="locales"/>
-                    <arg name="--filter"/>     <!-- Google Patch: select short names for HK, MO. (SAR China.) -->
                     <arg name="--makefile" value="resfiles.mk"/>
                 </args>
 		<remapper>
@@ -208,7 +206,30 @@
             </run>
         </cldr-build>
     </target>
-    <!-- Google patch: removed metaZones and windowsZones targets. -->
+    <target name="metaZones" depends="init,setup" description="builds metaZones.txt from metaZones.xml">
+        <cldr-build toolName="org.unicode.cldr.icu.NewLdml2IcuConverter" destFile="metaZones.txt" noArgs="true">
+            <!-- launch the tool and generate the data after reading the config file -->
+            <run>
+                <args>
+                    <arg name="-s" value="${env.CLDR_DIR}/common/supplemental" />
+                    <arg name="-d" value="${env.ICU4C_DIR}/source/data/misc"/>
+                    <arg name="-t" value="metaZones"/>
+                </args>
+            </run>
+        </cldr-build>
+    </target>
+    <target name="windowsZones" depends="init,setup" description="builds windowsZones.txt from windowsZones.xml">
+        <cldr-build toolName="org.unicode.cldr.icu.NewLdml2IcuConverter" destFile="windowsZones.txt" noArgs="true">
+            <!-- launch the tool and generate the data after reading the config file -->
+            <run>
+                <args>
+                    <arg name="-s" value="${env.CLDR_DIR}/common/supplemental" />
+                    <arg name="-d" value="${env.ICU4C_DIR}/source/data/misc"/>
+                    <arg name="-t" value="windowsZones"/>
+                </args>
+            </run>
+        </cldr-build>
+    </target>
     <target name="likelySubtags" depends="init,setup" description="builds likelySubtags.txt from likelySubtags.xml">
         <cldr-build toolName="org.unicode.cldr.icu.NewLdml2IcuConverter" destFile="likelySubtags.txt" noArgs="true">
             <!-- launch the tool and generate the data after reading the config file -->
@@ -359,15 +380,7 @@
                 <include name="root.txt" />
             </fileset>
             <fileset id="brkitr" dir="${env.ICU4C_DIR}/source/data/brkitr">
-                <!-- brkitr directory contains bunch of txt files that are not produced by LDML2ICUConverter.
-                     So can't clean up everything. This needs to be updated when new files are added to xml/brkitr directory -->
-                <include name="root.txt" />
-                <include name="el.txt" />
-                <include name="en.txt" />
-                <include name="en_US.txt" />
-                <include name="en_US_POSIX.txt" />
-                <include name="fi.txt" />
-                <include name="ja.txt" />
+                <include name="*.txt"/>
             </fileset>
             <fileset id="brkfiles" dir="${env.ICU4C_DIR}/source/data/brkitr">
                 <include name="brkfiles.mk" />
@@ -383,6 +396,12 @@
             </fileset>
             <fileset id="metadata" dir="${env.ICU4C_DIR}/source/data/misc">
                 <include name="metadata.txt" />
+            </fileset>
+            <fileset id="metaZones" dir="${env.ICU4C_DIR}/source/data/misc">
+                <include name="metaZones.txt" />
+            </fileset>
+            <fileset id="windowsZones" dir="${env.ICU4C_DIR}/source/data/misc">
+                <include name="windowsZones.txt" />
             </fileset>
             <fileset id="likelySubtags" dir="${env.ICU4C_DIR}/source/data/misc">
                 <include name="likelySubtags.txt" />

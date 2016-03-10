@@ -1,13 +1,13 @@
 ﻿// ***************************************************************************
 // *
-// * Copyright (C) 2015 International Business Machines
+// * Copyright (C) 2016 International Business Machines
 // * Corporation and others. All Rights Reserved.
 // * Tool: org.unicode.cldr.icu.NewLdml2IcuConverter
 // * Source File: <path>/common/main/zh.xml
 // *
 // ***************************************************************************
 zh{
-    Version{"2.1.20.31"}
+    Version{"2.1.22.93"}
     zoneStrings{
         "Africa:Abidjan"{
             ec{"阿比让"}
@@ -833,12 +833,6 @@ zh{
         }
         "Asia:Taipei"{
             ec{"台北"}
-            ld{"台北夏令时间"}
-            lg{"台北时间"}
-            ls{"台北标准时间"}
-            sd{"台北"}
-            sg{"台北"}
-            ss{"台北"}
         }
         "Asia:Tashkent"{
             ec{"塔什干"}

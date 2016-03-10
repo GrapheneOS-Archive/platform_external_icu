@@ -1,6 +1,6 @@
 ﻿// ***************************************************************************
 // *
-// * Copyright (C) 2015 International Business Machines
+// * Copyright (C) 2016 International Business Machines
 // * Corporation and others. All Rights Reserved.
 // * Tool: org.unicode.cldr.icu.NewLdml2IcuConverter
 // * Source File: <path>/common/main/fr.xml
@@ -46,7 +46,6 @@ fr{
         AI{"Anguilla"}
         AL{"Albanie"}
         AM{"Arménie"}
-        AN{"Antilles néerlandaises"}
         AO{"Angola"}
         AQ{"Antarctique"}
         AR{"Argentine"}
@@ -138,7 +137,7 @@ fr{
         GU{"Guam"}
         GW{"Guinée-Bissau"}
         GY{"Guyana"}
-        HK{"Hong Kong"}
+        HK{"R.A.S. chinoise de Hong Kong"}
         HM{"Îles Heard et McDonald"}
         HN{"Honduras"}
         HR{"Croatie"}
@@ -192,7 +191,7 @@ fr{
         ML{"Mali"}
         MM{"Myanmar (Birmanie)"}
         MN{"Mongolie"}
-        MO{"Macao"}
+        MO{"R.A.S. chinoise de Macao"}
         MP{"Îles Mariannes du Nord"}
         MQ{"Martinique"}
         MR{"Mauritanie"}
@@ -227,7 +226,7 @@ fr{
         PM{"Saint-Pierre-et-Miquelon"}
         PN{"Îles Pitcairn"}
         PR{"Porto Rico"}
-        PS{"Palestine"}
+        PS{"Territoires palestiniens"}
         PT{"Portugal"}
         PW{"Palaos"}
         PY{"Paraguay"}
@@ -301,6 +300,9 @@ fr{
     }
     Countries%short{
         GB{"R.-U."}
+        HK{"Hong Kong"}
+        MO{"Macao"}
+        PS{"Palestine"}
         US{"É.-U."}
     }
     Countries%variant{
@@ -310,5 +312,5 @@ fr{
         MK{"Macédoine (ARYM)"}
         TL{"Timor-Oriental"}
     }
-    Version{"2.1.20.4"}
+    Version{"2.1.23.79"}
 }

@@ -128,7 +128,6 @@ le_bool ContextualSubstitutionBase::matchGlyphCoverages(const Offset *coverageTa
 
     while (glyphCount > 0) {
         Offset coverageTableOffset = SWAPW(coverageTableOffsetArray[glyph]);
-        /* Google patch: Behdad says: Unsafe dereference follows. */
         const CoverageTable *coverageTable = (const CoverageTable *) (offsetBase + coverageTableOffset);
 
         if (! glyphIterator->next()) {
@@ -159,8 +158,6 @@ le_uint32 ContextualSubstitutionSubtable::process(const LookupProcessor *lookupP
     {
     case 0:
         return 0;
-
-    /* Google patch: Behdad says: Unsafe downcasts follow. */
 
     case 1:
     {
@@ -202,7 +199,6 @@ le_uint32 ContextualSubstitutionFormat1Subtable::process(const LookupProcessor *
 
         if (coverageIndex < srSetCount) {
             Offset subRuleSetTableOffset = SWAPW(subRuleSetTableOffsetArray[coverageIndex]);
-            /* Google patch: Behdad says: Unsafe dereference follows. */
             const SubRuleSetTable *subRuleSetTable =
                 (const SubRuleSetTable *) ((char *) this + subRuleSetTableOffset);
             le_uint16 subRuleCount = SWAPW(subRuleSetTable->subRuleCount);
@@ -248,7 +244,6 @@ le_uint32 ContextualSubstitutionFormat2Subtable::process(const LookupProcessor *
     le_int32 coverageIndex = getGlyphCoverage(lookupProcessor->getReference(), glyph, success);
 
     if (coverageIndex >= 0) {
-        /* Google patch: Behdad says: Unsafe dereference follows. */
         const ClassDefinitionTable *classDefinitionTable =
             (const ClassDefinitionTable *) ((char *) this + SWAPW(classDefTableOffset));
         le_uint16 scSetCount = SWAPW(subClassSetCount);
@@ -256,7 +251,6 @@ le_uint32 ContextualSubstitutionFormat2Subtable::process(const LookupProcessor *
 
         if (setClass < scSetCount && subClassSetTableOffsetArray[setClass] != 0) {
             Offset subClassSetTableOffset = SWAPW(subClassSetTableOffsetArray[setClass]);
-            /* Google patch: Behdad says: Unsafe dereference follows. */
             const SubClassSetTable *subClassSetTable =
                 (const SubClassSetTable *) ((char *) this + subClassSetTableOffset);
             le_uint16 subClassRuleCount = SWAPW(subClassSetTable->subClassRuleCount);
@@ -336,8 +330,6 @@ le_uint32 ChainingContextualSubstitutionSubtable::process(const LookupProcessor 
     case 0:
         return 0;
 
-    /* Google patch: Behdad says: Unsafe downcasts follow. */
-
     case 1:
     {
         const ChainingContextualSubstitutionFormat1Subtable *subtable = (const ChainingContextualSubstitutionFormat1Subtable *) this;
@@ -384,7 +376,6 @@ le_uint32 ChainingContextualSubstitutionFormat1Subtable::process(const LookupPro
 
         if (coverageIndex < srSetCount) {
             Offset chainSubRuleSetTableOffset = SWAPW(chainSubRuleSetTableOffsetArray[coverageIndex]);
-            /* Google patch: Behdad says: Unsafe dereference follows. */
             const ChainSubRuleSetTable *chainSubRuleSetTable =
                 (const ChainSubRuleSetTable *) ((char *) this + chainSubRuleSetTableOffset);
             le_uint16 chainSubRuleCount = SWAPW(chainSubRuleSetTable->chainSubRuleCount);
@@ -452,7 +443,6 @@ le_uint32 ChainingContextualSubstitutionFormat2Subtable::process(const LookupPro
     le_int32 coverageIndex = getGlyphCoverage(lookupProcessor->getReference(), glyph, success);
 
     if (coverageIndex >= 0) {
-        /* Google patch: Behdad says: Unsafe dereferences follow. */
         const ClassDefinitionTable *backtrackClassDefinitionTable =
             (const ClassDefinitionTable *) ((char *) this + SWAPW(backtrackClassDefTableOffset));
         const ClassDefinitionTable *inputClassDefinitionTable =
@@ -464,7 +454,6 @@ le_uint32 ChainingContextualSubstitutionFormat2Subtable::process(const LookupPro
 
         if (setClass < scSetCount && chainSubClassSetTableOffsetArray[setClass] != 0) {
             Offset chainSubClassSetTableOffset = SWAPW(chainSubClassSetTableOffsetArray[setClass]);
-            /* Google patch: Behdad says: Unsafe dereference follows. */
             const ChainSubClassSetTable *chainSubClassSetTable =
                 (const ChainSubClassSetTable *) ((char *) this + chainSubClassSetTableOffset);
             le_uint16 chainSubClassRuleCount = SWAPW(chainSubClassSetTable->chainSubClassRuleCount);

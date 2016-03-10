@@ -1,6 +1,6 @@
 ﻿// ***************************************************************************
 // *
-// * Copyright (C) 2015 International Business Machines
+// * Copyright (C) 2016 International Business Machines
 // * Corporation and others. All Rights Reserved.
 // * Tool: org.unicode.cldr.icu.NewLdml2IcuConverter
 // * Source File: <path>/common/main/hr.xml
@@ -46,7 +46,6 @@ hr{
         AI{"Angvila"}
         AL{"Albanija"}
         AM{"Armenija"}
-        AN{"Nizozemski Antili"}
         AO{"Angola"}
         AQ{"Antarktika"}
         AR{"Argentina"}
@@ -138,7 +137,7 @@ hr{
         GU{"Guam"}
         GW{"Gvineja Bisau"}
         GY{"Gvajana"}
-        HK{"Hong Kong"}
+        HK{"Hong Kong PUP Kina"}
         HM{"Otoci Heard i McDonald"}
         HN{"Honduras"}
         HR{"Hrvatska"}
@@ -192,7 +191,7 @@ hr{
         ML{"Mali"}
         MM{"Mijanmar (Burma)"}
         MN{"Mongolija"}
-        MO{"Makao"}
+        MO{"Makao PUP Kina"}
         MP{"Sjeverni Marijanski Otoci"}
         MQ{"Martinique"}
         MR{"Mauritanija"}
@@ -227,7 +226,7 @@ hr{
         PM{"Sveti Petar i Mikelon"}
         PN{"Otoci Pitcairn"}
         PR{"Portoriko"}
-        PS{"Palestina"}
+        PS{"Palestinsko Područje"}
         PT{"Portugal"}
         PW{"Palau"}
         PY{"Paragvaj"}
@@ -301,6 +300,9 @@ hr{
     }
     Countries%short{
         GB{"UK"}
+        HK{"Hong Kong"}
+        MO{"Makao"}
+        PS{"Palestina"}
         US{"SAD"}
     }
     Countries%variant{
@@ -310,5 +312,5 @@ hr{
         FK{"Falklandski Otoci (Malvini)"}
         MK{"Makedonija (BJRM)"}
     }
-    Version{"2.1.19.14"}
+    Version{"2.1.23.7"}
 }

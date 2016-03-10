@@ -1,6 +1,6 @@
 ﻿// ***************************************************************************
 // *
-// * Copyright (C) 2015 International Business Machines
+// * Copyright (C) 2016 International Business Machines
 // * Corporation and others. All Rights Reserved.
 // * Tool: org.unicode.cldr.icu.NewLdml2IcuConverter
 // * Source File: <path>/common/main/br.xml
@@ -46,7 +46,6 @@ br{
         AI{"Anguilla"}
         AL{"Albania"}
         AM{"Armenia"}
-        AN{"Antilhez Nederlandat"}
         AO{"Angola"}
         AQ{"Antarktika"}
         AR{"Arcʼhantina"}
@@ -138,7 +137,7 @@ br{
         GU{"Guam"}
         GW{"Ginea-Bissau"}
         GY{"Guyana"}
-        HK{"Hong Kong"}
+        HK{"Hong Kong RMD Sina"}
         HM{"Inizi Heard ha McDonald"}
         HN{"Honduras"}
         HR{"Kroatia"}
@@ -192,7 +191,7 @@ br{
         ML{"Mali"}
         MM{"Myanmar (Birmania)"}
         MN{"Mongolia"}
-        MO{"Macau"}
+        MO{"Macau RMD Sina"}
         MP{"Inizi Mariana an Norzh"}
         MQ{"Martinik"}
         MR{"Maouritania"}
@@ -227,7 +226,7 @@ br{
         PM{"Sant-Pêr-ha-Mikelon"}
         PN{"Enez Pitcairn"}
         PR{"Puerto Rico"}
-        PS{"Palestina"}
+        PS{"Tiriadoù Palestina"}
         PT{"Portugal"}
         PW{"Palau"}
         PY{"Paraguay"}
@@ -301,6 +300,9 @@ br{
     }
     Countries%short{
         GB{"RU"}
+        HK{"Hong Kong"}
+        MO{"Macau"}
+        PS{"Palestina"}
         US{"SU"}
     }
     Countries%variant{
@@ -311,5 +313,5 @@ br{
         MK{"Makedonia (RYKM)"}
         TL{"Timor ar Reter"}
     }
-    Version{"2.1.19.94"}
+    Version{"2.1.22.93"}
 }

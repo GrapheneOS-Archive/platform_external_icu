@@ -1,6 +1,6 @@
 ﻿// ***************************************************************************
 // *
-// * Copyright (C) 2015 International Business Machines
+// * Copyright (C) 2016 International Business Machines
 // * Corporation and others. All Rights Reserved.
 // * Tool: org.unicode.cldr.icu.NewLdml2IcuConverter
 // * Source File: <path>/common/main/de.xml
@@ -46,7 +46,6 @@ de{
         AI{"Anguilla"}
         AL{"Albanien"}
         AM{"Armenien"}
-        AN{"Niederländische Antillen"}
         AO{"Angola"}
         AQ{"Antarktis"}
         AR{"Argentinien"}
@@ -138,7 +137,7 @@ de{
         GU{"Guam"}
         GW{"Guinea-Bissau"}
         GY{"Guyana"}
-        HK{"Hongkong"}
+        HK{"Sonderverwaltungszone Hongkong"}
         HM{"Heard und McDonaldinseln"}
         HN{"Honduras"}
         HR{"Kroatien"}
@@ -192,7 +191,7 @@ de{
         ML{"Mali"}
         MM{"Myanmar"}
         MN{"Mongolei"}
-        MO{"Macau"}
+        MO{"Sonderverwaltungsregion Macau"}
         MP{"Nördliche Marianen"}
         MQ{"Martinique"}
         MR{"Mauretanien"}
@@ -227,7 +226,7 @@ de{
         PM{"St. Pierre und Miquelon"}
         PN{"Pitcairninseln"}
         PR{"Puerto Rico"}
-        PS{"Palästina"}
+        PS{"Palästinensische Autonomiegebiete"}
         PT{"Portugal"}
         PW{"Palau"}
         PY{"Paraguay"}
@@ -301,6 +300,9 @@ de{
     }
     Countries%short{
         GB{"GB"}
+        HK{"Hongkong"}
+        MO{"Macau"}
+        PS{"Palästina"}
         US{"USA"}
     }
     Countries%variant{
@@ -311,5 +313,5 @@ de{
         MK{"Mazedonien (EJR)"}
         TL{"Osttimor"}
     }
-    Version{"2.1.19.72"}
+    Version{"2.1.22.93"}
 }

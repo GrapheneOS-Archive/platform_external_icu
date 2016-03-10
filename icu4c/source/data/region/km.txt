@@ -1,6 +1,6 @@
 ﻿// ***************************************************************************
 // *
-// * Copyright (C) 2015 International Business Machines
+// * Copyright (C) 2016 International Business Machines
 // * Corporation and others. All Rights Reserved.
 // * Tool: org.unicode.cldr.icu.NewLdml2IcuConverter
 // * Source File: <path>/common/main/km.xml
@@ -226,7 +226,7 @@ km{
         PM{"សង់ព្យែរ និង​មីគីឡុង"}
         PN{"កោះ​ភីតខារិន"}
         PR{"ព័រតូរីកូ"}
-        PS{"ប៉ាលេស្ទីន"}
+        PS{"ដែន​ប៉ាលេស្ទីន"}
         PT{"ព័រទុយហ្កាល់"}
         PW{"ផៅឡូ"}
         PY{"ប៉ារ៉ាហ្គាយ"}
@@ -300,6 +300,9 @@ km{
     }
     Countries%short{
         GB{"ច.អ."}
+        HK{"ហុងកុង"}
+        MO{"ម៉ាកាវ"}
+        PS{"ប៉ាលេស្ទីន"}
         US{"ស.រ.អ"}
     }
     Countries%variant{
@@ -310,5 +313,5 @@ km{
         MK{"ម៉ាសេដូនា (FYROM)"}
         TL{"ទីម័រ​ខាង​កើត"}
     }
-    Version{"2.1.19.94"}
+    Version{"2.1.22.93"}
 }

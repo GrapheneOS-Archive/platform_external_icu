@@ -1,6 +1,6 @@
 ﻿// ***************************************************************************
 // *
-// * Copyright (C) 2015 International Business Machines
+// * Copyright (C) 2016 International Business Machines
 // * Corporation and others. All Rights Reserved.
 // * Tool: org.unicode.cldr.icu.NewLdml2IcuConverter
 // * Source File: <path>/common/main/fy.xml
@@ -46,7 +46,6 @@ fy{
         AI{"Anguilla"}
         AL{"Albanië"}
         AM{"Armenië"}
-        AN{"Nederlânske Antillen"}
         AO{"Angola"}
         AQ{"Antarctica"}
         AR{"Argentinië"}
@@ -138,7 +137,7 @@ fy{
         GU{"Guam"}
         GW{"Guinee-Bissau"}
         GY{"Guyana"}
-        HK{"Hongkong"}
+        HK{"Hongkong SAR van Sina"}
         HM{"Heard- en McDonaldeilannen"}
         HN{"Honduras"}
         HR{"Kroatië"}
@@ -192,7 +191,7 @@ fy{
         ML{"Mali"}
         MM{"Myanmar (Birma)"}
         MN{"Mongolië"}
-        MO{"Macao"}
+        MO{"Macao SAR van Sina"}
         MP{"Noardlike Marianeneilannen"}
         MQ{"Martinique"}
         MR{"Mauritanië"}
@@ -227,7 +226,7 @@ fy{
         PM{"Saint-Pierre en Miquelon"}
         PN{"Pitcairneilannen"}
         PR{"Puerto Rico"}
-        PS{"Palestina"}
+        PS{"Palestynske gebieten"}
         PT{"Portugal"}
         PW{"Palau"}
         PY{"Paraguay"}
@@ -301,6 +300,9 @@ fy{
     }
     Countries%short{
         GB{"VK"}
+        HK{"Hongkong"}
+        MO{"Macao"}
+        PS{"Palestina"}
         US{"VS"}
     }
     Countries%variant{
@@ -309,5 +311,5 @@ fy{
         FK{"Falklâneilannen (Islas Malvinas)"}
         MK{"Macedonië (FYROM)"}
     }
-    Version{"2.1.19.14"}
+    Version{"2.1.23.7"}
 }
