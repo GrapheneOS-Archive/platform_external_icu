@@ -1,6 +1,6 @@
 /*
  ******************************************************************************
- * Copyright (C) 2003-2015, International Business Machines Corporation and
+ * Copyright (C) 2003-2016, International Business Machines Corporation and
  * others. All Rights Reserved.
  ******************************************************************************
  */
@@ -87,6 +87,19 @@ import com.ibm.icu.text.LocaleDisplayNames.DialectHandling;
  * to canonical form, or the <code>canonicalInstance</code> factory method
  * can be called.
  *
+ * <p>This class provides selectors {@link #VALID_LOCALE} and {@link
+ * #ACTUAL_LOCALE} intended for use in methods named
+ * <tt>getLocale()</tt>.  These methods exist in several ICU classes,
+ * including {@link com.ibm.icu.util.Calendar}, {@link
+ * com.ibm.icu.util.Currency}, {@link com.ibm.icu.text.UFormat},
+ * {@link com.ibm.icu.text.BreakIterator},
+ * {@link com.ibm.icu.text.Collator},
+ * {@link com.ibm.icu.text.DateFormatSymbols}, and {@link
+ * com.ibm.icu.text.DecimalFormatSymbols} and their subclasses, if
+ * any. Once an object of one of these classes has been created,
+ * <tt>getLocale()</tt> may be called on it to determine the valid and
+ * actual locale arrived at during the object's construction.
+ *
  * <p>Note: The <i>actual</i> locale is returned correctly, but the <i>valid</i>
  * locale is not, in most cases.
  *
@@ -96,6 +109,7 @@ import com.ibm.icu.text.LocaleDisplayNames.DialectHandling;
  * @author Ram Viswanadha
  * @stable ICU 2.8
  */
+@SuppressWarnings("javadoc")    // com.ibm.icu.text.Collator is in another project
 public final class ULocale implements Serializable, Comparable<ULocale> {
     // using serialver from jdk1.4.2_05
     private static final long serialVersionUID = 3715177670352309217L;
@@ -962,6 +976,44 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      */
     public static String getCountry(String localeID) {
         return new LocaleIDParser(localeID).getCountry();
+    }
+
+    /**
+     * {@icu} Get the region to use for supplemental data lookup.
+     * Uses
+     * (1) any region specified by locale tag "rg"; if none then
+     * (2) any unicode_region_tag in the locale ID; if none then
+     * (3) if inferRegion is TRUE, the region suggested by
+     *     getLikelySubtags on the localeID.
+     * If no region is found, returns empty string ""
+     *
+     * @param locale
+     *     The locale (includes any keywords) from which
+     *     to get the region to use for supplemental data.
+     * @param inferRegion
+     *     If TRUE, will try to infer region from other
+     *     locale elements if not found any other way.
+     * @return
+     *     String with region to use ("" if none found).
+     * @internal ICU 57
+     * @deprecated This API is ICU internal only.
+     */
+    @Deprecated
+    public static String getRegionForSupplementalData(
+                            ULocale locale, boolean inferRegion) {
+        String region = locale.getKeywordValue("rg");
+        if (region != null && region.length() == 6) {
+            String regionUpper = AsciiUtil.toUpperString(region);
+            if (regionUpper.endsWith("ZZZZ")) {
+            	return regionUpper.substring(0,2);
+            }
+        }
+        region = locale.getCountry();
+        if (region.length() == 0 && inferRegion) {
+            ULocale maximized = addLikelySubtags(locale);
+            region = maximized.getCountry();
+        }
+        return region;
     }
 
     /**

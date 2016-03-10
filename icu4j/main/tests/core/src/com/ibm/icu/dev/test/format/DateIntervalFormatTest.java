@@ -1,6 +1,6 @@
 /*
  *******************************************************************************
- * Copyright (C) 2001-2015, International Business Machines Corporation and    *
+ * Copyright (C) 2001-2016, International Business Machines Corporation and    *
  * others. All Rights Reserved.                                                *
  *******************************************************************************
  */
@@ -14,7 +14,10 @@ package com.ibm.icu.dev.test.format;
 
 import java.text.FieldPosition;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.ListIterator;
 import java.util.Locale;
 
 import com.ibm.icu.impl.Utility;
@@ -636,9 +639,7 @@ public class DateIntervalFormatTest extends com.ibm.icu.dev.test.TestFmwk {
 
                 // Thai (default calendar buddhist)
 
-                // Android patch: Force default Gregorian calendar.
-
-                "th", "2550 10 10 10:10:10", "2551 10 10 10:10:10", "EEEEdMMMy", "\\u0E27\\u0E31\\u0E19\\u0E40\\u0E2A\\u0E32\\u0E23\\u0E4C\\u0E17\\u0E35\\u0E48 10 \\u0E15.\\u0E04. 2550 \\u2013 \\u0E27\\u0E31\\u0E19\\u0E2D\\u0E32\\u0E17\\u0E34\\u0E15\\u0E22\\u0E4C\\u0E17\\u0E35\\u0E48 10 \\u0E15.\\u0E04. 2551",
+                "th", "2550 10 10 10:10:10", "2551 10 10 10:10:10", "EEEEdMMMy", "\\u0E27\\u0E31\\u0E19\\u0E1E\\u0E38\\u0E18\\u0E17\\u0E35\\u0E48 10 \\u0E15.\\u0E04. 2550 \\u2013 \\u0E27\\u0E31\\u0E19\\u0E28\\u0E38\\u0E01\\u0E23\\u0E4C\\u0E17\\u0E35\\u0E48 10 \\u0E15.\\u0E04. 2551", 
 
 
                 "th", "2550 10 10 10:10:10", "2551 10 10 10:10:10", "dMMM", "10 \\u0E15.\\u0E04. 2550 \\u2013 10 \\u0E15.\\u0E04. 2551", 
@@ -646,14 +647,14 @@ public class DateIntervalFormatTest extends com.ibm.icu.dev.test.TestFmwk {
                 "th", "2550 10 10 10:10:10", "2551 10 10 10:10:10", "MMMy", "\\u0E15.\\u0E04. 2550 \\u2013 \\u0E15.\\u0E04. 2551", 
 
 
-                "th", "2550 10 10 10:10:10", "2551 10 10 10:10:10", "EdMy", "\\u0E2A. 10/10/2550 \\u2013 \\u0E2D\\u0E32. 10/10/2551",
+                "th", "2550 10 10 10:10:10", "2551 10 10 10:10:10", "EdMy", "\\u0E1E. 10/10/2550 \\u2013 \\u0E28. 10/10/2551", 
 
                 "th", "2550 10 10 10:10:10", "2551 10 10 10:10:10", "dMy", "10/10/2550 \\u2013 10/10/2551", 
 
 
                 "th", "2550 10 10 10:10:10", "2551 10 10 10:10:10", "My", "10/2550 \\u2013 10/2551", 
 
-                "th", "2550 10 10 10:10:10", "2551 10 10 10:10:10", "EdM", "\\u0E2A. 10/10/2550 \\u2013 \\u0E2D\\u0E32. 10/10/2551",
+                "th", "2550 10 10 10:10:10", "2551 10 10 10:10:10", "EdM", "\\u0E1E. 10/10/2550 \\u2013 \\u0E28. 10/10/2551", 
 
 
                 "th", "2550 10 10 10:10:10", "2551 10 10 10:10:10", "y", "2550\\u20132551", 
@@ -661,7 +662,7 @@ public class DateIntervalFormatTest extends com.ibm.icu.dev.test.TestFmwk {
                 "th", "2550 10 10 10:10:10", "2551 10 10 10:10:10", "M", "10/2550 \\u2013 10/2551", 
 
 
-                "th", "2550 10 10 10:10:10", "2550 11 10 10:10:10", "EEEEdMMMy", "\\u0E27\\u0E31\\u0E19\\u0E40\\u0E2A\\u0E32\\u0E23\\u0E4C\\u0E17\\u0E35\\u0E48 10 \\u0E15.\\u0E04. \\u2013 \\u0E27\\u0E31\\u0E19\\u0E2D\\u0E31\\u0E07\\u0E04\\u0E32\\u0E23\\u0E17\\u0E35\\u0E48 10 \\u0E1E.\\u0E22. 2550",
+                "th", "2550 10 10 10:10:10", "2550 11 10 10:10:10", "EEEEdMMMy", "\\u0E27\\u0E31\\u0E19\\u0E1E\\u0E38\\u0E18\\u0E17\\u0E35\\u0E48 10 \\u0E15.\\u0E04. \\u2013 \\u0E27\\u0E31\\u0E19\\u0E40\\u0E2A\\u0E32\\u0E23\\u0E4C\\u0E17\\u0E35\\u0E48 10 \\u0E1E.\\u0E22. 2550", 
 
 
                 "th", "2550 10 10 10:10:10", "2550 11 10 10:10:10", "dMMM", "10 \\u0E15.\\u0E04. \\u2013 10 \\u0E1E.\\u0E22.", 
@@ -675,12 +676,11 @@ public class DateIntervalFormatTest extends com.ibm.icu.dev.test.TestFmwk {
 
                 "th", "2550 10 10 10:10:10", "2550 11 10 10:10:10", "d", "10/10 \\u2013 10/11", 
 
-                "th", "2550 10 10 10:10:10", "2550 11 10 10:10:10", "y", "2550",
+                "th", "2550 10 10 10:10:10", "2550 11 10 10:10:10", "y", "\u0E1E.\u0E28. 2550", 
 
 
                 "th", "2550 10 10 10:10:10", "2550 11 10 10:10:10", "MMM", "\\u0E15.\\u0E04.\\u2013\\u0E1E.\\u0E22.", 
 
-                // Android patch end.
         };
         expect(DATA, DATA.length);
     }
@@ -1717,4 +1717,74 @@ public class DateIntervalFormatTest extends com.ibm.icu.dev.test.TestFmwk {
             }
         }
     }
+    
+    // TestTicket11669 - Check the thread safety of DateIntervalFormat.format().
+    //                   This test failed with ICU 56.
+    
+    public void TestTicket11669 () {
+        // These final variables are accessed directly by the concurrent threads.
+        final DateIntervalFormat formatter = DateIntervalFormat.getInstance(DateFormat.YEAR_MONTH_DAY, ULocale.US);
+        final ArrayList<DateInterval> testIntervals = new ArrayList<DateInterval>();
+        final ArrayList<String>expectedResults = new ArrayList<String>();
+        
+        // Create and save the input test data.
+        TimeZone tz = TimeZone.getTimeZone("Americal/Los_Angeles");
+        Calendar intervalStart = Calendar.getInstance(tz, ULocale.US);
+        Calendar intervalEnd = Calendar.getInstance(tz, ULocale.US);        
+        intervalStart.set(2009,  6, 1);
+        intervalEnd.set(2009, 6, 2);
+        testIntervals.add(new DateInterval(intervalStart.getTimeInMillis(), intervalEnd.getTimeInMillis()));        
+        intervalStart.set(2015, 2, 27);
+        intervalEnd.set(2015, 3, 1);
+        testIntervals.add(new DateInterval(intervalStart.getTimeInMillis(), intervalEnd.getTimeInMillis()));
+        
+        // Run the formatter single-threaded to create and save the expected results.
+        for (DateInterval interval: testIntervals) {
+            FieldPosition pos = new FieldPosition(0);
+            StringBuffer result = new StringBuffer();
+            formatter.format(interval, result, pos);
+            expectedResults.add(result.toString());
+        }
+               
+        class TestThread extends Thread {
+            public String errorMessage;
+            public void run() {
+                for (int loop=0; loop < 2000; ++loop) {
+                    ListIterator<String> expectedItr = expectedResults.listIterator();
+                    for (DateInterval interval: testIntervals) {
+                        String expected = expectedItr.next();
+                        FieldPosition pos = new FieldPosition(0);
+                        StringBuffer result = new StringBuffer();
+                        formatter.format(interval, result, pos);
+                        if (!expected.equals(result.toString())) {
+                            // Note: The ICU test framework doesn't support reporting failures from within a sub-thread.
+                            //       Save the failure for the main thread to pick up later.
+                            errorMessage = String.format("Expected \"%s\", actual \"%s\"", expected, result);
+                            return;
+                        }
+                    }
+                }
+            }
+        }
+        
+        List<TestThread> threads = new ArrayList<TestThread>();
+        for (int i=0; i<4; ++i) {
+            threads.add(new TestThread());
+        }
+        for (Thread t: threads) {
+            t.start();
+        }
+        for (TestThread t: threads) {
+            try {
+                t.join();
+            } catch (InterruptedException e) {
+                fail("Unexpected exception: " + e.toString());
+            }
+            if (t.errorMessage != null) {
+                fail(t.errorMessage);
+            }
+        }
+    }
+    
+    
 }

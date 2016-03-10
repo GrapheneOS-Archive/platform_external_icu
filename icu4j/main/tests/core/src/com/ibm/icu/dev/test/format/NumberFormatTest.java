@@ -1,6 +1,6 @@
 /*
  *******************************************************************************
- * Copyright (C) 2001-2015, International Business Machines Corporation and
+ * Copyright (C) 2001-2016, International Business Machines Corporation and
  * others. All Rights Reserved.
  *******************************************************************************
  */
@@ -19,10 +19,13 @@ import java.text.FieldPosition;
 import java.text.ParseException;
 import java.text.ParsePosition;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 
 import com.ibm.icu.dev.test.TestUtil;
+import com.ibm.icu.dev.test.format.IntlTestDecimalFormatAPIC.FieldContainer;
 import com.ibm.icu.impl.ICUConfig;
 import com.ibm.icu.impl.LocaleUtility;
 import com.ibm.icu.impl.data.ResourceReader;
@@ -135,7 +138,7 @@ public class NumberFormatTest extends com.ibm.icu.dev.test.TestFmwk {
                     if (expected.doubleValue() != (actual.doubleValue())) {
                         return "Expected: " + expected + ", got: " + actual;
                     }
-                
+
                     if (!tuple.outputCurrency.equals(currAmt.getCurrency().toString())) {
                         return "Expected currency: " + tuple.outputCurrency + ", got: " + currAmt.getCurrency();
                     }
@@ -147,7 +150,7 @@ public class NumberFormatTest extends com.ibm.icu.dev.test.TestFmwk {
                  * @return
                  */
                 private DecimalFormat newDecimalFormat(NumberFormatTestTuple tuple) {
-             
+
                     DecimalFormat fmt = new DecimalFormat(
                             tuple.pattern == null ? "0" : tuple.pattern,
                             new DecimalFormatSymbols(tuple.locale == null ? EN : tuple.locale));
@@ -4138,7 +4141,7 @@ public class NumberFormatTest extends com.ibm.icu.dev.test.TestFmwk {
         // compare the Currency and Currency Cash Digits
         // Note that as of CLDR 26:
         // * TWD switches from 0 decimals to 2; PKR still has 0, so change test to that
-        // * CAD and all other currencies that rounded to .05 no longer do
+        // * CAD rounds to .05 in the cash style only.
         for (int i = 0; i < 2; i++) {
             String original_expected = "PKR124";
             DecimalFormat custom = null;
@@ -4186,7 +4189,7 @@ public class NumberFormatTest extends com.ibm.icu.dev.test.TestFmwk {
             }
 
             String cash_rounding_currency = fmt.format(123.567);
-            String cash__rounding_currency_expected = "CA$123.57";
+            String cash__rounding_currency_expected = "CA$123.55";
             assertEquals("Test Currency Context", cash__rounding_currency_expected, cash_rounding_currency);
         }
 
@@ -4370,4 +4373,158 @@ public class NumberFormatTest extends com.ibm.icu.dev.test.TestFmwk {
             // The exception should be thrown, since rounding is needed.
         }
     }
+
+    // Testing for Issue 11735.
+    public void TestNPEIssue11735() {
+        DecimalFormat fmt = new DecimalFormat("0", new DecimalFormatSymbols(new ULocale("en")));
+        ParsePosition ppos = new ParsePosition(0);
+        assertEquals("Currency symbol missing in parse. Expect null result.",
+                fmt.parseCurrency("53.45", ppos), null);
+    }
+
+    private void CompareAttributedCharacterFormatOutput(AttributedCharacterIterator iterator,
+        List<FieldContainer> expected, String formattedOutput) {
+
+        List<FieldContainer> result = new ArrayList<FieldContainer>();
+        while (iterator.getIndex() != iterator.getEndIndex()) {
+            int start = iterator.getRunStart();
+            int end = iterator.getRunLimit();
+            Iterator it = iterator.getAttributes().keySet().iterator();
+            while (it.hasNext()) {
+                AttributedCharacterIterator.Attribute attribute = (AttributedCharacterIterator.Attribute) it.next();
+                Object value = iterator.getAttribute(attribute);
+
+                result.add(new FieldContainer(start, end, attribute, value));
+            }
+            iterator.setIndex(end);
+        }
+        assertEquals("Comparing vector length for " + formattedOutput,
+            expected.size(), result.size());
+
+        if (!expected.containsAll(result) || !result.containsAll(expected)) {
+          // Print information on the differences.
+          System.out.println(" ");
+          for (int i = 0; i < expected.size(); i++) {
+            System.out.println(" expected[" + i + "] = " +
+                expected.get(i).start + " " +
+                expected.get(i).end + " " +
+                expected.get(i).value);
+          }
+          for (int i = 0; i < result.size(); i++) {
+            System.out.println("   result[" + i + "] = " +
+                result.get(i).start + " " +
+                result.get(i).end + " " +
+                result.get(i).value);
+          }
+        }
+        assertTrue("Comparing vector results for " + formattedOutput,
+            expected.containsAll(result));
+    }
+
+    // Testing for Issue 11914, missing FieldPositions for some field types.
+    public void TestNPEIssue11914() {
+        // First test: Double value with grouping separators.
+        List<FieldContainer> v1 = new ArrayList<FieldContainer>(7);
+        v1.add(new FieldContainer(0, 3, NumberFormat.Field.INTEGER));
+        v1.add(new FieldContainer(3, 4, NumberFormat.Field.GROUPING_SEPARATOR));
+        v1.add(new FieldContainer(3, 4, NumberFormat.Field.INTEGER));
+        v1.add(new FieldContainer(4, 7, NumberFormat.Field.INTEGER));
+        v1.add(new FieldContainer(7, 8, NumberFormat.Field.GROUPING_SEPARATOR));
+        v1.add(new FieldContainer(7, 8, NumberFormat.Field.INTEGER));
+        v1.add(new FieldContainer(8, 11, NumberFormat.Field.INTEGER));
+        v1.add(new FieldContainer(11, 12, NumberFormat.Field.DECIMAL_SEPARATOR));
+        v1.add(new FieldContainer(12, 15, NumberFormat.Field.FRACTION));
+
+        Number number = new Double(123456789.9753);
+        ULocale usLoc = new ULocale("en-US");
+        DecimalFormatSymbols US = new DecimalFormatSymbols(usLoc);
+
+        NumberFormat outFmt = NumberFormat.getNumberInstance(usLoc);
+        String numFmtted = outFmt.format(number);
+        AttributedCharacterIterator iterator =
+                outFmt.formatToCharacterIterator(number);
+        CompareAttributedCharacterFormatOutput(iterator, v1, numFmtted);
+
+        // Second test: Double with scientific notation formatting.
+        List<FieldContainer> v2 = new ArrayList<FieldContainer>(7);
+        v2.add(new FieldContainer(0, 1, NumberFormat.Field.INTEGER));
+        v2.add(new FieldContainer(1, 2, NumberFormat.Field.DECIMAL_SEPARATOR));
+        v2.add(new FieldContainer(2, 5, NumberFormat.Field.FRACTION));
+        v2.add(new FieldContainer(5, 6, NumberFormat.Field.EXPONENT_SYMBOL));
+        v2.add(new FieldContainer(6, 7, NumberFormat.Field.EXPONENT_SIGN));
+        v2.add(new FieldContainer(7, 8, NumberFormat.Field.EXPONENT));
+        DecimalFormat fmt2 = new DecimalFormat("0.###E+0", US);
+
+        numFmtted = fmt2.format(number);
+        iterator = fmt2.formatToCharacterIterator(number);
+        CompareAttributedCharacterFormatOutput(iterator, v2, numFmtted);
+
+        // Third test. BigInteger with grouping separators.
+        List<FieldContainer> v3 = new ArrayList<FieldContainer>(7);
+        v3.add(new FieldContainer(0, 1, NumberFormat.Field.SIGN));
+        v3.add(new FieldContainer(1, 2, NumberFormat.Field.INTEGER));
+        v3.add(new FieldContainer(2, 3, NumberFormat.Field.GROUPING_SEPARATOR));
+        v3.add(new FieldContainer(3, 6, NumberFormat.Field.INTEGER));
+        v3.add(new FieldContainer(2, 3, NumberFormat.Field.INTEGER));
+        v3.add(new FieldContainer(6, 7, NumberFormat.Field.GROUPING_SEPARATOR));
+        v3.add(new FieldContainer(6, 7, NumberFormat.Field.INTEGER));
+        v3.add(new FieldContainer(7, 10, NumberFormat.Field.INTEGER));
+        v3.add(new FieldContainer(10, 11, NumberFormat.Field.INTEGER));
+        v3.add(new FieldContainer(10, 11, NumberFormat.Field.GROUPING_SEPARATOR));
+        v3.add(new FieldContainer(11, 14, NumberFormat.Field.INTEGER));
+        v3.add(new FieldContainer(14, 15, NumberFormat.Field.INTEGER));
+        v3.add(new FieldContainer(14, 15, NumberFormat.Field.GROUPING_SEPARATOR));
+        v3.add(new FieldContainer(15, 18, NumberFormat.Field.INTEGER));
+
+        v3.add(new FieldContainer(18, 19, NumberFormat.Field.INTEGER));
+        v3.add(new FieldContainer(18, 19, NumberFormat.Field.GROUPING_SEPARATOR));
+        v3.add(new FieldContainer(19, 22, NumberFormat.Field.INTEGER));
+        v3.add(new FieldContainer(22, 23, NumberFormat.Field.INTEGER));
+        v3.add(new FieldContainer(22, 23, NumberFormat.Field.GROUPING_SEPARATOR));
+        v3.add(new FieldContainer(23, 26, NumberFormat.Field.INTEGER));
+        BigInteger bigNumberInt = new BigInteger("-1234567890246813579");
+        String fmtNumberBigInt = outFmt.format(bigNumberInt);
+
+        iterator = outFmt.formatToCharacterIterator(bigNumberInt);
+        CompareAttributedCharacterFormatOutput(iterator, v3, fmtNumberBigInt);
+
+        // Fourth test: BigDecimal with exponential formatting.
+        List<FieldContainer> v4 = new ArrayList<FieldContainer>(7);
+        v4.add(new FieldContainer(0, 1, NumberFormat.Field.SIGN));
+        v4.add(new FieldContainer(1, 2, NumberFormat.Field.INTEGER));
+        v4.add(new FieldContainer(2, 3, NumberFormat.Field.DECIMAL_SEPARATOR));
+        v4.add(new FieldContainer(3, 6, NumberFormat.Field.FRACTION));
+        v4.add(new FieldContainer(6, 7, NumberFormat.Field.EXPONENT_SYMBOL));
+        v4.add(new FieldContainer(7, 8, NumberFormat.Field.EXPONENT_SIGN));
+        v4.add(new FieldContainer(8, 9, NumberFormat.Field.EXPONENT));
+
+        java.math.BigDecimal numberBigD = new java.math.BigDecimal(-123456789);
+        String fmtNumberBigDExp = fmt2.format(numberBigD);
+
+        iterator = fmt2.formatToCharacterIterator(numberBigD);
+        CompareAttributedCharacterFormatOutput(iterator, v4, fmtNumberBigDExp);
+    }
+
+    public void test_formatToCharacterIterator() throws Exception {
+        AttributedCharacterIterator iterator;
+        int[] runStarts;
+        int[] runLimits;
+        String result;
+        char current;
+        // BigInteger.
+        iterator = new DecimalFormat().formatToCharacterIterator(new BigInteger("123456789"));
+        runStarts = new int[] { 0, 0, 0, 3, 4, 4, 4, 7, 8, 8, 8 };
+        runLimits = new int[] { 3, 3, 3, 4, 7, 7, 7, 8, 11, 11, 11 };
+        result = "123,456,789";
+        current = iterator.current();
+        for (int i = 0; i < runStarts.length; i++) {
+            assertEquals("wrong start @" + i, runStarts[i], iterator.getRunStart());
+            assertEquals("wrong limit @" + i, runLimits[i], iterator.getRunLimit());
+            assertEquals("wrong char @" + i, result.charAt(i), current);
+            current = iterator.next();
+        }
+        assertEquals("Begin index:", 0, iterator.getBeginIndex());
+        assertEquals("End index:  ", 11, iterator.getEndIndex());
+    }
+
 }

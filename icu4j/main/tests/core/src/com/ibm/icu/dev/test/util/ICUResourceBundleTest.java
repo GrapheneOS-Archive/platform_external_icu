@@ -715,7 +715,6 @@ public final class ICUResourceBundleTest extends TestFmwk {
     }
 
     public void TestFunctionalEquivalent(){
-       // Android patch: Force default Gregorian calendar.
        String[] calCases = {
        //  avail    locale                              equiv
            "t",     "en_US_POSIX",                      "en@calendar=gregorian",
@@ -723,11 +722,10 @@ public final class ICUResourceBundleTest extends TestFmwk {
            "f",     "ja_JP_TOKYO@calendar=japanese",    "ja@calendar=japanese",
            "t",     "sr@calendar=gregorian",            "sr@calendar=gregorian",
            "t",     "en",                               "en@calendar=gregorian",
-           "t",     "th_TH",                            "th@calendar=gregorian",
+           "t",     "th_TH",                            "th@calendar=buddhist",
            "t",     "th_TH@calendar=gregorian",         "th@calendar=gregorian",
-           "f",     "th_TH_Bangkok",                    "th@calendar=gregorian",
+           "f",     "th_TH_Bangkok",                    "th@calendar=buddhist",
        };
-       // Android patch end.
 
        logln("Testing functional equivalents for calendar...");
        getFunctionalEquivalentTestCases(ICUResourceBundle.ICU_BASE_NAME,
