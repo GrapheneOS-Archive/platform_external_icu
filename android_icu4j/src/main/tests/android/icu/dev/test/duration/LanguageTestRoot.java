@@ -30,10 +30,13 @@ import android.icu.impl.duration.TimeUnit;
 import android.icu.impl.duration.TimeUnitConstants;
 import android.icu.impl.duration.impl.DataRecord.ECountVariant;
 import android.icu.impl.duration.impl.DataRecord.EUnitVariant;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
 /**
  * Test cases for en
  */
+@RunWith(IcuTestFmwkRunner.class)
 public class LanguageTestRoot extends TestFmwk implements TimeUnitConstants {
 
     private static final TimeUnit[] units = {

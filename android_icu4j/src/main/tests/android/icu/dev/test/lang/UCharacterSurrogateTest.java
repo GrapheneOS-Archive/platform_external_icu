@@ -12,10 +12,13 @@ import android.icu.dev.test.TestFmwk;
 import android.icu.impl.Utility;
 import android.icu.lang.UCharacter;
 import android.icu.text.UTF16;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
 /**
  * Test JDK 1.5 cover APIs.
  */
+@RunWith(IcuTestFmwkRunner.class)
 public final class UCharacterSurrogateTest extends TestFmwk {
 
     public static void main(String[] args) {

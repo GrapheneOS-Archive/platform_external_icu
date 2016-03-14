@@ -25,7 +25,10 @@ import android.icu.util.GregorianCalendar;
 import android.icu.util.TimeZone;
 import android.icu.util.ULocale;
 import android.icu.util.UResourceBundle;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
+@RunWith(IcuTestFmwkRunner.class)
 public class DisplayNameTest extends TestFmwk {
     static final boolean SHOW_ALL = false;
     

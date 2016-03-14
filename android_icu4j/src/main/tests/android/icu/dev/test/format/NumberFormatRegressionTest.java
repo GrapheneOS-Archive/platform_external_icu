@@ -27,10 +27,13 @@ import android.icu.text.DecimalFormatSymbols;
 import android.icu.text.NumberFormat;
 import android.icu.util.Calendar;
 import android.icu.util.ULocale;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
 /** 
  * Performs regression test for MessageFormat
  **/
+@RunWith(IcuTestFmwkRunner.class)
 public class NumberFormatRegressionTest extends android.icu.dev.test.TestFmwk {
     
     public static void main(String[] args) throws Exception{

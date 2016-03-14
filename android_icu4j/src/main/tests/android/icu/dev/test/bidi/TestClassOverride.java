@@ -10,6 +10,8 @@ package android.icu.dev.test.bidi;
 
 import android.icu.text.Bidi;
 import android.icu.text.BidiClassifier;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
 /**
  * Regression test for Bidi class override.
@@ -17,6 +19,7 @@ import android.icu.text.BidiClassifier;
  * @author Lina Kemmel, Matitiahu Allouche
  */
 
+@RunWith(IcuTestFmwkRunner.class)
 public class TestClassOverride extends BidiTest {
 
     private static final int DEF = TestData.DEF;

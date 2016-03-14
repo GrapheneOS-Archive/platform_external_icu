@@ -8,12 +8,15 @@
 package android.icu.dev.test.lang;
 import android.icu.dev.test.TestFmwk;
 import android.icu.lang.UCharacterCategory;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
 /**
 * Testing UCharacterCategory
 * @author Syn Wee Quek
 * @since April 02 2002
 */
+@RunWith(IcuTestFmwkRunner.class)
 public class UCharacterCategoryTest extends TestFmwk
 {
     // constructor -----------------------------------------------------------

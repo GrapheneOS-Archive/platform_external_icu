@@ -9,6 +9,8 @@
 package android.icu.dev.test.bidi;
 
 import android.icu.text.Bidi;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
 
 /**
@@ -17,6 +19,7 @@ import android.icu.text.Bidi;
  * ported from C by Lina Kemmel, Matitiahu Allouche
  */
 
+@RunWith(IcuTestFmwkRunner.class)
 public class TestReorder extends BidiTest {
 
     private static final String[] logicalOrder = {

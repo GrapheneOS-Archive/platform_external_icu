@@ -46,7 +46,10 @@ import android.icu.text.UnicodeSetIterator;
 import android.icu.util.IllformedLocaleException;
 import android.icu.util.Output;
 import android.icu.util.ULocale;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
+@RunWith(IcuTestFmwkRunner.class)
 public class CollationTest extends TestFmwk {
     public static void main(String[] args) throws Exception{
         new CollationTest().run(args);

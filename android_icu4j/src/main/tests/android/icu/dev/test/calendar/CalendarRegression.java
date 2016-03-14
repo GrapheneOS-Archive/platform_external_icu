@@ -27,6 +27,8 @@ import android.icu.util.GregorianCalendar;
 import android.icu.util.SimpleTimeZone;
 import android.icu.util.TimeZone;
 import android.icu.util.ULocale;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
 /**
  * @test 1.32 99/11/14
@@ -36,6 +38,7 @@ import android.icu.util.ULocale;
  * 4145158 4145983 4147269 4149677 4162587 4165343 4166109 4167060 4173516
  * 4174361 4177484 4197699 4209071 4288792
  */
+@RunWith(IcuTestFmwkRunner.class)
 public class CalendarRegression extends android.icu.dev.test.TestFmwk {
 
     public static void main(String[] args) throws Exception {

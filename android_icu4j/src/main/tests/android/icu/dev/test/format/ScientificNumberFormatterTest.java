@@ -12,11 +12,14 @@ import android.icu.text.DecimalFormat;
 import android.icu.text.NumberFormat;
 import android.icu.text.ScientificNumberFormatter;
 import android.icu.util.ULocale;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
 /**
  * @author rocketman
  *
  */
+@RunWith(IcuTestFmwkRunner.class)
 public class ScientificNumberFormatterTest extends TestFmwk {
     public static void main(String[] args) throws Exception {
         new ScientificNumberFormatterTest().run(args);

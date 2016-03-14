@@ -38,12 +38,15 @@ import android.icu.util.MeasureUnit;
 import android.icu.util.TimeUnit;
 import android.icu.util.TimeUnitAmount;
 import android.icu.util.ULocale;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
 /**
  * See https://sites.google.com/site/icusite/processes/release/tasks/standards?pli=1
  * for information on how to update with each new release.
  * @author markdavis
  */
+@RunWith(IcuTestFmwkRunner.class)
 public class MeasureUnitTest extends TestFmwk {
     
     static class OrderedPair<F extends Comparable, S extends Comparable> extends Pair<F, S> implements Comparable<OrderedPair<F, S>> {

@@ -18,12 +18,15 @@ import java.util.Set;
 import android.icu.dev.test.TestFmwk;
 import android.icu.util.Region;
 import android.icu.util.Region.RegionType;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
 /**
  * @test
  * @summary General test of Regions
  */
 
+@RunWith(IcuTestFmwkRunner.class)
 public class RegionTest extends TestFmwk {
 
     public static void main(String[] args) throws Exception {

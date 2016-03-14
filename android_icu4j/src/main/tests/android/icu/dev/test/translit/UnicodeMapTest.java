@@ -24,11 +24,14 @@ import android.icu.dev.util.UnicodeMap.EntryRange;
 import android.icu.impl.Utility;
 import android.icu.text.UTF16;
 import android.icu.text.UnicodeSet;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
 /**
  * @test
  * @summary General test of UnicodeSet
  */
+@RunWith(IcuTestFmwkRunner.class)
 public class UnicodeMapTest extends TestFmwk {
 
     static final int MODIFY_TEST_LIMIT = 32;

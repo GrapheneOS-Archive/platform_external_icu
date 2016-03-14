@@ -29,7 +29,10 @@ import android.icu.text.LocaleDisplayNames;
 import android.icu.text.LocaleDisplayNames.UiListItem;
 import android.icu.util.IllformedLocaleException;
 import android.icu.util.ULocale;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
+@RunWith(IcuTestFmwkRunner.class)
 public class ULocaleCollationTest extends TestFmwk {
 
     public static void main(String[] args) throws Exception {

@@ -12,10 +12,13 @@ package android.icu.dev.test.timescale;
 import android.icu.dev.test.TestFmwk;
 import android.icu.math.BigDecimal;
 import android.icu.util.UniversalTimeScale;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
 /**
  * Test UniversalTimeScale API
  */
+@RunWith(IcuTestFmwkRunner.class)
 public class TimeScaleAPITest extends TestFmwk
 {
 

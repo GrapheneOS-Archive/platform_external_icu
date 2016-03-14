@@ -18,10 +18,13 @@ import java.util.Random;
 
 import android.icu.text.DecimalFormat;
 import android.icu.text.NumberFormat;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
 /** 
  * Performs round-trip tests for NumberFormat
  **/
+@RunWith(IcuTestFmwkRunner.class)
 public class NumberFormatRoundTripTest extends android.icu.dev.test.TestFmwk {
     
     public double MAX_ERROR = 1e-14;

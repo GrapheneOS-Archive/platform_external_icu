@@ -40,7 +40,10 @@ import android.icu.text.NumberFormat.SimpleNumberFormatFactory;
 import android.icu.util.Currency;
 import android.icu.util.CurrencyAmount;
 import android.icu.util.ULocale;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
+@RunWith(IcuTestFmwkRunner.class)
 public class NumberFormatTest extends android.icu.dev.test.TestFmwk {
     
     private static ULocale EN = new ULocale("en");

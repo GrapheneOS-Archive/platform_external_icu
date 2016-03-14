@@ -9,6 +9,8 @@
 package android.icu.dev.test.bidi;
 
 import android.icu.text.Bidi;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
 /**
  * Regression test for Bidi failure recovery
@@ -16,6 +18,7 @@ import android.icu.text.Bidi;
  * @author Lina Kemmel, Matitiahu Allouche
  */
 
+@RunWith(IcuTestFmwkRunner.class)
 public class TestFailureRecovery extends BidiTest {
 
     public void testFailureRecovery()

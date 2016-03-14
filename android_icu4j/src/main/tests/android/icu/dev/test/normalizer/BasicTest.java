@@ -26,8 +26,11 @@ import android.icu.text.UCharacterIterator;
 import android.icu.text.UTF16;
 import android.icu.text.UnicodeSet;
 import android.icu.text.UnicodeSetIterator;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
 
+@RunWith(IcuTestFmwkRunner.class)
 public class BasicTest extends TestFmwk {
     public static void main(String[] args) throws Exception {
         new BasicTest().run(args);

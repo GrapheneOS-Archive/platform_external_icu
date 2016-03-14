@@ -9,12 +9,15 @@ package android.icu.dev.test.lang;
 
 import android.icu.dev.test.TestFmwk;
 import android.icu.lang.UCharacterDirection;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
 /**
 * Testing UCharacterDirection
 * @author Syn Wee Quek
 * @since July 22 2002
 */
+@RunWith(IcuTestFmwkRunner.class)
 public class UCharacterDirectionTest extends TestFmwk
 {    
     // constructor -----------------------------------------------------------

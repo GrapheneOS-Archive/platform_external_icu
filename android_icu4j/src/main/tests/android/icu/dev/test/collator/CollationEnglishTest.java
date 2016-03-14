@@ -18,7 +18,10 @@ import java.util.Locale;
 import android.icu.dev.test.TestFmwk;
 import android.icu.text.CollationKey;
 import android.icu.text.Collator;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
  
+@RunWith(IcuTestFmwkRunner.class)
 public class CollationEnglishTest extends TestFmwk{
     public static void main(String[] args) throws Exception{
         new CollationEnglishTest().run(args);

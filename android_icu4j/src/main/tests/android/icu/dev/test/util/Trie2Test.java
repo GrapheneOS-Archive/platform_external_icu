@@ -21,7 +21,10 @@ import android.icu.impl.Trie2;
 import android.icu.impl.Trie2Writable;
 import android.icu.impl.Trie2_16;
 import android.icu.impl.Trie2_32;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
+@RunWith(IcuTestFmwkRunner.class)
 public class Trie2Test extends TestFmwk {
     /**
      * Constructor

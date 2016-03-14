@@ -16,12 +16,15 @@ import android.icu.util.LocaleMatcher;
 import android.icu.util.LocaleMatcher.LanguageMatcherData;
 import android.icu.util.LocalePriorityList;
 import android.icu.util.ULocale;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
 /**
  * Test the LocaleMatcher.
  * 
  * @author markdavis
  */
+@RunWith(IcuTestFmwkRunner.class)
 @SuppressWarnings("deprecation")
 public class LocaleMatcherTest extends TestFmwk {
 

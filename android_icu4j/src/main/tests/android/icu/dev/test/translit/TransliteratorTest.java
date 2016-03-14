@@ -36,6 +36,8 @@ import android.icu.text.UnicodeSet;
 import android.icu.text.UnicodeSetIterator;
 import android.icu.util.CaseInsensitiveString;
 import android.icu.util.ULocale;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
 /***********************************************************************
 
@@ -86,6 +88,7 @@ The Management
  * @test
  * @summary General test of Transliterator
  */
+@RunWith(IcuTestFmwkRunner.class)
 public class TransliteratorTest extends TestFmwk {
 
     public static void main(String[] args) throws Exception {

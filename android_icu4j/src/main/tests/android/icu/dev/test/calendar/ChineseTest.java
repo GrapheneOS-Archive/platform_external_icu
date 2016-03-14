@@ -17,6 +17,8 @@ import android.icu.util.ChineseCalendar;
 import android.icu.util.GregorianCalendar;
 import android.icu.util.TimeZone;
 import android.icu.util.ULocale;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
 /**
  * Test of ChineseCalendar.
@@ -60,6 +62,7 @@ import android.icu.util.ULocale;
  * Tue May 22 2096 = 4733-04*-01, Year 53, Cycle 79
  * Sun Mar 22 2099 = 4736-02*-01, Year 56, Cycle 79
  */
+@RunWith(IcuTestFmwkRunner.class)
 public class ChineseTest extends CalendarTest {
 
     public static void main(String args[]) throws Exception {

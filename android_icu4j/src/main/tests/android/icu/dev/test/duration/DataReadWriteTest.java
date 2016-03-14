@@ -16,7 +16,10 @@ import java.io.StringWriter;
 import android.icu.dev.test.TestFmwk;
 import android.icu.impl.duration.impl.XMLRecordReader;
 import android.icu.impl.duration.impl.XMLRecordWriter;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
+@RunWith(IcuTestFmwkRunner.class)
 public class DataReadWriteTest extends TestFmwk {
 
     /**

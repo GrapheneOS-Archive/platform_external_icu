@@ -24,10 +24,13 @@ import android.icu.util.IslamicCalendar;
 import android.icu.util.IslamicCalendar.CalculationType;
 import android.icu.util.TimeZone;
 import android.icu.util.ULocale;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
 /**
  * Tests for the <code>IslamicCalendar</code> class.
  */
+@RunWith(IcuTestFmwkRunner.class)
 public class IslamicTest extends CalendarTest {
     public static void main(String args[]) throws Exception {
         new IslamicTest().run(args);
