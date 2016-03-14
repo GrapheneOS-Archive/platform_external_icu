@@ -10,6 +10,8 @@ import android.icu.dev.test.TestFmwk;
 import android.icu.impl.Utility;
 import android.icu.text.ReplaceableString;
 import android.icu.text.Transliterator;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
 
 
@@ -17,6 +19,7 @@ import android.icu.text.Transliterator;
  * @test
  * @summary General test of CompoundTransliterator
  */
+@RunWith(IcuTestFmwkRunner.class)
 public class CompoundTransliteratorTest extends TestFmwk {
 
     public static void main(String[] args) throws Exception {

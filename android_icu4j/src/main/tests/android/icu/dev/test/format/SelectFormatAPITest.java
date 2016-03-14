@@ -13,11 +13,14 @@ import java.text.ParsePosition;
 
 import android.icu.dev.test.TestFmwk;
 import android.icu.text.SelectFormat;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
 /**
  * @author kirtig 
  * This class tests the API functionality of the SelectFormat
  */
+@RunWith(IcuTestFmwkRunner.class)
 public class SelectFormatAPITest extends TestFmwk {
   
     static final String SIMPLE_PATTERN1 = "feminine {feminineVerbValue1} other{otherVerbValue1}";

@@ -12,10 +12,13 @@ package android.icu.dev.test.duration.languages;
 
 import android.icu.dev.test.duration.LanguageTestRoot;
 import android.icu.impl.duration.TimeUnitConstants;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
 /**
  * Test cases for hi
  */
+@RunWith(IcuTestFmwkRunner.class)
 public class Test_hi extends LanguageTestRoot implements TimeUnitConstants {
 
   /**

@@ -12,6 +12,8 @@ import java.util.Arrays;
 
 import android.icu.text.Bidi;
 import android.icu.text.BidiRun;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
 /**
  * Regression test for Bidi class override.
@@ -19,6 +21,7 @@ import android.icu.text.BidiRun;
  * @author Lina Kemmel, Matitiahu Allouche
  */
 
+@RunWith(IcuTestFmwkRunner.class)
 public class TestBidi extends BidiTest {
 
     private static final int MAXLEN = 256;

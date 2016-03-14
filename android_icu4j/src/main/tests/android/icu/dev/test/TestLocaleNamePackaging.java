@@ -16,7 +16,10 @@ import android.icu.impl.LocaleDisplayNamesImpl;
 import android.icu.text.LocaleDisplayNames;
 import android.icu.text.LocaleDisplayNames.DialectHandling;
 import android.icu.util.ULocale;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
+@RunWith(IcuTestFmwkRunner.class)
 public class TestLocaleNamePackaging extends TestFmwk {
 
     public static void main(String[] args) {

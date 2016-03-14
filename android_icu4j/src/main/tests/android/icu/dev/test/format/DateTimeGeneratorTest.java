@@ -36,7 +36,10 @@ import android.icu.util.GregorianCalendar;
 import android.icu.util.SimpleTimeZone;
 import android.icu.util.TimeZone;
 import android.icu.util.ULocale;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
+@RunWith(IcuTestFmwkRunner.class)
 public class DateTimeGeneratorTest extends TestFmwk {
     public static boolean GENERATE_TEST_DATA;
     static {

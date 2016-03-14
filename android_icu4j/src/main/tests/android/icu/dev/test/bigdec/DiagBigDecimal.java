@@ -16,6 +16,8 @@ import android.icu.dev.test.TestFmwk;
 import android.icu.dev.test.TestUtil;
 import android.icu.dev.test.TestUtil.JavaVendor;
 import android.icu.math.BigDecimal;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
 /* ------------------------------------------------------------------ */
 /* Decimal diagnostic tests mfc */
@@ -99,6 +101,7 @@ import android.icu.math.BigDecimal;
  * @author Mike Cowlishaw
  */
 
+@RunWith(IcuTestFmwkRunner.class)
 public class DiagBigDecimal extends TestFmwk {
     //private static final java.lang.String $0 = "DiagBigDecimal.nrx";
 

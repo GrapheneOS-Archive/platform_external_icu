@@ -10,7 +10,10 @@ package android.icu.dev.test.normalizer;
 
 import android.icu.dev.test.TestFmwk;
 import android.icu.text.Normalizer;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
+@RunWith(IcuTestFmwkRunner.class)
 public class NormalizerRegressionTests extends TestFmwk {
     public static void main(String[] args) throws Exception {
         new NormalizerRegressionTests().run(args);

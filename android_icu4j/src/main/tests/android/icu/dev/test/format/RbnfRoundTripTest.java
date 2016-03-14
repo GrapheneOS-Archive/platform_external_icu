@@ -11,7 +11,10 @@ import java.util.Locale;
 
 import android.icu.dev.test.TestFmwk;
 import android.icu.text.RuleBasedNumberFormat;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
+@RunWith(IcuTestFmwkRunner.class)
 public class RbnfRoundTripTest extends TestFmwk {
     public static void main(String[] args) {
         RbnfRoundTripTest test = new RbnfRoundTripTest();

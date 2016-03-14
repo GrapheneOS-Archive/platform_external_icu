@@ -29,11 +29,14 @@ import android.icu.text.UnicodeSet;
 import android.icu.text.UnicodeSetIterator;
 import android.icu.util.LocaleData;
 import android.icu.util.ULocale;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
 /**
  * @test
  * @summary Round trip test of Transliterator
  */
+@RunWith(IcuTestFmwkRunner.class)
 public class RoundTripTest extends TestFmwk {
 
     //TODO - revisit test cases referencing FIX_ME

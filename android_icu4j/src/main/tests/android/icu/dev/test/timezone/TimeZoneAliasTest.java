@@ -24,6 +24,8 @@ import java.util.TreeSet;
 
 import android.icu.dev.test.TestFmwk;
 import android.icu.util.TimeZone;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
 
 /**
@@ -31,6 +33,7 @@ import android.icu.util.TimeZone;
  * @author Davis
  * 
  */
+@RunWith(IcuTestFmwkRunner.class)
 public class TimeZoneAliasTest extends TestFmwk {
     
     public static void main(String[] args) throws Exception {

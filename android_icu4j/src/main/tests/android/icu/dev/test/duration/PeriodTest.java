@@ -13,7 +13,10 @@ package android.icu.dev.test.duration;
 import android.icu.dev.test.TestFmwk;
 import android.icu.impl.duration.Period;
 import android.icu.impl.duration.TimeUnit;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
+@RunWith(IcuTestFmwkRunner.class)
 public class PeriodTest extends TestFmwk {
 
     /**

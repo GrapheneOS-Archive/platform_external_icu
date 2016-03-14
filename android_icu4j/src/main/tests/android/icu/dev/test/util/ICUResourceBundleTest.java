@@ -32,7 +32,10 @@ import android.icu.util.ULocale;
 import android.icu.util.UResourceBundle;
 import android.icu.util.UResourceBundleIterator;
 import android.icu.util.UResourceTypeMismatchException;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
+@RunWith(IcuTestFmwkRunner.class)
 public final class ICUResourceBundleTest extends TestFmwk {
     private static final ClassLoader testLoader = ICUResourceBundleTest.class.getClassLoader();
 

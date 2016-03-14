@@ -9,11 +9,14 @@
 package android.icu.dev.test.format;
 
 import android.icu.dev.test.TestFmwk.TestGroup;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestGroupRunner;
 
 /**
  * Top level test used to run all other tests as a batch.
  */
 
+@RunWith(IcuTestGroupRunner.class)
 public class TestAll extends TestGroup {
 
     public static void main(String[] args) {
@@ -38,7 +41,8 @@ public class TestAll extends TestGroup {
               "Formatting Tests");
     }
 
-    public static class RBNF extends TestGroup {
+    @RunWith(IcuTestGroupRunner.class)
+	public static class RBNF extends TestGroup {
         public RBNF() {
             super(new String[] {
                 "RbnfTest",
@@ -48,7 +52,8 @@ public class TestAll extends TestGroup {
         }
     }
 
-    public static class NumberFormat extends TestGroup {
+    @RunWith(IcuTestGroupRunner.class)
+	public static class NumberFormat extends TestGroup {
         public NumberFormat() {
             super(new String[] {
                 "CompactDecimalFormatTest",
@@ -69,7 +74,8 @@ public class TestAll extends TestGroup {
         }
     }
 
-    public static class DateFormat extends TestGroup {
+    @RunWith(IcuTestGroupRunner.class)
+	public static class DateFormat extends TestGroup {
         public DateFormat() {
             super(new String[] {
                 "DateFormatMiscTests",
@@ -89,7 +95,8 @@ public class TestAll extends TestGroup {
         }
     }
     
-    public static class DateIntervalFormat extends TestGroup {
+    @RunWith(IcuTestGroupRunner.class)
+	public static class DateIntervalFormat extends TestGroup {
         public DateIntervalFormat() {
             super(new String[] {
                 "DateIntervalFormatTest"
@@ -97,7 +104,8 @@ public class TestAll extends TestGroup {
         }
     }
     
-    public static class TimeUnitFormat extends TestGroup {
+    @RunWith(IcuTestGroupRunner.class)
+	public static class TimeUnitFormat extends TestGroup {
         public TimeUnitFormat() {
             super(new String[] {
                 "TimeUnitTest"
@@ -105,7 +113,8 @@ public class TestAll extends TestGroup {
         }
     }
     
-    public static class PluralFormat extends TestGroup {
+    @RunWith(IcuTestGroupRunner.class)
+	public static class PluralFormat extends TestGroup {
         public PluralFormat() {
             super(new String[] {
                 "PluralFormatUnitTest",
@@ -116,7 +125,8 @@ public class TestAll extends TestGroup {
         }
     }
 
-    public static class SelectFormat extends TestGroup {
+    @RunWith(IcuTestGroupRunner.class)
+	public static class SelectFormat extends TestGroup {
         public SelectFormat() {
             super(new String[] {
                 "SelectFormatUnitTest",
@@ -125,7 +135,8 @@ public class TestAll extends TestGroup {
         }
     }
 
-    public static class MessageFormat extends TestGroup {
+    @RunWith(IcuTestGroupRunner.class)
+	public static class MessageFormat extends TestGroup {
         public MessageFormat() {
             super(new String[] {
                 "TestMessageFormat",

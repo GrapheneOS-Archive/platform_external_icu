@@ -14,6 +14,8 @@ import java.text.AttributedCharacterIterator;
 import java.text.AttributedString;
 
 import android.icu.text.Bidi;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
 /**
  * Regression test for java.text.Bidi compatibility
@@ -21,6 +23,7 @@ import android.icu.text.Bidi;
  * @author Matitiahu Allouche
  */
 
+@RunWith(IcuTestFmwkRunner.class)
 public class TestCompatibility extends BidiTest {
 
     void compareBidi(Bidi bidi, java.text.Bidi jbidi)

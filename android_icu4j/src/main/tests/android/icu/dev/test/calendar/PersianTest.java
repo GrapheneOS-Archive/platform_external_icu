@@ -10,7 +10,10 @@ import java.util.Date;
 
 import android.icu.util.Calendar;
 import android.icu.util.ULocale;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
+@RunWith(IcuTestFmwkRunner.class)
 public class PersianTest extends CalendarTest {
 
     public static void main(String args[]) throws Exception {

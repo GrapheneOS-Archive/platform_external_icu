@@ -25,7 +25,10 @@ import android.icu.text.Collator;
 import android.icu.text.RuleBasedCollator;
 import android.icu.text.UCharacterIterator;
 import android.icu.util.ULocale;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
+@RunWith(IcuTestFmwkRunner.class)
 public class CollationIteratorTest extends TestFmwk {
     
     String test1 = "What subset of all possible test cases?";

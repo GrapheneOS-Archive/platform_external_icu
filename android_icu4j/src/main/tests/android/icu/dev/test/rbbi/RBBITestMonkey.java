@@ -21,6 +21,8 @@ import android.icu.text.BreakIterator;
 import android.icu.text.RuleBasedBreakIterator;
 import android.icu.text.UTF16;
 import android.icu.text.UnicodeSet;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
 
 /**
@@ -33,6 +35,7 @@ import android.icu.text.UnicodeSet;
  * Ported from ICU4C, original code in file source/test/intltest/rbbitst.cpp
  *
  */
+@RunWith(IcuTestFmwkRunner.class)
 public class RBBITestMonkey extends TestFmwk {
     
     public static void main(String[] args) {

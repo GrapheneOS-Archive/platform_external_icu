@@ -23,11 +23,14 @@ import android.icu.text.MessagePatternUtil.MessageContentsNode;
 import android.icu.text.MessagePatternUtil.MessageNode;
 import android.icu.text.MessagePatternUtil.TextNode;
 import android.icu.text.MessagePatternUtil.VariantNode;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
 /**
  * Test MessagePatternUtil (MessagePattern-as-tree-of-nodes API)
  * by building parallel trees of nodes and verifying that they match.
  */
+@RunWith(IcuTestFmwkRunner.class)
 public final class MessagePatternUtilTest extends android.icu.dev.test.TestFmwk {
     public static void main(String[] args) throws Exception {
         new MessagePatternUtilTest().run(args);

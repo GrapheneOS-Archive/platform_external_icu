@@ -47,11 +47,14 @@ import android.icu.text.PluralRules.SampleType;
 import android.icu.text.UFieldPosition;
 import android.icu.util.Output;
 import android.icu.util.ULocale;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
 /**
  * @author dougfelt (Doug Felt)
  * @author markdavis (Mark Davis) [for fractional support]
  */
+@RunWith(IcuTestFmwkRunner.class)
 public class PluralRulesTest extends TestFmwk {
 
     PluralRulesFactory factory = PluralRulesFactory.NORMAL;

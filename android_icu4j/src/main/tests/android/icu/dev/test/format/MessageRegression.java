@@ -47,7 +47,10 @@ import java.util.Map;
 import android.icu.text.MessageFormat;
 import android.icu.text.NumberFormat;
 import android.icu.util.ULocale;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
+@RunWith(IcuTestFmwkRunner.class)
 public class MessageRegression extends android.icu.dev.test.TestFmwk {
 
     public static void main(String[] args) throws Exception {

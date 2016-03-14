@@ -13,7 +13,10 @@ import java.util.Locale;
 import android.icu.dev.test.TestFmwk;
 import android.icu.text.ListFormatter;
 import android.icu.util.ULocale;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
+@RunWith(IcuTestFmwkRunner.class)
 public class ListFormatterTest extends TestFmwk {
     public static void main(String[] args) {
         new ListFormatterTest().run(args);

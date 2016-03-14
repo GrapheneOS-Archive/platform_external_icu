@@ -11,7 +11,10 @@ package android.icu.dev.test.lang;
 import android.icu.dev.test.TestFmwk;
 import android.icu.lang.UScript;
 import android.icu.lang.UScriptRun;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
+@RunWith(IcuTestFmwkRunner.class)
 public class TestUScriptRun extends TestFmwk
 {
     public TestUScriptRun()

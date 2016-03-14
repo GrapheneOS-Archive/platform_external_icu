@@ -13,11 +13,14 @@ import android.icu.text.DecimalFormatSymbols;
 import android.icu.text.NumberFormat;
 import android.icu.util.Currency;
 import android.icu.util.ULocale;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
 /**
  * @author rocketman
  *
  */
+@RunWith(IcuTestFmwkRunner.class)
 public class NumberFormatSpecificationTest extends TestFmwk {
     
     public static void main(String[] args) throws Exception {

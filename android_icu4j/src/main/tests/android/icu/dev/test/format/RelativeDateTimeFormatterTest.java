@@ -17,7 +17,10 @@ import android.icu.text.RelativeDateTimeFormatter.AbsoluteUnit;
 import android.icu.text.RelativeDateTimeFormatter.Direction;
 import android.icu.text.RelativeDateTimeFormatter.RelativeUnit;
 import android.icu.util.ULocale;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
+@RunWith(IcuTestFmwkRunner.class)
 public class RelativeDateTimeFormatterTest extends TestFmwk {
     
     public static void main(String[] args) throws Exception {

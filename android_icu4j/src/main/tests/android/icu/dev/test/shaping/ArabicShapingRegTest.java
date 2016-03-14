@@ -13,10 +13,13 @@ import java.util.MissingResourceException;
 import android.icu.dev.test.TestFmwk;
 import android.icu.text.ArabicShaping;
 import android.icu.text.ArabicShapingException;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
 /**
  * Regression test for Arabic shaping.
  */
+@RunWith(IcuTestFmwkRunner.class)
 public class ArabicShapingRegTest extends TestFmwk {
 
     /* constants copied from ArabicShaping for convenience */

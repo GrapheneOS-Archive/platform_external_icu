@@ -12,6 +12,8 @@ import java.util.ListResourceBundle;
 import android.icu.dev.test.TestFmwk;
 import android.icu.text.BreakIterator;
 import android.icu.text.RuleBasedBreakIterator;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
 // TODO: {dlf} this test currently doesn't test anything!
 // You'll notice that the resource that uses the dictionary isn't even on the resource path,
@@ -45,6 +47,7 @@ import android.icu.text.RuleBasedBreakIterator;
 // that important, since we have a thai dictionary that we do test thoroughly.
 //
 
+@RunWith(IcuTestFmwkRunner.class)
 public class SimpleBITest extends TestFmwk{
     public static final String testText =
 //        "The rain in Spain stays mainly on the plain.  The plains in Spain are mainly pained with rain.";
