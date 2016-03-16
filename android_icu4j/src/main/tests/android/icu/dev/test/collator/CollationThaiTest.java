@@ -25,7 +25,10 @@ import android.icu.text.CollationElementIterator;
 import android.icu.text.CollationKey;
 import android.icu.text.Collator;
 import android.icu.text.RuleBasedCollator;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
+@RunWith(IcuTestFmwkRunner.class)
 public class CollationThaiTest extends TestFmwk {
     
     final int MAX_FAILURES_TO_SHOW = -1;

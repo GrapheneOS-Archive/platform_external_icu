@@ -11,10 +11,13 @@
 package android.icu.dev.test.duration.languages;
 
 import android.icu.dev.test.duration.LanguageTestRoot;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
 /**
  * Test cases for en
  */
+@RunWith(IcuTestFmwkRunner.class)
 public class Test_en extends LanguageTestRoot {
 
   public static void main(String[] args) {

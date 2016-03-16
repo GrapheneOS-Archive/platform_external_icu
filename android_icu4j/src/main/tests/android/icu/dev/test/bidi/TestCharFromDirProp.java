@@ -11,6 +11,8 @@ package android.icu.dev.test.bidi;
 import android.icu.impl.Utility;
 import android.icu.lang.UCharacter;
 import android.icu.lang.UCharacterDirection;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
 /**
  * Regression test for Bidi charFromDirProp
@@ -18,6 +20,7 @@ import android.icu.lang.UCharacterDirection;
  * @author Lina Kemmel, Matitiahu Allouche
  */
 
+@RunWith(IcuTestFmwkRunner.class)
 public class TestCharFromDirProp extends BidiTest {
 
     /* verify that the exemplar characters have the expected bidi classes */

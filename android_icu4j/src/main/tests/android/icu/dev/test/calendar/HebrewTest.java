@@ -17,10 +17,13 @@ import android.icu.util.Calendar;
 import android.icu.util.HebrewCalendar;
 import android.icu.util.TimeZone;
 import android.icu.util.ULocale;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
 /**
  * Tests for the <code>HebrewCalendar</code> class.
  */
+@RunWith(IcuTestFmwkRunner.class)
 public class HebrewTest extends CalendarTest {
     public static void main(String args[]) throws Exception {
         new HebrewTest().run(args);

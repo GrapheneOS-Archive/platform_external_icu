@@ -8,10 +8,13 @@
 package android.icu.dev.test.collator;
 
 import android.icu.dev.test.TestFmwk.TestGroup;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestGroupRunner;
 
 /**
  * Top level test used to run all collation and search tests as a batch.
  */
+@RunWith(IcuTestGroupRunner.class)
 public class TestAll extends TestGroup {
     public static void main(String[] args) {
         new TestAll().run(args);

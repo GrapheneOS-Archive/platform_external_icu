@@ -31,10 +31,13 @@ import android.icu.util.TimeZoneRule;
 import android.icu.util.TimeZoneTransition;
 import android.icu.util.ULocale;
 import android.icu.util.VTimeZone;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
 /**
  * Test cases for TimeZoneRule and RuleBasedTimeZone
  */
+@RunWith(IcuTestFmwkRunner.class)
 public class TimeZoneRuleTest extends TestFmwk {
 
     private static final int HOUR = 60 * 60 * 1000;

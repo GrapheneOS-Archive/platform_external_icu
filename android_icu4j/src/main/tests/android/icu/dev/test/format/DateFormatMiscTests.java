@@ -20,10 +20,13 @@ import java.util.Locale;
 
 import android.icu.text.DateFormatSymbols;
 import android.icu.text.SimpleDateFormat;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
 /** 
  * Performs miscellaneous tests for DateFormat, SimpleDateFormat, DateFormatSymbols
  **/
+@RunWith(IcuTestFmwkRunner.class)
 public class DateFormatMiscTests extends android.icu.dev.test.TestFmwk {
 
     public static void main(String[] args) throws Exception{

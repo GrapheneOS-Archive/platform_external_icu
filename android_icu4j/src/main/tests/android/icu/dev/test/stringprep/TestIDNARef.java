@@ -10,6 +10,8 @@ package android.icu.dev.test.stringprep;
 import android.icu.dev.test.TestFmwk;
 import android.icu.text.StringPrepParseException;
 import android.icu.text.UCharacterIterator;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
 /**
  * @author ram
@@ -17,6 +19,7 @@ import android.icu.text.UCharacterIterator;
  * To change the template for this generated type comment go to
  * Window>Preferences>Java>Code Generation>Code and Comments
  */
+@RunWith(IcuTestFmwkRunner.class)
 public class TestIDNARef extends TestFmwk {
     public static void main(String[] args) throws Exception {
         new TestIDNARef().run(args);

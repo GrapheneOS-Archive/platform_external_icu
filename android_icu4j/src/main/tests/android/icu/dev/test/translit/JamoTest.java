@@ -12,11 +12,14 @@ import java.util.Map;
 
 import android.icu.impl.Utility;
 import android.icu.text.Transliterator;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
 /**
  * @test
  * @summary Test the Latin-Jamo transliterator
  */
+@RunWith(IcuTestFmwkRunner.class)
 public class JamoTest extends TransliteratorTest {
 
     public static void main(String[] args) throws Exception {

@@ -13,6 +13,8 @@ import java.nio.ByteBuffer;
 
 import android.icu.dev.test.TestFmwk;
 import android.icu.impl.ICUBinary;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
 /**
 * Testing class for Trie. Tests here will be simple, since both CharTrie and 
@@ -21,6 +23,7 @@ import android.icu.impl.ICUBinary;
 * @author Syn Wee Quek
 * @since release 2.1 Jan 01 2002
 */
+@RunWith(IcuTestFmwkRunner.class)
 public final class ICUBinaryTest extends TestFmwk 
 { 
     // constructor ---------------------------------------------------

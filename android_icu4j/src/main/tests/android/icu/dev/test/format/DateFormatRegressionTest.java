@@ -35,10 +35,13 @@ import android.icu.util.JapaneseCalendar;
 import android.icu.util.SimpleTimeZone;
 import android.icu.util.TimeZone;
 import android.icu.util.ULocale;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
 /** 
  * Performs regression test for DateFormat
  **/
+@RunWith(IcuTestFmwkRunner.class)
 public class DateFormatRegressionTest extends android.icu.dev.test.TestFmwk {
 
     public static void main(String[] args) throws Exception{

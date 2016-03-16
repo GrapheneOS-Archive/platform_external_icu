@@ -22,7 +22,10 @@ import android.icu.text.CollationKey;
 import android.icu.text.Collator;
 import android.icu.text.Normalizer;
 import android.icu.text.RuleBasedCollator;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
  
+@RunWith(IcuTestFmwkRunner.class)
 public class CollationDummyTest extends TestFmwk {
     public static void main(String[] args) throws Exception {
         new CollationDummyTest().run(args);

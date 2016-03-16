@@ -14,7 +14,10 @@ import android.icu.impl.duration.PeriodBuilder;
 import android.icu.impl.duration.PeriodFormatterService;
 import android.icu.text.DurationFormat;
 import android.icu.util.ULocale;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
+@RunWith(IcuTestFmwkRunner.class)
 public class RegressionTest extends TestFmwk {
 
     public static void main(String[] args) {

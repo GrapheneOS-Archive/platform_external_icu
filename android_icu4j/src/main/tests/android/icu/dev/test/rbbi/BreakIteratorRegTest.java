@@ -13,7 +13,10 @@ import java.util.Locale;
 
 import android.icu.dev.test.TestFmwk;
 import android.icu.text.BreakIterator;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
+@RunWith(IcuTestFmwkRunner.class)
 public class BreakIteratorRegTest extends TestFmwk
 {
     public static void main(String[] args) throws Exception {

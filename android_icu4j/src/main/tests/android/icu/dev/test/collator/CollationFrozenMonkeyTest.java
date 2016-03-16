@@ -20,6 +20,8 @@ import android.icu.dev.test.TestFmwk;
 import android.icu.text.CollationKey;
 import android.icu.text.Collator;
 import android.icu.text.RuleBasedCollator;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
 /**
  * CollationFrozenMonkeyTest is a third level test class.  This tests the random 
@@ -28,6 +30,7 @@ import android.icu.text.RuleBasedCollator;
  * less than the string itself appended with any character.
  */
 
+@RunWith(IcuTestFmwkRunner.class)
 public class CollationFrozenMonkeyTest extends TestFmwk {
     
     private String source = "-abcdefghijklmnopqrstuvwxyz#&^$@";

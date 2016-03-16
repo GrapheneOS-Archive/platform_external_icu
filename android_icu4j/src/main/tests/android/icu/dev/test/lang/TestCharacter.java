@@ -8,7 +8,10 @@
 package android.icu.dev.test.lang;
 
 import android.icu.dev.test.TestFmwk.TestGroup;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestGroupRunner;
 
+@RunWith(IcuTestGroupRunner.class)
 public class TestCharacter extends TestGroup {
     public static void main(String[] args) {
         new TestCharacter().run(args);

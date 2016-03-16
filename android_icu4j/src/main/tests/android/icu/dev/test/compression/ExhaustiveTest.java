@@ -10,7 +10,10 @@ package android.icu.dev.test.compression;
 import android.icu.dev.test.TestFmwk;
 import android.icu.text.UnicodeCompressor;
 import android.icu.text.UnicodeDecompressor;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
+@RunWith(IcuTestFmwkRunner.class)
 public class ExhaustiveTest extends TestFmwk {
     public static void main(String args[]) throws Exception {
         new ExhaustiveTest().run(args);

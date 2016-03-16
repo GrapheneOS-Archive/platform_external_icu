@@ -19,7 +19,10 @@ import android.icu.util.BytesTrie;
 import android.icu.util.CharsTrie;
 import android.icu.util.CharsTrieBuilder;
 import android.icu.util.StringTrieBuilder;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
+@RunWith(IcuTestFmwkRunner.class)
 public class CharsTrieTest extends TestFmwk {
     public static void main(String[] args) throws Exception {
         new CharsTrieTest().run(args);

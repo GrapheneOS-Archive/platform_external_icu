@@ -19,6 +19,8 @@ import android.icu.lang.UCharacter;
 import android.icu.text.BreakIterator;
 import android.icu.text.UTF16;
 import android.icu.util.ULocale;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
 
 /**
@@ -28,6 +30,7 @@ import android.icu.util.ULocale;
  *      See the data file for a description of the tests.
  *
  */
+@RunWith(IcuTestFmwkRunner.class)
 public class RBBITestExtended extends TestFmwk {
 
     public static void main(String[] args)throws Exception {

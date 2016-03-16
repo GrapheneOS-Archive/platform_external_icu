@@ -42,11 +42,14 @@ import android.icu.text.UnicodeSetSpanner;
 import android.icu.text.UnicodeSetSpanner.CountMethod;
 import android.icu.text.UnicodeSetSpanner.TrimOption;
 import android.icu.util.OutputInt;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
 /**
  * @test
  * @summary General test of UnicodeSet
  */
+@RunWith(IcuTestFmwkRunner.class)
 public class UnicodeSetTest extends TestFmwk {
 
     static final String NOT = "%%%%";

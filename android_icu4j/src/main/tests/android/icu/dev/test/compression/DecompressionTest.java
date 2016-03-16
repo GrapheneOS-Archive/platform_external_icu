@@ -9,7 +9,10 @@ package android.icu.dev.test.compression;
 
 import android.icu.dev.test.TestFmwk;
 import android.icu.text.UnicodeDecompressor;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
+@RunWith(IcuTestFmwkRunner.class)
 public class DecompressionTest extends TestFmwk {
     public static void main(String[] args) throws Exception {
         new DecompressionTest().run(args);

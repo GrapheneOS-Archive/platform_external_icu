@@ -15,12 +15,15 @@ import android.icu.lang.UCharacter;
 import android.icu.text.ReplaceableString;
 import android.icu.text.UTF16;
 import android.icu.text.UTF16.StringComparator;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
 /**
 * Testing class for UTF16
 * @author Syn Wee Quek
 * @since feb 09 2001
 */
+@RunWith(IcuTestFmwkRunner.class)
 public final class UTF16Test extends TestFmwk
 {
     // constructor ===================================================

@@ -14,6 +14,8 @@ import android.icu.dev.test.TestFmwk;
 import android.icu.text.ReplaceableString;
 import android.icu.text.UCharacterIterator;
 import android.icu.text.UTF16;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
 /**
  * @author ram
@@ -23,6 +25,7 @@ import android.icu.text.UTF16;
  * To enable and disable the creation of type comments go to
  * Window>Preferences>Java>Code Generation.
  */
+@RunWith(IcuTestFmwkRunner.class)
 public class TestUCharacterIterator extends TestFmwk{
 
     // constructor -----------------------------------------------------

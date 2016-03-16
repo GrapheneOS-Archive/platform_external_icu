@@ -8,6 +8,8 @@
 package android.icu.dev.test.stringprep;
 
 import android.icu.dev.test.TestFmwk.TestGroup;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestGroupRunner;
 
 /**
  * @author ram
@@ -15,6 +17,7 @@ import android.icu.dev.test.TestFmwk.TestGroup;
  * To change the template for this generated type comment go to
  * Window>Preferences>Java>Code Generation>Code and Comments
  */
+@RunWith(IcuTestGroupRunner.class)
 public class TestAll extends TestGroup {
 
     public static void main(String[] args) throws Exception {

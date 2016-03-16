@@ -35,8 +35,9 @@ include $(CLEAR_VARS)
 # Don't include this package in any target
 LOCAL_MODULE_TAGS := tests
 LOCAL_SRC_FILES := \
-    $(call all-java-files-under,src/main/tests)
-LOCAL_JAVA_RESOURCE_DIRS := src/main/tests
+    $(call all-java-files-under,src/main/tests) \
+    $(call all-java-files-under,runner/src/main/java)
+LOCAL_JAVA_RESOURCE_DIRS := src/main/tests runner/src/main/java
 LOCAL_STATIC_JAVA_LIBRARIES := \
     android-support-test
 LOCAL_JAVA_LIBRARIES := \
@@ -66,6 +67,9 @@ include $(BUILD_HOST_JAVA_LIBRARY)
 #==========================================================
 # build repackaged ICU tests for host for testing purposes
 #
+# Run the tests using junit with the following command:
+#   java -cp ${ANDROID_BUILD_TOP}/out/host/linux-x86/framework/android-icu4j-tests-host.jar org.junit.runner.JUnitCore android.icu.dev.test.TestAll
+#
 # Run the tests using the ICU4J test framework with the following command:
 #   java -cp ${ANDROID_BUILD_TOP}/out/host/linux-x86/framework/android-icu4j-tests-host.jar android.icu.dev.test.TestAll
 #==========================================================
@@ -74,9 +78,12 @@ include $(CLEAR_VARS)
 # Don't include this package in any target
 LOCAL_MODULE_TAGS := tests
 LOCAL_SRC_FILES := \
-    $(call all-java-files-under,src/main/tests)
+    $(call all-java-files-under,src/main/tests) \
+    $(call all-java-files-under,runner/src/main/java) \
+    $(call all-java-files-under,runner/src/host/java)
 LOCAL_JAVA_RESOURCE_DIRS := src/main/tests
 LOCAL_STATIC_JAVA_LIBRARIES := \
-    android-icu4j-host
+    android-icu4j-host \
+    junit
 LOCAL_MODULE := android-icu4j-tests-host
 include $(BUILD_HOST_JAVA_LIBRARY)

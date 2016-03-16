@@ -18,6 +18,8 @@ import android.icu.text.UnicodeSetIterator;
 import android.icu.util.ICUException;
 import android.icu.util.LocaleData;
 import android.icu.util.ULocale;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
 /**
  * @author ram
@@ -25,6 +27,7 @@ import android.icu.util.ULocale;
  * To change the template for this generated type comment go to
  * Window>Preferences>Java>Code Generation>Code and Comments
  */
+@RunWith(IcuTestFmwkRunner.class)
 public class LocaleDataTest extends TestFmwk{
 
     public static void main(String[] args) throws Exception{

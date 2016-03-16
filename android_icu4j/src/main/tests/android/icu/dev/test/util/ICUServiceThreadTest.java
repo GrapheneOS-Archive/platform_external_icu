@@ -30,7 +30,10 @@ import android.icu.impl.ICUService;
 import android.icu.impl.ICUService.Factory;
 import android.icu.impl.ICUService.SimpleFactory;
 import android.icu.util.ULocale;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
+@RunWith(IcuTestFmwkRunner.class)
 public class ICUServiceThreadTest extends TestFmwk
 {
     private static final boolean PRINTSTATS = false;

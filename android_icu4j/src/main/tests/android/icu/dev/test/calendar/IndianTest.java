@@ -18,10 +18,13 @@ import android.icu.util.GregorianCalendar;
 import android.icu.util.IndianCalendar;
 import android.icu.util.TimeZone;
 import android.icu.util.ULocale;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
 /**
  * Tests for the <code>IndianCalendar</code> class.
  */
+@RunWith(IcuTestFmwkRunner.class)
 public class IndianTest extends CalendarTest 
 {
     public static void main(String args[]) throws Exception {

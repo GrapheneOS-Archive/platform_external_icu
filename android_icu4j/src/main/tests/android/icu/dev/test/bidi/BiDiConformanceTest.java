@@ -15,12 +15,15 @@ import android.icu.dev.test.TestUtil;
 import android.icu.lang.UCharacterDirection;
 import android.icu.text.Bidi;
 import android.icu.text.BidiClassifier;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
 /**
  * @author Markus W. Scherer
  * BiDi conformance test, using the Unicode BidiTest.txt and BidiCharacterTest.txt files.
  * Ported from ICU4C intltest/bidiconf.cpp .
  */
+@RunWith(IcuTestFmwkRunner.class)
 public class BiDiConformanceTest extends TestFmwk {
     public static void main(String[] args) throws Exception {
         new BiDiConformanceTest().run(args);

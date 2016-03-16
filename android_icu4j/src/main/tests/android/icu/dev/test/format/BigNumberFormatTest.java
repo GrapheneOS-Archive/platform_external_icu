@@ -15,11 +15,14 @@ import android.icu.impl.Utility;
 import android.icu.text.DecimalFormat;
 import android.icu.text.DecimalFormatSymbols;
 import android.icu.text.NumberFormat;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
 /**
  * @test
  * General test of Big NumberFormat
  */
+@RunWith(IcuTestFmwkRunner.class)
 public class BigNumberFormatTest extends TestFmwk {
 
     static final int ILLEGAL = -1;

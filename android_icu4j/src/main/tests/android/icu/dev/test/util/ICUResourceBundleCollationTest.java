@@ -14,8 +14,11 @@ import android.icu.impl.ICUResourceBundle;
 import android.icu.text.Collator;
 import android.icu.util.ULocale;
 import android.icu.util.UResourceBundle;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
 
+@RunWith(IcuTestFmwkRunner.class)
 public final class ICUResourceBundleCollationTest extends TestFmwk {
     private static final String COLLATION_RESNAME = "collations";
     private static final String COLLATION_KEYWORD = "collation";
