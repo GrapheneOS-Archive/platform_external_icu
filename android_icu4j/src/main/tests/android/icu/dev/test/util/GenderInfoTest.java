@@ -14,7 +14,10 @@ import android.icu.dev.test.TestFmwk;
 import android.icu.util.GenderInfo;
 import android.icu.util.GenderInfo.Gender;
 import android.icu.util.ULocale;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
+@RunWith(IcuTestFmwkRunner.class)
 public class GenderInfoTest extends TestFmwk {
     public static void main(String[] args) {
         new GenderInfoTest().run(args);

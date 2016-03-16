@@ -20,6 +20,8 @@ import java.net.URL;
 import java.util.Enumeration;
 
 import android.icu.impl.URLHandler;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
 /**
  * @author emader
@@ -27,6 +29,7 @@ import android.icu.impl.URLHandler;
  * TODO To change the template for this generated type comment go to
  * Window - Preferences - Java - Code Style - Code Templates
  */
+@RunWith(IcuTestFmwkRunner.class)
 public class CoverageTest extends CompatibilityTest implements URLHandler.URLVisitor
 {
 

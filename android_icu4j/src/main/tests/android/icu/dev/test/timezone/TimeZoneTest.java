@@ -39,6 +39,8 @@ import android.icu.util.ULocale;
 import android.icu.util.UResourceBundle;
 import android.icu.util.VTimeZone;
 import android.icu.util.VersionInfo;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
 /**
  * @test 1.22 99/09/21
@@ -46,6 +48,7 @@ import android.icu.util.VersionInfo;
  * @summary test TimeZone
  * @build TimeZoneTest
  */
+@RunWith(IcuTestFmwkRunner.class)
 public class TimeZoneTest extends TestFmwk
 {
     static final int millisPerHour = 3600000;

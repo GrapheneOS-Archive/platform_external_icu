@@ -20,10 +20,13 @@ import android.icu.lang.UProperty.NameChoice;
 import android.icu.text.Transliterator;
 import android.icu.text.UTF16;
 import android.icu.text.UnicodeSet;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
 /**
  * @author markdavis
  */
+@RunWith(IcuTestFmwkRunner.class)
 public class RegexUtilitiesTest extends TestFmwk {
 
     public static void main(String[] args) throws Exception {

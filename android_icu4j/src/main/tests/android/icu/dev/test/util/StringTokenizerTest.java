@@ -13,12 +13,15 @@ import android.icu.impl.Utility;
 import android.icu.text.ReplaceableString;
 import android.icu.text.UnicodeSet;
 import android.icu.util.StringTokenizer;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
 /**
 * Testing class for StringTokenizer class
 * @author Syn Wee Quek
 * @since oct 26 2002
 */
+@RunWith(IcuTestFmwkRunner.class)
 public final class StringTokenizerTest extends TestFmwk
 { 
       // constructor ===================================================

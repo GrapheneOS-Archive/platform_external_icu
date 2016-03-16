@@ -14,7 +14,10 @@ import android.icu.lang.UProperty;
 import android.icu.text.ComposedCharIter;
 import android.icu.text.Normalizer;
 import android.icu.text.StringCharacterIterator;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
+@RunWith(IcuTestFmwkRunner.class)
 public class TestDeprecatedNormalizerAPI extends TestFmwk
 {
      

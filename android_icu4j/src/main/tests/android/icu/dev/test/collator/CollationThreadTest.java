@@ -14,7 +14,10 @@ import java.util.Random;
 
 import android.icu.dev.test.TestFmwk;
 import android.icu.text.Collator;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
+@RunWith(IcuTestFmwkRunner.class)
 public class CollationThreadTest extends TestFmwk {
     public static void main(String[] args) throws Exception {
         new CollationThreadTest().run(args);

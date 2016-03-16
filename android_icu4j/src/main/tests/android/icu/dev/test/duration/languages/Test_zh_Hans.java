@@ -11,11 +11,14 @@
 package android.icu.dev.test.duration.languages;
 
 import android.icu.dev.test.duration.LanguageTestRoot;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
 
 /**
  * Test cases for zh_Hans
  */
+@RunWith(IcuTestFmwkRunner.class)
 public class Test_zh_Hans extends LanguageTestRoot {
 
   /**

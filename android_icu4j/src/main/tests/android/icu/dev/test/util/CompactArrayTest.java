@@ -11,10 +11,13 @@ import android.icu.dev.test.TestFmwk;
 import android.icu.impl.Utility;
 import android.icu.util.CompactByteArray;
 import android.icu.util.CompactCharArray;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
 /**
  * @since release 2.2
  */
+@RunWith(IcuTestFmwkRunner.class)
 public final class CompactArrayTest extends TestFmwk 
 { 
     public static void main(String[] args) throws Exception

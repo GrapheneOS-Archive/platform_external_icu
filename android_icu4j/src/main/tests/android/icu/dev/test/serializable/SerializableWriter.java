@@ -12,6 +12,8 @@ package android.icu.dev.test.serializable;
 import java.net.URL;
 
 import android.icu.util.VersionInfo;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
 /**
  * This class writes the test objects for each class to a file. The work is
@@ -19,6 +21,7 @@ import android.icu.util.VersionInfo;
  * a CoverageTest w/ a non-null path, which tells it to write the data.
  * 
  */
+@RunWith(IcuTestFmwkRunner.class)
 public class SerializableWriter extends CoverageTest
 {
     public SerializableWriter(String path)

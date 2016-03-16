@@ -8,7 +8,10 @@
 package android.icu.dev.test.sample;
 
 import android.icu.dev.test.ModuleTest;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
+@RunWith(IcuTestFmwkRunner.class)
 public class ModuleTestSample extends ModuleTest {
     public static void main(String[] args) throws Exception {
     new ModuleTestSample().run(args);

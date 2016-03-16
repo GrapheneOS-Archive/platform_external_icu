@@ -72,7 +72,7 @@ unzip ${ICU4J_DIR}/main/shared/data/testdata.jar com/ibm/icu/* -d ${TESTDATA_DIR
 echo Processing test code
 # Create the android_icu4j test code
 ALL_TEST_INPUT_DIRS="${TEST_INPUT_DIRS} ${TESTDATA_DIR}"
-java ${SRCGEN_JAVA_ARGS} -cp ${CLASSPATH} com.android.icu4j.srcgen.Icu4jBasicTransform \
+java ${SRCGEN_JAVA_ARGS} -cp ${CLASSPATH} com.android.icu4j.srcgen.Icu4jTestsTransform \
   ${ALL_TEST_INPUT_DIRS} ${TEST_DEST_DIR}
 
 # Copy the data files.

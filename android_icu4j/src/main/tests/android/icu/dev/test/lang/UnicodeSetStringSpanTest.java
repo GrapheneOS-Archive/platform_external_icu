@@ -15,11 +15,14 @@ import android.icu.text.UTF16;
 import android.icu.text.UnicodeSet;
 import android.icu.text.UnicodeSet.SpanCondition;
 import android.icu.util.OutputInt;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
 /**
  * @test
  * @summary General test of UnicodeSet string span.
  */
+@RunWith(IcuTestFmwkRunner.class)
 public class UnicodeSetStringSpanTest extends TestFmwk {
 
     public static void main(String[] args) throws Exception {

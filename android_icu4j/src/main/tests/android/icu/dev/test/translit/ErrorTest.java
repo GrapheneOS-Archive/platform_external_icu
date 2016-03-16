@@ -10,11 +10,14 @@ import android.icu.dev.test.TestFmwk;
 import android.icu.text.ReplaceableString;
 import android.icu.text.Transliterator;
 import android.icu.text.UnicodeSet;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
 /**
  * @test
  * @summary Error condition test of Transliterator
  */
+@RunWith(IcuTestFmwkRunner.class)
 public class ErrorTest extends TestFmwk {
 
     public static void main(String[] args) throws Exception {

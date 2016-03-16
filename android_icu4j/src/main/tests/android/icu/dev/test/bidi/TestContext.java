@@ -9,6 +9,8 @@
 package android.icu.dev.test.bidi;
 
 import android.icu.text.Bidi;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
 /**
  * Regression test for doing transformations in context
@@ -16,6 +18,7 @@ import android.icu.text.Bidi;
  * @author Matitiahu Allouche
  */
 
+@RunWith(IcuTestFmwkRunner.class)
 public class TestContext extends BidiTest {
 
     private class ContextCase {

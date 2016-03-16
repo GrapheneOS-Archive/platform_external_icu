@@ -32,7 +32,7 @@ import static com.android.icu4j.srcgen.Icu4jTransformRules.createOptionalRule;
  * Applies basic Android's ICU4J source code transformation rules to code and fixes up the
  * jcite start/end tags so they can be used with doclava.
  *
- * <p>Intended for use when transforming sample and test code.
+ * <p>Intended for use when transforming sample code.
  */
 public class Icu4jBasicTransform {
 

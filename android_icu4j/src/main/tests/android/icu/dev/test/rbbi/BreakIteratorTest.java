@@ -16,7 +16,10 @@ import android.icu.dev.test.TestFmwk;
 import android.icu.text.BreakIterator;
 import android.icu.text.FilteredBreakIteratorBuilder;
 import android.icu.util.ULocale;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
+@RunWith(IcuTestFmwkRunner.class)
 public class BreakIteratorTest extends TestFmwk
 {
     private BreakIterator characterBreak;

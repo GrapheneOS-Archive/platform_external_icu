@@ -43,6 +43,8 @@ import android.icu.text.UnicodeSet;
 import android.icu.util.Currency;
 import android.icu.util.TimeZone;
 import android.icu.util.ULocale;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
 /**
  * This is a test file that takes in the CLDR XML test files and test against
@@ -70,6 +72,7 @@ import android.icu.util.ULocale;
  * @author medavis
  * @author John Huan Vu (johnvu@us.ibm.com)
  */
+@RunWith(IcuTestFmwkRunner.class)
 public class TestCLDRVsICU extends TestFmwk {
     static final boolean DEBUG = false;
 

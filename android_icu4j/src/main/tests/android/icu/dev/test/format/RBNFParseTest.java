@@ -12,7 +12,10 @@ import java.util.Locale;
 import android.icu.dev.test.TestFmwk;
 import android.icu.text.RuleBasedNumberFormat;
 import android.icu.util.ULocale;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
+@RunWith(IcuTestFmwkRunner.class)
 public class RBNFParseTest extends TestFmwk {
     public static void main(String[] args) {
         new RBNFParseTest().run(args);

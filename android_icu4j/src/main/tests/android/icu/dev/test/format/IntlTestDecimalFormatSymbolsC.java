@@ -18,10 +18,13 @@ import java.util.Locale;
 
 import android.icu.text.DecimalFormat;
 import android.icu.text.DecimalFormatSymbols;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
 /**
  * Tests for DecimalFormatSymbols
  **/
+@RunWith(IcuTestFmwkRunner.class)
 public class IntlTestDecimalFormatSymbolsC extends android.icu.dev.test.TestFmwk {
     
     public static void main(String[] args) throws Exception {
