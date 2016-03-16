@@ -32,7 +32,10 @@ import android.icu.impl.Utility;
 import android.icu.lang.UCharacter;
 import android.icu.lang.UProperty;
 import android.icu.text.UnicodeSet;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
+@RunWith(IcuTestFmwkRunner.class)
 public class TestUtilities extends TestFmwk {
     static final int LIMIT = 0x15; // limit to make testing more realistic in terms of collisions
     static final int ITERATIONS = 1000000;

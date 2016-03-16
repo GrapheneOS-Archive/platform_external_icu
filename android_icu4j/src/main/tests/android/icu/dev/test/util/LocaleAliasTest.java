@@ -20,7 +20,10 @@ import android.icu.text.DateFormat;
 import android.icu.util.Calendar;
 import android.icu.util.ULocale;
 import android.icu.util.UResourceBundle;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
+@RunWith(IcuTestFmwkRunner.class)
 public class LocaleAliasTest extends android.icu.dev.test.TestFmwk {
     private static final ULocale[][] _LOCALES = {
 

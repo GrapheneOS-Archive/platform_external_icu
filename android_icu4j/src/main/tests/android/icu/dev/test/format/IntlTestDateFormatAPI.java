@@ -29,7 +29,10 @@ import android.icu.text.DateFormat;
 import android.icu.text.NumberFormat;
 import android.icu.util.Calendar;
 import android.icu.util.TimeZone;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
+@RunWith(IcuTestFmwkRunner.class)
 public class IntlTestDateFormatAPI extends android.icu.dev.test.TestFmwk
 {
     public static void main(String[] args) throws Exception {

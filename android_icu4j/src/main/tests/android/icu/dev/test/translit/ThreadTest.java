@@ -10,10 +10,13 @@ package android.icu.dev.test.translit;
 import java.util.ArrayList;
 
 import android.icu.text.Transliterator;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
 // Test for ICU Ticket #7201.  With threading bugs in RuleBasedTransliterator, this
 //   test would reliably crash.
 
+@RunWith(IcuTestFmwkRunner.class)
 public class ThreadTest extends TransliteratorTest {
     public static void main(String[] args) throws Exception {
         new ThreadTest().run(args);

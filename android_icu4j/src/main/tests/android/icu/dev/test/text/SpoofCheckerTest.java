@@ -35,7 +35,10 @@ import android.icu.text.SpoofChecker.CheckResult;
 import android.icu.text.SpoofChecker.RestrictionLevel;
 import android.icu.text.UnicodeSet;
 import android.icu.util.ULocale;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
+@RunWith(IcuTestFmwkRunner.class)
 public class SpoofCheckerTest extends TestFmwk {
 
     public static void main(String[] args) throws Exception {

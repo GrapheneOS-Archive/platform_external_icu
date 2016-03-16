@@ -31,11 +31,14 @@ import android.icu.dev.test.TestUtil.JavaVendor;
 import android.icu.impl.Utility;
 import android.icu.text.CharsetDetector;
 import android.icu.text.CharsetMatch;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
 
 /**
  * @author andy
  */
+@RunWith(IcuTestFmwkRunner.class)
 public class TestCharsetDetector extends TestFmwk
 {
     

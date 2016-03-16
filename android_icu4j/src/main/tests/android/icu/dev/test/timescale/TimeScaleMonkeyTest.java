@@ -14,12 +14,15 @@ import java.util.Random;
 import android.icu.dev.test.TestFmwk;
 import android.icu.math.BigDecimal;
 import android.icu.util.UniversalTimeScale;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
 /**
  * This class tests the UniversalTimeScale class by
  * generating ramdon values in range and making sure
  * that they round-trip correctly.
  */
+@RunWith(IcuTestFmwkRunner.class)
 public class TimeScaleMonkeyTest extends TestFmwk
 {
 

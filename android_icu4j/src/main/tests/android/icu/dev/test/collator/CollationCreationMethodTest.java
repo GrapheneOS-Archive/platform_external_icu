@@ -15,6 +15,8 @@ import android.icu.dev.test.TestFmwk;
 import android.icu.text.CollationKey;
 import android.icu.text.Collator;
 import android.icu.text.RuleBasedCollator;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
 
 /**
@@ -25,6 +27,7 @@ import android.icu.text.RuleBasedCollator;
  * @author Brian Rower - IBM - August 2008
  *
  */
+@RunWith(IcuTestFmwkRunner.class)
 public class CollationCreationMethodTest extends TestFmwk 
 {
     

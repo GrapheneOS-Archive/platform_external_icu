@@ -17,11 +17,14 @@ import java.util.Random;
 
 import android.icu.text.DecimalFormat;
 import android.icu.text.NumberFormat;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
 /**
  * This test does round-trip testing (format -> parse -> format -> parse -> etc.) of
  * NumberFormat.
  */
+@RunWith(IcuTestFmwkRunner.class)
 public class IntlTestNumberFormat extends android.icu.dev.test.TestFmwk {
     
     public NumberFormat fNumberFormat;

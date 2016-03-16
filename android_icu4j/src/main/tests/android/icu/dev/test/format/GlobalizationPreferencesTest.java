@@ -28,9 +28,12 @@ import android.icu.util.IslamicCalendar;
 import android.icu.util.JapaneseCalendar;
 import android.icu.util.TimeZone;
 import android.icu.util.ULocale;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
 
 
+@RunWith(IcuTestFmwkRunner.class)
 public class GlobalizationPreferencesTest extends TestFmwk {
 
     public static void main(String[] args) throws Exception {

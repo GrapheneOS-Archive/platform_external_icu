@@ -29,7 +29,10 @@ import android.icu.text.DecimalFormat;
 import android.icu.text.UnicodeSet;
 import android.icu.util.StringTrieBuilder.Option;
 import android.icu.util.ULocale;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
+@RunWith(IcuTestFmwkRunner.class)
 public class TrieMapTest extends TestFmwk {
     static final boolean SHORT = false;
     static final boolean HACK_TO_MAKE_TESTS_PASS = false;

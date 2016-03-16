@@ -10,11 +10,14 @@ package android.icu.dev.test.stringprep;
 import android.icu.dev.test.TestFmwk;
 import android.icu.text.StringPrep;
 import android.icu.text.StringPrepParseException;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
 /**
  * @author Michael Ow
  *
  */
+@RunWith(IcuTestFmwkRunner.class)
 public class TestStringPrepProfiles extends TestFmwk {
     public static void main(String[] args) throws Exception {
         new TestStringPrepProfiles().run(args);

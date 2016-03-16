@@ -12,11 +12,14 @@ import android.icu.impl.Utility;
 import android.icu.text.Replaceable;
 import android.icu.text.ReplaceableString;
 import android.icu.text.Transliterator;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
 /**
  * @test
  * @summary Round trip test of Transliterator
  */
+@RunWith(IcuTestFmwkRunner.class)
 public class ReplaceableTest extends TestFmwk {
     
     public static void main(String[] args) throws Exception {

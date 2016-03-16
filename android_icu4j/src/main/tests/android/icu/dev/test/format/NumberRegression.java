@@ -46,7 +46,10 @@ import android.icu.text.NumberFormat;
 import android.icu.util.GregorianCalendar;
 import android.icu.util.ULocale;
 import android.icu.util.VersionInfo;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
+@RunWith(IcuTestFmwkRunner.class)
 public class NumberRegression extends android.icu.dev.test.TestFmwk {
 
     public static void main(String[] args) throws Exception {

@@ -8,6 +8,8 @@
 package android.icu.dev.test.bidi;
 
 import android.icu.text.Bidi;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
 
 /**
@@ -16,6 +18,7 @@ import android.icu.text.Bidi;
  * Ported from C by Ramy Said
  */
 
+@RunWith(IcuTestFmwkRunner.class)
 public class TestReorderArabicMathSymbols extends BidiTest {
 
     private static final String[] logicalOrder = {

@@ -23,11 +23,14 @@ import android.icu.impl.Utility;
 import android.icu.text.UnicodeSet;
 import android.icu.util.ByteArrayWrapper;
 import android.icu.util.CaseInsensitiveString;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
 /**
  * @test
  * @summary Test of internal Utility class
  */
+@RunWith(IcuTestFmwkRunner.class)
 public class UtilityTest extends TestFmwk {
 
     public static void main(String[] args) throws Exception {

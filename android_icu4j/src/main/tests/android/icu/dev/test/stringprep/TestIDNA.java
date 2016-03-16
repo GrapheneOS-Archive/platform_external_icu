@@ -16,10 +16,13 @@ import android.icu.text.StringPrep;
 import android.icu.text.StringPrepParseException;
 import android.icu.text.UCharacterIterator;
 import android.icu.text.UTF16;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
 /**
  * @author ram
  */
+@RunWith(IcuTestFmwkRunner.class)
 public class TestIDNA extends TestFmwk {
     public static void main(String[] args) throws Exception {
         new TestIDNA().run(args);

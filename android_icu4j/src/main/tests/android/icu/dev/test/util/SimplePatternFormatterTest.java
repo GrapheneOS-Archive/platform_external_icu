@@ -11,7 +11,10 @@ import android.icu.dev.test.TestFmwk;
 import android.icu.impl.SimplePatternFormatter;
 import android.icu.text.MessageFormat;
 import android.icu.util.ULocale;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
+@RunWith(IcuTestFmwkRunner.class)
 public class SimplePatternFormatterTest extends TestFmwk {
 
     /**

@@ -16,7 +16,10 @@ import java.util.Iterator;
 import android.icu.dev.test.TestFmwk;
 import android.icu.impl.duration.impl.PeriodFormatterData;
 import android.icu.impl.duration.impl.ResourceBasedPeriodFormatterDataService;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
+@RunWith(IcuTestFmwkRunner.class)
 public class ResourceBasedPeriodFormatterDataServiceTest extends TestFmwk {
 
   /**

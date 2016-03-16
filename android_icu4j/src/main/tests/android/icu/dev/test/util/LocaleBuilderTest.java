@@ -13,10 +13,13 @@ import android.icu.dev.test.TestFmwk;
 import android.icu.util.IllformedLocaleException;
 import android.icu.util.ULocale;
 import android.icu.util.ULocale.Builder;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
 /**
  * Test cases for ULocale.LocaleBuilder
  */
+@RunWith(IcuTestFmwkRunner.class)
 public class LocaleBuilderTest extends TestFmwk {
 
     public static void main(String[] args) throws Exception {

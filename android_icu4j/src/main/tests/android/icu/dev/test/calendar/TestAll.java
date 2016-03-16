@@ -7,10 +7,13 @@
  */
 package android.icu.dev.test.calendar;
 import android.icu.dev.test.TestFmwk.TestGroup;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestGroupRunner;
 
 /**
  * Top level test used to run all other calendar tests as a batch.
  */
+@RunWith(IcuTestGroupRunner.class)
 public class TestAll extends TestGroup {
     public static void main(String[] args) {
         new TestAll().run(args);

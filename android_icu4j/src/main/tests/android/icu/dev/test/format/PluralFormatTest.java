@@ -15,11 +15,14 @@ import android.icu.impl.Utility;
 import android.icu.text.CurrencyPluralInfo;
 import android.icu.text.PluralFormat;
 import android.icu.util.ULocale;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
 /**
  * @author tschumann (Tim Schumann)
  *
  */
+@RunWith(IcuTestFmwkRunner.class)
 public class PluralFormatTest extends TestFmwk {
   
   public static void main(String[] args) throws Exception {

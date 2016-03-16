@@ -36,10 +36,13 @@ import android.icu.text.RuleBasedCollator;
 import android.icu.text.UTF16;
 import android.icu.text.UnicodeSet;
 import android.icu.util.ULocale;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
 /**
  * @author Mark Davis
  */
+@RunWith(IcuTestFmwkRunner.class)
 public class AlphabeticIndexTest extends TestFmwk {
     /**
      * 

@@ -58,7 +58,10 @@ import android.icu.util.TimeZone;
 import android.icu.util.ULocale;
 import android.icu.util.UResourceBundle;
 import android.icu.util.VersionInfo;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
+@RunWith(IcuTestFmwkRunner.class)
 public class DateFormatTest extends android.icu.dev.test.TestFmwk {
     
     public static void main(String[] args) throws Exception {

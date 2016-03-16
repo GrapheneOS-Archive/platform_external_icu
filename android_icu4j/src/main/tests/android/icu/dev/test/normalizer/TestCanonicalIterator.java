@@ -19,10 +19,13 @@ import android.icu.lang.UCharacter;
 import android.icu.text.CanonicalIterator;
 import android.icu.text.Normalizer;
 import android.icu.text.UTF16;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
 
 // TODO: fit into test framework
 
+@RunWith(IcuTestFmwkRunner.class)
 public class TestCanonicalIterator extends TestFmwk {
     
     static final boolean SHOW_NAMES = false;

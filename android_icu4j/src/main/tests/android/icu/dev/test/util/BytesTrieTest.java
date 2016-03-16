@@ -18,7 +18,10 @@ import android.icu.dev.test.TestFmwk;
 import android.icu.util.BytesTrie;
 import android.icu.util.BytesTrieBuilder;
 import android.icu.util.StringTrieBuilder;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
+@RunWith(IcuTestFmwkRunner.class)
 public class BytesTrieTest extends TestFmwk {
     public static void main(String[] args) throws Exception {
         new BytesTrieTest().run(args);

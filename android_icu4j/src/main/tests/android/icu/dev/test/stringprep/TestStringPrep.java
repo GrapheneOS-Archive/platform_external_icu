@@ -12,11 +12,14 @@ import java.util.Locale;
 import android.icu.dev.test.TestFmwk;
 import android.icu.text.StringPrep;
 import android.icu.text.StringPrepParseException;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
 /**
  * @author ram
  *
  */
+@RunWith(IcuTestFmwkRunner.class)
 public class TestStringPrep extends TestFmwk {
     public static void main(String[] args) throws Exception {
         new TestStringPrep().run(args);

@@ -18,7 +18,10 @@ import android.icu.impl.Utility;
 import android.icu.text.Normalizer;
 import android.icu.text.UTF16;
 import android.icu.text.UnicodeSet;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
+@RunWith(IcuTestFmwkRunner.class)
 public class ConformanceTest extends TestFmwk {
 
     Normalizer normalizer;

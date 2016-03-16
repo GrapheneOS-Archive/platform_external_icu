@@ -11,11 +11,14 @@
 package android.icu.dev.test.duration.languages;
 
 import android.icu.dev.test.duration.LanguageTestRoot;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
 
 /**
  * Test cases for he_IL
  */
+@RunWith(IcuTestFmwkRunner.class)
 public class Test_he_IL extends LanguageTestRoot {
   /**
    * Invoke the tests.

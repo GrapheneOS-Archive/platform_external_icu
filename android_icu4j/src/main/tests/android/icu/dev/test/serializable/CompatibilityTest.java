@@ -25,10 +25,13 @@ import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
 import android.icu.dev.test.TestFmwk;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
 /**
  * @author emader
  */
+@RunWith(IcuTestFmwkRunner.class)
 public class CompatibilityTest extends TestFmwk
 {
     public class FolderTarget extends Target

@@ -17,6 +17,8 @@ import android.icu.impl.TrieBuilder;
 import android.icu.impl.TrieIterator;
 import android.icu.text.UTF16;
 import android.icu.util.RangeValueIterator;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
 /**
 * Testing class for Trie. Tests here will be simple, since both CharTrie and 
@@ -25,6 +27,7 @@ import android.icu.util.RangeValueIterator;
 * @author Syn Wee Quek
 * @since release 2.1 Jan 01 2002
 */
+@RunWith(IcuTestFmwkRunner.class)
 public final class TrieTest extends TestFmwk 
 { 
     // constructor ---------------------------------------------------

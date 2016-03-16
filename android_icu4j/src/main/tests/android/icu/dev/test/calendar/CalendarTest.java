@@ -20,11 +20,14 @@ import android.icu.util.Calendar;
 import android.icu.util.ChineseCalendar;
 import android.icu.util.GregorianCalendar;
 import android.icu.util.SimpleTimeZone;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
 /**
  * A base class for classes that test individual Calendar subclasses.
  * Defines various useful utility methods and constants
  */
+@RunWith(IcuTestFmwkRunner.class)
 public class CalendarTest extends TestFmwk {
     
     // Constants for use by subclasses, solely to save typing
