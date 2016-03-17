@@ -72,11 +72,12 @@ public class IcuTestFmwkRunner extends IcuTestParentRunner<IcuFrameworkTest> {
         return testClass.asSubclass(TestFmwk.class);
     }
 
-    IcuTestFmwkRunner(Class<? extends TestFmwk> testFmwkClass, AndroidRunnerParams runnerParams)
+    public IcuTestFmwkRunner(Class<? extends TestFmwk> testFmwkClass,
+            AndroidRunnerParams runnerParams)
             throws Exception {
         super(testFmwkClass);
 
-        this.skipExecution = runnerParams == null ? false : runnerParams.isSkipExecution();
+        this.skipExecution = runnerParams != null && runnerParams.isSkipExecution();
 
         // Create a TestFmwk and make sure that it's initialized properly.
         TestFmwk testFmwk = TestFmwkUtils.newTestFmwkInstance(testFmwkClass);
