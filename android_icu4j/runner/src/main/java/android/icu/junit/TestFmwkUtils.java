@@ -17,12 +17,14 @@
 package android.icu.junit;
 
 import android.icu.dev.test.TestFmwk;
+import android.icu.util.TimeZone;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Abstracts away reflection code that accesses various hidden fields and methods in the ICU test
@@ -51,6 +53,26 @@ public class TestFmwkUtils {
     private static final Field paramsField = getField(TestFmwk.class, "params");
 
     private static final Method getTargetsMethod = getTargetsMethod();
+
+    /**
+     * The default time zone for all the tests.
+     */
+    private final static TimeZone defaultTimeZone =
+        getStaticFieldValue("defaultTimeZone", TimeZone.class);
+
+    /**
+     * The default locale used for all the tests.
+     */
+    private final static Locale defaultLocale = getStaticFieldValue("defaultLocale", Locale.class);
+
+    private static <T> T getStaticFieldValue(String fieldName, Class<T> fieldClass) {
+        Field field = getField(TestFmwk.class, fieldName);
+        try {
+            return fieldClass.cast(field.get(null));
+        } catch (IllegalAccessException e) {
+            throw new RuntimeException("Could not get field: " + fieldName, e);
+        }
+    }
 
     private static Field getField(Class<?> theClass, String name) {
         // Find the field, and complain if it is not where it's expected to be.
@@ -86,6 +108,13 @@ public class TestFmwkUtils {
      */
     private static TestFmwk.Target test_for_TestFmwk_GetTargets(TestFmwk testFmwk) {
         try {
+            // Set the default locale and time zone here as it can affect the targets returned.
+            // ICU4J relies on the fact that the Target.run() method of a TestGroup based test is
+            // called before the getTargets() method is called. Under JUnit we get the targets
+            // first.
+            Locale.setDefault(defaultLocale);
+            TimeZone.setDefault(defaultTimeZone);
+
             return (TestFmwk.Target) getTargetsMethod.invoke(testFmwk, new Object[] {null});
         } catch (InvocationTargetException | IllegalAccessException e) {
             throw new IllegalStateException(
@@ -98,6 +127,11 @@ public class TestFmwkUtils {
         // Create a TestFmwk and make sure that it's params field is initialized.
         T testFmwk = testFmwkClass.newInstance();
         TestFmwk.TestParams testParams = TestFmwk.TestParams.create(new String[0], null);
+        if (testParams == null) {
+            throw new IllegalStateException("Could not create TestParams");
+        }
+        // Set a dummy stack to avoid NPE if a test logs a known error.
+        testParams.stack = testParams.new State(null, "DUMMY", false);
         paramsField.set(testFmwk, testParams);
         return testFmwk;
     }
