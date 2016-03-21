@@ -18,6 +18,7 @@ package android.icu.junit;
 
 import android.icu.dev.test.TestFmwk;
 import android.support.test.internal.util.AndroidRunnerParams;
+import org.junit.internal.builders.AnnotatedBuilder;
 import org.junit.runner.Runner;
 import org.junit.runners.model.RunnerBuilder;
 
@@ -28,8 +29,11 @@ public class IcuTestRunnerBuilder extends RunnerBuilder {
 
     private final AndroidRunnerParams runnerParams;
 
+    private final AnnotatedBuilder annotatedBuilder;
+
     public IcuTestRunnerBuilder(AndroidRunnerParams runnerParams) {
         this.runnerParams = runnerParams;
+        annotatedBuilder = new AnnotatedBuilder(this);
     }
 
     @Override
@@ -44,6 +48,7 @@ public class IcuTestRunnerBuilder extends RunnerBuilder {
             return new IcuTestFmwkRunner(testClass.asSubclass(TestFmwk.class), runnerParams);
         }
 
-        return null;
+        // Fallback to using the annotation builder to support the extra icu cts tests.
+        return annotatedBuilder.safeRunnerForClass(testClass);
     }
 }
