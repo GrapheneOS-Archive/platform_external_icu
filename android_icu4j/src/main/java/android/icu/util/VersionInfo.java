@@ -530,6 +530,7 @@ public final class VersionInfo implements Comparable<VersionInfo>
     /**
      * Main method prints out ICU version information
      * @param args arguments (currently not used)
+     * @hide unsupported on Android
      */
     public static void main(String[] args) {
         String icuApiVer;
