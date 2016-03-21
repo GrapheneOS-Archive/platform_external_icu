@@ -113,6 +113,75 @@
  */
 --
 
+# Remove ICU class docs that refer to provisional methods.
+--type:android.icu.util.IslamicCalendar
+/**
+ * <code>IslamicCalendar</code> is a subclass of <code>Calendar</code>
+ * that that implements the Islamic civil and religious calendars.  It
+ * is used as the civil calendar in most of the Arab world and the
+ * liturgical calendar of the Islamic faith worldwide.  This calendar
+ * is also known as the "Hijri" calendar, since it starts at the time
+ * of Mohammed's emigration (or "hijra") to Medinah on Thursday, 
+ * July 15, 622 AD (Julian).
+ * <p>
+ * The Islamic calendar is strictly lunar, and thus an Islamic year of twelve
+ * lunar months does not correspond to the solar year used by most other
+ * calendar systems, including the Gregorian.  An Islamic year is, on average,
+ * about 354 days long, so each successive Islamic year starts about 11 days
+ * earlier in the corresponding Gregorian year.
+ * <p>
+ * Each month of the calendar starts when the new moon's crescent is visible
+ * at sunset.  However, in order to keep the time fields in this class
+ * synchronized with those of the other calendars and with local clock time,
+ * we treat days and months as beginning at midnight,
+ * roughly 6 hours after the corresponding sunset.
+ * <p>
+ * There are three main variants of the Islamic calendar in existence.  The first
+ * is the <em>civil</em> calendar, which uses a fixed cycle of alternating 29-
+ * and 30-day months, with a leap day added to the last month of 11 out of
+ * every 30 years.  This calendar is easily calculated and thus predictable in
+ * advance, so it is used as the civil calendar in a number of Arab countries.
+ * This is the default behavior of a newly-created <code>IslamicCalendar</code>
+ * object.
+ * <p>
+ * The Islamic <em>religious</em> calendar and Saudi Arabia's <em>Umm al-Qura</em> 
+ * calendar, however, are based on the <em>observation</em> of the crescent moon.  
+ * It is thus affected by the position at which the
+ * observations are made, seasonal variations in the time of sunset, the
+ * eccentricities of the moon's orbit, and even the weather at the observation
+ * site.  This makes it impossible to calculate in advance, and it causes the
+ * start of a month in the religious calendar to differ from the civil calendar
+ * by up to three days.
+ * <p>
+ * Using astronomical calculations for the position of the sun and moon, the
+ * moon's illumination, and other factors, it is possible to determine the start
+ * of a lunar month with a fairly high degree of certainty.  However, these
+ * calculations are extremely complicated and thus slow, so most algorithms,
+ * including the one used here, are only approximations of the true astronomical
+ * calculations.  At present, the approximations used in this class are fairly
+ * simplistic; they will be improved in later versions of the code.
+ * <p>
+ * Like the Islamic religious calendar, <em>Umm al-Qura</em> is also based 
+ * on the sighting method of the crescent moon but is standardized by Saudi Arabia.
+ * <p>  
+ * The fixed-cycle <em>civil</em> calendar is used.
+ * <p>
+ * This class should not be subclassed.</p>
+ * <p>
+ * IslamicCalendar usually should be instantiated using 
+ * {@link com.ibm.icu.util.Calendar#getInstance(ULocale)} passing in a <code>ULocale</code>
+ * with the tag <code>"@calendar=islamic"</code> or <code>"@calendar=islamic-civil"</code> 
+ * or <code>"@calendar=islamic-umalqura"</code>.</p>
+ *
+ * @see com.ibm.icu.util.GregorianCalendar
+ * @see com.ibm.icu.util.Calendar
+ *
+ * @author Laura Werner
+ * @author Alan Liu
+ * @stable ICU 2.8
+ */
+--
+
 # Remove @see reference to non-public class TimeUnitAmount.
 --type:android.icu.util.TimeUnit
 /**
@@ -182,6 +251,61 @@
  * @see          SimpleTimeZone
  * @author       Mark Davis, Deborah Goldsmith, Chen-Lieh Huang, Alan Liu
  * @stable ICU 2.0
+ */
+--
+
+# Remove ICU class docs that refer to provisional methods.
+--type:android.icu.util.ULocale
+/**
+ * {@icuenhanced java.util.Locale}.{@icu _usage_}
+ *
+ * A class analogous to {@link java.util.Locale} that provides additional
+ * support for ICU protocol.  In ICU 3.0 this class is enhanced to support
+ * RFC 3066 language identifiers.
+ *
+ * <p>Many classes and services in ICU follow a factory idiom, in
+ * which a factory method or object responds to a client request with
+ * an object.  The request includes a locale (the <i>requested</i>
+ * locale), and the returned object is constructed using data for that
+ * locale.  The system may lack data for the requested locale, in
+ * which case the locale fallback mechanism will be invoked until a
+ * populated locale is found (the <i>valid</i> locale).  Furthermore,
+ * even when a populated locale is found (the <i>valid</i> locale),
+ * further fallback may be required to reach a locale containing the
+ * specific data required by the service (the <i>actual</i> locale).
+ *
+ * <p>ULocale performs <b>'normalization'</b> and <b>'canonicalization'</b> of locale ids.
+ * Normalization 'cleans up' ICU locale ids as follows:
+ * <ul>
+ * <li>language, script, country, variant, and keywords are properly cased<br>
+ * (lower, title, upper, upper, and lower case respectively)</li>
+ * <li>hyphens used as separators are converted to underscores</li>
+ * <li>three-letter language and country ids are converted to two-letter
+ * equivalents where available</li>
+ * <li>surrounding spaces are removed from keywords and values</li>
+ * <li>if there are multiple keywords, they are put in sorted order</li>
+ * </ul>
+ * Canonicalization additionally performs the following:
+ * <ul>
+ * <li>POSIX ids are converted to ICU format IDs</li>
+ * <li>'grandfathered' 3066 ids are converted to ICU standard form</li>
+ * <li>'PREEURO' and 'EURO' variants are converted to currency keyword form,
+ * with the currency
+ * id appropriate to the country of the locale (for PREEURO) or EUR (for EURO).
+ * </ul>
+ * All ULocale constructors automatically normalize the locale id.  To handle
+ * POSIX ids, <code>canonicalize</code> can be called to convert the id
+ * to canonical form, or the <code>canonicalInstance</code> factory method
+ * can be called.
+ *
+ * <p>Note: The <i>actual</i> locale is returned correctly, but the <i>valid</i>
+ * locale is not, in most cases.
+ *
+ * @see java.util.Locale
+ * @author weiv
+ * @author Alan Liu
+ * @author Ram Viswanadha
+ * @stable ICU 2.8
  */
 --
 
