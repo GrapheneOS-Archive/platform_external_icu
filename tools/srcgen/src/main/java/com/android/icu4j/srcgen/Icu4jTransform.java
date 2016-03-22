@@ -506,6 +506,8 @@ public class Icu4jTransform {
       /* ASCII order please. */
       "field:android.icu.util.TimeZone#TIMEZONE_ICU",
       "field:android.icu.util.TimeZone#TIMEZONE_JDK",
+      "method:android.icu.util.IslamicCalendar#isCivil()",
+      "method:android.icu.util.IslamicCalendar#setCivil(boolean)",
       "method:android.icu.util.TimeZone#getDefaultTimeZoneType()",
       "method:android.icu.util.TimeZone#setDefault(TimeZone)",
       "method:android.icu.util.TimeZone#setDefaultTimeZoneType(int)",
