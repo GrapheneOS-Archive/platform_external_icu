@@ -297,6 +297,7 @@ public class IslamicCalendar extends Calendar {
      *
      * @param beCivil   <code>true</code> to use the civil calendar,
      *                  <code>false</code> to use the astronomical calendar.
+     * @hide unsupported on Android
      */
     public void setCivil(boolean beCivil)
     {
@@ -323,6 +324,7 @@ public class IslamicCalendar extends Calendar {
      * Returns <code>true</code> if this object is using the fixed-cycle civil
      * calendar, or <code>false</code> if using the religious, astronomical
      * calendar.
+     * @hide unsupported on Android
      * 
      */
     public boolean isCivil() {
@@ -909,8 +911,6 @@ public class IslamicCalendar extends Calendar {
     
     /**
      * sets the calculation type for this calendar.
-     * 
-     * @hide draft / provisional / internal are hidden on Android
      */
     public void setCalculationType(CalculationType type) {
         cType = type;
@@ -924,8 +924,6 @@ public class IslamicCalendar extends Calendar {
 
     /**
      * gets the calculation type for this calendar.
-     * 
-     * @hide draft / provisional / internal are hidden on Android
      */
     public CalculationType getCalculationType() {
         return cType;
