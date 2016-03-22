@@ -25,6 +25,7 @@ import org.junit.runners.Suite;
 // Add classes in alphabetical order with a trailing comma even if it's the last entry.
 @Suite.SuiteClasses({
         AlphabeticIndexTest.class,
+        DateFormatSymbolsTest.class,
         RelativeDateTimeFormatterTest.class,
         TimeZoneNamesTest.class,
         UnicodeSetTest.class,
