@@ -164,6 +164,7 @@ public final class CollationKey implements Comparable<CollationKey>
      *            argument source. 
      * @see Collator
      * @see RawCollationKey
+     * @hide unsupported on Android
      */
     public CollationKey(String source, RawCollationKey key)
     {
