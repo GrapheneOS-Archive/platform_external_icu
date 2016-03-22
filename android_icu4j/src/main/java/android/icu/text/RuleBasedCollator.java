@@ -1053,6 +1053,7 @@ public final class RuleBasedCollator extends Collator {
      * @see #getCollationKey
      * @see #compare(String, String)
      * @see RawCollationKey
+     * @hide unsupported on Android
      */
     @Override
     public RawCollationKey getRawCollationKey(String source, RawCollationKey key) {

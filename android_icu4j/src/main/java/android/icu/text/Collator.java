@@ -1223,6 +1223,7 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
      * @see #compare(String, String)
      * @see #getCollationKey
      * @see RawCollationKey
+     * @hide unsupported on Android
      */
     public abstract RawCollationKey getRawCollationKey(String source,
                                                        RawCollationKey key);
