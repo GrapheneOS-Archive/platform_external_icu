@@ -26,6 +26,7 @@ import org.junit.runners.Suite;
 @Suite.SuiteClasses({
         RelativeDateTimeFormatterTest.class,
         TimeZoneNamesTest.class,
+        UnicodeSetTest.class,
 })
 public class TestAll {
 }
