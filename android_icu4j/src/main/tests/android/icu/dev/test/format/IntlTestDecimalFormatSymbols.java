@@ -22,6 +22,7 @@ import java.util.Locale;
 
 import android.icu.text.DecimalFormatSymbols;
 import android.icu.util.Currency;
+import android.icu.util.ULocale;
 import org.junit.runner.RunWith;
 import android.icu.junit.IcuTestFmwkRunner;
 
@@ -44,6 +45,13 @@ public class IntlTestDecimalFormatSymbols extends android.icu.dev.test.TestFmwk
         }
 
         // just do some VERY basic tests to make sure that get/set work
+        
+        if(!en.getLocale().equals(Locale.ENGLISH)) {
+            errln("ERROR: getLocale failed");
+        }
+        if(!en.getULocale().equals(ULocale.ENGLISH)) {
+            errln("ERROR: getULocale failed");
+        }
 
         char zero = en.getZeroDigit();
         fr.setZeroDigit(zero);
@@ -147,6 +155,12 @@ public class IntlTestDecimalFormatSymbols extends android.icu.dev.test.TestFmwk
         fr.setExponentSeparator(exponential);
         if(fr.getExponentSeparator() != en.getExponentSeparator()) {
             errln("ERROR: get/set Exponential failed");
+        }
+        
+        String exponentMultiplicationSign = en.getExponentMultiplicationSign();
+        fr.setExponentMultiplicationSign(exponentMultiplicationSign);
+        if(fr.getExponentMultiplicationSign() != en.getExponentMultiplicationSign()) {
+            errln("ERROR: get/set ExponentMultiplicationSign failed");
         }
         
         // Test CurrencySpacing.

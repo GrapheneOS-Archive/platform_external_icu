@@ -159,9 +159,7 @@ public final class Norm2AllModes {
             return isNormalized(s) ? Normalizer.YES : Normalizer.NO;
         }
 
-        public int getQuickCheck(int c) {
-            return 1;
-        }
+        public abstract int getQuickCheck(int c);
 
         public final Normalizer2Impl impl;
     }

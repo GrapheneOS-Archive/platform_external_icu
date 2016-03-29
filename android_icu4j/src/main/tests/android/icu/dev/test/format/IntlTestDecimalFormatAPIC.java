@@ -22,9 +22,11 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 
+import android.icu.text.CurrencyPluralInfo;
 import android.icu.text.DecimalFormat;
 import android.icu.text.DecimalFormatSymbols;
 import android.icu.text.NumberFormat;
+import android.icu.util.ULocale;
 import org.junit.runner.RunWith;
 import android.icu.junit.IcuTestFmwkRunner;
 
@@ -52,6 +54,9 @@ public class IntlTestDecimalFormatAPIC extends android.icu.dev.test.TestFmwk {
         DecimalFormat def = new DecimalFormat();
 
         final String pattern = new String("#,##0.# FF");
+        final DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.FRENCH);
+        final CurrencyPluralInfo infoInput = new CurrencyPluralInfo(ULocale.FRENCH);
+        
         DecimalFormat pat = null;
         try {
             pat = new DecimalFormat(pattern);
@@ -59,9 +64,20 @@ public class IntlTestDecimalFormatAPIC extends android.icu.dev.test.TestFmwk {
             errln("ERROR: Could not create DecimalFormat (pattern)");
         }
 
-        DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.FRENCH);
+        DecimalFormat cust1 = null;
+        try {
+            cust1 = new DecimalFormat(pattern, symbols);
+        } catch (IllegalArgumentException e) {
+            errln("ERROR: Could not create DecimalFormat (pattern, symbols)");
+        }
+        
+        DecimalFormat cust2 = null;
+        try {
+            cust2 = new DecimalFormat(pattern, symbols, infoInput, NumberFormat.PLURALCURRENCYSTYLE);
+        } catch (IllegalArgumentException e) {
+            errln("ERROR: Could not create DecimalFormat (pattern, symbols, infoInput, style)");
+        }
 
-        DecimalFormat cust1 = new DecimalFormat(pattern, symbols);
 
         // ======= Test clone(), assignment, and equality
 
@@ -191,6 +207,11 @@ public class IntlTestDecimalFormatAPIC extends android.icu.dev.test.TestFmwk {
         String locPat;
         locPat = pat.toLocalizedPattern();
         logln("Localized pattern is " + locPat);
+        
+        pat.setCurrencyPluralInfo(infoInput);
+        if(!infoInput.equals(pat.getCurrencyPluralInfo())) {
+            errln("ERROR: set/get CurrencyPluralInfo() failed");
+        }
 
         // ======= Test applyPattern()
 
