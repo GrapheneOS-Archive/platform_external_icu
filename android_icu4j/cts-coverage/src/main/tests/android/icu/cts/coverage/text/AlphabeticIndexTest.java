@@ -88,14 +88,17 @@ public class AlphabeticIndexTest {
         }
         assertNotNull(underflowBucket);
         assertEquals("underflow", underflowBucket.getLabel());
+        assertEquals("underflow", index.getUnderflowLabel());
         assertEquals(1, underflowBucket.size());
 
         assertNotNull(overflowBucket);
         assertEquals("overflow", overflowBucket.getLabel());
+        assertEquals("overflow", index.getOverflowLabel());
         assertEquals(1, overflowBucket.size());
 
         assertNotNull(inflowBucket);
         assertEquals("inflow", inflowBucket.getLabel());
+        assertEquals("inflow", index.getInflowLabel());
         assertEquals(1, inflowBucket.size());
     }
 }
