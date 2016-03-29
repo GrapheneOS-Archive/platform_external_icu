@@ -12,6 +12,7 @@ import java.text.FieldPosition;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
+import java.util.Locale;
 import java.util.Map;
 
 import com.ibm.icu.dev.test.TestFmwk;
@@ -268,8 +269,7 @@ public class CompactDecimalFormatTest extends TestFmwk {
 
     public void TestArabicLongStyle() {
         NumberFormat cdf =
-                CompactDecimalFormat.getInstance(
-                        ULocale.forLanguageTag("ar"), CompactStyle.LONG);
+                CompactDecimalFormat.getInstance(new Locale("ar"), CompactStyle.LONG);
         assertEquals("Arabic Long", "\u200F-\u0665\u066B\u0663 \u0623\u0644\u0641", cdf.format(-5300));
     }
 

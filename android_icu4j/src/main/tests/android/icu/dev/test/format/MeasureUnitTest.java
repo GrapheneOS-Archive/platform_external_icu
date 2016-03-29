@@ -1413,7 +1413,17 @@ public class MeasureUnitTest extends TestFmwk {
         }
         return unitsToPerUnits;
     }
-    
+
+    public void testParseObject() {
+        MeasureFormat mf = MeasureFormat.getInstance(Locale.GERMAN, FormatWidth.NARROW);
+        try {
+            mf.parseObject("3m", null);
+            fail("MeasureFormat.parseObject(String, ParsePosition) " +
+                    "should throw an UnsupportedOperationException");
+        } catch (UnsupportedOperationException expected) {
+        }
+    }
+
     // DO NOT DELETE THIS FUNCTION! It may appear as dead code, but we use this to generate code
     // for MeasureFormat during the release process.
     static void generateCXXHConstants(String thisVersion) {
