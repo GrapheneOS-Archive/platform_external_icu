@@ -26,6 +26,7 @@ import org.junit.runners.Suite;
 @Suite.SuiteClasses({
         AlphabeticIndexTest.class,
         DateFormatSymbolsTest.class,
+        DateIntervalFormatTest.class,
         LocaleDisplayNamesTest.class,
         RelativeDateTimeFormatterTest.class,
         TimeZoneNamesTest.class,
