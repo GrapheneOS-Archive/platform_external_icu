@@ -13,6 +13,7 @@
 package com.ibm.icu.dev.test.format;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.math.BigInteger;
 import java.text.AttributedCharacterIterator;
 import java.text.FieldPosition;
@@ -20,6 +21,7 @@ import java.text.Format;
 import java.text.ParseException;
 import java.text.ParsePosition;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
@@ -40,6 +42,7 @@ import com.ibm.icu.text.MeasureFormat;
 import com.ibm.icu.text.NumberFormat;
 import com.ibm.icu.text.NumberFormat.NumberFormatFactory;
 import com.ibm.icu.text.NumberFormat.SimpleNumberFormatFactory;
+import com.ibm.icu.text.NumberingSystem;
 import com.ibm.icu.util.Currency;
 import com.ibm.icu.util.CurrencyAmount;
 import com.ibm.icu.util.ULocale;
@@ -1952,6 +1955,50 @@ public class NumberFormatTest extends com.ibm.icu.dev.test.TestFmwk {
             } else {
                 expect2(fmt,item.value,item.expectedResult);
             }
+        }
+    }
+    
+    // Coverage tests for methods not being called otherwise.
+    public void TestNumberingSystemCoverage() {
+        // Test getAvaliableNames
+        String[] availableNames = NumberingSystem.getAvailableNames();
+        if (availableNames == null || availableNames.length <= 0) {
+            errln("ERROR: NumberingSystem.getAvailableNames() returned a null or empty array.");
+        } else {
+            boolean latnFound = false;
+            for (String name : availableNames){
+                if ("latn".equals(name)) {
+                    latnFound = true;
+                    break;
+                }
+            }
+            
+            if (!latnFound) {
+                errln("ERROR: 'latn' numbering system not found on NumberingSystem.getAvailableNames().");
+            }
+        }
+        
+        // Test NumberingSystem.getInstance()
+        NumberingSystem ns1 = NumberingSystem.getInstance();
+        if (ns1 == null || ns1.isAlgorithmic()) {
+            errln("ERROR: NumberingSystem.getInstance() returned a null or invalid NumberingSystem");
+        }
+        
+        // Test NumberingSystem.getInstance(int,boolean,String)
+        /* Parameters used: the ones used in the default constructor
+         * radix = 10;
+         * algorithmic = false;
+         * desc = "0123456789";
+         */
+        NumberingSystem ns2 = NumberingSystem.getInstance(10, false, "0123456789");
+        if (ns2 == null || ns2.isAlgorithmic()) {
+            errln("ERROR: NumberingSystem.getInstance(int,boolean,String) returned a null or invalid NumberingSystem");
+        }
+        
+        // Test NumberingSystem.getInstance(Locale)
+        NumberingSystem ns3 = NumberingSystem.getInstance(Locale.ENGLISH);
+        if (ns3 == null || ns3.isAlgorithmic()) {
+            errln("ERROR: NumberingSystem.getInstance(Locale) returned a null or invalid NumberingSystem");
         }
     }
 
