@@ -865,6 +865,7 @@ public class DateTimePatternGenerator implements Freezable<DateTimePatternGenera
     static final public int ZONE = 15; 
 
     /**
+     * @hide unsupported on Android
      */
     static final public int TYPE_LIMIT = 16;
 

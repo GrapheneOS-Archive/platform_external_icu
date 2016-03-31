@@ -115,6 +115,7 @@ public final class CollationKey implements Comparable<CollationKey>
 
         /**
          * Number of bound mode
+         * @hide unsupported on Android
          */
         public static final int COUNT = 3;
         

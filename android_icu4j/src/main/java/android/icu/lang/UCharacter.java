@@ -950,6 +950,7 @@ public final class UCharacter implements ECharacterCategory, ECharacterDirection
         public static final int SUTTON_SIGNWRITING_ID = 262; /*[1D800]*/
 
         /**
+         * @hide unsupported on Android
          */
         public static final int COUNT = 263;
 
@@ -2159,6 +2160,7 @@ public final class UCharacter implements ECharacterCategory, ECharacterDirection
          */
         public static final int WIDE = 5;
         /**
+         * @hide unsupported on Android
          */
         public static final int COUNT = 6;
     }
@@ -2224,6 +2226,7 @@ public final class UCharacter implements ECharacterCategory, ECharacterDirection
          */
         public static final int WIDE = 17;
         /**
+         * @hide unsupported on Android
          */
         public static final int COUNT = 18;
     }
@@ -2253,6 +2256,7 @@ public final class UCharacter implements ECharacterCategory, ECharacterDirection
          */
         public static final int TRANSPARENT = 5;
         /**
+         * @hide unsupported on Android
          */
         public static final int COUNT = 6;
     }
@@ -2495,6 +2499,7 @@ public final class UCharacter implements ECharacterCategory, ECharacterDirection
         public static final int STRAIGHT_WAW = 85;
 
         /**
+         * @hide unsupported on Android
          */
         public static final int COUNT = 86;
     }
@@ -2543,6 +2548,7 @@ public final class UCharacter implements ECharacterCategory, ECharacterDirection
         /***/
         public static final int REGIONAL_INDICATOR = 12;  /*[RI]*/ /* new in Unicode 6.2/ICU 50 */
         /**
+         * @hide unsupported on Android
          */
         public static final int COUNT = 13;
     }
@@ -2600,6 +2606,7 @@ public final class UCharacter implements ECharacterCategory, ECharacterDirection
         /***/
         public static final int DOUBLE_QUOTE = 16;     /*[DQ]*/
         /**
+         * @hide unsupported on Android
          */
         public static final int COUNT = 17;
     }
@@ -2655,6 +2662,7 @@ public final class UCharacter implements ECharacterCategory, ECharacterDirection
          */
         public static final int SCONTINUE = 14;
         /**
+         * @hide unsupported on Android
          */
         public static final int COUNT = 15;
     }
@@ -2787,6 +2795,7 @@ public final class UCharacter implements ECharacterCategory, ECharacterDirection
         /***/
         public static final int REGIONAL_INDICATOR = 39;  /*[RI]*/ /* new in Unicode 6.2/ICU 50 */
         /**
+         * @hide unsupported on Android
          */
         public static final int COUNT = 40;
     }
@@ -2810,6 +2819,7 @@ public final class UCharacter implements ECharacterCategory, ECharacterDirection
          */
         public static final int NUMERIC = 3;
         /**
+         * @hide unsupported on Android
          */
         public static final int COUNT = 4;
     }
@@ -2840,6 +2850,7 @@ public final class UCharacter implements ECharacterCategory, ECharacterDirection
          */
         public static final int LVT_SYLLABLE        = 5;   /*[LVT]*/
         /**
+         * @hide unsupported on Android
          */
         public static final int COUNT               = 6;
     }
@@ -2863,6 +2874,7 @@ public final class UCharacter implements ECharacterCategory, ECharacterDirection
          */
         public static final int CLOSE = 2;
         /**
+         * @hide unsupported on Android
          */
         public static final int COUNT = 3;
     }

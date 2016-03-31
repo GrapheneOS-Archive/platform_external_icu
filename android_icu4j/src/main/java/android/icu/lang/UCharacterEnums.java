@@ -199,6 +199,7 @@ public class UCharacterEnums {
         
         /**
          * Character type count
+         * @hide unsupported on Android
          */
         public static final byte CHAR_CATEGORY_COUNT     = 30;
     }
@@ -458,6 +459,7 @@ public class UCharacterEnums {
 
         /**
          * Number of directional types
+         * @hide unsupported on Android
          */
         public static final int CHAR_DIRECTION_COUNT       = 23;
 
