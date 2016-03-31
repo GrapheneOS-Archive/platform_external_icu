@@ -456,6 +456,7 @@ public interface UProperty
 
     /** 
      * One more than the last constant for binary Unicode properties. 
+     * @hide unsupported on Android
      */
     public static final int BINARY_LIMIT = 57;
 
@@ -617,6 +618,7 @@ public interface UProperty
     /** 
      * One more than the last constant for enumerated/integer Unicode 
      * properties. 
+     * @hide unsupported on Android
      */
     public static final int INT_LIMIT = 0x1016;
 
@@ -637,6 +639,7 @@ public interface UProperty
 
     /** 
      * One more than the last constant for bit-mask Unicode properties. 
+     * @hide unsupported on Android
      */ 
     public static final int MASK_LIMIT = 0x2001; 
     
@@ -653,6 +656,7 @@ public interface UProperty
 
     /**
      * One more than the last constant for double Unicode properties.
+     * @hide unsupported on Android
      */
     public static final int DOUBLE_LIMIT = 0x3001;
 
@@ -755,6 +759,7 @@ public interface UProperty
 
     /**
      * One more than the last constant for string Unicode properties.
+     * @hide unsupported on Android
      */
     public static final int STRING_LIMIT = 0x400E;
 
@@ -771,6 +776,7 @@ public interface UProperty
     public static final int OTHER_PROPERTY_START=SCRIPT_EXTENSIONS;
     /**
      * One more than the last constant for Unicode properties with unusual value types.
+     * @hide unsupported on Android
      */
     public static final int OTHER_PROPERTY_LIMIT=0x7001;
 
@@ -803,6 +809,7 @@ public interface UProperty
         /**
          * The number of predefined property name choices.  Individual
          * properties or values may have more than COUNT aliases.
+         * @hide unsupported on Android
          */
         static final int COUNT = 2;
     }
