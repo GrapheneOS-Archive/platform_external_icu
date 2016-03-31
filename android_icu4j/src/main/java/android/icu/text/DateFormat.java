@@ -423,6 +423,7 @@ public abstract class DateFormat extends UFormat {
     /**
      * <strong>[icu]</strong> Number of FieldPosition selectors for DateFormat.
      * Valid selectors range from 0 to FIELD_COUNT-1.
+     * @hide unsupported on Android
      */
 
     public final static int FIELD_COUNT = 36;

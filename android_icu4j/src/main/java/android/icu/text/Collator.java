@@ -277,6 +277,7 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
         /**
          * The limit of the reorder codes. This is intended for use in range checking 
          * and enumeration of the reorder codes.
+         * @hide unsupported on Android
          */
         public final static int LIMIT          = 0x1005;        
     }
