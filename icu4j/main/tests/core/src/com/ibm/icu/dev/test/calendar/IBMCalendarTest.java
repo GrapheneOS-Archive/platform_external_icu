@@ -6,6 +6,7 @@
  */
 package com.ibm.icu.dev.test.calendar;
 
+import java.text.FieldPosition;
 import java.text.ParseException;
 import java.util.Date;
 import java.util.Locale;
@@ -15,6 +16,7 @@ import com.ibm.icu.impl.CalendarAstronomer;
 import com.ibm.icu.impl.LocaleUtility;
 import com.ibm.icu.impl.ZoneMeta;
 import com.ibm.icu.text.DateFormat;
+import com.ibm.icu.text.DateFormatSymbols;
 import com.ibm.icu.text.SimpleDateFormat;
 import com.ibm.icu.util.BuddhistCalendar;
 import com.ibm.icu.util.Calendar;
@@ -938,9 +940,9 @@ public class IBMCalendarTest extends CalendarTest {
             private static final long serialVersionUID = -4558903444622684759L;
 
             protected int handleGetLimit(int field, int limitType) {
-                if (field == Calendar.LEAST_MAXIMUM) {
+                if (limitType == Calendar.LEAST_MAXIMUM) {
                     return 1;
-                } else if (field == Calendar.GREATEST_MINIMUM) {
+                } else if (limitType == Calendar.GREATEST_MINIMUM) {
                     return 7;
                 }
                return -1;
@@ -953,19 +955,7 @@ public class IBMCalendarTest extends CalendarTest {
                 }
             }
             protected int handleGetExtendedYear() {return 2017;}
-            
-            protected void handleComputeFields(int julianDay) {
-                computeGregorianFields(julianDay);
-            }
-            protected int handleGetMonthLength(int eyear, int emonth) {
-                // Purposely incorrect values.
-                if (emonth == Calendar.APRIL) {
-                    return 30;
-                } else {
-                    return 31;
-                }
-            }
-            
+
             public void run(){
                 if (Calendar.gregorianPreviousMonthLength(2000,2) != 29){
                     errln("Year 2000 Feb should have 29 days.");
@@ -984,57 +974,34 @@ public class IBMCalendarTest extends CalendarTest {
 
                 // Tests for complete coverage of Calendar functions.
                 int julianDay = Calendar.millisToJulianDay(millis - 1);
-                if (julianDay != Calendar.MAX_JULIAN - 1) {
-                    errln("Did not get the expected value from millisToJulianDay (" + (Calendar.MAX_JULIAN - 1) +
-                            ". Got:" + julianDay);      
-                }
+                assertEquals("Julian max day -1", julianDay, Calendar.MAX_JULIAN - 1);
                               
-                DateFormat df1 = handleGetDateFormat("yyyy-d:MM", "option=xyz", Locale.getDefault());
-                if (!df1.equals(handleGetDateFormat("yyyy-d:MM", "option=xyz",ULocale.getDefault()))){
+                DateFormat df1 = handleGetDateFormat("GG yyyy-d:MM", "option=xyz", Locale.getDefault());
+                if (!df1.equals(handleGetDateFormat("GG yyyy-d:MM", "option=xyz", ULocale.getDefault()))){
                     errln ("Calendar.handleGetDateFormat(String, Locale) should delegate to ( ,ULocale)");                  
                 }
-                // Check the result with actual formatting.
-                set(1978, 4, 27);
-                String output = df1.format(this);
-                if (!output.equals("1978-27:05")) {
-                    errln ("Format gave " + output + " but expected 0001-00:01");                  
-                }
-                
+   
                 // Prove that the local overrides are used.
-                int leastMsInDay = getLimit(Calendar.LEAST_MAXIMUM, Calendar.MILLISECONDS_IN_DAY);
-                if (leastMsInDay != 1) {
-                    errln ("Calendar.getLimit(LEAST_MAXIMUM, MILLISECONDS_IN_DAY) = " + leastMsInDay + " but expected 1");                  
-                }
-                // TODO: Check the result.
-                int maxMsInDay = getLimit(Calendar.GREATEST_MINIMUM, Calendar.WEEK_OF_MONTH);
-                if (maxMsInDay != 7) {
-                    errln ("Calendar.getLimit(GREATEST_MINIMUM, WEEK_OF_MONTH) = " + maxMsInDay + " but expected 7");                  
-                }                
-                int febLeapLength = handleGetMonthLength(2020, Calendar.FEBRUARY);
-                if (febLeapLength != 31) {
-                    errln ("Calendar.handleGetMonthLength = " + febLeapLength + " for February 2020 but should be 31");                  
-                }
-                int exYear = handleGetExtendedYear();
-                if (exYear != 2017) {
-                    errln ("Calendar.handleGetExtendedYear = " + exYear + " should be 2017");                  
-                }                
-                int monthStart = handleComputeMonthStart(2016, 4, false);
-                if (monthStart != 735840) {
-                    errln ("Calendar.handleComputeMonthStart = " + monthStart + " should be 735840");                  
-                }
-                monthStart = handleComputeMonthStart(2016, 4, true);
-                if (monthStart != 735964) {
-                    errln ("Calendar.handleComputeMonthStart = " + monthStart + " should be 735964");                  
-                }    
+                int leastMsInDay = handleGetLimit(Calendar.MILLISECONDS_IN_DAY, Calendar.LEAST_MAXIMUM);
+                assertEquals("getLimit test 1", leastMsInDay, 1);
+                int maxMsInDay = handleGetLimit(Calendar.WEEK_OF_MONTH, Calendar.GREATEST_MINIMUM);
+                assertEquals("getLimit test 2", 7, maxMsInDay);
                 
-                // Test with a future date.
-                handleComputeFields(2500000);
-                int gYear = getGregorianYear();
-                int gMonth = getGregorianMonth();
-                int gDOM = getGregorianDayOfMonth();
-                if (gYear != 2132 || gMonth != 7 || gDOM != 31) {
-                    errln ("Calendar.handleComputeFields gives Y/M/D = " + gYear + "/" + gMonth + "/ but should be 2132/7/31");                  
-                }
+                int febLeapLength = handleGetMonthLength(2020, Calendar.FEBRUARY);
+                assertEquals("handleMonthLength", 31, febLeapLength);
+                int exYear = handleGetExtendedYear();
+                assertEquals("handleGetExtendeYear", exYear, 2017);
+                int monthStart = handleComputeMonthStart(2016, 4, false);
+                assertEquals("handleComputeMonthStart false", 735840, monthStart);
+                monthStart = handleComputeMonthStart(2016, 4, true);
+                assertEquals("handleComputeMonthStart true", 735964, monthStart);
+
+                Calendar cal = Calendar.getInstance();
+                cal.set(1980, 5, 2);
+                this.setTime(cal.getTime());
+                assertEquals("handleComputeFields: year set", 1980, get(YEAR));
+                assertEquals("handleComputeFields: month set", 5, get(MONTH));
+                assertEquals("handleComputeFields: day set", 2, get(DAY_OF_MONTH));
             }
         }
         StubCalendar stub = new StubCalendar();
@@ -1954,5 +1921,52 @@ public class IBMCalendarTest extends CalendarTest {
                         + ", result:" + res.toString() + " - expected:" + d.expected.toString());
             }
         }
+    }
+    
+    public void TestSimpleDateFormatCoverage() {
+
+        class StubSimpleDateFormat extends SimpleDateFormat {
+            public StubSimpleDateFormat(String pattern, Locale loc) {
+                new SimpleDateFormat(pattern, loc);
+            }
+            
+            public void run(){
+                Calendar cal = Calendar.getInstance(Locale.US);
+                cal.clear();
+                cal.set(2000, Calendar.MARCH, 18, 15,  0, 1); // Sat 15:00
+
+                DateFormatSymbols theseSymbols = this.getSymbols();
+                String shouldBeMonday = theseSymbols.getWeekdays()[Calendar.MONDAY];
+                assertEquals("Should be Monday", "Monday", shouldBeMonday);
+                
+                String [] matchData = {"16", "2016", "2016AD", "Monday", "lunes"};
+                int matchIndex =  matchString("Monday March 28, 2016", 0, Calendar.DAY_OF_WEEK, matchData, cal);
+                assertEquals("matchData for Monday", 6, matchIndex); // Position of the pointer after the matched string.
+                matchIndex =  matchString("Monday March 28, 2016 AD", 17, Calendar.YEAR, matchData, cal);
+                assertEquals("matchData for 2016", 21, matchIndex); // Position of the pointer after the matched string.
+      
+                char ch = 'y';
+                int count = 4;
+                int beginOffset = 0;
+                cal.set(Calendar.YEAR, 2000);  // Reset this 
+                assertEquals("calendar year reset", 2000, cal.get(Calendar.YEAR));
+                FieldPosition pos = new FieldPosition(java.text.DateFormat.YEAR_FIELD);
+                String subFormatResult = subFormat(ch, count, beginOffset,
+                        pos, theseSymbols, cal);
+                assertEquals("subFormat result", "2000", subFormatResult);
+
+                String testParseString = "some text with a date 2017-03-15";
+                int start = 22;
+                boolean obeyCount = true;
+                boolean allowNegative = false;
+                boolean ambiguousYear[] = {true, false, true};
+                int subParseResult = subParse(testParseString, start, ch, count,
+                        obeyCount, allowNegative, ambiguousYear, cal);
+                assertEquals("subParseResult result", 26, subParseResult);
+                assertEquals("parsed year", 2017, cal.get(Calendar.YEAR));
+            }
+        }
+        StubSimpleDateFormat stub = new StubSimpleDateFormat("EEE MMM dd yyyy G HH:mm:ss.SSS", Locale.US);
+        stub.run();
     }
 }

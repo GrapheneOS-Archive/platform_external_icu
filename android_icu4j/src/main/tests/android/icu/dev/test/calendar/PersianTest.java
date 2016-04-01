@@ -9,6 +9,7 @@ package android.icu.dev.test.calendar;
 import java.util.Date;
 
 import android.icu.util.Calendar;
+import android.icu.util.PersianCalendar;
 import android.icu.util.ULocale;
 import org.junit.runner.RunWith;
 import android.icu.junit.IcuTestFmwkRunner;
@@ -126,5 +127,20 @@ public class PersianTest extends CalendarTest {
                 errln("Fail: " + buf.toString() + ", expected " + dexp);
             }
         }
+    }
+
+    public void TestCoverage12424() {
+        class StubCalendar extends PersianCalendar {   
+            private static final long serialVersionUID = 1L;
+            public StubCalendar() {
+                assertEquals("Persian month 0 length", 31, handleGetMonthLength(1000, 0));
+                assertEquals("Persian month 7 length", 30, handleGetMonthLength(1000, 7));
+                
+                int leastWeeks = handleGetLimit(Calendar.WEEK_OF_YEAR, Calendar.LEAST_MAXIMUM);
+                assertEquals("Persian Week of Year least maximum", 52, leastWeeks);             
+             }
+        }
+        
+        new StubCalendar();
     }
 }
