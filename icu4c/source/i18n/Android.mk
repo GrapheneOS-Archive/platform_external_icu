@@ -21,6 +21,11 @@ LOCAL_PATH:= $(call my-dir)
 
 include $(CLEAR_VARS)
 
+icu_i18n_tidy_checks := \
+    -google-build-using-namespace,-google-explicit-constructor
+
+LOCAL_TIDY_CHECKS := $(icu_i18n_tidy_checks)
+
 src_files := \
 	decContext.c \
 	decNumber.c \
@@ -236,6 +241,7 @@ local_cflags += -O3 -fvisibility=hidden
 #
 
 include $(CLEAR_VARS)
+LOCAL_TIDY_CHECKS := $(icu_i18n_tidy_checks)
 LOCAL_SRC_FILES += $(src_files)
 LOCAL_C_INCLUDES += $(c_includes) $(optional_android_logging_includes)
 LOCAL_CFLAGS += $(local_cflags) -DPIC -fPIC
@@ -253,6 +259,7 @@ include $(BUILD_SHARED_LIBRARY)
 #
 
 include $(CLEAR_VARS)
+LOCAL_TIDY_CHECKS := $(icu_i18n_tidy_checks)
 LOCAL_SRC_FILES += $(src_files)
 LOCAL_C_INCLUDES += $(c_includes) $(optional_android_logging_includes)
 LOCAL_CFLAGS += $(local_cflags)
@@ -270,6 +277,7 @@ include $(BUILD_HOST_SHARED_LIBRARY)
 #
 
 include $(CLEAR_VARS)
+LOCAL_TIDY_CHECKS := $(icu_i18n_tidy_checks)
 LOCAL_SDK_VERSION := 9
 LOCAL_NDK_STL_VARIANT := stlport_static
 LOCAL_SRC_FILES += $(src_files)
