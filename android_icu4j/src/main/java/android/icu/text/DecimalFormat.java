@@ -5152,13 +5152,14 @@ public class DecimalFormat extends NumberFormat {
 
     /**
      * Sets the maximum number of digits allowed in the integer portion of a number. This
-     * override limits the integer digit count to 309.
+     * override limits the integer digit count to 2,000,000,000 to match ICU4C.
      *
      * @see NumberFormat#setMaximumIntegerDigits
      */
     @Override
     public void setMaximumIntegerDigits(int newValue) {
-        super.setMaximumIntegerDigits(Math.min(newValue, DOUBLE_INTEGER_DIGITS));
+        // Android changed: Allow 2 billion integer digits.
+        super.setMaximumIntegerDigits(Math.min(newValue, MAX_INTEGER_DIGITS));
     }
 
     /**
@@ -5447,11 +5448,12 @@ public class DecimalFormat extends NumberFormat {
         // InvalidObjectException("Digit count out of range"); }
 
 
-        // Truncate the maximumIntegerDigits to DOUBLE_INTEGER_DIGITS and
+        // Android changed: Allow 2 billion integer digits.
+        // Truncate the maximumIntegerDigits to MAX_INTEGER_DIGITS and
         // maximumFractionDigits to DOUBLE_FRACTION_DIGITS
 
-        if (getMaximumIntegerDigits() > DOUBLE_INTEGER_DIGITS) {
-            setMaximumIntegerDigits(DOUBLE_INTEGER_DIGITS);
+        if (getMaximumIntegerDigits() > MAX_INTEGER_DIGITS) {
+            setMaximumIntegerDigits(MAX_INTEGER_DIGITS);
         }
         if (getMaximumFractionDigits() > DOUBLE_FRACTION_DIGITS) {
             _setMaximumFractionDigits(DOUBLE_FRACTION_DIGITS);
@@ -5904,6 +5906,11 @@ public class DecimalFormat extends NumberFormat {
      * Upper limit on integer and fraction digits for a Java double [Richard/GCL]
      */
     static final int DOUBLE_INTEGER_DIGITS = 309;
+    // Android changed: Allow 2 billion integer digits.
+    // This change is necessary to stay feature-compatible in java.text.DecimalFormat which
+    // used to be implemented using ICU4C (which has a 2 billion integer digits limit) and
+    // is now implemented based on this class.
+    static final int MAX_INTEGER_DIGITS = 2000000000;
     static final int DOUBLE_FRACTION_DIGITS = 340;
 
     /**
