@@ -98,6 +98,12 @@ $(LOCAL_INTERMEDIATE_TARGETS): PRIVATE_EXTRA_JAR_ARGS += \
     -C "$(LOCAL_PATH)/main/tests/core/src" \
     "com/ibm/icu/dev/test/serializable/data"
 
+#==========================================================
+# build ICU tests for host for testing purposes
+#
+# Run the tests using the ICU4J test framework with the following command:
+#   java -cp ${ANDROID_BUILD_TOP}/out/host/linux-x86/framework/icu4j-host.jar:${ANDROID_BUILD_TOP}/out/host/linux-x86/framework/icu4j-tests-host.jar com.ibm.icu.dev.test.TestAll
+#==========================================================
 include $(CLEAR_VARS)
 LOCAL_SRC_FILES := $(icu4j_test_src_files)
 LOCAL_JAVA_RESOURCE_DIRS := $(icu4j_test_resource_dirs)
@@ -138,24 +144,3 @@ LOCAL_STATIC_JAVA_LIBRARIES := icu4j-icutzdata-host
 LOCAL_JARJAR_RULES := $(LOCAL_PATH)/liblayout-jarjar-rules.txt
 LOCAL_MODULE := icu4j-icutzdata-host-jarjar
 include $(BUILD_HOST_JAVA_LIBRARY)
-
-# build repackaged ICU tests
-#
-# Builds against core-libart and core-oj so that it can access all the
-# repackaged android.icu classes and methods and not just the ones available
-# through the Android API.
-include $(CLEAR_VARS)
-
-android_icu4j_tests := ../android_icu4j/src/main/tests
-
-# Don't include this package in any target
-LOCAL_MODULE_TAGS := tests
-LOCAL_SRC_FILES := \
-	$(call all-java-files-under,$(android_icu4j_tests))
-LOCAL_JAVA_RESOURCE_DIRS := $(android_icu4j_tests)
-LOCAL_JAVA_LIBRARIES := \
-	core-oj \
-	core-libart
-LOCAL_NO_STANDARD_LIBRARIES := true
-LOCAL_MODULE := android-icu4j-tests
-include $(BUILD_STATIC_JAVA_LIBRARY)
