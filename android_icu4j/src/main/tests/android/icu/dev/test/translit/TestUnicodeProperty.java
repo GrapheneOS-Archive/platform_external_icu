@@ -15,11 +15,14 @@ import android.icu.dev.util.UnicodeProperty;
 import android.icu.dev.util.UnicodeProperty.Factory;
 import android.icu.dev.util.UnicodePropertySymbolTable;
 import android.icu.text.UnicodeSet;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
 /**
  * @author markdavis
  *
  */
+@RunWith(IcuTestFmwkRunner.class)
 public class TestUnicodeProperty extends TestFmwk{
     public static void main(String[] args) {
         new TestUnicodeProperty().run(args);

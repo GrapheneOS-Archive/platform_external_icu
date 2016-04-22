@@ -36,7 +36,10 @@ import android.icu.impl.ICUService.ServiceListener;
 import android.icu.impl.ICUService.SimpleFactory;
 import android.icu.impl.LocaleUtility;
 import android.icu.util.ULocale;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
+@RunWith(IcuTestFmwkRunner.class)
 public class ICUServiceTest extends TestFmwk
 {
     public static void main(String[] args) throws Exception {

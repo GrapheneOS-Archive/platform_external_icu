@@ -25,10 +25,13 @@ import java.util.Locale;
 import android.icu.text.DecimalFormat;
 import android.icu.text.DecimalFormatSymbols;
 import android.icu.text.NumberFormat;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
 // This is an API test, not a unit test.  It doesn't test very many cases, and doesn't
 // try to test the full functionality.  It just calls each function in the class and
 // verifies that it works on a basic level.
+@RunWith(IcuTestFmwkRunner.class)
 public class IntlTestDecimalFormatAPIC extends android.icu.dev.test.TestFmwk {
     
     public static void main(String[] args)  throws Exception {

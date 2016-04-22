@@ -25,7 +25,10 @@ import java.util.Random;
 import android.icu.text.DateFormat;
 import android.icu.text.SimpleDateFormat;
 import android.icu.util.ULocale;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
+@RunWith(IcuTestFmwkRunner.class)
 public class IntlTestDateFormat extends android.icu.dev.test.TestFmwk {
     // Values in milliseconds (== Date)
     private static final long ONESECOND = 1000;

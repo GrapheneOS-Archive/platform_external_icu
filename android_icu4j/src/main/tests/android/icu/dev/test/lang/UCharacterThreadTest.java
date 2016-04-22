@@ -13,11 +13,14 @@ import java.util.ListIterator;
 
 import android.icu.dev.test.TestFmwk;
 import android.icu.lang.UCharacter;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
 /**
  * @author aheninger
  *
  */
+@RunWith(IcuTestFmwkRunner.class)
 public class UCharacterThreadTest extends TestFmwk {
   // constructor -----------------------------------------------------------
     

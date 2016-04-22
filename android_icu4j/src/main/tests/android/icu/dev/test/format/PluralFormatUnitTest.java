@@ -26,11 +26,14 @@ import android.icu.text.PluralRules;
 import android.icu.text.PluralRules.PluralType;
 import android.icu.text.PluralRules.SampleType;
 import android.icu.util.ULocale;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
 /**
  * @author tschumann (Tim Schumann)
  *
  */
+@RunWith(IcuTestFmwkRunner.class)
 public class PluralFormatUnitTest extends TestFmwk {
     public static void main(String[] args) throws Exception {
         new PluralFormatUnitTest().run(args);

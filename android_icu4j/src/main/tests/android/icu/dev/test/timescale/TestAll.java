@@ -10,10 +10,13 @@
 package android.icu.dev.test.timescale;
 
 import android.icu.dev.test.TestFmwk.TestGroup;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestGroupRunner;
 
 /**
  * Top level test used to run time scale tests as a batch.
  */
+@RunWith(IcuTestGroupRunner.class)
 public class TestAll extends TestGroup {
 
     public TestAll() {

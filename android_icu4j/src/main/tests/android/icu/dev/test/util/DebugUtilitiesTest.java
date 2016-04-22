@@ -8,11 +8,14 @@
 package android.icu.dev.test.util;
 
 import android.icu.dev.test.TestFmwk;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
 /**
  * @author srl
  *
  */
+@RunWith(IcuTestFmwkRunner.class)
 public class DebugUtilitiesTest extends TestFmwk {
 
     /**

@@ -24,6 +24,8 @@ import android.icu.text.BreakIterator;
 import android.icu.text.RuleBasedBreakIterator;
 import android.icu.text.UTF16;
 import android.icu.util.ULocale;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
 
 /**
@@ -32,6 +34,7 @@ import android.icu.util.ULocale;
 * @author Syn Wee Quek
 * @since march 14 2002
 */
+@RunWith(IcuTestFmwkRunner.class)
 public final class UCharacterCaseTest extends TestFmwk
 {
     // constructor -----------------------------------------------------------

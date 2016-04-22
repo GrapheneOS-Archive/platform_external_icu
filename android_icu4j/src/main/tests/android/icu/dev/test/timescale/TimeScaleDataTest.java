@@ -17,6 +17,8 @@ import android.icu.util.GregorianCalendar;
 import android.icu.util.SimpleTimeZone;
 import android.icu.util.TimeZone;
 import android.icu.util.UniversalTimeScale;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
 /**
  * @author Owner
@@ -24,6 +26,7 @@ import android.icu.util.UniversalTimeScale;
  * TODO To change the template for this generated type comment go to
  * Window - Preferences - Java - Code Style - Code Templates
  */
+@RunWith(IcuTestFmwkRunner.class)
 public class TimeScaleDataTest extends TestFmwk
 {
 

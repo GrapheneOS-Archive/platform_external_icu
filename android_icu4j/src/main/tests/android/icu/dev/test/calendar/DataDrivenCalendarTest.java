@@ -19,6 +19,8 @@ import android.icu.text.SimpleDateFormat;
 import android.icu.util.Calendar;
 import android.icu.util.TimeZone;
 import android.icu.util.ULocale;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
 /**
  * @author srl
@@ -26,6 +28,7 @@ import android.icu.util.ULocale;
  * analog of dadrcal.cpp
  *
  */
+@RunWith(IcuTestFmwkRunner.class)
 public class DataDrivenCalendarTest extends ModuleTest {
 
     public DataDrivenCalendarTest() {

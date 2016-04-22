@@ -26,10 +26,13 @@ import android.icu.util.TaiwanCalendar;
 import android.icu.util.TimeZone;
 import android.icu.util.TimeZone.SystemTimeZoneType;
 import android.icu.util.ULocale;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
 /**
  * @summary Tests of new functionality in IBMCalendar
  */
+@RunWith(IcuTestFmwkRunner.class)
 public class IBMCalendarTest extends CalendarTest {
 
     public static void main(String[] args) throws Exception {

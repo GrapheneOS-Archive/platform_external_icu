@@ -15,10 +15,13 @@ import java.util.List;
 import android.icu.dev.test.TestFmwk;
 import android.icu.dev.test.TestUtil;
 import android.icu.impl.Utility;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
 /**
  * A collection of methods to run the data driven number format test suite.
  */
+@RunWith(IcuTestFmwkRunner.class)
 public class DataDrivenNumberFormatTestSuite extends TestFmwk {
     
     /**

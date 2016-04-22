@@ -21,11 +21,14 @@ import android.icu.util.MeasureUnit;
 import android.icu.util.TimeUnit;
 import android.icu.util.TimeUnitAmount;
 import android.icu.util.ULocale;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
 /**
  * @author markdavis
  *
  */
+@RunWith(IcuTestFmwkRunner.class)
 public class TimeUnitTest extends TestFmwk {
     public static void main(String[] args) throws Exception{
         new TimeUnitTest().run(args);

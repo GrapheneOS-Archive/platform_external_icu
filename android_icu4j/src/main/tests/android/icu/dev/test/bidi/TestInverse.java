@@ -12,6 +12,8 @@ import java.util.Arrays;
 
 import android.icu.impl.Utility;
 import android.icu.text.Bidi;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
 /**
  * Regression test for the basic "inverse" Bidi mode.
@@ -19,6 +21,7 @@ import android.icu.text.Bidi;
  * ported from C by Lina Kemmel, Matitiahu Allouche
  */
 
+@RunWith(IcuTestFmwkRunner.class)
 public class TestInverse extends BidiTest {
 
     private int countRoundtrips = 0;

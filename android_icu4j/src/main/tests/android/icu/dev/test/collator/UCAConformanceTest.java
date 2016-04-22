@@ -24,7 +24,10 @@ import android.icu.text.RuleBasedCollator;
 import android.icu.text.UTF16;
 import android.icu.util.ULocale;
 import android.icu.util.VersionInfo;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
+@RunWith(IcuTestFmwkRunner.class)
 public class UCAConformanceTest extends TestFmwk {
 
     /**

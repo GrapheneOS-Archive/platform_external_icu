@@ -23,11 +23,14 @@ import android.icu.dev.test.TestUtil;
 import android.icu.text.IDNA;
 import android.icu.text.StringPrepParseException;
 import android.icu.text.UTF16;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
 /**
  * @author limaoyu
  * 
  */
+@RunWith(IcuTestFmwkRunner.class)
 public class IDNAConformanceTest extends TestFmwk {
 
     public static void main(String[] args) throws Exception {

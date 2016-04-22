@@ -20,11 +20,14 @@ import android.icu.text.DisplayContext;
 import android.icu.text.NumberFormat;
 import android.icu.text.RuleBasedNumberFormat;
 import android.icu.util.ULocale;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
 /**
  * This does not test lenient parse mode, since testing the default implementation
  * introduces a dependency on collation.  See RbnfLenientScannerTest.
  */
+@RunWith(IcuTestFmwkRunner.class)
 public class RbnfTest extends TestFmwk {
     public static void main(String[] args) {
         RbnfTest test = new RbnfTest();

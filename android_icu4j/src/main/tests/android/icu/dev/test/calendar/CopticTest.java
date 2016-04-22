@@ -19,10 +19,13 @@ import android.icu.util.EthiopicCalendar;
 import android.icu.util.GregorianCalendar;
 import android.icu.util.TimeZone;
 import android.icu.util.ULocale;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
 /**
  * Tests for the <code>CopticCalendar</code> class.
  */
+@RunWith(IcuTestFmwkRunner.class)
 public class CopticTest extends CalendarTest 
 {
     public static void main(String args[]) throws Exception {

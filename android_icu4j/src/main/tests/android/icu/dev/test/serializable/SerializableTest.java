@@ -39,6 +39,8 @@ import android.icu.util.TimeZone;
 import android.icu.util.TimeZoneRule;
 import android.icu.util.ULocale;
 import android.icu.util.VTimeZone;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestGroupRunner;
 
 /**
  * @author emader
@@ -46,6 +48,7 @@ import android.icu.util.VTimeZone;
  * TODO To change the template for this generated type comment go to
  * Window - Preferences - Java - Code Style - Code Templates
  */
+@RunWith(IcuTestGroupRunner.class)
 public class SerializableTest extends TestFmwk.TestGroup
 {
     public interface Handler

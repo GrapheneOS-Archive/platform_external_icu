@@ -10,6 +10,8 @@ package android.icu.dev.test.bidi;
 
 import android.icu.impl.Utility;
 import android.icu.text.Bidi;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
 /**
  * Regression test for streaming mode
@@ -17,6 +19,7 @@ import android.icu.text.Bidi;
  * @author Lina Kemmel, Matitiahu Allouche
  */
 
+@RunWith(IcuTestFmwkRunner.class)
 public class TestStreaming extends BidiTest {
 
     static final int MAXPORTIONS = 10;
