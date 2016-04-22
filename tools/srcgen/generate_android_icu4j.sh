@@ -78,7 +78,7 @@ java ${SRCGEN_JAVA_ARGS} -cp ${CLASSPATH} com.android.icu4j.srcgen.Icu4jTestsTra
 # Copy the data files.
 echo Copying test data
 for INPUT_DIR in ${ALL_TEST_INPUT_DIRS}; do
-  RESOURCES=$(find ${INPUT_DIR} -type f | egrep -v '(\.java|\/package\.html)' || true )
+  RESOURCES=$(find ${INPUT_DIR} -type f | egrep -v '(\.java|com\.ibm\.icu.*\.dat|/package\.html)' || true )
   for RESOURCE in ${RESOURCES}; do
     SOURCE_DIR=$(dirname ${RESOURCE})
     RELATIVE_SOURCE_DIR=$(echo ${SOURCE_DIR} | sed "s,${INPUT_DIR}/,,")
@@ -86,5 +86,23 @@ for INPUT_DIR in ${ALL_TEST_INPUT_DIRS}; do
     DEST_DIR=${TEST_DEST_DIR}/${RELATIVE_DEST_DIR}
     mkdir -p ${DEST_DIR}
     cp $RESOURCE ${DEST_DIR}
+  done
+done
+
+echo Repackaging serialized test data
+# Excludes JavaTimeZone.dat files as they depend on sun.util.calendar.ZoneInfo
+for INPUT_DIR in ${ALL_TEST_INPUT_DIRS}; do
+  RESOURCES=$(find ${INPUT_DIR} -type f | egrep '(/com\.ibm\.icu.*\.dat)' | egrep -v "JavaTimeZone.dat" || true )
+  for RESOURCE in ${RESOURCES}; do
+    SOURCE_DIR=$(dirname ${RESOURCE})
+    RELATIVE_SOURCE_DIR=$(echo ${SOURCE_DIR} | sed "s,${INPUT_DIR}/,,")
+    RELATIVE_DEST_DIR=$(echo ${RELATIVE_SOURCE_DIR} | sed 's,com/ibm/icu,android/icu,')
+    SOURCE_NAME=$(basename ${RESOURCE})
+    DEST_NAME=${SOURCE_NAME/com.ibm/android}
+    DEST_DIR=${TEST_DEST_DIR}/${RELATIVE_DEST_DIR}
+    mkdir -p ${DEST_DIR}
+    # A simple textual substitution works even though the file is binary as 'com.ibm' and 'android'
+    # are the same length.
+    sed 's|com[./]ibm|android|g' $RESOURCE > ${DEST_DIR}/${DEST_NAME} 
   done
 done
