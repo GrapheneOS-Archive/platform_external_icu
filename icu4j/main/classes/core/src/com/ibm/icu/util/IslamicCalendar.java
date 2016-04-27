@@ -946,8 +946,7 @@ public class IslamicCalendar extends Calendar {
     /**
      * sets the calculation type for this calendar.
      * 
-     * @draft ICU 55
-     * @provisional This API might change or be removed in a future release.
+     * @stable ICU 55
      */
     public void setCalculationType(CalculationType type) {
         cType = type;
@@ -962,8 +961,7 @@ public class IslamicCalendar extends Calendar {
     /**
      * gets the calculation type for this calendar.
      * 
-     * @draft ICU 55
-     * @provisional This API might change or be removed in a future release.
+     * @stable ICU 55
      */
     public CalculationType getCalculationType() {
         return cType;

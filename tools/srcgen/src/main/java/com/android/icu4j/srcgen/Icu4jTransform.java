@@ -506,11 +506,26 @@ public class Icu4jTransform {
       /* ASCII order please. */
       "field:android.icu.util.TimeZone#TIMEZONE_ICU",
       "field:android.icu.util.TimeZone#TIMEZONE_JDK",
+      "method:android.icu.text.UnicodeSet#addAllTo(Iterable<T>,T[])",
+      "method:android.icu.text.UnicodeSet#addAllTo(Iterable<T>,U)",
+      "method:android.icu.text.UnicodeSet#addAllTo(String[])",
+      "method:android.icu.text.UnicodeSet#compare(int,CharSequence)",
+      "method:android.icu.text.UnicodeSet#compare(CharSequence,int)",
+      "method:android.icu.text.UnicodeSet#compare(Collection<T>,Collection<T>,ComparisonStyle)",
+      "method:android.icu.text.UnicodeSet#compare(Iterable<T>,Iterable<T>)",
+      "method:android.icu.text.UnicodeSet#resemblesPattern(String,int)",
+      "method:android.icu.text.UnicodeSet#toArray(UnicodeSet)",
+      "method:android.icu.util.CECalendar#ceToJD(long,int,int,int)",
+      "method:android.icu.util.CECalendar#getJDEpochOffset()",
+      "method:android.icu.util.CECalendar#jdToCE(int,int,int[])",
+      "method:android.icu.util.IslamicCalendar#isCivil()",
+      "method:android.icu.util.IslamicCalendar#setCivil(boolean)",
       "method:android.icu.util.TimeZone#getDefaultTimeZoneType()",
       "method:android.icu.util.TimeZone#setDefault(TimeZone)",
       "method:android.icu.util.TimeZone#setDefaultTimeZoneType(int)",
       "method:android.icu.util.ULocale#setDefault(Category,ULocale)",
       "method:android.icu.util.ULocale#setDefault(ULocale)",
+      "method:android.icu.util.VersionInfo#main(String[])",
   };
 
   // The declarations with JavaDocs that have @.jcite tags that should be transformed to doclava
