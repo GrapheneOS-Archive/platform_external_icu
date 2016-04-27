@@ -575,6 +575,7 @@ public class UnicodeSet extends UnicodeFilter implements Iterable<String>, Compa
     /**
      * Return true if the given position, in the given pattern, appears
      * to be the start of a UnicodeSet pattern.
+     * @hide unsupported on Android
      */
     public static boolean resemblesPattern(String pattern, int pos) {
         return ((pos+1) < pattern.length() &&
@@ -2796,6 +2797,7 @@ public class UnicodeSet extends UnicodeFilter implements Iterable<String>, Compa
     /**
      * Add the contents of the UnicodeSet (as strings) into a collection.
      * @param target collection to add into
+     * @hide unsupported on Android
      */
     public String[] addAllTo(String[] target) {
         return addAllTo(this, target);
@@ -2803,6 +2805,7 @@ public class UnicodeSet extends UnicodeFilter implements Iterable<String>, Compa
 
     /**
      * Add the contents of the UnicodeSet (as strings) into an array.
+     * @hide unsupported on Android
      */
     public static String[] toArray(UnicodeSet set) {
         return addAllTo(set, new String[set.size()]);
@@ -4413,6 +4416,7 @@ public class UnicodeSet extends UnicodeFilter implements Iterable<String>, Compa
      * and comparing, but much faster (no object creation). 
      * Actually, there is one difference; a null compares as less.
      * Note that this (=String) order is UTF-16 order -- *not* code point order.
+     * @hide unsupported on Android
      */
 
     public static int compare(CharSequence string, int codePoint) {
@@ -4424,6 +4428,7 @@ public class UnicodeSet extends UnicodeFilter implements Iterable<String>, Compa
      * Same results as turning the code point into a string and comparing, but much faster (no object creation). 
      * Actually, there is one difference; a null compares as less.
      * Note that this (=String) order is UTF-16 order -- *not* code point order.
+     * @hide unsupported on Android
      */
     public static int compare(int codePoint, CharSequence string) {
         return -CharSequences.compare(string, codePoint);
@@ -4436,6 +4441,7 @@ public class UnicodeSet extends UnicodeFilter implements Iterable<String>, Compa
      * That means that sets can't be compared directly with this method, unless they are TreeSets without
      * (or with the same) comparator. Unfortunately, it is impossible to reliably detect in Java whether subclass of
      * Collection satisfies the right criteria, so it is left to the user to avoid those circumstances.
+     * @hide unsupported on Android
      */
     public static <T extends Comparable<T>> int compare(Iterable<T> collection1, Iterable<T> collection2) {
         return compare(collection1.iterator(), collection2.iterator());
@@ -4471,6 +4477,7 @@ public class UnicodeSet extends UnicodeFilter implements Iterable<String>, Compa
 
     /**
      * Utility to compare two collections, optionally by size, and then lexicographically.
+     * @hide unsupported on Android
      */
     public static <T extends Comparable<T>> int compare(Collection<T> collection1, Collection<T> collection2, ComparisonStyle style) {
         if (style != ComparisonStyle.LEXICOGRAPHIC) {
@@ -4484,6 +4491,7 @@ public class UnicodeSet extends UnicodeFilter implements Iterable<String>, Compa
 
     /**
      * Utility for adding the contents of an iterable to a collection.
+     * @hide unsupported on Android
      */
     public static <T, U extends Collection<T>> U addAllTo(Iterable<T> source, U target) {
         for (T item : source) {
@@ -4494,6 +4502,7 @@ public class UnicodeSet extends UnicodeFilter implements Iterable<String>, Compa
 
     /**
      * Utility for adding the contents of an iterable to a collection.
+     * @hide unsupported on Android
      */
     public static <T> T[] addAllTo(Iterable<T> source, T[] target) {
         int i = 0;
