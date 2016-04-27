@@ -928,10 +928,7 @@ public class DecimalFormat extends NumberFormat {
         synchronized (digitList) {
             digitList.set(number, precision, !useExponentialNotation &&
                           !areSignificantDigitsUsed());
-            // Android patch (ticket #11913) begin.
-            return subformat(number, result, fieldPosition, isNegative, false, parseAttr,
-                    getMaximumIntegerDigits());
-            // Android patch (ticket #11913) end.
+            return subformat(number, result, fieldPosition, isNegative, false, parseAttr);
         }
     }
 
@@ -1132,10 +1129,7 @@ public class DecimalFormat extends NumberFormat {
             if (digitList.wasRounded() && roundingMode == BigDecimal.ROUND_UNNECESSARY) {
                 throw new ArithmeticException("Rounding necessary");              
             }
-            // Android patch (ticket #11913) begin.
-            return subformat(number, result, fieldPosition, isNegative, true, parseAttr,
-                    getMaximumIntegerDigits());
-            // Android patch (ticket #11913) end.
+            return subformat(number, result, fieldPosition, isNegative, true, parseAttr);
         }
     }
 
@@ -1170,21 +1164,8 @@ public class DecimalFormat extends NumberFormat {
             if (digitList.wasRounded() && roundingMode == BigDecimal.ROUND_UNNECESSARY) {
                 throw new ArithmeticException("Rounding necessary");              
             }
-            // Android patch (ticket #11913) begin.
-            // If the maximum integer digits are still set to the maximum for double, set the
-            // maximum integer digits we will display to the length of the BigInteger, as this can
-            // acceptably be longer than 309 digits.
-            int maxIntDigits;
-            if (getMaximumIntegerDigits() == DOUBLE_INTEGER_DIGITS) {
-                maxIntDigits = digitList.decimalAt;
-                if (maxIntDigits >= 0)
-                    maxIntDigits++;
-            } else {
-                maxIntDigits = getMaximumIntegerDigits();
-            }
             return subformat(number.intValue(), result, fieldPosition, number.signum() < 0, true,
-                             parseAttr, maxIntDigits);
-            // Android patch (ticket #11913) end.
+                             parseAttr);
         }
     }
 
@@ -1217,21 +1198,8 @@ public class DecimalFormat extends NumberFormat {
             if (digitList.wasRounded() && roundingMode == BigDecimal.ROUND_UNNECESSARY) {
                 throw new ArithmeticException("Rounding necessary");              
             }
-            // Android patch (ticket #11913) begin.
-            // If the maximum integer digits are still set to the maximum for double, set the
-            // maximum integer digits we will display to the length of the BigDecimal, as this can
-            // acceptably be longer than 309 digits.
-            int maxIntDigits;
-            if (getMaximumIntegerDigits() == DOUBLE_INTEGER_DIGITS) {
-                maxIntDigits = digitList.decimalAt;
-                if (maxIntDigits >= 0)
-                    maxIntDigits++;
-            } else {
-                maxIntDigits = getMaximumIntegerDigits();
-            }
             return subformat(number.doubleValue(), result, fieldPosition, number.signum() < 0,
-                             false, parseAttr, maxIntDigits);
-            // Android patch (ticket #11913) end.
+                             false, parseAttr);
         }
     }
 
@@ -1263,22 +1231,8 @@ public class DecimalFormat extends NumberFormat {
             if (digitList.wasRounded() && roundingMode == BigDecimal.ROUND_UNNECESSARY) {
                 throw new ArithmeticException("Rounding necessary");              
             }
-            // Android patch (ticket #11913) begin.
-            // If the maximum integer digits are still set to the maximum for double, set the
-            // maximum integer digits we will display to the length of the BigDecimal, as this can
-            // acceptably be longer than 309 digits.
-            int maxIntDigits;
-            if (getMaximumIntegerDigits() == DOUBLE_INTEGER_DIGITS) {
-                maxIntDigits = digitList.decimalAt;
-                if (maxIntDigits >= 0)
-                    maxIntDigits++;
-            } else {
-                maxIntDigits = getMaximumIntegerDigits();
-            }
-
             return subformat(number.doubleValue(), result, fieldPosition, number.signum() < 0,
-                             false, false, maxIntDigits);
-            // Android patch (ticket #11913) end.
+                             false, false);
         }
     }
 
@@ -1317,20 +1271,17 @@ public class DecimalFormat extends NumberFormat {
         }
     }
 
-    // Android patch (ticket #11913) begin.
     private StringBuffer subformat(int number, StringBuffer result, FieldPosition fieldPosition,
-                                   boolean isNegative, boolean isInteger, boolean parseAttr,
-                                   int maxIntDig) {
+                                   boolean isNegative, boolean isInteger, boolean parseAttr) {
         if (currencySignCount == CURRENCY_SIGN_COUNT_IN_PLURAL_FORMAT) {
             // compute the plural category from the digitList plus other settings
             return subformat(currencyPluralInfo.select(getFixedDecimal(number)),
                              result, fieldPosition, isNegative,
-                             isInteger, parseAttr, maxIntDig);
+                             isInteger, parseAttr);
         } else {
-            return subformat(result, fieldPosition, isNegative, isInteger, parseAttr, maxIntDig);
+            return subformat(result, fieldPosition, isNegative, isInteger, parseAttr);
         }
     }
-    // Android patch (ticket #11913) end.
 
     /**
      * This is ugly, but don't see a better way to do it without major restructuring of the code.
@@ -1378,24 +1329,21 @@ public class DecimalFormat extends NumberFormat {
         return new FixedDecimal(number, v, f);
     }
 
-    // Android patch (ticket #11913) begin.
     private StringBuffer subformat(double number, StringBuffer result, FieldPosition fieldPosition,
-                                   boolean isNegative, boolean isInteger, boolean parseAttr,
-                                   int maxIntDig) {
+                                   boolean isNegative,
+            boolean isInteger, boolean parseAttr) {
         if (currencySignCount == CURRENCY_SIGN_COUNT_IN_PLURAL_FORMAT) {
             // compute the plural category from the digitList plus other settings
             return subformat(currencyPluralInfo.select(getFixedDecimal(number)),
                              result, fieldPosition, isNegative,
-                             isInteger, parseAttr, maxIntDig);
+                             isInteger, parseAttr);
         } else {
-            return subformat(result, fieldPosition, isNegative, isInteger, parseAttr, maxIntDig);
+            return subformat(result, fieldPosition, isNegative, isInteger, parseAttr);
         }
     }
-    // Android patch (ticket #11913) end.
 
-    // Android patch (ticket #11913) begin.
     private StringBuffer subformat(String pluralCount, StringBuffer result, FieldPosition fieldPosition,
-            boolean isNegative, boolean isInteger, boolean parseAttr, int maxIntDig) {
+            boolean isNegative, boolean isInteger, boolean parseAttr) {
         // There are 2 ways to activate currency plural format: by applying a pattern with
         // 3 currency sign directly, or by instantiate a decimal formatter using
         // PLURALCURRENCYSTYLE.  For both cases, the number of currency sign in the
@@ -1421,18 +1369,15 @@ public class DecimalFormat extends NumberFormat {
         // based on pattern alone, and it is already expanded during applying pattern, or
         // setDecimalFormatSymbols, or setCurrency.
         expandAffixAdjustWidth(pluralCount);
-        return subformat(result, fieldPosition, isNegative, isInteger, parseAttr, maxIntDig);
+        return subformat(result, fieldPosition, isNegative, isInteger, parseAttr);
     }
-    // Android patch (ticket #11913) end.
 
     /**
      * Complete the formatting of a finite number. On entry, the
      * digitList must be filled in with the correct digits.
      */
-    // Android patch (ticket #11913) begin.
     private StringBuffer subformat(StringBuffer result, FieldPosition fieldPosition,
-                                   boolean isNegative, boolean isInteger, boolean parseAttr,
-                                   int maxIntDig) {
+                                   boolean isNegative, boolean isInteger, boolean parseAttr) {
         // NOTE: This isn't required anymore because DigitList takes care of this.
         //
         // // The negative of the exponent represents the number of leading // zeros
@@ -1462,18 +1407,18 @@ public class DecimalFormat extends NumberFormat {
         if (useExponentialNotation) {
             subformatExponential(result, fieldPosition, parseAttr);
         } else {
-            subformatFixed(result, fieldPosition, isInteger, parseAttr, maxIntDig);
+            subformatFixed(result, fieldPosition, isInteger, parseAttr);
         }
 
         int suffixLen = appendAffix(result, isNegative, false, fieldPosition, parseAttr);
         addPadding(result, fieldPosition, prefixLen, suffixLen);
         return result;
     }
-    // Android patch (ticket #11913) end.
 
-    // Android patch (ticket #11913) begin.
-    private void subformatFixed(StringBuffer result, FieldPosition fieldPosition,
-                                boolean isInteger, boolean parseAttr, int maxIntDig) {
+    private void subformatFixed(StringBuffer result,
+            FieldPosition fieldPosition,
+            boolean isInteger,
+            boolean parseAttr) {
         char [] digits = symbols.getDigitsLocal();
 
         char grouping = currencySignCount == CURRENCY_SIGN_COUNT_ZERO ?
@@ -1481,7 +1426,7 @@ public class DecimalFormat extends NumberFormat {
         char decimal = currencySignCount == CURRENCY_SIGN_COUNT_ZERO ?
                 symbols.getDecimalSeparator() : symbols.getMonetaryDecimalSeparator();
         boolean useSigDig = areSignificantDigitsUsed();
-    // Android patch (ticket #11913) end.
+        int maxIntDig = getMaximumIntegerDigits();
         int minIntDig = getMinimumIntegerDigits();
         int i;
         // [Spark/CDL] Record the integer start index.
