@@ -295,6 +295,7 @@ public class Currency extends MeasureUnit {
      * @param locale the ulocale under which to register the currency
      * @return a registry key that can be used to unregister this currency
      * @see #unregister
+     * @hide unsupported on Android
      */
     public static Object registerInstance(Currency currency, ULocale locale) {
         return getShim().registerInstance(currency, locale);
@@ -305,6 +306,7 @@ public class Currency extends MeasureUnit {
      * registerInstance).
      * @param registryKey the registry key returned from registerInstance
      * @see #registerInstance
+     * @hide unsupported on Android
      */
     public static boolean unregister(Object registryKey) {
         if (registryKey == null) {
