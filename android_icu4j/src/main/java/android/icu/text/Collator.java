@@ -454,6 +454,7 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
      * new implementations should override createCollator(ULocale).  Note that
      * one of these two methods <b>MUST</b> be overridden or else an infinite
      * loop will occur.
+     * @hide unsupported on Android
      */
     public static abstract class CollatorFactory {
         /**
@@ -817,6 +818,8 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
      * @param collator the collator to register
      * @param locale the locale for which this is the default collator
      * @return an object that can be used to unregister the registered collator.
+     *
+     * @hide unsupported on Android
      */
     public static final Object registerInstance(Collator collator, ULocale locale) {
         return getShim().registerInstance(collator, locale);
@@ -831,6 +834,8 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
      *
      * @param factory the factory to register
      * @return an object that can be used to unregister the registered factory.
+     *
+     * @hide unsupported on Android
      */
     public static final Object registerFactory(CollatorFactory factory) {
         return getShim().registerFactory(factory);
@@ -840,6 +845,7 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
      * <strong>[icu]</strong> Unregisters a collator previously registered using registerInstance.
      * @param registryKey the object previously returned by registerInstance.
      * @return true if the collator was successfully unregistered.
+     * @hide unsupported on Android
      */
     public static final boolean unregister(Object registryKey) {
         if (shim == null) {
