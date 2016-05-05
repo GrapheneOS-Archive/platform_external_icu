@@ -724,6 +724,8 @@ public abstract class NumberFormat extends UFormat {
      * new implementations should override createFactory(ULocale, int).  Note that
      * one of these two methods <b>MUST</b> be overridden or else an infinite
      * loop will occur.
+     *
+     * @hide unsupported on Android
      */
     public static abstract class NumberFormatFactory {
         /**
@@ -807,6 +809,7 @@ public abstract class NumberFormat extends UFormat {
 
     /**
      * A NumberFormatFactory that supports a single locale.  It can be visible or invisible.
+     * @hide unsupported on Android
      */
     public static abstract class SimpleNumberFormatFactory extends NumberFormatFactory {
         final Set<String> localeNames;
@@ -928,6 +931,7 @@ public abstract class NumberFormat extends UFormat {
      * 
      * @param factory the factory to register
      * @return a key with which to unregister the factory
+     * @hide unsupported on Android
      */
     public static Object registerFactory(NumberFormatFactory factory) {
         if (factory == null) {
@@ -941,6 +945,7 @@ public abstract class NumberFormat extends UFormat {
      * registerInstance or registerFactory).
      * @param registryKey a key obtained from registerFactory
      * @return true if the object was successfully unregistered
+     * @hide unsupported on Android
      */
     public static boolean unregister(Object registryKey) {
         if (registryKey == null) {
