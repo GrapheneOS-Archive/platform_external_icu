@@ -788,6 +788,8 @@ public final class UScript {
      * There are constants for ISO 15924 script codes assigned on or before 2013-10-12.
      * There are no constants for private use codes from Qaaa - Qabx
      * except as used in the UCD.
+     *
+     * @hide unsupported on Android
      */
     public static final int CODE_LIMIT   = 167;
 
