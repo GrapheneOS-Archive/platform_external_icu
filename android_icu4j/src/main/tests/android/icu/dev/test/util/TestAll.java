@@ -23,6 +23,11 @@ public class TestAll extends TestGroup {
     public TestAll() {
         super(
               new String[] {
+            "ICUServiceTest",
+            "ICUServiceThreadTest",
+            "ICUBinaryTest",
+            "SimpleFormatterTest",
+            "TextTrieMapTest",
             "VersionInfoTest",
             "ICUResourceBundleTest",
             "BytesTrieTest",
