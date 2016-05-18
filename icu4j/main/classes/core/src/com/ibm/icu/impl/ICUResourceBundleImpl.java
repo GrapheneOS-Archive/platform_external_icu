@@ -101,7 +101,8 @@ class ICUResourceBundleImpl extends ICUResourceBundle {
             this.resource = resource;
             String s = wholeBundle.reader.getString(resource);
             // Allow the reader cache's SoftReference to do its job.
-            if (s.length() < ICUResourceBundleReader.LARGE_SIZE / 2) {
+            if (s.length() < ICUResourceBundleReader.LARGE_SIZE / 2 ||
+                    CacheValue.futureInstancesWillBeStrong()) {
                 value = s;
             }
         }
