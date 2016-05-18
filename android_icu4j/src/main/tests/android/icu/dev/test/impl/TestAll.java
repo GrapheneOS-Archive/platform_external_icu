@@ -21,18 +21,12 @@ public class TestAll extends TestGroup {
     }
 
     public TestAll() {
-        super("android.icu.dev.test.util",
-              new String[] {
-                  "ICUServiceTest",
-                  "ICUServiceThreadTest",
-                  "ICUBinaryTest",
-                  "SimplePatternFormatterTest",
-                  "TextTrieMapTest"
-              },
-              "Test miscellaneous implementation utilities");
+        super(
+            new String[] {
+                "CacheTest"
+            },
+            "Test miscellaneous implementation classes");
     }
 
     public static final String CLASS_TARGET_NAME = "Impl";
 }
-
-
