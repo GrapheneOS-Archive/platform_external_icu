@@ -517,7 +517,18 @@ public class TimeZoneTest extends TestFmwk
         TimeZone.setDefault(zone);
         TimeZone defaultzone = TimeZone.getDefault();
         if (defaultzone == zone) errln("FAIL: Default object is identical, not clone");
-        if (!defaultzone.equals(zone)) errln("FAIL: Default object is not equal");
+        // Android patch (http://b/28949992) start.
+        /*
+         * {icu}TimeZone.setDefault() calls {java}TimeZone.setDefault().
+         * On Android {java}TimeZone.setDefault() clears the cached ICU default timezone by calling
+         * {icu}TimeZone.clearCachedDefault().
+         * Due to this, and some of the logic in {icu}TimeZone.getDefault(), it is not possible to
+         * guarantee on Android that {icu}TimeZone.getDefault() returns something that is equal to
+         * the object passed to setDefault().
+         * {icu}TimeZone.setDefault() is not public / supported on Android.
+         */
+        // if (!defaultzone.equals(zone)) errln("FAIL: Default object is not equal");
+        // Android patch (http://b/28949992) end.
         TimeZone.setDefault(saveDefault);
         // delete defaultzone;
         // delete zoneclone;
