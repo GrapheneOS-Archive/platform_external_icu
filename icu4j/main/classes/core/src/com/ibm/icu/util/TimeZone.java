@@ -936,6 +936,18 @@ abstract public class TimeZone implements Serializable, Cloneable, Freezable<Tim
         return defaultZone.cloneAsThawed();
     }
 
+    // Android patch (http://b/28949992) start.
+    // ICU TimeZone.setDefault() not supported on Android.
+    /**
+     * Clears the cached default time zone.
+     * This causes {@link #getDefault()} to re-request the default time zone
+     * from {@link java.util.TimeZone}.
+     */
+    public static synchronized void clearCachedDefault() {
+        defaultZone = null;
+    }
+    // Android patch (http://b/28949992) end.
+
     /**
      * Sets the <code>TimeZone</code> that is
      * returned by the <code>getDefault</code> method.  If <code>zone</code>
