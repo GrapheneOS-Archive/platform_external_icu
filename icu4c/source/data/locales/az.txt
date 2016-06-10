@@ -380,7 +380,7 @@ az{
                 yMEd{"dd.MM.y, E"}
                 yMMM{"MMM y"}
                 yMMMEd{"d MMM y, E"}
-                yMMMM{"y MMMM"}
+                yMMMM{"MMMM y"}
                 yMMMd{"d MMM y"}
                 yMd{"dd.MM.y"}
                 yQQQ{"y QQQ"}
