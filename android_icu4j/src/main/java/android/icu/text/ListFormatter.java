@@ -16,7 +16,7 @@ import java.util.Locale;
 import android.icu.impl.ICUCache;
 import android.icu.impl.ICUResourceBundle;
 import android.icu.impl.SimpleCache;
-import android.icu.impl.SimplePatternFormatter;
+import android.icu.impl.SimpleFormatterImpl;
 import android.icu.util.ULocale;
 import android.icu.util.UResourceBundle;
 
@@ -28,7 +28,7 @@ import android.icu.util.UResourceBundle;
  * @hide Only a subset of ICU is exposed in Android
  */
 final public class ListFormatter {
-    // Compiled SimplePatternFormatter patterns.
+    // Compiled SimpleFormatter patterns.
     private final String two;
     private final String start;
     private final String middle;
@@ -125,7 +125,7 @@ final public class ListFormatter {
     }
 
     private static String compilePattern(String pattern, StringBuilder sb) {
-        return SimplePatternFormatter.compileToStringMinMaxPlaceholders(pattern, sb, 2, 2);
+        return SimpleFormatterImpl.compileToStringMinMaxArguments(pattern, sb, 2, 2);
     }
 
     /**
@@ -264,7 +264,7 @@ final public class ListFormatter {
         // is true, records the offset of next in the formatted string.
         public FormattedListBuilder append(String pattern, Object next, boolean recordOffset) {
             int[] offsets = (recordOffset || offsetRecorded()) ? new int[2] : null;
-            SimplePatternFormatter.formatAndReplace(
+            SimpleFormatterImpl.formatAndReplace(
                     pattern, current, offsets, current, next.toString());
             if (offsets != null) {
                 if (offsets[0] == -1 || offsets[1] == -1) {

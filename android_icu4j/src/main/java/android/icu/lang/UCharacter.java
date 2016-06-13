@@ -73,13 +73,11 @@ import android.icu.util.VersionInfo;
  * <p>
  * In addition to Java compatibility functions, which calculate derived properties,
  * this API provides low-level access to the Unicode Character Database.
- * </p>
  * <p>
  * Unicode assigns each code point (not just assigned character) values for
  * many properties.
  * Most of them are simple boolean flags, or constants from a small enumerated list.
  * For some properties, values are strings or other relatively more complex types.
- * </p>
  * <p>
  * For more information see
  * <a href="http://www.unicode/org/ucd/">"About the Unicode Character Database"</a>
@@ -87,14 +85,12 @@ import android.icu.util.VersionInfo;
  * and the <a href="http://www.icu-project.org/userguide/properties.html">ICU
  * User Guide chapter on Properties</a>
  * (http://www.icu-project.org/userguide/properties.html).
- * </p>
  * <p>
  * There are also functions that provide easy migration from C/POSIX functions
  * like isblank(). Their use is generally discouraged because the C/POSIX
  * standards do not define their semantics beyond the ASCII range, which means
  * that different implementations exhibit very different behavior.
  * Instead, Unicode properties should be used directly.
- * </p>
  * <p>
  * There are also only a few, broad C/POSIX character classes, and they tend
  * to be used for conflicting purposes. For example, the "isalpha()" class
@@ -103,13 +99,11 @@ import android.icu.util.VersionInfo;
  * characters (the latter including combining marks).
  * (In ICU, BreakIterator is the most sophisticated API for word boundaries.)
  * Another example: There is no "istitle()" class for titlecase characters.
- * </p>
  * <p>
  * ICU 3.4 and later provides API access for all twelve C/POSIX character classes.
  * ICU implements them according to the Standard Recommendations in
  * Annex C: Compatibility Properties of UTS #18 Unicode Regular Expressions
  * (http://www.unicode.org/reports/tr18/#Compatibility_Properties).
- * </p>
  * <p>
  * API access for C/POSIX character classes is as follows:
  * <pre>{@code
@@ -127,23 +121,21 @@ import android.icu.util.VersionInfo;
  * - cntrl:     getType(c)==CONTROL
  * - graph:     hasBinaryProperty(c, UProperty.POSIX_GRAPH)
  * - print:     hasBinaryProperty(c, UProperty.POSIX_PRINT)}</pre>
- * </p>
  * <p>
  * The C/POSIX character classes are also available in UnicodeSet patterns,
  * using patterns like [:graph:] or \p{graph}.
- * </p>
  *
- * <strong>[icu] Note:</strong> There are several ICU (and Java) whitespace functions.
+ * <p><strong>[icu] Note:</strong> There are several ICU (and Java) whitespace functions.
  * Comparison:<ul>
  * <li> isUWhiteSpace=UCHAR_WHITE_SPACE: Unicode White_Space property;
  *       most of general categories "Z" (separators) + most whitespace ISO controls
  *       (including no-break spaces, but excluding IS1..IS4 and ZWSP)
  * <li> isWhitespace: Java isWhitespace; Z + whitespace ISO controls but excluding no-break spaces
  * <li> isSpaceChar: just Z (including no-break spaces)</ul>
- * </p>
+ *
  * <p>
  * This class is not subclassable.
- * </p>
+ *
  * @author Syn Wee Quek
  * @see android.icu.lang.UCharacterEnums
  */

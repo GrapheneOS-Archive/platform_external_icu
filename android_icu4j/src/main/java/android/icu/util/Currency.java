@@ -1,7 +1,7 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 /**
  *******************************************************************************
- * Copyright (C) 2001-2015, International Business Machines Corporation and
+ * Copyright (C) 2001-2016, International Business Machines Corporation and
  * others. All Rights Reserved.
  *******************************************************************************
  */
@@ -172,7 +172,8 @@ public class Currency extends MeasureUnit {
      * @return The array of ISO currency codes.
      */
     public static String[] getAvailableCurrencyCodes(ULocale loc, Date d) {
-        CurrencyFilter filter = CurrencyFilter.onDate(d).withRegion(loc.getCountry());
+        String region = ULocale.getRegionForSupplementalData(loc, false);
+        CurrencyFilter filter = CurrencyFilter.onDate(d).withRegion(region);
         List<String> list = getTenderCurrencies(filter);
         // Note: Prior to 4.4 the spec didn't say that we return null if there are no results, but 
         // the test assumed it did.  Kept the behavior and amended the spec.
@@ -228,7 +229,7 @@ public class Currency extends MeasureUnit {
         
         String code = currencyCodeCache.get(loc);
         if (code == null) {
-            String country = loc.getCountry();
+            String country = ULocale.getRegionForSupplementalData(loc, false);
         
             CurrencyMetaInfo info = CurrencyMetaInfo.getInstance();
             List<String> list = info.currencies(CurrencyFilter.onRegion(country));
@@ -388,14 +389,10 @@ public class Currency extends MeasureUnit {
         
         // Don't resolve region if the requested locale is 'und', it will resolve to US
         // which we don't want.
-        String prefRegion = locale.getCountry();
-        if (prefRegion.length() == 0) {
-            if (UND.equals(locale)) {
-                return EMPTY_STRING_ARRAY;
-            }
-            ULocale loc = ULocale.addLikelySubtags(locale);
-            prefRegion = loc.getCountry();
-       }
+        if (UND.equals(locale)) {
+            return EMPTY_STRING_ARRAY;
+        }
+        String prefRegion = ULocale.getRegionForSupplementalData(locale, true);
 
         CurrencyFilter filter = CurrencyFilter.now().withRegion(prefRegion);
         
@@ -582,6 +579,7 @@ public class Currency extends MeasureUnit {
      * @see #getDisplayName(Locale)
      * @see #getName(Locale, int, boolean[])
      */
+    @SuppressWarnings("javadoc")    // java.util.Currency#getDisplayName() is introduced in Java 7
     public String getDisplayName() {
         return getName(Locale.getDefault(), LONG_NAME, null);
     }
@@ -600,6 +598,7 @@ public class Currency extends MeasureUnit {
      * @see #getDisplayName(Locale)
      * @see #getName(Locale, int, boolean[])
      */
+    @SuppressWarnings("javadoc")    // java.util.Currency#getDisplayName() is introduced in Java 7
     public String getDisplayName(Locale locale) {
         return getName(locale, LONG_NAME, null);
     }

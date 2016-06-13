@@ -1,7 +1,7 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 /*
  *******************************************************************************
- * Copyright (C) 1996-2015, International Business Machines Corporation and    *
+ * Copyright (C) 1996-2016, International Business Machines Corporation and    *
  * others. All Rights Reserved.                                                *
  *******************************************************************************
  */
@@ -297,6 +297,7 @@ public class IslamicCalendar extends Calendar {
      *
      * @param beCivil   <code>true</code> to use the civil calendar,
      *                  <code>false</code> to use the astronomical calendar.
+     * @apiNote <strong>Discouraged:</strong> ICU 57 use setCalculationType(CalculationType) instead
      * @hide unsupported on Android
      */
     public void setCivil(boolean beCivil)
@@ -324,8 +325,8 @@ public class IslamicCalendar extends Calendar {
      * Returns <code>true</code> if this object is using the fixed-cycle civil
      * calendar, or <code>false</code> if using the religious, astronomical
      * calendar.
+     * @apiNote <strong>Discouraged:</strong> ICU 57 use getCalculationType() instead
      * @hide unsupported on Android
-     * 
      */
     public boolean isCivil() {
         if(cType == CalculationType.ISLAMIC_CIVIL) {
