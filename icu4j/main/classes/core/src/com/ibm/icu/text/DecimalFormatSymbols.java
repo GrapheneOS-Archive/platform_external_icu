@@ -1,7 +1,7 @@
 /*
  *******************************************************************************
- * Copyright (C) 1996-2015, International Business Machines Corporation and    *
- * others. All Rights Reserved.                                                *
+ * Copyright (C) 1996-2016, International Business Machines Corporation and
+ * others. All Rights Reserved.
  *******************************************************************************
  */
 package com.ibm.icu.text;
@@ -9,11 +9,11 @@ package com.ibm.icu.text;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.Serializable;
-import java.text.ChoiceFormat;
 import java.util.Arrays;
 import java.util.Locale;
 import java.util.MissingResourceException;
 
+import com.ibm.icu.impl.CacheBase;
 import com.ibm.icu.impl.CurrencyData;
 import com.ibm.icu.impl.CurrencyData.CurrencyDisplayInfo;
 import com.ibm.icu.impl.CurrencyData.CurrencyFormatInfo;
@@ -24,6 +24,7 @@ import com.ibm.icu.util.Currency;
 import com.ibm.icu.util.ICUCloneNotSupportedException;
 import com.ibm.icu.util.ULocale;
 import com.ibm.icu.util.ULocale.Category;
+import com.ibm.icu.impl.UResource;
 import com.ibm.icu.util.UResourceBundle;
 
 /**
@@ -210,6 +211,7 @@ public class DecimalFormatSymbols implements Cloneable, Serializable {
      */
     public void setZeroDigit(char zeroDigit) {
         if ( digits != null ) {
+            digits = digits.clone();  // Do not change cached digits.
             this.digits[0] = zeroDigit;
             // Android patch (ticket #11903) begin.
                 for ( int i = 1 ; i < 10 ; i++ ) {
@@ -841,25 +843,95 @@ public class DecimalFormatSymbols implements Cloneable, Serializable {
     }
 
     /**
-     * Initializes the symbols from the LocaleElements resource bundle.
-     * Note: The organization of LocaleElements badly needs to be
-     * cleaned up.
+     * List of field names to be loaded from the data files.
+     * The indices of each name into the array correspond to the position of that item in the
+     * numberElements array.
+     */
+    private static final String[] SYMBOL_KEYS = {
+            "decimal",
+            "group",
+            "list",
+            "percentSign",
+            "minusSign",
+            "plusSign",
+            "exponential",
+            "perMille",
+            "infinity",
+            "nan",
+            "currencyDecimal",
+            "currencyGroup",
+            "superscriptingExponent"
+    };
+
+    /**
+     * List of default values for the symbols.
+     */
+    private static final String[] SYMBOL_DEFAULTS = new String[] {
+            ".", // decimal
+            ",", // group
+            ";", // list
+            "%", // percentSign
+            "-", // minusSign
+            "+", // plusSign
+            "E", // exponential
+            "\u2030", // perMille
+            "\u221e", // infinity
+            "NaN", // NaN
+            null, // currency decimal
+            null, // currency group
+            "\u00D7" // superscripting exponent
+        };
+
+    /**
+     * Constants for path names in the data bundles.
+     */
+    private static final String LATIN_NUMBERING_SYSTEM = "latn";
+    private static final String NUMBER_ELEMENTS = "NumberElements";
+    private static final String SYMBOLS = "symbols";
+
+    /**
+     * Sink for enumerating all of the decimal format symbols (more specifically, anything
+     * under the "NumberElements.symbols" tree).
+     *
+     * More specific bundles (en_GB) are enumerated before their parents (en_001, en, root):
+     * Only store a value if it is still missing, that is, it has not been overridden.
+     */
+    private static final class DecFmtDataSink extends UResource.Sink {
+
+        private String[] numberElements; // Array where to store the characters (set in constructor)
+
+        public DecFmtDataSink(String[] numberElements) {
+            this.numberElements = numberElements;
+        }
+
+        @Override
+        public void put(UResource.Key key, UResource.Value value, boolean noFallback) {
+            UResource.Table symbolsTable = value.getTable();
+            for (int j = 0; symbolsTable.getKeyAndValue(j, key, value); ++j) {
+                for (int i = 0; i < SYMBOL_KEYS.length; i++) {
+                    if (key.contentEquals(SYMBOL_KEYS[i])) {
+                        if (numberElements[i] == null) {
+                            numberElements[i] = value.toString();
+                        }
+                        break;
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     * Initializes the symbols from the locale data.
      */
     private void initialize( ULocale locale ) {
         this.requestedLocale = locale.toLocale();
         this.ulocale = locale;
-        CacheData symbolData = cachedLocaleData.getInstance(locale, null /* unused */);
-        digits = symbolData.digits.clone();
-        String[] numberElements = symbolData.symbolsArray;
+        CacheData data = cachedLocaleData.getInstance(locale, null /* unused */);
+        setLocale(data.validLocale, data.validLocale);
+        digits = data.digits;
+        String[] numberElements = data.numberElements;
 
-        ICUResourceBundle r = (ICUResourceBundle)UResourceBundle.
-            getBundleInstance(ICUResourceBundle.ICU_BASE_NAME, locale);
-
-        // TODO: Determine actual and valid locale correctly.
-        ULocale uloc = r.getULocale();
-        setLocale(uloc, uloc);
-
-
+        // Copy data from the numberElements map into instance fields
         decimalSeparator = numberElements[0].charAt(0);
         groupingSeparator = numberElements[1].charAt(0);
         patternSeparator = numberElements[2].charAt(0);
@@ -874,25 +946,10 @@ public class DecimalFormatSymbols implements Cloneable, Serializable {
         perMill = numberElements[7].charAt(0);
         infinity = numberElements[8];
         NaN = numberElements[9];
+        monetarySeparator = numberElements[10].charAt(0);
+        monetaryGroupingSeparator = numberElements[11].charAt(0);
+        exponentMultiplicationSign = numberElements[12];
 
-        if ( numberElements[10] != null) {
-            monetarySeparator = numberElements[10].charAt(0);
-        } else {
-            monetarySeparator = decimalSeparator;
-        }
-        
-        if ( numberElements[11] != null) {
-            monetaryGroupingSeparator = numberElements[11].charAt(0);
-        } else {
-            monetaryGroupingSeparator = groupingSeparator;
-        }
-        
-        if ( numberElements[12] != null) {
-            exponentMultiplicationSign = numberElements[12];
-        } else {
-            exponentMultiplicationSign = "\u00D7";
-        }
-        
         digit = DecimalFormat.PATTERN_DIGIT;  // Localized pattern character no longer in CLDR
         padEscape = DecimalFormat.PATTERN_PAD_ESCAPE;
         sigDigit  = DecimalFormat.PATTERN_SIGNIFICANT_DIGIT;
@@ -903,17 +960,10 @@ public class DecimalFormatSymbols implements Cloneable, Serializable {
         // Obtain currency data from the currency API.  This is strictly
         // for backward compatibility; we don't use DecimalFormatSymbols
         // for currency data anymore.
-        String currname = null;
         currency = Currency.getInstance(locale);
         if (currency != null) {
             intlCurrencySymbol = currency.getCurrencyCode();
-            boolean[] isChoiceFormat = new boolean[1];
-            currname = currency.getName(locale, Currency.SYMBOL_NAME, isChoiceFormat);
-            // If this is a ChoiceFormat currency, then format an
-            // arbitrary value; pick something != 1; more common.
-            currencySymbol = isChoiceFormat[0]
-                ? new ChoiceFormat(currname).format(2.0)
-                : currname;
+            currencySymbol = currency.getName(locale, Currency.SYMBOL_NAME, null);
             CurrencyFormatInfo fmtInfo = info.getFormatInfo(intlCurrencySymbol);
             if (fmtInfo != null) {
                 currencyPattern = fmtInfo.currencyPattern;
@@ -932,12 +982,12 @@ public class DecimalFormatSymbols implements Cloneable, Serializable {
         initSpacingInfo(info.getSpacingInfo());
     }
 
-    static CacheData loadSymbols(ULocale locale) {
+    private static CacheData loadData(ULocale locale) {
         String nsName;
-        // Attempt to set the zero digit based on the numbering system for the locale requested
+        // Attempt to set the decimal digits based on the numbering system for the requested locale.
         NumberingSystem ns = NumberingSystem.getInstance(locale);
         char[] digits = new char[10];
-        if ( ns != null && ns.getRadix() == 10 && !ns.isAlgorithmic() &&
+        if (ns != null && ns.getRadix() == 10 && !ns.isAlgorithmic() &&
                 NumberingSystem.isValidDigitString(ns.getDescription())) {
             String digitString = ns.getDescription();
             digits[0] = digitString.charAt(0);
@@ -965,30 +1015,53 @@ public class DecimalFormatSymbols implements Cloneable, Serializable {
             nsName = "latn"; // Default numbering system
         }
 
-        ICUResourceBundle rb = (ICUResourceBundle) UResourceBundle.
+        // Open the resource bundle and get the locale IDs.
+        // TODO: Is there a better way to get the locale than making an ICUResourceBundle instance?
+        ICUResourceBundle rb = (ICUResourceBundle)UResourceBundle.
                 getBundleInstance(ICUResourceBundle.ICU_BASE_NAME, locale);
-        boolean isLatn = nsName.equals("latn");
-        String baseKey = "NumberElements/" + nsName + "/symbols/";
-        String latnKey = "NumberElements/latn/symbols/";
-        String[] symbolKeys = { "decimal", "group", "list", "percentSign", "minusSign", "plusSign", "exponential", "perMille", "infinity", "nan", "currencyDecimal", "currencyGroup", "superscriptingExponent" };
-        String[] fallbackElements = { ".", ",", ";", "%", "-", "+", "E", "\u2030", "\u221e", "NaN", null, null };
-        String[] symbolsArray = new String[symbolKeys.length];
-        for ( int i = 0 ; i < symbolKeys.length; i++ ) {
-            try {
-                symbolsArray[i] = rb.getStringWithFallback(baseKey+symbolKeys[i]);
-            } catch (MissingResourceException ex) {
-                if (!isLatn) { // Fall back to latn numbering system for symbols if desired symbol isn't found.
-                    try {
-                        symbolsArray[i] = rb.getStringWithFallback(latnKey+symbolKeys[i]);
-                    } catch (MissingResourceException ex1) {
-                        symbolsArray[i] = fallbackElements[i];
-                    }
-                } else {
-                    symbolsArray[i] = fallbackElements[i];
-                }
+        // TODO: Determine actual and valid locale correctly.
+        ULocale validLocale = rb.getULocale();
+
+        String[] numberElements = new String[SYMBOL_KEYS.length];
+
+        // Load using a data sink
+        DecFmtDataSink sink = new DecFmtDataSink(numberElements);
+        try {
+            rb.getAllItemsWithFallback(NUMBER_ELEMENTS + "/" + nsName + "/" + SYMBOLS, sink);
+        } catch (MissingResourceException e) {
+            // The symbols don't exist for the given nsName and resource bundle.
+            // Silently ignore and fall back to Latin.
+        }
+
+        // Load the Latin fallback if necessary
+        boolean hasNull = false;
+        for (String entry : numberElements) {
+            if (entry == null) {
+                hasNull = true;
+                break;
             }
         }
-        return new CacheData(digits, symbolsArray);
+        if (hasNull && !nsName.equals(LATIN_NUMBERING_SYSTEM)) {
+            rb.getAllItemsWithFallback(NUMBER_ELEMENTS + "/" + LATIN_NUMBERING_SYSTEM + "/" + SYMBOLS, sink);
+        }
+
+        // If monetary decimal or grouping were not explicitly set, then set them to be the same as
+        // their non-monetary counterparts.
+        if (numberElements[10] == null) {
+            numberElements[10] = numberElements[0];
+        }
+        if (numberElements[11] == null) {
+            numberElements[11] = numberElements[1];
+        }
+
+        // Fill in any remaining missing values
+        for (int i = 0; i < SYMBOL_KEYS.length; i++) {
+            if (numberElements[i] == null) {
+                numberElements[i] = SYMBOL_DEFAULTS[i];
+            }
+        }
+
+        return new CacheData(validLocale, digits, numberElements);
     }
 
     private void initSpacingInfo(CurrencySpacingInfo spcInfo) {
@@ -1311,11 +1384,11 @@ public class DecimalFormatSymbols implements Cloneable, Serializable {
     /**
      * cache to hold the NumberElements of a Locale.
      */
-    private static final SoftCache<ULocale, CacheData, Void> cachedLocaleData =
+    private static final CacheBase<ULocale, CacheData, Void> cachedLocaleData =
         new SoftCache<ULocale, CacheData, Void>() {
             @Override
-            protected CacheData createInstance(ULocale key, Void unused) {
-                return DecimalFormatSymbols.loadSymbols(key);
+            protected CacheData createInstance(ULocale locale, Void unused) {
+                return DecimalFormatSymbols.loadData(locale);
             }
         };
 
@@ -1401,12 +1474,14 @@ public class DecimalFormatSymbols implements Cloneable, Serializable {
     // -------- END ULocale boilerplate --------
 
     private static class CacheData {
-        public final char[] digits;
-        public final String[] symbolsArray;
+        final ULocale validLocale;
+        final char[] digits;
+        final String[] numberElements;
 
-        public CacheData(char[] digits, String[] symbolsArray) {
+        public CacheData(ULocale loc, char[] digits, String[] numberElements) {
+            validLocale = loc;
             this.digits = digits;
-            this.symbolsArray = symbolsArray;
+            this.numberElements = numberElements;
         }
     }
 }

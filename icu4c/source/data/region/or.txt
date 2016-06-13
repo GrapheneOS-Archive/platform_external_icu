@@ -1,6 +1,6 @@
 ﻿// ***************************************************************************
 // *
-// * Copyright (C) 2015 International Business Machines
+// * Copyright (C) 2016 International Business Machines
 // * Corporation and others. All Rights Reserved.
 // * Tool: org.unicode.cldr.icu.NewLdml2IcuConverter
 // * Source File: <path>/common/main/or.xml
@@ -45,7 +45,6 @@ or{
         AI{"ଆଙ୍ଗୁଇଲ୍ଲା"}
         AL{"ଆଲବାନିଆ"}
         AM{"ଆର୍ମେନିଆ"}
-        AN{"ନେଦରଲ୍ୟାଣ୍ଡସ୍ ଆଣ୍ଟିଲିଜ୍"}
         AO{"ଆଙ୍ଗୋଲା"}
         AQ{"ଆର୍ଣ୍ଟକଟିକା"}
         AR{"ଆର୍ଜେଣ୍ଟିନା"}
@@ -185,7 +184,7 @@ or{
         ML{"ମାଳୀ"}
         MM{"ମିୟାମାର୍"}
         MN{"ମଙ୍ଗୋଲିଆ"}
-        MO{"ମାକାଉ SAR ଚିନ୍"}
+        MO{"ମାକାଉ"}
         MP{"ଉତ୍ତର ମାରିଆନା ଦ୍ବୀପପୁଞ୍ଜ"}
         MQ{"ମାର୍ଟିନିକ୍ୟୁ"}
         MR{"ମାଉରିଟାନିଆ"}
@@ -288,5 +287,5 @@ or{
         ZW{"ଜିମ୍ବାୱେ"}
         ZZ{"ଅଜଣା କିମ୍ବା ଅବୈଧ ପ୍ରଦେଶ"}
     }
-    Version{"2.1.19.14"}
+    Version{"2.1.23.7"}
 }
