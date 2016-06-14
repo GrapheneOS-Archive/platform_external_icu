@@ -538,6 +538,9 @@ public class Icu4jTransform {
       "method:android.icu.text.Collator#registerFactory(CollatorFactory)",
       "method:android.icu.text.Collator#registerInstance(Collator,ULocale)",
       "method:android.icu.text.Collator#unregister(Object)",
+      "method:android.icu.text.LocaleDisplayNames#getUiList(Set<ULocale>,boolean,Comparator<Object>)",
+      "method:android.icu.text.LocaleDisplayNames#getUiListCompareWholeItems(Set<ULocale>,Comparator<UiListItem>)",
+      "method:android.icu.text.MeasureFormat#formatMeasurePerUnit(Measure,MeasureUnit,StringBuilder,FieldPosition)",
       "method:android.icu.text.NumberFormat#registerFactory(NumberFormatFactory)",
       "method:android.icu.text.NumberFormat#unregister(Object)",
       "method:android.icu.text.RuleBasedCollator#getRawCollationKey(String,RawCollationKey)",
@@ -565,6 +568,7 @@ public class Icu4jTransform {
       "method:android.icu.util.ULocale#setDefault(ULocale)",
       "method:android.icu.util.VersionInfo#main(String[])",
       "type:android.icu.text.Collator$CollatorFactory",
+      "type:android.icu.text.LocaleDisplayNames$UiListItem",
       "type:android.icu.text.NumberFormat$NumberFormatFactory",
       "type:android.icu.text.NumberFormat$SimpleNumberFormatFactory",
   };
