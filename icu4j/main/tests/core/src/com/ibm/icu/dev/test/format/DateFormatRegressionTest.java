@@ -426,6 +426,10 @@ public class DateFormatRegressionTest extends com.ibm.icu.dev.test.TestFmwk {
         try {
             TimeZone z = new SimpleTimeZone((int) (1.25 * 3600000), "FAKEZONE");
             TimeZone.setDefault(z);
+            // Android patch (http://b/28949992) start.
+            // ICU TimeZone.setDefault() not supported on Android.
+            z = TimeZone.getDefault();
+            // Android patch (http://b/28949992) end.
             SimpleDateFormat f = new SimpleDateFormat();
             if (!f.getTimeZone().equals(z))
                 errln("Fail: SimpleTimeZone should use TimeZone.getDefault()");
