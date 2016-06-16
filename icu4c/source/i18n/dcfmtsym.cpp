@@ -283,6 +283,12 @@ DecimalFormatSymbols::initialize(const Locale& loc, UErrorCode& status, UBool us
             }
 
             if ( U_SUCCESS(localStatus) ) {
+                // Android patch (http://b/15476051) begin.
+                if (i == kPercentSymbol && len > 1) {
+                    ++sym;
+                    --len;
+                }
+                // Android patch (http://b/15476051) end.
                 setSymbol((ENumberFormatSymbol)i, UnicodeString(TRUE, sym, len));
                 if ( i == kMonetarySeparatorSymbol ) {
                     kMonetaryDecimalSet = TRUE;

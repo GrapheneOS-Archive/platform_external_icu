@@ -1,6 +1,6 @@
 /*
  *******************************************************************************
- * Copyright (C) 1996-2015, International Business Machines Corporation and    *
+ * Copyright (C) 1996-2016, International Business Machines Corporation and    *
  * others. All Rights Reserved.                                                *
  *******************************************************************************
  */
@@ -64,7 +64,12 @@ import com.ibm.icu.util.ULocale.Category;
  * Like the Islamic religious calendar, <em>Umm al-Qura</em> is also based 
  * on the sighting method of the crescent moon but is standardized by Saudi Arabia.
  * <p>  
- * The fixed-cycle <em>civil</em> calendar is used.
+ * The {@link #setCalculationType(CalculationType) setCalculationType} method determines
+ * which approach is used to determine the start of a month.  By default, the
+ * fixed-cycle <em>civil</em> calendar is used.  However, if <code>setCalculationType(ISLAMIC)</code>
+ * is called, an approximation of the true lunar calendar will be used.
+ * Similarly, if <code>setCalculationType(ISLAMIC_UMALQURA)</code> is called, an approximation 
+ * of the Umm al-Qura lunar calendar will be used.
  * <p>
  * This class should not be subclassed.</p>
  * <p>
@@ -319,6 +324,7 @@ public class IslamicCalendar extends Calendar {
      * @param beCivil   <code>true</code> to use the civil calendar,
      *                  <code>false</code> to use the astronomical calendar.
      * @stable ICU 2.8
+     * @discouraged ICU 57 use setCalculationType(CalculationType) instead
      */
     public void setCivil(boolean beCivil)
     {
@@ -346,7 +352,7 @@ public class IslamicCalendar extends Calendar {
      * calendar, or <code>false</code> if using the religious, astronomical
      * calendar.
      * @stable ICU 2.8
-     * 
+     * @discouraged ICU 57 use getCalculationType() instead
      */
     public boolean isCivil() {
         if(cType == CalculationType.ISLAMIC_CIVIL) {
