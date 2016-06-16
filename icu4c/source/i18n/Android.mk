@@ -80,6 +80,7 @@ src_files += \
 	currunit.cpp \
 	dangical.cpp \
 	datefmt.cpp \
+	dayperiodrules.cpp \
 	dcfmtsym.cpp \
 	decfmtst.cpp \
 	decimalformatpattern.cpp \
@@ -113,7 +114,6 @@ src_files += \
 	inputext.cpp \
 	islamcal.cpp \
 	japancal.cpp \
-	locdspnm.cpp \
 	measfmt.cpp \
 	measunit.cpp \
 	measure.cpp \
@@ -189,7 +189,6 @@ src_files += \
 	ucol_res.cpp \
 	ucol_sit.cpp \
 	ucsdet.cpp \
-	ucurr.cpp \
 	udat.cpp \
 	udateintervalformat.cpp \
 	udatpg.cpp \

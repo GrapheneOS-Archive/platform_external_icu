@@ -1,6 +1,6 @@
 /*
  *******************************************************************************
- * Copyright (C) 2004-2015, Google Inc, International Business Machines        *
+ * Copyright (C) 2004-2016, Google Inc, International Business Machines        *
  * Corporation and others. All Rights Reserved.                                *
  *******************************************************************************
  */
@@ -40,8 +40,12 @@ public class MeasureUnit implements Serializable {
     // Used to pre-fill the cache. These same constants appear in MeasureFormat too.
     private static final String[] unitKeys = new String[]{"units", "unitsShort", "unitsNarrow"};
     
+    // Cache of MeasureUnits.
+    // All access to the cache or cacheIsPopulated flag must be synchronized on class MeasureUnit,
+    // i.e. from synchronized static methods. Beware of non-static methods.
     private static final Map<String, Map<String,MeasureUnit>> cache 
-    = new HashMap<String, Map<String,MeasureUnit>>();
+        = new HashMap<String, Map<String,MeasureUnit>>();
+    private static boolean cacheIsPopulated = false;
 
     /**
      * @internal
@@ -131,6 +135,7 @@ public class MeasureUnit implements Serializable {
      * @stable ICU 53
      */
     public synchronized static Set<String> getAvailableTypes() {
+        populateCache();            
         return Collections.unmodifiableSet(cache.keySet());
     }
 
@@ -141,6 +146,7 @@ public class MeasureUnit implements Serializable {
      * @stable ICU 53
      */
     public synchronized static Set<MeasureUnit> getAvailable(String type) {
+        populateCache();            
         Map<String, MeasureUnit> units = cache.get(type);
         // Train users not to modify returned set from the start giving us more
         // flexibility for implementation.
@@ -241,7 +247,21 @@ public class MeasureUnit implements Serializable {
         }
     };
 
-    static {
+    /**
+     * Populate the MeasureUnit cache with all types from the data.
+     * Population is done lazily, in response to MeasureUnit.getAvailable()
+     * or other API that expects to see all of the MeasureUnits.
+     *
+     * <p>At static initialization time the MeasureUnits cache is populated
+     * with public static instances (G_FORCE, METER_PER_SECOND_SQUARED, etc.) only. 
+     * Adding of others is deferred until later to avoid circular static init 
+     * dependencies with classes Currency and TimeUnit.
+     *
+     * <p>Synchronization: this function must be called from static synchronized methods only.
+     * 
+     * @internal
+     */
+    static private void populateCache() {
         // load all of the units for English, since we know that that is a superset.
         /**
          *     units{
@@ -251,6 +271,9 @@ public class MeasureUnit implements Serializable {
          *                    other{"{0} дена"}
          *                }
          */
+        if (cacheIsPopulated) {
+            return;
+        }
         ICUResourceBundle resource = (ICUResourceBundle)UResourceBundle.getBundleInstance(ICUResourceBundle.ICU_BASE_NAME, "en");
         for (String key : unitKeys) {
             try {
@@ -287,9 +310,9 @@ public class MeasureUnit implements Serializable {
         } catch (MissingResourceException e) {
             // fall through
         }
+        cacheIsPopulated = true;
     }
 
-    // Must only be called at static initialization, or inside synchronized block.
     /**
      * @internal
      * @deprecated This API is ICU internal only.
@@ -421,6 +444,33 @@ public class MeasureUnit implements Serializable {
     public static final MeasureUnit SQUARE_YARD = MeasureUnit.internalGetInstance("area", "square-yard");
 
     /**
+     * Constant for unit of concentr: karat
+     * @stable ICU 54
+     */
+    public static final MeasureUnit KARAT = MeasureUnit.internalGetInstance("concentr", "karat");
+
+    /**
+     * Constant for unit of concentr: milligram-per-deciliter
+     * @draft ICU 57
+     * @provisional This API might change or be removed in a future release.
+     */
+    public static final MeasureUnit MILLIGRAM_PER_DECILITER = MeasureUnit.internalGetInstance("concentr", "milligram-per-deciliter");
+
+    /**
+     * Constant for unit of concentr: millimole-per-liter
+     * @draft ICU 57
+     * @provisional This API might change or be removed in a future release.
+     */
+    public static final MeasureUnit MILLIMOLE_PER_LITER = MeasureUnit.internalGetInstance("concentr", "millimole-per-liter");
+
+    /**
+     * Constant for unit of concentr: part-per-million
+     * @draft ICU 57
+     * @provisional This API might change or be removed in a future release.
+     */
+    public static final MeasureUnit PART_PER_MILLION = MeasureUnit.internalGetInstance("concentr", "part-per-million");
+
+    /**
      * Constant for unit of consumption: liter-per-100kilometers
      * @draft ICU 56
      * @provisional This API might change or be removed in a future release.
@@ -438,6 +488,13 @@ public class MeasureUnit implements Serializable {
      * @stable ICU 54
      */
     public static final MeasureUnit MILE_PER_GALLON = MeasureUnit.internalGetInstance("consumption", "mile-per-gallon");
+
+    /**
+     * Constant for unit of consumption: mile-per-gallon-imperial
+     * @draft ICU 57
+     * @provisional This API might change or be removed in a future release.
+     */
+    public static final MeasureUnit MILE_PER_GALLON_IMPERIAL = MeasureUnit.internalGetInstance("consumption", "mile-per-gallon-imperial");
 
     /**
      * Constant for unit of digital: bit
@@ -904,12 +961,6 @@ public class MeasureUnit implements Serializable {
     public static final MeasureUnit POUND_PER_SQUARE_INCH = MeasureUnit.internalGetInstance("pressure", "pound-per-square-inch");
 
     /**
-     * Constant for unit of proportion: karat
-     * @stable ICU 54
-     */
-    public static final MeasureUnit KARAT = MeasureUnit.internalGetInstance("proportion", "karat");
-
-    /**
      * Constant for unit of speed: kilometer-per-hour
      * @stable ICU 53
      */
@@ -1051,6 +1102,13 @@ public class MeasureUnit implements Serializable {
     public static final MeasureUnit GALLON = MeasureUnit.internalGetInstance("volume", "gallon");
 
     /**
+     * Constant for unit of volume: gallon-imperial
+     * @draft ICU 57
+     * @provisional This API might change or be removed in a future release.
+     */
+    public static final MeasureUnit GALLON_IMPERIAL = MeasureUnit.internalGetInstance("volume", "gallon-imperial");
+
+    /**
      * Constant for unit of volume: hectoliter
      * @stable ICU 54
      */
@@ -1109,12 +1167,14 @@ public class MeasureUnit implements Serializable {
             new HashMap<Pair<MeasureUnit, MeasureUnit>, MeasureUnit>();
 
     static {
-        unitPerUnitToSingleUnit.put(Pair.<MeasureUnit, MeasureUnit>of(MeasureUnit.KILOMETER, MeasureUnit.HOUR), MeasureUnit.KILOMETER_PER_HOUR);
-        unitPerUnitToSingleUnit.put(Pair.<MeasureUnit, MeasureUnit>of(MeasureUnit.MILE, MeasureUnit.GALLON), MeasureUnit.MILE_PER_GALLON);
-        unitPerUnitToSingleUnit.put(Pair.<MeasureUnit, MeasureUnit>of(MeasureUnit.MILE, MeasureUnit.HOUR), MeasureUnit.MILE_PER_HOUR);
-        unitPerUnitToSingleUnit.put(Pair.<MeasureUnit, MeasureUnit>of(MeasureUnit.METER, MeasureUnit.SECOND), MeasureUnit.METER_PER_SECOND);
         unitPerUnitToSingleUnit.put(Pair.<MeasureUnit, MeasureUnit>of(MeasureUnit.LITER, MeasureUnit.KILOMETER), MeasureUnit.LITER_PER_KILOMETER);
         unitPerUnitToSingleUnit.put(Pair.<MeasureUnit, MeasureUnit>of(MeasureUnit.POUND, MeasureUnit.SQUARE_INCH), MeasureUnit.POUND_PER_SQUARE_INCH);
+        unitPerUnitToSingleUnit.put(Pair.<MeasureUnit, MeasureUnit>of(MeasureUnit.MILE, MeasureUnit.HOUR), MeasureUnit.MILE_PER_HOUR);
+        unitPerUnitToSingleUnit.put(Pair.<MeasureUnit, MeasureUnit>of(MeasureUnit.MILLIGRAM, MeasureUnit.DECILITER), MeasureUnit.MILLIGRAM_PER_DECILITER);
+        unitPerUnitToSingleUnit.put(Pair.<MeasureUnit, MeasureUnit>of(MeasureUnit.MILE, MeasureUnit.GALLON_IMPERIAL), MeasureUnit.MILE_PER_GALLON_IMPERIAL);
+        unitPerUnitToSingleUnit.put(Pair.<MeasureUnit, MeasureUnit>of(MeasureUnit.KILOMETER, MeasureUnit.HOUR), MeasureUnit.KILOMETER_PER_HOUR);
+        unitPerUnitToSingleUnit.put(Pair.<MeasureUnit, MeasureUnit>of(MeasureUnit.MILE, MeasureUnit.GALLON), MeasureUnit.MILE_PER_GALLON);
+        unitPerUnitToSingleUnit.put(Pair.<MeasureUnit, MeasureUnit>of(MeasureUnit.METER, MeasureUnit.SECOND), MeasureUnit.METER_PER_SECOND);
     }
 
     // End generated MeasureUnit constants

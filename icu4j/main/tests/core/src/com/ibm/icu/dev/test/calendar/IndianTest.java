@@ -1,7 +1,7 @@
 /*
  *******************************************************************************
- * Copyright (C) 2005-2011, International Business Machines Corporation and    *
- * others. All Rights Reserved.                                                *
+ * Copyright (C) 2005-2016, International Business Machines Corporation and
+ * others. All Rights Reserved.
  *******************************************************************************
  */
 package com.ibm.icu.dev.test.calendar;
