@@ -1,6 +1,6 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 /*
- *   Copyright (C) 1996-2015, International Business Machines
+ *   Copyright (C) 1996-2016, International Business Machines
  *   Corporation and others.  All Rights Reserved.
  */
 
@@ -21,10 +21,10 @@ import android.icu.impl.CalendarUtil;
 import android.icu.impl.ICUCache;
 import android.icu.impl.ICUResourceBundle;
 import android.icu.impl.SimpleCache;
+import android.icu.impl.SimpleFormatterImpl;
 import android.icu.impl.SoftCache;
 import android.icu.text.DateFormat;
 import android.icu.text.DateFormatSymbols;
-import android.icu.text.MessageFormat;
 import android.icu.text.SimpleDateFormat;
 import android.icu.util.ULocale.Category;
 
@@ -635,7 +635,7 @@ import android.icu.util.ULocale.Category;
  * @see          GregorianCalendar
  * @see          TimeZone
  * @see          DateFormat
- * @author Mark Davis, David Goldsmith, Chen-Lieh Huang, Alan Liu, Laura Werner
+ * @author Mark Davis, Deborah Goldsmith, Chen-Lieh Huang, Alan Liu, Laura Werner
  */
 public abstract class Calendar implements Serializable, Cloneable, Comparable<Calendar> {
 
@@ -1691,13 +1691,9 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
     }
 
     private static String getRegionForCalendar(ULocale loc) {
-        String region = loc.getCountry();
+        String region = ULocale.getRegionForSupplementalData(loc, true);
         if (region.length() == 0) {
-            ULocale maxLocale = ULocale.addLikelySubtags(loc);
-            region = maxLocale.getCountry();
-            if (region.length() == 0) {
-                region = "001";
-            }
+            region = "001";
         }
         return region;
     }
@@ -1854,11 +1850,7 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
     public static final String[] getKeywordValuesForLocale(String key, ULocale locale,
             boolean commonlyUsed) {
         // Resolve region
-        String prefRegion = locale.getCountry();
-        if (prefRegion.length() == 0){
-            ULocale loc = ULocale.addLikelySubtags(locale);
-            prefRegion = loc.getCountry();
-        }
+        String prefRegion = ULocale.getRegionForSupplementalData(locale, true);
 
         // Read preferred calendar values from supplementalData calendarPreferences
         ArrayList<String> values = new ArrayList<String>();
@@ -3446,9 +3438,10 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
         // Resolve a pattern for the date/time style
         String pattern = null;
         if ((timeStyle >= 0) && (dateStyle >= 0)) {
-            pattern = MessageFormat.format(patternData.getDateTimePattern(dateStyle),
-                    new Object[] {patternData.patterns[timeStyle],
-                patternData.patterns[dateStyle + 4]});
+            pattern = SimpleFormatterImpl.formatRawPattern(
+                    patternData.getDateTimePattern(dateStyle), 2, 2,
+                    patternData.patterns[timeStyle],
+                    patternData.patterns[dateStyle + 4]);
             // Might need to merge the overrides from the date and time into a single
             // override string TODO: Right now we are forcing the date's override into the
             // time style.

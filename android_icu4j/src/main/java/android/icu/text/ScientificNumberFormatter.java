@@ -32,7 +32,6 @@ import android.icu.util.ULocale;
  * </pre>
  *
  * @hide Only a subset of ICU is exposed in Android
- * @hide draft / provisional / internal are hidden on Android
  *
  */
 public final class ScientificNumberFormatter {
@@ -46,8 +45,6 @@ public final class ScientificNumberFormatter {
      * superscript characters for exponents for this locale.
      * @param locale The locale
      * @return The ScientificNumberFormatter instance.
-     * 
-     * @hide draft / provisional / internal are hidden on Android
      */
     public static ScientificNumberFormatter getSuperscriptInstance(ULocale locale) {
         return getInstanceForLocale(locale, SUPER_SCRIPT); 
@@ -60,8 +57,6 @@ public final class ScientificNumberFormatter {
      *   notation. Caller may safely change df after this call as this method
      *   clones it when creating the ScientificNumberFormatter.
      * @return the ScientificNumberFormatter instance.
-     * 
-     * @hide draft / provisional / internal are hidden on Android
      */ 
      public static ScientificNumberFormatter getSuperscriptInstance(
              DecimalFormat df) {
@@ -75,8 +70,6 @@ public final class ScientificNumberFormatter {
       * @param beginMarkup the markup to start superscript e.g {@code <sup>}
       * @param endMarkup the markup to end superscript e.g {@code </sup>}
       * @return The ScientificNumberFormatter instance.
-      * 
-      * @hide draft / provisional / internal are hidden on Android
       */
      public static ScientificNumberFormatter getMarkupInstance(
              ULocale locale,
@@ -95,8 +88,6 @@ public final class ScientificNumberFormatter {
       * @param beginMarkup the markup to start superscript e.g {@code <sup>}
       * @param endMarkup the markup to end superscript e.g {@code </sup>}
       * @return The ScientificNumberFormatter instance.
-      * 
-      * @hide draft / provisional / internal are hidden on Android
       */
      public static ScientificNumberFormatter getMarkupInstance(
              DecimalFormat df,
@@ -111,8 +102,6 @@ public final class ScientificNumberFormatter {
       * @param number Can be a double, int, Number or
       *  anything that DecimalFormat#format(Object) accepts.
       * @return the formatted string.
-      *
-      * @hide draft / provisional / internal are hidden on Android
       */
      public String format(Object number) {
          synchronized (fmt) {

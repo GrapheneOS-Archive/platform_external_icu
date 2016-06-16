@@ -1,7 +1,7 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 /*
  *******************************************************************************
- * Copyright (C) 1996-2014, International Business Machines Corporation and    *
+ * Copyright (C) 1996-2016, International Business Machines Corporation and    *
  * others. All Rights Reserved.                                                *
  *******************************************************************************
  */
@@ -850,6 +850,21 @@ public class BreakIteratorTest extends TestFmwk
         }
     }
 
+    /**
+     * At present, Japanese doesn't have exceptions.
+     * However, this still should not fail.
+     */
+    public void TestFilteredJapanese() {
+        ULocale loc = ULocale.JAPANESE;
+        BreakIterator brk = FilteredBreakIteratorBuilder
+                .createInstance(loc)
+                .build(BreakIterator.getSentenceInstance(loc));
+        brk.setText("ＯＫです。");
+        assertEquals("Starting point", 0, brk.current());
+        assertEquals("Next point", 5, brk.next());
+        assertEquals("Last point", BreakIterator.DONE, brk.next());
+    }
+    
     /*
      * Test case for Ticket#10721. BreakIterator factory method should throw NPE
      * when specified locale is null.
