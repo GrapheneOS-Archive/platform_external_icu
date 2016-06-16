@@ -1,7 +1,7 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 /*
  *******************************************************************************
- * Copyright (C) 1996-2012, International Business Machines Corporation and
+ * Copyright (C) 1996-2016, International Business Machines Corporation and
  * others. All Rights Reserved.
  *******************************************************************************
  */
@@ -46,7 +46,8 @@ public class TestAll extends TestGroup {
             "LocaleBuilderTest",
             "LocaleMatcherTest",
             "LocalePriorityListTest",
-            "RegionTest"
+            "RegionTest",
+            "TestLocaleValidity"
         },
               "Test miscellaneous public utilities");
     }

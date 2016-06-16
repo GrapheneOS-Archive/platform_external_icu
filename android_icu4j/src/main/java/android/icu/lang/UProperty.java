@@ -1,7 +1,7 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 /**
 *******************************************************************************
-* Copyright (C) 1996-2014, International Business Machines Corporation and
+* Copyright (C) 1996-2016, International Business Machines Corporation and
 * others. All Rights Reserved.
 *******************************************************************************
 */
@@ -453,12 +453,40 @@ public interface UProperty
      * Binary property Changes_When_NFKC_Casefolded.
      */
     public static final int CHANGES_WHEN_NFKC_CASEFOLDED=56;
+    /**
+     * Binary property Emoji.
+     * See http://www.unicode.org/reports/tr51/#Emoji_Properties
+     *
+     * @hide draft / provisional / internal are hidden on Android
+     */
+    public static final int EMOJI=57;
+    /**
+     * Binary property Emoji_Presentation.
+     * See http://www.unicode.org/reports/tr51/#Emoji_Properties
+     *
+     * @hide draft / provisional / internal are hidden on Android
+     */
+    public static final int EMOJI_PRESENTATION=58;
+    /**
+     * Binary property Emoji_Modifier.
+     * See http://www.unicode.org/reports/tr51/#Emoji_Properties
+     *
+     * @hide draft / provisional / internal are hidden on Android
+     */
+    public static final int EMOJI_MODIFIER=59;
+    /**
+     * Binary property Emoji_Modifier_Base.
+     * See http://www.unicode.org/reports/tr51/#Emoji_Properties
+     *
+     * @hide draft / provisional / internal are hidden on Android
+     */
+    public static final int EMOJI_MODIFIER_BASE=60;
 
-    /** 
+    /**
      * One more than the last constant for binary Unicode properties. 
      * @hide unsupported on Android
      */
-    public static final int BINARY_LIMIT = 57;
+    public static final int BINARY_LIMIT = 61;
 
     /** 
      * Enumerated property Bidi_Class.

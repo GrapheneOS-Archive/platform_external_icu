@@ -1,7 +1,7 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 /*
  ******************************************************************************
- * Copyright (C) 2003-2015, International Business Machines Corporation and
+ * Copyright (C) 2003-2016, International Business Machines Corporation and
  * others. All Rights Reserved.
  ******************************************************************************
  */
@@ -96,6 +96,7 @@ import android.icu.text.LocaleDisplayNames.DialectHandling;
  * @author Alan Liu
  * @author Ram Viswanadha
  */
+@SuppressWarnings("javadoc")    // android.icu.text.Collator is in another project
 public final class ULocale implements Serializable, Comparable<ULocale> {
     // using serialver from jdk1.4.2_05
     private static final long serialVersionUID = 3715177670352309217L;
@@ -568,7 +569,7 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      * <p>
      * The default ULocale is synchronized to the default Java Locale. This method checks
      * the current default Java Locale and returns an equivalent ULocale.
-     *
+     * 
      * @return the default ULocale.
      */
     public static ULocale getDefault() {
@@ -900,6 +901,44 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      */
     public static String getCountry(String localeID) {
         return new LocaleIDParser(localeID).getCountry();
+    }
+
+    /**
+     * <strong>[icu]</strong> Get the region to use for supplemental data lookup.
+     * Uses
+     * (1) any region specified by locale tag "rg"; if none then
+     * (2) any unicode_region_tag in the locale ID; if none then
+     * (3) if inferRegion is TRUE, the region suggested by
+     *     getLikelySubtags on the localeID.
+     * If no region is found, returns empty string ""
+     *
+     * @param locale
+     *     The locale (includes any keywords) from which
+     *     to get the region to use for supplemental data.
+     * @param inferRegion
+     *     If TRUE, will try to infer region from other
+     *     locale elements if not found any other way.
+     * @return
+     *     String with region to use ("" if none found).
+     * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
+     */
+    @Deprecated
+    public static String getRegionForSupplementalData(
+                            ULocale locale, boolean inferRegion) {
+        String region = locale.getKeywordValue("rg");
+        if (region != null && region.length() == 6) {
+            String regionUpper = AsciiUtil.toUpperString(region);
+            if (regionUpper.endsWith("ZZZZ")) {
+            	return regionUpper.substring(0,2);
+            }
+        }
+        region = locale.getCountry();
+        if (region.length() == 0 && inferRegion) {
+            ULocale maximized = addLikelySubtags(locale);
+            region = maximized.getCountry();
+        }
+        return region;
     }
 
     /**
