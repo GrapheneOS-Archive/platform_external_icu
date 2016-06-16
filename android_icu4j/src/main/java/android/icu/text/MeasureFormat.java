@@ -33,7 +33,7 @@ import android.icu.impl.DontCareFieldPosition;
 import android.icu.impl.ICUData;
 import android.icu.impl.ICUResourceBundle;
 import android.icu.impl.SimpleCache;
-import android.icu.impl.SimplePatternFormatter;
+import android.icu.impl.SimpleFormatterImpl;
 import android.icu.impl.StandardPlural;
 import android.icu.impl.UResource;
 import android.icu.math.BigDecimal;
@@ -410,7 +410,8 @@ public class MeasureFormat extends UFormat {
                 StandardPlural.fromString(keywordHigh));
 
         String rangeFormatter = getRangeFormat(getLocale(), formatWidth);
-        String formattedNumber = SimplePatternFormatter.formatCompiledPattern(rangeFormatter, lowFormatted, highFormatted);
+        String formattedNumber = SimpleFormatterImpl.formatCompiledPattern(
+                rangeFormatter, lowFormatted, highFormatted);
 
         if (isCurrency) {
             // Nasty hack
@@ -434,7 +435,7 @@ public class MeasureFormat extends UFormat {
         } else {
             String formatter =
                     getPluralFormatter(lowValue.getUnit(), formatWidth, resolvedPlural.ordinal());
-            return SimplePatternFormatter.formatCompiledPattern(formatter, formattedNumber);
+            return SimpleFormatterImpl.formatCompiledPattern(formatter, formattedNumber);
         }
     }
 
@@ -473,7 +474,7 @@ public class MeasureFormat extends UFormat {
      * @param appendTo formatted string appended here.
      * @param pos      The field position.
      * @return appendTo.
-     * @hide draft / provisional / internal are hidden on Android
+     * @hide unsupported on Android
      */
     public StringBuilder formatMeasurePerUnit(
             Measure measure,
@@ -739,7 +740,7 @@ public class MeasureFormat extends UFormat {
                     }
                 }
                 if (patterns[index] == null) {
-                    patterns[index] = SimplePatternFormatter.compileToStringMinMaxPlaceholders(
+                    patterns[index] = SimpleFormatterImpl.compileToStringMinMaxArguments(
                             value.getString(), sb, minPlaceholders, 1);
                 }
             }
@@ -750,9 +751,7 @@ public class MeasureFormat extends UFormat {
                     // Skip the unit display name for now.
                 } else if (key.contentEquals("per")) {
                     // For example, "{0}/h".
-                    // TODO: Set minPlaceholders=1
-                    // after http://unicode.org/cldr/trac/ticket/9129 is fixed.
-                    setFormatterIfAbsent(MeasureFormatData.PER_UNIT_INDEX, value, 0);
+                    setFormatterIfAbsent(MeasureFormatData.PER_UNIT_INDEX, value, 1);
                 } else {
                     // The key must be one of the plural form strings. For example:
                     // one{"{0} hr"}
@@ -769,7 +768,7 @@ public class MeasureFormat extends UFormat {
          */
         class UnitSubtypeSink extends UResource.TableSink {
             @Override
-            public UResource.TableSink getOrCreateTableSink(UResource.Key key, int initialSize) {
+            public UResource.TableSink getOrCreateTableSink(UResource.Key key) {
                 // Should we ignore or reject unknown units?
                 unit = MeasureUnit.internalGetInstance(type, key.toString());  // never null
                 // Trigger a fresh lookup of the patterns for this unit+width.
@@ -788,7 +787,7 @@ public class MeasureFormat extends UFormat {
             public void put(UResource.Key key, UResource.Value value) {
                 if (key.contentEquals("per")) {
                     cacheData.styleToPerPattern.put(width,
-                            SimplePatternFormatter.compileToStringMinMaxPlaceholders(
+                            SimpleFormatterImpl.compileToStringMinMaxArguments(
                                     value.getString(), sb, 2, 2));
                 }
             }
@@ -802,7 +801,7 @@ public class MeasureFormat extends UFormat {
          */
         class UnitTypeSink extends UResource.TableSink {
             @Override
-            public UResource.TableSink getOrCreateTableSink(UResource.Key key, int initialSize) {
+            public UResource.TableSink getOrCreateTableSink(UResource.Key key) {
                 if (key.contentEquals("currency")) {
                     // Skip.
                 } else if (key.contentEquals("compound")) {
@@ -846,7 +845,7 @@ public class MeasureFormat extends UFormat {
             cacheData.widthFallback[sourceWidth.ordinal()] = targetWidth;
         }
         @Override
-        public UResource.TableSink getOrCreateTableSink(UResource.Key key, int initialSize) {
+        public UResource.TableSink getOrCreateTableSink(UResource.Key key) {
             if ((width = widthFromKey(key)) != null) {
                 return typeSink;
             }
@@ -971,13 +970,13 @@ public class MeasureFormat extends UFormat {
         String perUnitPattern =
                 getFormatterOrNull(perUnit, formatWidth, MeasureFormatData.PER_UNIT_INDEX);
         if (perUnitPattern != null) {
-            SimplePatternFormatter.formatAndAppend(perUnitPattern, appendTo, offsets, formatted);
+            SimpleFormatterImpl.formatAndAppend(perUnitPattern, appendTo, offsets, formatted);
             return offsets[0];
         }
         String perPattern = getPerFormatter(formatWidth);
         String pattern = getPluralFormatter(perUnit, formatWidth, StandardPlural.ONE.ordinal());
-        String perUnitString = SimplePatternFormatter.getTextWithNoPlaceholders(pattern).trim();
-        SimplePatternFormatter.formatAndAppend(
+        String perUnitString = SimpleFormatterImpl.getTextWithNoArguments(pattern).trim();
+        SimpleFormatterImpl.formatAndAppend(
                 perPattern, appendTo, offsets, formatted, perUnitString);
         return offsets[0];
     }
@@ -1389,7 +1388,7 @@ public class MeasureFormat extends UFormat {
             new ConcurrentHashMap<ULocale, String>();
 
     /**
-     * Return a formatter (compiled SimplePatternFormatter pattern) for a range, such as "{0}–{1}".
+     * Return a formatter (compiled SimpleFormatter pattern) for a range, such as "{0}–{1}".
      * @param forLocale locale to get the format for
      * @param width the format width
      * @return range formatter, such as "{0}–{1}"
@@ -1425,7 +1424,8 @@ public class MeasureFormat extends UFormat {
             } catch ( MissingResourceException ex ) {
                 resultString = rb.getStringWithFallback("NumberElements/latn/patterns/range");
             }
-            result = SimplePatternFormatter.compileToStringMinMaxPlaceholders(resultString, new StringBuilder(), 2, 2);
+            result = SimpleFormatterImpl.compileToStringMinMaxArguments(
+                    resultString, new StringBuilder(), 2, 2);
             localeIdToRangeFormat.put(forLocale, result);
             if (!forLocale.equals(realLocale)) {
                 localeIdToRangeFormat.put(realLocale, result);

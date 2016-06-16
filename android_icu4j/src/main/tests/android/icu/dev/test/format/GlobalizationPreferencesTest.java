@@ -1,7 +1,7 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 /*
  *******************************************************************************
- * Copyright (C) 2004-2015, International Business Machines Corporation and
+ * Copyright (C) 2004-2016, International Business Machines Corporation and
  * others. All Rights Reserved.
  *******************************************************************************
  */
@@ -870,12 +870,10 @@ public class GlobalizationPreferencesTest extends TestFmwk {
         logln("Set locale - es");
         gp.setLocale(new ULocale("es"));
         brk = gp.getBreakIterator(GlobalizationPreferences.BI_CHARACTER);
-        /* TODO: JB#5383
         locStr = brk.getLocale(ULocale.VALID_LOCALE).toString();
         if (!locStr.equals("es")) {
             errln("FAIL: Character break iterator locale is " + locStr + " Expected: es");
         }
-        */
 
         // Set explicit break sentence iterator
         logln("Set break iterator for sentence using locale hu_HU");

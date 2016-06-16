@@ -1,7 +1,7 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 /*
  *******************************************************************************
- * Copyright (C) 1996-2015, International Business Machines Corporation and
+ * Copyright (C) 1996-2016, International Business Machines Corporation and
  * others. All Rights Reserved.
  *******************************************************************************
  */
@@ -148,7 +148,7 @@ public final class VersionInfo implements Comparable<VersionInfo>
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
-    public static final String ICU_DATA_VERSION_PATH = "56b";
+    public static final String ICU_DATA_VERSION_PATH = "57b";
     
     /**
      * Data version in ICU4J.
@@ -495,8 +495,8 @@ public final class VersionInfo implements Comparable<VersionInfo>
         UNICODE_7_0   = getInstance(7, 0, 0, 0);
         UNICODE_8_0   = getInstance(8, 0, 0, 0);
 
-        ICU_VERSION   = getInstance(56, 1, 0, 0);
-        ICU_DATA_VERSION = getInstance(56, 1, 0, 0);
+        ICU_VERSION   = getInstance(57, 1, 0, 0);
+        ICU_DATA_VERSION = getInstance(57, 1, 0, 0);
         UNICODE_VERSION = UNICODE_8_0;
 
         UCOL_RUNTIME_VERSION = getInstance(9);

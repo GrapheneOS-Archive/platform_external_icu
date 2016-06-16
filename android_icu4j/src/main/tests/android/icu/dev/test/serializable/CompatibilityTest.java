@@ -1,7 +1,7 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 /*
  *******************************************************************************
- * Copyright (C) 1996-2015, International Business Machines Corporation and
+ * Copyright (C) 1996-2016, International Business Machines Corporation and
  * others. All Rights Reserved.
  *******************************************************************************
  *
@@ -240,13 +240,11 @@ public class CompatibilityTest extends TestFmwk
         }
 
         try {
-            // android-changed - need to trim the directory off the JAR entry before opening the
-            // connection otherwise it could fail as it will try and find the entry within the JAR
-            // which may not exist.
+            // Need to trim the directory off the JAR entry before opening the connection otherwise
+            // it could fail as it will try and find the entry within the JAR which may not exist.
             String urlAsString = jarURL.toExternalForm();
             ix = urlAsString.indexOf("!/");
             jarURL = new URL(urlAsString.substring(0, ix + 2));
-            // end android-changed
 
             JarURLConnection conn = (JarURLConnection) jarURL.openConnection();
             JarFile jarFile = conn.getJarFile();
@@ -305,18 +303,15 @@ element_loop:
         return target;
     }
 
-    // android-changed - need to access an actual resource file
     /**
      * The path to an actual data resource file in the JAR. This is needed because when the
      * code is packaged for Android the resulting archive does not have entries for directories
      * and so only actual resources can be found.
      */
     private static final String ACTUAL_RESOURCE = "/ICU_3.6/android.icu.impl.OlsonTimeZone.dat";
-    // end android-changed
 
     protected Target getTargets(String targetName)
     {
-        // android-changed - locate an actual resource and find the containing JAR file/directory
         // Get the URL to an actual resource and then compute the URL to the directory just in
         // case the resources are in a JAR file that doesn't have entries for directories.
         URL dataURL = getClass().getResource("data" + ACTUAL_RESOURCE);
@@ -325,7 +320,6 @@ element_loop:
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);
         }
-        // end android-changed
         String protocol = dataURL.getProtocol();
         
         if (protocol.equals("jar")) {
