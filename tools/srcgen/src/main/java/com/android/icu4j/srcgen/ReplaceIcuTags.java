@@ -62,6 +62,11 @@ public class ReplaceIcuTags extends BaseTagElementNodeScanner {
         // ICU replaces {@icunote} with "[icu] Note:"
         rewrite.replace(tag, createIcuNoteText(ast), null /* editGroup */);
         return false;
+      } else if (tagName.equalsIgnoreCase("@discouraged")) {
+        // ICU replaces {@discouraged} with "Discouraged:"
+        IDocElement element = fragments.get(0);
+        rewrite.replace(tag, createDiscouragedText(ast, element), null /* editGroup */);
+        return false;
       }
     }
     return true;
@@ -86,5 +91,10 @@ public class ReplaceIcuTags extends BaseTagElementNodeScanner {
 
   private static TagElement createIcuMarker(AST ast) {
     return AstNodes.createTextTagElement(ast, "<strong>[icu]</strong>");
+  }
+
+  private static TagElement createDiscouragedText(AST ast, IDocElement fragment) {
+    return AstNodes.createTextTagElement(
+        ast, "@apiNote <strong>Discouraged:</strong>" + fragment.toString());
   }
 }
