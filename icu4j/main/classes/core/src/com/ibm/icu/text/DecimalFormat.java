@@ -4290,12 +4290,8 @@ public class DecimalFormat extends NumberFormat {
             int firstPos = affix.indexOf(symbols.getPerMill());
             if (firstPos > -1) {
                 int startPos = buf.length() + firstPos;
-                // Android patch (http://b/27775477) begin.
-                {
                 fieldPosition.setBeginIndex(startPos);
                 fieldPosition.setEndIndex(startPos + 1);
-                }
-                // Android patch (http://b/27775477) end.
             }
         } else
         // If CurrencySymbol or InternationalCurrencySymbol is in the affix, check for currency symbol.
