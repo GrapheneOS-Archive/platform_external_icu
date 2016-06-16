@@ -1,6 +1,6 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 /*
- * Copyright (C) 1996-2015, International Business Machines
+ * Copyright (C) 1996-2016, International Business Machines
  * Corporation and others.  All Rights Reserved.
  */
 
@@ -165,7 +165,7 @@ import android.icu.util.ULocale.Category;
 
  * @see          Calendar
  * @see          TimeZone
- * @author David Goldsmith, Mark Davis, Chen-Lieh Huang, Alan Liu
+ * @author Deborah Goldsmith, Mark Davis, Chen-Lieh Huang, Alan Liu
  */
 public class GregorianCalendar extends Calendar {
     // jdk1.4.2 serialver

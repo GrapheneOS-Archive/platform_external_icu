@@ -1,6 +1,6 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
  /*
-*   Copyright (C) 1996-2014, International Business Machines
+*   Copyright (C) 1996-2016, International Business Machines
 *   Corporation and others.  All Rights Reserved.
 */
 
@@ -27,7 +27,7 @@ import android.icu.impl.Grego;
  * @see      Calendar
  * @see      GregorianCalendar
  * @see      TimeZone
- * @author   David Goldsmith, Mark Davis, Chen-Lieh Huang, Alan Liu
+ * @author   Deborah Goldsmith, Mark Davis, Chen-Lieh Huang, Alan Liu
  * @hide Only a subset of ICU is exposed in Android
  */
 public class SimpleTimeZone extends BasicTimeZone {

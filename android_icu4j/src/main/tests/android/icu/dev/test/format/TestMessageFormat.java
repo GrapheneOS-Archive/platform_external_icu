@@ -1,7 +1,7 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 /*
 **********************************************************************
-* Copyright (c) 2004-2015, International Business Machines
+* Copyright (c) 2004-2016, International Business Machines
 * Corporation and others.  All Rights Reserved.
 **********************************************************************
 * Author: Alan Liu
@@ -24,6 +24,7 @@ import java.util.Iterator;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 
 import android.icu.text.DateFormat;
 import android.icu.text.DecimalFormat;
@@ -1937,6 +1938,27 @@ public class TestMessageFormat extends android.icu.dev.test.TestFmwk {
         result.delete(0, result.length());
         assertEquals("offset-decimals format(1)", "2.5 meters",
                 m2.format(args, result, ignore).toString());
+    }
+
+    public void TestArgIsPrefixOfAnother() {
+        // Ticket #11952
+        MessageFormat mf1 = new MessageFormat(
+                "{0,select,a{A}ab{AB}abc{ABC}other{?}}", ULocale.ENGLISH);
+        assertEquals("a", "A", mf1.format(new Object[] { "a" }));
+        assertEquals("ab", "AB", mf1.format(new Object[] { "ab" }));
+        assertEquals("abc", "ABC", mf1.format(new Object[] { "abc" }));
+
+        // Ticket #12172
+        MessageFormat mf2 = new MessageFormat("{a} {aa} {aaa}", ULocale.ENGLISH);
+        Map<String, Object> args = new TreeMap<String, Object>();
+        args.put("a", "A");
+        args.put("aa", "AB");
+        args.put("aaa", "ABC");
+        assertEquals("a aa aaa", "A AB ABC", mf2.format(args, new StringBuffer(), null).toString());
+
+        // Ticket #12172
+        MessageFormat mf3 = new MessageFormat("{aa} {aaa}", ULocale.ENGLISH);
+        assertEquals("aa aaa", "AB ABC", mf3.format(args, new StringBuffer(), null).toString());
     }
 
     public void TestMessagePatternAutoQuoteApostropheDeep() {

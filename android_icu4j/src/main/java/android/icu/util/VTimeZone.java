@@ -1,7 +1,7 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 /*
  *******************************************************************************
- * Copyright (C) 2007-2014, International Business Machines Corporation and    *
+ * Copyright (C) 2007-2015, International Business Machines Corporation and    *
  * others. All Rights Reserved.                                                *
  *******************************************************************************
  */
@@ -46,8 +46,12 @@ public class VTimeZone extends BasicTimeZone {
      * when the ID is unknown.
      */
     public static VTimeZone create(String tzid) {
+        BasicTimeZone basicTimeZone = TimeZone.getFrozenICUTimeZone(tzid, true);
+        if (basicTimeZone == null) {
+            return null;
+        }
         VTimeZone vtz = new VTimeZone(tzid);
-        vtz.tz = (BasicTimeZone)TimeZone.getTimeZone(tzid, TimeZone.TIMEZONE_ICU);
+        vtz.tz = (BasicTimeZone) basicTimeZone.cloneAsThawed();
         vtz.olsonzid = vtz.tz.getID();
 
         return vtz;

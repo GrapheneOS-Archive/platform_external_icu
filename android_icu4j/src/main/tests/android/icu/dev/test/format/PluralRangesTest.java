@@ -10,7 +10,7 @@ package android.icu.dev.test.format;
 import java.util.Arrays;
 
 import android.icu.dev.test.TestFmwk;
-import android.icu.impl.SimplePatternFormatter;
+import android.icu.impl.SimpleFormatterImpl;
 import android.icu.impl.StandardPlural;
 import android.icu.text.MeasureFormat;
 import android.icu.text.MeasureFormat.FormatWidth;
@@ -66,7 +66,7 @@ public class PluralRangesTest extends TestFmwk {
             FormatWidth width = FormatWidth.valueOf(test[1]);
             String expected = test[2];
             String formatter = MeasureFormat.getRangeFormat(ulocale, width);
-            String actual = SimplePatternFormatter.formatCompiledPattern(formatter, "{0}", "{1}");
+            String actual = SimpleFormatterImpl.formatCompiledPattern(formatter, "{0}", "{1}");
             assertEquals("range pattern " + Arrays.asList(test), expected, actual);
         }
     }
