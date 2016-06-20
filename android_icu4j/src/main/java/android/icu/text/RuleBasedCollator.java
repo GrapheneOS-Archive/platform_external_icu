@@ -923,6 +923,9 @@ public final class RuleBasedCollator extends Collator {
      * Gets the collation tailoring rules for this RuleBasedCollator.
      * Equivalent to String getRules(false).
      * 
+     * <p>On Android, the returned string will be empty unless this instance was
+     * constructed using {@link #RuleBasedCollator(String)}.
+     *
      * @return the collation tailoring rules
      * @see #getRules(boolean)
      */
