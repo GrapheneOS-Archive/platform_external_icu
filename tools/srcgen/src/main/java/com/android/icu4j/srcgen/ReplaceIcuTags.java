@@ -72,6 +72,11 @@ public class ReplaceIcuTags extends BaseTagElementNodeScanner {
     return true;
   }
 
+  @Override
+  public String toString() {
+    return "ReplaceIcuTags{}";
+  }
+
   private static TagElement createIcuEnhancementText(AST ast, IDocElement fragment) {
     return AstNodes.createTextTagElement(ast,
         "<strong>[icu enhancement]</strong> ICU's replacement for {@link" + fragment.toString()
