@@ -1709,6 +1709,12 @@ public class DateTimeGeneratorTest extends TestFmwk {
         ULocale[] locales = DateFormat.getAvailableULocales();
         for (ULocale locale: locales) {
             String localeID = locale.getName();
+            // BEGIN Android-added: Exclude pseudo locales since they are not present in CLDR data.
+            if (localeID.endsWith("_XA") || localeID.endsWith("_XB")) {
+                // skip pseudo-locales
+                continue;
+            }
+            // END Android-added: Exclude pseudo locales since they are not present in CLDR data.
             DateTimePatternGenerator dtpg = DateTimePatternGenerator.getInstance(locale);
             DateFormat dfmt = DateFormat.getTimeInstance(DateFormat.SHORT, locale);
             String shortPattern = ((SimpleDateFormat)dfmt).toPattern();
