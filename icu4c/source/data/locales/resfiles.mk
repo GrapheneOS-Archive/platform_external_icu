@@ -49,7 +49,7 @@ GENRB_SOURCE = af.txt af_NA.txt af_ZA.txt agq.txt\
  ar_IQ.txt ar_JO.txt ar_KM.txt ar_KW.txt ar_LB.txt\
  ar_LY.txt ar_MA.txt ar_MR.txt ar_OM.txt ar_PS.txt\
  ar_QA.txt ar_SA.txt ar_SD.txt ar_SO.txt ar_SS.txt\
- ar_SY.txt ar_TD.txt ar_TN.txt ar_YE.txt as.txt\
+ ar_SY.txt ar_TD.txt ar_TN.txt ar_XB.txt ar_YE.txt as.txt\
  as_IN.txt asa.txt asa_TZ.txt ast.txt ast_ES.txt\
  az.txt az_Cyrl.txt az_Cyrl_AZ.txt az_Latn.txt az_Latn_AZ.txt\
  bas.txt bas_CM.txt be.txt be_BY.txt bem.txt\
@@ -88,7 +88,7 @@ GENRB_SOURCE = af.txt af_NA.txt af_ZA.txt agq.txt\
  en_SX.txt en_SZ.txt en_TC.txt en_TK.txt en_TO.txt\
  en_TT.txt en_TV.txt en_TZ.txt en_UG.txt en_UM.txt\
  en_US.txt en_US_POSIX.txt en_VC.txt en_VG.txt en_VI.txt\
- en_VU.txt en_WS.txt en_ZA.txt en_ZM.txt en_ZW.txt\
+ en_VU.txt en_WS.txt en_XA.txt en_ZA.txt en_ZM.txt en_ZW.txt\
  eo.txt es.txt es_419.txt es_AR.txt es_BO.txt\
  es_BR.txt es_BZ.txt es_CL.txt es_CO.txt es_CR.txt\
  es_CU.txt es_DO.txt es_EA.txt es_EC.txt es_ES.txt\

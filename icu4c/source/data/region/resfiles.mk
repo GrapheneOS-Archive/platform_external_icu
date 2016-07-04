@@ -48,7 +48,7 @@ REGION_ALIAS_SOURCE = $(REGION_SYNTHETIC_ALIAS)
 
 # Ordinary resources
 REGION_SOURCE = af.txt agq.txt ak.txt am.txt\
- ar.txt ar_AE.txt ar_LY.txt ar_SA.txt as.txt\
+ ar.txt ar_AE.txt ar_LY.txt ar_SA.txt ar_XB.txt as.txt\
  asa.txt ast.txt az.txt az_Cyrl.txt az_Latn.txt\
  bas.txt be.txt bem.txt bez.txt bg.txt\
  bm.txt bn.txt bn_IN.txt bo.txt bo_IN.txt\
@@ -75,7 +75,7 @@ REGION_SOURCE = af.txt agq.txt ak.txt am.txt\
  en_SG.txt en_SH.txt en_SI.txt en_SL.txt en_SS.txt\
  en_SX.txt en_SZ.txt en_TC.txt en_TK.txt en_TO.txt\
  en_TT.txt en_TV.txt en_TZ.txt en_UG.txt en_VC.txt\
- en_VG.txt en_VU.txt en_WS.txt en_ZA.txt en_ZM.txt\
+ en_VG.txt en_VU.txt en_WS.txt en_XA.txt en_ZA.txt en_ZM.txt\
  en_ZW.txt eo.txt es.txt es_419.txt es_AR.txt\
  es_BO.txt es_BR.txt es_BZ.txt es_CL.txt es_CO.txt\
  es_CR.txt es_CU.txt es_DO.txt es_EC.txt es_GT.txt\
