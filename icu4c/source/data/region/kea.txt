@@ -137,7 +137,7 @@ kea{
         GU{"Guam"}
         GW{"Gine-Bisau"}
         GY{"Giana"}
-        HK{"Ong Kong"}
+        HK{"Hong Kong"}
         HM{"Ilha Heard i Ilhas McDonald"}
         HN{"Onduras"}
         HR{"Kroasia"}
