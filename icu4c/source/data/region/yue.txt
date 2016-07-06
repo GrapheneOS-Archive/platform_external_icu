@@ -226,7 +226,7 @@ yue{
         PM{"聖皮埃爾同密克隆群島"}
         PN{"皮特肯群島"}
         PR{"波多黎各"}
-        PS{"巴勒斯坦自治區"}
+        PS{"巴勒斯坦"}
         PT{"葡萄牙"}
         PW{"帛琉"}
         PY{"巴拉圭"}
@@ -300,7 +300,6 @@ yue{
     }
     Countries%short{
         GB{"英國"}
-        PS{"巴勒斯坦"}
         US{"美國"}
     }
     Countries%variant{
