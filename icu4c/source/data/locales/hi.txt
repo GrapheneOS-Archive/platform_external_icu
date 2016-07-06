@@ -552,14 +552,14 @@ hi{
                     narrow{
                         afternoon1{"अपराह्न"}
                         evening1{"शाम"}
-                        midnight{"आधी रात"}
+                        midnight{"m"}
                         morning1{"सुबह"}
                         night1{"शाम"}
                     }
                     wide{
                         afternoon1{"अपराह्न"}
                         evening1{"शाम"}
-                        midnight{"मध्यरात्रि"}
+                        midnight{"midnight"}
                         morning1{"सुबह"}
                         night1{"रात"}
                     }
