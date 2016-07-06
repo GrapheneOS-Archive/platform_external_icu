@@ -137,7 +137,7 @@ ast{
         GU{"Guam"}
         GW{"Guinea-Bisáu"}
         GY{"Guyana"}
-        HK{"ARE China de Ḥong Kong"}
+        HK{"Ḥong Kong"}
         HM{"Islles Heard y McDonald"}
         HN{"Hondures"}
         HR{"Croacia"}
@@ -300,7 +300,6 @@ ast{
     }
     Countries%short{
         GB{"RX"}
-        HK{"Ḥong Kong"}
         MO{"Macáu"}
         PS{"Palestina"}
         US{"EE.XX."}
