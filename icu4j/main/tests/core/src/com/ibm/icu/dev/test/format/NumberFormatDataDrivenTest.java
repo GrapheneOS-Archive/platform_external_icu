@@ -784,6 +784,10 @@ public class NumberFormatDataDrivenTest {
 
   @Test
   public void TestDataDrivenJDK() {
+    // Android patch: Android java.text.DecimalFormat is actually ICU.
+    if (com.ibm.icu.dev.test.TestUtil.getJavaVendor()
+        == com.ibm.icu.dev.test.TestUtil.JavaVendor.Android) return;
+    // Android patch end.
     DataDrivenNumberFormatTestUtility.runFormatSuiteIncludingKnownFailures(
         "numberformattestspecification.txt", JDK);
   }
