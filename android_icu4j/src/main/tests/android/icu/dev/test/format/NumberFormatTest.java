@@ -4339,6 +4339,9 @@ public class NumberFormatTest extends android.icu.dev.test.TestFmwk {
     }
 
     public void TestDataDrivenJDK() {
+        // Android patch: Android java.text.DecimalFormat is actually ICU.
+        if (TestUtil.getJavaVendor() == TestUtil.JavaVendor.Android) return;
+        // Android patch end.
         DataDrivenNumberFormatTestSuite.runSuite(
                 this.params, "numberformattestspecification.txt", JDK);
     }
