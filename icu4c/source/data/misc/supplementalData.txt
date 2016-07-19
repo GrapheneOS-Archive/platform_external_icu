@@ -15900,6 +15900,12 @@ supplementalData:table(nofallback){
                 "1",
             }
             {
+                "nb",
+                "no",
+                "99",
+                "0",
+            }
+            {
                 "ne_Deva",
                 "en_Latn",
                 "90",
@@ -15915,18 +15921,12 @@ supplementalData:table(nofallback){
                 "nn",
                 "nb",
                 "90",
-                "0",
+                "1",
             }
             {
                 "nn",
                 "no",
                 "90",
-                "1",
-            }
-            {
-                "no",
-                "nb",
-                "99",
                 "0",
             }
             {
