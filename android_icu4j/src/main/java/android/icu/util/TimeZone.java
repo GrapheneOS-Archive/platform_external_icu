@@ -847,7 +847,10 @@ abstract public class TimeZone implements Serializable, Cloneable, Freezable<Tim
      * @return a default <code>TimeZone</code>.
      */
     public static TimeZone getDefault() {
-        if (defaultZone == null) {
+        // Android patch (http://b/30979219) start.
+        // Avoid race condition by copying defaultZone to a local variable.
+        TimeZone result = defaultZone;
+        if (result == null) {
             // Android patch (http://b/30937209) start.
             // Avoid a deadlock by always acquiring monitors in order (1) java.util.TimeZone.class
             // then (2) icu.util.TimeZone.class and not (2) then (1).
@@ -857,19 +860,22 @@ abstract public class TimeZone implements Serializable, Cloneable, Freezable<Tim
             // icu.util.TimeZone.clearCachedDefault() so always acquires them in order (1) then (2).
             synchronized (java.util.TimeZone.class) {
                 synchronized (TimeZone.class) {
-                    if (defaultZone == null) {
+                    result = defaultZone;
+                    if (result == null) {
                         if (TZ_IMPL == TIMEZONE_JDK) {
-                            defaultZone = new JavaTimeZone();
+                            result = new JavaTimeZone();
                         } else {
                             java.util.TimeZone temp = java.util.TimeZone.getDefault();
-                            defaultZone = getFrozenTimeZone(temp.getID());
+                            result = getFrozenTimeZone(temp.getID());
                         }
+                        defaultZone = result;
                     }
                 }
             }
             // Android patch (http://b/30937209) end.
         }
-        return defaultZone.cloneAsThawed();
+        return result.cloneAsThawed();
+        // Android patch (http://b/30979219) end.
     }
 
     // Android patch (http://b/28949992) start.
