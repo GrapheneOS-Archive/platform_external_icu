@@ -17,7 +17,6 @@
 package android.icu.junit;
 
 import android.icu.dev.test.TestFmwk;
-import android.support.test.internal.util.AndroidRunnerParams;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -31,26 +30,7 @@ import org.junit.runners.model.Statement;
  */
 public class IcuTestFmwkRunner extends IcuTestParentRunner<IcuFrameworkTest> {
 
-    /**
-     * A {@link Statement} that does nothing, used when skipping execution.
-     */
-    private static final Statement EMPTY_STATEMENT = new Statement() {
-        @Override
-        public void evaluate() throws Throwable {
-        }
-    };
-
-    private final boolean skipExecution;
-
     private final List<IcuFrameworkTest> tests;
-
-    /**
-     * The constructor used when this class is used with {@code @RunWith(...)}.
-     */
-    public IcuTestFmwkRunner(Class<?> testClass)
-            throws Exception {
-        this(checkClass(testClass), null);
-    }
 
     /**
      * Make sure that the supplied test class is supported by this.
@@ -72,12 +52,14 @@ public class IcuTestFmwkRunner extends IcuTestParentRunner<IcuFrameworkTest> {
         return testClass.asSubclass(TestFmwk.class);
     }
 
-    public IcuTestFmwkRunner(Class<? extends TestFmwk> testFmwkClass,
-            AndroidRunnerParams runnerParams)
+    /**
+     * The constructor used when this class is used with {@code @RunWith(...)}.
+     */
+    public IcuTestFmwkRunner(Class<?> testClass)
             throws Exception {
-        super(testFmwkClass);
+        super(testClass);
 
-        this.skipExecution = runnerParams != null && runnerParams.isSkipExecution();
+        Class<? extends TestFmwk> testFmwkClass = checkClass(testClass);
 
         // Create a TestFmwk and make sure that it's initialized properly.
         TestFmwk testFmwk = TestFmwkUtils.newTestFmwkInstance(testFmwkClass);
@@ -116,17 +98,12 @@ public class IcuTestFmwkRunner extends IcuTestParentRunner<IcuFrameworkTest> {
     @Override
     protected void runChild(final IcuFrameworkTest child, RunNotifier notifier) {
         Description description = describeChild(child);
-        Statement statement;
-        if (skipExecution) {
-            statement = EMPTY_STATEMENT;
-        } else {
-            statement = new Statement() {
-                @Override
-                public void evaluate() throws Throwable {
-                    child.run();
-                }
-            };
-        }
+        Statement statement = new Statement() {
+            @Override
+            public void evaluate() throws Throwable {
+                child.run();
+            }
+        };
         runLeaf(statement, description, notifier);
     }
 }

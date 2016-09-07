@@ -80,9 +80,8 @@ include $(CLEAR_VARS)
 LOCAL_MODULE_TAGS := tests
 LOCAL_SRC_FILES := \
     $(call all-java-files-under,src/main/tests) \
-    $(call all-java-files-under,runner/src/main/java) \
     $(call all-java-files-under,cts-coverage/src/main/tests) \
-    $(call all-java-files-under,runner/src/host/java)
+    $(call all-java-files-under,runner/src/main/java)
 LOCAL_JAVA_RESOURCE_DIRS := src/main/tests
 LOCAL_STATIC_JAVA_LIBRARIES := \
     android-icu4j-host \
