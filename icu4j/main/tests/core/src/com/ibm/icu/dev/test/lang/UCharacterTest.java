@@ -759,9 +759,7 @@ public final class UCharacterTest extends TestFmwk
                 }
 
                 byte bdir = (byte)dir;
-                // Android patch (http://b30652865/) start.
-                if (UCharacter.getDirectionality(ch) != bdir && !UNICODE9_BIDI_SET.contains(ch))
-                // Android patch (http://b30652865/) end.
+                if (UCharacter.getDirectionality(ch) != bdir)
                 {
                     errln("FAIL \\u" + hex(ch) +
                         " expected directionality " + bdir + " but got " +
