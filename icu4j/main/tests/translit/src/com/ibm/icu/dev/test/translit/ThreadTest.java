@@ -19,12 +19,12 @@ public class ThreadTest extends TransliteratorTest {
     }
     
     private ArrayList<Worker> threads = new ArrayList<Worker>();
-    private int iterationCount = 50_000;
+    private int iterationCount = 50000;
     
     public void TestThreads()  {
         if (getInclusion() >= 9) {
             // Exhaustive test.  Run longer.
-            iterationCount = 500_000;
+            iterationCount = 500000;
         }
         
         for (int i = 0; i < 8; i++) {
