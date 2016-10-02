@@ -47,8 +47,7 @@ icu4j_test_resource_dirs := \
 
 # For each data *.jar file, define a corresponding icu4j-* target.
 icu4j_data_jars := \
-    $(shell find $(LOCAL_PATH)/main/shared/data -name "*.jar" \
-    | sed "s,^$(LOCAL_PATH)/\(.*/\(.*\)\.jar\)$$,icu4j-\2:\1,")
+    $(foreach j,$(call all-named-files-under,*.jar,main/shared/data),icu4j-$(basename $(notdir $(j))):$(j))
 
 include $(CLEAR_VARS)
 LOCAL_PREBUILT_STATIC_JAVA_LIBRARIES := $(icu4j_data_jars)
