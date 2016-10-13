@@ -755,6 +755,19 @@ public class DateFormatSymbols implements Serializable, Cloneable {
         eraNames = duplicate(newEraNames);
     }
 
+    // Android patch (http://b/30464240) start: Add getter for narrow eras.
+    /**
+     * {@icu} Returns narrow era name strings. For example: "A" and "B".
+     * @return the era strings.
+     * @internal
+     * @deprecated This API is ICU internal only.
+     */
+    @Deprecated
+    public String[] getNarrowEras() {
+        return duplicate(narrowEras);
+    }
+    // Android patch end.
+
     /**
      * Returns month strings. For example: "January", "February", etc.
      * @return the month strings.
@@ -2204,6 +2217,20 @@ public class DateFormatSymbols implements Serializable, Cloneable {
 
         initializeData(locale, calType);
     }
+
+    // Android patch (http://b/30464240) start: Add constructor taking a calendar type.
+    /**
+     * Variant of DateFormatSymbols(Calendar, ULocale) that takes the calendar type
+     * instead of a Calendar instance.
+     * @see #DateFormatSymbols(Calendar, Locale)
+     * @internal
+     * @deprecated This API is ICU internal only.
+     */
+    @Deprecated
+    public DateFormatSymbols(ULocale locale, String calType) {
+        initializeData(locale, calType);
+    }
+    // Android patch end.
 
     /**
      * Fetches a custom calendar's DateFormatSymbols out of the given resource
