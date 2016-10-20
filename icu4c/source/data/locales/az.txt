@@ -242,7 +242,7 @@ az{
                 yyyyMEd{"GGGGG dd.MM.y, E"}
                 yyyyMMM{"G MMM y"}
                 yyyyMMMEd{"G d MMM y, E"}
-                yyyyMMMM{"G y MMMM"}
+                yyyyMMMM{"G MMMM y"}
                 yyyyMMMd{"G d MMM y"}
                 yyyyMd{"GGGGG dd.MM.y"}
                 yyyyQQQ{"G y QQQ"}
@@ -382,7 +382,7 @@ az{
                 yMEd{"dd.MM.y, E"}
                 yMMM{"MMM y"}
                 yMMMEd{"d MMM y, E"}
-                yMMMM{"y MMMM"}
+                yMMMM{"MMMM y"}
                 yMMMd{"d MMM y"}
                 yMd{"dd.MM.y"}
                 yQQQ{"y QQQ"}
