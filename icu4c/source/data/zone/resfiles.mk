@@ -1,5 +1,5 @@
-# *   Copyright (C) 1998-2016, International Business Machines
-# *   Corporation and others.  All Rights Reserved.
+# © 2016 and later: Unicode, Inc. and others.
+# License & terms of use: http://www.unicode.org/copyright.html#License
 ZONE_CLDR_VERSION = %version%
 # A list of txt's to build
 # Note:
@@ -48,11 +48,11 @@ ZONE_ALIAS_SOURCE = $(ZONE_SYNTHETIC_ALIAS)
 
 # Ordinary resources
 ZONE_SOURCE = af.txt agq.txt ak.txt am.txt\
- ar.txt ar_XB.txt as.txt asa.txt ast.txt\
- az.txt az_Cyrl.txt az_Latn.txt bas.txt be.txt\
- bem.txt bez.txt bg.txt bm.txt bn.txt\
- bo.txt br.txt brx.txt bs.txt bs_Cyrl.txt\
- bs_Latn.txt ca.txt ce.txt cgg.txt chr.txt\
+ ar.txt as.txt asa.txt ast.txt az.txt\
+ az_Cyrl.txt az_Latn.txt bas.txt be.txt bem.txt\
+ bez.txt bg.txt bm.txt bn.txt bo.txt\
+ br.txt brx.txt bs.txt bs_Cyrl.txt bs_Latn.txt\
+ ca.txt ce.txt cgg.txt chr.txt ckb.txt\
  cs.txt cy.txt da.txt dav.txt de.txt\
  dje.txt dsb.txt dua.txt dyo.txt dz.txt\
  ebu.txt ee.txt el.txt en.txt en_001.txt\
@@ -74,9 +74,9 @@ ZONE_SOURCE = af.txt agq.txt ak.txt am.txt\
  en_SE.txt en_SG.txt en_SH.txt en_SI.txt en_SL.txt\
  en_SS.txt en_SX.txt en_SZ.txt en_TC.txt en_TK.txt\
  en_TO.txt en_TT.txt en_TV.txt en_TZ.txt en_UG.txt\
- en_VC.txt en_VG.txt en_VU.txt en_WS.txt en_XA.txt\
- en_ZA.txt en_ZM.txt en_ZW.txt eo.txt es.txt\
- es_419.txt es_AR.txt es_BO.txt es_CL.txt es_CO.txt\
+ en_VC.txt en_VG.txt en_VU.txt en_WS.txt en_ZA.txt\
+ en_ZM.txt en_ZW.txt eo.txt es.txt es_419.txt\
+ es_AR.txt es_BO.txt es_BR.txt es_CL.txt es_CO.txt\
  es_CR.txt es_CU.txt es_DO.txt es_EC.txt es_GT.txt\
  es_HN.txt es_MX.txt es_NI.txt es_PA.txt es_PE.txt\
  es_PR.txt es_PY.txt es_SV.txt es_US.txt es_UY.txt\
@@ -97,24 +97,25 @@ ZONE_SOURCE = af.txt agq.txt ak.txt am.txt\
  lv.txt mas.txt mer.txt mfe.txt mg.txt\
  mgh.txt mgo.txt mk.txt ml.txt mn.txt\
  mr.txt ms.txt mt.txt mua.txt my.txt\
- mzn.txt naq.txt nb.txt nd.txt ne.txt\
- ne_IN.txt nl.txt nl_SR.txt nmg.txt nn.txt\
- nnh.txt nus.txt nyn.txt om.txt or.txt\
- os.txt pa.txt pa_Arab.txt pa_Guru.txt pl.txt\
- ps.txt pt.txt pt_AO.txt pt_CV.txt pt_GW.txt\
- pt_MO.txt pt_MZ.txt pt_PT.txt pt_ST.txt pt_TL.txt\
- qu.txt qu_BO.txt qu_EC.txt rm.txt rn.txt\
- ro.txt rof.txt ru.txt rw.txt rwk.txt\
- sah.txt saq.txt sbp.txt se.txt seh.txt\
- ses.txt sg.txt shi.txt shi_Latn.txt shi_Tfng.txt\
- si.txt sk.txt sl.txt smn.txt sn.txt\
- so.txt sq.txt sr.txt sr_Cyrl.txt sr_Latn.txt\
- sv.txt sw.txt ta.txt ta_MY.txt ta_SG.txt\
- te.txt teo.txt th.txt ti.txt to.txt\
- tr.txt twq.txt tzm.txt ug.txt uk.txt\
- ur.txt ur_IN.txt uz.txt uz_Arab.txt uz_Cyrl.txt\
- uz_Latn.txt vai.txt vai_Latn.txt vai_Vaii.txt vi.txt\
- vun.txt wae.txt xog.txt yav.txt yi.txt\
- yo.txt yue.txt zgh.txt zh.txt zh_Hans.txt\
- zh_Hans_SG.txt zh_Hant.txt zh_Hant_HK.txt zh_Hant_MO.txt zu.txt
+ mzn.txt naq.txt nb.txt nd.txt nds.txt\
+ ne.txt ne_IN.txt nl.txt nl_SR.txt nmg.txt\
+ nn.txt nnh.txt nus.txt nyn.txt om.txt\
+ or.txt os.txt pa.txt pa_Arab.txt pa_Guru.txt\
+ pl.txt ps.txt pt.txt pt_AO.txt pt_CH.txt\
+ pt_CV.txt pt_GQ.txt pt_GW.txt pt_LU.txt pt_MO.txt\
+ pt_MZ.txt pt_PT.txt pt_ST.txt pt_TL.txt qu.txt\
+ qu_BO.txt qu_EC.txt rm.txt rn.txt ro.txt\
+ rof.txt ru.txt rw.txt rwk.txt sah.txt\
+ saq.txt sbp.txt se.txt seh.txt ses.txt\
+ sg.txt shi.txt shi_Latn.txt shi_Tfng.txt si.txt\
+ sk.txt sl.txt smn.txt sn.txt so.txt\
+ sq.txt sr.txt sr_Cyrl.txt sr_Latn.txt sv.txt\
+ sw.txt ta.txt ta_MY.txt ta_SG.txt te.txt\
+ teo.txt th.txt ti.txt to.txt tr.txt\
+ twq.txt tzm.txt ug.txt uk.txt ur.txt\
+ ur_IN.txt uz.txt uz_Arab.txt uz_Cyrl.txt uz_Latn.txt\
+ vai.txt vai_Latn.txt vai_Vaii.txt vi.txt vun.txt\
+ wae.txt xog.txt yav.txt yi.txt yo.txt\
+ yue.txt zgh.txt zh.txt zh_Hans.txt zh_Hans_SG.txt\
+ zh_Hant.txt zh_Hant_HK.txt zh_Hant_MO.txt zu.txt
 

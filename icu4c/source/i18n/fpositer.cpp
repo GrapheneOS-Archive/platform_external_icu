@@ -1,3 +1,5 @@
+// Copyright (C) 2016 and later: Unicode, Inc. and others.
+// License & terms of use: http://www.unicode.org/copyright.html
 /*
 ******************************************************************************
 * Copyright (C) 2009-2012, International Business Machines Corporation and
@@ -60,7 +62,10 @@ void FieldPositionIterator::setData(UVector32 *adopt, UErrorCode& status) {
   // Verify that adopt has valid data, and update status if it doesn't.
   if (U_SUCCESS(status)) {
     if (adopt) {
-      if ((adopt->size() % 3) != 0) {
+      if (adopt->size() == 0) {
+        delete adopt;
+        adopt = NULL;
+      } else if ((adopt->size() % 3) != 0) {
         status = U_ILLEGAL_ARGUMENT_ERROR;
       } else {
         for (int i = 1; i < adopt->size(); i += 3) {
@@ -82,7 +87,7 @@ void FieldPositionIterator::setData(UVector32 *adopt, UErrorCode& status) {
 
   delete data;
   data = adopt;
-  pos = (adopt == NULL || adopt->size() == 0) ? -1 : 0; // android-changed: http://bugs.icu-project.org/trac/ticket/10354
+  pos = adopt == NULL ? -1 : 0;
 }
 
 UBool FieldPositionIterator::next(FieldPosition& fp) {
@@ -104,3 +109,4 @@ UBool FieldPositionIterator::next(FieldPosition& fp) {
 U_NAMESPACE_END
 
 #endif /* #if !UCONFIG_NO_FORMATTING */
+

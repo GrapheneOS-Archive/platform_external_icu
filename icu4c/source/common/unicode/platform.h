@@ -1,3 +1,5 @@
+// Copyright (C) 2016 and later: Unicode, Inc. and others.
+// License & terms of use: http://www.unicode.org/copyright.html
 /*
 ******************************************************************************
 *
@@ -641,12 +643,6 @@
     /* Use the predefined value. */
 #elif U_PLATFORM == U_PF_ANDROID || U_PLATFORM_IS_DARWIN_BASED
 #   define U_CHARSET_IS_UTF8 1
-#elif U_PLATFORM_IS_LINUX_BASED
-   /*
-    * Google-specific: Set to 1 to match the google3 execution environment's
-    * use of UTF-8, on both Linux server and workstation machines.
-    */
-#   define U_CHARSET_IS_UTF8 1
 #else
 #   define U_CHARSET_IS_UTF8 0
 #endif
@@ -847,6 +843,12 @@
  * This is only used for non-ICU-API functions.
  * When a function is a public ICU API,
  * you must use the U_CAPI and U_EXPORT2 qualifiers.
+ *
+ * Please note, you need to use U_CALLCONV after the *.
+ *
+ * NO : "static const char U_CALLCONV *func( . . . )"
+ * YES: "static const char* U_CALLCONV func( . . . )"
+ *
  * @stable ICU 2.0
  */
 #if U_PLATFORM == U_PF_OS390 && defined(__cplusplus)

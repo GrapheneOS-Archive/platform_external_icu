@@ -1,3 +1,5 @@
+// Copyright (C) 2016 and later: Unicode, Inc. and others.
+// License & terms of use: http://www.unicode.org/copyright.html
 /*
 *******************************************************************************
 *
@@ -1028,11 +1030,7 @@ addCollation(ParseState* state, TableResource  *result, const char *collationTyp
 }
 
 static UBool
-keepCollationType(const char *type) {  // android-changed
-    // BEGIN android-added
-    if (uprv_strcmp(type, "big5han") == 0) { return FALSE; }
-    if (uprv_strcmp(type, "gb2312han") == 0) { return FALSE; }
-    // END android-added
+keepCollationType(const char * /*type*/) {
     return TRUE;
 }
 

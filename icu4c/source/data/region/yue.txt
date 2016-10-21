@@ -1,11 +1,5 @@
-﻿// ***************************************************************************
-// *
-// * Copyright (C) 2016 International Business Machines
-// * Corporation and others. All Rights Reserved.
-// * Tool: org.unicode.cldr.icu.NewLdml2IcuConverter
-// * Source File: <path>/common/main/yue.xml
-// *
-// ***************************************************************************
+﻿// © 2016 and later: Unicode, Inc. and others.
+// License & terms of use: http://www.unicode.org/copyright.html#License
 yue{
     Countries{
         001{"世界"}
@@ -137,7 +131,7 @@ yue{
         GU{"關島"}
         GW{"幾內亞比索"}
         GY{"蓋亞那"}
-        HK{"香港"}
+        HK{"中華人民共和國香港特別行政區"}
         HM{"赫德島同麥克唐納群島"}
         HN{"宏都拉斯"}
         HR{"克羅埃西亞"}
@@ -191,7 +185,7 @@ yue{
         ML{"馬利"}
         MM{"緬甸"}
         MN{"蒙古"}
-        MO{"澳門"}
+        MO{"中華人民共和國澳門特別行政區"}
         MP{"北馬里亞納群島"}
         MQ{"馬丁尼克島"}
         MR{"茅利塔尼亞"}
@@ -226,7 +220,7 @@ yue{
         PM{"聖皮埃爾同密克隆群島"}
         PN{"皮特肯群島"}
         PR{"波多黎各"}
-        PS{"巴勒斯坦"}
+        PS{"巴勒斯坦自治區"}
         PT{"葡萄牙"}
         PW{"帛琉"}
         PY{"巴拉圭"}
@@ -300,13 +294,17 @@ yue{
     }
     Countries%short{
         GB{"英國"}
+        HK{"香港"}
+        MO{"澳門"}
+        PS{"巴勒斯坦"}
         US{"美國"}
     }
     Countries%variant{
         CD{"剛果民主共和國"}
         CG{"剛果共和國"}
+        CZ{"捷克"}
         FK{"福克蘭群島 (馬爾維納斯群島)"}
         MK{"前南斯拉夫馬其頓共和國"}
     }
-    Version{"2.1.23.47"}
+    Version{"2.1.28.76"}
 }
