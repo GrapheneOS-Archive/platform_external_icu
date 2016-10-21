@@ -1,3 +1,5 @@
+// © 2016 and later: Unicode, Inc. and others.
+// License & terms of use: http://www.unicode.org/copyright.html#License
 /*
  *******************************************************************************
  * Copyright (C) 2002-2014, International Business Machines Corporation and
@@ -14,17 +16,14 @@ package com.ibm.icu.dev.test.collator;
  
 import java.util.Locale;
 
+import org.junit.Test;
+
 import com.ibm.icu.dev.test.TestFmwk;
 import com.ibm.icu.text.CollationKey;
 import com.ibm.icu.text.Collator;
 import com.ibm.icu.text.RuleBasedCollator;
  
 public class G7CollationTest extends TestFmwk{
-    public static void main(String[] args) throws Exception{
-        new G7CollationTest().run(args);
-        // new G7CollationTest().TestDemo3();
-    }
-    
     private static String[] testCases = {
         "blackbirds", "Pat", "p\u00E9ch\u00E9", "p\u00EAche", "p\u00E9cher",            
         "p\u00EAcher", "Tod", "T\u00F6ne", "Tofu", "blackbird", "Ton", 
@@ -60,6 +59,7 @@ public class G7CollationTest extends TestFmwk{
     private static final int TOTALTESTSET = 30;
     
     // perform test with added rules " & Z < p, P"
+    @Test
     public void TestDemo1() {
         logln("Demo Test 1 : Create a new table collation with rules \"& Z < p, P\"");
         
@@ -87,6 +87,7 @@ public class G7CollationTest extends TestFmwk{
     
 
     // perorm test with added rules "& C < ch , cH, Ch, CH"
+    @Test
     public void TestDemo2() {
         logln("Demo Test 2 : Create a new table collation with rules \"& C < ch , cH, Ch, CH\"");
         Collator col = Collator.getInstance(Locale.ENGLISH);    
@@ -114,6 +115,7 @@ public class G7CollationTest extends TestFmwk{
 
     // perform test with added rules 
     // "& Question'-'mark ; '?' & Hash'-'mark ; '#' & Ampersand ; '&'"
+    @Test
     public void TestDemo3() {
         // logln("Demo Test 3 : Create a new table collation with rules \"& Question'-'mark ; '?' & Hash'-'mark ; '#' & Ampersand ; '&'\"");
         Collator col = Collator.getInstance(Locale.ENGLISH);    
@@ -141,6 +143,7 @@ public class G7CollationTest extends TestFmwk{
 
     // perform test with added rules 
     // " & aa ; a'-' & ee ; e'-' & ii ; i'-' & oo ; o'-' & uu ; u'-' "
+    @Test
     public void TestDemo4() {
         logln("Demo Test 4 : Create a new table collation with rules \" & aa ; a'-' & ee ; e'-' & ii ; i'-' & oo ; o'-' & uu ; u'-' \"");
         Collator col = Collator.getInstance(Locale.ENGLISH);    
@@ -164,6 +167,7 @@ public class G7CollationTest extends TestFmwk{
         }
     }
     
+    @Test
     public void TestG7Data() {
         Locale locales[] = {
                 Locale.US,
@@ -236,9 +240,7 @@ public class G7CollationTest extends TestFmwk{
             if (ok1) {
                 logln(msg1 + source + msg2 + target + msg3 + sResult);
             } else {
-                // Android patch: Add --omitCollationRules to genrb.
-                warnln(msg1 + source + msg2 + target + msg3 + sResult + msg4 + sExpect);
-                // Android patch end.
+                errln(msg1 + source + msg2 + target + msg3 + sResult + msg4 + sExpect);
             }
             
             msg1 = ok2 ? "Ok: key(\"" : "FAIL: key(\"";
@@ -248,14 +250,10 @@ public class G7CollationTest extends TestFmwk{
             if (ok2) {
                 logln(msg1 + source + msg2 + target + msg3 + sResult);
             } else {
-                // Android patch: Add --omitCollationRules to genrb.
-                warnln(msg1 + source + msg2 + target + msg3 + sResult + msg4 + sExpect);
-                // Android patch end.
+                errln(msg1 + source + msg2 + target + msg3 + sResult + msg4 + sExpect);
                 msg1 = "  ";
                 msg2 = " vs. ";
-                // Android patch: Add --omitCollationRules to genrb.
-                warnln(msg1 + CollationTest.prettify(sourceKey) + msg2 + CollationTest.prettify(targetKey));
-                // Android patch end.
+                errln(msg1 + CollationTest.prettify(sourceKey) + msg2 + CollationTest.prettify(targetKey));
             }
             
             msg1 = ok3 ? "Ok: incCompare(\"" : "FAIL: incCompare(\"";
@@ -267,9 +265,7 @@ public class G7CollationTest extends TestFmwk{
             if (ok3) {
                 logln(msg1 + source + msg2 + target + msg3 + sResult);
             } else {
-                // Android patch: Add --omitCollationRules to genrb.
-                warnln(msg1 + source + msg2 + target + msg3 + sResult + msg4 + sExpect);
-                // Android patch end.
+                errln(msg1 + source + msg2 + target + msg3 + sResult + msg4 + sExpect);
             }                
         }
     }

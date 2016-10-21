@@ -1,3 +1,5 @@
+// © 2016 and later: Unicode, Inc. and others.
+// License & terms of use: http://www.unicode.org/copyright.html#License
 /*
  *******************************************************************************
  * Copyright (C) 2015-2016, International Business Machines Corporation and
@@ -117,7 +119,7 @@ public class ValidIdentifiers {
         static {
             Map<Datatype, Map<Datasubtype, ValiditySet>> _data = new EnumMap<Datatype,Map<Datasubtype,ValiditySet>>(Datatype.class);
             UResourceBundle suppData = UResourceBundle.getBundleInstance(
-                    ICUResourceBundle.ICU_BASE_NAME,
+                    ICUData.ICU_BASE_NAME,
                     "supplementalData",
                     ICUResourceBundle.ICU_DATA_CLASS_LOADER);
             UResourceBundle validityInfo = suppData.get("idValidity");

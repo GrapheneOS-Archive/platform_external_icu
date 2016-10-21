@@ -1,3 +1,5 @@
+// © 2016 and later: Unicode, Inc. and others.
+// License & terms of use: http://www.unicode.org/copyright.html#License
  /*
 *   Copyright (C) 1996-2016, International Business Machines
 *   Corporation and others.  All Rights Reserved.
@@ -789,6 +791,7 @@ public class SimpleTimeZone extends BasicTimeZone {
      * @internal
      * @deprecated This API is ICU internal only.
      */
+    @Override
     @Deprecated
     public void getOffsetFromLocal(long date,
             int nonExistingTimeOpt, int duplicatedTimeOpt, int[] offsets) {
@@ -962,6 +965,7 @@ public class SimpleTimeZone extends BasicTimeZone {
      * {@inheritDoc}
      * @stable ICU 49
      */
+    @Override
     public boolean observesDaylightTime() {
         return useDaylight;
     }
@@ -1416,6 +1420,7 @@ public class SimpleTimeZone extends BasicTimeZone {
      * {@inheritDoc}
      * @stable ICU 49
      */
+    @Override
     public boolean isFrozen() {
         return isFrozen;
     }
@@ -1424,6 +1429,7 @@ public class SimpleTimeZone extends BasicTimeZone {
      * {@inheritDoc}
      * @stable ICU 49
      */
+    @Override
     public TimeZone freeze() {
         isFrozen = true;
         return this;
@@ -1433,6 +1439,7 @@ public class SimpleTimeZone extends BasicTimeZone {
      * {@inheritDoc}
      * @stable ICU 49
      */
+    @Override
     public TimeZone cloneAsThawed() {
         SimpleTimeZone tz = (SimpleTimeZone)super.cloneAsThawed();
         tz.isFrozen = false;
