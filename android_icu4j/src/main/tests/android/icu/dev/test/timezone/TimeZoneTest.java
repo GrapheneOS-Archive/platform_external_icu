@@ -2252,7 +2252,9 @@ public class TimeZoneTest extends TestFmwk
             {"America/Indianapolis",    "US Eastern Standard Time"},            // CLDR canonical name
             {"America/Indiana/Indianapolis",    "US Eastern Standard Time"},    // tzdb canonical name
             {"Asia/Khandyga",           "Yakutsk Standard Time"},
-            {"Australia/Eucla",         null}, // No Windows ID mapping
+            // Android-changed: Removed this case because CLDR 30 now has a mapping and some OEMs
+            // have picked up the windowsZone.txt change. http://b/32534123 & http://b/32512035.
+            // {"Australia/Eucla",         null}, // No Windows ID mapping
             {"Bogus",                   null},
         };
 
