@@ -85,6 +85,6 @@ LOCAL_SRC_FILES := \
 LOCAL_JAVA_RESOURCE_DIRS := src/main/tests
 LOCAL_STATIC_JAVA_LIBRARIES := \
     android-icu4j-host \
-    junit
+    junit-host
 LOCAL_MODULE := android-icu4j-tests-host
 include $(BUILD_HOST_JAVA_LIBRARY)
