@@ -121,7 +121,7 @@ include $(CLEAR_VARS)
 LOCAL_SRC_FILES := $(icu4j_test_src_files)
 LOCAL_JAVA_RESOURCE_DIRS := $(icu4j_test_resource_dirs)
 LOCAL_STATIC_JAVA_LIBRARIES := icu4j-testdata-host
-LOCAL_JAVA_LIBRARIES := icu4j-hostdex junit4-target-hostdex junit-params-hostdex
+LOCAL_JAVA_LIBRARIES := icu4j-hostdex junit-hostdex junit-params-hostdex
 LOCAL_MODULE := icu4j-tests-hostdex
 include $(BUILD_HOST_DALVIK_JAVA_LIBRARY)
 
