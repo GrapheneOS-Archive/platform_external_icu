@@ -89,7 +89,7 @@ include $(CLEAR_VARS)
 LOCAL_SRC_FILES := $(icu4j_test_src_files)
 LOCAL_JAVA_RESOURCE_DIRS := $(icu4j_test_resource_dirs)
 LOCAL_STATIC_JAVA_LIBRARIES := icu4j-testdata
-LOCAL_JAVA_LIBRARIES := icu4j junit4-target junit-params
+LOCAL_JAVA_LIBRARIES := icu4j junit junit-params
 LOCAL_MODULE := icu4j-tests
 include $(BUILD_STATIC_JAVA_LIBRARY)
 
