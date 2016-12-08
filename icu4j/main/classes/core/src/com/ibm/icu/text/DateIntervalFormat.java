@@ -1,3 +1,5 @@
+// © 2016 and later: Unicode, Inc. and others.
+// License & terms of use: http://www.unicode.org/copyright.html#License
 /*
 *   Copyright (C) 2008-2016, International Business Machines
 *   Corporation and others.  All Rights Reserved.
@@ -14,8 +16,9 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
-import com.ibm.icu.impl.CalendarData;
 import com.ibm.icu.impl.ICUCache;
+import com.ibm.icu.impl.ICUData;
+import com.ibm.icu.impl.ICUResourceBundle;
 import com.ibm.icu.impl.SimpleCache;
 import com.ibm.icu.impl.SimpleFormatterImpl;
 import com.ibm.icu.text.DateIntervalInfo.PatternInfo;
@@ -25,6 +28,7 @@ import com.ibm.icu.util.Output;
 import com.ibm.icu.util.TimeZone;
 import com.ibm.icu.util.ULocale;
 import com.ibm.icu.util.ULocale.Category;
+import com.ibm.icu.util.UResourceBundle;
 
 
 /**
@@ -784,7 +788,8 @@ public class DateIntervalFormat extends UFormat {
             FieldPosition otherPos = new FieldPosition(pos.getField());
             fDateFormat.format(secondCal, appendTo, otherPos);
             if (pos.getEndIndex() == 0 && otherPos.getEndIndex() > 0) {
-                pos = otherPos;
+                pos.setBeginIndex(otherPos.getBeginIndex());
+                pos.setEndIndex(otherPos.getEndIndex());
             }
         }
         fDateFormat.applyPattern(originalPattern);
@@ -1132,13 +1137,11 @@ public class DateIntervalFormat extends UFormat {
 
         // move this up here since we need it for fallbacks
         if (time.length() != 0 && date.length() != 0) {
-            // Need the Date/Time pattern for concatnation the date with
+            // Need the Date/Time pattern for concatenating the date with
             // the time interval.
             // The date/time pattern ( such as {0} {1} ) is saved in
             // calendar, that is why need to get the CalendarData here.
-            CalendarData calData = new CalendarData(locale, null);
-            String[] patterns = calData.getDateTimePatterns();
-            fDateTimeFormat = patterns[8];
+            fDateTimeFormat = getConcatenationPattern(locale);
         }
 
         boolean found = genSeparateDateTimePtn(normalizedDateSkeleton, 
@@ -1261,6 +1264,21 @@ public class DateIntervalFormat extends UFormat {
         return intervalPatterns;
     }
 
+    /**
+     * Retrieves the concatenation DateTime pattern from the resource bundle.
+     * @param locale Locale to retrieve.
+     * @return Concatenation DateTime pattern.
+     */
+    private String getConcatenationPattern(ULocale locale) {
+        ICUResourceBundle rb = (ICUResourceBundle) UResourceBundle.getBundleInstance(ICUData.ICU_BASE_NAME, locale);
+        ICUResourceBundle dtPatternsRb = rb.getWithFallback("calendar/gregorian/DateTimePatterns");
+        ICUResourceBundle concatenationPatternRb = (ICUResourceBundle) dtPatternsRb.get(8);
+        if (concatenationPatternRb.getType() == UResourceBundle.STRING) {
+            return concatenationPatternRb.getString();
+        } else {
+            return concatenationPatternRb.getString(0);
+        }
+    }
 
     /*
      * Generate fall back interval pattern given a calendar field,
