@@ -1,8 +1,10 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
+// © 2016 and later: Unicode, Inc. and others.
+// License & terms of use: http://www.unicode.org/copyright.html#License
 /*
  *******************************************************************************
- * Copyright (C) 2004-2016, Google Inc, International Business Machines        *
- * Corporation and others. All Rights Reserved.                                *
+ * Copyright (C) 2004-2016, Google Inc, International Business Machines
+ * Corporation and others. All Rights Reserved.
  *******************************************************************************
  */
 package android.icu.util;
@@ -14,15 +16,15 @@ import java.io.ObjectOutput;
 import java.io.ObjectStreamException;
 import java.io.Serializable;
 import java.util.Collections;
-import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
-import java.util.MissingResourceException;
 import java.util.Set;
 
+import android.icu.impl.ICUData;
 import android.icu.impl.ICUResourceBundle;
 import android.icu.impl.Pair;
+import android.icu.impl.UResource;
 import android.icu.text.UnicodeSet;
 
 /**
@@ -36,14 +38,11 @@ import android.icu.text.UnicodeSet;
  */
 public class MeasureUnit implements Serializable {
     private static final long serialVersionUID = -1839973855554750484L;
-    
-    // Used to pre-fill the cache. These same constants appear in MeasureFormat too.
-    private static final String[] unitKeys = new String[]{"units", "unitsShort", "unitsNarrow"};
-    
+
     // Cache of MeasureUnits.
     // All access to the cache or cacheIsPopulated flag must be synchronized on class MeasureUnit,
     // i.e. from synchronized static methods. Beware of non-static methods.
-    private static final Map<String, Map<String,MeasureUnit>> cache 
+    private static final Map<String, Map<String,MeasureUnit>> cache
         = new HashMap<String, Map<String,MeasureUnit>>();
     private static boolean cacheIsPopulated = false;
 
@@ -54,7 +53,7 @@ public class MeasureUnit implements Serializable {
      */
     @Deprecated
     protected final String type;
-    
+
     /**
      * @deprecated This API is ICU internal only.
      * @hide original deprecated declaration
@@ -62,7 +61,7 @@ public class MeasureUnit implements Serializable {
      */
     @Deprecated
     protected final String subType;
-    
+
     /**
      * @deprecated This API is ICU internal only.
      * @hide original deprecated declaration
@@ -73,14 +72,14 @@ public class MeasureUnit implements Serializable {
         this.type = type;
         this.subType = subType;
     }
-    
+
     /**
      * Get the type, such as "length"
      */
     public String getType() {
         return type;
     }
-    
+
 
     /**
      * Get the subType, such as “foot”.
@@ -88,8 +87,8 @@ public class MeasureUnit implements Serializable {
     public String getSubtype() {
         return subType;
     }
-    
-    
+
+
 
     /**
      * {@inheritDoc}
@@ -98,7 +97,7 @@ public class MeasureUnit implements Serializable {
     public int hashCode() {
         return 31 * type.hashCode() + subType.hashCode();
     }
-    
+
     /**
      * {@inheritDoc}
      */
@@ -113,7 +112,7 @@ public class MeasureUnit implements Serializable {
         MeasureUnit c = (MeasureUnit) rhs;
         return type.equals(c.type) && subType.equals(c.subType);
     }
-    
+
     /**
      * {@inheritDoc}
      */
@@ -121,12 +120,12 @@ public class MeasureUnit implements Serializable {
     public String toString() {
         return type + "-" + subType;
     }
-    
+
     /**
      * Get all of the available units' types. Returned set is unmodifiable.
      */
     public synchronized static Set<String> getAvailableTypes() {
-        populateCache();            
+        populateCache();
         return Collections.unmodifiableSet(cache.keySet());
     }
 
@@ -136,7 +135,7 @@ public class MeasureUnit implements Serializable {
      * @return the available units for type. Returned set is unmodifiable.
      */
     public synchronized static Set<MeasureUnit> getAvailable(String type) {
-        populateCache();            
+        populateCache();
         Map<String, MeasureUnit> units = cache.get(type);
         // Train users not to modify returned set from the start giving us more
         // flexibility for implementation.
@@ -190,7 +189,7 @@ public class MeasureUnit implements Serializable {
         }
         return MeasureUnit.addUnit(type, subType, factory);
     }
-    
+
     /**
      * For ICU use only.
      * @deprecated This API is ICU internal only.
@@ -222,22 +221,61 @@ public class MeasureUnit implements Serializable {
     }
 
     private static Factory UNIT_FACTORY = new Factory() {
+        @Override
         public MeasureUnit create(String type, String subType) {
             return new MeasureUnit(type, subType);
         }
     };
 
     static Factory CURRENCY_FACTORY = new Factory() {
+        @Override
         public MeasureUnit create(String unusedType, String subType) {
             return new Currency(subType);
         }
     };
-    
+
     static Factory TIMEUNIT_FACTORY = new Factory() {
+        @Override
         public MeasureUnit create(String type, String subType) {
            return new TimeUnit(type, subType);
         }
     };
+
+    /**
+     * Sink for enumerating the available measure units.
+     */
+    private static final class MeasureUnitSink extends UResource.Sink {
+        @Override
+        public void put(UResource.Key key, UResource.Value value, boolean noFallback) {
+            UResource.Table unitTypesTable = value.getTable();
+            for (int i2 = 0; unitTypesTable.getKeyAndValue(i2, key, value); ++i2) {
+                // Skip "compound" since it is treated differently from the other units
+                if (key.contentEquals("compound")) {
+                    continue;
+                }
+
+                String unitType = key.toString();
+                UResource.Table unitNamesTable = value.getTable();
+                for (int i3 = 0; unitNamesTable.getKeyAndValue(i3, key, value); ++i3) {
+                    String unitName = key.toString();
+                    internalGetInstance(unitType, unitName);
+                }
+            }
+        }
+    }
+
+    /**
+     * Sink for enumerating the currency numeric codes.
+     */
+    private static final class CurrencyNumericCodeSink extends UResource.Sink {
+        @Override
+        public void put(UResource.Key key, UResource.Value value, boolean noFallback) {
+            UResource.Table codesTable = value.getTable();
+            for (int i1 = 0; codesTable.getKeyAndValue(i1, key, value); ++i1) {
+                internalGetInstance("currency", key.toString());
+            }
+        }
+    }
 
     /**
      * Populate the MeasureUnit cache with all types from the data.
@@ -245,64 +283,42 @@ public class MeasureUnit implements Serializable {
      * or other API that expects to see all of the MeasureUnits.
      *
      * <p>At static initialization time the MeasureUnits cache is populated
-     * with public static instances (G_FORCE, METER_PER_SECOND_SQUARED, etc.) only. 
-     * Adding of others is deferred until later to avoid circular static init 
+     * with public static instances (G_FORCE, METER_PER_SECOND_SQUARED, etc.) only.
+     * Adding of others is deferred until later to avoid circular static init
      * dependencies with classes Currency and TimeUnit.
      *
      * <p>Synchronization: this function must be called from static synchronized methods only.
-     * 
+     *
      * @hide draft / provisional / internal are hidden on Android
      */
     static private void populateCache() {
-        // load all of the units for English, since we know that that is a superset.
-        /**
-         *     units{
-         *            duration{
-         *                day{
-         *                    one{"{0} ден"}
-         *                    other{"{0} дена"}
-         *                }
-         */
         if (cacheIsPopulated) {
             return;
         }
-        ICUResourceBundle resource = (ICUResourceBundle)UResourceBundle.getBundleInstance(ICUResourceBundle.ICU_BASE_NAME, "en");
-        for (String key : unitKeys) {
-            try {
-                ICUResourceBundle unitsTypeRes = resource.getWithFallback(key);
-                int size = unitsTypeRes.getSize();
-                for ( int index = 0; index < size; ++index) {
-                    UResourceBundle unitsRes = unitsTypeRes.get(index);
-                    String type = unitsRes.getKey();
-                    if (type.equals("compound")) {
-                        continue; // special type, does not have any unit plurals
-                    }
-                    int unitsSize = unitsRes.getSize();
-                    for ( int index2 = 0; index2 < unitsSize; ++index2) {
-                        ICUResourceBundle unitNameRes = (ICUResourceBundle)unitsRes.get(index2);
-                        if (unitNameRes.get("other") != null) {
-                            internalGetInstance(type, unitNameRes.getKey());
-                        }
-                    }
-                }
-            } catch ( MissingResourceException e ) {
-                continue;
-            }
-        }
-        // preallocate currencies
-        try {
-            UResourceBundle bundle = UResourceBundle.getBundleInstance(
-                    ICUResourceBundle.ICU_BASE_NAME,
-                    "currencyNumericCodes",
-                    ICUResourceBundle.ICU_DATA_CLASS_LOADER);
-            UResourceBundle codeMap = bundle.get("codeMap");
-            for (Enumeration<String> it = codeMap.getKeys(); it.hasMoreElements();) {
-                MeasureUnit.internalGetInstance("currency", it.nextElement());
-            }
-        } catch (MissingResourceException e) {
-            // fall through
-        }
         cacheIsPopulated = true;
+
+        /*  Schema:
+         *
+         *  units{
+         *    duration{
+         *      day{
+         *        one{"{0} ден"}
+         *        other{"{0} дена"}
+         *      }
+         */
+
+        // Load the unit types.  Use English, since we know that that is a superset.
+        ICUResourceBundle rb1 = (ICUResourceBundle) UResourceBundle.getBundleInstance(
+                ICUData.ICU_UNIT_BASE_NAME,
+                "en");
+        rb1.getAllItemsWithFallback("units", new MeasureUnitSink());
+
+        // Load the currencies
+        ICUResourceBundle rb2 = (ICUResourceBundle) UResourceBundle.getBundleInstance(
+                ICUData.ICU_BASE_NAME,
+                "currencyNumericCodes",
+                ICUResourceBundle.ICU_DATA_CLASS_LOADER);
+        rb2.getAllItemsWithFallback("codeMap", new CurrencyNumericCodeSink());
     }
 
     /**
@@ -317,7 +333,7 @@ public class MeasureUnit implements Serializable {
             cache.put(type, tmp = new HashMap<String, MeasureUnit>());
         } else {
             // "intern" the type by setting to first item's type.
-            type = tmp.entrySet().iterator().next().getValue().type; 
+            type = tmp.entrySet().iterator().next().getValue().type;
         }
         MeasureUnit unit = tmp.get(unitName);
         if (unit == null) {
@@ -330,7 +346,7 @@ public class MeasureUnit implements Serializable {
     /*
      * Useful constants. Not necessarily complete: see {@link #getAvailable()}.
      */
-    
+
 // All code between the "Start generated MeasureUnit constants" comment and
 // the "End generated MeasureUnit constants" comment is auto generated code
 // and must not be edited manually. For instructions on how to correctly
@@ -338,7 +354,7 @@ public class MeasureUnit implements Serializable {
 // http://site.icu-project.org/design/formatting/measureformat/updating-measure-unit
 //
     // Start generated MeasureUnit constants
-    
+
     /**
      * Constant for unit of acceleration: g-force
      */
@@ -371,7 +387,6 @@ public class MeasureUnit implements Serializable {
 
     /**
      * Constant for unit of angle: revolution
-     * @hide draft / provisional / internal are hidden on Android
      */
     public static final MeasureUnit REVOLUTION_ANGLE = MeasureUnit.internalGetInstance("angle", "revolution");
 
@@ -445,7 +460,6 @@ public class MeasureUnit implements Serializable {
 
     /**
      * Constant for unit of consumption: liter-per-100kilometers
-     * @hide draft / provisional / internal are hidden on Android
      */
     public static final MeasureUnit LITER_PER_100KILOMETERS = MeasureUnit.internalGetInstance("consumption", "liter-per-100kilometers");
 
@@ -464,6 +478,30 @@ public class MeasureUnit implements Serializable {
      * @hide draft / provisional / internal are hidden on Android
      */
     public static final MeasureUnit MILE_PER_GALLON_IMPERIAL = MeasureUnit.internalGetInstance("consumption", "mile-per-gallon-imperial");
+
+    /**
+     * Constant for unit of coordinate: east
+     * @hide draft / provisional / internal are hidden on Android
+     */
+    public static final MeasureUnit EAST = MeasureUnit.internalGetInstance("coordinate", "east");
+
+    /**
+     * Constant for unit of coordinate: north
+     * @hide draft / provisional / internal are hidden on Android
+     */
+    public static final MeasureUnit NORTH = MeasureUnit.internalGetInstance("coordinate", "north");
+
+    /**
+     * Constant for unit of coordinate: south
+     * @hide draft / provisional / internal are hidden on Android
+     */
+    public static final MeasureUnit SOUTH = MeasureUnit.internalGetInstance("coordinate", "south");
+
+    /**
+     * Constant for unit of coordinate: west
+     * @hide draft / provisional / internal are hidden on Android
+     */
+    public static final MeasureUnit WEST = MeasureUnit.internalGetInstance("coordinate", "west");
 
     /**
      * Constant for unit of digital: bit
@@ -517,7 +555,6 @@ public class MeasureUnit implements Serializable {
 
     /**
      * Constant for unit of duration: century
-     * @hide draft / provisional / internal are hidden on Android
      */
     public static final MeasureUnit CENTURY = MeasureUnit.internalGetInstance("duration", "century");
 
@@ -703,7 +740,6 @@ public class MeasureUnit implements Serializable {
 
     /**
      * Constant for unit of length: mile-scandinavian
-     * @hide draft / provisional / internal are hidden on Android
      */
     public static final MeasureUnit MILE_SCANDINAVIAN = MeasureUnit.internalGetInstance("length", "mile-scandinavian");
 
@@ -859,7 +895,6 @@ public class MeasureUnit implements Serializable {
 
     /**
      * Constant for unit of speed: knot
-     * @hide draft / provisional / internal are hidden on Android
      */
     public static final MeasureUnit KNOT = MeasureUnit.internalGetInstance("speed", "knot");
 
@@ -885,7 +920,6 @@ public class MeasureUnit implements Serializable {
 
     /**
      * Constant for unit of temperature: generic
-     * @hide draft / provisional / internal are hidden on Android
      */
     public static final MeasureUnit GENERIC_TEMPERATURE = MeasureUnit.internalGetInstance("temperature", "generic");
 
@@ -951,7 +985,6 @@ public class MeasureUnit implements Serializable {
 
     /**
      * Constant for unit of volume: cup-metric
-     * @hide draft / provisional / internal are hidden on Android
      */
     public static final MeasureUnit CUP_METRIC = MeasureUnit.internalGetInstance("volume", "cup-metric");
 
@@ -1003,7 +1036,6 @@ public class MeasureUnit implements Serializable {
 
     /**
      * Constant for unit of volume: pint-metric
-     * @hide draft / provisional / internal are hidden on Android
      */
     public static final MeasureUnit PINT_METRIC = MeasureUnit.internalGetInstance("volume", "pint-metric");
 
@@ -1058,6 +1090,7 @@ public class MeasureUnit implements Serializable {
         public MeasureUnitProxy() {
         }
 
+        @Override
         public void writeExternal(ObjectOutput out) throws IOException {
             out.writeByte(0); // version
             out.writeUTF(type);
@@ -1065,6 +1098,7 @@ public class MeasureUnit implements Serializable {
             out.writeShort(0); // allow for more data.
         }
 
+        @Override
         public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
             /* byte version = */ in.readByte(); // version
             type = in.readUTF();

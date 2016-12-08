@@ -1,4 +1,6 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
+// © 2016 and later: Unicode, Inc. and others.
+// License & terms of use: http://www.unicode.org/copyright.html#License
 /*
  *******************************************************************************
  * Copyright (C) 1996-2016, International Business Machines Corporation and
@@ -24,10 +26,11 @@ import java.util.Locale;
 import java.util.MissingResourceException;
 import java.util.UUID;
 
-import android.icu.impl.CalendarData;
 import android.icu.impl.DateNumberFormat;
 import android.icu.impl.DayPeriodRules;
 import android.icu.impl.ICUCache;
+import android.icu.impl.ICUData;
+import android.icu.impl.ICUResourceBundle;
 import android.icu.impl.PatternProps;
 import android.icu.impl.SimpleCache;
 import android.icu.impl.SimpleFormatterImpl;
@@ -42,6 +45,8 @@ import android.icu.util.TimeZone;
 import android.icu.util.TimeZoneTransition;
 import android.icu.util.ULocale;
 import android.icu.util.ULocale.Category;
+import android.icu.util.UResourceBundle;
+
 
 
 /**
@@ -1182,17 +1187,30 @@ public class SimpleDateFormat extends DateFormat {
         if (!defaultLocale.equals(cachedDefaultLocale)) {
             cachedDefaultLocale = defaultLocale;
             Calendar cal = Calendar.getInstance(cachedDefaultLocale);
+
             try {
-                CalendarData calData = new CalendarData(cachedDefaultLocale, cal.getType());
-                String[] dateTimePatterns = calData.getDateTimePatterns();
-                int glueIndex = 8;
-                if (dateTimePatterns.length >= 13)
-                {
-                    glueIndex += (SHORT + 1);
+                // Load the calendar data directly.
+                ICUResourceBundle rb = (ICUResourceBundle) UResourceBundle.getBundleInstance(
+                        ICUData.ICU_BASE_NAME, cachedDefaultLocale);
+                String resourcePath = "calendar/" + cal.getType() + "/DateTimePatterns";
+                ICUResourceBundle patternsRb= rb.findWithFallback(resourcePath);
+
+                if (patternsRb == null) {
+                    patternsRb = rb.findWithFallback("calendar/gregorian/DateTimePatterns");
                 }
-                cachedDefaultPattern = SimpleFormatterImpl.formatRawPattern(
-                        dateTimePatterns[glueIndex], 2, 2,
-                        dateTimePatterns[SHORT], dateTimePatterns[SHORT + 4]);
+                if (patternsRb == null || patternsRb.getSize() < 9) {
+                    cachedDefaultPattern = FALLBACKPATTERN;
+                } else {
+                    int defaultIndex = 8;
+                    if (patternsRb.getSize() >= 13) {
+                        defaultIndex += (SHORT + 1);
+                    }
+                    String basePattern = patternsRb.getString(defaultIndex);
+
+                    cachedDefaultPattern = SimpleFormatterImpl.formatRawPattern(
+                            basePattern, 2, 2,
+                            patternsRb.getString(SHORT), patternsRb.getString(SHORT + 4));
+                }
             } catch (MissingResourceException e) {
                 cachedDefaultPattern = FALLBACKPATTERN;
             }
@@ -1269,6 +1287,7 @@ public class SimpleDateFormat extends DateFormat {
      * @param context The DisplayContext value to set.
      */
     // Here we override the DateFormat implementation in order to lazily initialize relevant items
+    @Override
     public void setContext(DisplayContext context) {
         super.setContext(context);
         if (capitalizationBrkIter == null && (context==DisplayContext.CAPITALIZATION_FOR_BEGINNING_OF_SENTENCE ||
@@ -1290,6 +1309,7 @@ public class SimpleDateFormat extends DateFormat {
      * @return the formatted date-time string.
      * @see DateFormat
      */
+    @Override
     public StringBuffer format(Calendar cal, StringBuffer toAppendTo,
                                FieldPosition pos) {
         TimeZone backupTZ = null;
@@ -1661,7 +1681,7 @@ public class SimpleDateFormat extends DateFormat {
                     value /= 10;
                 }
                 FieldPosition p = new FieldPosition(-1);
-                numberFormat.format((long) value, buf, p);
+                numberFormat.format(value, buf, p);
                 if (count > 3) {
                     numberFormat.setMinimumIntegerDigits(count - 3);
                     numberFormat.format(0L, buf, p);
@@ -2184,6 +2204,7 @@ public class SimpleDateFormat extends DateFormat {
      * This method also clears per field NumberFormat instances
      * previously set by {@link #setNumberFormat(String, NumberFormat)}
      */
+    @Override
     public void setNumberFormat(NumberFormat newNumberFormat) {
         // Override this method to update local zero padding number formatter
         super.setNumberFormat(newNumberFormat);
@@ -2294,6 +2315,7 @@ public class SimpleDateFormat extends DateFormat {
      * Overrides DateFormat
      * @see DateFormat
      */
+    @Override
     public void parse(String text, Calendar cal, ParsePosition parsePos)
     {
         TimeZone backupTZ = null;
@@ -3792,6 +3814,12 @@ public class SimpleDateFormat extends DateFormat {
 
     /**
      * Return a localized pattern string describing this date format.
+     * <p>
+     * <b>Note:</b> This implementation depends on {@link DateFormatSymbols#getLocalPatternChars()}
+     * to get localized format pattern characters. ICU does not include
+     * localized pattern character data, therefore, unless user sets localized
+     * pattern characters manually, this method returns the same result as
+     * {@link #toPattern()}.
      */
     public String toLocalizedPattern() {
         return translatePattern(pattern,
@@ -3877,6 +3905,7 @@ public class SimpleDateFormat extends DateFormat {
     /**
      * Overrides Cloneable
      */
+    @Override
     public Object clone() {
         SimpleDateFormat other = (SimpleDateFormat) super.clone();
         other.formatData = (DateFormatSymbols) formatData.clone();
@@ -3892,6 +3921,7 @@ public class SimpleDateFormat extends DateFormat {
      * Override hashCode.
      * Generates the hash code for the SimpleDateFormat object
      */
+    @Override
     public int hashCode()
     {
         return pattern.hashCode();
@@ -3901,6 +3931,7 @@ public class SimpleDateFormat extends DateFormat {
     /**
      * Override equals.
      */
+    @Override
     public boolean equals(Object obj)
     {
         if (!super.equals(obj)) return false; // super does class check
@@ -3979,6 +4010,7 @@ public class SimpleDateFormat extends DateFormat {
      * @param obj The object to format
      * @return <code>AttributedCharacterIterator</code> describing the formatted value.
      */
+    @Override
     public AttributedCharacterIterator formatToCharacterIterator(Object obj) {
         Calendar cal = calendar;
         if (obj instanceof Calendar) {

@@ -1,4 +1,6 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
+// © 2016 and later: Unicode, Inc. and others.
+// License & terms of use: http://www.unicode.org/copyright.html#License
 /*
  *******************************************************************************
  * Copyright (C) 2012-2016, Google, International Business Machines Corporation and
@@ -14,6 +16,7 @@ import java.util.Iterator;
 import java.util.Locale;
 
 import android.icu.impl.ICUCache;
+import android.icu.impl.ICUData;
 import android.icu.impl.ICUResourceBundle;
 import android.icu.impl.SimpleCache;
 import android.icu.impl.SimpleFormatterImpl;
@@ -311,7 +314,7 @@ final public class ListFormatter {
 
         private static ListFormatter load(ULocale ulocale, String style) {
             ICUResourceBundle r = (ICUResourceBundle)UResourceBundle.
-                    getBundleInstance(ICUResourceBundle.ICU_BASE_NAME, ulocale);
+                    getBundleInstance(ICUData.ICU_BASE_NAME, ulocale);
             StringBuilder sb = new StringBuilder();
             return new ListFormatter(
                 compilePattern(r.getWithFallback("listPattern/" + style + "/2").getString(), sb),
