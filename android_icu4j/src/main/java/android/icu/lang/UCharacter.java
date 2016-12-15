@@ -1,4 +1,6 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
+// © 2016 and later: Unicode, Inc. and others.
+// License & terms of use: http://www.unicode.org/copyright.html#License
 /**
  *******************************************************************************
  * Copyright (C) 1996-2016, International Business Machines Corporation and
@@ -14,6 +16,8 @@ import java.util.Iterator;
 import java.util.Locale;
 import java.util.Map;
 
+import android.icu.impl.CaseMap;
+import android.icu.impl.CaseMap.StringContextIterator;
 import android.icu.impl.IllegalIcuArgumentException;
 import android.icu.impl.Trie2;
 import android.icu.impl.UBiDiProps;
@@ -941,10 +945,40 @@ public final class UCharacter implements ECharacterCategory, ECharacterDirection
         /***/
         public static final int SUTTON_SIGNWRITING_ID = 262; /*[1D800]*/
 
+        /* New blocks in Unicode 9.0 */
+
+        /***/
+        public static final int ADLAM_ID = 263; /*[1E900]*/
+        /***/
+        public static final int BHAIKSUKI_ID = 264; /*[11C00]*/
+        /***/
+        public static final int CYRILLIC_EXTENDED_C_ID = 265; /*[1C80]*/
+        /***/
+        public static final int GLAGOLITIC_SUPPLEMENT_ID = 266; /*[1E000]*/
+        /***/
+        public static final int IDEOGRAPHIC_SYMBOLS_AND_PUNCTUATION_ID = 267; /*[16FE0]*/
+        /***/
+        public static final int MARCHEN_ID = 268; /*[11C70]*/
+        /***/
+        public static final int MONGOLIAN_SUPPLEMENT_ID = 269; /*[11660]*/
+        /***/
+        public static final int NEWA_ID = 270; /*[11400]*/
+        /***/
+        public static final int OSAGE_ID = 271; /*[104B0]*/
+        /***/
+        public static final int TANGUT_ID = 272; /*[17000]*/
+        /***/
+        public static final int TANGUT_COMPONENTS_ID = 273; /*[18800]*/
+
         /**
+         * One more than the highest normal UnicodeBlock value.
+         * The highest value is available via UCharacter.getIntPropertyMaxValue(UProperty.BLOCK).
+         *
+         * @deprecated ICU 58 The numeric value may change over time, see ICU ticket #12420.
          * @hide unsupported on Android
          */
-        public static final int COUNT = 263;
+        @Deprecated
+        public static final int COUNT = 274;
 
         // blocks objects ---------------------------------------------------
 
@@ -1998,6 +2032,36 @@ public final class UCharacter implements ECharacterCategory, ECharacterDirection
         public static final UnicodeBlock SUTTON_SIGNWRITING =
                 new UnicodeBlock("SUTTON_SIGNWRITING", SUTTON_SIGNWRITING_ID); /*[1D800]*/
 
+        /* New blocks in Unicode 9.0 */
+
+        /***/
+        public static final UnicodeBlock ADLAM = new UnicodeBlock("ADLAM", ADLAM_ID); /*[1E900]*/
+        /***/
+        public static final UnicodeBlock BHAIKSUKI = new UnicodeBlock("BHAIKSUKI", BHAIKSUKI_ID); /*[11C00]*/
+        /***/
+        public static final UnicodeBlock CYRILLIC_EXTENDED_C =
+                new UnicodeBlock("CYRILLIC_EXTENDED_C", CYRILLIC_EXTENDED_C_ID); /*[1C80]*/
+        /***/
+        public static final UnicodeBlock GLAGOLITIC_SUPPLEMENT =
+                new UnicodeBlock("GLAGOLITIC_SUPPLEMENT", GLAGOLITIC_SUPPLEMENT_ID); /*[1E000]*/
+        /***/
+        public static final UnicodeBlock IDEOGRAPHIC_SYMBOLS_AND_PUNCTUATION =
+                new UnicodeBlock("IDEOGRAPHIC_SYMBOLS_AND_PUNCTUATION", IDEOGRAPHIC_SYMBOLS_AND_PUNCTUATION_ID); /*[16FE0]*/
+        /***/
+        public static final UnicodeBlock MARCHEN = new UnicodeBlock("MARCHEN", MARCHEN_ID); /*[11C70]*/
+        /***/
+        public static final UnicodeBlock MONGOLIAN_SUPPLEMENT =
+                new UnicodeBlock("MONGOLIAN_SUPPLEMENT", MONGOLIAN_SUPPLEMENT_ID); /*[11660]*/
+        /***/
+        public static final UnicodeBlock NEWA = new UnicodeBlock("NEWA", NEWA_ID); /*[11400]*/
+        /***/
+        public static final UnicodeBlock OSAGE = new UnicodeBlock("OSAGE", OSAGE_ID); /*[104B0]*/
+        /***/
+        public static final UnicodeBlock TANGUT = new UnicodeBlock("TANGUT", TANGUT_ID); /*[17000]*/
+        /***/
+        public static final UnicodeBlock TANGUT_COMPONENTS =
+                new UnicodeBlock("TANGUT_COMPONENTS", TANGUT_COMPONENTS_ID); /*[18800]*/
+
         /**
          */
         public static final UnicodeBlock INVALID_CODE
@@ -2152,8 +2216,13 @@ public final class UCharacter implements ECharacterCategory, ECharacterDirection
          */
         public static final int WIDE = 5;
         /**
+         * One more than the highest normal EastAsianWidth value.
+         * The highest value is available via UCharacter.getIntPropertyMaxValue(UProperty.EAST_ASIAN_WIDTH).
+         *
+         * @deprecated ICU 58 The numeric value may change over time, see ICU ticket #12420.
          * @hide unsupported on Android
          */
+        @Deprecated
         public static final int COUNT = 6;
     }
 
@@ -2218,8 +2287,13 @@ public final class UCharacter implements ECharacterCategory, ECharacterDirection
          */
         public static final int WIDE = 17;
         /**
+         * One more than the highest normal DecompositionType value.
+         * The highest value is available via UCharacter.getIntPropertyMaxValue(UProperty.DECOMPOSITION_TYPE).
+         *
+         * @deprecated ICU 58 The numeric value may change over time, see ICU ticket #12420.
          * @hide unsupported on Android
          */
+        @Deprecated
         public static final int COUNT = 18;
     }
 
@@ -2248,8 +2322,13 @@ public final class UCharacter implements ECharacterCategory, ECharacterDirection
          */
         public static final int TRANSPARENT = 5;
         /**
+         * One more than the highest normal JoiningType value.
+         * The highest value is available via UCharacter.getIntPropertyMaxValue(UProperty.JOINING_TYPE).
+         *
+         * @deprecated ICU 58 The numeric value may change over time, see ICU ticket #12420.
          * @hide unsupported on Android
          */
+        @Deprecated
         public static final int COUNT = 6;
     }
 
@@ -2490,10 +2569,22 @@ public final class UCharacter implements ECharacterCategory, ECharacterDirection
         /***/
         public static final int STRAIGHT_WAW = 85;
 
+        /***/
+        public static final int AFRICAN_FEH = 86;
+        /***/
+        public static final int AFRICAN_NOON = 87;
+        /***/
+        public static final int AFRICAN_QAF = 88;
+
         /**
+         * One more than the highest normal JoiningGroup value.
+         * The highest value is available via UCharacter.getIntPropertyMaxValue(UProperty.JoiningGroup).
+         *
+         * @deprecated ICU 58 The numeric value may change over time, see ICU ticket #12420.
          * @hide unsupported on Android
          */
-        public static final int COUNT = 86;
+        @Deprecated
+        public static final int COUNT = 89;
     }
 
     /**
@@ -2539,10 +2630,25 @@ public final class UCharacter implements ECharacterCategory, ECharacterDirection
         public static final int PREPEND = 11;
         /***/
         public static final int REGIONAL_INDICATOR = 12;  /*[RI]*/ /* new in Unicode 6.2/ICU 50 */
+        /***/
+        public static final int E_BASE = 13;          /*[EB]*/ /* from here on: new in Unicode 9.0/ICU 58 */
+        /***/
+        public static final int E_BASE_GAZ = 14;      /*[EBG]*/
+        /***/
+        public static final int E_MODIFIER = 15;      /*[EM]*/
+        /***/
+        public static final int GLUE_AFTER_ZWJ = 16;  /*[GAZ]*/
+        /***/
+        public static final int ZWJ = 17;             /*[ZWJ]*/
         /**
+         * One more than the highest normal GraphemeClusterBreak value.
+         * The highest value is available via UCharacter.getIntPropertyMaxValue(UProperty.GRAPHEME_CLUSTER_BREAK).
+         *
+         * @deprecated ICU 58 The numeric value may change over time, see ICU ticket #12420.
          * @hide unsupported on Android
          */
-        public static final int COUNT = 13;
+        @Deprecated
+        public static final int COUNT = 18;
     }
 
     /**
@@ -2597,10 +2703,25 @@ public final class UCharacter implements ECharacterCategory, ECharacterDirection
         public static final int SINGLE_QUOTE = 15;     /*[SQ]*/
         /***/
         public static final int DOUBLE_QUOTE = 16;     /*[DQ]*/
+        /***/
+        public static final int E_BASE = 17;           /*[EB]*/ /* from here on: new in Unicode 9.0/ICU 58 */
+        /***/
+        public static final int E_BASE_GAZ = 18;       /*[EBG]*/
+        /***/
+        public static final int E_MODIFIER = 19;       /*[EM]*/
+        /***/
+        public static final int GLUE_AFTER_ZWJ = 20;   /*[GAZ]*/
+        /***/
+        public static final int ZWJ = 21;              /*[ZWJ]*/
         /**
+         * One more than the highest normal WordBreak value.
+         * The highest value is available via UCharacter.getIntPropertyMaxValue(UProperty.WORD_BREAK).
+         *
+         * @deprecated ICU 58 The numeric value may change over time, see ICU ticket #12420.
          * @hide unsupported on Android
          */
-        public static final int COUNT = 17;
+        @Deprecated
+        public static final int COUNT = 22;
     }
 
     /**
@@ -2654,8 +2775,13 @@ public final class UCharacter implements ECharacterCategory, ECharacterDirection
          */
         public static final int SCONTINUE = 14;
         /**
+         * One more than the highest normal SentenceBreak value.
+         * The highest value is available via UCharacter.getIntPropertyMaxValue(UProperty.SENTENCE_BREAK).
+         *
+         * @deprecated ICU 58 The numeric value may change over time, see ICU ticket #12420.
          * @hide unsupported on Android
          */
+        @Deprecated
         public static final int COUNT = 15;
     }
 
@@ -2786,10 +2912,21 @@ public final class UCharacter implements ECharacterCategory, ECharacterDirection
         public static final int HEBREW_LETTER = 38;  /*[HL]*/ /* new in Unicode 6.1/ICU 49 */
         /***/
         public static final int REGIONAL_INDICATOR = 39;  /*[RI]*/ /* new in Unicode 6.2/ICU 50 */
+        /***/
+        public static final int E_BASE = 40;  /*[EB]*/ /* from here on: new in Unicode 9.0/ICU 58 */
+        /***/
+        public static final int E_MODIFIER = 41;  /*[EM]*/
+        /***/
+        public static final int ZWJ = 42;  /*[ZWJ]*/
         /**
+         * One more than the highest normal LineBreak value.
+         * The highest value is available via UCharacter.getIntPropertyMaxValue(UProperty.LINE_BREAK).
+         *
+         * @deprecated ICU 58 The numeric value may change over time, see ICU ticket #12420.
          * @hide unsupported on Android
          */
-        public static final int COUNT = 40;
+        @Deprecated
+        public static final int COUNT = 43;
     }
 
     /**
@@ -2811,8 +2948,13 @@ public final class UCharacter implements ECharacterCategory, ECharacterDirection
          */
         public static final int NUMERIC = 3;
         /**
+         * One more than the highest normal NumericType value.
+         * The highest value is available via UCharacter.getIntPropertyMaxValue(UProperty.NUMERIC_TYPE).
+         *
+         * @deprecated ICU 58 The numeric value may change over time, see ICU ticket #12420.
          * @hide unsupported on Android
          */
+        @Deprecated
         public static final int COUNT = 4;
     }
 
@@ -2842,8 +2984,13 @@ public final class UCharacter implements ECharacterCategory, ECharacterDirection
          */
         public static final int LVT_SYLLABLE        = 5;   /*[LVT]*/
         /**
+         * One more than the highest normal HangulSyllableType value.
+         * The highest value is available via UCharacter.getIntPropertyMaxValue(UProperty.HANGUL_SYLLABLE_TYPE).
+         *
+         * @deprecated ICU 58 The numeric value may change over time, see ICU ticket #12420.
          * @hide unsupported on Android
          */
+        @Deprecated
         public static final int COUNT               = 6;
     }
 
@@ -2866,8 +3013,13 @@ public final class UCharacter implements ECharacterCategory, ECharacterDirection
          */
         public static final int CLOSE = 2;
         /**
+         * One more than the highest normal BidiPairedBracketType value.
+         * The highest value is available via UCharacter.getIntPropertyMaxValue(UProperty.BIDI_PAIRED_BRACKET_TYPE).
+         *
+         * @deprecated ICU 58 The numeric value may change over time, see ICU ticket #12420.
          * @hide unsupported on Android
          */
+        @Deprecated
         public static final int COUNT = 3;
     }
 
@@ -4117,124 +4269,6 @@ public final class UCharacter implements ECharacterCategory, ECharacterDirection
     }
 
     /**
-     * Implementation of UCaseProps.ContextIterator, iterates over a String.
-     * See ustrcase.c/utf16_caseContextIterator().
-     */
-    private static class StringContextIterator implements UCaseProps.ContextIterator {
-        /**
-         * Constructor.
-         * @param s String to iterate over.
-         */
-        StringContextIterator(String s) {
-            this.s=s;
-            limit=s.length();
-            cpStart=cpLimit=index=0;
-            dir=0;
-        }
-
-        /**
-         * Set the iteration limit for nextCaseMapCP() to an index within the string.
-         * If the limit parameter is negative or past the string, then the
-         * string length is restored as the iteration limit.
-         *
-         * <p>This limit does not affect the next() function which always
-         * iterates to the very end of the string.
-         *
-         * @param lim The iteration limit.
-         */
-        public void setLimit(int lim) {
-            if(0<=lim && lim<=s.length()) {
-                limit=lim;
-            } else {
-                limit=s.length();
-            }
-        }
-
-        /**
-         * Move to the iteration limit without fetching code points up to there.
-         */
-        public void moveToLimit() {
-            cpStart=cpLimit=limit;
-        }
-
-        /**
-         * Iterate forward through the string to fetch the next code point
-         * to be case-mapped, and set the context indexes for it.
-         *
-         * <p>When the iteration limit is reached (and -1 is returned),
-         * getCPStart() will be at the iteration limit.
-         *
-         * <p>Iteration with next() does not affect the position for nextCaseMapCP().
-         *
-         * @return The next code point to be case-mapped, or <0 when the iteration is done.
-         */
-        public int nextCaseMapCP() {
-            cpStart=cpLimit;
-            if(cpLimit<limit) {
-                int c=s.codePointAt(cpLimit);
-                cpLimit+=Character.charCount(c);
-                return c;
-            } else {
-                return -1;
-            }
-        }
-
-        /**
-         * Returns the start of the code point that was last returned
-         * by nextCaseMapCP().
-         */
-        public int getCPStart() {
-            return cpStart;
-        }
-
-        /**
-         * Returns the limit of the code point that was last returned
-         * by nextCaseMapCP().
-         */
-        public int getCPLimit() {
-            return cpLimit;
-        }
-
-        // implement UCaseProps.ContextIterator
-        // The following code is not used anywhere in this private class
-        public void reset(int direction) {
-            if(direction>0) {
-                /* reset for forward iteration */
-                dir=1;
-                index=cpLimit;
-            } else if(direction<0) {
-                /* reset for backward iteration */
-                dir=-1;
-                index=cpStart;
-            } else {
-                // not a valid direction
-                dir=0;
-                index=0;
-            }
-        }
-
-        public int next() {
-            int c;
-
-            if(dir>0 && index<s.length()) {
-                c=s.codePointAt(index);
-                index+=Character.charCount(c);
-                return c;
-            } else if(dir<0 && index>0) {
-                c=s.codePointBefore(index);
-                index-=Character.charCount(c);
-                return c;
-            }
-            return -1;
-        }
-
-        // variables
-        protected String s;
-        protected int index, limit, cpStart, cpLimit;
-        protected int dir; // 0=initial state  >0=forward  <0=backward
-    }
-
-    /**
      * Returns the uppercase version of the argument string.
      * Casing is dependent on the default locale and context-sensitive.
      * @param str source string to be performed on
@@ -4298,31 +4332,7 @@ public final class UCharacter implements ECharacterCategory, ECharacterDirection
      * @return uppercase version of the argument string
      */
     public static String toUpperCase(ULocale locale, String str) {
-        StringContextIterator iter = new StringContextIterator(str);
-        StringBuilder result = new StringBuilder(str.length());
-        int[] locCache = new int[1];
-        int c;
-
-        if (locale == null) {
-            locale = ULocale.getDefault();
-        }
-        locCache[0]=0;
-
-        while((c=iter.nextCaseMapCP())>=0) {
-            c = UCaseProps.INSTANCE.toFullUpper(c, iter, result, locale, locCache);
-
-            /* decode the result */
-            if(c<0) {
-                /* (not) original code point */
-                c=~c;
-            } else if(c<=UCaseProps.MAX_STRING_LENGTH) {
-                /* mapping already appended to result */
-                continue;
-                /* } else { append single-code point mapping */
-            }
-            result.appendCodePoint(c);
-        }
-        return result.toString();
+        return CaseMap.toUpper(locale, str);
     }
 
     /**
@@ -4564,80 +4574,80 @@ public final class UCharacter implements ECharacterCategory, ECharacterDirection
     }
 
 
-    private static final int BREAK_MASK =  
-            (1<<UCharacterCategory.DECIMAL_DIGIT_NUMBER)  
-            | (1<<UCharacterCategory.OTHER_LETTER)  
-            | (1<<UCharacterCategory.MODIFIER_LETTER); 
+    private static final int BREAK_MASK =
+            (1<<UCharacterCategory.DECIMAL_DIGIT_NUMBER)
+            | (1<<UCharacterCategory.OTHER_LETTER)
+            | (1<<UCharacterCategory.MODIFIER_LETTER);
 
-    /** 
-     * Return a string with just the first word titlecased, for menus and UI, etc. This does not affect most of the string,  
-     * and sometimes has no effect at all; the original string is returned whenever casing 
-     * would not be appropriate for the first word (such as for CJK characters or initial numbers).  
-     * Initial non-letters are skipped in order to find the character to change.  
-     * Characters past the first affected are left untouched: see also TITLECASE_NO_LOWERCASE. 
-     * <p>Examples: 
-     * <table border='1'><tr><th>Source</th><th>Result</th><th>Locale</th></tr> 
-     * <tr><td>anglo-American locale</td><td>Anglo-American locale</td></tr> 
-     * <tr><td>“contact us”</td><td>“Contact us”</td></tr> 
-     * <tr><td>49ers win!</td><td>49ers win!</td></tr> 
-     * <tr><td>丰(abc)</td><td>丰(abc)</td></tr> 
-     * <tr><td>«ijs»</td><td>«Ijs»</td></tr> 
-     * <tr><td>«ijs»</td><td>«IJs»</td><td>nl-BE</td></tr> 
-     * <tr><td>«ijs»</td><td>«İjs»</td><td>tr-DE</td></tr> 
-     * </table> 
-     * @param locale the locale for accessing exceptional behavior (eg for tr). 
-     * @param str the source string to change 
-     * @return the modified string, or the original if no modifications were necessary. 
+    /**
+     * Return a string with just the first word titlecased, for menus and UI, etc. This does not affect most of the string,
+     * and sometimes has no effect at all; the original string is returned whenever casing
+     * would not be appropriate for the first word (such as for CJK characters or initial numbers).
+     * Initial non-letters are skipped in order to find the character to change.
+     * Characters past the first affected are left untouched: see also TITLECASE_NO_LOWERCASE.
+     * <p>Examples:
+     * <table border='1'><tr><th>Source</th><th>Result</th><th>Locale</th></tr>
+     * <tr><td>anglo-American locale</td><td>Anglo-American locale</td></tr>
+     * <tr><td>“contact us”</td><td>“Contact us”</td></tr>
+     * <tr><td>49ers win!</td><td>49ers win!</td></tr>
+     * <tr><td>丰(abc)</td><td>丰(abc)</td></tr>
+     * <tr><td>«ijs»</td><td>«Ijs»</td></tr>
+     * <tr><td>«ijs»</td><td>«IJs»</td><td>nl-BE</td></tr>
+     * <tr><td>«ijs»</td><td>«İjs»</td><td>tr-DE</td></tr>
+     * </table>
+     * @param locale the locale for accessing exceptional behavior (eg for tr).
+     * @param str the source string to change
+     * @return the modified string, or the original if no modifications were necessary.
      * @deprecated ICU internal only
      * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
-     */ 
-    @Deprecated 
-    public static String toTitleFirst(ULocale locale, String str) { 
-        int c = 0; 
-        for (int i = 0; i < str.length(); i += UCharacter.charCount(c)) { 
-            c = UCharacter.codePointAt(str, i); 
-            int propertyMask = UCharacter.getIntPropertyValue(c, UProperty.GENERAL_CATEGORY_MASK); 
-            if ((propertyMask & BREAK_MASK) != 0) { // handle "49ers", initial CJK 
-                break; 
-            } 
-            if (UCaseProps.INSTANCE.getType(c) == UCaseProps.NONE) { 
-                continue; 
-            } 
+     */
+    @Deprecated
+    public static String toTitleFirst(ULocale locale, String str) {
+        int c = 0;
+        for (int i = 0; i < str.length(); i += UCharacter.charCount(c)) {
+            c = UCharacter.codePointAt(str, i);
+            int propertyMask = UCharacter.getIntPropertyValue(c, UProperty.GENERAL_CATEGORY_MASK);
+            if ((propertyMask & BREAK_MASK) != 0) { // handle "49ers", initial CJK
+                break;
+            }
+            if (UCaseProps.INSTANCE.getType(c) == UCaseProps.NONE) {
+                continue;
+            }
 
-            // we now have the first cased character 
-            // What we really want is something like: 
-            // String titled = UCharacter.toTitleCase(locale, str, i, outputCharsTaken); 
-            // That is, just give us the titlecased string, for the locale, at i and following,  
-            // and tell us how many characters are replaced. 
-            // The following won't work completely: it needs some more substantial changes to UCaseProps 
+            // we now have the first cased character
+            // What we really want is something like:
+            // String titled = UCharacter.toTitleCase(locale, str, i, outputCharsTaken);
+            // That is, just give us the titlecased string, for the locale, at i and following,
+            // and tell us how many characters are replaced.
+            // The following won't work completely: it needs some more substantial changes to UCaseProps
 
-            String substring = str.substring(i, i+UCharacter.charCount(c)); 
-            String titled = UCharacter.toTitleCase(locale, substring, BreakIterator.getSentenceInstance(locale), 0); 
+            String substring = str.substring(i, i+UCharacter.charCount(c));
+            String titled = UCharacter.toTitleCase(locale, substring, BreakIterator.getSentenceInstance(locale), 0);
 
-            // skip if no change 
-            if (titled.codePointAt(0) == c) { 
-                // Using 0 is safe, since any change in titling will not have first initial character 
-                break; 
-            } 
-            StringBuilder result = new StringBuilder(str.length()).append(str, 0, i); 
-            int startOfSuffix; 
+            // skip if no change
+            if (titled.codePointAt(0) == c) {
+                // Using 0 is safe, since any change in titling will not have first initial character
+                break;
+            }
+            StringBuilder result = new StringBuilder(str.length()).append(str, 0, i);
+            int startOfSuffix;
 
-            // handle dutch, but check first for 'i', since that's faster. Should be built into UCaseProps. 
+            // handle dutch, but check first for 'i', since that's faster. Should be built into UCaseProps.
 
-            if (c == 'i' && locale.getLanguage().equals("nl") && i < str.length() && str.charAt(i+1) == 'j') { 
-                result.append("IJ"); 
-                startOfSuffix = 2; 
-            } else { 
-                result.append(titled); 
-                startOfSuffix = i + UCharacter.charCount(c); 
-            } 
+            if (c == 'i' && locale.getLanguage().equals("nl") && i < str.length() && str.charAt(i+1) == 'j') {
+                result.append("IJ");
+                startOfSuffix = 2;
+            } else {
+                result.append(titled);
+                startOfSuffix = i + UCharacter.charCount(c);
+            }
 
-            // add the remainder, and return 
-            return result.append(str, startOfSuffix, str.length()).toString(); 
-        } 
-        return str; // no change 
-    } 
+            // add the remainder, and return
+            return result.append(str, startOfSuffix, str.length()).toString();
+        }
+        return str; // no change
+    }
 
     /**
      * <strong>[icu]</strong> <p>Returns the titlecase version of the argument string.
@@ -4894,6 +4904,7 @@ public final class UCharacter implements ECharacterCategory, ECharacterDirection
         }
 
         // implements RangeValueIterator
+        @Override
         public boolean next(Element element) {
             if(trieIterator.hasNext() && !(range=trieIterator.next()).leadSurrogate) {
                 element.start=range.startCodePoint;
@@ -4906,6 +4917,7 @@ public final class UCharacter implements ECharacterCategory, ECharacterDirection
         }
 
         // implements RangeValueIterator
+        @Override
         public void reset() {
             trieIterator=UCharacterProperty.INSTANCE.m_trie_.iterator(MASK_TYPE);
         }
@@ -4915,6 +4927,7 @@ public final class UCharacter implements ECharacterCategory, ECharacterDirection
 
         private static final class MaskType implements Trie2.ValueMapper {
             // Extracts the general category ("character type") from the trie value.
+            @Override
             public int map(int value) {
                 return value & UCharacterProperty.TYPE_MASK;
             }
@@ -4960,8 +4973,11 @@ public final class UCharacter implements ECharacterCategory, ECharacterDirection
     }
 
     private static final class DummyValueIterator implements ValueIterator {
+        @Override
         public boolean next(Element element) { return false; }
+        @Override
         public void reset() {}
+        @Override
         public void setRange(int start, int limit) {}
     }
 

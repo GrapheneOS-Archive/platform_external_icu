@@ -1,4 +1,6 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
+// © 2016 and later: Unicode, Inc. and others.
+// License & terms of use: http://www.unicode.org/copyright.html#License
 /*
  *******************************************************************************
  * Copyright (C) 2006-2016, Google, International Business Machines Corporation
@@ -21,6 +23,8 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 
+import org.junit.Test;
+
 import android.icu.dev.test.TestFmwk;
 import android.icu.impl.PatternTokenizer;
 import android.icu.impl.Utility;
@@ -36,10 +40,7 @@ import android.icu.util.GregorianCalendar;
 import android.icu.util.SimpleTimeZone;
 import android.icu.util.TimeZone;
 import android.icu.util.ULocale;
-import org.junit.runner.RunWith;
-import android.icu.junit.IcuTestFmwkRunner;
 
-@RunWith(IcuTestFmwkRunner.class)
 public class DateTimeGeneratorTest extends TestFmwk {
     public static boolean GENERATE_TEST_DATA;
     static {
@@ -52,10 +53,7 @@ public class DateTimeGeneratorTest extends TestFmwk {
     public static int RANDOM_COUNT = 1000;
     public static boolean DEBUG = false;
 
-    public static void main(String[] args) throws Exception {
-        new DateTimeGeneratorTest().run(args);
-    }
-
+    @Test
     public void TestC() {
         String[][] tests = {
                 {"zh", "Cm", "Bh:mm"},
@@ -73,6 +71,7 @@ public class DateTimeGeneratorTest extends TestFmwk {
         }
     }
 
+    @Test
     public void TestSimple() {
         // some simple use cases
         ULocale locale = ULocale.GERMANY;
@@ -87,7 +86,7 @@ public class DateTimeGeneratorTest extends TestFmwk {
 
         // modify the generator by adding patterns
         DateTimePatternGenerator.PatternInfo returnInfo = new DateTimePatternGenerator.PatternInfo();
-        gen.addPattern("d'. von' MMMM", true, returnInfo); 
+        gen.addPattern("d'. von' MMMM", true, returnInfo);
         // the returnInfo is mostly useful for debugging problem cases
         format.applyPattern(gen.getBestPattern("MMMMdHmm"));
         assertEquals("modified format: MMMdHmm", "14. von Oktober, 08:58", format.format(sampleDate));
@@ -142,14 +141,16 @@ public class DateTimeGeneratorTest extends TestFmwk {
         }
     }
 
+    @Test
     public void TestRoot() {
         DateTimePatternGenerator rootGen = DateTimePatternGenerator.getInstance(ULocale.ROOT);
         SimpleDateFormat rootFormat = new SimpleDateFormat(rootGen.getBestPattern("yMdHms"), ULocale.ROOT);
         rootFormat.setTimeZone(gmt);
         // *** expected result should be "1999-10-14 6:58:59" with current data, changed test temporarily to match current result, needs investigation
-        assertEquals("root format: yMdHms", "1999-10-14 06:58:59", rootFormat.format(sampleDate)); 
+        assertEquals("root format: yMdHms", "1999-10-14 06:58:59", rootFormat.format(sampleDate));
     }
 
+    @Test
     public void TestEmpty() {
         // now nothing
         DateTimePatternGenerator nullGen = DateTimePatternGenerator.getEmptyInstance();
@@ -158,6 +159,7 @@ public class DateTimeGeneratorTest extends TestFmwk {
         format.setTimeZone(rootZone);
     }
 
+    @Test
     public void TestPatternParser() {
         StringBuffer buffer = new StringBuffer();
         PatternTokenizer pp = new PatternTokenizer()
@@ -237,6 +239,7 @@ public class DateTimeGeneratorTest extends TestFmwk {
 
     static final String[] statusName = {"DONE", "SYNTAX", "LITERAL", "BROKEN_QUOTE", "BROKEN_ESCAPE", "UNKNOWN"};
 
+    @Test
     public void TestBasic() {
         ULocale uLocale = null;
         DateTimePatternGenerator dtfg = null;
@@ -352,9 +355,9 @@ public class DateTimeGeneratorTest extends TestFmwk {
         new String[] {"yM", "1.1999"}, // (fixed expected result per ticket 6872<-6626)
         new String[] {"yMMM", "tammi 1999"}, // (fixed expected result per ticket 6872<-7007)
         new String[] {"yMd", "13.1.1999"},
-        new String[] {"yMMMd", "13. tammikuuta 1999"},
+        new String[] {"yMMMd", "13. tammik. 1999"},
         new String[] {"Md", "13.1."},
-        new String[] {"MMMd", "13. tammikuuta"},
+        new String[] {"MMMd", "13. tammik."},
         new String[] {"MMMMd", "13. tammikuuta"},
         new String[] {"yQQQ", "1. nelj. 1999"},
         new String[] {"hhmm", "11.58 ip."},
@@ -362,7 +365,7 @@ public class DateTimeGeneratorTest extends TestFmwk {
         new String[] {"jjmm", "23.58"},
         new String[] {"mmss", "58.59"},
         new String[] {"yyyyMMMM", "tammikuu 1999"}, // (new item for testing 6872<-5702,7007)
-        new String[] {"MMMEd", "ke 13. tammikuuta"},
+        new String[] {"MMMEd", "ke 13. tammik."},
         new String[] {"Ed", "ke 13."},
         new String[] {"jmmssSSS", "23.58.59,123"},
         new String[] {"JJmm", "23.58"},
@@ -458,7 +461,7 @@ public class DateTimeGeneratorTest extends TestFmwk {
         new String[] {"mmss", "58:59"},
         new String[] {"yyyyMMMM", "\u6C11\u570B88\u5E741\u6708"},
         new String[] {"MMMEd", "1\u670813\u65E5\u9031\u4E09"},
-        new String[] {"Ed", "13\u65E5\uFF08\u9031\u4E09\uFF09"},
+        new String[] {"Ed", "13 \u9031\u4E09"},
         new String[] {"jmmssSSS", "\u4E0B\u534811:58:59.123"},
         new String[] {"JJmm", "11:58"},
 
@@ -482,25 +485,26 @@ public class DateTimeGeneratorTest extends TestFmwk {
         new String[] {"JJmm", "23:58"},
 
         new ULocale("zh@calendar=chinese"),
-        new String[] {"yM", "1998\u620A\u5BC5\u5E74\u51AC\u6708"},
-        new String[] {"yMMM", "1998\u620A\u5BC5\u5E74\u51AC\u6708"},
-        new String[] {"yMd", "1998\u5E74\u51AC\u670826"},
-        new String[] {"yMMMd", "1998\u5E74\u51AC\u670826"},
+        new String[] {"yM", "1998\u620A\u5BC5\u5E74\u5341\u4E00\u6708"},
+        new String[] {"yMMM", "1998\u620A\u5BC5\u5E74\u5341\u4E00\u6708"},
+        new String[] {"yMd", "1998\u5E74\u5341\u4E00\u670826"},
+        new String[] {"yMMMd", "1998\u5E74\u5341\u4E00\u670826"},
         new String[] {"Md", "11-26"},
-        new String[] {"MMMd", "\u51AC\u670826\u65E5"},
-        new String[] {"MMMMd", "\u51AC\u670826\u65E5"},
+        new String[] {"MMMd", "\u5341\u4E00\u670826\u65E5"},
+        new String[] {"MMMMd", "\u5341\u4E00\u670826\u65E5"},
         new String[] {"yQQQ", "1998\u620A\u5BC5\u5E74\u7B2C\u56DB\u5B63\u5EA6"},
         new String[] {"hhmm", "\u4E0B\u534811:58"},
         new String[] {"HHmm", "23:58"},
         new String[] {"jjmm", "\u4E0B\u534811:58"},
         new String[] {"mmss", "58:59"},
-        new String[] {"yyyyMMMM", "1998\u620A\u5BC5\u5E74\u51AC\u6708"},
-        new String[] {"MMMEd", "\u51AC\u670826\u65E5\u5468\u4E09"},
+        new String[] {"yyyyMMMM", "1998\u620A\u5BC5\u5E74\u5341\u4E00\u6708"},
+        new String[] {"MMMEd", "\u5341\u4E00\u670826\u65E5\u5468\u4E09"},
         new String[] {"Ed", "26\u65E5\u5468\u4E09"},
         new String[] {"jmmssSSS", "\u4E0B\u534811:58:59.123"},
         new String[] {"JJmm", "11:58"},
     };
 
+    @Test
     public void DayMonthTest() {
         final ULocale locale = ULocale.FRANCE;
 
@@ -518,6 +522,7 @@ public class DateTimeGeneratorTest extends TestFmwk {
         // for French, the result is "13 sept."
     }
 
+    @Test
     public void TestOrdering() {
         ULocale[] locales = ULocale.getAvailableLocales();
         for (int i = 0; i < locales.length; ++i) {
@@ -529,6 +534,7 @@ public class DateTimeGeneratorTest extends TestFmwk {
         }
     }
 
+    @Test
     public void TestReplacingZoneString() {
         Date testDate = new Date();
         TimeZone testTimeZone = TimeZone.getTimeZone("America/New_York");
@@ -540,7 +546,7 @@ public class DateTimeGeneratorTest extends TestFmwk {
         int count = 0;
         for (int i = 0; i < locales.length; ++i) {
             // skip the country locales unless we are doing exhaustive tests
-            if (getInclusion() < 6) {
+            if (getExhaustiveness() < 6) {
                 if (locales[i].getCountry().length() > 0) {
                     continue;
                 }
@@ -548,7 +554,7 @@ public class DateTimeGeneratorTest extends TestFmwk {
             count++;
             // Skipping some test case in the non-exhaustive mode to reduce the test time
             //ticket#6503
-            if(params.inclusion<=5 && count%3!=0){
+            if(getExhaustiveness()<=5 && count%3!=0){
                 continue;
             }
             logln(locales[i].toString());
@@ -580,6 +586,7 @@ public class DateTimeGeneratorTest extends TestFmwk {
         }
     }
 
+    @Test
     public void TestVariableCharacters() {
         UnicodeSet valid = new UnicodeSet("[G y Y u U r Q q M L l w W d D F g E e c a h H K k m s S A z Z O v V X x]");
         for (char c = 0; c < 0xFF; ++c) {
@@ -620,8 +627,8 @@ public class DateTimeGeneratorTest extends TestFmwk {
     private String showOrderComparison(ULocale uLocale, int style1, int style2, DateOrder order1, DateOrder order2) {
         String pattern1 = ((SimpleDateFormat) DateFormat.getDateInstance(style1, uLocale)).toPattern();
         String pattern2 = ((SimpleDateFormat) DateFormat.getDateInstance(style2, uLocale)).toPattern();
-        return "Mismatch in in ordering for " + uLocale + ": " + DATE_STYLE_NAMES[style1] + ": " + order1 + ", <" + pattern1 
-                + ">; " 
+        return "Mismatch in in ordering for " + uLocale + ": " + DATE_STYLE_NAMES[style1] + ": " + order1 + ", <" + pattern1
+                + ">; "
                 + DATE_STYLE_NAMES[style2] + ": " + order2 + ", <" + pattern2 + ">; " ;
     }
 
@@ -634,11 +641,12 @@ public class DateTimeGeneratorTest extends TestFmwk {
             name = string;
         }
 
-        public static DateFieldType 
-        YEAR = new DateFieldType("YEAR"), 
-        MONTH = new DateFieldType("MONTH"), 
+        public static DateFieldType
+        YEAR = new DateFieldType("YEAR"),
+        MONTH = new DateFieldType("MONTH"),
         DAY = new DateFieldType("DAY");
 
+        @Override
         public String toString() {
             return name;
         }
@@ -662,12 +670,14 @@ public class DateTimeGeneratorTest extends TestFmwk {
             // TODO Auto-generated method stub
             return fields[0] == other.fields[0] && fields[1] == other.fields[1] && fields[2] == other.fields[2];
         }
+        @Override
         public String toString() {
             return "{" + monthLength + ", " + fields[0]  + ", " + fields[1]  + ", " + fields[2] + "}";
         }
+        @Override
         public boolean equals(Object that) {
             DateOrder other = (DateOrder) that;
-            return monthLength == other.monthLength && fields[0] == other.fields[0] && fields[1] == other.fields[1] && fields[2] == other.fields[2];            
+            return monthLength == other.monthLength && fields[0] == other.fields[0] && fields[1] == other.fields[1] && fields[2] == other.fields[2];
         }
     }
 
@@ -684,7 +694,7 @@ public class DateTimeGeneratorTest extends TestFmwk {
     private TimeZone gmt = TimeZone.getTimeZone("Etc/GMT");
 
     /**
-     * Replace the zone string with a different type, eg v's for z's, etc. <p>Called with a pattern, such as one gotten from 
+     * Replace the zone string with a different type, eg v's for z's, etc. <p>Called with a pattern, such as one gotten from
      * <pre>
      * String pattern = ((SimpleDateFormat) DateFormat.getTimeInstance(style, locale)).toPattern();
      * </pre>
@@ -770,9 +780,11 @@ public class DateTimeGeneratorTest extends TestFmwk {
         }
         return result;
     }
+
     /* Tests the method
      *        public static DateTimePatternGenerator getInstance()
      */
+    @Test
     public void TestGetInstance(){
         try{
             DateTimePatternGenerator.getInstance();
@@ -785,6 +797,7 @@ public class DateTimeGeneratorTest extends TestFmwk {
     /* Tests the method
      *        public String getSkeleton(String pattern)
      */
+    @Test
     public void TestGetSkeleton(){
         DateTimePatternGenerator dtpg = DateTimePatternGenerator.getInstance();
         String[] cases = {"MMDD","MMMDD","MMM-DD","DD/MMM","ddM","MMMMd"};
@@ -800,8 +813,26 @@ public class DateTimeGeneratorTest extends TestFmwk {
     }
 
     /* Tests the method
+     *        public String getCanonicalSkeletonAllowingDuplicates(String pattern)
+     */
+    public void TestGetCanonicalSkeletonAllowingDuplicates(){
+        DateTimePatternGenerator dtpg = DateTimePatternGenerator.getInstance();
+        String[] cases = {"GyQMwEdaHmsSv","LegH","Legh"};
+        String[] results = {"GyQMwEdHmsSv","MEdH","MEdh"};
+        for(int i=0; i<cases.length; i++){
+            if(!dtpg.getCanonicalSkeletonAllowingDuplicates(cases[i]).equals(results[i])){
+                errln("DateTimePatternGenerator.getCanonicalSkeletonAllowingDuplicates(String) did " +
+                        "return the expected result when passing " + cases[i] +
+                        " and expected " + results[i] + " but got " +
+                        dtpg.getCanonicalSkeletonAllowingDuplicates(cases[i]));
+            }
+        }
+    }
+
+    /* Tests the method
      *        public String getBaseSkeleton(String pattern)
      */
+    @Test
     public void TestGetBaseSkeleton(){
         DateTimePatternGenerator dtpg = DateTimePatternGenerator.getInstance();
         String[] cases = {"MMDD","MMMDD","MMM-DD","DD/MMM","ddM","MMMMd"};
@@ -819,6 +850,7 @@ public class DateTimeGeneratorTest extends TestFmwk {
     /* Tests the method
      *        public Map<String, String> getSkeletons(Map<String, String> result)
      */
+    @Test
     public void TestGetSkeletons(){
         DateTimePatternGenerator dtpg = DateTimePatternGenerator.getInstance();
         // Tests when "if (result == null)" is true
@@ -842,6 +874,7 @@ public class DateTimeGeneratorTest extends TestFmwk {
     /* Tests the method
      *        public Set<String> getBaseSkeletons(Set<String> result)
      */
+    @Test
     public void TestGetBaseSkeletons(){
         DateTimePatternGenerator dtpg = DateTimePatternGenerator.getInstance();
         // Tests when "if (result == null)" is true
@@ -865,6 +898,7 @@ public class DateTimeGeneratorTest extends TestFmwk {
     /* Tests the method
      *        public String getDecimal()
      */
+    @Test
     public void TestGetDecimal(){
         DateTimePatternGenerator dtpg = DateTimePatternGenerator.getInstance();
         if(!dtpg.getDecimal().equals(".")){
@@ -885,6 +919,7 @@ public class DateTimeGeneratorTest extends TestFmwk {
     /* Tests the method
      *        public Collection<String> getRedundants(Collection<String> output)
      */
+    @Test
     public void TestGetRedundants(){
         DateTimePatternGenerator dtpg = DateTimePatternGenerator.getInstance();
 
@@ -907,17 +942,35 @@ public class DateTimeGeneratorTest extends TestFmwk {
     }
 
     /* Tests the method
-     *        public String getAppendItemFormat(int field)
+     *        public String setAppendItemFormat(int field)
      */
-    public void TestGetAppendItemFormat(){
+    @Test
+    public void TestSetAppendItemFormat(){
         DateTimePatternGenerator dtpg = DateTimePatternGenerator.getInstance();
         String[] cases = {"d","u","m","m","y"};
         for(int i=0; i<cases.length; i++){
             dtpg.setAppendItemFormat(i, cases[i]);
             if(!dtpg.getAppendItemFormat(i).equals(cases[i])){
-                errln("DateTimePatternGeneratorgetAppendItemFormat(int field) " +
+                errln("DateTimePatternGenerator.getAppendItemFormat(int field) " +
                         "did not return as expected. Value set at " + i + " was " +
                         cases[i] + " but got back " + dtpg.getAppendItemFormat(i));
+            }
+        }
+    }
+
+    /* Tests the method
+     *        public String getAppendItemFormat(int field)
+     */
+    @Test
+    public void TestGetAppendItemFormat(){
+        DateTimePatternGenerator dtpg = DateTimePatternGenerator.getInstance(ULocale.ENGLISH);
+        int[] fields = {DateTimePatternGenerator.ERA,DateTimePatternGenerator.DAY,DateTimePatternGenerator.SECOND};
+        String[] results = {"{0} {1}","{0} ({2}: {1})","{0} ({2}: {1})"};
+        for(int i=0; i<fields.length; i++){
+            if(!dtpg.getAppendItemFormat(fields[i]).equals(results[i])){
+                errln("DateTimePatternGenerator.getAppendItemFormat(int field) " +
+                        "did not return as expected. For field " + fields[i] + ", was expecting " +
+                        results[i] + " but got back " + dtpg.getAppendItemFormat(fields[i]));
             }
         }
     }
@@ -934,6 +987,7 @@ public class DateTimeGeneratorTest extends TestFmwk {
         }
     }
 
+    @Test
     public void TestGetAppendItemName(){
         final AppendItemName[] appendItemNames = {
                 new AppendItemName( DateTimePatternGenerator.YEAR,    "vuosi" ),
@@ -958,7 +1012,8 @@ public class DateTimeGeneratorTest extends TestFmwk {
         for (AppendItemName appendItemName: appendItemNames) {
             String name = dtpgfi.getAppendItemName(appendItemName.field);
             if (!name.equals(appendItemName.name)) {
-                errln("DateTimePatternGenerator.getAppendItemName returns invalid name for field " + appendItemName.field);
+                errln("DateTimePatternGenerator.getAppendItemName returns invalid name for field " + appendItemName.field
+                        + ": got " + name + " but expected " + appendItemName.name);
             }
         }
     }
@@ -967,6 +1022,7 @@ public class DateTimeGeneratorTest extends TestFmwk {
      *    public static boolean isSingleField(String skeleton)
      */
     @SuppressWarnings("static-access")
+    @Test
     public void TestIsSingleField(){
         DateTimePatternGenerator dtpg = DateTimePatternGenerator.getInstance();
         String[] cases = {" ", "m","mm","md","mmd","mmdd"};
@@ -984,6 +1040,7 @@ public class DateTimeGeneratorTest extends TestFmwk {
      *    public Object freeze()
      *    public Object cloneAsThawed()
      */
+    @Test
     public void TestFreezeAndCloneAsThawed(){
         DateTimePatternGenerator dtpg = DateTimePatternGenerator.getInstance();
 
@@ -1000,7 +1057,7 @@ public class DateTimeGeneratorTest extends TestFmwk {
                     "created and freeze.");
         }
 
-        DateTimePatternGenerator dtpg2 = (DateTimePatternGenerator) dtpg.cloneAsThawed();
+        DateTimePatternGenerator dtpg2 = dtpg.cloneAsThawed();
         if(dtpg.isFrozen() != false){
             errln("DateTimePatternGenerator.isFrozen() is suppose to return false " +
                     "for a DateTimePatternGenerator object that was just " +
@@ -1016,6 +1073,7 @@ public class DateTimeGeneratorTest extends TestFmwk {
     /* Tests the method
      *    public Object clone()
      */
+    @Test
     public void TestClone(){
         DateTimePatternGenerator dtpg = DateTimePatternGenerator.getInstance();
         DateTimePatternGenerator dtpg2 = (DateTimePatternGenerator) dtpg.clone();
@@ -1025,7 +1083,9 @@ public class DateTimeGeneratorTest extends TestFmwk {
     /* Tests the constructor
      *    public VariableField(String string)
      */
+    //TODO(junit) why is this "unused"
     @SuppressWarnings("unused")
+    @Test
     public void TestVariableField_String(){
         String[] cases = {"d","mm","aa"};
         String[] invalid = {null,"","dummy"};
@@ -1049,6 +1109,7 @@ public class DateTimeGeneratorTest extends TestFmwk {
     /* Tests the method
      *    public FormatParser set(String string, boolean strict)
      */
+    @Test
     public void TestSet(){
         FormatParser fp = new FormatParser();
         //Tests when "if (string.length() == 0)" is true
@@ -1063,6 +1124,7 @@ public class DateTimeGeneratorTest extends TestFmwk {
     /* Tests the method
      *    public String toString()
      */
+    @Test
     public void TestToString(){
         FormatParser fp = new FormatParser();
         if(!fp.toString().equals("")){
@@ -1075,7 +1137,7 @@ public class DateTimeGeneratorTest extends TestFmwk {
         for(int i=0; i<cases.length; i++){
             fp.set(cases[i]);
             if(!fp.toString().equals(results[i])){
-                errln("FormatParser.toString() was suppose to return " + results[i] + 
+                errln("FormatParser.toString() was suppose to return " + results[i] +
                         " after setting the object. Got: " + fp.toString());
             }
         }
@@ -1084,6 +1146,7 @@ public class DateTimeGeneratorTest extends TestFmwk {
     /* Tests the method
      *    public boolean hasDateAndTimeFields()
      */
+    @Test
     public void TestHasDateAndTimeFields(){
         FormatParser fp = new FormatParser();
         if(fp.hasDateAndTimeFields() != false){
@@ -1099,7 +1162,7 @@ public class DateTimeGeneratorTest extends TestFmwk {
             if(fp.hasDateAndTimeFields() != results[i]){
                 errln("FormatParser.hasDateAndTimeFields() was suppose to " +
                         "return " + results[i] + " but returned " +
-                        fp.hasDateAndTimeFields() + " for parameter " + 
+                        fp.hasDateAndTimeFields() + " for parameter " +
                         cases[i] + " that is set to FormatParser.");
             }
         }
@@ -1109,6 +1172,7 @@ public class DateTimeGeneratorTest extends TestFmwk {
      *    private void checkFrozen()
      * from public void setDateTimeFormat(String dateTimeFormat)
      */
+    @Test
     public void TestCheckFrozen(){
         // Tests when "if (isFrozen())" is true
         DateTimePatternGenerator dt = DateTimePatternGenerator.getInstance();
@@ -1119,12 +1183,13 @@ public class DateTimeGeneratorTest extends TestFmwk {
                     "return an exception when trying to setDateTimeFormat " +
                     "for a frozen object.");
         } catch(Exception e){}
-        dt = (DateTimePatternGenerator) dt.cloneAsThawed();
+        dt = dt.cloneAsThawed();
     }
 
     /* Tests the method
      *    public String getFields(String pattern)
      */
+    @Test
     public void TestGetFields(){
         DateTimePatternGenerator dt = DateTimePatternGenerator.getInstance();
         String[] cases = {"MMDDYY", "HHMMSS", "", "MM/DD/YYYY HH:MM:SS",
@@ -1148,10 +1213,12 @@ public class DateTimeGeneratorTest extends TestFmwk {
     /*
      * Test case for DateFormatPatternGenerator threading problem #7169
      */
+    @Test
     public void TestT7169() {
         Thread[] workers = new Thread[10];
         for (int i = 0 ; i < workers.length; i++) {
             workers[i] = new Thread(new Runnable() {
+                @Override
                 public void run() {
                     try {
                         for (int i = 0; i < 50; i++) {
@@ -1218,6 +1285,7 @@ public class DateTimeGeneratorTest extends TestFmwk {
             options = opts;
         }
     }
+    @Test
     public void TestOptions() {
         final TestOptionsItem[] testOptionsData = {
                 new TestOptionsItem( "en", "Hmm",  "HH:mm",   DateTimePatternGenerator.MATCH_NO_OPTIONS        ),
@@ -1283,6 +1351,8 @@ public class DateTimeGeneratorTest extends TestFmwk {
             mustIncludeOneOf = mI;
         }
     }
+
+    @Test
     public void TestAllFieldPatterns() {
         String[] localeNames = {
                 "root",
@@ -1387,6 +1457,7 @@ public class DateTimeGeneratorTest extends TestFmwk {
         }
     }
 
+    @Test
     public void TestJavaLocale() {
         DateTimePatternGenerator genUloc = DateTimePatternGenerator.getInstance(ULocale.GERMANY);
         DateTimePatternGenerator genLoc = DateTimePatternGenerator.getInstance(Locale.GERMANY);
@@ -1396,5 +1467,90 @@ public class DateTimeGeneratorTest extends TestFmwk {
         String patLoc = genLoc.getBestPattern(pat);
 
         assertEquals("German pattern 'yMdHms' - getInstance with Java Locale", patUloc, patLoc);
+    }
+
+    /* Tests the method
+     *    public static int getAppendFormatNumber(String string)
+     */
+    @Test
+    public void TestGetAppendFormatNumber(){
+        int fieldNum;
+        fieldNum = DateTimePatternGenerator.getAppendFormatNumber("Era");
+        assertEquals("DateTimePatternGenerator.getAppendFormatNumber for Era", 0, fieldNum);
+        fieldNum = DateTimePatternGenerator.getAppendFormatNumber("Timezone");
+        assertEquals("DateTimePatternGenerator.getAppendFormatNumber for Timezone", 15, fieldNum);
+    }
+
+    /*
+     * Coverage for methods otherwise not covered by other tests.
+     */
+    @Test
+    public void TestCoverage() {
+        DateTimePatternGenerator dtpg;
+
+        // DateTimePatternGenerator#getDefaultHourFormatChar
+        // DateTimePatternGenerator#setDefaultHourFormatChar
+        {
+            dtpg = DateTimePatternGenerator.getEmptyInstance();
+            assertEquals("Default hour char on empty instance", 'H', dtpg.getDefaultHourFormatChar());
+            dtpg.setDefaultHourFormatChar('e');
+            assertEquals("Default hour char after explicit set", 'e', dtpg.getDefaultHourFormatChar());
+            dtpg = DateTimePatternGenerator.getInstance(ULocale.ENGLISH);
+            assertEquals("Default hour char on populated English instance", 'h', dtpg.getDefaultHourFormatChar());
+        }
+
+        // DateTimePatternGenerator#getSkeletonAllowingDuplicates
+        // DateTimePatternGenerator#getCanonicalSkeletonAllowingDuplicates
+        // DateTimePatternGenerator#getCanonicalChar
+        {
+            dtpg = DateTimePatternGenerator.getInstance(ULocale.ENGLISH);
+            assertEquals("Example skeleton with no duplicate fields", "MMMdd", dtpg.getSkeleton("dd/MMM"));
+            assertEquals("Should return same result as getSkeleton with no duplicate fields",
+                    dtpg.getSkeleton("dd/MMM"), dtpg.getSkeletonAllowingDuplicates("dd/MMM"));
+
+            try {
+                dtpg.getSkeleton("dd/MMM Zz");
+                fail("getSkeleton should throw upon duplicate fields");
+            } catch(IllegalArgumentException e) {
+                assertEquals("getSkeleton should throw upon duplicate fields",
+                        "Conflicting fields:\tZ, z\t in dd/MMM Zz", e.getMessage());
+            }
+
+            assertEquals("Should not throw upon duplicate fields",
+                    "MMMddZ", dtpg.getSkeletonAllowingDuplicates("dd/MMM Zz"));
+            assertEquals("Should not throw upon duplicate fields and should return Canonical fields",
+                    "MMMddv", dtpg.getCanonicalSkeletonAllowingDuplicates("dd/MMM Zz"));
+        }
+
+        // DistanceInfo#toString
+        // DateTimePatternGenerator#showMask
+        try {
+            String actual = invokeToString("android.icu.text.DateTimePatternGenerator$DistanceInfo");
+            assertEquals("DistanceInfo toString", "missingFieldMask: , extraFieldMask: ", actual);
+        } catch(Exception e) {
+            errln("Couldn't call DistanceInfo.toString(): " + e.toString());
+        }
+
+        // DateTimePatternGenerator#skeletonsAreSimilar
+        // DateTimePatternGenerator#getSet
+        {
+            dtpg = DateTimePatternGenerator.getInstance(ULocale.ENGLISH);
+            assertTrue("Trivial skeletonsAreSimilar", dtpg.skeletonsAreSimilar("MMMdd", "MMMdd"));
+            assertTrue("Different number of chars in skeletonsAreSimilar", dtpg.skeletonsAreSimilar("Mddd", "MMMdd"));
+            assertFalse("Failure case for skeletonsAreSimilar", dtpg.skeletonsAreSimilar("mmDD", "MMMdd"));
+        }
+    }
+
+    @Test
+    public void TestEmptyInstance() {
+        DateTimePatternGenerator dtpg = DateTimePatternGenerator.getEmptyInstance();
+        String skeleton = "GrMMd";
+        String message = "DTPG getEmptyInstance should not throw exceptions on basic operations and should conform to "
+                + "the example in setAppendItemFormat";
+        assertEquals(message, "G ├'F7': d┤ ├'F3': MM┤ ├'F1': y┤", dtpg.getBestPattern(skeleton));
+        dtpg.addPattern("d-MM-yyyy", false, new DateTimePatternGenerator.PatternInfo());
+        assertEquals(message, "d-MM-y ├'F0': G┤", dtpg.getBestPattern(skeleton));
+        dtpg.setAppendItemFormat(DateTimePatternGenerator.ERA, "{0}, {1}");
+        assertEquals(message, "d-MM-y, G", dtpg.getBestPattern(skeleton));
     }
 }
