@@ -1,3 +1,5 @@
+// © 2016 and later: Unicode, Inc. and others.
+// License & terms of use: http://www.unicode.org/copyright.html#License
 /*
  *   Copyright (C) 1996-2016, International Business Machines
  *   Corporation and others.  All Rights Reserved.
@@ -15,9 +17,9 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.MissingResourceException;
 
-import com.ibm.icu.impl.CalendarData;
 import com.ibm.icu.impl.CalendarUtil;
 import com.ibm.icu.impl.ICUCache;
+import com.ibm.icu.impl.ICUData;
 import com.ibm.icu.impl.ICUResourceBundle;
 import com.ibm.icu.impl.SimpleCache;
 import com.ibm.icu.impl.SimpleFormatterImpl;
@@ -134,7 +136,7 @@ import com.ibm.icu.util.ULocale.Category;
  * HOUR_OF_DAY
  * AM_PM + HOUR</pre>
  * </blockquote>
- * 
+ *
  * <p><strong>Ambiguous Wall Clock Time.</strong> When time offset from UTC has
  * changed, it produces an ambiguous time slot around the transition. For example,
  * many US locations observe daylight saving time. On the date switching to daylight
@@ -144,12 +146,12 @@ import com.ibm.icu.util.ULocale.Category;
  * Calendar resolves the time using the UTC offset before the transition by default.
  * In this example, 1:30 AM is interpreted as 1:30 AM standard time (non-exist),
  * so the final result will be 2:30 AM daylight time.
- * 
+ *
  * <p>On the date switching back to standard time, wall clock time is moved back one
  * hour at 2:00 AM. So wall clock time from 1:00 AM to 1:59 AM occur twice. In this
  * case, the ICU Calendar resolves the time using the UTC offset after the transition
  * by default. For example, 1:30 AM on the date is resolved as 1:30 AM standard time.
- * 
+ *
  * <p>Ambiguous wall clock time resolution behaviors can be customized by Calendar APIs
  * {@link #setRepeatedWallTimeOption(int)} and {@link #setSkippedWallTimeOption(int)}.
  * These methods are available in ICU 49 or later versions.
@@ -953,15 +955,17 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
     /**
      * The number of fields defined by this class.  Subclasses may define
      * addition fields starting with this number.
-     * @stable ICU 2.0
+     * @deprecated ICU 58 The numeric value may change over time, see ICU ticket #12420.
      */
+    @Deprecated
     protected static final int BASE_FIELD_COUNT = 23;
 
     /**
      * The maximum number of fields possible.  Subclasses must not define
      * more total fields than this number.
-     * @stable ICU 2.0
+     * @deprecated ICU 58 The numeric value may change over time, see ICU ticket #12420.
      */
+    @Deprecated
     protected static final int MAX_FIELD_COUNT = 32;
 
     /**
@@ -1591,7 +1595,7 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
 
     /*
      * Set valid/actual locale to this calendar during initialization.
-     * 
+     *
      * Valid or actual locale does not make much sense for Calendar
      * object. An instance of Calendar is initialized by week data
      * determine by region and calendar type (either region or keyword).
@@ -1932,7 +1936,7 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
         ArrayList<String> values = new ArrayList<String>();
 
         UResourceBundle rb = UResourceBundle.getBundleInstance(
-                ICUResourceBundle.ICU_BASE_NAME,
+                ICUData.ICU_BASE_NAME,
                 "supplementalData",
                 ICUResourceBundle.ICU_DATA_CLASS_LOADER);
         UResourceBundle calPref = rb.get("calendarPreferenceData");
@@ -1974,7 +1978,7 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
 
     /**
      * Sets this Calendar's current time with the given Date.
-     * 
+     *
      * <p>Note: Calling <code>setTime</code> with
      * <code>Date(Long.MAX_VALUE)</code> or <code>Date(Long.MIN_VALUE)</code>
      * may yield incorrect field values from {@link #get(int)}.
@@ -2357,6 +2361,7 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
      * <code>false</code> otherwise.
      * @stable ICU 2.0
      */
+    @Override
     public boolean equals(Object obj) {
         if (obj == null) {
             return false;
@@ -2399,6 +2404,7 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
      * @return a hash code value for this object.
      * @stable ICU 2.0
      */
+    @Override
     public int hashCode() {
         /* Don't include the time because (a) we don't want the hash value to
          * move around just because a calendar is set to different times, and
@@ -3408,6 +3414,7 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
      * calendar values.
      * @stable ICU 3.4
      */
+    @Override
     public int compareTo(Calendar that) {
         long v = getTimeInMillis() - that.getTimeInMillis();
         return v < 0 ? -1 : (v > 0 ? 1 : 0);
@@ -3604,9 +3611,7 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
             if (patternData == null) {
                 // Cache missed.  Get one from bundle
                 try {
-                    CalendarData calData = new CalendarData(loc, calType);
-                    patternData = new PatternData(calData.getDateTimePatterns(),
-                            calData.getOverrides());
+                    patternData = getPatternData(loc, calType);
                 } catch (MissingResourceException e) {
                     patternData = new PatternData(DEFAULT_PATTERNS, null);
                 }
@@ -3614,6 +3619,39 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
             }
             return patternData;
         }
+    }
+
+    /**
+     * Retrieves the DateTime patterns and overrides from the resource bundle and generates a
+     * new PatternData object.
+     * @param locale Locale to retrieve.
+     * @param calType Calendar type to retrieve. If not found will fallback to gregorian.
+     * @return PatternData object for this locale and calendarType.
+     */
+    private static PatternData getPatternData(ULocale locale, String calType) {
+        ICUResourceBundle rb =
+                (ICUResourceBundle) UResourceBundle.getBundleInstance(ICUData.ICU_BASE_NAME, locale);
+        ICUResourceBundle dtPatternsRb = rb.findWithFallback("calendar/" + calType + "/DateTimePatterns");
+        if (dtPatternsRb == null) {
+            dtPatternsRb = rb.getWithFallback("calendar/gregorian/DateTimePatterns");
+        }
+
+        int patternsSize = dtPatternsRb.getSize();
+        String[] dateTimePatterns = new String[patternsSize];
+        String[] dateTimePatternsOverrides = new String[patternsSize];
+        for (int i = 0; i < patternsSize; i++) {
+            ICUResourceBundle concatenationPatternRb = (ICUResourceBundle) dtPatternsRb.get(i);
+            switch (concatenationPatternRb.getType()) {
+                case UResourceBundle.STRING:
+                    dateTimePatterns[i] = concatenationPatternRb.getString();
+                    break;
+                case UResourceBundle.ARRAY:
+                    dateTimePatterns[i] = concatenationPatternRb.getString(0);
+                    dateTimePatternsOverrides[i] = concatenationPatternRb.getString(1);
+                    break;
+            }
+        }
+        return new PatternData(dateTimePatterns, dateTimePatternsOverrides);
     }
 
     /**
@@ -4111,16 +4149,16 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
      * (first occurrence). When <code>WALLTIME_LAST</code> is used, it will be
      * interpreted as 1:30 AM EST (last occurrence). The default value is
      * <code>WALLTIME_LAST</code>.
-     * 
+     *
      * @param option the behavior for handling repeating wall time, either
      * <code>WALLTIME_FIRST</code> or <code>WALLTIME_LAST</code>.
      * @throws IllegalArgumentException when <code>option</code> is neither
      * <code>WALLTIME_FIRST</code> nor <code>WALLTIME_LAST</code>.
-     * 
+     *
      * @see #getRepeatedWallTimeOption()
      * @see #WALLTIME_FIRST
      * @see #WALLTIME_LAST
-     * 
+     *
      * @stable ICU 49
      */
     public void setRepeatedWallTimeOption(int option) {
@@ -4133,14 +4171,14 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
     /**
      * {@icu}Gets the behavior for handling wall time repeating multiple times
      * at negative time zone offset transitions.
-     * 
+     *
      * @return the behavior for handling repeating wall time, either
      * <code>WALLTIME_FIRST</code> or <code>WALLTIME_LAST</code>.
-     * 
+     *
      * @see #setRepeatedWallTimeOption(int)
      * @see #WALLTIME_FIRST
      * @see #WALLTIME_LAST
-     * 
+     *
      * @stable ICU 49
      */
     public int getRepeatedWallTimeOption() {
@@ -4160,18 +4198,18 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
      * <p>
      * <b>Note:</b>This option is effective only when this calendar is {@link #isLenient() lenient}.
      * When the calendar is strict, such non-existing wall time will cause an exception.
-     * 
+     *
      * @param option the behavior for handling skipped wall time at positive time zone
      * offset transitions, one of <code>WALLTIME_FIRST</code>, <code>WALLTIME_LAST</code> and
      * <code>WALLTIME_NEXT_VALID</code>.
      * @throws IllegalArgumentException when <code>option</code> is not any of
      * <code>WALLTIME_FIRST</code>, <code>WALLTIME_LAST</code> and <code>WALLTIME_NEXT_VALID</code>.
-     * 
+     *
      * @see #getSkippedWallTimeOption()
      * @see #WALLTIME_FIRST
      * @see #WALLTIME_LAST
      * @see #WALLTIME_NEXT_VALID
-     * 
+     *
      * @stable ICU 49
      */
     public void setSkippedWallTimeOption(int option) {
@@ -4184,15 +4222,15 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
     /**
      * {@icu}Gets the behavior for handling skipped wall time at positive time zone offset
      * transitions.
-     * 
+     *
      * @return the behavior for handling skipped wall time, one of
      * <code>WALLTIME_FIRST</code>, <code>WALLTIME_LAST</code> and <code>WALLTIME_NEXT_VALID</code>.
-     * 
+     *
      * @see #setSkippedWallTimeOption(int)
      * @see #WALLTIME_FIRST
      * @see #WALLTIME_LAST
      * @see #WALLTIME_NEXT_VALID
-     * 
+     *
      * @stable ICU 49
      */
     public int getSkippedWallTimeOption() {
@@ -4217,7 +4255,7 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
     }
 
     /**
-     * Returns what the first day of the week is,      
+     * Returns what the first day of the week is,
      * where 1 = {@link #SUNDAY} and 7 = {@link #SATURDAY}.
      * e.g., Sunday in US, Monday in France
      * @return the first day of the week, where 1 = {@link #SUNDAY} and 7 = {@link #SATURDAY}.
@@ -4592,6 +4630,7 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
      * Overrides Cloneable
      * @stable ICU 2.0
      */
+    @Override
     public Object clone()
     {
         try {
@@ -4620,6 +4659,7 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
      * @return  a string representation of this calendar.
      * @stable ICU 2.0
      */
+    @Override
     public String toString() {
         StringBuilder buffer = new StringBuilder();
         buffer.append(getClass().getName());
@@ -4651,58 +4691,58 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
 
     /**
      * Simple, immutable struct-like class for access to the CLDR weekend data.
-     * 
+     *
      * @stable ICU 54
      */
     public static final class WeekData {
         /**
          * the first day of the week, where 1 = {@link #SUNDAY} and 7 = {@link #SATURDAY}
-         * 
+         *
          * @stable ICU 54
          */
         public final int firstDayOfWeek;
         /**
          * the minimal number of days in the first week
-         * 
+         *
          * @stable ICU 54
          */
         public final int minimalDaysInFirstWeek;
         /**
          * the onset day, where 1 = {@link #SUNDAY} and 7 = {@link #SATURDAY}
-         * 
+         *
          * @stable ICU 54
          */
         public final int weekendOnset;
         /**
          * the onset time in millis during the onset day
-         * 
+         *
          * @stable ICU 54
          */
         public final int weekendOnsetMillis;
         /**
          * the cease day, where 1 = {@link #SUNDAY} and 7 = {@link #SATURDAY}
-         * 
+         *
          * @stable ICU 54
          */
         public final int weekendCease;
         /**
          * the cease time in millis during the cease day. Exclusive, so the max is 24:00:00.000.
          * Note that this will format as 00:00 the next day.
-         * 
+         *
          * @stable ICU 54
          */
         public final int weekendCeaseMillis;
 
         /**
          * Constructor
-         * 
+         *
          * @param fdow the first day of the week, where 1 = {@link #SUNDAY} and 7 = {@link #SATURDAY}
          * @param mdifw the minimal number of days in the first week
          * @param weekendOnset the onset day, where 1 = Sunday and 7 = Saturday
          * @param weekendOnsetMillis the onset time in millis during the onset day
          * @param weekendCease the cease day, where 1 = Sunday and 7 = Saturday
          * @param weekendCeaseMillis the cease time in millis during the cease day.
-         * 
+         *
          * @stable ICU 54
          */
         public WeekData(int fdow, int mdifw,
@@ -4718,7 +4758,7 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
 
         /**
          * {@inheritDoc}
-         * 
+         *
          * @stable ICU 54
          */
         @Override
@@ -4729,7 +4769,7 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
 
         /**
          * {@inheritDoc}
-         * 
+         *
          * @stable ICU 54
          */
         @Override
@@ -4751,7 +4791,7 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
 
         /**
          * {@inheritDoc}
-         * 
+         *
          * @stable ICU 54
          */
         @Override
@@ -4770,28 +4810,28 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
      * {@icu} Return simple, immutable struct-like class for access to the CLDR weekend data.
      * @param region The input region. The results are undefined if the region code is not valid.
      * @return the WeekData for the input region. It is never null.
-     * 
+     *
      * @stable ICU 54
      */
     public static WeekData getWeekDataForRegion(String region) {
         return WEEK_DATA_CACHE.createInstance(region, region);
     }
-    
+
     /**
      * {@icu} Return simple, immutable struct-like class for access to the weekend data in this calendar.
      * @return the WeekData for this calendar.
-     * 
+     *
      * @stable ICU 54
      */
     public WeekData getWeekData() {
         return new WeekData(firstDayOfWeek, minimalDaysInFirstWeek, weekendOnset, weekendOnsetMillis, weekendCease, weekendCeaseMillis);
     }
-    
+
     /**
      * {@icu} Set data in this calendar based on the WeekData input.
      * @param wdata The week data to use
      * @return this, for chaining
-     * 
+     *
      * @stable ICU 54
      */
     public Calendar setWeekData(WeekData wdata) {
@@ -4811,7 +4851,7 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
         }
 
         UResourceBundle rb = UResourceBundle.getBundleInstance(
-                ICUResourceBundle.ICU_BASE_NAME,
+                ICUData.ICU_BASE_NAME,
                 "supplementalData",
                 ICUResourceBundle.ICU_DATA_CLASS_LOADER);
         UResourceBundle weekDataInfo = rb.get("weekData");
@@ -5443,7 +5483,7 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
 
     /**
      * Find the previous zone transtion near the given time.
-     * 
+     *
      * @param base The base time, inclusive.
      * @return The time of the previous transition, or null if not found.
      */
@@ -5627,7 +5667,7 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
                 int offsetBefore6 = zone.getOffset(tgmt - 6*60*60*1000);
                 int offsetDelta = (offsets[0] + offsets[1]) - offsetBefore6;
 
-                assert offsetDelta < -6*60*60*1000 : offsetDelta;
+                assert offsetDelta > -6*60*60*1000 : offsetDelta;
                 if (offsetDelta < 0) {
                     sawRecentNegativeShift = true;
                     // Negative shift within last 6 hours. When WALLTIME_FIRST is used and the given wall time falls
@@ -6296,7 +6336,7 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
      * The default implementation returns <code>true</code>. A subclass may
      * return <code>false</code> if such practice is not applicable (for example,
      * Chinese calendar and Japanese calendar).
-     * 
+     *
      * @return <code>true</code> if this calendar has a default century.
      * @internal
      * @deprecated This API is ICU internal only.

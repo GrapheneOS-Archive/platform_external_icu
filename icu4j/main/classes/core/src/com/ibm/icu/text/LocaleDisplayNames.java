@@ -1,3 +1,5 @@
+// © 2016 and later: Unicode, Inc. and others.
+// License & terms of use: http://www.unicode.org/copyright.html#License
 /*
  *******************************************************************************
  * Copyright (C) 2009-2016, International Business Machines Corporation and    *
@@ -109,7 +111,7 @@ public abstract class LocaleDisplayNames {
         if (FACTORY_DISPLAYCONTEXT != null) {
             try {
                 result = (LocaleDisplayNames) FACTORY_DISPLAYCONTEXT.invoke(null,
-                        locale, (Object[])contexts);
+                        locale, contexts);
             } catch (InvocationTargetException e) {
                 // fall through
             } catch (IllegalAccessException e) {
@@ -343,6 +345,12 @@ public abstract class LocaleDisplayNames {
          */
         @Override
         public boolean equals(Object obj) {
+            if (this == obj) {
+                return true;
+            }
+            if (obj == null || !(obj instanceof UiListItem)) {
+                return false;
+            }
             UiListItem other = (UiListItem)obj;
             return nameInDisplayLocale.equals(other.nameInDisplayLocale)
                     && nameInSelf.equals(other.nameInSelf)
@@ -389,6 +397,7 @@ public abstract class LocaleDisplayNames {
                 this.collator = collator;
                 this.useSelf = useSelf;
             }
+            @Override
             public int compare(UiListItem o1, UiListItem o2) {
                 int result = useSelf ? collator.compare(o1.nameInSelf, o2.nameInSelf)
                         : collator.compare(o1.nameInDisplayLocale, o2.nameInDisplayLocale);

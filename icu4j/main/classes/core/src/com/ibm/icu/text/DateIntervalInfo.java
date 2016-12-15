@@ -1,3 +1,5 @@
+// © 2016 and later: Unicode, Inc. and others.
+// License & terms of use: http://www.unicode.org/copyright.html#License
 /*
  *******************************************************************************
  * Copyright (C) 2008-2016, International Business Machines Corporation and
@@ -24,7 +26,6 @@ import com.ibm.icu.impl.ICUResourceBundle;
 import com.ibm.icu.impl.SimpleCache;
 import com.ibm.icu.impl.UResource;
 import com.ibm.icu.impl.UResource.Key;
-import com.ibm.icu.impl.UResource.TableSink;
 import com.ibm.icu.impl.UResource.Value;
 import com.ibm.icu.impl.Utility;
 import com.ibm.icu.util.Calendar;
@@ -242,11 +243,12 @@ public class DateIntervalInfo implements Cloneable, Freezable<DateIntervalInfo>,
          * @return <code>true</code> if the specified object is equal to this <code>PatternInfo</code>.
          * @stable ICU 4.0
          */
+        @Override
         public boolean equals(Object a) {
-            if ( a instanceof PatternInfo ) {
+            if (a instanceof PatternInfo) {
                 PatternInfo patternInfo = (PatternInfo)a;
                 return Utility.objectEquals(fIntervalPatternFirstPart, patternInfo.fIntervalPatternFirstPart) &&
-                       Utility.objectEquals(fIntervalPatternSecondPart, fIntervalPatternSecondPart) &&
+                       Utility.objectEquals(fIntervalPatternSecondPart, patternInfo.fIntervalPatternSecondPart) &&
                        fFirstDateInPtnIsLaterDate == patternInfo.fFirstDateInPtnIsLaterDate;
             }
             return false;
@@ -257,6 +259,7 @@ public class DateIntervalInfo implements Cloneable, Freezable<DateIntervalInfo>,
          * @return A hash code value for this object.
          * @stable ICU 4.0
          */
+        @Override
         public int hashCode() {
             int hash = fIntervalPatternFirstPart != null ? fIntervalPatternFirstPart.hashCode() : 0;
             if (fIntervalPatternSecondPart != null) {
@@ -411,10 +414,8 @@ public class DateIntervalInfo implements Cloneable, Freezable<DateIntervalInfo>,
 
     /**
      * Sink for enumerating all of the date interval skeletons.
-     * Contains inner sink classes, each one corresponding to a type of resource table.
-     * The outer class finds the dateInterval table or an alias.
      */
-    private static final class DateIntervalSink extends UResource.TableSink {
+    private static final class DateIntervalSink extends UResource.Sink {
 
         /**
          * Accepted pattern letters:
@@ -429,92 +430,11 @@ public class DateIntervalInfo implements Cloneable, Freezable<DateIntervalInfo>,
          */
         private static final String ACCEPTED_PATTERN_LETTERS = "yMdahHms";
 
-
-        /**
-         * Sink to handle each skeleton table.
-         */
-        class SkeletonSink extends UResource.TableSink {
-            @Override
-            public TableSink getOrCreateTableSink(Key key) {
-                currentSkeleton = key.toString();
-                return patternSink;
-            }
-        }
-        SkeletonSink skeletonSink = new SkeletonSink();
-
-        /**
-         * Sink to store the date interval pattern for each skeleton pattern character.
-         */
-        class PatternSink extends UResource.TableSink {
-
-            @Override
-            public void put(Key key, Value value) {
-                // Process the key
-                CharSequence patternLetter = validateAndProcessPatternLetter(key);
-
-                // If the calendar field has a valid value
-                if (patternLetter != null) {
-                    // Get the largest different calendar unit
-                    String lrgDiffCalUnit = patternLetter.toString();
-
-                    // Set the interval pattern
-                    setIntervalPatternIfAbsent(lrgDiffCalUnit, value);
-                }
-            }
-
-            /**
-             * Processes the pattern letter
-             * @param patternLetter
-             * @return Pattern letter
-             */
-            private CharSequence validateAndProcessPatternLetter(CharSequence patternLetter) {
-                // Check that patternLetter is just one letter
-                if (patternLetter.length() != 1) { return null; }
-
-                // Check that the pattern letter is accepted
-                char letter = patternLetter.charAt(0);
-                if (ACCEPTED_PATTERN_LETTERS.indexOf(letter) < 0) {
-                    return null;
-                }
-
-                // Replace 'h' for 'H'
-                if (letter == CALENDAR_FIELD_TO_PATTERN_LETTER[Calendar.HOUR_OF_DAY].charAt(0)) {
-                    patternLetter = CALENDAR_FIELD_TO_PATTERN_LETTER[Calendar.HOUR];
-                }
-
-                return patternLetter;
-            }
-
-            /**
-             * Stores the interval pattern for the current skeleton in the internal data structure
-             * if it's not present.
-             * @param lrgDiffCalUnit
-             * @param intervalPattern
-             */
-            private void setIntervalPatternIfAbsent(String lrgDiffCalUnit, Value intervalPattern) {
-                // Check if the pattern has already been stored on the data structure.
-                Map<String, PatternInfo> patternsOfOneSkeleton =
-                        dateIntervalInfo.fIntervalPatterns.get(currentSkeleton);
-                if (patternsOfOneSkeleton == null || !patternsOfOneSkeleton.containsKey(lrgDiffCalUnit)) {
-                    // Store the pattern
-                    dateIntervalInfo.setIntervalPatternInternally(currentSkeleton, lrgDiffCalUnit,
-                            intervalPattern.toString());
-                }
-            }
-
-        }
-        PatternSink patternSink = new PatternSink();
-
-
         // Output data
         DateIntervalInfo dateIntervalInfo;
 
         // Alias handling
         String nextCalendarType;
-
-        // Current skeleton table being enumerated
-        String currentSkeleton;
-
 
         // Constructor
         public DateIntervalSink(DateIntervalInfo dateIntervalInfo) {
@@ -522,24 +442,54 @@ public class DateIntervalInfo implements Cloneable, Freezable<DateIntervalInfo>,
         }
 
         @Override
-        public void put(Key key, Value value) {
-            // Check if it's an alias of intervalFormats
-            if (value.getType() != ICUResourceBundle.ALIAS
-                    || !key.contentEquals(INTERVAL_FORMATS_KEY)) {
-                return;
-            }
+        public void put(Key key, Value value, boolean noFallback) {
+            // Iterate over all the calendar entries and only pick the 'intervalFormats' table.
+            UResource.Table dateIntervalData = value.getTable();
+            for (int i = 0; dateIntervalData.getKeyAndValue(i, key, value); i++) {
+                if (!key.contentEquals(INTERVAL_FORMATS_KEY)) {
+                    continue;
+                }
 
-            // Get the calendar type from the alias path.
-            nextCalendarType = getCalendarTypeFromPath(value.getAliasString());
+                // Handle aliases and tables. Ignore the rest.
+                if (value.getType() == ICUResourceBundle.ALIAS) {
+                    // Get the calendar type from the alias path.
+                    nextCalendarType = getCalendarTypeFromPath(value.getAliasString());
+                    break;
+
+                } else if (value.getType() == ICUResourceBundle.TABLE) {
+                    // Iterate over all the skeletons in the 'intervalFormat' table.
+                    UResource.Table skeletonData = value.getTable();
+                    for (int j = 0; skeletonData.getKeyAndValue(j, key, value); j++) {
+                        if (value.getType() == ICUResourceBundle.TABLE) {
+                            // Process the skeleton
+                            processSkeletonTable(key, value);
+                        }
+                    }
+                    break;
+                }
+            }
         }
 
-        @Override
-        public TableSink getOrCreateTableSink(Key key) {
-            // Check if it's the intervalFormats table
-            if (key.contentEquals(INTERVAL_FORMATS_KEY)) {
-                return skeletonSink;
+        /** Processes the patterns for a skeleton table. */
+        public void processSkeletonTable(Key key, Value value) {
+            // Iterate over all the patterns in the current skeleton table
+            String currentSkeleton = key.toString();
+            UResource.Table patternData = value.getTable();
+            for (int k = 0; patternData.getKeyAndValue(k, key, value); k++) {
+                if (value.getType() == ICUResourceBundle.STRING) {
+                    // Process the key
+                    CharSequence patternLetter = validateAndProcessPatternLetter(key);
+
+                    // If the calendar field has a valid value
+                    if (patternLetter != null) {
+                        // Get the largest different calendar unit
+                        String lrgDiffCalUnit = patternLetter.toString();
+
+                        // Set the interval pattern
+                        setIntervalPatternIfAbsent(currentSkeleton, lrgDiffCalUnit, value);
+                    }
+                }
             }
-            return null;
         }
 
         /**
@@ -552,10 +502,10 @@ public class DateIntervalInfo implements Cloneable, Freezable<DateIntervalInfo>,
             return tmpCalendarType;
         }
 
-        // Alias' path prefix and sufix.
+        // Alias' path prefix and suffix.
         private static final String DATE_INTERVAL_PATH_PREFIX =
             "/LOCALE/" + CALENDAR_KEY + "/";
-        private static final String DATE_INTERVAL_PATH_SUFIX =
+        private static final String DATE_INTERVAL_PATH_SUFFIX =
             "/" + INTERVAL_FORMATS_KEY;
 
         /**
@@ -565,11 +515,51 @@ public class DateIntervalInfo implements Cloneable, Freezable<DateIntervalInfo>,
          */
         private String getCalendarTypeFromPath(String path) {
             if (path.startsWith(DATE_INTERVAL_PATH_PREFIX) &&
-                    path.endsWith(DATE_INTERVAL_PATH_SUFIX)) {
+                    path.endsWith(DATE_INTERVAL_PATH_SUFFIX)) {
                 return path.substring(DATE_INTERVAL_PATH_PREFIX.length(),
-                    path.length() - DATE_INTERVAL_PATH_SUFIX.length());
+                    path.length() - DATE_INTERVAL_PATH_SUFFIX.length());
             }
             throw new ICUException("Malformed 'intervalFormat' alias path: " + path);
+        }
+
+        /**
+         * Processes the pattern letter
+         * @param patternLetter
+         * @return Pattern letter
+         */
+        private CharSequence validateAndProcessPatternLetter(CharSequence patternLetter) {
+            // Check that patternLetter is just one letter
+            if (patternLetter.length() != 1) { return null; }
+
+            // Check that the pattern letter is accepted
+            char letter = patternLetter.charAt(0);
+            if (ACCEPTED_PATTERN_LETTERS.indexOf(letter) < 0) {
+                return null;
+            }
+
+            // Replace 'h' for 'H'
+            if (letter == CALENDAR_FIELD_TO_PATTERN_LETTER[Calendar.HOUR_OF_DAY].charAt(0)) {
+                patternLetter = CALENDAR_FIELD_TO_PATTERN_LETTER[Calendar.HOUR];
+            }
+
+            return patternLetter;
+        }
+
+        /**
+         * Stores the interval pattern for the current skeleton in the internal data structure
+         * if it's not present.
+         * @param lrgDiffCalUnit
+         * @param intervalPattern
+         */
+        private void setIntervalPatternIfAbsent(String currentSkeleton, String lrgDiffCalUnit, Value intervalPattern) {
+            // Check if the pattern has already been stored on the data structure.
+            Map<String, PatternInfo> patternsOfOneSkeleton =
+                    dateIntervalInfo.fIntervalPatterns.get(currentSkeleton);
+            if (patternsOfOneSkeleton == null || !patternsOfOneSkeleton.containsKey(lrgDiffCalUnit)) {
+                // Store the pattern
+                dateIntervalInfo.setIntervalPatternInternally(currentSkeleton, lrgDiffCalUnit,
+                        intervalPattern.toString());
+            }
         }
     }
 
@@ -621,7 +611,7 @@ public class DateIntervalInfo implements Cloneable, Freezable<DateIntervalInfo>,
 
                 // Get all resources for this calendar type
                 String pathToIntervalFormats = CALENDAR_KEY + "/" + calendarTypeToUse;
-                resource.getAllTableItemsWithFallback(pathToIntervalFormats, sink);
+                resource.getAllItemsWithFallback(pathToIntervalFormats, sink);
 
                 // Get next calendar type to load if there was an alias pointing at it
                 calendarTypeToUse = sink.getAndResetNextCalendarType();
@@ -940,6 +930,7 @@ public class DateIntervalInfo implements Cloneable, Freezable<DateIntervalInfo>,
      * @return     a copy of the object
      * @stable ICU4.0
      */
+    @Override
     public Object clone()
     {
         if ( frozen ) {
@@ -999,6 +990,7 @@ public class DateIntervalInfo implements Cloneable, Freezable<DateIntervalInfo>,
      *
      * @stable ICU 4.0
      */
+    @Override
     public boolean isFrozen() {
         return frozen;
     }
@@ -1008,6 +1000,7 @@ public class DateIntervalInfo implements Cloneable, Freezable<DateIntervalInfo>,
      *
      * @stable ICU 4.4
      */
+    @Override
     public DateIntervalInfo freeze() {
         fIntervalPatternsReadOnly = true;
         frozen = true;
@@ -1019,6 +1012,7 @@ public class DateIntervalInfo implements Cloneable, Freezable<DateIntervalInfo>,
      *
      * @stable ICU 4.4
      */
+    @Override
     public DateIntervalInfo cloneAsThawed() {
         DateIntervalInfo result = (DateIntervalInfo) (this.cloneUnfrozenDII());
         return result;
@@ -1152,6 +1146,7 @@ public class DateIntervalInfo implements Cloneable, Freezable<DateIntervalInfo>,
      * Override equals
      * @stable ICU 4.0
      */
+    @Override
     public boolean equals(Object a) {
         if ( a instanceof DateIntervalInfo ) {
             DateIntervalInfo dtInfo = (DateIntervalInfo)a;
@@ -1164,6 +1159,7 @@ public class DateIntervalInfo implements Cloneable, Freezable<DateIntervalInfo>,
      * Override hashcode
      * @stable ICU 4.0
      */
+    @Override
     public int hashCode() {
         return fIntervalPatterns.hashCode();
     }

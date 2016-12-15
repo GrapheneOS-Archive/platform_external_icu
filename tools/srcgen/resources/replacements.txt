@@ -1,6 +1,6 @@
 # The set of ICU4J Javadoc replacements.
 
-# This is a version of the upstream UCharacter docs from ICU56 with some changes:
+# This is a version of the upstream UCharacter docs from ICU 58 with some changes:
 # Removal of paragraphs that make no sense on Android.
 --type:android.icu.lang.UCharacter
 /**
@@ -121,7 +121,7 @@
  * is used as the civil calendar in most of the Arab world and the
  * liturgical calendar of the Islamic faith worldwide.  This calendar
  * is also known as the "Hijri" calendar, since it starts at the time
- * of Mohammed's emigration (or "hijra") to Medinah on Thursday, 
+ * of Mohammed's emigration (or "hijra") to Medinah on Thursday,
  * July 15, 622 AD (Julian).
  * <p>
  * The Islamic calendar is strictly lunar, and thus an Islamic year of twelve
@@ -144,8 +144,8 @@
  * This is the default behavior of a newly-created <code>IslamicCalendar</code>
  * object.
  * <p>
- * The Islamic <em>religious</em> calendar and Saudi Arabia's <em>Umm al-Qura</em> 
- * calendar, however, are based on the <em>observation</em> of the crescent moon.  
+ * The Islamic <em>religious</em> calendar and Saudi Arabia's <em>Umm al-Qura</em>
+ * calendar, however, are based on the <em>observation</em> of the crescent moon.
  * It is thus affected by the position at which the
  * observations are made, seasonal variations in the time of sunset, the
  * eccentricities of the moon's orbit, and even the weather at the observation
@@ -161,16 +161,16 @@
  * calculations.  At present, the approximations used in this class are fairly
  * simplistic; they will be improved in later versions of the code.
  * <p>
- * Like the Islamic religious calendar, <em>Umm al-Qura</em> is also based 
+ * Like the Islamic religious calendar, <em>Umm al-Qura</em> is also based
  * on the sighting method of the crescent moon but is standardized by Saudi Arabia.
- * <p>  
+ * <p>
  * The fixed-cycle <em>civil</em> calendar is used.
  * <p>
  * This class should not be subclassed.</p>
  * <p>
- * IslamicCalendar usually should be instantiated using 
+ * IslamicCalendar usually should be instantiated using
  * {@link com.ibm.icu.util.Calendar#getInstance(ULocale)} passing in a <code>ULocale</code>
- * with the tag <code>"@calendar=islamic"</code> or <code>"@calendar=islamic-civil"</code> 
+ * with the tag <code>"@calendar=islamic"</code> or <code>"@calendar=islamic-civil"</code>
  * or <code>"@calendar=islamic-umalqura"</code>.</p>
  *
  * @see com.ibm.icu.util.GregorianCalendar
@@ -235,7 +235,7 @@
  * offset from GMT(=UTC) and does not observe daylight saving
  * time. For example, you might specify GMT+14:00 as a custom
  * time zone ID to create a TimeZone representing 14 hours ahead
- * of GMT (with no daylight saving time). In addition, 
+ * of GMT (with no daylight saving time). In addition,
  * <code>getCanonicalID</code> can also be used to
  * normalize a custom time zone ID.
  *
@@ -316,7 +316,7 @@
      * <p>
      * The default ULocale is synchronized to the default Java Locale. This method checks
      * the current default Java Locale and returns an equivalent ULocale.
-     * 
+     *
      * @return the default ULocale.
      * @stable ICU 2.8
      */

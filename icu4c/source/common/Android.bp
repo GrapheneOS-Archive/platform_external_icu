@@ -39,6 +39,7 @@ cc_defaults {
         "ubidi.c",
         "ubidiln.c",
         "ubidi_props.c",
+        "ubiditransform.c",
         "ubidiwrt.c",
         "ucase.cpp",
         "ucasemap.cpp",
