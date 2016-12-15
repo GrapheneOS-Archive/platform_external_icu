@@ -60,7 +60,6 @@ TEST_INPUT_DIR=${ICU4J_DIR}/main/tests
 TEST_INPUT_DIRS="\
     ${TEST_INPUT_DIR}/collate/src \
     ${TEST_INPUT_DIR}/framework/src \
-    ${TEST_INPUT_DIR}/testall/src \
     ${TEST_INPUT_DIR}/translit/src \
     ${TEST_INPUT_DIR}/core/src \
     ${TEST_INPUT_DIR}/packaging/src"

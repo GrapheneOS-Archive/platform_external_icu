@@ -1,3 +1,5 @@
+// © 2016 and later: Unicode, Inc. and others.
+// License & terms of use: http://www.unicode.org/copyright.html#License
 /*
  **********************************************************************
  * Copyright (c) 2004-2016, International Business Machines
@@ -562,9 +564,38 @@ public class MeasureFormat extends UFormat {
                     measures[i],
                     i == measures.length - 1 ? numberFormat : integerFormat);
         }
-        return appendTo.append(listFormatter.format((Object[]) results));                 
+        return appendTo.append(listFormatter.format((Object[]) results));
 
-    }   
+    }
+
+    /**
+     * Gets the display name of the specified {@link MeasureUnit} corresponding to the current
+     * locale and format width.
+     * @param unit  The unit for which to get a display name.
+     * @return  The display name in the locale and width specified in
+     *          {@link MeasureFormat#getInstance}, or null if there is no display name available
+     *          for the specified unit.
+     *
+     * @draft ICU 58
+     * @provisional This API might change or be removed in a future release.
+     */
+    public String getUnitDisplayName(MeasureUnit unit) {
+        FormatWidth width = getRegularWidth(formatWidth);
+        Map<FormatWidth, String> styleToDnam = cache.unitToStyleToDnam.get(unit);
+        if (styleToDnam == null) {
+            return null;
+        }
+
+        String dnam = styleToDnam.get(width);
+        if (dnam != null) {
+            return dnam;
+        }
+        FormatWidth fallbackWidth = cache.widthFallback[width.ordinal()];
+        if (fallbackWidth != null) {
+            dnam = styleToDnam.get(fallbackWidth);
+        }
+        return dnam;
+    }
 
     /**
      * Two MeasureFormats, a and b, are equal if and only if they have the same formatWidth,
@@ -741,117 +772,126 @@ public class MeasureFormat extends UFormat {
      * C++: Each inner sink class has a reference to the main outer sink.
      * Java: Use non-static inner classes instead.
      */
-    private static final class UnitDataSink extends UResource.TableSink {
+    private static final class UnitDataSink extends UResource.Sink {
+        void setFormatterIfAbsent(int index, UResource.Value value, int minPlaceholders) {
+            if (patterns == null) {
+                EnumMap<FormatWidth, String[]> styleToPatterns =
+                        cacheData.unitToStyleToPatterns.get(unit);
+                if (styleToPatterns == null) {
+                    styleToPatterns =
+                            new EnumMap<FormatWidth, String[]>(FormatWidth.class);
+                    cacheData.unitToStyleToPatterns.put(unit, styleToPatterns);
+                } else {
+                    patterns = styleToPatterns.get(width);
+                }
+                if (patterns == null) {
+                    patterns = new String[MeasureFormatData.PATTERN_COUNT];
+                    styleToPatterns.put(width, patterns);
+                }
+            }
+            if (patterns[index] == null) {
+                patterns[index] = SimpleFormatterImpl.compileToStringMinMaxArguments(
+                        value.getString(), sb, minPlaceholders, 1);
+            }
+        }
+
+        void setDnamIfAbsent(UResource.Value value) {
+            EnumMap<FormatWidth, String> styleToDnam = cacheData.unitToStyleToDnam.get(unit);
+            if (styleToDnam == null) {
+                styleToDnam = new EnumMap<FormatWidth, String>(FormatWidth.class);
+                cacheData.unitToStyleToDnam.put(unit, styleToDnam);
+            }
+            if (styleToDnam.get(width) == null) {
+                styleToDnam.put(width, value.getString());
+            }
+        }
+
         /**
-         * Sink for a table of display patterns. For example,
+         * Consume a display pattern. For example,
          * unitsShort/duration/hour contains other{"{0} hrs"}.
          */
-        class UnitPatternSink extends UResource.TableSink {
-            String[] patterns;
-
-            void setFormatterIfAbsent(int index, UResource.Value value, int minPlaceholders) {
-                if (patterns == null) {
-                    EnumMap<FormatWidth, String[]> styleToPatterns =
-                            cacheData.unitToStyleToPatterns.get(unit);
-                    if (styleToPatterns == null) {
-                        styleToPatterns =
-                                new EnumMap<FormatWidth, String[]>(FormatWidth.class);
-                        cacheData.unitToStyleToPatterns.put(unit, styleToPatterns);
-                    } else {
-                        patterns = styleToPatterns.get(width);
-                    }
-                    if (patterns == null) {
-                        patterns = new String[MeasureFormatData.PATTERN_COUNT];
-                        styleToPatterns.put(width, patterns);
-                    }
-                }
-                if (patterns[index] == null) {
-                    patterns[index] = SimpleFormatterImpl.compileToStringMinMaxArguments(
-                            value.getString(), sb, minPlaceholders, 1);
-                }
-            }
-
-            @Override
-            public void put(UResource.Key key, UResource.Value value) {
-                if (key.contentEquals("dnam")) {
-                    // Skip the unit display name for now.
-                } else if (key.contentEquals("per")) {
-                    // For example, "{0}/h".
-                    setFormatterIfAbsent(MeasureFormatData.PER_UNIT_INDEX, value, 1);
-                } else {
-                    // The key must be one of the plural form strings. For example:
-                    // one{"{0} hr"}
-                    // other{"{0} hrs"}
-                    setFormatterIfAbsent(StandardPlural.indexFromString(key), value, 0);
-                }
+        void consumePattern(UResource.Key key, UResource.Value value) {
+            if (key.contentEquals("dnam")) {
+                // The display name for the unit in the current width.
+                setDnamIfAbsent(value);
+            } else if (key.contentEquals("per")) {
+                // For example, "{0}/h".
+                setFormatterIfAbsent(MeasureFormatData.PER_UNIT_INDEX, value, 1);
+            } else {
+                // The key must be one of the plural form strings. For example:
+                // one{"{0} hr"}
+                // other{"{0} hrs"}
+                setFormatterIfAbsent(StandardPlural.indexFromString(key), value, 0);
             }
         }
-        UnitPatternSink patternSink = new UnitPatternSink();
 
         /**
-         * Sink for a table of per-unit tables. For example,
+         * Consume a table of per-unit tables. For example,
          * unitsShort/duration contains tables for duration-unit subtypes day & hour.
          */
-        class UnitSubtypeSink extends UResource.TableSink {
-            @Override
-            public UResource.TableSink getOrCreateTableSink(UResource.Key key) {
-                // Should we ignore or reject unknown units?
-                unit = MeasureUnit.internalGetInstance(type, key.toString());  // never null
-                // Trigger a fresh lookup of the patterns for this unit+width.
-                patternSink.patterns = null;
-                return patternSink;
+        void consumeSubtypeTable(UResource.Key key, UResource.Value value) {
+            unit = MeasureUnit.internalGetInstance(type, key.toString());  // never null
+            // Trigger a fresh lookup of the patterns for this unit+width.
+            patterns = null;
+
+            if (value.getType() == ICUResourceBundle.STRING) {
+                // Units like "coordinate" that don't have plural variants
+                setFormatterIfAbsent(StandardPlural.OTHER.ordinal(), value, 0);
+            } else if (value.getType() == ICUResourceBundle.TABLE) {
+                // Units that have plural variants
+                UResource.Table patternTableTable = value.getTable();
+                for (int i = 0; patternTableTable.getKeyAndValue(i, key, value); i++) {
+                    consumePattern(key, value);
+                }
+            } else {
+                throw new ICUException("Data for unit '" + unit + "' is in an unknown format");
             }
         }
-        UnitSubtypeSink subtypeSink = new UnitSubtypeSink();
 
         /**
-         * Sink for compound x-per-y display pattern. For example,
+         * Consume compound x-per-y display pattern. For example,
          * unitsShort/compound/per may be "{0}/{1}".
          */
-        class UnitCompoundSink extends UResource.TableSink {
-            @Override
-            public void put(UResource.Key key, UResource.Value value) {
-                if (key.contentEquals("per")) {
-                    cacheData.styleToPerPattern.put(width,
-                            SimpleFormatterImpl.compileToStringMinMaxArguments(
-                                    value.getString(), sb, 2, 2));
-                }
+        void consumeCompoundPattern(UResource.Key key, UResource.Value value) {
+            if (key.contentEquals("per")) {
+                cacheData.styleToPerPattern.put(width,
+                        SimpleFormatterImpl.compileToStringMinMaxArguments(
+                                value.getString(), sb, 2, 2));
             }
         }
-        UnitCompoundSink compoundSink = new UnitCompoundSink();
 
         /**
-         * Sink for a table of unit type tables. For example,
+         * Consume a table of unit type tables. For example,
          * unitsShort contains tables for area & duration.
          * It also contains a table for the compound/per pattern.
          */
-        class UnitTypeSink extends UResource.TableSink {
-            @Override
-            public UResource.TableSink getOrCreateTableSink(UResource.Key key) {
-                if (key.contentEquals("currency")) {
-                    // Skip.
-                } else if (key.contentEquals("compound")) {
-                    if (!cacheData.hasPerFormatter(width)) {
-                        return compoundSink;
+        void consumeUnitTypesTable(UResource.Key key, UResource.Value value) {
+            if (key.contentEquals("currency")) {
+                // Skip.
+            } else if (key.contentEquals("compound")) {
+                if (!cacheData.hasPerFormatter(width)) {
+                    UResource.Table compoundTable = value.getTable();
+                    for (int i = 0; compoundTable.getKeyAndValue(i, key, value); i++) {
+                        consumeCompoundPattern(key, value);
                     }
-                } else {
-                    type = key.toString();
-                    return subtypeSink;
                 }
-                return null;
+            } else {
+                type = key.toString();
+                UResource.Table subtypeTable = value.getTable();
+                for (int i = 0; subtypeTable.getKeyAndValue(i, key, value); i++) {
+                    consumeSubtypeTable(key, value);
+                }
             }
         }
-        UnitTypeSink typeSink = new UnitTypeSink();
 
         UnitDataSink(MeasureFormatData outputData) {
             cacheData = outputData;
         }
-        @Override
-        public void put(UResource.Key key, UResource.Value value) {
+
+        void consumeAlias(UResource.Key key, UResource.Value value) {
             // Handle aliases like
             // units:alias{"/LOCALE/unitsShort"}
             // which should only occur in the root bundle.
-            if (value.getType() != ICUResourceBundle.ALIAS) { return; }
             FormatWidth sourceWidth = widthFromKey(key);
             if (sourceWidth == null) {
                 // Alias from something we don't care about.
@@ -870,12 +910,14 @@ public class MeasureFormat extends UFormat {
             }
             cacheData.widthFallback[sourceWidth.ordinal()] = targetWidth;
         }
-        @Override
-        public UResource.TableSink getOrCreateTableSink(UResource.Key key) {
+
+        public void consumeTable(UResource.Key key, UResource.Value value) {
             if ((width = widthFromKey(key)) != null) {
-                return typeSink;
+                UResource.Table unitTypesTable = value.getTable();
+                for (int i = 0; unitTypesTable.getKeyAndValue(i, key, value); i++) {
+                    consumeUnitTypesTable(key, value);
+                }
             }
-            return null;
         }
 
         static FormatWidth widthFromKey(UResource.Key key) {
@@ -906,6 +948,19 @@ public class MeasureFormat extends UFormat {
             return null;
         }
 
+        @Override
+        public void put(UResource.Key key, UResource.Value value, boolean noFallback) {
+            // Main entry point to sink
+            UResource.Table widthsTable = value.getTable();
+            for (int i = 0; widthsTable.getKeyAndValue(i, key, value); i++) {
+                if (value.getType() == ICUResourceBundle.ALIAS) {
+                    consumeAlias(key, value);
+                } else {
+                    consumeTable(key, value);
+                }
+            }
+        }
+
         // Output data.
         MeasureFormatData cacheData;
 
@@ -916,6 +971,7 @@ public class MeasureFormat extends UFormat {
 
         // Temporary
         StringBuilder sb = new StringBuilder();
+        String[] patterns;
     }
 
     /**
@@ -926,7 +982,7 @@ public class MeasureFormat extends UFormat {
                 (ICUResourceBundle)UResourceBundle.getBundleInstance(ICUData.ICU_UNIT_BASE_NAME, locale);
         MeasureFormatData cacheData = new MeasureFormatData();
         UnitDataSink sink = new UnitDataSink(cacheData);
-        resource.getAllTableItemsWithFallback("", sink);
+        resource.getAllItemsWithFallback("", sink);
         return cacheData;
     }
 
@@ -1061,6 +1117,8 @@ public class MeasureFormat extends UFormat {
         /** Measure unit -> format width -> array of patterns ("{0} meters") (plurals + PER_UNIT_INDEX) */
         final Map<MeasureUnit, EnumMap<FormatWidth, String[]>> unitToStyleToPatterns =
                 new HashMap<MeasureUnit, EnumMap<FormatWidth, String[]>>();
+        final Map<MeasureUnit, EnumMap<FormatWidth, String>> unitToStyleToDnam =
+                new HashMap<MeasureUnit, EnumMap<FormatWidth, String>>();
         final EnumMap<FormatWidth, String> styleToPerPattern =
                 new EnumMap<FormatWidth, String>(FormatWidth.class);;
     }
@@ -1096,7 +1154,7 @@ public class MeasureFormat extends UFormat {
             return positive ? ((DecimalFormat)nf).getPositivePrefix() : ((DecimalFormat)nf).getNegativePrefix();
         }
         public String getSuffix(boolean positive) {
-            return positive ? ((DecimalFormat)nf).getPositiveSuffix() : ((DecimalFormat)nf).getPositiveSuffix();
+            return positive ? ((DecimalFormat)nf).getPositiveSuffix() : ((DecimalFormat)nf).getNegativeSuffix();
         }
     }
 
