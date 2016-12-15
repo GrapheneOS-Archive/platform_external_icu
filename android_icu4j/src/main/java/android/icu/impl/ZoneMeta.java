@@ -1,7 +1,9 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
+// © 2016 and later: Unicode, Inc. and others.
+// License & terms of use: http://www.unicode.org/copyright.html#License
 /*
 **********************************************************************
-* Copyright (c) 2003-2015 International Business Machines
+* Copyright (c) 2003-2016 International Business Machines
 * Corporation and others.  All Rights Reserved.
 **********************************************************************
 * Author: Alan Liu
@@ -286,7 +288,7 @@ public final class ZoneMeta {
         if (ZONEIDS == null) {
             try {
                 UResourceBundle top = UResourceBundle.getBundleInstance(
-                        ICUResourceBundle.ICU_BASE_NAME, ZONEINFORESNAME, ICUResourceBundle.ICU_DATA_CLASS_LOADER);
+                        ICUData.ICU_BASE_NAME, ZONEINFORESNAME, ICUResourceBundle.ICU_DATA_CLASS_LOADER);
                 ZONEIDS = top.getStringArray(kNAMES);
             } catch (MissingResourceException ex) {
                 // throw away..
@@ -365,7 +367,7 @@ public final class ZoneMeta {
                 try {
                     int zoneIdx = getZoneIndex(tzid);
                     if (zoneIdx >= 0) {
-                        UResourceBundle top = UResourceBundle.getBundleInstance(ICUResourceBundle.ICU_BASE_NAME,
+                        UResourceBundle top = UResourceBundle.getBundleInstance(ICUData.ICU_BASE_NAME,
                                 ZONEINFORESNAME, ICUResourceBundle.ICU_DATA_CLASS_LOADER);
                         UResourceBundle zones = top.get(kZONES);
                         UResourceBundle zone = zones.get(zoneIdx);
@@ -395,7 +397,7 @@ public final class ZoneMeta {
 
         try {
             // First, try check if the given ID is canonical
-            UResourceBundle keyTypeData = UResourceBundle.getBundleInstance(ICUResourceBundle.ICU_BASE_NAME,
+            UResourceBundle keyTypeData = UResourceBundle.getBundleInstance(ICUData.ICU_BASE_NAME,
                     "keyTypeData", ICUResourceBundle.ICU_DATA_CLASS_LOADER);
             UResourceBundle typeMap = keyTypeData.get("typeMap");
             UResourceBundle typeKeys = typeMap.get("timezone");
@@ -429,7 +431,7 @@ public final class ZoneMeta {
             if (zoneIdx >= 0) {
                 try {
                     UResourceBundle top = UResourceBundle.getBundleInstance(
-                            ICUResourceBundle.ICU_BASE_NAME, ZONEINFORESNAME, ICUResourceBundle.ICU_DATA_CLASS_LOADER);
+                            ICUData.ICU_BASE_NAME, ZONEINFORESNAME, ICUResourceBundle.ICU_DATA_CLASS_LOADER);
                     UResourceBundle regions = top.get(kREGIONS);
                     if (zoneIdx < regions.getSize()) {
                         region = regions.getString(zoneIdx);
@@ -487,7 +489,7 @@ public final class ZoneMeta {
             // Even a country has multiple zones, one of them might be
             // dominant and treated as a primary zone.
             try {
-                UResourceBundle bundle = UResourceBundle.getBundleInstance(ICUResourceBundle.ICU_BASE_NAME, "metaZones");
+                UResourceBundle bundle = UResourceBundle.getBundleInstance(ICUData.ICU_BASE_NAME, "metaZones");
                 UResourceBundle primaryZones = bundle.get("primaryZones");
                 String primaryZone = primaryZones.getString(country);
                 if (tzid.equals(primaryZone)) {
@@ -523,7 +525,7 @@ public final class ZoneMeta {
             try {
                 if (top == null) {
                     top = UResourceBundle.getBundleInstance(
-                            ICUResourceBundle.ICU_BASE_NAME, ZONEINFORESNAME, ICUResourceBundle.ICU_DATA_CLASS_LOADER);
+                            ICUData.ICU_BASE_NAME, ZONEINFORESNAME, ICUResourceBundle.ICU_DATA_CLASS_LOADER);
                 }
                 UResourceBundle zones = top.get(kZONES);
                 UResourceBundle zone = zones.get(zoneIdx);
@@ -552,7 +554,7 @@ public final class ZoneMeta {
         protected OlsonTimeZone createInstance(String key, String data) {
             OlsonTimeZone tz = null;
             try {
-                UResourceBundle top = UResourceBundle.getBundleInstance(ICUResourceBundle.ICU_BASE_NAME,
+                UResourceBundle top = UResourceBundle.getBundleInstance(ICUData.ICU_BASE_NAME,
                         ZONEINFORESNAME, ICUResourceBundle.ICU_DATA_CLASS_LOADER);
                 UResourceBundle res = openOlsonResource(top, data);
                 if (res != null) {
@@ -842,7 +844,9 @@ public final class ZoneMeta {
         if (tz instanceof OlsonTimeZone) {
             canonicalID = ((OlsonTimeZone)tz).getCanonicalID();
         }
-        canonicalID = getCanonicalCLDRID(tz.getID());
+        else {
+            canonicalID = getCanonicalCLDRID(tz.getID());
+        }
         if (canonicalID == null) {
             return null;
         }
@@ -869,7 +873,7 @@ public final class ZoneMeta {
 
         try {
             // First, try check if the given ID is canonical
-            UResourceBundle keyTypeData = UResourceBundle.getBundleInstance(ICUResourceBundle.ICU_BASE_NAME,
+            UResourceBundle keyTypeData = UResourceBundle.getBundleInstance(ICUData.ICU_BASE_NAME,
                     "keyTypeData", ICUResourceBundle.ICU_DATA_CLASS_LOADER);
             UResourceBundle typeMap = keyTypeData.get("typeMap");
             UResourceBundle typeKeys = typeMap.get("timezone");

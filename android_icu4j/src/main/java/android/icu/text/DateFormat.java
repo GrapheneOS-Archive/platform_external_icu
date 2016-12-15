@@ -1,4 +1,6 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
+// © 2016 and later: Unicode, Inc. and others.
+// License & terms of use: http://www.unicode.org/copyright.html#License
 /*
  *   Copyright (C) 1996-2016, International Business Machines
  *   Corporation and others.  All Rights Reserved.
@@ -441,9 +443,10 @@ public abstract class DateFormat extends UFormat {
     /**
      * <strong>[icu]</strong> Number of FieldPosition selectors for DateFormat.
      * Valid selectors range from 0 to FIELD_COUNT-1.
+     * @deprecated ICU 58 The numeric value may change over time, see ICU ticket #12420.
      * @hide unsupported on Android
      */
-
+    @Deprecated
     public final static int FIELD_COUNT = 38;
     // A previous comment for the above stated that we must have
     // DateFormat.FIELD_COUNT == DateFormatSymbols.patternChars.length()
@@ -469,13 +472,11 @@ public abstract class DateFormat extends UFormat {
         /**
          * indicates tolerance of pattern mismatch between input data and specified format pattern.
          * e.g. accepting "September" for a month pattern of MMM ("Sep")
-         * @hide draft / provisional / internal are hidden on Android
          */
         PARSE_MULTIPLE_PATTERNS_FOR_MATCH,
         /**
          * indicates tolerance of a partial literal match
          * e.g. accepting "--mon-02-march-2011" for a pattern of "'--: 'EEE-WW-MMMM-yyyy"
-         * @hide draft / provisional / internal are hidden on Android
          */
         PARSE_PARTIAL_LITERAL_MATCH,
         /**
@@ -545,6 +546,7 @@ public abstract class DateFormat extends UFormat {
      * pattern character 'z'.
      * @see java.text.Format
      */
+    @Override
     public final StringBuffer format(Object obj, StringBuffer toAppendTo,
                                      FieldPosition fieldPosition)
     {
@@ -772,6 +774,7 @@ public abstract class DateFormat extends UFormat {
      *
      * @see #parse(String, ParsePosition)
      */
+    @Override
     public Object parseObject (String source, ParsePosition pos)
     {
         return parse(source, pos);
@@ -1620,6 +1623,7 @@ public abstract class DateFormat extends UFormat {
      */
     ///CLOVER:OFF
     // turn off code coverage since all subclasses override this
+    @Override
     public int hashCode() {
         return numberFormat.hashCode();
         // just enough fields for a reasonable distribution
@@ -1629,6 +1633,7 @@ public abstract class DateFormat extends UFormat {
     /**
      * Overrides equals.
      */
+    @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
         if (obj == null || getClass() != obj.getClass()) return false;
@@ -1643,6 +1648,7 @@ public abstract class DateFormat extends UFormat {
     /**
      * Overrides clone.
      */
+    @Override
     public Object clone()
     {
         DateFormat other = (DateFormat) super.clone();
@@ -2346,6 +2352,7 @@ public abstract class DateFormat extends UFormat {
          *
          * @throws InvalidObjectException if the constant could not be resolved.
          */
+        @Override
         protected Object readResolve() throws InvalidObjectException {
             ///CLOVER:OFF
             if (this.getClass() != DateFormat.Field.class) {

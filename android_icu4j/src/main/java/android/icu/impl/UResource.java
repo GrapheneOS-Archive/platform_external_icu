@@ -1,4 +1,6 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
+// © 2016 and later: Unicode, Inc. and others.
+// License & terms of use: http://www.unicode.org/copyright.html#License
 /*
  *******************************************************************************
  * Copyright (C) 2015-2016, International Business Machines Corporation and
@@ -40,7 +42,16 @@ public final class UResource {
         /**
          * Constructs an empty resource key string object.
          */
-        public Key() {}
+        public Key() {
+            s = "";
+        }
+
+        /**
+         * Constructs a resource key object equal to the given string.
+         */
+        public Key(String s) {
+            setString(s);
+        }
 
         private Key(byte[] keyBytes, int keyOffset, int keyLength) {
             bytes = keyBytes;
@@ -58,20 +69,45 @@ public final class UResource {
          * @param keyBytes new key string byte array
          * @param keyOffset new key string offset
          */
-        public void setBytes(byte[] keyBytes, int keyOffset) {
+        public Key setBytes(byte[] keyBytes, int keyOffset) {
             bytes = keyBytes;
             offset = keyOffset;
             for (length = 0; keyBytes[keyOffset + length] != 0; ++length) {}
             s = null;
+            return this;
         }
 
         /**
          * Mutates this key to an empty resource key string.
          */
-        public void setToEmpty() {
+        public Key setToEmpty() {
             bytes = null;
             offset = length = 0;
-            s = null;
+            s = "";
+            return this;
+        }
+
+        /**
+         * Mutates this key to be equal to the given string.
+         */
+        public Key setString(String s) {
+            if (s.isEmpty()) {
+                setToEmpty();
+            } else {
+                bytes = new byte[s.length()];
+                offset = 0;
+                length = s.length();
+                for (int i = 0; i < length; ++i) {
+                    char c = s.charAt(i);
+                    if (c <= 0x7f) {
+                        bytes[i] = (byte)c;
+                    } else {
+                        throw new IllegalArgumentException('\"' + s + "\" is not an ASCII string");
+                    }
+                }
+                this.s = s;
+            }
+            return this;
         }
 
         /**
@@ -87,18 +123,18 @@ public final class UResource {
             }
         }
 
-        // TODO: Java 6: @Override
+        @Override
         public char charAt(int i) {
             assert(0 <= i && i < length);
             return (char)bytes[offset + i];
         }
 
-        // TODO: Java 6: @Override
+        @Override
         public int length() {
             return length;
         }
 
-        // TODO: Java 6: @Override
+        @Override
         public Key subSequence(int start, int end) {
             assert(0 <= start && start < length);
             assert(start <= end && end <= length);
@@ -108,6 +144,7 @@ public final class UResource {
         /**
          * Creates/caches/returns this resource key string as a Java String.
          */
+        @Override
         public String toString() {
             if (s == null) {
                 s = internalSubString(0, length);
@@ -214,7 +251,7 @@ public final class UResource {
             return h;
         }
 
-        // TODO: Java 6: @Override
+        @Override
         public int compareTo(Key other) {
             return compareTo((CharSequence)other);
         }
@@ -223,7 +260,7 @@ public final class UResource {
             int csLength = cs.length();
             int minLength = length <= csLength ? length : csLength;
             for (int i = 0; i < minLength; ++i) {
-                int diff = (int)charAt(i) - (int)cs.charAt(i);
+                int diff = charAt(i) - cs.charAt(i);
                 if (diff != 0) {
                     return diff;
                 }
@@ -420,8 +457,9 @@ public final class UResource {
          * and implementations of this method normally iterate over the
          * tree of resource items stored there.
          *
-         * @param key No defined contents.
-         *     To be used for output values from Array and Table getters.
+         * @param key Initially the key string of the enumeration-start resource.
+         *     Empty if the enumeration starts at the top level of the bundle.
+         *     Reuse for output values from Array and Table getters.
          * @param value Call getArray() or getTable() as appropriate.
          *     Then reuse for output values from Array and Table getters.
          * @param noFallback true if the bundle has no parent;
@@ -429,136 +467,5 @@ public final class UResource {
          *     or it is the root bundle of a locale tree.
          */
         public abstract void put(Key key, Value value, boolean noFallback);
-    }
-
-    /**
-     * Sink for ICU resource array contents.
-     * The base class does nothing.
-     *
-     * <p>Nested arrays and tables are stored as nested sinks,
-     * never put() as {@link Value} items.
-     */
-    public static class ArraySink {
-        /**
-         * "Enters" the array.
-         * Called just before enumerating the array's resource items.
-         * The size can be used to allocate storage for the items.
-         * It may differ between child and parent bundles.
-         *
-         * @param size number of table items
-         */
-        public void enter(int size) {}
-
-        /**
-         * Adds a value from a resource array.
-         *
-         * @param index of the resource array item
-         * @param value resource value
-         */
-        public void put(int index, Value value) {}
-
-        /**
-         * Returns a nested resource array at the array index as another sink.
-         * Creates the sink if none exists for the key.
-         * Returns null if nested arrays are not supported.
-         * The default implementation always returns null.
-         *
-         * @param index of the resource array item
-         * @return nested-array sink, or null
-         */
-        public ArraySink getOrCreateArraySink(int index) {
-            return null;
-        }
-
-        /**
-         * Returns a nested resource table at the array index as another sink.
-         * Creates the sink if none exists for the key.
-         * Returns null if nested tables are not supported.
-         * The default implementation always returns null.
-         *
-         * @param index of the resource array item
-         * @return nested-table sink, or null
-         */
-        public TableSink getOrCreateTableSink(int index) {
-            return null;
-        }
-
-        /**
-         * "Leaves" the array.
-         * Indicates that all of the resources and sub-resources of the current array
-         * have been enumerated.
-         */
-        public void leave() {}
-    }
-
-    /**
-     * Sink for ICU resource table contents.
-     * The base class does nothing.
-     *
-     * <p>Nested arrays and tables are stored as nested sinks,
-     * never put() as {@link Value} items.
-     */
-    public static class TableSink {
-        /**
-         * "Enters" the table.
-         * Called just before enumerating the table's resource items.
-         * The size can be used to allocate storage for the items.
-         * It usually differs between child and parent bundles.
-         *
-         * @param size number of table items
-         */
-        public void enter(int size) {}
-
-        /**
-         * Adds a key-value pair from a resource table.
-         *
-         * @param key resource key string
-         * @param value resource value
-         */
-        public void put(Key key, Value value) {}
-
-        /**
-         * Adds a no-fallback/no-inheritance marker for this key.
-         * Used for CLDR no-fallback data values of "∅∅∅"
-         * when enumerating tables with fallback from the specific resource bundle to root.
-         *
-         * <p>The default implementation does nothing.
-         *
-         * @param key to be removed
-         */
-        public void putNoFallback(Key key) {}
-
-        /**
-         * Returns a nested resource array for the key as another sink.
-         * Creates the sink if none exists for the key.
-         * Returns null if nested arrays are not supported.
-         * The default implementation always returns null.
-         *
-         * @param key resource key string
-         * @return nested-array sink, or null
-         */
-        public ArraySink getOrCreateArraySink(Key key) {
-            return null;
-        }
-
-        /**
-         * Returns a nested resource table for the key as another sink.
-         * Creates the sink if none exists for the key.
-         * Returns null if nested tables are not supported.
-         * The default implementation always returns null.
-         *
-         * @param key resource key string
-         * @return nested-table sink, or null
-         */
-        public TableSink getOrCreateTableSink(Key key) {
-            return null;
-        }
-
-        /**
-         * "Leaves" the table.
-         * Indicates that all of the resources and sub-resources of the current table
-         * have been enumerated.
-         */
-        public void leave() {}
     }
 }
