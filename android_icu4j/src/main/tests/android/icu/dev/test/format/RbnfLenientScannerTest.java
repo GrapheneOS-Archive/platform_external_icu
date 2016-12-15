@@ -1,4 +1,6 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
+// © 2016 and later: Unicode, Inc. and others.
+// License & terms of use: http://www.unicode.org/copyright.html#License
 /*
  *******************************************************************************
  * Copyright (C) 2009-2016, International Business Machines Corporation and    *
@@ -12,33 +14,22 @@ import java.text.ParseException;
 import java.util.Locale;
 import java.util.Random;
 
+import org.junit.Test;
+
 import android.icu.dev.test.TestFmwk;
 import android.icu.impl.text.RbnfScannerProviderImpl;
 import android.icu.text.RbnfLenientScannerProvider;
 import android.icu.text.RuleBasedNumberFormat;
 import android.icu.util.ULocale;
-import org.junit.runner.RunWith;
-import android.icu.junit.IcuTestFmwkRunner;
 
-@RunWith(IcuTestFmwkRunner.class)
 public class RbnfLenientScannerTest extends TestFmwk {
     private static final RbnfLenientScannerProvider provider = new RbnfScannerProviderImpl();
-
-    public static void main(String[] args) {
-        try {
-          new RbnfLenientScannerTest().run(args);
-        }
-        catch (Throwable e) {
-            System.out.println("Entire test failed because of exception: "
-                               + e.toString());
-            e.printStackTrace();
-        }
-    }
 
     /**
      * Ensure that the default provider is instantiated and used if none is set
      * and lenient parse is on.
      */
+    @Test
     public void TestDefaultProvider() {
         RuleBasedNumberFormat formatter
             = new RuleBasedNumberFormat(Locale.US,
@@ -55,6 +46,7 @@ public class RbnfLenientScannerTest extends TestFmwk {
     /**
      * Perform a simple spot check on the English spellout rules
      */
+    @Test
     public void TestEnglishSpellout() {
         RuleBasedNumberFormat formatter
             = new RuleBasedNumberFormat(Locale.US,
@@ -78,6 +70,7 @@ public class RbnfLenientScannerTest extends TestFmwk {
     /**
      * Perform a simple spot check on the duration-formatting rules
      */
+    @Test
     public void TestDurations() {
         RuleBasedNumberFormat formatter
             = new RuleBasedNumberFormat(Locale.US,
@@ -93,6 +86,7 @@ public class RbnfLenientScannerTest extends TestFmwk {
     /**
      * Perform a simple spot check on the French spellout rules
      */
+    @Test
     public void TestFrenchSpellout() {
         RuleBasedNumberFormat formatter
             = new RuleBasedNumberFormat(Locale.FRANCE,
@@ -109,6 +103,7 @@ public class RbnfLenientScannerTest extends TestFmwk {
     /**
      * Perform a simple spot check on the German spellout rules
      */
+    @Test
     public void TestGermanSpellout() {
         RuleBasedNumberFormat formatter
             = new RuleBasedNumberFormat(Locale.GERMANY,
@@ -121,6 +116,7 @@ public class RbnfLenientScannerTest extends TestFmwk {
         doLenientParseTest(formatter, lpTestData);
     }
 
+    @Test
     public void TestAllLocales() {
         StringBuffer errors = null;
         ULocale[] locales = ULocale.getAvailableLocales();
@@ -141,7 +137,7 @@ public class RbnfLenientScannerTest extends TestFmwk {
             ULocale loc = locales[i];
             int count = numbers.length;
             boolean testParse = true;
-            if (getInclusion() <= 5) {
+            if (TestFmwk.getExhaustiveness() <= 5) {
                 testParse = false;
                 for (int k = 0; k < parseLocales.length; k++) {
                     if (loc.toString().equals(parseLocales[k])) {
