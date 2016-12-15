@@ -1,3 +1,5 @@
+// © 2016 and later: Unicode, Inc. and others.
+// License & terms of use: http://www.unicode.org/copyright.html#License
 /*
  *******************************************************************************
  * Copyright (C) 2014-2016, International Business Machines Corporation and
@@ -17,6 +19,7 @@ import java.util.MissingResourceException;
 import java.util.Set;
 import java.util.regex.Pattern;
 
+import com.ibm.icu.impl.ICUData;
 import com.ibm.icu.impl.ICUResourceBundle;
 import com.ibm.icu.util.Output;
 import com.ibm.icu.util.UResourceBundle;
@@ -39,6 +42,7 @@ public class KeyTypeData {
 
     private static class CodepointsTypeHandler extends SpecialTypeHandler {
         private static final Pattern pat = Pattern.compile("[0-9a-fA-F]{4,6}(-[0-9a-fA-F]{4,6})*");
+        @Override
         boolean isWellFormed(String value) {
             return pat.matcher(value).matches();
         }
@@ -46,6 +50,7 @@ public class KeyTypeData {
 
     private static class ReorderCodeTypeHandler extends SpecialTypeHandler {
         private static final Pattern pat = Pattern.compile("[a-zA-Z]{3,8}(-[a-zA-Z]{3,8})*");
+        @Override
         boolean isWellFormed(String value) {
             return pat.matcher(value).matches();
         }
@@ -53,20 +58,23 @@ public class KeyTypeData {
 
     private static class RgKeyValueTypeHandler extends SpecialTypeHandler {
         private static final Pattern pat = Pattern.compile("([a-zA-Z]{2}|[0-9]{3})[zZ]{4}");
+        @Override
         boolean isWellFormed(String value) {
             return pat.matcher(value).matches();
         }
     }
-    
+
     private static class SubdivisionKeyValueTypeHandler extends SpecialTypeHandler {
         private static final Pattern pat = Pattern.compile("([a-zA-Z]{2}|[0-9]{3})");
+        @Override
         boolean isWellFormed(String value) {
             return pat.matcher(value).matches();
         }
     }
-    
+
     private static class PrivateUseKeyValueTypeHandler extends SpecialTypeHandler {
         private static final Pattern pat = Pattern.compile("[a-zA-Z0-9]{3,8}(-[a-zA-Z0-9]{3,8})*");
+        @Override
         boolean isWellFormed(String value) {
             return pat.matcher(value).matches();
         }
@@ -203,7 +211,7 @@ public class KeyTypeData {
 
     private static void initFromResourceBundle() {
         UResourceBundle keyTypeDataRes = UResourceBundle.getBundleInstance(
-                ICUResourceBundle.ICU_BASE_NAME,
+                ICUData.ICU_BASE_NAME,
                 "keyTypeData",
                 ICUResourceBundle.ICU_DATA_CLASS_LOADER);
 
@@ -655,7 +663,7 @@ typeInfo{
     public static Set<String> getBcp47Keys() {
         return BCP47_KEYS.keySet();
     };
-    
+
     public static Set<String> getBcp47KeyTypes(String key) {
         return BCP47_KEYS.get(key);
     };

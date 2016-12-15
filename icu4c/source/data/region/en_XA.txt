@@ -1,11 +1,5 @@
-﻿// ***************************************************************************
-// *
-// * Copyright (C) 2016 International Business Machines
-// * Corporation and others. All Rights Reserved.
-// * Tool: org.unicode.cldr.icu.NewLdml2IcuConverter
-// * Source File: <path>/common/main/en_XA.xml
-// *
-// ***************************************************************************
+﻿// © 2016 and later: Unicode, Inc. and others.
+// License & terms of use: http://www.unicode.org/copyright.html#License
 en_XA{
     Countries{
         001{"[Ŵöŕļð one]"}
@@ -112,6 +106,7 @@ en_XA{
         ES{"[Šþåîñ one]"}
         ET{"[Éţĥîöþîå one]"}
         EU{"[Éûŕöþéåñ Ûñîöñ one two]"}
+        EZ{"[Éûŕöžöñé one]"}
         FI{"[Ƒîñļåñð one]"}
         FJ{"[Ƒîĵî one]"}
         FK{"[Ƒåļķļåñð Îšļåñðš (Îšļåš Ṁåļṽîñåš) one two three four]"}
@@ -278,6 +273,7 @@ en_XA{
         UA{"[Ûķŕåîñé one]"}
         UG{"[Ûĝåñðå one]"}
         UM{"[Û·Š· Öûţļýîñĝ Îšļåñðš one two three]"}
+        UN{"[Ûñîţéð Ñåţîöñš one two]"}
         US{"[Ûñîţéð Šţåţéš one two]"}
         UY{"[Ûŕûĝûåý one]"}
         UZ{"[Ûžƀéķîšţåñ one two]"}
@@ -304,12 +300,14 @@ en_XA{
         BA{"[Ɓöšñîå one]"}
         GB{"[ÛĶ one]"}
         MM{"[Ṁýåñɱåŕ one]"}
+        UN{"[ÛÑ one]"}
         US{"[ÛŠ one]"}
     }
     Countries%variant{
         CD{"[Çöñĝö (ÐŔÇ) one two]"}
         CG{"[Çöñĝö (Ŕéþûƀļîç) one two]"}
         CI{"[Îṽöŕý Çöåšţ one two]"}
+        CZ{"[Çžéçĥîå one]"}
         FK{"[Ƒåļķļåñð Îšļåñðš (Îšļåš Ṁåļṽîñåš) one two three four]"}
         MK{"[Ṁåçéðöñîå (ƑÝŔÖṀ) one two three]"}
         TL{"[Éåšţ Ţîɱöŕ one two]"}

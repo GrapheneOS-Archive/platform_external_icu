@@ -1,3 +1,5 @@
+// © 2016 and later: Unicode, Inc. and others.
+// License & terms of use: http://www.unicode.org/copyright.html#License
 /*
  *******************************************************************************
  * Copyright (C) 2003-2016, International Business Machines Corporation and others. All Rights Reserved.
@@ -46,8 +48,6 @@ class RBBIRuleScanner {
 
     RBBIRuleChar              fC = new RBBIRuleChar();    // Current char for parse state machine
                                                      //   processing.
-    String                    fVarName;          // $variableName, valid when we've just
-                                                     //   scanned one.
 
 
     short  fStack[] = new short[kStackSize];  // State stack, holds state pushes
@@ -119,7 +119,7 @@ class RBBIRuleScanner {
         fRuleSets[RBBIRuleParseTable.kRuleSet_name_start_char - 128] = new UnicodeSet(gRuleSet_name_start_char_pattern);
         fRuleSets[RBBIRuleParseTable.kRuleSet_digit_char - 128] = new UnicodeSet(gRuleSet_digit_char_pattern);
 
-        fSymbolTable = new RBBISymbolTable(this, rb.fRules);
+        fSymbolTable = new RBBISymbolTable(this);
     }
 
     //----------------------------------------------------------------------------------------
@@ -956,6 +956,12 @@ class RBBIRuleScanner {
                 }
             }
 
+        }
+        
+        // If there are no forward rules throw an error.
+        //
+        if (fRB.fTreeRoots[RBBIRuleBuilder.fForwardTree] == null) {
+            error(RBBIRuleBuilder.U_BRK_RULE_SYNTAX);
         }
 
         //

@@ -1,3 +1,5 @@
+// © 2016 and later: Unicode, Inc. and others.
+// License & terms of use: http://www.unicode.org/copyright.html#License
 /*
  *******************************************************************************
  * Copyright (C) 2004-2016, International Business Machines Corporation and
@@ -13,8 +15,6 @@ import java.nio.ByteBuffer;
 import java.nio.CharBuffer;
 import java.nio.IntBuffer;
 
-import com.ibm.icu.impl.UResource.ArraySink;
-import com.ibm.icu.impl.UResource.TableSink;
 import com.ibm.icu.util.ICUException;
 import com.ibm.icu.util.ICUUncheckedIOException;
 import com.ibm.icu.util.ULocale;
@@ -34,7 +34,7 @@ public final class ICUResourceBundleReader {
      */
     private static final int DATA_FORMAT = 0x52657342;
     private static final class IsAcceptable implements ICUBinary.Authenticate {
-        // @Override when we switch to Java 6
+        @Override
         public boolean isDataVersionAcceptable(byte formatVersion[]) {
             return
                     (formatVersion[0] == 1 && (formatVersion[1] & 0xff) >= 1) ||
@@ -155,6 +155,7 @@ public final class ICUResourceBundleReader {
             this.localeID = (localeID == null) ? "" : localeID;
         }
 
+        @Override
         public boolean equals(Object obj) {
             if (this == obj) {
                 return true;
@@ -167,6 +168,7 @@ public final class ICUResourceBundleReader {
                     && this.localeID.equals(info.localeID);
         }
 
+        @Override
         public int hashCode() {
             return baseName.hashCode() ^ localeID.hashCode();
         }
@@ -216,7 +218,7 @@ public final class ICUResourceBundleReader {
         // set pool bundle if necessary
         if (usesPoolBundle) {
             poolBundleReader = getReader(baseName, "pool", loader);
-            if (!poolBundleReader.isPoolBundle) {
+            if (poolBundleReader == null || !poolBundleReader.isPoolBundle) {
                 throw new IllegalStateException("pool.res is not a pool bundle");
             }
             if (poolBundleReader.poolCheckSum != poolCheckSum) {
@@ -530,7 +532,7 @@ public final class ICUResourceBundleReader {
                 length=((first-0xdfef)<<16)|b16BitUnits.charAt(offset+1);
                 offset+=2;
             } else {
-                length=((int)b16BitUnits.charAt(offset+1)<<16)|b16BitUnits.charAt(offset+2);
+                length=(b16BitUnits.charAt(offset+1)<<16)|b16BitUnits.charAt(offset+2);
                 offset+=3;
             }
             // Cast up to CharSequence to insulate against the CharBuffer.subSequence() return type change
@@ -973,35 +975,6 @@ public final class ICUResourceBundleReader {
     }
     static class Array extends Container implements UResource.Array {
         Array() {}
-        void getAllItems(ICUResourceBundleReader reader,
-                UResource.Key key, ReaderValue value, ArraySink sink) {
-            sink.enter(size);
-            for (int i = 0; i < size; ++i) {
-                int res = getContainerResource(reader, i);
-                int type = RES_GET_TYPE(res);
-                if (URES_IS_ARRAY(type)) {
-                    ArraySink subSink = sink.getOrCreateArraySink(i);
-                    if (subSink != null) {
-                        Array array = reader.getArray(res);
-                        array.getAllItems(reader, key, value, subSink);
-                    }
-                } else if (URES_IS_TABLE(type)) {
-                    TableSink subSink = sink.getOrCreateTableSink(i);
-                    if (subSink != null) {
-                        Table table = reader.getTable(res);
-                        table.getAllItems(reader, key, value, subSink);
-                    }
-                /* TODO: settle on how to deal with aliases, port to C++
-                } else if (type == ICUResourceBundle.ALIAS) {
-                    throw new UnsupportedOperationException(
-                            "aliases not handled in resource enumeration"); */
-                } else {
-                    value.res = res;
-                    sink.put(i, value);
-                }
-            }
-            sink.leave();
-        }
         @Override
         public boolean getValue(int i, UResource.Value value) {
             if (0 <= i && i < size) {
@@ -1076,42 +1049,6 @@ public final class ICUResourceBundleReader {
         @Override
         int getResource(ICUResourceBundleReader reader, String resKey) {
             return getContainerResource(reader, findTableItem(reader, resKey));
-        }
-        void getAllItems(ICUResourceBundleReader reader,
-                UResource.Key key, ReaderValue value, TableSink sink) {
-            sink.enter(size);
-            for (int i = 0; i < size; ++i) {
-                if (keyOffsets != null) {
-                    reader.setKeyFromKey16(keyOffsets[i], key);
-                } else {
-                    reader.setKeyFromKey32(key32Offsets[i], key);
-                }
-                int res = getContainerResource(reader, i);
-                int type = RES_GET_TYPE(res);
-                if (URES_IS_ARRAY(type)) {
-                    ArraySink subSink = sink.getOrCreateArraySink(key);
-                    if (subSink != null) {
-                        Array array = reader.getArray(res);
-                        array.getAllItems(reader, key, value, subSink);
-                    }
-                } else if (URES_IS_TABLE(type)) {
-                    TableSink subSink = sink.getOrCreateTableSink(key);
-                    if (subSink != null) {
-                        Table table = reader.getTable(res);
-                        table.getAllItems(reader, key, value, subSink);
-                    }
-                /* TODO: settle on how to deal with aliases, port to C++
-                } else if (type == ICUResourceBundle.ALIAS) {
-                    throw new UnsupportedOperationException(
-                            "aliases not handled in resource enumeration"); */
-                } else if (reader.isNoInheritanceMarker(res)) {
-                    sink.putNoFallback(key);
-                } else {
-                    value.res = res;
-                    sink.put(key, value);
-                }
-            }
-            sink.leave();
         }
         @Override
         public boolean getKeyAndValue(int i, UResource.Key key, UResource.Value value) {

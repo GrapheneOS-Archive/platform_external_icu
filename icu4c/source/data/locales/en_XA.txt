@@ -1,11 +1,5 @@
-﻿// ***************************************************************************
-// *
-// * Copyright (C) 2016 International Business Machines
-// * Corporation and others. All Rights Reserved.
-// * Tool: org.unicode.cldr.icu.NewLdml2IcuConverter
-// * Source File: <path>/common/main/en_XA.xml
-// *
-// ***************************************************************************
+﻿// © 2016 and later: Unicode, Inc. and others.
+// License & terms of use: http://www.unicode.org/copyright.html#License
 en_XA{
     AuxExemplarCharacters{
         "[a b c d e f g h i j k l m n o p q r s t u v w x y z \u2045 å \u2003 ƀ ç ð é"
@@ -455,6 +449,10 @@ en_XA{
                 MEd{"[E, M/d]"}
                 MMM{"[LLL]"}
                 MMMEd{"[E, MMM d]"}
+                MMMMW{
+                    one{"['ŵééķ' Ŵ 'öƒ' MMM one two]"}
+                    other{"['ŵééķ' Ŵ 'öƒ' MMM one two]"}
+                }
                 MMMMd{"[MMMM d]"}
                 MMMd{"[MMM d]"}
                 Md{"[M/d]"}
@@ -475,6 +473,10 @@ en_XA{
                 yMd{"[M/d/y]"}
                 yQQQ{"[QQQ y]"}
                 yQQQQ{"[QQQQ y]"}
+                yw{
+                    one{"['ŵééķ' ŵ 'öƒ' y one two]"}
+                    other{"['ŵééķ' ŵ 'öƒ' y one two]"}
+                }
             }
             dayNames{
                 format{
@@ -527,6 +529,16 @@ en_XA{
                     }
                 }
                 stand-alone{
+                    abbreviated{
+                        afternoon1{"[åƒţéŕñööñ one two]"}
+                        am{"[ÅṀ one]"}
+                        evening1{"[éṽéñîñĝ one]"}
+                        midnight{"[ɱîðñîĝĥţ one]"}
+                        morning1{"[ɱöŕñîñĝ one]"}
+                        night1{"[ñîĝĥţ one]"}
+                        noon{"[ñööñ one]"}
+                        pm{"[ÞṀ one]"}
+                    }
                     wide{
                         afternoon1{"[åƒţéŕñööñ one two]"}
                         am{"[ÅṀ one]"}
@@ -842,6 +854,94 @@ en_XA{
             }
         }
     }
+    characterLabel{
+        activities{"[åçţîṽîţý one]"}
+        african_scripts{"[Åƒŕîçåñ šçŕîþţ one two]"}
+        american_scripts{"[Åɱéŕîçåñ šçŕîþţ one two]"}
+        animal{"[åñîɱåļ one]"}
+        animals_nature{"[åñîɱåļ öŕ ñåţûŕé one two]"}
+        arrows{"[åŕŕöŵ one]"}
+        body{"[ƀöðý one]"}
+        box_drawing{"[ƀöẋ ðŕåŵîñĝ one two]"}
+        braille{"[ƀŕåîļļé one]"}
+        building{"[ƀûîļðîñĝ one]"}
+        bullets_stars{"[ƀûļļéţ öŕ šţåŕ one two]"}
+        consonantal_jamo{"[çöñšöñåñţåļ ĵåɱö one two]"}
+        currency_symbols{"[çûŕŕéñçý šýɱƀöļ one two]"}
+        dash_connector{"[ðåšĥ öŕ çöññéçţöŕ one two three]"}
+        digits{"[ðîĝîţ one]"}
+        dingbats{"[ðîñĝƀåţ one]"}
+        divination_symbols{"[ðîṽîñåţîöñ šýɱƀöļ one two three]"}
+        downwards_arrows{"[ðöŵñŵåŕðš åŕŕöŵ one two]"}
+        downwards_upwards_arrows{"[ðöŵñŵåŕðš ûþŵåŕðš åŕŕöŵ one two three]"}
+        east_asian_scripts{"[Éåšţ Åšîåñ šçŕîþţ one two three]"}
+        emoji{"[éɱöĵî one]"}
+        european_scripts{"[Éûŕöþéåñ šçŕîþţ one two]"}
+        female{"[ƒéɱåļé one]"}
+        flag{"[ƒļåĝ one]"}
+        flags{"[ƒļåĝš one]"}
+        food_drink{"[ƒööð ⅋ ðŕîñķ one two]"}
+        format{"[ƒöŕɱåţ one]"}
+        format_whitespace{"[ƒöŕɱåţ ⅋ ŵĥîţéšþåçé one two three]"}
+        full_width_form_variant{"[ƒûļļ‐ŵîðţĥ ṽåŕîåñţ one two three]"}
+        geometric_shapes{"[ĝéöɱéţŕîç šĥåþé one two]"}
+        half_width_form_variant{"[ĥåļƒ‐ŵîðţĥ ṽåŕîåñţ one two three]"}
+        han_characters{"[Ĥåñ çĥåŕåçţéŕ one two]"}
+        han_radicals{"[Ĥåñ ŕåðîçåļ one two]"}
+        hanja{"[ĥåñĵå one]"}
+        hanzi_simplified{"[Ĥåñžî (šîɱþļîƒîéð) one two three]"}
+        hanzi_traditional{"[Ĥåñžî (ţŕåðîţîöñåļ) one two three]"}
+        heart{"[ĥéåŕţ one]"}
+        historic_scripts{"[ĥîšţöŕîç šçŕîþţ one two]"}
+        ideographic_desc_characters{"[îðéöĝŕåþĥîç ðéšç· çĥåŕåçţéŕ one two three]"}
+        japanese_kana{"[Ĵåþåñéšé ķåñå one two]"}
+        kanbun{"[ķåñƀûñ one]"}
+        kanji{"[ķåñĵî one]"}
+        keycap{"[ķéýçåþ one]"}
+        leftwards_arrows{"[ļéƒţŵåŕðš åŕŕöŵ one two]"}
+        leftwards_rightwards_arrows{"[ļéƒţŵåŕðš ŕîĝĥţŵåŕðš åŕŕöŵ one two three]"}
+        letterlike_symbols{"[ļéţţéŕļîķé šýɱƀöļ one two three]"}
+        limited_use{"[ļîɱîţéð‐ûšé one two]"}
+        male{"[ɱåļé one]"}
+        math_symbols{"[ɱåţĥ šýɱƀöļ one two]"}
+        middle_eastern_scripts{"[Ṁîððļé Éåšţéŕñ šçŕîþţ one two three]"}
+        miscellaneous{"[ɱîšçéļļåñéöûš one two]"}
+        modern_scripts{"[ɱöðéŕñ šçŕîþţ one two]"}
+        modifier{"[ɱöðîƒîéŕ one]"}
+        musical_symbols{"[ɱûšîçåļ šýɱƀöļ one two]"}
+        nature{"[ñåţûŕé one]"}
+        nonspacing{"[ñöñšþåçîñĝ one two]"}
+        numbers{"[ñûɱƀéŕš one]"}
+        objects{"[öƀĵéçţ one]"}
+        other{"[öţĥéŕ one]"}
+        paired{"[þåîŕéð one]"}
+        person{"[þéŕšöñ one]"}
+        phonetic_alphabet{"[þĥöñéţîç åļþĥåƀéţ one two three]"}
+        pictographs{"[þîçţöĝŕåþĥ one two]"}
+        place{"[þļåçé one]"}
+        plant{"[þļåñţ one]"}
+        punctuation{"[þûñçţûåţîöñ one two]"}
+        rightwards_arrows{"[ŕîĝĥţŵåŕðš åŕŕöŵ one two]"}
+        sign_standard_symbols{"[šîĝñ öŕ šýɱƀöļ one two]"}
+        small_form_variant{"[šɱåļļ ṽåŕîåñţš one two]"}
+        smiley{"[šɱîļéý one]"}
+        smileys_people{"[šɱîļéý öŕ þéŕšöñ one two]"}
+        south_asian_scripts{"[Šöûţĥ Åšîåñ šçŕîþţ one two three]"}
+        southeast_asian_scripts{"[Šöûţĥéåšţ Åšîåñ šçŕîþţ one two three]"}
+        spacing{"[šþåçîñĝ one]"}
+        sport{"[šþöŕţ one]"}
+        symbols{"[šýɱƀöļ one]"}
+        technical_symbols{"[ţéçĥñîçåļ šýɱƀöļ one two]"}
+        tone_marks{"[ţöñé ɱåŕķ one two]"}
+        travel{"[ţŕåṽéļ one]"}
+        travel_places{"[ţŕåṽéļ öŕ þļåçé one two]"}
+        upwards_arrows{"[ûþŵåŕðš åŕŕöŵš one two]"}
+        variant_forms{"[ṽåŕîåñţ one]"}
+        vocalic_jamo{"[ṽöçåļîç ĵåɱö one two]"}
+        weather{"[ŵéåţĥéŕ one]"}
+        western_asian_scripts{"[Ŵéšţéŕñ Åšîåñ šçŕîþţ one two three]"}
+        whitespace{"[ŵĥîţéšþåçé one two]"}
+    }
     fields{
         day{
             dn{"[ðåý one]"}
@@ -887,6 +987,16 @@ en_XA{
                 "0"{"[ţĥîš Ƒŕîðåý one two]"}
                 "1"{"[ñéẋţ Ƒŕîðåý one two]"}
             }
+            relativeTime{
+                future{
+                    one{"[îñ {0} Ƒŕîðåý one two]"}
+                    other{"[îñ {0} Ƒŕîðåýš one two]"}
+                }
+                past{
+                    one{"[{0} Ƒŕîðåý åĝö one two]"}
+                    other{"[{0} Ƒŕîðåýš åĝö one two]"}
+                }
+            }
         }
         fri-short{
             relative{
@@ -894,9 +1004,22 @@ en_XA{
                 "0"{"[ţĥîš Ƒŕî· one two]"}
                 "1"{"[ñéẋţ Ƒŕî· one two]"}
             }
+            relativeTime{
+                future{
+                    one{"[îñ {0} Ƒŕî· one]"}
+                    other{"[îñ {0} Ƒŕî· one]"}
+                }
+                past{
+                    one{"[{0} Ƒŕî· åĝö one two]"}
+                    other{"[{0} Ƒŕî· åĝö one two]"}
+                }
+            }
         }
         hour{
             dn{"[ĥöûŕ one]"}
+            relative{
+                "0"{"[ţĥîš ĥöûŕ one two]"}
+            }
             relativeTime{
                 future{
                     one{"[îñ {0} ĥöûŕ one]"}
@@ -923,6 +1046,9 @@ en_XA{
         }
         minute{
             dn{"[ɱîñûţé one]"}
+            relative{
+                "0"{"[ţĥîš ɱîñûţé one two]"}
+            }
             relativeTime{
                 future{
                     one{"[îñ {0} ɱîñûţé one two]"}
@@ -953,12 +1079,32 @@ en_XA{
                 "0"{"[ţĥîš Ṁöñðåý one two]"}
                 "1"{"[ñéẋţ Ṁöñðåý one two]"}
             }
+            relativeTime{
+                future{
+                    one{"[îñ {0} Ṁöñðåý one two]"}
+                    other{"[îñ {0} Ṁöñðåýš one two]"}
+                }
+                past{
+                    one{"[{0} Ṁöñðåý åĝö one two]"}
+                    other{"[{0} Ṁöñðåýš åĝö one two]"}
+                }
+            }
         }
         mon-short{
             relative{
                 "-1"{"[ļåšţ Ṁöñ· one two]"}
                 "0"{"[ţĥîš Ṁöñ· one two]"}
                 "1"{"[ñéẋţ Ṁöñ· one two]"}
+            }
+            relativeTime{
+                future{
+                    one{"[îñ {0} Ṁöñ· one]"}
+                    other{"[îñ {0} Ṁöñ· one]"}
+                }
+                past{
+                    one{"[{0} Ṁöñ· åĝö one two]"}
+                    other{"[{0} Ṁöñ· åĝö one two]"}
+                }
             }
         }
         month{
@@ -1039,12 +1185,32 @@ en_XA{
                 "0"{"[ţĥîš Šåţûŕðåý one two]"}
                 "1"{"[ñéẋţ Šåţûŕðåý one two]"}
             }
+            relativeTime{
+                future{
+                    one{"[îñ {0} Šåţûŕðåý one two]"}
+                    other{"[îñ {0} Šåţûŕðåýš one two]"}
+                }
+                past{
+                    one{"[{0} Šåţûŕðåý åĝö one two]"}
+                    other{"[{0} Šåţûŕðåýš åĝö one two]"}
+                }
+            }
         }
         sat-short{
             relative{
                 "-1"{"[ļåšţ Šåţ· one two]"}
                 "0"{"[ţĥîš Šåţ· one two]"}
                 "1"{"[ñéẋţ Šåţ· one two]"}
+            }
+            relativeTime{
+                future{
+                    one{"[îñ {0} Šåţ· one]"}
+                    other{"[îñ {0} Šåţ· one]"}
+                }
+                past{
+                    one{"[{0} Šåţ· åĝö one two]"}
+                    other{"[{0} Šåţ· åĝö one two]"}
+                }
             }
         }
         second{
@@ -1085,12 +1251,32 @@ en_XA{
                 "0"{"[ţĥîš Šûñðåý one two]"}
                 "1"{"[ñéẋţ Šûñðåý one two]"}
             }
+            relativeTime{
+                future{
+                    one{"[îñ {0} Šûñðåý one two]"}
+                    other{"[îñ {0} Šûñðåýš one two]"}
+                }
+                past{
+                    one{"[{0} Šûñðåý åĝö one two]"}
+                    other{"[{0} Šûñðåýš åĝö one two]"}
+                }
+            }
         }
         sun-short{
             relative{
                 "-1"{"[ļåšţ Šûñ· one two]"}
                 "0"{"[ţĥîš Šûñ· one two]"}
                 "1"{"[ñéẋţ Šûñ· one two]"}
+            }
+            relativeTime{
+                future{
+                    one{"[îñ {0} Šûñ· one]"}
+                    other{"[îñ {0} Šûñ· one]"}
+                }
+                past{
+                    one{"[{0} Šûñ· åĝö one two]"}
+                    other{"[{0} Šûñ· åĝö one two]"}
+                }
             }
         }
         thu{
@@ -1099,12 +1285,32 @@ en_XA{
                 "0"{"[ţĥîš Ţĥûŕšðåý one two]"}
                 "1"{"[ñéẋţ Ţĥûŕšðåý one two]"}
             }
+            relativeTime{
+                future{
+                    one{"[îñ {0} Ţĥûŕšðåý one two]"}
+                    other{"[îñ {0} Ţĥûŕšðåýš one two]"}
+                }
+                past{
+                    one{"[{0} Ţĥûŕšðåý åĝö one two]"}
+                    other{"[{0} Ţĥûŕšðåýš åĝö one two]"}
+                }
+            }
         }
         thu-short{
             relative{
                 "-1"{"[ļåšţ Ţĥû· one two]"}
                 "0"{"[ţĥîš Ţĥû· one two]"}
                 "1"{"[ñéẋţ Ţĥû· one two]"}
+            }
+            relativeTime{
+                future{
+                    one{"[îñ {0} Ţĥû· one]"}
+                    other{"[îñ {0} Ţĥû· one]"}
+                }
+                past{
+                    one{"[{0} Ţĥû· åĝö one two]"}
+                    other{"[{0} Ţĥû· åĝö one two]"}
+                }
             }
         }
         tue{
@@ -1113,12 +1319,32 @@ en_XA{
                 "0"{"[ţĥîš Ţûéšðåý one two]"}
                 "1"{"[ñéẋţ Ţûéšðåý one two]"}
             }
+            relativeTime{
+                future{
+                    one{"[îñ {0} Ţûéšðåý one two]"}
+                    other{"[îñ {0} Ţûéšðåýš one two]"}
+                }
+                past{
+                    one{"[{0} Ţûéšðåý åĝö one two]"}
+                    other{"[{0} Ţûéšðåýš åĝö one two]"}
+                }
+            }
         }
         tue-short{
             relative{
                 "-1"{"[ļåšţ Ţûé· one two]"}
                 "0"{"[ţĥîš Ţûé· one two]"}
                 "1"{"[ñéẋţ Ţûé· one two]"}
+            }
+            relativeTime{
+                future{
+                    one{"[îñ {0} Ţûé· one]"}
+                    other{"[îñ {0} Ţûé· one]"}
+                }
+                past{
+                    one{"[{0} Ţûé· åĝö one two]"}
+                    other{"[{0} Ţûé· åĝö one two]"}
+                }
             }
         }
         wed{
@@ -1127,12 +1353,32 @@ en_XA{
                 "0"{"[ţĥîš Ŵéðñéšðåý one two]"}
                 "1"{"[ñéẋţ Ŵéðñéšðåý one two]"}
             }
+            relativeTime{
+                future{
+                    one{"[îñ {0} Ŵéðñéšðåý one two]"}
+                    other{"[îñ {0} Ŵéðñéšðåýš one two]"}
+                }
+                past{
+                    one{"[{0} Ŵéðñéšðåý åĝö one two]"}
+                    other{"[{0} Ŵéðñéšðåýš åĝö one two]"}
+                }
+            }
         }
         wed-short{
             relative{
                 "-1"{"[ļåšţ Ŵéð· one two]"}
                 "0"{"[ţĥîš Ŵéð· one two]"}
                 "1"{"[ñéẋţ Ŵéð· one two]"}
+            }
+            relativeTime{
+                future{
+                    one{"[îñ {0} Ŵéð· one]"}
+                    other{"[îñ {0} Ŵéð· one]"}
+                }
+                past{
+                    one{"[{0} Ŵéð· åĝö one two]"}
+                    other{"[{0} Ŵéð· åĝö one two]"}
+                }
             }
         }
         week{
@@ -1142,6 +1388,7 @@ en_XA{
                 "0"{"[ţĥîš ŵééķ one two]"}
                 "1"{"[ñéẋţ ŵééķ one two]"}
             }
+            relativePeriod{"[ţĥé ŵééķ öƒ {0} one two]"}
             relativeTime{
                 future{
                     one{"[îñ {0} ŵééķ one]"}
@@ -1238,17 +1485,5 @@ en_XA{
         UK{"[ÛĶ one]"}
         US{"[ÛŠ one]"}
         metric{"[Ṁéţŕîç one]"}
-    }
-    transformNames{
-        BGN{"[ƁĜÑ one]"}
-        Numeric{"[Ñûɱéŕîç one]"}
-        Tone{"[Ţöñé one]"}
-        UNGEGN{"[ÛÑĜÉĜÑ one]"}
-        x-Accents{"[Åççéñţš one]"}
-        x-Fullwidth{"[Ƒûļļŵîðţĥ one two]"}
-        x-Halfwidth{"[Ĥåļƒŵîðţĥ one two]"}
-        x-Jamo{"[Ĵåɱö one]"}
-        x-Pinyin{"[Þîñýîñ one]"}
-        x-Publishing{"[Þûƀļîšĥîñĝ one two]"}
     }
 }
