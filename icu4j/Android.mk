@@ -89,7 +89,7 @@ include $(CLEAR_VARS)
 LOCAL_SRC_FILES := $(icu4j_test_src_files)
 LOCAL_JAVA_RESOURCE_DIRS := $(icu4j_test_resource_dirs)
 LOCAL_STATIC_JAVA_LIBRARIES := icu4j-testdata
-LOCAL_JAVA_LIBRARIES := icu4j
+LOCAL_JAVA_LIBRARIES := icu4j junit junit-params
 LOCAL_MODULE := icu4j-tests
 include $(BUILD_STATIC_JAVA_LIBRARY)
 
@@ -107,7 +107,7 @@ include $(CLEAR_VARS)
 LOCAL_SRC_FILES := $(icu4j_test_src_files)
 LOCAL_JAVA_RESOURCE_DIRS := $(icu4j_test_resource_dirs)
 LOCAL_STATIC_JAVA_LIBRARIES := icu4j-testdata-host
-LOCAL_JAVA_LIBRARIES := icu4j-host
+LOCAL_JAVA_LIBRARIES := icu4j-host junit-host junit-params-host
 LOCAL_MODULE := icu4j-tests-host
 include $(BUILD_HOST_JAVA_LIBRARY)
 
@@ -120,7 +120,7 @@ include $(CLEAR_VARS)
 LOCAL_SRC_FILES := $(icu4j_test_src_files)
 LOCAL_JAVA_RESOURCE_DIRS := $(icu4j_test_resource_dirs)
 LOCAL_STATIC_JAVA_LIBRARIES := icu4j-testdata-host
-LOCAL_JAVA_LIBRARIES := icu4j-hostdex
+LOCAL_JAVA_LIBRARIES := icu4j-hostdex junit-hostdex junit-params-hostdex
 LOCAL_MODULE := icu4j-tests-hostdex
 include $(BUILD_HOST_DALVIK_JAVA_LIBRARY)
 
