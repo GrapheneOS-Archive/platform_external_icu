@@ -1,4 +1,6 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
+// © 2016 and later: Unicode, Inc. and others.
+// License & terms of use: http://www.unicode.org/copyright.html#License
 /*
  *******************************************************************************
  * Copyright (C) 2005-2016 International Business Machines Corporation and
@@ -123,6 +125,7 @@ public class RuleBasedBreakIterator extends BreakIterator {
      * @return A newly-constructed RuleBasedBreakIterator with the same
      * behavior as this one.
      */
+    @Override
     public Object clone()
     {
         RuleBasedBreakIterator result = (RuleBasedBreakIterator)super.clone();
@@ -136,6 +139,7 @@ public class RuleBasedBreakIterator extends BreakIterator {
      * Returns true if both BreakIterators are of the same class, have the same
      * rules, and iterate over the same text.
      */
+    @Override
     public boolean equals(Object that) {
         if (that == null) {
             return false;
@@ -169,6 +173,7 @@ public class RuleBasedBreakIterator extends BreakIterator {
      * Returns the description (rules) used to create this iterator.
      * (In ICU4C, the same function is RuleBasedBreakIterator::getRules())
      */
+    @Override
     public String toString() {
         String retStr = "";
         if (fRData != null) {
@@ -181,6 +186,7 @@ public class RuleBasedBreakIterator extends BreakIterator {
      * Compute a hashcode for this BreakIterator
      * @return A hash code
      */
+    @Override
     public int hashCode()
     {
         return fRData.fRuleSource.hashCode();
@@ -287,8 +293,11 @@ public class RuleBasedBreakIterator extends BreakIterator {
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
-    public void dump() {
-        this.fRData.dump();
+    public void dump(java.io.PrintStream out) {
+        if (out == null) {
+            out = System.out;
+        }
+        this.fRData.dump(out);
     }
 
     /**
@@ -318,6 +327,7 @@ public class RuleBasedBreakIterator extends BreakIterator {
      * (i.e., the CharacterIterator's starting offset).
      * @return The offset of the beginning of the text.
      */
+    @Override
     public int first() {
         fCachedBreakPositions = null;
         fDictionaryCharCount = 0;
@@ -336,6 +346,7 @@ public class RuleBasedBreakIterator extends BreakIterator {
      * (i.e., the CharacterIterator's ending offset).
      * @return The text's past-the-end offset.
      */
+    @Override
     public int last() {
         fCachedBreakPositions = null;
         fDictionaryCharCount = 0;
@@ -366,6 +377,7 @@ public class RuleBasedBreakIterator extends BreakIterator {
      * @return The character offset of the boundary position n boundaries away from
      * the current one.
      */
+    @Override
     public int next(int n) {
         int result = current();
         while (n > 0) {
@@ -383,6 +395,7 @@ public class RuleBasedBreakIterator extends BreakIterator {
      * Advances the iterator to the next boundary position.
      * @return The position of the first boundary after this one.
      */
+    @Override
     public int next() {
         // if we have cached break positions and we're still in the range
         // covered by them, just move one step forward in the cache
@@ -571,6 +584,7 @@ public class RuleBasedBreakIterator extends BreakIterator {
      * Moves the iterator backwards, to the last boundary preceding this one.
      * @return The position of the last boundary position preceding this one.
      */
+    @Override
     public int previous() {
         int result;
         int startPos;
@@ -668,6 +682,7 @@ public class RuleBasedBreakIterator extends BreakIterator {
      * @param offset The position from which to begin searching for a break position.
      * @return The position of the first break after the current position.
      */
+    @Override
     public int following(int offset) {
         CharacterIterator text = getText();
 
@@ -781,6 +796,7 @@ public class RuleBasedBreakIterator extends BreakIterator {
      * @param offset The position to begin searching for a break from.
      * @return The position of the last boundary before the starting position.
      */
+    @Override
     public int preceding(int offset) {
         CharacterIterator text = getText();
 
@@ -888,6 +904,7 @@ public class RuleBasedBreakIterator extends BreakIterator {
      * @param offset the offset to check.
      * @return True if "offset" is a boundary position.
      */
+    @Override
     public boolean isBoundary(int offset) {
         checkOffset(offset, fText);
 
@@ -920,6 +937,7 @@ public class RuleBasedBreakIterator extends BreakIterator {
      * Returns the current iteration position.
      * @return The current iteration position.
      */
+    @Override
     public int current() {
         return (fText != null) ? fText.getIndex() : BreakIterator.DONE;
     }
@@ -969,6 +987,7 @@ public class RuleBasedBreakIterator extends BreakIterator {
      * @hide draft / provisional / internal are hidden on Android
      */
 
+    @Override
     public int  getRuleStatus() {
         makeRuleStatusValid();
         //   Status records have this form:
@@ -1005,6 +1024,7 @@ public class RuleBasedBreakIterator extends BreakIterator {
      *                  not the reduced number that were actually returned.
      * @hide draft / provisional / internal are hidden on Android
      */
+    @Override
     public int getRuleStatusVec(int[] fillInArray) {
         makeRuleStatusValid();
         int numStatusVals = fRData.fStatusTable[fLastRuleStatusIndex];
@@ -1024,6 +1044,7 @@ public class RuleBasedBreakIterator extends BreakIterator {
      * you need to change it, clone it first.
      * @return An iterator over the text being analyzed.
      */
+    @Override
     public CharacterIterator getText() {
         return fText;
     }
@@ -1033,6 +1054,7 @@ public class RuleBasedBreakIterator extends BreakIterator {
      * the current iteration position to the beginning of the text.
      * @param newText An iterator over the text to analyze.
      */
+    @Override
     public void setText(CharacterIterator newText) {
         fText = newText;
         // first() resets the caches
@@ -1286,7 +1308,7 @@ public class RuleBasedBreakIterator extends BreakIterator {
                 // Advance to the next character.
                 // If this is a beginning-of-input loop iteration, don't advance.
                 //    The next iteration will be processing the first real input character.
-                c = (int)text.next();
+                c = text.next();
                 if (c >= UTF16.LEAD_SURROGATE_MIN_VALUE) {
                     c = nextTrail32(text, c);
                 }

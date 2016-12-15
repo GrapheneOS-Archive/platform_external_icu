@@ -1,4 +1,6 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
+// © 2016 and later: Unicode, Inc. and others.
+// License & terms of use: http://www.unicode.org/copyright.html#License
 /*
 **********************************************************************
 * Copyright (c) 2004-2016, International Business Machines
@@ -26,6 +28,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 
+import org.junit.Test;
+
 import android.icu.text.DateFormat;
 import android.icu.text.DecimalFormat;
 import android.icu.text.DecimalFormatSymbols;
@@ -36,16 +40,9 @@ import android.icu.text.SimpleDateFormat;
 import android.icu.text.UFormat;
 import android.icu.util.TimeZone;
 import android.icu.util.ULocale;
-import org.junit.runner.RunWith;
-import android.icu.junit.IcuTestFmwkRunner;
 
-@RunWith(IcuTestFmwkRunner.class)
 public class TestMessageFormat extends android.icu.dev.test.TestFmwk {
-
-    public static void main(String[] args) throws Exception {
-        new TestMessageFormat().run(args);
-    }
-
+    @Test
     public void TestBug3()
     {
         double myNumber = -123456;
@@ -123,6 +120,7 @@ public class TestMessageFormat extends android.icu.dev.test.TestFmwk {
         }
     }
 
+    @Test
     public void TestBug1()
     {
         final double limit[] = {0.0, 1.0, 2.0};
@@ -133,6 +131,7 @@ public class TestMessageFormat extends android.icu.dev.test.TestFmwk {
         assertEquals("ChoiceFormat.format", formats[1], cf.format(1));
     }
 
+    @Test
     public void TestBug2()
     {
         // {sfb} use double format in pattern, so result will match (not strictly necessary)
@@ -146,6 +145,7 @@ public class TestMessageFormat extends android.icu.dev.test.TestFmwk {
         }
     }
 
+    @Test
     public void TestPattern() // aka PatternTest()
     {
         Object testArgs[] = {
@@ -245,6 +245,7 @@ public class TestMessageFormat extends android.icu.dev.test.TestFmwk {
         }
     }
 
+    @Test
     public void TestSample() // aka sample()
     {
         MessageFormat form = null;
@@ -262,6 +263,7 @@ public class TestMessageFormat extends android.icu.dev.test.TestFmwk {
                      form.format(testArgs1, buffer2, fieldpos).toString());
     }
 
+    @Test
     public void TestStaticFormat()
     {
         Object arguments[] = {
@@ -278,6 +280,7 @@ public class TestMessageFormat extends android.icu.dev.test.TestFmwk {
 
     static final int FieldPosition_DONT_CARE = -1;
 
+    @Test
     public void TestSimpleFormat()
     {
         Object testArgs1[] = {new Integer(0), "MyDisk"};
@@ -307,6 +310,7 @@ public class TestMessageFormat extends android.icu.dev.test.TestFmwk {
                      string.toString());
     }
 
+    @Test
     public void TestMsgFormatChoice()
     {
         MessageFormat form = new MessageFormat("The disk \"{1}\" contains {0}.");
@@ -342,6 +346,7 @@ public class TestMessageFormat extends android.icu.dev.test.TestFmwk {
     //  API Tests
     //---------------------------------
 
+    @Test
     public void TestClone()
     {
         MessageFormat x = new MessageFormat("There are {0} files on {1}");
@@ -365,6 +370,7 @@ public class TestMessageFormat extends android.icu.dev.test.TestFmwk {
 
     }
 
+    @Test
     public void TestEquals()
     {
         MessageFormat x = new MessageFormat("There are {0} files on {1}");
@@ -375,6 +381,7 @@ public class TestMessageFormat extends android.icu.dev.test.TestFmwk {
 
     }
 
+    @Test
     public void TestNotEquals()
     {
         MessageFormat x = new MessageFormat("There are {0} files on {1}");
@@ -390,6 +397,7 @@ public class TestMessageFormat extends android.icu.dev.test.TestFmwk {
         }
     }
 
+    @Test
     public void TestHashCode()
     {
         ULocale save = ULocale.getDefault();
@@ -417,6 +425,7 @@ public class TestMessageFormat extends android.icu.dev.test.TestFmwk {
         ULocale.setDefault(save);
     }
 
+    @Test
     public void TestSetLocale()
     {
         Object arguments[] = {
@@ -484,6 +493,7 @@ public class TestMessageFormat extends android.icu.dev.test.TestFmwk {
     }
 
     @SuppressWarnings("static-access")
+    @Test
     public void TestFormat()
     {
         final Object ft_arr[] =
@@ -514,7 +524,7 @@ public class TestMessageFormat extends android.icu.dev.test.TestFmwk {
             result,
             fp);
         assertEquals("format", compareStr, result.toString());
-        
+
         Map<String,Object> map = new HashMap<String,Object>();
         try{
             msg.format("", map);
@@ -524,6 +534,7 @@ public class TestMessageFormat extends android.icu.dev.test.TestFmwk {
         }
     }
 
+    @Test
     public void TestParse()
     {
         String msgFormatString = "{0} =sep= {1}";
@@ -589,6 +600,7 @@ public class TestMessageFormat extends android.icu.dev.test.TestFmwk {
      * Of course, in Java there is no adopt, but we retain the same
      * method name. [alan]
      */
+    @Test
     public void TestAdopt()
     {
         String formatStr = "{0,date},{1},{2,number}";
@@ -787,6 +799,7 @@ public class TestMessageFormat extends android.icu.dev.test.TestFmwk {
      * Verify that MessageFormat accomodates more than 10 arguments and
      * more than 10 subformats.
      */
+    @Test
     public void TestUnlimitedArgsAndSubformats() {
         final String pattern =
             "On {0,date} (aka {0,date,short}, aka {0,date,long}) "+
@@ -828,6 +841,7 @@ public class TestMessageFormat extends android.icu.dev.test.TestFmwk {
     }
 
     // test RBNF extensions to message format
+    @Test
     public void TestRBNF() {
         // WARNING: this depends on the RBNF formats for en_US
         Locale locale = Locale.US;
@@ -878,6 +892,7 @@ public class TestMessageFormat extends android.icu.dev.test.TestFmwk {
         }
     }
 
+    @Test
     public void TestSetGetFormats()
     {
         Object arguments[] = {
@@ -953,6 +968,7 @@ public class TestMessageFormat extends android.icu.dev.test.TestFmwk {
     }
 
     // Test the fix pattern api
+    @Test
     public void TestAutoQuoteApostrophe() {
         final String[] patterns = { // new pattern, expected pattern
             "'", "''",
@@ -974,14 +990,15 @@ public class TestMessageFormat extends android.icu.dev.test.TestFmwk {
             assertEquals("[" + (i/2) + "] \"" + patterns[i] + "\"", patterns[i+1], MessageFormat.autoQuoteApostrophe(patterns[i]));
         }
     }
-    
-    // This tests passing named arguments instead of numbers to format(). 
+
+    // This tests passing named arguments instead of numbers to format().
+    @Test
     public void testFormatNamedArguments() {
         Map arguments = new HashMap();
         arguments.put("startDate", new Date(871068000000L));
 
         StringBuffer result = new StringBuffer();
-        
+
         String formatStr = "On {startDate,date}, it began.";
         String compareStr = "On Aug 8, 1997, it began.";
 
@@ -1001,9 +1018,10 @@ public class TestMessageFormat extends android.icu.dev.test.TestFmwk {
             fp);
         assertEquals("format", compareStr, result.toString());
     }
-    
+
     // This tests parsing formatted messages with named arguments instead of
-    // numbers. 
+    // numbers.
+    @Test
     public void testParseNamedArguments() {
         String msgFormatString = "{foo} =sep= {bar}";
         MessageFormat msg = new MessageFormat(msgFormatString);
@@ -1022,7 +1040,7 @@ public class TestMessageFormat extends android.icu.dev.test.TestFmwk {
         }
 
         ParsePosition pp = new ParsePosition(0);
-        Map fmt_map = msg.parseToMap(source, pp); 
+        Map fmt_map = msg.parseToMap(source, pp);
         if (pp.getIndex()==0 || fmt_map==null) {
             errln("*** MSG parse (ustring, parsepos., count) error.");
         } else {
@@ -1035,7 +1053,7 @@ public class TestMessageFormat extends android.icu.dev.test.TestFmwk {
         }
 
         pp.setIndex(0);
-       
+
         Map fmta = (Map) msg.parseObject( source, pp );
         if (pp.getIndex() == 0) {
             errln("*** MSG parse (ustring, Object, parsepos ) error.");
@@ -1048,10 +1066,11 @@ public class TestMessageFormat extends android.icu.dev.test.TestFmwk {
             }
         }
     }
-    
+
     // Ensure that methods designed for numeric arguments only, will throw
     // an exception when called on MessageFormat objects created with
     // named arguments.
+    @Test
     public void testNumericOnlyMethods() {
         MessageFormat msg = new MessageFormat("Number of files: {numfiles}");
         boolean gotException = false;
@@ -1063,10 +1082,10 @@ public class TestMessageFormat extends android.icu.dev.test.TestFmwk {
         }
         if (!gotException) {
             errln("MessageFormat.setFormatsByArgumentIndex() should throw an " +
-                  "IllegalArgumentException when called on formats with " + 
+                  "IllegalArgumentException when called on formats with " +
                   "named arguments but did not!");
         }
-        
+
         gotException = false;
         try {
             msg.setFormatByArgumentIndex(0, new DecimalFormat());
@@ -1075,10 +1094,10 @@ public class TestMessageFormat extends android.icu.dev.test.TestFmwk {
         }
         if (!gotException) {
             errln("MessageFormat.setFormatByArgumentIndex() should throw an " +
-                  "IllegalArgumentException when called on formats with " + 
+                  "IllegalArgumentException when called on formats with " +
                   "named arguments but did not!");
         }
-        
+
         gotException = false;
         try {
             msg.getFormatsByArgumentIndex();
@@ -1087,10 +1106,10 @@ public class TestMessageFormat extends android.icu.dev.test.TestFmwk {
         }
         if (!gotException) {
             errln("MessageFormat.getFormatsByArgumentIndex() should throw an " +
-                  "IllegalArgumentException when called on formats with " + 
+                  "IllegalArgumentException when called on formats with " +
                   "named arguments but did not!");
         }
-        
+
         gotException = false;
         try {
             Object args[] = {new Long(42)};
@@ -1100,10 +1119,10 @@ public class TestMessageFormat extends android.icu.dev.test.TestFmwk {
         }
         if (!gotException) {
             errln("MessageFormat.format(Object[], StringBuffer, FieldPosition) " +
-                  "should throw an IllegalArgumentException when called on " + 
+                  "should throw an IllegalArgumentException when called on " +
                   "formats with named arguments but did not!");
         }
-        
+
         gotException = false;
         try {
             Object args[] = {new Long(42)};
@@ -1114,10 +1133,10 @@ public class TestMessageFormat extends android.icu.dev.test.TestFmwk {
         if (!gotException) {
             errln("MessageFormat.format(Object, StringBuffer, FieldPosition) " +
                   "should throw an IllegalArgumentException when called with " +
-                  "non-Map object as argument on formats with named " + 
+                  "non-Map object as argument on formats with named " +
                   "arguments but did not!");
         }
-        
+
         gotException = false;
         try {
             msg.parse("Number of files: 5", new ParsePosition(0));
@@ -1127,10 +1146,10 @@ public class TestMessageFormat extends android.icu.dev.test.TestFmwk {
         if (!gotException) {
             errln("MessageFormat.parse(String, ParsePosition) " +
                   "should throw an IllegalArgumentException when called with " +
-                  "non-Map object as argument on formats with named " + 
+                  "non-Map object as argument on formats with named " +
                   "arguments but did not!");
         }
-        
+
         gotException = false;
         try {
             msg.parse("Number of files: 5");
@@ -1142,11 +1161,12 @@ public class TestMessageFormat extends android.icu.dev.test.TestFmwk {
         if (!gotException) {
             errln("MessageFormat.parse(String) " +
                   "should throw an IllegalArgumentException when called with " +
-                  "non-Map object as argument on formats with named " + 
+                  "non-Map object as argument on formats with named " +
                   "arguments but did not!");
         }
     }
-    
+
+    @Test
     public void testNamedArguments() {
         // ICU 4.8 allows mixing named and numbered arguments.
         assertTrue(
@@ -1165,36 +1185,37 @@ public class TestMessageFormat extends android.icu.dev.test.TestFmwk {
         if (!mf.usesNamedArguments()) {
             errln("message format 2 should have used named arguments");
         }
-        
+
         // Test argument names with invalid start characters.
         // Modified: ICU 4.8 allows all characters except for Pattern_White_Space and Pattern_Syntax.
         try {
             new MessageFormat("Wavelength:  {^\u028EValue\uFF14}");
-            errln("Creating a MessageFormat with invalid argument names " + 
+            errln("Creating a MessageFormat with invalid argument names " +
             "should throw an IllegalArgumentException but did not!");
         } catch (IllegalArgumentException e) {}
-        
+
         try {
             new MessageFormat("Wavelength:  {\uFE45\u028EValue}");
-            errln("Creating a MessageFormat with invalid argument names " + 
+            errln("Creating a MessageFormat with invalid argument names " +
             "should throw an IllegalArgumentException but did not!");
         } catch (IllegalArgumentException e) {}
-        
+
         // Test argument names with invalid continue characters.
         // Modified: ICU 4.8 allows all characters except for Pattern_White_Space and Pattern_Syntax.
         try {
             new MessageFormat("Wavelength:  {Value@\uFF14}");
-            errln("Creating a MessageFormat with invalid argument names " + 
+            errln("Creating a MessageFormat with invalid argument names " +
             "should throw an IllegalArgumentException but did not!");
         } catch (IllegalArgumentException e) {}
-        
+
         try {
             new MessageFormat("Wavelength:  {Value(\uFF14)}");
-            errln("Creating a MessageFormat with invalid argument names " + 
+            errln("Creating a MessageFormat with invalid argument names " +
             "should throw an IllegalArgumentException but did not!");
-        } catch (IllegalArgumentException e) {}        
+        } catch (IllegalArgumentException e) {}
     }
 
+    @Test
     public void testNumericFormatWithMap() {
         MessageFormat mf = new MessageFormat("X:{2} Y:{1}");
         if (mf.usesNamedArguments()) {
@@ -1255,6 +1276,7 @@ public class TestMessageFormat extends android.icu.dev.test.TestFmwk {
     }
 
     // This tests nested Formats inside PluralFormat.
+    @Test
     public void testNestedFormatsInPluralFormat() {
         try {
             MessageFormat msgFmt = new MessageFormat(
@@ -1275,10 +1297,11 @@ public class TestMessageFormat extends android.icu.dev.test.TestFmwk {
     }
 
     // This tests PluralFormats used inside MessageFormats.
+    @Test
     public void testPluralFormat() {
         {
             MessageFormat mfNum = new MessageFormat(
-                    "{0, plural, one{C''est # fichier} other " + 
+                    "{0, plural, one{C''est # fichier} other " +
                       "{Ce sont # fichiers}} dans la liste.",
                     new ULocale("fr"));
             MessageFormat mfAlpha = new MessageFormat(
@@ -1290,7 +1313,7 @@ public class TestMessageFormat extends android.icu.dev.test.TestFmwk {
             objMap.put("argument", objArray[0]);
             String result = mfNum.format(objArray);
             if (!result.equals(mfAlpha.format(objMap))) {
-                errln("PluralFormat's output differs when using named " + 
+                errln("PluralFormat's output differs when using named " +
                         "arguments instead of numbers!");
             }
             if (!result.equals("C'est 0 fichier dans la liste.")) {
@@ -1305,7 +1328,7 @@ public class TestMessageFormat extends android.icu.dev.test.TestFmwk {
                     new ULocale("uk"));
             MessageFormat mfAlpha = new MessageFormat (
                     "There {argument, plural, one{is # zavod}few{" +
-                      "are {argument, number,###.0} zavoda} other{are # " + 
+                      "are {argument, number,###.0} zavoda} other{are # " +
                       "zavodov}} in the directory.",
                     new ULocale("uk"));
             Object objArray[] = {new Long(4)};
@@ -1313,7 +1336,7 @@ public class TestMessageFormat extends android.icu.dev.test.TestFmwk {
             objMap.put("argument", objArray[0]);
             String result = mfNum.format(objArray);
             if (!result.equals(mfAlpha.format(objMap))) {
-                errln("PluralFormat's output differs when using named " + 
+                errln("PluralFormat's output differs when using named " +
                         "arguments instead of numbers!");
             }
             if (!result.equals("There are 4,0 zavoda in the directory.")) {
@@ -1322,6 +1345,7 @@ public class TestMessageFormat extends android.icu.dev.test.TestFmwk {
         }
     }
 
+    @Test
     public void testApostropheInPluralAndSelect() {
         MessageFormat fmt = new MessageFormat(
                 "abc_{0,plural,other{#'#'#'{'#''}}_def_{1,select,other{sel'}'ect''}}_xyz",
@@ -1336,6 +1360,7 @@ public class TestMessageFormat extends android.icu.dev.test.TestFmwk {
     }
 
   // Test toPattern when there is a PluralFormat
+    @Test
   public void testPluralFormatToPattern() {
     String[] patterns = {
       "Beware of vicious {0, plural, one {hamster} other {hamsters}}.",
@@ -1357,17 +1382,18 @@ public class TestMessageFormat extends android.icu.dev.test.TestFmwk {
     /**
      * This tests SelectFormats used inside MessageFormats.
      */
+    @Test
     public void testSelectFormat() {
-        String pattern = null; 
+        String pattern = null;
         MessageFormat msgFmt = null ;
 
-        //Create the MessageFormat with simple French pattern  
-        pattern = "{0} est {1, select, female {all\\u00E9e} other {all\\u00E9}} \\u00E0 Paris."; 
+        //Create the MessageFormat with simple French pattern
+        pattern = "{0} est {1, select, female {all\\u00E9e} other {all\\u00E9}} \\u00E0 Paris.";
         msgFmt = new MessageFormat(pattern);
         assertNotNull( "ERROR:Failure in constructing with simple French pattern", msgFmt);
 
-        //Format 
-        Object testArgs[][] ={ 
+        //Format
+        Object testArgs[][] ={
             {"Kirti","female"} ,
             {"Victor","other"} ,
             {"Ash","unknown"} ,
@@ -1379,7 +1405,7 @@ public class TestMessageFormat extends android.icu.dev.test.TestFmwk {
         };
         for ( int i=0; i< 3; i++){
             assertEquals("ERROR:Failure in format with simple French Pattern" ,
-                      exp[i] , msgFmt.format(testArgs[i]) ); 
+                      exp[i] , msgFmt.format(testArgs[i]) );
         }
 
         //Create the MessageFormat with Quoted French Pattern
@@ -1387,8 +1413,8 @@ public class TestMessageFormat extends android.icu.dev.test.TestFmwk {
         msgFmt = new MessageFormat(pattern);
         assertNotNull( "ERROR:Failure in constructing with quoted French pattern", msgFmt);
 
-        //Format 
-        Object testArgs1[][] ={ 
+        //Format
+        Object testArgs1[][] ={
             {"Kirti","female"} ,
             {"Victor","other"} ,
             {"Ash","male"} ,
@@ -1400,7 +1426,7 @@ public class TestMessageFormat extends android.icu.dev.test.TestFmwk {
         };
         for ( int i=0; i< 3; i++){
             assertEquals("ERROR:Failure in format with quoted French Pattern" ,
-                          exp1[i] , msgFmt.format(testArgs1[i]) ); 
+                          exp1[i] , msgFmt.format(testArgs1[i]) );
         }
 
         //Nested patterns with plural, number ,choice ,select format etc.
@@ -1409,11 +1435,11 @@ public class TestMessageFormat extends android.icu.dev.test.TestFmwk {
         msgFmt = new MessageFormat(pattern);
         assertNotNull( "ERROR:Failure in constructing with nested pattern 1", msgFmt);
 
-        //Format 
-        Object testArgs3[][] ={ 
+        //Format
+        Object testArgs3[][] ={
             {"Kirti", "female", 6} ,
             {"Kirti", "female", 100.100} ,
-            {"Kirti", "other", 6} , 
+            {"Kirti", "other", 6} ,
         };
         String exp3[] = {
             "Kirti est 6 all\\u00E9e \\u00E0 Paris." ,
@@ -1423,7 +1449,7 @@ public class TestMessageFormat extends android.icu.dev.test.TestFmwk {
 
         for ( int i=0; i< 3; i++){
             assertEquals("ERROR:Failure in format with nested Pattern 1" ,
-                          exp3[i] , msgFmt.format(testArgs3[i]) ); 
+                          exp3[i] , msgFmt.format(testArgs3[i]) );
         }
 
         //Plural format with embedded select format
@@ -1431,8 +1457,8 @@ public class TestMessageFormat extends android.icu.dev.test.TestFmwk {
         msgFmt = new MessageFormat(pattern);
         assertNotNull( "ERROR:Failure in constructing with nested pattern 2", msgFmt);
 
-        //Format 
-        Object testArgs4[][] ={ 
+        //Format
+        Object testArgs4[][] ={
             {"Kirti",6,"female"},
             {"Kirti",1,"female"},
             {"Ash",1,"other"},
@@ -1446,16 +1472,16 @@ public class TestMessageFormat extends android.icu.dev.test.TestFmwk {
         };
         for ( int i=0; i< 4; i++){
             assertEquals("ERROR:Failure in format with nested Pattern 2" ,
-                          exp4[i] , msgFmt.format(testArgs4[i]) ); 
+                          exp4[i] , msgFmt.format(testArgs4[i]) );
         }
 
-        //Select, plural, and number formats heavily nested 
+        //Select, plural, and number formats heavily nested
         pattern = "{0} und {1, select, female {{2, plural, one {{3, select, female {ihre Freundin} other {ihr Freund}} } other {ihre {2, number, integer} {3, select, female {Freundinnen} other {Freunde}} } }} other{{2, plural, one {{3, select, female {seine Freundin} other {sein Freund}}} other {seine {2, number, integer} {3, select, female {Freundinnen} other {Freunde}}}}} } gingen nach Paris.";
         msgFmt = new MessageFormat(pattern);
         assertNotNull( "ERROR:Failure in constructing with nested pattern 3", msgFmt);
 
-        //Format 
-        Object testArgs5[][] ={ 
+        //Format
+        Object testArgs5[][] ={
             {"Kirti","other",1,"other"},
             {"Kirti","other",6,"other"},
             {"Kirti","other",1,"female"},
@@ -1490,18 +1516,19 @@ public class TestMessageFormat extends android.icu.dev.test.TestFmwk {
         //Format
         for ( int i=0; i< 14; i++){
             assertEquals("ERROR:Failure in format with nested Pattern 3" ,
-                          exp5[i] , msgFmt.format(testArgs5[i]) ); 
+                          exp5[i] , msgFmt.format(testArgs5[i]) );
         }
     }
 
     /**
      * Test toPattern when there is a SelectFormat
      */
+    @Test
     public void testSelectFormatToPattern() {
         String[] patterns = {
           //Pattern with some text at start and at end
           "{0} est {1,select, female {all\\u00E9e} other {all\\u00E9}} \\u00E0 Paris.",
-          //Pattern with some text at start 
+          //Pattern with some text at start
           "{0} est {1,select, female {all\\u00E9e} other {all\\u00E9}}",
           //Pattern with some text at end
           "{1, select,female {all\\u00E9e} other {all\\u00E9}} \\u00E0 Paris.",
@@ -1516,7 +1543,7 @@ public class TestMessageFormat extends android.icu.dev.test.TestFmwk {
             MessageFormat mf = new MessageFormat(pattern);
             MessageFormat mf2 = new MessageFormat(mf.toPattern());
             if (!mf.equals(mf2)) {
-                errln("message formats not equal for pattern:\n*** '" 
+                errln("message formats not equal for pattern:\n*** '"
                      + pattern + "'\n*** '" + mf.toPattern() + "'");
             }
         }
@@ -1524,6 +1551,7 @@ public class TestMessageFormat extends android.icu.dev.test.TestFmwk {
 
     // Test case for null arguments.
     // Ticket#6361
+    @Test
     public void TestNullArgs() {
         MessageFormat msgfmt = new MessageFormat("{0} - {1}");
         Object[][] TEST_CASES = {
@@ -1542,7 +1570,8 @@ public class TestMessageFormat extends android.icu.dev.test.TestFmwk {
             }
         }
     }
-    
+
+    @Test
     public void TestSetFormat() {
         MessageFormat ms = new MessageFormat("{number} {date}", ULocale.ENGLISH);
         final DecimalFormat decimalFormat = new DecimalFormat("000.000", DecimalFormatSymbols.getInstance(ULocale.ENGLISH));
@@ -1562,6 +1591,7 @@ public class TestMessageFormat extends android.icu.dev.test.TestFmwk {
     }
 
     // Test case for formatToCharacterIterator
+    @Test
     public void TestFormatToCharacterIterator() {
         MessageFormat[] msgfmts = {
                 new MessageFormat(
@@ -1705,10 +1735,11 @@ public class TestMessageFormat extends android.icu.dev.test.TestFmwk {
         } catch (Exception e) {
         }
     }
-    
+
     /*
      * Tests the method public Format getFormatByArgumentName(String argumentName)
      */
+    @Test
     public void TestGetFormatByArgumentName() {
         MessageFormat mf = new MessageFormat("");
         if (mf.getFormatByArgumentName("") != null) {
@@ -1729,6 +1760,7 @@ public class TestMessageFormat extends android.icu.dev.test.TestFmwk {
         return sb.toString();
     }
 
+    @Test
     public void TestApostropheMode() {
         MessagePattern ado_mp = new MessagePattern(MessagePattern.ApostropheMode.DOUBLE_OPTIONAL);
         MessagePattern adr_mp = new MessagePattern(MessagePattern.ApostropheMode.DOUBLE_REQUIRED);
@@ -1767,6 +1799,7 @@ public class TestMessageFormat extends android.icu.dev.test.TestFmwk {
     }
 
     // Compare behavior of JDK and ICU's DOUBLE_REQUIRED compatibility mode.
+    @Test
     public void TestCompatibleApostrophe() {
         // Message with choice argument which does not contain another argument.
         // The JDK performs only one apostrophe-quoting pass on this pattern.
@@ -1829,6 +1862,7 @@ public class TestMessageFormat extends android.icu.dev.test.TestFmwk {
                 choice.format(0));
     }
 
+    @Test
     public void TestTrimArgumentName() {
         // ICU 4.8 allows and ignores white space around argument names and numbers.
         MessageFormat m = new MessageFormat("a { 0 , number , '#,#'#.0 } z", Locale.ENGLISH);
@@ -1842,6 +1876,7 @@ public class TestMessageFormat extends android.icu.dev.test.TestFmwk {
                      m.format(map, result, new FieldPosition(0)).toString());
     }
 
+    @Test
     public void TestSelectOrdinal() {
         // Test plural & ordinal together,
         // to make sure that we get the correct cached PluralSelector for each.
@@ -1871,6 +1906,7 @@ public class TestMessageFormat extends android.icu.dev.test.TestFmwk {
                      m.format(args, result, ignore).toString());
     }
 
+    @Test
     public void TestDecimals() {
         // Simple number replacement.
         MessageFormat m = new MessageFormat(
@@ -1940,6 +1976,7 @@ public class TestMessageFormat extends android.icu.dev.test.TestFmwk {
                 m2.format(args, result, ignore).toString());
     }
 
+    @Test
     public void TestArgIsPrefixOfAnother() {
         // Ticket #11952
         MessageFormat mf1 = new MessageFormat(
@@ -2032,5 +2069,15 @@ public class TestMessageFormat extends android.icu.dev.test.TestFmwk {
                 "1.0<is 1+ |2#is two |2<is more than 2.");
         // Only simple API coverage. The parser implementation is tested via MessageFormat.
         assertTrue("many parts", pattern.countParts() > 10);
+    }
+
+    public void TestDateFormatHashCode() {
+        DateFormat testDF = DateFormat.getDateInstance(DateFormat.DEFAULT, ULocale.GERMAN);
+        NumberFormat testNF = testDF.getNumberFormat();
+
+        int expectedResult =
+                testNF.getMaximumIntegerDigits() * 37 + testNF.getMaximumFractionDigits();
+        int actualHashResult = testDF.hashCode();
+        assertEquals("DateFormat hashCode", expectedResult, actualHashResult);
     }
 }

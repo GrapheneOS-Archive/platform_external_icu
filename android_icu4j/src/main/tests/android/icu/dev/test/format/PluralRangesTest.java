@@ -1,4 +1,6 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
+// © 2016 and later: Unicode, Inc. and others.
+// License & terms of use: http://www.unicode.org/copyright.html#License
 /*
  *******************************************************************************
  * Copyright (C) 2008-2016, International Business Machines Corporation and
@@ -8,6 +10,8 @@
 package android.icu.dev.test.format;
 
 import java.util.Arrays;
+
+import org.junit.Test;
 
 import android.icu.dev.test.TestFmwk;
 import android.icu.impl.SimpleFormatterImpl;
@@ -20,19 +24,13 @@ import android.icu.util.Currency;
 import android.icu.util.Measure;
 import android.icu.util.MeasureUnit;
 import android.icu.util.ULocale;
-import org.junit.runner.RunWith;
-import android.icu.junit.IcuTestFmwkRunner;
 
 /**
  * @author markdavis
  * 
  */
-@RunWith(IcuTestFmwkRunner.class)
 public class PluralRangesTest extends TestFmwk {
-    public static void main(String[] args) {
-        new PluralRangesTest().run(args);
-    }
-
+    @Test
     public void TestLocaleData() {
         String[][] tests = {
                 {"de", "other", "one", "one"},
@@ -56,6 +54,7 @@ public class PluralRangesTest extends TestFmwk {
         }
     }
 
+    @Test
     public void TestRangePattern() {
         String[][] tests = {
                 {"de", "SHORT", "{0}–{1}"},
@@ -71,6 +70,7 @@ public class PluralRangesTest extends TestFmwk {
         }
     }
 
+    @Test
     public void TestFormatting() {
         Object[][] tests = {
                 {0.0, 1.0, ULocale.FRANCE, FormatWidth.WIDE, MeasureUnit.FAHRENHEIT, "0–1 degré Fahrenheit"},
@@ -114,6 +114,7 @@ public class PluralRangesTest extends TestFmwk {
         }
     }
 
+    @Test
     public void TestBasic() {
         PluralRanges a = new PluralRanges();
         a.add(StandardPlural.ONE, StandardPlural.OTHER, StandardPlural.ONE);
