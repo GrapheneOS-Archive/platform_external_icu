@@ -5,7 +5,6 @@
 # Note: noop-*.ucm are for Android only to prevent 2022 security attack.
 
 UCM_SOURCE_LOCAL=gsm-03.38-2000.ucm \
-   jisx-208.ucm \
    noop-cns-11643.ucm \
    noop-gb2312_gl.ucm \
    noop-iso-ir-165.ucm
