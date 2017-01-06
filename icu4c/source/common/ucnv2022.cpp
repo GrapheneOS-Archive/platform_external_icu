@@ -512,16 +512,8 @@ _ISO2022Open(UConverter *cnv, UConverterLoadArgs *pArgs, UErrorCode *errorCode){
                 myConverterData->myConverterArray[ISO8859_7] =
                     ucnv_loadSharedData("ISO8859_7", &stackPieces, &stackArgs, errorCode);
             }
-            /*
-             * Change for http://b/issue?id=937017 :
-             * Restore JIS X 0208 ISO-2022-JP mappings from before
-             * sharing the table with the Shift-JIS converter
-             * (CL 5963009 and http://bugs.icu-project.org/trac/ticket/5797).
-             * TODO(mscherer): Create and use a new, unified Google Shift-JIS
-             * table for both Shift-JIS and ISO-2022-JP.
-             */
-            myConverterData->myConverterArray[JISX208]  =
-                ucnv_loadSharedData("jisx-208", &stackPieces, &stackArgs, errorCode);
+            myConverterData->myConverterArray[JISX208] =
+                ucnv_loadSharedData("Shift-JIS", &stackPieces, &stackArgs, errorCode);
             if(jpCharsetMasks[version]&CSM(JISX212)) {
                 myConverterData->myConverterArray[JISX212] =
                     ucnv_loadSharedData("jisx-212", &stackPieces, &stackArgs, errorCode);
