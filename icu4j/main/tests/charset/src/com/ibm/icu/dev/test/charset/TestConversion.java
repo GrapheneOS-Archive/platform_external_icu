@@ -167,7 +167,6 @@ public class TestConversion extends TestFmwk {
                 "*test2",
                 "EUC-TW",
                 "gb18030",
-                "HZ",
                 "ibm-1386",
                 "ibm-1390",
                 "ibm-1390,swaplfnl",
@@ -180,9 +179,7 @@ public class TestConversion extends TestFmwk {
                 "ibm-971",
                 "IBM-eucJP",
                 "iso-2022-cn",
-                "ISO-2022-CN",
                 "iso-2022-jp",
-                "ISO-2022-JP",
                 "ISO-2022-JP-2",
                 "iso-2022-kr",
                 "ISO-2022-KR",
@@ -191,7 +188,7 @@ public class TestConversion extends TestFmwk {
                 "JIS8",
                 "lmbcs",
                 "windows-936",
-                "x11-compound-text"
+                "x11-compound-text",
         };
         // Android patch end.
         for (int i = 0; i < testsToSkip.length; i++) {
@@ -496,17 +493,7 @@ public class TestConversion extends TestFmwk {
 
         // Android patch: Skip tests that fail with customized data.
         String [] testsToSkip = {
-                "HZ",
-                "ibm-1390",
                 "ibm-1390,swaplfnl",
-                "ibm-16684",
-                "ibm-25546",
-                "ibm-971",
-                "ISO-2022-CN",
-                "ISO-2022-JP",
-                "ISO-2022-JP-2",
-                "ISO-2022-KR",
-                "JIS7"
         };
         for (int i = 0; i < testsToSkip.length; i++) {
             if (cc.charset.equals(testsToSkip[i])) {
