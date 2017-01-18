@@ -260,7 +260,6 @@ public abstract class LocaleDisplayNames {
      * @param localeSet a list of locales to present in a UI list. The casing uses the settings in the LocaleDisplayNames instance.
      * @return an ordered list of UiListItems.
      * @throws IllformedLocaleException if any of the locales in localeSet are malformed.
-     * @hide unsupported on Android
      */
     public List<UiListItem> getUiList(Set<ULocale> localeSet, boolean inSelf, Comparator<Object> collator) {
         return getUiListCompareWholeItems(localeSet, UiListItem.getComparator(collator, inSelf));
@@ -273,13 +272,11 @@ public abstract class LocaleDisplayNames {
      * @param localeSet a list of locales to present in a UI list. The casing uses the settings in the LocaleDisplayNames instance.
      * @return an ordered list of UiListItems.
      * @throws IllformedLocaleException if any of the locales in localeSet are malformed.
-     * @hide unsupported on Android
      */
     public abstract List<UiListItem> getUiListCompareWholeItems(Set<ULocale> localeSet, Comparator<UiListItem> comparator);
 
     /**
      * Struct-like class used to return information for constructing a UI list, each corresponding to a locale.
-     * @hide unsupported on Android
      */
     public static class UiListItem {
         /**

@@ -28,7 +28,6 @@ import android.icu.util.UResourceBundle;
  * separately). The class is not subclassable.
  *
  * @author Mark Davis
- * @hide Only a subset of ICU is exposed in Android
  */
 final public class ListFormatter {
     // Compiled SimpleFormatter patterns.
