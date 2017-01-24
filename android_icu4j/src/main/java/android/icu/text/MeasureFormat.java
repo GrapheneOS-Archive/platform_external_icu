@@ -476,7 +476,6 @@ public class MeasureFormat extends UFormat {
      * @param appendTo formatted string appended here.
      * @param pos      The field position.
      * @return appendTo.
-     * @hide unsupported on Android
      */
     public StringBuilder formatMeasurePerUnit(
             Measure measure,
