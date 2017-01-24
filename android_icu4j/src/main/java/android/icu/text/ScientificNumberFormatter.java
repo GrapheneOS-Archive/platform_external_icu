@@ -33,8 +33,6 @@ import android.icu.util.ULocale;
  * System.out.println(fmt.format(1.23456e-78));
  * </pre>
  *
- * @hide Only a subset of ICU is exposed in Android
- *
  */
 public final class ScientificNumberFormatter {
     
