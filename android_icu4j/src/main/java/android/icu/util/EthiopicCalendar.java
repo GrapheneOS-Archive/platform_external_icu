@@ -24,7 +24,6 @@ import android.icu.util.ULocale.Category;
  * with the tag <code>"@calendar=ethiopic"</code>.</p>
  *
  * @see android.icu.util.Calendar
- * @hide Only a subset of ICU is exposed in Android
  */
 public final class EthiopicCalendar extends CECalendar 
 {
