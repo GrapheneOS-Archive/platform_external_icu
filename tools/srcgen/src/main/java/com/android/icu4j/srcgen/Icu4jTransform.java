@@ -532,8 +532,6 @@ public class Icu4jTransform {
       "field:android.icu.text.Collator$ReorderCodes#LIMIT",
       "field:android.icu.text.DateFormat#FIELD_COUNT",
       "field:android.icu.text.DateTimePatternGenerator#TYPE_LIMIT",
-      "field:android.icu.util.TimeZone#TIMEZONE_ICU",
-      "field:android.icu.util.TimeZone#TIMEZONE_JDK",
       "method:android.icu.text.BreakIterator#registerInstance(BreakIterator,Locale,int)",
       "method:android.icu.text.BreakIterator#registerInstance(BreakIterator,ULocale,int)",
       "method:android.icu.text.BreakIterator#unregister(Object)",
