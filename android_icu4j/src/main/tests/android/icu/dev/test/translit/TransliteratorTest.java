@@ -165,7 +165,7 @@ public class TransliteratorTest extends TestFmwk {
     }
 
     // Android-changed: increase timeout.
-    @Test(timeout = 3_000_000L)
+    @Test(timeout = 3000000L)
     public void TestInstantiation() {
         long ms = System.currentTimeMillis();
         String ID;
