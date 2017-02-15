@@ -262,7 +262,7 @@ sl{
                 group{"."}
                 infinity{"∞"}
                 list{";"}
-                minusSign{"–"}
+                minusSign{"−"}
                 nan{"NaN"}
                 perMille{"‰"}
                 percentSign{"%"}
