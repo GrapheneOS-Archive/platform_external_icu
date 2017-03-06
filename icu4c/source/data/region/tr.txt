@@ -89,7 +89,7 @@ tr{
         CW{"Curaçao"}
         CX{"Christmas Adası"}
         CY{"Kıbrıs"}
-        CZ{"Çek Cumhuriyeti"}
+        CZ{"Çekya"}
         DE{"Almanya"}
         DG{"Diego Garcia"}
         DJ{"Cibuti"}
@@ -301,7 +301,7 @@ tr{
     Countries%variant{
         CD{"Kongo Demokratik Cumhuriyeti"}
         CG{"Kongo Cumhuriyeti"}
-        CZ{"Çekya"}
+        CZ{"Çek Cumhuriyeti"}
         FK{"Falkland Adaları (Malvinas Adaları)"}
         TL{"Doğu Timor"}
     }

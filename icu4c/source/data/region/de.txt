@@ -89,7 +89,7 @@ de{
         CW{"Curaçao"}
         CX{"Weihnachtsinsel"}
         CY{"Zypern"}
-        CZ{"Tschechische Republik"}
+        CZ{"Tschechien"}
         DE{"Deutschland"}
         DG{"Diego Garcia"}
         DJ{"Dschibuti"}
@@ -302,7 +302,7 @@ de{
         CD{"Kongo (Demokratische Republik)"}
         CG{"Kongo (Republik)"}
         CI{"Elfenbeinküste"}
-        CZ{"Tschechien"}
+        CZ{"Tschechische Republik"}
         FK{"Falklandinseln (Malwinen)"}
         MK{"Mazedonien (EJR)"}
     }
