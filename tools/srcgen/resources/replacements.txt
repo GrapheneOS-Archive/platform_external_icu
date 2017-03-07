@@ -254,6 +254,22 @@
  */
 --
 
+# Remove references to {get,set}DefaultTimezoneType methods that are hidden on Android.
+--field:android.icu.util.TimeZone#TIMEZONE_ICU
+/**
+     * <strong>[icu]</strong> A time zone implementation type indicating ICU's own TimeZone used by
+     * <code>getTimeZone</code>.
+     */
+--
+
+# Remove references to {get,set}DefaultTimezoneType methods that are hidden on Android.
+--field:android.icu.util.TimeZone#TIMEZONE_JDK
+/**
+     * <strong>[icu]</strong> A time zone implementation type indicating the {@link java.util.TimeZone}
+     * used by <code>getTimeZone</code>.
+     */
+--
+
 # Remove ICU class docs that refer to provisional methods.
 --type:android.icu.util.ULocale
 /**

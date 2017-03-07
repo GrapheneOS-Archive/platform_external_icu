@@ -121,16 +121,12 @@ abstract public class TimeZone implements Serializable, Cloneable, Freezable<Tim
 
     /**
      * <strong>[icu]</strong> A time zone implementation type indicating ICU's own TimeZone used by
-     * <code>getTimeZone</code>, <code>setDefaultTimeZoneType</code>
-     * and <code>getDefaultTimeZoneType</code>.
-     * @hide unsupported on Android
+     * <code>getTimeZone</code>.
      */
     public static final int TIMEZONE_ICU = 0;
     /**
      * <strong>[icu]</strong> A time zone implementation type indicating the {@link java.util.TimeZone}
-     * used by <code>getTimeZone</code>, <code>setDefaultTimeZoneType</code>
-     * and <code>getDefaultTimeZoneType</code>.
-     * @hide unsupported on Android
+     * used by <code>getTimeZone</code>.
      */
     public static final int TIMEZONE_JDK = 1;
 
