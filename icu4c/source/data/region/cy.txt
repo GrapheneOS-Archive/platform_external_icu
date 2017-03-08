@@ -89,7 +89,7 @@ cy{
         CW{"Curaçao"}
         CX{"Ynys y Nadolig"}
         CY{"Cyprus"}
-        CZ{"Gweriniaeth Tsiec"}
+        CZ{"Tsiecia"}
         DE{"Yr Almaen"}
         DG{"Diego Garcia"}
         DJ{"Djibouti"}
@@ -302,7 +302,7 @@ cy{
         CD{"Y Congo (G.Dd.C.)"}
         CG{"Y Congo (Gweriniaeth)"}
         CI{"Arfordir Ifori"}
-        CZ{"Tsiecia"}
+        CZ{"Gweriniaeth Tsiec"}
         FK{"Ynysoedd y Falkland (Ynysoedd y Malfinas)"}
         MK{"Macedonia (CWIM)"}
         TL{"Dwyrain Timor"}

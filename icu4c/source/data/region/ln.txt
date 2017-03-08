@@ -50,7 +50,7 @@ ln{
         CU{"Kiba"}
         CV{"Bisanga bya Kapevɛrɛ"}
         CY{"Sípɛlɛ"}
-        CZ{"Repibiki Tsekɛ"}
+        CZ{"Shekia"}
         DE{"Alemani"}
         DJ{"Dzibuti"}
         DK{"Danɛmarike"}
@@ -233,6 +233,9 @@ ln{
         ZA{"Afríka ya Súdi"}
         ZM{"Zambi"}
         ZW{"Zimbabwe"}
+    }
+    Countries%variant{
+        CZ{"Repibiki Tsekɛ"}
     }
     Version{"2.1.28.76"}
 }
