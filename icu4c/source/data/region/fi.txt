@@ -89,7 +89,7 @@ fi{
         CW{"Curaçao"}
         CX{"Joulusaari"}
         CY{"Kypros"}
-        CZ{"Tšekki"}
+        CZ{"Tšekinmaa"}
         DE{"Saksa"}
         DG{"Diego Garcia"}
         DJ{"Djibouti"}
@@ -302,7 +302,7 @@ fi{
         CD{"Kongo-Kinshasa"}
         CG{"Kongo-Brazzaville"}
         CI{"Côte d’Ivoire"}
-        CZ{"Tšekinmaa"}
+        CZ{"Tšekki"}
         FK{"Falklandinsaaret (Malvinassaaret)"}
         MK{"EJT Makedonia"}
         TL{"Timor-Leste"}
