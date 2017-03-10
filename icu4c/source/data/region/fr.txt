@@ -181,7 +181,7 @@ fr{
         MF{"Saint-Martin"}
         MG{"Madagascar"}
         MH{"Îles Marshall"}
-        MK{"Macédoine"}
+        MK{"Macédoine (ARYM)"}
         ML{"Mali"}
         MM{"Myanmar (Birmanie)"}
         MN{"Mongolie"}
@@ -302,7 +302,6 @@ fr{
         CD{"Congo (RDC)"}
         CG{"République du Congo"}
         CZ{"République tchèque"}
-        MK{"Macédoine (ARYM)"}
         TL{"Timor-Oriental"}
     }
     Version{"2.1.32.59"}

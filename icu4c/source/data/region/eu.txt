@@ -181,7 +181,7 @@ eu{
         MF{"San Martin"}
         MG{"Madagaskar"}
         MH{"Marshall uharteak"}
-        MK{"Mazedonia"}
+        MK{"Mazedonia (Mazedoniako Yugoslaviar Errepublika ohia)"}
         ML{"Mali"}
         MM{"Myanmar (Birmania)"}
         MN{"Mongolia"}
@@ -300,7 +300,6 @@ eu{
         CD{"Kongo (KED)"}
         CG{"Kongo (errepublika)"}
         CZ{"Txekiar Errepublika"}
-        MK{"Mazedonia (Mazedoniako Yugoslaviar Errepublika ohia)"}
         TL{"Timor ekialdea"}
     }
     Version{"2.1.32.59"}

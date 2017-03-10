@@ -181,7 +181,7 @@ ga{
         MF{"Saint-Martin"}
         MG{"Madagascar"}
         MH{"Oileáin Marshall"}
-        MK{"An Mhacadóin"}
+        MK{"An Mhacadóin (PIIM)"}
         ML{"Mailí"}
         MM{"Maenmar (Burma)"}
         MN{"An Mhongóil"}
@@ -301,7 +301,6 @@ ga{
     Countries%variant{
         CD{"An Congó (PDC)"}
         CG{"An Congó (Poblacht)"}
-        MK{"An Mhacadóin (PIIM)"}
     }
     Version{"2.1.31.86"}
 }

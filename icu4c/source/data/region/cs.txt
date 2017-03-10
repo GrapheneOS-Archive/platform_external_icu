@@ -181,7 +181,7 @@ cs{
         MF{"Svatý Martin (Francie)"}
         MG{"Madagaskar"}
         MH{"Marshallovy ostrovy"}
-        MK{"Makedonie"}
+        MK{"Makedonie (FYROM)"}
         ML{"Mali"}
         MM{"Myanmar (Barma)"}
         MN{"Mongolsko"}
@@ -303,7 +303,6 @@ cs{
         CG{"Kongo (republika)"}
         CI{"Côte d’Ivoire"}
         CZ{"Česká republika"}
-        MK{"Makedonie (FYROM)"}
     }
     Version{"2.1.32.59"}
 }

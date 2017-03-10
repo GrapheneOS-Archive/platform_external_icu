@@ -181,7 +181,7 @@ ast{
         MF{"Saint Martin"}
         MG{"Madagascar"}
         MH{"Islles Marshall"}
-        MK{"Macedonia"}
+        MK{"Macedonia (ARYDM)"}
         ML{"Malí"}
         MM{"Myanmar (Birmania)"}
         MN{"Mongolia"}
@@ -300,7 +300,6 @@ ast{
         CD{"Congu (RDC)"}
         CG{"Congu (República del)"}
         CI{"Costa del Marfil"}
-        MK{"Macedonia (ARYDM)"}
         TL{"Timor Este"}
     }
     Version{"2.1.31.86"}

@@ -181,7 +181,7 @@ sq{
         MF{"Shën-Martin"}
         MG{"Madagaskar"}
         MH{"Ishujt Marshall"}
-        MK{"Maqedoni"}
+        MK{"Maqedoni (IRJM)"}
         ML{"Mali"}
         MM{"Mianmar (Burma)"}
         MN{"Mongoli"}
@@ -303,7 +303,6 @@ sq{
         CG{"Kongo (Republika)"}
         CI{"Bregu i Fildishtë"}
         CZ{"Republika Çeke"}
-        MK{"Maqedoni (IRJM)"}
         TL{"Timori Lindor"}
     }
     Version{"2.1.32.59"}

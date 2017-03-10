@@ -182,7 +182,7 @@ sr_Latn{
         MF{"Sveti Martin (Francuska)"}
         MG{"Madagaskar"}
         MH{"Maršalska Ostrva"}
-        MK{"Makedonija"}
+        MK{"Makedonija (BJRM)"}
         ML{"Mali"}
         MM{"Mijanmar (Burma)"}
         MN{"Mongolija"}
@@ -302,7 +302,6 @@ sr_Latn{
     Countries%variant{
         CD{"Kongo (DRK)"}
         CG{"Kongo (Republika)"}
-        MK{"Makedonija (BJRM)"}
     }
     Version{"2.1.32.73"}
 }
