@@ -39,7 +39,7 @@ pt_PT{
         LV{"Letónia"}
         MC{"Mónaco"}
         MG{"Madagáscar"}
-        MK{"Macedónia"}
+        MK{"Macedónia (ARJM)"}
         MS{"Monserrate"}
         MU{"Maurícia"}
         MW{"Maláui"}
@@ -71,7 +71,6 @@ pt_PT{
     }
     Countries%variant{
         CG{"República do Congo"}
-        MK{"Macedónia (ARJM)"}
     }
     Version{"2.1.29.54"}
 }

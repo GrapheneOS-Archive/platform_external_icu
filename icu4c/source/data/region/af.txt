@@ -181,7 +181,7 @@ af{
         MF{"St. Martin"}
         MG{"Madagaskar"}
         MH{"Marshalleilande"}
-        MK{"Macedonië"}
+        MK{"Macedonië (VJRM)"}
         ML{"Mali"}
         MM{"Mianmar (Birma)"}
         MN{"Mongolië"}
@@ -302,7 +302,6 @@ af{
         CD{"Kongo (DRK)"}
         CG{"Kongo (Republiek die)"}
         CZ{"Tjeggiese Republiek"}
-        MK{"Macedonië (VJRM)"}
     }
     Version{"2.1.29.44"}
 }
