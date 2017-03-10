@@ -108,7 +108,7 @@ sq{
         EU{"Bashkimi Europian"}
         FI{"Finlandë"}
         FJ{"Fixhi"}
-        FK{"Ishujt Falkland"}
+        FK{"Ishujt Falkland (Malvine)"}
         FM{"Mikronezi"}
         FO{"Ishujt Faroe"}
         FR{"Francë"}
@@ -303,7 +303,6 @@ sq{
         CG{"Kongo (Republika)"}
         CI{"Bregu i Fildishtë"}
         CZ{"Republika Çeke"}
-        FK{"Ishujt Falkland (Malvine)"}
         MK{"Maqedoni (IRJM)"}
         TL{"Timori Lindor"}
     }

@@ -108,7 +108,7 @@ az{
         EU{"Avropa Birliyi"}
         FI{"Finlandiya"}
         FJ{"Fici"}
-        FK{"Folklend adaları"}
+        FK{"Folklend adaları (Malvin adaları)"}
         FM{"Mikroneziya"}
         FO{"Farer adaları"}
         FR{"Fransa"}
@@ -303,7 +303,6 @@ az{
         CG{"Konqo (Respublika)"}
         CI{"Fil Dişi Sahili"}
         CZ{"Çex Respublikası"}
-        FK{"Folklend adaları (Malvin adaları)"}
         MK{"Makedoniya (KYRM)"}
         TL{"Doğu Timor"}
     }

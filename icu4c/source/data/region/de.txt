@@ -108,7 +108,7 @@ de{
         EU{"Europäische Union"}
         FI{"Finnland"}
         FJ{"Fidschi"}
-        FK{"Falklandinseln"}
+        FK{"Falklandinseln (Malwinen)"}
         FM{"Mikronesien"}
         FO{"Färöer"}
         FR{"Frankreich"}
@@ -303,7 +303,6 @@ de{
         CG{"Kongo (Republik)"}
         CI{"Elfenbeinküste"}
         CZ{"Tschechische Republik"}
-        FK{"Falklandinseln (Malwinen)"}
         MK{"Mazedonien (EJR)"}
     }
     Version{"2.1.32.59"}

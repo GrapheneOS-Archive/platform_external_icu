@@ -107,7 +107,7 @@ nn{
         EU{"Den europeiske unionen"}
         FI{"Finland"}
         FJ{"Fiji"}
-        FK{"Falklandsøyane"}
+        FK{"Falklandsøyane (Islas Malvinas)"}
         FM{"Mikronesiaføderasjonen"}
         FO{"Færøyane"}
         FR{"Frankrike"}
@@ -298,7 +298,6 @@ nn{
     Countries%variant{
         CD{"Den demokratiske republikken Kongo"}
         CG{"Republikken Kongo"}
-        FK{"Falklandsøyane (Islas Malvinas)"}
         MK{"Den tidlegare jugoslaviske republikken Makedonia"}
     }
     Version{"2.1.31.86"}

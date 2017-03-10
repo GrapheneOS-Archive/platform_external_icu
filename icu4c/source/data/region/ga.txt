@@ -108,7 +108,7 @@ ga{
         EU{"An tAontas Eorpach"}
         FI{"An Fhionlainn"}
         FJ{"Fidsí"}
-        FK{"Oileáin Fháclainne"}
+        FK{"Oileáin Fháclainne (Islas Malvinas)"}
         FM{"An Mhicrinéis"}
         FO{"Oileáin Fharó"}
         FR{"An Fhrainc"}
@@ -301,7 +301,6 @@ ga{
     Countries%variant{
         CD{"An Congó (PDC)"}
         CG{"An Congó (Poblacht)"}
-        FK{"Oileáin Fháclainne (Islas Malvinas)"}
         MK{"An Mhacadóin (PIIM)"}
     }
     Version{"2.1.31.86"}

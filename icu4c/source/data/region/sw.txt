@@ -108,7 +108,7 @@ sw{
         EU{"Umoja wa Ulaya"}
         FI{"Ufini"}
         FJ{"Fiji"}
-        FK{"Visiwa vya Falkland"}
+        FK{"Visiwa vya Falkland (Islas Malvinas)"}
         FM{"Mikronesia"}
         FO{"Visiwa vya Faroe"}
         FR{"Ufaransa"}
@@ -303,7 +303,6 @@ sw{
         CG{"Jamhuri ya Kongo"}
         CI{"Ivory Coast"}
         CZ{"Jamhuri ya Cheki"}
-        FK{"Visiwa vya Falkland (Islas Malvinas)"}
         MK{"Masedonia (FYROM)"}
         TL{"Timor ya Mashariki"}
     }

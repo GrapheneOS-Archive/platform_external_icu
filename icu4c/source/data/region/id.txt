@@ -108,7 +108,7 @@ id{
         EU{"Uni Eropa"}
         FI{"Finlandia"}
         FJ{"Fiji"}
-        FK{"Kepulauan Malvinas"}
+        FK{"Kepulauan Malvinas (Falkland)"}
         FM{"Mikronesia"}
         FO{"Kepulauan Faroe"}
         FR{"Prancis"}
@@ -303,7 +303,6 @@ id{
         CG{"Kongo (Republik)"}
         CI{"Ivory Coast"}
         CZ{"Republik Cheska"}
-        FK{"Kepulauan Malvinas (Falkland)"}
         MK{"Makedonia (BRY)"}
         TL{"Timor Timur"}
     }
