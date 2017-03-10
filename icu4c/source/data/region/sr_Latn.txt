@@ -110,7 +110,7 @@ sr_Latn{
         EZ{"Evrozona"}
         FI{"Finska"}
         FJ{"Fidži"}
-        FK{"Foklandska Ostrva"}
+        FK{"Foklandska (Malvinska) ostrva"}
         FM{"Mikronezija"}
         FO{"Farska Ostrva"}
         FR{"Francuska"}
@@ -305,7 +305,6 @@ sr_Latn{
         CG{"Kongo (Republika)"}
         CI{"Obala Slonovače"}
         CZ{"Češka Republika"}
-        FK{"Foklandska (Malvinska) ostrva"}
         MK{"Makedonija (BJRM)"}
         TL{"Istočni Timor"}
     }

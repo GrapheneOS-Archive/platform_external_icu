@@ -109,7 +109,7 @@ de{
         EZ{"Eurozone"}
         FI{"Finnland"}
         FJ{"Fidschi"}
-        FK{"Falklandinseln"}
+        FK{"Falklandinseln (Malwinen)"}
         FM{"Mikronesien"}
         FO{"Färöer"}
         FR{"Frankreich"}
@@ -304,7 +304,6 @@ de{
         CG{"Kongo (Republik)"}
         CI{"Elfenbeinküste"}
         CZ{"Tschechische Republik"}
-        FK{"Falklandinseln (Malwinen)"}
         MK{"Mazedonien (EJR)"}
         TL{"Osttimor"}
     }

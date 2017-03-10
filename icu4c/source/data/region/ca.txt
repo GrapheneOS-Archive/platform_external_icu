@@ -109,7 +109,7 @@ ca{
         EZ{"zona euro"}
         FI{"Finlàndia"}
         FJ{"Fiji"}
-        FK{"Illes Malvines"}
+        FK{"Illes Malvines (Illes Falkland)"}
         FM{"Micronèsia"}
         FO{"Illes Fèroe"}
         FR{"França"}
@@ -303,7 +303,6 @@ ca{
         CD{"Congo (República Democràtica del Congo)"}
         CG{"Congo (República del Congo)"}
         CZ{"República Txeca"}
-        FK{"Illes Malvines (Illes Falkland)"}
         MK{"Macedònia (Antiga República Iugoslava de Macedònia)"}
     }
     Version{"2.1.37.22"}

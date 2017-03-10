@@ -109,7 +109,7 @@ lv{
         EZ{"Eirozona"}
         FI{"Somija"}
         FJ{"Fidži"}
-        FK{"Folklenda salas"}
+        FK{"Folklenda (Malvinu) salas"}
         FM{"Mikronēzija"}
         FO{"Fēru salas"}
         FR{"Francija"}
@@ -304,7 +304,6 @@ lv{
         CG{"Kongo (Republika)"}
         CI{"Ziloņkaula krasts"}
         CZ{"Čehijas Republika"}
-        FK{"Folklenda (Malvinu) salas"}
         MK{"bijusī Dienvidslāvijas Maķedonijas Republika"}
     }
     Version{"2.1.37.5"}

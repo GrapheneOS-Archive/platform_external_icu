@@ -109,7 +109,7 @@ it{
         EZ{"Eurozona"}
         FI{"Finlandia"}
         FJ{"Figi"}
-        FK{"Isole Falkland"}
+        FK{"Isole Falkland (Isole Malvine)"}
         FM{"Micronesia"}
         FO{"Isole Fær Øer"}
         FR{"Francia"}
@@ -304,7 +304,6 @@ it{
         CG{"Congo (Repubblica)"}
         CI{"Côte d’Ivoire"}
         CZ{"Repubblica Ceca"}
-        FK{"Isole Falkland (Isole Malvine)"}
         MK{"Ex Repubblica Jugoslava di Macedonia"}
         TL{"Timor Leste"}
     }

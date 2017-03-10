@@ -109,7 +109,7 @@ cy{
         EZ{"Ardal yr Ewro"}
         FI{"Y Ffindir"}
         FJ{"Fiji"}
-        FK{"Ynysoedd y Falkland/Malvinas"}
+        FK{"Ynysoedd y Falkland (Ynysoedd y Malfinas)"}
         FM{"Micronesia"}
         FO{"Ynysoedd Ffaro"}
         FR{"Ffrainc"}
@@ -304,7 +304,6 @@ cy{
         CG{"Y Congo (Gweriniaeth)"}
         CI{"Arfordir Ifori"}
         CZ{"Gweriniaeth Tsiec"}
-        FK{"Ynysoedd y Falkland (Ynysoedd y Malfinas)"}
         MK{"Macedonia (CWIM)"}
         TL{"Dwyrain Timor"}
     }

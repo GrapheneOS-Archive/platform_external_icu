@@ -109,7 +109,7 @@ da{
         EZ{"eurozonen"}
         FI{"Finland"}
         FJ{"Fiji"}
-        FK{"Falklandsøerne"}
+        FK{"Falklandsøerne (Islas Malvinas)"}
         FM{"Mikronesien"}
         FO{"Færøerne"}
         FR{"Frankrig"}
@@ -303,7 +303,6 @@ da{
         CD{"Den Demokratiske Republik Congo (DRC)"}
         CG{"Republikken Congo"}
         CZ{"Den Tjekkiske Republik"}
-        FK{"Falklandsøerne (Islas Malvinas)"}
         MK{"Den tidligere jugoslaviske republik Makedonien"}
         TL{"Østtimor"}
     }

@@ -109,7 +109,7 @@ tr{
         EZ{"Euro Bölgesi"}
         FI{"Finlandiya"}
         FJ{"Fiji"}
-        FK{"Falkland Adaları"}
+        FK{"Falkland Adaları (Malvinas Adaları)"}
         FM{"Mikronezya"}
         FO{"Faroe Adaları"}
         FR{"Fransa"}
@@ -303,7 +303,6 @@ tr{
         CD{"Kongo Demokratik Cumhuriyeti"}
         CG{"Kongo Cumhuriyeti"}
         CZ{"Çek Cumhuriyeti"}
-        FK{"Falkland Adaları (Malvinas Adaları)"}
         MK{"Makedonya (EYMC)"}
         TL{"Doğu Timor"}
     }

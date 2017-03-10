@@ -109,7 +109,7 @@ bs{
         EZ{"Eurozona"}
         FI{"Finska"}
         FJ{"Fidži"}
-        FK{"Folklandska ostrva"}
+        FK{"Folklandska (Malvinska) ostrva"}
         FM{"Mikronezija"}
         FO{"Farska ostrva"}
         FR{"Francuska"}
@@ -304,7 +304,6 @@ bs{
         CG{"Republika Kongo"}
         CI{"Obala Bjelokosti"}
         CZ{"Češka Republika"}
-        FK{"Folklandska (Malvinska) ostrva"}
         MK{"Makedonija (BJR)"}
         TL{"TL"}
     }

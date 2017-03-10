@@ -109,7 +109,7 @@ eu{
         EZ{"Eurogunea"}
         FI{"Finlandia"}
         FJ{"Fiji"}
-        FK{"Malvinak"}
+        FK{"Falkland uharteak"}
         FM{"Mikronesia"}
         FO{"Faroe uharteak"}
         FR{"Frantzia"}
@@ -302,7 +302,6 @@ eu{
         CD{"Kongo (DR)"}
         CG{"Kongoko Errepublika"}
         CZ{"Txekiar Errepublika"}
-        FK{"Falkland uharteak"}
         MK{"Mazedoniako Jugoslaviar Errepublika Ohia"}
     }
     Version{"2.1.37.5"}

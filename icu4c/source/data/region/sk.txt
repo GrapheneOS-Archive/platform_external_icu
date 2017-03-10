@@ -109,7 +109,7 @@ sk{
         EZ{"eurozóna"}
         FI{"Fínsko"}
         FJ{"Fidži"}
-        FK{"Falklandy"}
+        FK{"Falklandy (Malvíny)"}
         FM{"Mikronézia"}
         FO{"Faerské ostrovy"}
         FR{"Francúzsko"}
@@ -301,7 +301,6 @@ sk{
     }
     Countries%variant{
         CZ{"Česká republika"}
-        FK{"Falklandy (Malvíny)"}
         MK{"Macedónsko (BJRM)"}
     }
     Version{"2.1.37.5"}

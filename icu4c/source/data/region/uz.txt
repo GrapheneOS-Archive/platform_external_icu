@@ -109,7 +109,7 @@ uz{
         EZ{"yevrozona"}
         FI{"Finlandiya"}
         FJ{"Fiji"}
-        FK{"Folklend orollari"}
+        FK{"Folklend (Malvin) orollari"}
         FM{"Mikroneziya"}
         FO{"Farer orollari"}
         FR{"Fransiya"}
@@ -304,7 +304,6 @@ uz{
         CG{"Kongo (Respublika)"}
         CI{"Fil suyagi qirg‘og‘i"}
         CZ{"Chexiya Respublikasi"}
-        FK{"Folklend (Malvin) orollari"}
         MK{"Makedoniya (SYRM)"}
         TL{"Sharqiy Timor"}
     }

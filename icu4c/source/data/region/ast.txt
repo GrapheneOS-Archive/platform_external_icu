@@ -109,7 +109,7 @@ ast{
         EZ{"Eurozona"}
         FI{"Finlandia"}
         FJ{"Islles Fixi"}
-        FK{"Falkland Islands"}
+        FK{"Islles Malvines (Falkland Islands)"}
         FM{"Micronesia"}
         FO{"Islles Feroe"}
         FR{"Francia"}
@@ -303,7 +303,6 @@ ast{
         CG{"Congu (República del)"}
         CI{"Costa del Marfil"}
         CZ{"República Checa"}
-        FK{"Islles Malvines (Falkland Islands)"}
         MK{"Macedonia (ARYDM)"}
         TL{"Timor Este"}
     }

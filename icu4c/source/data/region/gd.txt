@@ -109,7 +109,7 @@ gd{
         EZ{"Raon an Eòro"}
         FI{"An Fhionnlann"}
         FJ{"Fìdi"}
-        FK{"Na h-Eileanan Fàclannach"}
+        FK{"Na h-Eileanan Fàclannach (Islas Malvinas)"}
         FM{"Na Meanbh-eileanan"}
         FO{"Na h-Eileanan Fàro"}
         FR{"An Fhraing"}
@@ -303,7 +303,6 @@ gd{
         CG{"A’ Chongo"}
         CI{"An Costa Ìbhri"}
         CZ{"Poblachd na Seice"}
-        FK{"Na h-Eileanan Fàclannach (Islas Malvinas)"}
         MK{"A’ Mhasadon (FYROM)"}
         TL{"Tìomor an Ear"}
     }

@@ -109,7 +109,7 @@ vi{
         EZ{"Khu vực đồng Euro"}
         FI{"Phần Lan"}
         FJ{"Fiji"}
-        FK{"Quần đảo Falkland"}
+        FK{"Quần đảo Falkland (Islas Malvinas)"}
         FM{"Micronesia"}
         FO{"Quần đảo Faroe"}
         FR{"Pháp"}
@@ -304,7 +304,6 @@ vi{
         CG{"Cộng hòa Congo"}
         CI{"Bờ Biển Ngà"}
         CZ{"Cộng hòa Séc"}
-        FK{"Quần đảo Falkland (Islas Malvinas)"}
         MK{"Macedonia (FYROM)"}
         TL{"Đông Timor"}
     }

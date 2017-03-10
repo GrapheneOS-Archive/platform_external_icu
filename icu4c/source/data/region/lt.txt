@@ -109,7 +109,7 @@ lt{
         EZ{"euro zona"}
         FI{"Suomija"}
         FJ{"Fidžis"}
-        FK{"Folklando Salos"}
+        FK{"Folklando (Malvinų) Salos"}
         FM{"Mikronezija"}
         FO{"Farerų Salos"}
         FR{"Prancūzija"}
@@ -304,7 +304,6 @@ lt{
         CG{"Kongo Respublika"}
         CI{"Dramblio Kaulo Kranto Respublika"}
         CZ{"Čekijos Respublika"}
-        FK{"Folklando (Malvinų) Salos"}
         MK{"Makedonijos Respublika"}
     }
     Version{"2.1.37.5"}

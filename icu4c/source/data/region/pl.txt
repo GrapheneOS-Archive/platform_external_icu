@@ -109,7 +109,7 @@ pl{
         EZ{"strefa euro"}
         FI{"Finlandia"}
         FJ{"Fidżi"}
-        FK{"Falklandy"}
+        FK{"Falklandy (Malwiny)"}
         FM{"Mikronezja"}
         FO{"Wyspy Owcze"}
         FR{"Francja"}
@@ -303,7 +303,6 @@ pl{
         CG{"Republika Konga"}
         CI{"Wybrzeże Kości Słoniowej"}
         CZ{"Republika Czeska"}
-        FK{"Falklandy (Malwiny)"}
         MK{"Była Jugosłowiańska Republika Macedonii"}
         TL{"Timor-Leste"}
     }

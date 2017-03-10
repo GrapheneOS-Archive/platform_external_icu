@@ -109,7 +109,7 @@ hu{
         EZ{"Eurózóna"}
         FI{"Finnország"}
         FJ{"Fidzsi"}
-        FK{"Falkland-szigetek"}
+        FK{"Falkland-szigetek (Malvin-szigetek)"}
         FM{"Mikronézia"}
         FO{"Feröer-szigetek"}
         FR{"Franciaország"}
@@ -304,7 +304,6 @@ hu{
         CG{"Kongó (Köztársaság)"}
         CI{"CI"}
         CZ{"Cseh Köztársaság"}
-        FK{"Falkland-szigetek (Malvin-szigetek)"}
         MK{"Macedónia (MVJK)"}
         TL{"Timor-Leste"}
     }

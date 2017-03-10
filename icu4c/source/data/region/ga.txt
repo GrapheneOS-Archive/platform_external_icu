@@ -109,7 +109,7 @@ ga{
         EZ{"Limistéar an euro"}
         FI{"an Fhionlainn"}
         FJ{"Fidsí"}
-        FK{"Oileáin Fháclainne"}
+        FK{"Oileáin Fháclainne (Islas Malvinas)"}
         FM{"an Mhicrinéis"}
         FO{"Oileáin Fharó"}
         FR{"an Fhrainc"}
@@ -303,7 +303,6 @@ ga{
         CD{"an Congó (PDC)"}
         CG{"an Congó (Poblacht)"}
         CZ{"Poblacht na Seice"}
-        FK{"Oileáin Fháclainne (Islas Malvinas)"}
         MK{"an Mhacadóin (PIIM)"}
     }
     Version{"2.1.37.5"}

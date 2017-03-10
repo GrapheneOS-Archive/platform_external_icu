@@ -109,7 +109,7 @@ fi{
         EZ{"euroalue"}
         FI{"Suomi"}
         FJ{"Fidži"}
-        FK{"Falklandinsaaret"}
+        FK{"Falklandinsaaret (Malvinassaaret)"}
         FM{"Mikronesian liittovaltio"}
         FO{"Färsaaret"}
         FR{"Ranska"}
@@ -304,7 +304,6 @@ fi{
         CG{"Kongo-Brazzaville"}
         CI{"Côte d’Ivoire"}
         CZ{"Tšekin tasavalta"}
-        FK{"Falklandinsaaret (Malvinassaaret)"}
         MK{"EJT Makedonia"}
         TL{"Timor-Leste"}
     }

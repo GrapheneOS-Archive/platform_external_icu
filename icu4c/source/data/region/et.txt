@@ -109,7 +109,7 @@ et{
         EZ{"euroala"}
         FI{"Soome"}
         FJ{"Fidži"}
-        FK{"Falklandi saared"}
+        FK{"Malviini saared"}
         FM{"Mikroneesia"}
         FO{"Fääri saared"}
         FR{"Prantsusmaa"}
@@ -304,7 +304,6 @@ et{
         CG{"Kongo-Brazzaville"}
         CI{"Elevandiluurannik"}
         CZ{"Tšehhia"}
-        FK{"Malviini saared"}
         MK{"Makedoonia Vabariik"}
         TL{"Timor-Leste"}
     }
