@@ -308,7 +308,6 @@ en_XA{
         CG{"[Çöñĝö (Ŕéþûƀļîç) one two]"}
         CI{"[Îṽöŕý Çöåšţ one two]"}
         CZ{"[Çžéçĥîå one]"}
-        FK{"[Ƒåļķļåñð Îšļåñðš (Îšļåš Ṁåļṽîñåš) one two three four]"}
         MK{"[Ṁåçéðöñîå (ƑÝŔÖṀ) one two three]"}
         TL{"[Éåšţ Ţîɱöŕ one two]"}
     }
