@@ -182,7 +182,7 @@ pt{
         MF{"São Martinho"}
         MG{"Madagascar"}
         MH{"Ilhas Marshall"}
-        MK{"Macedônia"}
+        MK{"Macedônia (ARIM)"}
         ML{"Mali"}
         MM{"Mianmar (Birmânia)"}
         MN{"Mongólia"}
@@ -304,7 +304,6 @@ pt{
         CG{"Congo"}
         CI{"Côte d’Ivoire"}
         CZ{"República Tcheca"}
-        MK{"Macedônia (ARIM)"}
         TL{"República Democrática de Timor-Leste"}
     }
     Version{"2.1.37.1"}

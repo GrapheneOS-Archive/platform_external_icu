@@ -182,7 +182,7 @@ hu{
         MF{"Saint Martin"}
         MG{"Madagaszkár"}
         MH{"Marshall-szigetek"}
-        MK{"Macedónia"}
+        MK{"Macedónia (MVJK)"}
         ML{"Mali"}
         MM{"Mianmar (Burma)"}
         MN{"Mongólia"}
@@ -304,7 +304,6 @@ hu{
         CG{"Kongó (Köztársaság)"}
         CI{"CI"}
         CZ{"Cseh Köztársaság"}
-        MK{"Macedónia (MVJK)"}
         TL{"Timor-Leste"}
     }
     Version{"2.1.37.5"}

@@ -182,7 +182,7 @@ vi{
         MF{"St. Martin"}
         MG{"Madagascar"}
         MH{"Quần đảo Marshall"}
-        MK{"Macedonia"}
+        MK{"Macedonia (FYROM)"}
         ML{"Mali"}
         MM{"Myanmar (Miến Điện)"}
         MN{"Mông Cổ"}
@@ -304,7 +304,6 @@ vi{
         CG{"Cộng hòa Congo"}
         CI{"Bờ Biển Ngà"}
         CZ{"Cộng hòa Séc"}
-        MK{"Macedonia (FYROM)"}
         TL{"Đông Timor"}
     }
     Version{"2.1.37.5"}

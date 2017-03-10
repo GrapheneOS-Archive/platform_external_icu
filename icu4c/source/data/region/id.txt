@@ -182,7 +182,7 @@ id{
         MF{"Saint Martin"}
         MG{"Madagaskar"}
         MH{"Kepulauan Marshall"}
-        MK{"Makedonia"}
+        MK{"Makedonia (BRY)"}
         ML{"Mali"}
         MM{"Myanmar (Burma)"}
         MN{"Mongolia"}
@@ -303,7 +303,6 @@ id{
         CD{"Kongo (RDK)"}
         CG{"Kongo (Republik)"}
         CZ{"Republik Ceko"}
-        MK{"Makedonia (BRY)"}
     }
     Version{"2.1.37.5"}
 }

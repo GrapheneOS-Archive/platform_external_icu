@@ -182,7 +182,7 @@ et{
         MF{"Saint-Martin"}
         MG{"Madagaskar"}
         MH{"Marshalli Saared"}
-        MK{"Makedoonia"}
+        MK{"Makedoonia Vabariik"}
         ML{"Mali"}
         MM{"Myanmar (Birma)"}
         MN{"Mongoolia"}
@@ -304,7 +304,6 @@ et{
         CG{"Kongo-Brazzaville"}
         CI{"Elevandiluurannik"}
         CZ{"Tšehhia"}
-        MK{"Makedoonia Vabariik"}
         TL{"Timor-Leste"}
     }
     Version{"2.1.37.22"}

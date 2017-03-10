@@ -182,7 +182,7 @@ zu{
         MF{"i-Saint Martin"}
         MG{"i-Madagascar"}
         MH{"i-Marshall Islands"}
-        MK{"i-Macedonia"}
+        MK{"i-Macedonia (FYROM)"}
         ML{"iMali"}
         MM{"i-Myanmar (Burma)"}
         MN{"i-Mongolia"}
@@ -304,7 +304,6 @@ zu{
         CG{"i-Congo (Republic)"}
         CI{"i-Ivory Coast"}
         CZ{"i-Czech Republic"}
-        MK{"i-Macedonia (FYROM)"}
         TL{"i-East Timor"}
     }
     Version{"2.1.37.1"}

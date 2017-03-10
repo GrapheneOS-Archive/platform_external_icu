@@ -182,7 +182,7 @@ it{
         MF{"Saint Martin"}
         MG{"Madagascar"}
         MH{"Isole Marshall"}
-        MK{"Repubblica di Macedonia"}
+        MK{"Ex Repubblica Jugoslava di Macedonia"}
         ML{"Mali"}
         MM{"Myanmar (Birmania)"}
         MN{"Mongolia"}
@@ -304,7 +304,6 @@ it{
         CG{"Congo (Repubblica)"}
         CI{"Côte d’Ivoire"}
         CZ{"Repubblica Ceca"}
-        MK{"Ex Repubblica Jugoslava di Macedonia"}
         TL{"Timor Leste"}
     }
     Version{"2.1.37.1"}

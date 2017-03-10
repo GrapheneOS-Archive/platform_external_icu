@@ -182,7 +182,7 @@ pl{
         MF{"Saint-Martin"}
         MG{"Madagaskar"}
         MH{"Wyspy Marshalla"}
-        MK{"Macedonia"}
+        MK{"Była Jugosłowiańska Republika Macedonii"}
         ML{"Mali"}
         MM{"Mjanma (Birma)"}
         MN{"Mongolia"}
@@ -303,7 +303,6 @@ pl{
         CG{"Republika Konga"}
         CI{"Wybrzeże Kości Słoniowej"}
         CZ{"Republika Czeska"}
-        MK{"Była Jugosłowiańska Republika Macedonii"}
         TL{"Timor-Leste"}
     }
     Version{"2.1.37.5"}

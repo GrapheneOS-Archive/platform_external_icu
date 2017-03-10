@@ -182,7 +182,7 @@ lt{
         MF{"Sen Martenas"}
         MG{"Madagaskaras"}
         MH{"Maršalo Salos"}
-        MK{"Makedonija"}
+        MK{"Makedonijos Respublika"}
         ML{"Malis"}
         MM{"Mianmaras (Birma)"}
         MN{"Mongolija"}
@@ -304,7 +304,6 @@ lt{
         CG{"Kongo Respublika"}
         CI{"Dramblio Kaulo Kranto Respublika"}
         CZ{"Čekijos Respublika"}
-        MK{"Makedonijos Respublika"}
     }
     Version{"2.1.37.5"}
 }

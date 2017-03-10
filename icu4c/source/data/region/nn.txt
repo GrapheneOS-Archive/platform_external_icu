@@ -182,7 +182,7 @@ nn{
         MF{"Saint Martin"}
         MG{"Madagaskar"}
         MH{"Marshalløyane"}
-        MK{"Makedonia"}
+        MK{"Den tidlegare jugoslaviske republikken Makedonia"}
         ML{"Mali"}
         MM{"Myanmar (Burma)"}
         MN{"Mongolia"}
@@ -301,7 +301,6 @@ nn{
     Countries%variant{
         CD{"Den demokratiske republikken Kongo"}
         CG{"Republikken Kongo"}
-        MK{"Den tidlegare jugoslaviske republikken Makedonia"}
         TL{"Aust-Timor"}
     }
     Version{"2.1.37.5"}

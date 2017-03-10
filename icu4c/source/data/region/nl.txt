@@ -182,7 +182,7 @@ nl{
         MF{"Saint-Martin"}
         MG{"Madagaskar"}
         MH{"Marshalleilanden"}
-        MK{"Macedonië"}
+        MK{"Macedonië (FYROM)"}
         ML{"Mali"}
         MM{"Myanmar (Birma)"}
         MN{"Mongolië"}
@@ -304,7 +304,6 @@ nl{
         CG{"Congo (Republiek)"}
         CI{"Republiek Ivoorkust"}
         CZ{"Tsjechische Republiek"}
-        MK{"Macedonië (FYROM)"}
         TL{"Democratische Republiek Oost-Timor"}
     }
     Version{"2.1.37.1"}

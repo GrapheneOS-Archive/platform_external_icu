@@ -182,7 +182,7 @@ is{
         MF{"St. Martin"}
         MG{"Madagaskar"}
         MH{"Marshalleyjar"}
-        MK{"Makedónía"}
+        MK{"Makedónía (Fyrrverandi lýðveldi Júgóslavíu)"}
         ML{"Malí"}
         MM{"Mjanmar (Búrma)"}
         MN{"Mongólía"}
@@ -302,7 +302,6 @@ is{
     Countries%variant{
         CD{"Kongó (Lýðstjórnarlýðveldið)"}
         CG{"Kongó (Lýðveldið)"}
-        MK{"Makedónía (Fyrrverandi lýðveldi Júgóslavíu)"}
         TL{"Austur-Tímor"}
     }
     Version{"2.1.37.5"}

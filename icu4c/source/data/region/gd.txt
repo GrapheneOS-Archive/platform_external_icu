@@ -182,7 +182,7 @@ gd{
         MF{"Naomh Màrtainn"}
         MG{"Madagasgar"}
         MH{"Eileanan Mharshall"}
-        MK{"A’ Mhasadon"}
+        MK{"A’ Mhasadon (FYROM)"}
         ML{"Màili"}
         MM{"Miànmar"}
         MN{"Dùthaich nam Mongol"}
@@ -303,7 +303,6 @@ gd{
         CG{"A’ Chongo"}
         CI{"An Costa Ìbhri"}
         CZ{"Poblachd na Seice"}
-        MK{"A’ Mhasadon (FYROM)"}
         TL{"Tìomor an Ear"}
     }
     Version{"2.1.37.1"}

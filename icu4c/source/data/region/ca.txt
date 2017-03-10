@@ -182,7 +182,7 @@ ca{
         MF{"Saint Martin"}
         MG{"Madagascar"}
         MH{"Illes Marshall"}
-        MK{"Macedònia"}
+        MK{"Macedònia (Antiga República Iugoslava de Macedònia)"}
         ML{"Mali"}
         MM{"Myanmar (Birmània)"}
         MN{"Mongòlia"}
@@ -303,7 +303,6 @@ ca{
         CD{"Congo (República Democràtica del Congo)"}
         CG{"Congo (República del Congo)"}
         CZ{"República Txeca"}
-        MK{"Macedònia (Antiga República Iugoslava de Macedònia)"}
     }
     Version{"2.1.37.22"}
 }

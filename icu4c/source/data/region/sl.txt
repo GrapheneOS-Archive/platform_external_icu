@@ -182,7 +182,7 @@ sl{
         MF{"Saint Martin"}
         MG{"Madagaskar"}
         MH{"Marshallovi otoki"}
-        MK{"Makedonija"}
+        MK{"Makedonija (FYROM)"}
         ML{"Mali"}
         MM{"Mjanmar (Burma)"}
         MN{"Mongolija"}
@@ -304,7 +304,6 @@ sl{
         CG{"Kongo (Republika)"}
         CI{"Côte d’Ivoire"}
         CZ{"Češka republika"}
-        MK{"Makedonija (FYROM)"}
         TL{"Vzhodni Timor"}
     }
     Version{"2.1.37.1"}
