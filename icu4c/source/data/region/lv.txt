@@ -181,7 +181,7 @@ lv{
         MF{"Senmartēna"}
         MG{"Madagaskara"}
         MH{"Māršala salas"}
-        MK{"Maķedonija"}
+        MK{"bijusī Dienvidslāvijas Maķedonijas Republika"}
         ML{"Mali"}
         MM{"Mjanma (Birma)"}
         MN{"Mongolija"}
@@ -303,7 +303,6 @@ lv{
         CG{"Kongo (Republika)"}
         CI{"Ziloņkaula krasts"}
         CZ{"Čehijas Republika"}
-        MK{"bijusī Dienvidslāvijas Maķedonijas Republika"}
     }
     Version{"2.1.28.79"}
 }
