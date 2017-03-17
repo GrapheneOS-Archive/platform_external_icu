@@ -181,7 +181,7 @@ hu{
         MF{"Saint Martin"}
         MG{"Madagaszkár"}
         MH{"Marshall-szigetek"}
-        MK{"Macedónia"}
+        MK{"Macedónia (MVJK)"}
         ML{"Mali"}
         MM{"Mianmar (Burma)"}
         MN{"Mongólia"}
@@ -301,7 +301,6 @@ hu{
     Countries%variant{
         CD{"Kongó (KDK)"}
         CG{"Kongó (Köztársaság)"}
-        MK{"Macedónia (MVJK)"}
     }
     Version{"2.1.28.79"}
 }

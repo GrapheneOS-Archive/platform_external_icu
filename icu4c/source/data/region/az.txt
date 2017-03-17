@@ -181,7 +181,7 @@ az{
         MF{"Sent Martin"}
         MG{"Madaqaskar"}
         MH{"Marşal adaları"}
-        MK{"Makedoniya"}
+        MK{"Makedoniya (KYRM)"}
         ML{"Mali"}
         MM{"Myanma"}
         MN{"Monqolustan"}
@@ -303,7 +303,6 @@ az{
         CG{"Konqo (Respublika)"}
         CI{"Fil Dişi Sahili"}
         CZ{"Çex Respublikası"}
-        MK{"Makedoniya (KYRM)"}
         TL{"Doğu Timor"}
     }
     Version{"2.1.28.79"}
