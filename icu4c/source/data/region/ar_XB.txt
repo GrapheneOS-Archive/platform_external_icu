@@ -308,7 +308,6 @@ ar_XB{
         CG{"‮Congo‬ (‮Republic‬)"}
         CI{"‮Ivory‬ ‮Coast‬"}
         CZ{"‮Czechia‬"}
-        FK{"‮Falkland‬ ‮Islands‬ (‮Islas‬ ‮Malvinas‬)"}
         MK{"‮Macedonia‬ (‮FYROM‬)"}
         TL{"‮East‬ ‮Timor‬"}
     }

@@ -108,7 +108,7 @@ af{
         EU{"Europese Unie"}
         FI{"Finland"}
         FJ{"Fidji"}
-        FK{"Falklandeilande"}
+        FK{"Falklandeilande (Malvinas)"}
         FM{"Mikronesië"}
         FO{"Faroëreilande"}
         FR{"Frankryk"}
@@ -302,7 +302,6 @@ af{
         CD{"Kongo (DRK)"}
         CG{"Kongo (Republiek die)"}
         CZ{"Tjeggiese Republiek"}
-        FK{"Falklandeilande (Malvinas)"}
         MK{"Macedonië (VJRM)"}
     }
     Version{"2.1.29.44"}
