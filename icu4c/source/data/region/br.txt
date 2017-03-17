@@ -108,7 +108,7 @@ br{
         EU{"Unaniezh Europa"}
         FI{"Finland"}
         FJ{"Fidji"}
-        FK{"Inizi Falkland"}
+        FK{"Inizi Falkland (Inizi Maloù)"}
         FM{"Mikronezia"}
         FO{"Inizi Faero"}
         FR{"Frañs"}
@@ -300,7 +300,6 @@ br{
         CD{"Kongo (RDK)"}
         CG{"Kongo (Republik)"}
         CI{"Aod Olifant"}
-        FK{"Inizi Falkland (Inizi Maloù)"}
         MK{"Makedonia (RYKM)"}
         TL{"Timor ar Reter"}
     }

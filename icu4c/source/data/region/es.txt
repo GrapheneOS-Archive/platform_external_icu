@@ -108,7 +108,7 @@ es{
         EU{"Unión Europea"}
         FI{"Finlandia"}
         FJ{"Fiyi"}
-        FK{"Islas Malvinas"}
+        FK{"Islas Malvinas (Islas Falkland)"}
         FM{"Micronesia"}
         FO{"Islas Feroe"}
         FR{"Francia"}
@@ -301,7 +301,6 @@ es{
         CG{"Congo (República)"}
         CI{"Costa de Marfil"}
         CZ{"República Checa"}
-        FK{"Islas Malvinas (Islas Falkland)"}
         MK{"Macedonia (ERYM)"}
         TL{"Timor Oriental"}
     }
