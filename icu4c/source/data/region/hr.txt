@@ -108,7 +108,7 @@ hr{
         EU{"Europska unija"}
         FI{"Finska"}
         FJ{"Fidži"}
-        FK{"Falklandski otoci"}
+        FK{"Falklandski otoci (Malvini)"}
         FM{"Mikronezija"}
         FO{"Farski otoci"}
         FR{"Francuska"}
@@ -303,7 +303,6 @@ hr{
         CG{"Kongo (RK)"}
         CI{"Bjelokosna Obala"}
         CZ{"Češka Republika"}
-        FK{"Falklandski otoci (Malvini)"}
         MK{"Makedonija (BJRM)"}
         TL{"Istočni Timor"}
     }

@@ -108,7 +108,7 @@ is{
         EU{"Evrópusambandið"}
         FI{"Finnland"}
         FJ{"Fídjíeyjar"}
-        FK{"Falklandseyjar"}
+        FK{"Falklandseyjar (Malvinas)"}
         FM{"Míkrónesía"}
         FO{"Færeyjar"}
         FR{"Frakkland"}
@@ -301,7 +301,6 @@ is{
     Countries%variant{
         CD{"Kongó (Lýðstjórnarlýðveldið)"}
         CG{"Kongó (Lýðveldið)"}
-        FK{"Falklandseyjar (Malvinas)"}
         MK{"Makedónía (Fyrrverandi lýðveldi Júgóslavíu)"}
         TL{"Austur-Tímor"}
     }

@@ -108,7 +108,7 @@ ro{
         EU{"Uniunea Europeană"}
         FI{"Finlanda"}
         FJ{"Fiji"}
-        FK{"Insulele Falkland"}
+        FK{"Insulele Falkland (Insulele Malvine)"}
         FM{"Micronezia"}
         FO{"Insulele Feroe"}
         FR{"Franța"}
@@ -303,7 +303,6 @@ ro{
         CG{"Congo (Republica)"}
         CI{"Coasta de Fildeș"}
         CZ{"Republica Cehă"}
-        FK{"Insulele Falkland (Insulele Malvine)"}
         MK{"Republica Macedonia (FRIM)"}
     }
     Version{"2.1.28.79"}

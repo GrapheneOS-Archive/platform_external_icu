@@ -109,7 +109,7 @@ sr_Latn{
         EU{"Evropska Unija"}
         FI{"Finska"}
         FJ{"Fidži"}
-        FK{"Foklandska Ostrva"}
+        FK{"Foklandska (Malvinska) ostrva"}
         FM{"Mikronezija"}
         FO{"Farska Ostrva"}
         FR{"Francuska"}
@@ -302,7 +302,6 @@ sr_Latn{
     Countries%variant{
         CD{"Kongo (DRK)"}
         CG{"Kongo (Republika)"}
-        FK{"Foklandska (Malvinska) ostrva"}
         MK{"Makedonija (BJRM)"}
     }
     Version{"2.1.29.33"}

@@ -108,7 +108,7 @@ gl{
         EU{"Unión Europea"}
         FI{"Finlandia"}
         FJ{"Fidxi"}
-        FK{"Illas Malvinas"}
+        FK{"Illas Malvinas (Falkland)"}
         FM{"Micronesia"}
         FO{"Illas Feroe"}
         FR{"Francia"}
@@ -302,7 +302,6 @@ gl{
         CD{"Congo (RDC)"}
         CG{"Congo (RC)"}
         CZ{"República Checa"}
-        FK{"Illas Malvinas (Falkland)"}
         MK{"Macedonia (ARIM)"}
     }
     Version{"2.1.28.79"}
