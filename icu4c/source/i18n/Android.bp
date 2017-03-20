@@ -223,6 +223,9 @@ cc_defaults {
         "-fvisibility=hidden",
         "-Wno-unused-parameter",
     ],
+    cppflags: [
+        "-std=c++11",
+    ],
     clang: true,
     rtti: true,
     export_include_dirs: ["."],

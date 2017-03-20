@@ -220,6 +220,10 @@ cc_defaults {
         "-Wno-deprecated-declarations",
     ],
 
+    cppflags: [
+        "-std=c++11",
+    ],
+
     export_include_dirs: ["."],
     rtti: true,
     clang: true,

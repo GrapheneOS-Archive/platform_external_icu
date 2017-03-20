@@ -22,4 +22,5 @@ cc_library_static {
     host_supported: true,
     srcs: ["stubdata/stubdata.cpp"],
     local_include_dirs: ["common"],
+    cppflags: ["-std=c++11"],
 }
