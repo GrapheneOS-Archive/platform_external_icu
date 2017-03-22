@@ -43,8 +43,9 @@ import java.math.BigInteger;
  * @see java.text.MessageFormat
  * @version      1.18 08/12/98
  * @author       Mark Davis, Alan Liu
+ * @hide Made public for testing
  * */
-final class DigitList {
+public final class DigitList {
     /**
      * The maximum number of significant digits in an IEEE 754 double, that
      * is, in a Java double.  This must not be increased, or garbage digits
