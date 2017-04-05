@@ -19,11 +19,11 @@
 cc_defaults {
     name: "libicui18n_defaults",
     srcs: [
-        "decContext.c",
-        "decNumber.c",
+        "decContext.cpp",
+        "decNumber.cpp",
         "ucln_in.cpp",
-        "ulocdata.c",
-        "utmscale.c",
+        "ulocdata.cpp",
+        "utmscale.cpp",
 
         "affixpatternparser.cpp",
         "alphaindex.cpp",
