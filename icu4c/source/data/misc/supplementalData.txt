@@ -1796,8 +1796,10 @@ supplementalData:table(nofallback){
             "islamic-tbla",
         }
         SA{
-            "islamic-umalqura",
+// BEGIN android-changed
             "gregorian",
+            "islamic-umalqura",
+// END android-changed
             "islamic",
             "islamic-rgsa",
         }

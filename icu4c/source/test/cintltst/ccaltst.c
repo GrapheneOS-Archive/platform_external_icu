@@ -89,8 +89,8 @@ static const UCalGetTypeTest ucalGetTypeTests[] = {
     { "th-TH-u-ca-gregory",      UCAL_DEFAULT,   "gregorian" },
     { "ja_JP@calendar=japanese", UCAL_GREGORIAN, "gregorian" },
     { "fr_CH",                   UCAL_DEFAULT,   "gregorian" },
-    { "fr_SA",                   UCAL_DEFAULT,   "islamic-umalqura" },
-    { "fr_CH@rg=sazzzz",         UCAL_DEFAULT,   "islamic-umalqura" },
+    { "fr_SA",                   UCAL_DEFAULT,   "gregorian" },  // android-changed
+    { "fr_CH@rg=sazzzz",         UCAL_DEFAULT,   "gregorian" },  // android-changed
     { "fr_CH@calendar=japanese;rg=sazzzz", UCAL_DEFAULT, "japanese" },
     { "fr_TH@rg=SA",             UCAL_DEFAULT,   "gregorian"  }, /* ignore malformed rg tag */  // android-changed
     { "th@rg=SA",                UCAL_DEFAULT,   "gregorian"  }, /* ignore malformed rg tag */  // android-changed
@@ -1573,7 +1573,7 @@ static void TestGetKeywordValuesForLocale() {
             { "en@calendar=islamic",   "gregorian", NULL, NULL, NULL, NULL },
             { "zh_TW",       "gregorian", "roc", "chinese", NULL, NULL },
             { "ar_IR",       "gregorian", "persian", "islamic", "islamic-civil", "islamic-tbla" },  // android-changed
-            { "th@rg=SAZZZZ", "islamic-umalqura", "gregorian", "islamic", "islamic-rgsa", NULL },
+            { "th@rg=SAZZZZ", "gregorian", "islamic-umalqura", "islamic", "islamic-rgsa", NULL },  // android-changed
     };
     const int32_t EXPECTED_SIZE[PREFERRED_SIZE] = { 1, 1, 1, 1, 2, 2, 2, 5, 5, 2, 2, 2, 1, 3, 5, 4 };
     UErrorCode status = U_ZERO_ERROR;
