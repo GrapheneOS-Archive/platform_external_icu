@@ -2170,7 +2170,7 @@ public class CalendarRegressionTest extends com.ibm.icu.dev.test.TestFmwk {
             {"en@calendar=islamic",     "gregorian"},
             {"zh_TW",       "gregorian", "roc", "chinese"},
             {"ar_IR",       "gregorian", "persian", "islamic", "islamic-civil", "islamic-tbla"},
-            {"th@rg=SAZZZZ", "islamic-umalqura", "gregorian", "islamic", "islamic-rgsa"},
+            {"th@rg=SAZZZZ", "gregorian", "islamic-umalqura", "islamic", "islamic-rgsa"},
         };
         // Android patch end.
 
