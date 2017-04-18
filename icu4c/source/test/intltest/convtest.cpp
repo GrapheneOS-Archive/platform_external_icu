@@ -1,4 +1,4 @@
-// Copyright (C) 2016 and later: Unicode, Inc. and others.
+// © 2016 and later: Unicode, Inc. and others.
 // License & terms of use: http://www.unicode.org/copyright.html
 /*
 *******************************************************************************
@@ -8,7 +8,7 @@
 *
 *******************************************************************************
 *   file name:  convtest.cpp
-*   encoding:   US-ASCII
+*   encoding:   UTF-8
 *   tab size:   8 (not used)
 *   indentation:4
 *
@@ -119,15 +119,6 @@ ConversionTest::TestToUnicode() {
                 s=testCase->getString("charset", errorCode);
                 s.extract(0, 0x7fffffff, charset, sizeof(charset), "");
                 cc.charset=charset;
-
-                // BEGIN android-added
-                // To save space, Android does not build full ISO-2022-CN tables.
-                // We skip the TestGetKeywordValuesForLocale for counting available collations.
-                if (strlen(charset) >= 8 &&
-                    strncmp(charset+4, "2022-CN", 4) == 0) {
-                    continue;
-                }
-                // END android-added
 
                 cc.bytes=testCase->getBinary(cc.bytesLength, "bytes", errorCode);
                 unicode=testCase->getString("unicode", errorCode);
@@ -241,15 +232,6 @@ ConversionTest::TestFromUnicode() {
                 s=testCase->getString("charset", errorCode);
                 s.extract(0, 0x7fffffff, charset, sizeof(charset), "");
                 cc.charset=charset;
-
-                // BEGIN android-added
-                // To save space, Android does not build full ISO-2022-CN tables.
-                // We skip the TestGetKeywordValuesForLocale for counting available collations.
-                if (strlen(charset) >= 8 &&
-                    strncmp(charset+4, "2022-CN", 4) == 0) {
-                    continue;
-                }
-                // END android-added
 
                 unicode=testCase->getString("unicode", errorCode);
                 cc.unicode=unicode.getBuffer();
@@ -403,15 +385,6 @@ ConversionTest::TestGetUnicodeSet() {
 
                 s=testCase->getString("charset", errorCode);
                 s.extract(0, 0x7fffffff, charset, sizeof(charset), "");
-
-                // BEGIN android-added
-                // To save space, Android does not build full ISO-2022-CN tables.
-                // We skip the TestGetKeywordValuesForLocale for counting available collations.
-                if (strlen(charset) >= 8 &&
-                    strncmp(charset+4, "2022-CN", 4) == 0) {
-                    continue;
-                }
-                // END android-added
 
                 map=testCase->getString("map", errorCode);
                 mapnot=testCase->getString("mapnot", errorCode);
@@ -1050,6 +1023,7 @@ ConversionTest::ToUnicodeCase(ConversionCase &cc, UConverterToUCallback callback
     // open the converter
     IcuTestErrorCode errorCode(*this, "ToUnicodeCase");
     LocalUConverterPointer cnv(cnv_open(cc.charset, errorCode));
+    // with no data, the above crashes with "pointer being freed was not allocated" for charset "x11-compound-text", see #13078
     if(errorCode.isFailure()) {
         errcheckln(errorCode, "toUnicode[%d](%s cb=\"%s\" fb=%d flush=%d) ucnv_open() failed - %s",
                 cc.caseNr, cc.charset, cc.cbopt, cc.fallbacks, cc.finalFlush, errorCode.errorName());

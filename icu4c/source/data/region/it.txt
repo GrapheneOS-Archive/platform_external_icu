@@ -108,7 +108,7 @@ it{
         EU{"Unione Europea"}
         FI{"Finlandia"}
         FJ{"Figi"}
-        FK{"Isole Falkland (Isole Malvine)"}
+        FK{"Isole Falkland"}
         FM{"Micronesia"}
         FO{"Isole Fær Øer"}
         FR{"Francia"}
@@ -131,7 +131,7 @@ it{
         GU{"Guam"}
         GW{"Guinea-Bissau"}
         GY{"Guyana"}
-        HK{"Hong Kong"}
+        HK{"RAS di Hong Kong"}
         HM{"Isole Heard e McDonald"}
         HN{"Honduras"}
         HR{"Croazia"}
@@ -181,11 +181,11 @@ it{
         MF{"Saint Martin"}
         MG{"Madagascar"}
         MH{"Isole Marshall"}
-        MK{"Ex Repubblica Jugoslava di Macedonia"}
+        MK{"Repubblica di Macedonia"}
         ML{"Mali"}
         MM{"Myanmar (Birmania)"}
         MN{"Mongolia"}
-        MO{"Macao"}
+        MO{"RAS di Macao"}
         MP{"Isole Marianne settentrionali"}
         MQ{"Martinica"}
         MR{"Mauritania"}
@@ -220,7 +220,7 @@ it{
         PM{"Saint Pierre e Miquelon"}
         PN{"Isole Pitcairn"}
         PR{"Portorico"}
-        PS{"Palestina"}
+        PS{"Territori palestinesi"}
         PT{"Portogallo"}
         PW{"Palau"}
         PY{"Paraguay"}
@@ -260,7 +260,7 @@ it{
         TH{"Thailandia"}
         TJ{"Tagikistan"}
         TK{"Tokelau"}
-        TL{"Timor Leste"}
+        TL{"Timor Est"}
         TM{"Turkmenistan"}
         TN{"Tunisia"}
         TO{"Tonga"}
@@ -295,6 +295,9 @@ it{
     }
     Countries%short{
         GB{"UK"}
+        HK{"Hong Kong"}
+        MO{"Macao"}
+        PS{"Palestina"}
         UN{"nazioni unite"}
         US{"USA"}
     }
@@ -303,7 +306,9 @@ it{
         CG{"Congo (Repubblica)"}
         CI{"Côte d’Ivoire"}
         CZ{"Repubblica Ceca"}
-        TL{"Timor Est"}
+        FK{"Isole Falkland (Isole Malvine)"}
+        MK{"Ex Repubblica Jugoslava di Macedonia"}
+        TL{"Timor Leste"}
     }
-    Version{"2.1.28.79"}
+    Version{"2.1.32.60"}
 }

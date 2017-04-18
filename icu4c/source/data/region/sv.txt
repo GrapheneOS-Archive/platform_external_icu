@@ -131,7 +131,7 @@ sv{
         GU{"Guam"}
         GW{"Guinea-Bissau"}
         GY{"Guyana"}
-        HK{"Hongkong"}
+        HK{"Hongkong, S.A.R. Kina"}
         HM{"Heardön och McDonaldöarna"}
         HN{"Honduras"}
         HR{"Kroatien"}
@@ -181,11 +181,11 @@ sv{
         MF{"Saint-Martin"}
         MG{"Madagaskar"}
         MH{"Marshallöarna"}
-        MK{"f.d. jugoslaviska republiken Makedonien"}
+        MK{"Makedonien"}
         ML{"Mali"}
         MM{"Myanmar (Burma)"}
         MN{"Mongoliet"}
-        MO{"Macao"}
+        MO{"Macao, S.A.R. Kina"}
         MP{"Nordmarianerna"}
         MQ{"Martinique"}
         MR{"Mauretanien"}
@@ -220,7 +220,7 @@ sv{
         PM{"S:t Pierre och Miquelon"}
         PN{"Pitcairnöarna"}
         PR{"Puerto Rico"}
-        PS{"Palestina"}
+        PS{"Palestinska territorierna"}
         PT{"Portugal"}
         PW{"Palau"}
         PY{"Paraguay"}
@@ -295,12 +295,16 @@ sv{
     }
     Countries%short{
         GB{"Storbritannien"}
+        HK{"Hongkong"}
+        MO{"Macao"}
+        PS{"Palestina"}
         UN{"FN"}
         US{"USA"}
     }
     Countries%variant{
         CD{"Demokratiska republiken Kongo"}
         CG{"Republiken Kongo"}
+        MK{"f.d. jugoslaviska republiken Makedonien"}
     }
-    Version{"2.1.30.7"}
+    Version{"2.1.32.59"}
 }

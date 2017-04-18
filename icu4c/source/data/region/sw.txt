@@ -108,7 +108,7 @@ sw{
         EU{"Umoja wa Ulaya"}
         FI{"Ufini"}
         FJ{"Fiji"}
-        FK{"Visiwa vya Falkland (Islas Malvinas)"}
+        FK{"Visiwa vya Falkland"}
         FM{"Mikronesia"}
         FO{"Visiwa vya Faroe"}
         FR{"Ufaransa"}
@@ -131,7 +131,7 @@ sw{
         GU{"Guam"}
         GW{"Ginebisau"}
         GY{"Guyana"}
-        HK{"Hong Kong"}
+        HK{"Hong Kong SAR China"}
         HM{"Kisiwa cha Heard na Visiwa vya McDonald"}
         HN{"Hondurasi"}
         HR{"Korasia"}
@@ -181,11 +181,11 @@ sw{
         MF{"Saint Martin"}
         MG{"Madagaska"}
         MH{"Visiwa vya Marshall"}
-        MK{"Masedonia (FYROM)"}
+        MK{"Macedonia"}
         ML{"Mali"}
         MM{"Myanmar (Burma)"}
         MN{"Mongolia"}
-        MO{"Macau"}
+        MO{"Macau SAR China"}
         MP{"Visiwa vya Mariana vya Kaskazini"}
         MQ{"Martiniki"}
         MR{"Moritania"}
@@ -220,7 +220,7 @@ sw{
         PM{"Santapierre na Miquelon"}
         PN{"Visiwa vya Pitcairn"}
         PR{"Puerto Rico"}
-        PS{"Palestina"}
+        PS{"Maeneo ya Palestina"}
         PT{"Ureno"}
         PW{"Palau"}
         PY{"Paragwai"}
@@ -295,6 +295,9 @@ sw{
     }
     Countries%short{
         GB{"Uingereza"}
+        HK{"Hong Kong"}
+        MO{"Macau"}
+        PS{"Palestina"}
         UN{"umoja wa mataifa"}
         US{"US"}
     }
@@ -303,7 +306,9 @@ sw{
         CG{"Jamhuri ya Kongo"}
         CI{"Ivory Coast"}
         CZ{"Jamhuri ya Cheki"}
+        FK{"Visiwa vya Falkland (Islas Malvinas)"}
+        MK{"Masedonia (FYROM)"}
         TL{"Timor ya Mashariki"}
     }
-    Version{"2.1.28.79"}
+    Version{"2.1.33.73"}
 }

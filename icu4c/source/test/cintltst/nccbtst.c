@@ -1,4 +1,4 @@
-// Copyright (C) 2016 and later: Unicode, Inc. and others.
+// © 2016 and later: Unicode, Inc. and others.
 // License & terms of use: http://www.unicode.org/copyright.html
 /********************************************************************
  * COPYRIGHT: 
@@ -93,11 +93,7 @@ void addTestConvertErrorCallBack(TestNode** root)
     addTest(root, &TestSkipCallBack,  "tsconv/nccbtst/TestSkipCallBack");
     addTest(root, &TestStopCallBack,  "tsconv/nccbtst/TestStopCallBack");
     addTest(root, &TestSubCallBack,   "tsconv/nccbtst/TestSubCallBack");
-    /* BEGIN android-removed
-       To save space, Android does not build complete CJK conversion tables.
-       We skip the test here.
     addTest(root, &TestSubWithValueCallBack, "tsconv/nccbtst/TestSubWithValueCallBack");
-       END android-removed */
 
 #if !UCONFIG_NO_LEGACY_CONVERSION
     addTest(root, &TestLegalAndOtherCallBack,  "tsconv/nccbtst/TestLegalAndOtherCallBack");

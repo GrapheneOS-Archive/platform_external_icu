@@ -1,4 +1,4 @@
-// Copyright (C) 2016 and later: Unicode, Inc. and others.
+// © 2016 and later: Unicode, Inc. and others.
 // License & terms of use: http://www.unicode.org/copyright.html
 /***********************************************************************
  * COPYRIGHT: 
@@ -118,9 +118,9 @@ IntlCalendarTest::TestTypes()
                             "buddhist",           
                             "gregorian",
                             "gregorian",
-                            "gregorian",  // android-changed.  "buddhist",
-                            "gregorian",  // android-changed.  "buddhist",
-                            "gregorian",  // android-changed.  "buddhist",
+                            "buddhist",           
+                            "buddhist",           
+                            "buddhist",           
                             "gregorian",
                             NULL };
 

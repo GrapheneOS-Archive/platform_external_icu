@@ -108,7 +108,7 @@ fr{
         EU{"Union européenne"}
         FI{"Finlande"}
         FJ{"Fidji"}
-        FK{"Îles Falkland"}
+        FK{"Îles Malouines"}
         FM{"États fédérés de Micronésie"}
         FO{"Îles Féroé"}
         FR{"France"}
@@ -131,7 +131,7 @@ fr{
         GU{"Guam"}
         GW{"Guinée-Bissau"}
         GY{"Guyana"}
-        HK{"Hong Kong"}
+        HK{"R.A.S. chinoise de Hong Kong"}
         HM{"Îles Heard et McDonald"}
         HN{"Honduras"}
         HR{"Croatie"}
@@ -181,11 +181,11 @@ fr{
         MF{"Saint-Martin"}
         MG{"Madagascar"}
         MH{"Îles Marshall"}
-        MK{"Macédoine (ARYM)"}
+        MK{"Macédoine"}
         ML{"Mali"}
         MM{"Myanmar (Birmanie)"}
         MN{"Mongolie"}
-        MO{"Macao"}
+        MO{"R.A.S. chinoise de Macao"}
         MP{"Îles Mariannes du Nord"}
         MQ{"Martinique"}
         MR{"Mauritanie"}
@@ -220,7 +220,7 @@ fr{
         PM{"Saint-Pierre-et-Miquelon"}
         PN{"Îles Pitcairn"}
         PR{"Porto Rico"}
-        PS{"Palestine"}
+        PS{"Territoires palestiniens"}
         PT{"Portugal"}
         PW{"Palaos"}
         PY{"Paraguay"}
@@ -295,6 +295,9 @@ fr{
     }
     Countries%short{
         GB{"R.-U."}
+        HK{"Hong Kong"}
+        MO{"Macao"}
+        PS{"Palestine"}
         UN{"NU"}
         US{"É.-U."}
     }
@@ -302,7 +305,9 @@ fr{
         CD{"Congo (RDC)"}
         CG{"République du Congo"}
         CZ{"République tchèque"}
+        FK{"Îles Falkland"}
+        MK{"Macédoine (ARYM)"}
         TL{"Timor-Oriental"}
     }
-    Version{"2.1.28.79"}
+    Version{"2.1.32.59"}
 }
