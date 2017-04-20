@@ -778,6 +778,10 @@ public class NumberFormatDataDrivenTest {
 
   @Test
   public void TestDataDrivenICU58() {
+    // Android patch: Android can't access DecimalFormat_ICU58 for testing (b/33448125).
+    if (com.ibm.icu.dev.test.TestUtil.getJavaVendor()
+        == com.ibm.icu.dev.test.TestUtil.JavaVendor.Android) return;
+    // Android patch end.
     DataDrivenNumberFormatTestUtility.runFormatSuiteIncludingKnownFailures(
         "numberformattestspecification.txt", ICU58);
   }
