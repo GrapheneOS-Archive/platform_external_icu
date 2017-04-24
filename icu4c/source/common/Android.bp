@@ -258,3 +258,9 @@ cc_library_shared {
     defaults: ["libicuuc_defaults"],
     static_libs: ["libicuuc_stubdata"],
 }
+
+cc_library_headers {
+    name: "libicuuc_headers",
+    host_supported: true,
+    export_include_dirs: ["."],
+}
