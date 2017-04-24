@@ -361,3 +361,32 @@
      * @stable ICU 2.8
      */
 --
+
+# Deprecate method.
+--method:android.icu.util.Calendar#computeZoneOffset(long,int)
+/**
+     * This method can assume EXTENDED_YEAR has been set.
+     * @param millis milliseconds of the date fields (local midnight millis)
+     * @param millisInDay milliseconds of the time fields; may be out
+     * or range.
+     * @return total zone offset (raw + DST) for the given moment
+     * @stable ICU 2.0
+     * @deprecated This method suffers from a potential integer overflow and may be removed or
+     *     changed in a future release. See <a href="http://bugs.icu-project.org/trac/ticket/11632">
+     *     ICU ticket #11632</a> for details.
+     */
+--
+
+# Deprecate method.
+--method:android.icu.util.Calendar#computeMillisInDay()
+/**
+     * Compute the milliseconds in the day from the fields.  This is a
+     * value from 0 to 23:59:59.999 inclusive, unless fields are out of
+     * range, in which case it can be an arbitrary value.  This value
+     * reflects local zone wall time.
+     * @stable ICU 2.0
+     * @deprecated This method suffers from a potential integer overflow and may be removed or
+     *     changed in a future release. See <a href="http://bugs.icu-project.org/trac/ticket/11632">
+     *     ICU ticket #11632</a> for details.
+     */
+--
