@@ -510,7 +510,7 @@ parseTagString(
             unknownLanguage);
         *langLength = (int32_t)uprv_strlen(lang);
     }
-    else if (_isIDSeparator(*position)) {
+    if (_isIDSeparator(*position)) {
         ++position;
     }
 
