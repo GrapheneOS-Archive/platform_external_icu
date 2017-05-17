@@ -253,6 +253,7 @@ cc_defaults {
 //
 cc_library_shared {
     name: "libicuuc",
+    vendor_available: true,
     host_supported: true,
     unique_host_soname: true,
     defaults: ["libicuuc_defaults"],
