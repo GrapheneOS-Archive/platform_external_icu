@@ -13,6 +13,7 @@ import java.text.ParseException;
 import java.text.ParsePosition;
 import java.util.Locale;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import android.icu.dev.test.TestFmwk;
@@ -281,6 +282,9 @@ public class TimeUnitTest extends TestFmwk {
         tuf.setNumberFormat(numfmt);        
     }
 
+    // Android-changed: Added @Ignore to suppress the test; it consumes a lot of heap, permanently,
+    // affecting later tests. http://b/62374714
+    @Ignore
     @Test
     public void TestBritishShortHourFallback() {
         // See ticket #11986 "incomplete fallback in MeasureFormat".
