@@ -35,33 +35,31 @@ def PrepareIcuBuild(icu_build_dir):
 def icuDir():
   return icu_dir
 
-def MakeTzDataFiles(icu_build_dir, data_filename):
-  # Keep track of the original cwd so we can go back to it at the end.
-  original_working_dir = os.getcwd()
-
+def MakeTzDataFiles(icu_build_dir, iana_tar_file):
   # Fix missing files.
-  os.chdir('%s/tools/tzcode' % icu_build_dir)
+  tzcode_working_dir = '%s/tools/tzcode' % icu_build_dir
 
-  # The tz2icu tool only picks up icuregions and icuzones in they are in the CWD
+  # The tz2icu tool only picks up icuregions and icuzones if they are in the CWD
   for icu_data_file in [ 'icuregions', 'icuzones']:
     icu_data_file_source = '%s/tools/tzcode/%s' % (icu4c_dir, icu_data_file)
-    icu_data_file_symlink = './%s' % icu_data_file
+    icu_data_file_symlink = '%s/%s' % (tzcode_working_dir, icu_data_file)
     os.symlink(icu_data_file_source, icu_data_file_symlink)
 
-  shutil.copyfile('%s/%s' % (original_working_dir, data_filename),
-                  data_filename)
+  iana_tar_filename = os.path.basename(iana_tar_file)
+  working_iana_tar_file = '%s/%s' % (tzcode_working_dir, iana_tar_filename)
+  shutil.copyfile(iana_tar_file, working_iana_tar_file)
 
   print 'Making ICU tz data files...'
   # The Makefile assumes the existence of the bin directory.
   os.mkdir('%s/bin' % icu_build_dir)
-  subprocess.check_call(['make'])
+
+  subprocess.check_call(['make', '-C', tzcode_working_dir])
 
   # Copy the source file to its ultimate destination.
   icu_txt_data_dir = '%s/data/misc' % icu4c_dir
+  zoneinfo_file = '%s/zoneinfo64.txt' % tzcode_working_dir
   print 'Copying zoneinfo64.txt to %s ...' % icu_txt_data_dir
-  shutil.copy('zoneinfo64.txt', icu_txt_data_dir)
-
-  os.chdir(original_working_dir)
+  shutil.copy(zoneinfo_file, icu_txt_data_dir)
 
 
 def MakeAndCopyIcuDataFiles(icu_build_dir):
