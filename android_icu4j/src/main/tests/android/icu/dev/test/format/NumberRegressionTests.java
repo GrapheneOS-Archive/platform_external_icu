@@ -40,6 +40,7 @@ import java.text.ParsePosition;
 import java.util.Date;
 import java.util.Locale;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import android.icu.dev.test.TestFmwk;
@@ -1529,6 +1530,9 @@ public class NumberRegressionTests extends TestFmwk {
      * symbol, percent, and permille.  This is filed as bugs 4212072 and
      * 4212073.
      */
+    // Android-changed: Added @Ignore to suppress the test; it consumes a lot of heap, permanently,
+    // affecting later tests. http://b/62374714
+    @Ignore
     @Test
     public void Test4212072() throws IOException, ClassNotFoundException {
         DecimalFormatSymbols sym = new DecimalFormatSymbols(Locale.US);
