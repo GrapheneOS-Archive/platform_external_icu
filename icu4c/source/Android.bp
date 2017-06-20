@@ -19,6 +19,7 @@ subdirs = [
 
 cc_library_static {
     name: "libicuuc_stubdata",
+    vendor_available: true,
     host_supported: true,
     srcs: ["stubdata/stubdata.c"],
     local_include_dirs: ["common"],
