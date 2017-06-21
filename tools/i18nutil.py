@@ -19,6 +19,15 @@ def GetAndroidRootOrDie():
   return value
 
 
+def GetAndroidHostOutOrDie():
+  value = os.environ.get('ANDROID_HOST_OUT')
+  if not value:
+    print "ANDROID_HOST_OUT not defined: run envsetup.sh / lunch"
+    sys.exit(1);
+  CheckDirExists(value, '$ANDROID_HOST_OUT')
+  return value
+
+
 def SwitchToNewTemporaryDirectory():
   tmp_dir = tempfile.mkdtemp('-i18n')
   os.chdir(tmp_dir)
