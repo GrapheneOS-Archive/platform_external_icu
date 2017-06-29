@@ -925,6 +925,10 @@
    * <p>For example, if minimum significant digits is 3 and the number is 1.2, the number will be
    * printed as "1.20".
    *
+   * <p>If minimum and maximum integer, fraction, or significant digits conflict with each other,
+   * the most recently specified value is used. For example, if there is a formatter with minInt=5,
+   * and then you set maxInt=3, then minInt will be changed to 3.
+   *
    * @param value The minimum number of significant digits to display.
    * @category Rounding
    * @stable ICU 3.0
@@ -940,6 +944,10 @@
    *
    * <p>For example, if maximum significant digits is 3 and the number is 12345, the number will be
    * printed as "12300".
+   *
+   * <p>If minimum and maximum integer, fraction, or significant digits conflict with each other,
+   * the most recently specified value is used. For example, if there is a formatter with minInt=5,
+   * and then you set maxInt=3, then minInt will be changed to 3.
    *
    * <p>See {@link #setRoundingIncrement} and {@link #setMaximumFractionDigits} for two other ways
    * of specifying rounding strategies.
