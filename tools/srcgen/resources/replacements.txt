@@ -390,3 +390,114 @@
      *     ICU ticket #11632</a> for details.
      */
 --
+
+# Removal of reference to method that is not exposed in Android API
+--method:android.icu.text.DecimalFormatSymbols#getZeroDigit()
+/**
+     * Returns the character used for zero. Different for Arabic, etc.
+     * @return the character
+     * @stable ICU 2.0
+     */
+--
+
+# Removal of reference to method that is not exposed in Android API
+--method:android.icu.text.DecimalFormatSymbols#getDigits()
+/**
+     * Returns the array of characters used as digits, in order from 0 through 9
+     * @return The array
+     * @stable ICU 4.6
+     * @see #getDigitStrings()
+     */
+--
+
+# Removal of reference to method that is not exposed in Android API
+--method:android.icu.text.DecimalFormatSymbols#setZeroDigit(char)
+/**
+     * Sets the character used for zero.
+     * <p>
+     * <b>Note:</b> When the specified zeroDigit is a Unicode decimal digit character
+     * (category:Nd) and the number value is 0, then this method propagate digit 1 to
+     * digit 9 by incrementing code point one by one.
+     *
+     * @param zeroDigit the zero character.
+     * @stable ICU 2.0
+     */
+--
+
+# Removal of reference to method that is not exposed in Android API
+--method:android.icu.text.DecimalFormatSymbols#getGroupingSeparator()
+/**
+     * Returns the character used for grouping separator. Different for French, etc.
+     * @return the thousands character
+     * @stable ICU 2.0
+     */
+--
+
+# Removal of reference to method that is not exposed in Android API
+--method:android.icu.text.DecimalFormatSymbols#getDecimalSeparator()
+/**
+     * Returns the character used for decimal sign. Different for French, etc.
+     * @return the decimal character
+     * @stable ICU 2.0
+     */
+--
+
+# Removal of reference to method that is not exposed in Android API
+--method:android.icu.text.DecimalFormatSymbols#getPerMill()
+/**
+     * Returns the character used for mille percent sign. Different for Arabic, etc.
+     * @return the mille percent character
+     * @stable ICU 2.0
+     */
+--
+
+# Removal of reference to method that is not exposed in Android API
+--method:android.icu.text.DecimalFormatSymbols#getPercent()
+/**
+     * Returns the character used for percent sign. Different for Arabic, etc.
+     * @return the percent character
+     * @stable ICU 2.0
+     */
+--
+
+# Removal of reference to method that is not exposed in Android API
+--method:android.icu.text.DecimalFormatSymbols#getMinusSign()
+/**
+     * Returns the character used to represent minus sign. If no explicit
+     * negative format is specified, one is formed by prefixing
+     * minusSign to the positive format.
+     * @return the minus sign character
+     * @stable ICU 2.0
+     */
+--
+
+# Removal of reference to method that is not exposed in Android API
+--method:android.icu.text.DecimalFormatSymbols#getPlusSign()
+/**
+     * {@icu} Returns the localized plus sign.
+     * @return the plus sign, used in localized patterns and formatted
+     * strings
+     * @see #setPlusSign
+     * @see #setMinusSign
+     * @see #getMinusSign
+     * @stable ICU 2.0
+     */
+--
+
+# Removal of reference to method that is not exposed in Android API
+--method:android.icu.text.DecimalFormatSymbols#getMonetaryDecimalSeparator()
+/**
+     * Returns the monetary decimal separator.
+     * @return the monetary decimal separator character
+     * @stable ICU 2.0
+     */
+--
+
+# Removal of reference to method that is not exposed in Android API
+--method:android.icu.text.DecimalFormatSymbols#getMonetaryGroupingSeparator()
+/**
+     * {@icu} Returns the monetary grouping separator.
+     * @return the monetary grouping separator character
+     * @stable ICU 3.6
+     */
+--
