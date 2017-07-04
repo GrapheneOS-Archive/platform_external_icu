@@ -164,7 +164,6 @@ public class DecimalFormatSymbols implements Cloneable, Serializable {
     /**
      * Returns the array of characters used as digits, in order from 0 through 9
      * @return The array
-     * @see #getDigitStrings()
      */
     public char[] getDigits() {
         return digits.clone();
@@ -298,7 +297,6 @@ public class DecimalFormatSymbols implements Cloneable, Serializable {
     /**
      * Sets the character used for grouping separator. Different for French, etc.
      * @param groupingSeparator the thousands character
-     * @see #setGroupingSeparatorString(String)
      */
     public void setGroupingSeparator(char groupingSeparator) {
         this.groupingSeparator = groupingSeparator;
