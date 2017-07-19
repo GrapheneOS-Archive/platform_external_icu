@@ -1637,6 +1637,10 @@ public class NumberFormatTest extends TestFmwk {
             assertEquals("toLocalizedPattern should match on standardPattern instance",
                     localizedPattern, df1.toLocalizedPattern());
 
+            // Android patch: Android can't access DecimalFormat_ICU58 for testing (b/33448125).
+            if (TestUtil.getJavaVendor() == TestUtil.JavaVendor.Android) continue;
+            // Android patch end.
+
             // Note: ICU 58 does not support plus signs in patterns
             // Note: ICU 58 always prints the negative part of scientific notation patterns,
             //       even when the negative part is not necessary
