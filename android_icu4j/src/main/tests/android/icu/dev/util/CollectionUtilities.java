@@ -26,6 +26,8 @@ import android.icu.text.UnicodeSetIterator;
 
 /**
  * Utilities that ought to be on collections, but aren't
+ *
+ * @internal CLDR
  */
 public final class CollectionUtilities {
 

@@ -31,6 +31,7 @@ import java.util.Locale;
 
 import android.icu.dev.test.format.MeasureUnitTest;
 import android.icu.dev.test.format.PluralRulesTest;
+import android.icu.dev.test.number.PropertiesTest;
 import android.icu.impl.JavaTimeZone;
 import android.icu.impl.OlsonTimeZone;
 import android.icu.impl.TimeZoneAdapter;
@@ -828,6 +829,7 @@ public class SerializableTestUtility {
         map.put("android.icu.util.MeasureUnit", new MeasureUnitTest.MeasureUnitHandler());
         map.put("android.icu.util.TimeUnit", new MeasureUnitTest.MeasureUnitHandler());
         map.put("android.icu.text.MeasureFormat", new MeasureUnitTest.MeasureFormatHandler());
+        map.put("android.icu.impl.number.Properties", new PropertiesTest.PropertiesHandler());
 
         map.put("android.icu.util.ICUException", new ICUExceptionHandler());
         map.put("android.icu.util.ICUUncheckedIOException", new ICUUncheckedIOExceptionHandler());
@@ -923,6 +925,11 @@ public class SerializableTestUtility {
 
             if (className.equals("android.icu.text.PluralRules$FixedDecimal")) {
                 // Known Issue: "10268", "Serializable interface is not implemented in PluralRules$FixedDecimal"
+                return;
+            }
+
+            if (className.equals("android.icu.text.DecimalFormat_ICU58")) {
+                // Do not test the legacy DecimalFormat class in ICU 59
                 return;
             }
 
