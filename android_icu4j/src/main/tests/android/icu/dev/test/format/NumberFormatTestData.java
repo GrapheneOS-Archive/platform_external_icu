@@ -21,6 +21,7 @@ import android.icu.text.DecimalFormat;
 import android.icu.text.NumberFormat;
 import android.icu.util.Currency;
 import android.icu.util.ULocale;
+import android.icu.testsharding.MainTestShard;
 
 /**
  * A representation of a single NumberFormat specification test from a data driven test file.
@@ -51,6 +52,7 @@ import android.icu.util.ULocale;
  * 
  * @author rocketman
  */
+@MainTestShard
 public class NumberFormatTestData {
     
     /**

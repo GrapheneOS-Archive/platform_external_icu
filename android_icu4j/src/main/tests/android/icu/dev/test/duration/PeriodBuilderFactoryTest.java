@@ -21,7 +21,9 @@ import android.icu.impl.duration.PeriodBuilder;
 import android.icu.impl.duration.PeriodBuilderFactory;
 import android.icu.impl.duration.TimeUnit;
 import android.icu.impl.duration.TimeUnitConstants;
+import android.icu.testsharding.MainTestShard;
 
+@MainTestShard
 public class PeriodBuilderFactoryTest extends TestFmwk implements TimeUnitConstants {
     private PeriodBuilderFactory pbf;
 

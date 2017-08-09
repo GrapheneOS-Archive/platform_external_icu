@@ -23,10 +23,12 @@ import android.icu.util.Calendar;
 import android.icu.util.JapaneseCalendar;
 import android.icu.util.TimeZone;
 import android.icu.util.ULocale;
+import android.icu.testsharding.MainTestShard;
 
 /**
  * Tests for the <code>JapaneseCalendar</code> class.
  */
+@MainTestShard
 public class JapaneseTest extends CalendarTestFmwk {
     
     @Test

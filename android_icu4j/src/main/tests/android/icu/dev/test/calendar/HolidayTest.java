@@ -26,10 +26,12 @@ import android.icu.util.SimpleDateRule;
 import android.icu.util.SimpleHoliday;
 import android.icu.util.TimeZone;
 import android.icu.util.ULocale;
+import android.icu.testsharding.MainTestShard;
 
 /**
  * Tests for the <code>Holiday</code> class.
  */
+@MainTestShard
 public class HolidayTest extends TestFmwk {
     @Before
     public void init() throws Exception {

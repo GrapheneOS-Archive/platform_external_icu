@@ -30,6 +30,7 @@ import android.icu.text.Edits;
 import android.icu.text.RuleBasedBreakIterator;
 import android.icu.text.UTF16;
 import android.icu.util.ULocale;
+import android.icu.testsharding.MainTestShard;
 
 
 /**
@@ -38,6 +39,7 @@ import android.icu.util.ULocale;
 * @author Syn Wee Quek
 * @since march 14 2002
 */
+@MainTestShard
 public final class UCharacterCaseTest extends TestFmwk
 {
     // constructor -----------------------------------------------------------

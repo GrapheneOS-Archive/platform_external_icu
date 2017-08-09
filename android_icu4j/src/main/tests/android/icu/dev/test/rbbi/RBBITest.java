@@ -27,7 +27,9 @@ import android.icu.dev.test.TestFmwk;
 import android.icu.text.BreakIterator;
 import android.icu.text.RuleBasedBreakIterator;
 import android.icu.util.ULocale;
+import android.icu.testsharding.MainTestShard;
 
+@MainTestShard
 public class RBBITest extends TestFmwk {
     public RBBITest() {
     }

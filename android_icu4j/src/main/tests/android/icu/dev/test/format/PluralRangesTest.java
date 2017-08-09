@@ -24,11 +24,13 @@ import android.icu.util.Currency;
 import android.icu.util.Measure;
 import android.icu.util.MeasureUnit;
 import android.icu.util.ULocale;
+import android.icu.testsharding.MainTestShard;
 
 /**
  * @author markdavis
  * 
  */
+@MainTestShard
 public class PluralRangesTest extends TestFmwk {
     @Test
     public void TestLocaleData() {

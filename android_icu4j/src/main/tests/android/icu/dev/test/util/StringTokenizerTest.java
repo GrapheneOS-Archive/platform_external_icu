@@ -17,12 +17,14 @@ import android.icu.impl.Utility;
 import android.icu.text.ReplaceableString;
 import android.icu.text.UnicodeSet;
 import android.icu.util.StringTokenizer;
+import android.icu.testsharding.MainTestShard;
 
 /**
 * Testing class for StringTokenizer class
 * @author Syn Wee Quek
 * @since oct 26 2002
 */
+@MainTestShard
 public final class StringTokenizerTest extends TestFmwk
 { 
       // constructor ===================================================

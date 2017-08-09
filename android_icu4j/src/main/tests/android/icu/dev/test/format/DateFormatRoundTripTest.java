@@ -28,10 +28,12 @@ import android.icu.text.SimpleDateFormat;
 import android.icu.util.Calendar;
 import android.icu.util.GregorianCalendar;
 import android.icu.util.TimeZone;
+import android.icu.testsharding.MainTestShard;
 
 /**
  * Performs round-trip tests for DateFormat
  **/
+@MainTestShard
 public class DateFormatRoundTripTest extends android.icu.dev.test.TestFmwk {
     public boolean INFINITE = false;
     public boolean quick = true;

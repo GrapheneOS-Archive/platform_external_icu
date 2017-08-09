@@ -50,7 +50,9 @@ import android.icu.util.TimeZone;
 import android.icu.util.TimeZone.SystemTimeZoneType;
 import android.icu.util.TimeZoneTransition;
 import android.icu.util.ULocale;
+import android.icu.testsharding.MainTestShard;
 
+@MainTestShard
 public class TimeZoneFormatTest extends android.icu.dev.test.TestFmwk {
 
     private static boolean JDKTZ = (TimeZone.getDefaultTimeZoneType() == TimeZone.TIMEZONE_JDK);

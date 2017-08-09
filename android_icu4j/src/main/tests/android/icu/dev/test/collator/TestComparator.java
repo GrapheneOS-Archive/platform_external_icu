@@ -15,7 +15,9 @@ import java.util.Comparator;
 
 import org.junit.Ignore;
 import org.junit.Test;
+import android.icu.testsharding.MainTestShard;
 
+@MainTestShard
 public class TestComparator {
 
     // TODO(junit): apparently orphaned - added dummy test to pass ant junit

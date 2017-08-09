@@ -27,7 +27,9 @@ import android.icu.text.CollationKey;
 import android.icu.text.Collator;
 import android.icu.text.Normalizer;
 import android.icu.text.RuleBasedCollator;
+import android.icu.testsharding.MainTestShard;
  
+@MainTestShard
 public class CollationDummyTest extends TestFmwk {
     //testSourceCases[][] and testTargetCases[][], testCases[][] are ported from the file callcoll.c in icu4c
     private static char[][] testSourceCases = {

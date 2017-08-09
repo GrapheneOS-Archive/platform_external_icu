@@ -19,12 +19,14 @@ import android.icu.dev.test.TestUtil;
 import android.icu.lang.UCharacterDirection;
 import android.icu.text.Bidi;
 import android.icu.text.BidiClassifier;
+import android.icu.testsharding.MainTestShard;
 
 /**
  * @author Markus W. Scherer
  * BiDi conformance test, using the Unicode BidiTest.txt and BidiCharacterTest.txt files.
  * Ported from ICU4C intltest/bidiconf.cpp .
  */
+@MainTestShard
 public class BiDiConformanceTest extends TestFmwk {
     public BiDiConformanceTest() {}
 

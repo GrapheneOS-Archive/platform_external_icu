@@ -22,10 +22,12 @@ import org.junit.Test;
 
 import android.icu.text.DecimalFormat;
 import android.icu.text.DecimalFormatSymbols;
+import android.icu.testsharding.MainTestShard;
 
 /**
  * Tests for DecimalFormatSymbols
  **/
+@MainTestShard
 public class IntlTestDecimalFormatSymbolsC extends android.icu.dev.test.TestFmwk {
     /**
      * Test the API of DecimalFormatSymbols; primarily a simple get/set set.

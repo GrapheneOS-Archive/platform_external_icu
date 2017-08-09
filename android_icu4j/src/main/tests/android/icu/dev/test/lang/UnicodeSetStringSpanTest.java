@@ -19,11 +19,13 @@ import android.icu.text.UTF16;
 import android.icu.text.UnicodeSet;
 import android.icu.text.UnicodeSet.SpanCondition;
 import android.icu.util.OutputInt;
+import android.icu.testsharding.MainTestShard;
 
 /**
  * @test
  * @summary General test of UnicodeSet string span.
  */
+@MainTestShard
 public class UnicodeSetStringSpanTest extends TestFmwk {
     // Simple test first, easier to debug.
     @Test

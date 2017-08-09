@@ -31,10 +31,12 @@ import android.icu.text.DecimalFormat;
 import android.icu.text.DecimalFormatSymbols;
 import android.icu.text.NumberFormat;
 import android.icu.util.ULocale;
+import android.icu.testsharding.MainTestShard;
 
 // This is an API test, not a unit test.  It doesn't test very many cases, and doesn't
 // try to test the full functionality.  It just calls each function in the class and
 // verifies that it works on a basic level.
+@MainTestShard
 public class IntlTestDecimalFormatAPIC extends android.icu.dev.test.TestFmwk {
 
     // This test checks various generic API methods in DecimalFormat to achieve 100% API coverage.

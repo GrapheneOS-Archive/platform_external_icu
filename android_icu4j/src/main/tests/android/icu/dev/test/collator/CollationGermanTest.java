@@ -23,8 +23,10 @@ import org.junit.Test;
 import android.icu.dev.test.TestFmwk;
 import android.icu.text.CollationKey;
 import android.icu.text.Collator;
+import android.icu.testsharding.MainTestShard;
  
- public class CollationGermanTest extends TestFmwk{
+ @MainTestShard
+public class CollationGermanTest extends TestFmwk{
     private static char[][] testSourceCases = {
         {0x47, 0x72, 0x00F6, 0x00DF, 0x65},
         {0x61, 0x62, 0x63},
