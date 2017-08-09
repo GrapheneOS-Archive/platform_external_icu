@@ -303,5 +303,5 @@ is{
         CG{"Kongó (Lýðveldið)"}
         TL{"Austur-Tímor"}
     }
-    Version{"2.1.29.65"}
+    Version{"2.1.32.59"}
 }

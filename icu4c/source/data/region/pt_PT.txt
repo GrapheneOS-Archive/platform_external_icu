@@ -72,5 +72,5 @@ pt_PT{
     Countries%variant{
         CG{"República do Congo"}
     }
-    Version{"2.1.29.54"}
+    Version{"2.1.31.86"}
 }
