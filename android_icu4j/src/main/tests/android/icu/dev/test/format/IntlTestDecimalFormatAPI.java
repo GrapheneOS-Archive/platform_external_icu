@@ -32,7 +32,9 @@ import android.icu.math.MathContext;
 import android.icu.text.DecimalFormat;
 import android.icu.text.DecimalFormatSymbols;
 import android.icu.text.NumberFormat;
+import android.icu.testsharding.MainTestShard;
 
+@MainTestShard
 public class IntlTestDecimalFormatAPI extends android.icu.dev.test.TestFmwk
 {
     /**

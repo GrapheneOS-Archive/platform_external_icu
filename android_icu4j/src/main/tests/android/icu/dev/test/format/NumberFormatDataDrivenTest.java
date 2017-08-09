@@ -28,7 +28,9 @@ import android.icu.text.DecimalFormatSymbols;
 import android.icu.text.DecimalFormat_ICU58;
 import android.icu.util.CurrencyAmount;
 import android.icu.util.ULocale;
+import android.icu.testsharding.MainTestShard;
 
+@MainTestShard
 public class NumberFormatDataDrivenTest {
 
   private static ULocale EN = new ULocale("en");

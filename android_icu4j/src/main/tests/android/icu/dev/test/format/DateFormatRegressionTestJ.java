@@ -27,7 +27,9 @@ import android.icu.text.DateFormatSymbols;
 import android.icu.text.SimpleDateFormat;
 import android.icu.util.Calendar;
 import android.icu.util.TimeZone;
+import android.icu.testsharding.MainTestShard;
 
+@MainTestShard
 public class DateFormatRegressionTestJ extends android.icu.dev.test.TestFmwk {
     
     private static final String TIME_STRING = "2000/11/17 08:01:00";

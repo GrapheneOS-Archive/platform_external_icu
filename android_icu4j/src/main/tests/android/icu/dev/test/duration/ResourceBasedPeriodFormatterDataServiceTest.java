@@ -20,7 +20,9 @@ import org.junit.Test;
 import android.icu.dev.test.TestFmwk;
 import android.icu.impl.duration.impl.PeriodFormatterData;
 import android.icu.impl.duration.impl.ResourceBasedPeriodFormatterDataService;
+import android.icu.testsharding.MainTestShard;
 
+@MainTestShard
 public class ResourceBasedPeriodFormatterDataServiceTest extends TestFmwk {
   @Test
   public void testAvailable() {

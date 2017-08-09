@@ -13,8 +13,10 @@ import org.junit.Test;
 
 import android.icu.impl.number.NumberStringBuilder;
 import android.icu.text.NumberFormat;
+import android.icu.testsharding.MainTestShard;
 
 /** @author sffc */
+@MainTestShard
 public class NumberStringBuilderTest {
   private static final String[] EXAMPLE_STRINGS = {
     "",

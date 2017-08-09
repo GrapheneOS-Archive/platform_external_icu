@@ -21,12 +21,14 @@ import android.icu.impl.locale.XLocaleDistance.DistanceTable;
 import android.icu.util.LocaleMatcher;
 import android.icu.util.Output;
 import android.icu.util.ULocale;
+import android.icu.testsharding.MainTestShard;
 
 /**
  * Test the XLocaleDistance.
  *
  * @author markdavis
  */
+@MainTestShard
 public class XLocaleDistanceTest extends TestFmwk {
     private static final boolean REFORMAT = false; // set to true to get a reformatted data file listed
 

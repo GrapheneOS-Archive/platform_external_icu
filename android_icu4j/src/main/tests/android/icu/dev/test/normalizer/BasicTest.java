@@ -30,8 +30,10 @@ import android.icu.text.UCharacterIterator;
 import android.icu.text.UTF16;
 import android.icu.text.UnicodeSet;
 import android.icu.text.UnicodeSetIterator;
+import android.icu.testsharding.MainTestShard;
 
 
+@MainTestShard
 public class BasicTest extends TestFmwk {
     String[][] canonTests = {
         // Input                Decomposed              Composed

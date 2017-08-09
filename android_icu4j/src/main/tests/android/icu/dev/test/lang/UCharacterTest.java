@@ -38,6 +38,7 @@ import android.icu.util.RangeValueIterator;
 import android.icu.util.ULocale;
 import android.icu.util.ValueIterator;
 import android.icu.util.VersionInfo;
+import android.icu.testsharding.MainTestShard;
 
 /**
 * Testing class for UCharacter
@@ -45,6 +46,7 @@ import android.icu.util.VersionInfo;
 * @author Syn Wee Quek
 * @since nov 04 2000
 */
+@MainTestShard
 public final class UCharacterTest extends TestFmwk
 {
     // private variables =============================================

@@ -22,10 +22,12 @@ import android.icu.util.GregorianCalendar;
 import android.icu.util.IndianCalendar;
 import android.icu.util.TimeZone;
 import android.icu.util.ULocale;
+import android.icu.testsharding.MainTestShard;
 
 /**
  * Tests for the <code>IndianCalendar</code> class.
  */
+@MainTestShard
 public class IndianTest extends CalendarTestFmwk 
 {
     // Months in indian calendar are 0-based. Here taking 1-based names:

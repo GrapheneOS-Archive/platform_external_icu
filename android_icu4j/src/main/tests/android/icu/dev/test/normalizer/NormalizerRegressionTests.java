@@ -14,7 +14,9 @@ import org.junit.Test;
 
 import android.icu.dev.test.TestFmwk;
 import android.icu.text.Normalizer;
+import android.icu.testsharding.MainTestShard;
 
+@MainTestShard
 public class NormalizerRegressionTests extends TestFmwk {
     @Test
     public void TestJB4472() {

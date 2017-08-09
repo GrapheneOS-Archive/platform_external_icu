@@ -38,7 +38,9 @@ import android.icu.text.UCharacterIterator;
 import android.icu.text.UnicodeSet;
 import android.icu.util.ULocale;
 import android.icu.util.VersionInfo;
+import android.icu.testsharding.MainTestShard;
 
+@MainTestShard
 public class CollationAPITest extends TestFmwk {
     /**
      * This tests the collation key related APIs.

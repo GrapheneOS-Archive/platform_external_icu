@@ -27,10 +27,12 @@ import android.icu.dev.test.TestFmwk;
 import android.icu.text.BreakIterator;
 import android.icu.text.RuleBasedBreakIterator;
 import android.icu.util.ULocale;
+import android.icu.testsharding.MainTestShard;
 
 /**
  * API Test the RuleBasedBreakIterator class
  */
+@MainTestShard
 public class RBBIAPITest extends android.icu.dev.test.TestFmwk {
     /**
      * Tests clone() and equals() methods of RuleBasedBreakIterator

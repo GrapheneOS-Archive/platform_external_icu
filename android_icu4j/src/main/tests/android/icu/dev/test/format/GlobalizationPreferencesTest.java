@@ -32,9 +32,11 @@ import android.icu.util.IslamicCalendar;
 import android.icu.util.JapaneseCalendar;
 import android.icu.util.TimeZone;
 import android.icu.util.ULocale;
+import android.icu.testsharding.MainTestShard;
 
 
 
+@MainTestShard
 public class GlobalizationPreferencesTest extends TestFmwk {
     @Test
     public void TestDefault() {

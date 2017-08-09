@@ -34,7 +34,9 @@ import android.icu.util.GregorianCalendar;
 import android.icu.util.SimpleTimeZone;
 import android.icu.util.TimeZone;
 import android.icu.util.ULocale;
+import android.icu.testsharding.MainTestShard;
 
+@MainTestShard
 public class TimeZoneRegressionTest extends TestFmwk {
     @Test
     public void Test4052967() {

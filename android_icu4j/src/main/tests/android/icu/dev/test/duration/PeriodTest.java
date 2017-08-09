@@ -17,7 +17,9 @@ import org.junit.Test;
 import android.icu.dev.test.TestFmwk;
 import android.icu.impl.duration.Period;
 import android.icu.impl.duration.TimeUnit;
+import android.icu.testsharding.MainTestShard;
 
+@MainTestShard
 public class PeriodTest extends TestFmwk {
     @Test
     public void testIsSet() {

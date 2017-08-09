@@ -19,12 +19,14 @@ import android.icu.lang.UCharacter;
 import android.icu.text.ReplaceableString;
 import android.icu.text.UTF16;
 import android.icu.text.UTF16.StringComparator;
+import android.icu.testsharding.MainTestShard;
 
 /**
 * Testing class for UTF16
 * @author Syn Wee Quek
 * @since feb 09 2001
 */
+@MainTestShard
 public final class UTF16Test extends TestFmwk
 {
     // constructor ===================================================

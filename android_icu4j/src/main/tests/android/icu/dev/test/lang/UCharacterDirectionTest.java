@@ -13,12 +13,14 @@ import org.junit.Test;
 
 import android.icu.dev.test.TestFmwk;
 import android.icu.lang.UCharacterDirection;
+import android.icu.testsharding.MainTestShard;
 
 /**
 * Testing UCharacterDirection
 * @author Syn Wee Quek
 * @since July 22 2002
 */
+@MainTestShard
 public class UCharacterDirectionTest extends TestFmwk
 {    
     // constructor -----------------------------------------------------------
