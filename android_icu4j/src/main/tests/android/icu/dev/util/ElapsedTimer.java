@@ -28,6 +28,8 @@ import android.icu.text.RuleBasedNumberFormat;
  *            System.out.println(et.toString()); }
  *
  * More advanced:  NumberFormat and/or MessageFormat can be provided in the constructor
+ *
+ * @internal CLDR
  */
 public final class ElapsedTimer {
 
