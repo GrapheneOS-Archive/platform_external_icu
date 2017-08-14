@@ -227,10 +227,19 @@ ur{
                 timeSeparator{":"}
             }
         }
+        minimalPairs{
+            ordinal{
+                other{"دایاں موڑ نمبر {0} مڑیں۔"}
+            }
+            plural{
+                one{"{0} گھنٹہ"}
+                other{"{0} گھنٹے"}
+            }
+        }
         minimumGroupingDigits{"1"}
         native{"arabext"}
     }
-    Version{"2.1.28.79"}
+    Version{"2.1.32.59"}
     calendar{
         generic{
             DateTimePatterns{

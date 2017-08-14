@@ -249,10 +249,19 @@ lo{
                 timeSeparator{":"}
             }
         }
+        minimalPairs{
+            ordinal{
+                one{"ລ້ຽວຂວາທຳອິດ."}
+                other{"ລ້ຽວຂວາທີ {0}."}
+            }
+            plural{
+                other{"{0} ມື້"}
+            }
+        }
         minimumGroupingDigits{"1"}
         native{"laoo"}
     }
-    Version{"2.1.28.79"}
+    Version{"2.1.31.86"}
     calendar{
         chinese{
             DateTimePatterns{

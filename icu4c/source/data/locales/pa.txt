@@ -240,10 +240,19 @@ pa{
                 timeSeparator{":"}
             }
         }
+        minimalPairs{
+            ordinal{
+                other{"ਸਜੇ ਪਾਸੇ {0} ਮੋੜ ਲਵੋ"}
+            }
+            plural{
+                one{"{0} ਘੰਟਾ"}
+                other{"{0} ਘੰਟੇ"}
+            }
+        }
         minimumGroupingDigits{"1"}
         native{"guru"}
     }
-    Version{"2.1.28.79"}
+    Version{"2.1.31.86"}
     calendar{
         generic{
             DateTimePatterns{
@@ -286,7 +295,7 @@ pa{
                 yyyyMEd{"E, d/M/y GGGGG"}
                 yyyyMMM{"MMM y G"}
                 yyyyMMMEd{"E, d MMM y G"}
-                yyyyMMMM{"G MMMM y"}
+                yyyyMMMM{"MMMM y G"}
                 yyyyMMMd{"d MMM y G"}
                 yyyyMd{"d/M/y GGGGG"}
                 yyyyQQQ{"QQQ y G"}

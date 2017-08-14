@@ -927,35 +927,28 @@ abstract public class TimeZone implements Serializable, Cloneable, Freezable<Tim
      * @stable ICU 2.0
      */
     public static TimeZone getDefault() {
-        // Android patch (http://b/30979219) start.
-        // Avoid race condition by copying defaultZone to a local variable.
-        TimeZone result = defaultZone;
-        if (result == null) {
-            // Android patch (http://b/30937209) start.
-            // Avoid a deadlock by always acquiring monitors in order (1) java.util.TimeZone.class
-            // then (2) icu.util.TimeZone.class and not (2) then (1).
-            // Without the synchronized here there is a possible deadlock between threads calling
-            // this method and other threads calling methods on java.util.TimeZone. e.g.
-            // java.util.TimeZone.setDefault() calls back into
-            // icu.util.TimeZone.clearCachedDefault() so always acquires them in order (1) then (2).
+        // Copy the reference to the current defaultZone,
+        // so it won't be affected by setDefault().
+        TimeZone tmpDefaultZone = defaultZone;
+
+        if (tmpDefaultZone == null) {
             synchronized (java.util.TimeZone.class) {
-                synchronized (TimeZone.class) {
-                    result = defaultZone;
-                    if (result == null) {
+                synchronized(TimeZone.class) {
+                    tmpDefaultZone = defaultZone;
+                    if (tmpDefaultZone == null) {
                         if (TZ_IMPL == TIMEZONE_JDK) {
-                            result = new JavaTimeZone();
+                            tmpDefaultZone = new JavaTimeZone();
                         } else {
                             java.util.TimeZone temp = java.util.TimeZone.getDefault();
-                            result = getFrozenTimeZone(temp.getID());
+                            tmpDefaultZone = getFrozenTimeZone(temp.getID());
                         }
-                        defaultZone = result;
+                        defaultZone = tmpDefaultZone;
                     }
                 }
             }
-            // Android patch (http://b/30937209) end.
         }
-        return result.cloneAsThawed();
-        // Android patch (http://b/30979219) end.
+
+        return tmpDefaultZone.cloneAsThawed();
     }
 
     // Android patch (http://b/28949992) start.
