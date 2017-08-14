@@ -1,4 +1,4 @@
-// Copyright (C) 2016 and later: Unicode, Inc. and others.
+// © 2016 and later: Unicode, Inc. and others.
 // License & terms of use: http://www.unicode.org/copyright.html
 /********************************************************************
  * COPYRIGHT:
@@ -22,12 +22,14 @@
 #include "unicode/ustring.h"
 #include "unicode/measfmt.h"
 #include "unicode/curramt.h"
+#include "unicode/strenum.h"
 #include "digitlst.h"
 #include "textfile.h"
 #include "tokiter.h"
 #include "charstr.h"
 #include "putilimp.h"
 #include "winnmtst.h"
+#include <cmath>
 #include <float.h>
 #include <string.h>
 #include <stdlib.h>
@@ -230,6 +232,9 @@ static void adjustDecimalFormat(
             appendErrorMessage.append("Error setting parse no exponent flag.");
         }
     }
+    if (tuple.parseCaseSensitiveFlag) {
+        // TODO: Fill this in when support is added in ICU4C
+    }
 }
 
 static DecimalFormat *newDecimalFormat(
@@ -388,16 +393,33 @@ UBool NumberFormatTestDataDriven::isParsePass(
     ParsePosition ppos;
     fmtPtr->parse(tuple.parse, result, ppos);
     if (ppos.getIndex() == 0) {
-        if (tuple.output != "fail") {
-            appendErrorMessage.append("Parse failed but was expected to succeed.");
-            return FALSE;
-        }
-        return TRUE;
+        appendErrorMessage.append("Parse failed; got error index ");
+        appendErrorMessage = appendErrorMessage + ppos.getErrorIndex();
+        return FALSE;
     }
     UnicodeString resultStr(UnicodeString::fromUTF8(result.getDecimalNumber(status)));
     if (tuple.output == "fail") {
         appendErrorMessage.append(UnicodeString("Parse succeeded: ") + resultStr + ", but was expected to fail.");
-        return FALSE;
+        return TRUE; // TRUE because failure handling is in the test suite
+    }
+    if (tuple.output == "NaN") {
+        if (!std::isnan(result.getDouble())) {
+            appendErrorMessage.append("Expected NaN, but got: " + resultStr);
+            return FALSE;
+        }
+        return TRUE;
+    } else if (tuple.output == "Inf") {
+        if (!std::isinf(result.getDouble()) || result.getDouble() < 0) {
+            appendErrorMessage.append("Expected Inf, but got: " + resultStr);
+            return FALSE;
+        }
+        return TRUE;
+    } else if (tuple.output == "-Inf") {
+        if (!std::isinf(result.getDouble()) || result.getDouble() > 0) {
+            appendErrorMessage.append("Expected -Inf, but got: " + resultStr);
+            return FALSE;
+        }
+        return TRUE;
     }
     DigitList expected;
     strToDigitList(tuple.output, expected, status);
@@ -406,8 +428,7 @@ UBool NumberFormatTestDataDriven::isParsePass(
         return FALSE;
     }
     if (expected != *result.getDigitList()) {
-        appendErrorMessage.append(
-                    UnicodeString("Expected: ") + tuple.output + ", got: " + resultStr + ". ");
+        appendErrorMessage.append(UnicodeString("Expected: ") + tuple.output + ", but got: " + resultStr + " (" + ppos.getIndex() + ":" + ppos.getErrorIndex() + ")");
         return FALSE;
     }
     return TRUE;
@@ -433,18 +454,16 @@ UBool NumberFormatTestDataDriven::isParseCurrencyPass(
     LocalPointer<CurrencyAmount> currAmt(
             fmtPtr->parseCurrency(tuple.parse, ppos));
     if (ppos.getIndex() == 0) {
-        if (tuple.output != "fail") {
-            appendErrorMessage.append("Parse failed but was expected to succeed.");
-            return FALSE;
-        }
-        return TRUE;
+        appendErrorMessage.append("Parse failed; got error index ");
+        appendErrorMessage = appendErrorMessage + ppos.getErrorIndex();
+        return FALSE;
     }
     UnicodeString currStr(currAmt->getISOCurrency());
     Formattable resultFormattable(currAmt->getNumber());
     UnicodeString resultStr(UnicodeString::fromUTF8(resultFormattable.getDecimalNumber(status)));
     if (tuple.output == "fail") {
         appendErrorMessage.append(UnicodeString("Parse succeeded: ") + resultStr + ", but was expected to fail.");
-        return FALSE;
+        return TRUE; // TRUE because failure handling is in the test suite
     }
     DigitList expected;
     strToDigitList(tuple.output, expected, status);
@@ -453,8 +472,7 @@ UBool NumberFormatTestDataDriven::isParseCurrencyPass(
         return FALSE;
     }
     if (expected != *currAmt->getNumber().getDigitList()) {
-        appendErrorMessage.append(
-                    UnicodeString("Expected: ") + tuple.output + ", got: " + resultStr + ". ");
+        appendErrorMessage.append(UnicodeString("Expected: ") + tuple.output + ", but got: " + resultStr + " (" + ppos.getIndex() + ":" + ppos.getErrorIndex() + ")");
         return FALSE;
     }
     if (currStr != tuple.outputCurrency) {
@@ -3244,7 +3262,7 @@ void NumberFormatTest::TestHostClone()
     UDate now = Calendar::getNow();
     NumberFormat *full = NumberFormat::createInstance(loc, status);
     if (full == NULL || U_FAILURE(status)) {
-        dataerrln("FAIL: Can't create Relative date instance - %s", u_errorName(status));
+        dataerrln("FAIL: Can't create NumberFormat date instance - %s", u_errorName(status));
         return;
     }
     UnicodeString result1;
@@ -4343,9 +4361,9 @@ NumberFormatTest::TestParseCurrencyInUCurr() {
         "Cypriot Pound1.00",
         "Cypriot pound1.00",
         "Cypriot pounds1.00",
-        "Czech Republic Koruna1.00",
-        "Czech Republic koruna1.00",
-        "Czech Republic korunas1.00",
+        "Czech Koruna1.00",
+        "Czech koruna1.00",
+        "Czech korunas1.00",
         "Czechoslovak Hard Koruna1.00",
         "Czechoslovak hard koruna1.00",
         "Czechoslovak hard korunas1.00",
@@ -5466,9 +5484,9 @@ NumberFormatTest::TestParseCurrencyInUCurr() {
         "1.00 Cypriot Pound random",
         "1.00 Cypriot pound random",
         "1.00 Cypriot pounds random",
-        "1.00 Czech Republic Koruna random",
-        "1.00 Czech Republic koruna random",
-        "1.00 Czech Republic korunas random",
+        "1.00 Czech Koruna random",
+        "1.00 Czech koruna random",
+        "1.00 Czech korunas random",
         "1.00 Czechoslovak Hard Koruna random",
         "1.00 Czechoslovak hard koruna random",
         "1.00 Czechoslovak hard korunas random",
@@ -8268,7 +8286,7 @@ void
 NumberFormatTest::TestDataDriven() {
     NumberFormatTestDataDriven dd;
     dd.setCaller(this);
-    dd.run("numberformattestspecification.txt", FALSE);
+    dd.run("numberformattestspecification.txt", TRUE);
 }
 
 

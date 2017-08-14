@@ -21,6 +21,9 @@ en_XA{
         "Asia:Saigon"{
             ec{"[Ĥö Çĥî Ṁîñĥ Çîţý one two]"}
         }
+        "Etc:UTC"{
+            ls{"[Çööŕðîñåţéð Ûñîṽéŕšåļ Ţîɱé one two three]"}
+        }
         "Etc:Unknown"{
             ec{"[Ûñķñöŵñ Çîţý one two]"}
         }
