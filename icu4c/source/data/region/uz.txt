@@ -305,5 +305,5 @@ uz{
         CZ{"Chexiya Respublikasi"}
         TL{"Sharqiy Timor"}
     }
-    Version{"2.1.29.44"}
+    Version{"2.1.32.60"}
 }

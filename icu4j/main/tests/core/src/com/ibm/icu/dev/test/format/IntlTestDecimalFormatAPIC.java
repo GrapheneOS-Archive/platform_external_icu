@@ -146,33 +146,25 @@ public class IntlTestDecimalFormatAPIC extends com.ibm.icu.dev.test.TestFmwk {
         pat.setPositivePrefix("+");
         posPrefix = pat.getPositivePrefix();
         logln("Positive prefix (should be +): " + posPrefix);
-        if (posPrefix != "+") {
-            errln("ERROR: setPositivePrefix() failed");
-        }
+        assertEquals("ERROR: setPositivePrefix() failed", "+", posPrefix);
 
         String negPrefix;
         pat.setNegativePrefix("-");
         negPrefix = pat.getNegativePrefix();
         logln("Negative prefix (should be -): " + negPrefix);
-        if (negPrefix != "-") {
-            errln("ERROR: setNegativePrefix() failed");
-        }
+        assertEquals("ERROR: setNegativePrefix() failed", "-", negPrefix);
 
         String posSuffix;
         pat.setPositiveSuffix("_");
         posSuffix = pat.getPositiveSuffix();
         logln("Positive suffix (should be _): " + posSuffix);
-        if (posSuffix != "_") {
-            errln("ERROR: setPositiveSuffix() failed");
-        }
+        assertEquals("ERROR: setPositiveSuffix() failed", "_", posSuffix);
 
         String negSuffix;
         pat.setNegativeSuffix("~");
         negSuffix = pat.getNegativeSuffix();
         logln("Negative suffix (should be ~): " + negSuffix);
-        if (negSuffix != "~") {
-            errln("ERROR: setNegativeSuffix() failed");
-        }
+        assertEquals("ERROR: setNegativeSuffix() failed", "~", negSuffix);
 
         long multiplier = 0;
         pat.setMultiplier(8);
@@ -228,7 +220,7 @@ public class IntlTestDecimalFormatAPIC extends com.ibm.icu.dev.test.TestFmwk {
         s2 = pat.toPattern();
         logln("Extracted pattern is " + s2);
         if (!s2.equals(p1)) {
-            errln("ERROR: toPattern() result did not match pattern applied");
+            errln("ERROR: toPattern() result did not match pattern applied: " + p1 + " vs " + s2);
         }
 
         String p2 = new String("#,##0.0# FF;(#,##0.0# FF)");
@@ -237,9 +229,7 @@ public class IntlTestDecimalFormatAPIC extends com.ibm.icu.dev.test.TestFmwk {
         String s3;
         s3 = pat.toLocalizedPattern();
         logln("Extracted pattern is " + s3);
-        if (!s3.equals(p2)) {
-            errln("ERROR: toLocalizedPattern() result did not match pattern applied");
-        }
+        assertEquals("ERROR: toLocalizedPattern() result did not match pattern applied", p2, s3);
 
         // ======= Test getStaticClassID()
 
