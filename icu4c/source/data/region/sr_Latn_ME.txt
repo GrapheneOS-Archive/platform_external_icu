@@ -17,5 +17,5 @@ sr_Latn_ME{
         VG{"Britanska Djevičanska Ostrva"}
         VI{"Američka Djevičanska Ostrva"}
     }
-    Version{"2.1.29.33"}
+    Version{"2.1.31.33"}
 }

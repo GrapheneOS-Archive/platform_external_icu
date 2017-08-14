@@ -356,7 +356,7 @@ public class PluralRules implements Serializable {
         private static final long serialVersionUID = 9163464945387899416L;
 
         @Override
-        public boolean isFulfilled(FixedDecimal n) {
+        public boolean isFulfilled(IFixedDecimal n) {
             return true;
         }
 
@@ -412,14 +412,79 @@ public class PluralRules implements Serializable {
      */
     public static final PluralRules DEFAULT = new PluralRules(new RuleList().addRule(DEFAULT_RULE));
 
-    private enum Operand {
+    /**
+     * @internal
+     * @deprecated This API is ICU internal only.
+     */
+    @Deprecated
+    public static enum Operand {
+        /**
+         * The double value of the entire number.
+         *
+         * @internal
+         * @deprecated This API is ICU internal only.
+         */
+        @Deprecated
         n,
+
+        /**
+         * The integer value, with the fraction digits truncated off.
+         *
+         * @internal
+         * @deprecated This API is ICU internal only.
+         */
+        @Deprecated
         i,
+
+        /**
+         * All visible fraction digits as an integer, including trailing zeros.
+         *
+         * @internal
+         * @deprecated This API is ICU internal only.
+         */
+        @Deprecated
         f,
+
+        /**
+         * Visible fraction digits as an integer, not including trailing zeros.
+         *
+         * @internal
+         * @deprecated This API is ICU internal only.
+         */
+        @Deprecated
         t,
+
+        /**
+         * Number of visible fraction digits.
+         *
+         * @internal
+         * @deprecated This API is ICU internal only.
+         */
+        @Deprecated
         v,
+
+        /**
+         * Number of visible fraction digits, not including trailing zeros.
+         *
+         * @internal
+         * @deprecated This API is ICU internal only.
+         */
+        @Deprecated
         w,
-        /* deprecated */
+
+        /**
+         * THIS OPERAND IS DEPRECATED AND HAS BEEN REMOVED FROM THE SPEC.
+         *
+         * <p>Returns the integer value, but will fail if the number has fraction digits.
+         * That is, using "j" instead of "i" is like implicitly adding "v is 0".
+         *
+         * <p>For example, "j is 3" is equivalent to "i is 3 and v is 0": it matches
+         * "3" but not "3.1" or "3.0".
+         *
+         * @internal
+         * @deprecated This API is ICU internal only.
+         */
+        @Deprecated
         j;
     }
 
@@ -428,7 +493,38 @@ public class PluralRules implements Serializable {
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
-    public static class FixedDecimal extends Number implements Comparable<FixedDecimal> {
+    public static interface IFixedDecimal {
+        /**
+         * Returns the value corresponding to the specified operand (n, i, f, t, v, or w).
+         * If the operand is 'n', returns a double; otherwise, returns an integer.
+         *
+         * @internal
+         * @deprecated This API is ICU internal only.
+         */
+        @Deprecated
+        public double getPluralOperand(Operand operand);
+
+        /**
+         * @internal
+         * @deprecated This API is ICU internal only.
+         */
+        @Deprecated
+        public boolean isNaN();
+
+        /**
+         * @internal
+         * @deprecated This API is ICU internal only.
+         */
+        @Deprecated
+        public boolean isInfinite();
+    }
+
+    /**
+     * @internal
+     * @deprecated This API is ICU internal only.
+     */
+    @Deprecated
+    public static class FixedDecimal extends Number implements Comparable<FixedDecimal>, IFixedDecimal {
         private static final long serialVersionUID = -4756200506571685661L;
         /**
          * @internal
@@ -723,18 +819,22 @@ public class PluralRules implements Serializable {
         }
 
         /**
+         * {@inheritDoc}
+         *
          * @internal
          * @deprecated This API is ICU internal only.
          */
+        @Override
         @Deprecated
-        public double get(Operand operand) {
+        public double getPluralOperand(Operand operand) {
             switch(operand) {
-            default: return source;
+            case n: return source;
             case i: return integerValue;
             case f: return decimalDigits;
             case t: return decimalDigitsWithoutTrailingZeros;
             case v: return visibleDecimalDigitCount;
             case w: return visibleDecimalDigitCountWithoutTrailingZeros;
+            default: return source;
             }
         }
 
@@ -880,6 +980,30 @@ public class PluralRules implements Serializable {
         private void readObject(ObjectInputStream in
                 ) throws IOException, ClassNotFoundException {
             throw new NotSerializableException();
+        }
+
+        /**
+         * {@inheritDoc}
+         *
+         * @internal
+         * @deprecated This API is ICU internal only.
+         */
+        @Deprecated
+        @Override
+        public boolean isNaN() {
+            return Double.isNaN(source);
+        }
+
+        /**
+         * {@inheritDoc}
+         *
+         * @internal
+         * @deprecated This API is ICU internal only.
+         */
+        @Deprecated
+        @Override
+        public boolean isInfinite() {
+            return Double.isInfinite(source);
         }
     }
 
@@ -1106,7 +1230,7 @@ public class PluralRules implements Serializable {
          * Returns true if the number fulfills the constraint.
          * @param n the number to test, >= 0.
          */
-        boolean isFulfilled(FixedDecimal n);
+        boolean isFulfilled(IFixedDecimal n);
 
         /*
          * Returns false if an unlimited number of values fulfills the
@@ -1463,10 +1587,10 @@ public class PluralRules implements Serializable {
         }
 
         @Override
-        public boolean isFulfilled(FixedDecimal number) {
-            double n = number.get(operand);
+        public boolean isFulfilled(IFixedDecimal number) {
+            double n = number.getPluralOperand(operand);
             if ((integersOnly && (n - (long)n) != 0.0
-                    || operand == Operand.j && number.visibleDecimalDigitCount != 0)) {
+                    || operand == Operand.j && number.getPluralOperand(Operand.v) != 0)) {
                 return !inRange;
             }
             if (mod != 0) {
@@ -1566,7 +1690,7 @@ public class PluralRules implements Serializable {
         }
 
         @Override
-        public boolean isFulfilled(FixedDecimal n) {
+        public boolean isFulfilled(IFixedDecimal n) {
             return a.isFulfilled(n)
                     && b.isFulfilled(n);
         }
@@ -1594,7 +1718,7 @@ public class PluralRules implements Serializable {
         }
 
         @Override
-        public boolean isFulfilled(FixedDecimal n) {
+        public boolean isFulfilled(IFixedDecimal n) {
             return a.isFulfilled(n)
                     || b.isFulfilled(n);
         }
@@ -1645,7 +1769,7 @@ public class PluralRules implements Serializable {
             return keyword;
         }
 
-        public boolean appliesTo(FixedDecimal n) {
+        public boolean appliesTo(IFixedDecimal n) {
             return constraint.isFulfilled(n);
         }
 
@@ -1708,7 +1832,7 @@ public class PluralRules implements Serializable {
             return this;
         }
 
-        private Rule selectRule(FixedDecimal n) {
+        private Rule selectRule(IFixedDecimal n) {
             for (Rule rule : rules) {
                 if (rule.appliesTo(n)) {
                     return rule;
@@ -1717,8 +1841,8 @@ public class PluralRules implements Serializable {
             return null;
         }
 
-        public String select(FixedDecimal n) {
-            if (Double.isInfinite(n.source) || Double.isNaN(n.source)) {
+        public String select(IFixedDecimal n) {
+            if (n.isInfinite() || n.isNaN()) {
                 return KEYWORD_OTHER;
             }
             Rule r = selectRule(n);
@@ -1780,7 +1904,7 @@ public class PluralRules implements Serializable {
             return null;
         }
 
-        public boolean select(FixedDecimal sample, String keyword) {
+        public boolean select(IFixedDecimal sample, String keyword) {
             for (Rule rule : rules) {
                 if (rule.getKeyword().equals(keyword) && rule.appliesTo(sample)) {
                     return true;
@@ -1800,9 +1924,9 @@ public class PluralRules implements Serializable {
     }
 
     @SuppressWarnings("unused")
-    private boolean addConditional(Set<FixedDecimal> toAddTo, Set<FixedDecimal> others, double trial) {
+    private boolean addConditional(Set<IFixedDecimal> toAddTo, Set<IFixedDecimal> others, double trial) {
         boolean added;
-        FixedDecimal toAdd = new FixedDecimal(trial);
+        IFixedDecimal toAdd = new FixedDecimal(trial);
         if (!toAddTo.contains(toAdd) && !others.contains(toAdd)) {
             others.add(toAdd);
             added = true;
@@ -1969,7 +2093,7 @@ public class PluralRules implements Serializable {
      * @deprecated This API is ICU internal only.
      */
     @Deprecated
-    public String select(FixedDecimal number) {
+    public String select(IFixedDecimal number) {
         return rules.select(number);
     }
 
