@@ -418,17 +418,15 @@ public abstract class DateFormat extends UFormat {
      * <strong>[icu]</strong> FieldPosition selector for 'b' field alignment.
      * No related Calendar field.
      * This displays the fixed day period (am/pm/midnight/noon).
-     * @hide draft / provisional / internal are hidden on Android
      */
-    final static int AM_PM_MIDNIGHT_NOON_FIELD = 35;
+    public final static int AM_PM_MIDNIGHT_NOON_FIELD = 35;
 
     /**
      * <strong>[icu]</strong> FieldPosition selector for 'B' field alignment.
      * No related Calendar field.
      * This displays the flexible day period.
-     * @hide draft / provisional / internal are hidden on Android
      */
-    final static int FLEXIBLE_DAY_PERIOD_FIELD = 36;
+    public final static int FLEXIBLE_DAY_PERIOD_FIELD = 36;
 
     /**
      * <strong>[icu]</strong> FieldPosition selector time separator,
@@ -2268,13 +2266,11 @@ public abstract class DateFormat extends UFormat {
 
         /**
          * <strong>[icu]</strong> Constant identifying the am/pm/midnight/noon field.
-         * @hide draft / provisional / internal are hidden on Android
          */
         public static final Field AM_PM_MIDNIGHT_NOON = new Field("am/pm/midnight/noon", -1);
 
         /**
          * <strong>[icu]</strong> Constant identifying the flexible day period field.
-         * @hide draft / provisional / internal are hidden on Android
          */
         public static final Field FLEXIBLE_DAY_PERIOD = new Field("flexible day period", -1);
 
