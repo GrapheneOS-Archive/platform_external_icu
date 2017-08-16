@@ -1,7 +1,10 @@
 ﻿// © 2016 and later: Unicode, Inc. and others.
 // License & terms of use: http://www.unicode.org/copyright.html#License
 fa{
-    AuxExemplarCharacters{"[\u200C\u200D\u200E\u200F \u064E \u0650 \u064F \u0652 \u0656 \u0670 إ ك ى ي]"}
+    AuxExemplarCharacters{
+        "[\u0640 \u200C\u200D\u200E\u200F \u064E \u0650 \u064F \u0652 \u0656 \u0670 إ"
+        " ك ى ي]"
+    }
     Ellipsis{
         final{"{0}…"}
         initial{"…{0}"}
@@ -15,7 +18,7 @@ fa{
         "ش ص ض ط ظ ع غ ف ق ک گ ل م ن و ه ة ی]"
     }
     ExemplarCharactersIndex{"[آ ا ب پ ت ث ج چ ح خ د ذ ر ز ژ س ش ص ض ط ظ ع غ ف ق ک گ ل م ن و ه ی]"}
-    ExemplarCharactersPunctuation{"[\u0640 \\- ‐ ، ٫ ٬ ؛ \\: ! ؟ . … ‹ › « » ( ) \\[ \\] * / \\\\]"}
+    ExemplarCharactersPunctuation{"[\\- ‐ ، ٫ ٬ ؛ \\: ! ؟ . … ‹ › « » ( ) \\[ \\] * / \\\\]"}
     MoreInformation{"؟"}
     NumberElements{
         arab{
