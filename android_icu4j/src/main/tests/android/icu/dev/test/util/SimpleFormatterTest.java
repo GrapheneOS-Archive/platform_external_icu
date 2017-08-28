@@ -1,22 +1,26 @@
+/* GENERATED SOURCE. DO NOT MODIFY. */
 /*
  *******************************************************************************
  * Copyright (C) 2014-2016, International Business Machines Corporation and
  * others. All Rights Reserved.
  *******************************************************************************
  */
-package com.ibm.icu.dev.test.util;
+package android.icu.dev.test.util;
 
-import com.ibm.icu.dev.test.TestFmwk;
-import com.ibm.icu.impl.SimplePatternFormatter;
-import com.ibm.icu.text.MessageFormat;
-import com.ibm.icu.util.ULocale;
+import android.icu.dev.test.TestFmwk;
+import android.icu.impl.SimplePatternFormatter;
+import android.icu.text.MessageFormat;
+import android.icu.util.ULocale;
+import org.junit.runner.RunWith;
+import android.icu.junit.IcuTestFmwkRunner;
 
-public class SimplePatternFormatterTest extends TestFmwk {
+@RunWith(IcuTestFmwkRunner.class)
+public class SimpleFormatterTest extends TestFmwk {
 
     /**
      * Constructor
      */
-     public SimplePatternFormatterTest()
+     public SimpleFormatterTest()
      {
      }
        
@@ -24,11 +28,11 @@ public class SimplePatternFormatterTest extends TestFmwk {
      
      public static void main(String arg[]) 
      {
-         SimplePatternFormatterTest test = new SimplePatternFormatterTest();
+         SimpleFormatterTest test = new SimpleFormatterTest();
          try {
              test.run(arg);
          } catch (Exception e) {
-             test.errln("Error testing SimplePatternFormatterTest");
+             test.errln("Error testing SimpleFormatterTest");
          }
      }
      
