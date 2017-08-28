@@ -967,7 +967,11 @@ public class ULocaleTest extends TestFmwk {
         if(locales.length<10){
             errln("Did not get the correct result from getAvailableLocales");
         }
-        if(!locales[locales.length-1].getName().equals("zu_ZA")){
+        // Android patch (http://b/31841293) start.
+        // Accept locales other than zu_ZA at the end, as some OEMs add locales. Any locale added
+        // after the original zu_ZA has to start with "z", as that's the last acceptable letter.
+        if(!locales[locales.length-1].getName().startsWith("z")){
+        // Android patch (http://b/31841293) end.
             errln("Did not get the expected result");
         }
     }
