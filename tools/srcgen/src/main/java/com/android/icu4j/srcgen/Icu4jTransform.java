@@ -697,9 +697,6 @@ public class Icu4jTransform {
           // @draft / @provisional / @internal
           createOptionalRule(new HideDraftProvisionalInternal()),
 
-          // Doc change: Hack around javadoc @stable / @author placement error upstream: this should
-          // be fixed upstream.
-          createFixupBidiClassDocRule(),
           // AST change: Remove JavaDoc tags that Android has no need of:
           // @hide has been added in place of @draft, @provisional and @internal
           // @stable <ICU version> will not mean much on Android.
@@ -758,11 +755,6 @@ public class Icu4jTransform {
           new HidePublicClasses(
               apiClassesWhitelistBuilder.build(),
               "Only a subset of ICU is exposed in Android"));
-    }
-
-    private static Rule createFixupBidiClassDocRule() {
-      FixupBidiClassDoc transformer = new FixupBidiClassDoc();
-      return new DefaultRule(transformer, transformer.matcher(), true /* mustModify */);
     }
   }
 }
