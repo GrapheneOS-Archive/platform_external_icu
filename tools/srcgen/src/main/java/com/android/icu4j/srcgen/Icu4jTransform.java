@@ -614,8 +614,6 @@ public class Icu4jTransform {
 
     private static final String SOURCE_CODE_HEADER = "/* GENERATED SOURCE. DO NOT MODIFY. */\n";
 
-    private static final String REPLACEMENT_JAVADOC_RESOURCE = "replacements.txt";
-
     private final InputFileGenerator inputFileGenerator;
     private final List<Rule> rules;
     private final BasicOutputSourceFileGenerator outputSourceFileGenerator;
@@ -675,9 +673,6 @@ public class Icu4jTransform {
           // Below are the fixes that ensure the Android API documentation generation can be run
           // over the source.
 
-          // Doc change: Replace selected javadoc comments with Android-specific replacements.
-          createReplaceSelectedJavadocRule(),
-
           // Doc change: Switch all documentation references from com.ibm.icu to android.icu.
           // e.g. importantly in <code> blocks and unimportantly in non-Javadoc comments.
           // This must come after createReplaceSelectedJavadocRule().
@@ -702,9 +697,6 @@ public class Icu4jTransform {
           // @draft / @provisional / @internal
           createOptionalRule(new HideDraftProvisionalInternal()),
 
-          // Doc change: Hack around javadoc @stable / @author placement error upstream: this should
-          // be fixed upstream.
-          createFixupBidiClassDocRule(),
           // AST change: Remove JavaDoc tags that Android has no need of:
           // @hide has been added in place of @draft, @provisional and @internal
           // @stable <ICU version> will not mean much on Android.
@@ -721,11 +713,6 @@ public class Icu4jTransform {
       List<Rule> rulesList = Lists.newArrayList(repackageRules);
       rulesList.addAll(Arrays.asList(apiDocsRules));
       return rulesList;
-    }
-
-    private static Rule createReplaceSelectedJavadocRule() throws IOException {
-      return createOptionalRule(
-          ReplaceSelectedJavadoc.createFromResource(REPLACEMENT_JAVADOC_RESOURCE));
     }
 
     private static Rule createTranslateJciteInclusionRule() {
@@ -768,11 +755,6 @@ public class Icu4jTransform {
           new HidePublicClasses(
               apiClassesWhitelistBuilder.build(),
               "Only a subset of ICU is exposed in Android"));
-    }
-
-    private static Rule createFixupBidiClassDocRule() {
-      FixupBidiClassDoc transformer = new FixupBidiClassDoc();
-      return new DefaultRule(transformer, transformer.matcher(), true /* mustModify */);
     }
   }
 }
