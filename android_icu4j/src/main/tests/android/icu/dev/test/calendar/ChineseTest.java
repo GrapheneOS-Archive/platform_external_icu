@@ -21,6 +21,7 @@ import android.icu.util.ChineseCalendar;
 import android.icu.util.GregorianCalendar;
 import android.icu.util.TimeZone;
 import android.icu.util.ULocale;
+import android.icu.testsharding.MainTestShard;
 
 /**
  * Test of ChineseCalendar.
@@ -64,6 +65,7 @@ import android.icu.util.ULocale;
  * Tue May 22 2096 = 4733-04*-01, Year 53, Cycle 79
  * Sun Mar 22 2099 = 4736-02*-01, Year 56, Cycle 79
  */
+@MainTestShard
 public class ChineseTest extends CalendarTestFmwk {
     /**
      * Test basic mapping to and from Gregorian.

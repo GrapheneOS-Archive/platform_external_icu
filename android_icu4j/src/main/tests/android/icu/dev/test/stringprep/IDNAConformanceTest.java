@@ -27,11 +27,13 @@ import android.icu.dev.test.TestUtil;
 import android.icu.text.IDNA;
 import android.icu.text.StringPrepParseException;
 import android.icu.text.UTF16;
+import android.icu.testsharding.MainTestShard;
 
 /**
  * @author limaoyu
  * 
  */
+@MainTestShard
 public class IDNAConformanceTest extends TestFmwk {
     @Test
     public void TestConformance() {

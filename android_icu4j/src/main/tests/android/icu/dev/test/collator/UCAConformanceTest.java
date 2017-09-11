@@ -29,7 +29,9 @@ import android.icu.text.RuleBasedCollator;
 import android.icu.text.UTF16;
 import android.icu.util.ULocale;
 import android.icu.util.VersionInfo;
+import android.icu.testsharding.MainTestShard;
 
+@MainTestShard
 public class UCAConformanceTest extends TestFmwk {
 
     public UCAConformanceTest() {

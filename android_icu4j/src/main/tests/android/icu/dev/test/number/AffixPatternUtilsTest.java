@@ -12,7 +12,9 @@ import android.icu.impl.number.AffixPatternUtils;
 import android.icu.impl.number.NumberStringBuilder;
 import android.icu.text.DecimalFormatSymbols;
 import android.icu.util.ULocale;
+import android.icu.testsharding.MainTestShard;
 
+@MainTestShard
 public class AffixPatternUtilsTest {
 
   @Test

@@ -41,7 +41,9 @@ import android.icu.text.UnicodeSet;
 import android.icu.text.UnicodeSetIterator;
 import android.icu.util.ULocale;
 import android.icu.util.UResourceBundle;
+import android.icu.testsharding.MainTestShard;
 
+@MainTestShard
 public class CollationMiscTest extends TestFmwk {
     //private static final int NORM_BUFFER_TEST_LEN_ = 32;
     private static final class Tester

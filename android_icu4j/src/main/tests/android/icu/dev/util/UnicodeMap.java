@@ -27,6 +27,7 @@ import android.icu.text.UTF16;
 import android.icu.text.UnicodeSet;
 import android.icu.text.UnicodeSetIterator;
 import android.icu.util.Freezable;
+import android.icu.testsharding.MainTestShard;
 
 /**
  * Class for mapping Unicode characters and strings to values, optimized for single code points, 
@@ -41,6 +42,7 @@ import android.icu.util.Freezable;
  * @internal CLDR
  */
 
+@MainTestShard
 public final class UnicodeMap<T> implements Cloneable, Freezable<UnicodeMap<T>>, StringTransform, Iterable<String> {
     /**
      * For serialization

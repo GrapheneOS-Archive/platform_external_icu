@@ -45,7 +45,9 @@ import android.icu.util.Currency;
 import android.icu.util.Currency.CurrencyUsage;
 import android.icu.util.MeasureUnit;
 import android.icu.util.ULocale;
+import android.icu.testsharding.MainTestShard;
 
+@MainTestShard
 public class PropertiesTest {
 
   @Test

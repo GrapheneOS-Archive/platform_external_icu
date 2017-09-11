@@ -17,6 +17,7 @@ import org.junit.Test;
 
 import android.icu.dev.test.TestFmwk;
 import android.icu.impl.ICUBinary;
+import android.icu.testsharding.MainTestShard;
 
 /**
 * Testing class for Trie. Tests here will be simple, since both CharTrie and 
@@ -25,6 +26,7 @@ import android.icu.impl.ICUBinary;
 * @author Syn Wee Quek
 * @since release 2.1 Jan 01 2002
 */
+@MainTestShard
 public final class ICUBinaryTest extends TestFmwk 
 { 
     // constructor ---------------------------------------------------

@@ -18,10 +18,12 @@ import org.junit.Test;
 import android.icu.dev.test.TestFmwk;
 import android.icu.text.ArabicShaping;
 import android.icu.text.ArabicShapingException;
+import android.icu.testsharding.MainTestShard;
 
 /**
  * Regression test for Arabic shaping.
  */
+@MainTestShard
 public class ArabicShapingRegTest extends TestFmwk {
 
     /* constants copied from ArabicShaping for convenience */

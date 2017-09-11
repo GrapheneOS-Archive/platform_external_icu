@@ -14,11 +14,13 @@ import android.icu.impl.Utility;
 import android.icu.text.Replaceable;
 import android.icu.text.ReplaceableString;
 import android.icu.text.Transliterator;
+import android.icu.testsharding.MainTestShard;
 
 /**
  * @test
  * @summary Round trip test of Transliterator
  */
+@MainTestShard
 public class ReplaceableTest extends TestFmwk {
     @org.junit.Test
     public void Test() {

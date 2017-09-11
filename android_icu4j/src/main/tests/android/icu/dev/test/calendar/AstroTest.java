@@ -25,9 +25,11 @@ import android.icu.util.Calendar;
 import android.icu.util.GregorianCalendar;
 import android.icu.util.SimpleTimeZone;
 import android.icu.util.TimeZone;
+import android.icu.testsharding.MainTestShard;
 
 // TODO: try finding next new moon after  07/28/1984 16:00 GMT
 
+@MainTestShard
 public class AstroTest extends TestFmwk {
     static final double PI = Math.PI;
 

@@ -38,7 +38,9 @@ import android.icu.text.SpoofChecker.CheckResult;
 import android.icu.text.SpoofChecker.RestrictionLevel;
 import android.icu.text.UnicodeSet;
 import android.icu.util.ULocale;
+import android.icu.testsharding.MainTestShard;
 
+@MainTestShard
 public class SpoofCheckerTest extends TestFmwk {
     /*
      * Identifiers for verifying that spoof checking is minimally alive and working.

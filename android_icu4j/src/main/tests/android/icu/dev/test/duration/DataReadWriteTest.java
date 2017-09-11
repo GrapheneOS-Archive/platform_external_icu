@@ -20,7 +20,9 @@ import org.junit.Test;
 import android.icu.dev.test.TestFmwk;
 import android.icu.impl.duration.impl.XMLRecordReader;
 import android.icu.impl.duration.impl.XMLRecordWriter;
+import android.icu.testsharding.MainTestShard;
 
+@MainTestShard
 public class DataReadWriteTest extends TestFmwk {
     // strip line ends and trailing spaces
     private String normalize(String str) {

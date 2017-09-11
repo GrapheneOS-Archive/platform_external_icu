@@ -23,6 +23,7 @@ import android.icu.lang.UCharacter;
 import android.icu.text.BreakIterator;
 import android.icu.text.UTF16;
 import android.icu.util.ULocale;
+import android.icu.testsharding.MainTestShard;
 
 
 /**
@@ -32,6 +33,7 @@ import android.icu.util.ULocale;
  *      See the data file for a description of the tests.
  *
  */
+@MainTestShard
 public class RBBITestExtended extends TestFmwk {
 public RBBITestExtended() {
     }

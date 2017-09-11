@@ -18,11 +18,13 @@ import android.icu.text.UTF16;
 import android.icu.text.UnicodeSet;
 import android.icu.text.UnicodeSetIterator;
 import android.icu.util.ULocale;
+import android.icu.testsharding.MainTestShard;
 
 /**
  * @author markdavis
  *
  */
+@MainTestShard
 public class AnyScriptTest extends TestFmwk {    
     @Test
     public void TestContext() {

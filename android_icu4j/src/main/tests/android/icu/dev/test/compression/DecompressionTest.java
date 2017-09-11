@@ -13,7 +13,9 @@ import org.junit.Test;
 
 import android.icu.dev.test.TestFmwk;
 import android.icu.text.UnicodeDecompressor;
+import android.icu.testsharding.MainTestShard;
 
+@MainTestShard
 public class DecompressionTest extends TestFmwk {
     /** Print out a segment of a character array, if in verbose mode */
     private void log(char [] chars, int start, int count) {

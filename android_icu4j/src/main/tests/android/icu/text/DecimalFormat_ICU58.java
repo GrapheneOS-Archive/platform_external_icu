@@ -36,6 +36,7 @@ import android.icu.util.Currency.CurrencyUsage;
 import android.icu.util.CurrencyAmount;
 import android.icu.util.ULocale;
 import android.icu.util.ULocale.Category;
+import android.icu.testsharding.MainTestShard;
 
 /**
  * {@icuenhanced java.text.DecimalFormat}.{@icu _usage_}
@@ -610,6 +611,7 @@ import android.icu.util.ULocale.Category;
  * @deprecated DecimalFormat was overhauled in ICU 59.  This is the old implementation, provided
  *    temporarily to ease the transition.  This class will be removed from ICU 60.
  */
+@MainTestShard
 @Deprecated
 public class DecimalFormat_ICU58 extends NumberFormat {
 

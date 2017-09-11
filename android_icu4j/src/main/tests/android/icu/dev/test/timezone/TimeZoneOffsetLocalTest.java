@@ -24,10 +24,12 @@ import android.icu.util.InitialTimeZoneRule;
 import android.icu.util.RuleBasedTimeZone;
 import android.icu.util.SimpleTimeZone;
 import android.icu.util.TimeZone;
+import android.icu.testsharding.MainTestShard;
 
 /**
  * Testing getOffset APIs using local time
  */
+@MainTestShard
 public class TimeZoneOffsetLocalTest extends TestFmwk {
     /*
      * Testing getOffset APIs around rule transition by local standard/wall time.

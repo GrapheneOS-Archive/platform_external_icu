@@ -16,7 +16,9 @@ import org.junit.Test;
 import android.icu.text.NumberFormat;
 import android.icu.text.NumberFormat.SimpleNumberFormatFactory;
 import android.icu.util.ULocale;
+import android.icu.testsharding.MainTestShard;
 
+@MainTestShard
 public class NumberFormatRegistrationTest extends android.icu.dev.test.TestFmwk {
     @Test
     public void TestRegistration() {
