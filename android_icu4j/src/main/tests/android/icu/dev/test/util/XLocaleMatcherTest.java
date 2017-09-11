@@ -24,12 +24,14 @@ import android.icu.util.LocaleMatcher;
 import android.icu.util.LocalePriorityList;
 import android.icu.util.Output;
 import android.icu.util.ULocale;
+import android.icu.testsharding.MainTestShard;
 
 /**
  * Test the XLocaleMatcher.
  *
  * @author markdavis
  */
+@MainTestShard
 public class XLocaleMatcherTest extends TestFmwk {
     private static final boolean REFORMAT = false; // set to true to get a reformatted data file listed
 

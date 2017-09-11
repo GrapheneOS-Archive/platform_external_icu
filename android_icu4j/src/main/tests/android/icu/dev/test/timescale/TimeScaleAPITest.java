@@ -16,10 +16,12 @@ import org.junit.Test;
 import android.icu.dev.test.TestFmwk;
 import android.icu.math.BigDecimal;
 import android.icu.util.UniversalTimeScale;
+import android.icu.testsharding.MainTestShard;
 
 /**
  * Test UniversalTimeScale API
  */
+@MainTestShard
 public class TimeScaleAPITest extends TestFmwk
 {
 

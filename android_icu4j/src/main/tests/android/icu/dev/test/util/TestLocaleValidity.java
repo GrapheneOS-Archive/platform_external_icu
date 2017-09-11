@@ -28,11 +28,13 @@ import android.icu.impl.locale.KeyTypeData;
 import android.icu.impl.locale.LocaleValidityChecker;
 import android.icu.impl.locale.LocaleValidityChecker.Where;
 import android.icu.util.ULocale;
+import android.icu.testsharding.MainTestShard;
 
 /**
  * @author markdavis
  *
  */
+@MainTestShard
 public class TestLocaleValidity extends TestFmwk {
     @Test
     public void testBasic() {

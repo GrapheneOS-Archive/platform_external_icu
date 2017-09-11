@@ -24,10 +24,12 @@ import android.icu.lang.UProperty.NameChoice;
 import android.icu.text.Transliterator;
 import android.icu.text.UTF16;
 import android.icu.text.UnicodeSet;
+import android.icu.testsharding.MainTestShard;
 
 /**
  * @author markdavis
  */
+@MainTestShard
 public class RegexUtilitiesTest extends TestFmwk {
     /**
      * Check basic construction.

@@ -16,7 +16,9 @@ import org.junit.Test;
 
 import android.icu.dev.test.TestFmwk;
 import android.icu.impl.TextTrieMap;
+import android.icu.testsharding.MainTestShard;
 
+@MainTestShard
 public class TextTrieMapTest extends TestFmwk {
 
     private static final Integer SUN = new Integer(1);

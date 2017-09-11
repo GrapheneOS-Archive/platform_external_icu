@@ -38,7 +38,9 @@ import android.icu.util.ULocale;
 import android.icu.util.UResourceBundle;
 import android.icu.util.UResourceBundleIterator;
 import android.icu.util.UResourceTypeMismatchException;
+import android.icu.testsharding.MainTestShard;
 
+@MainTestShard
 public final class ICUResourceBundleTest extends TestFmwk {
     private static final ClassLoader testLoader = ICUResourceBundleTest.class.getClassLoader();
 

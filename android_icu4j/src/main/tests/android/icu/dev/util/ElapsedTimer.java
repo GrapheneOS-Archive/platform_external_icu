@@ -15,6 +15,7 @@ import java.util.Locale;
 import android.icu.text.MessageFormat;
 import android.icu.text.NumberFormat;
 import android.icu.text.RuleBasedNumberFormat;
+import android.icu.testsharding.MainTestShard;
 
 
 /**
@@ -31,6 +32,7 @@ import android.icu.text.RuleBasedNumberFormat;
  *
  * @internal CLDR
  */
+@MainTestShard
 public final class ElapsedTimer {
 
     /**

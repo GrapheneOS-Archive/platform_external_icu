@@ -15,11 +15,13 @@ import org.junit.Test;
 import android.icu.dev.test.TestFmwk;
 import android.icu.util.LocalePriorityList;
 import android.icu.util.ULocale;
+import android.icu.testsharding.MainTestShard;
 
 /**
  * Test the LanguagePriorityList
  * @author markdavis@google.com
  */
+@MainTestShard
 public class LocalePriorityListTest extends TestFmwk {
   @Test
   public void testLanguagePriorityList() {

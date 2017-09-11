@@ -14,6 +14,7 @@ import android.icu.dev.test.TestFmwk;
 import android.icu.impl.Utility;
 import android.icu.text.ReplaceableString;
 import android.icu.text.Transliterator;
+import android.icu.testsharding.MainTestShard;
 
 
 
@@ -21,6 +22,7 @@ import android.icu.text.Transliterator;
  * @test
  * @summary General test of CompoundTransliterator
  */
+@MainTestShard
 public class CompoundTransliteratorTest extends TestFmwk {
     @Test
     public void TestConstruction(){

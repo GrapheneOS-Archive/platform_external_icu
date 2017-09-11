@@ -10,11 +10,13 @@ import org.junit.Test;
 
 import android.icu.dev.test.TestFmwk;
 import android.icu.text.BreakIterator;
+import android.icu.testsharding.MainTestShard;
 
 /**
  * @author sgill
  *
  */
+@MainTestShard
 public class AbstractBreakIteratorTests extends TestFmwk {
 
     private class AbstractBreakIterator extends BreakIterator {

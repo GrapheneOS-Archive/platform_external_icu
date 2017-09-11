@@ -33,11 +33,13 @@ import android.icu.text.UnicodeSet;
 import android.icu.text.UnicodeSetIterator;
 import android.icu.util.LocaleData;
 import android.icu.util.ULocale;
+import android.icu.testsharding.MainTestShard;
 
 /**
  * @test
  * @summary Round trip test of Transliterator
  */
+@MainTestShard
 public class RoundTripTest extends TestFmwk {
 
     //TODO - revisit test cases referencing FIX_ME

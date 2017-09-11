@@ -14,6 +14,7 @@ import org.junit.Test;
 import android.icu.dev.test.TestFmwk;
 import android.icu.text.StringPrepParseException;
 import android.icu.text.UCharacterIterator;
+import android.icu.testsharding.MainTestShard;
 
 /**
  * @author ram
@@ -21,6 +22,7 @@ import android.icu.text.UCharacterIterator;
  * To change the template for this generated type comment go to
  * Window>Preferences>Java>Code Generation>Code and Comments
  */
+@MainTestShard
 public class TestIDNARef extends TestFmwk {
     private StringPrepParseException unassignedException = new StringPrepParseException("",StringPrepParseException.UNASSIGNED_ERROR);
 

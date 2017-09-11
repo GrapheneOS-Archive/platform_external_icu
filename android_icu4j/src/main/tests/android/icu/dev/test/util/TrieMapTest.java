@@ -35,7 +35,9 @@ import android.icu.text.DecimalFormat;
 import android.icu.text.UnicodeSet;
 import android.icu.util.StringTrieBuilder.Option;
 import android.icu.util.ULocale;
+import android.icu.testsharding.MainTestShard;
 
+@MainTestShard
 public class TrieMapTest extends TestFmwk {
     static final boolean SHORT = false;
     static final boolean HACK_TO_MAKE_TESTS_PASS = false;

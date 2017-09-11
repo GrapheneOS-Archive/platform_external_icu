@@ -39,10 +39,12 @@ import android.icu.util.JapaneseCalendar;
 import android.icu.util.SimpleTimeZone;
 import android.icu.util.TimeZone;
 import android.icu.util.ULocale;
+import android.icu.testsharding.MainTestShard;
 
 /** 
  * Performs regression test for DateFormat
  **/
+@MainTestShard
 public class DateFormatRegressionTest extends android.icu.dev.test.TestFmwk {
     /**
      * @bug 4029195

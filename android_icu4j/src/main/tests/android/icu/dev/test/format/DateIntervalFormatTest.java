@@ -39,7 +39,9 @@ import android.icu.util.DateInterval;
 import android.icu.util.Output;
 import android.icu.util.TimeZone;
 import android.icu.util.ULocale;
+import android.icu.testsharding.MainTestShard;
 
+@MainTestShard
 public class DateIntervalFormatTest extends android.icu.dev.test.TestFmwk {
 
     /**

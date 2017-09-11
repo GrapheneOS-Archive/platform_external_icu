@@ -10,6 +10,9 @@
 
 package android.icu.dev.test.format;
 
+import android.icu.testsharding.MainTestShard;
+
+@MainTestShard
 public class NumberFormatSerialTestData {
 
     //NumberFormat.getInstance(Locale.US)

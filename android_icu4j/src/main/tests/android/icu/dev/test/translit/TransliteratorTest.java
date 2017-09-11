@@ -41,6 +41,7 @@ import android.icu.text.UnicodeSet;
 import android.icu.text.UnicodeSetIterator;
 import android.icu.util.CaseInsensitiveString;
 import android.icu.util.ULocale;
+import android.icu.testsharding.MainTestShard;
 
 /***********************************************************************
 
@@ -91,6 +92,7 @@ The Management
  * @test
  * @summary General test of Transliterator
  */
+@MainTestShard
 public class TransliteratorTest extends TestFmwk {
     @Test
     public void TestHangul() {

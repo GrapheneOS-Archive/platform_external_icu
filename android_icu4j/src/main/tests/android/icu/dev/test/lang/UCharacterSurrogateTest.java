@@ -14,10 +14,12 @@ import android.icu.dev.test.TestFmwk;
 import android.icu.impl.Utility;
 import android.icu.lang.UCharacter;
 import android.icu.text.UTF16;
+import android.icu.testsharding.MainTestShard;
 
 /**
  * Test JDK 1.5 cover APIs.
  */
+@MainTestShard
 public final class UCharacterSurrogateTest extends TestFmwk {
     @org.junit.Test
     public void TestUnicodeBlockForName() {

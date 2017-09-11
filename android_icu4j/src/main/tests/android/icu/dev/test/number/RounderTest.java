@@ -12,7 +12,9 @@ import android.icu.impl.number.FormatQuantity4;
 import android.icu.impl.number.Properties;
 import android.icu.impl.number.rounders.SignificantDigitsRounder;
 import android.icu.text.DecimalFormat.SignificantDigitsMode;
+import android.icu.testsharding.MainTestShard;
 
+@MainTestShard
 public class RounderTest {
 
   @Test
