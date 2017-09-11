@@ -32,10 +32,12 @@ import android.icu.util.TaiwanCalendar;
 import android.icu.util.TimeZone;
 import android.icu.util.TimeZone.SystemTimeZoneType;
 import android.icu.util.ULocale;
+import android.icu.testsharding.MainTestShard;
 
 /**
  * @summary Tests of new functionality in IBMCalendar
  */
+@MainTestShard
 public class IBMCalendarTest extends CalendarTestFmwk {
     /**
      * Test weekend support in IBMCalendar.

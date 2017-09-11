@@ -16,11 +16,13 @@ import android.icu.text.DecimalFormat;
 import android.icu.text.NumberFormat;
 import android.icu.text.ScientificNumberFormatter;
 import android.icu.util.ULocale;
+import android.icu.testsharding.MainTestShard;
 
 /**
  * @author rocketman
  *
  */
+@MainTestShard
 public class ScientificNumberFormatterTest extends TestFmwk {
     @Test
     public void TestBasic() {

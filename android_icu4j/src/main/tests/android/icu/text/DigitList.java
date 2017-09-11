@@ -10,6 +10,7 @@
 package android.icu.text;
 
 import java.math.BigInteger;
+import android.icu.testsharding.MainTestShard;
 
 /**
  * <code>DigitList</code> handles the transcoding between numeric values and
@@ -44,6 +45,7 @@ import java.math.BigInteger;
  * @version      1.18 08/12/98
  * @author       Mark Davis, Alan Liu
  * */
+@MainTestShard
 public final class DigitList {
     /**
      * The maximum number of significant digits in an IEEE 754 double, that

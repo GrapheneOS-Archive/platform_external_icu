@@ -19,7 +19,9 @@ import android.icu.lang.UCharacter;
 import android.icu.lang.UCharacterCategory;
 import android.icu.text.Normalizer;
 import android.icu.text.UTF16;
+import android.icu.testsharding.MainTestShard;
 
+@MainTestShard
 public class NormalizationMonkeyTest extends TestFmwk {
     int loopCount = 100;
     int maxCharCount = 20;

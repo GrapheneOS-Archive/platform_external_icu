@@ -15,12 +15,14 @@ import org.junit.Test;
 
 import android.icu.text.ArabicShaping;
 import android.icu.text.ArabicShapingException;
+import android.icu.testsharding.MainTestShard;
 
 /**
  * Interactive test for Arabic shaping.
  * Invoke from a command line passing args and strings.  Use '-help' to see description of arguments.
  */
 // TODO(junit): wasn't running before - needs to be fixed
+@MainTestShard
 public class ArabicShapingTest{
     private static final int COPY = 0;
     private static final int INPLACE = 1;

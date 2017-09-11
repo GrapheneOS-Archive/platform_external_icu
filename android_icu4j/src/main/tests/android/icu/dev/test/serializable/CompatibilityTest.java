@@ -32,11 +32,13 @@ import android.icu.dev.test.serializable.SerializableTestUtility.Handler;
 
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
+import android.icu.testsharding.MainTestShard;
 
 /**
  * @author sgill
  * @author emader
  */
+@MainTestShard
 @RunWith(JUnitParamsRunner.class)
 public class CompatibilityTest extends TestFmwk
 {

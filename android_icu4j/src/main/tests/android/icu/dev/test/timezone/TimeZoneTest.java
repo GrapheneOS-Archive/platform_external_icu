@@ -43,6 +43,7 @@ import android.icu.util.ULocale;
 import android.icu.util.UResourceBundle;
 import android.icu.util.VTimeZone;
 import android.icu.util.VersionInfo;
+import android.icu.testsharding.MainTestShard;
 
 /**
  * @test 1.22 99/09/21
@@ -50,6 +51,7 @@ import android.icu.util.VersionInfo;
  * @summary test TimeZone
  * @build TimeZoneTest
  */
+@MainTestShard
 public class TimeZoneTest extends TestFmwk
 {
     static final int millisPerHour = 3600000;

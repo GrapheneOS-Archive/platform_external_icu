@@ -25,6 +25,7 @@ import android.icu.text.BreakIterator;
 import android.icu.text.RuleBasedBreakIterator;
 import android.icu.text.UTF16;
 import android.icu.text.UnicodeSet;
+import android.icu.testsharding.MainTestShard;
 
 
 /**
@@ -37,6 +38,7 @@ import android.icu.text.UnicodeSet;
  * Ported from ICU4C, original code in file source/test/intltest/rbbitst.cpp
  *
  */
+@MainTestShard
 public class RBBITestMonkey extends TestFmwk {
     //
     //     class RBBIMonkeyKind

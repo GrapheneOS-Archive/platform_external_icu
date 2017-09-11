@@ -17,10 +17,12 @@ import android.icu.dev.test.TestFmwk;
 import android.icu.util.IllformedLocaleException;
 import android.icu.util.ULocale;
 import android.icu.util.ULocale.Builder;
+import android.icu.testsharding.MainTestShard;
 
 /**
  * Test cases for ULocale.LocaleBuilder
  */
+@MainTestShard
 public class LocaleBuilderTest extends TestFmwk {
     @Test
     public void TestLocaleBuilder() {

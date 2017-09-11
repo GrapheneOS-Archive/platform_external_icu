@@ -30,7 +30,9 @@ import org.junit.Test;
 import android.icu.text.DateFormat;
 import android.icu.text.SimpleDateFormat;
 import android.icu.util.ULocale;
+import android.icu.testsharding.MainTestShard;
 
+@MainTestShard
 public class IntlTestDateFormat extends android.icu.dev.test.TestFmwk {
     // Values in milliseconds (== Date)
     private static final long ONESECOND = 1000;

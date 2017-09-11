@@ -22,7 +22,9 @@ import android.icu.dev.test.TestFmwk;
 import android.icu.text.CollationKey;
 import android.icu.text.Collator;
 import android.icu.util.ULocale;
+import android.icu.testsharding.MainTestShard;
  
+@MainTestShard
 public class CollationFinnishTest extends TestFmwk {
     private static char[][] testSourceCases = {
         {0x77, 0x61, 0x74},

@@ -66,7 +66,9 @@ import android.icu.util.Currency;
 import android.icu.util.Currency.CurrencyUsage;
 import android.icu.util.CurrencyAmount;
 import android.icu.util.ULocale;
+import android.icu.testsharding.MainTestShard;
 
+@MainTestShard
 public class NumberFormatTest extends TestFmwk {
 
     @Test

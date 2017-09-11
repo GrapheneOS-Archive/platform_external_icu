@@ -12,8 +12,10 @@ import android.icu.impl.number.PatternString;
 import android.icu.impl.number.Properties;
 import android.icu.text.DecimalFormatSymbols;
 import android.icu.util.ULocale;
+import android.icu.testsharding.MainTestShard;
 
 /** @author sffc */
+@MainTestShard
 public class PatternStringTest {
 
   @Test

@@ -23,7 +23,9 @@ import android.icu.dev.test.TestFmwk;
 import android.icu.text.CollationKey;
 import android.icu.text.Collator;
 import android.icu.text.RuleBasedCollator;
+import android.icu.testsharding.MainTestShard;
  
+@MainTestShard
 public class G7CollationTest extends TestFmwk{
     private static String[] testCases = {
         "blackbirds", "Pat", "p\u00E9ch\u00E9", "p\u00EAche", "p\u00E9cher",            

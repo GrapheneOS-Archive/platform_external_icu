@@ -18,7 +18,9 @@ import android.icu.lang.UProperty;
 import android.icu.text.ComposedCharIter;
 import android.icu.text.Normalizer;
 import android.icu.text.StringCharacterIterator;
+import android.icu.testsharding.MainTestShard;
 
+@MainTestShard
 public class TestDeprecatedNormalizerAPI extends TestFmwk
 {     
     public TestDeprecatedNormalizerAPI() {

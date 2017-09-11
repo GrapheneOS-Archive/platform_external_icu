@@ -15,7 +15,9 @@ import org.junit.Test;
 import android.icu.util.Calendar;
 import android.icu.util.PersianCalendar;
 import android.icu.util.ULocale;
+import android.icu.testsharding.MainTestShard;
 
+@MainTestShard
 public class PersianTest extends CalendarTestFmwk {
     /**
      * Test basic mapping to and from Gregorian.
