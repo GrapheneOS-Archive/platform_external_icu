@@ -40,10 +40,12 @@ import android.icu.text.RuleBasedCollator;
 import android.icu.text.UTF16;
 import android.icu.text.UnicodeSet;
 import android.icu.util.ULocale;
+import android.icu.testsharding.MainTestShard;
 
 /**
  * @author Mark Davis
  */
+@MainTestShard
 public class AlphabeticIndexTest extends TestFmwk {
     /**
      *

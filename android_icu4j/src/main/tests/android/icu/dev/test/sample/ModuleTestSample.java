@@ -9,8 +9,11 @@
  */
 package android.icu.dev.test.sample;
 
+import android.icu.testsharding.MainTestShard;
+
 // TODO(junit) : turned off
 
+@MainTestShard
 public class ModuleTestSample /*extends ModuleTest*/ {
     ModuleTestSample(){
         //super("com/ibm/icu/dev/data/testdata/", "Test");

@@ -51,7 +51,9 @@ import org.junit.Test;
 import android.icu.text.MessageFormat;
 import android.icu.text.NumberFormat;
 import android.icu.util.ULocale;
+import android.icu.testsharding.MainTestShard;
 
+@MainTestShard
 public class MessageRegressionTest extends android.icu.dev.test.TestFmwk {
     /* @bug 4074764
      * Null exception when formatting pattern with MessageFormat

@@ -23,10 +23,12 @@ import android.icu.lang.UCharacter;
 import android.icu.text.CanonicalIterator;
 import android.icu.text.Normalizer;
 import android.icu.text.UTF16;
+import android.icu.testsharding.MainTestShard;
 
 
 // TODO: fit into test framework
 
+@MainTestShard
 public class TestCanonicalIterator extends TestFmwk {
     
     static final boolean SHOW_NAMES = false;

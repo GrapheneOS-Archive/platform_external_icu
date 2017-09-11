@@ -21,6 +21,7 @@ import android.icu.util.GregorianCalendar;
 import android.icu.util.SimpleTimeZone;
 import android.icu.util.TimeZone;
 import android.icu.util.UniversalTimeScale;
+import android.icu.testsharding.MainTestShard;
 
 /**
  * @author Owner
@@ -28,6 +29,7 @@ import android.icu.util.UniversalTimeScale;
  * TODO To change the template for this generated type comment go to
  * Window - Preferences - Java - Code Style - Code Templates
  */
+@MainTestShard
 public class TimeScaleDataTest extends TestFmwk
 {
 

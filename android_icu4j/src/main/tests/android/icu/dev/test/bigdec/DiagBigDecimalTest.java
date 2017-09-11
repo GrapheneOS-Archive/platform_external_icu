@@ -20,6 +20,7 @@ import android.icu.dev.test.TestFmwk;
 import android.icu.dev.test.TestUtil;
 import android.icu.dev.test.TestUtil.JavaVendor;
 import android.icu.math.BigDecimal;
+import android.icu.testsharding.MainTestShard;
 
 /* ------------------------------------------------------------------ */
 /* Decimal diagnostic tests mfc */
@@ -98,6 +99,7 @@ import android.icu.math.BigDecimal;
  * @author Mike Cowlishaw
  */
 
+@MainTestShard
 public class DiagBigDecimalTest extends TestFmwk {
     private static final android.icu.math.BigDecimal zero = android.icu.math.BigDecimal.ZERO;
     private static final android.icu.math.BigDecimal one = android.icu.math.BigDecimal.ONE;

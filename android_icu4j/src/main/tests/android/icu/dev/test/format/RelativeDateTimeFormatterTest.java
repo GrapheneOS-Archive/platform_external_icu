@@ -24,7 +24,9 @@ import android.icu.text.RelativeDateTimeFormatter.RelativeDateTimeUnit;
 import android.icu.text.RelativeDateTimeFormatter.RelativeUnit;
 import android.icu.text.RelativeDateTimeFormatter.Style;
 import android.icu.util.ULocale;
+import android.icu.testsharding.MainTestShard;
 
+@MainTestShard
 public class RelativeDateTimeFormatterTest extends TestFmwk {
     @Test
     public void TestRelativeDateWithQuantity() {

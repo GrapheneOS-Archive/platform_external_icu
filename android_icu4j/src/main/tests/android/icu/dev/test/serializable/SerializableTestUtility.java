@@ -56,6 +56,7 @@ import android.icu.util.TimeZone;
 import android.icu.util.TimeZoneRule;
 import android.icu.util.ULocale;
 import android.icu.util.VTimeZone;
+import android.icu.testsharding.MainTestShard;
 
 /**
  * @author emader
@@ -63,6 +64,7 @@ import android.icu.util.VTimeZone;
  * TODO To change the template for this generated type comment go to
  * Window - Preferences - Java - Code Style - Code Templates
  */
+@MainTestShard
 public class SerializableTestUtility {
     private static Class serializable;
     static {

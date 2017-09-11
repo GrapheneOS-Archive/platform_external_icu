@@ -29,10 +29,12 @@ import android.icu.util.IslamicCalendar;
 import android.icu.util.IslamicCalendar.CalculationType;
 import android.icu.util.TimeZone;
 import android.icu.util.ULocale;
+import android.icu.testsharding.MainTestShard;
 
 /**
  * Tests for the <code>IslamicCalendar</code> class.
  */
+@MainTestShard
 public class IslamicTest extends CalendarTestFmwk {
     /** Constants to save typing. */
     public static final int MUHARRAM = IslamicCalendar.MUHARRAM;

@@ -31,11 +31,13 @@ import android.icu.text.PluralRules;
 import android.icu.text.PluralRules.PluralType;
 import android.icu.text.PluralRules.SampleType;
 import android.icu.util.ULocale;
+import android.icu.testsharding.MainTestShard;
 
 /**
  * @author tschumann (Tim Schumann)
  *
  */
+@MainTestShard
 public class PluralFormatUnitTest extends TestFmwk {
     @Test
     public void TestConstructor() {

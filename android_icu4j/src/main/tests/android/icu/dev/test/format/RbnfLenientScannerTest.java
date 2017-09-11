@@ -21,7 +21,9 @@ import android.icu.impl.text.RbnfScannerProviderImpl;
 import android.icu.text.RbnfLenientScannerProvider;
 import android.icu.text.RuleBasedNumberFormat;
 import android.icu.util.ULocale;
+import android.icu.testsharding.MainTestShard;
 
+@MainTestShard
 public class RbnfLenientScannerTest extends TestFmwk {
     private static final RbnfLenientScannerProvider provider = new RbnfScannerProviderImpl();
 

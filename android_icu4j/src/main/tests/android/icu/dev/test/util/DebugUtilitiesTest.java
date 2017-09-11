@@ -12,11 +12,13 @@ package android.icu.dev.test.util;
 import org.junit.Test;
 
 import android.icu.dev.test.TestFmwk;
+import android.icu.testsharding.MainTestShard;
 
 /**
  * @author srl
  *
  */
+@MainTestShard
 public class DebugUtilitiesTest extends TestFmwk {
 
     @Test

@@ -18,7 +18,9 @@ import org.junit.Test;
 import android.icu.dev.test.TestFmwk;
 import android.icu.lang.UCharacter;
 import android.icu.lang.UProperty;
+import android.icu.testsharding.MainTestShard;
 
+@MainTestShard
 public class UPropertyAliasesTest extends TestFmwk {
   
     public UPropertyAliasesTest() {}

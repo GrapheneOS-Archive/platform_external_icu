@@ -18,6 +18,7 @@ import org.junit.Test;
 
 import android.icu.dev.test.TestFmwk;
 import android.icu.util.VersionInfo;
+import android.icu.testsharding.MainTestShard;
 
 
 /**
@@ -25,6 +26,7 @@ import android.icu.util.VersionInfo;
 * @author Syn Wee Quek
 * @since release 2.1 March 01 2002
 */
+@MainTestShard
 public final class VersionInfoTest extends TestFmwk
 {
     // constructor ---------------------------------------------------

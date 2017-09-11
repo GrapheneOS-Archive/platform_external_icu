@@ -15,7 +15,9 @@ import org.junit.Test;
 import android.icu.dev.test.TestFmwk;
 import android.icu.lang.UScript;
 import android.icu.lang.UScriptRun;
+import android.icu.testsharding.MainTestShard;
 
+@MainTestShard
 public class TestUScriptRun extends TestFmwk
 {
     public TestUScriptRun()

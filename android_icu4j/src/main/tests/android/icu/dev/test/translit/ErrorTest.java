@@ -14,11 +14,13 @@ import android.icu.dev.test.TestFmwk;
 import android.icu.text.ReplaceableString;
 import android.icu.text.Transliterator;
 import android.icu.text.UnicodeSet;
+import android.icu.testsharding.MainTestShard;
 
 /**
  * @test
  * @summary Error condition test of Transliterator
  */
+@MainTestShard
 public class ErrorTest extends TestFmwk {
 
     @Test

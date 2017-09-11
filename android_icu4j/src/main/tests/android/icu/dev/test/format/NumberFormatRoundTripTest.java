@@ -22,10 +22,12 @@ import org.junit.Test;
 
 import android.icu.text.DecimalFormat;
 import android.icu.text.NumberFormat;
+import android.icu.testsharding.MainTestShard;
 
 /** 
  * Performs round-trip tests for NumberFormat
  **/
+@MainTestShard
 public class NumberFormatRoundTripTest extends android.icu.dev.test.TestFmwk {
     
     public double MAX_ERROR = 1e-14;

@@ -40,7 +40,9 @@ import android.icu.impl.ICUService.ServiceListener;
 import android.icu.impl.ICUService.SimpleFactory;
 import android.icu.impl.LocaleUtility;
 import android.icu.util.ULocale;
+import android.icu.testsharding.MainTestShard;
 
+@MainTestShard
 public class ICUServiceTest extends TestFmwk
 {
     private String lrmsg(String message, Object lhs, Object rhs) {

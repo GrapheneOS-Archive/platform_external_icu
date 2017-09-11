@@ -51,11 +51,13 @@ import android.icu.text.PluralRules.SampleType;
 import android.icu.text.UFieldPosition;
 import android.icu.util.Output;
 import android.icu.util.ULocale;
+import android.icu.testsharding.MainTestShard;
 
 /**
  * @author dougfelt (Doug Felt)
  * @author markdavis (Mark Davis) [for fractional support]
  */
+@MainTestShard
 public class PluralRulesTest extends TestFmwk {
 
     PluralRulesFactory factory = PluralRulesFactory.NORMAL;

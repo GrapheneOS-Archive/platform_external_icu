@@ -63,7 +63,9 @@ import android.icu.util.TimeZone;
 import android.icu.util.ULocale;
 import android.icu.util.UResourceBundle;
 import android.icu.util.VersionInfo;
+import android.icu.testsharding.MainTestShard;
 
+@MainTestShard
 public class DateFormatTest extends android.icu.dev.test.TestFmwk {
     /**
      * Verify that patterns have the correct values and could produce the

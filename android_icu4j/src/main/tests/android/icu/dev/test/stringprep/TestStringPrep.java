@@ -16,11 +16,13 @@ import org.junit.Test;
 import android.icu.dev.test.TestFmwk;
 import android.icu.text.StringPrep;
 import android.icu.text.StringPrepParseException;
+import android.icu.testsharding.MainTestShard;
 
 /**
  * @author ram
  *
  */
+@MainTestShard
 public class TestStringPrep extends TestFmwk {
     /*
        There are several special identifiers ("who") which need to be

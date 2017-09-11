@@ -22,10 +22,12 @@ import android.icu.util.EthiopicCalendar;
 import android.icu.util.GregorianCalendar;
 import android.icu.util.TimeZone;
 import android.icu.util.ULocale;
+import android.icu.testsharding.MainTestShard;
 
 /**
  * Tests for the <code>EthiopicCalendar</code> class.
  */
+@MainTestShard
 public class EthiopicTest extends CalendarTestFmwk 
 {
     /** Constants to save typing. */

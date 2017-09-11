@@ -17,11 +17,13 @@ import org.junit.Test;
 
 import android.icu.dev.test.TestFmwk;
 import android.icu.lang.UCharacter;
+import android.icu.testsharding.MainTestShard;
 
 /**
  * @author aheninger
  *
  */
+@MainTestShard
 public class UCharacterThreadTest extends TestFmwk {
   // constructor -----------------------------------------------------------
     
