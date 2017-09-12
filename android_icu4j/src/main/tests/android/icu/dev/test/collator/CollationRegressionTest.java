@@ -27,7 +27,9 @@ import android.icu.text.CollationElementIterator;
 import android.icu.text.CollationKey;
 import android.icu.text.Collator;
 import android.icu.text.RuleBasedCollator;
+import android.icu.testsharding.MainTestShard;
 
+@MainTestShard
 public class CollationRegressionTest extends TestFmwk {
     // @bug 4048446
     //

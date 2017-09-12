@@ -17,7 +17,9 @@ import org.junit.Test;
 
 import android.icu.text.Collator;
 import android.icu.util.ULocale;
+import android.icu.testsharding.MainTestShard;
 
+@MainTestShard
 public class LocaleAliasCollationTest extends android.icu.dev.test.TestFmwk {
     private static final ULocale[][] _LOCALES = {
             {new ULocale("en", "RH"), new ULocale("en", "ZW")},

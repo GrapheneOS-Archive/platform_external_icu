@@ -15,7 +15,9 @@ import org.junit.Test;
 
 import android.icu.dev.test.TestFmwk;
 import android.icu.text.RuleBasedNumberFormat;
+import android.icu.testsharding.MainTestShard;
 
+@MainTestShard
 public class RbnfRoundTripTest extends TestFmwk {
     /**
      * Perform an exhaustive round-trip test on the English spellout rules

@@ -23,8 +23,10 @@ import android.icu.impl.number.FormatQuantity3;
 import android.icu.impl.number.FormatQuantity4;
 import android.icu.impl.number.Properties;
 import android.icu.text.CompactDecimalFormat.CompactStyle;
+import android.icu.testsharding.MainTestShard;
 
 /** TODO: This is a temporary name for this class. Suggestions for a better name? */
+@MainTestShard
 public class FormatQuantityTest extends TestFmwk {
 
   @Test

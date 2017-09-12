@@ -23,7 +23,9 @@ import android.icu.impl.Utility;
 import android.icu.text.Normalizer;
 import android.icu.text.UTF16;
 import android.icu.text.UnicodeSet;
+import android.icu.testsharding.MainTestShard;
 
+@MainTestShard
 public class ConformanceTest extends TestFmwk {
 
     Normalizer normalizer;

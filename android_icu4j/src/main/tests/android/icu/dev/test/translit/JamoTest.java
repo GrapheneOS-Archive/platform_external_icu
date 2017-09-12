@@ -17,11 +17,13 @@ import org.junit.Test;
 import android.icu.dev.test.TestFmwk;
 import android.icu.impl.Utility;
 import android.icu.text.Transliterator;
+import android.icu.testsharding.MainTestShard;
 
 /**
  * @test
  * @summary Test the Latin-Jamo transliterator
  */
+@MainTestShard
 public class JamoTest extends TestFmwk {
     @Test
     public void TestJamo() {

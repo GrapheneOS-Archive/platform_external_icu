@@ -26,7 +26,9 @@ import org.junit.Test;
 import android.icu.text.DateFormatSymbols;
 import android.icu.util.Calendar;
 import android.icu.util.ULocale;
+import android.icu.testsharding.MainTestShard;
 
+@MainTestShard
 public class IntlTestDateFormatSymbols extends android.icu.dev.test.TestFmwk
 {
     // Test getMonths

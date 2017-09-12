@@ -37,7 +37,9 @@ import android.icu.text.NumberFormat;
 import android.icu.util.Currency;
 import android.icu.util.CurrencyAmount;
 import android.icu.util.ULocale;
+import android.icu.testsharding.MainTestShard;
 
+@MainTestShard
 public class CompactDecimalFormatTest extends TestFmwk {
     Object[][] EnglishTestData = {
             // default is 2 digits of accuracy

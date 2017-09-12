@@ -34,11 +34,13 @@ import android.icu.dev.test.TestUtil.JavaVendor;
 import android.icu.impl.Utility;
 import android.icu.text.CharsetDetector;
 import android.icu.text.CharsetMatch;
+import android.icu.testsharding.MainTestShard;
 
 
 /**
  * @author andy
  */
+@MainTestShard
 public class TestCharsetDetector extends TestFmwk
 {
     public TestCharsetDetector()

@@ -30,9 +30,11 @@ import android.icu.util.GregorianCalendar;
 import android.icu.util.TimeZone;
 import android.icu.util.ULocale;
 import android.icu.util.UResourceBundle;
+import android.icu.testsharding.MainTestShard;
 
 // TODO(junit): test is broken in main branch
 
+@MainTestShard
 public class DisplayNameTest extends TestFmwk {
     static final boolean SHOW_ALL = false;
     

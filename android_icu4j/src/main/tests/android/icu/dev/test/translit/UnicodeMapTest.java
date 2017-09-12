@@ -35,11 +35,13 @@ import android.icu.lang.UCharacter;
 import android.icu.lang.UProperty;
 import android.icu.text.UTF16;
 import android.icu.text.UnicodeSet;
+import android.icu.testsharding.MainTestShard;
 
 /**
  * @test
  * @summary General test of UnicodeSet
  */
+@MainTestShard
 public class UnicodeMapTest extends TestFmwk {
 
     static final int MODIFY_TEST_LIMIT = 32;

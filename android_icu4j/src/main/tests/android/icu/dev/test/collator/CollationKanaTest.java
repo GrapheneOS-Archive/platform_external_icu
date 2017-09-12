@@ -25,7 +25,9 @@ import android.icu.text.CollationKey;
 import android.icu.text.Collator;
 import android.icu.text.RuleBasedCollator;
 import android.icu.util.ULocale;
+import android.icu.testsharding.MainTestShard;
  
+@MainTestShard
 public class CollationKanaTest extends TestFmwk{
     private static char[][] testSourceCases = {
         {0xff9E},

@@ -20,12 +20,14 @@ import org.junit.Test;
 import android.icu.dev.test.TestFmwk;
 import android.icu.impl.Normalizer2Impl.UTF16Plus;
 import android.icu.text.IDNA;
+import android.icu.testsharding.MainTestShard;
 
 /**
  * UTS #46 (IDNA2008) test.
  * @author Markus Scherer
  * @since 2010jul10
  */
+@MainTestShard
 public class UTS46Test extends TestFmwk {
     public UTS46Test() {
         int commonOptions=

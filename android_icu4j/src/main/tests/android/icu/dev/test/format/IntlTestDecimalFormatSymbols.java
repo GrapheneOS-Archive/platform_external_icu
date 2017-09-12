@@ -28,7 +28,9 @@ import org.junit.Test;
 import android.icu.text.DecimalFormatSymbols;
 import android.icu.util.Currency;
 import android.icu.util.ULocale;
+import android.icu.testsharding.MainTestShard;
 
+@MainTestShard
 public class IntlTestDecimalFormatSymbols extends android.icu.dev.test.TestFmwk
 {
     // Test the API of DecimalFormatSymbols; primarily a simple get/set set.

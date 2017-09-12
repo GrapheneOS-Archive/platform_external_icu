@@ -26,7 +26,9 @@ import android.icu.dev.test.TestFmwk;
 import android.icu.text.Collator;
 import android.icu.text.Collator.CollatorFactory;
 import android.icu.util.ULocale;
+import android.icu.testsharding.MainTestShard;
 
+@MainTestShard
 public class CollationServiceTest extends TestFmwk {
     @Test
     public void TestRegister() {

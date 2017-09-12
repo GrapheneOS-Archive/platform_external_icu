@@ -38,11 +38,13 @@ import android.icu.util.Currency;
 import android.icu.util.GregorianCalendar;
 import android.icu.util.TimeZone;
 import android.icu.util.ULocale;
+import android.icu.testsharding.MainTestShard;
 
 /**
  * @test
  * @summary General test of Currency
  */
+@MainTestShard
 public class CurrencyTest extends TestFmwk {
     /**
      * Test of basic API.

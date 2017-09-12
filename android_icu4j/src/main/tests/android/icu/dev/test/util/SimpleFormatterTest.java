@@ -15,7 +15,9 @@ import android.icu.dev.test.TestFmwk;
 import android.icu.text.MessageFormat;
 import android.icu.text.SimpleFormatter;
 import android.icu.util.ULocale;
+import android.icu.testsharding.MainTestShard;
 
+@MainTestShard
 public class SimpleFormatterTest extends TestFmwk {
 
     /**

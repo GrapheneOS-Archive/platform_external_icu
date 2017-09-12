@@ -27,11 +27,13 @@ import android.icu.text.MessagePatternUtil.MessageContentsNode;
 import android.icu.text.MessagePatternUtil.MessageNode;
 import android.icu.text.MessagePatternUtil.TextNode;
 import android.icu.text.MessagePatternUtil.VariantNode;
+import android.icu.testsharding.MainTestShard;
 
 /**
  * Test MessagePatternUtil (MessagePattern-as-tree-of-nodes API)
  * by building parallel trees of nodes and verifying that they match.
  */
+@MainTestShard
 public final class MessagePatternUtilTest extends android.icu.dev.test.TestFmwk {
     // The following nested "Expect..." classes are used to build
     // a tree structure parallel to what the MessagePatternUtil class builds.
