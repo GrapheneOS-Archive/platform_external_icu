@@ -226,7 +226,6 @@ cc_defaults {
     cppflags: [
         "-std=c++11",
     ],
-    clang: true,
     rtti: true,
     export_include_dirs: ["."],
 
