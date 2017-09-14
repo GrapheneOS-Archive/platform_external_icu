@@ -226,7 +226,6 @@ cc_defaults {
 
     export_include_dirs: ["."],
     rtti: true,
-    clang: true,
 
     required: ["icu-data"],
 
