@@ -23,8 +23,8 @@ upstreamed.
 of a subset of ICU in the Android SDK, or Android's platform or documentation build process.
 3) JavaDoc patches to replace ICU documentation that is incorrect/confusing for Android developers.
 
-Do not change the code in android_icu4j directly: instead you change the icu4j source, the
-transformation rules used by currysrc or the javadoc patch files.
+Do not change the code in android_icu4j/src or android_icu4j/resources directly: instead you
+change the icu4j source, the transformation rules used by currysrc or the javadoc patch files.
 
 All changes made to icu4j should be accompanied by changes in android_icu4j and vice versa.
 
