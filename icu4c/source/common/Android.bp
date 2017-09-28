@@ -214,6 +214,8 @@ cc_defaults {
         "-O3",
         "-fvisibility=hidden",
 
+        "-Wall",
+        "-Werror",
         "-Wno-unused-parameter",
         "-Wno-missing-field-initializers",
         "-Wno-sign-compare",
