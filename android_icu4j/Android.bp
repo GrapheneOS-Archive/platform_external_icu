@@ -27,6 +27,6 @@ filegroup {
 
 java_library {
     name: "android_icu4j_res",
-    resource_dirs: ["resources"],
+    java_resource_dirs: ["resources"],
     no_standard_libs: true,
 }
