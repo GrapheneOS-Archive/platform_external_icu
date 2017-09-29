@@ -235,14 +235,6 @@ cc_defaults {
                 "-DPIC",
                 "-fPIC",
             ],
-            shared_libs: ["libdl"],
-        },
-        host: {
-            host_ldlibs: [
-                "-ldl",
-                "-lm",
-                "-lpthread",
-            ],
         },
     },
 }
