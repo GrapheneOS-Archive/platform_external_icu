@@ -221,6 +221,8 @@ cc_defaults {
         "-DU_I18N_IMPLEMENTATION",
         "-O3",
         "-fvisibility=hidden",
+        "-Wall",
+        "-Werror",
         "-Wno-unused-parameter",
     ],
     cppflags: [
