@@ -248,8 +248,4 @@ cc_library_shared {
     host_supported: true,
     unique_host_soname: true,
     shared_libs: ["libicuuc"],
-    host_ldlibs: [
-        "-lm",
-        "-lpthread",
-    ],
 }
