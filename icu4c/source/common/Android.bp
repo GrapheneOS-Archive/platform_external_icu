@@ -214,6 +214,8 @@ cc_defaults {
         "-O3",
         "-fvisibility=hidden",
 
+        "-Wall",
+        "-Werror",
         "-Wno-unused-parameter",
         "-Wno-missing-field-initializers",
         "-Wno-sign-compare",
@@ -234,14 +236,6 @@ cc_defaults {
             cflags: [
                 "-DPIC",
                 "-fPIC",
-            ],
-            shared_libs: ["libdl"],
-        },
-        host: {
-            host_ldlibs: [
-                "-ldl",
-                "-lm",
-                "-lpthread",
             ],
         },
     },
