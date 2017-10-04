@@ -25,7 +25,7 @@ filegroup {
     srcs: ["src/main/java/**/*.java"],
 }
 
-java_library {
+java_library_static {
     name: "android_icu4j_res",
     java_resource_dirs: ["resources"],
     no_standard_libs: true,
