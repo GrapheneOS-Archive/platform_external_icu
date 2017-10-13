@@ -1,6 +1,6 @@
---- android_icu4j/src/main/java/android/icu/lang/UCharacter.java	2017-08-25 08:53:45.053867828 +0100
-+++ android_icu4j/src/main/java/android/icu/lang/UCharacter.java	2017-08-25 08:54:12.257920817 +0100
-@@ -54,16 +54,6 @@
+--- android_icu4j/src/main/java/android/icu/lang/UCharacter.java	2017-10-13 00:22:56.775382358 -0700
++++ android_icu4j/src/main/java/android/icu/lang/UCharacter.java	2017-10-13 00:23:10.887535857 -0700
+@@ -53,16 +53,6 @@
   * more convenient in Java to have a separate primitive datatype for them,
   * ints suffice in the meantime.
   *
@@ -17,7 +17,7 @@
   * <p>Aside from the additions for UTF-16 support, and the updated Unicode
   * properties, the main differences between UCharacter and Character are:
   * <ul>
-@@ -85,11 +75,6 @@
+@@ -84,11 +74,6 @@
   *      as having numeric values.  This is a semantic change from ICU4J 1.3.1.
   * </ul>
   * <p>
