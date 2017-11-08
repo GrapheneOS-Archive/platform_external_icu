@@ -22,12 +22,14 @@ import org.junit.Test;
 import android.icu.dev.test.TestFmwk;
 import android.icu.util.Region;
 import android.icu.util.Region.RegionType;
+import android.icu.testsharding.MainTestShard;
 
 /**
  * @test
  * @summary General test of Regions
  */
 
+@MainTestShard
 public class RegionTest extends TestFmwk {
     String[][] knownRegions = {
             //   Code  , Numeric , Parent, Type, Containing Continent

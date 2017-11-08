@@ -33,7 +33,9 @@ import android.icu.text.LocaleDisplayNames;
 import android.icu.text.LocaleDisplayNames.UiListItem;
 import android.icu.util.IllformedLocaleException;
 import android.icu.util.ULocale;
+import android.icu.testsharding.MainTestShard;
 
+@MainTestShard
 public class ULocaleCollationTest extends TestFmwk {
     @Test
     public void TestCollator() {

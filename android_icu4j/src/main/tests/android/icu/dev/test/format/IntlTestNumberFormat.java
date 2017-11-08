@@ -22,11 +22,13 @@ import org.junit.Test;
 import android.icu.dev.test.TestFmwk;
 import android.icu.text.DecimalFormat;
 import android.icu.text.NumberFormat;
+import android.icu.testsharding.MainTestShard;
 
 /**
  * This test does round-trip testing (format -> parse -> format -> parse -> etc.) of
  * NumberFormat.
  */
+@MainTestShard
 public class IntlTestNumberFormat extends android.icu.dev.test.TestFmwk {
     
     public NumberFormat fNumberFormat;

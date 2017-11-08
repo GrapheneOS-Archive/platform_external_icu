@@ -47,11 +47,13 @@ import android.icu.text.UnicodeSetSpanner;
 import android.icu.text.UnicodeSetSpanner.CountMethod;
 import android.icu.text.UnicodeSetSpanner.TrimOption;
 import android.icu.util.OutputInt;
+import android.icu.testsharding.MainTestShard;
 
 /**
  * @test
  * @summary General test of UnicodeSet
  */
+@MainTestShard
 public class UnicodeSetTest extends TestFmwk {
 
     static final String NOT = "%%%%";

@@ -23,7 +23,9 @@ import android.icu.util.BytesTrie;
 import android.icu.util.CharsTrie;
 import android.icu.util.CharsTrieBuilder;
 import android.icu.util.StringTrieBuilder;
+import android.icu.testsharding.MainTestShard;
 
+@MainTestShard
 public class CharsTrieTest extends TestFmwk {
     public CharsTrieTest() {}
 

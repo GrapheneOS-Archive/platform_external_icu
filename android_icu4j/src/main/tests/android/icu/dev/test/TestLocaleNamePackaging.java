@@ -20,7 +20,9 @@ import android.icu.impl.LocaleDisplayNamesImpl;
 import android.icu.text.LocaleDisplayNames;
 import android.icu.text.LocaleDisplayNames.DialectHandling;
 import android.icu.util.ULocale;
+import android.icu.testsharding.MainTestShard;
 
+@MainTestShard
 public class TestLocaleNamePackaging extends TestFmwk {
     public TestLocaleNamePackaging() {
     }

@@ -12,12 +12,14 @@ import org.junit.Test;
 
 import android.icu.dev.test.TestFmwk;
 import android.icu.lang.UCharacterCategory;
+import android.icu.testsharding.MainTestShard;
 
 /**
 * Testing UCharacterCategory
 * @author Syn Wee Quek
 * @since April 02 2002
 */
+@MainTestShard
 public class UCharacterCategoryTest extends TestFmwk
 {
     // constructor -----------------------------------------------------------

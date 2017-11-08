@@ -48,7 +48,9 @@ import android.icu.util.ULocale.Category;
 import android.icu.util.ULocale.Minimize;
 import android.icu.util.UResourceBundle;
 import android.icu.util.VersionInfo;
+import android.icu.testsharding.MainTestShard;
 
+@MainTestShard
 public class ULocaleTest extends TestFmwk {
 
     // Ticket #8078 and #11674

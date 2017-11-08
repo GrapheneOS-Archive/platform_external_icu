@@ -52,7 +52,9 @@ import android.icu.text.RuleBasedNumberFormat;
 import android.icu.util.Currency;
 import android.icu.util.CurrencyAmount;
 import android.icu.util.ULocale;
+import android.icu.testsharding.MainTestShard;
 
+@MainTestShard
 public class NumberFormatTest extends TestFmwk {
 
     private static ULocale EN = new ULocale("en");

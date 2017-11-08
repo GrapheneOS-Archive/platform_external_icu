@@ -27,11 +27,13 @@ import android.icu.impl.Utility;
 import android.icu.text.UnicodeSet;
 import android.icu.util.ByteArrayWrapper;
 import android.icu.util.CaseInsensitiveString;
+import android.icu.testsharding.MainTestShard;
 
 /**
  * @test
  * @summary Test of internal Utility class
  */
+@MainTestShard
 public class UtilityTest extends TestFmwk {
     @Test
     public void TestUnescape() {

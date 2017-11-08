@@ -21,10 +21,12 @@ import android.icu.text.StringPrep;
 import android.icu.text.StringPrepParseException;
 import android.icu.text.UCharacterIterator;
 import android.icu.text.UTF16;
+import android.icu.testsharding.MainTestShard;
 
 /**
  * @author ram
  */
+@MainTestShard
 public class TestIDNA extends TestFmwk {
     private StringPrepParseException unassignedException = new StringPrepParseException("",StringPrepParseException.UNASSIGNED_ERROR);
 

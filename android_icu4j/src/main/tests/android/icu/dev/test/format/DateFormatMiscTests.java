@@ -24,10 +24,12 @@ import org.junit.Test;
 
 import android.icu.text.DateFormatSymbols;
 import android.icu.text.SimpleDateFormat;
+import android.icu.testsharding.MainTestShard;
 
 /** 
  * Performs miscellaneous tests for DateFormat, SimpleDateFormat, DateFormatSymbols
  **/
+@MainTestShard
 public class DateFormatMiscTests extends android.icu.dev.test.TestFmwk {
     /*
      * @bug 4097450

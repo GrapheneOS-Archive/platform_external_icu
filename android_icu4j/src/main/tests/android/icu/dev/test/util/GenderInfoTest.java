@@ -18,7 +18,9 @@ import android.icu.dev.test.TestFmwk;
 import android.icu.util.GenderInfo;
 import android.icu.util.GenderInfo.Gender;
 import android.icu.util.ULocale;
+import android.icu.testsharding.MainTestShard;
 
+@MainTestShard
 public class GenderInfoTest extends TestFmwk {
     public static GenderInfo NEUTRAL_LOCALE = GenderInfo.getInstance(ULocale.ENGLISH);
     public static GenderInfo MIXED_NEUTRAL_LOCALE = GenderInfo.getInstance(new ULocale("is"));

@@ -18,7 +18,9 @@ import android.icu.util.DangiCalendar;
 import android.icu.util.GregorianCalendar;
 import android.icu.util.TimeZone;
 import android.icu.util.ULocale;
+import android.icu.testsharding.MainTestShard;
 
+@MainTestShard
 public class DangiTest extends CalendarTestFmwk {
     /**
      * Test basic mapping to and from Gregorian.

@@ -19,11 +19,13 @@ import android.icu.impl.Utility;
 import android.icu.text.DecimalFormat;
 import android.icu.text.DecimalFormatSymbols;
 import android.icu.text.NumberFormat;
+import android.icu.testsharding.MainTestShard;
 
 /**
  * @test
  * General test of Big NumberFormat
  */
+@MainTestShard
 public class BigNumberFormatTest extends TestFmwk {
 
     static final int ILLEGAL = -1;
