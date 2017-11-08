@@ -53,7 +53,9 @@ import android.icu.text.NumberFormat;
 import android.icu.util.GregorianCalendar;
 import android.icu.util.ULocale;
 import android.icu.util.VersionInfo;
+import android.icu.testsharding.HiMemTestShard;
 
+@HiMemTestShard
 public class NumberRegressionTests extends TestFmwk {
     private static final char EURO = '\u20ac';
 

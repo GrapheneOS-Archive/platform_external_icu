@@ -23,6 +23,7 @@ import android.icu.text.UnicodeSetIterator;
 import android.icu.util.ICUException;
 import android.icu.util.LocaleData;
 import android.icu.util.ULocale;
+import android.icu.testsharding.MainTestShard;
 
 /**
  * @author ram
@@ -30,6 +31,7 @@ import android.icu.util.ULocale;
  * To change the template for this generated type comment go to
  * Window>Preferences>Java>Code Generation>Code and Comments
  */
+@MainTestShard
 public class LocaleDataTest extends TestFmwk{
     private ULocale[] availableLocales = null;
 

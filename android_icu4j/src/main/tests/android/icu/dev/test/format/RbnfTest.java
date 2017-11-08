@@ -24,11 +24,13 @@ import android.icu.text.DisplayContext;
 import android.icu.text.NumberFormat;
 import android.icu.text.RuleBasedNumberFormat;
 import android.icu.util.ULocale;
+import android.icu.testsharding.MainTestShard;
 
 /**
  * This does not test lenient parse mode, since testing the default implementation
  * introduces a dependency on collation.  See RbnfLenientScannerTest.
  */
+@MainTestShard
 public class RbnfTest extends TestFmwk {
     static String fracRules =
         "%main:\n" +

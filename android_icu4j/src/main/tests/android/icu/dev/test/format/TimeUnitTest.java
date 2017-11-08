@@ -26,11 +26,13 @@ import android.icu.util.MeasureUnit;
 import android.icu.util.TimeUnit;
 import android.icu.util.TimeUnitAmount;
 import android.icu.util.ULocale;
+import android.icu.testsharding.HiMemTestShard;
 
 /**
  * @author markdavis
  *
  */
+@HiMemTestShard
 public class TimeUnitTest extends TestFmwk {
     @Test
     public void Test10219FractionalPlurals() {

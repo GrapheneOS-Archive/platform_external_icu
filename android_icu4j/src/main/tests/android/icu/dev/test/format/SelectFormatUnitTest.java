@@ -14,11 +14,13 @@ import org.junit.Test;
 
 import android.icu.dev.test.TestFmwk;
 import android.icu.text.SelectFormat;
+import android.icu.testsharding.MainTestShard;
 
 /**
  * @author kirtig 
  * This class does the unit testing for the SelectFormat
  */
+@MainTestShard
 public class SelectFormatUnitTest extends TestFmwk {
   
     static final String SIMPLE_PATTERN = "feminine {feminineVerbValue} other{otherVerbValue}";

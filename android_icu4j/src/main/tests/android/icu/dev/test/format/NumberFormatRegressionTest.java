@@ -31,10 +31,12 @@ import android.icu.text.DecimalFormatSymbols;
 import android.icu.text.NumberFormat;
 import android.icu.util.Calendar;
 import android.icu.util.ULocale;
+import android.icu.testsharding.MainTestShard;
 
 /** 
  * Performs regression test for MessageFormat
  **/
+@MainTestShard
 public class NumberFormatRegressionTest extends android.icu.dev.test.TestFmwk {
     /**
      * alphaWorks upgrade

@@ -26,7 +26,9 @@ import android.icu.text.DateFormat;
 import android.icu.util.Calendar;
 import android.icu.util.ULocale;
 import android.icu.util.UResourceBundle;
+import android.icu.testsharding.MainTestShard;
 
+@MainTestShard
 public class LocaleAliasTest extends TestFmwk {
     private static final ULocale[][] _LOCALES = {
 

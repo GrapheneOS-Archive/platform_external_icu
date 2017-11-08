@@ -28,7 +28,9 @@ import org.junit.Test;
 
 import android.icu.text.NumberFormat;
 import android.icu.util.ULocale;
+import android.icu.testsharding.MainTestShard;
 
+@MainTestShard
 public class IntlTestNumberFormatAPI extends android.icu.dev.test.TestFmwk
 {
     // This test checks various generic API methods in DecimalFormat to achieve 100% API coverage.

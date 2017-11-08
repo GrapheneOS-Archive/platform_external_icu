@@ -14,7 +14,9 @@ import org.junit.Test;
 import android.icu.dev.test.TestFmwk;
 import android.icu.text.UnicodeCompressor;
 import android.icu.text.UnicodeDecompressor;
+import android.icu.testsharding.MainTestShard;
 
+@MainTestShard
 public class ExhaustiveTest extends TestFmwk {
     /** Test simple compress/decompress API, returning # of errors */
     @Test

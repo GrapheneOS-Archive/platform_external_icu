@@ -26,11 +26,13 @@ import android.icu.dev.test.TestFmwk;
 import android.icu.text.DurationFormat;
 import android.icu.util.Calendar;
 import android.icu.util.ULocale;
+import android.icu.testsharding.MainTestShard;
 
 /**
  * @author srl
  *
  */
+@MainTestShard
 public class ICUDurationTest extends TestFmwk {
     /**
      * Allows us to not depend on javax.xml.datatype.DatatypeFactory.

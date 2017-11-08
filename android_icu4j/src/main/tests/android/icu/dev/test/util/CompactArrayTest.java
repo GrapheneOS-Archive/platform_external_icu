@@ -15,10 +15,12 @@ import android.icu.dev.test.TestFmwk;
 import android.icu.impl.Utility;
 import android.icu.util.CompactByteArray;
 import android.icu.util.CompactCharArray;
+import android.icu.testsharding.MainTestShard;
 
 /**
  * @since release 2.2
  */
+@MainTestShard
 public final class CompactArrayTest extends TestFmwk 
 { 
     @Test

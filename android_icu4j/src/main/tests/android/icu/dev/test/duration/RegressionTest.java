@@ -18,7 +18,9 @@ import android.icu.impl.duration.PeriodBuilder;
 import android.icu.impl.duration.PeriodFormatterService;
 import android.icu.text.DurationFormat;
 import android.icu.util.ULocale;
+import android.icu.testsharding.MainTestShard;
 
+@MainTestShard
 public class RegressionTest extends TestFmwk {
     // bug6397
     @Test

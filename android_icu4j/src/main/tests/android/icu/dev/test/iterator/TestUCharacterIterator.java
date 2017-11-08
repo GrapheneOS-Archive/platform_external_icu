@@ -18,6 +18,7 @@ import android.icu.dev.test.TestFmwk;
 import android.icu.text.ReplaceableString;
 import android.icu.text.UCharacterIterator;
 import android.icu.text.UTF16;
+import android.icu.testsharding.MainTestShard;
 
 /**
  * @author ram
@@ -27,6 +28,7 @@ import android.icu.text.UTF16;
  * To enable and disable the creation of type comments go to
  * Window>Preferences>Java>Code Generation.
  */
+@MainTestShard
 public class TestUCharacterIterator extends TestFmwk{
 
     // constructor -----------------------------------------------------

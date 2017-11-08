@@ -10,6 +10,7 @@
 package android.icu.dev.test.sample;
 
 import java.util.ListResourceBundle;
+import android.icu.testsharding.MainTestShard;
 
 /**
  * This is sample data for ModuleTestSample, which is an illustration
@@ -18,6 +19,7 @@ import java.util.ListResourceBundle;
  * all data, including numeric and boolean data, to be represented
  * by Strings.
  */
+@MainTestShard
 public class ModuleTestSampleData extends ListResourceBundle {
     public Object[][] getContents() {
     return contents;

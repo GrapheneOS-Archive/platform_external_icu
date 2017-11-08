@@ -21,7 +21,9 @@ import android.icu.dev.test.TestFmwk;
 import android.icu.text.BreakIterator;
 import android.icu.text.FilteredBreakIteratorBuilder;
 import android.icu.util.ULocale;
+import android.icu.testsharding.MainTestShard;
 
+@MainTestShard
 public class BreakIteratorTest extends TestFmwk
 {
     private BreakIterator characterBreak;

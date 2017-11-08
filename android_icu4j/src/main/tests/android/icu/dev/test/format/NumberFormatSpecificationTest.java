@@ -17,11 +17,13 @@ import android.icu.text.DecimalFormatSymbols;
 import android.icu.text.NumberFormat;
 import android.icu.util.Currency;
 import android.icu.util.ULocale;
+import android.icu.testsharding.MainTestShard;
 
 /**
  * @author rocketman
  *
  */
+@MainTestShard
 public class NumberFormatSpecificationTest extends TestFmwk {
     @Test
     public void TestBasicPatterns() {

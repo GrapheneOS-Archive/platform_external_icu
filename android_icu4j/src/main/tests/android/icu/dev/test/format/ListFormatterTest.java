@@ -17,7 +17,9 @@ import org.junit.Test;
 import android.icu.dev.test.TestFmwk;
 import android.icu.text.ListFormatter;
 import android.icu.util.ULocale;
+import android.icu.testsharding.MainTestShard;
 
+@MainTestShard
 public class ListFormatterTest extends TestFmwk {
     String[] HardcodedTestData = {
             "",

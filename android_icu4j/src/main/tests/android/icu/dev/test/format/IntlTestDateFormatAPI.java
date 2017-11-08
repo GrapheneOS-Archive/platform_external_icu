@@ -33,7 +33,9 @@ import android.icu.text.DateFormat;
 import android.icu.text.NumberFormat;
 import android.icu.util.Calendar;
 import android.icu.util.TimeZone;
+import android.icu.testsharding.MainTestShard;
 
+@MainTestShard
 public class IntlTestDateFormatAPI extends android.icu.dev.test.TestFmwk
 {
     // Test that the equals method works correctly.

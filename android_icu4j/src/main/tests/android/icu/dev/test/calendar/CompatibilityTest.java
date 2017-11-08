@@ -25,7 +25,9 @@ import android.icu.util.Calendar;
 import android.icu.util.GregorianCalendar;
 import android.icu.util.SimpleTimeZone;
 import android.icu.util.TimeZone;
+import android.icu.testsharding.MainTestShard;
 
+@MainTestShard
 public class CompatibilityTest extends android.icu.dev.test.TestFmwk {
     static final String[] FIELD_NAME = {
         "ERA", "YEAR", "MONTH", "WEEK_OF_YEAR", "WEEK_OF_MONTH",
