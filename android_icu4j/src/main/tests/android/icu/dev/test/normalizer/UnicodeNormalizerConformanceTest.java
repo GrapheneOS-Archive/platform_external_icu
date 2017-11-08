@@ -20,8 +20,10 @@ import android.icu.dev.test.TestFmwk;
 import android.icu.dev.test.TestUtil;
 import android.icu.text.UTF16;
 import android.icu.text.UnicodeSet;
+import android.icu.testsharding.MainTestShard;
 
 
+@MainTestShard
 public class UnicodeNormalizerConformanceTest extends TestFmwk {
 
     UnicodeNormalizer normalizer_C, normalizer_D, normalizer_KC, normalizer_KD;

@@ -23,7 +23,9 @@ import org.junit.Test;
 import android.icu.dev.test.TestFmwk;
 import android.icu.text.CollationKey;
 import android.icu.text.Collator;
+import android.icu.testsharding.MainTestShard;
  
+@MainTestShard
 public class LotusCollationKoreanTest extends TestFmwk{
     private static char[][] testSourceCases = {
         {0xac00}

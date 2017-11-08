@@ -35,7 +35,8 @@ include $(CLEAR_VARS)
 # Don't include this package in any target
 LOCAL_MODULE_TAGS := tests
 LOCAL_SRC_FILES := \
-    $(call all-java-files-under,src/main/tests)
+    $(call all-java-files-under,src/main/tests) \
+    $(call all-java-files-under,testing/src)
 LOCAL_JAVA_RESOURCE_DIRS := src/main/tests
 LOCAL_STATIC_JAVA_LIBRARIES := \
     android-support-test \
@@ -57,7 +58,9 @@ include $(CLEAR_VARS)
 
 # Don't include this package in any target
 LOCAL_MODULE_TAGS := optional
-LOCAL_SRC_FILES := $(call all-java-files-under,src/main/java)
+LOCAL_SRC_FILES := \
+    $(call all-java-files-under,src/main/java) \
+    $(call all-java-files-under,testing/src)
 LOCAL_STATIC_JAVA_LIBRARIES := \
     icu4j-icudata-host-jarjar \
     icu4j-icutzdata-host-jarjar
@@ -79,7 +82,8 @@ include $(CLEAR_VARS)
 # Don't include this package in any target
 LOCAL_MODULE_TAGS := tests
 LOCAL_SRC_FILES := \
-    $(call all-java-files-under,src/main/tests)
+    $(call all-java-files-under,src/main/tests) \
+    $(call all-java-files-under,testing/src)
 LOCAL_JAVA_RESOURCE_DIRS := src/main/tests
 LOCAL_STATIC_JAVA_LIBRARIES := \
     android-icu4j-host \

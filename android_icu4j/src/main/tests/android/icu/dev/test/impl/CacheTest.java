@@ -14,7 +14,9 @@ import org.junit.Test;
 import android.icu.dev.test.TestFmwk;
 import android.icu.impl.CacheValue;
 import android.icu.impl.CacheValue.Strength;
+import android.icu.testsharding.MainTestShard;
 
+@MainTestShard
 public class CacheTest extends TestFmwk {
     public CacheTest() {}
 

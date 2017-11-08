@@ -34,7 +34,9 @@ import android.icu.impl.ICUService;
 import android.icu.impl.ICUService.Factory;
 import android.icu.impl.ICUService.SimpleFactory;
 import android.icu.util.ULocale;
+import android.icu.testsharding.MainTestShard;
 
+@MainTestShard
 public class ICUServiceThreadTest extends TestFmwk
 {
     private static final boolean PRINTSTATS = false;

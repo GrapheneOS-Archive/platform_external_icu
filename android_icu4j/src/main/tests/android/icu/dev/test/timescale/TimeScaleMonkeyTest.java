@@ -18,12 +18,14 @@ import org.junit.Test;
 import android.icu.dev.test.TestFmwk;
 import android.icu.math.BigDecimal;
 import android.icu.util.UniversalTimeScale;
+import android.icu.testsharding.MainTestShard;
 
 /**
  * This class tests the UniversalTimeScale class by
  * generating ramdon values in range and making sure
  * that they round-trip correctly.
  */
+@MainTestShard
 public class TimeScaleMonkeyTest extends TestFmwk
 {
 

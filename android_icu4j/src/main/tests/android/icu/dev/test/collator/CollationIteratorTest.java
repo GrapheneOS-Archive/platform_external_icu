@@ -29,7 +29,9 @@ import android.icu.text.Collator;
 import android.icu.text.RuleBasedCollator;
 import android.icu.text.UCharacterIterator;
 import android.icu.util.ULocale;
+import android.icu.testsharding.MainTestShard;
 
+@MainTestShard
 public class CollationIteratorTest extends TestFmwk {
     
     String test1 = "What subset of all possible test cases?";

@@ -20,12 +20,14 @@ import android.icu.util.LocaleMatcher;
 import android.icu.util.LocaleMatcher.LanguageMatcherData;
 import android.icu.util.LocalePriorityList;
 import android.icu.util.ULocale;
+import android.icu.testsharding.MainTestShard;
 
 /**
  * Test the LocaleMatcher.
  * 
  * @author markdavis
  */
+@MainTestShard
 @SuppressWarnings("deprecation")
 public class LocaleMatcherTest extends TestFmwk {
 

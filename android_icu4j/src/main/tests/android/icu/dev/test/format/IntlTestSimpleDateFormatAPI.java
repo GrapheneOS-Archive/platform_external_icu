@@ -31,11 +31,13 @@ import org.junit.Test;
 
 import android.icu.text.DateFormatSymbols;
 import android.icu.text.SimpleDateFormat;
+import android.icu.testsharding.MainTestShard;
 
 /**
 * @test 1.4 98/03/06
 * @summary test International Simple Date Format API
 */
+@MainTestShard
 public class IntlTestSimpleDateFormatAPI extends android.icu.dev.test.TestFmwk
 {
     // This test checks various generic API methods in DecimalFormat to achieve 100% API coverage.

@@ -11,7 +11,9 @@ package android.icu.dev.test.calendar;
 import java.util.Date;
 
 import android.icu.util.Calendar;
+import android.icu.testsharding.MainTestShard;
 
+@MainTestShard
 public class ChineseTestCase extends TestCase {
 
     /**

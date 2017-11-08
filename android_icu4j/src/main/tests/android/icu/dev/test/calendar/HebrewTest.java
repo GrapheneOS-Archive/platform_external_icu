@@ -21,10 +21,12 @@ import android.icu.util.Calendar;
 import android.icu.util.HebrewCalendar;
 import android.icu.util.TimeZone;
 import android.icu.util.ULocale;
+import android.icu.testsharding.MainTestShard;
 
 /**
  * Tests for the <code>HebrewCalendar</code> class.
  */
+@MainTestShard
 public class HebrewTest extends CalendarTestFmwk {
     // Constants to save typing.
     public static final int TISHRI  = HebrewCalendar.TISHRI;

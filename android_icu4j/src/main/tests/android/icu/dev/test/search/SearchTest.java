@@ -38,7 +38,9 @@ import android.icu.text.SearchIterator;
 import android.icu.text.SearchIterator.ElementComparisonType;
 import android.icu.text.StringSearch;
 import android.icu.util.ULocale;
+import android.icu.testsharding.MainTestShard;
 
+@MainTestShard
 public class SearchTest extends TestFmwk {
 
     //inner class

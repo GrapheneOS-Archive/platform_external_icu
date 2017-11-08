@@ -18,7 +18,9 @@ import org.junit.Test;
 
 import android.icu.dev.test.TestFmwk;
 import android.icu.dev.util.CollectionUtilities;
+import android.icu.testsharding.MainTestShard;
 
+@MainTestShard
 public class TestUtilities extends TestFmwk {
     @Test
     public void TestCollectionUtilitySpeed() {

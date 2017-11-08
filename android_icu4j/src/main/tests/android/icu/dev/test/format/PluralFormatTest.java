@@ -19,11 +19,13 @@ import android.icu.impl.Utility;
 import android.icu.text.CurrencyPluralInfo;
 import android.icu.text.PluralFormat;
 import android.icu.util.ULocale;
+import android.icu.testsharding.MainTestShard;
 
 /**
  * @author tschumann (Tim Schumann)
  *
  */
+@MainTestShard
 public class PluralFormatTest extends TestFmwk {
   private void helperTestRules(String localeIDs, String testPattern, Map<Integer,String> changes) {
     String[] locales = Utility.split(localeIDs, ',');

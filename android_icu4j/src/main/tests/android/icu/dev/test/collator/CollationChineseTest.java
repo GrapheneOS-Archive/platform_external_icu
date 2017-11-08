@@ -22,7 +22,9 @@ import org.junit.Test;
 import android.icu.dev.test.TestFmwk;
 import android.icu.text.Collator;
 import android.icu.text.RuleBasedCollator;
+import android.icu.testsharding.MainTestShard;
  
+@MainTestShard
 public class CollationChineseTest extends TestFmwk{
     public CollationChineseTest() 
     {

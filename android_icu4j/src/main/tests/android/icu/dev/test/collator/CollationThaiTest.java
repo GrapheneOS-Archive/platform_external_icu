@@ -29,7 +29,9 @@ import android.icu.text.CollationElementIterator;
 import android.icu.text.CollationKey;
 import android.icu.text.Collator;
 import android.icu.text.RuleBasedCollator;
+import android.icu.testsharding.MainTestShard;
 
+@MainTestShard
 public class CollationThaiTest extends TestFmwk {
     
     final int MAX_FAILURES_TO_SHOW = -1;

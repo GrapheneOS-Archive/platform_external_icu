@@ -29,12 +29,14 @@ import org.junit.Test;
 
 import android.icu.dev.test.TestFmwk;
 import android.icu.util.TimeZone;
+import android.icu.testsharding.MainTestShard;
 
 /**
  * Class for testing TimeZones for consistency
  * @author Davis
  * 
  */
+@MainTestShard
 public class TimeZoneAliasTest extends TestFmwk {
     /**
      * There are two things to check aliases for:<br>

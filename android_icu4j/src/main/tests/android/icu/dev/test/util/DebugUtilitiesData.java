@@ -10,6 +10,9 @@
 
 package android.icu.dev.test.util;
 
+import android.icu.testsharding.MainTestShard;
+
+@MainTestShard
 public class DebugUtilitiesData extends Object {
     public static final String ICU4C_VERSION="58.2";
     public static final int UDebugEnumType = 0;

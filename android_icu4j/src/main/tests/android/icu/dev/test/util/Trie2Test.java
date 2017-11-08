@@ -25,7 +25,9 @@ import android.icu.impl.Trie2;
 import android.icu.impl.Trie2Writable;
 import android.icu.impl.Trie2_16;
 import android.icu.impl.Trie2_32;
+import android.icu.testsharding.MainTestShard;
 
+@MainTestShard
 public class Trie2Test extends TestFmwk {
     /**
      * Constructor

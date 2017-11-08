@@ -22,7 +22,9 @@ import android.icu.dev.test.TestFmwk;
 import android.icu.util.BytesTrie;
 import android.icu.util.BytesTrieBuilder;
 import android.icu.util.StringTrieBuilder;
+import android.icu.testsharding.MainTestShard;
 
+@MainTestShard
 public class BytesTrieTest extends TestFmwk {
     public BytesTrieTest() {}
 

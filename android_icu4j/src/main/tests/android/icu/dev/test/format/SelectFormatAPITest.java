@@ -17,11 +17,13 @@ import org.junit.Test;
 
 import android.icu.dev.test.TestFmwk;
 import android.icu.text.SelectFormat;
+import android.icu.testsharding.MainTestShard;
 
 /**
  * @author kirtig 
  * This class tests the API functionality of the SelectFormat
  */
+@MainTestShard
 public class SelectFormatAPITest extends TestFmwk {
   
     static final String SIMPLE_PATTERN1 = "feminine {feminineVerbValue1} other{otherVerbValue1}";

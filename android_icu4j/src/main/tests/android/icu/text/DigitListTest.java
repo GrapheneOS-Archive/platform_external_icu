@@ -8,8 +8,10 @@ import org.junit.Before;
 import org.junit.Test;
 
 import android.icu.dev.test.TestFmwk;
+import android.icu.testsharding.MainTestShard;
 
 
+@MainTestShard
 public class DigitListTest extends TestFmwk {
 
     private static DigitList digitList = new DigitList();

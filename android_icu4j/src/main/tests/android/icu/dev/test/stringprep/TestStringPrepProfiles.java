@@ -14,11 +14,13 @@ import org.junit.Test;
 import android.icu.dev.test.TestFmwk;
 import android.icu.text.StringPrep;
 import android.icu.text.StringPrepParseException;
+import android.icu.testsharding.MainTestShard;
 
 /**
  * @author Michael Ow
  *
  */
+@MainTestShard
 public class TestStringPrepProfiles extends TestFmwk {
     /*
      * The format of the test cases should be the following:

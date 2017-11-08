@@ -23,7 +23,9 @@ import android.icu.dev.test.TestFmwk;
 import android.icu.text.CollationKey;
 import android.icu.text.Collator;
 import android.icu.text.RuleBasedCollator;
+import android.icu.testsharding.MainTestShard;
  
+@MainTestShard
 public class CollationCurrencyTest extends TestFmwk {
     @Test
     public void TestCurrency() {
