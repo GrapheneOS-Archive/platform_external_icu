@@ -21,10 +21,13 @@ import com.google.currysrc.api.Rules;
 import com.google.currysrc.api.input.InputFileGenerator;
 import com.google.currysrc.api.output.OutputSourceFileGenerator;
 import com.google.currysrc.api.process.Rule;
+import com.google.currysrc.processors.ReplaceTypeName;
 import com.google.currysrc.processors.ReplaceTextCommentScanner;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static com.android.icu4j.srcgen.Icu4jTransformRules.createOptionalRule;
 
@@ -100,6 +103,14 @@ public class Icu4jTestsTransform {
       // Add annotations to each test file so that they can be sharded across multiple processes.
       rules.add(createOptionalRule(new ShardingAnnotator()));
 
+      // Because test code must not live in the same package as the code under test,
+      // let code use DecimalFormat_ICU58_Android (in main source tree) instead of
+      // DecimalFormat_ICU58 (in test source tree). http://b/68696705
+      // We need to replace both qualified and unqualified occurrences of the name.
+      Map<String, String> replacements = new HashMap<>();
+      replacements.put("DecimalFormat_ICU58", "DecimalFormat_ICU58_Android");
+      replacements.put("android.icu.text.DecimalFormat_ICU58", "android.icu.text.DecimalFormat_ICU58_Android");
+      rules.add(createOptionalRule(new ReplaceTypeName(replacements)));
       return rules;
     }
   }
