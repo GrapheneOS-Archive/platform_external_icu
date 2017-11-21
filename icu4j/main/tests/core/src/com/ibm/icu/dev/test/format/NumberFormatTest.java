@@ -43,7 +43,6 @@ import org.junit.runners.JUnit4;
 import com.ibm.icu.dev.test.TestFmwk;
 import com.ibm.icu.dev.test.TestUtil;
 import com.ibm.icu.dev.test.format.IntlTestDecimalFormatAPIC.FieldContainer;
-import com.ibm.icu.dev.text.DecimalFormat_ICU58;
 import com.ibm.icu.impl.ICUConfig;
 import com.ibm.icu.impl.LocaleUtility;
 import com.ibm.icu.impl.data.ResourceReader;
@@ -1694,8 +1693,7 @@ public class NumberFormatTest extends TestFmwk {
                     localizedPattern, df1.toLocalizedPattern());
 
             // Android can't access DecimalFormat_ICU58 for testing (ticket #13283).
-            if (TestUtil.getJavaVendor() == TestUtil.JavaVendor.Android) continue;
-
+            /*
             // Note: ICU 58 does not support plus signs in patterns
             // Note: ICU 58 always prints the negative part of scientific notation patterns,
             //       even when the negative part is not necessary
@@ -1708,6 +1706,8 @@ public class NumberFormatTest extends TestFmwk {
                     standardPattern58, df4.toPattern());
             assertEquals("toLocalizedPattern should match on ICU58 standardPattern instance",
                     localizedPattern58, df3.toLocalizedPattern());
+            */
+            // Android patch end.
         }
     }
 
