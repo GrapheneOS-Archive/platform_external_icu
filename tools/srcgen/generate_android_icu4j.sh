@@ -75,10 +75,6 @@ ALL_TEST_INPUT_DIRS="${TEST_INPUT_DIRS} ${TESTDATA_DIR}"
 ${SRCGEN_JAVA_BINARY} ${SRCGEN_JAVA_ARGS} -cp ${CLASSPATH} com.android.icu4j.srcgen.Icu4jTestsTransform \
   ${ALL_TEST_INPUT_DIRS} ${TEST_DEST_DIR}
 
-# These files live in the same package as code under test, which is not allowed under
-# OpenJDK 9, and they are unused. See http://b/68696705
-rm ${TEST_DEST_DIR}/android/icu/text/{DecimalFormat_ICU58,DigitList,DigitListTest}.java
-
 # Apply line-based javadoc patches
 ${ANDROID_BUILD_TOP}/external/icu/tools/srcgen/javadoc_patches/apply_patches.sh
 
