@@ -33,7 +33,6 @@ import com.google.currysrc.processors.ModifyQualifiedNames;
 import com.google.currysrc.processors.ModifyStringLiterals;
 import com.google.currysrc.processors.RemoveJavaDocTags;
 import com.google.currysrc.processors.RenamePackage;
-import com.google.currysrc.processors.ReplaceSelectedJavadoc;
 import com.google.currysrc.processors.ReplaceTextCommentScanner;
 
 import java.io.File;
@@ -668,7 +667,6 @@ public class Icu4jTransform {
 
           // Doc change: Switch all documentation references from com.ibm.icu to android.icu.
           // e.g. importantly in <code> blocks and unimportantly in non-Javadoc comments.
-          // This must come after createReplaceSelectedJavadocRule().
           createOptionalRule(
               new ReplaceTextCommentScanner(ORIGINAL_ICU_PACKAGE, ANDROID_ICU_PACKAGE)),
 
