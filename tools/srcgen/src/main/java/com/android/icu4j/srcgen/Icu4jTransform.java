@@ -29,12 +29,10 @@ import com.google.currysrc.api.process.ast.BodyDeclarationLocators;
 import com.google.currysrc.api.process.ast.TypeLocator;
 import com.google.currysrc.processors.HidePublicClasses;
 import com.google.currysrc.processors.InsertHeader;
-import com.google.currysrc.processors.MakeClassesPublic;
 import com.google.currysrc.processors.ModifyQualifiedNames;
 import com.google.currysrc.processors.ModifyStringLiterals;
 import com.google.currysrc.processors.RemoveJavaDocTags;
 import com.google.currysrc.processors.RenamePackage;
-import com.google.currysrc.processors.ReplaceSelectedJavadoc;
 import com.google.currysrc.processors.ReplaceTextCommentScanner;
 
 import java.io.File;
@@ -50,12 +48,6 @@ import static com.android.icu4j.srcgen.Icu4jTransformRules.createOptionalRule;
  * then you should re-run the generate_android_icu4j.sh script.
  */
 public class Icu4jTransform {
-
-  // The list of non-public ICU API classes exposed on Android for testing.
-  static final String[] MAKE_PUBLIC_FOR_TESTING = new String[] {
-      /* ASCII order please. */
-      "android.icu.text.DigitList",
-  };
 
   // The list of public ICU API classes exposed on Android. If you change this, you should change
   // the INITIAL_DEPRECATED_SET below to include entries from the new classes.
@@ -675,16 +667,11 @@ public class Icu4jTransform {
 
           // Doc change: Switch all documentation references from com.ibm.icu to android.icu.
           // e.g. importantly in <code> blocks and unimportantly in non-Javadoc comments.
-          // This must come after createReplaceSelectedJavadocRule().
           createOptionalRule(
               new ReplaceTextCommentScanner(ORIGINAL_ICU_PACKAGE, ANDROID_ICU_PACKAGE)),
 
           // AST change: Hide all ICU public classes except those in the whitelist.
           createHidePublicClassesRule(),
-
-          // AST change: Make whitelisted ICU classes public for testing. This should come after the
-          // createHidePublicClassesRule() as otherwise there will be two @hide tags added.
-          createMakePublicForTesting(),
 
           // AST change: Hide ICU methods that are deprecated and Android does not want to make
           // public.
@@ -735,15 +722,6 @@ public class Icu4jTransform {
           BodyDeclarationLocators.createLocatorsFromStrings(DECLARATIONS_TO_HIDE);
       return createOptionalRule(
           new TagMatchingDeclarations(blacklist, "@hide unsupported on Android"));
-    }
-
-    private static Rule createMakePublicForTesting() {
-      ImmutableList.Builder<TypeLocator> apiClassesWhitelistBuilder = ImmutableList.builder();
-      for (String publicClassName : MAKE_PUBLIC_FOR_TESTING) {
-        apiClassesWhitelistBuilder.add(new TypeLocator(publicClassName));
-      }
-      return createOptionalRule(new MakeClassesPublic(apiClassesWhitelistBuilder.build(),
-              "@hide Made public for testing"));
     }
 
     private static Rule createHidePublicClassesRule() {

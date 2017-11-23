@@ -25,7 +25,6 @@ import android.icu.impl.number.formatters.PaddingFormat.PadPosition;
 import android.icu.text.DecimalFormat;
 import android.icu.text.DecimalFormat.PropertySetter;
 import android.icu.text.DecimalFormatSymbols;
-import android.icu.text.DecimalFormat_ICU58_Android;
 import android.icu.util.CurrencyAmount;
 import android.icu.util.ULocale;
 import android.icu.testsharding.MainTestShard;
@@ -46,6 +45,13 @@ public class NumberFormatDataDrivenTest {
     return new BigDecimal(s);
   }
 
+  // Android patch: Android can't access DecimalFormat_ICU58 for testing (b/33448125).
+  // That class lived in a package under test and relied on package access, but
+  // 1.) Android Compatibility Test Suite (CTS) run tests with a different ClassLoader,
+  //     preventing package access, and
+  // 2.) By default, the OpenJDK 9 toolchain won't compile non-libcore code that in
+  //     libcore packages (see http://b/68224249).
+  /*
   private DataDrivenNumberFormatTestUtility.CodeUnderTest ICU58 =
       new DataDrivenNumberFormatTestUtility.CodeUnderTest() {
         @Override
@@ -55,7 +61,7 @@ public class NumberFormatDataDrivenTest {
 
         @Override
         public String format(DataDrivenNumberFormatTestData tuple) {
-          DecimalFormat_ICU58_Android fmt = createDecimalFormat(tuple);
+          DecimalFormat_ICU58 fmt = createDecimalFormat(tuple);
           String actual = fmt.format(toNumber(tuple.format));
           String expected = tuple.output;
           if (!expected.equals(actual)) {
@@ -66,7 +72,7 @@ public class NumberFormatDataDrivenTest {
 
         @Override
         public String toPattern(DataDrivenNumberFormatTestData tuple) {
-          DecimalFormat_ICU58_Android fmt = createDecimalFormat(tuple);
+          DecimalFormat_ICU58 fmt = createDecimalFormat(tuple);
           StringBuilder result = new StringBuilder();
           if (tuple.toPattern != null) {
             String expected = tuple.toPattern;
@@ -87,7 +93,7 @@ public class NumberFormatDataDrivenTest {
 
         @Override
         public String parse(DataDrivenNumberFormatTestData tuple) {
-          DecimalFormat_ICU58_Android fmt = createDecimalFormat(tuple);
+          DecimalFormat_ICU58 fmt = createDecimalFormat(tuple);
           ParsePosition ppos = new ParsePosition(0);
           Number actual = fmt.parse(tuple.parse, ppos);
           if (ppos.getIndex() == 0) {
@@ -108,7 +114,7 @@ public class NumberFormatDataDrivenTest {
 
         @Override
         public String parseCurrency(DataDrivenNumberFormatTestData tuple) {
-          DecimalFormat_ICU58_Android fmt = createDecimalFormat(tuple);
+          DecimalFormat_ICU58 fmt = createDecimalFormat(tuple);
           ParsePosition ppos = new ParsePosition(0);
           CurrencyAmount currAmt = fmt.parseCurrency(tuple.parse, ppos);
           if (ppos.getIndex() == 0) {
@@ -135,11 +141,11 @@ public class NumberFormatDataDrivenTest {
         /**
          * @param tuple
          * @return
-         */
-        private DecimalFormat_ICU58_Android createDecimalFormat(DataDrivenNumberFormatTestData tuple) {
+         *
+        private DecimalFormat_ICU58 createDecimalFormat(DataDrivenNumberFormatTestData tuple) {
 
-          DecimalFormat_ICU58_Android fmt =
-              new DecimalFormat_ICU58_Android(
+          DecimalFormat_ICU58 fmt =
+              new DecimalFormat_ICU58(
                   tuple.pattern == null ? "0" : tuple.pattern,
                   new DecimalFormatSymbols(tuple.locale == null ? EN : tuple.locale));
           adjustDecimalFormat(tuple, fmt);
@@ -148,9 +154,9 @@ public class NumberFormatDataDrivenTest {
         /**
          * @param tuple
          * @param fmt
-         */
+         *
         private void adjustDecimalFormat(
-            DataDrivenNumberFormatTestData tuple, DecimalFormat_ICU58_Android fmt) {
+            DataDrivenNumberFormatTestData tuple, DecimalFormat_ICU58 fmt) {
           if (tuple.minIntegerDigits != null) {
             fmt.setMinimumIntegerDigits(tuple.minIntegerDigits);
           }
@@ -251,6 +257,8 @@ public class NumberFormatDataDrivenTest {
           }
         }
       };
+  */
+  // Android patch end.
 
   private DataDrivenNumberFormatTestUtility.CodeUnderTest JDK =
       new DataDrivenNumberFormatTestUtility.CodeUnderTest() {
@@ -779,15 +787,15 @@ public class NumberFormatDataDrivenTest {
         }
       };
 
+  // Android patch: Android can't access DecimalFormat_ICU58 for testing (b/33448125).
+  /*
   @Test
   public void TestDataDrivenICU58() {
-    // Android patch: Android can't access DecimalFormat_ICU58 for testing (b/33448125).
-    if (android.icu.dev.test.TestUtil.getJavaVendor()
-        == android.icu.dev.test.TestUtil.JavaVendor.Android) return;
-    // Android patch end.
     DataDrivenNumberFormatTestUtility.runFormatSuiteIncludingKnownFailures(
         "numberformattestspecification.txt", ICU58);
   }
+  */
+  // Android patch end.
 
   @Test
   public void TestDataDrivenJDK() {
