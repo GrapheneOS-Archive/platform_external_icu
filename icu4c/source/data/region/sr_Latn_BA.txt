@@ -4,20 +4,20 @@ sr_Latn_BA{
     Countries{
         BY{"Bjelorusija"}
         CG{"Kongo"}
-        CI{"Obala Slonovače (Kot d’Ivoar)"}
         CV{"Kabo Verde"}
         CZ{"Češka Republika"}
         DE{"Njemačka"}
         KN{"Sveti Kits i Nevis"}
-        MK{"BJR Makedonija"}
         MO{"SAR Makao"}
         PM{"Sveti Pjer i Mikelon"}
         RE{"Reunion"}
-        TL{"Timor-Leste (Istočni Timor)"}
         UM{"Manja udaljena ostrva SAD"}
         VC{"Sveti Vinsent i Grenadini"}
         VG{"Britanska Djevičanska Ostrva"}
         VI{"Američka Djevičanska Ostrva"}
     }
-    Version{"2.1.31.33"}
+    Countries%variant{
+        MK{"BJR Makedonija"}
+    }
+    Version{"2.1.37.8"}
 }

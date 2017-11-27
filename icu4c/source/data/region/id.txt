@@ -62,7 +62,7 @@ id{
         BM{"Bermuda"}
         BN{"Brunei"}
         BO{"Bolivia"}
-        BQ{"Karibia Belanda"}
+        BQ{"Belanda Karibia"}
         BR{"Brasil"}
         BS{"Bahama"}
         BT{"Bhutan"}
@@ -76,7 +76,7 @@ id{
         CF{"Republik Afrika Tengah"}
         CG{"Kongo - Brazzaville"}
         CH{"Swiss"}
-        CI{"Cote d’Ivoire"}
+        CI{"Pantai Gading"}
         CK{"Kepulauan Cook"}
         CL{"Cile"}
         CM{"Kamerun"}
@@ -89,7 +89,7 @@ id{
         CW{"Curaçao"}
         CX{"Pulau Christmas"}
         CY{"Siprus"}
-        CZ{"Cheska"}
+        CZ{"Ceko"}
         DE{"Jerman"}
         DG{"Diego Garcia"}
         DJ{"Jibuti"}
@@ -106,9 +106,10 @@ id{
         ES{"Spanyol"}
         ET{"Etiopia"}
         EU{"Uni Eropa"}
+        EZ{"Zona Euro"}
         FI{"Finlandia"}
         FJ{"Fiji"}
-        FK{"Kepulauan Malvinas (Falkland)"}
+        FK{"Kepulauan Malvinas"}
         FM{"Mikronesia"}
         FO{"Kepulauan Faroe"}
         FR{"Prancis"}
@@ -131,7 +132,7 @@ id{
         GU{"Guam"}
         GW{"Guinea-Bissau"}
         GY{"Guyana"}
-        HK{"Hong Kong"}
+        HK{"Hong Kong SAR Tiongkok"}
         HM{"Pulau Heard dan Kepulauan McDonald"}
         HN{"Honduras"}
         HR{"Kroasia"}
@@ -181,11 +182,11 @@ id{
         MF{"Saint Martin"}
         MG{"Madagaskar"}
         MH{"Kepulauan Marshall"}
-        MK{"Makedonia (BRY)"}
+        MK{"Makedonia"}
         ML{"Mali"}
         MM{"Myanmar (Burma)"}
         MN{"Mongolia"}
-        MO{"Makau"}
+        MO{"Makau SAR Tiongkok"}
         MP{"Kepulauan Mariana Utara"}
         MQ{"Martinik"}
         MR{"Mauritania"}
@@ -220,7 +221,7 @@ id{
         PM{"Saint Pierre dan Miquelon"}
         PN{"Kepulauan Pitcairn"}
         PR{"Puerto Riko"}
-        PS{"Palestina"}
+        PS{"Wilayah Palestina"}
         PT{"Portugal"}
         PW{"Palau"}
         PY{"Paraguay"}
@@ -295,15 +296,18 @@ id{
     }
     Countries%short{
         GB{"UK"}
+        HK{"Hong Kong"}
+        MO{"Makau"}
+        PS{"Palestina"}
         UN{"PBB"}
         US{"A.S."}
     }
     Countries%variant{
         CD{"Kongo (RDK)"}
         CG{"Kongo (Republik)"}
-        CI{"Ivory Coast"}
-        CZ{"Republik Cheska"}
-        TL{"Timor Timur"}
+        CZ{"Republik Ceko"}
+        FK{"Kepulauan Malvinas (Falkland)"}
+        MK{"Makedonia (BRY)"}
     }
-    Version{"2.1.32.59"}
+    Version{"2.1.37.5"}
 }

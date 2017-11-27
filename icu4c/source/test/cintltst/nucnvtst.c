@@ -290,10 +290,10 @@ void addTestNewConvert(TestNode** root)
    addTest(root, &TestISO_2022_JP, "tsconv/nucnvtst/TestISO_2022_JP");
    addTest(root, &TestJIS, "tsconv/nucnvtst/TestJIS");
    addTest(root, &TestISO_2022_JP_1, "tsconv/nucnvtst/TestISO_2022_JP_1");
-   // android-changed (no have ISO_2022_JP_2) -- addTest(root, &TestISO_2022_JP_2, "tsconv/nucnvtst/TestISO_2022_JP_2");
+   addTest(root, &TestISO_2022_JP_2, "tsconv/nucnvtst/TestISO_2022_JP_2");
    addTest(root, &TestISO_2022_KR, "tsconv/nucnvtst/TestISO_2022_KR");
    addTest(root, &TestISO_2022_KR_1, "tsconv/nucnvtst/TestISO_2022_KR_1");
-   // android-changed (no ISO-2022-CN) -- addTest(root, &TestISO_2022_CN, "tsconv/nucnvtst/TestISO_2022_CN");
+   addTest(root, &TestISO_2022_CN, "tsconv/nucnvtst/TestISO_2022_CN");
    /*
     * ICU 4.4 (ticket #7314) removes mappings for CNS 11643 planes 3..7
    addTest(root, &TestISO_2022_CN_EXT, "tsconv/nucnvtst/TestISO_2022_CN_EXT");
@@ -329,7 +329,8 @@ void addTestNewConvert(TestNode** root)
 #if !UCONFIG_NO_LEGACY_CONVERSION
    addTest(root, &TestJitterbug2346, "tsconv/nucnvtst/TestJitterbug2346");
    addTest(root, &TestJitterbug2411, "tsconv/nucnvtst/TestJitterbug2411");
-   // android-removed (no full ISO2022 CJK tables)  -- addTest(root, &TestJitterbug6175, "tsconv/nucnvtst/TestJitterbug6175");
+   addTest(root, &TestJitterbug6175, "tsconv/nucnvtst/TestJitterbug6175");
+
    addTest(root, &TestIsFixedWidth, "tsconv/nucnvtst/TestIsFixedWidth");
 #endif
 }
@@ -1112,26 +1113,36 @@ static void TestNewConvertWithBufferSizes(int32_t outsize, int32_t insize )
             0xf4, 0x8f, 0xbf, 0xbf,         /* 10FFFF */
             0xdf, 0xbf,                     /* 7ff */
             0xbf,                           /* truncated tail */
-            0xf4, 0x90, 0x80, 0x80,         /* 11FFFF */
+            0xf4, 0x90, 0x80, 0x80,         /* 110000 */
             0x02
         };
 
         static const uint16_t utf8Expected[]={
             0x0061,
-            0xfffd,
+            0xfffd, 0xfffd, 0xfffd, 0xfffd,
             0x0000,
             0x0062,
-            0xfffd,
-            0xfffd,
+            0xfffd, 0xfffd, 0xfffd, 0xfffd, 0xfffd,
+            0xfffd, 0xfffd, 0xfffd, 0xfffd, 0xfffd,
             0xdbff, 0xdfff,
             0x07ff,
             0xfffd,
-            0xfffd,
+            0xfffd, 0xfffd, 0xfffd, 0xfffd,
             0x0002
         };
 
         static const int32_t utf8Offsets[]={
-            0, 1, 5, 6, 7, 12, 17, 17, 21, 23, 24, 28
+            0,
+            1, 2, 3, 4,
+            5,
+            6,
+            7, 8, 9, 10, 11,
+            12, 13, 14, 15, 16,
+            17, 17,
+            21,
+            23,
+            24, 25, 26, 27,
+            28
         };
         testConvertToU(utf8, sizeof(utf8),
                        utf8Expected, UPRV_LENGTHOF(utf8Expected), "utf-8", utf8Offsets ,FALSE);
@@ -1524,13 +1535,7 @@ static void TestAmbiguous()
     for(i=0; (name=ucnv_getAvailableName(i))!=NULL; ++i) {
         cnv=ucnv_open(name, &status);
         if(U_SUCCESS(status)) {
-            /* BEGIN android-changed. To save space Android does not build full ISO-2022-CN CJK tables. */
-            const char* cnvName = ucnv_getName(cnv, &status);
-            if (strlen(cnvName) < 8 ||
-                strncmp(cnvName, "ISO_2022_CN", 8) != 0) {
             TestAmbiguousConverter(cnv);
-            }
-            /* END android-changed */
             ucnv_close(cnv);
         } else {
             log_err("error: unable to open available converter \"%s\"\n", name);

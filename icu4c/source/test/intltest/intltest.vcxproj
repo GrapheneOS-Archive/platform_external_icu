@@ -20,6 +20,7 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{73632960-B3A6-464D-83A3-4B43365F19B8}</ProjectGuid>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
     <RootNamespace>intltest</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -323,6 +324,13 @@
     <ClCompile Include="nmfmapts.cpp" />
     <ClCompile Include="nmfmtrt.cpp" />
     <ClCompile Include="numberformattesttuple.cpp" />
+    <ClCompile Include="numbertest_affixutils.cpp" />
+    <ClCompile Include="numbertest_api.cpp" />
+    <ClCompile Include="numbertest_decimalquantity.cpp" />
+    <ClCompile Include="numbertest_modifiers.cpp" />
+    <ClCompile Include="numbertest_patternmodifier.cpp" />
+    <ClCompile Include="numbertest_patternstring.cpp" />
+    <ClCompile Include="numbertest_stringbuilder.cpp" />
     <ClCompile Include="numberformat2test.cpp" />
     <ClCompile Include="numfmtst.cpp" />
     <ClCompile Include="numrgts.cpp" />
@@ -494,6 +502,7 @@
     <ClInclude Include="msfmrgts.h" />
     <ClInclude Include="nmfmapts.h" />
     <ClInclude Include="nmfmtrt.h" />
+    <ClInclude Include="numbertest.h" />
     <ClInclude Include="numberformattesttuple.h" />
     <ClInclude Include="numfmtst.h" />
     <ClInclude Include="numrgts.h" />

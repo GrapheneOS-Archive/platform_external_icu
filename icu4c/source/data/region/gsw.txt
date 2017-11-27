@@ -125,7 +125,7 @@ gsw{
         GU{"Guam"}
         GW{"Gineea-Bissau"}
         GY{"Guäjaana"}
-        HK{"Hongkong"}
+        HK{"Sonderverwaltigszone Hongkong"}
         HM{"Höörd- und MäcDonald-Insle"}
         HN{"Honduras"}
         HR{"Kroaazie"}
@@ -174,11 +174,11 @@ gsw{
         MF{"St. Martin"}
         MG{"Madagaschkar"}
         MH{"Marshallinsle"}
-        MK{"Mazedoonie (EJRM)"}
+        MK{"Mazedoonie"}
         ML{"Maali"}
         MM{"Myanmar (Burma)"}
         MN{"Mongolei"}
-        MO{"Macao"}
+        MO{"Sonderverwaltigszone Macao"}
         MP{"Nördlichi Mariaane"}
         MQ{"Martinigg"}
         MR{"Mauretaanie"}
@@ -281,5 +281,12 @@ gsw{
         ZW{"Simbabwe"}
         ZZ{"Unbekannti oder ungültigi Regioon"}
     }
-    Version{"2.1.32.59"}
+    Countries%short{
+        HK{"Hongkong"}
+        MO{"Macao"}
+    }
+    Countries%variant{
+        MK{"Mazedoonie (EJRM)"}
+    }
+    Version{"2.1.37.1"}
 }

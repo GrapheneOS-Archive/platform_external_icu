@@ -22,7 +22,7 @@ da{
         039{"Sydeuropa"}
         053{"Australasien"}
         054{"Melanesien"}
-        057{"Mikronesien"}
+        057{"Mikronesiske område"}
         061{"Polynesien"}
         142{"Asien"}
         143{"Centralasien"}
@@ -106,10 +106,11 @@ da{
         ES{"Spanien"}
         ET{"Etiopien"}
         EU{"Den Europæiske Union"}
+        EZ{"eurozonen"}
         FI{"Finland"}
         FJ{"Fiji"}
-        FK{"Falklandsøerne (Islas Malvinas)"}
-        FM{"Mikronesiens Forenede Stater"}
+        FK{"Falklandsøerne"}
+        FM{"Mikronesien"}
         FO{"Færøerne"}
         FR{"Frankrig"}
         GA{"Gabon"}
@@ -131,7 +132,7 @@ da{
         GU{"Guam"}
         GW{"Guinea-Bissau"}
         GY{"Guyana"}
-        HK{"Hongkong"}
+        HK{"SAR Hongkong"}
         HM{"Heard Island og McDonald Islands"}
         HN{"Honduras"}
         HR{"Kroatien"}
@@ -181,11 +182,11 @@ da{
         MF{"Saint Martin"}
         MG{"Madagaskar"}
         MH{"Marshalløerne"}
-        MK{"Den tidligere jugoslaviske republik Makedonien"}
+        MK{"Makedonien"}
         ML{"Mali"}
         MM{"Myanmar (Burma)"}
         MN{"Mongoliet"}
-        MO{"Macao"}
+        MO{"SAR Macao"}
         MP{"Nordmarianerne"}
         MQ{"Martinique"}
         MR{"Mauretanien"}
@@ -220,7 +221,7 @@ da{
         PM{"Saint Pierre og Miquelon"}
         PN{"Pitcairn"}
         PR{"Puerto Rico"}
-        PS{"Palæstina"}
+        PS{"De palæstinensiske områder"}
         PT{"Portugal"}
         PW{"Palau"}
         PY{"Paraguay"}
@@ -272,7 +273,7 @@ da{
         UA{"Ukraine"}
         UG{"Uganda"}
         UM{"Amerikanske oversøiske øer"}
-        UN{"Forenede Nationer"}
+        UN{"De Forenede Nationer"}
         US{"USA"}
         UY{"Uruguay"}
         UZ{"Usbekistan"}
@@ -295,13 +296,19 @@ da{
     }
     Countries%short{
         GB{"UK"}
+        HK{"Hongkong"}
+        MO{"Macao"}
+        PS{"Palæstina"}
         UN{"FN"}
         US{"USA"}
     }
     Countries%variant{
         CD{"Den Demokratiske Republik Congo (DRC)"}
         CG{"Republikken Congo"}
+        CZ{"Den Tjekkiske Republik"}
+        FK{"Falklandsøerne (Islas Malvinas)"}
+        MK{"Den tidligere jugoslaviske republik Makedonien"}
         TL{"Østtimor"}
     }
-    Version{"2.1.32.59"}
+    Version{"2.1.37.5"}
 }

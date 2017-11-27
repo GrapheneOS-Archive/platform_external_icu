@@ -21,6 +21,7 @@
 #include "unicode/basictz.h"
 #include "unicode/tzfmt.h"
 #include "unicode/localpointer.h"
+#include "unicode/utf16.h"
 
 #include "cstring.h"
 #include "cstr.h"
@@ -83,7 +84,8 @@ TimeZoneFormatTest::runIndexedTest( int32_t index, UBool exec, const char* &name
         TESTCASE(4, TestFormat);
         TESTCASE(5, TestFormatTZDBNames);
         TESTCASE(6, TestFormatCustomZone);
-        default: name = ""; break;
+        TESTCASE(7, TestFormatTZDBNamesAllZoneCoverage);
+    default: name = ""; break;
     }
 }
 
@@ -139,7 +141,9 @@ TimeZoneFormatTest::TestTimeZoneRoundTrip(void) {
         Locale("en"),
         Locale("en_CA"),
         Locale("fr"),
-        Locale("zh_Hant")
+        Locale("zh_Hant"),
+        Locale("fa"),
+        Locale("ccp")
     };
 
     const Locale *LOCALES;
@@ -168,7 +172,6 @@ TimeZoneFormatTest::TestTimeZoneRoundTrip(void) {
         gmtFmt.format(0.0, localGMTString);
 
         for (int32_t patidx = 0; patidx < UPRV_LENGTHOF(PATTERNS); patidx++) {
-
             SimpleDateFormat *sdf = new SimpleDateFormat((UnicodeString)PATTERNS[patidx], LOCALES[locidx], status);
             if (U_FAILURE(status)) {
                 dataerrln((UnicodeString)"new SimpleDateFormat failed for pattern " +
@@ -299,10 +302,13 @@ TimeZoneFormatTest::TestTimeZoneRoundTrip(void) {
                         if (!isOffsetFormat) {
                             // Check if localized GMT format is used as a fallback of name styles
                             int32_t numDigits = 0;
-                            for (int n = 0; n < tzstr.length(); n++) {
-                                if (u_isdigit(tzstr.charAt(n))) {
+                            int32_t idx = 0;
+                            while (idx < tzstr.length()) {
+                                UChar32 cp = tzstr.char32At(idx);
+                                if (u_isdigit(cp)) {
                                     numDigits++;
                                 }
+                                idx += U16_LENGTH(cp);
                             }
                             isOffsetFormat = (numDigits > 0);
                         }
@@ -560,11 +566,6 @@ void TimeZoneFormatTest::RunTimeRoundTripTests(int32_t threadNumber) {
         pattern.append(" ").append(PATTERNS[patidx]);
         logln("    Thread %d, Locale %s, Pattern %s", 
                 threadNumber, gLocaleData->locales[locidx].getName(), CStr(pattern)());
-
-        if (uprv_strcmp(gLocaleData->locales[locidx].getLanguage(), "ccp") == 0
-            && logKnownIssue("13446", "Chakma time zone parsing")) {
-            continue;
-        }
 
         SimpleDateFormat *sdf = new SimpleDateFormat(pattern, gLocaleData->locales[locidx], status);
         if (U_FAILURE(status)) {
@@ -1257,5 +1258,48 @@ TimeZoneFormatTest::TestFormatCustomZone(void) {
     }
 }
 
+void
+TimeZoneFormatTest::TestFormatTZDBNamesAllZoneCoverage(void) {
+    UErrorCode status = U_ZERO_ERROR;
+    LocalPointer<StringEnumeration> tzids(TimeZone::createEnumeration());
+    if (tzids.getAlias() == nullptr) {
+        dataerrln("%s %d tzids is null", __FILE__, __LINE__);
+        return;
+    }
+    const UnicodeString *tzid;
+    LocalPointer<TimeZoneNames> tzdbNames(TimeZoneNames::createTZDBInstance(Locale("en"), status));
+    UDate now = Calendar::getNow();
+    UnicodeString mzId;
+    UnicodeString name;
+    while ((tzid = tzids->snext(status))) {
+        logln("Zone: " + *tzid);
+        LocalPointer<TimeZone> tz(TimeZone::createTimeZone(*tzid));
+        tzdbNames->getMetaZoneID(*tzid, now, mzId);
+        if (mzId.isBogus()) {
+            logln((UnicodeString)"Meta zone: <not available>");
+        } else {
+            logln((UnicodeString)"Meta zone: " + mzId);
+        }
+
+        // mzID could be bogus here
+        tzdbNames->getMetaZoneDisplayName(mzId, UTZNM_SHORT_STANDARD, name);
+        // name could be bogus here
+        if (name.isBogus()) {
+            logln((UnicodeString)"Meta zone short standard name: <not available>");
+        }
+        else {
+            logln((UnicodeString)"Meta zone short standard name: " + name);
+        }
+
+        tzdbNames->getMetaZoneDisplayName(mzId, UTZNM_SHORT_DAYLIGHT, name);
+        // name could be bogus here
+        if (name.isBogus()) {
+            logln((UnicodeString)"Meta zone short daylight name: <not available>");
+        }
+        else {
+            logln((UnicodeString)"Meta zone short daylight name: " + name);
+        }
+    }
+}
 
 #endif /* #if !UCONFIG_NO_FORMATTING */
