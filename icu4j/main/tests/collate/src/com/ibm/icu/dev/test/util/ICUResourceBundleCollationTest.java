@@ -11,6 +11,8 @@ package com.ibm.icu.dev.test.util;
 import java.util.MissingResourceException;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 
 import com.ibm.icu.dev.test.TestFmwk;
 import com.ibm.icu.impl.ICUData;
@@ -19,7 +21,7 @@ import com.ibm.icu.text.Collator;
 import com.ibm.icu.util.ULocale;
 import com.ibm.icu.util.UResourceBundle;
 
-
+@RunWith(JUnit4.class)
 public final class ICUResourceBundleCollationTest extends TestFmwk {
     private static final String COLLATION_RESNAME = "collations";
     private static final String COLLATION_KEYWORD = "collation";
@@ -28,7 +30,6 @@ public final class ICUResourceBundleCollationTest extends TestFmwk {
 
     @Test
     public void TestFunctionalEquivalent(){
-       // Android patch: Add exceptions for big5han and gb2312han in genrb.
        String[] collCases = {
        //  avail   locale                               equiv
            "f",     "sv_US_CALIFORNIA",                 "sv",
@@ -47,19 +48,19 @@ public final class ICUResourceBundleCollationTest extends TestFmwk {
            "f",     "zh_MO",                            "zh@collation=stroke", /* alias of zh_Hant_MO */
            "f",     "zh_Hant_MO",                       "zh@collation=stroke",
            "f",     "zh_TW_STROKE",                     "zh@collation=stroke",
-       //  "f",     "zh_TW_STROKE@collation=big5han",   "zh@collation=big5han",
+           "f",     "zh_TW_STROKE@collation=big5han",   "zh@collation=big5han",
            "f",     "sv_CN@calendar=japanese",          "sv",
            "t",     "sv@calendar=japanese",             "sv",
-       //  "f",     "zh_TW@collation=big5han",          "zh@collation=big5han", /* alias of zh_Hant_TW */
-       //  "f",     "zh_Hant_TW@collation=big5han",     "zh@collation=big5han",
-       //  "f",     "zh_TW@collation=gb2312han",        "zh@collation=gb2312han", /* alias of zh_Hant_TW */
-       //  "f",     "zh_Hant_TW@collation=gb2312han",   "zh@collation=gb2312han",
-       //  "f",     "zh_CN@collation=big5han",          "zh@collation=big5han", /* alias of zh_Hans_CN */
-       //  "f",     "zh_Hans_CN@collation=big5han",     "zh@collation=big5han",
-       //  "f",     "zh_CN@collation=gb2312han",        "zh@collation=gb2312han", /* alias of zh_Hans_CN */
-       //  "f",     "zh_Hans_CN@collation=gb2312han",   "zh@collation=gb2312han",
-       //  "t",     "zh@collation=big5han",             "zh@collation=big5han",
-       //  "t",     "zh@collation=gb2312han",           "zh@collation=gb2312han",
+           "f",     "zh_TW@collation=big5han",          "zh@collation=big5han", /* alias of zh_Hant_TW */
+           "f",     "zh_Hant_TW@collation=big5han",     "zh@collation=big5han",
+           "f",     "zh_TW@collation=gb2312han",        "zh@collation=gb2312han", /* alias of zh_Hant_TW */
+           "f",     "zh_Hant_TW@collation=gb2312han",   "zh@collation=gb2312han",
+           "f",     "zh_CN@collation=big5han",          "zh@collation=big5han", /* alias of zh_Hans_CN */
+           "f",     "zh_Hans_CN@collation=big5han",     "zh@collation=big5han",
+           "f",     "zh_CN@collation=gb2312han",        "zh@collation=gb2312han", /* alias of zh_Hans_CN */
+           "f",     "zh_Hans_CN@collation=gb2312han",   "zh@collation=gb2312han",
+           "t",     "zh@collation=big5han",             "zh@collation=big5han",
+           "t",     "zh@collation=gb2312han",           "zh@collation=gb2312han",
            "t",     "hi@collation=standard",            "hi",
            "f",     "hi_AU@collation=standard;currency=CHF;calendar=buddhist",  "hi",
            "f",     "sv_SE@collation=pinyin",           "sv", /* bug 4582 tests */
@@ -71,7 +72,6 @@ public final class ICUResourceBundleCollationTest extends TestFmwk {
            "f",     "nl_NL@collation=stroke",           "root",
            "f",     "nl_NL_EEXT@collation=stroke",      "root",
        };
-       // Android patch end.
 
        logln("Testing functional equivalents for collation...");
        getFunctionalEquivalentTestCases(ICUData.ICU_COLLATION_BASE_NAME,
@@ -148,7 +148,7 @@ public final class ICUResourceBundleCollationTest extends TestFmwk {
 
     @Test
     public void TestOpen(){
-        UResourceBundle bundle = (UResourceBundle)UResourceBundle.getBundleInstance(ICUData.ICU_COLLATION_BASE_NAME, "en_US_POSIX");
+        UResourceBundle bundle = UResourceBundle.getBundleInstance(ICUData.ICU_COLLATION_BASE_NAME, "en_US_POSIX");
         if(bundle==null){
             errln("could not load the stream");
         }

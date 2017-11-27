@@ -24,6 +24,8 @@ import java.util.TreeSet;
 import java.util.jar.JarEntry;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 
 import com.ibm.icu.dev.test.TestFmwk;
 import com.ibm.icu.impl.ICUData;
@@ -38,6 +40,7 @@ import com.ibm.icu.util.UResourceBundle;
 import com.ibm.icu.util.UResourceBundleIterator;
 import com.ibm.icu.util.UResourceTypeMismatchException;
 
+@RunWith(JUnit4.class)
 public final class ICUResourceBundleTest extends TestFmwk {
     private static final ClassLoader testLoader = ICUResourceBundleTest.class.getClassLoader();
 
@@ -715,12 +718,7 @@ public final class ICUResourceBundleTest extends TestFmwk {
         }
 
         for (int i = 0; i < locales.length; ++i) {
-            if (!hasLocalizedCountryFor(ULocale.ENGLISH, locales[i])
-                && (locales[i].getLanguage().compareTo("ti") != 0) // TODO: restore test for ti_* when cldrbug 3058 is fixed
-                // Android patch begin.
-                && (locales[i].getBaseName().compareTo("en_XA") != 0)
-                && (locales[i].getBaseName().compareTo("ar_XB") != 0)){
-                // Android patch end.
+            if (!hasLocalizedCountryFor(ULocale.ENGLISH, locales[i])){
                  errln("Could not get English localized country for " + locales[i]);
             }
             if(!hasLocalizedLanguageFor(ULocale.ENGLISH, locales[i])){
@@ -756,7 +754,6 @@ public final class ICUResourceBundleTest extends TestFmwk {
 
     @Test
     public void TestFunctionalEquivalent(){
-       // Android patch: Force default Gregorian calendar.
        String[] calCases = {
        //  avail    locale                              equiv
            "t",     "en_US_POSIX",                      "en@calendar=gregorian",
@@ -764,11 +761,10 @@ public final class ICUResourceBundleTest extends TestFmwk {
            "f",     "ja_JP_TOKYO@calendar=japanese",    "ja@calendar=japanese",
            "t",     "sr@calendar=gregorian",            "sr@calendar=gregorian",
            "t",     "en",                               "en@calendar=gregorian",
-           "t",     "th_TH",                            "th@calendar=gregorian",
+           "t",     "th_TH",                            "th@calendar=buddhist",
            "t",     "th_TH@calendar=gregorian",         "th@calendar=gregorian",
-           "f",     "th_TH_Bangkok",                    "th@calendar=gregorian",
+           "f",     "th_TH_Bangkok",                    "th@calendar=buddhist",
        };
-       // Android patch end.
 
        logln("Testing functional equivalents for calendar...");
        getFunctionalEquivalentTestCases(ICUData.ICU_BASE_NAME,
@@ -875,6 +871,7 @@ public final class ICUResourceBundleTest extends TestFmwk {
 
     }
 
+    @Test
     public void TestCoverage(){
         UResourceBundle bundle;
         bundle = UResourceBundle.getBundleInstance(ICUData.ICU_BASE_NAME);

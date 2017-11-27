@@ -25,6 +25,8 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 
 import com.ibm.icu.dev.test.TestFmwk;
 import com.ibm.icu.dev.test.TestUtil;
@@ -48,6 +50,7 @@ import com.ibm.icu.util.ULocale.Minimize;
 import com.ibm.icu.util.UResourceBundle;
 import com.ibm.icu.util.VersionInfo;
 
+@RunWith(JUnit4.class)
 public class ULocaleTest extends TestFmwk {
 
     // Ticket #8078 and #11674
@@ -1003,11 +1006,7 @@ public class ULocaleTest extends TestFmwk {
         if(locales.length<10){
             errln("Did not get the correct result from getAvailableLocales");
         }
-        // Android patch (http://b/31841293) start.
-        // Accept locales other than zu_ZA at the end, as some OEMs add locales. Any locale added
-        // after the original zu_ZA has to start with "z", as that's the last acceptable letter.
-        if(!locales[locales.length-1].getName().startsWith("z")){
-        // Android patch (http://b/31841293) end.
+        if(!locales[locales.length-1].getName().equals("zu_ZA")){
             errln("Did not get the expected result");
         }
     }
@@ -1179,6 +1178,7 @@ public class ULocaleTest extends TestFmwk {
         }
     }
 
+    @Test
     public void TestDisplayLanguageWithDialectCoverage() {
         // Coverage test. Implementation is in class LocaleDisplayNames.
         assertFalse("en in system default locale: anything but empty",
@@ -1191,6 +1191,7 @@ public class ULocaleTest extends TestFmwk {
                 ULocale.getDisplayLanguageWithDialect("en", "de"));
     }
 
+    @Test
     public void TestDisplayNameWithDialectCoverage() {
         // Coverage test. Implementation is in class LocaleDisplayNames.
         assertFalse("en-GB in system default locale: anything but empty",
@@ -1203,6 +1204,7 @@ public class ULocaleTest extends TestFmwk {
                 ULocale.getDisplayNameWithDialect("en-GB", "de"));
     }
 
+    @Test
     public void TestDisplayScriptCoverage() {
         // Coverage test. Implementation is in class LocaleDisplayNames.
         assertFalse("zh-Hans in system default locale: anything but empty",
@@ -3037,8 +3039,8 @@ public class ULocaleTest extends TestFmwk {
                     "nl"
                 }, {
                     "und_NO",
-                    "no_Latn_NO",  // Android patch: Replace nb with no.
-                    "no"
+                    "nb_Latn_NO",
+                    "nb"
                 }, {
                     "und_NP",
                     "ne_Deva_NP",
@@ -3149,8 +3151,8 @@ public class ULocaleTest extends TestFmwk {
                     "sl"
                 }, {
                     "und_SJ",
-                    "no_Latn_SJ",  // Android patch: Replace nb with no.
-                    "no_SJ"
+                    "nb_Latn_SJ",
+                    "nb_SJ"
                 }, {
                     "und_SK",
                     "sk_Latn_SK",
@@ -3485,8 +3487,8 @@ public class ULocaleTest extends TestFmwk {
                     "zh_TW"
                 }, {
                     "und_Hant_CN",
-                    "yue_Hant_CN",
-                    "yue_Hant_CN"
+                    "zh_Hant_CN",
+                    "zh_Hant_CN"
                 }, {
                     "und_Hant_TW",
                     "zh_Hant_TW",

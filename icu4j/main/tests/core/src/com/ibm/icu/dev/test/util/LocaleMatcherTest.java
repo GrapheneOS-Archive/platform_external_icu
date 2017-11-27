@@ -15,6 +15,8 @@ import java.util.Set;
 import java.util.TreeSet;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 
 import com.ibm.icu.dev.test.TestFmwk;
 import com.ibm.icu.util.LocaleMatcher;
@@ -29,6 +31,7 @@ import com.ibm.icu.util.ULocale;
  * @author markdavis
  */
 @SuppressWarnings("deprecation")
+@RunWith(JUnit4.class)
 public class LocaleMatcherTest extends TestFmwk {
 
 
@@ -190,7 +193,7 @@ public class LocaleMatcherTest extends TestFmwk {
         final LocaleMatcher matcher = newLocaleMatcher("en, fil, ro, nn");
         assertEquals(new ULocale("fil"), matcher.getBestMatch("tl"));
         assertEquals(new ULocale("ro"), matcher.getBestMatch("mo"));
-        assertEquals(new ULocale("nn"), matcher.getBestMatch("no"));  // Google patch
+        assertEquals(new ULocale("nn"), matcher.getBestMatch("nb"));
         // make sure default works
         assertEquals(new ULocale("en"), matcher.getBestMatch("ja"));
     }
