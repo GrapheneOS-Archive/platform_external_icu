@@ -625,12 +625,12 @@ de{
         }
         gregorian{
             AmPmMarkers{
-                "AM",
-                "PM",
+                "vorm.",
+                "nachm.",
             }
             AmPmMarkersAbbr{
-                "AM",
-                "PM",
+                "vorm.",
+                "nachm.",
             }
             AmPmMarkersNarrow{
                 "vm.",
