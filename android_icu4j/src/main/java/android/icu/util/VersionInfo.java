@@ -144,6 +144,7 @@ public final class VersionInfo implements Comparable<VersionInfo>
 
     /**
      * Unicode 10.0 version
+     * @hide unsupported on Android
      */
     public static final VersionInfo UNICODE_10_0;
 
