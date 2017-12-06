@@ -41,6 +41,28 @@
 #include "datadrivennumberformattestsuite.h"
 #include "unicode/msgfmt.h"
 
+#if (U_PLATFORM == U_PF_AIX) || (U_PLATFORM == U_PF_OS390)
+// These should not be macros. If they are, 
+// replace them with std::isnan and std::isinf
+#if defined(isnan)
+#undef isnan
+namespace std {
+ bool isnan(double x) {
+   return _isnan(x);
+ }
+}
+#endif
+#if defined(isinf)
+#undef isinf
+namespace std {
+ bool isinf(double x) {
+   return _isinf(x);
+ }
+}
+#endif
+#endif
+
+
 class NumberFormatTestDataDriven : public DataDrivenNumberFormatTestSuite {
 protected:
 UBool isFormatPass(
@@ -403,19 +425,19 @@ UBool NumberFormatTestDataDriven::isParsePass(
         return TRUE; // TRUE because failure handling is in the test suite
     }
     if (tuple.output == "NaN") {
-        if (!std::isnan(result.getDouble())) {
+        if (!uprv_isNaN(result.getDouble())) {
             appendErrorMessage.append("Expected NaN, but got: " + resultStr);
             return FALSE;
         }
         return TRUE;
     } else if (tuple.output == "Inf") {
-        if (!std::isinf(result.getDouble()) || result.getDouble() < 0) {
+        if (!uprv_isInfinite(result.getDouble()) || result.getDouble() < 0) {
             appendErrorMessage.append("Expected Inf, but got: " + resultStr);
             return FALSE;
         }
         return TRUE;
     } else if (tuple.output == "-Inf") {
-        if (!std::isinf(result.getDouble()) || result.getDouble() > 0) {
+        if (!uprv_isInfinite(result.getDouble()) || result.getDouble() > 0) {
             appendErrorMessage.append("Expected -Inf, but got: " + resultStr);
             return FALSE;
         }
@@ -599,6 +621,8 @@ void NumberFormatTest::runIndexedTest( int32_t index, UBool exec, const char* &n
   TESTCASE_AUTO(Test11475_signRecognition);
   TESTCASE_AUTO(Test11640_getAffixes);
   TESTCASE_AUTO(Test11649_toPatternWithMultiCurrency);
+  TESTCASE_AUTO(Test13327_numberingSystemBufferOverflow);
+  TESTCASE_AUTO(Test13391_chakmaParsing);
   TESTCASE_AUTO_END;
 }
 
@@ -2365,14 +2389,17 @@ void NumberFormatTest::TestCurrencyNames(void) {
 
 void NumberFormatTest::TestCurrencyUnit(void){
     UErrorCode ec = U_ZERO_ERROR;
-    static const UChar USD[] = {85, 83, 68, 0}; /*USD*/
-    static const UChar BAD[] = {63, 63, 63, 0}; /*???*/
-    static const UChar BAD2[] = {63, 63, 65, 0}; /*???*/
+    static const UChar USD[]  = u"USD";
+    static const char USD8[]  =  "USD";
+    static const UChar BAD[]  = u"???";
+    static const UChar BAD2[] = u"??A";
+    static const UChar XXX[]  = u"XXX";
+    static const char XXX8[]  =  "XXX";
     CurrencyUnit cu(USD, ec);
     assertSuccess("CurrencyUnit", ec);
 
-    const UChar * r = cu.getISOCurrency(); // who is the buffer owner ?
-    assertEquals("getISOCurrency()", USD, r);
+    assertEquals("getISOCurrency()", USD, cu.getISOCurrency());
+    assertEquals("getSubtype()", USD8, cu.getSubtype());
 
     CurrencyUnit cu2(cu);
     if (!(cu2 == cu)){
@@ -2401,6 +2428,31 @@ void NumberFormatTest::TestCurrencyUnit(void){
         errln("Currency unit assignment should be the same.");
     }
     delete cu3;
+
+    // Test default constructor
+    CurrencyUnit def;
+    assertEquals("Default currency", XXX, def.getISOCurrency());
+    assertEquals("Default currency as subtype", XXX8, def.getSubtype());
+
+    // Test slicing
+    MeasureUnit sliced1 = cu;
+    MeasureUnit sliced2 = cu;
+    assertEquals("Subtype after slicing 1", USD8, sliced1.getSubtype());
+    assertEquals("Subtype after slicing 2", USD8, sliced2.getSubtype());
+    CurrencyUnit restored1(sliced1, ec);
+    CurrencyUnit restored2(sliced2, ec);
+    assertSuccess("Restoring from MeasureUnit", ec);
+    assertEquals("Subtype after restoring 1", USD8, restored1.getSubtype());
+    assertEquals("Subtype after restoring 2", USD8, restored2.getSubtype());
+    assertEquals("ISO Code after restoring 1", USD, restored1.getISOCurrency());
+    assertEquals("ISO Code after restoring 2", USD, restored2.getISOCurrency());
+
+    // Test copy constructor failure
+    LocalPointer<MeasureUnit> meter(MeasureUnit::createMeter(ec));
+    assertSuccess("Creating meter", ec);
+    CurrencyUnit failure(*meter, ec);
+    assertEquals("Copying from meter should fail", ec, U_ILLEGAL_ARGUMENT_ERROR);
+    assertEquals("Copying should not give uninitialized ISO code", u"", failure.getISOCurrency());
 }
 
 void NumberFormatTest::TestCurrencyAmount(void){
@@ -3951,11 +4003,11 @@ NumberFormatTest::TestCurrencyParsing() {
         {"pa_IN", "1", "USD", "US$\\u00A01.00", "USD\\u00A01.00", "1.00 \\u0a2f\\u0a42.\\u0a10\\u0a38. \\u0a21\\u0a3e\\u0a32\\u0a30"},
         {"es_AR", "1", "USD", "US$\\u00A01,00", "USD\\u00A01,00", "1,00 d\\u00f3lar estadounidense"},
         {"ar_EG", "1", "USD", "\\u0661\\u066b\\u0660\\u0660\\u00a0US$", "\\u0661\\u066b\\u0660\\u0660\\u00a0USD", "\\u0661\\u066b\\u0660\\u0660 \\u062f\\u0648\\u0644\\u0627\\u0631 \\u0623\\u0645\\u0631\\u064a\\u0643\\u064a"},
-        {"fa_CA", "1", "USD", "\\u06f1\\u066b\\u06f0\\u06f0\\u00a0\\u061c$", "\\u06f1\\u066b\\u06f0\\u06f0\\u00a0\\u061cUSD", "\\u06f1\\u066b\\u06f0\\u06f0 \\u062f\\u0644\\u0627\\u0631 \\u0627\\u0645\\u0631\\u06cc\\u06a9\\u0627"},
+        {"fa_CA", "1", "USD", "\\u200e$\\u06f1\\u066b\\u06f0\\u06f0", "\\u200eUSD\\u06f1\\u066b\\u06f0\\u06f0", "\\u06f1\\u066b\\u06f0\\u06f0 \\u062f\\u0644\\u0627\\u0631 \\u0627\\u0645\\u0631\\u06cc\\u06a9\\u0627"},
         {"he_IL", "1", "USD", "\\u200f1.00\\u00a0$", "\\u200f1.00\\u00a0USD", "1.00 \\u05d3\\u05d5\\u05dc\\u05e8 \\u05d0\\u05de\\u05e8\\u05d9\\u05e7\\u05d0\\u05d9"},
         {"hr_HR", "1", "USD", "1,00\\u00a0USD", "1,00\\u00a0USD", "1,00 Ameri\\u010dki dolar"},
         {"id_ID", "1", "USD", "US$1,00", "USD1,00", "1,00 Dolar Amerika Serikat"},
-        {"it_IT", "1", "USD", "1,00\\u00a0US$", "1,00\\u00a0USD", "1,00 Dollaro Statunitense"},
+        {"it_IT", "1", "USD", "1,00\\u00a0USD", "1,00\\u00a0USD", "1,00 Dollaro Statunitense"},
         {"ko_KR", "1", "USD", "US$1.00", "USD1.00", "1.00 \\ubbf8\\uad6d \\ub2ec\\ub7ec"},
         {"ja_JP", "1", "USD", "$1.00", "USD1.00", "1.00\\u7c73\\u30c9\\u30eb"},
         {"zh_CN", "1", "CNY", "\\uFFE51.00", "CNY01.00", "1.00\\u4EBA\\u6C11\\u5E01"},
@@ -4899,9 +4951,9 @@ NumberFormatTest::TestParseCurrencyInUCurr() {
         "Peruvian soles1.00",
         "Peruvian sol (1863\\u20131965)1.00",
         "Peruvian soles (1863\\u20131965)1.00",
-        "Philippine Peso1.00",
-        "Philippine peso1.00",
-        "Philippine pesos1.00",
+        "Philippine Piso1.00",
+        "Philippine piso1.00",
+        "Philippine pisos1.00",
         "Platinum1.00",
         "Platinum1.00",
         "Polish Zloty (1950\\u20131995)1.00",
@@ -5836,9 +5888,9 @@ NumberFormatTest::TestParseCurrencyInUCurr() {
         "1.00 Peruvian soles random",
         "1.00 Peruvian sol (1863\\u20131965) random",
         "1.00 Peruvian soles (1863\\u20131965) random",
-        "1.00 Philippine Peso random",
-        "1.00 Philippine peso random",
-        "1.00 Philippine pesos random",
+        "1.00 Philippine Piso random",
+        "1.00 Philippine piso random",
+        "1.00 Philippine pisos random",
         "1.00 Platinum random",
         "1.00 Platinum random",
         "1.00 Polish Zloty (1950\\u20131995) random",
@@ -8733,6 +8785,61 @@ void NumberFormatTest::Test11649_toPatternWithMultiCurrency() {
     
     appendTo.remove();
     assertEquals("", "US dollars 12.34", fmt2.format(12.34, appendTo));
+}
+
+void NumberFormatTest::Test13327_numberingSystemBufferOverflow() {
+    UErrorCode status = U_ZERO_ERROR;
+    for (int runId = 0; runId < 2; runId++) {
+        // Construct a locale string with a very long "numbers" value.
+        // The first time, make the value length exactly equal to ULOC_KEYWORDS_CAPACITY.
+        // The second time, make it exceed ULOC_KEYWORDS_CAPACITY.
+        int extraLength = (runId == 0) ? 0 : 5;
+
+        CharString localeId("en@numbers=", status);
+        for (int i = 0; i < ULOC_KEYWORDS_CAPACITY + extraLength; i++) {
+            localeId.append('x', status);
+        }
+        assertSuccess("Constructing locale string", status);
+        Locale locale(localeId.data());
+
+        LocalPointer<NumberingSystem> ns(NumberingSystem::createInstance(locale, status));
+        assertFalse("Should not be null", ns.getAlias() == nullptr);
+        assertSuccess("Should create with no error", status);
+    }
+}
+
+void NumberFormatTest::Test13391_chakmaParsing() {
+    UErrorCode status = U_ZERO_ERROR;
+    LocalPointer<DecimalFormat> df(dynamic_cast<DecimalFormat*>(
+        NumberFormat::createInstance(Locale("ccp"), status)));
+    if (df == nullptr) {
+        dataerrln("%s %d Chakma df is null",  __FILE__, __LINE__);
+        return;
+    }
+    const UChar* expected = u"\U00011137\U00011138,\U00011139\U0001113A\U0001113B";
+    UnicodeString actual;
+    df->format(12345, actual, status);
+    assertSuccess("Should not fail when formatting in ccp", status);
+    assertEquals("Should produce expected output in ccp", expected, actual);
+
+    Formattable result;
+    df->parse(expected, result, status);
+    assertSuccess("Should not fail when parsing in ccp", status);
+    assertEquals("Should parse to 12345 in ccp", 12345, result);
+
+    const UChar* expectedScientific = u"\U00011137.\U00011139E\U00011138";
+    UnicodeString actualScientific;
+    df.adoptInstead(static_cast<DecimalFormat*>(
+        NumberFormat::createScientificInstance(Locale("ccp"), status)));
+    df->format(130, actualScientific, status);
+    assertSuccess("Should not fail when formatting scientific in ccp", status);
+    assertEquals("Should produce expected scientific output in ccp",
+        expectedScientific, actualScientific);
+
+    Formattable resultScientific;
+    df->parse(expectedScientific, resultScientific, status);
+    assertSuccess("Should not fail when parsing scientific in ccp", status);
+    assertEquals("Should parse scientific to 130 in ccp", 130, resultScientific);
 }
 
 

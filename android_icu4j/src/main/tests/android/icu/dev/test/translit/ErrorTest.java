@@ -8,7 +8,10 @@
  *******************************************************************************
  */
 package android.icu.dev.test.translit;
+
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 
 import android.icu.dev.test.TestFmwk;
 import android.icu.text.ReplaceableString;
@@ -21,6 +24,7 @@ import android.icu.testsharding.MainTestShard;
  * @summary Error condition test of Transliterator
  */
 @MainTestShard
+@RunWith(JUnit4.class)
 public class ErrorTest extends TestFmwk {
 
     @Test

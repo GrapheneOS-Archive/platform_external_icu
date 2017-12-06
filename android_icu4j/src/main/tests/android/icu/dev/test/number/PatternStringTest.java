@@ -8,8 +8,9 @@ import static org.junit.Assert.fail;
 
 import org.junit.Test;
 
-import android.icu.impl.number.PatternString;
-import android.icu.impl.number.Properties;
+import android.icu.impl.number.DecimalFormatProperties;
+import android.icu.impl.number.PatternStringParser;
+import android.icu.impl.number.PatternStringUtils;
 import android.icu.text.DecimalFormatSymbols;
 import android.icu.util.ULocale;
 import android.icu.testsharding.MainTestShard;
@@ -30,8 +31,8 @@ public class PatternStringTest {
     String localized = "’.'ab'c'b''a'''#,##0a0b'a%'";
     String toStandard = "+-'ab'c'b''a'''#,##0.0%'a%'";
 
-    assertEquals(localized, PatternString.convertLocalized(standard, symbols, true));
-    assertEquals(toStandard, PatternString.convertLocalized(localized, symbols, false));
+    assertEquals(localized, PatternStringUtils.convertLocalized(standard, symbols, true));
+    assertEquals(toStandard, PatternStringUtils.convertLocalized(localized, symbols, false));
   }
 
   @Test
@@ -48,7 +49,6 @@ public class PatternStringTest {
       {"0E0", "0E0"},
       {"#00E00", "#00E00"},
       {"#,##0", "#,##0"},
-      {"#,##0E0", "#,##0E0"},
       {"#;#", "0;0"},
       {"#;-#", "0"}, // ignore a negative prefix pattern of '-' since that is the default
       {"**##0", "**##0"},
@@ -63,8 +63,8 @@ public class PatternStringTest {
       String input = cas[0];
       String output = cas[1];
 
-      Properties properties = PatternString.parseToProperties(input);
-      String actual = PatternString.propertiesToString(properties);
+      DecimalFormatProperties properties = PatternStringParser.parseToProperties(input);
+      String actual = PatternStringUtils.propertiesToPatternString(properties);
       assertEquals(
           "Failed on input pattern '" + input + "', properties " + properties, output, actual);
     }
@@ -73,41 +73,50 @@ public class PatternStringTest {
   @Test
   public void testToPatternWithProperties() {
     Object[][] cases = {
-      {new Properties().setPositivePrefix("abc"), "abc#"},
-      {new Properties().setPositiveSuffix("abc"), "#abc"},
-      {new Properties().setPositivePrefixPattern("abc"), "abc#"},
-      {new Properties().setPositiveSuffixPattern("abc"), "#abc"},
-      {new Properties().setNegativePrefix("abc"), "#;abc#"},
-      {new Properties().setNegativeSuffix("abc"), "#;#abc"},
-      {new Properties().setNegativePrefixPattern("abc"), "#;abc#"},
-      {new Properties().setNegativeSuffixPattern("abc"), "#;#abc"},
-      {new Properties().setPositivePrefix("+"), "'+'#"},
-      {new Properties().setPositivePrefixPattern("+"), "+#"},
-      {new Properties().setPositivePrefix("+'"), "'+'''#"},
-      {new Properties().setPositivePrefix("'+"), "'''+'#"},
-      {new Properties().setPositivePrefix("'"), "''#"},
-      {new Properties().setPositivePrefixPattern("+''"), "+''#"},
+      {new DecimalFormatProperties().setPositivePrefix("abc"), "abc#"},
+      {new DecimalFormatProperties().setPositiveSuffix("abc"), "#abc"},
+      {new DecimalFormatProperties().setPositivePrefixPattern("abc"), "abc#"},
+      {new DecimalFormatProperties().setPositiveSuffixPattern("abc"), "#abc"},
+      {new DecimalFormatProperties().setNegativePrefix("abc"), "#;abc#"},
+      {new DecimalFormatProperties().setNegativeSuffix("abc"), "#;#abc"},
+      {new DecimalFormatProperties().setNegativePrefixPattern("abc"), "#;abc#"},
+      {new DecimalFormatProperties().setNegativeSuffixPattern("abc"), "#;#abc"},
+      {new DecimalFormatProperties().setPositivePrefix("+"), "'+'#"},
+      {new DecimalFormatProperties().setPositivePrefixPattern("+"), "+#"},
+      {new DecimalFormatProperties().setPositivePrefix("+'"), "'+'''#"},
+      {new DecimalFormatProperties().setPositivePrefix("'+"), "'''+'#"},
+      {new DecimalFormatProperties().setPositivePrefix("'"), "''#"},
+      {new DecimalFormatProperties().setPositivePrefixPattern("+''"), "+''#"},
     };
 
     for (Object[] cas : cases) {
-      Properties input = (Properties) cas[0];
+      DecimalFormatProperties input = (DecimalFormatProperties) cas[0];
       String output = (String) cas[1];
 
-      String actual = PatternString.propertiesToString(input);
+      String actual = PatternStringUtils.propertiesToPatternString(input);
       assertEquals("Failed on input properties " + input, output, actual);
     }
   }
 
   @Test
   public void testExceptionOnInvalid() {
-    String[] invalidPatterns = {"#.#.#", "0#", "0#.", ".#0", "0#.#0", "@0", "0@"};
+    String[] invalidPatterns = {
+      "#.#.#", "0#", "0#.", ".#0", "0#.#0", "@0", "0@", "0,", "0,,", "0,,0", "0,,0,", "#,##0E0"
+    };
 
     for (String pattern : invalidPatterns) {
       try {
-        PatternString.parseToProperties(pattern);
+        PatternStringParser.parseToProperties(pattern);
         fail("Didn't throw IllegalArgumentException when parsing pattern: " + pattern);
       } catch (IllegalArgumentException e) {
       }
     }
+  }
+
+  @Test
+  public void testBug13117() {
+    DecimalFormatProperties expected = PatternStringParser.parseToProperties("0");
+    DecimalFormatProperties actual = PatternStringParser.parseToProperties("0;");
+    assertEquals("Should not consume negative subpattern", expected, actual);
   }
 }

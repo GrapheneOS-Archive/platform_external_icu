@@ -11,7 +11,7 @@ package android.icu.text;
 
 import java.text.ParsePosition;
 
-import android.icu.impl.number.FormatQuantity4;
+import android.icu.impl.number.DecimalQuantity_DualStorageBCD;
 
 //===================================================================
 // NFSubstitution (abstract base class)
@@ -1242,7 +1242,7 @@ class FractionalPartSubstitution extends NFSubstitution {
             // (this is slower, but more accurate, than doing it from the
             // other end)
 
-            FormatQuantity4 fq = new FormatQuantity4(number);
+            DecimalQuantity_DualStorageBCD fq = new DecimalQuantity_DualStorageBCD(number);
             fq.roundToInfinity(); // ensure doubles are resolved using slow path
 
             boolean pad = false;
@@ -1317,7 +1317,7 @@ class FractionalPartSubstitution extends NFSubstitution {
             double result;
             int digit;
 
-            FormatQuantity4 fq = new FormatQuantity4();
+            DecimalQuantity_DualStorageBCD fq = new DecimalQuantity_DualStorageBCD();
             int leadingZeros = 0;
             while (workText.length() > 0 && workPos.getIndex() != 0) {
                 workPos.setIndex(0);

@@ -19,6 +19,8 @@ import java.util.Set;
 import java.util.TreeSet;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 
 import android.icu.dev.test.TestFmwk;
 import android.icu.dev.util.CollectionUtilities;
@@ -46,6 +48,7 @@ import android.icu.testsharding.MainTestShard;
  * @author Mark Davis
  */
 @MainTestShard
+@RunWith(JUnit4.class)
 public class AlphabeticIndexTest extends TestFmwk {
     /**
      *

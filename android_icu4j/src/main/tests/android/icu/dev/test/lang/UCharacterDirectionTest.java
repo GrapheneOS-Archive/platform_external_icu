@@ -10,6 +10,8 @@
 package android.icu.dev.test.lang;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 
 import android.icu.dev.test.TestFmwk;
 import android.icu.lang.UCharacterDirection;
@@ -21,19 +23,20 @@ import android.icu.testsharding.MainTestShard;
 * @since July 22 2002
 */
 @MainTestShard
+@RunWith(JUnit4.class)
 public class UCharacterDirectionTest extends TestFmwk
-{    
+{
     // constructor -----------------------------------------------------------
-    
+
     /**
     * Private constructor to prevent initialization
     */
     public UCharacterDirectionTest()
     {
     }
-    
+
     // public methods --------------------------------------------------------
-      
+
     /**
     * Gets the name of the argument category
     * @returns category name
@@ -42,7 +45,7 @@ public class UCharacterDirectionTest extends TestFmwk
     public void TestToString()
     {
         String name[] = {"Left-to-Right",
-                         "Right-to-Left", 
+                         "Right-to-Left",
                          "European Number",
                          "European Number Separator",
                          "European Number Terminator",
@@ -65,7 +68,7 @@ public class UCharacterDirectionTest extends TestFmwk
                          "Right-to-Left Isolate",
                          "Pop Directional Isolate",
                          "Unassigned"};
-        
+
         for (int i = UCharacterDirection.LEFT_TO_RIGHT;
             // Placed <= because we need to consider 'Unassigned'
             // when it goes out of bounds of UCharacterDirection

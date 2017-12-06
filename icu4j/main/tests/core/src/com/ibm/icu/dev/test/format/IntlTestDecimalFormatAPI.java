@@ -25,14 +25,18 @@ import java.text.ParsePosition;
 import java.util.Locale;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 
+import com.ibm.icu.dev.test.TestFmwk;
 import com.ibm.icu.math.BigDecimal;
 import com.ibm.icu.math.MathContext;
 import com.ibm.icu.text.DecimalFormat;
 import com.ibm.icu.text.DecimalFormatSymbols;
 import com.ibm.icu.text.NumberFormat;
 
-public class IntlTestDecimalFormatAPI extends com.ibm.icu.dev.test.TestFmwk
+@RunWith(JUnit4.class)
+public class IntlTestDecimalFormatAPI extends TestFmwk
 {
     /**
      * Problem 1: simply running
@@ -59,8 +63,7 @@ public class IntlTestDecimalFormatAPI extends com.ibm.icu.dev.test.TestFmwk
         String pat = ",##0.0000";
         DecimalFormat dec = new DecimalFormat(pat);
         dec.setRoundingMode(BigDecimal.ROUND_HALF_UP);
-        double roundinginc = 0.0001;
-        dec.setRoundingIncrement(roundinginc);
+        dec.setRoundingIncrement(new java.math.BigDecimal("0.0001"));
         String str = dec.format(number);
         if (!str.equals(expected)) {
             errln("Fail: " + number + " x \"" + pat + "\" = \"" +

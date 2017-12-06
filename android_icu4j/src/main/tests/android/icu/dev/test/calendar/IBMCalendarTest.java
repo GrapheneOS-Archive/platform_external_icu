@@ -16,6 +16,8 @@ import java.util.Locale;
 import java.util.Set;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 
 import android.icu.impl.CalendarAstronomer;
 import android.icu.impl.LocaleUtility;
@@ -38,6 +40,7 @@ import android.icu.testsharding.MainTestShard;
  * @summary Tests of new functionality in IBMCalendar
  */
 @MainTestShard
+@RunWith(JUnit4.class)
 public class IBMCalendarTest extends CalendarTestFmwk {
     /**
      * Test weekend support in IBMCalendar.
@@ -1970,6 +1973,7 @@ public class IBMCalendarTest extends CalendarTestFmwk {
         }
     }
 
+    @Test
     public void TestSimpleDateFormatCoverage() {
 
         class StubSimpleDateFormat extends SimpleDateFormat {

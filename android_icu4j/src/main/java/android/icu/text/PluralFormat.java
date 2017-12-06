@@ -20,7 +20,6 @@ import java.util.Map;
 import android.icu.impl.Utility;
 import android.icu.text.PluralRules.FixedDecimal;
 import android.icu.text.PluralRules.IFixedDecimal;
-import android.icu.text.PluralRules.Operand;
 import android.icu.text.PluralRules.PluralType;
 import android.icu.util.ULocale;
 import android.icu.util.ULocale.Category;
@@ -542,7 +541,6 @@ public class PluralFormat extends UFormat {
         @Override
         public String select(Object context, double number) {
             IFixedDecimal dec = (IFixedDecimal) context;
-            assert dec.getPluralOperand(Operand.n) == Math.abs(number);
             return pluralRules.select(dec);
         }
     }
