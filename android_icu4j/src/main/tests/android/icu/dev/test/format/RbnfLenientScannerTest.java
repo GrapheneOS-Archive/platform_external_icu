@@ -15,6 +15,8 @@ import java.util.Locale;
 import java.util.Random;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 
 import android.icu.dev.test.TestFmwk;
 import android.icu.impl.text.RbnfScannerProviderImpl;
@@ -24,6 +26,7 @@ import android.icu.util.ULocale;
 import android.icu.testsharding.MainTestShard;
 
 @MainTestShard
+@RunWith(JUnit4.class)
 public class RbnfLenientScannerTest extends TestFmwk {
     private static final RbnfLenientScannerProvider provider = new RbnfScannerProviderImpl();
 
@@ -163,7 +166,7 @@ public class RbnfLenientScannerTest extends TestFmwk {
                         if (r == null) {
                             r = createRandom();
                         }
-                        n = ((int)(r.nextInt(10000) - 3000)) / 16d;
+                        n = (r.nextInt(10000) - 3000) / 16d;
                     }
 
                     String s = fmt.format(n);

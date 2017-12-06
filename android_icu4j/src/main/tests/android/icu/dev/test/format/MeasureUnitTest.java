@@ -18,6 +18,7 @@ import java.io.Serializable;
 import java.lang.reflect.Field;
 import java.text.FieldPosition;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -29,6 +30,8 @@ import java.util.Set;
 import java.util.TreeMap;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 
 import android.icu.dev.test.TestFmwk;
 import android.icu.dev.test.serializable.FormatHandler;
@@ -42,6 +45,7 @@ import android.icu.text.NumberFormat;
 import android.icu.util.Currency;
 import android.icu.util.Measure;
 import android.icu.util.MeasureUnit;
+import android.icu.util.NoUnit;
 import android.icu.util.TimeUnit;
 import android.icu.util.TimeUnitAmount;
 import android.icu.util.ULocale;
@@ -53,6 +57,7 @@ import android.icu.testsharding.MainTestShard;
  * @author markdavis
  */
 @MainTestShard
+@RunWith(JUnit4.class)
 public class MeasureUnitTest extends TestFmwk {
 
     static class OrderedPair<F extends Comparable, S extends Comparable> extends Pair<F, S> implements Comparable<OrderedPair<F, S>> {
@@ -244,35 +249,6 @@ public class MeasureUnitTest extends TestFmwk {
         }
     }
 
-    /**
-     * @author markdavis
-     *
-     */
-    // TODO(junit): resolve
-//    public static void main(String[] args) {
-//        //generateConstants(); if (true) return;
-//
-//        // Ticket #12034 deadlock on multi-threaded static init of MeasureUnit.
-//        // The code below reliably deadlocks with ICU 56.
-//        // The test is here in main() rather than in a test function so it can be made to run
-//        // before anything else.
-//        Thread thread = new Thread()  {
-//            @Override
-//            public void run() {
-//                @SuppressWarnings("unused")
-//                Set<String> measureUnitTypes = MeasureUnit.getAvailableTypes();
-//            }
-//        };
-//        thread.start();
-//        @SuppressWarnings("unused")
-//        Currency cur = Currency.getInstance(ULocale.ENGLISH);
-//        try {thread.join();} catch(InterruptedException e) {};
-//        // System.out.println("Done with MeasureUnit thread test.");
-//
-//        new MeasureUnitTest().run(args);
-//    }
-
-/*
     @Test
     public void testZZZ() {
         // various generateXXX calls go here, see
@@ -285,7 +261,6 @@ public class MeasureUnitTest extends TestFmwk {
         //generateCXXBackwardCompatibilityTest("59"); // for measfmttest.cpp, create TestCompatible59
         //updateJAVAVersions("59"); // for MeasureUnitTest.java, JAVA_VERSIONS
     }
-*/
 
     @Test
     public void TestCompatible53() {
@@ -1515,10 +1490,10 @@ public class MeasureUnitTest extends TestFmwk {
                 {ULocale.ENGLISH, FormatWidth.WIDE, "2 miles, 1 foot, 2.3 inches"},
                 {ULocale.ENGLISH, FormatWidth.SHORT, "2 mi, 1 ft, 2.3 in"},
                 {ULocale.ENGLISH, FormatWidth.NARROW, "2mi 1\u2032 2.3\u2033"},
-                {russia, FormatWidth.WIDE,   "2 \u043C\u0438\u043B\u0438 1 \u0444\u0443\u0442 \u0438 2,3 \u0434\u044E\u0439\u043C\u0430"},
-                {russia, FormatWidth.SHORT,  "2 \u043C\u0438\u043B\u0438 1 \u0444\u0443\u0442 \u0438 2,3 \u0434\u044E\u0439\u043C."},
-                {russia, FormatWidth.NARROW, "2 \u043C\u0438\u043B\u044C 1 \u0444\u0443\u0442 2,3 \u0434\u044E\u0439\u043C\u0430"},
-        };
+                {russia, FormatWidth.WIDE,   "2 \u043C\u0438\u043B\u0438 1 \u0444\u0443\u0442 2,3 \u0434\u044E\u0439\u043C\u0430"},
+                {russia, FormatWidth.SHORT,  "2 \u043C\u0438\u043B\u0438 1 \u0444\u0443\u0442 2,3 \u0434\u044E\u0439\u043C."},
+                {russia, FormatWidth.NARROW, "2 \u043C\u0438\u043B\u044C 1 \u0444\u0442 2,3 \u0434\u044E\u0439\u043C\u0430"},
+   };
         for (Object[] row : data) {
             MeasureFormat mf = MeasureFormat.getInstance(
                     (ULocale) row[0], (FormatWidth) row[1]);
@@ -1555,17 +1530,17 @@ public class MeasureUnitTest extends TestFmwk {
             { ulocSpanish,      FormatWidth.NUMERIC, "5:37" },
             { ulocFinnish,      FormatWidth.NARROW,  "5t 37min" },
             { ulocFinnish,      FormatWidth.NUMERIC, "5.37" },
-            { ULocale.FRENCH,   FormatWidth.NARROW,  "5h 37m" },
-            { ULocale.FRENCH,   FormatWidth.NUMERIC, "05:37" },
+            { ULocale.FRENCH,   FormatWidth.NARROW,  "5h 37 min" },
+            { ULocale.FRENCH,   FormatWidth.NUMERIC, "5:37" },
             { ulocIcelandic,    FormatWidth.NARROW,  "5 klst. og 37 m\u00EDn." },
             { ulocIcelandic,    FormatWidth.NUMERIC, "5:37" },
-            { ULocale.JAPANESE, FormatWidth.NARROW,  "5h37m" },
+            { ULocale.JAPANESE, FormatWidth.NARROW,  "5\u6642\u959337\u5206" },
             { ULocale.JAPANESE, FormatWidth.NUMERIC, "5:37" },
             { ulocNorwegianBok, FormatWidth.NARROW,  "5t, 37m" },
             { ulocNorwegianBok, FormatWidth.NUMERIC, "5:37" },
             { ulocDutch,        FormatWidth.NARROW,  "5 u, 37 m" },
             { ulocDutch,        FormatWidth.NUMERIC, "5:37" },
-            { ulocNorwegianNyn, FormatWidth.NARROW,  "5 h og 37 min" },
+            { ulocNorwegianNyn, FormatWidth.NARROW,  "5t og 37m" },
             { ulocNorwegianNyn, FormatWidth.NUMERIC, "5:37" },
             { ulocSwedish,      FormatWidth.NARROW,  "5h 37m" },
             { ulocSwedish,      FormatWidth.NUMERIC, "5:37" },
@@ -1691,9 +1666,9 @@ public class MeasureUnitTest extends TestFmwk {
         assertEquals("Wide currency", "1.00 US dollars", mf.format(USD_1));
         assertEquals("Wide currency", "2.00 US dollars", mf.format(USD_2));
         mf = MeasureFormat.getInstance(ULocale.ENGLISH, FormatWidth.SHORT);
-        assertEquals("short currency", "-USD1.00", mf.format(USD_NEG_1));
-        assertEquals("short currency", "USD1.00", mf.format(USD_1));
-        assertEquals("short currency", "USD2.00", mf.format(USD_2));
+        assertEquals("short currency", "-USD 1.00", mf.format(USD_NEG_1));
+        assertEquals("short currency", "USD 1.00", mf.format(USD_1));
+        assertEquals("short currency", "USD 2.00", mf.format(USD_2));
         mf = MeasureFormat.getInstance(ULocale.ENGLISH, FormatWidth.NARROW);
         assertEquals("narrow currency", "-$1.00", mf.format(USD_NEG_1));
         assertEquals("narrow currency", "$1.00", mf.format(USD_1));
@@ -1704,13 +1679,13 @@ public class MeasureUnitTest extends TestFmwk {
         assertEquals("numeric currency", "$2.00", mf.format(USD_2));
 
         mf = MeasureFormat.getInstance(ULocale.JAPAN, FormatWidth.WIDE);
-        assertEquals("Wide currency", "-1.00\u7C73\u30C9\u30EB", mf.format(USD_NEG_1));
-        assertEquals("Wide currency", "1.00\u7C73\u30C9\u30EB", mf.format(USD_1));
-        assertEquals("Wide currency", "2.00\u7C73\u30C9\u30EB", mf.format(USD_2));
+        assertEquals("Wide currency", "-1.00 \u7C73\u30C9\u30EB", mf.format(USD_NEG_1));
+        assertEquals("Wide currency", "1.00 \u7C73\u30C9\u30EB", mf.format(USD_1));
+        assertEquals("Wide currency", "2.00 \u7C73\u30C9\u30EB", mf.format(USD_2));
 
         Measure CAD_1 = new Measure(1.0, Currency.getInstance("CAD"));
         mf = MeasureFormat.getInstance(ULocale.CANADA, FormatWidth.SHORT);
-        assertEquals("short currency", "CAD1.00", mf.format(CAD_1));
+        assertEquals("short currency", "CAD 1.00", mf.format(CAD_1));
     }
 
     @Test
@@ -1736,7 +1711,7 @@ public class MeasureUnitTest extends TestFmwk {
             { MeasureUnit.SECOND, "pt-PT", FormatWidth.SHORT, "s" },
             { MeasureUnit.SECOND, "pt-PT", FormatWidth.WIDE, "segundos" },
             { MeasureUnit.SECOND, "pt", FormatWidth.NARROW, "seg" },
-            { MeasureUnit.SECOND, "pt", FormatWidth.SHORT, "segs" },
+            { MeasureUnit.SECOND, "pt", FormatWidth.SHORT, "seg" },
             { MeasureUnit.SECOND, "pt", FormatWidth.WIDE, "segundos" },
         };
 
@@ -2028,7 +2003,10 @@ public class MeasureUnitTest extends TestFmwk {
             }
         }
         for (String type : MeasureUnit.getAvailableTypes()) {
-            if (type.equals("currency") || type.equals("compound") || type.equals("coordinate")) {
+            if (type.equals("currency")
+                    || type.equals("compound")
+                    || type.equals("coordinate")
+                    || type.equals("none")) {
                 continue;
             }
             for (MeasureUnit unit : MeasureUnit.getAvailable(type)) {
@@ -2175,6 +2153,9 @@ public class MeasureUnitTest extends TestFmwk {
         System.out.println("");
         TreeMap<String, List<MeasureUnit>> allUnits = getAllUnits();
 
+        // Hack: for C++, add NoUnits here, but ignore them when printing the create methods.
+        allUnits.put("none", Arrays.asList(new MeasureUnit[]{NoUnit.BASE, NoUnit.PERCENT, NoUnit.PERMILLE}));
+
         System.out.println("static const int32_t gOffsets[] = {");
         int index = 0;
         for (Map.Entry<String, List<MeasureUnit>> entry : allUnits.entrySet()) {
@@ -2274,7 +2255,7 @@ public class MeasureUnitTest extends TestFmwk {
         for (Map.Entry<String, List<MeasureUnit>> entry : allUnits.entrySet()) {
 
             String type = entry.getKey();
-            if (type.equals("currency")) {
+            if (type.equals("currency") || type.equals("none")) {
                 continue;
             }
             for (MeasureUnit unit : entry.getValue()) {

@@ -25,7 +25,7 @@ import android.icu.testsharding.MainTestShard;
  * A collection of methods to run the data driven number format test suite.
  */
 @MainTestShard
-public class DataDrivenNumberFormatTestUtility {
+public class DataDrivenNumberFormatTestUtility extends TestFmwk {
 
     /**
      * Base class for code under test.

@@ -16,6 +16,8 @@ import java.util.Set;
 import java.util.TreeSet;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 
 import android.icu.dev.test.TestFmwk;
 import android.icu.util.LocaleMatcher;
@@ -32,6 +34,7 @@ import android.icu.testsharding.MainTestShard;
  */
 @MainTestShard
 @SuppressWarnings("deprecation")
+@RunWith(JUnit4.class)
 public class LocaleMatcherTest extends TestFmwk {
 
 

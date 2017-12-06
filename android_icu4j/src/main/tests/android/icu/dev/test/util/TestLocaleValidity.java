@@ -16,8 +16,9 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
-import org.junit.Ignore;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 
 import android.icu.dev.test.TestFmwk;
 import android.icu.impl.ValidIdentifiers;
@@ -35,6 +36,7 @@ import android.icu.testsharding.MainTestShard;
  *
  */
 @MainTestShard
+@RunWith(JUnit4.class)
 public class TestLocaleValidity extends TestFmwk {
     @Test
     public void testBasic() {
@@ -204,8 +206,6 @@ public class TestLocaleValidity extends TestFmwk {
         }
     }
 
-    // TODO(junit): turned off for failure - need to investigate
-    @Ignore
     @Test
     public void testMissing() {
         String[][] tests = {

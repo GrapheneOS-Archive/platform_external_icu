@@ -1457,11 +1457,20 @@ public abstract class DateFormat extends UFormat {
      */
     public void setNumberFormat(NumberFormat newNumberFormat)
     {
-        this.numberFormat = newNumberFormat;
-        /*In order to parse String like "11.10.2001" to DateTime correctly
-          in Locale("fr","CH") [Richard/GCL]
-        */
-        this.numberFormat.setParseIntegerOnly(true);
+        numberFormat = (NumberFormat)newNumberFormat.clone();
+        fixNumberFormatForDates(numberFormat);
+    }
+
+    // no matter what the locale's default number format looked like, we want
+    // to modify it so that it doesn't use thousands separators, doesn't always
+    // show the decimal point, and recognizes integers only when parsing
+    static void fixNumberFormatForDates(NumberFormat nf) {
+        nf.setGroupingUsed(false);
+        if (nf instanceof DecimalFormat) {
+            ((DecimalFormat)nf).setDecimalSeparatorAlwaysShown(false);
+        }
+        nf.setParseIntegerOnly(true);
+        nf.setMinimumFractionDigits(0);
     }
 
     /**
@@ -1826,7 +1835,7 @@ public abstract class DateFormat extends UFormat {
     static final public DateFormat getDateTimeInstance(Calendar cal, int dateStyle,
                                                  int timeStyle, Locale locale)
     {
-        return getDateTimeInstance(dateStyle, timeStyle, ULocale.forLocale(locale));
+        return getDateTimeInstance(cal, dateStyle, timeStyle, ULocale.forLocale(locale));
     }
 
     /**

@@ -10,6 +10,8 @@
 package android.icu.dev.test.util;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 
 import android.icu.dev.test.TestFmwk;
 import android.icu.impl.Utility;
@@ -21,8 +23,9 @@ import android.icu.testsharding.MainTestShard;
  * @since release 2.2
  */
 @MainTestShard
-public final class CompactArrayTest extends TestFmwk 
-{ 
+@RunWith(JUnit4.class)
+public final class CompactArrayTest extends TestFmwk
+{
     @Test
     public void TestByteArrayCoverage() {
     CompactByteArray cba = new CompactByteArray();
@@ -55,7 +58,7 @@ public final class CompactArrayTest extends TestFmwk
 
     logln("equals: " + cba4.equals(cba5));
     logln("equals: " + cba.equals(cba4));
-    
+
       cba4.compact(false);
     logln("equals: " + cba4.equals(cba5));
 
@@ -135,17 +138,17 @@ public final class CompactArrayTest extends TestFmwk
 
     cca3.setElementAt((char)0x405, (char)0xee); // different modification
     logln("different mod equals: " + cca.equals(cca3));
-    
+
     // after setElementAt isCompact is set to false
     cca3.compact(true);
     logln("different mod equals: " + cca.equals(cca3));
-    
+
     cca3.setElementAt((char)0x405, (char)0xee); // different modification
     logln("different mod equals: " + cca.equals(cca3));
         // after setElementAt isCompact is set to false
     cca3.compact();
     logln("different mod equals: " + cca.equals(cca3));
-    
+
     // v1.8 fails with extensive compaction, and defaults extensive, so don't compact
     // cca.compact();
     CompactCharArray cca6 = (CompactCharArray)cca.clone();

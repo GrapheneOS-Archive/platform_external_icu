@@ -556,8 +556,6 @@ public class MeasureFormat extends UFormat {
      * @return  The display name in the locale and width specified in
      *          {@link MeasureFormat#getInstance}, or null if there is no display name available
      *          for the specified unit.
-     *
-     * @hide draft / provisional / internal are hidden on Android
      */
     public String getUnitDisplayName(MeasureUnit unit) {
         FormatWidth width = getRegularWidth(formatWidth);

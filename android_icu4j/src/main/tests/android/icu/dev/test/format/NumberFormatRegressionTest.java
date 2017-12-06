@@ -24,7 +24,10 @@ import java.util.Date;
 import java.util.Locale;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 
+import android.icu.dev.test.TestFmwk;
 import android.icu.text.DateFormat;
 import android.icu.text.DecimalFormat;
 import android.icu.text.DecimalFormatSymbols;
@@ -37,7 +40,8 @@ import android.icu.testsharding.MainTestShard;
  * Performs regression test for MessageFormat
  **/
 @MainTestShard
-public class NumberFormatRegressionTest extends android.icu.dev.test.TestFmwk {
+@RunWith(JUnit4.class)
+public class NumberFormatRegressionTest extends TestFmwk {
     /**
      * alphaWorks upgrade
      */
@@ -76,9 +80,10 @@ public class NumberFormatRegressionTest extends android.icu.dev.test.TestFmwk {
 
         // *** Here's the key: We don't want to have to do THIS:
         //nf.setParseIntegerOnly(true);
-        // However with changes to fr_CH per cldrbug:9370 we have to do the following:
-        nf.setGroupingUsed(false);
-    
+        // or this (with changes to fr_CH per cldrbug:9370):
+        //nf.setGroupingUsed(false);
+        // so they are done in DateFormat.setNumberFormat
+
         // create the DateFormat
         DateFormat df = DateFormat.getDateInstance(DateFormat.SHORT, loc);
 
@@ -187,7 +192,8 @@ public class NumberFormatRegressionTest extends android.icu.dev.test.TestFmwk {
                 String result = format.format(data);
                 assertEquals("Deserialization new version should read old version", expected[i], result);
             } catch (Exception e) {
-                warnln("FAIL: " + e.getMessage());
+                e.printStackTrace();
+                warnln("FAIL: " + e);
             }
         }
     }

@@ -26,7 +26,10 @@ import java.text.ParsePosition;
 import java.util.Locale;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 
+import android.icu.dev.test.TestFmwk;
 import android.icu.math.BigDecimal;
 import android.icu.math.MathContext;
 import android.icu.text.DecimalFormat;
@@ -35,7 +38,8 @@ import android.icu.text.NumberFormat;
 import android.icu.testsharding.MainTestShard;
 
 @MainTestShard
-public class IntlTestDecimalFormatAPI extends android.icu.dev.test.TestFmwk
+@RunWith(JUnit4.class)
+public class IntlTestDecimalFormatAPI extends TestFmwk
 {
     /**
      * Problem 1: simply running
@@ -62,8 +66,7 @@ public class IntlTestDecimalFormatAPI extends android.icu.dev.test.TestFmwk
         String pat = ",##0.0000";
         DecimalFormat dec = new DecimalFormat(pat);
         dec.setRoundingMode(BigDecimal.ROUND_HALF_UP);
-        double roundinginc = 0.0001;
-        dec.setRoundingIncrement(roundinginc);
+        dec.setRoundingIncrement(new java.math.BigDecimal("0.0001"));
         String str = dec.format(number);
         if (!str.equals(expected)) {
             errln("Fail: " + number + " x \"" + pat + "\" = \"" +
