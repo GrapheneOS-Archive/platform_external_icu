@@ -184,6 +184,8 @@ public class MeasureUnit implements Serializable {
             factory = CURRENCY_FACTORY;
         } else if ("duration".equals(type)) {
             factory = TIMEUNIT_FACTORY;
+        } else if ("none".equals(type)) {
+            factory = NOUNIT_FACTORY;
         } else {
             factory = UNIT_FACTORY;
         }
@@ -238,6 +240,13 @@ public class MeasureUnit implements Serializable {
         @Override
         public MeasureUnit create(String type, String subType) {
            return new TimeUnit(type, subType);
+        }
+    };
+
+    static Factory NOUNIT_FACTORY = new Factory() {
+        @Override
+        public MeasureUnit create(String type, String subType) {
+           return new NoUnit(subType);
         }
     };
 
@@ -447,13 +456,11 @@ public class MeasureUnit implements Serializable {
 
     /**
      * Constant for unit of concentr: millimole-per-liter
-     * @hide draft / provisional / internal are hidden on Android
      */
     public static final MeasureUnit MILLIMOLE_PER_LITER = MeasureUnit.internalGetInstance("concentr", "millimole-per-liter");
 
     /**
      * Constant for unit of concentr: part-per-million
-     * @hide draft / provisional / internal are hidden on Android
      */
     public static final MeasureUnit PART_PER_MILLION = MeasureUnit.internalGetInstance("concentr", "part-per-million");
 
@@ -477,8 +484,8 @@ public class MeasureUnit implements Serializable {
      */
     public static final MeasureUnit MILE_PER_GALLON_IMPERIAL = MeasureUnit.internalGetInstance("consumption", "mile-per-gallon-imperial");
 
-    /**
-     * @draft ICU 58, withdrawn
+    /*
+     * at-draft ICU 58, withdrawn
      * public static final MeasureUnit EAST = MeasureUnit.internalGetInstance("coordinate", "east");
      * public static final MeasureUnit NORTH = MeasureUnit.internalGetInstance("coordinate", "north");
      * public static final MeasureUnit SOUTH = MeasureUnit.internalGetInstance("coordinate", "south");

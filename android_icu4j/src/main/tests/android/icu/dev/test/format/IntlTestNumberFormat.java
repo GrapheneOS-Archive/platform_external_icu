@@ -18,6 +18,8 @@ import java.util.Locale;
 import java.util.Random;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 
 import android.icu.dev.test.TestFmwk;
 import android.icu.text.DecimalFormat;
@@ -29,7 +31,8 @@ import android.icu.testsharding.MainTestShard;
  * NumberFormat.
  */
 @MainTestShard
-public class IntlTestNumberFormat extends android.icu.dev.test.TestFmwk {
+@RunWith(JUnit4.class)
+public class IntlTestNumberFormat extends TestFmwk {
 
     public NumberFormat fNumberFormat;
 

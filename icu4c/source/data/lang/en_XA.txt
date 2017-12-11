@@ -125,6 +125,7 @@ en_XA{
         car{"[Çåŕîƀ one]"}
         cay{"[Çåýûĝå one]"}
         cch{"[Åţšåɱ one]"}
+        ccp{"[Çĥåķɱå one]"}
         ce{"[Çĥéçĥéñ one]"}
         ceb{"[Çéƀûåñö one]"}
         cgg{"[Çĥîĝå one]"}
@@ -357,6 +358,7 @@ en_XA{
         ln{"[Ļîñĝåļå one]"}
         lo{"[Ļåö one]"}
         lol{"[Ṁöñĝö one]"}
+        lou{"[Ļöûîšîåñå Çŕéöļé one two]"}
         loz{"[Ļöžî one]"}
         lrc{"[Ñöŕţĥéŕñ Ļûŕî one two]"}
         lt{"[Ļîţĥûåñîåñ one two]"}
@@ -711,6 +713,7 @@ en_XA{
         Geok{"[Ĝéöŕĝîåñ Ķĥûţšûŕî one two three]"}
         Geor{"[Ĝéöŕĝîåñ one]"}
         Glag{"[Ĝļåĝöļîţîç one two]"}
+        Gonm{"[Ṁåšåŕåɱ Ĝöñðî one two]"}
         Goth{"[Ĝöţĥîç one]"}
         Gran{"[Ĝŕåñţĥå one]"}
         Grek{"[Ĝŕééķ one]"}
@@ -809,6 +812,7 @@ en_XA{
         Sind{"[Ķĥûðåŵåðî one two]"}
         Sinh{"[Šîñĥåļå one]"}
         Sora{"[Šöŕå Šöɱþéñĝ one two]"}
+        Soyo{"[Šöýöɱƀö one]"}
         Sund{"[Šûñðåñéšé one two]"}
         Sylo{"[Šýļöţî Ñåĝŕî one two]"}
         Syrc{"[Šýŕîåç one]"}
@@ -838,6 +842,7 @@ en_XA{
         Xpeo{"[Öļð Þéŕšîåñ one two]"}
         Xsux{"[Šûɱéŕö‐Åķķåðîåñ Çûñéîƒöŕɱ one two three]"}
         Yiii{"[Ýî one]"}
+        Zanb{"[Žåñåƀåžåŕ Šǫûåŕé one two]"}
         Zinh{"[Îñĥéŕîţéð one two]"}
         Zmth{"[Ṁåţĥéɱåţîçåļ Ñöţåţîöñ one two three]"}
         Zsye{"[Éɱöĵî one]"}
@@ -1100,6 +1105,7 @@ en_XA{
             finance{"[Ƒîñåñçîåļ Ñûɱéŕåļš one two three]"}
             fullwide{"[Ƒûļļ‐Ŵîðţĥ Ðîĝîţš one two three]"}
             geor{"[Ĝéöŕĝîåñ Ñûɱéŕåļš one two three]"}
+            gonm{"[Ṁåšåŕåɱ Ĝöñðî ðîĝîţš one two three]"}
             grek{"[Ĝŕééķ Ñûɱéŕåļš one two]"}
             greklow{"[Ĝŕééķ Ļöŵéŕçåšé Ñûɱéŕåļš one two three]"}
             gujr{"[Ĝûĵåŕåţî Ðîĝîţš one two]"}

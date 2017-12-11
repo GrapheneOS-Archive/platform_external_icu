@@ -13,11 +13,11 @@
  *   Taligent is a registered trademark of Taligent, Inc.
  **/
 
-/** 
+/**
  * Port From:   JDK 1.4b1 : java.text.Format.IntlTestSimpleDateFormatAPI
  * Source File: java/text/format/IntlTestSimpleDateFormatAPI.java
  **/
- 
+
 package android.icu.dev.test.format;
 
 import java.text.FieldPosition;
@@ -28,7 +28,10 @@ import java.util.Date;
 import java.util.Locale;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 
+import android.icu.dev.test.TestFmwk;
 import android.icu.text.DateFormatSymbols;
 import android.icu.text.SimpleDateFormat;
 import android.icu.testsharding.MainTestShard;
@@ -38,7 +41,8 @@ import android.icu.testsharding.MainTestShard;
 * @summary test International Simple Date Format API
 */
 @MainTestShard
-public class IntlTestSimpleDateFormatAPI extends android.icu.dev.test.TestFmwk
+@RunWith(JUnit4.class)
+public class IntlTestSimpleDateFormatAPI extends TestFmwk
 {
     // This test checks various generic API methods in DecimalFormat to achieve 100% API coverage.
     @Test
@@ -157,7 +161,7 @@ public class IntlTestSimpleDateFormatAPI extends android.icu.dev.test.TestFmwk
         if( ! s3.equals(p1) ) {
             errln("ERROR: toLocalizedPattern() result did not match pattern applied");
         }
-        
+
         // ======= Test for Ticket 5684 (Parsing patterns with 'Y' and 'e'
         logln("Testing parse()");
 
@@ -185,7 +189,7 @@ public class IntlTestSimpleDateFormatAPI extends android.icu.dev.test.TestFmwk
 //            errln("ERROR: Couldn't create a SimpleDateFormat");
 //        }
     }
-    
+
     // Jitterbug 4451, for coverage
     @Test
     public void TestCoverage(){

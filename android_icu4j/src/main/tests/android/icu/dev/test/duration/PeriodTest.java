@@ -13,6 +13,8 @@
 package android.icu.dev.test.duration;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 
 import android.icu.dev.test.TestFmwk;
 import android.icu.impl.duration.Period;
@@ -20,6 +22,7 @@ import android.icu.impl.duration.TimeUnit;
 import android.icu.testsharding.MainTestShard;
 
 @MainTestShard
+@RunWith(JUnit4.class)
 public class PeriodTest extends TestFmwk {
     @Test
     public void testIsSet() {

@@ -830,8 +830,11 @@ public class SerializableTestUtility {
         map.put("android.icu.text.PluralRules$FixedDecimal", new PluralRulesTest.FixedDecimalHandler());
         map.put("android.icu.util.MeasureUnit", new MeasureUnitTest.MeasureUnitHandler());
         map.put("android.icu.util.TimeUnit", new MeasureUnitTest.MeasureUnitHandler());
+        map.put("android.icu.util.NoUnit", new MeasureUnitTest.MeasureUnitHandler());
         map.put("android.icu.text.MeasureFormat", new MeasureUnitTest.MeasureFormatHandler());
-        map.put("android.icu.impl.number.Properties", new PropertiesTest.PropertiesHandler());
+        map.put("android.icu.impl.number.Properties", new PropertiesTest.ICU59PropertiesHandler());
+        map.put("android.icu.impl.number.DecimalFormatProperties", new PropertiesTest.PropertiesHandler());
+        map.put("android.icu.impl.number.CustomSymbolCurrency", new CurrencyHandler());
 
         map.put("android.icu.util.ICUException", new ICUExceptionHandler());
         map.put("android.icu.util.ICUUncheckedIOException", new ICUUncheckedIOExceptionHandler());
@@ -934,6 +937,13 @@ public class SerializableTestUtility {
                 // Do not test the legacy DecimalFormat class in ICU 59
                 return;
             }
+
+            // Android patch (b/68143370) begin.
+            if (className.equals("android.icu.text.DecimalFormat_ICU58_Android")) {
+                // Do not test the legacy DecimalFormat class in ICU 59
+                return;
+            }
+            // Android patch (b/68143370) end.
 
             if (c.isEnum() || !serializable.isAssignableFrom(c)) {
                 //System.out.println("@@@ Skipping: " + className);

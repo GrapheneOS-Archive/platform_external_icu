@@ -13,12 +13,15 @@ import java.util.Arrays;
 import java.util.Iterator;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 
 import android.icu.dev.test.TestFmwk;
 import android.icu.impl.TextTrieMap;
 import android.icu.testsharding.MainTestShard;
 
 @MainTestShard
+@RunWith(JUnit4.class)
 public class TextTrieMapTest extends TestFmwk {
 
     private static final Integer SUN = new Integer(1);
