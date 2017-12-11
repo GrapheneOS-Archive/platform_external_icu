@@ -25,7 +25,10 @@ import java.util.List;
 import java.util.Locale;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 
+import android.icu.dev.test.TestFmwk;
 import android.icu.text.CurrencyPluralInfo;
 import android.icu.text.DecimalFormat;
 import android.icu.text.DecimalFormatSymbols;
@@ -37,7 +40,8 @@ import android.icu.testsharding.MainTestShard;
 // try to test the full functionality.  It just calls each function in the class and
 // verifies that it works on a basic level.
 @MainTestShard
-public class IntlTestDecimalFormatAPIC extends android.icu.dev.test.TestFmwk {
+@RunWith(JUnit4.class)
+public class IntlTestDecimalFormatAPIC extends TestFmwk {
 
     // This test checks various generic API methods in DecimalFormat to achieve 100% API coverage.
     @Test
@@ -281,7 +285,7 @@ public class IntlTestDecimalFormatAPIC extends android.icu.dev.test.TestFmwk {
             }
 
             //for +2.55 with RoundingIncrement=1.0
-            pat.setRoundingIncrement(1.0);
+            pat.setRoundingIncrement(java.math.BigDecimal.ONE);
             resultStr = pat.format(Roundingnumber);
             message = "round(" + Roundingnumber
                     + "," + mode + ",FALSE) with RoundingIncrement=1.0==>";

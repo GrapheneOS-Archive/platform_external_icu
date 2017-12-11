@@ -8,24 +8,27 @@
  *******************************************************************************
  */
 
-/** 
+/**
  * Port From:   ICU4C v2.1 : Collate/CollationGermanTest
  * Source File: $ICU4CRoot/source/test/intltest/decoll.cpp
  **/
- 
+
  package android.icu.dev.test.collator;
- 
+
  import java.util.Locale;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 
 import android.icu.dev.test.TestFmwk;
 import android.icu.text.CollationKey;
 import android.icu.text.Collator;
 import android.icu.testsharding.MainTestShard;
- 
- @MainTestShard
+
+@MainTestShard
+@RunWith(JUnit4.class)
 public class CollationGermanTest extends TestFmwk{
     private static char[][] testSourceCases = {
         {0x47, 0x72, 0x00F6, 0x00DF, 0x65},
@@ -73,12 +76,12 @@ public class CollationGermanTest extends TestFmwk{
         { -1,        -1 },
         { 0,          1 }
     };
-    
+
     private Collator myCollation = null;
-    
+
     public CollationGermanTest() {
     }
-    
+
     @Before
     public void init() throws Exception {
         myCollation = Collator.getInstance(Locale.GERMAN);
@@ -103,13 +106,13 @@ public class CollationGermanTest extends TestFmwk{
             doTest(testSourceCases[i], testTargetCases[i], results[i][1]);
         }
     }
-    
+
     // perform test with strength SECONDARY
     //This method in icu4c has no implementation.
     @Test
     public void TestSecondary(){
     }
-    
+
     // perform test with strength PRIMARY
     @Test
     public void TestPrimary(){
@@ -125,8 +128,8 @@ public class CollationGermanTest extends TestFmwk{
             doTest(testSourceCases[i], testTargetCases[i], results[i][0]);
         }
     }
-    
-    
+
+
     //main test routine, tests rules specific to germa locale
     private void doTest(char[] source, char[] target, int result){
         String s = new String(source);
@@ -137,9 +140,9 @@ public class CollationGermanTest extends TestFmwk{
         sortKey2 = myCollation.getCollationKey(t);
         int keyResult = sortKey1.compareTo(sortKey2);
         reportCResult(s, t, sortKey1, sortKey2, compareResult, keyResult, compareResult, result);
-        
+
     }
-    
+
     private void reportCResult( String source, String target, CollationKey sourceKey, CollationKey targetKey,
                                 int compareResult, int keyResult, int incResult, int expectedResult ){
         if (expectedResult < -1 || expectedResult > 1)
@@ -153,13 +156,13 @@ public class CollationGermanTest extends TestFmwk{
         boolean ok3 = (incResult == expectedResult);
 
         if (ok1 && ok2 && ok3 && !isVerbose()){
-            return;    
+            return;
         }else{
             String msg1 = ok1? "Ok: compare(\"" : "FAIL: compare(\"";
             String msg2 = "\", \"";
             String msg3 = "\") returned ";
             String msg4 = "; expected ";
-            
+
             String sExpect = new String("");
             String sResult = new String("");
             sResult = CollationTest.appendCompareResult(compareResult, sResult);
@@ -169,7 +172,7 @@ public class CollationGermanTest extends TestFmwk{
             } else {
                 errln(msg1 + source + msg2 + target + msg3 + sResult + msg4 + sExpect);
             }
-            
+
             msg1 = ok2 ? "Ok: key(\"" : "FAIL: key(\"";
             msg2 = "\").compareTo(key(\"";
             msg3 = "\")) returned ";
@@ -182,7 +185,7 @@ public class CollationGermanTest extends TestFmwk{
                 msg2 = " vs. ";
                 errln(msg1 + CollationTest.prettify(sourceKey) + msg2 + CollationTest.prettify(targetKey));
             }
-            
+
             msg1 = ok3 ? "Ok: incCompare(\"" : "FAIL: incCompare(\"";
             msg2 = "\", \"";
             msg3 = "\") returned ";
@@ -193,7 +196,7 @@ public class CollationGermanTest extends TestFmwk{
                 logln(msg1 + source + msg2 + target + msg3 + sResult);
             } else {
                 errln(msg1 + source + msg2 + target + msg3 + sResult + msg4 + sExpect);
-            }                
+            }
         }
     }
 }

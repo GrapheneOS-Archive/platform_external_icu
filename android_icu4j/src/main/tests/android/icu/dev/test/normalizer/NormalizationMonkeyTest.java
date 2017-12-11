@@ -13,6 +13,8 @@ package android.icu.dev.test.normalizer;
 import java.util.Random;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 
 import android.icu.dev.test.TestFmwk;
 import android.icu.lang.UCharacter;
@@ -22,6 +24,7 @@ import android.icu.text.UTF16;
 import android.icu.testsharding.MainTestShard;
 
 @MainTestShard
+@RunWith(JUnit4.class)
 public class NormalizationMonkeyTest extends TestFmwk {
     int loopCount = 100;
     int maxCharCount = 20;
@@ -31,10 +34,10 @@ public class NormalizationMonkeyTest extends TestFmwk {
     UnicodeNormalizer unicode_NFC;
     UnicodeNormalizer unicode_NFKD;
     UnicodeNormalizer unicode_NFKC;
-    
+
     public NormalizationMonkeyTest() {
     }
-    
+
     @Test
     public void TestNormalize() {
         if (unicode_NFD == null) {
@@ -84,11 +87,11 @@ public class NormalizationMonkeyTest extends TestFmwk {
             if (!uncodeNorm.equals(icuNorm)) {
                 errln("NFKC: Unicode sample output => " + uncodeNorm + "; icu4j output=> " + icuNorm);
             }
-            
+
             i++;
         }
     }
-    
+
     String getTestSource() {
     if (random == null) {
         random = createRandom(); // use test framework's random seed

@@ -125,6 +125,7 @@ ar_XB{
         car{"؜‮Carib‬؜"}
         cay{"؜‮Cayuga‬؜"}
         cch{"؜‮Atsam‬؜"}
+        ccp{"؜‮Chakma‬؜"}
         ce{"؜‮Chechen‬؜"}
         ceb{"؜‮Cebuano‬؜"}
         cgg{"؜‮Chiga‬؜"}
@@ -357,6 +358,7 @@ ar_XB{
         ln{"؜‮Lingala‬؜"}
         lo{"؜‮Lao‬؜"}
         lol{"؜‮Mongo‬؜"}
+        lou{"؜‮Louisiana‬؜ ؜‮Creole‬؜"}
         loz{"؜‮Lozi‬؜"}
         lrc{"؜‮Northern‬؜ ؜‮Luri‬؜"}
         lt{"؜‮Lithuanian‬؜"}
@@ -711,6 +713,7 @@ ar_XB{
         Geok{"؜‮Georgian‬؜ ؜‮Khutsuri‬؜"}
         Geor{"؜‮Georgian‬؜"}
         Glag{"؜‮Glagolitic‬؜"}
+        Gonm{"؜‮Masaram‬؜ ؜‮Gondi‬؜"}
         Goth{"؜‮Gothic‬؜"}
         Gran{"؜‮Grantha‬؜"}
         Grek{"؜‮Greek‬؜"}
@@ -809,6 +812,7 @@ ar_XB{
         Sind{"؜‮Khudawadi‬؜"}
         Sinh{"؜‮Sinhala‬؜"}
         Sora{"؜‮Sora‬؜ ؜‮Sompeng‬؜"}
+        Soyo{"؜‮Soyombo‬؜"}
         Sund{"؜‮Sundanese‬؜"}
         Sylo{"؜‮Syloti‬؜ ؜‮Nagri‬؜"}
         Syrc{"؜‮Syriac‬؜"}
@@ -838,6 +842,7 @@ ar_XB{
         Xpeo{"؜‮Old‬؜ ؜‮Persian‬؜"}
         Xsux{"؜‮Sumero‬؜-؜‮Akkadian‬؜ ؜‮Cuneiform‬؜"}
         Yiii{"؜‮Yi‬؜"}
+        Zanb{"؜‮Zanabazar‬؜ ؜‮Square‬؜"}
         Zinh{"؜‮Inherited‬؜"}
         Zmth{"؜‮Mathematical‬؜ ؜‮Notation‬؜"}
         Zsye{"؜‮Emoji‬؜"}
@@ -1094,6 +1099,7 @@ ar_XB{
             finance{"؜‮Financial‬؜ ؜‮Numerals‬؜"}
             fullwide{"؜‮Full‬؜-؜‮Width‬؜ ؜‮Digits‬؜"}
             geor{"؜‮Georgian‬؜ ؜‮Numerals‬؜"}
+            gonm{"؜‮Masaram‬؜ ؜‮Gondi‬؜ ؜‮digits‬؜"}
             grek{"؜‮Greek‬؜ ؜‮Numerals‬؜"}
             greklow{"؜‮Greek‬؜ ؜‮Lowercase‬؜ ؜‮Numerals‬؜"}
             gujr{"؜‮Gujarati‬؜ ؜‮Digits‬؜"}

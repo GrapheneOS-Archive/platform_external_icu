@@ -22,7 +22,10 @@ import java.util.Locale;
 import java.util.Random;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 
+import android.icu.dev.test.TestFmwk;
 import android.icu.text.DateFormat;
 import android.icu.text.SimpleDateFormat;
 import android.icu.util.Calendar;
@@ -34,7 +37,8 @@ import android.icu.testsharding.MainTestShard;
  * Performs round-trip tests for DateFormat
  **/
 @MainTestShard
-public class DateFormatRoundTripTest extends android.icu.dev.test.TestFmwk {
+@RunWith(JUnit4.class)
+public class DateFormatRoundTripTest extends TestFmwk {
     public boolean INFINITE = false;
     public boolean quick = true;
     private SimpleDateFormat dateFormat;
