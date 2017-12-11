@@ -14,6 +14,8 @@
 package android.icu.dev.test.lang;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 
 import android.icu.dev.test.TestFmwk;
 import android.icu.lang.UCharacter;
@@ -21,10 +23,11 @@ import android.icu.lang.UProperty;
 import android.icu.testsharding.MainTestShard;
 
 @MainTestShard
+@RunWith(JUnit4.class)
 public class UPropertyAliasesTest extends TestFmwk {
-  
+
     public UPropertyAliasesTest() {}
-    
+
     /**
      * Test the property names and property value names API.
      */
@@ -112,20 +115,20 @@ public class UPropertyAliasesTest extends TestFmwk {
                 }
             }
         }
-        
+
         int i = UCharacter.getIntPropertyMinValue(
                                         UProperty.CANONICAL_COMBINING_CLASS);
         try {
             for (; i <= UCharacter.getIntPropertyMaxValue(
                                           UProperty.CANONICAL_COMBINING_CLASS);
-                 i ++) {   
+                 i ++) {
                  UCharacter.getPropertyValueName(
                                            UProperty.CANONICAL_COMBINING_CLASS,
                                            i, UProperty.NameChoice.LONG);
             }
-        }      
+        }
         catch (IllegalArgumentException e) {
-            errln("0x" + Integer.toHexString(i) 
+            errln("0x" + Integer.toHexString(i)
                   + " should have a null property value name");
         }
     }

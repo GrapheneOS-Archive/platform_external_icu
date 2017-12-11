@@ -11,6 +11,8 @@
 package android.icu.dev.test.lang;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 
 import android.icu.dev.test.TestFmwk;
 import android.icu.dev.test.UTF16Util;
@@ -27,6 +29,7 @@ import android.icu.testsharding.MainTestShard;
 * @since feb 09 2001
 */
 @MainTestShard
+@RunWith(JUnit4.class)
 public final class UTF16Test extends TestFmwk
 {
     // constructor ===================================================
@@ -233,7 +236,7 @@ public final class UTF16Test extends TestFmwk
         UTF16.charAt(replaceable, 13) != 0x10002) {
         errln("FAIL Getting character from replaceable error" );
           }
-          
+
           StringBuffer strbuffer = new StringBuffer("0xD805");
           UTF16.charAt((CharSequence)strbuffer, 0);
     }
@@ -1629,7 +1632,7 @@ public final class UTF16Test extends TestFmwk
         'A',
         -1,
     };
-    
+
 
     final String cpString = "" +
         UCharacter.MIN_HIGH_SURROGATE +

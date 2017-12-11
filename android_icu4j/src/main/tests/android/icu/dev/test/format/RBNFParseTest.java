@@ -12,6 +12,8 @@ package android.icu.dev.test.format;
 import java.util.Locale;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 
 import android.icu.dev.test.TestFmwk;
 import android.icu.text.RuleBasedNumberFormat;
@@ -19,6 +21,7 @@ import android.icu.util.ULocale;
 import android.icu.testsharding.MainTestShard;
 
 @MainTestShard
+@RunWith(JUnit4.class)
 public class RBNFParseTest extends TestFmwk {
     @Test
     public void TestParse() {

@@ -34,6 +34,8 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 
 import android.icu.dev.test.TestFmwk;
 import android.icu.dev.test.serializable.SerializableTestUtility;
@@ -58,6 +60,7 @@ import android.icu.testsharding.MainTestShard;
  * @author markdavis (Mark Davis) [for fractional support]
  */
 @MainTestShard
+@RunWith(JUnit4.class)
 public class PluralRulesTest extends TestFmwk {
 
     PluralRulesFactory factory = PluralRulesFactory.NORMAL;
@@ -75,13 +78,13 @@ public class PluralRulesTest extends TestFmwk {
         }) {
             FixedDecimal fd = new FixedDecimal(testDouble[0]);
             assertEquals(testDouble[0] + "=doubleValue()", testDouble[0], fd.doubleValue());
-            assertEquals(testDouble[0] + " decimalDigits", (int) testDouble[1], fd.decimalDigits);
-            assertEquals(testDouble[0] + " visibleDecimalDigitCount", (int) testDouble[2], fd.visibleDecimalDigitCount);
+            assertEquals(testDouble[0] + " decimalDigits", (int) testDouble[1], fd.getDecimalDigits());
+            assertEquals(testDouble[0] + " visibleDecimalDigitCount", (int) testDouble[2], fd.getVisibleDecimalDigitCount());
             assertEquals(testDouble[0] + " decimalDigitsWithoutTrailingZeros", (int) testDouble[1],
-                    fd.decimalDigitsWithoutTrailingZeros);
+                    fd.getDecimalDigitsWithoutTrailingZeros());
             assertEquals(testDouble[0] + " visibleDecimalDigitCountWithoutTrailingZeros", (int) testDouble[2],
-                    fd.visibleDecimalDigitCountWithoutTrailingZeros);
-            assertEquals(testDouble[0] + " integerValue", (long) testDouble[3], fd.integerValue);
+                    fd.getVisibleDecimalDigitCountWithoutTrailingZeros());
+            assertEquals(testDouble[0] + " integerValue", (long) testDouble[3], fd.getIntegerValue());
         }
 
         for (ULocale locale : new ULocale[] { ULocale.ENGLISH, new ULocale("cy"), new ULocale("ar") }) {
@@ -865,14 +868,14 @@ public class PluralRulesTest extends TestFmwk {
     enum StandardPluralCategories {
         zero, one, two, few, many, other;
         /**
-         * 
+         *
          */
         private static final Set<StandardPluralCategories> ALL = Collections.unmodifiableSet(EnumSet
                 .allOf(StandardPluralCategories.class));
 
         /**
          * Return a mutable set
-         * 
+         *
          * @param source
          * @return
          */
@@ -885,6 +888,7 @@ public class PluralRulesTest extends TestFmwk {
         }
 
         static final Comparator<Set<StandardPluralCategories>> SHORTEST_FIRST = new Comparator<Set<StandardPluralCategories>>() {
+            @Override
             public int compare(Set<StandardPluralCategories> arg0, Set<StandardPluralCategories> arg1) {
                 int diff = arg0.size() - arg1.size();
                 if (diff != 0) {
@@ -930,6 +934,7 @@ public class PluralRulesTest extends TestFmwk {
     }
 
     private static final Comparator<PluralRules> PLURAL_RULE_COMPARATOR = new Comparator<PluralRules>() {
+        @Override
         public int compare(PluralRules o1, PluralRules o2) {
             return o1.compareTo(o2);
         }
@@ -1069,12 +1074,14 @@ public class PluralRulesTest extends TestFmwk {
     }
 
     public static class FixedDecimalHandler implements SerializableTestUtility.Handler {
+        @Override
         public Object[] getTestObjects() {
             FixedDecimal items[] = { new FixedDecimal(3d), new FixedDecimal(3d, 2), new FixedDecimal(3.1d, 1),
                     new FixedDecimal(3.1d, 2), };
             return items;
         }
 
+        @Override
         public boolean hasSameBehavior(Object a, Object b) {
             FixedDecimal a1 = (FixedDecimal) a;
             FixedDecimal b1 = (FixedDecimal) b;

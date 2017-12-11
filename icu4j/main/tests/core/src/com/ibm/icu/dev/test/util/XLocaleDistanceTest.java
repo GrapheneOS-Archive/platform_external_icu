@@ -9,7 +9,10 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
+import org.junit.Ignore;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 
 import com.ibm.icu.dev.test.TestFmwk;
 import com.ibm.icu.impl.locale.XLikelySubtags.LSR;
@@ -26,6 +29,7 @@ import com.ibm.icu.util.ULocale;
  *
  * @author markdavis
  */
+@RunWith(JUnit4.class)
 public class XLocaleDistanceTest extends TestFmwk {
     private static final boolean REFORMAT = false; // set to true to get a reformatted data file listed
 
@@ -50,8 +54,8 @@ public class XLocaleDistanceTest extends TestFmwk {
         }
     }
 
-    // @ Test Disabled because of Linux; need to investigate.
-    @SuppressWarnings("unused")
+    @Ignore("Disabled because of Linux; need to investigate.")
+    @Test
     public void testTiming() {
         List<Arguments> testArgs = new ArrayList<Arguments>();
         for (List<String> line : tfh.getLines()) {

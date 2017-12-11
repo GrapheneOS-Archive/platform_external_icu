@@ -13,8 +13,7 @@ package android.icu.text;
 import java.text.ParsePosition;
 import java.util.Locale;
 
-import android.icu.impl.number.PatternString;
-import android.icu.impl.number.Properties;
+import android.icu.impl.number.DecimalFormatProperties;
 import android.icu.util.CurrencyAmount;
 import android.icu.util.ULocale;
 
@@ -93,17 +92,13 @@ public class CompactDecimalFormat extends DecimalFormat {
    * @param style the compact style
    */
   CompactDecimalFormat(ULocale locale, CompactStyle style) {
-    // Use the locale's default pattern
-    String pattern = getPattern(locale, 0);
+    // Minimal properties: let the non-shim code path do most of the logic for us.
     symbols = DecimalFormatSymbols.getInstance(locale);
-    properties = new Properties();
+    properties = new DecimalFormatProperties();
     properties.setCompactStyle(style);
-    exportedProperties = new Properties();
-    setPropertiesFromPattern(pattern, PatternString.IGNORE_ROUNDING_ALWAYS);
-    if (style == CompactStyle.SHORT) {
-      // TODO: This was setGroupingUsed(false) in ICU 58. Is it okay that I changed it for ICU 59?
-      properties.setMinimumGroupingDigits(2);
-    }
+    properties.setGroupingSize(-2); // do not forward grouping information
+    properties.setMinimumGroupingDigits(2);
+    exportedProperties = new DecimalFormatProperties();
     refreshFormatter();
   }
 

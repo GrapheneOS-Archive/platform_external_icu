@@ -485,6 +485,8 @@ public class PluralRules implements Serializable {
     }
 
     /**
+     * An interface to FixedDecimal, allowing for other implementations.
+     *
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -523,62 +525,47 @@ public class PluralRules implements Serializable {
     @Deprecated
     public static class FixedDecimal extends Number implements Comparable<FixedDecimal>, IFixedDecimal {
         private static final long serialVersionUID = -4756200506571685661L;
+
         /**
-         * @deprecated This API is ICU internal only.
-         * @hide original deprecated declaration
-         * @hide draft / provisional / internal are hidden on Android
-         */
-        @Deprecated
-        public final double source;
+		 * @hide original deprecated declaration
+		 */
+        final double source;
+
         /**
-         * @deprecated This API is ICU internal only.
-         * @hide original deprecated declaration
-         * @hide draft / provisional / internal are hidden on Android
-         */
-        @Deprecated
-        public final int visibleDecimalDigitCount;
+		 * @hide original deprecated declaration
+		 */
+        final int visibleDecimalDigitCount;
+
         /**
-         * @deprecated This API is ICU internal only.
-         * @hide original deprecated declaration
-         * @hide draft / provisional / internal are hidden on Android
-         */
-        @Deprecated
-        public final int visibleDecimalDigitCountWithoutTrailingZeros;
+		 * @hide original deprecated declaration
+		 */
+        final int visibleDecimalDigitCountWithoutTrailingZeros;
+
         /**
-         * @deprecated This API is ICU internal only.
-         * @hide original deprecated declaration
-         * @hide draft / provisional / internal are hidden on Android
-         */
-        @Deprecated
-        public final long decimalDigits;
+		 * @hide original deprecated declaration
+		 */
+        final long decimalDigits;
+
         /**
-         * @deprecated This API is ICU internal only.
-         * @hide original deprecated declaration
-         * @hide draft / provisional / internal are hidden on Android
-         */
-        @Deprecated
-        public final long decimalDigitsWithoutTrailingZeros;
+		 * @hide original deprecated declaration
+		 */
+        final long decimalDigitsWithoutTrailingZeros;
+
         /**
-         * @deprecated This API is ICU internal only.
-         * @hide original deprecated declaration
-         * @hide draft / provisional / internal are hidden on Android
-         */
-        @Deprecated
-        public final long integerValue;
+		 * @hide original deprecated declaration
+		 */
+        final long integerValue;
+
         /**
-         * @deprecated This API is ICU internal only.
-         * @hide original deprecated declaration
-         * @hide draft / provisional / internal are hidden on Android
-         */
-        @Deprecated
-        public final boolean hasIntegerValue;
+		 * @hide original deprecated declaration
+		 */
+        final boolean hasIntegerValue;
+
         /**
-         * @deprecated This API is ICU internal only.
-         * @hide original deprecated declaration
-         * @hide draft / provisional / internal are hidden on Android
-         */
-        @Deprecated
-        public final boolean isNegative;
+		 * @hide original deprecated declaration
+		 */
+        final boolean isNegative;
+
         private final int baseFactor;
 
         /**

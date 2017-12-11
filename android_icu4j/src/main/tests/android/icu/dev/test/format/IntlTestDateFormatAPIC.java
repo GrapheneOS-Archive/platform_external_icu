@@ -8,7 +8,7 @@
  *******************************************************************************
  */
 
-/** 
+/**
  * Port From:   ICU4C v1.8.1 : format : IntlTestDateFormatAPI
  * Source File: $ICU4CRoot/source/test/intltest/dtfmapts.cpp
  **/
@@ -20,7 +20,10 @@ import java.text.ParsePosition;
 import java.util.Date;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 
+import android.icu.dev.test.TestFmwk;
 import android.icu.text.DateFormat;
 import android.icu.text.DecimalFormat;
 import android.icu.text.NumberFormat;
@@ -33,7 +36,8 @@ import android.icu.testsharding.MainTestShard;
  * verifies that it works on a basic level.
  */
 @MainTestShard
-public class IntlTestDateFormatAPIC extends android.icu.dev.test.TestFmwk {
+@RunWith(JUnit4.class)
+public class IntlTestDateFormatAPIC extends TestFmwk {
     /**
      * Test hiding of parse() and format() APIs in the Format hierarchy.
      * We test the entire hierarchy, even though this test is located in
@@ -41,17 +45,17 @@ public class IntlTestDateFormatAPIC extends android.icu.dev.test.TestFmwk {
      */
     @Test
     public void TestNameHiding() {
-    
+
         // N.B.: This test passes if it COMPILES, since it's a test of
         // compile-time name hiding.
-    
+
         Date dateObj = new Date(0);
         Number numObj = new Double(3.1415926535897932384626433832795);
         StringBuffer strBuffer = new StringBuffer("");
         String str;
         FieldPosition fpos = new FieldPosition(0);
         ParsePosition ppos = new ParsePosition(0);
-    
+
         // DateFormat calling Format API
         {
             logln("DateFormat");
@@ -63,7 +67,7 @@ public class IntlTestDateFormatAPIC extends android.icu.dev.test.TestFmwk {
                 errln("FAIL: Can't create DateFormat");
             }
         }
-    
+
         // SimpleDateFormat calling Format & DateFormat API
         {
             logln("SimpleDateFormat");
@@ -81,7 +85,7 @@ public class IntlTestDateFormatAPIC extends android.icu.dev.test.TestFmwk {
                 System.out.println(pe);
             }
         }
-    
+
         // NumberFormat calling Format API
         {
             logln("NumberFormat");
@@ -93,7 +97,7 @@ public class IntlTestDateFormatAPIC extends android.icu.dev.test.TestFmwk {
                 errln("FAIL: Can't create NumberFormat");
             }
         }
-    
+
         // DecimalFormat calling Format & NumberFormat API
         {
             logln("DecimalFormat");
@@ -116,7 +120,7 @@ public class IntlTestDateFormatAPIC extends android.icu.dev.test.TestFmwk {
                 System.out.println(pe);
             }
         }
-        
+
         //ICU4J have not the classes ChoiceFormat and MessageFormat
         /*
         // ChoiceFormat calling Format & NumberFormat API
@@ -138,8 +142,8 @@ public class IntlTestDateFormatAPIC extends android.icu.dev.test.TestFmwk {
                 System.out.println(pe);
             }
         }
-    
-        
+
+
         // MessageFormat calling Format API
         {
             logln("MessageFormat");

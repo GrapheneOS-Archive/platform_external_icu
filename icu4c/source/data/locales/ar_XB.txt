@@ -89,8 +89,8 @@ ar_XB{
                 "h:mm:ss a z",
                 "h:mm:ss a",
                 "h:mm a",
-                "EEEE، d MMMM، y G",
-                "d MMMM، y G",
+                "EEEE، d MMMM y G",
+                "d MMMM y G",
                 "dd‏/MM‏/y G",
                 "d‏/M‏/y GGGGG",
                 "{1} {0}",
@@ -122,8 +122,8 @@ ar_XB{
                 "h:mm:ss a z",
                 "h:mm:ss a",
                 "h:mm a",
-                "EEEE، d MMMM، y",
-                "d MMMM، y",
+                "EEEE، d MMMM y",
+                "d MMMM y",
                 "dd‏/MM‏/y",
                 "d‏/M‏/y",
                 "{1} {0}",
@@ -138,8 +138,8 @@ ar_XB{
                     other{"'؜‮week‬؜' W '؜‮of‬؜' MMMM"}
                 }
                 yw{
-                    one{"'؜‮week‬؜' w '؜‮of‬؜' y"}
-                    other{"'؜‮week‬؜' w '؜‮of‬؜' y"}
+                    one{"'؜‮week‬؜' w '؜‮of‬؜' Y"}
+                    other{"'؜‮week‬؜' w '؜‮of‬؜' Y"}
                 }
             }
             dayNames{
@@ -948,6 +948,10 @@ ar_XB{
         }
     }
     listPattern{
+        or{
+            2{"{0} ؜‮or‬؜ {1}"}
+            end{"{0}, ؜‮or‬؜ {1}"}
+        }
         standard{
             2{"{0} ؜‮and‬؜ {1}"}
             end{"{0}, ؜‮and‬؜ {1}"}
