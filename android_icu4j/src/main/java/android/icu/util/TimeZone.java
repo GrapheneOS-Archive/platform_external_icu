@@ -221,16 +221,19 @@ abstract public class TimeZone implements Serializable, Cloneable, Freezable<Tim
     public enum SystemTimeZoneType {
         /**
          * Any system zones.
+         * @hide unsupported on Android
          */
         ANY,
 
         /**
          * Canonical system zones.
+         * @hide unsupported on Android
          */
         CANONICAL,
 
         /**
          * Canonical system zones associated with actual locations.
+         * @hide unsupported on Android
          */
         CANONICAL_LOCATION,
     }

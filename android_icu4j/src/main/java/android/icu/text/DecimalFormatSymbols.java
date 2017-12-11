@@ -250,6 +250,7 @@ public class DecimalFormatSymbols implements Cloneable, Serializable {
     * <strong>[icu]</strong> Returns the array of strings used as digits, in order from 0 through 9
     * @return The array of ten digit strings
     * @see #setDigitStrings(String[])
+    * @hide unsupported on Android
     */
     public String[] getDigitStrings() {
         return digitStrings.clone();
@@ -299,6 +300,7 @@ public class DecimalFormatSymbols implements Cloneable, Serializable {
     * @throws NullPointerException if the <code>digitStrings</code> is null.
     * @throws IllegalArgumentException if the length of the array is not 10.
     * @see #getDigitStrings()
+    * @hide unsupported on Android
     */
     public void setDigitStrings(String[] digitStrings) {
         if (digitStrings == null) {
@@ -399,6 +401,7 @@ public class DecimalFormatSymbols implements Cloneable, Serializable {
      * <strong>[icu]</strong> Returns the string used for grouping separator. Different for French, etc.
      * @return the grouping separator string
      * @see #setGroupingSeparatorString(String)
+     * @hide unsupported on Android
      */
     public String getGroupingSeparatorString() {
         return groupingSeparatorString;
@@ -414,6 +417,7 @@ public class DecimalFormatSymbols implements Cloneable, Serializable {
      * @param groupingSeparatorString the grouping separator string
      * @throws NullPointerException if <code>groupingSeparatorString</code> is null.
      * @see #getGroupingSeparatorString()
+     * @hide unsupported on Android
      */
     public void setGroupingSeparatorString(String groupingSeparatorString) {
         if (groupingSeparatorString == null) {
@@ -449,6 +453,7 @@ public class DecimalFormatSymbols implements Cloneable, Serializable {
      * <strong>[icu]</strong> Returns the string used for decimal sign.
      * @return the decimal sign string
      * @see #setDecimalSeparatorString(String)
+     * @hide unsupported on Android
      */
     public String getDecimalSeparatorString() {
         return decimalSeparatorString;
@@ -464,6 +469,7 @@ public class DecimalFormatSymbols implements Cloneable, Serializable {
      * @param decimalSeparatorString the decimal sign string
      * @throws NullPointerException if <code>decimalSeparatorString</code> is null.
      * @see #getDecimalSeparatorString()
+     * @hide unsupported on Android
      */
     public void setDecimalSeparatorString(String decimalSeparatorString) {
         if (decimalSeparatorString == null) {
@@ -499,6 +505,7 @@ public class DecimalFormatSymbols implements Cloneable, Serializable {
      * <strong>[icu]</strong> Returns the string used for permille sign.
      * @return the permille string
      * @see #setPerMillString(String)
+     * @hide unsupported on Android
      */
     public String getPerMillString() {
         return perMillString;
@@ -514,6 +521,7 @@ public class DecimalFormatSymbols implements Cloneable, Serializable {
      * @param perMillString the permille string
      * @throws NullPointerException if <code>perMillString</code> is null.
      * @see #getPerMillString()
+     * @hide unsupported on Android
      */
     public void setPerMillString(String perMillString) {
         if (perMillString == null) {
@@ -549,6 +557,7 @@ public class DecimalFormatSymbols implements Cloneable, Serializable {
      * <strong>[icu]</strong> Returns the string used for percent sign.
      * @return the percent string
      * @see #setPercentString(String)
+     * @hide unsupported on Android
      */
     public String getPercentString() {
         return percentString;
@@ -564,6 +573,7 @@ public class DecimalFormatSymbols implements Cloneable, Serializable {
      * @param percentString the percent string
      * @throws NullPointerException if <code>percentString</code> is null.
      * @see #getPercentString()
+     * @hide unsupported on Android
      */
     public void setPercentString(String percentString) {
         if (percentString == null) {
@@ -676,6 +686,7 @@ public class DecimalFormatSymbols implements Cloneable, Serializable {
      * <strong>[icu]</strong> Returns the string used to represent minus sign.
      * @return the minus sign string
      * @see #setMinusSignString(String)
+     * @hide unsupported on Android
      */
     public String getMinusSignString() {
         return minusString;
@@ -691,6 +702,7 @@ public class DecimalFormatSymbols implements Cloneable, Serializable {
      * @param minusSignString the minus sign string
      * @throws NullPointerException if <code>minusSignString</code> is null.
      * @see #getGroupingSeparatorString()
+     * @hide unsupported on Android
      */
     public void setMinusSignString(String minusSignString) {
         if (minusSignString == null) {
@@ -733,6 +745,7 @@ public class DecimalFormatSymbols implements Cloneable, Serializable {
     /**
      * <strong>[icu]</strong> Returns the string used to represent plus sign.
      * @return the plus sign string
+     * @hide unsupported on Android
      */
     public String getPlusSignString() {
         return plusString;
@@ -749,6 +762,7 @@ public class DecimalFormatSymbols implements Cloneable, Serializable {
      * strings
      * @throws NullPointerException if <code>plusSignString</code> is null.
      * @see #getPlusSignString()
+     * @hide unsupported on Android
      */
     public void setPlusSignString(String plusSignString) {
         if (plusSignString == null) {
@@ -849,6 +863,7 @@ public class DecimalFormatSymbols implements Cloneable, Serializable {
      * <strong>[icu]</strong> Returns the monetary decimal separator string.
      * @return the monetary decimal separator string
      * @see #setMonetaryDecimalSeparatorString(String)
+     * @hide unsupported on Android
      */
     public String getMonetaryDecimalSeparatorString() {
         return monetarySeparatorString;
@@ -864,6 +879,7 @@ public class DecimalFormatSymbols implements Cloneable, Serializable {
      * @param sep the monetary decimal separator string
      * @throws NullPointerException if <code>sep</code> is null.
      * @see #getMonetaryDecimalSeparatorString()
+     * @hide unsupported on Android
      */
     public void setMonetaryDecimalSeparatorString(String sep) {
         if (sep == null) {
@@ -899,6 +915,7 @@ public class DecimalFormatSymbols implements Cloneable, Serializable {
      * <strong>[icu]</strong> Returns the monetary grouping separator.
      * @return the monetary grouping separator string
      * @see #setMonetaryGroupingSeparatorString(String)
+     * @hide unsupported on Android
      */
     public String getMonetaryGroupingSeparatorString() {
         return monetaryGroupingSeparatorString;
@@ -914,6 +931,7 @@ public class DecimalFormatSymbols implements Cloneable, Serializable {
      * @param sep the monetary grouping separator string
      * @throws NullPointerException if <code>sep</code> is null.
      * @see #getMonetaryGroupingSeparatorString()
+     * @hide unsupported on Android
      */
     public void setMonetaryGroupingSeparatorString(String sep) {
         if (sep == null) {
