@@ -34,7 +34,12 @@ en_XA{
                 "[{1}, {0}]",
             }
             availableFormats{
+                Bh{"[h B]"}
+                Bhm{"[h:mm B]"}
+                Bhms{"[h:mm:ss B]"}
                 E{"[ccc]"}
+                EBhm{"[E h:mm B]"}
+                EBhms{"[E h:mm:ss B]"}
                 EHm{"[E HH:mm]"}
                 EHms{"[E HH:mm:ss]"}
                 Ed{"[d E]"}
@@ -254,7 +259,12 @@ en_XA{
                 Year{"[{0} {1} one]"}
             }
             availableFormats{
+                Bh{"[h B]"}
+                Bhm{"[h:mm B]"}
+                Bhms{"[h:mm:ss B]"}
                 E{"[ccc]"}
+                EBhm{"[E h:mm B]"}
+                EBhms{"[E h:mm:ss B]"}
                 EHm{"[E HH:mm]"}
                 EHms{"[E HH:mm:ss]"}
                 Ed{"[d E]"}
@@ -433,7 +443,12 @@ en_XA{
                 Year{"[{0} {1} one]"}
             }
             availableFormats{
+                Bh{"[h B]"}
+                Bhm{"[h:mm B]"}
+                Bhms{"[h:mm:ss B]"}
                 E{"[ccc]"}
+                EBhm{"[E h:mm B]"}
+                EBhms{"[E h:mm:ss B]"}
                 EHm{"[E HH:mm]"}
                 EHms{"[E HH:mm:ss]"}
                 Ed{"[d E]"}
@@ -477,8 +492,8 @@ en_XA{
                 yQQQ{"[QQQ y]"}
                 yQQQQ{"[QQQQ y]"}
                 yw{
-                    one{"['ŵééķ' w 'öƒ' y 'one' 'two']"}
-                    other{"['ŵééķ' w 'öƒ' y 'one' 'two']"}
+                    one{"['ŵééķ' w 'öƒ' Y 'one' 'two']"}
+                    other{"['ŵééķ' w 'öƒ' Y 'one' 'two']"}
                 }
             }
             dayNames{
@@ -1496,6 +1511,12 @@ en_XA{
         }
     }
     listPattern{
+        or{
+            2{"[{0} öŕ {1} one]"}
+            end{"[{0}، öŕ {1} one]"}
+            middle{"[{0}، {1} one]"}
+            start{"[{0}، {1} one]"}
+        }
         standard{
             2{"[{0} åñð {1} one]"}
             end{"[{0}، åñð {1} one]"}

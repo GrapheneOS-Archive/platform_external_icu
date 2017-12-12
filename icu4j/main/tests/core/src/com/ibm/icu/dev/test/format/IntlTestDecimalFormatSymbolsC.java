@@ -18,14 +18,18 @@ import java.text.FieldPosition;
 import java.util.Locale;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 
+import com.ibm.icu.dev.test.TestFmwk;
 import com.ibm.icu.text.DecimalFormat;
 import com.ibm.icu.text.DecimalFormatSymbols;
 
 /**
  * Tests for DecimalFormatSymbols
  **/
-public class IntlTestDecimalFormatSymbolsC extends com.ibm.icu.dev.test.TestFmwk {
+@RunWith(JUnit4.class)
+public class IntlTestDecimalFormatSymbolsC extends TestFmwk {
     /**
      * Test the API of DecimalFormatSymbols; primarily a simple get/set set.
      */
@@ -124,7 +128,7 @@ public class IntlTestDecimalFormatSymbolsC extends com.ibm.icu.dev.test.TestFmwk
         sym.setPercent('P');
         verify(34.5, "00 %", sym, "3450 P");
         sym.setCurrencySymbol("D");
-        verify(34.5, "\u00a4##.##", sym, "D34.50");
+        verify(34.5, "\u00a4##.##", sym, "D 34.50");
         sym.setGroupingSeparator('|');
         verify(3456.5, "0,000.##", sym, "3|456S5");
     }

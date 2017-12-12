@@ -7,8 +7,6 @@ import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
 
-import android.icu.impl.number.Rounder.IBasicRoundingProperties;
-
 /** @author sffc 
  * @hide Only a subset of ICU is exposed in Android*/
 public class RoundingUtils {
@@ -16,6 +14,17 @@ public class RoundingUtils {
   public static final int SECTION_LOWER = 1;
   public static final int SECTION_MIDPOINT = 2;
   public static final int SECTION_UPPER = 3;
+
+  /**
+   * The default rounding mode.
+   */
+  public static final RoundingMode DEFAULT_ROUNDING_MODE = RoundingMode.HALF_EVEN;
+
+  /**
+   * The maximum number of fraction places, integer numerals, or significant digits.
+   * TODO: This does not feel like the best home for this value.
+   */
+  public static final int MAX_INT_FRAC_SIG = 100;
 
   /**
    * Converts a rounding mode and metadata about the quantity being rounded to a boolean determining
@@ -137,7 +146,7 @@ public class RoundingUtils {
    * @param properties The property bag.
    * @return A {@link MathContext}. Never null.
    */
-  public static MathContext getMathContextOrUnlimited(IBasicRoundingProperties properties) {
+  public static MathContext getMathContextOrUnlimited(DecimalFormatProperties properties) {
     MathContext mathContext = properties.getMathContext();
     if (mathContext == null) {
       RoundingMode roundingMode = properties.getRoundingMode();
@@ -155,7 +164,7 @@ public class RoundingUtils {
    * @param properties The property bag.
    * @return A {@link MathContext}. Never null.
    */
-  public static MathContext getMathContextOr34Digits(IBasicRoundingProperties properties) {
+  public static MathContext getMathContextOr34Digits(DecimalFormatProperties properties) {
     MathContext mathContext = properties.getMathContext();
     if (mathContext == null) {
       RoundingMode roundingMode = properties.getRoundingMode();
@@ -163,5 +172,16 @@ public class RoundingUtils {
       mathContext = MATH_CONTEXT_BY_ROUNDING_MODE_34_DIGITS[roundingMode.ordinal()];
     }
     return mathContext;
+  }
+
+  /**
+   * Gets a MathContext with unlimited precision and the specified RoundingMode. Equivalent to "new
+   * MathContext(0, roundingMode)", but pulls from a singleton to prevent object thrashing.
+   *
+   * @param roundingMode The {@link RoundingMode} to use.
+   * @return The corresponding {@link MathContext}.
+   */
+  public static MathContext mathContextUnlimited(RoundingMode roundingMode) {
+    return MATH_CONTEXT_BY_ROUNDING_MODE_UNLIMITED[roundingMode.ordinal()];
   }
 }

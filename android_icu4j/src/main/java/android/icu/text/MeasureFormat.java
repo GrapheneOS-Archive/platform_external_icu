@@ -557,7 +557,7 @@ public class MeasureFormat extends UFormat {
      *          {@link MeasureFormat#getInstance}, or null if there is no display name available
      *          for the specified unit.
      *
-     * @hide draft / provisional / internal are hidden on Android
+     * @hide unsupported on Android
      */
     public String getUnitDisplayName(MeasureUnit unit) {
         FormatWidth width = getRegularWidth(formatWidth);

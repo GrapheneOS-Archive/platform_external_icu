@@ -13,6 +13,8 @@ import java.text.ParseException;
 import java.util.Locale;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 
 import android.icu.dev.test.TestFmwk;
 import android.icu.impl.Utility;
@@ -26,6 +28,7 @@ import android.icu.testsharding.MainTestShard;
  * General test of Big NumberFormat
  */
 @MainTestShard
+@RunWith(JUnit4.class)
 public class BigNumberFormatTest extends TestFmwk {
 
     static final int ILLEGAL = -1;
