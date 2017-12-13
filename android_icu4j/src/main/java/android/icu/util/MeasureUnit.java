@@ -456,13 +456,11 @@ public class MeasureUnit implements Serializable {
 
     /**
      * Constant for unit of concentr: millimole-per-liter
-     * @hide unsupported on Android
      */
     public static final MeasureUnit MILLIMOLE_PER_LITER = MeasureUnit.internalGetInstance("concentr", "millimole-per-liter");
 
     /**
      * Constant for unit of concentr: part-per-million
-     * @hide unsupported on Android
      */
     public static final MeasureUnit PART_PER_MILLION = MeasureUnit.internalGetInstance("concentr", "part-per-million");
 
