@@ -818,17 +818,14 @@ public final class UScript {
 
     /**
      * ISO 15924 script code
-     * @hide unsupported on Android
      */
     public static final int MASARAM_GONDI = 175; /* Gonm */
     /**
      * ISO 15924 script code
-     * @hide unsupported on Android
      */
     public static final int SOYOMBO = 176; /* Soyo */
     /**
      * ISO 15924 script code
-     * @hide unsupported on Android
      */
     public static final int ZANABAZAR_SQUARE = 177; /* Zanb */
 
