@@ -46,6 +46,7 @@ LOCAL_JAVA_LIBRARIES := \
         core-oj \
         core-libart
 LOCAL_NO_STANDARD_LIBRARIES := true
+LOCAL_PATCH_MODULE := java.base
 LOCAL_MODULE := android-icu4j-tests
 include $(BUILD_STATIC_JAVA_LIBRARY)
 
