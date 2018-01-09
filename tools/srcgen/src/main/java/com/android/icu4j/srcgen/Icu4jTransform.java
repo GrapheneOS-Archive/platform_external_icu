@@ -121,6 +121,7 @@ public class Icu4jTransform {
       "android.icu.util.GregorianCalendar",
       "android.icu.util.HebrewCalendar",
       "android.icu.util.ICUUncheckedIOException",
+      "android.icu.util.IllformedLocaleException",
       "android.icu.util.IndianCalendar",
       "android.icu.util.IslamicCalendar",
       "android.icu.util.JapaneseCalendar",
