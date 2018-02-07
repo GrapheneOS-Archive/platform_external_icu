@@ -139,6 +139,12 @@ LOCAL_MODULE := icu4j-icudata-host-jarjar
 include $(BUILD_HOST_JAVA_LIBRARY)
 
 include $(CLEAR_VARS)
+LOCAL_STATIC_JAVA_LIBRARIES := icu4j-icudata
+LOCAL_JARJAR_RULES := $(LOCAL_PATH)/liblayout-jarjar-rules.txt
+LOCAL_MODULE := icu4j-icudata-jarjar
+include $(BUILD_STATIC_JAVA_LIBRARY)
+
+include $(CLEAR_VARS)
 LOCAL_STATIC_JAVA_LIBRARIES := icu4j-icutzdata-host
 LOCAL_JARJAR_RULES := $(LOCAL_PATH)/liblayout-jarjar-rules.txt
 LOCAL_MODULE := icu4j-icutzdata-host-jarjar
