@@ -155,3 +155,11 @@ LOCAL_MODULE := icu4j-icutzdata-host-jarjar
 # Pin java_version until jarjar is certified to support later versions. http://b/72703434
 LOCAL_JAVA_LANGUAGE_VERSION := 1.8
 include $(BUILD_HOST_JAVA_LIBRARY)
+
+include $(CLEAR_VARS)
+LOCAL_STATIC_JAVA_LIBRARIES := icu4j-icutzdata
+LOCAL_JARJAR_RULES := $(LOCAL_PATH)/liblayout-jarjar-rules.txt
+LOCAL_MODULE := icu4j-icutzdata-jarjar
+# Pin java_version until jarjar is certified to support later versions. http://b/72703434
+LOCAL_JAVA_LANGUAGE_VERSION := 1.8
+include $(BUILD_STATIC_JAVA_LIBRARY)
