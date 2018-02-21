@@ -30,3 +30,13 @@ filegroup {
     srcs: ["resources/**/*"],
     path: "resources",
 }
+
+filegroup {
+    name: "android_icu4j_src_files_for_docs",
+    srcs: [
+        "src/main/java/android/icu/lang/**/*.java",
+        "src/main/java/android/icu/math/**/*.java",
+        "src/main/java/android/icu/text/**/*.java",
+        "src/main/java/android/icu/util/**/*.java",
+    ],
+}
