@@ -28,6 +28,7 @@ class RBBIRuleBuilder {
 
     String fDebugEnv;              // controls debug trace output
     String fRules;                 // The rule string that we are compiling
+    StringBuilder fStrippedRules;  // The rule string, with comments stripped.
     RBBIRuleScanner fScanner;      // The scanner.
 
 
@@ -142,6 +143,7 @@ class RBBIRuleBuilder {
         fDebugEnv       = ICUDebug.enabled("rbbi") ?
                             ICUDebug.value("rbbi") : null;
         fRules          = rules;
+        fStrippedRules  = new StringBuilder(rules);
         fUSetNodes      = new ArrayList<RBBINode>();
         fRuleStatusVals = new ArrayList<Integer>();
         fScanner        = new RBBIRuleScanner(this);
@@ -165,8 +167,9 @@ class RBBIRuleBuilder {
         DataOutputStream dos = new DataOutputStream(os);
         int i;
 
-        //  Remove comments and whitespace from the rules to make it smaller.
-        String strippedRules = RBBIRuleScanner.stripRules(fRules);
+        //  Remove whitespace from the rules to make it smaller.
+        //  The rule parser has already removed comments.
+        String strippedRules = RBBIRuleScanner.stripRules(fStrippedRules.toString());
 
         // Calculate the size of each section in the data in bytes.
         //   Sizes here are padded up to a multiple of 8 for better memory alignment.
@@ -250,13 +253,9 @@ class RBBIRuleBuilder {
         }
 
         // Write out the actual state tables.
-        short[] tableData;
-        tableData = fForwardTables.exportTable();
-        Assert.assrt(outputPos == header[4]);
-        for (i = 0; i < tableData.length; i++) {
-            dos.writeShort(tableData[i]);
-            outputPos += 2;
-        }
+        RBBIDataWrapper.RBBIStateTable table = fForwardTables.exportTable();
+        assert(outputPos == header[4]);
+        outputPos += table.put(dos);
 
         /* do not write the reverse table
         tableData = fReverseTables.exportTable();
@@ -278,16 +277,13 @@ class RBBIRuleBuilder {
 
         // Write the safe reverse table.
         // If not present, write the plain reverse table (old style rule compatibility)
-        Assert.assrt(outputPos == header[10]);
+        assert(outputPos == header[10]);
         if (safeRevTableSize > 0) {
-            tableData = fSafeRevTables.exportTable();
+            table = fSafeRevTables.exportTable();
         } else {
-            tableData = fReverseTables.exportTable();
+            table = fReverseTables.exportTable();
         }
-        for (i = 0; i < tableData.length; i++) {
-            dos.writeShort(tableData[i]);
-            outputPos += 2;
-        }
+        outputPos += table.put(dos);
 
         // write out the Trie table
         Assert.assrt(outputPos == header[12]);
@@ -339,10 +335,10 @@ class RBBIRuleBuilder {
         //
         // UnicodeSet processing.
         //    Munge the Unicode Sets to create a set of character categories.
-        //    Generate the mapping tables (TRIE) from input 32-bit characters to
+        //    Generate the mapping tables (TRIE) from input code points to
         //    the character categories.
         //
-        builder.fSetBuilder.build();
+        builder.fSetBuilder.buildRanges();
 
         //
         //   Generate the DFA state transition table.
@@ -360,10 +356,38 @@ class RBBIRuleBuilder {
             builder.fForwardTables.printRuleStatusTable();
         }
 
+        builder.optimizeTables();
+        builder.fSetBuilder.buildTrie();
         //
         //   Package up the compiled data, writing it to an output stream
         //      in the serialization format.  This is the same as the ICU4C runtime format.
         //
         builder.flattenData(os);
+    }
+
+    static class IntPair {
+        int first = 0;
+        int second = 0;
+        IntPair() {};
+        IntPair(int f, int s) {
+            first = f;
+            second = s;
+        }
+    }
+
+    void optimizeTables() {
+        IntPair duplPair = new IntPair(3, 0);
+        while (fForwardTables.findDuplCharClassFrom(duplPair)) {
+            fSetBuilder.mergeCategories(duplPair.first, duplPair.second);
+            fForwardTables.removeColumn(duplPair.second);
+            fReverseTables.removeColumn(duplPair.second);
+            fSafeFwdTables.removeColumn(duplPair.second);
+            fSafeRevTables.removeColumn(duplPair.second);
+        }
+
+        fForwardTables.removeDuplicateStates();
+        fReverseTables.removeDuplicateStates();
+        fSafeFwdTables.removeDuplicateStates();
+        fSafeRevTables.removeDuplicateStates();
     }
 }

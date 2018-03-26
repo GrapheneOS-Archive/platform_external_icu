@@ -1006,11 +1006,7 @@ public class ULocaleTest extends TestFmwk {
         if(locales.length<10){
             errln("Did not get the correct result from getAvailableLocales");
         }
-        // Android patch (http://b/31841293) start.
-        // Accept locales other than zu_ZA at the end, as some OEMs add locales. Any locale added
-        // after the original zu_ZA has to start with "z", as that's the last acceptable letter.
-        if(!locales[locales.length-1].getName().startsWith("z")){
-        // Android patch (http://b/31841293) end.
+        if(!locales[locales.length-1].getName().equals("zu_ZA")){
             errln("Did not get the expected result");
         }
     }
@@ -3043,8 +3039,8 @@ public class ULocaleTest extends TestFmwk {
                     "nl"
                 }, {
                     "und_NO",
-                    "no_Latn_NO",  // Android patch: Replace nb with no.
-                    "no"
+                    "nb_Latn_NO",
+                    "nb"
                 }, {
                     "und_NP",
                     "ne_Deva_NP",
@@ -3155,8 +3151,8 @@ public class ULocaleTest extends TestFmwk {
                     "sl"
                 }, {
                     "und_SJ",
-                    "no_Latn_SJ",  // Android patch: Replace nb with no.
-                    "no_SJ"
+                    "nb_Latn_SJ",
+                    "nb_SJ"
                 }, {
                     "und_SK",
                     "sk_Latn_SK",
@@ -4076,26 +4072,6 @@ public class ULocaleTest extends TestFmwk {
                 errln("FAIL: toLanguageTag returned language tag [" + langtag + "] for locale ["
                         + loc + "] - expected: [" + locale_to_langtag[i][1] + "]");
             }
-        }
-    }
-
-    @Test
-    public void TestForLanguageTagBug13776() {
-        Locale backupDefault = Locale.getDefault();
-
-        try {
-            // Set ULocale.defaultULocale to any non-null value
-            Locale.setDefault(Locale.US);
-            ULocale.getDefault();
-            // Set default Locale in OpenJDK
-            Locale l = Locale.forLanguageTag("ar-EG-u-nu-latn");
-            Locale.setDefault(l);
-            // Create ULocale object from a Locale object
-            ULocale uloc = ULocale.forLocale(l);
-            assertEquals("getKeywordValue(\"numbers\")", "latn", uloc.getKeywordValue("numbers"));
-        } finally {
-            // Restore back up
-            Locale.setDefault(backupDefault);
         }
     }
 

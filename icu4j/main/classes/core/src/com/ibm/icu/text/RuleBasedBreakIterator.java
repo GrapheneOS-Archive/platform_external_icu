@@ -216,15 +216,19 @@ public class RuleBasedBreakIterator extends BreakIterator {
     private static final int  RBBI_RUN    = 1;
     private static final int  RBBI_END    = 2;
 
-    /*
+    /**
      * The character iterator through which this BreakIterator accesses the text.
      */
     private CharacterIterator   fText = new java.text.StringCharacterIterator("");
 
     /**
-     * The rule data for this BreakIterator instance. Package private.
+     * The rule data for this BreakIterator instance.
+     * Not intended for public use. Declared public for testing purposes only.
+     * @internal
+     * @deprecated This API is ICU internal only.
      */
-    RBBIDataWrapper             fRData;
+    @Deprecated
+    public RBBIDataWrapper    fRData;
 
     /**
      *  The iteration state - current position, rule status for the current position,
@@ -264,7 +268,7 @@ public class RuleBasedBreakIterator extends BreakIterator {
 
     private DictionaryCache     fDictionaryCache = new DictionaryCache();
 
-    /*
+    /**
      * ICU debug argument name for RBBI
      */
     private static final String RBBI_DEBUG_ARG = "rbbi";
@@ -274,13 +278,6 @@ public class RuleBasedBreakIterator extends BreakIterator {
      */
     private static final boolean TRACE = ICUDebug.enabled(RBBI_DEBUG_ARG)
             && ICUDebug.value(RBBI_DEBUG_ARG).indexOf("trace") >= 0;
-
-    /**
-     * What kind of break iterator this is.
-     * Defaulting BreakType to word gives reasonable dictionary behavior for
-     * Break Iterators that are built from rules.
-     */
-    private int fBreakType = KIND_WORD;
 
     /**
      * The "default" break engine - just skips over ranges of dictionary words,
@@ -455,7 +452,7 @@ public class RuleBasedBreakIterator extends BreakIterator {
             return first();
         }
 
-        // Move requested offset to a code point start. It might be on a trail surrogate.
+        // Move requested offset to a code point start. It might be between a lead and trail surrogate.
         // Or it may be beyond the end of the text.
         startPos = CISetIndex32(fText, startPos);
         fBreakCache.following(startPos);
@@ -478,7 +475,7 @@ public class RuleBasedBreakIterator extends BreakIterator {
             return first();
         }
 
-        // Move requested offset to a code point start. It might be on a trail surrogate.
+        // Move requested offset to a code point start. It might be between a lead and trail surrogate.
         // int adjustedOffset = CISetIndex32(fText, offset);    // TODO: restore to match ICU4C behavior.
         int adjustedOffset = offset;
         fBreakCache.preceding(adjustedOffset);
@@ -532,7 +529,7 @@ public class RuleBasedBreakIterator extends BreakIterator {
     }
 
     /**
-     * Returns the current iteration position.  Note that UBRK_DONE is never
+     * Returns the current iteration position.  Note that DONE is never
      * returned from this function; if iteration has run to the end of a
      * string, current() will return the length of the string while
      * next() will return BreakIterator.DONE).
@@ -546,8 +543,8 @@ public class RuleBasedBreakIterator extends BreakIterator {
 
 
     /**
-     * Return the status tag from the break rule that determined the most recently
-     * returned break position.  The values appear in the rule source
+     * Return the status tag from the break rule that determined the boundary at
+     * the current iteration position.  The values appear in the rule source
      * within brackets, {123}, for example.  For rules that do not specify a
      * status, a default value of 0 is returned.  If more than one rule applies,
      * the numerically largest of the possible status values is returned.
@@ -561,8 +558,12 @@ public class RuleBasedBreakIterator extends BreakIterator {
      * position from <code>next()</code>, <code>previous()</code>, or
      * any other break iterator functions that returns a boundary position.
      * <p>
-     * @return the status from the break rule that determined the most recently
-     * returned break position.
+     * Note that <code>getRuleStatus()</code> returns the value corresponding to
+     * <code>current()</code> index even after <code>next()</code> has returned DONE.
+     * <p>
+
+     * @return the status from the break rule that determined the boundary
+     * at the current iteration position.
      *
      * @stable ICU 60
      */
@@ -583,8 +584,8 @@ public class RuleBasedBreakIterator extends BreakIterator {
     }
 
     /**
-     * Get the status (tag) values from the break rule(s) that determined the most
-     * recently returned break position.  The values appear in the rule source
+     * Get the status (tag) values from the break rule(s) that determined the boundary
+     * at the current iteration position.  The values appear in the rule source
      * within brackets, {123}, for example.  The default status value for rules
      * that do not explicitly provide one is zero.
      * <p>
@@ -596,8 +597,8 @@ public class RuleBasedBreakIterator extends BreakIterator {
      *  will be thrown.
      *
      * @param fillInArray an array to be filled in with the status values.
-     * @return          The number of rule status values from rules that determined
-     *                  the most recent boundary returned by the break iterator.
+     * @return          The number of rule status values from the rules that determined
+     *                  the boundary at the current iteration position.
      *                  In the event that the array is too small, the return value
      *                  is the total number of status values that were available,
      *                  not the reduced number that were actually returned.
@@ -646,21 +647,7 @@ public class RuleBasedBreakIterator extends BreakIterator {
         this.first();
     }
 
-    /**
-     * package private
-     */
-    void setBreakType(int type) {
-        fBreakType = type;
-    }
-
-    /**
-     * package private
-     */
-    int getBreakType() {
-        return fBreakType;
-    }
-
-    /**
+     /**
      * Control debug, trace and dump options.
      * @internal
      */
@@ -673,7 +660,7 @@ public class RuleBasedBreakIterator extends BreakIterator {
         // We have a dictionary character.
         // Does an already instantiated break engine handle it?
         for (LanguageBreakEngine candidate : fBreakEngines) {
-            if (candidate.handles(c, fBreakType)) {
+            if (candidate.handles(c)) {
                 return candidate;
             }
         }
@@ -683,7 +670,7 @@ public class RuleBasedBreakIterator extends BreakIterator {
             // Check the global list, another break iterator may have instantiated the
             // desired engine.
             for (LanguageBreakEngine candidate : gAllBreakEngines) {
-                if (candidate.handles(c, fBreakType)) {
+                if (candidate.handles(c)) {
                     fBreakEngines.add(candidate);
                     return candidate;
                 }
@@ -713,24 +700,13 @@ public class RuleBasedBreakIterator extends BreakIterator {
                     eng = new KhmerBreakEngine();
                     break;
                 case UScript.HAN:
-                    if (getBreakType() == KIND_WORD) {
-                        eng = new CjkBreakEngine(false);
-                    }
-                    else {
-                        gUnhandledBreakEngine.handleChar(c, getBreakType());
-                        eng = gUnhandledBreakEngine;
-                    }
-                    break;
+                    eng = new CjkBreakEngine(false);
+                     break;
                 case UScript.HANGUL:
-                    if (getBreakType() == KIND_WORD) {
-                        eng = new CjkBreakEngine(true);
-                    } else {
-                        gUnhandledBreakEngine.handleChar(c, getBreakType());
-                        eng = gUnhandledBreakEngine;
-                    }
+                    eng = new CjkBreakEngine(true);
                     break;
                 default:
-                    gUnhandledBreakEngine.handleChar(c, getBreakType());
+                    gUnhandledBreakEngine.handleChar(c);
                     eng = gUnhandledBreakEngine;
                     break;
                 }
@@ -829,7 +805,7 @@ public class RuleBasedBreakIterator extends BreakIterator {
         CharacterIterator text = fText;
         Trie2 trie = fRData.fTrie;
 
-        short[] stateTable  = fRData.fFTable;
+        short[] stateTable  = fRData.fFTable.fTable;
         int initialPosition = fPosition;
         text.setIndex(initialPosition);
         int result          = initialPosition;
@@ -848,7 +824,7 @@ public class RuleBasedBreakIterator extends BreakIterator {
         int state           = START_STATE;
         int row             = fRData.getRowIndex(state);
         short category      = 3;
-        int flagsState      = fRData.getStateTableFlags(stateTable);
+        int flagsState      = fRData.fFTable.fFlags;
         int mode            = RBBI_RUN;
         if ((flagsState & RBBIDataWrapper.RBBI_BOF_REQUIRED) != 0) {
             category = 2;
@@ -1008,7 +984,7 @@ public class RuleBasedBreakIterator extends BreakIterator {
         int            result             = 0;
         int            initialPosition    = fromPosition;
         fLookAheadMatches.reset();
-        short[] stateTable = fRData.fSRTable;
+        short[] stateTable = fRData.fSRTable.fTable;
         CISetIndex32(fText, fromPosition);
         if (fromPosition == fText.getBeginIndex()) {
             return BreakIterator.DONE;
@@ -1023,7 +999,7 @@ public class RuleBasedBreakIterator extends BreakIterator {
         row = fRData.getRowIndex(state);
         category = 3;   // TODO:  obsolete?  from the old start/run mode scheme?
         mode     = RBBI_RUN;
-        if ((fRData.getStateTableFlags(stateTable) & RBBIDataWrapper.RBBI_BOF_REQUIRED) != 0) {
+        if ((fRData.fSRTable.fFlags & RBBIDataWrapper.RBBI_BOF_REQUIRED) != 0) {
             category = 2;
             mode     = RBBI_START;
         }
@@ -1152,7 +1128,7 @@ public class RuleBasedBreakIterator extends BreakIterator {
         return ci.getIndex();
     }
 
-    /* DictionaryCache  stores the boundaries obtained from a run of dictionary characters.
+    /** DictionaryCache  stores the boundaries obtained from a run of dictionary characters.
      *                 Dictionary boundaries are moved first to this cache, then from here
      *                 to the main BreakCache, where they may inter-leave with non-dictionary
      *                 boundaries. The public BreakIterator API always fetches directly
@@ -1306,7 +1282,7 @@ public class RuleBasedBreakIterator extends BreakIterator {
                 // Ask the language object if there are any breaks. It will add them to the cache and
                 // leave the text pointer on the other side of its range, ready to search for the next one.
                 if (lbe != null) {
-                    foundBreakCount += lbe.findBreaks(fText, rangeStart, rangeEnd, fBreakType, fBreaks);
+                    foundBreakCount += lbe.findBreaks(fText, rangeStart, rangeEnd, fBreaks);
                 }
 
                 // Reload the loop variables for the next go-round
@@ -1477,7 +1453,7 @@ class BreakCache {
         return;
     };
 
-    /*
+    /**
      * Update the state of the public BreakIterator (fBI) to reflect the
      * current state of the break iterator cache (this).
      */
@@ -1735,7 +1711,7 @@ class BreakCache {
     static final boolean RetainCachePosition = false;
     static final boolean UpdateCachePosition = true;
 
-    /*
+    /**
      * Add the boundary following the current position.
      * The current position can be left as it was, or changed to the newly added boundary,
      * as specified by the update parameter.
@@ -1764,7 +1740,7 @@ class BreakCache {
     };
 
 
-    /*
+    /**
      * Add the boundary preceding the current position.
      * The current position can be left as it was, or changed to the newly added boundary,
      * as specified by the update parameter.
