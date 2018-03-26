@@ -1355,18 +1355,18 @@ DateFormatTest::TestLocaleDateFormat() // Bug 495
 void
 DateFormatTest::TestFormattingLocaleTimeSeparator()
 {
-    // This test not as useful is it once was, since timeSeparator
-    // in the Arabic is changed back to ":" in CLDR 28.
+    // This test not as useful as it once was, since timeSeparator
+    // in the Arabic locale is changed back to ":" in CLDR 28.
     const UDate testDate = 874266720000.;  // Sun Sep 14 21:52:00 CET 1997
     logln((UnicodeString)"Date set to : " + dateToString(testDate));
 
     const LocalPointer<const TimeZone> tz(TimeZone::createTimeZone("CET"));
 
     const LocalPointer<DateFormat> dfArab(DateFormat::createTimeInstance(
-            DateFormat::SHORT, Locale("ar")));
+            DateFormat::SHORT, Locale("ar", "EG")));
 
     const LocalPointer<DateFormat> dfLatn(DateFormat::createTimeInstance(
-            DateFormat::SHORT, Locale("ar", NULL, NULL, "numbers=latn")));
+            DateFormat::SHORT, Locale("ar", "EG", NULL, "numbers=latn")));
 
     if (dfLatn.isNull() || dfArab.isNull()) {
         dataerrln("Error calling DateFormat::createTimeInstance()");
@@ -4866,12 +4866,12 @@ void DateFormatTest::TestDFSCreateForLocaleNonGregorianLocale() {
         return;
     }
 
-    // Android: All locales default to Gregorian calendar:
+    // Farsi should default to the persian calendar, not gregorian
     int32_t count;
     const UnicodeString *months = sym->getShortMonths(count);
 
     // First persian month.
-    UnicodeString expected("\\u0698\\u0627\\u0646\\u0648\\u06CC\\u0647\\u0654");  // Android-changed
+    UnicodeString expected("\\u0641\\u0631\\u0648\\u0631\\u062f\\u06cc\\u0646");
     assertEquals("", expected.unescape(), months[0]);
 }
 

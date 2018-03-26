@@ -31,6 +31,7 @@ fo{
         151{"Eysturevropa"}
         154{"Norðurevropa"}
         155{"Vesturevropa"}
+        202{"Afrika sunnanfyri Sahara"}
         419{"Latínamerika"}
         AC{"Ascension"}
         AD{"Andorra"}
@@ -58,7 +59,7 @@ fo{
         BH{"Barein"}
         BI{"Burundi"}
         BJ{"Benin"}
-        BL{"St-Barthélemy"}
+        BL{"St. Barthélemy"}
         BM{"Bermuda"}
         BN{"Brunei"}
         BO{"Bolivia"}
@@ -97,7 +98,7 @@ fo{
         DM{"Dominika"}
         DO{"Dominikalýðveldið"}
         DZ{"Algeria"}
-        EA{"Ceuta og Melilla"}
+        EA{"Ceuta & Melilla"}
         EC{"Ekvador"}
         EE{"Estland"}
         EG{"Egyptaland"}
@@ -132,7 +133,7 @@ fo{
         GU{"Guam"}
         GW{"Guinea-Bissau"}
         GY{"Gujana"}
-        HK{"Hong Kong"}
+        HK{"Hong Kong SAR Kina"}
         HM{"Heard og McDonaldoyggjar"}
         HN{"Honduras"}
         HR{"Kroatia"}
@@ -182,11 +183,11 @@ fo{
         MF{"St-Martin"}
         MG{"Madagaskar"}
         MH{"Marshalloyggjar"}
-        MK{"Makedónia (FJM)"}
+        MK{"Makedónia"}
         ML{"Mali"}
         MM{"Myanmar (Burma)"}
         MN{"Mongolia"}
-        MO{"Makao"}
+        MO{"Makao SAR Kina"}
         MP{"Norðaru Mariuoyggjar"}
         MQ{"Martinique"}
         MR{"Móritania"}
@@ -218,10 +219,10 @@ fo{
         PH{"Filipsoyggjar"}
         PK{"Pakistan"}
         PL{"Pólland"}
-        PM{"Saint Pierre og Miquelon"}
+        PM{"Saint Pierre & Miquelon"}
         PN{"Pitcairnoyggjar"}
         PR{"Puerto Riko"}
-        PS{"Palestina"}
+        PS{"Palestinskt landøki"}
         PT{"Portugal"}
         PW{"Palau"}
         PY{"Paraguai"}
@@ -296,7 +297,14 @@ fo{
     }
     Countries%short{
         GB{"UK"}
+        HK{"Hong Kong"}
+        MO{"Makao"}
+        PS{"Palestina"}
         US{"USA"}
     }
-    Version{"2.1.37.5"}
+    Countries%variant{
+        FK{"Falklandsoyggjar (Islas Malvinas)"}
+        MK{"Makedónia (FJM)"}
+    }
+    Version{"2.1.39.11"}
 }

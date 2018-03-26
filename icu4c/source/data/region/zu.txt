@@ -31,6 +31,7 @@ zu{
         151{"i-Eastern Europe"}
         154{"i-Northern Europe"}
         155{"i-Western Europe"}
+        202{"Sub-Saharan Africa"}
         419{"i-Latin America"}
         AC{"i-Ascension Island"}
         AD{"i-Andorra"}
@@ -109,7 +110,7 @@ zu{
         EZ{"EZ"}
         FI{"i-Finland"}
         FJ{"i-Fiji"}
-        FK{"i-Falkland Islands (Islas Malvinas)"}
+        FK{"i-Falkland Islands"}
         FM{"i-Micronesia"}
         FO{"i-Faroe Islands"}
         FR{"i-France"}
@@ -132,7 +133,7 @@ zu{
         GU{"i-Guam"}
         GW{"i-Guinea-Bissau"}
         GY{"i-Guyana"}
-        HK{"i-Hong Kong"}
+        HK{"i-Hong Kong SAR China"}
         HM{"i-Heard Island ne-McDonald Islands"}
         HN{"i-Honduras"}
         HR{"i-Croatia"}
@@ -182,11 +183,11 @@ zu{
         MF{"i-Saint Martin"}
         MG{"i-Madagascar"}
         MH{"i-Marshall Islands"}
-        MK{"i-Macedonia (FYROM)"}
+        MK{"i-Macedonia"}
         ML{"iMali"}
         MM{"i-Myanmar (Burma)"}
         MN{"i-Mongolia"}
-        MO{"i-Macau"}
+        MO{"i-Macau SAR China"}
         MP{"i-Northern Mariana Islands"}
         MQ{"i-Martinique"}
         MR{"i-Mauritania"}
@@ -221,7 +222,7 @@ zu{
         PM{"i-Saint Pierre kanye ne-Miquelon"}
         PN{"i-Pitcairn Islands"}
         PR{"i-Puerto Rico"}
-        PS{"i-Palestine"}
+        PS{"i-Palestinian Territories"}
         PT{"i-Portugal"}
         PW{"i-Palau"}
         PY{"i-Paraguay"}
@@ -296,6 +297,9 @@ zu{
     }
     Countries%short{
         GB{"i-U.K."}
+        HK{"i-Hong Kong"}
+        MO{"i-Macau"}
+        PS{"i-Palestine"}
         UN{"ifulegi"}
         US{"i-U.S"}
     }
@@ -304,7 +308,9 @@ zu{
         CG{"i-Congo (Republic)"}
         CI{"i-Ivory Coast"}
         CZ{"i-Czech Republic"}
+        FK{"i-Falkland Islands (Islas Malvinas)"}
+        MK{"i-Macedonia (FYROM)"}
         TL{"i-East Timor"}
     }
-    Version{"2.1.37.1"}
+    Version{"2.1.39.11"}
 }

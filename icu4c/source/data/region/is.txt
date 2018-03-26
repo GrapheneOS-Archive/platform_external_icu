@@ -31,6 +31,7 @@ is{
         151{"Austur-Evrópa"}
         154{"Norður-Evrópa"}
         155{"Vestur-Evrópa"}
+        202{"Afríka sunnan Sahara"}
         419{"Rómanska Ameríka"}
         AC{"Ascension-eyja"}
         AD{"Andorra"}
@@ -76,7 +77,7 @@ is{
         CF{"Mið-Afríkulýðveldið"}
         CG{"Kongó-Brazzaville"}
         CH{"Sviss"}
-        CI{"Fílabeinsströndin"}
+        CI{"Côte d’Ivoire"}
         CK{"Cooks-eyjar"}
         CL{"Síle"}
         CM{"Kamerún"}
@@ -109,7 +110,7 @@ is{
         EZ{"Evrusvæðið"}
         FI{"Finnland"}
         FJ{"Fídjíeyjar"}
-        FK{"Falklandseyjar (Malvinas)"}
+        FK{"Falklandseyjar"}
         FM{"Míkrónesía"}
         FO{"Færeyjar"}
         FR{"Frakkland"}
@@ -132,7 +133,7 @@ is{
         GU{"Gvam"}
         GW{"Gínea-Bissá"}
         GY{"Gvæjana"}
-        HK{"Hong Kong"}
+        HK{"sérstjórnarsvæðið Hong Kong"}
         HM{"Heard og McDonaldseyjar"}
         HN{"Hondúras"}
         HR{"Króatía"}
@@ -182,11 +183,11 @@ is{
         MF{"St. Martin"}
         MG{"Madagaskar"}
         MH{"Marshalleyjar"}
-        MK{"Makedónía (Fyrrverandi lýðveldi Júgóslavíu)"}
+        MK{"Makedónía"}
         ML{"Malí"}
         MM{"Mjanmar (Búrma)"}
         MN{"Mongólía"}
-        MO{"Makaó"}
+        MO{"sérstjórnarsvæðið Makaó"}
         MP{"Norður-Maríanaeyjar"}
         MQ{"Martiník"}
         MR{"Máritanía"}
@@ -221,7 +222,7 @@ is{
         PM{"Sankti Pierre og Miquelon"}
         PN{"Pitcairn-eyjar"}
         PR{"Púertó Ríkó"}
-        PS{"Palestína"}
+        PS{"Heimastjórnarsvæði Palestínumanna"}
         PT{"Portúgal"}
         PW{"Palá"}
         PY{"Paragvæ"}
@@ -296,13 +297,19 @@ is{
     }
     Countries%short{
         GB{"Bretland"}
+        HK{"Hong Kong"}
+        MO{"Makaó"}
+        PS{"Palestína"}
         UN{"SÞ"}
         US{"BNA"}
     }
     Countries%variant{
         CD{"Kongó (Lýðstjórnarlýðveldið)"}
         CG{"Kongó (Lýðveldið)"}
+        CI{"Fílabeinsströndin"}
+        FK{"Falklandseyjar (Malvinas)"}
+        MK{"Makedónía (Fyrrverandi lýðveldi Júgóslavíu)"}
         TL{"Austur-Tímor"}
     }
-    Version{"2.1.37.5"}
+    Version{"2.1.39.11"}
 }

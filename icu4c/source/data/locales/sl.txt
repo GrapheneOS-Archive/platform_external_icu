@@ -287,7 +287,7 @@ sl{
         minimumGroupingDigits{"1"}
         native{"latn"}
     }
-    Version{"2.1.37.1"}
+    Version{"2.1.39.11"}
     calendar{
         buddhist{
             eras{
@@ -535,7 +535,7 @@ sl{
                 "EEEE, dd. MMMM y G",
                 "dd. MMMM y G",
                 "d. MMM y G",
-                "d. M. yy GGGGG",
+                "d. MM. yy GGGGG",
                 "{1} {0}",
                 "{1} {0}",
                 "{1} {0}",
@@ -703,7 +703,7 @@ sl{
                 "EEEE, dd. MMMM y",
                 "dd. MMMM y",
                 "d. MMM y",
-                "d. M. yy",
+                "d. MM. yy",
                 "{1} {0}",
                 "{1} {0}",
                 "{1} {0}",
