@@ -16,6 +16,13 @@
 
 LOCAL_PATH := $(call my-dir)
 
+# Use the same Java language version in the Android build configuration as used
+# in main/shared/build/common.properties for the ICU4J build configuration.
+icu4j_java_language_version := 1.6
+
+# Suppress warnings about Java 1.6 being obsolete.
+icu4j_javacflags := -Xlint:-options
+
 # User-supplied locale service providers (using the java.text.spi or
 # java.util.spi mechanisms) are not supported in Android:
 #
@@ -61,6 +68,8 @@ include $(BUILD_MULTI_PREBUILT)
 include $(CLEAR_VARS)
 LOCAL_SRC_FILES := $(icu4j_src_files)
 LOCAL_JAVA_RESOURCE_DIRS := $(icu4j_resource_dirs)
+LOCAL_JAVACFLAGS := $(icu4j_javacflags)
+LOCAL_JAVA_LANGUAGE_VERSION := $(icu4j_java_language_version)
 LOCAL_MODULE := icu4j
 include $(BUILD_STATIC_JAVA_LIBRARY)
 
@@ -73,6 +82,8 @@ include $(CLEAR_VARS)
 LOCAL_SRC_FILES := $(icu4j_src_files)
 LOCAL_JAVA_RESOURCE_DIRS := $(icu4j_resource_dirs)
 LOCAL_STATIC_JAVA_LIBRARIES := icu4j-icudata-host icu4j-icutzdata-host
+LOCAL_JAVACFLAGS := $(icu4j_javacflags)
+LOCAL_JAVA_LANGUAGE_VERSION := $(icu4j_java_language_version)
 LOCAL_MODULE := icu4j-host
 include $(BUILD_HOST_JAVA_LIBRARY)
 
@@ -81,6 +92,8 @@ include $(CLEAR_VARS)
 LOCAL_SRC_FILES := $(icu4j_src_files)
 LOCAL_JAVA_RESOURCE_DIRS := $(icu4j_resource_dirs)
 LOCAL_STATIC_JAVA_LIBRARIES := icu4j-icudata-host icu4j-icutzdata-host
+LOCAL_JAVACFLAGS := $(icu4j_javacflags)
+LOCAL_JAVA_LANGUAGE_VERSION := $(icu4j_java_language_version)
 LOCAL_MODULE := icu4j-hostdex
 include $(BUILD_HOST_DALVIK_JAVA_LIBRARY)
 endif  # HOST_OS == linux
@@ -90,6 +103,8 @@ LOCAL_SRC_FILES := $(icu4j_test_src_files)
 LOCAL_JAVA_RESOURCE_DIRS := $(icu4j_test_resource_dirs)
 LOCAL_STATIC_JAVA_LIBRARIES := icu4j-testdata
 LOCAL_JAVA_LIBRARIES := icu4j junit junit-params
+LOCAL_JAVACFLAGS := $(icu4j_javacflags)
+LOCAL_JAVA_LANGUAGE_VERSION := $(icu4j_java_language_version)
 LOCAL_MODULE := icu4j-tests
 include $(BUILD_STATIC_JAVA_LIBRARY)
 
@@ -108,6 +123,8 @@ LOCAL_SRC_FILES := $(icu4j_test_src_files)
 LOCAL_JAVA_RESOURCE_DIRS := $(icu4j_test_resource_dirs)
 LOCAL_STATIC_JAVA_LIBRARIES := icu4j-testdata-host
 LOCAL_JAVA_LIBRARIES := icu4j-host junit-host junit-params-host
+LOCAL_JAVACFLAGS := $(icu4j_javacflags)
+LOCAL_JAVA_LANGUAGE_VERSION := $(icu4j_java_language_version)
 LOCAL_MODULE := icu4j-tests-host
 include $(BUILD_HOST_JAVA_LIBRARY)
 
@@ -121,6 +138,8 @@ LOCAL_SRC_FILES := $(icu4j_test_src_files)
 LOCAL_JAVA_RESOURCE_DIRS := $(icu4j_test_resource_dirs)
 LOCAL_STATIC_JAVA_LIBRARIES := icu4j-testdata-host
 LOCAL_JAVA_LIBRARIES := icu4j-hostdex junit-hostdex junit-params-hostdex
+LOCAL_JAVACFLAGS := $(icu4j_javacflags)
+LOCAL_JAVA_LANGUAGE_VERSION := $(icu4j_java_language_version)
 LOCAL_MODULE := icu4j-tests-hostdex
 include $(BUILD_HOST_DALVIK_JAVA_LIBRARY)
 
@@ -135,31 +154,31 @@ endif  # HOST_OS == linux
 include $(CLEAR_VARS)
 LOCAL_STATIC_JAVA_LIBRARIES := icu4j-icudata-host
 LOCAL_JARJAR_RULES := $(LOCAL_PATH)/liblayout-jarjar-rules.txt
+LOCAL_JAVACFLAGS := $(icu4j_javacflags)
+LOCAL_JAVA_LANGUAGE_VERSION := $(icu4j_java_language_version)
 LOCAL_MODULE := icu4j-icudata-host-jarjar
-# Pin java_version until jarjar is certified to support later versions. http://b/72703434
-LOCAL_JAVA_LANGUAGE_VERSION := 1.8
 include $(BUILD_HOST_JAVA_LIBRARY)
 
 include $(CLEAR_VARS)
 LOCAL_STATIC_JAVA_LIBRARIES := icu4j-icudata
 LOCAL_JARJAR_RULES := $(LOCAL_PATH)/liblayout-jarjar-rules.txt
+LOCAL_JAVACFLAGS := $(icu4j_javacflags)
+LOCAL_JAVA_LANGUAGE_VERSION := $(icu4j_java_language_version)
 LOCAL_MODULE := icu4j-icudata-jarjar
-# Pin java_version until jarjar is certified to support later versions. http://b/72703434
-LOCAL_JAVA_LANGUAGE_VERSION := 1.8
 include $(BUILD_STATIC_JAVA_LIBRARY)
 
 include $(CLEAR_VARS)
 LOCAL_STATIC_JAVA_LIBRARIES := icu4j-icutzdata-host
 LOCAL_JARJAR_RULES := $(LOCAL_PATH)/liblayout-jarjar-rules.txt
+LOCAL_JAVACFLAGS := $(icu4j_javacflags)
+LOCAL_JAVA_LANGUAGE_VERSION := $(icu4j_java_language_version)
 LOCAL_MODULE := icu4j-icutzdata-host-jarjar
-# Pin java_version until jarjar is certified to support later versions. http://b/72703434
-LOCAL_JAVA_LANGUAGE_VERSION := 1.8
 include $(BUILD_HOST_JAVA_LIBRARY)
 
 include $(CLEAR_VARS)
 LOCAL_STATIC_JAVA_LIBRARIES := icu4j-icutzdata
 LOCAL_JARJAR_RULES := $(LOCAL_PATH)/liblayout-jarjar-rules.txt
+LOCAL_JAVACFLAGS := $(icu4j_javacflags)
+LOCAL_JAVA_LANGUAGE_VERSION := $(icu4j_java_language_version)
 LOCAL_MODULE := icu4j-icutzdata-jarjar
-# Pin java_version until jarjar is certified to support later versions. http://b/72703434
-LOCAL_JAVA_LANGUAGE_VERSION := 1.8
 include $(BUILD_STATIC_JAVA_LIBRARY)
