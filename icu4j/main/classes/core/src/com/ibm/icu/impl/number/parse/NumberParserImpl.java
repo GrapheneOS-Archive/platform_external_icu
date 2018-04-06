@@ -392,6 +392,9 @@ public class NumberParserImpl {
         for (NumberParseMatcher matcher : matchers) {
             matcher.postProcess(result);
         }
+        // Android Patch: to be removed in ICU 62
+        result.postProcess();
+        // End Android Patch
     }
 
     private void parseGreedyRecursive(StringSegment segment, ParsedNumber result) {

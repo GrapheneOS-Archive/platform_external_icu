@@ -108,6 +108,17 @@ public class ParsedNumber {
         charEnd = segment.getOffset();
     }
 
+    // Android Patch: to be removed in ICU 62
+    public void postProcess() {
+        if (quantity != null && 0 != (flags & FLAG_PERCENT)) {
+            quantity.adjustMagnitude(-2);
+        }
+        if (quantity != null && 0 != (flags & FLAG_PERMILLE)) {
+            quantity.adjustMagnitude(-3);
+        }
+    }
+    // End Android Patch
+
     /**
      * Returns whether this the parse was successful. To be successful, at least one char must have been
      * consumed, and the failure flag must not be set.
