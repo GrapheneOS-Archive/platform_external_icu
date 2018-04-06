@@ -5934,4 +5934,14 @@ public class NumberFormatTest extends TestFmwk {
                 result.doubleValue(),
                 0.0);
     }
+
+    @Test
+    public void test13684_FrenchPercentParsing() {
+        NumberFormat numberFormat = NumberFormat.getPercentInstance(ULocale.FRENCH);
+        numberFormat.setParseStrict(true);
+        ParsePosition ppos = new ParsePosition(0);
+        Number percentage = numberFormat.parse("8\u00A0%", ppos);
+        assertEquals("Should parse successfully", 0.08, percentage.doubleValue());
+        assertEquals("Should consume whole string", 3, ppos.getIndex());
+    }
 }
