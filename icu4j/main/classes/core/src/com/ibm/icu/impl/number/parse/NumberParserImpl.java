@@ -10,6 +10,7 @@ import java.util.List;
 
 import com.ibm.icu.impl.StringSegment;
 import com.ibm.icu.impl.number.AffixPatternProvider;
+import com.ibm.icu.impl.number.AffixUtils;
 import com.ibm.icu.impl.number.CustomSymbolCurrency;
 import com.ibm.icu.impl.number.DecimalFormatProperties;
 import com.ibm.icu.impl.number.Grouper;
@@ -247,6 +248,23 @@ public class NumberParserImpl {
             parser.addMatcher(CurrencyTrieMatcher.getInstance(locale));
         }
 
+        ///////////////
+        /// PERCENT ///
+        ///////////////
+
+        // ICU-TC meeting, April 11, 2018: accept percent/permille only if it is in the pattern,
+        // and to maintain regressive behavior, divide by 100 even if no percent sign is present.
+        if (patternInfo.containsSymbolType(AffixUtils.TYPE_PERCENT)) {
+            parser.addMatcher(PercentMatcher.getInstance(symbols));
+            // causes number to be always scaled by 100:
+            parser.addMatcher(FlagHandler.PERCENT);
+        }
+        if (patternInfo.containsSymbolType(AffixUtils.TYPE_PERMILLE)) {
+            parser.addMatcher(PermilleMatcher.getInstance(symbols));
+            // causes number to be always scaled by 1000:
+            parser.addMatcher(FlagHandler.PERMILLE);
+        }
+
         ///////////////////////////////
         /// OTHER STANDARD MATCHERS ///
         ///////////////////////////////
@@ -254,10 +272,8 @@ public class NumberParserImpl {
         if (!isStrict) {
             parser.addMatcher(PlusSignMatcher.getInstance(symbols, false));
             parser.addMatcher(MinusSignMatcher.getInstance(symbols, false));
-            parser.addMatcher(NanMatcher.getInstance(symbols, parseFlags));
-            parser.addMatcher(PercentMatcher.getInstance(symbols));
-            parser.addMatcher(PermilleMatcher.getInstance(symbols));
         }
+        parser.addMatcher(NanMatcher.getInstance(symbols, parseFlags));
         parser.addMatcher(InfinityMatcher.getInstance(symbols));
         String padString = properties.getPadString();
         if (padString != null && !ignorables.getSet().contains(padString)) {
