@@ -135,6 +135,7 @@
                     <arg name="--specialsdir"     value="${env.ICU4C_DIR}/source/data/xml/main"/>
                     <arg name="--supplementaldir" value="${cldr.prod.dir}/common/supplemental" />
                     <arg name="--type" value="locales"/>
+                    <arg name="--filter"/>  <!-- Android patch: Use dataModifiers.txt filtering. -->
                     <arg name="--depgraphfile" value="../../python/icutools/databuilder/locale_dependencies.py"/>
                 </args>
 		<remapper>
