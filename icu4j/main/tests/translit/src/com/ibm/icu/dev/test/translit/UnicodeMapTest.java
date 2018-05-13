@@ -349,12 +349,17 @@ public class UnicodeMapTest extends TestFmwk {
     @Test
     public void TestUnicodeMapGeneralCategory() {
         logln("Setting General Category");
-        UnicodeMap<String> map1 = new UnicodeMap();
-        Map<Integer, String> map2 = new HashMap<Integer, String>();
-        //Map<Integer, String> map3 = new TreeMap<Integer, String>();
-        map1 = new UnicodeMap<String>();
-        map2 = new TreeMap<Integer,String>();
-        for (int cp = 0; cp <= SET_LIMIT; ++cp) {
+        // Android patch begin. b/79168307 Reduce the heap memory needed for the test
+        splitTestUnicodeMapGeneralCategory(0, SET_LIMIT / 2);
+        splitTestUnicodeMapGeneralCategory(SET_LIMIT / 2 + 1, SET_LIMIT);
+        // Android patch end. b/79168307 Reduce the heap memory needed for the test
+    }
+
+    // Android patch begin. b/79168307 Reduce the heap memory needed for the test
+    private void splitTestUnicodeMapGeneralCategory(int startCodePoint, int endCodePoint) {
+        UnicodeMap<String> map1 = new UnicodeMap<String>();
+        Map<Integer, String> map2 = new TreeMap<Integer,String>();
+        for (int cp = startCodePoint; cp <= endCodePoint; ++cp) {
               int enumValue = UCharacter.getIntPropertyValue(cp, propEnum);
               //if (enumValue <= 0) continue; // for smaller set
               String value = UCharacter.getPropertyValueName(propEnum,enumValue, UProperty.NameChoice.LONG);
@@ -382,6 +387,7 @@ public class UnicodeMapTest extends TestFmwk {
             }
         }
     }
+    // Android patch end. b/79168307 Reduce the heap memory needed for the test
 
     @Test
     public void TestAUnicodeMap2() {
