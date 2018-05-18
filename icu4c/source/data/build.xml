@@ -108,7 +108,7 @@
                     <arg name="--specialsdir"     value="${env.ICU4C_DIR}/source/data/xml/main"/>
                     <arg name="--supplementaldir" value="${env.CLDR_DIR}/common/supplemental" />
                     <arg name="--type" value="locales"/>
-                    <arg name="--filter"/>     <!-- Google Patch: select short names for HK, MO. (SAR China.) -->
+                    <arg name="--filter"/>  <!-- Android patch: Use dataModifiers.txt filtering. -->
                     <arg name="--makefile" value="resfiles.mk"/>
                 </args>
 		<remapper>
