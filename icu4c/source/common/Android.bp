@@ -246,7 +246,7 @@ cc_defaults {
 //
 // Build for the host and target.
 //
-cc_library_shared {
+cc_library {
     name: "libicuuc",
     host_supported: true,
     unique_host_soname: true,
