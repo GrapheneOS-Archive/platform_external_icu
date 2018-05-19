@@ -25,6 +25,14 @@ import sys
 import i18nutil
 import ziputil
 
+def cldrDir():
+  """Returns the location of CLDR in the Android source tree."""
+  android_build_top = i18nutil.GetAndroidRootOrDie()
+  cldr_dir = os.path.realpath('%s/external/cldr' % android_build_top)
+  i18nutil.CheckDirExists(cldr_dir, 'external/cldr')
+  return cldr_dir
+
+
 def icuDir():
   """Returns the location of ICU in the Android source tree."""
   android_build_top = i18nutil.GetAndroidRootOrDie()
