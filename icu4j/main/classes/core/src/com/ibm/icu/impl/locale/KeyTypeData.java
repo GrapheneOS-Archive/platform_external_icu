@@ -210,10 +210,18 @@ public class KeyTypeData {
     }
 
     private static void initFromResourceBundle() {
+        // Android patch: Avoid inter-dependency issue on ULocale.getDefault(). Ticket#13776
+        /*
         UResourceBundle keyTypeDataRes = UResourceBundle.getBundleInstance(
                 ICUData.ICU_BASE_NAME,
                 "keyTypeData",
                 ICUResourceBundle.ICU_DATA_CLASS_LOADER);
+         */
+        UResourceBundle keyTypeDataRes = ICUResourceBundle.getBundleInstance(
+                ICUData.ICU_BASE_NAME,
+                "keyTypeData",
+                ICUResourceBundle.ICU_DATA_CLASS_LOADER,
+                ICUResourceBundle.OpenType.DIRECT);
 
         getKeyInfo(keyTypeDataRes.get("keyInfo"));
         getTypeInfo(keyTypeDataRes.get("typeInfo"));
