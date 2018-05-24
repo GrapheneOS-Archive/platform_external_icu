@@ -195,6 +195,28 @@ public final class UCharacterCaseTest extends TestFmwk
         }
     }
 
+    @Test
+    public void TestInvalidCodePointFolding() {
+        int[] invalidCodePoints = {
+                0xD800, // lead surrogate
+                0xDFFF, // trail surrogate
+                0xFDD0, // noncharacter
+                0xFFFF, // noncharacter
+                0x110000, // out of range
+                -1 // negative
+        };
+        for (int cp : invalidCodePoints) {
+            assertEquals("Invalid code points should be echoed back",
+                    cp, UCharacter.foldCase(cp, true));
+            assertEquals("Invalid code points should be echoed back",
+                    cp, UCharacter.foldCase(cp, false));
+            assertEquals("Invalid code points should be echoed back",
+                    cp, UCharacter.foldCase(cp, UCharacter.FOLD_CASE_DEFAULT));
+            assertEquals("Invalid code points should be echoed back",
+                    cp, UCharacter.foldCase(cp, UCharacter.FOLD_CASE_EXCLUDE_SPECIAL_I));
+        }
+    }
+
     /**
      * Testing the strings case mapping methods
      */
@@ -461,19 +483,17 @@ public final class UCharacterCaseTest extends TestFmwk
                 }
             }
             else {
-                if (!SPECIAL_DATA_[j + 1].equals(
-                     UCharacter.toLowerCase(str))) {
+                String lower = UCharacter.toLowerCase(str);
+                if (!SPECIAL_DATA_[j + 1].equals(lower)) {
                     errln("error lowercasing special characters " +
                         hex(str) + " expected " + SPECIAL_DATA_[j + 1] +
-                        " but got " +
-                        hex(UCharacter.toLowerCase(locale, str)));
+                        " but got " + hex(lower));
                 }
-                if (!SPECIAL_DATA_[j + 2].equals(
-                     UCharacter.toUpperCase(locale, str))) {
+                String upper = UCharacter.toUpperCase(str);
+                if (!SPECIAL_DATA_[j + 2].equals(upper)) {
                     errln("error uppercasing special characters " +
                         hex(str) + " expected " + SPECIAL_DATA_[j + 2] +
-                        " but got " +
-                        hex(UCharacter.toUpperCase(locale, str)));
+                        " but got " + hex(upper));
                 }
             }
         }
