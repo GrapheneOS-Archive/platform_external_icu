@@ -4083,6 +4083,26 @@ public class ULocaleTest extends TestFmwk {
     }
 
     @Test
+    public void TestForLanguageTagBug13776() {
+        Locale backupDefault = Locale.getDefault();
+
+        try {
+            // Set ULocale.defaultULocale to any non-null value
+            Locale.setDefault(Locale.US);
+            ULocale.getDefault();
+            // Set default Locale in OpenJDK
+            Locale l = Locale.forLanguageTag("ar-EG-u-nu-latn");
+            Locale.setDefault(l);
+            // Create ULocale object from a Locale object
+            ULocale uloc = ULocale.forLocale(l);
+            assertEquals("getKeywordValue(\"numbers\")", "latn", uloc.getKeywordValue("numbers"));
+        } finally {
+            // Restore back up
+            Locale.setDefault(backupDefault);
+        }
+    }
+
+    @Test
     public void TestForLanguageTag() {
         final Integer NOERROR = Integer.valueOf(-1);
 
