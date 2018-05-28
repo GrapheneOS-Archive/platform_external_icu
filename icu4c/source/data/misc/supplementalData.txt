@@ -1633,10 +1633,8 @@ supplementalData:table(nofallback){
             "islamic-tbla",
         }
         AF{
-// BEGIN android-changed
             "gregorian",
             "persian",
-// END android-changed
             "islamic",
             "islamic-civil",
             "islamic-tbla",
@@ -1713,10 +1711,8 @@ supplementalData:table(nofallback){
             "islamic-tbla",
         }
         IR{
-// BEGIN android-changed
             "gregorian",
             "persian",
-// END android-changed
             "islamic",
             "islamic-civil",
             "islamic-tbla",
@@ -1796,10 +1792,8 @@ supplementalData:table(nofallback){
             "islamic-tbla",
         }
         SA{
-// BEGIN android-changed
             "gregorian",
             "islamic-umalqura",
-// END android-changed
             "islamic",
             "islamic-rgsa",
         }
@@ -1826,10 +1820,8 @@ supplementalData:table(nofallback){
             "islamic-tbla",
         }
         TH{
-// BEGIN android-changed
             "gregorian",
             "buddhist",
-// END android-changed
         }
         TN{
             "gregorian",
@@ -16564,6 +16556,12 @@ supplementalData:table(nofallback){
     languageMatching{
         written{
             {
+                "nb",
+                "no",
+                "99",
+                "0",
+            }
+            {
                 "hr",
                 "bs",
                 "96",
@@ -17044,12 +17042,6 @@ supplementalData:table(nofallback){
                 "1",
             }
             {
-                "nb",
-                "no",
-                "99",
-                "0",
-            }
-            {
                 "ne",
                 "en",
                 "90",
@@ -17063,15 +17055,15 @@ supplementalData:table(nofallback){
             }
             {
                 "nn",
-                "nb",
-                "90",
-                "1",
-            }
-            {
-                "nn",
                 "no",
                 "90",
                 "0",
+            }
+            {
+                "nn",
+                "nb",
+                "90",
+                "1",
             }
             {
                 "nso",
