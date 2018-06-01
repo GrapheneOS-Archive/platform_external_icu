@@ -171,7 +171,7 @@ public class MeasureUnit implements Serializable {
     }
 
     /**
-     * Create a MeasureUnit instance (creates a singleton instance).
+     * Creates a MeasureUnit instance (creates a singleton instance) or returns one from the cache.
      * <p>
      * Normally this method should not be used, since there will be no formatting data
      * available for it, and it may not be returned by getAvailable().
@@ -843,8 +843,7 @@ public class MeasureUnit implements Serializable {
 
     /**
      * Constant for unit of length: point
-     * @draft ICU 59
-     * @provisional This API might change or be removed in a future release.
+     * @stable ICU 59
      */
     public static final MeasureUnit POINT = MeasureUnit.internalGetInstance("length", "point");
 

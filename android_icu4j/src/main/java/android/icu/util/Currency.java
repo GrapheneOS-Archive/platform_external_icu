@@ -25,7 +25,6 @@ import java.util.MissingResourceException;
 import java.util.Set;
 
 import android.icu.impl.CacheBase;
-import android.icu.impl.CurrencyData.CurrencyDisplayInfo;
 import android.icu.impl.ICUCache;
 import android.icu.impl.ICUData;
 import android.icu.impl.ICUDebug;
@@ -89,15 +88,10 @@ public class Currency extends MeasureUnit {
      * Selector for getName() indicating the narrow currency symbol.
      * The narrow currency symbol is similar to the regular currency
      * symbol, but it always takes the shortest form: for example,
-     * "$" instead of "US$".
+     * "$" instead of "US$" for USD in en-CA.
      *
-     * This method assumes that the currency data provider is the ICU4J
-     * built-in data provider. If it is not, an exception is thrown.
-     *
-     * @deprecated ICU 60: This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
-    @Deprecated
     public static final int NARROW_SYMBOL_NAME = 3;
 
     private static final EquivalenceRelation<String> EQUIVALENT_CURRENCY_SYMBOLS =
@@ -525,7 +519,7 @@ public class Currency extends MeasureUnit {
      * @see #getName
      */
     public String getSymbol(ULocale uloc) {
-        return getName(uloc, SYMBOL_NAME, new boolean[1]);
+        return getName(uloc, SYMBOL_NAME, null);
     }
 
     /**
@@ -546,8 +540,8 @@ public class Currency extends MeasureUnit {
      * currency object in the en_US locale is "$".
      * @param locale locale in which to display currency
      * @param nameStyle selector for which kind of name to return.
-     *                  The nameStyle should be either SYMBOL_NAME or
-     *                  LONG_NAME. Otherwise, throw IllegalArgumentException.
+     *                  The nameStyle should be SYMBOL_NAME, NARROW_SYMBOL_NAME,
+     *                  or LONG_NAME. Otherwise, throw IllegalArgumentException.
      * @param isChoiceFormat fill-in; isChoiceFormat[0] is set to true
      * if the returned value is a ChoiceFormat pattern; otherwise it
      * is set to false
@@ -574,13 +568,7 @@ public class Currency extends MeasureUnit {
         case SYMBOL_NAME:
             return names.getSymbol(subType);
         case NARROW_SYMBOL_NAME:
-            // CurrencyDisplayNames is the public interface.
-            // CurrencyDisplayInfo is ICU's standard implementation.
-            if (!(names instanceof CurrencyDisplayInfo)) {
-                throw new UnsupportedOperationException(
-                        "Cannot get narrow symbol from custom currency display name provider");
-            }
-            return ((CurrencyDisplayInfo) names).getNarrowSymbol(subType);
+            return names.getNarrowSymbol(subType);
         case LONG_NAME:
             return names.getName(subType);
         default:
@@ -726,13 +714,12 @@ public class Currency extends MeasureUnit {
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
-    public static TextTrieMap<CurrencyStringInfo>.ParseState openParseState(
-        ULocale locale, int startingCp, int type) {
+    public static TextTrieMap<CurrencyStringInfo> getParsingTrie(ULocale locale, int type) {
         List<TextTrieMap<CurrencyStringInfo>> currencyTrieVec = getCurrencyTrieVec(locale);
         if (type == Currency.LONG_NAME) {
-            return currencyTrieVec.get(0).openParseState(startingCp);
+            return currencyTrieVec.get(1);
         } else {
-            return currencyTrieVec.get(1).openParseState(startingCp);
+            return currencyTrieVec.get(0);
         }
     }
 
