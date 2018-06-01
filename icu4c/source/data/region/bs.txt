@@ -110,7 +110,7 @@ bs{
         EZ{"Eurozona"}
         FI{"Finska"}
         FJ{"Fidži"}
-        FK{"Folklandska ostrva"}
+        FK{"Folklandska (Malvinska) ostrva"}
         FM{"Mikronezija"}
         FO{"Farska ostrva"}
         FR{"Francuska"}
@@ -133,7 +133,7 @@ bs{
         GU{"Guam"}
         GW{"Gvineja-Bisao"}
         GY{"Gvajana"}
-        HK{"Hong Kong (SAR Kina)"}
+        HK{"Hong Kong"}
         HM{"Herd i arhipelag MekDonald"}
         HN{"Honduras"}
         HR{"Hrvatska"}
@@ -183,11 +183,11 @@ bs{
         MF{"Sveti Martin"}
         MG{"Madagaskar"}
         MH{"Maršalova ostrva"}
-        MK{"Makedonija"}
+        MK{"Makedonija (BJR)"}
         ML{"Mali"}
         MM{"Mjanmar"}
         MN{"Mongolija"}
-        MO{"Makao (SAR Kina)"}
+        MO{"Makao"}
         MP{"Sjeverna Marijanska ostrva"}
         MQ{"Martinik"}
         MR{"Mauritanija"}
@@ -222,7 +222,7 @@ bs{
         PM{"Sveti Petar i Mikelon"}
         PN{"Pitkernska Ostrva"}
         PR{"Porto Riko"}
-        PS{"Palestinska Teritorija"}
+        PS{"Palestina"}
         PT{"Portugal"}
         PW{"Palau"}
         PY{"Paragvaj"}
@@ -297,9 +297,6 @@ bs{
     }
     Countries%short{
         GB{"UK"}
-        HK{"Hong Kong"}
-        MO{"Makao"}
-        PS{"Palestina"}
         UN{"UN"}
         US{"SAD"}
     }
@@ -308,8 +305,6 @@ bs{
         CG{"Republika Kongo"}
         CI{"Obala Bjelokosti"}
         CZ{"Češka Republika"}
-        FK{"Folklandska (Malvinska) ostrva"}
-        MK{"Makedonija (BJR)"}
         TL{"TL"}
     }
     Version{"2.1.39.11"}

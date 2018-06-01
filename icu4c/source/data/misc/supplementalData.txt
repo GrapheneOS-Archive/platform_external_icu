@@ -1633,8 +1633,8 @@ supplementalData:table(nofallback){
             "islamic-tbla",
         }
         AF{
-            "persian",
             "gregorian",
+            "persian",
             "islamic",
             "islamic-civil",
             "islamic-tbla",
@@ -1711,8 +1711,8 @@ supplementalData:table(nofallback){
             "islamic-tbla",
         }
         IR{
-            "persian",
             "gregorian",
+            "persian",
             "islamic",
             "islamic-civil",
             "islamic-tbla",
@@ -1792,8 +1792,8 @@ supplementalData:table(nofallback){
             "islamic-tbla",
         }
         SA{
-            "islamic-umalqura",
             "gregorian",
+            "islamic-umalqura",
             "islamic",
             "islamic-rgsa",
         }
@@ -1820,8 +1820,8 @@ supplementalData:table(nofallback){
             "islamic-tbla",
         }
         TH{
-            "buddhist",
             "gregorian",
+            "buddhist",
         }
         TN{
             "gregorian",
@@ -16567,8 +16567,8 @@ supplementalData:table(nofallback){
     languageMatching{
         written{
             {
-                "no",
                 "nb",
+                "no",
                 "99",
                 "0",
             }
@@ -17066,13 +17066,13 @@ supplementalData:table(nofallback){
             }
             {
                 "nn",
-                "nb",
+                "no",
                 "90",
                 "0",
             }
             {
                 "nn",
-                "no",
+                "nb",
                 "90",
                 "1",
             }

@@ -110,7 +110,7 @@ tr{
         EZ{"Euro Bölgesi"}
         FI{"Finlandiya"}
         FJ{"Fiji"}
-        FK{"Falkland Adaları"}
+        FK{"Falkland Adaları (Malvinas Adaları)"}
         FM{"Mikronezya"}
         FO{"Faroe Adaları"}
         FR{"Fransa"}
@@ -133,7 +133,7 @@ tr{
         GU{"Guam"}
         GW{"Gine-Bissau"}
         GY{"Guyana"}
-        HK{"Çin Hong Kong ÖİB"}
+        HK{"Hong Kong"}
         HM{"Heard Adası ve McDonald Adaları"}
         HN{"Honduras"}
         HR{"Hırvatistan"}
@@ -183,11 +183,11 @@ tr{
         MF{"Saint Martin"}
         MG{"Madagaskar"}
         MH{"Marshall Adaları"}
-        MK{"Makedonya"}
+        MK{"Makedonya (EYMC)"}
         ML{"Mali"}
         MM{"Myanmar (Burma)"}
         MN{"Moğolistan"}
-        MO{"Çin Makao ÖİB"}
+        MO{"Makao"}
         MP{"Kuzey Mariana Adaları"}
         MQ{"Martinik"}
         MR{"Moritanya"}
@@ -222,7 +222,7 @@ tr{
         PM{"Saint Pierre ve Miquelon"}
         PN{"Pitcairn Adaları"}
         PR{"Porto Riko"}
-        PS{"Filistin Bölgeleri"}
+        PS{"Filistin"}
         PT{"Portekiz"}
         PW{"Palau"}
         PY{"Paraguay"}
@@ -297,9 +297,6 @@ tr{
     }
     Countries%short{
         GB{"BK"}
-        HK{"Hong Kong"}
-        MO{"Makao"}
-        PS{"Filistin"}
         UN{"BM"}
         US{"ABD"}
     }
@@ -307,8 +304,6 @@ tr{
         CD{"Kongo Demokratik Cumhuriyeti"}
         CG{"Kongo Cumhuriyeti"}
         CZ{"Çek Cumhuriyeti"}
-        FK{"Falkland Adaları (Malvinas Adaları)"}
-        MK{"Makedonya (EYMC)"}
         TL{"Doğu Timor"}
     }
     Version{"2.1.39.20"}

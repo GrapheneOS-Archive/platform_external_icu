@@ -265,7 +265,7 @@ pt_PT{
         }
         "meta:America_Mountain"{
             ld{"Hora de verão da Montanha"}
-            lg{"Hora de Montanha"}
+            lg{"Hora da Montanha"}
             ls{"Hora padrão da Montanha"}
         }
         "meta:America_Pacific"{
