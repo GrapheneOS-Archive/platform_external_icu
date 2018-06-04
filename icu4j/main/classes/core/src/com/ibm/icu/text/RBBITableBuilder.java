@@ -10,6 +10,7 @@
 package com.ibm.icu.text;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
@@ -20,6 +21,7 @@ import java.util.TreeSet;
 import com.ibm.icu.impl.Assert;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.lang.UProperty;
+import com.ibm.icu.text.RBBIRuleBuilder.IntPair;
 
 //
 //  class RBBITableBuilder is part of the RBBI rule compiler.
@@ -655,7 +657,7 @@ class RBBITableBuilder {
                         // if sd.fAccepting already had a value other than 0 or -1, leave it be.
 
                        // If the end marker node is from a look-ahead rule, set
-                       //   the fLookAhead field or this state also.
+                       //   the fLookAhead field for this state also.
                        if (endMarker.fLookAheadEnd) {
                         // TODO:  don't change value if already set?
                         // TODO:  allow for more than one active look-ahead rule in engine.
@@ -832,115 +834,214 @@ class RBBITableBuilder {
 
 
 
+       /**
+        *  Find duplicate (redundant) character classes, beginning at the specified
+        *  pair, within this state table. This is an iterator-like function, used to
+        *  identify character classes (state table columns) that can be eliminated.
+        *  @param categories in/out parameter, specifies where to start looking for duplicates,
+        *                and returns the first pair of duplicates found, if any.
+        *  @return true if duplicate char classes were found, false otherwise.
+        *  @internal
+        */
+       boolean findDuplCharClassFrom(RBBIRuleBuilder.IntPair categories) {
+           int numStates = fDStates.size();
+           int numCols = fRB.fSetBuilder.getNumCharCategories();
 
-       //-----------------------------------------------------------------------------
-       //
-       //   getTableSize()    Calculate the size in bytes of the runtime form of this
-       //                     state transition table.
-       //
-       //          Note:  Refer to common/rbbidata.h from ICU4C for the declarations
-       //                 of the structures being matched by this calculation.
-       //
-       //-----------------------------------------------------------------------------
+           int table_base = 0;
+           int table_dupl = 0;
+           for (; categories.first < numCols-1; ++categories.first) {
+               for (categories.second=categories.first+1; categories.second < numCols; ++categories.second) {
+                   for (int state=0; state<numStates; state++) {
+                       RBBIStateDescriptor sd = fDStates.get(state);
+                       table_base = sd.fDtran[categories.first];
+                       table_dupl = sd.fDtran[categories.second];
+                       if (table_base != table_dupl) {
+                           break;
+                       }
+                   }
+                   if (table_base == table_dupl) {
+                       return true;
+                   }
+               }
+           }
+           return false;
+       }
+
+       /**
+        * Remove a column from the state table. Used when two character categories
+        * have been found equivalent, and merged together, to eliminate the unneeded table column.
+        */
+       void removeColumn(int column) {
+           int numStates = fDStates.size();
+           for (int state=0; state<numStates; state++) {
+               RBBIStateDescriptor sd = fDStates.get(state);
+               assert(column < sd.fDtran.length);
+               int[] newArray = Arrays.copyOf(sd.fDtran, sd.fDtran.length - 1);
+               System.arraycopy(sd.fDtran, column+1, newArray, column, newArray.length - column);
+               sd.fDtran = newArray;
+           }
+       }
+
+
+       /**
+        *  Find duplicate (redundant) states, beginning at the specified pair,
+        *  within this state table. This is an iterator-like function, used to
+        *  identify states (state table rows) that can be eliminated.
+        *  @param states in/out parameter, specifies where to start looking for duplicates,
+        *                and returns the first pair of duplicates found, if any.
+        *  @return true if duplicate states were found, false otherwise.
+        *  @internal
+        */
+       boolean findDuplicateState(RBBIRuleBuilder.IntPair states) {
+           int numStates = fDStates.size();
+           int numCols = fRB.fSetBuilder.getNumCharCategories();
+
+           for (; states.first<numStates-1; ++states.first) {
+               RBBIStateDescriptor firstSD = fDStates.get(states.first);
+               for (states.second=states.first+1; states.second<numStates; ++states.second) {
+                   RBBIStateDescriptor duplSD = fDStates.get(states.second);
+                   if (firstSD.fAccepting != duplSD.fAccepting ||
+                           firstSD.fLookAhead != duplSD.fLookAhead ||
+                           firstSD.fTagsIdx   != duplSD.fTagsIdx) {
+                       continue;
+                   }
+                   boolean rowsMatch = true;
+                   for (int col=0; col < numCols; ++col) {
+                       int firstVal = firstSD.fDtran[col];
+                       int duplVal = duplSD.fDtran[col];
+                       if (!((firstVal == duplVal) ||
+                               ((firstVal == states.first || firstVal == states.second) &&
+                                       (duplVal  == states.first || duplVal  == states.second)))) {
+                           rowsMatch = false;
+                           break;
+                       }
+                   }
+                   if (rowsMatch) {
+                       return true;
+                   }
+               }
+           }
+           return false;
+       }
+
+       /**
+        * Remove a duplicate state (row) from the state table. All references to the deleted state are
+        * redirected to "keepState", the first encountered of the duplicated pair of states.
+        * @param keepState The first of the duplicate pair of states, the one to be kept.
+        * @param duplState The second of the duplicate pair, the one to be removed.
+        * @internal
+        */
+       void removeState(int keepState, int duplState) {
+           assert(keepState < duplState);
+           assert(duplState < fDStates.size());
+
+           fDStates.remove(duplState);
+
+           int numStates = fDStates.size();
+           int numCols = fRB.fSetBuilder.getNumCharCategories();
+           for (int state=0; state<numStates; ++state) {
+               RBBIStateDescriptor sd = fDStates.get(state);
+               for (int col=0; col<numCols; col++) {
+                   int existingVal = sd.fDtran[col];
+                   int newVal = existingVal;
+                   if (existingVal == duplState) {
+                       newVal = keepState;
+                   } else if (existingVal > duplState) {
+                       newVal = existingVal - 1;
+                   }
+                   sd.fDtran[col] = newVal;
+               }
+               if (sd.fAccepting == duplState) {
+                   sd.fAccepting = keepState;
+               } else if (sd.fAccepting > duplState) {
+                   sd.fAccepting--;
+               }
+               if (sd.fLookAhead == duplState) {
+                   sd.fLookAhead = keepState;
+               } else if (sd.fLookAhead > duplState) {
+                   sd.fLookAhead--;
+               }
+           }
+       }
+
+
+       /**
+        *  Check for, and remove duplicate states (table rows).
+        *  @internal
+        */
+       void removeDuplicateStates() {
+           IntPair dupls = new IntPair(3, 0);
+           while (findDuplicateState(dupls)) {
+               // System.out.printf("Removing duplicate states (%d, %d)\n", dupls.first, dupls.second);
+               removeState(dupls.first, dupls.second);
+           }
+       }
+
+
+       /**
+        *  Calculate the size in bytes of the serialized form of this state transition table,
+        *  which is identical to the ICU4C runtime form.
+        *  Refer to common/rbbidata.h from ICU4C for the declarations of the structures
+        *  being matched by this calculation.
+        */
        int  getTableSize()  {
-           int    size = 0;
-           int    numRows;
-           int    numCols;
-           int    rowSize;
-
            if (fRB.fTreeRoots[fRootIx] == null) {
                return 0;
            }
-
-           size    = /*sizeof(RBBIStateTable) - 4 */ 16;    // The header, with no rows to the table.
-
-           numRows = fDStates.size();
-           numCols = fRB.fSetBuilder.getNumCharCategories();
-
-           //  Note  The declaration of RBBIStateTableRow is for a table of two columns.
-           //        Therefore we subtract two from numCols when determining
-           //        how much storage to add to a row for the total columns.
-           // rowSize = sizeof(RBBIStateTableRow) + sizeof(uint16_t)*(numCols-2);
-           rowSize = 8 + 2*numCols;
+           int size    = 16;    // The header of 4 ints, with no rows to the table.
+           int numRows = fDStates.size();
+           int numCols = fRB.fSetBuilder.getNumCharCategories();
+           int rowSize = 8 + 2*numCols;
            size   += numRows * rowSize;
-           while (size % 8 > 0) {    // Size must be multiple of 8 bytes in size.
-               size++;
-           }
-
+           size = (size + 7) & ~7;   // round up to a multiple of 8 bytes
            return size;
        }
 
 
 
-       //-----------------------------------------------------------------------------
-       //
-       //   exportTable()    export the state transition table in the ICU4C format.
-       //
-       //                    Most of the table is 16 bit shorts.  This function exports
-       //                    the whole thing as an array of shorts.
-       //
-       //                    The size of the array must be rounded up to a multiple of
-       //                    8 bytes.
-       //
-       //                    See struct RBBIStateTable in ICU4C, common/rbbidata.h
-       //
-       //-----------------------------------------------------------------------------
-
-       short [] exportTable() {
+       /**
+        * Create a RBBIDataWrapper.RBBIStateTable for a newly compiled table.
+        * RBBIDataWrapper.RBBIStateTable is similar to struct RBBIStateTable in ICU4C,
+        * in common/rbbidata.h
+        */
+       RBBIDataWrapper.RBBIStateTable exportTable() {
            int                state;
            int                col;
 
+           RBBIDataWrapper.RBBIStateTable table = new RBBIDataWrapper.RBBIStateTable();
            if (fRB.fTreeRoots[fRootIx] == null) {
-               return new short[0];
+               return table;
            }
 
            Assert.assrt(fRB.fSetBuilder.getNumCharCategories() < 0x7fff &&
                fDStates.size() < 0x7fff);
-
-           int numStates = fDStates.size();
+           table.fNumStates = fDStates.size();
 
            // Size of table size in shorts.
            //  the "4" is the size of struct RBBIStateTableRow, the row header part only.
-           int rowLen = 4 + fRB.fSetBuilder.getNumCharCategories();
-           int tableSize = getTableSize() / 2;
+           int rowLen = 4 + fRB.fSetBuilder.getNumCharCategories();   // Row Length in shorts.
+           int tableSize = (getTableSize() - 16) / 2;       // fTable length in shorts.
+           table.fTable = new short[tableSize];
+           table.fRowLen = rowLen * 2;                      // Row length in bytes.
 
-
-           short [] table = new short[tableSize];
-
-           //
-           // Fill in the header fields.
-           //      Annoying because they really want to be ints, not shorts.
-           //
-           // RBBIStateTable.fNumStates
-           table[RBBIDataWrapper.NUMSTATES]   = (short)(numStates >>> 16);
-           table[RBBIDataWrapper.NUMSTATES+1] = (short)(numStates & 0x0000ffff);
-
-           // RBBIStateTable.fRowLen
-           table[RBBIDataWrapper.ROWLEN]   = (short)(rowLen >>> 16);
-           table[RBBIDataWrapper.ROWLEN+1] = (short)(rowLen & 0x0000ffff);
-
-           // RBBIStateTable.fFlags
-           int flags = 0;
            if (fRB.fLookAheadHardBreak) {
-               flags  |= RBBIDataWrapper.RBBI_LOOKAHEAD_HARD_BREAK;
+               table.fFlags  |= RBBIDataWrapper.RBBI_LOOKAHEAD_HARD_BREAK;
            }
            if (fRB.fSetBuilder.sawBOF()) {
-               flags  |= RBBIDataWrapper.RBBI_BOF_REQUIRED;
+               table.fFlags  |= RBBIDataWrapper.RBBI_BOF_REQUIRED;
            }
-           table[RBBIDataWrapper.FLAGS]   = (short)(flags >>> 16);
-           table[RBBIDataWrapper.FLAGS+1] = (short)(flags & 0x0000ffff);
 
            int numCharCategories = fRB.fSetBuilder.getNumCharCategories();
-           for (state=0; state<numStates; state++) {
+           for (state=0; state<table.fNumStates; state++) {
                RBBIStateDescriptor sd = fDStates.get(state);
-               int                row = 8 + state*rowLen;
+               int row = state*rowLen;
                Assert.assrt (-32768 < sd.fAccepting && sd.fAccepting <= 32767);
                Assert.assrt (-32768 < sd.fLookAhead && sd.fLookAhead <= 32767);
-               table[row + RBBIDataWrapper.ACCEPTING] = (short)sd.fAccepting;
-               table[row + RBBIDataWrapper.LOOKAHEAD] = (short)sd.fLookAhead;
-               table[row + RBBIDataWrapper.TAGIDX]    = (short)sd.fTagsIdx;
+               table.fTable[row + RBBIDataWrapper.ACCEPTING] = (short)sd.fAccepting;
+               table.fTable[row + RBBIDataWrapper.LOOKAHEAD] = (short)sd.fLookAhead;
+               table.fTable[row + RBBIDataWrapper.TAGIDX]    = (short)sd.fTagsIdx;
                for (col=0; col<numCharCategories; col++) {
-                   table[row + RBBIDataWrapper.NEXTSTATES + col] = (short)sd.fDtran[col];
+                   table.fTable[row + RBBIDataWrapper.NEXTSTATES + col] = (short)sd.fDtran[col];
                }
            }
            return table;

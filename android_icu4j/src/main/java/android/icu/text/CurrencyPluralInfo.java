@@ -243,7 +243,7 @@ public class CurrencyPluralInfo implements Cloneable, Serializable {
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
-    String select(PluralRules.FixedDecimal numberInfo) {
+    public String select(PluralRules.FixedDecimal numberInfo) {
         return pluralRules.select(numberInfo);
     }
 
@@ -251,8 +251,11 @@ public class CurrencyPluralInfo implements Cloneable, Serializable {
      * Currency plural pattern iterator.
      *
      * @return a iterator on the currency plural pattern key set.
+     * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
      */
-    Iterator<String> pluralPatternIterator() {
+    @Deprecated
+    public Iterator<String> pluralPatternIterator() {
         return pluralCountToCurrencyUnitPattern.keySet().iterator();
     }
 

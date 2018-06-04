@@ -1848,4 +1848,51 @@ public final class Utility {
     public static String toString(Object o) {
         return o == null ? "null" : o.toString();
     }
+
+    /**
+     * This implementation is equivalent to Java 8+ Math#addExact(int, int)
+     * @param x the first value
+     * @param y the second value
+     * @return the result
+     */
+    public static int addExact(int x, int y) {
+        int r = x + y;
+        // HD 2-12 Overflow iff both arguments have the opposite sign of the result
+        if (((x ^ r) & (y ^ r)) < 0) {
+            throw new ArithmeticException("integer overflow");
+        }
+        return r;
+    }
+
+    /**
+     * Returns whether the chars in the two CharSequences are equal.
+     */
+    public static boolean charSequenceEquals(CharSequence a, CharSequence b) {
+        if (a == b) {
+            return true;
+        }
+        if (a == null || b == null) {
+            return false;
+        }
+        if (a.length() != b.length()) {
+            return false;
+        }
+        for (int i = 0; i < a.length(); i++) {
+            if (a.charAt(i) != b.charAt(i))
+                return false;
+        }
+        return true;
+    }
+
+    /**
+     * Returns a hash code for a CharSequence that is equivalent to calling
+     * charSequence.toString().hashCode()
+     */
+    public static int charSequenceHashCode(CharSequence value) {
+        int hash = 0;
+        for (int i = 0; i < value.length(); i++) {
+            hash = hash * 31 + value.charAt(i);
+        }
+        return hash;
+    }
 }

@@ -132,7 +132,7 @@ import android.icu.util.VersionInfo;
  * Comparison:<ul>
  * <li> isUWhiteSpace=UCHAR_WHITE_SPACE: Unicode White_Space property;
  *       most of general categories "Z" (separators) + most whitespace ISO controls
- *       (including no-break spaces, but excluding IS1..IS4 and ZWSP)
+ *       (including no-break spaces, but excluding IS1..IS4)
  * <li> isWhitespace: Java isWhitespace; Z + whitespace ISO controls but excluding no-break spaces
  * <li> isSpaceChar: just Z (including no-break spaces)</ul>
  *
@@ -4514,38 +4514,6 @@ public final class UCharacter implements ECharacterCategory, ECharacterDirection
         titleIter.setText(str);
         return CaseMapImpl.toTitle(getCaseLocale(locale), options, titleIter, str);
     }
-
-    /**
-     * Return a string with just the first word titlecased, for menus and UI, etc. This does not affect most of the string,
-     * and sometimes has no effect at all; the original string is returned whenever casing
-     * would not be appropriate for the first word (such as for CJK characters or initial numbers).
-     * Initial non-letters are skipped in order to find the character to change.
-     * Characters past the first affected are left untouched: see also TITLECASE_NO_LOWERCASE.
-     * <p>Examples:
-     * <table border='1'><tr><th>Source</th><th>Result</th><th>Locale</th></tr>
-     * <tr><td>anglo-American locale</td><td>Anglo-American locale</td></tr>
-     * <tr><td>“contact us”</td><td>“Contact us”</td></tr>
-     * <tr><td>49ers win!</td><td>49ers win!</td></tr>
-     * <tr><td>丰(abc)</td><td>丰(abc)</td></tr>
-     * <tr><td>«ijs»</td><td>«Ijs»</td></tr>
-     * <tr><td>«ijs»</td><td>«IJs»</td><td>nl-BE</td></tr>
-     * <tr><td>«ijs»</td><td>«İjs»</td><td>tr-DE</td></tr>
-     * </table>
-     * @param locale the locale for accessing exceptional behavior (eg for tr).
-     * @param str the source string to change
-     * @return the modified string, or the original if no modifications were necessary.
-     * @deprecated ICU internal only
-     * @hide original deprecated declaration
-     * @hide draft / provisional / internal are hidden on Android
-     */
-    @Deprecated
-    public static String toTitleFirst(ULocale locale, String str) {
-        // TODO: Remove this function. Inline it where it is called in CLDR.
-        return TO_TITLE_WHOLE_STRING_NO_LOWERCASE.apply(locale.toLocale(), null, str);
-    }
-
-    private static final android.icu.text.CaseMap.Title TO_TITLE_WHOLE_STRING_NO_LOWERCASE =
-            android.icu.text.CaseMap.toTitle().wholeString().noLowercase();
 
     /**
      * <strong>[icu]</strong> <p>Returns the titlecase version of the argument string.

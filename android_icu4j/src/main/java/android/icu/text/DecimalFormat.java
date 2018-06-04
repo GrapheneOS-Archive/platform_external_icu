@@ -11,15 +11,16 @@ import java.math.BigInteger;
 import java.math.RoundingMode;
 import java.text.AttributedCharacterIterator;
 import java.text.FieldPosition;
-import java.text.ParseException;
 import java.text.ParsePosition;
 
 import android.icu.impl.number.AffixUtils;
 import android.icu.impl.number.DecimalFormatProperties;
 import android.icu.impl.number.Padder.PadPosition;
-import android.icu.impl.number.Parse;
 import android.icu.impl.number.PatternStringParser;
 import android.icu.impl.number.PatternStringUtils;
+import android.icu.impl.number.parse.NumberParserImpl;
+import android.icu.impl.number.parse.NumberParserImpl.ParseMode;
+import android.icu.impl.number.parse.ParsedNumber;
 import android.icu.lang.UCharacter;
 import android.icu.math.BigDecimal;
 import android.icu.math.MathContext;
@@ -34,7 +35,15 @@ import android.icu.util.ULocale;
 import android.icu.util.ULocale.Category;
 
 /**
- * <strong>[icu enhancement]</strong> ICU's replacement for {@link java.text.DecimalFormat}.&nbsp;Methods, fields, and other functionality specific to ICU are labeled '<strong>[icu]</strong>'. <code>DecimalFormat</code> is the primary
+ * <strong>[icu enhancement]</strong> ICU's replacement for {@link java.text.DecimalFormat}.&nbsp;Methods, fields, and other functionality specific to ICU are labeled '<strong>[icu]</strong>'.
+ *
+ * <p>
+ * <strong>IMPORTANT:</strong> New users are strongly encouraged to see if
+ * {@link NumberFormatter} fits their use case.  Although not deprecated, this
+ * class, DecimalFormat, is only provided for java.text.DecimalFormat compatibility.
+ * <hr>
+ *
+ * <code>DecimalFormat</code> is the primary
  * concrete subclass of {@link NumberFormat}. It has a variety of features designed to make it
  * possible to parse and format numbers in any locale, including support for Western, Arabic, or
  * Indic digits. It supports different flavors of numbers, including integers ("123"), fixed-point
@@ -276,6 +285,9 @@ public class DecimalFormat extends NumberFormat {
    * read and write at the same time.
    */
   transient volatile DecimalFormatProperties exportedProperties;
+
+  transient volatile NumberParserImpl parser;
+  transient volatile NumberParserImpl parserWithCurrency;
 
   //=====================================================================================//
   //                                    CONSTRUCTORS                                     //
@@ -763,17 +775,38 @@ public class DecimalFormat extends NumberFormat {
    */
   @Override
   public Number parse(String text, ParsePosition parsePosition) {
-    DecimalFormatProperties pprops = threadLocalProperties.get();
-    synchronized (this) {
-      pprops.copyFrom(properties);
-    }
-    // Backwards compatibility: use currency parse mode if this is a currency instance
-    Number result = Parse.parse(text, parsePosition, pprops, symbols);
-    // Backwards compatibility: return android.icu.math.BigDecimal
-    if (result instanceof java.math.BigDecimal) {
-      result = safeConvertBigDecimal((java.math.BigDecimal) result);
-    }
-    return result;
+      if (text == null) {
+          throw new IllegalArgumentException("Text cannot be null");
+      }
+      if (parsePosition == null) {
+          parsePosition = new ParsePosition(0);
+      }
+      if (parsePosition.getIndex() < 0) {
+          throw new IllegalArgumentException("Cannot start parsing at a negative offset");
+      }
+      if (parsePosition.getIndex() >= text.length()) {
+          // For backwards compatibility, this is not an exception, just an empty result.
+          return null;
+      }
+
+      ParsedNumber result = new ParsedNumber();
+      // Note: if this is a currency instance, currencies will be matched despite the fact that we are not in the
+      // parseCurrency method (backwards compatibility)
+      int startIndex = parsePosition.getIndex();
+      parser.parse(text, startIndex, true, result);
+      if (result.success()) {
+          parsePosition.setIndex(result.charEnd);
+          // TODO: Accessing properties here is technically not thread-safe
+          Number number = result.getNumber(properties.getParseToBigDecimal());
+          // Backwards compatibility: return android.icu.math.BigDecimal
+          if (number instanceof java.math.BigDecimal) {
+              number = safeConvertBigDecimal((java.math.BigDecimal) number);
+          }
+          return number;
+      } else {
+          parsePosition.setErrorIndex(startIndex + result.charEnd);
+          return null;
+      }
   }
 
   /**
@@ -781,23 +814,37 @@ public class DecimalFormat extends NumberFormat {
    */
   @Override
   public CurrencyAmount parseCurrency(CharSequence text, ParsePosition parsePosition) {
-    try {
-      DecimalFormatProperties pprops = threadLocalProperties.get();
-      synchronized (this) {
-        pprops.copyFrom(properties);
+      if (text == null) {
+          throw new IllegalArgumentException("Text cannot be null");
       }
-      CurrencyAmount result = Parse.parseCurrency(text, parsePosition, pprops, symbols);
-      if (result == null) return null;
-      Number number = result.getNumber();
-      // Backwards compatibility: return android.icu.math.BigDecimal
-      if (number instanceof java.math.BigDecimal) {
-        number = safeConvertBigDecimal((java.math.BigDecimal) number);
-        result = new CurrencyAmount(number, result.getCurrency());
+      if (parsePosition == null) {
+          parsePosition = new ParsePosition(0);
       }
-      return result;
-    } catch (ParseException e) {
-      return null;
-    }
+      if (parsePosition.getIndex() < 0) {
+          throw new IllegalArgumentException("Cannot start parsing at a negative offset");
+      }
+      if (parsePosition.getIndex() >= text.length()) {
+          // For backwards compatibility, this is not an exception, just an empty result.
+          return null;
+      }
+
+      ParsedNumber result = new ParsedNumber();
+      int startIndex = parsePosition.getIndex();
+      parserWithCurrency.parse(text.toString(), startIndex, true, result);
+      if (result.success()) {
+          parsePosition.setIndex(result.charEnd);
+          // TODO: Accessing properties here is technically not thread-safe
+          Number number = result.getNumber(properties.getParseToBigDecimal());
+          // Backwards compatibility: return android.icu.math.BigDecimal
+          if (number instanceof java.math.BigDecimal) {
+              number = safeConvertBigDecimal((java.math.BigDecimal) number);
+          }
+          Currency currency = Currency.getInstance(result.currencyCode);
+          return new CurrencyAmount(number, currency);
+      } else {
+          parsePosition.setErrorIndex(startIndex + result.charEnd);
+          return null;
+      }
   }
 
   //=====================================================================================//
@@ -1937,7 +1984,7 @@ public class DecimalFormat extends NumberFormat {
    */
   public synchronized void setParseBigDecimal(boolean value) {
     properties.setParseToBigDecimal(value);
-    // refreshFormatter() not needed
+    refreshFormatter();
   }
 
   /**
@@ -1963,7 +2010,7 @@ public class DecimalFormat extends NumberFormat {
    */
   @Override
   public synchronized boolean isParseStrict() {
-    return properties.getParseMode() == Parse.ParseMode.STRICT;
+    return properties.getParseMode() == ParseMode.STRICT;
   }
 
   /**
@@ -1971,9 +2018,9 @@ public class DecimalFormat extends NumberFormat {
    */
   @Override
   public synchronized void setParseStrict(boolean parseStrict) {
-    Parse.ParseMode mode = parseStrict ? Parse.ParseMode.STRICT : Parse.ParseMode.LENIENT;
+    ParseMode mode = parseStrict ? ParseMode.STRICT : ParseMode.LENIENT;
     properties.setParseMode(mode);
-    // refreshFormatter() not needed
+    refreshFormatter();
   }
 
   /**
@@ -1998,7 +2045,7 @@ public class DecimalFormat extends NumberFormat {
   @Override
   public synchronized void setParseIntegerOnly(boolean parseIntegerOnly) {
     properties.setParseIntegerOnly(parseIntegerOnly);
-    // refreshFormatter() not needed
+    refreshFormatter();
   }
 
   /**
@@ -2275,6 +2322,8 @@ public class DecimalFormat extends NumberFormat {
     }
     assert locale != null;
     formatter = NumberFormatter.fromDecimalFormat(properties, symbols, exportedProperties).locale(locale);
+    parser = NumberParserImpl.createParserFromProperties(properties, symbols, false, false);
+    parserWithCurrency = NumberParserImpl.createParserFromProperties(properties, symbols, true, false);
   }
 
   /**
