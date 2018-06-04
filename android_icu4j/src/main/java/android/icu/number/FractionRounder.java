@@ -6,8 +6,8 @@ package android.icu.number;
 import android.icu.impl.number.RoundingUtils;
 
 /**
- * A class that defines a rounding strategy based on a number of fraction places and optionally significant digits to be
- * used when formatting numbers in NumberFormatter.
+ * A class that defines a rounding strategy based on a number of fraction places and optionally
+ * significant digits to be used when formatting numbers in NumberFormatter.
  *
  * <p>
  * To create a FractionRounder, use one of the factory methods on Rounder.
@@ -22,15 +22,16 @@ public abstract class FractionRounder extends Rounder {
     }
 
     /**
-     * Ensure that no less than this number of significant digits are retained when rounding according to fraction
-     * rules.
+     * Ensure that no less than this number of significant digits are retained when rounding according to
+     * fraction rules.
      *
      * <p>
-     * For example, with integer rounding, the number 3.141 becomes "3". However, with minimum figures set to 2, 3.141
-     * becomes "3.1" instead.
+     * For example, with integer rounding, the number 3.141 becomes "3". However, with minimum figures
+     * set to 2, 3.141 becomes "3.1" instead.
      *
      * <p>
-     * This setting does not affect the number of trailing zeros. For example, 3.01 would print as "3", not "3.0".
+     * This setting does not affect the number of trailing zeros. For example, 3.01 would print as "3",
+     * not "3.0".
      *
      * @param minSignificantDigits
      *            The number of significant figures to guarantee.
@@ -39,25 +40,26 @@ public abstract class FractionRounder extends Rounder {
      * @hide draft / provisional / internal are hidden on Android
      */
     public Rounder withMinDigits(int minSignificantDigits) {
-        if (minSignificantDigits > 0 && minSignificantDigits <= RoundingUtils.MAX_INT_FRAC_SIG) {
+        if (minSignificantDigits >= 1 && minSignificantDigits <= RoundingUtils.MAX_INT_FRAC_SIG) {
             return constructFractionSignificant(this, minSignificantDigits, -1);
         } else {
-            throw new IllegalArgumentException(
-                    "Significant digits must be between 0 and " + RoundingUtils.MAX_INT_FRAC_SIG);
+            throw new IllegalArgumentException("Significant digits must be between 1 and "
+                    + RoundingUtils.MAX_INT_FRAC_SIG
+                    + " (inclusive)");
         }
     }
 
     /**
-     * Ensure that no more than this number of significant digits are retained when rounding according to fraction
-     * rules.
+     * Ensure that no more than this number of significant digits are retained when rounding according to
+     * fraction rules.
      *
      * <p>
-     * For example, with integer rounding, the number 123.4 becomes "123". However, with maximum figures set to 2, 123.4
-     * becomes "120" instead.
+     * For example, with integer rounding, the number 123.4 becomes "123". However, with maximum figures
+     * set to 2, 123.4 becomes "120" instead.
      *
      * <p>
-     * This setting does not affect the number of trailing zeros. For example, with fixed fraction of 2, 123.4 would
-     * become "120.00".
+     * This setting does not affect the number of trailing zeros. For example, with fixed fraction of 2,
+     * 123.4 would become "120.00".
      *
      * @param maxSignificantDigits
      *            Round the number to no more than this number of significant figures.
@@ -66,11 +68,12 @@ public abstract class FractionRounder extends Rounder {
      * @hide draft / provisional / internal are hidden on Android
      */
     public Rounder withMaxDigits(int maxSignificantDigits) {
-        if (maxSignificantDigits > 0 && maxSignificantDigits <= RoundingUtils.MAX_INT_FRAC_SIG) {
+        if (maxSignificantDigits >= 1 && maxSignificantDigits <= RoundingUtils.MAX_INT_FRAC_SIG) {
             return constructFractionSignificant(this, -1, maxSignificantDigits);
         } else {
-            throw new IllegalArgumentException(
-                    "Significant digits must be between 0 and " + RoundingUtils.MAX_INT_FRAC_SIG);
+            throw new IllegalArgumentException("Significant digits must be between 1 and "
+                    + RoundingUtils.MAX_INT_FRAC_SIG
+                    + " (inclusive)");
         }
     }
 }

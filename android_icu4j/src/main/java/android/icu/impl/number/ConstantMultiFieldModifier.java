@@ -6,8 +6,9 @@ package android.icu.impl.number;
 import android.icu.text.NumberFormat.Field;
 
 /**
- * An implementation of {@link Modifier} that allows for multiple types of fields in the same modifier. Constructed
- * based on the contents of two {@link NumberStringBuilder} instances (one for the prefix, one for the suffix).
+ * An implementation of {@link Modifier} that allows for multiple types of fields in the same modifier.
+ * Constructed based on the contents of two {@link NumberStringBuilder} instances (one for the prefix,
+ * one for the suffix).
  * @hide Only a subset of ICU is exposed in Android
  */
 public class ConstantMultiFieldModifier implements Modifier {
@@ -18,21 +19,29 @@ public class ConstantMultiFieldModifier implements Modifier {
     protected final char[] suffixChars;
     protected final Field[] prefixFields;
     protected final Field[] suffixFields;
+    private final boolean overwrite;
     private final boolean strong;
 
-    public ConstantMultiFieldModifier(NumberStringBuilder prefix, NumberStringBuilder suffix, boolean strong) {
+    public ConstantMultiFieldModifier(
+            NumberStringBuilder prefix,
+            NumberStringBuilder suffix,
+            boolean overwrite,
+            boolean strong) {
         prefixChars = prefix.toCharArray();
         suffixChars = suffix.toCharArray();
         prefixFields = prefix.toFieldArray();
         suffixFields = suffix.toFieldArray();
+        this.overwrite = overwrite;
         this.strong = strong;
     }
 
     @Override
     public int apply(NumberStringBuilder output, int leftIndex, int rightIndex) {
-        // Insert the suffix first since inserting the prefix will change the rightIndex
-        int length = output.insert(rightIndex, suffixChars, suffixFields);
-        length += output.insert(leftIndex, prefixChars, prefixFields);
+        int length = output.insert(leftIndex, prefixChars, prefixFields);
+        if (overwrite) {
+            length += output.splice(leftIndex + length, rightIndex + length, "", 0, 0, null);
+        }
+        length += output.insert(rightIndex + length, suffixChars, suffixFields);
         return length;
     }
 
@@ -57,7 +66,8 @@ public class ConstantMultiFieldModifier implements Modifier {
         NumberStringBuilder temp = new NumberStringBuilder();
         apply(temp, 0, 0);
         int prefixLength = getPrefixLength();
-        return String.format("<ConstantMultiFieldModifier prefix:'%s' suffix:'%s'>", temp.subSequence(0, prefixLength),
+        return String.format("<ConstantMultiFieldModifier prefix:'%s' suffix:'%s'>",
+                temp.subSequence(0, prefixLength),
                 temp.subSequence(prefixLength, temp.length()));
     }
 }

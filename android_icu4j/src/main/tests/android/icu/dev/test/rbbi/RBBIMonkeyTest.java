@@ -27,7 +27,7 @@ import android.icu.text.BreakIterator;
 import android.icu.text.RuleBasedBreakIterator;
 import android.icu.text.UnicodeSet;
 import android.icu.util.ULocale;
-import android.icu.testsharding.MainTestShard;
+import android.icu.testsharding.HiMemTestShard;
 
 /**
  * RBBI Monkey Test. Ported from ICU4C test/intltest/rbbimonkeytest.cpp.
@@ -35,7 +35,7 @@ import android.icu.testsharding.MainTestShard;
  * older class RBBITestMonkey.
  */
 
-@MainTestShard
+@HiMemTestShard
 @RunWith(JUnit4.class)
 public class RBBIMonkeyTest extends TestFmwk {
 

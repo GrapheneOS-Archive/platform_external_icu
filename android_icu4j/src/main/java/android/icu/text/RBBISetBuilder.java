@@ -113,7 +113,7 @@ class RBBISetBuilder {
                         }
                     }
                     if (setName.equals("dictionary")) {
-                        this.fNum |= 0x4000;
+                        this.fNum |= DICT_BIT;
                         break;
                     }
                 }
@@ -139,6 +139,8 @@ class RBBISetBuilder {
 
     boolean             fSawBOF;
 
+    static final int    DICT_BIT = 0x4000;
+
 
     //------------------------------------------------------------------------
     //
@@ -157,7 +159,7 @@ class RBBISetBuilder {
     //                          from the Unicode Sets.
     //
     //------------------------------------------------------------------------
-    void build() {
+    void buildRanges() {
         RangeDescriptor rlRange;
 
         if (fRB.fDebugEnv!=null  && fRB.fDebugEnv.indexOf("usets")>=0) {printSets();}
@@ -281,6 +283,15 @@ class RBBISetBuilder {
 
         if (fRB.fDebugEnv!=null  && fRB.fDebugEnv.indexOf("rgroup")>=0) {printRangeGroups();}
         if (fRB.fDebugEnv!=null  && fRB.fDebugEnv.indexOf("esets")>=0) {printSets();}
+    }
+
+
+    /**
+     * Build the Trie table for mapping UChar32 values to the corresponding
+     * range group number.
+     */
+    void buildTrie() {
+        RangeDescriptor rlRange;
 
         fTrie = new Trie2Writable(0,       //   Initial value for all code points.
                                   0);      //   Error value for out-of-range input.
@@ -295,6 +306,24 @@ class RBBISetBuilder {
         }
     }
 
+    /**
+     * Merge two character categories that have been identified as having equivalent behavior.
+     * The ranges belonging to the right category (table column) will be added to the left.
+     */
+    void mergeCategories(int left, int right) {
+        assert(left >= 1);
+        assert(right > left);
+        for (RangeDescriptor rd = fRangeList; rd != null; rd = rd.fNext) {
+            int rangeNum = rd.fNum & ~DICT_BIT;
+            int rangeDict = rd.fNum & DICT_BIT;
+            if (rangeNum == right) {
+                rd.fNum = left | rangeDict;
+            } else if (rangeNum > right) {
+                rd.fNum--;
+            }
+        }
+        --fGroupCount;
+    }
 
     //-----------------------------------------------------------------------------------
     //
@@ -458,7 +487,7 @@ class RBBISetBuilder {
                 if (groupNum<10) {System.out.print(" ");}
                 System.out.print(groupNum + " ");
 
-                if ((rlRange.fNum & 0x4000) != 0) { System.out.print(" <DICT> ");}
+                if ((rlRange.fNum & DICT_BIT) != 0) { System.out.print(" <DICT> ");}
 
                 for (i=0; i<rlRange.fIncludesSets.size(); i++) {
                     RBBINode       usetNode    = rlRange.fIncludesSets.get(i);

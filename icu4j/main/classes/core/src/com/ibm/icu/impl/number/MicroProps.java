@@ -2,7 +2,6 @@
 // License & terms of use: http://www.unicode.org/copyright.html#License
 package com.ibm.icu.impl.number;
 
-import com.ibm.icu.number.Grouper;
 import com.ibm.icu.number.IntegerWidth;
 import com.ibm.icu.number.NumberFormatter.DecimalSeparatorDisplay;
 import com.ibm.icu.number.NumberFormatter.SignDisplay;
@@ -31,8 +30,8 @@ public class MicroProps implements Cloneable, MicroPropsGenerator {
 
     /**
      * @param immutable
-     *            Whether this MicroProps should behave as an immutable after construction with respect to the quantity
-     *            chain.
+     *            Whether this MicroProps should behave as an immutable after construction with respect
+     *            to the quantity chain.
      */
     public MicroProps(boolean immutable) {
         this.immutable = immutable;
