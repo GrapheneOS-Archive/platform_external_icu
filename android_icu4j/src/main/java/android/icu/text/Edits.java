@@ -12,7 +12,6 @@ import java.util.Arrays;
  * Does not support moving/reordering of text.
  *
  * @hide Only a subset of ICU is exposed in Android
- * @hide draft / provisional / internal are hidden on Android
  */
 public final class Edits {
     // 0000uuuuuuuuuuuu records u+1 unchanged text units.
@@ -41,7 +40,6 @@ public final class Edits {
 
     /**
      * Constructs an empty object.
-     * @hide draft / provisional / internal are hidden on Android
      */
     public Edits() {
         array = new char[STACK_CAPACITY];
@@ -49,7 +47,6 @@ public final class Edits {
 
     /**
      * Resets the data but may not release memory.
-     * @hide draft / provisional / internal are hidden on Android
      */
     public void reset() {
         length = delta = numChanges = 0;
@@ -65,7 +62,6 @@ public final class Edits {
     /**
      * Adds a record for an unchanged segment of text.
      * Normally called from inside ICU string transformation functions, not user code.
-     * @hide draft / provisional / internal are hidden on Android
      */
     public void addUnchanged(int unchangedLength) {
         if(unchangedLength < 0) {
@@ -97,7 +93,6 @@ public final class Edits {
     /**
      * Adds a record for a text replacement/insertion/deletion.
      * Normally called from inside ICU string transformation functions, not user code.
-     * @hide draft / provisional / internal are hidden on Android
      */
     public void addReplace(int oldLength, int newLength) {
         if(oldLength < 0 || newLength < 0) {
@@ -194,12 +189,10 @@ public final class Edits {
     /**
      * How much longer is the new text compared with the old text?
      * @return new length minus old length
-     * @hide draft / provisional / internal are hidden on Android
      */
     public int lengthDelta() { return delta; }
     /**
      * @return true if there are any change edits
-     * @hide draft / provisional / internal are hidden on Android
      */
     public boolean hasChanges()  { return numChanges != 0; }
 
@@ -213,7 +206,6 @@ public final class Edits {
      * Access to the list of edits.
      * @see #getCoarseIterator
      * @see #getFineIterator
-     * @hide draft / provisional / internal are hidden on Android
      */
     public static final class Iterator {
         private final char[] array;
@@ -284,7 +276,6 @@ public final class Edits {
         /**
          * Advances to the next edit.
          * @return true if there is another edit
-         * @hide draft / provisional / internal are hidden on Android
          */
         public boolean next() {
             return next(onlyChanges_);
@@ -503,7 +494,6 @@ public final class Edits {
          *
          * @param i source index
          * @return true if the edit for the source index was found
-         * @hide draft / provisional / internal are hidden on Android
          */
         public boolean findSourceIndex(int i) {
             return findIndex(i, true) == 0;
@@ -695,35 +685,29 @@ public final class Edits {
         /**
          * @return true if this edit replaces oldLength() units with newLength() different ones.
          *         false if oldLength units remain unchanged.
-         * @hide draft / provisional / internal are hidden on Android
          */
         public boolean hasChange() { return changed; }
         /**
          * @return the number of units in the original string which are replaced or remain unchanged.
-         * @hide draft / provisional / internal are hidden on Android
          */
         public int oldLength() { return oldLength_; }
         /**
          * @return the number of units in the modified string, if hasChange() is true.
          *         Same as oldLength if hasChange() is false.
-         * @hide draft / provisional / internal are hidden on Android
          */
         public int newLength() { return newLength_; }
 
         /**
          * @return the current index into the source string
-         * @hide draft / provisional / internal are hidden on Android
          */
         public int sourceIndex() { return srcIndex; }
         /**
          * @return the current index into the replacement-characters-only string,
          *         not counting unchanged spans
-         * @hide draft / provisional / internal are hidden on Android
          */
         public int replacementIndex() { return replIndex; }
         /**
          * @return the current index into the full destination string
-         * @hide draft / provisional / internal are hidden on Android
          */
         public int destinationIndex() { return destIndex; }
     };
@@ -732,7 +716,6 @@ public final class Edits {
      * Returns an Iterator for coarse-grained changes for simple string updates.
      * Skips non-changes.
      * @return an Iterator that merges adjacent changes.
-     * @hide draft / provisional / internal are hidden on Android
      */
     public Iterator getCoarseChangesIterator() {
         return new Iterator(array, length, true, true);
@@ -741,7 +724,6 @@ public final class Edits {
     /**
      * Returns an Iterator for coarse-grained changes and non-changes for simple string updates.
      * @return an Iterator that merges adjacent changes.
-     * @hide draft / provisional / internal are hidden on Android
      */
     public Iterator getCoarseIterator() {
         return new Iterator(array, length, false, true);
@@ -751,7 +733,6 @@ public final class Edits {
      * Returns an Iterator for fine-grained changes for modifying styled text.
      * Skips non-changes.
      * @return an Iterator that separates adjacent changes.
-     * @hide draft / provisional / internal are hidden on Android
      */
     public Iterator getFineChangesIterator() {
         return new Iterator(array, length, true, false);
@@ -760,7 +741,6 @@ public final class Edits {
     /**
      * Returns an Iterator for fine-grained changes and non-changes for modifying styled text.
      * @return an Iterator that separates adjacent changes.
-     * @hide draft / provisional / internal are hidden on Android
      */
     public Iterator getFineIterator() {
         return new Iterator(array, length, false, false);

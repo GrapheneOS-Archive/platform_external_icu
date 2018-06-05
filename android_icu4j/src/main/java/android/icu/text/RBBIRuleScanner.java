@@ -15,6 +15,7 @@ import java.util.HashMap;
 import android.icu.impl.Assert;
 import android.icu.impl.Utility;
 import android.icu.lang.UCharacter;
+import android.icu.lang.UProperty;
 
 /**
   *  This class is part of the Rule Based Break Iterator rule compiler.
@@ -697,17 +698,16 @@ class RBBIRuleScanner {
     static String stripRules(String rules) {
         StringBuilder strippedRules = new StringBuilder();
         int rulesLength = rules.length();
-        for (int idx = 0; idx < rulesLength;) {
-            char ch = rules.charAt(idx++);
-            if (ch == '#') {
-                while (idx < rulesLength
-                        && ch != '\r' && ch != '\n' && ch != chNEL) {
-                    ch = rules.charAt(idx++);
-                }
+        boolean skippingSpaces = false;
+
+        for (int idx = 0; idx < rulesLength; idx = rules.offsetByCodePoints(idx, 1)) {
+            int cp = rules.codePointAt(idx);
+            boolean whiteSpace = UCharacter.hasBinaryProperty(cp, UProperty.PATTERN_WHITE_SPACE);
+            if (skippingSpaces && whiteSpace) {
+                continue;
             }
-            if (!UCharacter.isISOControl(ch)) {
-                strippedRules.append(ch);
-            }
+            strippedRules.appendCodePoint(cp);
+            skippingSpaces = whiteSpace;
         }
         return strippedRules.toString();
     }
@@ -801,6 +801,7 @@ class RBBIRuleScanner {
                 //  It will be treated as white-space, and serves to break up anything
                 //    that might otherwise incorrectly clump together with a comment in
                 //    the middle (a variable name, for example.)
+                int commentStart = fScanIndex;
                 for (;;) {
                     c.fChar = nextCharLL();
                     if (c.fChar == -1 || // EOF
@@ -811,6 +812,9 @@ class RBBIRuleScanner {
                     {
                         break;
                     }
+                }
+                for (int i=commentStart; i<fNextIndex-1; ++i) {
+                    fRB.fStrippedRules.setCharAt(i, ' ');
                 }
             }
             if (c.fChar == -1) {

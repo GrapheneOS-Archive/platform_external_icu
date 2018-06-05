@@ -6,6 +6,7 @@ package android.icu.number;
 import android.icu.impl.number.MacroProps;
 import android.icu.impl.number.Padder;
 import android.icu.number.NumberFormatter.DecimalSeparatorDisplay;
+import android.icu.number.NumberFormatter.GroupingStrategy;
 import android.icu.number.NumberFormatter.SignDisplay;
 import android.icu.number.NumberFormatter.UnitWidth;
 import android.icu.text.DecimalFormatSymbols;
@@ -17,9 +18,9 @@ import android.icu.util.NoUnit;
 import android.icu.util.ULocale;
 
 /**
- * An abstract base class for specifying settings related to number formatting. This class is implemented by
- * {@link UnlocalizedNumberFormatter} and {@link LocalizedNumberFormatter}. This class is not intended for public
- * subclassing.
+ * An abstract base class for specifying settings related to number formatting. This class is implemented
+ * by {@link UnlocalizedNumberFormatter} and {@link LocalizedNumberFormatter}. This class is not intended
+ * for public subclassing.
  *
  * @see NumberFormatter
  * @hide Only a subset of ICU is exposed in Android
@@ -32,7 +33,7 @@ public abstract class NumberFormatterSettings<T extends NumberFormatterSettings<
     static final int KEY_NOTATION = 2;
     static final int KEY_UNIT = 3;
     static final int KEY_ROUNDER = 4;
-    static final int KEY_GROUPER = 5;
+    static final int KEY_GROUPING = 5;
     static final int KEY_PADDER = 6;
     static final int KEY_INTEGER = 7;
     static final int KEY_SYMBOLS = 8;
@@ -40,7 +41,8 @@ public abstract class NumberFormatterSettings<T extends NumberFormatterSettings<
     static final int KEY_SIGN = 10;
     static final int KEY_DECIMAL = 11;
     static final int KEY_THRESHOLD = 12;
-    static final int KEY_MAX = 13;
+    static final int KEY_PER_UNIT = 13;
+    static final int KEY_MAX = 14;
 
     final NumberFormatterSettings<?> parent;
     final int key;
@@ -63,8 +65,8 @@ public abstract class NumberFormatterSettings<T extends NumberFormatterSettings<
      * </ul>
      *
      * <p>
-     * All notation styles will be properly localized with locale data, and all notation styles are compatible with
-     * units, rounding strategies, and other number formatter settings.
+     * All notation styles will be properly localized with locale data, and all notation styles are
+     * compatible with units, rounding strategies, and other number formatter settings.
      *
      * <p>
      * Pass this method the return value of a {@link Notation} factory method. For example:
@@ -96,13 +98,13 @@ public abstract class NumberFormatterSettings<T extends NumberFormatterSettings<
      *
      * <p>
      * <strong>Note:</strong> The unit can also be specified by passing a {@link Measure} to
-     * {@link LocalizedNumberFormatter#format(Measure)}. Units specified via the format method take precedence over
-     * units specified here. This setter is designed for situations when the unit is constant for the duration of the
-     * number formatting process.
+     * {@link LocalizedNumberFormatter#format(Measure)}. Units specified via the format method take
+     * precedence over units specified here. This setter is designed for situations when the unit is
+     * constant for the duration of the number formatting process.
      *
      * <p>
-     * All units will be properly localized with locale data, and all units are compatible with notation styles,
-     * rounding strategies, and other number formatter settings.
+     * All units will be properly localized with locale data, and all units are compatible with notation
+     * styles, rounding strategies, and other number formatter settings.
      *
      * <p>
      * Pass this method any instance of {@link MeasureUnit}. For units of measure:
@@ -123,6 +125,10 @@ public abstract class NumberFormatterSettings<T extends NumberFormatterSettings<
      * NumberFormatter.with().unit(NoUnit.PERCENT)
      * </pre>
      *
+     * <p>
+     * See {@link #perUnit} for information on how to format strings like "5 meters per second".
+     *
+     * <p>
      * The default is to render without units (equivalent to {@link NoUnit#BASE}).
      *
      * @param unit
@@ -131,10 +137,38 @@ public abstract class NumberFormatterSettings<T extends NumberFormatterSettings<
      * @see MeasureUnit
      * @see Currency
      * @see NoUnit
+     * @see #perUnit
      * @hide draft / provisional / internal are hidden on Android
      */
     public T unit(MeasureUnit unit) {
         return create(KEY_UNIT, unit);
+    }
+
+    /**
+     * Sets a unit to be used in the denominator. For example, to format "3 m/s", pass METER to the unit
+     * and SECOND to the perUnit.
+     *
+     * <p>
+     * Pass this method any instance of {@link MeasureUnit}. For example:
+     *
+     * <pre>
+     * NumberFormatter.with().unit(MeasureUnit.METER).perUnit(MeasureUnit.SECOND)
+     * </pre>
+     *
+     * <p>
+     * The default is not to display any unit in the denominator.
+     *
+     * <p>
+     * If a per-unit is specified without a primary unit via {@link #unit}, the behavior is undefined.
+     *
+     * @param perUnit
+     *            The unit to render in the denominator.
+     * @return The fluent chain
+     * @see #unit
+     * @hide draft / provisional / internal are hidden on Android
+     */
+    public T perUnit(MeasureUnit perUnit) {
+        return create(KEY_PER_UNIT, perUnit);
     }
 
     /**
@@ -156,10 +190,10 @@ public abstract class NumberFormatterSettings<T extends NumberFormatterSettings<
      *
      * <p>
      * In most cases, the default rounding strategy is to round to 6 fraction places; i.e.,
-     * <code>Rounder.maxFraction(6)</code>. The exceptions are if compact notation is being used, then the compact
-     * notation rounding strategy is used (see {@link Notation#compactShort} for details), or if the unit is a currency,
-     * then standard currency rounding is used, which varies from currency to currency (see {@link Rounder#currency} for
-     * details).
+     * <code>Rounder.maxFraction(6)</code>. The exceptions are if compact notation is being used, then
+     * the compact notation rounding strategy is used (see {@link Notation#compactShort} for details), or
+     * if the unit is a currency, then standard currency rounding is used, which varies from currency to
+     * currency (see {@link Rounder#currency} for details).
      *
      * @param rounder
      *            The rounding strategy to use.
@@ -184,25 +218,23 @@ public abstract class NumberFormatterSettings<T extends NumberFormatterSettings<
      * The exact grouping widths will be chosen based on the locale.
      *
      * <p>
-     * Pass this method the return value of one of the factory methods on {@link Grouper}. For example:
+     * Pass this method an element from the {@link GroupingStrategy} enum. For example:
      *
      * <pre>
-     * NumberFormatter.with().grouping(Grouper.min2())
+     * NumberFormatter.with().grouping(GroupingStrategy.MIN2)
      * </pre>
      *
-     * The default is to perform grouping without concern for the minimum grouping digits.
+     * The default is to perform grouping according to locale data; most locales, but not all locales,
+     * enable it by default.
      *
-     * @param grouper
+     * @param strategy
      *            The grouping strategy to use.
      * @return The fluent chain.
-     * @see Grouper
-     * @see Notation
-     * @deprecated ICU 60 This API is technical preview; see #7861.
+     * @see GroupingStrategy
      * @hide draft / provisional / internal are hidden on Android
      */
-    @Deprecated
-    public T grouping(Grouper grouper) {
-        return create(KEY_GROUPER, grouper);
+    public T grouping(GroupingStrategy strategy) {
+        return create(KEY_GROUPING, strategy);
     }
 
     /**
@@ -234,8 +266,8 @@ public abstract class NumberFormatterSettings<T extends NumberFormatterSettings<
     }
 
     /**
-     * Specifies the symbols (decimal separator, grouping separator, percent sign, numerals, etc.) to use when rendering
-     * numbers.
+     * Specifies the symbols (decimal separator, grouping separator, percent sign, numerals, etc.) to use
+     * when rendering numbers.
      *
      * <ul>
      * <li><em>en_US</em> symbols: "12,345.67"
@@ -252,17 +284,17 @@ public abstract class NumberFormatterSettings<T extends NumberFormatterSettings<
      * </pre>
      *
      * <p>
-     * <strong>Note:</strong> DecimalFormatSymbols automatically chooses the best numbering system based on the locale.
-     * In the examples above, the first three are using the Latin numbering system, and the fourth is using the Myanmar
-     * numbering system.
+     * <strong>Note:</strong> DecimalFormatSymbols automatically chooses the best numbering system based
+     * on the locale. In the examples above, the first three are using the Latin numbering system, and
+     * the fourth is using the Myanmar numbering system.
      *
      * <p>
-     * <strong>Note:</strong> The instance of DecimalFormatSymbols will be copied: changes made to the symbols object
-     * after passing it into the fluent chain will not be seen.
+     * <strong>Note:</strong> The instance of DecimalFormatSymbols will be copied: changes made to the
+     * symbols object after passing it into the fluent chain will not be seen.
      *
      * <p>
-     * <strong>Note:</strong> Calling this method will override the NumberingSystem previously specified in
-     * {@link #symbols(NumberingSystem)}.
+     * <strong>Note:</strong> Calling this method will override the NumberingSystem previously specified
+     * in {@link #symbols(NumberingSystem)}.
      *
      * <p>
      * The default is to choose the symbols based on the locale specified in the fluent chain.
@@ -288,16 +320,16 @@ public abstract class NumberFormatterSettings<T extends NumberFormatterSettings<
      * </ul>
      *
      * <p>
-     * Pass this method an instance of {@link NumberingSystem}. For example, to force the locale to always use the Latin
-     * alphabet numbering system (ASCII digits):
+     * Pass this method an instance of {@link NumberingSystem}. For example, to force the locale to
+     * always use the Latin alphabet numbering system (ASCII digits):
      *
      * <pre>
      * NumberFormatter.with().symbols(NumberingSystem.LATIN)
      * </pre>
      *
      * <p>
-     * <strong>Note:</strong> Calling this method will override the DecimalFormatSymbols previously specified in
-     * {@link #symbols(DecimalFormatSymbols)}.
+     * <strong>Note:</strong> Calling this method will override the DecimalFormatSymbols previously
+     * specified in {@link #symbols(DecimalFormatSymbols)}.
      *
      * <p>
      * The default is to choose the best numbering system for the locale.
@@ -371,8 +403,8 @@ public abstract class NumberFormatterSettings<T extends NumberFormatterSettings<
     }
 
     /**
-     * Sets the decimal separator display strategy. This affects integer numbers with no fraction part. Most common
-     * values:
+     * Sets the decimal separator display strategy. This affects integer numbers with no fraction part.
+     * Most common values:
      *
      * <ul>
      * <li>Auto: "1"
@@ -422,8 +454,8 @@ public abstract class NumberFormatterSettings<T extends NumberFormatterSettings<
     }
 
     /**
-     * Internal fluent setter to support a custom regulation threshold. A threshold of 1 causes the data structures to
-     * be built right away. A threshold of 0 prevents the data structures from being built.
+     * Internal fluent setter to support a custom regulation threshold. A threshold of 1 causes the data
+     * structures to be built right away. A threshold of 0 prevents the data structures from being built.
      *
      * @deprecated ICU 60 This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
@@ -470,9 +502,9 @@ public abstract class NumberFormatterSettings<T extends NumberFormatterSettings<
                     macros.rounder = (Rounder) current.value;
                 }
                 break;
-            case KEY_GROUPER:
-                if (macros.grouper == null) {
-                    macros.grouper = (Grouper) current.value;
+            case KEY_GROUPING:
+                if (macros.grouping == null) {
+                    macros.grouping = /* (Object) */ current.value;
                 }
                 break;
             case KEY_PADDER:
@@ -508,6 +540,11 @@ public abstract class NumberFormatterSettings<T extends NumberFormatterSettings<
             case KEY_THRESHOLD:
                 if (macros.threshold == null) {
                     macros.threshold = (Long) current.value;
+                }
+                break;
+            case KEY_PER_UNIT:
+                if (macros.perUnit == null) {
+                    macros.perUnit = (MeasureUnit) current.value;
                 }
                 break;
             default:

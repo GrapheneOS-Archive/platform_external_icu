@@ -5,27 +5,38 @@ package android.icu.dev.test.number;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertTrue;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Locale;
+import java.util.Map;
+import java.util.Set;
 
 import org.junit.Ignore;
 import org.junit.Test;
 
+import android.icu.impl.number.Grouper;
+import android.icu.impl.number.MacroProps;
 import android.icu.impl.number.Padder;
 import android.icu.impl.number.Padder.PadPosition;
 import android.icu.impl.number.PatternStringParser;
-import android.icu.number.FormattedNumber;
-import android.icu.number.Grouper;
+import android.icu.number.CompactNotation;
+import android.icu.number.FractionRounder;
 import android.icu.number.IntegerWidth;
 import android.icu.number.LocalizedNumberFormatter;
 import android.icu.number.Notation;
 import android.icu.number.NumberFormatter;
 import android.icu.number.NumberFormatter.DecimalSeparatorDisplay;
+import android.icu.number.NumberFormatter.GroupingStrategy;
 import android.icu.number.NumberFormatter.SignDisplay;
 import android.icu.number.NumberFormatter.UnitWidth;
 import android.icu.number.Rounder;
+import android.icu.number.ScientificNotation;
 import android.icu.number.UnlocalizedNumberFormatter;
 import android.icu.text.DecimalFormatSymbols;
 import android.icu.text.NumberingSystem;
@@ -45,6 +56,8 @@ public class NumberFormatterApiTest {
     private static final Currency GBP = Currency.getInstance("GBP");
     private static final Currency CZK = Currency.getInstance("CZK");
     private static final Currency CAD = Currency.getInstance("CAD");
+    private static final Currency ESP = Currency.getInstance("ESP");
+    private static final Currency PTE = Currency.getInstance("PTE");
 
     @Test
     public void notationSimple() {
@@ -348,6 +361,19 @@ public class NumberFormatterApiTest {
                 ULocale.ENGLISH,
                 9990000,
                 "10M");
+
+        Map<String, Map<String, String>> compactCustomData = new HashMap<String, Map<String, String>>();
+        Map<String, String> entry = new HashMap<String, String>();
+        entry.put("one", "Kun");
+        entry.put("other", "0KK");
+        compactCustomData.put("1000", entry);
+        assertFormatSingle(
+                "Compact Somali No Figure",
+                "",
+                NumberFormatter.with().notation(CompactNotation.forCustomData(compactCustomData)),
+                ULocale.ENGLISH,
+                1000,
+                "Kun");
     }
 
     @Test
@@ -467,6 +493,73 @@ public class NumberFormatterApiTest {
                 ULocale.forLanguageTag("es-US"),
                 5.43,
                 "5.43 °F");
+
+        assertFormatSingle(
+                "MeasureUnit form without {0} in CLDR pattern",
+                "",
+                NumberFormatter.with().unit(MeasureUnit.KELVIN).unitWidth(UnitWidth.FULL_NAME),
+                ULocale.forLanguageTag("es-MX"),
+                1,
+                "kelvin");
+
+        assertFormatSingle(
+                "MeasureUnit form without {0} in CLDR pattern and wide base form",
+                "",
+                NumberFormatter.with()
+                    .rounding(Rounder.fixedFraction(20))
+                    .unit(MeasureUnit.KELVIN)
+                    .unitWidth(UnitWidth.FULL_NAME),
+                ULocale.forLanguageTag("es-MX"),
+                1,
+                "kelvin");
+    }
+
+    @Test
+    public void unitCompoundMeasure() {
+        assertFormatDescending(
+                "Meters Per Second Short (unit that simplifies)",
+                "",
+                NumberFormatter.with().unit(MeasureUnit.METER).perUnit(MeasureUnit.SECOND),
+                ULocale.ENGLISH,
+                "87,650 m/s",
+                "8,765 m/s",
+                "876.5 m/s",
+                "87.65 m/s",
+                "8.765 m/s",
+                "0.8765 m/s",
+                "0.08765 m/s",
+                "0.008765 m/s",
+                "0 m/s");
+
+        assertFormatDescending(
+                "Pounds Per Square Mile Short (secondary unit has per-format)",
+                "",
+                NumberFormatter.with().unit(MeasureUnit.POUND).perUnit(MeasureUnit.SQUARE_MILE),
+                ULocale.ENGLISH,
+                "87,650 lb/mi²",
+                "8,765 lb/mi²",
+                "876.5 lb/mi²",
+                "87.65 lb/mi²",
+                "8.765 lb/mi²",
+                "0.8765 lb/mi²",
+                "0.08765 lb/mi²",
+                "0.008765 lb/mi²",
+                "0 lb/mi²");
+
+        assertFormatDescending(
+                "Joules Per Furlong Short (unit with no simplifications or special patterns)",
+                "",
+                NumberFormatter.with().unit(MeasureUnit.JOULE).perUnit(MeasureUnit.FURLONG),
+                ULocale.ENGLISH,
+                "87,650 J/fur",
+                "8,765 J/fur",
+                "876.5 J/fur",
+                "87.65 J/fur",
+                "8.765 J/fur",
+                "0.8765 J/fur",
+                "0.08765 J/fur",
+                "0.008765 J/fur",
+                "0 J/fur");
     }
 
     @Test
@@ -572,9 +665,59 @@ public class NumberFormatterApiTest {
                 "Currency Difference between Narrow and Short (Short Version)",
                 "",
                 NumberFormatter.with().unit(USD).unitWidth(UnitWidth.SHORT),
-                ULocale.forLanguageTag("en_CA"),
+                ULocale.forLanguageTag("en-CA"),
                 5.43,
-                "US$ 5.43");
+                "US$5.43");
+
+        assertFormatSingle(
+                "Currency-dependent format (Control)",
+                "",
+                NumberFormatter.with().unit(USD).unitWidth(UnitWidth.SHORT),
+                ULocale.forLanguageTag("ca"),
+                444444.55,
+                "444.444,55 USD");
+
+        assertFormatSingle(
+                "Currency-dependent format (Test)",
+                "",
+                NumberFormatter.with().unit(ESP).unitWidth(UnitWidth.SHORT),
+                ULocale.forLanguageTag("ca"),
+                444444.55,
+                "₧ 444.445");
+
+        assertFormatSingle(
+                "Currency-dependent symbols (Control)",
+                "",
+                NumberFormatter.with().unit(USD).unitWidth(UnitWidth.SHORT),
+                ULocale.forLanguageTag("pt-PT"),
+                444444.55,
+                "444 444,55 US$");
+
+        // NOTE: This is a bit of a hack on CLDR's part. They set the currency symbol to U+200B (zero-
+        // width space), and they set the decimal separator to the $ symbol.
+        assertFormatSingle(
+                "Currency-dependent symbols (Test)",
+                "",
+                NumberFormatter.with().unit(PTE).unitWidth(UnitWidth.SHORT),
+                ULocale.forLanguageTag("pt-PT"),
+                444444.55,
+                "444,444$55 \u200B");
+
+        assertFormatSingle(
+                "Currency-dependent symbols (Test)",
+                "",
+                NumberFormatter.with().unit(PTE).unitWidth(UnitWidth.NARROW),
+                ULocale.forLanguageTag("pt-PT"),
+                444444.55,
+                "444,444$55 PTE");
+
+        assertFormatSingle(
+                "Currency-dependent symbols (Test)",
+                "",
+                NumberFormatter.with().unit(PTE).unitWidth(UnitWidth.ISO_CODE),
+                ULocale.forLanguageTag("pt-PT"),
+                444444.55,
+                "444,444$55 PTE");
     }
 
     @Test
@@ -816,6 +959,22 @@ public class NumberFormatterApiTest {
                 "0.09",
                 "0.01",
                 "0.00");
+
+        assertFormatSingle(
+                "FracSig with trailing zeros A",
+                "",
+                NumberFormatter.with().rounding(Rounder.fixedFraction(2).withMinDigits(3)),
+                ULocale.ENGLISH,
+                0.1,
+                "0.10");
+
+        assertFormatSingle(
+                "FracSig with trailing zeros B",
+                "",
+                NumberFormatter.with().rounding(Rounder.fixedFraction(2).withMinDigits(3)),
+                ULocale.ENGLISH,
+                0.0999999,
+                "0.10");
     }
 
     @Test
@@ -947,7 +1106,7 @@ public class NumberFormatterApiTest {
         assertFormatDescendingBig(
                 "Western Grouping",
                 "grouping=defaults",
-                NumberFormatter.with().grouping(Grouper.defaults()),
+                NumberFormatter.with().grouping(GroupingStrategy.AUTO),
                 ULocale.ENGLISH,
                 "87,650,000",
                 "8,765,000",
@@ -962,7 +1121,7 @@ public class NumberFormatterApiTest {
         assertFormatDescendingBig(
                 "Indic Grouping",
                 "grouping=defaults",
-                NumberFormatter.with().grouping(Grouper.defaults()),
+                NumberFormatter.with().grouping(GroupingStrategy.AUTO),
                 new ULocale("en-IN"),
                 "8,76,50,000",
                 "87,65,000",
@@ -977,7 +1136,7 @@ public class NumberFormatterApiTest {
         assertFormatDescendingBig(
                 "Western Grouping, Min 2",
                 "grouping=min2",
-                NumberFormatter.with().grouping(Grouper.minTwoDigits()),
+                NumberFormatter.with().grouping(GroupingStrategy.MIN2),
                 ULocale.ENGLISH,
                 "87,650,000",
                 "8,765,000",
@@ -992,7 +1151,7 @@ public class NumberFormatterApiTest {
         assertFormatDescendingBig(
                 "Indic Grouping, Min 2",
                 "grouping=min2",
-                NumberFormatter.with().grouping(Grouper.minTwoDigits()),
+                NumberFormatter.with().grouping(GroupingStrategy.MIN2),
                 new ULocale("en-IN"),
                 "8,76,50,000",
                 "87,65,000",
@@ -1007,10 +1166,121 @@ public class NumberFormatterApiTest {
         assertFormatDescendingBig(
                 "No Grouping",
                 "grouping=none",
-                NumberFormatter.with().grouping(Grouper.none()),
+                NumberFormatter.with().grouping(GroupingStrategy.OFF),
                 new ULocale("en-IN"),
                 "87650000",
                 "8765000",
+                "876500",
+                "87650",
+                "8765",
+                "876.5",
+                "87.65",
+                "8.765",
+                "0");
+
+        assertFormatDescendingBig(
+                "Indic locale with THOUSANDS grouping",
+                "",
+                NumberFormatter.with().grouping(GroupingStrategy.THOUSANDS),
+                new ULocale("en-IN"),
+                "87,650,000",
+                "8,765,000",
+                "876,500",
+                "87,650",
+                "8,765",
+                "876.5",
+                "87.65",
+                "8.765",
+                "0");
+
+        // NOTE: Hungarian is interesting because it has minimumGroupingDigits=4 in locale data
+        // If this test breaks due to data changes, find another locale that has minimumGroupingDigits.
+        assertFormatDescendingBig(
+                "Hungarian Grouping",
+                "",
+                NumberFormatter.with().grouping(GroupingStrategy.AUTO),
+                new ULocale("hu"),
+                "87 650 000",
+                "8 765 000",
+                "876500",
+                "87650",
+                "8765",
+                "876,5",
+                "87,65",
+                "8,765",
+                "0");
+
+        assertFormatDescendingBig(
+                "Hungarian Grouping, Min 2",
+                "",
+                NumberFormatter.with().grouping(GroupingStrategy.MIN2),
+                new ULocale("hu"),
+                "87 650 000",
+                "8 765 000",
+                "876500",
+                "87650",
+                "8765",
+                "876,5",
+                "87,65",
+                "8,765",
+                "0");
+
+        assertFormatDescendingBig(
+                "Hungarian Grouping, Always",
+                "",
+                NumberFormatter.with().grouping(GroupingStrategy.ON_ALIGNED),
+                new ULocale("hu"),
+                "87 650 000",
+                "8 765 000",
+                "876 500",
+                "87 650",
+                "8 765",
+                "876,5",
+                "87,65",
+                "8,765",
+                "0");
+
+        // NOTE: Bulgarian is interesting because it has no grouping in the default currency format.
+        // If this test breaks due to data changes, find another locale that has no default grouping.
+        assertFormatDescendingBig(
+                "Bulgarian Currency Grouping",
+                "",
+                NumberFormatter.with().grouping(GroupingStrategy.AUTO).unit(USD),
+                new ULocale("bg"),
+                "87650000,00 щ.д.",
+                "8765000,00 щ.д.",
+                "876500,00 щ.д.",
+                "87650,00 щ.д.",
+                "8765,00 щ.д.",
+                "876,50 щ.д.",
+                "87,65 щ.д.",
+                "8,76 щ.д.",
+                "0,00 щ.д.");
+
+        assertFormatDescendingBig(
+                "Bulgarian Currency Grouping, Always",
+                "",
+                NumberFormatter.with().grouping(GroupingStrategy.ON_ALIGNED).unit(USD),
+                new ULocale("bg"),
+                "87 650 000,00 щ.д.",
+                "8 765 000,00 щ.д.",
+                "876 500,00 щ.д.",
+                "87 650,00 щ.д.",
+                "8 765,00 щ.д.",
+                "876,50 щ.д.",
+                "87,65 щ.д.",
+                "8,76 щ.д.",
+                "0,00 щ.д.");
+
+        MacroProps macros = new MacroProps();
+        macros.grouping = Grouper.getInstance((short) 4, (short) 1, (short) 3);
+        assertFormatDescendingBig(
+                "Custom Grouping via Internal API",
+                "",
+                NumberFormatter.with().macros(macros),
+                ULocale.ENGLISH,
+                "8,7,6,5,0000",
+                "8,7,6,5000",
                 "876500",
                 "87650",
                 "8765",
@@ -1312,10 +1582,10 @@ public class NumberFormatterApiTest {
                 "US$ 12,345.67");
 
         assertFormatSingle(
-                "Currency symbol should follow number in ar with NS arab",
+                "Currency symbol should follow number in ar-EG with NS arab",
                 "",
                 NumberFormatter.with().unit(USD),
-                new ULocale("ar"),
+                new ULocale("ar-EG"),
                 12345.67,
                 "١٢٬٣٤٥٫٦٧ US$");
 
@@ -1326,6 +1596,22 @@ public class NumberFormatterApiTest {
                 new ULocale("ar@numbers=arab"),
                 12345.67,
                 "١٢٬٣٤٥٫٦٧ US$");
+
+        assertFormatSingle(
+                "NumberingSystem in API should win over @numbers keyword",
+                "",
+                NumberFormatter.with().symbols(NumberingSystem.LATIN).unit(USD),
+                new ULocale("ar@numbers=arab"),
+                12345.67,
+                "US$ 12,345.67");
+
+        assertEquals("NumberingSystem in API should win over @numbers keyword in reverse order",
+                "US$ 12,345.67",
+                NumberFormatter.withLocale(new ULocale("ar@numbers=arab"))
+                    .symbols(NumberingSystem.LATIN)
+                    .unit(USD)
+                    .format(12345.67)
+                    .toString());
 
         DecimalFormatSymbols symbols = DecimalFormatSymbols.getInstance(new ULocale("de-CH"));
         UnlocalizedNumberFormatter f = NumberFormatter.with().symbols(symbols);
@@ -1389,6 +1675,14 @@ public class NumberFormatterApiTest {
                 "-444,444");
 
         assertFormatSingle(
+                "Sign Auto Zero",
+                "",
+                NumberFormatter.with().sign(SignDisplay.AUTO),
+                ULocale.ENGLISH,
+                0,
+                "0");
+
+        assertFormatSingle(
                 "Sign Always Positive",
                 "sign=ALWAYS",
                 NumberFormatter.with().sign(SignDisplay.ALWAYS),
@@ -1403,6 +1697,14 @@ public class NumberFormatterApiTest {
                 ULocale.ENGLISH,
                 -444444,
                 "-444,444");
+
+        assertFormatSingle(
+                "Sign Always Zero",
+                "",
+                NumberFormatter.with().sign(SignDisplay.ALWAYS),
+                ULocale.ENGLISH,
+                0,
+                "+0");
 
         assertFormatSingle(
                 "Sign Never Positive",
@@ -1421,6 +1723,14 @@ public class NumberFormatterApiTest {
                 "444,444");
 
         assertFormatSingle(
+                "Sign Never Zero",
+                "",
+                NumberFormatter.with().sign(SignDisplay.NEVER),
+                ULocale.ENGLISH,
+                0,
+                "0");
+
+        assertFormatSingle(
                 "Sign Accounting Positive",
                 "$USD sign=ACCOUNTING",
                 NumberFormatter.with().sign(SignDisplay.ACCOUNTING).unit(USD),
@@ -1437,6 +1747,14 @@ public class NumberFormatterApiTest {
                 "($444,444.00)");
 
         assertFormatSingle(
+                "Sign Accounting Zero",
+                "",
+                NumberFormatter.with().sign(SignDisplay.ACCOUNTING).unit(USD),
+                ULocale.ENGLISH,
+                0,
+                "$0.00");
+
+        assertFormatSingle(
                 "Sign Accounting-Always Positive",
                 "$USD sign=ACCOUNTING_ALWAYS",
                 NumberFormatter.with().sign(SignDisplay.ACCOUNTING_ALWAYS).unit(USD),
@@ -1451,6 +1769,62 @@ public class NumberFormatterApiTest {
                 ULocale.ENGLISH,
                 -444444,
                 "($444,444.00)");
+
+        assertFormatSingle(
+                "Sign Accounting-Always Zero",
+                "",
+                NumberFormatter.with().sign(SignDisplay.ACCOUNTING_ALWAYS).unit(USD),
+                ULocale.ENGLISH,
+                0,
+                "+$0.00");
+
+        assertFormatSingle(
+                "Sign Except-Zero Positive",
+                "",
+                NumberFormatter.with().sign(SignDisplay.EXCEPT_ZERO),
+                ULocale.ENGLISH,
+                444444,
+                "+444,444");
+
+        assertFormatSingle(
+                "Sign Except-Zero Negative",
+                "",
+                NumberFormatter.with().sign(SignDisplay.EXCEPT_ZERO),
+                ULocale.ENGLISH,
+                -444444,
+                "-444,444");
+
+        assertFormatSingle(
+                "Sign Except-Zero Zero",
+                "",
+                NumberFormatter.with().sign(SignDisplay.EXCEPT_ZERO),
+                ULocale.ENGLISH,
+                0,
+                "0");
+
+        assertFormatSingle(
+                "Sign Accounting-Except-Zero Positive",
+                "$USD sign=ACCOUNTING_ALWAYS",
+                NumberFormatter.with().sign(SignDisplay.ACCOUNTING_EXCEPT_ZERO).unit(USD),
+                ULocale.ENGLISH,
+                444444,
+                "+$444,444.00");
+
+        assertFormatSingle(
+                "Sign Accounting-Except-Zero Negative",
+                "$USD sign=ACCOUNTING_ALWAYS",
+                NumberFormatter.with().sign(SignDisplay.ACCOUNTING_EXCEPT_ZERO).unit(USD),
+                ULocale.ENGLISH,
+                -444444,
+                "($444,444.00)");
+
+        assertFormatSingle(
+                "Sign Accounting-Except-Zero Zero",
+                "",
+                NumberFormatter.with().sign(SignDisplay.ACCOUNTING_EXCEPT_ZERO).unit(USD),
+                ULocale.ENGLISH,
+                0,
+                "$0.00");
 
         assertFormatSingle(
                 "Sign Accounting Negative Hidden",
@@ -1504,29 +1878,6 @@ public class NumberFormatterApiTest {
     }
 
     @Test
-    public void getPrefixSuffix() {
-        Object[][] cases = {
-                { NumberFormatter.withLocale(ULocale.ENGLISH).unit(GBP).unitWidth(UnitWidth.ISO_CODE), "GBP", "",
-                        "-GBP", "" },
-                { NumberFormatter.withLocale(ULocale.ENGLISH).unit(GBP).unitWidth(UnitWidth.FULL_NAME), "",
-                        " British pounds", "-", " British pounds" } };
-
-        for (Object[] cas : cases) {
-            LocalizedNumberFormatter f = (LocalizedNumberFormatter) cas[0];
-            String posPrefix = (String) cas[1];
-            String posSuffix = (String) cas[2];
-            String negPrefix = (String) cas[3];
-            String negSuffix = (String) cas[4];
-            FormattedNumber positive = f.format(1);
-            FormattedNumber negative = f.format(-1);
-            assertEquals(posPrefix, positive.getPrefix());
-            assertEquals(posSuffix, positive.getSuffix());
-            assertEquals(negPrefix, negative.getPrefix());
-            assertEquals(negSuffix, negative.getSuffix());
-        }
-    }
-
-    @Test
     public void plurals() {
         // TODO: Expand this test.
 
@@ -1545,6 +1896,119 @@ public class NumberFormatterApiTest {
                 ULocale.ENGLISH,
                 1,
                 "1.00 US dollars");
+    }
+
+    @Test
+    public void validRanges() throws NoSuchMethodException, IllegalAccessException {
+        Method[] methodsWithOneArgument = new Method[] { Rounder.class.getDeclaredMethod("fixedFraction", Integer.TYPE),
+                Rounder.class.getDeclaredMethod("minFraction", Integer.TYPE),
+                Rounder.class.getDeclaredMethod("maxFraction", Integer.TYPE),
+                Rounder.class.getDeclaredMethod("fixedDigits", Integer.TYPE),
+                Rounder.class.getDeclaredMethod("minDigits", Integer.TYPE),
+                Rounder.class.getDeclaredMethod("maxDigits", Integer.TYPE),
+                FractionRounder.class.getDeclaredMethod("withMinDigits", Integer.TYPE),
+                FractionRounder.class.getDeclaredMethod("withMaxDigits", Integer.TYPE),
+                ScientificNotation.class.getDeclaredMethod("withMinExponentDigits", Integer.TYPE),
+                IntegerWidth.class.getDeclaredMethod("zeroFillTo", Integer.TYPE),
+                IntegerWidth.class.getDeclaredMethod("truncateAt", Integer.TYPE), };
+        Method[] methodsWithTwoArguments = new Method[] {
+                Rounder.class.getDeclaredMethod("minMaxFraction", Integer.TYPE, Integer.TYPE),
+                Rounder.class.getDeclaredMethod("minMaxDigits", Integer.TYPE, Integer.TYPE), };
+
+        final int EXPECTED_MAX_INT_FRAC_SIG = 999;
+        final String expectedSubstring0 = "between 0 and 999 (inclusive)";
+        final String expectedSubstring1 = "between 1 and 999 (inclusive)";
+        final String expectedSubstringN1 = "between -1 and 999 (inclusive)";
+
+        // We require that the upper bounds all be 999 inclusive.
+        // The lower bound may be either -1, 0, or 1.
+        Set<String> methodsWithLowerBound1 = new HashSet();
+        methodsWithLowerBound1.add("fixedDigits");
+        methodsWithLowerBound1.add("minDigits");
+        methodsWithLowerBound1.add("maxDigits");
+        methodsWithLowerBound1.add("minMaxDigits");
+        methodsWithLowerBound1.add("withMinDigits");
+        methodsWithLowerBound1.add("withMaxDigits");
+        methodsWithLowerBound1.add("withMinExponentDigits");
+        // Methods with lower bound 0:
+        // fixedFraction
+        // minFraction
+        // maxFraction
+        // minMaxFraction
+        // zeroFillTo
+        Set<String> methodsWithLowerBoundN1 = new HashSet();
+        methodsWithLowerBoundN1.add("truncateAt");
+
+        // Some of the methods require an object to be called upon.
+        Map<String, Object> targets = new HashMap<String, Object>();
+        targets.put("withMinDigits", Rounder.integer());
+        targets.put("withMaxDigits", Rounder.integer());
+        targets.put("withMinExponentDigits", Notation.scientific());
+        targets.put("truncateAt", IntegerWidth.zeroFillTo(0));
+
+        for (int argument = -2; argument <= EXPECTED_MAX_INT_FRAC_SIG + 2; argument++) {
+            for (Method method : methodsWithOneArgument) {
+                String message = "i = " + argument + "; method = " + method.getName();
+                int lowerBound = methodsWithLowerBound1.contains(method.getName()) ? 1
+                        : methodsWithLowerBoundN1.contains(method.getName()) ? -1 : 0;
+                String expectedSubstring = lowerBound == 0 ? expectedSubstring0
+                        : lowerBound == 1 ? expectedSubstring1 : expectedSubstringN1;
+                Object target = targets.get(method.getName());
+                try {
+                    method.invoke(target, argument);
+                    assertTrue(message, argument >= lowerBound && argument <= EXPECTED_MAX_INT_FRAC_SIG);
+                } catch (InvocationTargetException e) {
+                    assertTrue(message, argument < lowerBound || argument > EXPECTED_MAX_INT_FRAC_SIG);
+                    // Ensure the exception message contains the expected substring
+                    String actualMessage = e.getCause().getMessage();
+                    assertNotEquals(message + ": " + actualMessage, -1, actualMessage.indexOf(expectedSubstring));
+                }
+            }
+            for (Method method : methodsWithTwoArguments) {
+                String message = "i = " + argument + "; method = " + method.getName();
+                int lowerBound = methodsWithLowerBound1.contains(method.getName()) ? 1
+                        : methodsWithLowerBoundN1.contains(method.getName()) ? -1 : 0;
+                String expectedSubstring = lowerBound == 0 ? expectedSubstring0 : expectedSubstring1;
+                Object target = targets.get(method.getName());
+                // Check range on the first argument
+                try {
+                    // Pass EXPECTED_MAX_INT_FRAC_SIG as the second argument so arg1 <= arg2 in expected cases
+                    method.invoke(target, argument, EXPECTED_MAX_INT_FRAC_SIG);
+                    assertTrue(message, argument >= lowerBound && argument <= EXPECTED_MAX_INT_FRAC_SIG);
+                } catch (InvocationTargetException e) {
+                    assertTrue(message, argument < lowerBound || argument > EXPECTED_MAX_INT_FRAC_SIG);
+                    // Ensure the exception message contains the expected substring
+                    String actualMessage = e.getCause().getMessage();
+                    assertNotEquals(message + ": " + actualMessage, -1, actualMessage.indexOf(expectedSubstring));
+                }
+                // Check range on the second argument
+                try {
+                    // Pass lowerBound as the first argument so arg1 <= arg2 in expected cases
+                    method.invoke(target, lowerBound, argument);
+                    assertTrue(message, argument >= lowerBound && argument <= EXPECTED_MAX_INT_FRAC_SIG);
+                } catch (InvocationTargetException e) {
+                    assertTrue(message, argument < lowerBound || argument > EXPECTED_MAX_INT_FRAC_SIG);
+                    // Ensure the exception message contains the expected substring
+                    String actualMessage = e.getCause().getMessage();
+                    assertNotEquals(message + ": " + actualMessage, -1, actualMessage.indexOf(expectedSubstring));
+                }
+                // Check that first argument must be less than or equal to second argument
+                try {
+                    method.invoke(target, argument, argument - 1);
+                    org.junit.Assert.fail();
+                } catch (InvocationTargetException e) {
+                    // Pass
+                }
+            }
+        }
+
+        // Check first argument less than or equal to second argument on IntegerWidth
+        try {
+            IntegerWidth.zeroFillTo(4).truncateAt(2);
+            org.junit.Assert.fail();
+        } catch (IllegalArgumentException e) {
+            // Pass
+        }
     }
 
     private static void assertFormatDescending(
