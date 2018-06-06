@@ -108,7 +108,8 @@ def MakeTzDataFiles(icu_build_dir, iana_tar_file):
   # The Makefile assumes the existence of the bin directory.
   os.mkdir('%s/bin' % icu_build_dir)
 
-  subprocess.check_call(['make', '-C', tzcode_working_dir])
+  # -j1 is needed because the build is not parallelizable. http://b/109641429
+  subprocess.check_call(['make', '-j1', '-C', tzcode_working_dir])
 
   # Copy the source file to its ultimate destination.
   zoneinfo_file = '%s/zoneinfo64.txt' % tzcode_working_dir
@@ -138,7 +139,7 @@ def MakeAndCopyIcuDataFiles(icu_build_dir):
 
   # Generate the ICU4J .jar files
   os.chdir('%s/data' % icu_build_dir)
-  subprocess.check_call(['make', 'icu4j-data'])
+  subprocess.check_call(['make', '-j32', 'icu4j-data'])
 
   # Copy the ICU4J .jar files to their ultimate destination.
   icu_jar_data_dir = '%s/main/shared/data' % icu4jDir()
