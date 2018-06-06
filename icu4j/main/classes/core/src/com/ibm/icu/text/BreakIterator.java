@@ -81,7 +81,10 @@ import com.ibm.icu.util.ULocale;
  *
  * BreakIterator accesses the text it analyzes through a CharacterIterator, which makes
  * it possible to use BreakIterator to analyze text in any text-storage vehicle that
- * provides a CharacterIterator interface.
+ * provides a CharacterIterator interface. When BreakIterator.setText(CharacterIterator) or
+ * getText() was called, the CharacterIterator must not be modified, or else the BreakIterator
+ * behavior is undefined. In particular, call BreakIterator.setText(),
+ * not CharacterIterator.setText().
  *
  * <b>Note:</b>  Some types of BreakIterator can take a long time to create, and
  * instances of BreakIterator are not currently cached by the system.  For
