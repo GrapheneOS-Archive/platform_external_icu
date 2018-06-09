@@ -759,7 +759,6 @@ public class MeasureUnit implements Serializable {
 
     /**
      * Constant for unit of length: point
-     * @hide unsupported on Android
      */
     public static final MeasureUnit POINT = MeasureUnit.internalGetInstance("length", "point");
 

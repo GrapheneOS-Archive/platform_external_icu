@@ -540,7 +540,6 @@ public class Icu4jTransform {
       "field:android.icu.util.LocaleData#ES_INDEX",
       "field:android.icu.util.LocaleData#ES_PUNCTUATION",
       "field:android.icu.util.LocaleData#ES_STANDARD",
-      "field:android.icu.util.MeasureUnit#POINT",
       "method:android.icu.text.BreakIterator#registerInstance(BreakIterator,Locale,int)",
       "method:android.icu.text.BreakIterator#registerInstance(BreakIterator,ULocale,int)",
       "method:android.icu.text.BreakIterator#unregister(Object)",
