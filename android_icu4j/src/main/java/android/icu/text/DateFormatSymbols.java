@@ -81,7 +81,6 @@ import android.icu.util.UResourceBundleIterator;
  *
  * @see          DateFormat
  * @see          SimpleDateFormat
- * @see          android.icu.util.SimpleTimeZone
  * @author       Chen-Lieh Huang
  */
 public class DateFormatSymbols implements Serializable, Cloneable {
