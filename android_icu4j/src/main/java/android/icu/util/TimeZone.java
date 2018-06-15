@@ -85,7 +85,6 @@ import android.icu.util.ULocale.Category;
  *
  * @see          Calendar
  * @see          GregorianCalendar
- * @see          SimpleTimeZone
  * @author       Mark Davis, Deborah Goldsmith, Chen-Lieh Huang, Alan Liu
  */
 abstract public class TimeZone implements Serializable, Cloneable, Freezable<TimeZone> {
