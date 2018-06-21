@@ -236,7 +236,7 @@ ta{
         }
         traditional{"taml"}
     }
-    Version{"2.1.39.11"}
+    Version{"2.1.41.97"}
     calendar{
         buddhist{
             eras{
@@ -685,8 +685,8 @@ ta{
                 "பிற்பகல்",
             }
             AmPmMarkersAbbr{
-                "AM",
-                "PM",
+                "முற்பகல்",
+                "பிற்பகல்",
             }
             AmPmMarkersNarrow{
                 "மு.ப",

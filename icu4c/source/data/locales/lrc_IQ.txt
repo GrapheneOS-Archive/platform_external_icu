@@ -3,6 +3,7 @@
 lrc_IQ{
     Version{"2.1.38.69"}
     calendar{
+        default{"gregorian"}
         gregorian{
             DateTimePatterns{
                 "h:mm:ss a zzzz",
