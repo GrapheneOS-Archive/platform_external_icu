@@ -2989,9 +2989,7 @@ public class TransliteratorTest extends TestFmwk {
         }
     }
 
-    // Android-changed: Added an explicit timeout because it is too slow to run on some Wear devices
-    // with the default. http://b/65468170
-    @Test(timeout = 3000000L)
+    @Test
     public void TestSourceTargetSet2() {
 
 

@@ -2,6 +2,7 @@
 // License & terms of use: http://www.unicode.org/copyright.html#License
 package com.ibm.icu.impl.number.parse;
 
+import com.ibm.icu.impl.StaticUnicodeSets;
 import com.ibm.icu.impl.StringSegment;
 import com.ibm.icu.text.DecimalFormatSymbols;
 
@@ -27,7 +28,7 @@ public class PercentMatcher extends SymbolMatcher {
     }
 
     private PercentMatcher() {
-        super(UnicodeSetStaticCache.Key.PERCENT_SIGN);
+        super(StaticUnicodeSets.Key.PERCENT_SIGN);
     }
 
     @Override

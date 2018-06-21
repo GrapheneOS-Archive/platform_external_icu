@@ -2,6 +2,7 @@
 // License & terms of use: http://www.unicode.org/copyright.html#License
 package com.ibm.icu.impl.number.parse;
 
+import com.ibm.icu.impl.StaticUnicodeSets;
 import com.ibm.icu.impl.StringSegment;
 import com.ibm.icu.text.DecimalFormatSymbols;
 
@@ -27,7 +28,7 @@ public class PermilleMatcher extends SymbolMatcher {
     }
 
     private PermilleMatcher() {
-        super(UnicodeSetStaticCache.Key.PERMILLE_SIGN);
+        super(StaticUnicodeSets.Key.PERMILLE_SIGN);
     }
 
     @Override

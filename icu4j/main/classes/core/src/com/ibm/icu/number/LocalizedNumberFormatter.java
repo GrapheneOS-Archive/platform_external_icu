@@ -3,13 +3,15 @@
 package com.ibm.icu.number;
 
 import java.math.BigInteger;
+import java.text.Format;
 import java.util.concurrent.atomic.AtomicLongFieldUpdater;
 
+import com.ibm.icu.impl.StandardPlural;
 import com.ibm.icu.impl.Utility;
 import com.ibm.icu.impl.number.DecimalQuantity;
 import com.ibm.icu.impl.number.DecimalQuantity_DualStorageBCD;
+import com.ibm.icu.impl.number.LocalizedNumberFormatterAsFormat;
 import com.ibm.icu.impl.number.MacroProps;
-import com.ibm.icu.impl.number.MicroProps;
 import com.ibm.icu.impl.number.NumberStringBuilder;
 import com.ibm.icu.math.BigDecimal;
 import com.ibm.icu.util.CurrencyAmount;
@@ -115,6 +117,23 @@ public class LocalizedNumberFormatter extends NumberFormatterSettings<LocalizedN
     }
 
     /**
+     * Creates a representation of this LocalizedNumberFormat as a {@link java.text.Format}, enabling the
+     * use of this number formatter with APIs that need an object of that type, such as MessageFormat.
+     * <p>
+     * This API is not intended to be used other than for enabling API compatibility. The {@link #format}
+     * methods should normally be used when formatting numbers, not the Format object returned by this
+     * method.
+     *
+     * @return A Format wrapping this LocalizedNumberFormatter.
+     * @draft ICU 62
+     * @provisional This API might change or be removed in a future release.
+     * @see NumberFormatter
+     */
+    public Format toFormat() {
+        return new LocalizedNumberFormatterAsFormat(this, resolve().loc);
+    }
+
+    /**
      * This is the core entrypoint to the number formatting pipeline. It performs self-regulation: a
      * static code path for the first few calls, and compiling a more efficient data structure if called
      * repeatedly.
@@ -131,22 +150,53 @@ public class LocalizedNumberFormatter extends NumberFormatterSettings<LocalizedN
      */
     @Deprecated
     public FormattedNumber format(DecimalQuantity fq) {
+        NumberStringBuilder string = new NumberStringBuilder();
+        if (computeCompiled()) {
+            compiled.apply(fq, string);
+        } else {
+            NumberFormatterImpl.applyStatic(resolve(), fq, string);
+        }
+        return new FormattedNumber(string, fq);
+    }
+
+    /**
+     * @internal
+     * @deprecated This API is ICU internal only. Use {@link FormattedNumber#populateFieldPosition} or
+     *             {@link FormattedNumber#getFieldIterator} for similar functionality.
+     */
+    @Deprecated
+    public String getAffixImpl(boolean isPrefix, boolean isNegative) {
+        NumberStringBuilder string = new NumberStringBuilder();
+        byte signum = (byte) (isNegative ? -1 : 1);
+        // Always return affixes for plural form OTHER.
+        StandardPlural plural = StandardPlural.OTHER;
+        int prefixLength;
+        if (computeCompiled()) {
+            prefixLength = compiled.getPrefixSuffix(signum, plural, string);
+        } else {
+            prefixLength = NumberFormatterImpl.getPrefixSuffixStatic(resolve(), signum, plural, string);
+        }
+        if (isPrefix) {
+            return string.subSequence(0, prefixLength).toString();
+        } else {
+            return string.subSequence(prefixLength, string.length()).toString();
+        }
+    }
+
+    private boolean computeCompiled() {
         MacroProps macros = resolve();
         // NOTE: In Java, the atomic increment logic is slightly different than ICU4C.
         // It seems to be more efficient to make just one function call instead of two.
         // Further benchmarking is required.
         long currentCount = callCount.incrementAndGet(this);
-        NumberStringBuilder string = new NumberStringBuilder();
-        MicroProps micros;
         if (currentCount == macros.threshold.longValue()) {
             compiled = NumberFormatterImpl.fromMacros(macros);
-            micros = compiled.apply(fq, string);
+            return true;
         } else if (compiled != null) {
-            micros = compiled.apply(fq, string);
+            return true;
         } else {
-            micros = NumberFormatterImpl.applyStatic(macros, fq, string);
+            return false;
         }
-        return new FormattedNumber(string, fq, micros);
     }
 
     @Override

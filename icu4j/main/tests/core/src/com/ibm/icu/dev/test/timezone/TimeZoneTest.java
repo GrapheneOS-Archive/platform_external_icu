@@ -21,7 +21,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 
-import com.ibm.icu.dev.test.TestUtil;  // Android patch (ticket #13483).
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
@@ -512,10 +511,6 @@ public class TimeZoneTest extends TestFmwk
         zoneclone.setRawOffset(45678);
         if (zoneclone.equals(zone)) errln("FAIL: clone or operator!= failed");
 
-        // Android patch (ticket #13483) begin.
-        if (TestUtil.getJavaVendor() == TestUtil.JavaVendor.Android) return;
-        // Android patch (ticket #13483) end.
-
         // set/getDefault
         TimeZone saveDefault = TimeZone.getDefault();
         TimeZone.setDefault(zone);
@@ -548,12 +543,9 @@ public class TimeZoneTest extends TestFmwk
         }
 
         TimeZone.setDefault(saveDefault);
-    // Android patch (ticket #13483) begin.
-    }
 
-    @Test
-    public void TestTZDataVersion() {
-    // Android patch (ticket #13483) end.
+
+
         String tzver = TimeZone.getTZDataVersion();
         if (tzver.length() != 5 /* 4 digits + 1 letter */) {
             errln("FAIL: getTZDataVersion returned " + tzver);
