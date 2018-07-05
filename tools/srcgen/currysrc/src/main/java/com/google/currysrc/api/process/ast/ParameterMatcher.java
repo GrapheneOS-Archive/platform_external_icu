@@ -57,8 +57,11 @@ public final class ParameterMatcher {
         (List<SingleVariableDeclaration>) methodDeclaration.parameters();
     List<String> toReturn = new ArrayList<>(parameters.size());
     for (SingleVariableDeclaration singleVariableDeclaration : parameters) {
-      // toString() does the right thing in all cases.
       String actualTypeName = singleVariableDeclaration.getType().toString();
+      if (singleVariableDeclaration.isVarargs()) {
+        // toString() does the right thing in most cases but doesn't do varargs properly.
+        actualTypeName += "...";
+      }
       toReturn.add(actualTypeName);
     }
     return toReturn;
