@@ -495,8 +495,10 @@ public class TimeZoneTest extends TestFmwk
 
     @Test
     public void TestGenericAPI() {
-        String id = "NewGMT";
-        int offset = 12345;
+        // Android patch (ticket #13483) begin.
+        String id = "GMT-12:00";
+        int offset = -12 * 60 * 60 * 1000;
+        // Android patch (ticket #13483) end.
 
         SimpleTimeZone zone = new SimpleTimeZone(offset, id);
         if (zone.useDaylightTime()) errln("FAIL: useDaylightTime should return false");
