@@ -55,9 +55,15 @@ public final class Main {
   private static final Charset JAVA_SOURCE_CHARSET = StandardCharsets.UTF_8;
 
   private final boolean debug;
+  private Map<String, String> jdtOptions;
 
   public Main(boolean debug) {
     this.debug = debug;
+  }
+
+  public Main setJdtOptions(Map<String, String> jdtOptions) {
+    this.jdtOptions = jdtOptions;
+    return this;
   }
 
   public void execute(Rules rules) throws Exception {
@@ -65,7 +71,12 @@ public final class Main {
   }
 
   public void execute(Rules rules, Writer reportWriter) throws Exception {
+    Map<String, String> compilerOptions = this.jdtOptions;
+    if (compilerOptions == null) {
+      compilerOptions = defaultJdtOptions();
+    }
     ASTParser parser = ASTParser.newParser(AST.JLS8);
+    parser.setCompilerOptions(compilerOptions);
     parser.setKind(ASTParser.K_COMPILATION_UNIT);
 
     InputFileGenerator inputFileGenerator = rules.getInputFileGenerator();
@@ -74,8 +85,8 @@ public final class Main {
       System.out.println("Processing: " + inputFile);
 
       String source = readSource(inputFile);
-      CompilationUnitHandler compilationUnitHandler =
-          new CompilationUnitHandler(inputFile, parser, source, new PrintWriter(reportWriter));
+      CompilationUnitHandler compilationUnitHandler = new CompilationUnitHandler(
+              inputFile, parser, source, new PrintWriter(reportWriter), compilerOptions);
       compilationUnitHandler.setDebug(debug);
 
       List<Rule> ruleList = rules.getRuleList(inputFile);
@@ -135,6 +146,7 @@ public final class Main {
     private final File file;
     private final ASTParser parser;
     private final Reporter reporter;
+    private final Map<String, String> jdtOptions;
 
     private boolean debug;
 
@@ -145,14 +157,15 @@ public final class Main {
     private TrackingASTRewrite rewriteRequested;
 
     public CompilationUnitHandler(File file, ASTParser parser, String source,
-        PrintWriter reportWriter) {
+        PrintWriter reportWriter, Map<String, String> jdtOptions) {
       this.file = file;
       this.parser = parser;
       this.reporter = new ReporterImpl(reportWriter);
+      this.jdtOptions = jdtOptions;
 
       // Initialize source / AST state.
       documentBefore = new Document(source);
-      compilationUnitBefore = parseDocument(file, parser, documentBefore);
+      compilationUnitBefore = parseDocument(file, parser, documentBefore, jdtOptions);
     }
 
     public void setDebug(boolean debug) {
@@ -186,7 +199,7 @@ public final class Main {
           } else {
             Document documentToRewrite = new Document(documentBefore.get());
             compilationUnitAfter = applyRewrite(file + " after " + rule, parser,
-                documentToRewrite, rewriteRequested);
+                documentToRewrite, rewriteRequested, jdtOptions);
             documentAfter = documentToRewrite;
           }
         } else if (ruleUsedDocument()) {
@@ -207,7 +220,7 @@ public final class Main {
           } else {
             // Regenerate the AST from the modified document.
             compilationUnitAfter = parseDocument(
-                file + " after document processor " + rule, parser, documentRequested);
+                file + " after document processor " + rule, parser, documentRequested, jdtOptions);
             documentAfter = documentRequested;
           }
         } else {
@@ -267,32 +280,26 @@ public final class Main {
     }
 
     private static CompilationUnit applyRewrite(Object documentId, ASTParser parser,
-        Document document, ASTRewrite rewrite) throws BadLocationException {
-      TextEdit textEdit = rewrite.rewriteAST(document, null);
+            Document document, ASTRewrite rewrite, Map<String, String> options)
+            throws BadLocationException {
+      TextEdit textEdit = rewrite.rewriteAST(document, options);
       textEdit.apply(document, TextEdit.UPDATE_REGIONS);
       // Reparse the document.
-      return parseDocument(documentId, parser, document);
+      return parseDocument(documentId, parser, document, options);
     }
 
     private static CompilationUnit parseDocument(Object documentId, ASTParser parser,
-        Document document) {
+        Document document, Map<String, String> compilerOptions) {
       parser.setSource(document.get().toCharArray());
-      configureParser(parser);
+      parser.setCompilerOptions(compilerOptions);
 
       CompilationUnit cu = (CompilationUnit) parser.createAST(null /* progressMonitor */);
       if (cu.getProblems().length > 0) {
-        System.err.println("Error parsing:" + documentId + ": " + Arrays.toString(cu.getProblems()));
+        System.err.println("Error parsing:" + documentId + ": "
+                + Arrays.toString(cu.getProblems()));
         throw new RuntimeException("Unable to parse document. Stopping.");
       }
       return cu;
-    }
-
-    private static void configureParser(ASTParser parser) {
-      Map<String, String> options = JavaCore.getOptions();
-      options.put(JavaCore.COMPILER_COMPLIANCE, JavaCore.VERSION_1_7);
-      options.put(JavaCore.COMPILER_SOURCE, JavaCore.VERSION_1_7);
-      options.put(JavaCore.COMPILER_DOC_COMMENT_SUPPORT, JavaCore.ENABLED);
-      parser.setCompilerOptions(options);
     }
 
     private static TrackingASTRewrite createTrackingASTRewrite(CompilationUnit cu) {
@@ -358,5 +365,13 @@ public final class Main {
     public boolean isEmpty() {
       return !getRewriteEventStore().getChangeRootIterator().hasNext();
     }
+  }
+
+  private static Map<String, String> defaultJdtOptions() {
+    Map<String, String> options = JavaCore.getOptions();
+    options.put(JavaCore.COMPILER_COMPLIANCE, JavaCore.VERSION_1_8);
+    options.put(JavaCore.COMPILER_SOURCE, JavaCore.VERSION_1_8);
+    options.put(JavaCore.COMPILER_DOC_COMMENT_SUPPORT, JavaCore.ENABLED);
+    return options;
   }
 }

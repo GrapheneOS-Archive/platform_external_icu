@@ -15,6 +15,7 @@
  */
 package com.google.currysrc.api.process.ast;
 
+import org.eclipse.jdt.core.dom.ASTNode;
 import org.eclipse.jdt.core.dom.AbstractTypeDeclaration;
 import org.eclipse.jdt.core.dom.BodyDeclaration;
 import org.eclipse.jdt.core.dom.CompilationUnit;
@@ -49,11 +50,16 @@ public final class MethodLocator implements BodyDeclarationLocator {
   @Override
   public boolean matches(BodyDeclaration node) {
     if (node instanceof MethodDeclaration) {
-      BodyDeclaration parentNode = (BodyDeclaration) node.getParent();
-      MethodDeclaration methodDeclaration = (MethodDeclaration) node;
-      return typeLocator.matches(parentNode)
-          && methodDeclaration.getName().getFullyQualifiedName().equals(methodName)
-          && parameterMatcher.matches(methodDeclaration);
+      ASTNode parent = node.getParent();
+      // We can only locate methods in named classes. parent can also be an
+      // AnonymousClassDeclaration.
+      if (parent instanceof BodyDeclaration) {
+        BodyDeclaration parentNode = (BodyDeclaration) parent;
+        MethodDeclaration methodDeclaration = (MethodDeclaration) node;
+        return typeLocator.matches(parentNode)
+                && methodDeclaration.getName().getFullyQualifiedName().equals(methodName)
+                && parameterMatcher.matches(methodDeclaration);
+      }
     }
     return false;
   }
