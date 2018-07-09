@@ -23,7 +23,6 @@ mzn{
     }
     Version{"2.1.41.97"}
     calendar{
-        default{"persian"}
         gregorian{
             eras{
                 abbreviated{

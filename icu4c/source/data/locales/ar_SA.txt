@@ -12,7 +12,6 @@ ar_SA{
     }
     Version{"2.1.38.80"}
     calendar{
-        default{"islamic-umalqura"}
         gregorian{
             dayPeriod{
                 format{
