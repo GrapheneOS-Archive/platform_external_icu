@@ -37,6 +37,7 @@ import java.util.Set;
 
 import android.icu.impl.PatternProps;
 import android.icu.impl.Utility;
+import android.icu.number.NumberFormatter;
 import android.icu.text.MessagePattern.ArgType;
 import android.icu.text.MessagePattern.Part;
 import android.icu.text.PluralRules.IFixedDecimal;
@@ -2160,9 +2161,17 @@ public class MessageFormat extends UFormat {
             case MODIFIER_INTEGER:
                 newFormat = NumberFormat.getIntegerInstance(ulocale);
                 break;
-            default: // pattern
-                newFormat = new DecimalFormat(style,
-                        new DecimalFormatSymbols(ulocale));
+            default: // pattern or skeleton
+                // Ignore leading whitespace when looking for "::", the skeleton signal sequence
+                int i = 0;
+                for (; PatternProps.isWhiteSpace(style.charAt(i)); i++);
+                if (style.regionMatches(i, "::", 0, 2)) {
+                    // Skeleton
+                    newFormat = NumberFormatter.forSkeleton(style.substring(i + 2)).locale(ulocale).toFormat();
+                } else {
+                    // Pattern
+                    newFormat = new DecimalFormat(style, new DecimalFormatSymbols(ulocale));
+                }
                 break;
             }
             break;

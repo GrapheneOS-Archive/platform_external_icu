@@ -1318,7 +1318,7 @@ class FractionalPartSubstitution extends NFSubstitution {
             int digit;
 
             DecimalQuantity_DualStorageBCD fq = new DecimalQuantity_DualStorageBCD();
-            int leadingZeros = 0;
+            int totalDigits = 0;
             while (workText.length() > 0 && workPos.getIndex() != 0) {
                 workPos.setIndex(0);
                 digit = ruleSet.parse(workText, workPos, 10, nonNumericalExecutedRuleMask).intValue();
@@ -1330,12 +1330,8 @@ class FractionalPartSubstitution extends NFSubstitution {
                 }
 
                 if (workPos.getIndex() != 0) {
-                    if (digit == 0) {
-                        leadingZeros++;
-                    } else {
-                        fq.appendDigit((byte) digit, leadingZeros, false);
-                        leadingZeros = 0;
-                    }
+                    fq.appendDigit((byte) digit, 0, true);
+                    totalDigits++;
 
                     parsePosition.setIndex(parsePosition.getIndex() + workPos.getIndex());
                     workText = workText.substring(workPos.getIndex());
@@ -1345,6 +1341,7 @@ class FractionalPartSubstitution extends NFSubstitution {
                     }
                 }
             }
+            fq.adjustMagnitude(-totalDigits);
             result = fq.toDouble();
 
             result = composeRuleValue(result, baseValue);

@@ -12,18 +12,18 @@ import android.icu.impl.number.CustomSymbolCurrency;
 import android.icu.impl.number.DecimalFormatProperties;
 import android.icu.impl.number.Grouper;
 import android.icu.impl.number.MacroProps;
-import android.icu.impl.number.MultiplierImpl;
 import android.icu.impl.number.Padder;
 import android.icu.impl.number.PatternStringParser;
 import android.icu.impl.number.PropertiesAffixPatternProvider;
 import android.icu.impl.number.RoundingUtils;
 import android.icu.number.NumberFormatter.DecimalSeparatorDisplay;
 import android.icu.number.NumberFormatter.SignDisplay;
-import android.icu.number.Rounder.FractionRounderImpl;
-import android.icu.number.Rounder.IncrementRounderImpl;
-import android.icu.number.Rounder.SignificantRounderImpl;
+import android.icu.number.Precision.FractionRounderImpl;
+import android.icu.number.Precision.IncrementRounderImpl;
+import android.icu.number.Precision.SignificantRounderImpl;
 import android.icu.text.CompactDecimalFormat.CompactStyle;
 import android.icu.text.DecimalFormatSymbols;
+import android.icu.text.PluralRules;
 import android.icu.util.Currency;
 import android.icu.util.Currency.CurrencyUsage;
 import android.icu.util.ULocale;
@@ -43,9 +43,20 @@ final class NumberPropertyMapper {
         return NumberFormatter.with().macros(macros);
     }
 
+    /** Convenience method to create a NumberFormatter directly from Properties. */
+    public static UnlocalizedNumberFormatter create(
+            DecimalFormatProperties properties,
+            DecimalFormatSymbols symbols,
+            DecimalFormatProperties exportedProperties) {
+        MacroProps macros = oldToNew(properties, symbols, exportedProperties);
+        return NumberFormatter.with().macros(macros);
+    }
+
     /**
      * Convenience method to create a NumberFormatter directly from a pattern string. Something like this
      * could become public API if there is demand.
+     *
+     * NOTE: This appears to be dead code.
      */
     public static UnlocalizedNumberFormatter create(String pattern, DecimalFormatSymbols symbols) {
         DecimalFormatProperties properties = PatternStringParser.parseToProperties(pattern);
@@ -83,7 +94,11 @@ final class NumberPropertyMapper {
         // PLURAL RULES //
         //////////////////
 
-        macros.rules = properties.getPluralRules();
+        PluralRules rules = properties.getPluralRules();
+        if (rules == null && properties.getCurrencyPluralInfo() != null) {
+            rules = properties.getCurrencyPluralInfo().getPluralRules();
+        }
+        macros.rules = rules;
 
         /////////////
         // AFFIXES //
@@ -93,7 +108,7 @@ final class NumberPropertyMapper {
         if (properties.getCurrencyPluralInfo() == null) {
             affixProvider = new PropertiesAffixPatternProvider(properties);
         } else {
-            affixProvider = new CurrencyPluralInfoAffixProvider(properties.getCurrencyPluralInfo());
+            affixProvider = new CurrencyPluralInfoAffixProvider(properties.getCurrencyPluralInfo(), properties);
         }
         macros.affixProvider = affixProvider;
 
@@ -130,8 +145,7 @@ final class NumberPropertyMapper {
         boolean explicitMinMaxFrac = minFrac != -1 || maxFrac != -1;
         boolean explicitMinMaxSig = minSig != -1 || maxSig != -1;
         // Resolve min/max frac for currencies, required for the validation logic and for when minFrac or
-        // maxFrac was
-        // set (but not both) on a currency instance.
+        // maxFrac was set (but not both) on a currency instance.
         // NOTE: Increments are handled in "Rounder.constructCurrency()".
         if (useCurrency) {
             if (minFrac == -1 && maxFrac == -1) {
@@ -151,22 +165,22 @@ final class NumberPropertyMapper {
         if (minInt == 0 && maxFrac != 0) {
             // Force a digit after the decimal point.
             minFrac = minFrac <= 0 ? 1 : minFrac;
-            maxFrac = maxFrac < 0 ? Integer.MAX_VALUE : maxFrac < minFrac ? minFrac : maxFrac;
+            maxFrac = maxFrac < 0 ? -1 : maxFrac < minFrac ? minFrac : maxFrac;
             minInt = 0;
             maxInt = maxInt < 0 ? -1 : maxInt > RoundingUtils.MAX_INT_FRAC_SIG ? -1 : maxInt;
         } else {
             // Force a digit before the decimal point.
             minFrac = minFrac < 0 ? 0 : minFrac;
-            maxFrac = maxFrac < 0 ? Integer.MAX_VALUE : maxFrac < minFrac ? minFrac : maxFrac;
+            maxFrac = maxFrac < 0 ? -1 : maxFrac < minFrac ? minFrac : maxFrac;
             minInt = minInt <= 0 ? 1 : minInt > RoundingUtils.MAX_INT_FRAC_SIG ? 1 : minInt;
             maxInt = maxInt < 0 ? -1
                     : maxInt < minInt ? minInt : maxInt > RoundingUtils.MAX_INT_FRAC_SIG ? -1 : maxInt;
         }
-        Rounder rounding = null;
+        Precision rounding = null;
         if (explicitCurrencyUsage) {
-            rounding = Rounder.constructCurrency(currencyUsage).withCurrency(currency);
+            rounding = Precision.constructCurrency(currencyUsage).withCurrency(currency);
         } else if (roundingIncrement != null) {
-            rounding = Rounder.constructIncrement(roundingIncrement);
+            rounding = Precision.constructIncrement(roundingIncrement);
         } else if (explicitMinMaxSig) {
             minSig = minSig < 1 ? 1
                     : minSig > RoundingUtils.MAX_INT_FRAC_SIG ? RoundingUtils.MAX_INT_FRAC_SIG : minSig;
@@ -174,15 +188,15 @@ final class NumberPropertyMapper {
                     : maxSig < minSig ? minSig
                             : maxSig > RoundingUtils.MAX_INT_FRAC_SIG ? RoundingUtils.MAX_INT_FRAC_SIG
                                     : maxSig;
-            rounding = Rounder.constructSignificant(minSig, maxSig);
+            rounding = Precision.constructSignificant(minSig, maxSig);
         } else if (explicitMinMaxFrac) {
-            rounding = Rounder.constructFraction(minFrac, maxFrac);
+            rounding = Precision.constructFraction(minFrac, maxFrac);
         } else if (useCurrency) {
-            rounding = Rounder.constructCurrency(currencyUsage);
+            rounding = Precision.constructCurrency(currencyUsage);
         }
         if (rounding != null) {
             rounding = rounding.withMode(mathContext);
-            macros.rounder = rounding;
+            macros.precision = rounding;
         }
 
         ///////////////////
@@ -202,9 +216,7 @@ final class NumberPropertyMapper {
         /////////////
 
         if (properties.getFormatWidth() != -1) {
-            macros.padder = new Padder(properties.getPadString(),
-                    properties.getFormatWidth(),
-                    properties.getPadPosition());
+            macros.padder = Padder.forProperties(properties);
         }
 
         ///////////////////////////////
@@ -250,7 +262,7 @@ final class NumberPropertyMapper {
                     properties.getExponentSignAlwaysShown() ? SignDisplay.ALWAYS : SignDisplay.AUTO);
             // Scientific notation also involves overriding the rounding mode.
             // TODO: Overriding here is a bit of a hack. Should this logic go earlier?
-            if (macros.rounder instanceof FractionRounder) {
+            if (macros.precision instanceof FractionPrecision) {
                 // For the purposes of rounding, get the original min/max int/frac, since the local
                 // variables
                 // have been manipulated for display purposes.
@@ -259,13 +271,13 @@ final class NumberPropertyMapper {
                 int maxFrac_ = properties.getMaximumFractionDigits();
                 if (minInt_ == 0 && maxFrac_ == 0) {
                     // Patterns like "#E0" and "##E0", which mean no rounding!
-                    macros.rounder = Rounder.constructInfinite().withMode(mathContext);
+                    macros.precision = Precision.constructInfinite().withMode(mathContext);
                 } else if (minInt_ == 0 && minFrac_ == 0) {
                     // Patterns like "#.##E0" (no zeros in the mantissa), which mean round to maxFrac+1
-                    macros.rounder = Rounder.constructSignificant(1, maxFrac_ + 1).withMode(mathContext);
+                    macros.precision = Precision.constructSignificant(1, maxFrac_ + 1).withMode(mathContext);
                 } else {
                     // All other scientific patterns, which mean round to minInt+maxFrac
-                    macros.rounder = Rounder.constructSignificant(minInt_ + minFrac_, minInt_ + maxFrac_)
+                    macros.precision = Precision.constructSignificant(minInt_ + minFrac_, minInt_ + maxFrac_)
                             .withMode(mathContext);
                 }
             }
@@ -291,11 +303,7 @@ final class NumberPropertyMapper {
         // MULTIPLIERS //
         /////////////////
 
-        if (properties.getMagnitudeMultiplier() != 0) {
-            macros.multiplier = new MultiplierImpl(properties.getMagnitudeMultiplier());
-        } else if (properties.getMultiplier() != null) {
-            macros.multiplier = new MultiplierImpl(properties.getMultiplier());
-        }
+        macros.scale = RoundingUtils.scaleFromProperties(properties);
 
         //////////////////////
         // PROPERTY EXPORTS //
@@ -303,14 +311,15 @@ final class NumberPropertyMapper {
 
         if (exportedProperties != null) {
 
+            exportedProperties.setCurrency(currency);
             exportedProperties.setMathContext(mathContext);
             exportedProperties.setRoundingMode(mathContext.getRoundingMode());
             exportedProperties.setMinimumIntegerDigits(minInt);
             exportedProperties.setMaximumIntegerDigits(maxInt == -1 ? Integer.MAX_VALUE : maxInt);
 
-            Rounder rounding_;
-            if (rounding instanceof CurrencyRounder) {
-                rounding_ = ((CurrencyRounder) rounding).withCurrency(currency);
+            Precision rounding_;
+            if (rounding instanceof CurrencyPrecision) {
+                rounding_ = ((CurrencyPrecision) rounding).withCurrency(currency);
             } else {
                 rounding_ = rounding;
             }

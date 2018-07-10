@@ -3,6 +3,9 @@
 // License & terms of use: http://www.unicode.org/copyright.html#License
 package android.icu.impl.number.parse;
 
+import static android.icu.impl.number.parse.ParsingUtils.safeContains;
+
+import android.icu.impl.StaticUnicodeSets;
 import android.icu.impl.StringSegment;
 import android.icu.text.DecimalFormatSymbols;
 
@@ -18,7 +21,7 @@ public class MinusSignMatcher extends SymbolMatcher {
 
     public static MinusSignMatcher getInstance(DecimalFormatSymbols symbols, boolean allowTrailing) {
         String symbolString = symbols.getMinusSignString();
-        if (DEFAULT.uniSet.contains(symbolString)) {
+        if (safeContains(DEFAULT.uniSet, symbolString)) {
             return allowTrailing ? DEFAULT_ALLOW_TRAILING : DEFAULT;
         } else {
             return new MinusSignMatcher(symbolString, allowTrailing);
@@ -33,14 +36,13 @@ public class MinusSignMatcher extends SymbolMatcher {
     }
 
     private MinusSignMatcher(boolean allowTrailing) {
-        super(UnicodeSetStaticCache.Key.MINUS_SIGN);
+        super(StaticUnicodeSets.Key.MINUS_SIGN);
         this.allowTrailing = allowTrailing;
     }
 
     @Override
     protected boolean isDisabled(ParsedNumber result) {
-        return 0 != (result.flags & ParsedNumber.FLAG_NEGATIVE)
-                || (allowTrailing ? false : result.seenNumber());
+        return !allowTrailing && result.seenNumber();
     }
 
     @Override

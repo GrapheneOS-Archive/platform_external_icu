@@ -3,6 +3,7 @@
 // License & terms of use: http://www.unicode.org/copyright.html#License
 package android.icu.impl.number.parse;
 
+import android.icu.impl.StaticUnicodeSets;
 import android.icu.impl.StringSegment;
 import android.icu.text.DecimalFormatSymbols;
 
@@ -29,7 +30,7 @@ public class PermilleMatcher extends SymbolMatcher {
     }
 
     private PermilleMatcher() {
-        super(UnicodeSetStaticCache.Key.PERMILLE_SIGN);
+        super(StaticUnicodeSets.Key.PERMILLE_SIGN);
     }
 
     @Override
