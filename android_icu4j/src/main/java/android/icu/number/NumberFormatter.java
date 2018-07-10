@@ -6,7 +6,6 @@ package android.icu.number;
 import java.util.Locale;
 
 import android.icu.impl.number.DecimalFormatProperties;
-import android.icu.impl.number.MacroProps;
 import android.icu.text.DecimalFormatSymbols;
 import android.icu.util.ULocale;
 
@@ -22,7 +21,7 @@ import android.icu.util.ULocale;
  * NumberFormatter.with()
  *     .notation(Notation.compactShort())
  *     .unit(Currency.getInstance("EUR"))
- *     .rounding(Rounder.maxDigits(2))
+ *     .precision(Precision.maxDigits(2))
  *     .locale(...)
  *     .format(1234)
  *     .toString();  // €1.2K in en-US
@@ -30,7 +29,7 @@ import android.icu.util.ULocale;
  * // Create a formatter in a private static final field:
  * private static final LocalizedNumberFormatter formatter = NumberFormatter.withLocale(...)
  *     .unit(NoUnit.PERCENT)
- *     .rounding(Rounder.fixedFraction(3));
+ *     .precision(Precision.fixedFraction(3));
  * formatter.format(5.9831).toString();  // 5.983% in en-US
  *
  * // Create a "template" in a private static final field but without setting a locale until the call site:
@@ -52,7 +51,7 @@ import android.icu.util.ULocale;
  * <pre>
  * UnlocalizedNumberFormatter formatter = UnlocalizedNumberFormatter.with()
  *         .notation(Notation.scientific());
- * formatter.rounding(Rounder.maxFraction(2)); // does nothing!
+ * formatter.precision(Precision.maxFraction(2)); // does nothing!
  * formatter.locale(ULocale.ENGLISH).format(9.8765).toString(); // prints "9.8765E0", not "9.88E0"
  * </pre>
  *
@@ -429,6 +428,23 @@ public final class NumberFormatter {
     }
 
     /**
+     * Call this method at the beginning of a NumberFormatter fluent chain to create an instance based
+     * on a given number skeleton string.
+     *
+     * @param skeleton
+     *            The skeleton string off of which to base this NumberFormatter.
+     * @return An {@link UnlocalizedNumberFormatter}, to be used for chaining.
+     * @throws SkeletonSyntaxException If the given string is not a valid number formatting skeleton.
+     * @hide draft / provisional / internal are hidden on Android
+     */
+    public static UnlocalizedNumberFormatter forSkeleton(String skeleton) {
+        return NumberSkeletonImpl.getOrCreate(skeleton);
+    }
+
+    /**
+     * Note: In Java, since NumberPropertyMapper is package-private, this method is here so that it is
+     * accessible to tests.
+     *
      * @deprecated ICU 60 This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -437,7 +453,6 @@ public final class NumberFormatter {
             DecimalFormatProperties properties,
             DecimalFormatSymbols symbols,
             DecimalFormatProperties exportedProperties) {
-        MacroProps macros = NumberPropertyMapper.oldToNew(properties, symbols, exportedProperties);
-        return NumberFormatter.with().macros(macros);
+        return NumberPropertyMapper.create(properties, symbols, exportedProperties);
     }
 }

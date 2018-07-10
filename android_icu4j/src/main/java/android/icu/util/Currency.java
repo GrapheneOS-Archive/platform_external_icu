@@ -15,7 +15,6 @@ import java.text.ParsePosition;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -31,11 +30,13 @@ import android.icu.impl.ICUDebug;
 import android.icu.impl.ICUResourceBundle;
 import android.icu.impl.SimpleCache;
 import android.icu.impl.SoftCache;
+import android.icu.impl.StaticUnicodeSets;
 import android.icu.impl.TextTrieMap;
 import android.icu.text.CurrencyDisplayNames;
 import android.icu.text.CurrencyMetaInfo;
 import android.icu.text.CurrencyMetaInfo.CurrencyDigits;
 import android.icu.text.CurrencyMetaInfo.CurrencyFilter;
+import android.icu.text.UnicodeSet;
 import android.icu.util.ULocale.Category;
 
 /**
@@ -93,13 +94,6 @@ public class Currency extends MeasureUnit {
      * @hide draft / provisional / internal are hidden on Android
      */
     public static final int NARROW_SYMBOL_NAME = 3;
-
-    private static final EquivalenceRelation<String> EQUIVALENT_CURRENCY_SYMBOLS =
-            new EquivalenceRelation<String>()
-            .add("\u00a5", "\uffe5")
-            .add("$", "\ufe69", "\uff04")
-            .add("\u20a8", "\u20b9")
-            .add("\u00a3", "\u20a4");
 
     /**
      * Currency Usage used for Decimal Format
@@ -751,8 +745,16 @@ public class Currency extends MeasureUnit {
             String isoCode = e.getValue();
             // Register under not just symbol, but under every equivalent symbol as well
             // e.g short width yen and long width yen.
-            for (String equivalentSymbol : EQUIVALENT_CURRENCY_SYMBOLS.get(symbol)) {
-                symTrie.put(equivalentSymbol, new CurrencyStringInfo(isoCode, symbol));
+            StaticUnicodeSets.Key key = StaticUnicodeSets.chooseCurrency(symbol);
+            CurrencyStringInfo value = new CurrencyStringInfo(isoCode, symbol);
+            if (key != null) {
+                UnicodeSet equivalents = StaticUnicodeSets.get(key);
+                // The symbol itself is included in the UnicodeSet
+                for (String equivalentSymbol : equivalents) {
+                    symTrie.put(equivalentSymbol, value);
+                }
+            } else {
+                symTrie.put(symbol, value);
             }
         }
         for (Map.Entry<String, String> e : names.nameMap().entrySet()) {
@@ -1002,34 +1004,6 @@ public class Currency extends MeasureUnit {
     private static List<String> getTenderCurrencies(CurrencyFilter filter) {
         CurrencyMetaInfo info = CurrencyMetaInfo.getInstance();
         return info.currencies(filter.withTender());
-    }
-
-    private static final class EquivalenceRelation<T> {
-
-        private Map<T, Set<T>> data = new HashMap<T, Set<T>>();
-
-        @SuppressWarnings("unchecked")  // See ticket #11395, this is safe.
-        public EquivalenceRelation<T> add(T... items) {
-            Set<T> group = new HashSet<T>();
-            for (T item : items) {
-                if (data.containsKey(item)) {
-                    throw new IllegalArgumentException("All groups passed to add must be disjoint.");
-                }
-                group.add(item);
-            }
-            for (T item : items) {
-                data.put(item, group);
-            }
-            return this;
-        }
-
-        public Set<T> get(T item) {
-            Set<T> result = data.get(item);
-            if (result == null) {
-                return Collections.singleton(item);
-            }
-            return Collections.unmodifiableSet(result);
-        }
     }
 
     private Object writeReplace() throws ObjectStreamException {

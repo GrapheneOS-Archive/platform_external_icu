@@ -830,6 +830,24 @@ public final class UScript {
     public static final int ZANABAZAR_SQUARE = 177; /* Zanb */
 
     /**
+     * ISO 15924 script code
+     * @hide unsupported on Android
+     */
+    public static final int DOGRA = 178; /* Dogr */
+    /** @hide unsupported on Android*/
+    public static final int GUNJALA_GONDI = 179; /* Gong */
+    /** @hide unsupported on Android*/
+    public static final int MAKASAR = 180; /* Maka */
+    /** @hide unsupported on Android*/
+    public static final int MEDEFAIDRIN = 181; /* Medf */
+    /** @hide unsupported on Android*/
+    public static final int HANIFI_ROHINGYA = 182; /* Rohg */
+    /** @hide unsupported on Android*/
+    public static final int SOGDIAN = 183; /* Sogd */
+    /** @hide unsupported on Android*/
+    public static final int OLD_SOGDIAN = 184; /* Sogo */
+
+    /**
      * One more than the highest normal UScript code.
      * The highest value is available via UCharacter.getIntPropertyMaxValue(UProperty.SCRIPT).
      *
@@ -837,7 +855,7 @@ public final class UScript {
      * @hide unsupported on Android
      */
     @Deprecated
-    public static final int CODE_LIMIT   = 178;
+    public static final int CODE_LIMIT   = 185;
 
     private static int[] getCodesFromLocale(ULocale locale) {
         // Multi-script languages, equivalent to the LocaleScript data
@@ -1134,7 +1152,7 @@ public final class UScript {
             0x0EA5 | RECOMMENDED | LB_LETTERS,  // Laoo
             0x004C | RECOMMENDED | CASED,  // Latn
             0x0D15 | RECOMMENDED,  // Mlym
-            0x1826 | LIMITED_USE,  // Mong
+            0x1826 | EXCLUSION,  // Mong
             0x1000 | RECOMMENDED | LB_LETTERS,  // Mymr
             0x168F | EXCLUSION,  // Ogam
             0x10300 | EXCLUSION,  // Ital
@@ -1285,6 +1303,13 @@ public final class UScript {
             0x11D10 | EXCLUSION,  // Gonm
             0x11A5C | EXCLUSION,  // Soyo
             0x11A0B | EXCLUSION,  // Zanb
+            0x1180B | EXCLUSION,  // Dogr
+            0x11D71 | LIMITED_USE,  // Gong
+            0x11EE5 | EXCLUSION,  // Maka
+            0x16E40 | EXCLUSION | CASED,  // Medf
+            0x10D12 | LIMITED_USE | RTL,  // Rohg
+            0x10F42 | EXCLUSION | RTL,  // Sogd
+            0x10F19 | EXCLUSION | RTL,  // Sogo
             // End copy-paste from parsescriptmetadata.py
         };
 

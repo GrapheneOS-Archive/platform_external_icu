@@ -3,6 +3,8 @@
 // License & terms of use: http://www.unicode.org/copyright.html#License
 package android.icu.number;
 
+import java.math.RoundingMode;
+
 import android.icu.impl.number.MacroProps;
 import android.icu.impl.number.Padder;
 import android.icu.number.NumberFormatter.DecimalSeparatorDisplay;
@@ -32,17 +34,19 @@ public abstract class NumberFormatterSettings<T extends NumberFormatterSettings<
     static final int KEY_LOCALE = 1;
     static final int KEY_NOTATION = 2;
     static final int KEY_UNIT = 3;
-    static final int KEY_ROUNDER = 4;
-    static final int KEY_GROUPING = 5;
-    static final int KEY_PADDER = 6;
-    static final int KEY_INTEGER = 7;
-    static final int KEY_SYMBOLS = 8;
-    static final int KEY_UNIT_WIDTH = 9;
-    static final int KEY_SIGN = 10;
-    static final int KEY_DECIMAL = 11;
-    static final int KEY_THRESHOLD = 12;
-    static final int KEY_PER_UNIT = 13;
-    static final int KEY_MAX = 14;
+    static final int KEY_PRECISION = 4;
+    static final int KEY_ROUNDING_MODE = 5;
+    static final int KEY_GROUPING = 6;
+    static final int KEY_PADDER = 7;
+    static final int KEY_INTEGER = 8;
+    static final int KEY_SYMBOLS = 9;
+    static final int KEY_UNIT_WIDTH = 10;
+    static final int KEY_SIGN = 11;
+    static final int KEY_DECIMAL = 12;
+    static final int KEY_SCALE = 13;
+    static final int KEY_THRESHOLD = 14;
+    static final int KEY_PER_UNIT = 15;
+    static final int KEY_MAX = 16;
 
     final NumberFormatterSettings<?> parent;
     final int key;
@@ -172,7 +176,7 @@ public abstract class NumberFormatterSettings<T extends NumberFormatterSettings<
     }
 
     /**
-     * Specifies the rounding strategy to use when formatting numbers.
+     * Specifies the rounding precision to use when formatting numbers.
      *
      * <ul>
      * <li>Round to 3 decimal places: "3.142"
@@ -182,27 +186,60 @@ public abstract class NumberFormatterSettings<T extends NumberFormatterSettings<
      * </ul>
      *
      * <p>
-     * Pass this method the return value of one of the factory methods on {@link Rounder}. For example:
+     * Pass this method the return value of one of the factory methods on {@link Precision}. For example:
      *
      * <pre>
-     * NumberFormatter.with().rounding(Rounder.fixedFraction(2))
+     * NumberFormatter.with().precision(Precision.fixedFraction(2))
      * </pre>
      *
      * <p>
-     * In most cases, the default rounding strategy is to round to 6 fraction places; i.e.,
-     * <code>Rounder.maxFraction(6)</code>. The exceptions are if compact notation is being used, then
-     * the compact notation rounding strategy is used (see {@link Notation#compactShort} for details), or
+     * In most cases, the default rounding precision is to round to 6 fraction places; i.e.,
+     * <code>Precision.maxFraction(6)</code>. The exceptions are if compact notation is being used, then
+     * the compact notation rounding precision is used (see {@link Notation#compactShort} for details), or
      * if the unit is a currency, then standard currency rounding is used, which varies from currency to
-     * currency (see {@link Rounder#currency} for details).
+     * currency (see {@link Precision#currency} for details).
      *
-     * @param rounder
-     *            The rounding strategy to use.
+     * @param precision
+     *            The rounding precision to use.
      * @return The fluent chain.
-     * @see Rounder
+     * @see Precision
      * @hide draft / provisional / internal are hidden on Android
      */
-    public T rounding(Rounder rounder) {
-        return create(KEY_ROUNDER, rounder);
+    public T precision(Precision precision) {
+        return create(KEY_PRECISION, precision);
+    }
+
+    /**
+     * @deprecated ICU 62 Use precision() instead. This method is for backwards compatibility and will be
+     *             removed in ICU 64. See http://bugs.icu-project.org/trac/ticket/13746
+     */
+    @Deprecated
+    public T rounding(Precision rounder) {
+        return precision(rounder);
+    }
+
+    /**
+     * Specifies how to determine the direction to round a number when it has more digits than fit in the
+     * desired precision.  When formatting 1.235:
+     *
+     * <ul>
+     * <li>Ceiling rounding mode with integer precision: "2"
+     * <li>Half-down rounding mode with 2 fixed fraction digits: "1.23"
+     * <li>Half-up rounding mode with 2 fixed fraction digits: "1.24"
+     * </ul>
+     *
+     * The default is HALF_EVEN. For more information on rounding mode, see the ICU userguide here:
+     *
+     * http://userguide.icu-project.org/formatparse/numbers/rounding-modes
+     *
+     * @param roundingMode
+     *            The rounding mode to use.
+     * @return The fluent chain.
+     * @see Precision
+     * @hide draft / provisional / internal are hidden on Android
+     */
+    public T roundingMode(RoundingMode roundingMode) {
+        return create(KEY_ROUNDING_MODE, roundingMode);
     }
 
     /**
@@ -432,6 +469,35 @@ public abstract class NumberFormatterSettings<T extends NumberFormatterSettings<
     }
 
     /**
+     * Sets a scale (multiplier) to be used to scale the number by an arbitrary amount before formatting.
+     * Most common values:
+     *
+     * <ul>
+     * <li>Multiply by 100: useful for percentages.
+     * <li>Multiply by an arbitrary value: useful for unit conversions.
+     * </ul>
+     *
+     * <p>
+     * Pass an element from a {@link Scale} factory method to this setter. For example:
+     *
+     * <pre>
+     * NumberFormatter.with().scale(Scale.powerOfTen(2))
+     * </pre>
+     *
+     * <p>
+     * The default is to not apply any multiplier.
+     *
+     * @param scale
+     *            An amount to be multiplied against numbers before formatting.
+     * @return The fluent chain
+     * @see Scale
+     * @hide draft / provisional / internal are hidden on Android
+     */
+    public T scale(Scale scale) {
+        return create(KEY_SCALE, scale);
+    }
+
+    /**
      * Internal method to set a starting macros.
      *
      * @deprecated ICU 60 This API is ICU internal only.
@@ -463,6 +529,26 @@ public abstract class NumberFormatterSettings<T extends NumberFormatterSettings<
     @Deprecated
     public T threshold(Long threshold) {
         return create(KEY_THRESHOLD, threshold);
+    }
+
+    /**
+     * Creates a skeleton string representation of this number formatter. A skeleton string is a
+     * locale-agnostic serialized form of a number formatter.
+     * <p>
+     * Not all options are capable of being represented in the skeleton string; for example, a
+     * DecimalFormatSymbols object. If any such option is encountered, an
+     * {@link UnsupportedOperationException} is thrown.
+     * <p>
+     * The returned skeleton is in normalized form, such that two number formatters with equivalent
+     * behavior should produce the same skeleton.
+     *
+     * @return A number skeleton string with behavior corresponding to this number formatter.
+     * @throws UnsupportedOperationException
+     *             If the number formatter has an option that cannot be represented in a skeleton string.
+     * @hide draft / provisional / internal are hidden on Android
+     */
+    public String toSkeleton() {
+        return NumberSkeletonImpl.generate(resolve());
     }
 
     /* package-protected */ abstract T create(int key, Object value);
@@ -497,9 +583,14 @@ public abstract class NumberFormatterSettings<T extends NumberFormatterSettings<
                     macros.unit = (MeasureUnit) current.value;
                 }
                 break;
-            case KEY_ROUNDER:
-                if (macros.rounder == null) {
-                    macros.rounder = (Rounder) current.value;
+            case KEY_PRECISION:
+                if (macros.precision == null) {
+                    macros.precision = (Precision) current.value;
+                }
+                break;
+            case KEY_ROUNDING_MODE:
+                if (macros.roundingMode == null) {
+                    macros.roundingMode = (RoundingMode) current.value;
                 }
                 break;
             case KEY_GROUPING:
@@ -535,6 +626,11 @@ public abstract class NumberFormatterSettings<T extends NumberFormatterSettings<
             case KEY_DECIMAL:
                 if (macros.decimal == null) {
                     macros.decimal = (DecimalSeparatorDisplay) current.value;
+                }
+                break;
+            case KEY_SCALE:
+                if (macros.scale == null) {
+                    macros.scale = (Scale) current.value;
                 }
                 break;
             case KEY_THRESHOLD:

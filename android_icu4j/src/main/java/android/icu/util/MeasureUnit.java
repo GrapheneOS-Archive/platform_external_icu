@@ -21,6 +21,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import android.icu.impl.CollectionSet;
 import android.icu.impl.ICUData;
 import android.icu.impl.ICUResourceBundle;
 import android.icu.impl.Pair;
@@ -139,8 +140,9 @@ public class MeasureUnit implements Serializable {
         Map<String, MeasureUnit> units = cache.get(type);
         // Train users not to modify returned set from the start giving us more
         // flexibility for implementation.
+        // Use CollectionSet instead of HashSet for better performance.
         return units == null ? Collections.<MeasureUnit>emptySet()
-                : Collections.unmodifiableSet(new HashSet<MeasureUnit>(units.values()));
+                : Collections.unmodifiableSet(new CollectionSet<MeasureUnit>(units.values()));
     }
 
     /**
@@ -483,14 +485,6 @@ public class MeasureUnit implements Serializable {
      * Constant for unit of consumption: mile-per-gallon-imperial
      */
     public static final MeasureUnit MILE_PER_GALLON_IMPERIAL = MeasureUnit.internalGetInstance("consumption", "mile-per-gallon-imperial");
-
-    /*
-     * at-draft ICU 58, withdrawn
-     * public static final MeasureUnit EAST = MeasureUnit.internalGetInstance("coordinate", "east");
-     * public static final MeasureUnit NORTH = MeasureUnit.internalGetInstance("coordinate", "north");
-     * public static final MeasureUnit SOUTH = MeasureUnit.internalGetInstance("coordinate", "south");
-     * public static final MeasureUnit WEST = MeasureUnit.internalGetInstance("coordinate", "west");
-     */
 
     /**
      * Constant for unit of digital: bit
