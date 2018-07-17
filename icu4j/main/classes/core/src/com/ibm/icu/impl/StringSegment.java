@@ -81,9 +81,7 @@ public class StringSegment implements CharSequence {
 
     @Override
     public CharSequence subSequence(int start, int end) {
-        throw new AssertionError(); // Never used
-        // Possible implementation:
-        // return str.subSequence(start + this.start, end + this.start);
+        return str.subSequence(start + this.start, end + this.start);
     }
 
     /**
@@ -103,6 +101,13 @@ public class StringSegment implements CharSequence {
             return Character.toCodePoint(lead, trail);
         }
         return lead;
+    }
+
+    /**
+     * Returns the code point at the given index relative to the current offset.
+     */
+    public int codePointAt(int index) {
+        return str.codePointAt(start + index);
     }
 
     /**
@@ -129,6 +134,19 @@ public class StringSegment implements CharSequence {
     }
 
     /**
+     * Returns true if there is at least one code point of overlap between this StringSegment and the
+     * given CharSequence. Null-safe.
+     */
+    public boolean startsWith(CharSequence other) {
+        if (other == null || other.length() == 0 || length() == 0) {
+            return false;
+        }
+        int cp1 = Character.codePointAt(this, 0);
+        int cp2 = Character.codePointAt(other, 0);
+        return codePointsEqual(cp1, cp2, foldCase);
+    }
+
+    /**
      * Returns the length of the prefix shared by this StringSegment and the given CharSequence. For
      * example, if this string segment is "aab", and the char sequence is "aac", this method returns 2,
      * since the first 2 characters are the same.
@@ -138,6 +156,9 @@ public class StringSegment implements CharSequence {
      *
      * <p>
      * This method will perform case folding if case folding was enabled in the constructor.
+     *
+     * <p>
+     * IMPORTANT: The given CharSequence must not be empty! It is the caller's responsibility to check.
      */
     public int getCommonPrefixLength(CharSequence other) {
         return getPrefixLengthInternal(other, foldCase);
@@ -152,8 +173,10 @@ public class StringSegment implements CharSequence {
     }
 
     private int getPrefixLengthInternal(CharSequence other, boolean foldCase) {
+        assert other.length() != 0;
         int offset = 0;
         for (; offset < Math.min(length(), other.length());) {
+            // TODO: case-fold code points, not chars
             int cp1 = Character.codePointAt(this, offset);
             int cp2 = Character.codePointAt(other, offset);
             if (!codePointsEqual(cp1, cp2, foldCase)) {

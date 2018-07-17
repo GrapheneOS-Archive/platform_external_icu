@@ -2,6 +2,9 @@
 // License & terms of use: http://www.unicode.org/copyright.html#License
 package com.ibm.icu.impl.number.parse;
 
+import static com.ibm.icu.impl.number.parse.ParsingUtils.safeContains;
+
+import com.ibm.icu.impl.StaticUnicodeSets;
 import com.ibm.icu.impl.StringSegment;
 import com.ibm.icu.text.DecimalFormatSymbols;
 
@@ -16,7 +19,7 @@ public class PlusSignMatcher extends SymbolMatcher {
 
     public static PlusSignMatcher getInstance(DecimalFormatSymbols symbols, boolean allowTrailing) {
         String symbolString = symbols.getPlusSignString();
-        if (DEFAULT.uniSet.contains(symbolString)) {
+        if (safeContains(DEFAULT.uniSet, symbolString)) {
             return allowTrailing ? DEFAULT_ALLOW_TRAILING : DEFAULT;
         } else {
             return new PlusSignMatcher(symbolString, allowTrailing);
@@ -31,13 +34,13 @@ public class PlusSignMatcher extends SymbolMatcher {
     }
 
     private PlusSignMatcher(boolean allowTrailing) {
-        super(UnicodeSetStaticCache.Key.PLUS_SIGN);
+        super(StaticUnicodeSets.Key.PLUS_SIGN);
         this.allowTrailing = allowTrailing;
     }
 
     @Override
     protected boolean isDisabled(ParsedNumber result) {
-        return allowTrailing ? false : result.seenNumber();
+        return !allowTrailing && result.seenNumber();
     }
 
     @Override

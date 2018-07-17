@@ -3,6 +3,7 @@
 // License & terms of use: http://www.unicode.org/copyright.html#License
 package android.icu.impl.number.parse;
 
+import android.icu.impl.StaticUnicodeSets;
 import android.icu.impl.StringSegment;
 import android.icu.text.UnicodeSet;
 
@@ -14,10 +15,10 @@ import android.icu.text.UnicodeSet;
 public class IgnorablesMatcher extends SymbolMatcher implements NumberParseMatcher.Flexible {
 
     public static final IgnorablesMatcher DEFAULT = new IgnorablesMatcher(
-            UnicodeSetStaticCache.get(UnicodeSetStaticCache.Key.DEFAULT_IGNORABLES));
+            StaticUnicodeSets.get(StaticUnicodeSets.Key.DEFAULT_IGNORABLES));
 
     public static final IgnorablesMatcher STRICT = new IgnorablesMatcher(
-            UnicodeSetStaticCache.get(UnicodeSetStaticCache.Key.STRICT_IGNORABLES));
+            StaticUnicodeSets.get(StaticUnicodeSets.Key.STRICT_IGNORABLES));
 
     public static IgnorablesMatcher getInstance(UnicodeSet ignorables) {
         assert ignorables.isFrozen();

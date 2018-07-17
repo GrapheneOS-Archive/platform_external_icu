@@ -6,7 +6,7 @@ package android.icu.impl.number;
 import android.icu.number.IntegerWidth;
 import android.icu.number.NumberFormatter.DecimalSeparatorDisplay;
 import android.icu.number.NumberFormatter.SignDisplay;
-import android.icu.number.Rounder;
+import android.icu.number.Precision;
 import android.icu.text.DecimalFormatSymbols;
 
 /**
@@ -24,7 +24,7 @@ public class MicroProps implements Cloneable, MicroPropsGenerator {
     public Modifier modOuter;
     public Modifier modMiddle;
     public Modifier modInner;
-    public Rounder rounding;
+    public Precision rounder;
     public Grouper grouping;
     public boolean useCurrency;
 

@@ -148,6 +148,12 @@ public final class VersionInfo implements Comparable<VersionInfo>
     public static final VersionInfo UNICODE_10_0;
 
     /**
+     * Unicode 11.0 version
+     * @hide unsupported on Android
+     */
+    public static final VersionInfo UNICODE_11_0;
+
+    /**
      * ICU4J current release version
      */
     public static final VersionInfo ICU_VERSION;
@@ -160,7 +166,7 @@ public final class VersionInfo implements Comparable<VersionInfo>
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
-    public static final String ICU_DATA_VERSION_PATH = "61b";
+    public static final String ICU_DATA_VERSION_PATH = "62b";
 
     /**
      * Data version in ICU4J.
@@ -526,10 +532,11 @@ public final class VersionInfo implements Comparable<VersionInfo>
         UNICODE_8_0   = getInstance(8, 0, 0, 0);
         UNICODE_9_0   = getInstance(9, 0, 0, 0);
         UNICODE_10_0   = getInstance(10, 0, 0, 0);
+        UNICODE_11_0   = getInstance(11, 0, 0, 0);
 
-        ICU_VERSION   = getInstance(61, 1, 0, 0);
+        ICU_VERSION   = getInstance(62, 1, 0, 0);
         ICU_DATA_VERSION = ICU_VERSION;
-        UNICODE_VERSION = UNICODE_10_0;
+        UNICODE_VERSION = UNICODE_11_0;
 
         UCOL_RUNTIME_VERSION = getInstance(9);
         UCOL_BUILDER_VERSION = getInstance(9);

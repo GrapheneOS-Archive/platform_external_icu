@@ -31,9 +31,9 @@ import org.junit.Test;
 
 import android.icu.dev.test.serializable.SerializableTestUtility;
 import android.icu.impl.number.DecimalFormatProperties;
+import android.icu.impl.number.DecimalFormatProperties.ParseMode;
 import android.icu.impl.number.Padder.PadPosition;
 import android.icu.impl.number.PatternStringParser;
-import android.icu.impl.number.parse.NumberParserImpl.ParseMode;
 import android.icu.text.CompactDecimalFormat.CompactStyle;
 import android.icu.text.CurrencyPluralInfo;
 import android.icu.text.MeasureFormat.FormatWidth;
