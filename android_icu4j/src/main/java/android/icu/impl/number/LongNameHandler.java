@@ -281,7 +281,7 @@ public class LongNameHandler implements MicroPropsGenerator {
         MicroProps micros = parent.processQuantity(quantity);
         // TODO: Avoid the copy here?
         DecimalQuantity copy = quantity.createCopy();
-        micros.rounding.apply(copy);
+        micros.rounder.apply(copy);
         micros.modOuter = modifiers.get(copy.getStandardPlural(rules));
         return micros;
     }

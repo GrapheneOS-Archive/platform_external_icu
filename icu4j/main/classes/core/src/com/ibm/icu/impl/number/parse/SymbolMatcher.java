@@ -2,12 +2,14 @@
 // License & terms of use: http://www.unicode.org/copyright.html#License
 package com.ibm.icu.impl.number.parse;
 
+import com.ibm.icu.impl.StaticUnicodeSets;
 import com.ibm.icu.impl.StringSegment;
 import com.ibm.icu.text.UnicodeSet;
 
 /**
- * @author sffc
+ * A base class for many matchers that performs a simple match against a UnicodeString and/or UnicodeSet.
  *
+ * @author sffc
  */
 public abstract class SymbolMatcher implements NumberParseMatcher {
     protected final String string;
@@ -21,9 +23,9 @@ public abstract class SymbolMatcher implements NumberParseMatcher {
         uniSet = symbolUniSet;
     }
 
-    protected SymbolMatcher(UnicodeSetStaticCache.Key key) {
+    protected SymbolMatcher(StaticUnicodeSets.Key key) {
         string = "";
-        uniSet = UnicodeSetStaticCache.get(key);
+        uniSet = StaticUnicodeSets.get(key);
     }
 
     public UnicodeSet getSet() {
@@ -58,16 +60,8 @@ public abstract class SymbolMatcher implements NumberParseMatcher {
     }
 
     @Override
-    public UnicodeSet getLeadCodePoints() {
-        if (string.isEmpty()) {
-            // Assumption: for sets from UnicodeSetStaticCache, uniSet == leadCodePoints.
-            return uniSet;
-        }
-
-        UnicodeSet leadCodePoints = new UnicodeSet();
-        ParsingUtils.putLeadCodePoints(uniSet, leadCodePoints);
-        ParsingUtils.putLeadCodePoint(string, leadCodePoints);
-        return leadCodePoints.freeze();
+    public boolean smokeTest(StringSegment segment) {
+        return segment.startsWith(uniSet) || segment.startsWith(string);
     }
 
     @Override

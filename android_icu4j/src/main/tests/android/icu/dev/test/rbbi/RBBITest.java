@@ -27,8 +27,8 @@ import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
 import android.icu.dev.test.TestFmwk;
+import android.icu.impl.RBBIDataWrapper;
 import android.icu.text.BreakIterator;
-import android.icu.text.RBBIDataWrapper;
 import android.icu.text.RuleBasedBreakIterator;
 import android.icu.util.ULocale;
 import android.icu.testsharding.MainTestShard;
@@ -656,8 +656,6 @@ public class RBBITest extends TestFmwk {
             RuleBasedBreakIterator bi2 = new RuleBasedBreakIterator(rules);
             assertTrue("Forward Table",      RBBIDataWrapper.equals(bi.fRData.fFTable, bi2.fRData.fFTable));
             assertTrue("Reverse Table",      RBBIDataWrapper.equals(bi.fRData.fRTable, bi2.fRData.fRTable));
-            assertTrue("Safe Forward Table", RBBIDataWrapper.equals(bi.fRData.fSFTable, bi2.fRData.fSFTable));
-            assertTrue("SafeForward Table",  RBBIDataWrapper.equals(bi.fRData.fSRTable, bi2.fRData.fSRTable));
         }
     }
 }

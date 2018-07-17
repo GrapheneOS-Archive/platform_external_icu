@@ -19,6 +19,7 @@ import java.text.FieldPosition;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -82,7 +83,7 @@ public class MeasureUnitTest extends TestFmwk {
         }
     }
 
-    private static final String[] DRAFT_VERSIONS = {"57", "58", "59"};
+    private static final String[] DRAFT_VERSIONS = {"60", "61", "62"};
 
     private static final HashSet<String> DRAFT_VERSION_SET = new HashSet<String>();
 
@@ -223,10 +224,6 @@ public class MeasureUnitTest extends TestFmwk {
         {"PART_PER_MILLION", "57"},
         {"MILE_PER_GALLON_IMPERIAL", "57"},
         {"GALLON_IMPERIAL", "57"},
-        // {"EAST", "58"},
-        // {"NORTH", "58"},
-        // {"SOUTH", "58"},
-        // {"WEST", "58"},
         {"POINT", "59"},
     };
 
@@ -253,12 +250,12 @@ public class MeasureUnitTest extends TestFmwk {
         // various generateXXX calls go here, see
         // http://site.icu-project.org/design/formatting/measureformat/updating-measure-unit
         // use this test to run each of the ollowing in succession
-        //generateConstants("59"); // for MeasureUnit.java, update generated MeasureUnit constants
-        //generateBackwardCompatibilityTest("59"); // for MeasureUnitTest.java, create TestCompatible59
-        //generateCXXHConstants("59"); // for measunit.h, update generated createXXX methods
+        //generateConstants("62"); // for MeasureUnit.java, update generated MeasureUnit constants
+        //generateBackwardCompatibilityTest("62"); // for MeasureUnitTest.java, create TestCompatible62
+        //generateCXXHConstants("62"); // for measunit.h, update generated createXXX methods
         //generateCXXConstants(); // for measunit.cpp, update generated code
-        //generateCXXBackwardCompatibilityTest("59"); // for measfmttest.cpp, create TestCompatible59
-        //updateJAVAVersions("59"); // for MeasureUnitTest.java, JAVA_VERSIONS
+        //generateCXXBackwardCompatibilityTest("62"); // for measfmttest.cpp, create TestCompatible62
+        //updateJAVAVersions("62"); // for MeasureUnitTest.java, JAVA_VERSIONS
     }
 
     @Test
@@ -1135,6 +1132,9 @@ public class MeasureUnitTest extends TestFmwk {
         assertEquals("",  135, units.length);
     }
 
+    // Note that TestCompatible60(), TestCompatible61(), TestCompatible62()
+    // would be the same as TestCompatible59(), no need to add them.
+
     @Test
     public void TestExamplesInDocs() {
         MeasureFormat fmtFr = MeasureFormat.getInstance(
@@ -1460,6 +1460,15 @@ public class MeasureUnitTest extends TestFmwk {
             MeasureUnit actual = MeasureUnit.internalGetInstance(type, code);
             assertSame("Identity check", expected, actual);
         }
+
+        // The return value should contain only unique elements
+        assertUnique(MeasureUnit.getAvailable());
+    }
+
+    static void assertUnique(Collection<?> coll) {
+        int expectedSize = new HashSet<Object>(coll).size();
+        int actualSize = coll.size();
+        assertEquals("Collection should contain only unique elements", expectedSize, actualSize);
     }
 
     @Test
@@ -2164,7 +2173,10 @@ public class MeasureUnitTest extends TestFmwk {
         TreeMap<String, List<MeasureUnit>> allUnits = getAllUnits();
 
         // Hack: for C++, add NoUnits here, but ignore them when printing the create methods.
+        // ALso keep track of the base unit offset to make the C++ default constructor faster.
         allUnits.put("none", Arrays.asList(new MeasureUnit[]{NoUnit.BASE, NoUnit.PERCENT, NoUnit.PERMILLE}));
+        int baseTypeIdx = -1;
+        int baseSubTypeIdx = -1;
 
         System.out.println("static const int32_t gOffsets[] = {");
         int index = 0;
@@ -2217,6 +2229,10 @@ public class MeasureUnitTest extends TestFmwk {
                 first = false;
                 measureUnitToOffset.put(unit, offset);
                 measureUnitToTypeSubType.put(unit, Pair.of(typeIdx, subTypeIdx));
+                if (unit == NoUnit.BASE) {
+                    baseTypeIdx = typeIdx;
+                    baseSubTypeIdx = subTypeIdx;
+                }
                 offset++;
                 subTypeIdx++;
             }
@@ -2259,6 +2275,12 @@ public class MeasureUnitTest extends TestFmwk {
         }
         System.out.println();
         System.out.println("};");
+        System.out.println();
+
+        // Print out the fast-path for the default constructor
+        System.out.println("// Shortcuts to the base unit in order to make the default constructor fast");
+        System.out.println("static const int32_t kBaseTypeIdx = " + baseTypeIdx + ";");
+        System.out.println("static const int32_t kBaseSubTypeIdx = " + baseSubTypeIdx + ";");
         System.out.println();
 
         Map<String, MeasureUnit> seen = new HashMap<String, MeasureUnit>();
