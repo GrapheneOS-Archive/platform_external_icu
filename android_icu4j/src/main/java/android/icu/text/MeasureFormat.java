@@ -41,7 +41,7 @@ import android.icu.number.FormattedNumber;
 import android.icu.number.LocalizedNumberFormatter;
 import android.icu.number.NumberFormatter;
 import android.icu.number.NumberFormatter.UnitWidth;
-import android.icu.number.Rounder;
+import android.icu.number.Precision;
 import android.icu.text.ListFormatter.FormattedListBuilder;
 import android.icu.util.Currency;
 import android.icu.util.ICUUncheckedIOException;
@@ -369,7 +369,7 @@ public class MeasureFormat extends UFormat {
         FormattedNumber result = getUnitFormatterFromCache(NUMBER_FORMATTER_STANDARD,
                 measure.getUnit(),
                 perUnit).format(measure.getNumber());
-        result.populateFieldPosition(pos, appendTo.length());
+        DecimalFormat.fieldPositionHelper(result, pos, appendTo.length());
         result.appendTo(appendTo);
         return appendTo;
     }
@@ -703,7 +703,7 @@ public class MeasureFormat extends UFormat {
         } else {
             assert type == NUMBER_FORMATTER_INTEGER;
             formatter = getNumberFormatter().unit(unit).perUnit(perUnit).unitWidth(formatWidth.unitWidth)
-                    .rounding(Rounder.integer().withMode(RoundingMode.DOWN));
+                    .rounding(Precision.integer().withMode(RoundingMode.DOWN));
         }
         formatter3 = formatter2;
         formatter2 = formatter1;

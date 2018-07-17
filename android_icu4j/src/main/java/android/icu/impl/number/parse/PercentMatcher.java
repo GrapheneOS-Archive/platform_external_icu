@@ -3,6 +3,7 @@
 // License & terms of use: http://www.unicode.org/copyright.html#License
 package android.icu.impl.number.parse;
 
+import android.icu.impl.StaticUnicodeSets;
 import android.icu.impl.StringSegment;
 import android.icu.text.DecimalFormatSymbols;
 
@@ -29,7 +30,7 @@ public class PercentMatcher extends SymbolMatcher {
     }
 
     private PercentMatcher() {
-        super(UnicodeSetStaticCache.Key.PERCENT_SIGN);
+        super(StaticUnicodeSets.Key.PERCENT_SIGN);
     }
 
     @Override

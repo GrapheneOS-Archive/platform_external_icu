@@ -246,6 +246,17 @@ public class MutablePatternModifier implements Modifier, SymbolProvider, MicroPr
                 micros.modMiddle = pm.getModifier(quantity.signum(), plural);
             }
         }
+
+        // NOTE: This method is not used in ICU4J right now.
+        // In ICU4C, it is used by getPrefixSuffix().
+        // Un-comment this method when getPrefixSuffix() is cleaned up in ICU4J.
+        // public Modifier getModifier(byte signum, StandardPlural plural) {
+        // if (rules == null) {
+        // return pm.getModifier(signum);
+        // } else {
+        // return pm.getModifier(signum, plural);
+        // }
+        // }
     }
 
     /** Used by the unsafe code path. */
@@ -260,7 +271,7 @@ public class MutablePatternModifier implements Modifier, SymbolProvider, MicroPr
         if (needsPlurals()) {
             // TODO: Fix this. Avoid the copy.
             DecimalQuantity copy = fq.createCopy();
-            micros.rounding.apply(copy);
+            micros.rounder.apply(copy);
             setNumberProperties(fq.signum(), copy.getStandardPlural(rules));
         } else {
             setNumberProperties(fq.signum(), null);

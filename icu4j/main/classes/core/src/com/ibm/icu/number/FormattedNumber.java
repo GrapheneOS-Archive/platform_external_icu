@@ -9,7 +9,6 @@ import java.text.FieldPosition;
 import java.util.Arrays;
 
 import com.ibm.icu.impl.number.DecimalQuantity;
-import com.ibm.icu.impl.number.MicroProps;
 import com.ibm.icu.impl.number.NumberStringBuilder;
 import com.ibm.icu.text.PluralRules.IFixedDecimal;
 import com.ibm.icu.util.ICUUncheckedIOException;
@@ -23,14 +22,12 @@ import com.ibm.icu.util.ICUUncheckedIOException;
  * @see NumberFormatter
  */
 public class FormattedNumber {
-    NumberStringBuilder nsb;
-    DecimalQuantity fq;
-    MicroProps micros;
+    final NumberStringBuilder nsb;
+    final DecimalQuantity fq;
 
-    FormattedNumber(NumberStringBuilder nsb, DecimalQuantity fq, MicroProps micros) {
+    FormattedNumber(NumberStringBuilder nsb, DecimalQuantity fq) {
         this.nsb = nsb;
         this.fq = fq;
-        this.micros = micros;
     }
 
     /**
@@ -88,43 +85,92 @@ public class FormattedNumber {
      *
      * @param fieldPosition
      *            The FieldPosition to populate with the start and end indices of the desired field.
-     * @draft ICU 60
+     * @deprecated ICU 62 Use {@link #nextFieldPosition} instead. This method will be removed in a future
+     *             release. See http://bugs.icu-project.org/trac/ticket/13746
+     * @see com.ibm.icu.text.NumberFormat.Field
+     * @see NumberFormatter
+     */
+    @Deprecated
+    public void populateFieldPosition(FieldPosition fieldPosition) {
+        // in case any users were depending on the old behavior:
+        fieldPosition.setBeginIndex(0);
+        fieldPosition.setEndIndex(0);
+        nextFieldPosition(fieldPosition);
+    }
+
+    /**
+     * Determines the start and end indices of the next occurrence of the given <em>field</em> in the
+     * output string. This allows you to determine the locations of, for example, the integer part,
+     * fraction part, or symbols.
+     * <p>
+     * If a field occurs just once, calling this method will find that occurrence and return it. If a
+     * field occurs multiple times, this method may be called repeatedly with the following pattern:
+     *
+     * <pre>
+     * FieldPosition fpos = new FieldPosition(NumberFormat.Field.GROUPING_SEPARATOR);
+     * while (formattedNumber.nextFieldPosition(fpos, status)) {
+     *     // do something with fpos.
+     * }
+     * </pre>
+     * <p>
+     * This method is useful if you know which field to query. If you want all available field position
+     * information, use {@link #toCharacterIterator()}.
+     *
+     * @param fieldPosition
+     *            Input+output variable. On input, the "field" property determines which field to look
+     *            up, and the "beginIndex" and "endIndex" properties determine where to begin the search.
+     *            On output, the "beginIndex" is set to the beginning of the first occurrence of the
+     *            field with either begin or end indices after the input indices, "endIndex" is set to
+     *            the end of that occurrence of the field (exclusive index). If a field position is not
+     *            found, the method returns FALSE and the FieldPosition may or may not be changed.
+     * @return true if a new occurrence of the field was found; false otherwise.
+     * @draft ICU 62
      * @provisional This API might change or be removed in a future release.
      * @see com.ibm.icu.text.NumberFormat.Field
      * @see NumberFormatter
      */
-    public void populateFieldPosition(FieldPosition fieldPosition) {
-        populateFieldPosition(fieldPosition, 0);
-    }
-
-    /**
-     * @internal
-     * @deprecated This API is ICU internal only.
-     */
-    @Deprecated
-    public void populateFieldPosition(FieldPosition fieldPosition, int offset) {
-        nsb.populateFieldPosition(fieldPosition, offset);
+    public boolean nextFieldPosition(FieldPosition fieldPosition) {
         fq.populateUFieldPosition(fieldPosition);
+        return nsb.nextFieldPosition(fieldPosition);
     }
 
     /**
      * Export the formatted number as an AttributedCharacterIterator. This allows you to determine which
      * characters in the output string correspond to which <em>fields</em>, such as the integer part,
      * fraction part, and sign.
-     *
      * <p>
      * If information on only one field is needed, consider using populateFieldPosition() instead.
      *
      * @return An AttributedCharacterIterator, containing information on the field attributes of the
      *         number string.
-     * @draft ICU 60
+     * @deprecated ICU 62 Use {@link #toCharacterIterator} instead. This method will be removed in a future
+     *             release. See http://bugs.icu-project.org/trac/ticket/13746
+     * @see com.ibm.icu.text.NumberFormat.Field
+     * @see AttributedCharacterIterator
+     * @see NumberFormatter
+     */
+    @Deprecated
+    public AttributedCharacterIterator getFieldIterator() {
+        return nsb.toCharacterIterator();
+    }
+
+    /**
+     * Export the formatted number as an AttributedCharacterIterator. This allows you to determine which
+     * characters in the output string correspond to which <em>fields</em>, such as the integer part,
+     * fraction part, and sign.
+     * <p>
+     * If information on only one field is needed, use {@link #nextFieldPosition(FieldPosition)} instead.
+     *
+     * @return An AttributedCharacterIterator, containing information on the field attributes of the
+     *         number string.
+     * @draft ICU 62
      * @provisional This API might change or be removed in a future release.
      * @see com.ibm.icu.text.NumberFormat.Field
      * @see AttributedCharacterIterator
      * @see NumberFormatter
      */
-    public AttributedCharacterIterator getFieldIterator() {
-        return nsb.getIterator();
+    public AttributedCharacterIterator toCharacterIterator() {
+        return nsb.toCharacterIterator();
     }
 
     /**
@@ -139,34 +185,6 @@ public class FormattedNumber {
      */
     public BigDecimal toBigDecimal() {
         return fq.toBigDecimal();
-    }
-
-    /**
-     * @internal
-     * @deprecated This API is ICU internal only. Use {@link #populateFieldPosition} or
-     *             {@link #getFieldIterator} for similar functionality.
-     */
-    @Deprecated
-    public String getPrefix() {
-        NumberStringBuilder temp = new NumberStringBuilder();
-        // #13453: DecimalFormat wants the affixes from the pattern only (modMiddle).
-        micros.modMiddle.apply(temp, 0, 0);
-        int prefixLength = micros.modMiddle.getPrefixLength();
-        return temp.subSequence(0, prefixLength).toString();
-    }
-
-    /**
-     * @internal
-     * @deprecated This API is ICU internal only. Use {@link #populateFieldPosition} or
-     *             {@link #getFieldIterator} for similar functionality.
-     */
-    @Deprecated
-    public String getSuffix() {
-        NumberStringBuilder temp = new NumberStringBuilder();
-        // #13453: DecimalFormat wants the affixes from the pattern only (modMiddle).
-        int length = micros.modMiddle.apply(temp, 0, 0);
-        int prefixLength = micros.modMiddle.getPrefixLength();
-        return temp.subSequence(prefixLength, length).toString();
     }
 
     /**

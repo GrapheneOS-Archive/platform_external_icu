@@ -2,13 +2,16 @@
 // License & terms of use: http://www.unicode.org/copyright.html#License
 package com.ibm.icu.impl.number;
 
+import java.math.RoundingMode;
+
 import com.ibm.icu.impl.Utility;
 import com.ibm.icu.number.IntegerWidth;
 import com.ibm.icu.number.Notation;
 import com.ibm.icu.number.NumberFormatter.DecimalSeparatorDisplay;
 import com.ibm.icu.number.NumberFormatter.SignDisplay;
 import com.ibm.icu.number.NumberFormatter.UnitWidth;
-import com.ibm.icu.number.Rounder;
+import com.ibm.icu.number.Precision;
+import com.ibm.icu.number.Scale;
 import com.ibm.icu.text.PluralRules;
 import com.ibm.icu.util.MeasureUnit;
 import com.ibm.icu.util.ULocale;
@@ -17,7 +20,8 @@ public class MacroProps implements Cloneable {
     public Notation notation;
     public MeasureUnit unit;
     public MeasureUnit perUnit;
-    public Rounder rounder;
+    public Precision precision;
+    public RoundingMode roundingMode;
     public Object grouping;
     public Padder padder;
     public IntegerWidth integerWidth;
@@ -25,8 +29,8 @@ public class MacroProps implements Cloneable {
     public UnitWidth unitWidth;
     public SignDisplay sign;
     public DecimalSeparatorDisplay decimal;
+    public Scale scale;
     public AffixPatternProvider affixProvider; // not in API; for JDK compatibility mode only
-    public MultiplierImpl multiplier; // not in API; for JDK compatibility mode only
     public PluralRules rules; // not in API; could be made public in the future
     public Long threshold; // not in API; controls internal self-regulation threshold
     public ULocale loc;
@@ -44,8 +48,10 @@ public class MacroProps implements Cloneable {
             unit = fallback.unit;
         if (perUnit == null)
             perUnit = fallback.perUnit;
-        if (rounder == null)
-            rounder = fallback.rounder;
+        if (precision == null)
+            precision = fallback.precision;
+        if (roundingMode == null)
+            roundingMode = fallback.roundingMode;
         if (grouping == null)
             grouping = fallback.grouping;
         if (padder == null)
@@ -62,8 +68,8 @@ public class MacroProps implements Cloneable {
             decimal = fallback.decimal;
         if (affixProvider == null)
             affixProvider = fallback.affixProvider;
-        if (multiplier == null)
-            multiplier = fallback.multiplier;
+        if (scale == null)
+            scale = fallback.scale;
         if (rules == null)
             rules = fallback.rules;
         if (loc == null)
@@ -75,7 +81,8 @@ public class MacroProps implements Cloneable {
         return Utility.hash(notation,
                 unit,
                 perUnit,
-                rounder,
+                precision,
+                roundingMode,
                 grouping,
                 padder,
                 integerWidth,
@@ -84,7 +91,7 @@ public class MacroProps implements Cloneable {
                 sign,
                 decimal,
                 affixProvider,
-                multiplier,
+                scale,
                 rules,
                 loc);
     }
@@ -101,7 +108,8 @@ public class MacroProps implements Cloneable {
         return Utility.equals(notation, other.notation)
                 && Utility.equals(unit, other.unit)
                 && Utility.equals(perUnit, other.perUnit)
-                && Utility.equals(rounder, other.rounder)
+                && Utility.equals(precision, other.precision)
+                && Utility.equals(roundingMode, other.roundingMode)
                 && Utility.equals(grouping, other.grouping)
                 && Utility.equals(padder, other.padder)
                 && Utility.equals(integerWidth, other.integerWidth)
@@ -110,7 +118,7 @@ public class MacroProps implements Cloneable {
                 && Utility.equals(sign, other.sign)
                 && Utility.equals(decimal, other.decimal)
                 && Utility.equals(affixProvider, other.affixProvider)
-                && Utility.equals(multiplier, other.multiplier)
+                && Utility.equals(scale, other.scale)
                 && Utility.equals(rules, other.rules)
                 && Utility.equals(loc, other.loc);
     }

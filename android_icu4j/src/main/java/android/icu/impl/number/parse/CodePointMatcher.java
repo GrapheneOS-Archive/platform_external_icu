@@ -4,7 +4,6 @@
 package android.icu.impl.number.parse;
 
 import android.icu.impl.StringSegment;
-import android.icu.text.UnicodeSet;
 
 /**
  * Matches a single code point, performing no other logic.
@@ -35,8 +34,8 @@ public class CodePointMatcher implements NumberParseMatcher {
     }
 
     @Override
-    public UnicodeSet getLeadCodePoints() {
-        return new UnicodeSet().add(cp).freeze();
+    public boolean smokeTest(StringSegment segment) {
+        return segment.startsWith(cp);
     }
 
     @Override

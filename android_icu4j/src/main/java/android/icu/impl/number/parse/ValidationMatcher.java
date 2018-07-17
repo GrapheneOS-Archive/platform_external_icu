@@ -4,7 +4,6 @@
 package android.icu.impl.number.parse;
 
 import android.icu.impl.StringSegment;
-import android.icu.text.UnicodeSet;
 
 /**
  * A Matcher used only for post-process validation, not for consuming characters at runtime.
@@ -18,8 +17,8 @@ public abstract class ValidationMatcher implements NumberParseMatcher {
     }
 
     @Override
-    public UnicodeSet getLeadCodePoints() {
-        return UnicodeSet.EMPTY;
+    public boolean smokeTest(StringSegment segment) {
+        return false;
     }
 
 }
