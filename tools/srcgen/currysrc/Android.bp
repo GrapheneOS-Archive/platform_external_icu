@@ -31,8 +31,8 @@ java_import_host {
     // Remove signature files found in META-INF/ that cause the combined jar to be rejected.
     // http://b/111389216
     exclude_files: [
-        "ECLIPSE_.SF",
-        "ECLIPSE_.RSA",
+        "META-INF/ECLIPSE_.SF",
+        "META-INF/ECLIPSE_.RSA",
     ],
 }
 
