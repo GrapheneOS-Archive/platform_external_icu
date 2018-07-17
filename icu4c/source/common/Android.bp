@@ -89,6 +89,7 @@ cc_defaults {
         "servslkf.cpp",
         "sharedobject.cpp",
         "simpleformatter.cpp",
+        "static_unicode_sets.cpp",
         "stringpiece.cpp",
         "stringtriebuilder.cpp",
         "uarrsort.cpp",

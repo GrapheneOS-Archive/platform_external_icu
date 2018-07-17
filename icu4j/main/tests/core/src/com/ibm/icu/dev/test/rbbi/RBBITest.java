@@ -26,8 +26,8 @@ import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
 import com.ibm.icu.dev.test.TestFmwk;
+import com.ibm.icu.impl.RBBIDataWrapper;
 import com.ibm.icu.text.BreakIterator;
-import com.ibm.icu.text.RBBIDataWrapper;
 import com.ibm.icu.text.RuleBasedBreakIterator;
 import com.ibm.icu.util.ULocale;
 
@@ -653,8 +653,6 @@ public class RBBITest extends TestFmwk {
             RuleBasedBreakIterator bi2 = new RuleBasedBreakIterator(rules);
             assertTrue("Forward Table",      RBBIDataWrapper.equals(bi.fRData.fFTable, bi2.fRData.fFTable));
             assertTrue("Reverse Table",      RBBIDataWrapper.equals(bi.fRData.fRTable, bi2.fRData.fRTable));
-            assertTrue("Safe Forward Table", RBBIDataWrapper.equals(bi.fRData.fSFTable, bi2.fRData.fSFTable));
-            assertTrue("SafeForward Table",  RBBIDataWrapper.equals(bi.fRData.fSRTable, bi2.fRData.fSRTable));
         }
     }
 }

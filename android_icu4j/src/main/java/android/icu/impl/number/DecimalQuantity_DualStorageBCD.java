@@ -62,6 +62,8 @@ public final class DecimalQuantity_DualStorageBCD extends DecimalQuantity_Abstra
     }
 
     public DecimalQuantity_DualStorageBCD(Number number) {
+        // NOTE: Number type expansion happens both here
+        // and in NumberFormat.java
         if (number instanceof Long) {
             setToLong(number.longValue());
         } else if (number instanceof Integer) {
@@ -90,7 +92,7 @@ public final class DecimalQuantity_DualStorageBCD extends DecimalQuantity_Abstra
     @Override
     protected byte getDigitPos(int position) {
         if (usingBytes) {
-            if (position < 0 || position > precision)
+            if (position < 0 || position >= precision)
                 return 0;
             return bcdBytes[position];
         } else {
@@ -417,18 +419,22 @@ public final class DecimalQuantity_DualStorageBCD extends DecimalQuantity_Abstra
 
     @Override
     public String toString() {
-        return String.format("<DecimalQuantity %s:%d:%d:%s %s %s>",
+        return String.format("<DecimalQuantity %s:%d:%d:%s %s %s%s>",
                 (lOptPos > 1000 ? "999" : String.valueOf(lOptPos)),
                 lReqPos,
                 rReqPos,
                 (rOptPos < -1000 ? "-999" : String.valueOf(rOptPos)),
                 (usingBytes ? "bytes" : "long"),
+                (isNegative() ? "-" : ""),
                 toNumberString());
     }
 
-    public String toNumberString() {
+    private String toNumberString() {
         StringBuilder sb = new StringBuilder();
         if (usingBytes) {
+            if (precision == 0) {
+                sb.append('0');
+            }
             for (int i = precision - 1; i >= 0; i--) {
                 sb.append(bcdBytes[i]);
             }

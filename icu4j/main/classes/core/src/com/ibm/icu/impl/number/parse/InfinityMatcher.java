@@ -2,6 +2,9 @@
 // License & terms of use: http://www.unicode.org/copyright.html#License
 package com.ibm.icu.impl.number.parse;
 
+import static com.ibm.icu.impl.number.parse.ParsingUtils.safeContains;
+
+import com.ibm.icu.impl.StaticUnicodeSets;
 import com.ibm.icu.impl.StringSegment;
 import com.ibm.icu.text.DecimalFormatSymbols;
 
@@ -15,7 +18,7 @@ public class InfinityMatcher extends SymbolMatcher {
 
     public static InfinityMatcher getInstance(DecimalFormatSymbols symbols) {
         String symbolString = symbols.getInfinity();
-        if (DEFAULT.uniSet.contains(symbolString)) {
+        if (safeContains(DEFAULT.uniSet, symbolString)) {
             return DEFAULT;
         } else {
             return new InfinityMatcher(symbolString);
@@ -27,7 +30,7 @@ public class InfinityMatcher extends SymbolMatcher {
     }
 
     private InfinityMatcher() {
-        super(UnicodeSetStaticCache.Key.INFINITY);
+        super(StaticUnicodeSets.Key.INFINITY);
     }
 
     @Override
@@ -43,6 +46,6 @@ public class InfinityMatcher extends SymbolMatcher {
 
     @Override
     public String toString() {
-        return "<PercentMatcher>";
+        return "<InfinityMatcher>";
     }
 }
