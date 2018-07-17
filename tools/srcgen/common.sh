@@ -31,7 +31,7 @@ make -j16 android_icu4j_srcgen
 ICU4J_DIR=${ANDROID_BUILD_TOP}/external/icu/icu4j
 ANDROID_ICU4J_DIR=${ANDROID_BUILD_TOP}/external/icu/android_icu4j
 
-CLASSPATH=${ANDROID_BUILD_TOP}/out/host/common/obj/JAVA_LIBRARIES/currysrc_intermediates/javalib.jar:${ANDROID_BUILD_TOP}/out/host/common/obj/JAVA_LIBRARIES/android_icu4j_srcgen_intermediates/javalib.jar
+CLASSPATH=${ANDROID_HOST_OUT}/framework/currysrc.jar:${ANDROID_HOST_OUT}/framework/android_icu4j_srcgen.jar
 
 # The parts of ICU4J to include during srcgen.
 #
