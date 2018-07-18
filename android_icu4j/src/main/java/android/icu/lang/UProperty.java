@@ -490,8 +490,6 @@ public interface UProperty
     /**
      * Binary property Extended_Pictographic.
      * See http://www.unicode.org/reports/tr51/#Emoji_Properties
-     *
-     * @hide unsupported on Android
      */
     public static final int EXTENDED_PICTOGRAPHIC=64;
 
