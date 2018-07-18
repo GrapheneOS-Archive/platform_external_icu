@@ -831,20 +831,19 @@ public final class UScript {
 
     /**
      * ISO 15924 script code
-     * @hide unsupported on Android
      */
     public static final int DOGRA = 178; /* Dogr */
-    /** @hide unsupported on Android*/
+    /***/
     public static final int GUNJALA_GONDI = 179; /* Gong */
-    /** @hide unsupported on Android*/
+    /***/
     public static final int MAKASAR = 180; /* Maka */
-    /** @hide unsupported on Android*/
+    /***/
     public static final int MEDEFAIDRIN = 181; /* Medf */
-    /** @hide unsupported on Android*/
+    /***/
     public static final int HANIFI_ROHINGYA = 182; /* Rohg */
-    /** @hide unsupported on Android*/
+    /***/
     public static final int SOGDIAN = 183; /* Sogd */
-    /** @hide unsupported on Android*/
+    /***/
     public static final int OLD_SOGDIAN = 184; /* Sogo */
 
     /**
