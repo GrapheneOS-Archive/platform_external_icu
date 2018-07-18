@@ -988,27 +988,27 @@ public final class UCharacter implements ECharacterCategory, ECharacterDirection
 
         // New blocks in Unicode 11.0
 
-        /** @hide unsupported on Android*/
+        /***/
         public static final int CHESS_SYMBOLS_ID = 281; /*[1FA00]*/
-        /** @hide unsupported on Android*/
+        /***/
         public static final int DOGRA_ID = 282; /*[11800]*/
-        /** @hide unsupported on Android*/
+        /***/
         public static final int GEORGIAN_EXTENDED_ID = 283; /*[1C90]*/
-        /** @hide unsupported on Android*/
+        /***/
         public static final int GUNJALA_GONDI_ID = 284; /*[11D60]*/
-        /** @hide unsupported on Android*/
+        /***/
         public static final int HANIFI_ROHINGYA_ID = 285; /*[10D00]*/
-        /** @hide unsupported on Android*/
+        /***/
         public static final int INDIC_SIYAQ_NUMBERS_ID = 286; /*[1EC70]*/
-        /** @hide unsupported on Android*/
+        /***/
         public static final int MAKASAR_ID = 287; /*[11EE0]*/
-        /** @hide unsupported on Android*/
+        /***/
         public static final int MAYAN_NUMERALS_ID = 288; /*[1D2E0]*/
-        /** @hide unsupported on Android*/
+        /***/
         public static final int MEDEFAIDRIN_ID = 289; /*[16E40]*/
-        /** @hide unsupported on Android*/
+        /***/
         public static final int OLD_SOGDIAN_ID = 290; /*[10F00]*/
-        /** @hide unsupported on Android*/
+        /***/
         public static final int SOGDIAN_ID = 291; /*[10F30]*/
 
         /**
@@ -2127,35 +2127,35 @@ public final class UCharacter implements ECharacterCategory, ECharacterDirection
 
         // New blocks in Unicode 11.0
 
-        /** @hide unsupported on Android*/
+        /***/
         public static final UnicodeBlock CHESS_SYMBOLS =
                 new UnicodeBlock("CHESS_SYMBOLS", CHESS_SYMBOLS_ID); /*[1FA00]*/
-        /** @hide unsupported on Android*/
+        /***/
         public static final UnicodeBlock DOGRA = new UnicodeBlock("DOGRA", DOGRA_ID); /*[11800]*/
-        /** @hide unsupported on Android*/
+        /***/
         public static final UnicodeBlock GEORGIAN_EXTENDED =
                 new UnicodeBlock("GEORGIAN_EXTENDED", GEORGIAN_EXTENDED_ID); /*[1C90]*/
-        /** @hide unsupported on Android*/
+        /***/
         public static final UnicodeBlock GUNJALA_GONDI =
                 new UnicodeBlock("GUNJALA_GONDI", GUNJALA_GONDI_ID); /*[11D60]*/
-        /** @hide unsupported on Android*/
+        /***/
         public static final UnicodeBlock HANIFI_ROHINGYA =
                 new UnicodeBlock("HANIFI_ROHINGYA", HANIFI_ROHINGYA_ID); /*[10D00]*/
-        /** @hide unsupported on Android*/
+        /***/
         public static final UnicodeBlock INDIC_SIYAQ_NUMBERS =
                 new UnicodeBlock("INDIC_SIYAQ_NUMBERS", INDIC_SIYAQ_NUMBERS_ID); /*[1EC70]*/
-        /** @hide unsupported on Android*/
+        /***/
         public static final UnicodeBlock MAKASAR = new UnicodeBlock("MAKASAR", MAKASAR_ID); /*[11EE0]*/
-        /** @hide unsupported on Android*/
+        /***/
         public static final UnicodeBlock MAYAN_NUMERALS =
                 new UnicodeBlock("MAYAN_NUMERALS", MAYAN_NUMERALS_ID); /*[1D2E0]*/
-        /** @hide unsupported on Android*/
+        /***/
         public static final UnicodeBlock MEDEFAIDRIN =
                 new UnicodeBlock("MEDEFAIDRIN", MEDEFAIDRIN_ID); /*[16E40]*/
-        /** @hide unsupported on Android*/
+        /***/
         public static final UnicodeBlock OLD_SOGDIAN =
                 new UnicodeBlock("OLD_SOGDIAN", OLD_SOGDIAN_ID); /*[10F00]*/
-        /** @hide unsupported on Android*/
+        /***/
         public static final UnicodeBlock SOGDIAN = new UnicodeBlock("SOGDIAN", SOGDIAN_ID); /*[10F30]*/
 
         /**
@@ -2695,9 +2695,9 @@ public final class UCharacter implements ECharacterCategory, ECharacterDirection
         /***/
         public static final int MALAYALAM_TTA = 99;
 
-        /** @hide unsupported on Android*/
+        /***/
         public static final int HANIFI_ROHINGYA_KINNA_YA = 100;
-        /** @hide unsupported on Android*/
+        /***/
         public static final int HANIFI_ROHINGYA_PA = 101;
 
         /**
@@ -2838,7 +2838,7 @@ public final class UCharacter implements ECharacterCategory, ECharacterDirection
         public static final int GLUE_AFTER_ZWJ = 20;   /*[GAZ]*/
         /***/
         public static final int ZWJ = 21;              /*[ZWJ]*/
-        /** @hide unsupported on Android*/
+        /***/
         public static final int WSEGSPACE = 22;        /*[WSEGSPACE]*/
         /**
          * One more than the highest normal WordBreak value.
