@@ -22,7 +22,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 
-import android.icu.dev.test.TestUtil;  // Android patch (ticket #13483).
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
@@ -499,8 +498,10 @@ public class TimeZoneTest extends TestFmwk
 
     @Test
     public void TestGenericAPI() {
-        String id = "NewGMT";
-        int offset = 12345;
+        // Android patch (ticket #13483) begin.
+        String id = "GMT-12:00";
+        int offset = -12 * 60 * 60 * 1000;
+        // Android patch (ticket #13483) end.
 
         SimpleTimeZone zone = new SimpleTimeZone(offset, id);
         if (zone.useDaylightTime()) errln("FAIL: useDaylightTime should return false");
@@ -514,10 +515,6 @@ public class TimeZoneTest extends TestFmwk
         if (!zoneclone.equals(zone)) errln("FAIL: clone or operator== failed");
         zoneclone.setRawOffset(45678);
         if (zoneclone.equals(zone)) errln("FAIL: clone or operator!= failed");
-
-        // Android patch (ticket #13483) begin.
-        if (TestUtil.getJavaVendor() == TestUtil.JavaVendor.Android) return;
-        // Android patch (ticket #13483) end.
 
         // set/getDefault
         TimeZone saveDefault = TimeZone.getDefault();
@@ -551,12 +548,9 @@ public class TimeZoneTest extends TestFmwk
         }
 
         TimeZone.setDefault(saveDefault);
-    // Android patch (ticket #13483) begin.
-    }
 
-    @Test
-    public void TestTZDataVersion() {
-    // Android patch (ticket #13483) end.
+
+
         String tzver = TimeZone.getTZDataVersion();
         if (tzver.length() != 5 /* 4 digits + 1 letter */) {
             errln("FAIL: getTZDataVersion returned " + tzver);

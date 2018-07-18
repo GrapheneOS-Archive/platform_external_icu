@@ -704,6 +704,7 @@ ar_XB{
         Cyrl{"؜‮Cyrillic‬؜"}
         Cyrs{"؜‮Old‬؜ ؜‮Church‬؜ ؜‮Slavonic‬؜ ؜‮Cyrillic‬؜"}
         Deva{"؜‮Devanagari‬؜"}
+        Dogr{"؜‮Dogra‬؜"}
         Dsrt{"؜‮Deseret‬؜"}
         Dupl{"؜‮Duployan‬؜ ؜‮shorthand‬؜"}
         Egyd{"؜‮Egyptian‬؜ ؜‮demotic‬؜"}
@@ -714,6 +715,7 @@ ar_XB{
         Geok{"؜‮Georgian‬؜ ؜‮Khutsuri‬؜"}
         Geor{"؜‮Georgian‬؜"}
         Glag{"؜‮Glagolitic‬؜"}
+        Gong{"؜‮Gunjala‬؜ ؜‮Gondi‬؜"}
         Gonm{"؜‮Masaram‬؜ ؜‮Gondi‬؜"}
         Goth{"؜‮Gothic‬؜"}
         Gran{"؜‮Grantha‬؜"}
@@ -762,10 +764,12 @@ ar_XB{
         Lyci{"؜‮Lycian‬؜"}
         Lydi{"؜‮Lydian‬؜"}
         Mahj{"؜‮Mahajani‬؜"}
+        Maka{"؜‮Makasar‬؜"}
         Mand{"؜‮Mandaean‬؜"}
         Mani{"؜‮Manichaean‬؜"}
         Marc{"؜‮Marchen‬؜"}
         Maya{"؜‮Mayan‬؜ ؜‮hieroglyphs‬؜"}
+        Medf{"؜‮Medefaidrin‬؜"}
         Mend{"؜‮Mende‬؜"}
         Merc{"؜‮Meroitic‬؜ ؜‮Cursive‬؜"}
         Mero{"؜‮Meroitic‬؜"}
@@ -800,6 +804,7 @@ ar_XB{
         Plrd{"؜‮Pollard‬؜ ؜‮Phonetic‬؜"}
         Prti{"؜‮Inscriptional‬؜ ؜‮Parthian‬؜"}
         Rjng{"؜‮Rejang‬؜"}
+        Rohg{"؜‮Hanifi‬؜ ؜‮Rohingya‬؜"}
         Roro{"؜‮Rongorongo‬؜"}
         Runr{"؜‮Runic‬؜"}
         Samr{"؜‮Samaritan‬؜"}
@@ -812,6 +817,8 @@ ar_XB{
         Sidd{"؜‮Siddham‬؜"}
         Sind{"؜‮Khudawadi‬؜"}
         Sinh{"؜‮Sinhala‬؜"}
+        Sogd{"؜‮Sogdian‬؜"}
+        Sogo{"؜‮Old‬؜ ؜‮Sogdian‬؜"}
         Sora{"؜‮Sora‬؜ ؜‮Sompeng‬؜"}
         Soyo{"؜‮Soyombo‬؜"}
         Sund{"؜‮Sundanese‬؜"}
@@ -1100,6 +1107,7 @@ ar_XB{
             finance{"؜‮Financial‬؜ ؜‮Numerals‬؜"}
             fullwide{"؜‮Full‬؜-؜‮Width‬؜ ؜‮Digits‬؜"}
             geor{"؜‮Georgian‬؜ ؜‮Numerals‬؜"}
+            gong{"؜‮Gunjala‬؜ ؜‮Gondi‬؜ ؜‮digits‬؜"}
             gonm{"؜‮Masaram‬؜ ؜‮Gondi‬؜ ؜‮digits‬؜"}
             grek{"؜‮Greek‬؜ ؜‮Numerals‬؜"}
             greklow{"؜‮Greek‬؜ ؜‮Lowercase‬؜ ؜‮Numerals‬؜"}
@@ -1144,6 +1152,7 @@ ar_XB{
             olck{"؜‮Ol‬؜ ؜‮Chiki‬؜ ؜‮Digits‬؜"}
             orya{"؜‮Odia‬؜ ؜‮Digits‬؜"}
             osma{"؜‮Osmanya‬؜ ؜‮Digits‬؜"}
+            rohg{"؜‮Hanifi‬؜ ؜‮Rohingya‬؜ ؜‮digits‬؜"}
             roman{"؜‮Roman‬؜ ؜‮Numerals‬؜"}
             romanlow{"؜‮Roman‬؜ ؜‮Lowercase‬؜ ؜‮Numerals‬؜"}
             saur{"؜‮Saurashtra‬؜ ؜‮Digits‬؜"}

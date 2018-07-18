@@ -57,7 +57,7 @@ public final class UCharacterTest extends TestFmwk
     /**
      * Expected Unicode version.
      */
-    private final VersionInfo VERSION_ = VersionInfo.getInstance(10);
+    private final VersionInfo VERSION_ = VersionInfo.getInstance(11);
 
     // constructor ===================================================
 
@@ -695,7 +695,7 @@ public final class UCharacterTest extends TestFmwk
         final String TYPE =
             "LuLlLtLmLoMnMeMcNdNlNoZsZlZpCcCfCoCsPdPsPePcPoSmScSkSoPiPf";
 
-        // directorionality types used in the UnicodeData file
+        // directionality types used in the UnicodeData file
         // padded by spaces to make each type size 4
         final String DIR =
             "L   R   EN  ES  ET  AN  CS  B   S   WS  ON  LRE LRO AL  RLE RLO PDF NSM BN  FSI LRI RLI PDI ";
@@ -1559,9 +1559,17 @@ public final class UCharacterTest extends TestFmwk
             { 0xFE00, UCharacterDirection.RIGHT_TO_LEFT_ARABIC },
             { 0xFE70, UCharacterDirection.LEFT_TO_RIGHT },
             { 0xFF00, UCharacterDirection.RIGHT_TO_LEFT_ARABIC },
+
             { 0x10800, UCharacterDirection.LEFT_TO_RIGHT },
+            { 0x10D00, UCharacterDirection.RIGHT_TO_LEFT },  // Unicode 11 changes U+10D00..U+10D3F from R to AL.
+            { 0x10D40, UCharacterDirection.RIGHT_TO_LEFT_ARABIC },
+            { 0x10F30, UCharacterDirection.RIGHT_TO_LEFT },  // Unicode 11 changes U+10F30..U+10F6F from R to AL.
+            { 0x10F70, UCharacterDirection.RIGHT_TO_LEFT_ARABIC },
             { 0x11000, UCharacterDirection.RIGHT_TO_LEFT },
+
             { 0x1E800, UCharacterDirection.LEFT_TO_RIGHT },  /* new default-R range in Unicode 5.2: U+1E800 - U+1EFFF */
+            { 0x1EC70, UCharacterDirection.RIGHT_TO_LEFT },  // Unicode 11 changes U+1EC70..U+1ECBF from R to AL.
+            { 0x1ECC0, UCharacterDirection.RIGHT_TO_LEFT_ARABIC },
             { 0x1EE00, UCharacterDirection.RIGHT_TO_LEFT },
             { 0x1EF00, UCharacterDirection.RIGHT_TO_LEFT_ARABIC },  /* Unicode 6.1 changes U+1EE00..U+1EEFF from R to AL */
             { 0x1F000, UCharacterDirection.RIGHT_TO_LEFT },
@@ -1925,7 +1933,7 @@ public final class UCharacterTest extends TestFmwk
             { 0x155A, UProperty.BLOCK, UCharacter.UnicodeBlock.UNIFIED_CANADIAN_ABORIGINAL_SYLLABICS.getID() },
             { 0x1717, UProperty.BLOCK, UCharacter.UnicodeBlock.TAGALOG.getID() },
             { 0x1900, UProperty.BLOCK, UCharacter.UnicodeBlock.LIMBU.getID() },
-            { 0x1CBF, UProperty.BLOCK, UCharacter.UnicodeBlock.NO_BLOCK.getID()},
+            { 0x0870, UProperty.BLOCK, UCharacter.UnicodeBlock.NO_BLOCK.getID()},
             { 0x3040, UProperty.BLOCK, UCharacter.UnicodeBlock.HIRAGANA.getID()},
             { 0x1D0FF, UProperty.BLOCK, UCharacter.UnicodeBlock.BYZANTINE_MUSICAL_SYMBOLS.getID()},
             { 0x50000, UProperty.BLOCK, UCharacter.UnicodeBlock.NO_BLOCK.getID() },
@@ -2520,6 +2528,8 @@ public final class UCharacterTest extends TestFmwk
                 UCharacter.hasBinaryProperty(0x1F64B, UProperty.EMOJI_MODIFIER_BASE));
         assertTrue("asterisk is Emoji_Component",
                 UCharacter.hasBinaryProperty(0x2A, UProperty.EMOJI_COMPONENT));
+        assertTrue("copyright is Extended_Pictographic",
+                UCharacter.hasBinaryProperty(0xA9, UProperty.EXTENDED_PICTOGRAPHIC));
     }
 
     @Test
