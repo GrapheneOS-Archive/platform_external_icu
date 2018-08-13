@@ -2194,6 +2194,16 @@ public class DecimalFormat extends NumberFormat {
     refreshFormatter();
   }
 
+  // BEGIN Android-added: Compatibility mode for j.t.DecimalFormat. http://b/112355520
+  /**
+   * @internal
+   */
+  public synchronized void setParseStrictMode(ParseMode parseMode) {
+    properties.setParseMode(parseMode);
+    refreshFormatter();
+  }
+  // END Android-added: Compatibility mode for j.t.DecimalFormat. http://b/112355520
+
   /**
    * {@inheritDoc}
    *
