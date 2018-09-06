@@ -1,0 +1,11 @@
+--- android_icu4j/src/main/java/android/icu/text/Bidi.java	2018-09-20 17:41:56.653652717 +0100
++++ android_icu4j/src/main/java/android/icu/text/Bidi.java	2018-09-20 17:41:01.741920791 +0100
+@@ -4648,7 +4648,7 @@
+     /**
+      * Retrieves the Bidi class for a given code point.
+      * <p>If a <code>BidiClassifier</code> is defined and returns a value
+-     * other than <code>CLASS_DEFAULT=UCharacter.getIntPropertyMaxValue(UProperty.BIDI_CLASS)+1</code>,
++     * other than <code>UCharacter.getIntPropertyMaxValue(UProperty.BIDI_CLASS)+1</code>,
+      * that value is used; otherwise the default class determination mechanism is invoked.
+      *
+      * @param c The code point to get a Bidi class for.
