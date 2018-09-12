@@ -181,19 +181,6 @@ import android.icu.util.UResourceBundle;
  * returned by {@link #getDisplayName}.
  *
  * <p>
- * <b>Factory methods and registration</b>
- *
- * <p>
- * In general, client code should use the factory method <code>getInstance()</code> to obtain an instance of a
- * transliterator given its ID. Valid IDs may be enumerated using <code>getAvailableIDs()</code>. Since transliterators
- * are stateless, multiple calls to <code>getInstance()</code> with the same ID will return the same object.
- *
- * <p>
- * In addition to the system transliterators registered at startup, user transliterators may be registered by calling
- * <code>registerInstance()</code> at run time. To register a transliterator subclass without instantiating it (until it
- * is needed), users may call <code>registerClass()</code>.
- *
- * <p>
  * <b>Composed transliterators</b>
  *
  * <p>
@@ -212,16 +199,6 @@ import android.icu.util.UResourceBundle;
  * is a composed transliterator built internally as "Devanagari~InterIndic;InterIndic~Gujarati". When this
  * transliterator is instantiated, it appears externally to be a standard transliterator (e.g., getID() returns
  * "Devanagari-Gujarati").
- *
- * <p>
- * <b>Subclassing</b>
- *
- * <p>
- * Subclasses must implement the abstract method <code>handleTransliterate()</code>.
- * <p>
- * Subclasses should override the <code>transliterate()</code> method taking a <code>Replaceable</code> and the
- * <code>transliterate()</code> method taking a <code>String</code> and <code>StringBuffer</code> if the performance of
- * these methods can be improved over the performance obtained by the default implementations in this class.
  *
  * <p><b>Rule syntax</b>
  *
@@ -473,9 +450,7 @@ import android.icu.util.UResourceBundle;
  * rule <em>masks</em> the second rule.
  *
  * @author Alan Liu
- * @hide Only a subset of ICU is exposed in Android
  */
-@libcore.api.CorePlatformApi
 public abstract class Transliterator implements StringTransform  {
     /**
      * Direction constant indicating the forward direction in a transliterator,
@@ -512,7 +487,6 @@ public abstract class Transliterator implements StringTransform  {
      * boundaries.  That is, none of them may occur between two code units
      * of a surrogate pair.  If any index does split a surrogate pair,
      * results are unspecified.
-     * @hide Only a subset of ICU is exposed in Android
      */
     public static class Position {
 
@@ -732,6 +706,7 @@ public abstract class Transliterator implements StringTransform  {
      * <tt>filter.contains()</tt> returns <tt>false</tt> will not be
      * altered by this transliterator.  If <tt>filter</tt> is
      * <tt>null</tt> then no filtering is applied.
+     * @hide unsupported on Android
      */
     protected Transliterator(String ID, UnicodeFilter filter) {
         if (ID == null) {
@@ -781,8 +756,6 @@ public abstract class Transliterator implements StringTransform  {
      * @param text the string to be transliterated
      * @return The transliterated text
      */
-    @dalvik.annotation.compat.UnsupportedAppUsage
-    @libcore.api.CorePlatformApi
     public final String transliterate(String text) {
         ReplaceableString result = new ReplaceableString(text);
         transliterate(result);
@@ -832,11 +805,9 @@ public abstract class Transliterator implements StringTransform  {
      * transliterated into the translation buffer at
      * <code>index.contextLimit</code>.  If <code>null</code> then no text
      * is inserted.
-     * @see #handleTransliterate
      * @exception IllegalArgumentException if <code>index</code>
      * is invalid
      */
-    @dalvik.annotation.compat.UnsupportedAppUsage
     public final void transliterate(Replaceable text, Position index,
                                     String insertion) {
         index.validate(text.length());
@@ -995,6 +966,7 @@ public abstract class Transliterator implements StringTransform  {
      * <code>pos.limit</code>.
      *
      * @see #transliterate
+     * @hide unsupported on Android
      */
     protected abstract void handleTransliterate(Replaceable text,
                                                 Position pos, boolean incremental);
@@ -1363,6 +1335,7 @@ public abstract class Transliterator implements StringTransform  {
     /**
      * Method for subclasses to use to set the maximum context length.
      * @see #getMaximumContextLength
+     * @hide unsupported on Android
      */
     protected void setMaximumContextLength(int a) {
         if (a < 0) {
@@ -1375,7 +1348,6 @@ public abstract class Transliterator implements StringTransform  {
      * Returns a programmatic identifier for this transliterator.
      * If this identifier is passed to <code>getInstance()</code>, it
      * will return this object, if it has been registered.
-     * @see #registerClass
      * @see #getAvailableIDs
      */
     public final String getID() {
@@ -1385,6 +1357,7 @@ public abstract class Transliterator implements StringTransform  {
     /**
      * Set the programmatic identifier for this transliterator.  Only
      * for use by subclasses.
+     * @hide unsupported on Android
      */
     protected final void setID(String id) {
         ID = id;
@@ -1535,34 +1508,28 @@ public abstract class Transliterator implements StringTransform  {
 
     /**
      * Returns a <code>Transliterator</code> object given its ID.
-     * The ID must be either a system transliterator ID or a ID registered
-     * using <code>registerClass()</code>.
+     * The ID must be a system transliterator ID.
      *
      * @param ID a valid ID, as enumerated by <code>getAvailableIDs()</code>
      * @return A <code>Transliterator</code> object with the given ID
      * @exception IllegalArgumentException if the given ID is invalid.
      */
-    @dalvik.annotation.compat.UnsupportedAppUsage
-    @libcore.api.CorePlatformApi
     public static final Transliterator getInstance(String ID) {
         return getInstance(ID, FORWARD);
     }
 
     /**
      * Returns a <code>Transliterator</code> object given its ID.
-     * The ID must be either a system transliterator ID or a ID registered
-     * using <code>registerClass()</code>.
+     * The ID must be a system transliterator ID.
      *
      * @param ID a valid ID, as enumerated by <code>getAvailableIDs()</code>
      * @param dir either FORWARD or REVERSE.  If REVERSE then the
      * inverse of the given ID is instantiated.
      * @return A <code>Transliterator</code> object with the given ID
      * @exception IllegalArgumentException if the given ID is invalid.
-     * @see #registerClass
      * @see #getAvailableIDs
      * @see #getID
      */
-    @dalvik.annotation.compat.UnsupportedAppUsage
     public static Transliterator getInstance(String ID,
                                              int dir) {
         StringBuffer canonID = new StringBuffer();
@@ -1633,7 +1600,6 @@ public abstract class Transliterator implements StringTransform  {
      * @return a newly created Transliterator
      * @throws IllegalArgumentException if there is a problem with the ID or the rules
      */
-    @dalvik.annotation.compat.UnsupportedAppUsage
     public static final Transliterator createFromRules(String ID, String rules, int dir) {
         Transliterator t = null;
 
@@ -1711,6 +1677,7 @@ public abstract class Transliterator implements StringTransform  {
      * @param escapeUnprintable if true, then unprintable characters
      * will be converted to escape form backslash-'u' or
      * backslash-'U'.
+     * @hide unsupported on Android
      */
     protected final String baseToRules(boolean escapeUnprintable) {
         // The base class implementation of toRules munges the ID into
@@ -1765,12 +1732,9 @@ public abstract class Transliterator implements StringTransform  {
      * input text by this Transliterator.  This incorporates this
      * object's current filter; if the filter is changed, the return
      * value of this function will change.  The default implementation
-     * returns an empty set.  Some subclasses may override {@link
-     * #handleGetSourceSet} to return a more precise result.  The
-     * return result is approximate in any case and is intended for
-     * use by tests, tools, or utilities.
+     * returns an empty set. The return result is approximate in any case
+     * and is intended for use by tests, tools, or utilities.
      * @see #getTargetSet
-     * @see #handleGetSourceSet
      */
     public final UnicodeSet getSourceSet() {
         UnicodeSet result = new UnicodeSet();
@@ -1789,6 +1753,7 @@ public abstract class Transliterator implements StringTransform  {
      * newly-created object.
      * @see #getSourceSet
      * @see #getTargetSet
+     * @hide unsupported on Android
      */
     protected UnicodeSet handleGetSourceSet() {
         return new UnicodeSet();
@@ -1851,6 +1816,7 @@ public abstract class Transliterator implements StringTransform  {
      * @param targetSet TODO
      * @see #getTargetSet
      * @deprecated  This API is ICU internal only.
+     * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
@@ -1873,6 +1839,7 @@ public abstract class Transliterator implements StringTransform  {
      * The externalFilter must be frozen (it is frozen if not).
      * The result may be frozen, so don't attempt to modify.
      * @deprecated  This API is ICU internal only.
+     * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
@@ -1908,7 +1875,6 @@ public abstract class Transliterator implements StringTransform  {
      * @return a transliterator that is an inverse, not necessarily
      * exact, of this transliterator, or <code>null</code> if no such
      * transliterator is registered.
-     * @see #registerClass
      */
     public final Transliterator getInverse() {
         return getInstance(ID, REVERSE);
@@ -1925,6 +1891,7 @@ public abstract class Transliterator implements StringTransform  {
      * transliterator
      * @param transClass a subclass of <code>Transliterator</code>
      * @see #unregister
+     * @hide unsupported on Android
      */
     public static void registerClass(String ID, Class<? extends Transliterator> transClass, String displayName) {
         registry.put(ID, transClass, true);
@@ -1943,6 +1910,7 @@ public abstract class Transliterator implements StringTransform  {
      *
      * @param ID the ID of this transliterator
      * @param factory the factory object
+     * @hide unsupported on Android
      */
     public static void registerFactory(String ID, Factory factory) {
         registry.put(ID, factory, true);
@@ -1956,6 +1924,7 @@ public abstract class Transliterator implements StringTransform  {
      * Transliterator.getInstance to avoid undefined behavior.
      *
      * @param trans the Transliterator object
+     * @hide unsupported on Android
      */
     public static void registerInstance(Transliterator trans) {
         registry.put(trans.getID(), trans, true);
@@ -1985,6 +1954,7 @@ public abstract class Transliterator implements StringTransform  {
      *
      * @param aliasID The new ID being registered.
      * @param realID The existing ID that the new ID should be an alias of.
+     * @hide unsupported on Android
      */
     public static void registerAlias(String aliasID, String realID) {
         registry.put(aliasID, realID, true);
@@ -2034,6 +2004,7 @@ public abstract class Transliterator implements StringTransform  {
      *
      * @param ID the ID of the transliterator or class
      * @see #registerClass
+     * @hide unsupported on Android
      */
     public static void unregister(String ID) {
         displayNameCache.remove(new CaseInsensitiveString(ID));
@@ -2049,7 +2020,6 @@ public abstract class Transliterator implements StringTransform  {
      *
      * @return An <code>Enumeration</code> over <code>String</code> objects
      * @see #getInstance
-     * @see #registerClass
      */
     public static final Enumeration<String> getAvailableIDs() {
         return registry.getAvailableIDs();
@@ -2190,6 +2160,7 @@ public abstract class Transliterator implements StringTransform  {
     /**
      * Register the script-based "Any" transliterators: Any-Latin, Any-Greek
      * @deprecated This API is ICU internal only.
+     * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
@@ -2218,6 +2189,7 @@ public abstract class Transliterator implements StringTransform  {
      * Implements StringTransform via this method.
      * @param source text to be transformed (eg lowercased)
      * @return result
+     * @hide unsupported on Android
      */
     @Override
     public String transform(String source) {
