@@ -40,3 +40,62 @@ filegroup {
         "src/main/java/android/icu/util/**/*.java",
     ],
 }
+
+//==========================================================
+// build repackaged ICU tests
+//
+// Target builds against core-libart and core-oj so that it can access all the
+// repackaged android.icu classes and methods and not just the ones available
+// through the Android API.
+//
+// Run the host tests using junit with the following command:
+//   java -cp ${ANDROID_BUILD_TOP}/out/host/linux-x86/framework/android-icu4j-tests.jar org.junit.runner.JUnitCore android.icu.dev.test.TestAll
+//
+// Run the host tests using the ICU4J test framework with the following command:
+//   java -cp ${ANDROID_BUILD_TOP}/out/host/linux-x86/framework/android-icu4j-tests.jar android.icu.dev.test.TestAll
+//==========================================================
+java_test {
+    name: "android-icu4j-tests",
+    host_supported: true,
+
+    srcs: [
+        "src/main/tests/**/*.java",
+        "testing/src/**/*.java",
+    ],
+    java_resource_dirs: ["src/main/tests"],
+    static_libs: [
+        "junit",
+        "junit-params",
+    ],
+
+    target: {
+        android: {
+            static_libs: ["android-support-test"],
+        },
+        host: {
+            static_libs: ["android-icu4j-host"],
+        },
+    },
+
+    no_framework_libs: true,
+    patch_module: "java.base",
+}
+
+//==========================================================
+// build repackaged ICU for host for testing purposes
+//
+// Uses the repackaged versions of the data jars
+//==========================================================
+java_library_host {
+    name: "android-icu4j-host",
+
+    srcs: [
+        "src/main/java/**/*.java",
+        "testing/src/**/*.java",
+    ],
+    static_libs: [
+        "icu4j-icudata-jarjar",
+        "icu4j-icutzdata-jarjar",
+    ],
+    java_resource_dirs: ["resources"],
+}
