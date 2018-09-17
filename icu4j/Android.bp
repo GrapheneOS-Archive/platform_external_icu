@@ -21,10 +21,7 @@ java_defaults {
 
     // Use the same Java language version in the Android build configuration as used
     // in main/shared/build/common.properties for the ICU4J build configuration.
-    java_version: "1.6",
-
-    // Suppress warnings about Java 1.6 being obsolete.
-    javacflags: ["-Xlint:-options"],
+    java_version: "1.7",
 }
 
 java_library {
