@@ -71,6 +71,7 @@ java_test {
     target: {
         android: {
             static_libs: ["android-support-test"],
+            patch_module: "java.base",
         },
         host: {
             static_libs: ["android-icu4j-host"],
@@ -78,7 +79,6 @@ java_test {
     },
 
     no_framework_libs: true,
-    patch_module: "java.base",
 }
 
 //==========================================================
