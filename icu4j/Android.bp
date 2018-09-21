@@ -119,3 +119,72 @@ java_library_host {
     name: "icu4j-host",
     static_libs: ["icu4j"],
 }
+
+// Rules to generate android_icu4j files during build time
+// The following rules are used in the downstream branches master-icu-dev only,
+// but NOT used in AOSP.
+generate_script_srcs = [
+    "main/**/*",
+    "samples/**/*",
+]
+generate_script_tools = [
+    "android_icu4j_srcgen_binary",
+    "soong_zip",
+]
+generate_script_tool_files = [
+    ":generate_android_icu4j_script",
+]
+// ANDROID_BUILD_TOP is needed to be set for generate_android_icu4j.sh
+generate_script_common_cmd = "export ANDROID_BUILD_TOP=$$(pwd) && " +
+    "$(location generate_android_icu4j.sh) " +
+    "--no-doc-patch " +
+    "--gen $(genDir) " +
+    "--srcgen-tool $(location android_icu4j_srcgen_binary)"
+
+genrule {
+    name: "generated_android_icu4j_src_files",
+    srcs: generate_script_srcs,
+    tools: generate_script_tools,
+    tool_files: generate_script_tool_files,
+    out: ["generated_android_icu4j.srcjar"],
+    cmd: generate_script_common_cmd +
+        "&& $(location soong_zip) -o $(out) -C $(genDir)/android_icu4j/src/main/java " +
+        "-D $(genDir)/android_icu4j/src/main/java",
+}
+
+java_genrule {
+    name: "generated_android_icu4j_resources",
+    host_supported: true,
+    srcs: generate_script_srcs,
+    tools: generate_script_tools,
+    tool_files: generate_script_tool_files,
+    out: ["generated_android_icu4j_resources.jar"],
+    cmd: generate_script_common_cmd +
+        "&& $(location soong_zip) -o $(out) -C $(genDir)/android_icu4j/resources " +
+        "-D $(genDir)/android_icu4j/resources",
+}
+
+genrule {
+    name: "generated_android_icu4j_test_files",
+    srcs: generate_script_srcs,
+    tools: generate_script_tools,
+    tool_files: generate_script_tool_files,
+    out: ["generated_android_icu4j_test.srcjar"],
+    cmd: generate_script_common_cmd +
+        "&& find $(genDir)/android_icu4j/src/main/tests -type f -not -name \"*.java\" -exec rm {} \\; " +
+        "&& $(location soong_zip) -o $(out) -C $(genDir)/android_icu4j/src/main/tests " +
+        "-D $(genDir)/android_icu4j/src/main/tests",
+}
+
+java_genrule {
+    name: "generated_android_icu4j_test_resources",
+    host_supported: true,
+    srcs: generate_script_srcs,
+    tools: generate_script_tools,
+    tool_files: generate_script_tool_files,
+    out: ["generated_android_icu4j_test_resources.jar"],
+    cmd: generate_script_common_cmd +
+        "&& find $(genDir)/android_icu4j/src/main/tests -type f -name \"*.java\" -exec rm {} \\; " +
+        "&& $(location soong_zip) -o $(out) -C $(genDir)/android_icu4j/src/main/tests " +
+        "-D $(genDir)/android_icu4j/src/main/tests",
+}
