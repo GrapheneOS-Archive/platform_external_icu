@@ -62,6 +62,9 @@ public class Icu4jTransform {
       "android.icu.math.BigDecimal",
       "android.icu.math.MathContext",
       "android.icu.text.AlphabeticIndex",
+      "android.icu.text.Bidi",
+      "android.icu.text.BidiClassifier",
+      "android.icu.text.BidiRun",
       "android.icu.text.BreakIterator",
       "android.icu.text.CaseMap",
       "android.icu.text.CollationKey",
@@ -154,6 +157,7 @@ public class Icu4jTransform {
       "field:android.icu.lang.UProperty#UNDEFINED",
       "field:android.icu.lang.UProperty#UNICODE_1_NAME",
       "field:android.icu.lang.UScript#DUPLOYAN_SHORTAND",
+      "field:android.icu.text.Bidi#CLASS_DEFAULT",
       "field:android.icu.text.CaseMap#internalOptions",
       "field:android.icu.text.DateFormat#ABBR_STANDALONE_MONTH",
       "field:android.icu.text.DateFormat#DATE_SKELETONS",
@@ -510,7 +514,13 @@ public class Icu4jTransform {
       "type:android.icu.util.ULocale$Minimize",
   };
 
-  /** A set of declarations we don't want to expose in Android. */
+  /** A set of declarations we don't want to expose in Android.
+    * We generally hide:
+    * Any API we find that relates to a final static primitive that a compiler could inline
+    * and could change between ICU releases.
+    * Methods that relate to registration of static defaults / factories, which cannot be
+    * configured on Android "before use", because a lot of initialization happens in the zygote.
+    */
   private static final String[] DECLARATIONS_TO_HIDE = {
       /* ASCII order please. */
       "field:android.icu.lang.UCharacter$BidiPairedBracketType#COUNT",
@@ -535,6 +545,7 @@ public class Icu4jTransform {
       "field:android.icu.lang.UProperty#STRING_LIMIT",
       "field:android.icu.lang.UProperty$NameChoice#COUNT",
       "field:android.icu.lang.UScript#CODE_LIMIT",
+      "field:android.icu.text.BidiClassifier#context",
       "field:android.icu.text.CollationKey$BoundMode#COUNT",
       "field:android.icu.text.Collator$ReorderCodes#LIMIT",
       "field:android.icu.text.DateFormat#FIELD_COUNT",

@@ -427,7 +427,6 @@ import android.icu.lang.UProperty;
  * </pre>
  *
  * @author Simon Montagu, Matitiahu Allouche (ported from C code written by Markus W. Scherer)
- * @hide Only a subset of ICU is exposed in Android
  */
 
 /*
@@ -959,6 +958,7 @@ public class Bidi {
      *
      * @see BidiClassifier
      * @deprecated ICU 58 The numeric value may change over time, see ICU ticket #12420.
+     * @hide original deprecated declaration
      */
     @Deprecated
     public static final int CLASS_DEFAULT = UCharacterDirection.CHAR_DIRECTION_COUNT;
@@ -4648,7 +4648,7 @@ public class Bidi {
     /**
      * Retrieves the Bidi class for a given code point.
      * <p>If a <code>BidiClassifier</code> is defined and returns a value
-     * other than <code>CLASS_DEFAULT=UCharacter.getIntPropertyMaxValue(UProperty.BIDI_CLASS)+1</code>,
+     * other than <code>UCharacter.getIntPropertyMaxValue(UProperty.BIDI_CLASS)+1</code>,
      * that value is used; otherwise the default class determination mechanism is invoked.
      *
      * @param c The code point to get a Bidi class for.
