@@ -24,9 +24,20 @@ fi
 # source envsetup.sh because functions we use like mm are not exported.
 source ${ANDROID_BUILD_TOP}/build/envsetup.sh
 
+# Build Options used by Android.bp
+while true; do
+  case "$1" in
+    --do-not-make ) DO_NOT_MAKE=1; shift ;;
+    -- ) shift; break ;;
+    * ) break ;;
+  esac
+done
+
 # Build the srcgen tools.
 cd ${ANDROID_BUILD_TOP}
-make -j16 android_icu4j_srcgen
+if [ -z "$DO_NOT_MAKE" ]; then
+    make -j16 android_icu4j_srcgen_binary
+fi
 
 ICU4J_DIR=${ANDROID_BUILD_TOP}/external/icu/icu4j
 ANDROID_ICU4J_DIR=${ANDROID_BUILD_TOP}/external/icu/android_icu4j
