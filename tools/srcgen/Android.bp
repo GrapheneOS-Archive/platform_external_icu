@@ -20,3 +20,17 @@ java_library_host {
     libs: ["currysrc"],
     srcs: ["src/**/*.java"],
 }
+
+java_binary_host {
+    name: "android_icu4j_srcgen_binary",
+    manifest: "src/manifest.txt",
+    static_libs: [
+        "android_icu4j_srcgen",
+        "currysrc",
+    ],
+}
+
+filegroup {
+    name: "generate_android_icu4j_script",
+    srcs: ["generate_android_icu4j.sh"],
+}
