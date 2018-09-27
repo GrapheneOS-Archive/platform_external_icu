@@ -91,7 +91,6 @@ java_library_host {
 
     srcs: [
         "src/main/java/**/*.java",
-        "testing/src/**/*.java",
     ],
     static_libs: [
         "icu4j-icudata-jarjar",
