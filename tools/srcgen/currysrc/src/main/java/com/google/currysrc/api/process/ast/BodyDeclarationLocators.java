@@ -18,6 +18,9 @@ package com.google.currysrc.api.process.ast;
 import com.google.common.base.Splitter;
 import com.google.common.collect.ImmutableList;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import org.eclipse.jdt.core.dom.ASTNode;
 import org.eclipse.jdt.core.dom.AbstractTypeDeclaration;
 import org.eclipse.jdt.core.dom.BodyDeclaration;
@@ -172,5 +175,25 @@ public final class BodyDeclarationLocators {
       throw new IllegalArgumentException("Cannot split " + string + " on " + separator);
     }
     return components;
+  }
+
+  /**
+   * Read body declarations from a file.
+   *
+   * <p>Blank lines and lines starting with a {@code #} are ignored.
+   *
+   * @param path the path to the file.
+   * @return The list of {@link BodyDeclarationLocator} instances.
+   */
+  public static List<BodyDeclarationLocator> readBodyDeclarationLocators(Path path) {
+    try {
+      String[] lines = Files.lines(path)
+          .filter(l -> !l.startsWith("#"))
+          .filter(l -> !l.isEmpty())
+          .toArray(String[]::new);
+      return createLocatorsFromStrings(lines);
+    } catch (IOException e) {
+      throw new IllegalStateException("Could not read lines from " + path, e);
+    }
   }
 }

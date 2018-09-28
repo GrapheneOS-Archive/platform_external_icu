@@ -18,11 +18,10 @@ package com.android.icu4j.srcgen;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import com.google.currysrc.Main;
-import com.google.currysrc.api.Rules;
+import com.google.currysrc.api.RuleSet;
 import com.google.currysrc.api.input.InputFileGenerator;
 import com.google.currysrc.api.output.BasicOutputSourceFileGenerator;
 import com.google.currysrc.api.output.OutputSourceFileGenerator;
-import com.google.currysrc.api.process.DefaultRule;
 import com.google.currysrc.api.process.Rule;
 import com.google.currysrc.api.process.ast.BodyDeclarationLocator;
 import com.google.currysrc.api.process.ast.BodyDeclarationLocators;
@@ -40,8 +39,8 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
-import static com.android.icu4j.srcgen.Icu4jTransformRules.createMandatoryRule;
-import static com.android.icu4j.srcgen.Icu4jTransformRules.createOptionalRule;
+import static com.google.currysrc.api.process.Rules.createMandatoryRule;
+import static com.google.currysrc.api.process.Rules.createOptionalRule;
 
 /**
  * Applies Android's ICU4J source code transformation rules. If you make any changes to this class
@@ -630,7 +629,7 @@ public class Icu4jTransform {
     new Main(DEBUG).execute(new Icu4jRules(args));
   }
 
-  static class Icu4jRules implements Rules {
+  static class Icu4jRules implements RuleSet {
 
     private static final String SOURCE_CODE_HEADER = "/* GENERATED SOURCE. DO NOT MODIFY. */\n";
 
