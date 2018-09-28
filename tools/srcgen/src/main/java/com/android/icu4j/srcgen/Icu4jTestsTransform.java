@@ -17,7 +17,7 @@ package com.android.icu4j.srcgen;
 
 import com.google.common.collect.Lists;
 import com.google.currysrc.Main;
-import com.google.currysrc.api.Rules;
+import com.google.currysrc.api.RuleSet;
 import com.google.currysrc.api.input.InputFileGenerator;
 import com.google.currysrc.api.output.OutputSourceFileGenerator;
 import com.google.currysrc.api.process.Rule;
@@ -31,7 +31,7 @@ import java.io.PrintWriter;
 import java.util.List;
 import java.util.Properties;
 
-import static com.android.icu4j.srcgen.Icu4jTransformRules.createOptionalRule;
+import static com.google.currysrc.api.process.Rules.createOptionalRule;
 
 /**
  * Applies Android's ICU4J source code transformation rules to test code, adds @RunWith annotations
@@ -56,7 +56,7 @@ public class Icu4jTestsTransform {
     writeAndroidIcuVersionPropertyFile(outputDirName);
   }
 
-  private static class Icu4jBasicRules implements Rules {
+  private static class Icu4jBasicRules implements RuleSet {
 
     private final InputFileGenerator inputFileGenerator;
 

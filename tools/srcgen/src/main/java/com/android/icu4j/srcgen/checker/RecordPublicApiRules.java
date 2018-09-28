@@ -16,7 +16,7 @@
 package com.android.icu4j.srcgen.checker;
 
 import com.google.common.collect.Lists;
-import com.google.currysrc.api.Rules;
+import com.google.currysrc.api.RuleSet;
 import com.google.currysrc.api.input.InputFileGenerator;
 import com.google.currysrc.api.output.NullOutputSourceFileGenerator;
 import com.google.currysrc.api.output.OutputSourceFileGenerator;
@@ -46,13 +46,13 @@ import java.io.File;
 import java.util.Collections;
 import java.util.List;
 
-import static com.android.icu4j.srcgen.Icu4jTransformRules.createOptionalRule;
+import static com.google.currysrc.api.process.Rules.createOptionalRule;
 
 /**
  * Rules that operate over a set of files and record the public API (according to Android's rules
  * for @hide).
  */
-class RecordPublicApiRules implements Rules {
+class RecordPublicApiRules implements RuleSet {
 
   private final InputFileGenerator inputFileGenerator;
 
