@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015 The Android Open Source Project
+ * Copyright (C) 2018 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,8 +15,20 @@
  */
 package com.google.currysrc.api;
 
+import com.google.currysrc.api.input.InputFileGenerator;
+import com.google.currysrc.api.output.OutputSourceFileGenerator;
+import com.google.currysrc.api.process.Rule;
+import java.io.File;
+import java.util.List;
+
 /**
- * @deprecated Use {@link RuleSet} instead.
+ * Rules to apply to a set of source files.
  */
-public interface Rules extends RuleSet {
+public interface RuleSet {
+
+  InputFileGenerator getInputFileGenerator();
+
+  List<Rule> getRuleList(File file);
+
+  OutputSourceFileGenerator getOutputSourceFileGenerator();
 }
