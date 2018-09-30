@@ -17,16 +17,21 @@ package com.android.icu4j.srcgen;
 
 import com.google.common.collect.Lists;
 import com.google.currysrc.Main;
-import com.google.currysrc.api.Rules;
+import com.google.currysrc.api.RuleSet;
 import com.google.currysrc.api.input.InputFileGenerator;
 import com.google.currysrc.api.output.OutputSourceFileGenerator;
 import com.google.currysrc.api.process.Rule;
 import com.google.currysrc.processors.ReplaceTextCommentScanner;
+import com.ibm.icu.util.VersionInfo;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
+import java.util.Properties;
 
-import static com.android.icu4j.srcgen.Icu4jTransformRules.createOptionalRule;
+import static com.google.currysrc.api.process.Rules.createOptionalRule;
 
 /**
  * Applies Android's ICU4J source code transformation rules to test code, adds @RunWith annotations
@@ -47,9 +52,11 @@ public class Icu4jTestsTransform {
    */
   public static void main(String[] args) throws Exception {
     new Main(DEBUG).execute(new Icu4jBasicRules(args));
+    String outputDirName = args[args.length - 1];
+    writeAndroidIcuVersionPropertyFile(outputDirName);
   }
 
-  private static class Icu4jBasicRules implements Rules {
+  private static class Icu4jBasicRules implements RuleSet {
 
     private final InputFileGenerator inputFileGenerator;
 
@@ -66,9 +73,11 @@ public class Icu4jTestsTransform {
       System.arraycopy(args, 0, inputDirNames, 0, args.length - 1);
       inputFileGenerator = Icu4jTransformRules.createInputFileGenerator(inputDirNames);
       rules = createTransformRules();
-      outputSourceFileGenerator = Icu4jTransformRules.createOutputFileGenerator(
-          args[args.length - 1]);
+      String outputDirName = args[args.length - 1];
+      outputSourceFileGenerator = Icu4jTransformRules.createOutputFileGenerator(outputDirName);
     }
+
+
 
     @Override
     public List<Rule> getRuleList(File ignored) {
@@ -101,6 +110,23 @@ public class Icu4jTestsTransform {
       rules.add(createOptionalRule(new ShardingAnnotator()));
 
       return rules;
+    }
+  }
+
+  /**
+   * Generate a property file containing ICU version for AndroidICUVersionTest
+   */
+  private static void writeAndroidIcuVersionPropertyFile(String outputDirName) throws IOException {
+    String FILE_NAME = "android_icu_version.properties";
+    String VERSION_PROP_NAME = "version";
+    File dir = new File(outputDirName, "android/icu/extratest/");
+
+    dir.mkdirs();
+    try (PrintWriter writer = new PrintWriter(new FileOutputStream(new File(dir, FILE_NAME)))) {
+      // Use PrintWriter instead of Properties to avoid writing the current timestamp
+      // which would cause the file content to change every time it is generated.
+      writer.println("# Property file for AndroidICUVersionTest.");
+      writer.println(VERSION_PROP_NAME + "=" + VersionInfo.ICU_VERSION.toString());
     }
   }
 }

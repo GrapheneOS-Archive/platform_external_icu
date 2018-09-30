@@ -15,7 +15,7 @@
  */
 package com.google.currysrc;
 
-import com.google.currysrc.api.Rules;
+import com.google.currysrc.api.RuleSet;
 import com.google.currysrc.api.input.InputFileGenerator;
 import com.google.currysrc.api.output.OutputSourceFileGenerator;
 import com.google.currysrc.api.process.Context;
@@ -66,11 +66,11 @@ public final class Main {
     return this;
   }
 
-  public void execute(Rules rules) throws Exception {
-    execute(rules, new OutputStreamWriter(System.out));
+  public void execute(RuleSet ruleSet) throws Exception {
+    execute(ruleSet, new OutputStreamWriter(System.out));
   }
 
-  public void execute(Rules rules, Writer reportWriter) throws Exception {
+  public void execute(RuleSet ruleSet, Writer reportWriter) throws Exception {
     Map<String, String> compilerOptions = this.jdtOptions;
     if (compilerOptions == null) {
       compilerOptions = defaultJdtOptions();
@@ -79,8 +79,8 @@ public final class Main {
     parser.setCompilerOptions(compilerOptions);
     parser.setKind(ASTParser.K_COMPILATION_UNIT);
 
-    InputFileGenerator inputFileGenerator = rules.getInputFileGenerator();
-    OutputSourceFileGenerator outputSourceFileGenerator = rules.getOutputSourceFileGenerator();
+    InputFileGenerator inputFileGenerator = ruleSet.getInputFileGenerator();
+    OutputSourceFileGenerator outputSourceFileGenerator = ruleSet.getOutputSourceFileGenerator();
     for (File inputFile : inputFileGenerator.generate()) {
       System.out.println("Processing: " + inputFile);
 
@@ -89,7 +89,7 @@ public final class Main {
               inputFile, parser, source, new PrintWriter(reportWriter), compilerOptions);
       compilationUnitHandler.setDebug(debug);
 
-      List<Rule> ruleList = rules.getRuleList(inputFile);
+      List<Rule> ruleList = ruleSet.getRuleList(inputFile);
       if (!ruleList.isEmpty()) {
         for (Rule rule : ruleList) {
           compilationUnitHandler.apply(rule);
