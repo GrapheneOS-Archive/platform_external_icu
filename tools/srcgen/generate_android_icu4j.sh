@@ -43,6 +43,7 @@ if [ -n "$GEN_DIR" ]; then
     mkdir -p ${ANDROID_ICU4J_DIR}
 fi
 
+WHITELIST_API_FILE=${ICU_SRCGEN_DIR}/whitelisted-public-api.txt
 CORE_PLATFORM_API_FILE=${ICU_SRCGEN_DIR}/core-platform-api.txt
 
 # Clean out previous generated code / resources.
@@ -55,7 +56,14 @@ rm -rf ${DEST_RESOURCE_DIR}
 mkdir -p ${DEST_RESOURCE_DIR}
 
 # Generate the source code needed by Android.
-${SRCGEN_TOOL_BINARY} Icu4jTransform ${INPUT_DIRS} ${DEST_SRC_DIR} ${CORE_PLATFORM_API_FILE}
+# Branches used for testing new versions of ICU will have have the ${WHITELIST_API_FILE} file
+# that prevents new (stable) APIs being added to the Android public SDK API. The file should
+# not exist on "normal" release branches and master.
+ICU4J_BASE_COMMAND="${SRCGEN_TOOL_BINARY} Icu4jTransform"
+if [ -e "${WHITELIST_API_FILE}" ]; then
+  ICU4J_BASE_COMMAND+=" --hide-non-whitelisted-api ${WHITELIST_API_FILE}"
+fi
+${ICU4J_BASE_COMMAND} ${INPUT_DIRS} ${DEST_SRC_DIR} ${CORE_PLATFORM_API_FILE}
 
 # Copy / transform the resources needed by the android_icu4j code.
 for INPUT_DIR in ${INPUT_DIRS}; do
