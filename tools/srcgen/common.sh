@@ -39,6 +39,7 @@ if [ -z "$DO_NOT_MAKE" ]; then
     make -j16 android_icu4j_srcgen_binary
 fi
 
+ICU_SRCGEN_DIR=${ANDROID_BUILD_TOP}/external/icu/tools/srcgen
 ICU4J_DIR=${ANDROID_BUILD_TOP}/external/icu/icu4j
 ANDROID_ICU4J_DIR=${ANDROID_BUILD_TOP}/external/icu/android_icu4j
 

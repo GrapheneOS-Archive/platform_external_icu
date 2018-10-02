@@ -225,6 +225,7 @@ import android.icu.util.UResourceBundle;
  * @author Alan Liu
  * @hide Only a subset of ICU is exposed in Android
  */
+@libcore.api.CorePlatformApi
 public abstract class Transliterator implements StringTransform  {
     /**
      * Direction constant indicating the forward direction in a transliterator,
@@ -533,6 +534,7 @@ public abstract class Transliterator implements StringTransform  {
      * @param text the string to be transliterated
      * @return The transliterated text
      */
+    @libcore.api.CorePlatformApi
     public final String transliterate(String text) {
         ReplaceableString result = new ReplaceableString(text);
         transliterate(result);
@@ -1291,6 +1293,7 @@ public abstract class Transliterator implements StringTransform  {
      * @return A <code>Transliterator</code> object with the given ID
      * @exception IllegalArgumentException if the given ID is invalid.
      */
+    @libcore.api.CorePlatformApi
     public static final Transliterator getInstance(String ID) {
         return getInstance(ID, FORWARD);
     }

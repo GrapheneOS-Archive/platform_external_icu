@@ -527,43 +527,43 @@ public class PluralRules implements Serializable {
         private static final long serialVersionUID = -4756200506571685661L;
 
         /**
-		 * @hide original deprecated declaration
-		 */
+         * @hide original deprecated declaration
+         */
         final double source;
 
         /**
-		 * @hide original deprecated declaration
-		 */
+         * @hide original deprecated declaration
+         */
         final int visibleDecimalDigitCount;
 
         /**
-		 * @hide original deprecated declaration
-		 */
+         * @hide original deprecated declaration
+         */
         final int visibleDecimalDigitCountWithoutTrailingZeros;
 
         /**
-		 * @hide original deprecated declaration
-		 */
+         * @hide original deprecated declaration
+         */
         final long decimalDigits;
 
         /**
-		 * @hide original deprecated declaration
-		 */
+         * @hide original deprecated declaration
+         */
         final long decimalDigitsWithoutTrailingZeros;
 
         /**
-		 * @hide original deprecated declaration
-		 */
+         * @hide original deprecated declaration
+         */
         final long integerValue;
 
         /**
-		 * @hide original deprecated declaration
-		 */
+         * @hide original deprecated declaration
+         */
         final boolean hasIntegerValue;
 
         /**
-		 * @hide original deprecated declaration
-		 */
+         * @hide original deprecated declaration
+         */
         final boolean isNegative;
 
         private final int baseFactor;
