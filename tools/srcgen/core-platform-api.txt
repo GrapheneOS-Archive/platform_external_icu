@@ -1,0 +1,3 @@
+method:android.icu.text.Transliterator#getInstance(String)
+method:android.icu.text.Transliterator#transliterate(String)
+type:android.icu.text.Transliterator
