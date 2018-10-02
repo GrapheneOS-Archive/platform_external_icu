@@ -1,3 +1,11 @@
 method:android.icu.text.Transliterator#getInstance(String)
 method:android.icu.text.Transliterator#transliterate(String)
+method:android.icu.util.BasicTimeZone#getNextTransition(long,boolean)
+method:android.icu.util.TimeZoneRule#getDSTSavings()
+method:android.icu.util.TimeZoneTransition#getFrom()
+method:android.icu.util.TimeZoneTransition#getTime()
+method:android.icu.util.TimeZoneTransition#getTo()
 type:android.icu.text.Transliterator
+type:android.icu.util.BasicTimeZone
+type:android.icu.util.TimeZoneRule
+type:android.icu.util.TimeZoneTransition
