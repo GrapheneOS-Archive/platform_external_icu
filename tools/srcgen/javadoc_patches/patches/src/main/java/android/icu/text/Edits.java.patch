@@ -1,5 +1,5 @@
---- android_icu4j/src/main/java/android/icu/text/Edits.java	2018-09-03 15:17:17.595992497 +0100
-+++ android_icu4j/src/main/java/android/icu/text/Edits.java	2018-09-03 15:17:13.019967467 +0100
+--- android_icu4j/src/main/java/android/icu/text/Edits.java	2018-10-22 05:12:27.128614515 +0100
++++ android_icu4j/src/main/java/android/icu/text/Edits.java	2018-10-22 05:12:45.632675685 +0100
 @@ -49,8 +49,7 @@
   * <p>
   * The "fine changes" and "coarse changes" iterators will step through only the change edits when their
@@ -10,7 +10,7 @@
   * <p>
   * For examples of how to use this class, see the test <code>TestCaseMapEditsIteratorDocs</code> in
   * UCharacterCaseTest.java.
-@@ -252,8 +251,8 @@
+@@ -251,8 +250,8 @@
       * starts at {@link #sourceIndex()} and runs for {@link #oldLength()} chars; the destination string
       * span starts at {@link #destinationIndex()} and runs for {@link #newLength()} chars.
       * <p>
