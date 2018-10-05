@@ -48,6 +48,7 @@ import java.util.TimeZone;
  * @hide Only a subset of ICU is exposed in Android
  * @hide draft / provisional / internal are hidden on Android
  */
+@libcore.api.CorePlatformApi
 public class CalendarAstronomer {
 
     //-------------------------------------------------------------------------
@@ -240,6 +241,7 @@ public class CalendarAstronomer {
      * @see java.util.Date#getTime()
      * @hide draft / provisional / internal are hidden on Android
      */
+    @libcore.api.CorePlatformApi
     public CalendarAstronomer(double longitude, double latitude) {
         this();
         fLongitude = normPI(longitude * DEG_RAD);
@@ -263,6 +265,7 @@ public class CalendarAstronomer {
      * @see #getTime
      * @hide draft / provisional / internal are hidden on Android
      */
+    @libcore.api.CorePlatformApi
     public void setTime(long aTime) {
         time = aTime;
         clearCache();
@@ -690,6 +693,7 @@ public class CalendarAstronomer {
      *
      * @hide draft / provisional / internal are hidden on Android
      */
+    @libcore.api.CorePlatformApi
     public long getSunRiseSet(boolean rise) {
         long t0 = time;
 
