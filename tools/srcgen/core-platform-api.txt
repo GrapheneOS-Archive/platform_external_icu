@@ -1,5 +1,8 @@
 field:android.icu.text.StringPrep#DEFAULT
 field:android.icu.text.StringPrep#RFC3920_RESOURCEPREP
+method:android.icu.impl.CalendarAstronomer#CalendarAstronomer(double,double)
+method:android.icu.impl.CalendarAstronomer#getSunRiseSet(boolean)
+method:android.icu.impl.CalendarAstronomer#setTime(long)
 method:android.icu.text.StringPrep#getInstance(int)
 method:android.icu.text.StringPrep#prepare(String,int)
 method:android.icu.text.Transliterator#getInstance(String)
@@ -9,6 +12,7 @@ method:android.icu.util.TimeZoneRule#getDSTSavings()
 method:android.icu.util.TimeZoneTransition#getFrom()
 method:android.icu.util.TimeZoneTransition#getTime()
 method:android.icu.util.TimeZoneTransition#getTo()
+type:android.icu.impl.CalendarAstronomer
 type:android.icu.text.StringPrep
 type:android.icu.text.StringPrepParseException
 type:android.icu.text.Transliterator
