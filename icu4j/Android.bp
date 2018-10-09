@@ -136,7 +136,7 @@ generate_script_tool_files = [
 ]
 // ANDROID_BUILD_TOP is needed to be set for generate_android_icu4j.sh
 generate_script_common_cmd = "export ANDROID_BUILD_TOP=$$(pwd) && " +
-    "$(location generate_android_icu4j.sh) " +
+    "$(location :generate_android_icu4j_script) " +
     "--no-doc-patch " +
     "--gen $(genDir) " +
     "--srcgen-tool $(location android_icu4j_srcgen_binary)"
