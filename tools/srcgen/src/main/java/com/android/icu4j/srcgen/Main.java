@@ -15,6 +15,8 @@
  */
 package com.android.icu4j.srcgen;
 
+import com.android.icu4j.srcgen.checker.GeneratePublicApiReport;
+
 public class Main {
   public static void main(String[] args) throws Exception {
     if (args.length < 1) {
@@ -32,6 +34,9 @@ public class Main {
         break;
       case "Icu4jBasicTransform":
         Icu4jBasicTransform.main(inputArgs);
+        break;
+      case "GeneratePublicApiReport":
+        GeneratePublicApiReport.main(inputArgs);
         break;
       default:
         throw new IllegalArgumentException("Input class name is not valid: " + className);
