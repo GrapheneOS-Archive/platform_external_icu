@@ -166,8 +166,34 @@ public final class BodyDeclarationLocators {
     if (parametersString.isEmpty()) {
       return Collections.emptyList();
     }
-    return Splitter.on(',').splitToList(parametersString);
+    return splitParameters(parametersString);
   }
+
+  /**
+   * Split parameters by ','. Support simple generics syntax.
+   * TODO: Replace the implementation by JDT parser.
+   */
+  private static List<String> splitParameters(String parametersString) {
+    List<String> result = new ArrayList<>();
+    int genericsLevel = 0;
+    int start = 0;
+    for (int p = 0; p < parametersString.length(); p++) {
+      char c = parametersString.charAt(p);
+      if (genericsLevel == 0 && c == ',') {
+        result.add(parametersString.substring(start, p));
+        start = p + 1;
+      } else if (c == '<') {
+        genericsLevel++;
+      } else if (c == '>') {
+        genericsLevel--;
+      }
+    }
+    if (start < parametersString.length()) {
+      result.add(parametersString.substring(start, parametersString.length()));
+    }
+    return result;
+  }
+
 
   private static List<String> splitInTwo(String string, String separator) {
     List<String> components = Splitter.on(separator).splitToList(string);
