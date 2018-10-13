@@ -57,11 +57,14 @@ java_test {
     ],
     java_resource_dirs: ["src/main/tests"],
     static_libs: [
-        "android-support-test",
         "junit",
         "junit-params",
     ],
-    patch_module: "java.base",
 
-    no_framework_libs: true,
+    patch_module: "java.base",
+    no_standard_libs: true,
+    libs: [
+        "core-all",
+    ],
+    system_modules: "core-all-system-modules",
 }
