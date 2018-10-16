@@ -22,6 +22,9 @@ import android.icu.util.UResourceBundle;
  */
 public class CompactData implements MultiplierProducer {
 
+    /**
+     * @hide Only a subset of ICU is exposed in Android
+     */
     public enum CompactType {
         DECIMAL, CURRENCY
     }

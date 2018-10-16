@@ -35,6 +35,9 @@ import android.icu.util.ICUUncheckedIOException;
  */
 public class XCldrStub {
 
+    /**
+     * @hide Only a subset of ICU is exposed in Android
+     */
     public static class Multimap<K, V> {
         private final Map<K,Set<V>> map;
         private final Class<Set<V>> setClass;
@@ -125,6 +128,9 @@ public class XCldrStub {
         }
     }
 
+    /**
+     * @hide Only a subset of ICU is exposed in Android
+     */
     public static class Multimaps {
         public static <K, V, R extends Multimap<K, V>> R invertFrom(Multimap<V, K> source, R target) {
             for (Entry<V, Set<K>> entry : source.asMap().entrySet()) {
@@ -196,6 +202,9 @@ public class XCldrStub {
         }
     }
 
+    /**
+     * @hide Only a subset of ICU is exposed in Android
+     */
     public static class HashMultimap<K, V> extends Multimap<K, V> {
         private HashMultimap() {
             super(new HashMap<K, Set<V>>(), HashSet.class);
@@ -205,6 +214,9 @@ public class XCldrStub {
         }
     }
 
+    /**
+     * @hide Only a subset of ICU is exposed in Android
+     */
     public static class TreeMultimap<K, V> extends Multimap<K, V> {
         private TreeMultimap() {
             super(new TreeMap<K, Set<V>>(), TreeSet.class);
@@ -214,6 +226,9 @@ public class XCldrStub {
         }
     }
 
+    /**
+     * @hide Only a subset of ICU is exposed in Android
+     */
     public static class LinkedHashMultimap<K, V> extends Multimap<K, V> {
         private LinkedHashMultimap() {
             super(new LinkedHashMap<K, Set<V>>(), LinkedHashSet.class);
@@ -260,12 +275,18 @@ public class XCldrStub {
         return result.toString();
     }
 
+    /**
+     * @hide Only a subset of ICU is exposed in Android
+     */
     public static class CollectionUtilities {
         public static <T, U extends Iterable<T>> String join(U source, String separator) {
             return XCldrStub.join(source, separator);
         }
     }
 
+    /**
+     * @hide Only a subset of ICU is exposed in Android
+     */
     public static class Joiner {
         private final String separator;
         private Joiner(String separator) {
@@ -282,6 +303,9 @@ public class XCldrStub {
         }
     }
 
+    /**
+     * @hide Only a subset of ICU is exposed in Android
+     */
     public static class Splitter {
         Pattern pattern;
         boolean trimResults = false;
@@ -315,16 +339,25 @@ public class XCldrStub {
         }
     }
 
+    /**
+     * @hide Only a subset of ICU is exposed in Android
+     */
     public static class ImmutableSet {
         public static <T> Set<T> copyOf(Set<T> values) {
             return Collections.unmodifiableSet(new LinkedHashSet<T>(values)); // copy set for safety, preserve order
         }
     }
+    /**
+     * @hide Only a subset of ICU is exposed in Android
+     */
     public static class ImmutableMap {
         public static <K,V> Map<K,V> copyOf(Map<K,V> values) {
             return Collections.unmodifiableMap(new LinkedHashMap<K,V>(values)); // copy set for safety, preserve order
         }
     }
+    /**
+     * @hide Only a subset of ICU is exposed in Android
+     */
     public static class ImmutableMultimap {
         public static <K,V> Multimap<K,V> copyOf(Multimap<K,V> values) {
             LinkedHashMap<K, Set<V>> temp = new LinkedHashMap<K,Set<V>>(); // semi-deep copy, preserve order
@@ -338,6 +371,9 @@ public class XCldrStub {
         }
     }
 
+    /**
+     * @hide Only a subset of ICU is exposed in Android
+     */
     public static class FileUtilities {
         public static final Charset UTF8 = Charset.forName("utf-8");
 
@@ -384,6 +420,9 @@ public class XCldrStub {
         }
     }
 
+    /**
+     * @hide Only a subset of ICU is exposed in Android
+     */
     static public class RegexUtilities {
         public static int findMismatch(Matcher m, CharSequence s) {
             int i;
@@ -402,6 +441,9 @@ public class XCldrStub {
         }
     }
 
+    /**
+     * @hide Only a subset of ICU is exposed in Android
+     */
     public interface Predicate<T> {
         /**
          * Evaluates this predicate on the given argument.

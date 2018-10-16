@@ -759,6 +759,7 @@ public abstract class NumberFormat extends UFormat {
      * one of these two methods <b>MUST</b> be overridden or else an infinite
      * loop will occur.
      *
+     * @hide Only a subset of ICU is exposed in Android
      * @hide unsupported on Android
      */
     public static abstract class NumberFormatFactory {
@@ -843,6 +844,7 @@ public abstract class NumberFormat extends UFormat {
 
     /**
      * A NumberFormatFactory that supports a single locale.  It can be visible or invisible.
+     * @hide Only a subset of ICU is exposed in Android
      * @hide unsupported on Android
      */
     public static abstract class SimpleNumberFormatFactory extends NumberFormatFactory {

@@ -84,6 +84,7 @@ public final class NumberFormatter {
      * This enum is similar to {@link android.icu.text.MeasureFormat.FormatWidth}.
      *
      * @see NumberFormatter
+     * @hide Only a subset of ICU is exposed in Android
      * @hide draft / provisional / internal are hidden on Android
      */
     public static enum UnitWidth {
@@ -179,6 +180,7 @@ public final class NumberFormatter {
      * grouping separator, use the "symbols" setter.
      *
      * @see NumberFormatter
+     * @hide Only a subset of ICU is exposed in Android
      * @hide draft / provisional / internal are hidden on Android
      */
     public static enum GroupingStrategy {
@@ -268,6 +270,7 @@ public final class NumberFormatter {
      * The exact format, including the position and the code point of the sign, differ by locale.
      *
      * @see NumberFormatter
+     * @hide Only a subset of ICU is exposed in Android
      * @hide draft / provisional / internal are hidden on Android
      */
     public static enum SignDisplay {
@@ -356,6 +359,7 @@ public final class NumberFormatter {
      * </ul>
      *
      * @see NumberFormatter
+     * @hide Only a subset of ICU is exposed in Android
      * @hide draft / provisional / internal are hidden on Android
      */
     public static enum DecimalSeparatorDisplay {

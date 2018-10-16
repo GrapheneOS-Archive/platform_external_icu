@@ -33,7 +33,8 @@ public class DecimalFormatProperties implements Cloneable, Serializable {
     /** Auto-generated. */
     private static final long serialVersionUID = 4095518955889349243L;
 
-    /** Controls the set of rules for parsing a string from the old DecimalFormat API. */
+    /** Controls the set of rules for parsing a string from the old DecimalFormat API. 
+     * @hide Only a subset of ICU is exposed in Android*/
     public static enum ParseMode {
         /**
          * Lenient mode should be used if you want to accept malformed user input. It will use heuristics

@@ -203,6 +203,9 @@ public class XLocaleDistance {
     private final int defaultScriptDistance;
     private final int defaultRegionDistance;
 
+    /**
+     * @hide Only a subset of ICU is exposed in Android
+     */
     @Deprecated
     public static abstract class DistanceTable {
         abstract int getDistance(String desiredLang, String supportedlang, Output<DistanceTable> table, boolean starEquals);
@@ -225,6 +228,9 @@ public class XLocaleDistance {
         }
     }
 
+    /**
+     * @hide Only a subset of ICU is exposed in Android
+     */
     @Deprecated
     public static class DistanceNode {
         final int distance;
@@ -413,6 +419,7 @@ public class XLocaleDistance {
 
     /**
      * Internal class
+     * @hide Only a subset of ICU is exposed in Android
      */
     @Deprecated
     public static class StringDistanceTable extends DistanceTable {
@@ -736,6 +743,9 @@ public class XLocaleDistance {
                 threshold, distanceOption);
     }
 
+    /**
+     * @hide Only a subset of ICU is exposed in Android
+     */
     public enum DistanceOption {NORMAL, SCRIPT_FIRST}
 
     /**
