@@ -401,6 +401,7 @@ public final class ICUBinary {
 
     /**
      * Special interface for data authentication
+     * @hide Only a subset of ICU is exposed in Android
      */
     public static interface Authenticate
     {

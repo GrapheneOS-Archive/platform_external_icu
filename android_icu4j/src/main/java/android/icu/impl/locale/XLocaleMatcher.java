@@ -43,6 +43,9 @@ public class XLocaleMatcher {
     private final ULocale defaultLanguage;
 
 
+    /**
+     * @hide Only a subset of ICU is exposed in Android
+     */
     public static class Builder {
         private Set<ULocale> supportedLanguagesList;
         private int thresholdDistance = -1;

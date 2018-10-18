@@ -24,17 +24,26 @@ public class CurrencyData {
 
     private CurrencyData() {}
 
+    /**
+     * @hide Only a subset of ICU is exposed in Android
+     */
     public static interface CurrencyDisplayInfoProvider {
         CurrencyDisplayInfo getInstance(ULocale locale, boolean withFallback);
         boolean hasData();
     }
 
+    /**
+     * @hide Only a subset of ICU is exposed in Android
+     */
     public static abstract class CurrencyDisplayInfo extends CurrencyDisplayNames {
         public abstract Map<String, String> getUnitPatterns();
         public abstract CurrencyFormatInfo getFormatInfo(String isoCode);
         public abstract CurrencySpacingInfo getSpacingInfo();
     }
 
+    /**
+     * @hide Only a subset of ICU is exposed in Android
+     */
     public static final class CurrencyFormatInfo {
         public final String isoCode;
         public final String currencyPattern;
@@ -50,13 +59,22 @@ public class CurrencyData {
         }
     }
 
+    /**
+     * @hide Only a subset of ICU is exposed in Android
+     */
     public static final class CurrencySpacingInfo {
         private final String[][] symbols = new String[SpacingType.COUNT.ordinal()][SpacingPattern.COUNT.ordinal()];
 
         public boolean hasBeforeCurrency = false;
         public boolean hasAfterCurrency = false;
 
+        /**
+         * @hide Only a subset of ICU is exposed in Android
+         */
         public static enum SpacingType { BEFORE, AFTER, COUNT };
+        /**
+         * @hide Only a subset of ICU is exposed in Android
+         */
         public static enum SpacingPattern {
             CURRENCY_MATCH(DecimalFormatSymbols.CURRENCY_SPC_CURRENCY_MATCH),
             SURROUNDING_MATCH(DecimalFormatSymbols.CURRENCY_SPC_SURROUNDING_MATCH),
@@ -127,6 +145,9 @@ public class CurrencyData {
         provider = temp;
     }
 
+    /**
+     * @hide Only a subset of ICU is exposed in Android
+     */
     public static class DefaultInfo extends CurrencyDisplayInfo {
         private final boolean fallback;
 

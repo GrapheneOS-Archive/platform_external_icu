@@ -28,6 +28,9 @@ import android.icu.util.VersionInfo;
  * @hide Only a subset of ICU is exposed in Android
  */
 public final class Normalizer2Impl {
+    /**
+     * @hide Only a subset of ICU is exposed in Android
+     */
     public static final class Hangul {
         /* Korean Hangul and Jamo constants */
         public static final int JAMO_L_BASE=0x1100;     /* "lead" jamo */
@@ -131,6 +134,7 @@ public final class Normalizer2Impl {
      * until no further changes are necessary and whole segments are appended.
      * append() methods that take combining-class values always write to the StringBuilder.
      * Other append() methods flush and append to the Appendable.
+     * @hide Only a subset of ICU is exposed in Android
      */
     public static final class ReorderingBuffer implements Appendable {
         public ReorderingBuffer(Normalizer2Impl ni, Appendable dest, int destCapacity) {
@@ -360,6 +364,9 @@ public final class Normalizer2Impl {
     // TODO: Propose as public API on the UTF16 class.
     // TODO: Propose widening UTF16 methods that take char to take int.
     // TODO: Propose widening UTF16 methods that take String to take CharSequence.
+    /**
+     * @hide Only a subset of ICU is exposed in Android
+     */
     public static final class UTF16Plus {
         /**
          * Assuming c is a surrogate code point (UTF16.isSurrogate(c)),

@@ -599,6 +599,7 @@ public final class UCaseProps {
      *
      * The code point being case-mapped itself is never returned by
      * this iterator.
+     * @hide Only a subset of ICU is exposed in Android
      */
     public interface ContextIterator {
         /**

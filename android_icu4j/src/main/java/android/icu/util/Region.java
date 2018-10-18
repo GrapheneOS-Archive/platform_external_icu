@@ -65,6 +65,8 @@ public class Region implements Comparable<Region> {
     /**
      * RegionType is an enumeration defining the different types of regions.  Current possible
      * values are WORLD, CONTINENT, SUBCONTINENT, TERRITORY, GROUPING, DEPRECATED, and UNKNOWN.
+     * 
+     * @hide Only a subset of ICU is exposed in Android
      */
 
     @libcore.api.CorePlatformApi

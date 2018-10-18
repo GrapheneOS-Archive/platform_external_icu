@@ -25,6 +25,9 @@ import android.icu.util.UResourceBundle;
  * @hide Only a subset of ICU is exposed in Android
  */
 public class StaticUnicodeSets {
+    /**
+     * @hide Only a subset of ICU is exposed in Android
+     */
     public static enum Key {
         // Ignorables
         DEFAULT_IGNORABLES,

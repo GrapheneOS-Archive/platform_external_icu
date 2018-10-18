@@ -262,6 +262,7 @@ public abstract class Transliterator implements StringTransform  {
      * boundaries.  That is, none of them may occur between two code units
      * of a surrogate pair.  If any index does split a surrogate pair,
      * results are unspecified.
+     * @hide Only a subset of ICU is exposed in Android
      */
     public static class Position {
 
@@ -1947,6 +1948,7 @@ public abstract class Transliterator implements StringTransform  {
      * makes it possible to register one factory method to more than
      * one ID, or for a factory method to parameterize its result
      * based on the variant.
+     * @hide Only a subset of ICU is exposed in Android
      */
     public static interface Factory {
         /**
