@@ -608,6 +608,7 @@ public class LocaleMatcher {
     /**
      * Only for testing and use by tools. Interface may change!!
      * @deprecated This API is ICU internal only.
+     * @hide Only a subset of ICU is exposed in Android
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated

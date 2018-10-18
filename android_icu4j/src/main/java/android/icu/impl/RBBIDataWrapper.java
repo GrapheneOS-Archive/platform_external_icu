@@ -31,6 +31,7 @@ public final class RBBIDataWrapper {
      * A RBBI State Transition table, the form of the data used at run time in Java.
      * These can be created from stored ICU data, or built from rules.
      * The structure corresponds closely to struct RBBIStateTable in ICU4C.
+     * @hide Only a subset of ICU is exposed in Android
      */
     static public class RBBIStateTable {
         /**
@@ -206,6 +207,7 @@ public final class RBBIDataWrapper {
     /**
      * Data Header.  A struct-like class with the fields from the RBBI data file header.
      * Not intended for public use, declared public for testing purposes only.
+     * @hide Only a subset of ICU is exposed in Android
      */
     public final static class RBBIDataHeader {
         int         fMagic;         //  == 0xbla0

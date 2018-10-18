@@ -21,6 +21,7 @@ public final class CaseMapImpl {
     /**
      * Implementation of UCaseProps.ContextIterator, iterates over a String.
      * See ustrcase.c/utf16_caseContextIterator().
+     * @hide Only a subset of ICU is exposed in Android
      */
     public static final class StringContextIterator implements UCaseProps.ContextIterator {
         /**

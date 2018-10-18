@@ -1056,6 +1056,9 @@ public  class ICUResourceBundle extends UResourceBundle {
         return 42;
     }
 
+    /**
+     * @hide Only a subset of ICU is exposed in Android
+     */
     public enum OpenType {  // C++ uresbund.cpp: enum UResOpenType
         /**
          * Open a resource bundle for the locale;

@@ -61,6 +61,9 @@ public class XLikelySubtags {
         };
     }
 
+    /**
+     * @hide Only a subset of ICU is exposed in Android
+     */
     public static class Aliases {
         final Map<String, String> toCanonical;
         final Multimap<String, String> toAliases;
@@ -103,6 +106,9 @@ public class XLikelySubtags {
         }
     }
 
+    /**
+     * @hide Only a subset of ICU is exposed in Android
+     */
     public static class LSR {
         public final String language;
         public final String script;

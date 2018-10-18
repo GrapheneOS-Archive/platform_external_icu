@@ -214,6 +214,9 @@ public class MutablePatternModifier implements Modifier, SymbolProvider, MicroPr
         }
     }
 
+    /**
+     * @hide Only a subset of ICU is exposed in Android
+     */
     public static class ImmutablePatternModifier implements MicroPropsGenerator {
         final ParameterizedModifier pm;
         final PluralRules rules;

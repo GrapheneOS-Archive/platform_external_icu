@@ -85,6 +85,7 @@ public class PatternStringParser {
 
     /**
      * Contains raw information about the parsed decimal format pattern string.
+     * @hide Only a subset of ICU is exposed in Android
      */
     public static class ParsedPatternInfo implements AffixPatternProvider {
         public String pattern;
@@ -178,6 +179,9 @@ public class PatternStringParser {
         }
     }
 
+    /**
+     * @hide Only a subset of ICU is exposed in Android
+     */
     public static class ParsedSubpatternInfo {
         public long groupingSizes = 0x0000ffffffff0000L;
         public int integerLeadingHashSigns = 0;
