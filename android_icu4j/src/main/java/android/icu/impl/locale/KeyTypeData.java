@@ -31,6 +31,9 @@ import android.icu.util.UResourceBundleIterator;
  */
 public class KeyTypeData {
 
+    /**
+     * @hide Only a subset of ICU is exposed in Android
+     */
     public enum ValueType {
         single, multiple, incremental, any
     }

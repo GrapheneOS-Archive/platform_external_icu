@@ -195,6 +195,7 @@ public class PluralRules implements Serializable {
      * Provides a factory for returning plural rules
      *
      * @deprecated This API is ICU internal only.
+     * @hide Only a subset of ICU is exposed in Android
      * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -410,6 +411,7 @@ public class PluralRules implements Serializable {
 
     /**
      * @deprecated This API is ICU internal only.
+     * @hide Only a subset of ICU is exposed in Android
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
@@ -488,6 +490,7 @@ public class PluralRules implements Serializable {
      * An interface to FixedDecimal, allowing for other implementations.
      *
      * @deprecated This API is ICU internal only.
+     * @hide Only a subset of ICU is exposed in Android
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
@@ -519,6 +522,7 @@ public class PluralRules implements Serializable {
 
     /**
      * @deprecated This API is ICU internal only.
+     * @hide Only a subset of ICU is exposed in Android
      * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -1028,6 +1032,7 @@ public class PluralRules implements Serializable {
     /**
      * Selection parameter for either integer-only or decimal-only.
      * @deprecated This API is ICU internal only.
+     * @hide Only a subset of ICU is exposed in Android
      * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -1050,6 +1055,7 @@ public class PluralRules implements Serializable {
     /**
      * A range of NumberInfo that includes all values with the same visibleFractionDigitCount.
      * @deprecated This API is ICU internal only.
+     * @hide Only a subset of ICU is exposed in Android
      * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -1097,6 +1103,7 @@ public class PluralRules implements Serializable {
     /**
      * A list of NumberInfo that includes all values with the same visibleFractionDigitCount.
      * @deprecated This API is ICU internal only.
+     * @hide Only a subset of ICU is exposed in Android
      * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -2358,6 +2365,7 @@ public class PluralRules implements Serializable {
     /**
      * Status of the keyword for the rules, given a set of explicit values.
      *
+     * @hide Only a subset of ICU is exposed in Android
      * @hide draft / provisional / internal are hidden on Android
      */
     public enum KeywordStatus {

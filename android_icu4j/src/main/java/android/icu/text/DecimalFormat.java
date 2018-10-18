@@ -2399,6 +2399,7 @@ public class DecimalFormat extends NumberFormat {
 
   /**
    * @deprecated This API is ICU internal only.
+ * @hide Only a subset of ICU is exposed in Android
  * @hide draft / provisional / internal are hidden on Android
    */
   @Deprecated

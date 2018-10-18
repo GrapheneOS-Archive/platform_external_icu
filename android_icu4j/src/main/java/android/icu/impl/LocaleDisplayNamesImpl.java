@@ -622,6 +622,9 @@ public class LocaleDisplayNamesImpl extends LocaleDisplayNames {
         return new UiListItem(minimized, modified, nameInDisplayLocale, nameInSelf);
     }
 
+    /**
+     * @hide Only a subset of ICU is exposed in Android
+     */
     public static class DataTable {
         final boolean nullIfNotFound;
 
@@ -700,6 +703,9 @@ public class LocaleDisplayNamesImpl extends LocaleDisplayNames {
         static final DataTables impl = DataTables.load("android.icu.impl.ICURegionDataTables");
     }
 
+    /**
+     * @hide Only a subset of ICU is exposed in Android
+     */
     public static enum DataTableType {
         LANG, REGION;
     }

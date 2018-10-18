@@ -1868,6 +1868,7 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      * @see android.icu.util.ULocale
      * @see android.icu.util.ULocale#ACTUAL_LOCALE
      * @see android.icu.util.ULocale#VALID_LOCALE
+     * @hide Only a subset of ICU is exposed in Android
      * @hide draft / provisional / internal are hidden on Android
      */
     public static final class Type {
@@ -2352,6 +2353,7 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
     /**
      * Options for minimizeSubtags.
      * @deprecated This API is ICU internal only.
+     * @hide Only a subset of ICU is exposed in Android
      * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */

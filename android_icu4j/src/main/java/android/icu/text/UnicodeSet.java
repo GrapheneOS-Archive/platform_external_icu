@@ -3835,6 +3835,7 @@ public class UnicodeSet extends UnicodeFilter implements Iterable<String>, Compa
      * Internal class for customizing UnicodeSet parsing of properties.
      * TODO: extend to allow customizing of codepoint ranges
      * @author medavis
+     * @hide Only a subset of ICU is exposed in Android
      * @hide draft / provisional / internal are hidden on Android
      */
     abstract public static class XSymbolTable implements SymbolTable {

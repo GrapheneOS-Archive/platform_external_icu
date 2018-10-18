@@ -215,6 +215,8 @@ public class SpoofChecker {
 
     /**
      * Constants from UTS 39 for use in setRestrictionLevel.
+     *
+     * @hide Only a subset of ICU is exposed in Android
      */
     public enum RestrictionLevel {
         /**
@@ -462,6 +464,8 @@ public class SpoofChecker {
     /**
      * SpoofChecker Builder. To create a SpoofChecker, first instantiate a SpoofChecker.Builder, set the desired
      * checking options on the builder, then call the build() function to create a SpoofChecker instance.
+     *
+     * @hide Only a subset of ICU is exposed in Android
      */
     public static class Builder {
         int fChecks; // Bit vector of checks to perform.
@@ -1148,6 +1152,8 @@ public class SpoofChecker {
 
     /**
      * A struct-like class to hold the results of a Spoof Check operation. Tells which check(s) have failed.
+     *
+     * @hide Only a subset of ICU is exposed in Android
      */
     public static class CheckResult {
         /**

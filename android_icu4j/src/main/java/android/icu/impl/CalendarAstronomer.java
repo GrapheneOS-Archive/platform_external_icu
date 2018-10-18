@@ -1497,6 +1497,7 @@ public class CalendarAstronomer {
      *
      * @see CalendarAstronomer.Equatorial
      * @see CalendarAstronomer.Horizon
+     * @hide Only a subset of ICU is exposed in Android
      * @hide draft / provisional / internal are hidden on Android
      */
     public static final class Ecliptic {
@@ -1557,6 +1558,7 @@ public class CalendarAstronomer {
      *
      * @see CalendarAstronomer.Ecliptic
      * @see CalendarAstronomer.Horizon
+     * @hide Only a subset of ICU is exposed in Android
      * @hide draft / provisional / internal are hidden on Android
      */
     public static final class Equatorial {
@@ -1624,6 +1626,7 @@ public class CalendarAstronomer {
      *
      * @see CalendarAstronomer.Ecliptic
      * @see CalendarAstronomer.Equatorial
+     * @hide Only a subset of ICU is exposed in Android
      * @hide draft / provisional / internal are hidden on Android
      */
     public static final class Horizon {
