@@ -42,6 +42,7 @@ final public class ListFormatter {
     /**
      * Indicates the style of Listformatter
      * @deprecated This API is ICU internal only.
+     * @hide Only a subset of ICU is exposed in Android
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated

@@ -1089,6 +1089,7 @@ public class DateTimePatternGenerator implements Freezable<DateTimePatternGenera
 
     /**
      * Field display name width constants for getFieldDisplayName
+     * @hide Only a subset of ICU is exposed in Android
      * @hide draft / provisional / internal are hidden on Android
      */
     public enum DisplayWidth {
@@ -1371,6 +1372,7 @@ public class DateTimePatternGenerator implements Freezable<DateTimePatternGenera
      * is "44".
      *
      * @deprecated This API is ICU internal only.
+     * @hide Only a subset of ICU is exposed in Android
      * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -1492,6 +1494,7 @@ public class DateTimePatternGenerator implements Freezable<DateTimePatternGenera
     }
      *  </pre>
      * @deprecated This API is ICU internal only.
+     * @hide Only a subset of ICU is exposed in Android
      * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */

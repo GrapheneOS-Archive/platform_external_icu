@@ -7,6 +7,9 @@ package android.icu.impl.number;
  * @hide Only a subset of ICU is exposed in Android
  */
 public interface AffixPatternProvider {
+    /**
+     * @hide Only a subset of ICU is exposed in Android
+     */
     public static final class Flags {
         public static final int PLURAL_MASK = 0xff;
         public static final int PREFIX = 0x100;

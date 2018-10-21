@@ -26,6 +26,7 @@ public interface NumberParseMatcher {
     /**
      * Matchers can implement the Flexible interface to indicate that they are optional and can be run
      * repeatedly. Used by SeriesMatcher, primarily in the context of IgnorablesMatcher.
+     * @hide Only a subset of ICU is exposed in Android
      */
     public interface Flexible {
     }

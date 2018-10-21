@@ -39,21 +39,33 @@ public class Row<C0, C1, C2, C3, C4> implements java.lang.Comparable, Cloneable,
         return new R5<C0,C1,C2,C3,C4>(p0,p1,p2,p3,p4);
     }
 
+    /**
+     * @hide Only a subset of ICU is exposed in Android
+     */
     public static class R2<C0, C1> extends Row<C0, C1, C1, C1, C1> {
         public R2(C0 a, C1 b)  {
             items = new Object[] {a, b};
         }
     }
+    /**
+     * @hide Only a subset of ICU is exposed in Android
+     */
     public static class R3<C0, C1, C2> extends Row<C0, C1, C2, C2, C2> {
         public R3(C0 a, C1 b, C2 c)  {
             items = new Object[] {a, b, c};
         }
     }
+    /**
+     * @hide Only a subset of ICU is exposed in Android
+     */
     public static class R4<C0, C1, C2, C3> extends Row<C0, C1, C2, C3, C3> {
         public R4(C0 a, C1 b, C2 c, C3 d)  {
             items = new Object[] {a, b, c, d};
         }
     }
+    /**
+     * @hide Only a subset of ICU is exposed in Android
+     */
     public static class R5<C0, C1, C2, C3, C4> extends Row<C0, C1, C2, C3, C4> {
         public R5(C0 a, C1 b, C2 c, C3 d, C4 e)  {
             items = new Object[] {a, b, c, d, e};
