@@ -108,7 +108,7 @@ kea{
         EU{"Uniãu Europeia"}
         FI{"Finlándia"}
         FJ{"Fidji"}
-        FK{"Ilhas Malvinas"}
+        FK{"Ilhas Falkland (Ilhas Malvinas)"}
         FM{"Mikronézia"}
         FO{"Ilhas Faroe"}
         FR{"Fransa"}
@@ -131,7 +131,7 @@ kea{
         GU{"Guam"}
         GW{"Gine-Bisau"}
         GY{"Giana"}
-        HK{"Rejiãu Administrativu Spesial di Hong Kong"}
+        HK{"Hong Kong"}
         HM{"Ilhas Heard i McDonald"}
         HN{"Onduras"}
         HR{"Kroásia"}
@@ -181,11 +181,11 @@ kea{
         MF{"Sãu Martinhu di Fransa"}
         MG{"Madagaskar"}
         MH{"Ilhas Marxal"}
-        MK{"Masidónia"}
+        MK{"Masidónia (FYROM)"}
         ML{"Mali"}
         MM{"Mianmar (Birmánia)"}
         MN{"Mongólia"}
-        MO{"Rejiãu Administrativu Spesial di Makau"}
+        MO{"Makau"}
         MP{"Ilhas Marianas di Norti"}
         MQ{"Martinika"}
         MR{"Mauritánia"}
@@ -294,8 +294,6 @@ kea{
     }
     Countries%short{
         GB{"R.U."}
-        HK{"Hong Kong"}
-        MO{"Makau"}
         US{"S.U."}
     }
     Countries%variant{
@@ -303,8 +301,6 @@ kea{
         CG{"Repúblika di Kongu"}
         CI{"Kosta di Marfin (Côte d’Ivoire)"}
         CZ{"Repúblika Txeka"}
-        FK{"Ilhas Falkland (Ilhas Malvinas)"}
-        MK{"Masidónia (FYROM)"}
     }
     Version{"2.1.43.65"}
 }

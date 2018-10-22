@@ -33,7 +33,6 @@ lrc{
     }
     Version{"2.1.43.65"}
     calendar{
-        default{"persian"}
         generic{
             DateTimePatterns{
                 "HH:mm:ss zzzz",

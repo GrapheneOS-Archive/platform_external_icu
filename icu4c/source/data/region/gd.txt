@@ -110,7 +110,7 @@ gd{
         EZ{"Raon an Eòro"}
         FI{"An Fhionnlann"}
         FJ{"Fìdi"}
-        FK{"Na h-Eileanan Fàclannach"}
+        FK{"Na h-Eileanan Fàclannach (Islas Malvinas)"}
         FM{"Na Meanbh-eileanan"}
         FO{"Na h-Eileanan Fàro"}
         FR{"An Fhraing"}
@@ -133,7 +133,7 @@ gd{
         GU{"Guam"}
         GW{"Gini-Bioso"}
         GY{"Guidheàna"}
-        HK{"Hong Kong SAR na Sìne"}
+        HK{"Hong Kong"}
         HM{"Eilean Heard is MhicDhòmhnaill"}
         HN{"Hondùras"}
         HR{"A’ Chròthais"}
@@ -183,11 +183,11 @@ gd{
         MF{"Naomh Màrtainn"}
         MG{"Madagasgar"}
         MH{"Eileanan Mharshall"}
-        MK{"A’ Mhasadon"}
+        MK{"A’ Mhasadon (FYROM)"}
         ML{"Màili"}
         MM{"Miànmar"}
         MN{"Dùthaich nam Mongol"}
-        MO{"Macàthu SAR na Sìne"}
+        MO{"Macàthu"}
         MP{"Na h-Eileanan Mairianach a Tuath"}
         MQ{"Mairtinic"}
         MR{"Moratàinea"}
@@ -222,7 +222,7 @@ gd{
         PM{"Saint Pierre agus Miquelon"}
         PN{"Eileanan Pheit a’ Chàirn"}
         PR{"Porto Rìceo"}
-        PS{"Ùghdarras nam Palastaineach"}
+        PS{"Palastain"}
         PT{"A’ Phortagail"}
         PW{"Palabh"}
         PY{"Paraguaidh"}
@@ -297,9 +297,6 @@ gd{
     }
     Countries%short{
         GB{"RA"}
-        HK{"Hong Kong"}
-        MO{"Macàthu"}
-        PS{"Palastain"}
         US{"SA"}
     }
     Countries%variant{
@@ -307,8 +304,6 @@ gd{
         CG{"A’ Chongo"}
         CI{"An Costa Ìbhri"}
         CZ{"Poblachd na Seice"}
-        FK{"Na h-Eileanan Fàclannach (Islas Malvinas)"}
-        MK{"A’ Mhasadon (FYROM)"}
         TL{"Tìomor an Ear"}
     }
     Version{"2.1.44.91"}

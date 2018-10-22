@@ -110,7 +110,7 @@ sq{
         EZ{"Zona euro"}
         FI{"Finlandë"}
         FJ{"Fixhi"}
-        FK{"Ishujt Falkland"}
+        FK{"Ishujt Falkland (Malvine)"}
         FM{"Mikronezi"}
         FO{"Ishujt Faroe"}
         FR{"Francë"}
@@ -133,7 +133,7 @@ sq{
         GU{"Guam"}
         GW{"Guine-Bisau"}
         GY{"Guajanë"}
-        HK{"RPA i Hong-Kongut"}
+        HK{"Hong-Kong"}
         HM{"Ishujt Hërd e Mekdonald"}
         HN{"Honduras"}
         HR{"Kroaci"}
@@ -183,11 +183,11 @@ sq{
         MF{"Sen-Marten"}
         MG{"Madagaskar"}
         MH{"Ishujt Marshall"}
-        MK{"Maqedoni"}
+        MK{"Maqedoni (IRJM)"}
         ML{"Mali"}
         MM{"Mianmar (Burmë)"}
         MN{"Mongoli"}
-        MO{"RPA i Makaos"}
+        MO{"Makao"}
         MP{"Ishujt e Marianës Veriore"}
         MQ{"Martinikë"}
         MR{"Mauritani"}
@@ -222,7 +222,7 @@ sq{
         PM{"Shën-Pier dhe Mikelon"}
         PN{"Ishujt Pitkern"}
         PR{"Porto-Riko"}
-        PS{"Territoret Palestineze"}
+        PS{"Palestinë"}
         PT{"Portugali"}
         PW{"Palau"}
         PY{"Paraguai"}
@@ -297,9 +297,6 @@ sq{
     }
     Countries%short{
         GB{"MB"}
-        HK{"Hong-Kong"}
-        MO{"Makao"}
-        PS{"Palestinë"}
         UN{"OKB"}
         US{"SHBA"}
     }
@@ -308,8 +305,6 @@ sq{
         CG{"Kongo (Republika)"}
         CI{"Bregu i Fildishtë"}
         CZ{"Republika Çeke"}
-        FK{"Ishujt Falkland (Malvine)"}
-        MK{"Maqedoni (IRJM)"}
         TL{"Timori Lindor"}
     }
     Version{"2.1.43.50"}

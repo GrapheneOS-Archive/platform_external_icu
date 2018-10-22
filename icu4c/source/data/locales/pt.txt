@@ -218,7 +218,7 @@ pt{
         minimumGroupingDigits{"1"}
         native{"latn"}
     }
-    Version{"2.1.43.65"}
+    Version{"2.1.45.46"}
     calendar{
         buddhist{
             eras{

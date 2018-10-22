@@ -110,7 +110,7 @@ tk{
         EZ{"Ýewro sebiti"}
         FI{"Finlýandiýa"}
         FJ{"Fiji"}
-        FK{"Folklend adalary"}
+        FK{"Folklend (Malwina) adalary"}
         FM{"Mikroneziýa"}
         FO{"Farer adalary"}
         FR{"Fransiýa"}
@@ -133,7 +133,7 @@ tk{
         GU{"Guam"}
         GW{"Gwineýa-Bisau"}
         GY{"Gaýana"}
-        HK{"Gonkong AAS Hytaý"}
+        HK{"Gonkong"}
         HM{"Herd we Makdonald adalary"}
         HN{"Gonduras"}
         HR{"Horwatiýa"}
@@ -183,11 +183,11 @@ tk{
         MF{"Sen-Marten"}
         MG{"Madagaskar"}
         MH{"Marşall adalary"}
-        MK{"Makedoniýa"}
+        MK{"Makedoniýa (ÖÝR)"}
         ML{"Mali"}
         MM{"Mýanma (Burma)"}
         MN{"Mongoliýa"}
-        MO{"Makau AAS Hytaý"}
+        MO{"Makau"}
         MP{"Demirgazyk Mariana adalary"}
         MQ{"Martinika"}
         MR{"Mawritaniýa"}
@@ -222,7 +222,7 @@ tk{
         PM{"Sen-Pýer we Mikelon"}
         PN{"Pitkern adalary"}
         PR{"Puerto-Riko"}
-        PS{"Palestina territoriýasy"}
+        PS{"Palestina"}
         PT{"Portugaliýa"}
         PW{"Palau"}
         PY{"Paragwaý"}
@@ -297,9 +297,6 @@ tk{
     }
     Countries%short{
         GB{"Birleşen Patyşalyk"}
-        HK{"Gonkong"}
-        MO{"Makau"}
-        PS{"Palestina"}
         US{"ABŞ"}
     }
     Countries%variant{
@@ -307,8 +304,6 @@ tk{
         CG{"Kongo (Respublika)"}
         CI{"Şirmaýy kenar"}
         CZ{"Çeh Respublikasy"}
-        FK{"Folklend (Malwina) adalary"}
-        MK{"Makedoniýa (ÖÝR)"}
         TL{"Gündogar Timor"}
     }
     Version{"2.1.43.65"}

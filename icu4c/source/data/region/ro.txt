@@ -110,7 +110,7 @@ ro{
         EZ{"Zona euro"}
         FI{"Finlanda"}
         FJ{"Fiji"}
-        FK{"Insulele Falkland"}
+        FK{"Insulele Falkland (Insulele Malvine)"}
         FM{"Micronezia"}
         FO{"Insulele Feroe"}
         FR{"Franța"}
@@ -133,7 +133,7 @@ ro{
         GU{"Guam"}
         GW{"Guineea-Bissau"}
         GY{"Guyana"}
-        HK{"R.A.S. Hong Kong a Chinei"}
+        HK{"Hong Kong"}
         HM{"Insula Heard și Insulele McDonald"}
         HN{"Honduras"}
         HR{"Croația"}
@@ -183,11 +183,11 @@ ro{
         MF{"Sfântul Martin"}
         MG{"Madagascar"}
         MH{"Insulele Marshall"}
-        MK{"Republica Macedonia"}
+        MK{"Republica Macedonia (FRIM)"}
         ML{"Mali"}
         MM{"Myanmar (Birmania)"}
         MN{"Mongolia"}
-        MO{"R.A.S. Macao a Chinei"}
+        MO{"Macao"}
         MP{"Insulele Mariane de Nord"}
         MQ{"Martinica"}
         MR{"Mauritania"}
@@ -222,7 +222,7 @@ ro{
         PM{"Saint-Pierre și Miquelon"}
         PN{"Insulele Pitcairn"}
         PR{"Puerto Rico"}
-        PS{"Teritoriile Palestiniene"}
+        PS{"Palestina"}
         PT{"Portugalia"}
         PW{"Palau"}
         PY{"Paraguay"}
@@ -297,9 +297,6 @@ ro{
     }
     Countries%short{
         GB{"Regatul Unit"}
-        HK{"Hong Kong"}
-        MO{"Macao"}
-        PS{"Palestina"}
         UN{"ONU"}
         US{"S.U.A."}
     }
@@ -308,8 +305,6 @@ ro{
         CG{"Congo (Republica)"}
         CI{"Coasta de Fildeș"}
         CZ{"Republica Cehă"}
-        FK{"Insulele Falkland (Insulele Malvine)"}
-        MK{"Republica Macedonia (FRIM)"}
         TL{"Timorul de Est"}
     }
     Version{"2.1.43.94"}

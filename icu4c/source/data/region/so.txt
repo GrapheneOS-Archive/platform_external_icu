@@ -110,7 +110,7 @@ so{
         EZ{"Yurusoon"}
         FI{"Finland"}
         FJ{"Fiji"}
-        FK{"Jaziiradaha Fooklaan"}
+        FK{"Jasiiradaha Fookland"}
         FM{"Mikroneesiya"}
         FO{"Jasiiradda Faroo"}
         FR{"Faransiis"}
@@ -222,7 +222,7 @@ so{
         PM{"Saint Pierre and Miquelon"}
         PN{"Bitkairn"}
         PR{"Bueerto Riiko"}
-        PS{"Falastiin Daanka galbeed iyo Qasa"}
+        PS{"Falastiin"}
         PT{"Bortugaal"}
         PW{"Balaaw"}
         PY{"Baraguaay"}
@@ -297,16 +297,12 @@ so{
     }
     Countries%short{
         GB{"GB"}
-        HK{"Hong Kong"}
-        MO{"Makaaw"}
-        PS{"Falastiin"}
         US{"US"}
     }
     Countries%variant{
         CD{"Jamhuuriyadda Dimuqaadiga Kongo"}
         CG{"Jamhuuriyadda Kongo"}
         CZ{"Jamhuuriyadda Jek"}
-        FK{"Jasiiradaha Fookland"}
         TL{"Timoor Bari"}
     }
     Version{"2.1.43.94"}

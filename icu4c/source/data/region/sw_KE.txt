@@ -34,9 +34,9 @@ sw_KE{
         LV{"Lativia"}
         MA{"Moroko"}
         MC{"Monako"}
-        MK{"Masedonia"}
+        MK{"Masedonia (FYROM)"}
         MM{"Myama (Burma)"}
-        MO{"Makau SAR China"}
+        MO{"Makau"}
         MQ{"Martiniki"}
         MS{"Montserati"}
         MV{"Maldivi"}
@@ -67,12 +67,6 @@ sw_KE{
         VI{"Visiwa vya Virgin vya Marekani"}
         VN{"Vietnamu"}
         YT{"Mayote"}
-    }
-    Countries%short{
-        MO{"Makau"}
-    }
-    Countries%variant{
-        MK{"Masedonia (FYROM)"}
     }
     Version{"2.1.43.65"}
 }

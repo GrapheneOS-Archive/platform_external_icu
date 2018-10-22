@@ -110,7 +110,7 @@ eu{
         EZ{"Eurogunea"}
         FI{"Finlandia"}
         FJ{"Fiji"}
-        FK{"Falklandak"}
+        FK{"Falklandak (Malvinak)"}
         FM{"Mikronesia"}
         FO{"Faroe uharteak"}
         FR{"Frantzia"}
@@ -133,7 +133,7 @@ eu{
         GU{"Guam"}
         GW{"Ginea Bissau"}
         GY{"Guyana"}
-        HK{"Hong Kong Txinako AEB"}
+        HK{"Hong Kong"}
         HM{"Heard eta McDonald uharteak"}
         HN{"Honduras"}
         HR{"Kroazia"}
@@ -183,11 +183,11 @@ eu{
         MF{"San Martin"}
         MG{"Madagaskar"}
         MH{"Marshall Uharteak"}
-        MK{"Mazedonia"}
+        MK{"Mazedoniako Jugoslaviar Errepublika Ohia"}
         ML{"Mali"}
         MM{"Myanmar (Birmania)"}
         MN{"Mongolia"}
-        MO{"Macau Txinako AEB"}
+        MO{"Macau"}
         MP{"Ipar Mariana uharteak"}
         MQ{"Martinika"}
         MR{"Mauritania"}
@@ -222,7 +222,7 @@ eu{
         PM{"Saint-Pierre eta Mikelune"}
         PN{"Pitcairn uharteak"}
         PR{"Puerto Rico"}
-        PS{"Palestinar Lurralde Okupatuak"}
+        PS{"Palestina"}
         PT{"Portugal"}
         PW{"Palau"}
         PY{"Paraguai"}
@@ -297,17 +297,12 @@ eu{
     }
     Countries%short{
         GB{"EB"}
-        HK{"Hong Kong"}
-        MO{"Macau"}
-        PS{"Palestina"}
         US{"AEB"}
     }
     Countries%variant{
         CD{"Kongo (DR)"}
         CG{"Kongoko Errepublika"}
         CZ{"Txekiar Errepublika"}
-        FK{"Falklandak (Malvinak)"}
-        MK{"Mazedoniako Jugoslaviar Errepublika Ohia"}
     }
     Version{"2.1.43.65"}
 }

@@ -104,7 +104,7 @@ jv{
         EZ{"Zona Éuro"}
         FI{"Finlan"}
         FJ{"Fiji"}
-        FK{"Kapuloan Falkland"}
+        FK{"Kapuloan Falkland (Islas Malvinas)"}
         FO{"Kapuloan Faro"}
         FR{"Prancis"}
         GA{"Gabon"}
@@ -121,7 +121,7 @@ jv{
         GT{"Guatémala"}
         GU{"Guam"}
         GY{"Guyana"}
-        HK{"Laladan Administratif Astamiwa Hong Kong"}
+        HK{"Hong Kong"}
         HN{"Honduras"}
         HR{"Kroasia"}
         HT{"Haiti"}
@@ -203,7 +203,7 @@ jv{
         PL{"Polen"}
         PN{"Kapuloan Pitcairn"}
         PR{"Puèrto Riko"}
-        PS{"Tlatah Palèstina"}
+        PS{"Palèstina"}
         PT{"Portugal"}
         PW{"Palau"}
         PY{"Paraguay"}
@@ -271,15 +271,12 @@ jv{
     }
     Countries%short{
         GB{"KM"}
-        HK{"Hong Kong"}
-        PS{"Palèstina"}
         US{"AS"}
     }
     Countries%variant{
         CD{"Républik Dhémokratik Kongo"}
         CG{"Républik Kongo"}
         CZ{"Républik Céko"}
-        FK{"Kapuloan Falkland (Islas Malvinas)"}
         TL{"Timor Wétan"}
     }
     Version{"2.1.44.15"}
