@@ -39,7 +39,7 @@ import android.icu.util.UResourceBundle;
  *
  * <p>
  * <strong>IMPORTANT:</strong> New users are strongly encouraged to see if
- * {@code NumberFormatter} fits their use case.  Although not deprecated, this
+ * {@link NumberFormatter} fits their use case.  Although not deprecated, this
  * class, NumberFormat, is only provided for java.text.NumberFormat compatibility.
  * <hr>
  *
