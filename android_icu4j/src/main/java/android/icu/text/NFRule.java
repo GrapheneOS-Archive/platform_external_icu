@@ -12,9 +12,9 @@ package android.icu.text;
 import java.text.FieldPosition;
 import java.text.ParsePosition;
 import java.util.List;
+import java.util.Objects;
 
 import android.icu.impl.PatternProps;
-import android.icu.impl.Utility;
 
 /**
  * A class representing a single rule in a RuleBasedNumberFormat.  A rule
@@ -611,6 +611,7 @@ final class NFRule {
      * @param that The rule to compare this one against
      * @return True if the two rules are functionally equivalent
      */
+    @Override
     public boolean equals(Object that) {
         if (that instanceof NFRule) {
             NFRule that2 = (NFRule)that;
@@ -619,12 +620,13 @@ final class NFRule {
                 && radix == that2.radix
                 && exponent == that2.exponent
                 && ruleText.equals(that2.ruleText)
-                && Utility.objectEquals(sub1, that2.sub1)
-                && Utility.objectEquals(sub2, that2.sub2);
+                && Objects.equals(sub1, that2.sub1)
+                && Objects.equals(sub2, that2.sub2);
         }
         return false;
     }
-    
+
+    @Override
     public int hashCode() {
         assert false : "hashCode not designed";
         return 42;
@@ -636,6 +638,7 @@ final class NFRule {
      * was created with, but it will produce the same result.
      * @return A textual description of the rule
      */
+    @Override
     public String toString() {
         StringBuilder result = new StringBuilder();
 

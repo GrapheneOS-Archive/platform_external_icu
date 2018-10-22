@@ -472,7 +472,7 @@ public class SpoofChecker {
         SpoofData fSpoofData;
         final UnicodeSet fAllowedCharsSet = new UnicodeSet(0, 0x10ffff); // The UnicodeSet of allowed characters.
         // for this Spoof Checker. Defaults to all chars.
-        final Set<ULocale> fAllowedLocales = new LinkedHashSet<ULocale>(); // The list of allowed locales.
+        final Set<ULocale> fAllowedLocales = new LinkedHashSet<>(); // The list of allowed locales.
         private RestrictionLevel fRestrictionLevel;
 
         /**
@@ -529,7 +529,7 @@ public class SpoofChecker {
             result.fSpoofData = this.fSpoofData;
             result.fAllowedCharsSet = (UnicodeSet) (this.fAllowedCharsSet.clone());
             result.fAllowedCharsSet.freeze();
-            result.fAllowedLocales = new HashSet<ULocale>(this.fAllowedLocales);
+            result.fAllowedLocales = new HashSet<>(this.fAllowedLocales);
             result.fRestrictionLevel = this.fRestrictionLevel;
             return result;
         }
@@ -691,7 +691,7 @@ public class SpoofChecker {
          * @return self
          */
         public Builder setAllowedJavaLocales(Set<Locale> locales) {
-            HashSet<ULocale> ulocales = new HashSet<ULocale>(locales.size());
+            HashSet<ULocale> ulocales = new HashSet<>(locales.size());
             for (Locale locale : locales) {
                 ulocales.add(ULocale.forLocale(locale));
             }
@@ -803,10 +803,10 @@ public class SpoofChecker {
             private int fLineNum;
 
             ConfusabledataBuilder() {
-                fTable = new Hashtable<Integer, SPUString>();
+                fTable = new Hashtable<>();
                 fKeySet = new UnicodeSet();
-                fKeyVec = new ArrayList<Integer>();
-                fValueVec = new ArrayList<Integer>();
+                fKeyVec = new ArrayList<>();
+                fValueVec = new ArrayList<>();
                 stringPool = new SPUStringPool();
             }
 
@@ -1048,8 +1048,8 @@ public class SpoofChecker {
             // combination of a uhash and a Vector.
             private static class SPUStringPool {
                 public SPUStringPool() {
-                    fVec = new Vector<SPUString>();
-                    fHash = new Hashtable<String, SPUString>();
+                    fVec = new Vector<>();
+                    fHash = new Hashtable<>();
                 }
 
                 public int size() {
@@ -1130,7 +1130,7 @@ public class SpoofChecker {
      * @return A set of locales corresponding to the acceptable scripts.
      */
     public Set<Locale> getAllowedJavaLocales() {
-        HashSet<Locale> locales = new HashSet<Locale>(fAllowedLocales.size());
+        HashSet<Locale> locales = new HashSet<>(fAllowedLocales.size());
         for (ULocale uloc : fAllowedLocales) {
             locales.add(uloc.toLocale());
         }

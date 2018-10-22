@@ -33,10 +33,10 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 import android.icu.impl.PatternProps;
-import android.icu.impl.Utility;
 import android.icu.number.NumberFormatter;
 import android.icu.text.MessagePattern.ArgType;
 import android.icu.text.MessagePattern.Part;
@@ -124,7 +124,7 @@ import android.icu.util.ULocale.Category;
  * argNumber = '0' | ('1'..'9' ('0'..'9')*)
  *
  * argType = "number" | "date" | "time" | "spellout" | "ordinal" | "duration"
- * argStyle = "short" | "medium" | "long" | "full" | "integer" | "currency" | "percent" | argStyleText
+ * argStyle = "short" | "medium" | "long" | "full" | "integer" | "currency" | "percent" | argStyleText | "::" argSkeletonText
  * </pre></blockquote>
  *
  * <ul>
@@ -165,7 +165,7 @@ import android.icu.util.ULocale.Category;
  *       <td colspan=2><i>(none)</i>
  *       <td><code>null</code>
  *    <tr>
- *       <td rowspan=5><code>number</code>
+ *       <td rowspan=6><code>number</code>
  *       <td><i>(none)</i>
  *       <td><code>NumberFormat.getInstance(getLocale())</code>
  *    <tr>
@@ -180,6 +180,9 @@ import android.icu.util.ULocale.Category;
  *    <tr>
  *       <td><i>argStyleText</i>
  *       <td><code>new DecimalFormat(argStyleText, new DecimalFormatSymbols(getLocale()))</code>
+ *    <tr>
+ *       <td><i>argSkeletonText</i>
+ *       <td><code>NumberFormatter.forSkeleton(argSkeletonText).locale(getLocale()).toFormat()</code>
  *    <tr>
  *       <td rowspan=6><code>date</code>
  *       <td><i>(none)</i>
@@ -773,7 +776,7 @@ public class MessageFormat extends UFormat {
                     "This method is not available in MessageFormat objects " +
                     "that use alphanumeric argument names.");
         }
-        ArrayList<Format> list = new ArrayList<Format>();
+        ArrayList<Format> list = new ArrayList<>();
         for (int partIndex = 0; (partIndex = nextTopLevelArgStart(partIndex)) >= 0;) {
             int argNumber = msgPattern.getPart(partIndex + 1).getValue();
             while (argNumber >= list.size()) {
@@ -805,7 +808,7 @@ public class MessageFormat extends UFormat {
      * @throws IllegalArgumentException if this format uses named arguments
      */
     public Format[] getFormats() {
-        ArrayList<Format> list = new ArrayList<Format>();
+        ArrayList<Format> list = new ArrayList<>();
         for (int partIndex = 0; (partIndex = nextTopLevelArgStart(partIndex)) >= 0;) {
             list.add(cachedFormatters == null ? null : cachedFormatters.get(partIndex));
         }
@@ -818,7 +821,7 @@ public class MessageFormat extends UFormat {
      * @return a Set of argument names
      */
     public Set<String> getArgumentNames() {
-        Set<String> result = new HashSet<String>();
+        Set<String> result = new HashSet<>();
         for (int partIndex = 0; (partIndex = nextTopLevelArgStart(partIndex)) >= 0;) {
             result.add(getArgName(partIndex + 1));
         }
@@ -1155,7 +1158,7 @@ public class MessageFormat extends UFormat {
      * @return a Map containing key/value pairs for each parsed argument.
      */
     public Map<String, Object> parseToMap(String source, ParsePosition pos)  {
-        Map<String, Object> result = new HashMap<String, Object>();
+        Map<String, Object> result = new HashMap<>();
         int backupStartPos = pos.getIndex();
         parse(0, source, pos, null, result);
         if (pos.getIndex() == backupStartPos) {
@@ -1340,7 +1343,7 @@ public class MessageFormat extends UFormat {
      */
     public Map<String, Object> parseToMap(String source) throws ParseException {
         ParsePosition pos = new ParsePosition(0);
-        Map<String, Object> result = new HashMap<String, Object>();
+        Map<String, Object> result = new HashMap<>();
         parse(0, source, pos, null, result);
         if (pos.getIndex() == 0) // unchanged, returned object is null
             throw new ParseException("MessageFormat parse error!",
@@ -1392,7 +1395,7 @@ public class MessageFormat extends UFormat {
         MessageFormat other = (MessageFormat) super.clone();
 
         if (customFormatArgStarts != null) {
-            other.customFormatArgStarts = new HashSet<Integer>();
+            other.customFormatArgStarts = new HashSet<>();
             for (Integer key : customFormatArgStarts) {
                 other.customFormatArgStarts.add(key);
             }
@@ -1401,7 +1404,7 @@ public class MessageFormat extends UFormat {
         }
 
         if (cachedFormatters != null) {
-            other.cachedFormatters = new HashMap<Integer, Format>();
+            other.cachedFormatters = new HashMap<>();
             Iterator<Map.Entry<Integer, Format>> it = cachedFormatters.entrySet().iterator();
             while (it.hasNext()){
                 Map.Entry<Integer, Format> entry = it.next();
@@ -1432,10 +1435,10 @@ public class MessageFormat extends UFormat {
         if (obj == null || getClass() != obj.getClass())
             return false;
         MessageFormat other = (MessageFormat) obj;
-        return Utility.objectEquals(ulocale, other.ulocale)
-                && Utility.objectEquals(msgPattern, other.msgPattern)
-                && Utility.objectEquals(cachedFormatters, other.cachedFormatters)
-                && Utility.objectEquals(customFormatArgStarts, other.customFormatArgStarts);
+        return Objects.equals(ulocale, other.ulocale)
+                && Objects.equals(msgPattern, other.msgPattern)
+                && Objects.equals(cachedFormatters, other.cachedFormatters)
+                && Objects.equals(customFormatArgStarts, other.customFormatArgStarts);
         // Note: It might suffice to only compare custom formatters
         // rather than all formatters.
     }
@@ -2395,7 +2398,7 @@ public class MessageFormat extends UFormat {
      */
     private void setArgStartFormat(int argStart, Format formatter) {
         if (cachedFormatters == null) {
-            cachedFormatters = new HashMap<Integer, Format>();
+            cachedFormatters = new HashMap<>();
         }
         cachedFormatters.put(argStart, formatter);
     }
@@ -2407,7 +2410,7 @@ public class MessageFormat extends UFormat {
     private void setCustomArgStartFormat(int argStart, Format formatter) {
         setArgStartFormat(argStart, formatter);
         if (customFormatArgStarts == null) {
-            customFormatArgStarts = new HashSet<Integer>();
+            customFormatArgStarts = new HashSet<>();
         }
         customFormatArgStarts.add(argStart);
     }
@@ -2533,7 +2536,7 @@ public class MessageFormat extends UFormat {
         }
 
         public void useAttributes() {
-            attributes = new ArrayList<AttributeAndPosition>();
+            attributes = new ArrayList<>();
         }
 
         public void append(CharSequence s) {

@@ -4,8 +4,8 @@
 package android.icu.impl.number;
 
 import java.math.RoundingMode;
+import java.util.Objects;
 
-import android.icu.impl.Utility;
 import android.icu.number.IntegerWidth;
 import android.icu.number.Notation;
 import android.icu.number.NumberFormatter.DecimalSeparatorDisplay;
@@ -82,7 +82,7 @@ public class MacroProps implements Cloneable {
 
     @Override
     public int hashCode() {
-        return Utility.hash(notation,
+        return Objects.hash(notation,
                 unit,
                 perUnit,
                 precision,
@@ -109,22 +109,22 @@ public class MacroProps implements Cloneable {
         if (!(_other instanceof MacroProps))
             return false;
         MacroProps other = (MacroProps) _other;
-        return Utility.equals(notation, other.notation)
-                && Utility.equals(unit, other.unit)
-                && Utility.equals(perUnit, other.perUnit)
-                && Utility.equals(precision, other.precision)
-                && Utility.equals(roundingMode, other.roundingMode)
-                && Utility.equals(grouping, other.grouping)
-                && Utility.equals(padder, other.padder)
-                && Utility.equals(integerWidth, other.integerWidth)
-                && Utility.equals(symbols, other.symbols)
-                && Utility.equals(unitWidth, other.unitWidth)
-                && Utility.equals(sign, other.sign)
-                && Utility.equals(decimal, other.decimal)
-                && Utility.equals(affixProvider, other.affixProvider)
-                && Utility.equals(scale, other.scale)
-                && Utility.equals(rules, other.rules)
-                && Utility.equals(loc, other.loc);
+        return Objects.equals(notation, other.notation)
+                && Objects.equals(unit, other.unit)
+                && Objects.equals(perUnit, other.perUnit)
+                && Objects.equals(precision, other.precision)
+                && Objects.equals(roundingMode, other.roundingMode)
+                && Objects.equals(grouping, other.grouping)
+                && Objects.equals(padder, other.padder)
+                && Objects.equals(integerWidth, other.integerWidth)
+                && Objects.equals(symbols, other.symbols)
+                && Objects.equals(unitWidth, other.unitWidth)
+                && Objects.equals(sign, other.sign)
+                && Objects.equals(decimal, other.decimal)
+                && Objects.equals(affixProvider, other.affixProvider)
+                && Objects.equals(scale, other.scale)
+                && Objects.equals(rules, other.rules)
+                && Objects.equals(loc, other.loc);
     }
 
     @Override

@@ -50,7 +50,7 @@ public abstract class CurrencyDisplayNames {
      * @return a CurrencyDisplayNames
      */
     public static CurrencyDisplayNames getInstance(Locale locale) {
-        return getInstance(locale, true);
+        return getInstance(locale, false);
     }
 
     /**

@@ -6,10 +6,10 @@ package android.icu.impl.number.parse;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Objects;
 
 import android.icu.impl.StandardPlural;
 import android.icu.impl.StringSegment;
-import android.icu.impl.Utility;
 import android.icu.impl.number.AffixPatternProvider;
 import android.icu.impl.number.AffixUtils;
 import android.icu.impl.number.PatternStringUtils;
@@ -90,7 +90,7 @@ public class AffixMatcher implements NumberParseMatcher {
         // The affixes have interesting characters, or we are in strict mode.
         // Use initial capacity of 6, the highest possible number of AffixMatchers.
         StringBuilder sb = new StringBuilder();
-        ArrayList<AffixMatcher> matchers = new ArrayList<AffixMatcher>(6);
+        ArrayList<AffixMatcher> matchers = new ArrayList<>(6);
         boolean includeUnpaired = 0 != (parseFlags & ParsingUtils.PARSE_FLAG_INCLUDE_UNPAIRED_AFFIXES);
         SignDisplay signDisplay = (0 != (parseFlags & ParsingUtils.PARSE_FLAG_PLUS_SIGN_ALLOWED))
                 ? SignDisplay.ALWAYS
@@ -126,7 +126,7 @@ public class AffixMatcher implements NumberParseMatcher {
             if (signum == 1) {
                 posPrefix = prefix;
                 posSuffix = suffix;
-            } else if (Utility.equals(prefix, posPrefix) && Utility.equals(suffix, posSuffix)) {
+            } else if (Objects.equals(prefix, posPrefix) && Objects.equals(suffix, posSuffix)) {
                 // Skip adding these matchers (we already have equivalents)
                 continue;
             }
@@ -139,10 +139,10 @@ public class AffixMatcher implements NumberParseMatcher {
             matchers.add(getInstance(prefix, suffix, flags));
             if (includeUnpaired && prefix != null && suffix != null) {
                 // The following if statements are designed to prevent adding two identical matchers.
-                if (signum == 1 || !Utility.equals(prefix, posPrefix)) {
+                if (signum == 1 || !Objects.equals(prefix, posPrefix)) {
                     matchers.add(getInstance(prefix, null, flags));
                 }
-                if (signum == 1 || !Utility.equals(suffix, posSuffix)) {
+                if (signum == 1 || !Objects.equals(suffix, posSuffix)) {
                     matchers.add(getInstance(null, suffix, flags));
                 }
             }
@@ -257,14 +257,14 @@ public class AffixMatcher implements NumberParseMatcher {
             return false;
         }
         AffixMatcher other = (AffixMatcher) _other;
-        return Utility.equals(prefix, other.prefix)
-                && Utility.equals(suffix, other.suffix)
+        return Objects.equals(prefix, other.prefix)
+                && Objects.equals(suffix, other.suffix)
                 && flags == other.flags;
     }
 
     @Override
     public int hashCode() {
-        return Utility.hashCode(prefix) ^ Utility.hashCode(suffix) ^ flags;
+        return Objects.hashCode(prefix) ^ Objects.hashCode(suffix) ^ flags;
     }
 
     @Override
