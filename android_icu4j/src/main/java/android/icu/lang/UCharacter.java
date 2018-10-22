@@ -3154,7 +3154,6 @@ public final class UCharacter implements ECharacterCategory, ECharacterDirection
      * Indic Positional Category constants.
      *
      * @see UProperty#INDIC_POSITIONAL_CATEGORY
-     * @hide Only a subset of ICU is exposed in Android
      */
     public static interface IndicPositionalCategory {
         /***/
@@ -3193,7 +3192,6 @@ public final class UCharacter implements ECharacterCategory, ECharacterDirection
      * Indic Syllabic Category constants.
      *
      * @see UProperty#INDIC_SYLLABIC_CATEGORY
-     * @hide Only a subset of ICU is exposed in Android
      */
     public static interface IndicSyllabicCategory {
         /***/
@@ -3274,7 +3272,6 @@ public final class UCharacter implements ECharacterCategory, ECharacterDirection
      * Vertical Orientation constants.
      *
      * @see UProperty#VERTICAL_ORIENTATION
-     * @hide Only a subset of ICU is exposed in Android
      */
     public static interface VerticalOrientation {
         /***/
