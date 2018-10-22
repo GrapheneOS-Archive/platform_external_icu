@@ -40,12 +40,11 @@ public class Scale {
     private Scale(int magnitude, BigDecimal arbitrary, MathContext mc) {
         if (arbitrary != null) {
             // Attempt to convert the BigDecimal to a magnitude multiplier.
-            // Android patch (ticket #20000) begin.
+            // ICU-20000: JDKs have inconsistent behavior on stripTrailingZeros() for Zero.
             arbitrary =
-                arbitrary.unscaledValue().equals(BigInteger.ZERO)
+                arbitrary.compareTo(BigDecimal.ZERO) == 0
                     ? BigDecimal.ZERO
                     : arbitrary.stripTrailingZeros();
-            // Android patch (ticket #20000) end.
             if (arbitrary.precision() == 1 && arbitrary.unscaledValue().equals(BigInteger.ONE)) {
                 // Success!
                 magnitude -= arbitrary.scale();

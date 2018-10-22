@@ -8,7 +8,6 @@
  */
 package com.ibm.icu.text;
 
-import java.text.FieldPosition;
 import java.util.EnumMap;
 import java.util.Locale;
 
@@ -457,8 +456,8 @@ public final class RelativeDateTimeFormatter {
         return new RelativeDateTimeFormatter(
                 data.qualitativeUnitMap,
                 data.relUnitPatternMap,
-                // Android-changed: use MessageFormat instead of SimpleFormatterImpl (b/63745717).
-                data.dateTimePattern,
+                SimpleFormatterImpl.compileToStringMinMaxArguments(
+                        data.dateTimePattern, new StringBuilder(), 2, 2),
                 PluralRules.forLocale(locale),
                 nf,
                 style,
@@ -709,13 +708,8 @@ public final class RelativeDateTimeFormatter {
      * @stable ICU 53
      */
     public String combineDateAndTime(String relativeDateString, String timeString) {
-        // BEGIN Android-changed: use MessageFormat instead of SimpleFormatterImpl (b/63745717).
-        MessageFormat msgFmt = new MessageFormat("");
-        msgFmt.applyPattern(combinedDateAndTime, MessagePattern.ApostropheMode.DOUBLE_REQUIRED);
-        StringBuffer combinedDateTimeBuffer = new StringBuffer(128);
-        return msgFmt.format(new Object[] { timeString, relativeDateString},
-                combinedDateTimeBuffer, new FieldPosition(0)).toString();
-        // END Android-changed: use MessageFormat instead of SimpleFormatterImpl (b/63745717).
+        return SimpleFormatterImpl.formatCompiledPattern(
+                combinedDateAndTime, timeString, relativeDateString);
     }
 
     /**
@@ -823,8 +817,7 @@ public final class RelativeDateTimeFormatter {
     private final EnumMap<Style, EnumMap<AbsoluteUnit, EnumMap<Direction, String>>> qualitativeUnitMap;
     private final EnumMap<Style, EnumMap<RelativeUnit, String[][]>> patternMap;
 
-    // Android-changed: use MessageFormat instead of SimpleFormatterImpl (b/63745717).
-    private final String combinedDateAndTime;  // MessageFormat pattern for combining date and time.
+    private final String combinedDateAndTime;  // compiled SimpleFormatter pattern
     private final PluralRules pluralRules;
     private final NumberFormat numberFormat;
 
@@ -977,9 +970,9 @@ public final class RelativeDateTimeFormatter {
         }
 
         EnumMap<Style, EnumMap<AbsoluteUnit, EnumMap<Direction, String>>> qualitativeUnitMap =
-                new EnumMap<Style, EnumMap<AbsoluteUnit, EnumMap<Direction, String>>>(Style.class);
+                new EnumMap<>(Style.class);
         EnumMap<Style, EnumMap<RelativeUnit, String[][]>> styleRelUnitPatterns =
-                new EnumMap<Style, EnumMap<RelativeUnit, String[][]>>(Style.class);
+                new EnumMap<>(Style.class);
 
         StringBuilder sb = new StringBuilder();
 
@@ -1030,7 +1023,7 @@ public final class RelativeDateTimeFormatter {
                             // Handle Zero seconds for "now".
                             EnumMap<Direction, String> unitStrings = absMap.get(AbsoluteUnit.NOW);
                             if (unitStrings == null) {
-                                unitStrings = new EnumMap<Direction, String>(Direction.class);
+                                unitStrings = new EnumMap<>(Direction.class);
                                 absMap.put(AbsoluteUnit.NOW, unitStrings);
                             }
                             if (unitStrings.get(Direction.PLAIN) == null) {
@@ -1049,12 +1042,12 @@ public final class RelativeDateTimeFormatter {
                     }
 
                     if (absMap == null) {
-                        absMap = new EnumMap<AbsoluteUnit, EnumMap<Direction, String>>(AbsoluteUnit.class);
+                        absMap = new EnumMap<>(AbsoluteUnit.class);
                         qualitativeUnitMap.put(style, absMap);
                     }
                     EnumMap<Direction, String> dirMap = absMap.get(absUnit);
                     if (dirMap == null) {
-                        dirMap = new EnumMap<Direction, String>(Direction.class);
+                        dirMap = new EnumMap<>(Direction.class);
                         absMap.put(absUnit, dirMap);
                     }
                     if (dirMap.get(keyDirection) == null) {
@@ -1089,7 +1082,7 @@ public final class RelativeDateTimeFormatter {
 
             EnumMap<RelativeUnit, String[][]> unitPatterns  = styleRelUnitPatterns.get(style);
             if (unitPatterns == null) {
-                unitPatterns = new EnumMap<RelativeUnit, String[][]>(RelativeUnit.class);
+                unitPatterns = new EnumMap<>(RelativeUnit.class);
                 styleRelUnitPatterns.put(style, unitPatterns);
             }
             String[][] patterns = unitPatterns.get(unit.relUnit);
@@ -1119,12 +1112,12 @@ public final class RelativeDateTimeFormatter {
             EnumMap<AbsoluteUnit, EnumMap<Direction, String>> unitMap =
                     qualitativeUnitMap.get(style);
             if (unitMap == null) {
-                unitMap = new EnumMap<AbsoluteUnit, EnumMap<Direction, String>>(AbsoluteUnit.class);
+                unitMap = new EnumMap<>(AbsoluteUnit.class);
                 qualitativeUnitMap.put(style, unitMap);
             }
             EnumMap<Direction,String> dirMap = unitMap.get(absUnit);
             if (dirMap == null) {
-                dirMap = new EnumMap<Direction,String>(Direction.class);
+                dirMap = new EnumMap<>(Direction.class);
                 unitMap.put(absUnit, dirMap);
             }
             if (dirMap.get(Direction.PLAIN) == null) {

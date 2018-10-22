@@ -2,7 +2,12 @@
 // License & terms of use: http://www.unicode.org/copyright.html#License
 fr_CA{
     Countries{
+        030{"Asie orientale"}
+        039{"Europe méridionale"}
+        145{"Asie occidentale"}
         151{"Europe orientale"}
+        154{"Europe septentrionale"}
+        155{"Europe occidentale"}
         AC{"île de l’Ascension"}
         AX{"îles d’Åland"}
         BN{"Brunei"}
@@ -11,7 +16,7 @@ fr_CA{
         CC{"îles Cocos (Keeling)"}
         CK{"îles Cook"}
         CX{"île Christmas"}
-        FK{"îles Falkland (Malouines)"}
+        FK{"îles Malouines"}
         FM{"Micronésie"}
         FO{"îles Féroé"}
         HM{"îles Heard et McDonald"}
@@ -26,7 +31,6 @@ fr_CA{
         QO{"Océanie lointaine"}
         RE{"la Réunion"}
         SX{"Saint-Martin (Pays-Bas)"}
-        TK{"Tokelau"}
         TL{"Timor-Leste"}
         UM{"îles mineures éloignées des États-Unis"}
         VA{"Cité du Vatican"}
@@ -36,7 +40,8 @@ fr_CA{
     }
     Countries%variant{
         CI{"République de Côte d’Ivoire"}
+        FK{"îles Falkland (Malouines)"}
         TL{"Timor oriental"}
     }
-    Version{"2.1.38.73"}
+    Version{"2.1.43.65"}
 }

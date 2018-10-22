@@ -27,6 +27,7 @@ import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 import com.ibm.icu.dev.test.format.MeasureUnitTest;
 import com.ibm.icu.dev.test.format.PluralRulesTest;
@@ -36,7 +37,6 @@ import com.ibm.icu.impl.JavaTimeZone;
 import com.ibm.icu.impl.OlsonTimeZone;
 import com.ibm.icu.impl.TimeZoneAdapter;
 import com.ibm.icu.impl.URLHandler;
-import com.ibm.icu.impl.Utility;
 import com.ibm.icu.math.BigDecimal;
 import com.ibm.icu.math.MathContext;
 import com.ibm.icu.util.AnnualTimeZoneRule;
@@ -708,7 +708,7 @@ public class SerializableTestUtility {
             return a == null ? b == null :
                     b == null ? false :
                             a.getClass().equals(b.getClass()) &&
-                            Utility.objectEquals(a.getMessage(), b.getMessage()) &&
+                            Objects.equals(a.getMessage(), b.getMessage()) &&
                             sameThrowable(a.getCause(), b.getCause());
         }
     }
@@ -937,13 +937,6 @@ public class SerializableTestUtility {
                 // Do not test the legacy DecimalFormat class in ICU 59
                 return;
             }
-
-            // Android patch (b/68143370) begin.
-            if (className.equals("com.ibm.icu.text.DecimalFormat_ICU58_Android")) {
-                // Do not test the legacy DecimalFormat class in ICU 59
-                return;
-            }
-            // Android patch (b/68143370) end.
 
             if (c.isEnum() || !serializable.isAssignableFrom(c)) {
                 //System.out.println("@@@ Skipping: " + className);

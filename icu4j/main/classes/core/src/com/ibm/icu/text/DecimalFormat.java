@@ -1123,6 +1123,8 @@ public class DecimalFormat extends NumberFormat {
    *
    * @param multiplier The number by which all numbers passed to {@link #format} will be multiplied.
    * @throws IllegalArgumentException If the given multiplier is zero.
+   * @throws ArithmeticException when inverting multiplier produces a non-terminating decimal result
+   *         in conjunction with MathContext of unlimited precision.
    * @category Multipliers
    * @stable ICU 2.0
    */
@@ -1296,6 +1298,8 @@ public class DecimalFormat extends NumberFormat {
    * method.
    *
    * @param mathContext The MathContext to use when rounding numbers.
+   * @throws ArithmeticException when inverting multiplier produces a non-terminating decimal result
+   *         in conjunction with MathContext of unlimited precision.
    * @see java.math.MathContext
    * @category Rounding
    * @stable ICU 4.2
@@ -1330,6 +1334,8 @@ public class DecimalFormat extends NumberFormat {
    * {@link com.ibm.icu.math.MathContext}.
    *
    * @param mathContextICU The MathContext to use when rounding numbers.
+   * @throws ArithmeticException when inverting multiplier produces a non-terminating decimal result
+   *         in conjunction with MathContext of unlimited precision.
    * @see #setMathContext(java.math.MathContext)
    * @category Rounding
    * @stable ICU 4.2
@@ -1554,14 +1560,22 @@ public class DecimalFormat extends NumberFormat {
    * @stable ICU 3.0
    */
   public synchronized void setSignificantDigitsUsed(boolean useSignificantDigits) {
+    int oldMinSig = properties.getMinimumSignificantDigits();
+    int oldMaxSig = properties.getMaximumSignificantDigits();
+    // These are the default values from the old implementation.
     if (useSignificantDigits) {
-      // These are the default values from the old implementation.
-      properties.setMinimumSignificantDigits(1);
-      properties.setMaximumSignificantDigits(6);
+      if (oldMinSig != -1 || oldMaxSig != -1) {
+        return;
+      }
     } else {
-      properties.setMinimumSignificantDigits(-1);
-      properties.setMaximumSignificantDigits(-1);
+      if (oldMinSig == -1 && oldMaxSig == -1) {
+        return;
+      }
     }
+    int minSig = useSignificantDigits ? 1 : -1;
+    int maxSig = useSignificantDigits ? 6 : -1;
+    properties.setMinimumSignificantDigits(minSig);
+    properties.setMaximumSignificantDigits(maxSig);
     refreshFormatter();
   }
 
@@ -1856,9 +1870,6 @@ public class DecimalFormat extends NumberFormat {
    *
    * <p>For example, if grouping is enabled, 12345 will be printed as "12,345" in <em>en-US</em>. If
    * grouping were disabled, it would instead be printed as simply "12345".
-   *
-   * <p>Calling <code>df.setGroupingUsed(true)</code> is functionally equivalent to setting grouping
-   * size to 3, as in <code>df.setGroupingSize(3)</code>.
    *
    * @param enabled true to enable grouping separators; false to disable them.
    * @see #setGroupingSize

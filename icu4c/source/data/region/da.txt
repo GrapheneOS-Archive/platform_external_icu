@@ -13,7 +13,7 @@ da{
         015{"Nordafrika"}
         017{"Centralafrika"}
         018{"Det sydlige Afrika"}
-        019{"Amerika"}
+        019{"Nord-, Mellem- og Sydamerika"}
         021{"Det nordlige Amerika"}
         029{"Caribien"}
         030{"Østasien"}
@@ -31,7 +31,7 @@ da{
         151{"Østeuropa"}
         154{"Nordeuropa"}
         155{"Vesteuropa"}
-        202{"Afrika syd for Sahara"}
+        202{"Subsaharisk Afrika"}
         419{"Latinamerika"}
         AC{"Ascensionøen"}
         AD{"Andorra"}
@@ -110,7 +110,7 @@ da{
         EZ{"eurozonen"}
         FI{"Finland"}
         FJ{"Fiji"}
-        FK{"Falklandsøerne (Islas Malvinas)"}
+        FK{"Falklandsøerne"}
         FM{"Mikronesien"}
         FO{"Færøerne"}
         FR{"Frankrig"}
@@ -133,7 +133,7 @@ da{
         GU{"Guam"}
         GW{"Guinea-Bissau"}
         GY{"Guyana"}
-        HK{"Hongkong"}
+        HK{"SAR Hongkong"}
         HM{"Heard Island og McDonald Islands"}
         HN{"Honduras"}
         HR{"Kroatien"}
@@ -183,11 +183,11 @@ da{
         MF{"Saint Martin"}
         MG{"Madagaskar"}
         MH{"Marshalløerne"}
-        MK{"Den tidligere jugoslaviske republik Makedonien"}
+        MK{"Makedonien"}
         ML{"Mali"}
         MM{"Myanmar (Burma)"}
         MN{"Mongoliet"}
-        MO{"Macao"}
+        MO{"SAR Macao"}
         MP{"Nordmarianerne"}
         MQ{"Martinique"}
         MR{"Mauretanien"}
@@ -222,7 +222,7 @@ da{
         PM{"Saint Pierre og Miquelon"}
         PN{"Pitcairn"}
         PR{"Puerto Rico"}
-        PS{"Palæstina"}
+        PS{"De palæstinensiske områder"}
         PT{"Portugal"}
         PW{"Palau"}
         PY{"Paraguay"}
@@ -257,7 +257,7 @@ da{
         TA{"Tristan da Cunha"}
         TC{"Turks- og Caicosøerne"}
         TD{"Tchad"}
-        TF{"De franske besiddelser i Det Sydlige Indiske Ocean"}
+        TF{"De Franske Besiddelser i Det Sydlige Indiske Ocean"}
         TG{"Togo"}
         TH{"Thailand"}
         TJ{"Tadsjikistan"}
@@ -297,6 +297,9 @@ da{
     }
     Countries%short{
         GB{"UK"}
+        HK{"Hongkong"}
+        MO{"Macao"}
+        PS{"Palæstina"}
         UN{"FN"}
         US{"USA"}
     }
@@ -304,7 +307,9 @@ da{
         CD{"Den Demokratiske Republik Congo (DRC)"}
         CG{"Republikken Congo"}
         CZ{"Den Tjekkiske Republik"}
+        FK{"Falklandsøerne (Islas Malvinas)"}
+        MK{"Den tidligere jugoslaviske republik Makedonien"}
         TL{"Østtimor"}
     }
-    Version{"2.1.41.97"}
+    Version{"2.1.43.65"}
 }

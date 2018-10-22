@@ -22,9 +22,6 @@
 #include "unicode/calendar.h"
 #include "unicode/dtptngen.h"
 #include "unicode/dtitvinf.h"
-// Android patch (CLDR ticket #10321) begin.
-#include "unicode/msgfmt.h"
-// Android patch (CLDR ticket #10321) begin.
 #include "unicode/simpleformatter.h"
 #include "cmemory.h"
 #include "cstring.h"
@@ -880,8 +877,7 @@ DateIntervalFormat::getDateTimeSkeleton(const UnicodeString& skeleton,
         if ( MCount < 3 ) {
             normalizedDateSkeleton.append(CAP_M);
         } else {
-            int32_t i;
-            for ( i = 0; i < MCount && i < MAX_M_COUNT; ++i ) {
+            for ( int32_t j = 0; j < MCount && j < MAX_M_COUNT; ++j) {
                  normalizedDateSkeleton.append(CAP_M);
             }
         }
@@ -890,8 +886,7 @@ DateIntervalFormat::getDateTimeSkeleton(const UnicodeString& skeleton,
         if ( ECount <= 3 ) {
             normalizedDateSkeleton.append(CAP_E);
         } else {
-            int32_t i;
-            for ( i = 0; i < ECount && i < MAX_E_COUNT; ++i ) {
+            for ( int32_t j = 0; j < ECount && j < MAX_E_COUNT; ++j ) {
                  normalizedDateSkeleton.append(CAP_E);
             }
         }
@@ -1373,24 +1368,12 @@ DateIntervalFormat::fallbackFormat(Calendar& fromCalendar,
         otherPos.setEndIndex(0);
         fDateFormat->format(fromCalendar, datePortion, otherPos);
         adjustPosition(*fDateTimeFormat, fallbackRange, pos, datePortion, otherPos, pos);
-
-        // Android patch (CLDR ticket #10321) begin.
-        UParseError parseError;
-        const UnicodeString emptyPattern;
-        const Formattable values[] = {
-                fallbackRange,  // {0} is time range
-                datePortion,  // {1} is single date portion
+        const UnicodeString *values[2] = {
+            &fallbackRange,  // {0} is time range
+            &datePortion,  // {1} is single date portion
         };
-        UnicodeString formattedMessage;
-        FieldPosition outputPos = 0;
-        MessageFormat msgFmt(emptyPattern, status);
-        msgFmt.applyPattern(*fDateTimeFormat, UMSGPAT_APOS_DOUBLE_REQUIRED,
-                            &parseError, status);
-        msgFmt.format(values, 2, formattedMessage, outputPos, status);
-        if (U_SUCCESS(status)) {
-            fallbackRange = formattedMessage;
-        }
-        // Android patch (CLDR ticket #10321) end.
+        SimpleFormatter(*fDateTimeFormat, 2, 2, status).
+                formatAndReplace(values, 2, fallbackRange, NULL, 0, status);
     }
     if ( U_SUCCESS(status) ) {
         appendTo.append(fallbackRange);
