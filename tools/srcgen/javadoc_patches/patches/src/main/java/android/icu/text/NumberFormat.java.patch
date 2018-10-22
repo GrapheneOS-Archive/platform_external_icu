@@ -1,5 +1,14 @@
---- android_icu4j/src/main/java/android/icu/text/NumberFormat.java	2018-08-21 18:04:14.310638137 +0100
-+++ android_icu4j/src/main/java/android/icu/text/NumberFormat.java	2018-08-21 18:00:48.769641569 +0100
+--- android_icu4j/src/main/java/android/icu/text/NumberFormat.java	2018-10-19 11:01:09.353895065 +0100
++++ android_icu4j/src/main/java/android/icu/text/NumberFormat.java	2018-10-19 11:01:28.681998885 +0100
+@@ -39,7 +39,7 @@
+  *
+  * <p>
+  * <strong>IMPORTANT:</strong> New users are strongly encouraged to see if
+- * {@link NumberFormatter} fits their use case.  Although not deprecated, this
++ * {@code NumberFormatter} fits their use case.  Although not deprecated, this
+  * class, NumberFormat, is only provided for java.text.NumberFormat compatibility.
+  * <hr>
+  *
 @@ -551,9 +551,6 @@
      //============== Locale Stuff =====================
  
@@ -200,7 +209,7 @@
       * <strong>[icu]</strong> Returns a scientific format for the specified locale.
       * @return a scientific number format
       */
-@@ -1316,9 +1256,6 @@
+@@ -1318,9 +1258,6 @@
  
  
      /**
