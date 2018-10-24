@@ -4,10 +4,10 @@ package com.ibm.icu.number;
 
 import java.math.BigInteger;
 import java.text.Format;
+import java.util.Objects;
 import java.util.concurrent.atomic.AtomicLongFieldUpdater;
 
 import com.ibm.icu.impl.StandardPlural;
-import com.ibm.icu.impl.Utility;
 import com.ibm.icu.impl.number.DecimalQuantity;
 import com.ibm.icu.impl.number.DecimalQuantity_DualStorageBCD;
 import com.ibm.icu.impl.number.LocalizedNumberFormatterAsFormat;
@@ -103,13 +103,13 @@ public class LocalizedNumberFormatter extends NumberFormatterSettings<LocalizedN
         MeasureUnit unit = input.getUnit();
         Number number = input.getNumber();
         // Use this formatter if possible
-        if (Utility.equals(resolve().unit, unit)) {
+        if (Objects.equals(resolve().unit, unit)) {
             return format(number);
         }
         // This mechanism saves the previously used unit, so if the user calls this method with the
         // same unit multiple times in a row, they get a more efficient code path.
         LocalizedNumberFormatter withUnit = savedWithUnit;
-        if (withUnit == null || !Utility.equals(withUnit.resolve().unit, unit)) {
+        if (withUnit == null || !Objects.equals(withUnit.resolve().unit, unit)) {
             withUnit = new LocalizedNumberFormatter(this, KEY_UNIT, unit);
             savedWithUnit = withUnit;
         }
@@ -152,9 +152,9 @@ public class LocalizedNumberFormatter extends NumberFormatterSettings<LocalizedN
     public FormattedNumber format(DecimalQuantity fq) {
         NumberStringBuilder string = new NumberStringBuilder();
         if (computeCompiled()) {
-            compiled.apply(fq, string);
+            compiled.format(fq, string);
         } else {
-            NumberFormatterImpl.applyStatic(resolve(), fq, string);
+            NumberFormatterImpl.formatStatic(resolve(), fq, string);
         }
         return new FormattedNumber(string, fq);
     }
@@ -190,7 +190,7 @@ public class LocalizedNumberFormatter extends NumberFormatterSettings<LocalizedN
         // Further benchmarking is required.
         long currentCount = callCount.incrementAndGet(this);
         if (currentCount == macros.threshold.longValue()) {
-            compiled = NumberFormatterImpl.fromMacros(macros);
+            compiled = new NumberFormatterImpl(macros);
             return true;
         } else if (compiled != null) {
             return true;

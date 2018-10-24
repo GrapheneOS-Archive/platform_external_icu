@@ -28,6 +28,7 @@ import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 import android.icu.dev.test.format.MeasureUnitTest;
 import android.icu.dev.test.format.PluralRulesTest;
@@ -37,7 +38,6 @@ import android.icu.impl.JavaTimeZone;
 import android.icu.impl.OlsonTimeZone;
 import android.icu.impl.TimeZoneAdapter;
 import android.icu.impl.URLHandler;
-import android.icu.impl.Utility;
 import android.icu.math.BigDecimal;
 import android.icu.math.MathContext;
 import android.icu.util.AnnualTimeZoneRule;
@@ -711,7 +711,7 @@ public class SerializableTestUtility {
             return a == null ? b == null :
                     b == null ? false :
                             a.getClass().equals(b.getClass()) &&
-                            Utility.objectEquals(a.getMessage(), b.getMessage()) &&
+                            Objects.equals(a.getMessage(), b.getMessage()) &&
                             sameThrowable(a.getCause(), b.getCause());
         }
     }

@@ -369,6 +369,22 @@ public class NumberFormatterApiTest {
                 9990000,
                 "10M");
 
+        assertFormatSingle(
+                "Compact in zh-Hant-HK",
+                "compact-short",
+                NumberFormatter.with().notation(Notation.compactShort()),
+                new ULocale("zh-Hant-HK"),
+                1e7,
+                "10M");
+
+        assertFormatSingle(
+                "Compact in zh-Hant",
+                "compact-short",
+                NumberFormatter.with().notation(Notation.compactShort()),
+                new ULocale("zh-Hant"),
+                1e7,
+                "1000\u842C");
+
         Map<String, Map<String, String>> compactCustomData = new HashMap<String, Map<String, String>>();
         Map<String, String> entry = new HashMap<String, String>();
         entry.put("one", "Kun");
@@ -983,6 +999,21 @@ public class NumberFormatterApiTest {
                 "0.01",
                 "0.00");
 
+        assertFormatDescending(
+                "FracSig minFrac maxSig",
+                ".0+/@#",
+                NumberFormatter.with().precision(Precision.minFraction(1).withMaxDigits(2)),
+                ULocale.ENGLISH,
+                "88,000.0",
+                "8,800.0",
+                "880.0",
+                "88.0",
+                "8.8",
+                "0.88",
+                "0.088",
+                "0.0088",
+                "0.0");
+
         assertFormatSingle(
                 "FracSig with trailing zeros A",
                 ".00/@@@+",
@@ -1521,8 +1552,8 @@ public class NumberFormatterApiTest {
                 null,
                 NumberFormatter.with().symbols(DecimalFormatSymbols.getInstance(ULocale.FRENCH)),
                 ULocale.JAPAN,
-                "87 650",
-                "8 765",
+                "87\u202F650",
+                "8\u202F765",
                 "876,5",
                 "87,65",
                 "8,765",
@@ -1560,8 +1591,8 @@ public class NumberFormatterApiTest {
                 "numbering-system/mathsanb",
                 NumberFormatter.with().symbols(NumberingSystem.getInstanceByName("mathsanb")),
                 ULocale.FRENCH,
-                "𝟴𝟳 𝟲𝟱𝟬",
-                "𝟴 𝟳𝟲𝟱",
+                "𝟴𝟳\u202f𝟲𝟱𝟬",
+                "𝟴\u202f𝟳𝟲𝟱",
                 "𝟴𝟳𝟲,𝟱",
                 "𝟴𝟳,𝟲𝟱",
                 "𝟴,𝟳𝟲𝟱",

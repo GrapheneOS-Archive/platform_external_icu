@@ -49,7 +49,9 @@ public class XCldrStub {
                     ? setClass
                             : HashSet.class);
         }
-        public Multimap<K, V> putAll(K key, V... values) {
+        @SafeVarargs
+        @SuppressWarnings("varargs")    // Not supported by Eclipse, but we need this for javac
+        public final Multimap<K, V> putAll(K key, V... values) {
             if (values.length != 0) {
                 createSetIfMissing(key).addAll(Arrays.asList(values));
             }
@@ -112,7 +114,7 @@ public class XCldrStub {
             return map.size();
         }
         public Iterable<Entry<K, V>> entries() {
-            return new MultimapIterator<K, V>(map);
+            return new MultimapIterator<>(map);
         }
         @Override
         public boolean equals(Object obj) {
@@ -155,7 +157,7 @@ public class XCldrStub {
     private static class MultimapIterator<K,V> implements Iterator<Entry<K,V>>, Iterable<Entry<K,V>> {
         private final Iterator<Entry<K, Set<V>>> it1;
         private Iterator<V> it2 = null;
-        private final ReusableEntry<K,V> entry = new ReusableEntry<K,V>();
+        private final ReusableEntry<K,V> entry = new ReusableEntry<>();
 
         private MultimapIterator(Map<K,Set<V>> map) {
             it1 = map.entrySet().iterator();
@@ -210,7 +212,7 @@ public class XCldrStub {
             super(new HashMap<K, Set<V>>(), HashSet.class);
         }
         public static <K, V> HashMultimap<K, V> create() {
-            return new HashMultimap<K, V>();
+            return new HashMultimap<>();
         }
     }
 
@@ -222,7 +224,7 @@ public class XCldrStub {
             super(new TreeMap<K, Set<V>>(), TreeSet.class);
         }
         public static <K, V> TreeMultimap<K, V> create() {
-            return new TreeMultimap<K, V>();
+            return new TreeMultimap<>();
         }
     }
 
@@ -234,7 +236,7 @@ public class XCldrStub {
             super(new LinkedHashMap<K, Set<V>>(), LinkedHashSet.class);
         }
         public static <K, V> LinkedHashMultimap<K, V> create() {
-            return new LinkedHashMultimap<K, V>();
+            return new LinkedHashMultimap<>();
         }
     }
 
@@ -344,7 +346,7 @@ public class XCldrStub {
      */
     public static class ImmutableSet {
         public static <T> Set<T> copyOf(Set<T> values) {
-            return Collections.unmodifiableSet(new LinkedHashSet<T>(values)); // copy set for safety, preserve order
+            return Collections.unmodifiableSet(new LinkedHashSet<>(values)); // copy set for safety, preserve order
         }
     }
     /**
@@ -352,7 +354,7 @@ public class XCldrStub {
      */
     public static class ImmutableMap {
         public static <K,V> Map<K,V> copyOf(Map<K,V> values) {
-            return Collections.unmodifiableMap(new LinkedHashMap<K,V>(values)); // copy set for safety, preserve order
+            return Collections.unmodifiableMap(new LinkedHashMap<>(values)); // copy set for safety, preserve order
         }
     }
     /**
@@ -360,14 +362,14 @@ public class XCldrStub {
      */
     public static class ImmutableMultimap {
         public static <K,V> Multimap<K,V> copyOf(Multimap<K,V> values) {
-            LinkedHashMap<K, Set<V>> temp = new LinkedHashMap<K,Set<V>>(); // semi-deep copy, preserve order
+            LinkedHashMap<K, Set<V>> temp = new LinkedHashMap<>(); // semi-deep copy, preserve order
             for (Entry<K, Set<V>> entry : values.asMap().entrySet()) {
                 Set<V> value = entry.getValue();
                 temp.put(entry.getKey(), value.size() == 1
                         ? Collections.singleton(value.iterator().next())
-                                : Collections.unmodifiableSet(new LinkedHashSet<V>(value)));
+                                : Collections.unmodifiableSet(new LinkedHashSet<>(value)));
             }
-            return new Multimap<K,V>(Collections.unmodifiableMap(temp), null);
+            return new Multimap<>(Collections.unmodifiableMap(temp), null);
         }
     }
 

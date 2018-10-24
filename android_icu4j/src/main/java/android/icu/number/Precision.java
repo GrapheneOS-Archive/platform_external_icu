@@ -397,10 +397,9 @@ public abstract class Precision implements Cloneable {
     }
 
     /**
-     * @deprecated This API is ICU internal only.
+     * {@inheritDoc}
      * @hide draft / provisional / internal are hidden on Android
      */
-    @Deprecated
     @Override
     public Object clone() {
         try {
