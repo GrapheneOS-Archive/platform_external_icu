@@ -955,6 +955,7 @@ en_XA{
             ascii{"[Ţö ÅŠÇÎÎ one]"}
             casefold{"[Ţö Çåšéƒöļðéð one two]"}
             charname{"[Ţö Ûñîçöðé Çĥåŕåçţéŕ Ñåɱéš one two three]"}
+            digit{"[Ţö Ðîĝîţ Ƒöŕɱ Öƒ Åççéñţ one two three]"}
             fcc{"[Ţö Ûñîçöðé ƑÇÇ one two]"}
             fcd{"[Ţö Ûñîçöðé ƑÇÐ one two]"}
             fwidth{"[Ţö Ƒûļļŵîðţĥ one two]"}
@@ -971,6 +972,7 @@ en_XA{
             remove{"[Ţö Éɱþţý Šţŕîñĝ one two]"}
             title{"[Ţö Ţîţļéçåšé one two]"}
             upper{"[Ţö Ûþþéŕçåšé one two]"}
+            zawgyi{"[Ţö Žåŵĝýî Ṁýåñɱåŕ Éñçöðîñĝ one two three]"}
         }
         em{
             default{
@@ -1077,17 +1079,26 @@ en_XA{
             alaloc{"[ÛŠ ÅĻÅ‐ĻÖÇ Ţŕåñšļîţéŕåţîöñ one two three]"}
             bgn{"[ÛŠ ƁĜÑ Ţŕåñšļîţéŕåţîöñ one two three]"}
             buckwalt{"[Ɓûçķŵåļţéŕ Åŕåƀîç Ţŕåñšļîţéŕåţîöñ one two three four]"}
+            c11{"[Ĥéẋ Ţŕåñšƒöŕɱš Ûšîñĝ Ç①① Šýñţåẋ one two three four]"}
+            css{"[Ĥéẋ Ţŕåñšƒöŕɱš Ûšîñĝ ÇŠŠ Šýñţåẋ one two three four]"}
             din{"[Ĝéŕɱåñ ÐÎÑ Ţŕåñšļîţéŕåţîöñ one two three]"}
             gost{"[ÇÎŠ ĜÖŠŢ Ţŕåñšļîţéŕåţîöñ one two three]"}
             iso{"[ÎŠÖ Ţŕåñšļîţéŕåţîöñ one two three]"}
+            java{"[Ĥéẋ Ţŕåñšƒöŕɱš Ûšîñĝ Ĵåṽå Šýñţåẋ one two three four]"}
             mcst{"[Ķöŕéåñ ṀÇŠŢ Ţŕåñšļîţéŕåţîöñ one two three]"}
             mns{
                 "[Ṁöñĝöļîåñ Ñåţîöñåļ Šţåñðåŕð Ţŕåñšļîţéŕåţîöñ one two three four five"
                 "]"
             }
+            percent{"[Ĥéẋ Ţŕåñšƒöŕɱš Ûšîñĝ Þéŕçéñţ Šýñţåẋ one two three four]"}
+            perl{"[Ĥéẋ Ţŕåñšƒöŕɱš Ûšîñĝ Þéŕļ Šýñţåẋ one two three four]"}
+            plain{"[Ĥéẋ Ţŕåñšƒöŕɱš Ŵîţĥ Ñö Šûŕŕöûñðîñĝ Šýñţåẋ one two three four five]"}
             prprname{"[Þéŕšöñåļ Ñåɱé Ţŕåñšļîţéŕåţîöñ Ṽåŕîåñţ one two three four]"}
             satts{"[Šţåñðåŕð Åŕåƀîç Ţéçĥñîçåļ Ţŕåñšļîţéŕåţîöñ one two three four five]"}
             ungegn{"[ÛÑ ĜÉĜÑ Ţŕåñšļîţéŕåţîöñ one two three]"}
+            unicode{"[Ĥéẋ Ţŕåñšƒöŕɱš Ûšîñĝ Ûñîçöðé Šýñţåẋ one two three four]"}
+            xml{"[Ĥéẋ Ţŕåñšƒöŕɱš Ûšîñĝ ẊṀĻ Šýñţåẋ one two three four]"}
+            xml10{"[Ĥéẋ Ţŕåñšƒöŕɱš Ûšîñĝ ẊṀĻ Ðéçîɱåļ Šýñţåẋ one two three four five]"}
         }
         ms{
             metric{"[Ṁéţŕîç Šýšţéɱ one two]"}

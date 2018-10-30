@@ -345,7 +345,7 @@ public class TimeUnitFormat extends MeasureFormat {
             format = NumberFormat.getNumberInstance(locale);
         }
         pluralRules = PluralRules.forLocale(locale);
-        timeUnitToCountToPatterns = new HashMap<TimeUnit, Map<String, Object[]>>();
+        timeUnitToCountToPatterns = new HashMap<>();
         Set<String> pluralKeywords = pluralRules.getKeywords();
         setup("units/duration", timeUnitToCountToPatterns, FULL_NAME, pluralKeywords);
         setup("unitsShort/duration", timeUnitToCountToPatterns, ABBREVIATED_NAME, pluralKeywords);
@@ -402,7 +402,7 @@ public class TimeUnitFormat extends MeasureFormat {
 
                 Map<String, Object[]> countToPatterns = timeUnitToCountToPatterns.get(timeUnit);
                 if (countToPatterns == null) {
-                    countToPatterns = new TreeMap<String, Object[]>();
+                    countToPatterns = new TreeMap<>();
                     timeUnitToCountToPatterns.put(timeUnit, countToPatterns);
                 }
 
@@ -469,7 +469,7 @@ public class TimeUnitFormat extends MeasureFormat {
             final TimeUnit timeUnit = timeUnits[i];
             Map<String, Object[]> countToPatterns = timeUnitToCountToPatterns.get(timeUnit);
             if (countToPatterns == null) {
-                countToPatterns = new TreeMap<String, Object[]>();
+                countToPatterns = new TreeMap<>();
                 timeUnitToCountToPatterns.put(timeUnit, countToPatterns);
             }
             for (String pluralCount : keywords) {
@@ -558,8 +558,7 @@ public class TimeUnitFormat extends MeasureFormat {
     // MeasureFormat
 
     /**
-     * @deprecated This API is ICU internal only.
-     * @hide draft / provisional / internal are hidden on Android
+     * @deprecated ICU 53 see {@link MeasureFormat}
      */
     @Deprecated
     @Override

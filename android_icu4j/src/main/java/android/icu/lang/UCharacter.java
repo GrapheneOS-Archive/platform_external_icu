@@ -2222,7 +2222,7 @@ public final class UCharacter implements ECharacterCategory, ECharacterDirection
                 m = mref.get();
             }
             if (m == null) {
-                m = new HashMap<String, UnicodeBlock>(BLOCKS_.length);
+                m = new HashMap<>(BLOCKS_.length);
                 for (int i = 0; i < BLOCKS_.length; ++i) {
                     UnicodeBlock b = BLOCKS_[i];
                     String name = trimBlockName(
@@ -2230,7 +2230,7 @@ public final class UCharacter implements ECharacterCategory, ECharacterDirection
                                     UProperty.NameChoice.LONG));
                     m.put(name, b);
                 }
-                mref = new SoftReference<Map<String, UnicodeBlock>>(m);
+                mref = new SoftReference<>(m);
             }
             UnicodeBlock b = m.get(trimBlockName(blockName));
             if (b == null) {
@@ -3148,6 +3148,140 @@ public final class UCharacter implements ECharacterCategory, ECharacterDirection
          */
         @Deprecated
         public static final int COUNT = 3;
+    }
+
+    /**
+     * Indic Positional Category constants.
+     *
+     * @see UProperty#INDIC_POSITIONAL_CATEGORY
+     */
+    public static interface IndicPositionalCategory {
+        /***/
+        public static final int NA = 0;
+        /***/
+        public static final int BOTTOM = 1;
+        /***/
+        public static final int BOTTOM_AND_LEFT = 2;
+        /***/
+        public static final int BOTTOM_AND_RIGHT = 3;
+        /***/
+        public static final int LEFT = 4;
+        /***/
+        public static final int LEFT_AND_RIGHT = 5;
+        /***/
+        public static final int OVERSTRUCK = 6;
+        /***/
+        public static final int RIGHT = 7;
+        /***/
+        public static final int TOP = 8;
+        /***/
+        public static final int TOP_AND_BOTTOM = 9;
+        /***/
+        public static final int TOP_AND_BOTTOM_AND_RIGHT = 10;
+        /***/
+        public static final int TOP_AND_LEFT = 11;
+        /***/
+        public static final int TOP_AND_LEFT_AND_RIGHT = 12;
+        /***/
+        public static final int TOP_AND_RIGHT = 13;
+        /***/
+        public static final int VISUAL_ORDER_LEFT = 14;
+    }
+
+    /**
+     * Indic Syllabic Category constants.
+     *
+     * @see UProperty#INDIC_SYLLABIC_CATEGORY
+     */
+    public static interface IndicSyllabicCategory {
+        /***/
+        public static final int OTHER = 0;
+        /***/
+        public static final int AVAGRAHA = 1;
+        /***/
+        public static final int BINDU = 2;
+        /***/
+        public static final int BRAHMI_JOINING_NUMBER = 3;
+        /***/
+        public static final int CANTILLATION_MARK = 4;
+        /***/
+        public static final int CONSONANT = 5;
+        /***/
+        public static final int CONSONANT_DEAD = 6;
+        /***/
+        public static final int CONSONANT_FINAL = 7;
+        /***/
+        public static final int CONSONANT_HEAD_LETTER = 8;
+        /***/
+        public static final int CONSONANT_INITIAL_POSTFIXED = 9;
+        /***/
+        public static final int CONSONANT_KILLER = 10;
+        /***/
+        public static final int CONSONANT_MEDIAL = 11;
+        /***/
+        public static final int CONSONANT_PLACEHOLDER = 12;
+        /***/
+        public static final int CONSONANT_PRECEDING_REPHA = 13;
+        /***/
+        public static final int CONSONANT_PREFIXED = 14;
+        /***/
+        public static final int CONSONANT_SUBJOINED = 15;
+        /***/
+        public static final int CONSONANT_SUCCEEDING_REPHA = 16;
+        /***/
+        public static final int CONSONANT_WITH_STACKER = 17;
+        /***/
+        public static final int GEMINATION_MARK = 18;
+        /***/
+        public static final int INVISIBLE_STACKER = 19;
+        /***/
+        public static final int JOINER = 20;
+        /***/
+        public static final int MODIFYING_LETTER = 21;
+        /***/
+        public static final int NON_JOINER = 22;
+        /***/
+        public static final int NUKTA = 23;
+        /***/
+        public static final int NUMBER = 24;
+        /***/
+        public static final int NUMBER_JOINER = 25;
+        /***/
+        public static final int PURE_KILLER = 26;
+        /***/
+        public static final int REGISTER_SHIFTER = 27;
+        /***/
+        public static final int SYLLABLE_MODIFIER = 28;
+        /***/
+        public static final int TONE_LETTER = 29;
+        /***/
+        public static final int TONE_MARK = 30;
+        /***/
+        public static final int VIRAMA = 31;
+        /***/
+        public static final int VISARGA = 32;
+        /***/
+        public static final int VOWEL = 33;
+        /***/
+        public static final int VOWEL_DEPENDENT = 34;
+        /***/
+        public static final int VOWEL_INDEPENDENT = 35;
+    }
+
+    /**
+     * Vertical Orientation constants.
+     *
+     * @see UProperty#VERTICAL_ORIENTATION
+     */
+    public static interface VerticalOrientation {
+        /***/
+        public static final int ROTATED = 0;
+        /***/
+        public static final int TRANSFORMED_ROTATED = 1;
+        /***/
+        public static final int TRANSFORMED_UPRIGHT = 2;
+        /***/
+        public static final int UPRIGHT = 3;
     }
 
     // public data members -----------------------------------------------
@@ -4941,7 +5075,7 @@ public final class UCharacter implements ECharacterCategory, ECharacterDirection
     }
 
     /**
-     * <strong>[icu]</strong> <p>Check a binary Unicode property for a code point.
+     * <strong>[icu]</strong> Check a binary Unicode property for a code point.
      * <p>Unicode, especially in version 3.2, defines many more properties
      * than the original set in UnicodeData.txt.
      * <p>This API is intended to reflect Unicode properties as defined in
@@ -4963,6 +5097,7 @@ public final class UCharacter implements ECharacterCategory, ECharacterDirection
      *         Unicode version does not have data for the property at all, or
      *         not for this code point.
      * @see android.icu.lang.UProperty
+     * @see CharacterProperties#getBinaryPropertySet(int)
      */
     public static boolean hasBinaryProperty(int ch, int property)
     {
@@ -5015,7 +5150,7 @@ public final class UCharacter implements ECharacterCategory, ECharacterDirection
     }
 
     /**
-     * <strong>[icu]</strong> <p>Returns the property value for an Unicode property type of a code point.
+     * <strong>[icu]</strong> Returns the property value for a Unicode property type of a code point.
      * Also returns binary and mask property values.
      * <p>Unicode, especially in version 3.2, defines many more properties than
      * the original set in UnicodeData.txt.
@@ -5039,8 +5174,9 @@ public final class UCharacter implements ECharacterCategory, ECharacterDirection
      *        UProperty.MASK_START &lt;= type &lt; UProperty.MASK_LIMIT.
      * @return numeric value that is directly the property value or,
      *         for enumerated properties, corresponds to the numeric value of
-     *         the enumerated constant of the respective property value
-     *         enumeration type (cast to enum type if necessary).
+     *         the enumerated constant of the respective property value type
+     *         ({@link ECharacterCategory}, {@link ECharacterDirection},
+     *         {@link DecompositionType}, etc.).
      *         Returns 0 or 1 (for false / true) for binary Unicode properties.
      *         Returns a bit-mask for mask properties.
      *         Returns 0 if 'type' is out of bounds or if the Unicode version
@@ -5050,6 +5186,7 @@ public final class UCharacter implements ECharacterCategory, ECharacterDirection
      * @see #hasBinaryProperty
      * @see #getIntPropertyMinValue
      * @see #getIntPropertyMaxValue
+     * @see CharacterProperties#getIntPropertyMap(int)
      * @see #getUnicodeVersion
      */
     public static int getIntPropertyValue(int ch, int type)

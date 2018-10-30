@@ -1155,6 +1155,7 @@ public class SimpleTimeZone extends BasicTimeZone {
 
     /**
      * Overrides hashCode.
+     * @return a hash code value for this object.
      */
     @Override
     public int hashCode(){
