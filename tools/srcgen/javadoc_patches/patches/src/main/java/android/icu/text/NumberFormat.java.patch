@@ -209,7 +209,7 @@
       * <strong>[icu]</strong> Returns a scientific format for the specified locale.
       * @return a scientific number format
       */
-@@ -1318,9 +1258,6 @@
+@@ -1319,9 +1259,6 @@
  
  
      /**

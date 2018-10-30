@@ -13,6 +13,7 @@ import com.ibm.icu.number.NumberFormatter.SignDisplay;
 import com.ibm.icu.number.Precision.SignificantRounderImpl;
 import com.ibm.icu.text.DecimalFormatSymbols;
 import com.ibm.icu.text.NumberFormat;
+import com.ibm.icu.text.NumberFormat.Field;
 
 /**
  * A class that defines the scientific notation style to be used when formatting numbers in
@@ -92,10 +93,9 @@ public class ScientificNotation extends Notation implements Cloneable {
     }
 
     /**
-     * @internal
-     * @deprecated This API is ICU internal only.
+     * @draft ICU 60
+     * @provisional This API might change or be removed in a future release.
      */
-    @Deprecated
     @Override
     public Object clone() {
         try {
@@ -221,14 +221,37 @@ public class ScientificNotation extends Notation implements Cloneable {
 
         @Override
         public int getCodePointCount() {
-            // This method is not used for strong modifiers.
-            throw new AssertionError();
+            // NOTE: This method is only called one place, NumberRangeFormatterImpl.
+            // The call site only cares about != 0 and != 1.
+            // Return a very large value so that if this method is used elsewhere, we should notice.
+            return 999;
         }
 
         @Override
         public boolean isStrong() {
             // Scientific is always strong
             return true;
+        }
+
+        @Override
+        public boolean containsField(Field field) {
+            // This method is not currently used. (unsafe path not used in range formatting)
+            assert false;
+            return false;
+        }
+
+        @Override
+        public Parameters getParameters() {
+            // This method is not currently used.
+            assert false;
+            return null;
+        }
+
+        @Override
+        public boolean semanticallyEquivalent(Modifier other) {
+            // This method is not currently used. (unsafe path not used in range formatting)
+            assert false;
+            return false;
         }
 
         @Override
@@ -279,14 +302,38 @@ public class ScientificNotation extends Notation implements Cloneable {
 
         @Override
         public int getCodePointCount() {
-            // This method is not used for strong modifiers.
-            throw new AssertionError();
+            // NOTE: This method is only called one place, NumberRangeFormatterImpl.
+            // The call site only cares about != 0 and != 1.
+            // Return a very large value so that if this method is used elsewhere, we should notice.
+            return 999;
         }
 
         @Override
         public boolean isStrong() {
             // Scientific is always strong
             return true;
+        }
+
+        @Override
+        public boolean containsField(Field field) {
+            // This method is not used for inner modifiers.
+            assert false;
+            return false;
+        }
+
+        @Override
+        public Parameters getParameters() {
+            return null;
+        }
+
+        @Override
+        public boolean semanticallyEquivalent(Modifier other) {
+            if (!(other instanceof ScientificModifier)) {
+                return false;
+            }
+            ScientificModifier _other = (ScientificModifier) other;
+            // TODO: Check for locale symbols and settings as well? Could be less efficient.
+            return exponent == _other.exponent;
         }
     }
 }

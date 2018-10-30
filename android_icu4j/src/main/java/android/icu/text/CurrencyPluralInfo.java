@@ -186,7 +186,7 @@ public class CurrencyPluralInfo implements Cloneable, Serializable {
             //other.pluralRules = pluralRules;
             // clone content
             //other.pluralCountToCurrencyUnitPattern = pluralCountToCurrencyUnitPattern;
-            other.pluralCountToCurrencyUnitPattern = new HashMap<String, String>();
+            other.pluralCountToCurrencyUnitPattern = new HashMap<>();
             for (String pluralCount : pluralCountToCurrencyUnitPattern.keySet()) {
                 String currencyPattern = pluralCountToCurrencyUnitPattern.get(pluralCount);
                 other.pluralCountToCurrencyUnitPattern.put(pluralCount, currencyPattern);
@@ -213,12 +213,9 @@ public class CurrencyPluralInfo implements Cloneable, Serializable {
     /**
      * Override hashCode
      *
-     * @deprecated This API is ICU internal only.
      * @hide original deprecated declaration
-     * @hide draft / provisional / internal are hidden on Android
      */
     @Override
-    @Deprecated
     public int hashCode() {
       return pluralCountToCurrencyUnitPattern.hashCode()
           ^ pluralRules.hashCode()
@@ -266,7 +263,7 @@ public class CurrencyPluralInfo implements Cloneable, Serializable {
     }
 
     private void setupCurrencyPluralPattern(ULocale uloc) {
-        pluralCountToCurrencyUnitPattern = new HashMap<String, String>();
+        pluralCountToCurrencyUnitPattern = new HashMap<>();
 
         String numberStylePattern = NumberFormat.getPattern(uloc, NumberFormat.NUMBERSTYLE);
         // Split the number style pattern into pos and neg if applicable
