@@ -115,7 +115,7 @@ lv{
         FO{"Fēru salas"}
         FR{"Francija"}
         GA{"Gabona"}
-        GB{"Lielbritānija"}
+        GB{"Apvienotā Karaliste"}
         GD{"Grenāda"}
         GE{"Gruzija"}
         GF{"Francijas Gviāna"}
@@ -296,7 +296,7 @@ lv{
         ZZ{"nezināms reģions"}
     }
     Countries%short{
-        GB{"Lielbritānija"}
+        GB{"Apvienotā Karaliste"}
         UN{"ANO"}
         US{"ASV"}
     }
@@ -306,5 +306,5 @@ lv{
         CI{"Ziloņkaula krasts"}
         CZ{"Čehijas Republika"}
     }
-    Version{"2.1.41.97"}
+    Version{"2.1.44.91"}
 }

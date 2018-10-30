@@ -18,6 +18,7 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.MissingResourceException;
 
+import android.icu.impl.CalType;
 import android.icu.impl.CalendarUtil;
 import android.icu.impl.ICUCache;
 import android.icu.impl.ICUData;
@@ -1709,42 +1710,12 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
         return region;
     }
 
-    private enum CalType {
-        GREGORIAN("gregorian"),
-        ISO8601("iso8601"),
-
-        BUDDHIST("buddhist"),
-        CHINESE("chinese"),
-        COPTIC("coptic"),
-        DANGI("dangi"),
-        ETHIOPIC("ethiopic"),
-        ETHIOPIC_AMETE_ALEM("ethiopic-amete-alem"),
-        HEBREW("hebrew"),
-        INDIAN("indian"),
-        ISLAMIC("islamic"),
-        ISLAMIC_CIVIL("islamic-civil"),
-        ISLAMIC_RGSA("islamic-rgsa"),
-        ISLAMIC_TBLA("islamic-tbla"),
-        ISLAMIC_UMALQURA("islamic-umalqura"),
-        JAPANESE("japanese"),
-        PERSIAN("persian"),
-        ROC("roc"),
-
-        UNKNOWN("unknown");
-
-        String id;
-
-        CalType(String id) {
-            this.id = id;
-        }
-    }
-
     private static CalType getCalendarTypeForLocale(ULocale l) {
         String s = CalendarUtil.getCalendarType(l);
         if (s != null) {
             s = s.toLowerCase(Locale.ENGLISH);
             for (CalType type : CalType.values()) {
-                if (s.equals(type.id)) {
+                if (s.equals(type.getId())) {
                     return type;
                 }
             }
@@ -1864,7 +1835,7 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
         String prefRegion = ULocale.getRegionForSupplementalData(locale, true);
 
         // Read preferred calendar values from supplementalData calendarPreferences
-        ArrayList<String> values = new ArrayList<String>();
+        ArrayList<String> values = new ArrayList<>();
 
         UResourceBundle rb = UResourceBundle.getBundleInstance(
                 ICUData.ICU_BASE_NAME,
@@ -1891,8 +1862,8 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
         }
         // then, add other available clanedars
         for (CalType t : CalType.values()) {
-            if (!values.contains(t.id)) {
-                values.add(t.id);
+            if (!values.contains(t.getId())) {
+                values.add(t.getId());
             }
         }
         return values.toArray(new String[values.size()]);
@@ -2107,7 +2078,7 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
         CalType type = CalType.GREGORIAN;
         String typeString = getType();
         for (CalType testType : CalType.values()) {
-            if (typeString.equals(testType.id)) {
+            if (typeString.equals(testType.getId())) {
                 type = testType;
                 break;
             }
@@ -2182,7 +2153,7 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
         CalType type = CalType.GREGORIAN;
         String typeString = getType();
         for (CalType testType : CalType.values()) {
-            if (typeString.equals(testType.id)) {
+            if (typeString.equals(testType.getId())) {
                 type = testType;
                 break;
             }
@@ -3419,7 +3390,7 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
 
     // date format pattern cache
     private static final ICUCache<String, PatternData> PATTERN_CACHE =
-            new SimpleCache<String, PatternData>();
+            new SimpleCache<>();
     // final fallback patterns
     private static final String[] DEFAULT_PATTERNS = {
         "HH:mm:ss z",

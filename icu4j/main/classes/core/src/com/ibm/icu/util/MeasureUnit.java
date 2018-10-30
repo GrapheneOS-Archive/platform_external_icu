@@ -44,7 +44,7 @@ public class MeasureUnit implements Serializable {
     // All access to the cache or cacheIsPopulated flag must be synchronized on class MeasureUnit,
     // i.e. from synchronized static methods. Beware of non-static methods.
     private static final Map<String, Map<String,MeasureUnit>> cache
-        = new HashMap<String, Map<String,MeasureUnit>>();
+        = new HashMap<>();
     private static boolean cacheIsPopulated = false;
 
     /**
@@ -95,7 +95,7 @@ public class MeasureUnit implements Serializable {
     /**
      * {@inheritDoc}
      *
-     * @stable ICU 53
+     * @stable ICU 3.0
      */
     @Override
     public int hashCode() {
@@ -105,7 +105,7 @@ public class MeasureUnit implements Serializable {
     /**
      * {@inheritDoc}
      *
-     * @stable ICU 53
+     * @stable ICU 3.0
      */
     @Override
     public boolean equals(Object rhs) {
@@ -122,7 +122,7 @@ public class MeasureUnit implements Serializable {
     /**
      * {@inheritDoc}
      *
-     * @stable ICU 53
+     * @stable ICU 3.0
      */
     @Override
     public String toString() {
@@ -152,7 +152,7 @@ public class MeasureUnit implements Serializable {
         // flexibility for implementation.
         // Use CollectionSet instead of HashSet for better performance.
         return units == null ? Collections.<MeasureUnit>emptySet()
-                : Collections.unmodifiableSet(new CollectionSet<MeasureUnit>(units.values()));
+                : Collections.unmodifiableSet(new CollectionSet<>(units.values()));
     }
 
     /**
@@ -161,8 +161,8 @@ public class MeasureUnit implements Serializable {
      * @stable ICU 53
      */
     public synchronized static Set<MeasureUnit> getAvailable() {
-        Set<MeasureUnit> result = new HashSet<MeasureUnit>();
-        for (String type : new HashSet<String>(MeasureUnit.getAvailableTypes())) {
+        Set<MeasureUnit> result = new HashSet<>();
+        for (String type : new HashSet<>(MeasureUnit.getAvailableTypes())) {
             for (MeasureUnit unit : MeasureUnit.getAvailable(type)) {
                 result.add(unit);
             }
@@ -348,7 +348,7 @@ public class MeasureUnit implements Serializable {
     protected synchronized static MeasureUnit addUnit(String type, String unitName, Factory factory) {
         Map<String, MeasureUnit> tmp = cache.get(type);
         if (tmp == null) {
-            cache.put(type, tmp = new HashMap<String, MeasureUnit>());
+            cache.put(type, tmp = new HashMap<>());
         } else {
             // "intern" the type by setting to first item's type.
             type = tmp.entrySet().iterator().next().getValue().type;
@@ -494,6 +494,20 @@ public class MeasureUnit implements Serializable {
     public static final MeasureUnit PART_PER_MILLION = MeasureUnit.internalGetInstance("concentr", "part-per-million");
 
     /**
+     * Constant for unit of concentr: percent
+     * @draft ICU 63
+     * @provisional This API might change or be removed in a future release.
+     */
+    public static final MeasureUnit PERCENT = MeasureUnit.internalGetInstance("concentr", "percent");
+
+    /**
+     * Constant for unit of concentr: permille
+     * @draft ICU 63
+     * @provisional This API might change or be removed in a future release.
+     */
+    public static final MeasureUnit PERMILLE = MeasureUnit.internalGetInstance("concentr", "permille");
+
+    /**
      * Constant for unit of consumption: liter-per-100kilometers
      * @stable ICU 56
      */
@@ -564,6 +578,13 @@ public class MeasureUnit implements Serializable {
      * @stable ICU 54
      */
     public static final MeasureUnit MEGABYTE = MeasureUnit.internalGetInstance("digital", "megabyte");
+
+    /**
+     * Constant for unit of digital: petabyte
+     * @draft ICU 63
+     * @provisional This API might change or be removed in a future release.
+     */
+    public static final MeasureUnit PETABYTE = MeasureUnit.internalGetInstance("digital", "petabyte");
 
     /**
      * Constant for unit of digital: terabit
@@ -956,6 +977,13 @@ public class MeasureUnit implements Serializable {
     public static final MeasureUnit WATT = MeasureUnit.internalGetInstance("power", "watt");
 
     /**
+     * Constant for unit of pressure: atmosphere
+     * @draft ICU 63
+     * @provisional This API might change or be removed in a future release.
+     */
+    public static final MeasureUnit ATMOSPHERE = MeasureUnit.internalGetInstance("pressure", "atmosphere");
+
+    /**
      * Constant for unit of pressure: hectopascal
      * @stable ICU 53
      */
@@ -1184,7 +1212,7 @@ public class MeasureUnit implements Serializable {
     public static final MeasureUnit TEASPOON = MeasureUnit.internalGetInstance("volume", "teaspoon");
 
     private static HashMap<Pair<MeasureUnit, MeasureUnit>, MeasureUnit>unitPerUnitToSingleUnit =
-            new HashMap<Pair<MeasureUnit, MeasureUnit>, MeasureUnit>();
+            new HashMap<>();
 
     static {
         unitPerUnitToSingleUnit.put(Pair.<MeasureUnit, MeasureUnit>of(MeasureUnit.LITER, MeasureUnit.KILOMETER), MeasureUnit.LITER_PER_KILOMETER);
