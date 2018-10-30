@@ -13,9 +13,9 @@ import java.text.ParsePosition;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 
 import android.icu.impl.PatternProps;
-import android.icu.impl.Utility;
 
 /**
  * A collection of rules used by a RuleBasedNumberFormat to format and
@@ -161,7 +161,7 @@ final class NFRuleSet {
     public void parseRules(String description) {
         // (the number of elements in the description list isn't necessarily
         // the number of rules-- some descriptions may expend into two rules)
-        List<NFRule> tempRules = new ArrayList<NFRule>();
+        List<NFRule> tempRules = new ArrayList<>();
 
         // we keep track of the rule before the one we're currently working
         // on solely to support >>> substitutions
@@ -265,7 +265,7 @@ final class NFRuleSet {
     private void setBestFractionRule(int originalIndex, NFRule newRule, boolean rememberRule) {
         if (rememberRule) {
             if (fractionRules == null) {
-                fractionRules = new LinkedList<NFRule>();
+                fractionRules = new LinkedList<>();
             }
             fractionRules.add(newRule);
         }
@@ -304,6 +304,7 @@ final class NFRuleSet {
      * @param that The other rule set
      * @return true if the two rule sets are functionally equivalent.
      */
+    @Override
     public boolean equals(Object that) {
         // if different classes, they're not equal
         if (!(that instanceof NFRuleSet)) {
@@ -321,7 +322,7 @@ final class NFRuleSet {
 
             // ...then compare the non-numerical rule lists...
             for (int i = 0; i < nonNumericalRules.length; i++) {
-                if (!Utility.objectEquals(nonNumericalRules[i], that2.nonNumericalRules[i])) {
+                if (!Objects.equals(nonNumericalRules[i], that2.nonNumericalRules[i])) {
                     return false;
                 }
             }
@@ -338,6 +339,7 @@ final class NFRuleSet {
         }
     }
 
+    @Override
     public int hashCode() {
         assert false : "hashCode not designed";
         return 42;
@@ -350,6 +352,7 @@ final class NFRuleSet {
      * necessarily be the same description that the rule set was
      * constructed with, but it will produce the same results.
      */
+    @Override
     public String toString() {
         StringBuilder result = new StringBuilder();
 

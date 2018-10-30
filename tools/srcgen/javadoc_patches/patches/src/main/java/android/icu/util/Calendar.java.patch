@@ -1,6 +1,6 @@
---- android_icu4j/src/main/java/android/icu/util/Calendar.java	2018-06-13 19:00:05.800112927 +0100
-+++ android_icu4j/src/main/java/android/icu/util/Calendar.java	2018-06-13 18:59:13.224330541 +0100
-@@ -4504,8 +4504,6 @@
+--- android_icu4j/src/main/java/android/icu/util/Calendar.java	2018-10-22 05:12:22.756600061 +0100
++++ android_icu4j/src/main/java/android/icu/util/Calendar.java	2018-10-22 05:12:45.832676346 +0100
+@@ -4476,8 +4476,6 @@
       * @param date the date and time
       * @return true if the given date and time is part of the
       * weekend
@@ -9,7 +9,7 @@
       * @see #isWeekend()
       */
      public boolean isWeekend(Date date) {
-@@ -4518,8 +4516,6 @@
+@@ -4490,8 +4488,6 @@
       * this calendar system.
       * @return true if the given date and time is part of the
       * weekend

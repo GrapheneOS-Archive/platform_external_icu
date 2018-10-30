@@ -26,8 +26,6 @@ import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
 import android.icu.dev.test.TestFmwk;
-import android.icu.dev.test.TestUtil;
-import android.icu.dev.test.TestUtil.JavaVendor;
 import android.icu.impl.CurrencyData;
 import android.icu.text.CurrencyDisplayNames;
 import android.icu.text.CurrencyMetaInfo;
@@ -325,6 +323,18 @@ public class CurrencyTest extends TestFmwk {
         assertNotNull("have currency data for Germany (Java Locale)", cdn);
         assertEquals("de_USD_name (Locale)", "US-Dollar", cdn.getName("USD"));
         assertNull("de_FOO_name (Locale)", cdn.getName("FOO"));
+
+        // Locale version with noSubstitute=false
+        cdn = CurrencyDisplayNames.getInstance(Locale.GERMANY, false);
+        assertNotNull("have currency data for Germany (Java Locale, false)", cdn);
+        assertEquals("de_USD_name (Locale, false)", "US-Dollar", cdn.getName("USD"));
+        assertEquals("de_USD_plural_foo (Locale, false)", "US-Dollar", cdn.getPluralName("USD", "foo"));
+
+        // Locale version with no boolean attribute; should behave the same as noSubstitute=false
+        cdn = CurrencyDisplayNames.getInstance(Locale.GERMANY);
+        assertNotNull("have currency data for Germany (Java Locale, default)", cdn);
+        assertEquals("de_USD_name (Locale, default)", "US-Dollar", cdn.getName("USD"));
+        assertEquals("de_USD_plural_foo (Locale, default)", "US-Dollar", cdn.getPluralName("USD", "foo"));
     }
 
     // Coverage-only test of CurrencyData
@@ -647,19 +657,18 @@ public class CurrencyTest extends TestFmwk {
             String[] actual = Currency.getAvailableCurrencyCodes(locale, date);
 
             // Order is not important as of 4.4.  We never documented that it was.
-            Set<String> expectedSet = new HashSet<String>();
+            Set<String> expectedSet = new HashSet<>();
             if (expected != null) {
                 expectedSet.addAll(Arrays.asList(expected));
             }
-            Set<String> actualSet = new HashSet<String>();
+            Set<String> actualSet = new HashSet<>();
             if (actual != null) {
                 actualSet.addAll(Arrays.asList(actual));
             }
             assertEquals(locale + " on " + timeString, expectedSet, actualSet);
 
             // With Java Locale
-            // Note: skip this test on Java 6 or older when keywords are available
-            if (locale.getKeywords() == null || TestUtil.getJavaVendor() == JavaVendor.Android || TestUtil.getJavaVersion() >= 7) {
+            if (locale.getKeywords() == null) {
                 Locale javaloc = locale.toLocale();
                 String[] actualWithJavaLocale = Currency.getAvailableCurrencyCodes(javaloc, date);
                 // should be exactly same with the ULocale version
@@ -742,7 +751,7 @@ public class CurrencyTest extends TestFmwk {
             String[] all = Currency.getKeywordValuesForLocale("currency", loc, false);
             // The items in the two collections should match (ignore order,
             // behavior change from 4.3.3)
-            Set<String> returnedSet = new HashSet<String>();
+            Set<String> returnedSet = new HashSet<>();
             returnedSet.addAll(Arrays.asList(all));
             assertEquals(loc.toString(), ALLSET, returnedSet);
         }

@@ -601,7 +601,7 @@ public class NumberFormatTest extends TestFmwk {
                 "\u00A4#,##0.00",
                 df.toPattern());
         // Should round-trip on the correct currency format:
-        expect2(df, 1.23, "XXX\u00A01.23");
+        expect2(df, 1.23, "\u00A41.23");
         df.setCurrency(Currency.getInstance("EUR"));
         expect2(df, 1.23, "\u20AC1.23");
         // Should parse with currency in the wrong place in lenient mode
@@ -819,7 +819,7 @@ public class NumberFormatTest extends TestFmwk {
                 {"1.00 UAE dirha", "4", "-1", "0", "4"},
                 {"1.00 us dollar", "14", "-1", "14", "-1"},
                 {"1.00 US DOLLAR", "14", "-1", "14", "-1"},
-                {"1.00 usd", "4", "-1", "8", "-1"},
+                {"1.00 usd", "8", "-1", "8", "-1"},
                 {"1.00 USD", "8", "-1", "8", "-1"},
         };
         ULocale locale = new ULocale("en_US");
@@ -1000,19 +1000,19 @@ public class NumberFormatTest extends TestFmwk {
 
         fmt = NumberFormat.getCurrencyInstance(Locale.FRANCE);
 
-        expectCurrency(fmt, null, 1234.56, "1 234,56 \u20AC");
+        expectCurrency(fmt, null, 1234.56, "1\u202F234,56 \u20AC");
 
         expectCurrency(fmt, Currency.getInstance(Locale.JAPAN),
-                1234.56, "1 235 JPY"); // Yen
+                1234.56, "1\u202F235 JPY"); // Yen
 
         expectCurrency(fmt, Currency.getInstance(new Locale("fr", "CH", "")),
-                1234.56, "1 234,56 CHF"); // no more rounding here, see cldrbug 5548
+                1234.56, "1\u202F234,56 CHF"); // no more rounding here, see cldrbug 5548
 
         expectCurrency(fmt, Currency.getInstance(Locale.US),
-                1234.56, "1 234,56 $US");
+                1234.56, "1\u202F234,56 $US");
 
         expectCurrency(fmt, Currency.getInstance(Locale.FRANCE),
-                1234.56, "1 234,56 \u20AC"); // Euro
+                1234.56, "1\u202F234,56 \u20AC"); // Euro
     }
 
     @Test
@@ -3978,6 +3978,35 @@ public class NumberFormatTest extends TestFmwk {
         for (int i = 0; i < input.length; i++) {
             assertEquals("TestSignificantDigits", expected[i], numberFormat.format(input[i]));
         }
+
+        // Test for ICU-20063
+        {
+            DecimalFormat df = new DecimalFormat("0.######", DecimalFormatSymbols.getInstance(ULocale.US));
+            df.setSignificantDigitsUsed(true);
+            expect(df, 9.87654321, "9.87654");
+            df.setMaximumSignificantDigits(3);
+            expect(df, 9.87654321, "9.88");
+            // setSignificantDigitsUsed with maxSig only
+            df.setSignificantDigitsUsed(true);
+            expect(df, 9.87654321, "9.88");
+            df.setMinimumSignificantDigits(2);
+            expect(df, 9, "9.0");
+            // setSignificantDigitsUsed with both minSig and maxSig
+            df.setSignificantDigitsUsed(true);
+            expect(df, 9, "9.0");
+            // setSignificantDigitsUsed to false: should revert to fraction rounding
+            df.setSignificantDigitsUsed(false);
+            expect(df, 9.87654321, "9.876543");
+            expect(df, 9, "9");
+            df.setSignificantDigitsUsed(true);
+            df.setMinimumSignificantDigits(2);
+            expect(df, 9.87654321, "9.87654");
+            expect(df, 9, "9.0");
+            // setSignificantDigitsUsed with minSig only
+            df.setSignificantDigitsUsed(true);
+            expect(df, 9.87654321, "9.87654");
+            expect(df, 9, "9.0");
+        }
     }
 
     @Test
@@ -4234,13 +4263,13 @@ public class NumberFormatTest extends TestFmwk {
         // the 1st one is checking setter/getter, while the 2nd one checks for getInstance
         // compare the Currency and Currency Cash Digits
         // Note that as of CLDR 26:
-        // * TWD switches from 0 decimals to 2; PKR still has 0, so change test to that
+        // * TWD and PKR switched from 0 decimals to 2; ISK still has 0, so change test to that
         // * CAD rounds to .05 in the cash style only.
         for (int i = 0; i < 2; i++) {
-            String original_expected = "PKR 124";
+            String original_expected = "ISK 124";
             DecimalFormat custom = null;
             if (i == 0) {
-                custom = (DecimalFormat) DecimalFormat.getInstance(new ULocale("en_US@currency=PKR"),
+                custom = (DecimalFormat) DecimalFormat.getInstance(new ULocale("en_US@currency=ISK"),
                         DecimalFormat.CURRENCYSTYLE);
 
                 String original = custom.format(123.567);
@@ -4252,7 +4281,7 @@ public class NumberFormatTest extends TestFmwk {
                 custom.setCurrencyUsage(Currency.CurrencyUsage.CASH);
                 assertEquals("Test Currency Context Purpose", custom.getCurrencyUsage(), Currency.CurrencyUsage.CASH);
             } else {
-                custom = (DecimalFormat) DecimalFormat.getInstance(new ULocale("en_US@currency=PKR"),
+                custom = (DecimalFormat) DecimalFormat.getInstance(new ULocale("en_US@currency=ISK"),
                         DecimalFormat.CASHCURRENCYSTYLE);
 
                 // test the getter
@@ -4260,7 +4289,7 @@ public class NumberFormatTest extends TestFmwk {
             }
 
             String cash_currency = custom.format(123.567);
-            String cash_currency_expected = "PKR 124";
+            String cash_currency_expected = "ISK 124";
             assertEquals("Test Currency Context", cash_currency_expected, cash_currency);
         }
 
@@ -4504,7 +4533,7 @@ public class NumberFormatTest extends TestFmwk {
     private void CompareAttributedCharacterFormatOutput(AttributedCharacterIterator iterator,
         List<FieldContainer> expected, String formattedOutput) {
 
-        List<FieldContainer> result = new ArrayList<FieldContainer>();
+        List<FieldContainer> result = new ArrayList<>();
         while (iterator.getIndex() != iterator.getEndIndex()) {
             int start = iterator.getRunStart();
             int end = iterator.getRunLimit();
@@ -4543,7 +4572,7 @@ public class NumberFormatTest extends TestFmwk {
     @Test
     public void TestNPEIssue11914() {
         // First test: Double value with grouping separators.
-        List<FieldContainer> v1 = new ArrayList<FieldContainer>(7);
+        List<FieldContainer> v1 = new ArrayList<>(7);
         v1.add(new FieldContainer(0, 3, NumberFormat.Field.INTEGER));
         v1.add(new FieldContainer(3, 4, NumberFormat.Field.GROUPING_SEPARATOR));
         v1.add(new FieldContainer(4, 7, NumberFormat.Field.INTEGER));
@@ -4563,7 +4592,7 @@ public class NumberFormatTest extends TestFmwk {
         CompareAttributedCharacterFormatOutput(iterator, v1, numFmtted);
 
         // Second test: Double with scientific notation formatting.
-        List<FieldContainer> v2 = new ArrayList<FieldContainer>(7);
+        List<FieldContainer> v2 = new ArrayList<>(7);
         v2.add(new FieldContainer(0, 1, NumberFormat.Field.INTEGER));
         v2.add(new FieldContainer(1, 2, NumberFormat.Field.DECIMAL_SEPARATOR));
         v2.add(new FieldContainer(2, 5, NumberFormat.Field.FRACTION));
@@ -4577,7 +4606,7 @@ public class NumberFormatTest extends TestFmwk {
         CompareAttributedCharacterFormatOutput(iterator, v2, numFmtted);
 
         // Third test. BigInteger with grouping separators.
-        List<FieldContainer> v3 = new ArrayList<FieldContainer>(7);
+        List<FieldContainer> v3 = new ArrayList<>(7);
         v3.add(new FieldContainer(0, 1, NumberFormat.Field.SIGN));
         v3.add(new FieldContainer(1, 2, NumberFormat.Field.INTEGER));
         v3.add(new FieldContainer(2, 3, NumberFormat.Field.GROUPING_SEPARATOR));
@@ -4599,7 +4628,7 @@ public class NumberFormatTest extends TestFmwk {
         CompareAttributedCharacterFormatOutput(iterator, v3, fmtNumberBigInt);
 
         // Fourth test: BigDecimal with exponential formatting.
-        List<FieldContainer> v4 = new ArrayList<FieldContainer>(7);
+        List<FieldContainer> v4 = new ArrayList<>(7);
         v4.add(new FieldContainer(0, 1, NumberFormat.Field.SIGN));
         v4.add(new FieldContainer(1, 2, NumberFormat.Field.INTEGER));
         v4.add(new FieldContainer(2, 3, NumberFormat.Field.DECIMAL_SEPARATOR));
@@ -4965,10 +4994,51 @@ public class NumberFormatTest extends TestFmwk {
         df.setMathContext(fourDigits);
         BigInteger actual4Digits = ((BigDecimal) df.parse(hugeNumberString)).toBigIntegerExact();
         assertEquals("Extreme division with fourDigits", huge4Digits, actual4Digits);
+    }
+
+    /**
+     * ArithmeticException is thrown when inverting multiplier produces a non-terminating
+     * decimal result in conjunction with MathContext of unlimited precision.
+     */
+    @Test
+    public void testSetMathContextArithmeticException() {
+        DecimalFormat df = new DecimalFormat();
+        df.setMultiplier(7);
         try {
-            df.setMathContext(unlimitedCeiling);
-            df.parse(hugeNumberString);
-            fail("Extreme division with unlimitedCeiling should throw ArithmeticException");
+            df.setMathContext(java.math.MathContext.UNLIMITED);
+            fail("Extreme division with unlimited precision should throw ArithmeticException");
+        } catch (ArithmeticException e) {
+            // expected
+        }
+    }
+
+    /**
+     * ArithmeticException is thrown when inverting multiplier produces a non-terminating
+     * decimal result in conjunction with MathContext of unlimited precision.
+     */
+    @Test
+    public void testSetMathContextICUArithmeticException() {
+        DecimalFormat df = new DecimalFormat();
+        df.setMultiplier(7);
+        try {
+            df.setMathContextICU(new MathContext(0));
+            fail("Extreme division with unlimited precision should throw ArithmeticException");
+        } catch (ArithmeticException e) {
+            // expected
+        }
+    }
+
+    /**
+     * ArithmeticException is thrown when inverting multiplier produces a non-terminating
+     * decimal result in conjunction with MathContext of unlimited precision.
+     */
+    @Test
+    public void testSetMultiplierArithmeticException() {
+        DecimalFormat df = new DecimalFormat();
+        df.setMathContext(java.math.MathContext.UNLIMITED);
+        try {
+            df.setMultiplier(7);
+            fail("Extreme division with unlimited precision should throw ArithmeticException");
         } catch (ArithmeticException e) {
             // expected
         }
@@ -5924,6 +5994,17 @@ public class NumberFormatTest extends TestFmwk {
     }
 
     @Test
+    public void Test20073_StrictPercentParseErrorIndex() {
+        ParsePosition parsePosition = new ParsePosition(0);
+        DecimalFormat df = new DecimalFormat("0%", DecimalFormatSymbols.getInstance(Locale.US));
+        df.setParseStrict(true);
+        Number number = df.parse("%2%", parsePosition);
+        assertNull("", number);
+        assertEquals("", 0, parsePosition.getIndex());
+        assertEquals("", 0, parsePosition.getErrorIndex());
+    }
+
+    @Test
     public void Test11626_CustomizeCurrencyPluralInfo() throws ParseException {
         // Use locale sr because it has interesting plural rules.
         ULocale locale = ULocale.forLanguageTag("sr");
@@ -6095,8 +6176,8 @@ public class NumberFormatTest extends TestFmwk {
         df.setCurrency(Currency.getInstance("ICU"));
         ParsePosition ppos = new ParsePosition(0);
         df.parseCurrency("icu123", ppos);
-        assertEquals("Should fail to parse", 0, ppos.getIndex());
-        assertEquals("Should fail to parse", 0, ppos.getErrorIndex());
+        assertEquals("Should succeed", 6, ppos.getIndex());
+        assertEquals("Should succeed", -1, ppos.getErrorIndex());
     }
 
     @Test
@@ -6225,6 +6306,28 @@ public class NumberFormatTest extends TestFmwk {
             ParsePosition ppos = new ParsePosition(0);
             df.parse("1E+2.3", ppos);
         }
+    }
+
+    @Test
+    public void Test20037_ScientificIntegerOverflow() throws ParseException {
+        NumberFormat nf = NumberFormat.getInstance(ULocale.US);
+
+        // Test overflow of exponent
+        Number result = nf.parse("1E-2147483648");
+        assertEquals("Should snap to zero",
+                "0", result.toString());
+
+        // Test edge case overflow of exponent
+        // Note: the behavior is different from C++; this is probably due to the
+        // intermediate BigDecimal form, which has its own restrictions
+        result = nf.parse("1E-2147483647E-1");
+        assertEquals("Should not overflow and should parse only the first exponent",
+                "0.0", result.toString());
+
+        // For Java, we should get *pretty close* to 2^31.
+        result = nf.parse("1E-547483647");
+        assertEquals("Should *not* snap to zero",
+                "1E-547483647", result.toString());
     }
 
     @Test

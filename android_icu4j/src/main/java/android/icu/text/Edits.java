@@ -239,7 +239,6 @@ public final class Edits {
 
     /**
      * @return the number of change edits
-     * @hide draft / provisional / internal are hidden on Android
      */
     public int numberOfChanges() { return numChanges; }
 
@@ -568,7 +567,6 @@ public final class Edits {
          *
          * @param i destination index
          * @return true if the edit for the destination index was found
-         * @hide draft / provisional / internal are hidden on Android
          */
         public boolean findDestinationIndex(int i) {
             return findIndex(i, false) == 0;
@@ -678,7 +676,6 @@ public final class Edits {
          *
          * @param i source index
          * @return destination index; undefined if i is not 0..string length
-         * @hide draft / provisional / internal are hidden on Android
          */
         public int destinationIndexFromSourceIndex(int i) {
             int where = findIndex(i, true);
@@ -716,7 +713,6 @@ public final class Edits {
          *
          * @param i destination index
          * @return source index; undefined if i is not 0..string length
-         * @hide draft / provisional / internal are hidden on Android
          */
         public int sourceIndexFromDestinationIndex(int i) {
             int where = findIndex(i, false);
@@ -799,8 +795,8 @@ public final class Edits {
 
         /**
          * A string representation of the current edit represented by the iterator for debugging. You
-         * should not depend on the contents of the return string.
-         * @hide draft / provisional / internal are hidden on Android
+         * should not depend on the contents of the return string; it may change over time.
+         * @return a string representation of the object.
          */
         @Override
         public String toString() {
@@ -896,7 +892,6 @@ public final class Edits {
      * @param bc reflects how substrings of intermediate string b
      *     map to substrings of output string c.
      * @return this, with the merged edits appended
-     * @hide draft / provisional / internal are hidden on Android
      */
     public Edits mergeAndAppend(Edits ab, Edits bc) {
         // Picture string a --(Edits ab)--> string b --(Edits bc)--> string c.
