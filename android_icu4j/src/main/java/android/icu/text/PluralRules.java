@@ -1148,7 +1148,7 @@ public class PluralRules implements Serializable {
             SampleType sampleType2;
             boolean bounded2 = true;
             boolean haveBound = false;
-            Set<FixedDecimalRange> samples2 = new LinkedHashSet<FixedDecimalRange>();
+            Set<FixedDecimalRange> samples2 = new LinkedHashSet<>();
 
             if (source.startsWith("integer")) {
                 sampleType2 = SampleType.INTEGER;
@@ -1283,7 +1283,7 @@ public class PluralRules implements Serializable {
         static final UnicodeSet BREAK_AND_KEEP = new UnicodeSet('!', '!', '%', '%', ',', ',', '.', '.', '=', '=').freeze();
         static String[] split(String source) {
             int last = -1;
-            List<String> result = new ArrayList<String>();
+            List<String> result = new ArrayList<>();
             for (int i = 0; i < source.length(); ++i) {
                 char ch = source.charAt(i);
                 if (BREAK_AND_IGNORE.contains(ch)) {
@@ -1402,7 +1402,7 @@ public class PluralRules implements Serializable {
                         t = nextToken(tokens, x++, condition);
                     }
 
-                    List<Long> valueList = new ArrayList<Long>();
+                    List<Long> valueList = new ArrayList<>();
 
                     // the token t is always one item ahead
                     while (true) {
@@ -1824,10 +1824,8 @@ public class PluralRules implements Serializable {
         }
 
         /**
-         * @deprecated This API is ICU internal only.
-         * @hide draft / provisional / internal are hidden on Android
+         * {@inheritDoc}
          */
-        @Deprecated
         @Override
         public int hashCode() {
             return keyword.hashCode() ^ constraint.hashCode();
@@ -1841,7 +1839,7 @@ public class PluralRules implements Serializable {
     private static class RuleList implements Serializable {
         private boolean hasExplicitBoundingInfo = false;
         private static final long serialVersionUID = 1;
-        private final List<Rule> rules = new ArrayList<Rule>();
+        private final List<Rule> rules = new ArrayList<>();
 
         public RuleList addRule(Rule nextRule) {
             String keyword = nextRule.getKeyword();
@@ -1889,7 +1887,7 @@ public class PluralRules implements Serializable {
         }
 
         public Set<String> getKeywords() {
-            Set<String> result = new LinkedHashSet<String>();
+            Set<String> result = new LinkedHashSet<>();
             for (Rule rule : rules) {
                 result.add(rule.getKeyword());
             }
@@ -2084,11 +2082,9 @@ public class PluralRules implements Serializable {
     }
 
     /**
-     * @deprecated This API is ICU internal only.
+     * {@inheritDoc}
      * @hide original deprecated declaration
-     * @hide draft / provisional / internal are hidden on Android
      */
-    @Deprecated
     @Override
     public int hashCode() {
         return rules.hashCode();
@@ -2239,7 +2235,7 @@ public class PluralRules implements Serializable {
         if (!keywords.contains(keyword)) {
             return null;
         }
-        Set<Double> result = new TreeSet<Double>();
+        Set<Double> result = new TreeSet<>();
 
         if (rules.hasExplicitBoundingInfo) {
             FixedDecimalSamples samples = rules.getDecimalSamples(keyword, sampleType);
@@ -2476,7 +2472,7 @@ public class PluralRules implements Serializable {
 
         // Compute if the quick test is insufficient.
 
-        HashSet<Double> subtractedSet = new HashSet<Double>(values);
+        HashSet<Double> subtractedSet = new HashSet<>(values);
         for (Double explicit : explicits) {
             subtractedSet.remove(explicit - offset);
         }

@@ -477,7 +477,7 @@ abstract public class TimeZone implements Serializable, Cloneable, Freezable<Tim
             // Generic format
             TimeZoneFormat tzfmt = TimeZoneFormat.getInstance(locale);
             long date = System.currentTimeMillis();
-            Output<TimeType> timeType = new Output<TimeType>(TimeType.UNKNOWN);
+            Output<TimeType> timeType = new Output<>(TimeType.UNKNOWN);
 
             switch (style) {
             case GENERIC_LOCATION:
@@ -606,7 +606,6 @@ abstract public class TimeZone implements Serializable, Cloneable, Freezable<Tim
      * daylight saving time at any future time.
      * @see #useDaylightTime
      */
-    @SuppressWarnings("javadoc")    // java.util.TimeZone#observesDaylightTime() is introduced in Java 7
     public boolean observesDaylightTime() {
         return useDaylightTime() || inDaylightTime(new Date());
     }
@@ -969,6 +968,7 @@ abstract public class TimeZone implements Serializable, Cloneable, Freezable<Tim
 
     /**
      * Overrides equals.
+     * @return <code>true</code> if this object is the same as the obj argument; <code>false</code> otherwise.
      */
     @Override
     public boolean equals(Object obj){
@@ -979,6 +979,7 @@ abstract public class TimeZone implements Serializable, Cloneable, Freezable<Tim
 
     /**
      * Overrides hashCode.
+     * @return a hash code value for this object.
      */
     @Override
     public int hashCode(){
