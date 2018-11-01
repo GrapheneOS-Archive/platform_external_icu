@@ -40,12 +40,12 @@ import org.eclipse.text.edits.TextEditGroup;
 /**
  * Add a fully qualified marker annotation to a white list of classes and class members.
  */
-public class AddAnnotation implements Processor {
+public class AddMarkerAnnotation implements Processor {
 
   private final String annotationString;
   private final List<BodyDeclarationLocator> annotationTargetLocators;
 
-  public AddAnnotation(String annotationString,
+  public AddMarkerAnnotation(String annotationString,
       List<BodyDeclarationLocator> annotationTargetLocators) {
     this.annotationString = annotationString;
     this.annotationTargetLocators = annotationTargetLocators;
