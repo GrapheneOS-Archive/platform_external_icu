@@ -11,6 +11,7 @@ import java.util.Random;
 import java.util.Set;
 import java.util.TreeSet;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -194,6 +195,7 @@ public class XLocaleMatcherTest extends TestFmwk {
     private static final int AVG_PCT_MEDIUM_NEW_OLD = 33;
     private static final int AVG_PCT_LONG_NEW_OLD = 80;
 
+    @Ignore("b/118891283")
     @Test
     public void testPerf() {
         if (LANGUAGE_MATCHER_DATA == null) {
