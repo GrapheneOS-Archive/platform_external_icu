@@ -11,6 +11,7 @@ import java.util.Set;
 import java.util.TreeSet;
 import java.util.regex.Pattern;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
@@ -188,7 +189,7 @@ public class XLocaleMatcherTest extends TestFmwk {
         }
     }
 
-
+    @Ignore("b/118891283")
     @Test
     public void testPerf() {
         if (LANGUAGE_MATCHER_DATA == null) {
