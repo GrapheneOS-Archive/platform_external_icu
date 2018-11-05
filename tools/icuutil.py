@@ -235,3 +235,11 @@ def MakeAndCopyOverlayTzIcuData(icu_build_dir, dest_file):
   # Switch back to the original working cwd.
   os.chdir(original_working_dir)
 
+
+def CopyLicenseFiles(target_dir):
+  """Copies ICU license files to the target_dir"""
+
+  license_file = '%s/main/shared/licenses/LICENSE' % icu4jDir()
+  print 'Copying %s to %s ...' % (license_file, target_dir)
+  shutil.copy(license_file, target_dir)
+
