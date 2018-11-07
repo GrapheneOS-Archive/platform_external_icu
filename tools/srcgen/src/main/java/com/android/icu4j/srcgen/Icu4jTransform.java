@@ -693,7 +693,11 @@ public class Icu4jTransform {
       "method:android.icu.text.PluralFormat#PluralFormat(ULocale,String)",
   };
 
-  private static final String[] DEFAULT_CONSTRUCTORS = {};
+  private static final String[] DEFAULT_CONSTRUCTORS = {
+      "android.icu.text.DateTimePatternGenerator$DistanceInfo",
+      "android.icu.text.SpoofChecker$ScriptSet",
+      "android.icu.text.TimeZoneNames$DefaultTimeZoneNames$FactoryImpl",
+  };
 
   public static final String ANDROID_ICU4J_SAMPLE_DIR =
       "external/icu/android_icu4j/src/samples/java";
