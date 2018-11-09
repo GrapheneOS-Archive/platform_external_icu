@@ -781,6 +781,7 @@ public abstract class Transliterator implements StringTransform  {
      * @param text the string to be transliterated
      * @return The transliterated text
      */
+    @dalvik.annotation.compat.UnsupportedAppUsage
     @libcore.api.CorePlatformApi
     public final String transliterate(String text) {
         ReplaceableString result = new ReplaceableString(text);
@@ -835,6 +836,7 @@ public abstract class Transliterator implements StringTransform  {
      * @exception IllegalArgumentException if <code>index</code>
      * is invalid
      */
+    @dalvik.annotation.compat.UnsupportedAppUsage
     public final void transliterate(Replaceable text, Position index,
                                     String insertion) {
         index.validate(text.length());
@@ -1540,6 +1542,7 @@ public abstract class Transliterator implements StringTransform  {
      * @return A <code>Transliterator</code> object with the given ID
      * @exception IllegalArgumentException if the given ID is invalid.
      */
+    @dalvik.annotation.compat.UnsupportedAppUsage
     @libcore.api.CorePlatformApi
     public static final Transliterator getInstance(String ID) {
         return getInstance(ID, FORWARD);
@@ -1559,6 +1562,7 @@ public abstract class Transliterator implements StringTransform  {
      * @see #getAvailableIDs
      * @see #getID
      */
+    @dalvik.annotation.compat.UnsupportedAppUsage
     public static Transliterator getInstance(String ID,
                                              int dir) {
         StringBuffer canonID = new StringBuffer();
@@ -1629,6 +1633,7 @@ public abstract class Transliterator implements StringTransform  {
      * @return a newly created Transliterator
      * @throws IllegalArgumentException if there is a problem with the ID or the rules
      */
+    @dalvik.annotation.compat.UnsupportedAppUsage
     public static final Transliterator createFromRules(String ID, String rules, int dir) {
         Transliterator t = null;
 
