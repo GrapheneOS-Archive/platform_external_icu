@@ -22,6 +22,7 @@ import android.icu.util.ULocale;
 public class CurrencyData {
     public static final CurrencyDisplayInfoProvider provider;
 
+    @dalvik.annotation.compat.UnsupportedAppUsage
     private CurrencyData() {}
 
     /**

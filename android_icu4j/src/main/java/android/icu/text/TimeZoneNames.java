@@ -578,6 +578,10 @@ public abstract class TimeZoneNames implements Serializable {
          */
         public static class FactoryImpl extends Factory {
 
+            @dalvik.annotation.compat.UnsupportedAppUsage
+            public FactoryImpl() {
+            }
+
             /*
              * (non-Javadoc)
              * 
