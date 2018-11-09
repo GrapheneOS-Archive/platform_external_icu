@@ -1997,15 +1997,22 @@ public class SpoofChecker {
         // }
         // }
 
+        @dalvik.annotation.compat.UnsupportedAppUsage
+        ScriptSet() {
+        }
+
+        @dalvik.annotation.compat.UnsupportedAppUsage
         public void and(int script) {
             this.clear(0, script);
             this.clear(script + 1, UScript.CODE_LIMIT);
         }
 
+        @dalvik.annotation.compat.UnsupportedAppUsage
         public void setAll() {
             this.set(0, UScript.CODE_LIMIT);
         }
 
+        @dalvik.annotation.compat.UnsupportedAppUsage
         public boolean isFull() {
             return cardinality() == UScript.CODE_LIMIT;
         }
