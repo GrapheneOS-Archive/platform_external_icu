@@ -17,6 +17,7 @@ package com.google.currysrc.api.process.ast;
 
 import com.google.common.base.Joiner;
 import com.google.common.base.Splitter;
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import com.google.currysrc.api.match.TypeName;
 
@@ -103,6 +104,14 @@ public final class TypeLocator implements BodyDeclarationLocator {
       currentNode = (AbstractTypeDeclaration) parentNode;
     }
     this.classNameElements = Lists.reverse(typeNames);
+  }
+
+  public static List<TypeLocator> createLocatorsFromStrings(String[] classes) {
+    ImmutableList.Builder<TypeLocator> apiClassesWhitelistBuilder = ImmutableList.builder();
+    for (String publicClassName : classes) {
+      apiClassesWhitelistBuilder.add(new TypeLocator(publicClassName));
+    }
+    return apiClassesWhitelistBuilder.build();
   }
 
   @Override public TypeLocator getTypeLocator() {

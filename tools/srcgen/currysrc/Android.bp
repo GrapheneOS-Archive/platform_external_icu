@@ -43,7 +43,8 @@ java_library_host {
     name: "currysrc",
     static_libs: [
         "currysrc_org.eclipse",
-        "guavalib"
+        "guavalib",
+        "gson-prebuilt-jar",
     ],
     srcs: ["src/**/*.java"],
 }
