@@ -6305,6 +6305,7 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
      * @see android.icu.util.ULocale#ACTUAL_LOCALE
      * @hide draft / provisional / internal are hidden on Android
      */
+    @dalvik.annotation.compat.UnsupportedAppUsage
     public final ULocale getLocale(ULocale.Type type) {
         return type == ULocale.ACTUAL_LOCALE ?
                 this.actualLocale : this.validLocale;

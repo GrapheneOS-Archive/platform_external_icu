@@ -2676,6 +2676,9 @@ public class DateTimePatternGenerator implements Freezable<DateTimePatternGenera
     private static class DistanceInfo {
         int missingFieldMask;
         int extraFieldMask;
+        @dalvik.annotation.compat.UnsupportedAppUsage
+        private DistanceInfo() {
+        }
         void clear() {
             missingFieldMask = extraFieldMask = 0;
         }
