@@ -15,93 +15,156 @@
  */
 package com.google.currysrc.processors;
 
-import static com.google.currysrc.api.process.ast.BodyDeclarationLocators.matchesAny;
-
-import com.google.currysrc.api.process.Context;
 import com.google.currysrc.api.process.Processor;
 import com.google.currysrc.api.process.ast.BodyDeclarationLocator;
-import java.util.List;
-import org.eclipse.jdt.core.dom.AST;
-import org.eclipse.jdt.core.dom.ASTVisitor;
-import org.eclipse.jdt.core.dom.Annotation;
-import org.eclipse.jdt.core.dom.AnnotationTypeDeclaration;
-import org.eclipse.jdt.core.dom.AnnotationTypeMemberDeclaration;
+import com.google.currysrc.api.process.ast.BodyDeclarationLocatorStore;
+import com.google.currysrc.api.process.ast.BodyDeclarationLocators;
+import com.google.currysrc.processors.AnnotationInfo.AnnotationClass;
+import com.google.currysrc.processors.AnnotationInfo.Placeholder;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonToken;
+import com.google.gson.stream.MalformedJsonException;
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import org.eclipse.jdt.core.dom.BodyDeclaration;
-import org.eclipse.jdt.core.dom.CompilationUnit;
-import org.eclipse.jdt.core.dom.EnumConstantDeclaration;
-import org.eclipse.jdt.core.dom.EnumDeclaration;
-import org.eclipse.jdt.core.dom.FieldDeclaration;
-import org.eclipse.jdt.core.dom.MethodDeclaration;
-import org.eclipse.jdt.core.dom.TypeDeclaration;
 import org.eclipse.jdt.core.dom.rewrite.ASTRewrite;
-import org.eclipse.jdt.core.dom.rewrite.ListRewrite;
-import org.eclipse.text.edits.TextEditGroup;
 
 /**
- * Add a fully qualified marker annotation to a white list of classes and class members.
+ * Add annotations to a white list of classes and class members.
  */
-public class AddAnnotation implements Processor {
+public class AddAnnotation extends AbstractAddAnnotation {
 
-  private final String annotationString;
-  private final List<BodyDeclarationLocator> annotationTargetLocators;
+  private final BodyDeclarationLocatorStore<AnnotationInfo> locator2AnnotationInfo;
 
-  public AddAnnotation(String annotationString,
-      List<BodyDeclarationLocator> annotationTargetLocators) {
-    this.annotationString = annotationString;
-    this.annotationTargetLocators = annotationTargetLocators;
+  /**
+   * Create a {@link Processor} that will add annotations of the supplied class to classes and class
+   * members specified in the supplied file.
+   *
+   * <p>The supplied JSON file must consist of an outermost array containing objects with the
+   * following structure:
+   *
+   * <pre>{@code
+   * {
+   *  "@location": "<body declaration location>",
+   *  [<property>[, <property>]*]?
+   * }
+   * }</pre>
+   *
+   * <p>Where:
+   * <ul>
+   * <li>{@code <body declaration location>} is in the format expected by
+   * {@link BodyDeclarationLocators#fromStringForm(String)}. This is the only required field.</li>
+   * <li>{@code <property>} is a property of the annotation and is of the format
+   * {@code "<name>": <value>} where {@code <name>} is the name of the annotations property which
+   * must correspond to the name of a property in the supplied {@link AnnotationClass} and
+   * {@code <value>} is the value that will be supplied for the property. A {@code <value>} must
+   * match the type of the property in the supplied {@link AnnotationClass}.
+   * </ul>
+   *
+   * <p>A {@code <value>} can be one of the following types:
+   * <ul>
+   * <li>{@code <int>} and {@code <long>} which are literal JSON numbers that are inserted into the
+   * source as literal primitive values. The corresponding property type in the supplied
+   * {@link AnnotationClass} must be {@code int.class} or {@code long.class} respectively.</li>
+   * <li>{@code <string>} is a quoted JSON string that is inserted into the source as a literal
+   * string.The corresponding property type in the supplied {@link AnnotationClass} must be
+   * {@code String.class}.</li>
+   * <li>{@code <placeholder>} is a quoted JSON string that is inserted into the source as if it
+   * was a constant expression. It is used to reference constants in annotation values, e.g. {@code
+   * dalvik.annotation.compat.UnsupportedAppUsage.VERSION_CODES.P}. It can be used for any property
+   * type and will be type checked when the generated code is compiled.</li>
+   * </ul>
+   *
+   * <p>See external/icu/tools/srcgen/unsupported-app-usage.json for an example.
+   *
+   * @param annotationClass the type of the annotation to add, includes class name, property names
+   * and types.
+   * @param file the JSON file.
+   */
+  public static AddAnnotation fromJsonFile(AnnotationClass annotationClass, Path file)
+      throws IOException {
+    Gson gson = new GsonBuilder().setLenient().create();
+    BodyDeclarationLocatorStore<AnnotationInfo> annotationStore = new BodyDeclarationLocatorStore<>();
+    try (JsonReader reader = gson.newJsonReader(Files.newBufferedReader(file, Charset.forName("UTF-8")))) {
+      try {
+        reader.beginArray();
+
+        while (reader.hasNext()) {
+          reader.beginObject();
+
+          BodyDeclarationLocator locator = null;
+
+          String annotationClassName = annotationClass.getName();
+          Map<String, Object> annotationProperties = new LinkedHashMap<>();
+
+          while (reader.hasNext()) {
+            String name = reader.nextName();
+            switch (name) {
+              case "@location":
+                locator = BodyDeclarationLocators.fromStringForm(reader.nextString());
+                break;
+              default:
+                Class<?> propertyType = annotationClass.getPropertyType(name);
+                Object value;
+                JsonToken token = reader.peek();
+                if (token == JsonToken.STRING) {
+                  String text = reader.nextString();
+                  if (propertyType != String.class) {
+                    value = new Placeholder(text);
+                  } else {
+                    // Literal string.
+                    value = text;
+                  }
+                } else {
+                  if (propertyType == boolean.class) {
+                    value = reader.nextBoolean();
+                  } else if (propertyType == int.class) {
+                    value = reader.nextInt();
+                  } else if (propertyType == double.class) {
+                    value = reader.nextDouble();
+                  } else {
+                    throw new IllegalStateException(
+                        "Unknown property type: " + propertyType + " for " + annotationClassName);
+                  }
+                }
+
+                annotationProperties.put(name, value);
+            }
+          }
+
+          if (locator == null) {
+            throw new IllegalStateException("Missing location");
+          }
+          AnnotationInfo annotationInfo = new AnnotationInfo(annotationClass, annotationProperties);
+          annotationStore.add(locator, annotationInfo);
+
+          reader.endObject();
+        }
+
+        reader.endArray();
+      } catch (RuntimeException e) {
+        throw new MalformedJsonException("Error parsing JSON at " + reader.getPath(), e);
+      }
+    }
+
+    return new AddAnnotation(annotationStore);
+  }
+
+  public AddAnnotation(BodyDeclarationLocatorStore<AnnotationInfo> locator2AnnotationInfo) {
+    this.locator2AnnotationInfo = locator2AnnotationInfo;
   }
 
   @Override
-  public void process(Context context, CompilationUnit cu) {
-    final ASTRewrite rewrite = context.rewrite();
-    ASTVisitor visitor = new ASTVisitor(false /* visitDocTags */) {
-      @Override
-      public boolean visit(AnnotationTypeDeclaration node) {
-        return handleBodyDeclaration(rewrite, node);
-      }
-
-      @Override
-      public boolean visit(AnnotationTypeMemberDeclaration node) {
-        return handleBodyDeclaration(rewrite, node);
-      }
-
-      @Override
-      public boolean visit(EnumConstantDeclaration node) {
-        return handleBodyDeclaration(rewrite, node);
-      }
-
-      @Override
-      public boolean visit(EnumDeclaration node) {
-        return handleBodyDeclaration(rewrite, node);
-      }
-
-      @Override
-      public boolean visit(FieldDeclaration node) {
-        return handleBodyDeclaration(rewrite, node);
-      }
-
-      @Override
-      public boolean visit(MethodDeclaration node) {
-        return handleBodyDeclaration(rewrite, node);
-      }
-
-      @Override
-      public boolean visit(TypeDeclaration node) {
-        return handleBodyDeclaration(rewrite, node);
-      }
-
-    };
-    cu.accept(visitor);
-  }
-
-  private boolean handleBodyDeclaration(ASTRewrite rewrite, BodyDeclaration node) {
-    if (matchesAny(annotationTargetLocators, node)) {
-      final TextEditGroup editGroup = null;
-      AST ast = node.getAST();
-      Annotation annotation = ast.newMarkerAnnotation();
-      annotation.setTypeName(ast.newName(annotationString));
-      ListRewrite listRewrite = rewrite.getListRewrite(node, node.getModifiersProperty());
-      listRewrite.insertFirst(annotation, editGroup);
+  protected boolean handleBodyDeclaration(ASTRewrite rewrite, BodyDeclaration node) {
+    AnnotationInfo annotationInfo = locator2AnnotationInfo.find(node);
+    if (annotationInfo != null) {
+      insertAnnotationBefore(rewrite, node, annotationInfo);
     }
     return true;
   }

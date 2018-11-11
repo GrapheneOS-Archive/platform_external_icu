@@ -21,9 +21,9 @@ import static com.google.currysrc.api.process.Rules.createOptionalRule;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.core.formatter.DefaultCodeFormatterConstants;
 
-import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import com.google.currysrc.Main;
+import com.google.currysrc.aosp.Annotations;
 import com.google.currysrc.api.RuleSet;
 import com.google.currysrc.api.input.InputFileGenerator;
 import com.google.currysrc.api.output.BasicOutputSourceFileGenerator;
@@ -32,7 +32,8 @@ import com.google.currysrc.api.process.Rule;
 import com.google.currysrc.api.process.ast.BodyDeclarationLocator;
 import com.google.currysrc.api.process.ast.BodyDeclarationLocators;
 import com.google.currysrc.api.process.ast.TypeLocator;
-import com.google.currysrc.processors.AddAnnotation;
+import com.google.currysrc.processors.AddDefaultConstructor;
+import com.google.currysrc.processors.AddMarkerAnnotation;
 import com.google.currysrc.processors.HidePublicClasses;
 import com.google.currysrc.processors.InsertHeader;
 import com.google.currysrc.processors.ModifyQualifiedNames;
@@ -42,7 +43,6 @@ import com.google.currysrc.processors.RenamePackage;
 import com.google.currysrc.processors.ReplaceTextCommentScanner;
 
 import java.io.File;
-import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
@@ -693,6 +693,12 @@ public class Icu4jTransform {
       "method:android.icu.text.PluralFormat#PluralFormat(ULocale,String)",
   };
 
+  private static final String[] DEFAULT_CONSTRUCTORS = {
+      "android.icu.text.DateTimePatternGenerator$DistanceInfo",
+      "android.icu.text.SpoofChecker$ScriptSet",
+      "android.icu.text.TimeZoneNames$DefaultTimeZoneNames$FactoryImpl",
+  };
+
   public static final String ANDROID_ICU4J_SAMPLE_DIR =
       "external/icu/android_icu4j/src/samples/java";
 
@@ -742,13 +748,13 @@ public class Icu4jTransform {
     private static final String SOURCE_CODE_HEADER = "/* GENERATED SOURCE. DO NOT MODIFY. */\n";
     private static final String COMMAND_USAGE = "Usage: " + Icu4jTransform.class.getCanonicalName()
             + " [--hide-non-whitelisted-api <whitelisted-api-file>]"
-            + " <source-dir>+ <target-dir> <core-platform-api-file>";
+            + " <source-dir>+ <target-dir> <core-platform-api-file> <unsupported-app-usage-file>";
 
     private final InputFileGenerator inputFileGenerator;
     private final List<Rule> rules;
     private final BasicOutputSourceFileGenerator outputSourceFileGenerator;
 
-    public Icu4jRules(String[] args) throws IOException {
+    public Icu4jRules(String[] args) {
       if (args.length < 3) {
         throw new IllegalArgumentException(COMMAND_USAGE);
       }
@@ -763,13 +769,25 @@ public class Icu4jTransform {
         args = newArgs;
       }
 
-      String[] inputDirNames = new String[args.length - 2];
-      System.arraycopy(args, 0, inputDirNames, 0, args.length - 2);
+      // Extract the source directories.
+      String[] inputDirNames = new String[args.length - 3];
+      System.arraycopy(args, 0, inputDirNames, 0, args.length - 3);
       inputFileGenerator = Icu4jTransformRules.createInputFileGenerator(inputDirNames);
-      Path corePlatformApiFile = Paths.get(args[args.length - 1]);
-      rules = createTransformRules(corePlatformApiFile, whitelistedApiPath);
-      outputSourceFileGenerator =
-          Icu4jTransformRules.createOutputFileGenerator(args[args.length - 2]);
+
+      // Extract the additional arguments.
+      int argIndex = inputDirNames.length;
+      String targetDir = args[argIndex++];
+      Path corePlatformApiFile = Paths.get(args[argIndex++]);
+      Path unsupportedAppUsageFile = Paths.get(args[argIndex++]);
+
+      // Ensure that all the arguments were used.
+      if (argIndex != args.length) {
+        throw new IllegalArgumentException(COMMAND_USAGE);
+      }
+
+      rules = createTransformRules(corePlatformApiFile, unsupportedAppUsageFile,
+          whitelistedApiPath);
+      outputSourceFileGenerator = Icu4jTransformRules.createOutputFileGenerator(targetDir);
     }
 
     @Override
@@ -805,7 +823,8 @@ public class Icu4jTransform {
     }
 
     private static List<Rule> createTransformRules(Path corePlatformApiFile,
-            Path whitelistedApiPath) throws IOException {
+            Path unsupportedAppUsagePath,
+            Path whitelistedApiPath) {
       // The rules needed to repackage source code that declares or references com.ibm.icu code
       // so it references android.icu instead.
       Rule[] repackageRules = getRepackagingRules();
@@ -852,8 +871,16 @@ public class Icu4jTransform {
           createTranslateJciteInclusionRule(),
 
           // AST change: Add CorePlatformApi to specified classes and members
-          createOptionalRule(new AddAnnotation("libcore.api.CorePlatformApi",
+          createOptionalRule(new AddMarkerAnnotation("libcore.api.CorePlatformApi",
               BodyDeclarationLocators.readBodyDeclarationLocators(corePlatformApiFile))),
+
+          // AST change: Add default constructors, must come before processor to add
+          // UnsupportedAppUsage.
+          createOptionalRule(new AddDefaultConstructor(
+              TypeLocator.createLocatorsFromStrings(DEFAULT_CONSTRUCTORS))),
+
+          // AST change: Add UnsupportedAppUsage to specified classes and members
+          createOptionalRule(Annotations.addUnsupportedAppUsage(unsupportedAppUsagePath)),
       };
 
       List<Rule> rulesList = Lists.newArrayList(repackageRules);
@@ -884,14 +911,9 @@ public class Icu4jTransform {
     }
 
     private static Rule createHidePublicClassesRule() {
-      ImmutableList.Builder<TypeLocator> apiClassesWhitelistBuilder = ImmutableList.builder();
-      for (String publicClassName : PUBLIC_API_CLASSES) {
-        apiClassesWhitelistBuilder.add(new TypeLocator(publicClassName));
-      }
+      List<TypeLocator> whitelist = TypeLocator.createLocatorsFromStrings(PUBLIC_API_CLASSES);
       return createOptionalRule(
-          new HidePublicClasses(
-              apiClassesWhitelistBuilder.build(),
-              "Only a subset of ICU is exposed in Android"));
+          new HidePublicClasses(whitelist, "Only a subset of ICU is exposed in Android"));
     }
   }
 

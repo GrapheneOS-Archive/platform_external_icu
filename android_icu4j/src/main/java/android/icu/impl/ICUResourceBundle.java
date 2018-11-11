@@ -294,6 +294,7 @@ public  class ICUResourceBundle extends UResourceBundle {
      * @return resource represented by the key
      * @exception MissingResourceException If a resource was not found.
      */
+    @dalvik.annotation.compat.UnsupportedAppUsage
     public ICUResourceBundle getWithFallback(String path) throws MissingResourceException {
         ICUResourceBundle actualBundle = this;
 
@@ -1310,6 +1311,7 @@ public  class ICUResourceBundle extends UResourceBundle {
         return wholeBundle.baseName;
     }
 
+    @dalvik.annotation.compat.UnsupportedAppUsage
     @Override
     public ULocale getULocale() {
         return wholeBundle.ulocale;
