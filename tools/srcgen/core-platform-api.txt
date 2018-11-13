@@ -7,8 +7,6 @@ method:android.icu.impl.CalendarAstronomer#setTime(long)
 method:android.icu.impl.TimeZoneAdapter#wrap(android.icu.util.TimeZone)
 method:android.icu.text.StringPrep#getInstance(int)
 method:android.icu.text.StringPrep#prepare(String,int)
-method:android.icu.text.Transliterator#getInstance(String)
-method:android.icu.text.Transliterator#transliterate(String)
 method:android.icu.util.BasicTimeZone#getNextTransition(long,boolean)
 method:android.icu.util.Region#getAvailable(RegionType)
 method:android.icu.util.TimeZoneRule#getDSTSavings()
@@ -19,7 +17,6 @@ type:android.icu.impl.CalendarAstronomer
 type:android.icu.impl.TimeZoneAdapter
 type:android.icu.text.StringPrep
 type:android.icu.text.StringPrepParseException
-type:android.icu.text.Transliterator
 type:android.icu.util.BasicTimeZone
 type:android.icu.util.Region
 type:android.icu.util.Region$RegionType
