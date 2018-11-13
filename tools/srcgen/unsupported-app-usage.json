@@ -64,21 +64,6 @@ syntax.
     "@location": "method:android.icu.text.TimeZoneNames$DefaultTimeZoneNames$FactoryImpl#FactoryImpl()"
   },
   {
-    "@location": "method:android.icu.text.Transliterator#createFromRules(String,String,int)"
-  },
-  {
-    "@location": "method:android.icu.text.Transliterator#getInstance(String)"
-  },
-  {
-    "@location": "method:android.icu.text.Transliterator#getInstance(String,int)"
-  },
-  {
-    "@location": "method:android.icu.text.Transliterator#transliterate(Replaceable,Position,String)"
-  },
-  {
-    "@location": "method:android.icu.text.Transliterator#transliterate(String)"
-  },
-  {
     "@location": "method:android.icu.text.UFormat#getLocale(ULocale.Type)"
   },
   {
