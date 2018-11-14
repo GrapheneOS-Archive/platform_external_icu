@@ -108,6 +108,13 @@ public class RepackagingTransform {
             .withRequiredArg()
             .withValuesConvertedBy(PATH_CONVERTER);
 
+    OptionSpec<Integer> tabSizeOption = optionParser.accepts("tab-size",
+        "the number of spaces that represent a single tabulation; set to the default indent used in"
+            + " the transformed code otherwise the transformed code may be incorrectly formatted")
+        .withRequiredArg()
+        .ofType(Integer.class)
+        .defaultsTo(4);
+
     optionParser.formatHelpWith(new BuiltinHelpFormatter(120, 2));
 
     OptionSet optionSet;
@@ -134,13 +141,14 @@ public class RepackagingTransform {
         createMandatoryRule(
             new InsertHeader("/* GENERATED SOURCE. DO NOT MODIFY. */\n")));
 
-    PackageTransformation packageTransformation = optionSet.valueOf(packageTransformationOption);
-    if (packageTransformation != null) {
+    List<PackageTransformation> packageTransformations = optionSet
+        .valuesOf(packageTransformationOption);
+    for (PackageTransformation packageTransformation : packageTransformations) {
       String originalPackage = packageTransformation.prefixToRemove;
       String androidPackage = packageTransformation.prefixToAdd;
       ruleBuilder.add(
           // AST change: Change the package of each CompilationUnit
-          createMandatoryRule(new RenamePackage(originalPackage, androidPackage)),
+          createOptionalRule(new RenamePackage(originalPackage, androidPackage)),
           // AST change: Change all qualified names in code and javadoc.
           createOptionalRule(new ModifyQualifiedNames(originalPackage, androidPackage)),
           // AST change: Change all string literals containing package names in code.
@@ -177,13 +185,14 @@ public class RepackagingTransform {
           createOptionalRule(
               Annotations.addUnsupportedAppUsage(unsupportedAppUsageFile)));
     }
-    
+
     Map<String, String> options = JavaCore.getOptions();
     options.put(JavaCore.COMPILER_COMPLIANCE, JavaCore.VERSION_1_8);
     options.put(JavaCore.COMPILER_SOURCE, JavaCore.VERSION_1_8);
     options.put(JavaCore.COMPILER_DOC_COMMENT_SUPPORT, JavaCore.ENABLED);
     options.put(DefaultCodeFormatterConstants.FORMATTER_TAB_CHAR, JavaCore.SPACE);
-    options.put(DefaultCodeFormatterConstants.FORMATTER_TAB_SIZE, "4");
+    options.put(DefaultCodeFormatterConstants.FORMATTER_TAB_SIZE,
+        String.valueOf(optionSet.valueOf(tabSizeOption)));
 
     new Main(false /* debug */)
         .setJdtOptions(options)
