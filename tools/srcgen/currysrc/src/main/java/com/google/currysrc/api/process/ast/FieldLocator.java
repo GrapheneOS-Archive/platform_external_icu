@@ -15,6 +15,7 @@
  */
 package com.google.currysrc.api.process.ast;
 
+import org.eclipse.jdt.core.dom.ASTNode;
 import org.eclipse.jdt.core.dom.AbstractTypeDeclaration;
 import org.eclipse.jdt.core.dom.BodyDeclaration;
 import org.eclipse.jdt.core.dom.CompilationUnit;
@@ -57,8 +58,13 @@ public final class FieldLocator implements BodyDeclarationLocator {
           : (List<VariableDeclarationFragment>) fieldDeclaration.fragments()) {
         String nodeFieldName = variableDeclarationFragment.getName().getFullyQualifiedName();
         if (nodeFieldName.equals(fieldName)) {
-          BodyDeclaration parentNode = (BodyDeclaration) node.getParent();
-          return typeLocator.matches(parentNode);
+          ASTNode parentNode = node.getParent();
+          // Parent could be an AnonymousClassDeclaration which is not a BodyDeclaration so check
+          // first.
+          if (parentNode instanceof BodyDeclaration) {
+            BodyDeclaration parentDeclarationNode = (BodyDeclaration) parentNode;
+            return typeLocator.matches(parentDeclarationNode);
+          }
         }
       }
     }
