@@ -38,26 +38,10 @@ java_library {
     exclude_srcs: ["main/classes/localespi/**/*.java"],
     exclude_java_resource_dirs: ["main/classes/localespi/src"],
 
-    target: {
-        android: {
-            exclude_java_resources: ["main/classes/core/src/com/ibm/icu/ICUConfig.properties"],
-            java_resources: [":icu4j-config"],
-        },
-        host: {
-            static_libs: [
-                "icu4j-icudata",
-                "icu4j-icutzdata",
-            ],
-        },
-    },
-}
-
-// Insert path to the ICU4C data files in the Android device file system:
-genrule {
-    name: "icu4j-config",
-    srcs: ["main/classes/core/src/com/ibm/icu/ICUConfig.properties"],
-    out: ["com/ibm/icu/ICUConfig.properties"],
-    cmd: "sed -e'/\\.dataPath =/s|$$| /system/usr/icu|' $(in) > $(out)",
+    static_libs: [
+        "icu4j-icudata",
+        "icu4j-icutzdata",
+    ],
 }
 
 java_test {
