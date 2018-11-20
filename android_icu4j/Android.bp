@@ -55,7 +55,10 @@ java_test {
         "src/main/tests/**/*.java",
         "testing/src/**/*.java",
     ],
-    java_resource_dirs: ["src/main/tests"],
+    java_resource_dirs: [
+        "src/main/tests",
+        "testing/src"
+    ],
     static_libs: [
         "junit",
         "junit-params",
