@@ -30,6 +30,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Enumeration;
 import java.util.HashSet;
@@ -47,13 +48,33 @@ import static org.junit.Assert.assertTrue;
 @MainTestShard
 @RunWith(JUnit4.class)
 public class AndroidTransliteratorAvailableIdsTest {
-    private static final String ID_LIST_FILE = "expected_transliteration_id_list.txt";
 
     @Test
     public void testGetAvailableIDs_containingAllExpectedIds() throws IOException {
+        assertContainingAllExpectedIds("expected_transliteration_id_list.txt",
+                Collections.emptyList());
+    }
+
+    /**
+     * Test that the current set of transliteration ids is backwards compatible, i.e.
+     * contains all ids when Transliteration API is first exposed as public Android API
+     * in Android Q.
+     * If a breaking change has to be made, i.e. a missing transliteration id is expected,
+     * please add the id into the exclusion list.
+     */
+    @Test
+    public void testGetAvailableIDs_containingAllExpectedIdsInFirstRelease() throws IOException {
+        assertContainingAllExpectedIds("expected_transliteration_id_list_release_1.txt",
+                Arrays.asList(
+                        /* Deliberately empty: No missing Id. */
+                ));
+    }
+
+    private void assertContainingAllExpectedIds(String resourceFileName,
+            List<String> excludedIds) throws IOException {
         List<String> expectedIds = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(
-                AndroidICUVersionTest.class.getResourceAsStream(ID_LIST_FILE)))) {
+                AndroidICUVersionTest.class.getResourceAsStream(resourceFileName)))) {
             String line;
             while((line = reader.readLine()) != null) {
                 if (!line.isEmpty()) {
@@ -61,6 +82,8 @@ public class AndroidTransliteratorAvailableIdsTest {
                 }
             }
         }
+
+        expectedIds.removeAll(excludedIds);
 
         // Sanity check. The list size shouldn't be 0.
         assertNotEquals("At least one transliteration id is expected",
