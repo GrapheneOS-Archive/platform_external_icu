@@ -26,9 +26,8 @@ import com.google.currysrc.api.input.InputFileGenerator;
 import com.google.currysrc.api.output.BasicOutputSourceFileGenerator;
 import com.google.currysrc.api.output.OutputSourceFileGenerator;
 import com.google.currysrc.api.process.Rule;
-import com.google.currysrc.api.process.ast.BodyDeclarationLocators;
 import com.google.currysrc.api.process.ast.TypeLocator;
-import com.google.currysrc.processors.AddMarkerAnnotation;
+import com.google.currysrc.processors.AddAnnotation;
 import com.google.currysrc.processors.HidePublicClasses;
 import com.google.currysrc.processors.InsertHeader;
 import com.google.currysrc.processors.ModifyQualifiedNames;
@@ -166,16 +165,16 @@ public class RepackagingTransform {
     if (corePlatformApiFile != null) {
       // AST change: Add CorePlatformApi to specified classes and members
       ruleBuilder.add(
-          createOptionalRule(new AddMarkerAnnotation("libcore.api.CorePlatformApi",
-              BodyDeclarationLocators.readBodyDeclarationLocators(corePlatformApiFile))));
+          createOptionalRule(AddAnnotation.markerAnnotationFromFlatFile(
+              "libcore.api.CorePlatformApi", corePlatformApiFile)));
     }
 
     Path intraCoreApiFile = optionSet.valueOf(intraCoreApiFileOption);
     if (intraCoreApiFile != null) {
       // AST change: Add IntraCoreApi to specified classes and members
       ruleBuilder.add(
-          createOptionalRule(new AddMarkerAnnotation("libcore.api.IntraCoreApi",
-              BodyDeclarationLocators.readBodyDeclarationLocators(intraCoreApiFile))));
+          createOptionalRule(AddAnnotation.markerAnnotationFromFlatFile(
+              "libcore.api.IntraCoreApi", intraCoreApiFile)));
     }
 
     Path unsupportedAppUsageFile = optionSet.valueOf(unsupportedAppUsageFileOption);
