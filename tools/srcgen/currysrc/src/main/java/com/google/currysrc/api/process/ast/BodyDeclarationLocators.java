@@ -212,14 +212,6 @@ public final class BodyDeclarationLocators {
    * @return The list of {@link BodyDeclarationLocator} instances.
    */
   public static List<BodyDeclarationLocator> readBodyDeclarationLocators(Path path) {
-    try {
-      String[] lines = Files.lines(path)
-          .filter(l -> !l.startsWith("#"))
-          .filter(l -> !l.isEmpty())
-          .toArray(String[]::new);
-      return createLocatorsFromStrings(lines);
-    } catch (IOException e) {
-      throw new IllegalStateException("Could not read lines from " + path, e);
-    }
+    return createLocatorsFromStrings(TypeLocator.readLines(path));
   }
 }
