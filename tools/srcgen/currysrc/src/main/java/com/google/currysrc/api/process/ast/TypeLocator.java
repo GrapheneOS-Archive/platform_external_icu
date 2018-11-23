@@ -21,6 +21,9 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import com.google.currysrc.api.match.TypeName;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import org.eclipse.jdt.core.dom.ASTNode;
 import org.eclipse.jdt.core.dom.AbstractTypeDeclaration;
 import org.eclipse.jdt.core.dom.BodyDeclaration;
@@ -87,7 +90,7 @@ public final class TypeLocator implements BodyDeclarationLocator {
     // reverse order.
     List<String> typeNames = Lists.newArrayList();
     AbstractTypeDeclaration currentNode = typeDeclaration;
-    while (typeDeclaration != null) {
+    while (currentNode != null) {
       typeNames.add(currentNode.getName().getFullyQualifiedName());
       // Handle nested / inner classes.
       ASTNode parentNode = currentNode.getParent();
@@ -112,6 +115,38 @@ public final class TypeLocator implements BodyDeclarationLocator {
       apiClassesWhitelistBuilder.add(new TypeLocator(publicClassName));
     }
     return apiClassesWhitelistBuilder.build();
+  }
+
+  /**
+   * Read type locators from a file.
+   *
+   * <p>Blank lines and lines starting with a {@code #} are ignored.
+   *
+   * @param path the path to the file.
+   * @return The list of {@link TypeLocator} instances.
+   */
+  public static List<TypeLocator> readTypeLocators(Path path) {
+    String[] lines = readLines(path);
+    return createLocatorsFromStrings(lines);
+  }
+
+  /**
+   * Read lines from a file.
+   *
+   * <p>Blank lines and lines starting with a {@code #} are ignored.
+   *
+   * @param path the path to the file.
+   * @return The array of lines.
+   */
+  static String[] readLines(Path path) {
+    try {
+      return Files.lines(path)
+          .filter(l -> !l.startsWith("#"))
+          .filter(l -> !l.isEmpty())
+          .toArray(String[]::new);
+    } catch (IOException e) {
+      throw new IllegalStateException("Could not read lines from " + path, e);
+    }
   }
 
   @Override public TypeLocator getTypeLocator() {
@@ -158,8 +193,9 @@ public final class TypeLocator implements BodyDeclarationLocator {
 
     Iterator<String> classNameIterator = classNameElements.iterator();
     String topLevelClassName = classNameIterator.next();
-    for (AbstractTypeDeclaration abstractTypeDeclaration
-        : (List<AbstractTypeDeclaration>) cu.types()) {
+    @SuppressWarnings("unchecked")
+    List<AbstractTypeDeclaration> types = cu.types();
+    for (AbstractTypeDeclaration abstractTypeDeclaration : types) {
       if (abstractTypeDeclaration.getName().getFullyQualifiedName().equals(topLevelClassName)) {
         // Top-level interface / class / enum match.
         return findNested(classNameIterator, abstractTypeDeclaration);
@@ -183,8 +219,9 @@ public final class TypeLocator implements BodyDeclarationLocator {
     }
 
     String subClassName = classNameIterator.next();
-    for (BodyDeclaration bodyDeclaration
-        : (List<BodyDeclaration>) typeDeclaration.bodyDeclarations()) {
+    @SuppressWarnings("unchecked")
+    List<BodyDeclaration> bodyDeclarations = typeDeclaration.bodyDeclarations();
+    for (BodyDeclaration bodyDeclaration : bodyDeclarations) {
       if (bodyDeclaration instanceof AbstractTypeDeclaration) {
         AbstractTypeDeclaration subTypeDeclaration = (AbstractTypeDeclaration) bodyDeclaration;
         if (subTypeDeclaration.getName().getFullyQualifiedName().equals(subClassName)) {
