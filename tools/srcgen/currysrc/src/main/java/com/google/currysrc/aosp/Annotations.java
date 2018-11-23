@@ -63,7 +63,7 @@ public final class Annotations {
    * @param unsupportedAppUsagePath the location of the file.
    * @return the {@link Processor}.
    */
-  public static Processor addUnsupportedAppUsage(Path unsupportedAppUsagePath) {
+  public static AddAnnotation addUnsupportedAppUsage(Path unsupportedAppUsagePath) {
     AnnotationClass annotationClass = new AnnotationClass(
         "dalvik.annotation.compat.UnsupportedAppUsage")
         .addProperty("maxTargetSdk", int.class)
