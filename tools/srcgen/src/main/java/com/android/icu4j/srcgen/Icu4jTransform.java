@@ -32,8 +32,8 @@ import com.google.currysrc.api.process.Rule;
 import com.google.currysrc.api.process.ast.BodyDeclarationLocator;
 import com.google.currysrc.api.process.ast.BodyDeclarationLocators;
 import com.google.currysrc.api.process.ast.TypeLocator;
+import com.google.currysrc.processors.AddAnnotation;
 import com.google.currysrc.processors.AddDefaultConstructor;
-import com.google.currysrc.processors.AddMarkerAnnotation;
 import com.google.currysrc.processors.HidePublicClasses;
 import com.google.currysrc.processors.InsertHeader;
 import com.google.currysrc.processors.ModifyQualifiedNames;
@@ -888,8 +888,8 @@ public class Icu4jTransform {
           createTranslateJciteInclusionRule(),
 
           // AST change: Add CorePlatformApi to specified classes and members
-          createOptionalRule(new AddMarkerAnnotation("libcore.api.CorePlatformApi",
-              BodyDeclarationLocators.readBodyDeclarationLocators(corePlatformApiFile))),
+          createOptionalRule(AddAnnotation.markerAnnotationFromFlatFile(
+              "libcore.api.CorePlatformApi", corePlatformApiFile)),
 
           // AST change: Add default constructors, must come before processor to add
           // UnsupportedAppUsage.
