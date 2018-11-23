@@ -28,7 +28,8 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonToken;
 import com.google.gson.stream.MalformedJsonException;
 import java.io.IOException;
-import java.nio.charset.Charset;
+import java.io.StringReader;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Collections;
@@ -36,6 +37,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.stream.Collectors;
 import org.eclipse.jdt.core.dom.AST;
 import org.eclipse.jdt.core.dom.ASTNode;
 import org.eclipse.jdt.core.dom.ASTVisitor;
@@ -113,9 +115,14 @@ public class AddAnnotation implements Processor {
    */
   public static AddAnnotation fromJsonFile(AnnotationClass annotationClass, Path file)
       throws IOException {
-    Gson gson = new GsonBuilder().setLenient().create();
-    BodyDeclarationLocatorStore<AnnotationInfo> annotationStore = new BodyDeclarationLocatorStore<>();
-    try (JsonReader reader = gson.newJsonReader(Files.newBufferedReader(file, Charset.forName("UTF-8")))) {
+    Gson gson = new GsonBuilder().create();
+    BodyDeclarationLocatorStore<AnnotationInfo> annotationStore =
+        new BodyDeclarationLocatorStore<>();
+    String jsonStringWithoutComments =
+        Files.lines(file, StandardCharsets.UTF_8)
+            .filter(l -> !l.trim().startsWith("//"))
+            .collect(Collectors.joining("\n"));
+    try (JsonReader reader = gson.newJsonReader(new StringReader(jsonStringWithoutComments))) {
       try {
         reader.beginArray();
 
