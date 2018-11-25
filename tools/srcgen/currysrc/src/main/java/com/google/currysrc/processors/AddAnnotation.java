@@ -15,6 +15,7 @@
  */
 package com.google.currysrc.processors;
 
+import com.google.currysrc.api.process.Context;
 import com.google.currysrc.api.process.Processor;
 import com.google.currysrc.api.process.ast.BodyDeclarationLocator;
 import com.google.currysrc.api.process.ast.BodyDeclarationLocatorStore;
@@ -27,18 +28,43 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonToken;
 import com.google.gson.stream.MalformedJsonException;
 import java.io.IOException;
-import java.nio.charset.Charset;
+import java.io.StringReader;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Collections;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.stream.Collectors;
+import org.eclipse.jdt.core.dom.AST;
+import org.eclipse.jdt.core.dom.ASTNode;
+import org.eclipse.jdt.core.dom.ASTVisitor;
+import org.eclipse.jdt.core.dom.Annotation;
+import org.eclipse.jdt.core.dom.AnnotationTypeDeclaration;
+import org.eclipse.jdt.core.dom.AnnotationTypeMemberDeclaration;
 import org.eclipse.jdt.core.dom.BodyDeclaration;
+import org.eclipse.jdt.core.dom.CompilationUnit;
+import org.eclipse.jdt.core.dom.EnumConstantDeclaration;
+import org.eclipse.jdt.core.dom.EnumDeclaration;
+import org.eclipse.jdt.core.dom.Expression;
+import org.eclipse.jdt.core.dom.FieldDeclaration;
+import org.eclipse.jdt.core.dom.MemberValuePair;
+import org.eclipse.jdt.core.dom.MethodDeclaration;
+import org.eclipse.jdt.core.dom.NormalAnnotation;
+import org.eclipse.jdt.core.dom.NumberLiteral;
+import org.eclipse.jdt.core.dom.SingleMemberAnnotation;
+import org.eclipse.jdt.core.dom.StringLiteral;
+import org.eclipse.jdt.core.dom.TypeDeclaration;
 import org.eclipse.jdt.core.dom.rewrite.ASTRewrite;
+import org.eclipse.jdt.core.dom.rewrite.ListRewrite;
+import org.eclipse.text.edits.TextEditGroup;
 
 /**
  * Add annotations to a white list of classes and class members.
  */
-public class AddAnnotation extends AbstractAddAnnotation {
+public class AddAnnotation implements Processor {
 
   private final BodyDeclarationLocatorStore<AnnotationInfo> locator2AnnotationInfo;
 
@@ -89,9 +115,14 @@ public class AddAnnotation extends AbstractAddAnnotation {
    */
   public static AddAnnotation fromJsonFile(AnnotationClass annotationClass, Path file)
       throws IOException {
-    Gson gson = new GsonBuilder().setLenient().create();
-    BodyDeclarationLocatorStore<AnnotationInfo> annotationStore = new BodyDeclarationLocatorStore<>();
-    try (JsonReader reader = gson.newJsonReader(Files.newBufferedReader(file, Charset.forName("UTF-8")))) {
+    Gson gson = new GsonBuilder().create();
+    BodyDeclarationLocatorStore<AnnotationInfo> annotationStore =
+        new BodyDeclarationLocatorStore<>();
+    String jsonStringWithoutComments =
+        Files.lines(file, StandardCharsets.UTF_8)
+            .filter(l -> !l.trim().startsWith("//"))
+            .collect(Collectors.joining("\n"));
+    try (JsonReader reader = gson.newJsonReader(new StringReader(jsonStringWithoutComments))) {
       try {
         reader.beginArray();
 
@@ -156,16 +187,135 @@ public class AddAnnotation extends AbstractAddAnnotation {
     return new AddAnnotation(annotationStore);
   }
 
-  public AddAnnotation(BodyDeclarationLocatorStore<AnnotationInfo> locator2AnnotationInfo) {
+  /**
+   * Create a {@link Processor} that will add annotations of the supplied class to classes and class
+   * members specified in the supplied file.
+   *
+   * <p>Each line in the supplied file can be empty, start with a {@code #} or be in the format
+   * expected by {@link BodyDeclarationLocators#fromStringForm(String)}. Lines that are empty or
+   * start with a {@code #} are ignored.
+   *
+   * @param annotationClassName the fully qualified class name of the annotation to add.
+   * @param file the flat file.
+   */
+  public static AddAnnotation markerAnnotationFromFlatFile(String annotationClassName, Path file) {
+    AnnotationClass annotationClass = new AnnotationClass(annotationClassName);
+    AnnotationInfo markerAnnotation = new AnnotationInfo(annotationClass, Collections.emptyMap());
+    List<BodyDeclarationLocator> locators =
+        BodyDeclarationLocators.readBodyDeclarationLocators(file);
+    BodyDeclarationLocatorStore<AnnotationInfo> locator2AnnotationInfo =
+        new BodyDeclarationLocatorStore<>();
+    locators.forEach(l -> locator2AnnotationInfo.add(l, markerAnnotation));
+    return new AddAnnotation(locator2AnnotationInfo);
+  }
+
+  private AddAnnotation(BodyDeclarationLocatorStore<AnnotationInfo> locator2AnnotationInfo) {
     this.locator2AnnotationInfo = locator2AnnotationInfo;
   }
 
   @Override
-  protected boolean handleBodyDeclaration(ASTRewrite rewrite, BodyDeclaration node) {
+  public void process(Context context, CompilationUnit cu) {
+    final ASTRewrite rewrite = context.rewrite();
+    ASTVisitor visitor = new ASTVisitor(false /* visitDocTags */) {
+      @Override
+      public boolean visit(AnnotationTypeDeclaration node) {
+        return handleBodyDeclaration(rewrite, node);
+      }
+
+      @Override
+      public boolean visit(AnnotationTypeMemberDeclaration node) {
+        return handleBodyDeclaration(rewrite, node);
+      }
+
+      @Override
+      public boolean visit(EnumConstantDeclaration node) {
+        return handleBodyDeclaration(rewrite, node);
+      }
+
+      @Override
+      public boolean visit(EnumDeclaration node) {
+        return handleBodyDeclaration(rewrite, node);
+      }
+
+      @Override
+      public boolean visit(FieldDeclaration node) {
+        return handleBodyDeclaration(rewrite, node);
+      }
+
+      @Override
+      public boolean visit(MethodDeclaration node) {
+        return handleBodyDeclaration(rewrite, node);
+      }
+
+      @Override
+      public boolean visit(TypeDeclaration node) {
+        return handleBodyDeclaration(rewrite, node);
+      }
+    };
+    cu.accept(visitor);
+  }
+
+  private boolean handleBodyDeclaration(ASTRewrite rewrite, BodyDeclaration node) {
     AnnotationInfo annotationInfo = locator2AnnotationInfo.find(node);
     if (annotationInfo != null) {
       insertAnnotationBefore(rewrite, node, annotationInfo);
     }
     return true;
+  }
+
+  /**
+   * Add an annotation to a {@link BodyDeclaration} node.
+   */
+  private static void insertAnnotationBefore(
+      ASTRewrite rewrite, BodyDeclaration node,
+      AnnotationInfo annotationInfo) {
+    final TextEditGroup editGroup = null;
+    AST ast = node.getAST();
+    Map<String, Object> elements = annotationInfo.getProperties();
+    Annotation annotation;
+    if (elements.isEmpty()) {
+      annotation = ast.newMarkerAnnotation();
+    } else if (elements.size() == 1 && elements.containsKey("value")) {
+      SingleMemberAnnotation singleMemberAnnotation = ast.newSingleMemberAnnotation();
+      singleMemberAnnotation.setValue(createAnnotationValue(rewrite, elements.get("value")));
+      annotation = singleMemberAnnotation;
+    } else {
+      NormalAnnotation normalAnnotation = ast.newNormalAnnotation();
+      @SuppressWarnings("unchecked")
+      List<MemberValuePair> values = normalAnnotation.values();
+      for (Entry<String, Object> entry : elements.entrySet()) {
+        MemberValuePair pair = ast.newMemberValuePair();
+        pair.setName(ast.newSimpleName(entry.getKey()));
+        pair.setValue(createAnnotationValue(rewrite, entry.getValue()));
+        values.add(pair);
+      }
+      annotation = normalAnnotation;
+    }
+
+    annotation.setTypeName(ast.newName(annotationInfo.getQualifiedName()));
+    ListRewrite listRewrite = rewrite.getListRewrite(node, node.getModifiersProperty());
+    listRewrite.insertFirst(annotation, editGroup);
+  }
+
+  private static Expression createAnnotationValue(ASTRewrite rewrite, Object value) {
+    if (value instanceof String) {
+      StringLiteral stringLiteral = rewrite.getAST().newStringLiteral();
+      stringLiteral.setLiteralValue((String) value);
+      return stringLiteral;
+    }
+    if (value instanceof Integer) {
+      NumberLiteral numberLiteral = rewrite.getAST().newNumberLiteral();
+      numberLiteral.setToken(value.toString());
+      return numberLiteral;
+    }
+    if (value instanceof Placeholder) {
+      Placeholder placeholder = (Placeholder) value;
+      // The cast is safe because createStringPlaceholder returns an instance of type NumberLiteral
+      // which is an Expression.
+      return (Expression)
+          rewrite.createStringPlaceholder(placeholder.getText(), ASTNode.NUMBER_LITERAL);
+    }
+    throw new IllegalStateException("Unknown value '" + value + "' of class " +
+        (value == null ? "NULL" : value.getClass()));
   }
 }

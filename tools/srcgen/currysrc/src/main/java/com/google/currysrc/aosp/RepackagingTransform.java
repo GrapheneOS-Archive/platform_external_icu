@@ -26,9 +26,9 @@ import com.google.currysrc.api.input.InputFileGenerator;
 import com.google.currysrc.api.output.BasicOutputSourceFileGenerator;
 import com.google.currysrc.api.output.OutputSourceFileGenerator;
 import com.google.currysrc.api.process.Rule;
-import com.google.currysrc.api.process.ast.BodyDeclarationLocators;
 import com.google.currysrc.api.process.ast.TypeLocator;
-import com.google.currysrc.processors.AddMarkerAnnotation;
+import com.google.currysrc.processors.AddAnnotation;
+import com.google.currysrc.processors.AddDefaultConstructor;
 import com.google.currysrc.processors.HidePublicClasses;
 import com.google.currysrc.processors.InsertHeader;
 import com.google.currysrc.processors.ModifyQualifiedNames;
@@ -89,6 +89,14 @@ public class RepackagingTransform {
             "flat file containing body declaration identifiers for those classes and members that"
                 + " form part of the core platform api and so require a CorePlatformApi annotation"
                 + " to be added during transformation.")
+            .withRequiredArg()
+            .withValuesConvertedBy(PATH_CONVERTER);
+
+    OptionSpec<Path> defaultConstructorsFileOption =
+        optionParser.accepts("default-constructors-file",
+            "flat file containing body declaration identifiers for those classes that require a"
+                + " default constructor to be inserted, usually as a place to which annotations can"
+                + " be added.")
             .withRequiredArg()
             .withValuesConvertedBy(PATH_CONVERTER);
 
@@ -162,20 +170,29 @@ public class RepackagingTransform {
     // Doc change: Insert @hide on all public classes.
     ruleBuilder.add(createHidePublicClassesRule());
 
+    Path defaultConstructorsFile = optionSet.valueOf(defaultConstructorsFileOption);
+    if (defaultConstructorsFile != null) {
+      // AST change: Add default constructors, must come before processors that add
+      // annotations.
+      ruleBuilder.add(
+          createOptionalRule(new AddDefaultConstructor(
+              TypeLocator.readTypeLocators(defaultConstructorsFile))));
+    }
+
     Path corePlatformApiFile = optionSet.valueOf(corePlatformApiFileOption);
     if (corePlatformApiFile != null) {
       // AST change: Add CorePlatformApi to specified classes and members
       ruleBuilder.add(
-          createOptionalRule(new AddMarkerAnnotation("libcore.api.CorePlatformApi",
-              BodyDeclarationLocators.readBodyDeclarationLocators(corePlatformApiFile))));
+          createOptionalRule(AddAnnotation.markerAnnotationFromFlatFile(
+              "libcore.api.CorePlatformApi", corePlatformApiFile)));
     }
 
     Path intraCoreApiFile = optionSet.valueOf(intraCoreApiFileOption);
     if (intraCoreApiFile != null) {
       // AST change: Add IntraCoreApi to specified classes and members
       ruleBuilder.add(
-          createOptionalRule(new AddMarkerAnnotation("libcore.api.IntraCoreApi",
-              BodyDeclarationLocators.readBodyDeclarationLocators(intraCoreApiFile))));
+          createOptionalRule(AddAnnotation.markerAnnotationFromFlatFile(
+              "libcore.api.IntraCoreApi", intraCoreApiFile)));
     }
 
     Path unsupportedAppUsageFile = optionSet.valueOf(unsupportedAppUsageFileOption);
