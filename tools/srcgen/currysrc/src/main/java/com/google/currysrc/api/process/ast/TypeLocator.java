@@ -24,6 +24,7 @@ import com.google.currysrc.api.match.TypeName;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Objects;
 import org.eclipse.jdt.core.dom.ASTNode;
 import org.eclipse.jdt.core.dom.AbstractTypeDeclaration;
 import org.eclipse.jdt.core.dom.BodyDeclaration;
@@ -230,6 +231,24 @@ public final class TypeLocator implements BodyDeclarationLocator {
       }
     }
     return null;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (!(o instanceof TypeLocator)) {
+      return false;
+    }
+    TypeLocator that = (TypeLocator) o;
+    return Objects.equals(packageMatcher, that.packageMatcher) &&
+        Objects.equals(classNameElements, that.classNameElements);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(packageMatcher, classNameElements);
   }
 
   @Override
