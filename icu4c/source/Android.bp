@@ -17,7 +17,7 @@ subdirs = [
     "i18n",
 ]
 
-cc_library_static {
+cc_library {
     name: "libicuuc_stubdata",
     host_supported: true,
     srcs: ["stubdata/stubdata.cpp"],
@@ -27,4 +27,9 @@ cc_library_static {
         "-Werror",
     ],
     cppflags: ["-std=c++11"],
+    target: {
+        windows: {
+            enabled: true,
+        },
+    },
 }

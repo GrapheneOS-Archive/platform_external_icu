@@ -66,5 +66,17 @@ cc_library {
     host_supported: true,
     unique_host_soname: true,
     defaults: ["libicuuc_defaults"],
-    static_libs: ["libicuuc_stubdata"],
+    target: {
+        android: {
+            static_libs: ["libicuuc_stubdata"],
+        },
+        not_windows: {
+            static_libs: ["libicuuc_stubdata"],
+        },
+        windows: {
+            enabled: true,
+            // Windows requires importing data as a DLL when building with U_COMMON_IMPLEMENTATION
+            shared_libs: ["libicuuc_stubdata"],
+        },
+    },
 }
