@@ -17,6 +17,7 @@ package com.google.currysrc.api.process.ast;
 
 import com.google.common.base.Joiner;
 
+import java.util.Objects;
 import org.eclipse.jdt.core.dom.MethodDeclaration;
 import org.eclipse.jdt.core.dom.SingleVariableDeclaration;
 
@@ -72,6 +73,23 @@ public final class ParameterMatcher {
    */
   public String toStringForm() {
     return Joiner.on(",").join(parameterTypes);
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (!(o instanceof ParameterMatcher)) {
+      return false;
+    }
+    ParameterMatcher that = (ParameterMatcher) o;
+    return Objects.equals(parameterTypes, that.parameterTypes);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(parameterTypes);
   }
 
   @Override
