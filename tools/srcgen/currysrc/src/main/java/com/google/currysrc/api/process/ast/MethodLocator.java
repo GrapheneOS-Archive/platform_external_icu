@@ -15,6 +15,7 @@
  */
 package com.google.currysrc.api.process.ast;
 
+import java.util.Objects;
 import org.eclipse.jdt.core.dom.ASTNode;
 import org.eclipse.jdt.core.dom.AbstractTypeDeclaration;
 import org.eclipse.jdt.core.dom.BodyDeclaration;
@@ -91,6 +92,25 @@ public final class MethodLocator implements BodyDeclarationLocator {
   @Override public String getStringFormTarget() {
     return typeLocator.getStringFormTarget() + "#" + methodName
         + "(" + parameterMatcher.toStringForm() + ")";
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (!(o instanceof MethodLocator)) {
+      return false;
+    }
+    MethodLocator that = (MethodLocator) o;
+    return Objects.equals(typeLocator, that.typeLocator) &&
+        Objects.equals(methodName, that.methodName) &&
+        Objects.equals(parameterMatcher, that.parameterMatcher);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(typeLocator, methodName, parameterMatcher);
   }
 
   @Override
