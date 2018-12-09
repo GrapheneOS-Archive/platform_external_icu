@@ -40,6 +40,14 @@ public class AnnotationInfo {
     return properties;
   }
 
+  @Override
+  public String toString() {
+    return "AnnotationInfo{" +
+        "annotationClass=" + annotationClass +
+        ", properties=" + properties +
+        '}';
+  }
+
   /**
    * Expected type of an annotation's properties.
    */
