@@ -68,6 +68,7 @@ public final class Annotations {
         "dalvik.annotation.compat.UnsupportedAppUsage")
         .addProperty("maxTargetSdk", int.class)
         .addProperty("trackingBug", long.class)
+        .addProperty("implicitMember", String.class)
         .addProperty("expectedSignature", String.class);
     try {
       return AddAnnotation.fromJsonFile(annotationClass, unsupportedAppUsagePath);

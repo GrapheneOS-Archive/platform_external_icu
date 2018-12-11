@@ -70,10 +70,11 @@ public class AnnotationInfo {
       return name;
     }
 
-    public Class<?> getPropertyType(String name) {
-      Class<?> type = propertyTypes.get(name);
+    public Class<?> getPropertyType(String propertyName) {
+      Class<?> type = propertyTypes.get(propertyName);
       if (type == null) {
-        throw new IllegalStateException(String.format("Unknown property: %s in %s", name, name));
+        throw new IllegalStateException(
+            String.format("Unknown property: %s in %s", propertyName, name));
       }
       return type;
     }
