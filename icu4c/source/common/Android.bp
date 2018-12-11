@@ -45,7 +45,7 @@ cc_defaults {
 
     rtti: true,
 
-    required: ["icu-data"],
+    required: ["icu-data_host_runtime_apex"],
 
     target: {
         android: {
