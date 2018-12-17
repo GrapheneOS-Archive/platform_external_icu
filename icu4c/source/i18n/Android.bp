@@ -34,16 +34,22 @@ cc_defaults {
         "-std=c++11",
     ],
     rtti: true,
-    export_include_dirs: ["."],
 
     target: {
         android: {
             cflags: [
+                "-DANDROID_LINK_SHARED_ICU4C",
                 "-DPIC",
                 "-fPIC",
             ],
         },
     },
+}
+
+cc_library_headers {
+    name: "libicui18n_headers",
+    host_supported: true,
+    export_include_dirs: ["."],
 }
 
 //
@@ -55,4 +61,6 @@ cc_library_shared {
     host_supported: true,
     unique_host_soname: true,
     shared_libs: ["libicuuc"],
+    header_libs: [ "libicui18n_headers" ],
+    export_header_lib_headers: [ "libicui18n_headers" ],
 }
