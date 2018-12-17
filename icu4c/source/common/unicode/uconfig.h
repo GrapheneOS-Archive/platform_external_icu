@@ -17,7 +17,12 @@
 #ifndef __UCONFIG_H__
 #define __UCONFIG_H__
 
-
+// Android patch: Hard code UCONFIG_USE_LOCAL=1 so that ICU will use
+// uconfig_local.h, which allows us to disable use of non-stable and
+// internal APIs in Android's libandroidicu shim. For more information
+// on this pre-processor variable see the comments below.
+// Also, see http://b/117094880
+#define UCONFIG_USE_LOCAL 1
 /*!
  * \file
  * \brief User-configurable settings
