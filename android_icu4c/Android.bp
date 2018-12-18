@@ -1,4 +1,4 @@
-// Copyright (C) 2016 The Android Open Source Project
+// Copyright (C) 2018 The Android Open Source Project
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,31 +12,16 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-subdirs = [
-    "common",
-    "i18n",
-]
-
-cc_library {
-    name: "libicuuc_stubdata",
+// Android repo only headers for icu4c
+// The header should mainly contain config for C preprocessor,
+// but not actual C / C++ source code
+cc_library_headers {
+    name: "icu4c_extra_headers",
     host_supported: true,
-    srcs: ["stubdata/stubdata.cpp"],
-    header_libs: [
-        "libicuuc_headers",
-    ],
-    cflags: [
-        "-Wall",
-        "-Werror",
-    ],
-    cppflags: ["-std=c++11"],
+    export_include_dirs: ["include"],
     target: {
         windows: {
             enabled: true,
-        },
-        android: {
-            cflags: [
-                "-DANDROID_LINK_SHARED_ICU4C",
-            ],
         },
     },
 }
