@@ -25,6 +25,8 @@ import android.icu.dev.test.TestFmwk;
 import android.icu.testsharding.MainTestShard;
 import android.icu.util.VersionInfo;
 
+import libcore.icu.ICU;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
@@ -51,11 +53,19 @@ public class AndroidICUVersionTest extends TestFmwk {
 
     @Test
     public void testAndroidIcuVersion() {
-        VersionInfo actualVersion = VersionInfo.ICU_VERSION;
-        assertEquals("The ICU major version is not expected.",
-                expectedIcuVersion.getMajor(), actualVersion.getMajor());
-        assertTrue("Minor version can't be smaller than the expected.",
-                expectedIcuVersion.getMinor() <= actualVersion.getMinor());
+        // Check ICU4J.
+        VersionInfo actualIcu4jVersion = VersionInfo.ICU_VERSION;
+        assertEquals("The ICU4J major version is not expected.",
+                expectedIcuVersion.getMajor(), actualIcu4jVersion.getMajor());
+        assertTrue("ICU4J minor version can't be smaller than the expected.",
+                expectedIcuVersion.getMinor() <= actualIcu4jVersion.getMinor());
+
+        // Check ICU4C.
+        VersionInfo actualIcu4cVersion = VersionInfo.getInstance(ICU.getIcuVersion());
+        assertEquals("The ICU4C major version is not expected.",
+                expectedIcuVersion.getMajor(), actualIcu4cVersion.getMajor());
+        assertTrue("ICU4C minor version can't be smaller than the expected.",
+                expectedIcuVersion.getMinor() <= actualIcu4cVersion.getMinor());
     }
 
 }
