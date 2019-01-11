@@ -74,7 +74,7 @@ cc_library_headers {
 //
 // Build for the host and target.
 //
-cc_library {
+cc_library_shared {
     name: "libicuuc",
     host_supported: true,
     unique_host_soname: true,
