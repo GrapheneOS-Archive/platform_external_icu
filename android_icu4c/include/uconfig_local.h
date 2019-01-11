@@ -20,13 +20,9 @@
  * stops the build process. Only the following libraries should have this
  * flag,
  * - Libraries in Runtime APEX module
- * - Host libraries
- * - Includes libicuuc as a static library
  * Otherwise, the libraries should use libandroidicu.
  */
 #if defined(__ANDROID__) && !defined(ANDROID_LINK_SHARED_ICU4C)
-// TODO: Enable #error when the exception flag ANDROID_LINK_SHARED_ICU4C is
-// added to all the android libraries
-// #error "Please use libandroidicu and do not directly link to libicuuc or libicui18n."
+#error "Please use libandroidicu and do not directly link to libicuuc or libicui18n."
 #endif
 
