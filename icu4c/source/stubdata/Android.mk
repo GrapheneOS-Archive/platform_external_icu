@@ -24,17 +24,9 @@ stubdata_path:= $(call my-dir)
 dat_file := $(notdir $(wildcard $(stubdata_path)/*.dat))
 
 include $(CLEAR_VARS)
-LOCAL_MODULE := icu-data
+LOCAL_MODULE := icu-data_host_runtime_apex
 LOCAL_MODULE_CLASS := ETC
-LOCAL_MODULE_PATH := $(TARGET_OUT)/usr/icu
-LOCAL_MODULE_STEM := $(dat_file)
-LOCAL_SRC_FILES := $(dat_file)
-include $(BUILD_PREBUILT)
-
-include $(CLEAR_VARS)
-LOCAL_MODULE := icu-data
-LOCAL_MODULE_CLASS := ETC
-LOCAL_MODULE_PATH := $(HOST_OUT)/usr/icu
+LOCAL_MODULE_PATH := $(HOST_OUT)/com.android.runtime/etc/icu
 LOCAL_MODULE_STEM := $(dat_file)
 LOCAL_SRC_FILES := $(dat_file)
 LOCAL_IS_HOST_MODULE := true

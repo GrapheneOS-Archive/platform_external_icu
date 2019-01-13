@@ -54,6 +54,10 @@
 $(call add-clean-step, rm -rf $(OUT_DIR)/host/linux-x86/com.android.runtime/etc/icu)
 $(call add-clean-step, rm -rf $(OUT_DIR)/host/linux-x86/com.android.runtime/etc/icu)
 
+# Remove the icu .dat file from /system/usr/icu and the host equivalent. 2nd attempt.
+$(call add-clean-step, rm -rf $(PRODUCT_OUT)/system/usr/icu/*)
+$(call add-clean-step, rm -rf $(OUT_DIR)/host/linux-x86/usr/icu/*)
+
 # ************************************************
 # NEWER CLEAN STEPS MUST BE AT THE END OF THE LIST
 # ************************************************
