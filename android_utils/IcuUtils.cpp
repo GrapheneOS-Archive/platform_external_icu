@@ -24,11 +24,12 @@
 #include <stdlib.h>
 
 void InitializeIcuOrDie() {
-    const char* systemPathPrefix = getenv("ANDROID_ROOT");
-    LOG_ALWAYS_FATAL_IF(systemPathPrefix == NULL, "ANDROID_ROOT environment variable not set");
+    const char* runtimeModulePathPrefix = getenv("ANDROID_RUNTIME_ROOT");
+    LOG_ALWAYS_FATAL_IF(runtimeModulePathPrefix == NULL,
+            "ANDROID_RUNTIME_ROOT environment variable not set");
 
     char buf[256];
-    const int num_written = snprintf(buf, sizeof(buf), "%s/usr/icu/", systemPathPrefix);
+    const int num_written = snprintf(buf, sizeof(buf), "%s/etc/icu/", runtimeModulePathPrefix);
     LOG_ALWAYS_FATAL_IF((num_written < 0 || static_cast<size_t>(num_written) >= sizeof(buf)),
             "Unable to construct ICU path.");
 
