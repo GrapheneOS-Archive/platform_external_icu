@@ -34,6 +34,12 @@ cc_library_static {
                 "-DANDROID_LINK_SHARED_ICU4C",
             ],
         },
+        windows: {
+            enabled: true,
+            cflags: [
+                "-Wno-ignored-attributes", // ICU-20356
+            ],
+        },
     },
 }
 

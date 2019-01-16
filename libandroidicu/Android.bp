@@ -54,8 +54,11 @@ cc_library {
             cflags: [
                 "-DANDROID_LINK_SHARED_ICU4C",
             ],
-        }
-    }
+        },
+        windows: {
+            enabled: true,
+        },
+    },
 }
 
 // TODO: http://b/120776993 Testing for libandroidicu
