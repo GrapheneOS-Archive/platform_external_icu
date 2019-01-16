@@ -43,6 +43,13 @@ cc_defaults {
                 "-fPIC",
             ],
         },
+        windows: {
+            enabled: true,
+            cflags: [
+                "-Wno-ignored-attributes", // ICU-20356
+                "-Wno-missing-field-initializers", // ICU-20179
+            ],
+        },
     },
 }
 
@@ -50,6 +57,11 @@ cc_library_headers {
     name: "libicui18n_headers",
     host_supported: true,
     export_include_dirs: ["."],
+    target: {
+        windows: {
+            enabled: true,
+        },
+    },
 }
 
 //
