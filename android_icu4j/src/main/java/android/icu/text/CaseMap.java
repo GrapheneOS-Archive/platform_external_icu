@@ -235,6 +235,7 @@ public abstract class CaseMap {
          *
          * @return an options object with this option.
          * @see UCharacter#TITLECASE_NO_LOWERCASE
+         * @see #adjustToCased()
          */
         public Title noLowercase() {
             return new Title(internalOptions | UCharacter.TITLECASE_NO_LOWERCASE);
@@ -245,7 +246,9 @@ public abstract class CaseMap {
          * does not adjust the titlecasing BreakIterator indexes;
          * titlecases exactly the characters at breaks from the iterator.
          *
-         * <p>By default, titlecasing will take each break iterator index.
+         * <p>By default, titlecasing will take each break iterator index,
+         * adjust it to the next relevant character (see {@link #adjustToCased()}),
+         * and titlecase that one.
          *
          * <p>Other characters are lowercased.
          *
