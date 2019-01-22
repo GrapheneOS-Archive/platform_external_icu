@@ -601,13 +601,14 @@ public class Icu4jTransform {
       "type:android.icu.util.ULocale$Minimize",
   };
 
-  /** A set of declarations we don't want to expose in Android.
-    * We generally hide:
-    * Any API we find that relates to a final static primitive that a compiler could inline
-    * and could change between ICU releases.
-    * Methods that relate to registration of static defaults / factories, which cannot be
-    * configured on Android "before use", because a lot of initialization happens in the zygote.
-    */
+  /**
+   * A set of declarations we don't want to expose in Android.
+   * We generally hide:
+   * Any API we find that relates to a final static primitive that a compiler could inline
+   * and could change between ICU releases.
+   * Methods that relate to registration of static defaults / factories, which cannot be
+   * configured on Android "before use", because a lot of initialization happens in the zygote.
+   */
   private static final String[] DECLARATIONS_TO_HIDE = {
       /* ASCII order please. */
       "field:android.icu.lang.UCharacter$BidiPairedBracketType#COUNT",
@@ -695,6 +696,18 @@ public class Icu4jTransform {
       "type:android.icu.text.Collator$CollatorFactory",
       "type:android.icu.text.NumberFormat$NumberFormatFactory",
       "type:android.icu.text.NumberFormat$SimpleNumberFormatFactory",
+  };
+
+  /**
+   * ICU APIs that are in the Android SDK API but are deprecated on Android and not deprecated in
+   * ICU. Entries can be removed if ICU also decide to deprecate.
+   * Entries are usually the result of Android mistakenly exposing an API, an ICU API problem,
+   * and/or ICU's stability guarantees differing from Android's requirements.
+   */
+  private static final String[] ANDROID_DEPRECATED_SET = {
+      /* ASCII order please. */
+      // Unstable "constant" value - different values in different API levels. http://b/77850660.
+      "field:android.icu.util.JapaneseCalendar#CURRENT_ERA",
   };
 
   // The declarations with JavaDocs that have @.jcite tags that should be transformed to doclava
@@ -875,6 +888,9 @@ public class Icu4jTransform {
           // Usually used for avoiding the new API introduced by upstream to show up in Android.
           createHideNonWhitelistedRule(whitelistedApiPath),
 
+          // AST change: Add @Deprecated annotation to deprecated API in Android
+          createMarkDeprecatedClassesRule(),
+
           // AST change: Remove JavaDoc tags that Android has no need of:
           // @hide has been added in place of @draft, @provisional and @internal
           // @stable <ICU version> will not mean much on Android.
@@ -918,6 +934,13 @@ public class Icu4jTransform {
           BodyDeclarationLocators.createLocatorsFromStrings(INITIAL_DEPRECATED_SET);
       return createOptionalRule(
           new TagMatchingDeclarations(blacklist, "@hide original deprecated declaration"));
+    }
+
+    private static Rule createMarkDeprecatedClassesRule() {
+      List<BodyDeclarationLocator> locators =
+          BodyDeclarationLocators.createLocatorsFromStrings(ANDROID_DEPRECATED_SET);
+      return createOptionalRule(AddAnnotation.markerAnnotationFromLocators(
+          "Deprecated", locators));
     }
 
     private static Rule createHideBlacklistedDeclarationsRule() {

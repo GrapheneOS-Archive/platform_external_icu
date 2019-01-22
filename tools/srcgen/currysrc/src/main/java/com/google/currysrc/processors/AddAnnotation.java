@@ -199,10 +199,22 @@ public class AddAnnotation implements Processor {
    * @param file the flat file.
    */
   public static AddAnnotation markerAnnotationFromFlatFile(String annotationClassName, Path file) {
-    AnnotationClass annotationClass = new AnnotationClass(annotationClassName);
-    AnnotationInfo markerAnnotation = new AnnotationInfo(annotationClass, Collections.emptyMap());
     List<BodyDeclarationLocator> locators =
         BodyDeclarationLocators.readBodyDeclarationLocators(file);
+    return markerAnnotationFromLocators(annotationClassName, locators);
+  }
+
+  /**
+   * Create a {@link Processor} that will add annotations of the supplied class to classes and class
+   * members specified in the locators.
+   *
+   * @param annotationClassName the fully qualified class name of the annotation to add.
+   * @param locators list of BodyDeclarationLocator
+   */
+  public static AddAnnotation markerAnnotationFromLocators(String annotationClassName,
+      List<BodyDeclarationLocator> locators) {
+    AnnotationClass annotationClass = new AnnotationClass(annotationClassName);
+    AnnotationInfo markerAnnotation = new AnnotationInfo(annotationClass, Collections.emptyMap());
     BodyDeclarationLocatorStore<AnnotationInfo> locator2AnnotationInfo =
         new BodyDeclarationLocatorStore<>();
     locators.forEach(l -> locator2AnnotationInfo.add(l, markerAnnotation));
