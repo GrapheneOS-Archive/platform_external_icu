@@ -888,8 +888,10 @@ public class Icu4jTransform {
           // Usually used for avoiding the new API introduced by upstream to show up in Android.
           createHideNonWhitelistedRule(whitelistedApiPath),
 
-          // AST change: Add @Deprecated annotation to deprecated API in Android
-          createMarkDeprecatedClassesRule(),
+          // AST change: Add @Deprecated annotation and @deprecated doc to deprecated API in Android
+          createMarkElementsWithDeprecatedAnnotationRule(),
+          createMarkElementsWithDeprecatedJavadocTagRule(),
+
 
           // AST change: Remove JavaDoc tags that Android has no need of:
           // @hide has been added in place of @draft, @provisional and @internal
@@ -936,11 +938,18 @@ public class Icu4jTransform {
           new TagMatchingDeclarations(blacklist, "@hide original deprecated declaration"));
     }
 
-    private static Rule createMarkDeprecatedClassesRule() {
+    private static Rule createMarkElementsWithDeprecatedAnnotationRule() {
       List<BodyDeclarationLocator> locators =
           BodyDeclarationLocators.createLocatorsFromStrings(ANDROID_DEPRECATED_SET);
       return createOptionalRule(AddAnnotation.markerAnnotationFromLocators(
           "Deprecated", locators));
+    }
+
+    private static Rule createMarkElementsWithDeprecatedJavadocTagRule() {
+      List<BodyDeclarationLocator> locators =
+          BodyDeclarationLocators.createLocatorsFromStrings(ANDROID_DEPRECATED_SET);
+      return createOptionalRule(new TagMatchingDeclarations(locators,
+          "@deprecated on Android but not deprecated in ICU"));
     }
 
     private static Rule createHideBlacklistedDeclarationsRule() {
