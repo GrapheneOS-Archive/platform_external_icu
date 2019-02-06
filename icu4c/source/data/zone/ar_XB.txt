@@ -18,6 +18,9 @@ ar_XB{
         "Antarctica:DumontDUrville"{
             ec{"؜‮Dumont‬؜ ؜‮d‬؜’؜‮Urville‬؜"}
         }
+        "Asia:Qostanay"{
+            ec{"؜‮Kostanay‬؜"}
+        }
         "Asia:Saigon"{
             ec{"؜‮Ho‬؜ ؜‮Chi‬؜ ؜‮Minh‬؜ ؜‮City‬؜"}
         }
