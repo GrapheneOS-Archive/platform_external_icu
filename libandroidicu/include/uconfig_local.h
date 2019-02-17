@@ -23,5 +23,4 @@
 #define U_HIDE_DRAFT_API 1
 #define U_HIDE_DEPRECATED_API 1
 #define U_SHOW_CPLUSPLUS_API 0
-// TODO(b/120420009): Enable this flag. Currently, libandroidicu can't be built with this flag.
-// #define U_HIDE_INTERNAL_API 1
+#define U_HIDE_INTERNAL_API 1
