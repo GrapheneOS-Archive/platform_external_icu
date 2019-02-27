@@ -985,6 +985,7 @@ LIBANDROIDICU_EXTERNAL_1 {
     utrans_transIncrementalUChars_android;
     utrans_transUChars_android;
     utrans_unregisterID_android;
+    AIcu_initializeIcuOrDie;
   local:
     *;
 };
