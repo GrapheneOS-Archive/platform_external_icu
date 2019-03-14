@@ -56,6 +56,7 @@ public final class Main {
 
   private final boolean debug;
   private Map<String, String> jdtOptions;
+  private Writer reportWriter;
 
   public Main(boolean debug) {
     this.debug = debug;
@@ -66,11 +67,16 @@ public final class Main {
     return this;
   }
 
-  public void execute(RuleSet ruleSet) throws Exception {
-    execute(ruleSet, new OutputStreamWriter(System.out));
+  public Main setReportWriter(Writer reportWriter) {
+    this.reportWriter = reportWriter;
+    return this;
   }
 
-  public void execute(RuleSet ruleSet, Writer reportWriter) throws Exception {
+  public void execute(RuleSet ruleSet) throws Exception {
+    if (reportWriter == null) {
+      reportWriter = new OutputStreamWriter(System.out);
+    }
+
     Map<String, String> compilerOptions = this.jdtOptions;
     if (compilerOptions == null) {
       compilerOptions = defaultJdtOptions();
@@ -86,7 +92,8 @@ public final class Main {
 
       String source = readSource(inputFile);
       CompilationUnitHandler compilationUnitHandler = new CompilationUnitHandler(
-              inputFile, parser, source, new PrintWriter(reportWriter), compilerOptions);
+          inputFile, parser, source, new PrintWriter(reportWriter), compilerOptions
+      );
       compilationUnitHandler.setDebug(debug);
 
       List<Rule> ruleList = ruleSet.getRuleList(inputFile);
