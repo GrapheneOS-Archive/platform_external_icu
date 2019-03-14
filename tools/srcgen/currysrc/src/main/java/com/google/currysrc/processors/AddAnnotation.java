@@ -19,6 +19,7 @@ import com.google.currysrc.api.process.Context;
 import com.google.currysrc.api.process.Processor;
 import com.google.currysrc.api.process.ast.BodyDeclarationLocator;
 import com.google.currysrc.api.process.ast.BodyDeclarationLocatorStore;
+import com.google.currysrc.api.process.ast.BodyDeclarationLocatorStore.Mapping;
 import com.google.currysrc.api.process.ast.BodyDeclarationLocators;
 import com.google.currysrc.processors.AnnotationInfo.AnnotationClass;
 import com.google.currysrc.processors.AnnotationInfo.Placeholder;
@@ -67,6 +68,7 @@ import org.eclipse.text.edits.TextEditGroup;
 public class AddAnnotation implements Processor {
 
   private final BodyDeclarationLocatorStore<AnnotationInfo> locator2AnnotationInfo;
+  private Listener listener;
 
   /**
    * Create a {@link Processor} that will add annotations of the supplied class to classes and class
@@ -221,8 +223,26 @@ public class AddAnnotation implements Processor {
     return new AddAnnotation(locator2AnnotationInfo);
   }
 
+  public interface Listener {
+
+    /**
+     * Called when an annotation is added to a class or one of its members.
+     *
+     * @param annotationInfo the information about the annotation that was added.
+     * @param locator the locator of the element to which the annotation was added.
+     * @param bodyDeclaration the modified class or class member.
+     */
+    void onAddAnnotation(AnnotationInfo annotationInfo, BodyDeclarationLocator locator,
+        BodyDeclaration bodyDeclaration);
+  }
+
   private AddAnnotation(BodyDeclarationLocatorStore<AnnotationInfo> locator2AnnotationInfo) {
     this.locator2AnnotationInfo = locator2AnnotationInfo;
+    this.listener = (c, l, b) -> {};
+  }
+
+  public void setListener(Listener listener) {
+    this.listener = listener;
   }
 
   @Override
@@ -268,9 +288,14 @@ public class AddAnnotation implements Processor {
   }
 
   private boolean handleBodyDeclaration(ASTRewrite rewrite, BodyDeclaration node) {
-    AnnotationInfo annotationInfo = locator2AnnotationInfo.find(node);
-    if (annotationInfo != null) {
+    Mapping<AnnotationInfo> mapping = locator2AnnotationInfo.findMapping(node);
+    if (mapping != null) {
+      AnnotationInfo annotationInfo = mapping.getValue();
       insertAnnotationBefore(rewrite, node, annotationInfo);
+
+      // Notify any listeners that an annotation has been added.
+      BodyDeclarationLocator locator = mapping.getLocator();
+      listener.onAddAnnotation(annotationInfo, locator, node);
     }
     return true;
   }
