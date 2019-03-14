@@ -26,6 +26,7 @@ import com.google.currysrc.api.input.InputFileGenerator;
 import com.google.currysrc.api.output.BasicOutputSourceFileGenerator;
 import com.google.currysrc.api.output.OutputSourceFileGenerator;
 import com.google.currysrc.api.process.Rule;
+import com.google.currysrc.api.process.ast.ChangeLog;
 import com.google.currysrc.api.process.ast.TypeLocator;
 import com.google.currysrc.processors.AddAnnotation;
 import com.google.currysrc.processors.AddDefaultConstructor;
@@ -123,6 +124,16 @@ public class RepackagingTransform {
         .ofType(Integer.class)
         .defaultsTo(4);
 
+    OptionSpec<Path> changeLogOption =
+        optionParser.accepts("change-log",
+            "file into which information about what changes are made is appended. The file is"
+                + " intended to be used to aggregate information about the changes made on"
+                + " successive calls to this executable after which the changes made can be"
+                + " verified, e.g. check to make sure that annotations were added at all locations"
+                + " specified in the file specified by --unsupported-app-usage-file.")
+            .withRequiredArg()
+            .withValuesConvertedBy(PATH_CONVERTER);
+
     optionParser.formatHelpWith(new BuiltinHelpFormatter(120, 2));
 
     OptionSet optionSet;
@@ -139,81 +150,88 @@ public class RepackagingTransform {
       throw e;
     }
 
-    Path sourceDir = optionSet.valueOf(sourceDirOption);
-    Path targetDir = optionSet.valueOf(targetDirOption);
+    Path changeLogPath = optionSet.valueOf(changeLogOption);
+    try (ChangeLog changeLog = ChangeLog.createChangeLog(changeLogPath)) {
 
-    ImmutableList.Builder<Rule> ruleBuilder = ImmutableList.builder();
+      Path sourceDir = optionSet.valueOf(sourceDirOption);
+      Path targetDir = optionSet.valueOf(targetDirOption);
 
-    // Doc change: Insert a warning about the source code being generated.
-    ruleBuilder.add(
-        createMandatoryRule(
-            new InsertHeader("/* GENERATED SOURCE. DO NOT MODIFY. */\n")));
+      ImmutableList.Builder<Rule> ruleBuilder = ImmutableList.builder();
 
-    List<PackageTransformation> packageTransformations = optionSet
-        .valuesOf(packageTransformationOption);
-    for (PackageTransformation packageTransformation : packageTransformations) {
-      String originalPackage = packageTransformation.prefixToRemove;
-      String androidPackage = packageTransformation.prefixToAdd;
+      // Doc change: Insert a warning about the source code being generated.
       ruleBuilder.add(
-          // AST change: Change the package of each CompilationUnit
-          createOptionalRule(new RenamePackage(originalPackage, androidPackage)),
-          // AST change: Change all qualified names in code and javadoc.
-          createOptionalRule(new ModifyQualifiedNames(originalPackage, androidPackage)),
-          // AST change: Change all string literals containing package names in code.
-          createOptionalRule(new ModifyStringLiterals(originalPackage, androidPackage)),
-          // AST change: Change all string literals containing package paths in code.
-          createOptionalRule(new ModifyStringLiterals(
-              packageToPath(originalPackage), packageToPath(androidPackage)))
-      );
+          createMandatoryRule(
+              new InsertHeader("/* GENERATED SOURCE. DO NOT MODIFY. */\n")));
+
+      List<PackageTransformation> packageTransformations = optionSet
+          .valuesOf(packageTransformationOption);
+      for (PackageTransformation packageTransformation : packageTransformations) {
+        String originalPackage = packageTransformation.prefixToRemove;
+        String androidPackage = packageTransformation.prefixToAdd;
+        ruleBuilder.add(
+            // AST change: Change the package of each CompilationUnit
+            createOptionalRule(new RenamePackage(originalPackage, androidPackage)),
+            // AST change: Change all qualified names in code and javadoc.
+            createOptionalRule(new ModifyQualifiedNames(originalPackage, androidPackage)),
+            // AST change: Change all string literals containing package names in code.
+            createOptionalRule(new ModifyStringLiterals(originalPackage, androidPackage)),
+            // AST change: Change all string literals containing package paths in code.
+            createOptionalRule(new ModifyStringLiterals(
+                packageToPath(originalPackage), packageToPath(androidPackage)))
+        );
+      }
+
+      // Doc change: Insert @hide on all public classes.
+      ruleBuilder.add(createHidePublicClassesRule());
+
+      Path defaultConstructorsFile = optionSet.valueOf(defaultConstructorsFileOption);
+      if (defaultConstructorsFile != null) {
+        // AST change: Add default constructors, must come before processors that add
+        // annotations.
+        AddDefaultConstructor processor = new AddDefaultConstructor(
+            TypeLocator.readTypeLocators(defaultConstructorsFile));
+        processor.setListener(changeLog.asAddDefaultConstructorListener());
+        ruleBuilder.add(createOptionalRule(processor));
+      }
+
+      Path corePlatformApiFile = optionSet.valueOf(corePlatformApiFileOption);
+      if (corePlatformApiFile != null) {
+        // AST change: Add CorePlatformApi to specified classes and members
+        AddAnnotation processor = AddAnnotation.markerAnnotationFromFlatFile(
+            "libcore.api.CorePlatformApi", corePlatformApiFile);
+        processor.setListener(changeLog.asAddAnnotationListener());
+        ruleBuilder.add(createOptionalRule(processor));
+      }
+
+      Path intraCoreApiFile = optionSet.valueOf(intraCoreApiFileOption);
+      if (intraCoreApiFile != null) {
+        // AST change: Add IntraCoreApi to specified classes and members
+        AddAnnotation processor = AddAnnotation.markerAnnotationFromFlatFile(
+            "libcore.api.IntraCoreApi", intraCoreApiFile);
+        processor.setListener(changeLog.asAddAnnotationListener());
+        ruleBuilder.add(createOptionalRule(processor));
+      }
+
+      Path unsupportedAppUsageFile = optionSet.valueOf(unsupportedAppUsageFileOption);
+      if (unsupportedAppUsageFile != null) {
+        // AST Change: Add UnsupportedAppUsage to specified class members.
+        AddAnnotation processor = Annotations.addUnsupportedAppUsage(unsupportedAppUsageFile);
+        processor.setListener(changeLog.asAddAnnotationListener());
+        ruleBuilder.add(createOptionalRule(processor));
+      }
+
+      Map<String, String> options = JavaCore.getOptions();
+      options.put(JavaCore.COMPILER_COMPLIANCE, JavaCore.VERSION_1_8);
+      options.put(JavaCore.COMPILER_SOURCE, JavaCore.VERSION_1_8);
+      options.put(JavaCore.COMPILER_DOC_COMMENT_SUPPORT, JavaCore.ENABLED);
+      options.put(DefaultCodeFormatterConstants.FORMATTER_TAB_CHAR, JavaCore.SPACE);
+      options.put(DefaultCodeFormatterConstants.FORMATTER_TAB_SIZE,
+          String.valueOf(optionSet.valueOf(tabSizeOption)));
+
+      new Main(false /* debug */)
+          .setJdtOptions(options)
+          .execute(new TransformRules(sourceDir, targetDir, ruleBuilder.build()));
     }
-
-    // Doc change: Insert @hide on all public classes.
-    ruleBuilder.add(createHidePublicClassesRule());
-
-    Path defaultConstructorsFile = optionSet.valueOf(defaultConstructorsFileOption);
-    if (defaultConstructorsFile != null) {
-      // AST change: Add default constructors, must come before processors that add
-      // annotations.
-      ruleBuilder.add(
-          createOptionalRule(new AddDefaultConstructor(
-              TypeLocator.readTypeLocators(defaultConstructorsFile))));
-    }
-
-    Path corePlatformApiFile = optionSet.valueOf(corePlatformApiFileOption);
-    if (corePlatformApiFile != null) {
-      // AST change: Add CorePlatformApi to specified classes and members
-      ruleBuilder.add(
-          createOptionalRule(AddAnnotation.markerAnnotationFromFlatFile(
-              "libcore.api.CorePlatformApi", corePlatformApiFile)));
-    }
-
-    Path intraCoreApiFile = optionSet.valueOf(intraCoreApiFileOption);
-    if (intraCoreApiFile != null) {
-      // AST change: Add IntraCoreApi to specified classes and members
-      ruleBuilder.add(
-          createOptionalRule(AddAnnotation.markerAnnotationFromFlatFile(
-              "libcore.api.IntraCoreApi", intraCoreApiFile)));
-    }
-
-    Path unsupportedAppUsageFile = optionSet.valueOf(unsupportedAppUsageFileOption);
-    if (unsupportedAppUsageFile != null) {
-      // AST Change: Add UnsupportedAppUsage to specified class members.
-      ruleBuilder.add(
-          createOptionalRule(
-              Annotations.addUnsupportedAppUsage(unsupportedAppUsageFile)));
-    }
-
-    Map<String, String> options = JavaCore.getOptions();
-    options.put(JavaCore.COMPILER_COMPLIANCE, JavaCore.VERSION_1_8);
-    options.put(JavaCore.COMPILER_SOURCE, JavaCore.VERSION_1_8);
-    options.put(JavaCore.COMPILER_DOC_COMMENT_SUPPORT, JavaCore.ENABLED);
-    options.put(DefaultCodeFormatterConstants.FORMATTER_TAB_CHAR, JavaCore.SPACE);
-    options.put(DefaultCodeFormatterConstants.FORMATTER_TAB_SIZE,
-        String.valueOf(optionSet.valueOf(tabSizeOption)));
-
-    new Main(false /* debug */)
-        .setJdtOptions(options)
-        .execute(new TransformRules(sourceDir, targetDir, ruleBuilder.build()));
   }
 
   private static String packageToPath(String originalPackage) {

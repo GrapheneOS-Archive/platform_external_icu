@@ -22,7 +22,7 @@ import org.eclipse.jdt.core.dom.BodyDeclaration;
 
 /**
  * Associates a {@link BodyDeclaration} (identified by a {@link BodyDeclarationLocator}) with some
- * data.
+ * data, represented as a {@link Mapping}.
  *
  * @param <T> the type of data that can be associated with a {@link BodyDeclarationLocator}.
  */
@@ -35,7 +35,7 @@ public class BodyDeclarationLocatorStore<T> {
   }
 
   /**
-   * Add an association between a {@link BodyDeclarationLocator} and some data.
+   * Adds a mapping between a {@link BodyDeclarationLocator} and some data.
    *
    * <p>If two of more {@link BodyDeclarationLocator} instances are added that will match the
    * same {@link BodyDeclaration} then the first one added will take precedence.
@@ -46,17 +46,17 @@ public class BodyDeclarationLocatorStore<T> {
     T existing = locator2Data.putIfAbsent(locator, data);
     if (existing != null) {
       throw new IllegalStateException(
-          "Locator " + locator + " already has existing entry: " + existing);
+          "Locator " + locator + " already has existing mapping: " + existing);
     }
   }
 
   /**
-   * Find the data associated with the supplied {@link BodyDeclaration}.
+   * Finds the data associated with the supplied {@link BodyDeclaration}.
    *
-   * <p>This iterates through the list of entries (in insertion order). For each entry the
+   * <p>This iterates through the list of mappings (in insertion order). For each mapping the
    * {@link BodyDeclarationLocator} is checked to see if it matches the {@code declaration}. If it
-   * does match then the associated data is returned, otherwise the next entry is checked. If no
-   * entries matched then null is returned.
+   * does match then the associated data is returned, otherwise the next mapping is checked. If no
+   * mappings matched then null is returned.
    *
    * @param declaration the {@link BodyDeclaration} whose associated data is required.
    * @return null if there is no data associated with the supplied {@link BodyDeclaration},
@@ -66,6 +66,46 @@ public class BodyDeclarationLocatorStore<T> {
     for (Entry<BodyDeclarationLocator, T> entry : locator2Data.entrySet()) {
       if (entry.getKey().matches(declaration)) {
         return entry.getValue();
+      }
+    }
+
+    return null;
+  }
+
+  public static class Mapping<T> {
+    private final BodyDeclarationLocator locator;
+    private final T value;
+
+    private Mapping(BodyDeclarationLocator locator, T value) {
+      this.locator = locator;
+      this.value = value;
+    }
+
+    public BodyDeclarationLocator getLocator() {
+      return locator;
+    }
+
+    public T getValue() {
+      return value;
+    }
+  }
+
+  /**
+   * Finds the mapping associated with the supplied {@link BodyDeclaration}.
+   *
+   * <p>This iterates through the list of mappings (in insertion order). For each mapping the
+   * {@link BodyDeclarationLocator} is checked to see if it matches the {@code declaration}. If it
+   * does match then the mapping is returned, otherwise the next mapping is checked. If no mappings
+   * matched then null is returned.
+   *
+   * @param declaration the {@link BodyDeclaration} whose associated data is required.
+   * @return null if there is no mapping associated with the supplied {@link BodyDeclaration},
+   * otherwise the mapping provided with the matching {@link BodyDeclarationLocator}.
+   */
+  public Mapping<T> findMapping(BodyDeclaration declaration) {
+    for (Entry<BodyDeclarationLocator, T> entry : locator2Data.entrySet()) {
+      if (entry.getKey().matches(declaration)) {
+        return new Mapping<>(entry.getKey(), entry.getValue());
       }
     }
 
