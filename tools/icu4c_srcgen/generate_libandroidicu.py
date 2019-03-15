@@ -60,10 +60,13 @@ def generate_shim(functions, includes):
     return JINJA_ENV.get_template('shim.cpp.j2').render(data)
 
 
-def generate_symbol_txt(functions):
-    """Generates the symbol txt file  from the given functions."""
+def generate_symbol_txt(shim_functions, extra_function_names):
+    """Generates the symbol txt file from the given functions."""
     data = {
-        'functions': functions,
+        # Each shim_function is given an _android suffix.
+        'shim_functions' : shim_functions,
+        # Each extra function name is included as given.
+        'extra_function_names': extra_function_names,
     }
     return JINJA_ENV.get_template('libandroidicu.map.txt.j2').render(data)
 
@@ -91,10 +94,15 @@ def main():
               'w') as out_file:
         out_file.write(generate_shim(functions, includes).encode('utf8'))
 
-    with open(android_path(
-        'external/icu/libandroidicu/libandroidicu.map.txt'),
+    with open(android_path('external/icu/libandroidicu/aicu/extra_function_names.txt'),
+              'r') as in_file:
+        extra_function_names = [
+                line.strip() for line in in_file.readlines() if not line.startswith('#')
+        ]
+
+    with open(android_path('external/icu/libandroidicu/libandroidicu.map.txt'),
               'w') as out_file:
-        out_file.write(generate_symbol_txt(functions).encode('utf8'))
+        out_file.write(generate_symbol_txt(functions, extra_function_names).encode('utf8'))
 
     for path in parser.header_paths_to_copy:
         basename = os.path.basename(path)
