@@ -13,13 +13,20 @@
 // limitations under the License.
 cc_library {
     name: "libandroidicu",
-    srcs: [], // Empty source. The library consists of libandroidicu_static only.
+
+    // Most code is imported via libandroidicu_static.
+    srcs: [
+        "aicu/AIcu.cpp",
+    ],
     host_supported: true,
     unique_host_soname: true,
+
+    // include/aicu/: extra utility APIs added by android
     // include/unicode/: Includes modified C headers from ICU4C,
     //                   but excludes C++ headers.
     // include/uconfig_local.h: local configuration specific for libandroidicu
     export_include_dirs: ["include"],
+
     // The implementation of libandroidicu depends on libicuuc and and libicui18n,
     // but we need to export the headers in include/.
     //
@@ -35,6 +42,7 @@ cc_library {
     shared_libs: [
         "libicuuc",
         "libicui18n",
+        "liblog",
     ],
     stubs: {
         symbol_file: "libandroidicu.map.txt",
