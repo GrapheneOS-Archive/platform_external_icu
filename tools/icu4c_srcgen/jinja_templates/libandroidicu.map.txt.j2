@@ -17,8 +17,11 @@
 #
 LIBANDROIDICU_EXTERNAL_1 {
   global:
-{% for func in functions %}
+{% for func in shim_functions %}
     {{ func.name }}_android;
+{% endfor %}
+{% for extra_func_name in extra_function_names %}
+    {{ extra_func_name }};
 {% endfor %}
   local:
     *;

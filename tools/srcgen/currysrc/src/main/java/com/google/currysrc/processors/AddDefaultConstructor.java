@@ -43,9 +43,26 @@ public class AddDefaultConstructor implements Processor {
       ModifierKeyword.PRIVATE_KEYWORD, ModifierKeyword.PROTECTED_KEYWORD};
 
   private final List<TypeLocator> whitelist;
+  private Listener listener;
+
+  public interface Listener {
+
+    /**
+     * Called when a default constructor is added to a class.
+     *
+     * @param locator the locator for the modified class.
+     * @param typeDeclaration the class that was modified.
+     */
+    void onAddDefaultConstructor(TypeLocator locator, TypeDeclaration typeDeclaration);
+  }
 
   public AddDefaultConstructor(List<TypeLocator> whitelist) {
     this.whitelist = whitelist;
+    this.listener = (l, typeDeclaration) -> {};
+  }
+
+  public void setListener(Listener listener) {
+    this.listener = listener;
   }
 
   @Override
@@ -54,7 +71,9 @@ public class AddDefaultConstructor implements Processor {
     for (TypeLocator typeLocator : whitelist) {
       AbstractTypeDeclaration abstractTypeDeclaration = typeLocator.find(cu);
       if (abstractTypeDeclaration instanceof TypeDeclaration) {
-        addDefaultConstructor(rewrite, (TypeDeclaration) abstractTypeDeclaration);
+        TypeDeclaration typeDeclaration = (TypeDeclaration) abstractTypeDeclaration;
+        addDefaultConstructor(rewrite, typeDeclaration);
+        listener.onAddDefaultConstructor(typeLocator, typeDeclaration);
       }
     }
   }
