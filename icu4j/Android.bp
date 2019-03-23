@@ -124,6 +124,7 @@ generate_script_common_cmd = "export ANDROID_BUILD_TOP=$$(pwd) && " +
 
 genrule {
     name: "generated_android_icu4j_src_files",
+    enabled: false, // http://b/117312606
     srcs: generate_script_srcs,
     tools: generate_script_tools,
     tool_files: generate_script_tool_files,
@@ -135,6 +136,7 @@ genrule {
 
 java_genrule {
     name: "generated_android_icu4j_resources",
+    enabled: false, // http://b/117312606
     host_supported: true,
     srcs: generate_script_srcs,
     tools: generate_script_tools,
@@ -147,6 +149,7 @@ java_genrule {
 
 genrule {
     name: "generated_android_icu4j_test_files",
+    enabled: false, // http://b/117312606
     srcs: generate_script_srcs,
     tools: generate_script_tools,
     tool_files: generate_script_tool_files,
@@ -159,6 +162,7 @@ genrule {
 
 java_genrule {
     name: "generated_android_icu4j_test_resources",
+    enabled: false, // http://b/117312606
     host_supported: true,
     srcs: generate_script_srcs,
     tools: generate_script_tools,
