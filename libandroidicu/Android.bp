@@ -62,6 +62,7 @@ cc_library {
             cflags: [
                 "-DANDROID_LINK_SHARED_ICU4C",
             ],
+            version_script: "libandroidicu.map.txt",
         },
         windows: {
             enabled: true,
