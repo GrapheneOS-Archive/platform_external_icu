@@ -85,10 +85,7 @@ UOBJECT_DEFINE_RTTI_IMPLEMENTATION(DateIntervalFormat)
 // Mutex, protects access to fDateFormat, fFromCalendar and fToCalendar.
 //        Needed because these data members are modified by const methods of DateIntervalFormat.
 
-static UMutex *gFormatterMutex() {
-    static UMutex m = U_MUTEX_INITIALIZER;
-    return &m;
-}
+static UMutex gFormatterMutex;
 
 DateIntervalFormat* U_EXPORT2
 DateIntervalFormat::createInstance(const UnicodeString& skeleton,
@@ -174,7 +171,7 @@ DateIntervalFormat::operator=(const DateIntervalFormat& itvfmt) {
         delete fTimePattern;
         delete fDateTimeFormat;
         {
-            Mutex lock(gFormatterMutex());
+            Mutex lock(&gFormatterMutex);
             if ( itvfmt.fDateFormat ) {
                 fDateFormat = (SimpleDateFormat*)itvfmt.fDateFormat->clone();
             } else {
@@ -236,7 +233,7 @@ DateIntervalFormat::operator==(const Format& other) const {
     if ((fInfo != fmt->fInfo) && (fInfo == NULL || fmt->fInfo == NULL)) {return FALSE;}
     if (fInfo && fmt->fInfo && (*fInfo != *fmt->fInfo )) {return FALSE;}
     {
-        Mutex lock(gFormatterMutex());
+        Mutex lock(&gFormatterMutex);
         if (fDateFormat != fmt->fDateFormat && (fDateFormat == NULL || fmt->fDateFormat == NULL)) {return FALSE;}
         if (fDateFormat && fmt->fDateFormat && (*fDateFormat != *fmt->fDateFormat)) {return FALSE;}
     }
@@ -298,7 +295,7 @@ DateIntervalFormat::format(const DateInterval* dtInterval,
     handler.setAcceptFirstOnly(TRUE);
     int8_t ignore;
 
-    Mutex lock(gFormatterMutex());
+    Mutex lock(&gFormatterMutex);
     return formatIntervalImpl(*dtInterval, appendTo, ignore, handler, status);
 }
 
@@ -315,7 +312,7 @@ FormattedDateInterval DateIntervalFormat::formatToValue(
     auto handler = result->getHandler(status);
     handler.setCategory(UFIELD_CATEGORY_DATE);
     {
-        Mutex lock(gFormatterMutex());
+        Mutex lock(&gFormatterMutex);
         formatIntervalImpl(dtInterval, string, firstIndex, handler, status);
     }
     handler.getError(status);
@@ -347,7 +344,7 @@ DateIntervalFormat::format(Calendar& fromCalendar,
     handler.setAcceptFirstOnly(TRUE);
     int8_t ignore;
 
-    Mutex lock(gFormatterMutex());
+    Mutex lock(&gFormatterMutex);
     return formatImpl(fromCalendar, toCalendar, appendTo, ignore, handler, status);
 }
 
@@ -365,7 +362,7 @@ FormattedDateInterval DateIntervalFormat::formatToValue(
     auto handler = result->getHandler(status);
     handler.setCategory(UFIELD_CATEGORY_DATE);
     {
-        Mutex lock(gFormatterMutex());
+        Mutex lock(&gFormatterMutex);
         formatImpl(fromCalendar, toCalendar, string, firstIndex, handler, status);
     }
     handler.getError(status);
@@ -603,7 +600,7 @@ const TimeZone&
 DateIntervalFormat::getTimeZone() const
 {
     if (fDateFormat != NULL) {
-        Mutex lock(gFormatterMutex());
+        Mutex lock(&gFormatterMutex);
         return fDateFormat->getTimeZone();
     }
     // If fDateFormat is NULL (unexpected), create default timezone.
