@@ -768,7 +768,8 @@ DateTimePatternGenerator::getCalendarTypeToUse(const Locale& locale, CharString&
             nullptr,
             FALSE,
             &err);
-        if (U_FAILURE(err)) { return; }
+        // Android-changed: http://b/129070579 ICU-20558 Workaround U_MISSING_RESOURCE_ERROR regression with invalid locale
+        if (U_FAILURE(err) && err != U_MISSING_RESOURCE_ERROR) { return; }
         localeWithCalendarKey[ULOC_LOCALE_IDENTIFIER_CAPACITY-1] = 0; // ensure null termination
         // now get the calendar key value from that locale
         char calendarType[ULOC_KEYWORDS_CAPACITY];
@@ -778,8 +779,9 @@ DateTimePatternGenerator::getCalendarTypeToUse(const Locale& locale, CharString&
             calendarType,
             ULOC_KEYWORDS_CAPACITY,
             &err);
-        if (U_FAILURE(err)) { return; }
-        if (calendarTypeLen < ULOC_KEYWORDS_CAPACITY) {
+        // Android-changed: http://b/129070579 ICU-20558 Workaround U_MISSING_RESOURCE_ERROR regression with invalid locale
+        if (U_FAILURE(err) && err != U_MISSING_RESOURCE_ERROR) { return; }
+        if (U_SUCCESS(err) && calendarTypeLen < ULOC_KEYWORDS_CAPACITY) {
             destination.clear().append(calendarType, -1, err);
             if (U_FAILURE(err)) { return; }
         }
