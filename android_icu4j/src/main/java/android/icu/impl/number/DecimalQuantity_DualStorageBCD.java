@@ -241,9 +241,38 @@ public final class DecimalQuantity_DualStorageBCD extends DecimalQuantity_Abstra
                 tempLong = tempLong * 10 + getDigitPos(shift);
             }
             BigDecimal result = BigDecimal.valueOf(tempLong);
-            result = result.scaleByPowerOfTen(scale);
+            // BEGIN Android-changed: Don't rely on exception message when checking for underflow
+            // Upstream ICU code attempts to scaleByPowerOfTen() and catches and inspects the
+            // expected exception to work out if the new scale would be < Integer.MIN_VALUE.
+            // On Android, we check in advance because the exception message on Android does not
+            // allow us to distinguish between overflow and underflow.
+            //
+            // This is a partial cherry-pick from this upstream commit:
+            // https://github.com/unicode-org/icu/commit/6cbd62e59e30f73b444be89ea71fd74275ac53a4
+            // http://b/130732552
+            /*
+            try {
+                result = result.scaleByPowerOfTen(scale);
+            } catch (ArithmeticException e) {
+                if (e.getMessage().contains("Underflow")) {
+                    result = BigDecimal.ZERO;
+                } else {
+                    throw e;
+                }
+            }
             if (isNegative())
                 result = result.negate();
+            */
+            long newScale = result.scale() + scale;
+            if (newScale <= Integer.MIN_VALUE) {
+                result = BigDecimal.ZERO;
+            } else {
+                result = result.scaleByPowerOfTen(scale);
+            }
+            if (isNegative()) {
+                result = result.negate();
+            }
+            // END Android-changed: Don't rely on exception message when checking for underflow
             return result;
         }
     }
