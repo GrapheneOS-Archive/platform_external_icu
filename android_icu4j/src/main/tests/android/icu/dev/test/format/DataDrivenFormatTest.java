@@ -20,6 +20,7 @@ import android.icu.dev.test.util.DateTimeStyleSet;
 import android.icu.text.DateFormat;
 import android.icu.text.SimpleDateFormat;
 import android.icu.util.Calendar;
+import android.icu.util.JapaneseCalendar;
 import android.icu.util.TimeZone;
 import android.icu.util.ULocale;
 import org.junit.runner.RunWith;
@@ -89,6 +90,14 @@ public class DataDrivenFormatTest extends ModuleTest {
             String spec = currentCase.getString("spec");
             String date = currentCase.getString("date");
             String str = currentCase.getString("str");
+
+            // Android-changed: Old Android releases can optionally support the new Japanese era.
+            // Note that the value of CURRENT_ERA comes from the system image, the string "Reiwa"
+            // comes from test side binary resource file.
+            if (JapaneseCalendar.CURRENT_ERA == JapaneseCalendar.HEISEI
+                && "TestConsistentPivot".equals(testData.getName())) {
+                str = str.replace("Reiwa", "Heisei");
+            }
             
             Date fromDate = null;
             boolean useDate = false;
