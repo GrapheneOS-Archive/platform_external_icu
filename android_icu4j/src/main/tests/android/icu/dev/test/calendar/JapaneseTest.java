@@ -383,17 +383,24 @@ public class JapaneseTest extends CalendarTestFmwk {
         doTheoreticalLimitsTest(jcal, true);
     }
 
+    @Test
     public void TestHeiseiToReiwa() {
         Calendar cal = Calendar.getInstance();
         cal.set(2019, Calendar.APRIL, 29);
 
         DateFormat jfmt = DateFormat.getDateInstance(DateFormat.LONG, new ULocale("ja@calendar=japanese"));
 
-        final String[] EXPECTED_FORMAT = {
+        // Android-changed: Old Android releases can optionally support the new Japanese era.
+        boolean isCurrentHeisei = JapaneseCalendar.CURRENT_ERA == JapaneseCalendar.HEISEI;
+        final String[] EXPECTED_FORMAT = new String[] {
                 "\u5E73\u621031\u5E744\u670829\u65E5",  // Heisei 31 April 29
                 "\u5E73\u621031\u5E744\u670830\u65E5",  // Heisei 31 April 30
-                "\u4EE4\u548C1\u5E745\u67081\u65E5",    // Reiwa 1 May 1
-                "\u4EE4\u548C1\u5E745\u67082\u65E5",    // Reiwa 1 May 2
+                isCurrentHeisei
+                    ? "\u5E73\u621031\u5E745\u67081\u65E5"    // Heisei 31 May 1
+                    : "\u4EE4\u548C1\u5E745\u67081\u65E5",    // Reiwa 1 May 1
+                isCurrentHeisei
+                    ? "\u5E73\u621031\u5E745\u67082\u65E5"    // Heisei 31 May 2
+                    : "\u4EE4\u548C1\u5E745\u67082\u65E5",    // Reiwa 1 May 2
         };
 
         for (int i = 0; i < EXPECTED_FORMAT.length; i++) {
