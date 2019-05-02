@@ -13,6 +13,7 @@ import android.icu.impl.EraRules;
 import android.icu.util.Calendar;
 import android.icu.util.JapaneseCalendar;
 import android.icu.util.ULocale;
+import android.icu.util.TimeZone;
 import android.icu.testsharding.MainTestShard;
 
 /**
@@ -47,7 +48,8 @@ public class EraRulesTest extends TestFmwk {
                         + calId);
             }
 
-            Calendar cal = Calendar.getInstance(new ULocale("en"));
+            // Android-changed: EraRules.getCurrentEraIndex() uses UTC time. http://b/131766004
+            Calendar cal = Calendar.getInstance(TimeZone.GMT_ZONE, new ULocale("en"));
             int currentIdx = rules1.getCurrentEraIndex();
             int currentYear = cal.get(Calendar.YEAR);
             int idx = rules1.getEraIndex(currentYear, cal.get(Calendar.MONTH) + 1, cal.get(Calendar.DATE));
