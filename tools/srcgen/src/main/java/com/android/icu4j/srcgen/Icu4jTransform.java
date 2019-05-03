@@ -710,14 +710,23 @@ public class Icu4jTransform {
       // See BreakIterator#getTitleInstance() below for deprecation reason.
       "field:android.icu.text.BreakIterator#KIND_TITLE",
 
-      // Unstable "constant" value - different values in different API levels. http://b/77850660.
-      "field:android.icu.util.JapaneseCalendar#CURRENT_ERA",
-
       // getTitleInstance(...) methods have been deprecated in Unicode 3.2 and are likely to be
       // deprecated in ICU 64.
       "method:android.icu.text.BreakIterator#getTitleInstance()",
       "method:android.icu.text.BreakIterator#getTitleInstance(Locale)",
       "method:android.icu.text.BreakIterator#getTitleInstance(ULocale)",
+  };
+
+  /**
+   * ICU APIs that are in the Android SDK API but are removed on Android and @stable in ICU.
+   * Entries can be removed if ICU also decide to remove the APIs.
+   * Entries are usually the result of Android mistakenly exposing an API, an ICU API problem,
+   * and/or ICU's stability guarantees differing from Android's requirements.
+   */
+  private static final String[] ANDROID_REMOVED_SET = {
+      /* ASCII order please. */
+      // Unstable "constant" value - different values in different API levels. http://b/77850660.
+      "field:android.icu.util.JapaneseCalendar#CURRENT_ERA",
   };
 
   // The declarations with JavaDocs that have @.jcite tags that should be transformed to doclava
@@ -902,6 +911,9 @@ public class Icu4jTransform {
           createMarkElementsWithDeprecatedAnnotationRule(),
           createMarkElementsWithDeprecatedJavadocTagRule(),
 
+          // AST change: Add @removed doc to removed API in Android
+          createMarkElementsWithRemovedJavadocTagRule(),
+
 
           // AST change: Remove JavaDoc tags that Android has no need of:
           // @hide has been added in place of @draft, @provisional and @internal
@@ -960,6 +972,13 @@ public class Icu4jTransform {
           BodyDeclarationLocators.createLocatorsFromStrings(ANDROID_DEPRECATED_SET);
       return createOptionalRule(new TagMatchingDeclarations(locators,
           "@deprecated on Android but not deprecated in ICU"));
+    }
+
+    private static Rule createMarkElementsWithRemovedJavadocTagRule() {
+      List<BodyDeclarationLocator> locators =
+          BodyDeclarationLocators.createLocatorsFromStrings(ANDROID_REMOVED_SET);
+      return createOptionalRule(new TagMatchingDeclarations(locators,
+          "@removed on Android but @stable in ICU"));
     }
 
     private static Rule createHideBlacklistedDeclarationsRule() {
