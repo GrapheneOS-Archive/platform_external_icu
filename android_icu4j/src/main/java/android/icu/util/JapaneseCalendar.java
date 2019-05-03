@@ -360,6 +360,13 @@ public class JapaneseCalendar extends GregorianCalendar {
      */
     static public final int HEISEI;
 
+    // Android-changed: Cherry-pick the Reiwa constant from ICU 64.
+    /**
+     * Constant for the era starting on May 1, 2019 AD.
+     * @hide draft / provisional / internal are hidden on Android
+     */
+    static public final int REIWA;
+
     // We want to make these era constants initialized in a static initializer
     // block to prevent javac to inline these values in a consumer code.
     // By doing so, we can keep better binary compatibility across versions even
@@ -369,7 +376,12 @@ public class JapaneseCalendar extends GregorianCalendar {
         TAISHO = 233;
         SHOWA = 234;
         HEISEI = 235;
-        CURRENT_ERA = ERA_RULES.getCurrentEraIndex();
+        // Android-changed: Android doesn't use system time to initialize CURRENT_ERA.
+        //   Android could initialize this class during device boot with incorrect time, and
+        //   all forked process, e.g. app processes, may have incorrect current era.
+        // CURRENT_ERA = ERA_RULES.getCurrentEraIndex();
+        REIWA = 236;
+        CURRENT_ERA = REIWA;
     }
 
     /**
