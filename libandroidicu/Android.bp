@@ -19,6 +19,7 @@ cc_library {
         "aicu/AIcu.cpp",
     ],
     host_supported: true,
+    native_bridge_supported: true,
     unique_host_soname: true,
 
     // include/aicu/: extra utility APIs added by android

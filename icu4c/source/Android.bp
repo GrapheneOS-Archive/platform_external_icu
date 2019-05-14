@@ -20,6 +20,7 @@ subdirs = [
 cc_library {
     name: "libicuuc_stubdata",
     host_supported: true,
+    native_bridge_supported: true,
     srcs: ["stubdata/stubdata.cpp"],
     header_libs: [
         "libicuuc_headers",
