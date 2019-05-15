@@ -61,6 +61,7 @@ cc_defaults {
 cc_library_headers {
     name: "libicuuc_headers",
     host_supported: true,
+    native_bridge_supported: true,
     header_libs: [ "icu4c_extra_headers" ],
     export_header_lib_headers: [ "icu4c_extra_headers" ],
     export_include_dirs: ["."],
@@ -77,6 +78,7 @@ cc_library_headers {
 cc_library_shared {
     name: "libicuuc",
     host_supported: true,
+    native_bridge_supported: true,
     unique_host_soname: true,
     defaults: ["libicuuc_defaults"],
     target: {

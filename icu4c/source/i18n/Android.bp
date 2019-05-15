@@ -56,6 +56,7 @@ cc_defaults {
 cc_library_headers {
     name: "libicui18n_headers",
     host_supported: true,
+    native_bridge_supported: true,
     export_include_dirs: ["."],
     target: {
         windows: {
@@ -71,6 +72,7 @@ cc_library_shared {
     name: "libicui18n",
     defaults: ["libicui18n_defaults"],
     host_supported: true,
+    native_bridge_supported: true,
     unique_host_soname: true,
     shared_libs: ["libicuuc"],
     header_libs: [ "libicui18n_headers" ],
