@@ -941,13 +941,6 @@ public class SerializableTestUtility {
                 return;
             }
 
-            // Android patch (b/68143370) begin.
-            if (className.equals("android.icu.text.DecimalFormat_ICU58_Android")) {
-                // Do not test the legacy DecimalFormat class in ICU 59
-                return;
-            }
-            // Android patch (b/68143370) end.
-
             if (c.isEnum() || !serializable.isAssignableFrom(c)) {
                 //System.out.println("@@@ Skipping: " + className);
                 return;
