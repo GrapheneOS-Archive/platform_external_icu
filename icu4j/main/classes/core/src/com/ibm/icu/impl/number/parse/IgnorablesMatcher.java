@@ -18,6 +18,10 @@ public class IgnorablesMatcher extends SymbolMatcher implements NumberParseMatch
     public static final IgnorablesMatcher STRICT = new IgnorablesMatcher(
             StaticUnicodeSets.get(StaticUnicodeSets.Key.STRICT_IGNORABLES));
 
+    // Android-added: Compatibility mode for j.t.DecimalFormat. http://b/112355520
+    public static final IgnorablesMatcher COMPATIBILITY = new IgnorablesMatcher(
+            StaticUnicodeSets.get(StaticUnicodeSets.Key.EMPTY));
+
     public static IgnorablesMatcher getInstance(UnicodeSet ignorables) {
         assert ignorables.isFrozen();
         return new IgnorablesMatcher(ignorables);
