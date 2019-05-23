@@ -900,8 +900,23 @@ public class DecimalFormat extends NumberFormat {
     if (prefix == null) {
       throw new NullPointerException();
     }
+    // BEGIN Android-changed: Add an extra method setPositivePrefixLibcore to allow null prefix
+    setPositivePrefixInternal(prefix);
+  }
+
+  private void setPositivePrefixInternal(String prefix) {
     properties.setPositivePrefix(prefix);
     refreshFormatter();
+  }
+
+  /**
+   * An internal method that allows a null value, unlike setPositivePrefix()
+   * @see #setPositivePrefix(String)
+   * @hide draft / provisional / internal are hidden on Android
+   */
+  public synchronized void setPositivePrefixLibcore(String prefix) {
+    setPositivePrefixInternal(prefix);
+    // END Android-changed: Add an extra method setPositivePrefixLibcore to allow null prefix
   }
 
   /**
@@ -933,8 +948,23 @@ public class DecimalFormat extends NumberFormat {
     if (prefix == null) {
       throw new NullPointerException();
     }
+    // BEGIN Android-changed: Add an extra method setNegativePrefixLibcore to allow null prefix
+    setNegativePrefixInternal(prefix);
+  }
+
+  private void setNegativePrefixInternal(String prefix) {
     properties.setNegativePrefix(prefix);
     refreshFormatter();
+  }
+
+  /**
+   * An internal method that allows a null value, unlike setNegativePrefix()
+   * @see #setNegativePrefix(String)
+   * @hide draft / provisional / internal are hidden on Android
+   */
+  public synchronized void setNegativePrefixLibcore(String prefix) {
+    setNegativePrefixInternal(prefix);
+    // END Android-changed: Add an extra method setNegativePrefixLibcore to allow null prefix
   }
 
   /**
@@ -966,8 +996,23 @@ public class DecimalFormat extends NumberFormat {
     if (suffix == null) {
       throw new NullPointerException();
     }
+    // BEGIN Android-changed: Add an extra method setPositiveSuffixLibcore to allow null suffix
+    setPositiveSuffixInternal(suffix);
+  }
+
+  private void setPositiveSuffixInternal(String suffix) {
     properties.setPositiveSuffix(suffix);
     refreshFormatter();
+  }
+
+  /**
+   * An internal method that allows a null value, unlike setPositiveSuffix()
+   * @see #setPositiveSuffix(String)
+   * @hide draft / provisional / internal are hidden on Android
+   */
+  public synchronized void setPositiveSuffixLibcore(String suffix) {
+    setPositiveSuffixInternal(suffix);
+    // END Android-changed: Add an extra method setPositiveSuffixLibcore to allow null suffix
   }
 
   /**
@@ -999,8 +1044,23 @@ public class DecimalFormat extends NumberFormat {
     if (suffix == null) {
       throw new NullPointerException();
     }
+    // BEGIN Android-changed: Add an extra method setNegativeSuffixLibcore to allow null suffix
+    setNegativeSuffixInternal(suffix);
+  }
+
+  private void setNegativeSuffixInternal(String suffix) {
     properties.setNegativeSuffix(suffix);
     refreshFormatter();
+  }
+
+  /**
+   * An internal method that allows a null value, unlike setNegativeSuffix()
+   * @see #setNegativeSuffix(String)
+   * @hide draft / provisional / internal are hidden on Android
+   */
+  public synchronized void setNegativeSuffixLibcore(String suffix) {
+    setNegativeSuffixInternal(suffix);
+    // END Android-changed: Add an extra method setNegativeSuffixLibcore to allow null suffix
   }
 
   /**
@@ -2027,6 +2087,16 @@ public class DecimalFormat extends NumberFormat {
     properties.setParseMode(mode);
     refreshFormatter();
   }
+
+  // BEGIN Android-added: Compatibility mode for j.t.DecimalFormat. http://b/112355520
+  /**
+   * @hide draft / provisional / internal are hidden on Android
+   */
+  public synchronized void setParseStrictMode(ParseMode parseMode) {
+    properties.setParseMode(parseMode);
+    refreshFormatter();
+  }
+  // END Android-added: Compatibility mode for j.t.DecimalFormat. http://b/112355520
 
   /**
    * {@inheritDoc}
