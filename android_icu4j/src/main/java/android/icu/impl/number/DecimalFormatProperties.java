@@ -66,6 +66,14 @@ public class DecimalFormatProperties implements Cloneable, Serializable {
          * </ul>
          */
         STRICT,
+
+        // BEGIN Android-added: Compatibility mode for j.t.DecimalFormat. http://b/112355520
+        /**
+         * Internal parse mode for libcore to achieve a compatibility mode for
+         * backward-compatibility reasons.
+         */
+        COMPATIBILITY,
+        // END Android-added: Compatibility mode for j.t.DecimalFormat. http://b/112355520
     }
 
     // The setters in this class should NOT have any side-effects or perform any validation. It is
