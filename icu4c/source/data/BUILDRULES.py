@@ -163,7 +163,10 @@ def generate_conversion_mappings(config, io, common_vars):
             input_files = input_files,
             output_files = output_files,
             tool = IcuTool("makeconv"),
-            args = "-s {IN_DIR} -d {OUT_DIR} -c {INPUT_FILE_PLACEHOLDER}",
+            # BEGIN android-changed
+            # args = "-s {IN_DIR} -d {OUT_DIR} -c {INPUT_FILE_PLACEHOLDER}",
+            args = "-s {IN_DIR} -d {OUT_DIR} -c --small {INPUT_FILE_PLACEHOLDER}",
+            # END android-changed
             format_with = {},
             repeat_with = {
                 "INPUT_FILE_PLACEHOLDER": utils.SpaceSeparatedList(file.filename for file in input_files)
