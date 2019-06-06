@@ -124,7 +124,7 @@ import android.icu.util.ULocale.Category;
  * argNumber = '0' | ('1'..'9' ('0'..'9')*)
  *
  * argType = "number" | "date" | "time" | "spellout" | "ordinal" | "duration"
- * argStyle = "short" | "medium" | "long" | "full" | "integer" | "currency" | "percent" | argStyleText | "::" argSkeletonText
+ * argStyle = "short" | "medium" | "long" | "full" | "integer" | "currency" | "percent" | argStyleText
  * </pre></blockquote>
  *
  * <ul>
@@ -180,9 +180,6 @@ import android.icu.util.ULocale.Category;
  *    <tr>
  *       <td><i>argStyleText</i>
  *       <td><code>new DecimalFormat(argStyleText, new DecimalFormatSymbols(getLocale()))</code>
- *    <tr>
- *       <td><i>argSkeletonText</i>
- *       <td><code>NumberFormatter.forSkeleton(argSkeletonText).locale(getLocale()).toFormat()</code>
  *    <tr>
  *       <td rowspan=6><code>date</code>
  *       <td><i>(none)</i>
