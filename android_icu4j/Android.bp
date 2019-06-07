@@ -25,10 +25,13 @@ filegroup {
     srcs: ["src/main/java/**/*.java"],
 }
 
-filegroup {
-    name: "android_icu4j_resources",
-    srcs: ["resources/**/*"],
-    path: "resources",
+// Rule generating resource lib for android_icu4j.
+// In the downstream branch master-icu-dev, the resource files are generated.
+java_library {
+    name: "android_icu4j_resources_lib",
+    java_resource_dirs: ["resources"],
+    no_standard_libs: true,
+    system_modules: "none",
 }
 
 filegroup {
