@@ -42,7 +42,7 @@ include $(BUILD_PREBUILT)
 # TODO(b/121117762): Remove this module definition when the ART
 # Buildbot and Golem have full support for the Runtime APEX.
 include $(CLEAR_VARS)
-LOCAL_MODULE := icu-data-art-test
+LOCAL_MODULE := icu-data-art-test-runtime
 LOCAL_MODULE_CLASS := ETC
 LOCAL_MODULE_PATH := $(TARGET_OUT)/etc/icu
 LOCAL_MODULE_STEM := $(dat_file)
