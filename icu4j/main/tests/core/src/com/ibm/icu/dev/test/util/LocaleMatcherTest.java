@@ -193,7 +193,7 @@ public class LocaleMatcherTest extends TestFmwk {
         final LocaleMatcher matcher = newLocaleMatcher("en, fil, ro, nn");
         assertEquals(new ULocale("fil"), matcher.getBestMatch("tl"));
         assertEquals(new ULocale("ro"), matcher.getBestMatch("mo"));
-        assertEquals(new ULocale("nn"), matcher.getBestMatch("no"));  // Google patch
+        assertEquals(new ULocale("nn"), matcher.getBestMatch("nb"));
         // make sure default works
         assertEquals(new ULocale("en"), matcher.getBestMatch("ja"));
     }
@@ -377,7 +377,7 @@ public class LocaleMatcherTest extends TestFmwk {
 
         // When it *does* occur in the list, BestMatch returns it, as expected.
         matcher = newLocaleMatcher("it,und");
-        assertEquals("und", matcher.getBestMatch("und").toString());
+        assertEquals("", matcher.getBestMatch("und").toString());
 
         // The unusual part:
         // max("und") = "en_Latn_US", and since matching is based on maximized

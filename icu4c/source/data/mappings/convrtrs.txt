@@ -274,9 +274,7 @@ UTF-16LE,version=1		UnicodeLittle { JAVA* }  x-UTF-16LE-BOM { JAVA }
 #   MalformedInputException: Missing byte-order mark.
 #   In this case, ICU4C sets a U_ILLEGAL_ESCAPE_SEQUENCE UErrorCode value
 #   and a UCNV_ILLEGAL UConverterCallbackReason.
-# BEGIN Android-changed
-UTF-16,version=1                JavaUnicode # alias made up to avoid java.nio.charset.IllegalCharsetNameException
-# END Android-changed
+UTF-16,version=1
 
 # This is the same as standard UTF-16 but always writes a big-endian byte stream,
 # regardless of the platform endianness, as expected by the Java compatibility tests.
@@ -286,9 +284,7 @@ UTF-16,version=1                JavaUnicode # alias made up to avoid java.nio.ch
 #
 # From Unicode: Write BE BOM and BE bytes
 # To Unicode: Detects and consumes BOM. Defaults to BE.
-# BEGIN Android-changed
-UTF-16,version=2               JavaUnicode2 # alias made up to avoid java.nio.charset.IllegalCharsetNameException
-# END Android-changed
+UTF-16,version=2
 
 # Note: ICU does not currently support Java-specific, non-Unicode-standard UTF-32 variants.
 # Presumably, these behave analogously to the UTF-16 variants with similar names.
@@ -664,9 +660,7 @@ java-sjis_0213-1.6_P { UTR22* }
 # Here are various interpretations and extentions of Big5
 ibm-1373_P100-2002 { UTR22* } # IBM's interpretation of Windows' Taiwan Big-5 without HKSCS extensions
                         ibm-1373 { IBM* }
-                        # BEGIN android-removed
-                        # windows-950 # Alternate mapping. Leave untagged. This is the IBM interpretation of a Windows codepage.
-                        # END android-removed
+                        windows-950 # Alternate mapping. Leave untagged. This is the IBM interpretation of a Windows codepage.
 windows-950-2000 { UTR22* }
                         Big5 { IANA* MIME* JAVA* WINDOWS }
                         csBig5 { IANA WINDOWS }
@@ -707,42 +701,26 @@ windows-936-2000 { UTR22* }
                         CP936 { IANA JAVA }
                         MS936 { IANA }  # In JDK 1.5, this goes to x-mswin-936. This is an IANA name split.
                         windows-936 { IANA WINDOWS* JAVA }
-                        # BEGIN android-added
-                        chinese { IANA }
-                        iso-ir-58 { IANA }
-                        gb2312-1980
-                        GB2312 { IANA }
-                        EUC-CN
-                        csGB2312 { IANA }
-                        GB_2312-80 { IANA }
-                        csISO58GB231280 { IANA }
-                        # END android-added
 
 # Java has two different tables for ibm-1383 and gb2312. We pick closest set for tagging.
 ibm-1383_P110-1999 { UTR22* }       # China EUC.
                         ibm-1383 { IBM* JAVA }
-                        # BEGIN android-removed
-                        # GB2312 { IANA* MIME* }
-                        # csGB2312 { IANA }
-                        # END android-removed
+                        GB2312 { IANA* MIME* }
+                        csGB2312 { IANA }
                         cp1383 { JAVA* }
                         1383 { JAVA }
-                        # BEGIN android-removed
-                        # EUC-CN  # According to other platforms, windows-20936 looks more like euc-cn. x-euc-cn is also a MIME name
-                        # END android-removed
+                        EUC-CN  # According to other platforms, windows-20936 looks more like euc-cn. x-euc-cn is also a MIME name
                         ibm-eucCN
                         hp15CN  # From HP-UX?
                         ibm-1383_VPUA
                         # gb          # This is not an IANA name. gb in IANA means Great Britain.
 
 ibm-5478_P100-1995 { UTR22* } ibm-5478 { IBM* } # This gb_2312_80 DBCS mapping is needed by iso-2022.
-                        # BEGIN android-removed
-                        # GB_2312-80 { IANA* }    # Windows maps this alias incorrectly
-                        # chinese { IANA }
-                        # iso-ir-58 { IANA }
-                        # csISO58GB231280 { IANA }
-                        # gb2312-1980
-                        # END android-removed
+                        GB_2312-80 { IANA* }    # Windows maps this alias incorrectly
+                        chinese { IANA }
+                        iso-ir-58 { IANA }
+                        csISO58GB231280 { IANA }
+                        gb2312-1980
                         GB2312.1980-0   # From X11R6
 
 euc-tw-2014 { UTR22* }                # Updated EUC-TW converter based on ibm-964
@@ -797,17 +775,13 @@ ibm-949_P11A-1999 { UTR22* }
 # Java has both ibm-970 and EUC-KR as separate converters.
 ibm-970_P110_P110-2006_U2 { UTR22* }
                         ibm-970 { IBM* JAVA }
-            # BEGIN android-removed
-                        # EUC-KR { IANA* MIME* WINDOWS JAVA }
-                        # KS_C_5601-1987 { JAVA }
-                        # windows-51949 { WINDOWS* }
-                        # csEUCKR { IANA WINDOWS }  # x-euc-kr is also a MIME name
-            # END android-removed
+                        EUC-KR { IANA* MIME* WINDOWS JAVA }
+                        KS_C_5601-1987 { JAVA }
+                        windows-51949 { WINDOWS* }
+                        csEUCKR { IANA WINDOWS }  # x-euc-kr is also a MIME name
                         ibm-eucKR { JAVA }
-            # BEGIN android-removed
-                        # KSC_5601 { JAVA } # Needed by iso-2022
-                        # 5601 { JAVA }
-            # END android-removed
+                        KSC_5601 { JAVA } # Needed by iso-2022
+                        5601 { JAVA }
                         cp970 { JAVA* }
                         970 { JAVA }
                         ibm-970_VPUA
@@ -820,22 +794,16 @@ ibm-971_P100-1995       ibm-971 { IBM* } ibm-971_VPUA x-IBM971 { JAVA* }
 # ibm-1363 is almost a superset of ibm-970.
 ibm-1363_P11B-1998 { UTR22* }
                         ibm-1363 # Leave untagged because this isn't the default
-                        # BEGIN android-removed
-                        # KS_C_5601-1987 { IANA* }
-                        # KS_C_5601-1989 { IANA }
-                        # KSC_5601 { IANA }
-                        # csKSC56011987 { IANA }
-                        # korean { IANA }
-                        # iso-ir-149 { IANA }
-                        # END android-removed
+                        KS_C_5601-1987 { IANA* }
+                        KS_C_5601-1989 { IANA }
+                        KSC_5601 { IANA }
+                        csKSC56011987 { IANA }
+                        korean { IANA }
+                        iso-ir-149 { IANA }
                         cp1363 { MIME* }
-                        # BEGIN android-removed
-                        # 5601
-                        # END android-removed
+                        5601
                         ksc
-                        # BEGIN android-removed
-                        # windows-949 # Alternate mapping. Leave untagged. This is the IBM interpretation of a Windows codepage.
-                        # END android-removed
+                        windows-949 # Alternate mapping. Leave untagged. This is the IBM interpretation of a Windows codepage.
                         ibm-1363_VSUB_VPUA
                         x-IBM1363C { JAVA* }
                         # ks_x_1001:1992
@@ -847,18 +815,13 @@ ibm-1363_P110-1997 { UTR22* } # Korean KSC MBCS with \ <-> Won mapping
                         x-IBM1363 { JAVA* }
 
 windows-949-2000 { UTR22* }
-                        # BEGIN android-changed
-                        windows-949 { JAVA* WINDOWS }
-                        EUC-KR { IANA* MIME* WINDOWS }
-                        KS_C_5601-1987 { WINDOWS* IANA }
-                        KS_C_5601-1989 { WINDOWS IANA }
-                        KSC_5601 { IANA MIME WINDOWS } # Needed by iso-2022
-                        csKSC56011987 { IANA WINDOWS }
-                        korean { IANA WINDOWS }
-                        iso-ir-149 { IANA WINDOWS }
-                        csEUCKR { IANA WINDOWS }
-                        5601
-                        # END android-changed
+                        windows-949 { JAVA* WINDOWS* }
+                        KS_C_5601-1987 { WINDOWS }
+                        KS_C_5601-1989 { WINDOWS }
+                        KSC_5601 { MIME* WINDOWS } # Needed by iso-2022
+                        csKSC56011987 { WINDOWS }
+                        korean { WINDOWS }
+                        iso-ir-149 { WINDOWS }
                         ms949 { JAVA }
                         x-KSC5601 { JAVA }
 
@@ -869,20 +832,17 @@ windows-1361-2000 { UTR22* }
                         x-Johab { JAVA* }
 
 windows-874-2000 { UTR22* }   # Thai (w/ euro update)
-                        # BEGIN android-changed
-                        TIS-620 { IANA* WINDOWS JAVA }
-                        windows-874 { JAVA WINDOWS* }
-                        MS874 { JAVA* }
-                        # END android-changed
+                        TIS-620 { WINDOWS }
+                        windows-874 { JAVA* WINDOWS* }
+                        MS874 { JAVA }
+                        x-windows-874 { JAVA }
                         # iso-8859-11 { WINDOWS } # iso-8859-11 is similar to TIS-620. ibm-13162 is a closer match.
 
 ibm-874_P100-1995 { UTR22* }    # Thai PC (w/o euro update).
                         ibm-874 { IBM* JAVA }
                         ibm-9066 { IBM }    # Yes ibm-874 == ibm-9066. ibm-1161 has the euro update.
                         cp874 { JAVA* }
-                        # BEGIN android-changed
-                        # TIS-620 { IANA* JAVA }  # This is actually separate from ibm-874, which is similar to this table
-                        # END android-changed
+                        TIS-620 { IANA* JAVA }  # This is actually separate from ibm-874, which is similar to this table
                         tis620.2533 { JAVA }    # This is actually separate from ibm-874, which is similar to this table
                         eucTH               # eucTH is an unusual alias from Solaris.  eucTH has fewer mappings than TIS620
                         x-IBM874 { JAVA }

@@ -1324,9 +1324,7 @@ public class CollationTest extends TestFmwk {
             coll = new RuleBasedCollator(rules.toString());
         } catch (Exception e) {
             logln(rules.toString());
-            // Android patch: Add --omitCollationRules to genrb.
-            logln("RuleBasedCollator(rules) failed - " + e.getMessage());
-            // Android patch end.
+            errln("RuleBasedCollator(rules) failed - " + e.getMessage());
             coll = null;
         }
     }

@@ -110,7 +110,7 @@ id{
         EZ{"Zona Euro"}
         FI{"Finlandia"}
         FJ{"Fiji"}
-        FK{"Kepulauan Malvinas (Falkland)"}
+        FK{"Kepulauan Malvinas"}
         FM{"Mikronesia"}
         FO{"Kepulauan Faroe"}
         FR{"Prancis"}
@@ -133,7 +133,7 @@ id{
         GU{"Guam"}
         GW{"Guinea-Bissau"}
         GY{"Guyana"}
-        HK{"Hong Kong"}
+        HK{"Hong Kong SAR Tiongkok"}
         HM{"Pulau Heard dan Kepulauan McDonald"}
         HN{"Honduras"}
         HR{"Kroasia"}
@@ -183,11 +183,11 @@ id{
         MF{"Saint Martin"}
         MG{"Madagaskar"}
         MH{"Kepulauan Marshall"}
-        MK{"Makedonia (BRY)"}
+        MK{"Makedonia Utara"}
         ML{"Mali"}
         MM{"Myanmar (Burma)"}
         MN{"Mongolia"}
-        MO{"Makau"}
+        MO{"Makau SAR Tiongkok"}
         MP{"Kepulauan Mariana Utara"}
         MQ{"Martinik"}
         MR{"Mauritania"}
@@ -222,7 +222,7 @@ id{
         PM{"Saint Pierre dan Miquelon"}
         PN{"Kepulauan Pitcairn"}
         PR{"Puerto Riko"}
-        PS{"Palestina"}
+        PS{"Wilayah Palestina"}
         PT{"Portugal"}
         PW{"Palau"}
         PY{"Paraguay"}
@@ -253,7 +253,7 @@ id{
         SV{"El Salvador"}
         SX{"Sint Maarten"}
         SY{"Suriah"}
-        SZ{"Swaziland"}
+        SZ{"eSwatini"}
         TA{"Tristan da Cunha"}
         TC{"Kepulauan Turks dan Caicos"}
         TD{"Cad"}
@@ -287,6 +287,8 @@ id{
         VU{"Vanuatu"}
         WF{"Kepulauan Wallis dan Futuna"}
         WS{"Samoa"}
+        XA{"Aksen Asing"}
+        XB{"Pseudo-Bidi"}
         XK{"Kosovo"}
         YE{"Yaman"}
         YT{"Mayotte"}
@@ -297,13 +299,20 @@ id{
     }
     Countries%short{
         GB{"UK"}
+        HK{"Hong Kong"}
+        MO{"Makau"}
+        PS{"Palestina"}
         UN{"PBB"}
         US{"A.S."}
     }
     Countries%variant{
         CD{"Kongo (RDK)"}
         CG{"Kongo (Republik)"}
+        CI{"Pantai Gading (Ivory Coast)"}
         CZ{"Republik Ceko"}
+        FK{"Kepulauan Malvinas (Falkland)"}
+        SZ{"Swaziland"}
+        TL{"TL"}
     }
-    Version{"2.1.44.20"}
+    Version{"2.1.48.42"}
 }

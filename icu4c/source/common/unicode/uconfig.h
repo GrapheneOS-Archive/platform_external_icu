@@ -17,19 +17,6 @@
 #ifndef __UCONFIG_H__
 #define __UCONFIG_H__
 
-// Android patch: Hard code UCONFIG_USE_LOCAL=1 so that ICU will use
-// uconfig_local.h, which allows us to disable use of non-stable and
-// internal APIs in Android's libandroidicu shim. For more information
-// on this pre-processor variable see the comments below.
-// Also, see http://b/117094880
-
-// To keep updateicudata.py (which uses the ICU make process) working,
-// uconfig_local.h is only included when ANDROID is defined. When
-// ANDROID is defined, the code is being built by Android's platform
-// build system(s).
-#ifdef ANDROID
-#define UCONFIG_USE_LOCAL 1
-#endif
 
 /*!
  * \file
@@ -380,6 +367,18 @@
  */
 #ifndef UCONFIG_MSGPAT_DEFAULT_APOSTROPHE_MODE
 #   define UCONFIG_MSGPAT_DEFAULT_APOSTROPHE_MODE UMSGPAT_APOS_DOUBLE_OPTIONAL
+#endif
+
+/**
+ * \def UCONFIG_USE_WINDOWS_LCID_MAPPING_API
+ * On platforms where U_PLATFORM_HAS_WIN32_API is true, this switch determines
+ * if the Windows platform APIs are used for LCID<->Locale Name conversions.
+ * Otherwise, only the built-in ICU tables are used.
+ * 
+ * @internal ICU 64
+ */
+#ifndef UCONFIG_USE_WINDOWS_LCID_MAPPING_API
+#   define UCONFIG_USE_WINDOWS_LCID_MAPPING_API 1
 #endif
 
 /* i18n library switches ---------------------------------------------------- */

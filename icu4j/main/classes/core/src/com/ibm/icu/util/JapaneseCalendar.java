@@ -231,6 +231,16 @@ public class JapaneseCalendar extends GregorianCalendar {
     private static final EraRules ERA_RULES;
 
     static {
+        ERA_RULES = EraRules.getInstance(CalType.JAPANESE, enableTentativeEra());
+    }
+
+    /**
+     * Check environment variable that enables use of future eras.
+     * @internal
+     * @deprecated This API is ICU internal only.
+     */
+    @Deprecated
+    public static boolean enableTentativeEra() {
         // Although start date of next Japanese era is planned ahead, a name of
         // new era might not be available. This implementation allows tester to
         // check a new era without era names by settings below (in priority order).
@@ -258,8 +268,7 @@ public class JapaneseCalendar extends GregorianCalendar {
             String jdkEraConf = System.getProperty("jdk.calendar.japanese.supplemental.era");
             includeTentativeEra = jdkEraConf != null;
         }
-
-        ERA_RULES = EraRules.getInstance(CalType.JAPANESE, includeTentativeEra);
+        return includeTentativeEra;
     }
 
     /**
@@ -377,10 +386,9 @@ public class JapaneseCalendar extends GregorianCalendar {
      */
     static public final int HEISEI;
 
-    // Android-changed: Cherry-pick the Reiwa constant from ICU 64.
     /**
      * Constant for the era starting on May 1, 2019 AD.
-     * @internal
+     * @stable ICU 64
      */
     static public final int REIWA;
 
@@ -393,12 +401,8 @@ public class JapaneseCalendar extends GregorianCalendar {
         TAISHO = 233;
         SHOWA = 234;
         HEISEI = 235;
-        // Android-changed: Android doesn't use system time to initialize CURRENT_ERA.
-        //   Android could initialize this class during device boot with incorrect time, and
-        //   all forked process, e.g. app processes, may have incorrect current era.
-        // CURRENT_ERA = ERA_RULES.getCurrentEraIndex();
         REIWA = 236;
-        CURRENT_ERA = REIWA;
+        CURRENT_ERA = ERA_RULES.getCurrentEraIndex();
     }
 
     /**
@@ -415,7 +419,7 @@ public class JapaneseCalendar extends GregorianCalendar {
             if (limitType == MINIMUM || limitType == GREATEST_MINIMUM) {
                 return 0;
             }
-            return CURRENT_ERA;
+            return ERA_RULES.getNumberOfEras() - 1; // max known era, not always CURRENT_ERA
         case YEAR:
         {
             switch (limitType) {
@@ -462,7 +466,7 @@ public class JapaneseCalendar extends GregorianCalendar {
     public int getActualMaximum(int field) {
         if (field == YEAR) {
             int era = get(Calendar.ERA);
-            if (era == CURRENT_ERA) {
+            if (era == ERA_RULES.getNumberOfEras() - 1) {
                 // TODO: Investigate what value should be used here - revisit after 4.0.
                 return handleGetLimit(YEAR, MAXIMUM);
             } else {

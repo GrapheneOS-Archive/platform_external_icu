@@ -40,6 +40,7 @@ void TestGetTZTransition(void);
 
 void TestGetWindowsTimeZoneID(void);
 void TestGetTimeZoneIDByWindowsID(void);
+void TestJpnCalAddSetNextEra();
 
 void addCalTest(TestNode** root);
 
@@ -62,6 +63,7 @@ void addCalTest(TestNode** root)
     addTest(root, &TestGetTZTransition, "tsformat/ccaltst/TestGetTZTransition");
     addTest(root, &TestGetWindowsTimeZoneID, "tsformat/ccaltst/TestGetWindowsTimeZoneID");
     addTest(root, &TestGetTimeZoneIDByWindowsID, "tsformat/ccaltst/TestGetTimeZoneIDByWindowsID");
+    addTest(root, &TestJpnCalAddSetNextEra, "tsformat/ccaltst/TestJpnCalAddSetNextEra");
 }
 
 /* "GMT" */
@@ -85,15 +87,15 @@ static const UCalGetTypeTest ucalGetTypeTests[] = {
     { "en_US",                   UCAL_GREGORIAN, "gregorian" },
     { "ja_JP@calendar=japanese", UCAL_DEFAULT,   "japanese"  },
     { "th_TH",                   UCAL_GREGORIAN, "gregorian" },
-    { "th_TH",                   UCAL_DEFAULT,   "gregorian"  },  // android-changed
+    { "th_TH",                   UCAL_DEFAULT,   "buddhist"  },
     { "th-TH-u-ca-gregory",      UCAL_DEFAULT,   "gregorian" },
     { "ja_JP@calendar=japanese", UCAL_GREGORIAN, "gregorian" },
     { "fr_CH",                   UCAL_DEFAULT,   "gregorian" },
-    { "fr_SA",                   UCAL_DEFAULT,   "gregorian" },  // android-changed
-    { "fr_CH@rg=sazzzz",         UCAL_DEFAULT,   "gregorian" },  // android-changed
+    { "fr_SA",                   UCAL_DEFAULT,   "islamic-umalqura" },
+    { "fr_CH@rg=sazzzz",         UCAL_DEFAULT,   "islamic-umalqura" },
     { "fr_CH@calendar=japanese;rg=sazzzz", UCAL_DEFAULT, "japanese" },
-    { "fr_TH@rg=SA",             UCAL_DEFAULT,   "gregorian"  }, /* ignore malformed rg tag */  // android-changed
-    { "th@rg=SA",                UCAL_DEFAULT,   "gregorian"  }, /* ignore malformed rg tag */  // android-changed
+    { "fr_TH@rg=SA",             UCAL_DEFAULT,   "buddhist"  }, /* ignore malformed rg tag */
+    { "th@rg=SA",                UCAL_DEFAULT,   "buddhist"  }, /* ignore malformed rg tag */
     { "",                        UCAL_GREGORIAN, "gregorian" },
     { NULL,                      UCAL_GREGORIAN, "gregorian" },
     { NULL, 0, NULL } /* terminator */
@@ -1562,18 +1564,18 @@ static void TestGetKeywordValuesForLocale() {
             { "und",         "gregorian", NULL, NULL, NULL, NULL },
             { "en_US",       "gregorian", NULL, NULL, NULL, NULL },
             { "en_029",      "gregorian", NULL, NULL, NULL, NULL },
-            { "th_TH",       "gregorian", "buddhist", NULL, NULL, NULL },  // android-changed
-            { "und_TH",      "gregorian", "buddhist", NULL, NULL, NULL },  // android-changed
-            { "en_TH",       "gregorian", "buddhist", NULL, NULL, NULL },  // android-changed
+            { "th_TH",       "buddhist", "gregorian", NULL, NULL, NULL },
+            { "und_TH",      "buddhist", "gregorian", NULL, NULL, NULL },
+            { "en_TH",       "buddhist", "gregorian", NULL, NULL, NULL },
             { "he_IL",       "gregorian", "hebrew", "islamic", "islamic-civil", "islamic-tbla" },
             { "ar_EG",       "gregorian", "coptic", "islamic", "islamic-civil", "islamic-tbla" },
             { "ja",          "gregorian", "japanese", NULL, NULL, NULL },
             { "ps_Guru_IN",  "gregorian", "indian", NULL, NULL, NULL },
-            { "th@calendar=gregorian", "gregorian", "buddhist", NULL, NULL, NULL },  // android-changed
+            { "th@calendar=gregorian", "buddhist", "gregorian", NULL, NULL, NULL },
             { "en@calendar=islamic",   "gregorian", NULL, NULL, NULL, NULL },
             { "zh_TW",       "gregorian", "roc", "chinese", NULL, NULL },
-            { "ar_IR",       "gregorian", "persian", "islamic", "islamic-civil", "islamic-tbla" },  // android-changed
-            { "th@rg=SAZZZZ", "gregorian", "islamic-umalqura", "islamic", "islamic-rgsa", NULL },  // android-changed
+            { "ar_IR",       "persian", "gregorian", "islamic", "islamic-civil", "islamic-tbla" },
+            { "th@rg=SAZZZZ", "islamic-umalqura", "gregorian", "islamic", "islamic-rgsa", NULL },
     };
     const int32_t EXPECTED_SIZE[PREFERRED_SIZE] = { 1, 1, 1, 1, 2, 2, 2, 5, 5, 2, 2, 2, 1, 3, 5, 4 };
     UErrorCode status = U_ZERO_ERROR;
@@ -1629,7 +1631,7 @@ static void TestGetKeywordValuesForLocale() {
                 ALLList = ulist_getListFromEnum(ALL);
                 for (j = 0; j < size; j++) {
                     if ((value = uenum_next(all, &valueLength, &status)) != NULL && U_SUCCESS(status)) {
-                        if (!ulist_containsString(ALLList, value, uprv_strlen(value))) {
+                        if (!ulist_containsString(ALLList, value, (int32_t)uprv_strlen(value))) {
                             log_err("Locale %s have %s not in ALL\n", loc, value);
                             matchAll = FALSE;
                             break;
@@ -2455,5 +2457,51 @@ void TestGetTimeZoneIDByWindowsID() {
     }
 }
 
+// The following currently assumes that Reiwa is the last known/valid era.
+// Filed ICU-20551 to generalize this when we have more time...
+void TestJpnCalAddSetNextEra() {
+    UErrorCode status = U_ZERO_ERROR;
+    UCalendar *jCal = ucal_open(NULL, 0, "ja_JP@calendar=japanese", UCAL_DEFAULT, &status);
+    if ( U_FAILURE(status) ) {
+        log_data_err("FAIL: ucal_open for ja_JP@calendar=japanese, status %s\n", u_errorName(status));
+    } else {
+        ucal_clear(jCal); // This sets to 1970, in Showa
+        int32_t sEra = ucal_get(jCal, UCAL_ERA, &status); // Don't assume era number for Showa
+        if ( U_FAILURE(status) ) {
+            log_data_err("FAIL: ucal_get ERA for Showa, status %s\n", u_errorName(status));
+        } else {
+            int32_t iEra, eYear;
+            int32_t startYears[4] = { 1926, 1989, 2019, 0 }; // start years for Showa, Heisei, Reiwa; 0 marks invalid era
+            for (iEra = 1; iEra < 3; iEra++) {
+                status = U_ZERO_ERROR;
+                ucal_clear(jCal);
+                ucal_set(jCal, UCAL_ERA, sEra+iEra);
+                eYear = ucal_get(jCal, UCAL_EXTENDED_YEAR, &status);
+                if ( U_FAILURE(status) ) {
+                    log_err("FAIL: set %d, ucal_get EXTENDED_YEAR, status %s\n", iEra, u_errorName(status));
+                } else if (eYear != startYears[iEra]) {
+                    log_err("ERROR: set %d, expected start year %d but get %d\n", iEra, startYears[iEra], eYear);
+                } else {
+                    ucal_add(jCal, UCAL_ERA, 1, &status);
+                    if ( U_FAILURE(status) ) {
+                        log_err("FAIL: set %d, ucal_add ERA 1, status %s\n", iEra, u_errorName(status));
+                    } else {
+                        eYear = ucal_get(jCal, UCAL_EXTENDED_YEAR, &status);
+                        if ( U_FAILURE(status) ) {
+                            log_err("FAIL: set %d then add ERA 1, ucal_get EXTENDED_YEAR, status %s\n", iEra, u_errorName(status));
+                        } else {
+                            // If this is the last valid era, we expect adding an era to pin to the current era
+                            int32_t nextEraStart = (startYears[iEra+1] == 0)? startYears[iEra]: startYears[iEra+1];
+                            if (eYear != nextEraStart) {
+                                log_err("ERROR: set %d then add ERA 1, expected start year %d but get %d\n", iEra, nextEraStart, eYear);
+                            }
+                        }
+                    }
+                }
+             }
+        }
+        ucal_close(jCal);
+    }
+}
 
 #endif /* #if !UCONFIG_NO_FORMATTING */

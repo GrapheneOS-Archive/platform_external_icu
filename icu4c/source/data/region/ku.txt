@@ -85,7 +85,7 @@ ku{
         EU{"Yekîtiya Ewropayê"}
         FI{"Fînlenda"}
         FJ{"Fîjî"}
-        FK{"Giravên Falkland"}
+        FK{"Giravên Malvîn"}
         FM{"Mîkronezya"}
         FO{"Giravên Feroe"}
         FR{"Fransa"}
@@ -106,7 +106,6 @@ ku{
         GU{"Guam"}
         GW{"Gîne-Bissau"}
         GY{"Guyana"}
-        HK{"Hong Kong"}
         HN{"Hondûras"}
         HR{"Kroatya"}
         HT{"Haîtî"}
@@ -153,11 +152,10 @@ ku{
         MF{"MF"}
         MG{"Madagaskar"}
         MH{"Giravên Marşal"}
-        MK{"MK"}
+        MK{"Makedonya"}
         ML{"Malî"}
         MM{"Myanmar (Birmanya)"}
         MN{"Mongolya"}
-        MO{"Makao"}
         MP{"Giravên Bakurê Marianan"}
         MQ{"Martinique"}
         MR{"Morîtanya"}
@@ -191,7 +189,7 @@ ku{
         PM{"Saint-Pierre û Miquelon"}
         PN{"Giravên Pitcairn"}
         PR{"Porto Rîko"}
-        PS{"Filistîn"}
+        PS{"Xakên filistînî"}
         PT{"Portûgal"}
         PW{"Palau"}
         PY{"Paraguay"}
@@ -255,13 +253,18 @@ ku{
     }
     Countries%short{
         GB{"KY"}
+        HK{"Hong Kong"}
+        MO{"Makao"}
+        PS{"Filistîn"}
         US{"DYA"}
     }
     Countries%variant{
         CD{"Kongo (KDK)"}
         CG{"Kongo (Komar)"}
         CZ{"Komara Çekî"}
+        FK{"Giravên Falkland"}
+        MK{"MK"}
         TL{"Tîmora Rojhilat"}
     }
-    Version{"2.1.44.82"}
+    Version{"2.1.47.83"}
 }

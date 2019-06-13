@@ -110,7 +110,7 @@ fr{
         EZ{"zone euro"}
         FI{"Finlande"}
         FJ{"Fidji"}
-        FK{"Îles Falkland"}
+        FK{"Îles Malouines"}
         FM{"États fédérés de Micronésie"}
         FO{"Îles Féroé"}
         FR{"France"}
@@ -133,7 +133,7 @@ fr{
         GU{"Guam"}
         GW{"Guinée-Bissau"}
         GY{"Guyana"}
-        HK{"Hong Kong"}
+        HK{"R.A.S. chinoise de Hong Kong"}
         HM{"Îles Heard et McDonald"}
         HN{"Honduras"}
         HR{"Croatie"}
@@ -183,11 +183,11 @@ fr{
         MF{"Saint-Martin"}
         MG{"Madagascar"}
         MH{"Îles Marshall"}
-        MK{"Macédoine (ARYM)"}
+        MK{"Macédoine du Nord"}
         ML{"Mali"}
         MM{"Myanmar (Birmanie)"}
         MN{"Mongolie"}
-        MO{"Macao"}
+        MO{"R.A.S. chinoise de Macao"}
         MP{"Îles Mariannes du Nord"}
         MQ{"Martinique"}
         MR{"Mauritanie"}
@@ -222,7 +222,7 @@ fr{
         PM{"Saint-Pierre-et-Miquelon"}
         PN{"Îles Pitcairn"}
         PR{"Porto Rico"}
-        PS{"Palestine"}
+        PS{"Territoires palestiniens"}
         PT{"Portugal"}
         PW{"Palaos"}
         PY{"Paraguay"}
@@ -253,7 +253,7 @@ fr{
         SV{"Salvador"}
         SX{"Saint-Martin (partie néerlandaise)"}
         SY{"Syrie"}
-        SZ{"Swaziland"}
+        SZ{"Eswatini"}
         TA{"Tristan da Cunha"}
         TC{"Îles Turques-et-Caïques"}
         TD{"Tchad"}
@@ -287,6 +287,8 @@ fr{
         VU{"Vanuatu"}
         WF{"Wallis-et-Futuna"}
         WS{"Samoa"}
+        XA{"pseudo-accents"}
+        XB{"pseudo-bidi"}
         XK{"Kosovo"}
         YE{"Yémen"}
         YT{"Mayotte"}
@@ -297,6 +299,9 @@ fr{
     }
     Countries%short{
         GB{"R.-U."}
+        HK{"Hong Kong"}
+        MO{"Macao"}
+        PS{"Palestine"}
         UN{"NU"}
         US{"É.-U."}
     }
@@ -305,7 +310,9 @@ fr{
         CG{"République du Congo"}
         CI{"​​République de Côte d’Ivoire"}
         CZ{"République tchèque"}
+        FK{"Îles Falkland"}
+        SZ{"Swaziland"}
         TL{"Timor-Oriental"}
     }
-    Version{"2.1.44.91"}
+    Version{"2.1.49.82"}
 }

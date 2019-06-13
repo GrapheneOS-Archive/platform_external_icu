@@ -1856,10 +1856,10 @@ void DateFormatTest::TestNarrowNames()
         const char *CA_DATA[] = {
             "yyyy MM dd HH:mm:ss",
 
-            "h:mm a",     "2015 01 01 10:00:00", "10:00 a. m.",
-            "h:mm a",     "2015 01 01 22:00:00", "10:00 p. m.",
-            "h:mm aaaaa", "2015 01 01 10:00:00", "10:00 a. m.",
-            "h:mm aaaaa", "2015 01 01 22:00:00", "10:00 p. m.",
+            "h:mm a",     "2015 01 01 10:00:00", "10:00 a.\\u00A0m.",
+            "h:mm a",     "2015 01 01 22:00:00", "10:00 p.\\u00A0m.",
+            "h:mm aaaaa", "2015 01 01 10:00:00", "10:00 a.\\u00A0m.",
+            "h:mm aaaaa", "2015 01 01 22:00:00", "10:00 p.\\u00A0m.",
         };
 
       expectFormat(EN_DATA, UPRV_LENGTHOF(EN_DATA), Locale("en", "", ""));
@@ -4758,6 +4758,10 @@ void DateFormatTest::TestNumberFormatOverride() {
         assertSuccess("SimpleDateFormat with pattern MM d", status);
         NumberFormat* overrideNF = NumberFormat::createInstance(Locale::createFromName("zh@numbers=hanidays"),status);
         assertSuccess("NumberFormat zh@numbers=hanidays", status);
+        if (U_FAILURE(status)) {
+            status = U_ZERO_ERROR;
+            continue;
+        }
 
         if (fields == (UnicodeString) "") { // use the one w/o fields
             fmt->adoptNumberFormat(overrideNF);
@@ -4867,12 +4871,12 @@ void DateFormatTest::TestDFSCreateForLocaleNonGregorianLocale() {
         return;
     }
 
-    // Android: All locales default to Gregorian calendar:
+    // Farsi should default to the persian calendar, not gregorian
     int32_t count;
     const UnicodeString *months = sym->getShortMonths(count);
 
     // First persian month.
-    UnicodeString expected("\\u0698\\u0627\\u0646\\u0648\\u06CC\\u0647\\u0654");  // Android-changed
+    UnicodeString expected("\\u0641\\u0631\\u0648\\u0631\\u062f\\u06cc\\u0646");
     assertEquals("", expected.unescape(), months[0]);
 }
 
@@ -5243,7 +5247,7 @@ void DateFormatTest::TestDayPeriodWithLocales() {
     sdf.setTimeZone(*tz);
 
     sdf.applyPattern(UnicodeString("hh:mm:ss BBBB"));
-    assertEquals("hh:mm:ss BBBB | 01:00:00 | es_CO", UnicodeString("01:00:00 de la ma\\u00F1ana").unescape(),
+    assertEquals("hh:mm:ss BBBB | 01:00:00 | es_CO", UnicodeString("01:00:00 a.\\u00A0m.").unescape(),
         sdf.format(k010000, out.remove()));
 
     sdf = SimpleDateFormat(UnicodeString(), Locale("es"), errorCode);

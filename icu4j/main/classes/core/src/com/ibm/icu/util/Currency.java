@@ -94,8 +94,7 @@ public class Currency extends MeasureUnit {
      * symbol, but it always takes the shortest form: for example,
      * "$" instead of "US$" for USD in en-CA.
      *
-     * @draft ICU 61
-     * @provisional This API might change or be removed in a future release.
+     * @stable ICU 61
      */
     public static final int NARROW_SYMBOL_NAME = 3;
 
@@ -236,7 +235,6 @@ public class Currency extends MeasureUnit {
         return resultSet;
     }
 
-    private static final String EUR_STR = "EUR";
     private static final CacheBase<String, Currency, Void> regionCurrencyCache =
             new SoftCache<String, Currency, Void>() {
         @Override
@@ -249,40 +247,18 @@ public class Currency extends MeasureUnit {
      * Instantiate a currency from resource data.
      */
     /* package */ static Currency createCurrency(ULocale loc) {
-        String variant = loc.getVariant();
-        if ("EURO".equals(variant)) {
-            return getInstance(EUR_STR);
-        }
-
-        // Cache the currency by region, and whether variant=PREEURO.
+        // Cache the currency by region.
         // Minimizes the size of the cache compared with caching by ULocale.
         String key = ULocale.getRegionForSupplementalData(loc, false);
-        if ("PREEURO".equals(variant)) {
-            key = key + '-';
-        }
         return regionCurrencyCache.getInstance(key, null);
     }
 
     private static Currency loadCurrency(String key) {
-        String region;
-        boolean isPreEuro;
-        if (key.endsWith("-")) {
-            region = key.substring(0, key.length() - 1);
-            isPreEuro = true;
-        } else {
-            region = key;
-            isPreEuro = false;
-        }
+        String region = key;
         CurrencyMetaInfo info = CurrencyMetaInfo.getInstance();
         List<String> list = info.currencies(CurrencyFilter.onRegion(region));
         if (!list.isEmpty()) {
             String code = list.get(0);
-            if (isPreEuro && EUR_STR.equals(code)) {
-                if (list.size() < 2) {
-                    return null;
-                }
-                code = list.get(1);
-            }
             return getInstance(code);
         }
         return null;
@@ -862,6 +838,13 @@ public class Currency extends MeasureUnit {
      * Returns the number of the number of fraction digits that should
      * be displayed for this currency.
      * This is equivalent to getDefaultFractionDigits(CurrencyUsage.STANDARD);
+     *
+     * Important: The number of fraction digits for a given currency is NOT
+     * guaranteed to be constant across versions of ICU or CLDR. For example,
+     * do NOT use this value as a mechanism for deciding the magnitude used
+     * to store currency values in a database. You should use this value for
+     * display purposes only.
+     *
      * @return a non-negative number of fraction digits to be
      * displayed
      * @stable ICU 2.2
@@ -873,6 +856,13 @@ public class Currency extends MeasureUnit {
     /**
      * Returns the number of the number of fraction digits that should
      * be displayed for this currency with Usage.
+     *
+     * Important: The number of fraction digits for a given currency is NOT
+     * guaranteed to be constant across versions of ICU or CLDR. For example,
+     * do NOT use this value as a mechanism for deciding the magnitude used
+     * to store currency values in a database. You should use this value for
+     * display purposes only.
+     *
      * @param Usage the usage of currency(Standard or Cash)
      * @return a non-negative number of fraction digits to be
      * displayed
