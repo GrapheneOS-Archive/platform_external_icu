@@ -30,7 +30,7 @@ filegroup {
 java_library {
     name: "android_icu4j_resources_lib",
     java_resource_dirs: ["resources"],
-    no_standard_libs: true,
+    sdk_version: "none",
     system_modules: "none",
 }
 
@@ -68,7 +68,7 @@ java_test {
     ],
 
     patch_module: "java.base",
-    no_standard_libs: true,
+    sdk_version: "none",
     libs: [
         "core-all",
     ],
