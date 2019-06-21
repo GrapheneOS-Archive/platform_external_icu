@@ -41,6 +41,7 @@ cc_library {
     // and export the headers in include/.
     whole_static_libs: ["libandroidicu_static"],
     shared_libs: [
+        "libbase",
         "libicuuc",
         "libicui18n",
         "liblog",
@@ -64,6 +65,9 @@ cc_library {
                 "-DANDROID_LINK_SHARED_ICU4C",
             ],
             version_script: "libandroidicu.map.txt",
+            static_libs: [
+                "libandroidicuinit",
+            ],
         },
         windows: {
             enabled: true,
