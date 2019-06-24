@@ -17,6 +17,7 @@
 cc_library_static {
     name: "libandroidicuinit",
     host_supported: true,
+    native_bridge_supported: true,
     srcs: ["IcuRegistration.cpp"],
     shared_libs: [
         "libbase",
