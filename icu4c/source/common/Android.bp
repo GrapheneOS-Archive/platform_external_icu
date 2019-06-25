@@ -62,8 +62,8 @@ cc_library_headers {
     name: "libicuuc_headers",
     host_supported: true,
     native_bridge_supported: true,
-    header_libs: [ "icu4c_extra_headers" ],
-    export_header_lib_headers: [ "icu4c_extra_headers" ],
+    header_libs: ["icu4c_extra_headers"],
+    export_header_lib_headers: ["icu4c_extra_headers"],
     export_include_dirs: ["."],
     target: {
         windows: {
@@ -94,6 +94,6 @@ cc_library_shared {
             shared_libs: ["libicuuc_stubdata"],
         },
     },
-    header_libs: [ "libicuuc_headers" ],
-    export_header_lib_headers: [ "libicuuc_headers" ],
+    header_libs: ["libicuuc_headers"],
+    export_header_lib_headers: ["libicuuc_headers"],
 }
