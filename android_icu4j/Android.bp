@@ -60,7 +60,7 @@ java_test {
     ],
     java_resource_dirs: [
         "src/main/tests",
-        "testing/src"
+        "testing/src",
     ],
     static_libs: [
         "junit",
