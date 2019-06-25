@@ -75,6 +75,6 @@ cc_library_shared {
     native_bridge_supported: true,
     unique_host_soname: true,
     shared_libs: ["libicuuc"],
-    header_libs: [ "libicui18n_headers" ],
-    export_header_lib_headers: [ "libicui18n_headers" ],
+    header_libs: ["libicui18n_headers"],
+    export_header_lib_headers: ["libicui18n_headers"],
 }
