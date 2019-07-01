@@ -14,6 +14,10 @@
 // limitations under the License.
 //
 
+package {
+    default_visibility: ["//visibility:private"],
+}
+
 //==========================================================
 // build repackaged ICU for target
 //
@@ -22,6 +26,9 @@
 //==========================================================
 filegroup {
     name: "android_icu4j_src_files",
+    visibility: [
+        "//libcore",
+    ],
     srcs: ["src/main/java/**/*.java"],
 }
 
@@ -29,19 +36,12 @@ filegroup {
 // In the downstream branch master-icu-dev, the resource files are generated.
 java_library {
     name: "android_icu4j_resources_lib",
+    visibility: [
+        "//libcore",
+    ],
     java_resource_dirs: ["resources"],
     sdk_version: "none",
     system_modules: "none",
-}
-
-filegroup {
-    name: "android_icu4j_src_files_for_docs",
-    srcs: [
-        "src/main/java/android/icu/lang/**/*.java",
-        "src/main/java/android/icu/math/**/*.java",
-        "src/main/java/android/icu/text/**/*.java",
-        "src/main/java/android/icu/util/**/*.java",
-    ],
 }
 
 //==========================================================
@@ -53,6 +53,9 @@ filegroup {
 //==========================================================
 java_test {
     name: "android-icu4j-tests",
+    visibility: [
+        "//cts/tests/tests/icu",
+    ],
 
     srcs: [
         "src/main/tests/**/*.java",
