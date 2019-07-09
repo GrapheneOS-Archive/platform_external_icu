@@ -701,7 +701,7 @@ void IntlCalendarTest::TestJapanese3860()
             }
             delete fmt;
         }
-    }    
+    }
 
     delete cal2;
     delete cal;
