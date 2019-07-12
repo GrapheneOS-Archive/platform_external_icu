@@ -69,7 +69,7 @@ class IcuRegistration final {
  private:
   IcuRegistration();
 
-  static bool pathExists(const std::string path);
+  static bool pathExists(const std::string& path);
   static std::string getDataTimeZonePath();
   static std::string getTimeZoneModulePath();
   static std::string getRuntimeModulePath();
