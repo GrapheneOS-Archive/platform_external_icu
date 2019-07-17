@@ -126,7 +126,7 @@ jv{
         GU{"Guam"}
         GW{"Guinea-Bissau"}
         GY{"Guyana"}
-        HK{"Laladan Administratif Astamiwa Hong Kong"}
+        HK{"Hong Kong"}
         HM{"Kapuloan Heard lan McDonald"}
         HN{"Honduras"}
         HR{"Kroasia"}
@@ -281,7 +281,6 @@ jv{
     }
     Countries%short{
         GB{"KM"}
-        HK{"Hong Kong"}
         PS{"Palèstina"}
         US{"AS"}
     }

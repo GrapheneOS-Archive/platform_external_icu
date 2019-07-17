@@ -299,8 +299,6 @@ so{
     }
     Countries%short{
         GB{"UK"}
-        HK{"Hong Kong"}
-        MO{"Makaaw"}
         PS{"Falastiin"}
         US{"US"}
     }
