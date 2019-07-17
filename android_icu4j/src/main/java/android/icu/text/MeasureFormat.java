@@ -37,6 +37,7 @@ import android.icu.impl.ICUResourceBundle;
 import android.icu.impl.SimpleCache;
 import android.icu.impl.SimpleFormatterImpl;
 import android.icu.impl.number.LongNameHandler;
+import android.icu.impl.number.RoundingUtils;
 import android.icu.number.FormattedNumber;
 import android.icu.number.LocalizedNumberFormatter;
 import android.icu.number.NumberFormatter;
@@ -145,24 +146,24 @@ public class MeasureFormat extends UFormat {
         /**
          * Spell out everything.
          */
-        WIDE(ListFormatter.Style.DURATION, UnitWidth.FULL_NAME, UnitWidth.FULL_NAME),
+        WIDE(ListFormatter.Style.UNIT, UnitWidth.FULL_NAME, UnitWidth.FULL_NAME),
 
         /**
          * Abbreviate when possible.
          */
-        SHORT(ListFormatter.Style.DURATION_SHORT, UnitWidth.SHORT, UnitWidth.ISO_CODE),
+        SHORT(ListFormatter.Style.UNIT_SHORT, UnitWidth.SHORT, UnitWidth.ISO_CODE),
 
         /**
          * Brief. Use only a symbol for the unit when possible.
          */
-        NARROW(ListFormatter.Style.DURATION_NARROW, UnitWidth.NARROW, UnitWidth.SHORT),
+        NARROW(ListFormatter.Style.UNIT_NARROW, UnitWidth.NARROW, UnitWidth.SHORT),
 
         /**
          * Identical to NARROW except when formatMeasures is called with an hour and minute; minute and
          * second; or hour, minute, and second Measures. In these cases formatMeasures formats as 5:37:23
          * instead of 5h, 37m, 23s.
          */
-        NUMERIC(ListFormatter.Style.DURATION_NARROW, UnitWidth.NARROW, UnitWidth.SHORT),
+        NUMERIC(ListFormatter.Style.UNIT_NARROW, UnitWidth.NARROW, UnitWidth.SHORT),
 
         /**
          * The default format width for getCurrencyFormat(), which is to show the symbol for currency
@@ -172,7 +173,7 @@ public class MeasureFormat extends UFormat {
          * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
-        DEFAULT_CURRENCY(ListFormatter.Style.DURATION, UnitWidth.FULL_NAME, UnitWidth.SHORT);
+        DEFAULT_CURRENCY(ListFormatter.Style.UNIT, UnitWidth.FULL_NAME, UnitWidth.SHORT);
 
         private final ListFormatter.Style listFormatterStyle;
 
@@ -298,7 +299,7 @@ public class MeasureFormat extends UFormat {
             formatMeasuresInternal(toAppendTo, fpos, (Measure[]) obj);
         } else if (obj instanceof Measure) {
             FormattedNumber result = formatMeasure((Measure) obj);
-            result.populateFieldPosition(fpos); // No offset: toAppendTo.length() is considered below
+            result.nextFieldPosition(fpos); // No offset: toAppendTo.length() is considered below
             result.appendTo(toAppendTo);
         } else {
             throw new IllegalArgumentException(obj.toString());
@@ -407,7 +408,7 @@ public class MeasureFormat extends UFormat {
         }
         if (measures.length == 1) {
             FormattedNumber result = formatMeasure(measures[0]);
-            result.populateFieldPosition(fieldPosition);
+            result.nextFieldPosition(fieldPosition);
             result.appendTo(appendTo);
             return;
         }
@@ -700,7 +701,8 @@ public class MeasureFormat extends UFormat {
         } else {
             assert type == NUMBER_FORMATTER_INTEGER;
             formatter = getNumberFormatter().unit(unit).perUnit(perUnit).unitWidth(formatWidth.unitWidth)
-                    .rounding(Precision.integer().withMode(RoundingMode.DOWN));
+                    .precision(Precision.integer().withMode(
+                            RoundingUtils.mathContextUnlimited(RoundingMode.DOWN)));
         }
         formatter3 = formatter2;
         formatter2 = formatter1;
@@ -761,7 +763,7 @@ public class MeasureFormat extends UFormat {
                 result = formatMeasureInteger(measures[i]);
             }
             if (fieldPositionFoundIndex == -1) {
-                result.populateFieldPosition(fpos);
+                result.nextFieldPosition(fpos);
                 if (fpos.getEndIndex() != 0) {
                     fieldPositionFoundIndex = i;
                 }
@@ -888,7 +890,7 @@ public class MeasureFormat extends UFormat {
         // when formatting 0 minutes 9 seconds, we may get "00:9" instead of "00:09"
         FieldPosition intFieldPosition = new FieldPosition(NumberFormat.INTEGER_FIELD);
         FormattedNumber result = getNumberFormatter().format(smallestAmount);
-        result.populateFieldPosition(intFieldPosition);
+        result.nextFieldPosition(intFieldPosition);
         smallestAmountFormatted = result.toString();
         // Give up if there is no integer field.
         if (intFieldPosition.getBeginIndex() == 0 && intFieldPosition.getEndIndex() == 0) {
