@@ -110,7 +110,7 @@ ms{
         EZ{"Zon Euro"}
         FI{"Finland"}
         FJ{"Fiji"}
-        FK{"Kepulauan Falkland"}
+        FK{"Kepulauan Falkland (Islas Malvinas)"}
         FM{"Micronesia"}
         FO{"Kepulauan Faroe"}
         FR{"Perancis"}
@@ -222,7 +222,7 @@ ms{
         PM{"Saint Pierre dan Miquelon"}
         PN{"Kepulauan Pitcairn"}
         PR{"Puerto Rico"}
-        PS{"Wilayah Palestin"}
+        PS{"Palestin"}
         PT{"Portugal"}
         PW{"Palau"}
         PY{"Paraguay"}
@@ -299,7 +299,6 @@ ms{
     }
     Countries%short{
         GB{"UK"}
-        PS{"Palestin"}
         UN{"PBB"}
         US{"A.S"}
     }
@@ -308,7 +307,6 @@ ms{
         CG{"Congo (Republik)"}
         CI{"Ivory Coast"}
         CZ{"Republik Czech"}
-        FK{"Kepulauan Falkland (Islas Malvinas)"}
         TL{"Timor Timur"}
     }
     Version{"2.1.49.2"}

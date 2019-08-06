@@ -626,14 +626,14 @@ hi{
                     narrow{
                         afternoon1{"दोपहर"}
                         evening1{"शाम"}
-                        midnight{"मध्यरात्रि"}
+                        midnight{"m"}
                         morning1{"सुबह"}
                         night1{"रात"}
                     }
                     wide{
                         afternoon1{"दोपहर"}
                         evening1{"शाम"}
-                        midnight{"मध्यरात्रि"}
+                        midnight{"midnight"}
                         morning1{"सुबह"}
                         night1{"रात"}
                     }

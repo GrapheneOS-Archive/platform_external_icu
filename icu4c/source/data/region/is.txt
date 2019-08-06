@@ -110,7 +110,7 @@ is{
         EZ{"Evrusvæðið"}
         FI{"Finnland"}
         FJ{"Fídjíeyjar"}
-        FK{"Falklandseyjar"}
+        FK{"Falklandseyjar (Malvinas)"}
         FM{"Míkrónesía"}
         FO{"Færeyjar"}
         FR{"Frakkland"}
@@ -222,7 +222,7 @@ is{
         PM{"Sankti Pierre og Miquelon"}
         PN{"Pitcairn-eyjar"}
         PR{"Púertó Ríkó"}
-        PS{"Heimastjórnarsvæði Palestínumanna"}
+        PS{"Palestína"}
         PT{"Portúgal"}
         PW{"Palá"}
         PY{"Paragvæ"}
@@ -297,14 +297,12 @@ is{
     }
     Countries%short{
         GB{"Bretland"}
-        PS{"Palestína"}
         UN{"SÞ"}
         US{"BNA"}
     }
     Countries%variant{
         CD{"Kongó (Lýðstjórnarlýðveldið)"}
         CG{"Kongó (Lýðveldið)"}
-        FK{"Falklandseyjar (Malvinas)"}
         TL{"Austur-Tímor"}
     }
     Version{"2.1.49.82"}

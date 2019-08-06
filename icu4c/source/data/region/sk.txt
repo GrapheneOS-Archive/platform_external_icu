@@ -110,7 +110,7 @@ sk{
         EZ{"eurozóna"}
         FI{"Fínsko"}
         FJ{"Fidži"}
-        FK{"Falklandy"}
+        FK{"Falklandy (Malvíny)"}
         FM{"Mikronézia"}
         FO{"Faerské ostrovy"}
         FR{"Francúzsko"}
@@ -222,7 +222,7 @@ sk{
         PM{"Saint Pierre a Miquelon"}
         PN{"Pitcairnove ostrovy"}
         PR{"Portoriko"}
-        PS{"Palestínske územia"}
+        PS{"Palestínska samospráva"}
         PT{"Portugalsko"}
         PW{"Palau"}
         PY{"Paraguaj"}
@@ -297,13 +297,11 @@ sk{
     }
     Countries%short{
         GB{"UK"}
-        PS{"Palestínska samospráva"}
         UN{"OSN"}
         US{"USA"}
     }
     Countries%variant{
         CZ{"Česká republika"}
-        FK{"Falklandy (Malvíny)"}
     }
     Version{"2.1.48.42"}
 }

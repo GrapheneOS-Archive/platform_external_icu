@@ -110,7 +110,7 @@ az{
         EZ{"Avrozona"}
         FI{"Finlandiya"}
         FJ{"Fici"}
-        FK{"Folklend adaları"}
+        FK{"Folklend adaları (Malvin adaları)"}
         FM{"Mikroneziya"}
         FO{"Farer adaları"}
         FR{"Fransa"}
@@ -222,7 +222,7 @@ az{
         PM{"Müqəddəs Pyer və Mikelon"}
         PN{"Pitkern adaları"}
         PR{"Puerto Riko"}
-        PS{"Fələstin Əraziləri"}
+        PS{"Fələstin"}
         PT{"Portuqaliya"}
         PW{"Palau"}
         PY{"Paraqvay"}
@@ -299,7 +299,6 @@ az{
     }
     Countries%short{
         GB{"BK"}
-        PS{"Fələstin"}
         UN{"BMT"}
         US{"ABŞ"}
     }
@@ -308,7 +307,6 @@ az{
         CG{"Konqo (Respublika)"}
         CI{"Fil Dişi Sahili"}
         CZ{"Çex Respublikası"}
-        FK{"Folklend adaları (Malvin adaları)"}
         SZ{"Svazilend"}
         TL{"Doğu Timor"}
     }

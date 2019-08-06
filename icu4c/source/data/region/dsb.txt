@@ -108,7 +108,7 @@ dsb{
         EU{"Europska unija"}
         FI{"Finska"}
         FJ{"Fidži"}
-        FK{"Falklandske kupy"}
+        FK{"Falklandske kupy (Malwiny)"}
         FM{"Mikroneziska"}
         FO{"Färöje"}
         FR{"Francojska"}
@@ -181,7 +181,7 @@ dsb{
         MF{"St. Martin"}
         MG{"Madagaskar"}
         MH{"Marshallowe kupy"}
-        MK{"Makedońska"}
+        MK{"Makedońska (PRJ)"}
         ML{"Mali"}
         MM{"Myanmar"}
         MN{"Mongolska"}
@@ -220,7 +220,7 @@ dsb{
         PM{"St. Pierre a Miquelon"}
         PN{"Pitcairnowe kupy"}
         PR{"Puerto Rico"}
-        PS{"Palestinski awtonomny teritorium"}
+        PS{"Palestina"}
         PT{"Portugalska"}
         PW{"Palau"}
         PY{"Paraguay"}
@@ -294,15 +294,12 @@ dsb{
     }
     Countries%short{
         GB{"UK"}
-        PS{"Palestina"}
         US{"USA"}
     }
     Countries%variant{
         CD{"Kongo (Demokratiska republika)"}
         CG{"Kongo (Republika)"}
         CI{"Słonowokósćowy pśibrjog"}
-        FK{"Falklandske kupy (Malwiny)"}
-        MK{"Makedońska (PRJ)"}
         TL{"Pódzajtšny Timor"}
     }
     Version{"2.1.47.82"}

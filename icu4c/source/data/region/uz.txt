@@ -110,7 +110,7 @@ uz{
         EZ{"yevrozona"}
         FI{"Finlandiya"}
         FJ{"Fiji"}
-        FK{"Folklend orollari"}
+        FK{"Folklend (Malvin) orollari"}
         FM{"Mikroneziya"}
         FO{"Farer orollari"}
         FR{"Fransiya"}
@@ -222,7 +222,7 @@ uz{
         PM{"Sen-Pyer va Mikelon"}
         PN{"Pitkern orollari"}
         PR{"Puerto-Riko"}
-        PS{"Falastin hududlari"}
+        PS{"Falastin"}
         PT{"Portugaliya"}
         PW{"Palau"}
         PY{"Paragvay"}
@@ -297,7 +297,6 @@ uz{
     }
     Countries%short{
         GB{"Britaniya"}
-        PS{"Falastin"}
         UN{"BMT"}
         US{"AQSH"}
     }
@@ -306,7 +305,6 @@ uz{
         CG{"Kongo (Respublika)"}
         CI{"Fil suyagi qirg‘og‘i"}
         CZ{"Chexiya Respublikasi"}
-        FK{"Folklend (Malvin) orollari"}
         TL{"Sharqiy Timor"}
     }
     Version{"2.1.49.82"}

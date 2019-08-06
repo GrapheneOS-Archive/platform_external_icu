@@ -110,7 +110,7 @@ hu{
         EZ{"Eurózóna"}
         FI{"Finnország"}
         FJ{"Fidzsi"}
-        FK{"Falkland-szigetek"}
+        FK{"Falkland-szigetek (Malvin-szigetek)"}
         FM{"Mikronézia"}
         FO{"Feröer szigetek"}
         FR{"Franciaország"}
@@ -222,7 +222,7 @@ hu{
         PM{"Saint-Pierre és Miquelon"}
         PN{"Pitcairn-szigetek"}
         PR{"Puerto Rico"}
-        PS{"Palesztin Terület"}
+        PS{"Palesztina"}
         PT{"Portugália"}
         PW{"Palau"}
         PY{"Paraguay"}
@@ -299,7 +299,6 @@ hu{
     }
     Countries%short{
         GB{"UK"}
-        PS{"Palesztina"}
         UN{"ENSZ"}
         US{"USA"}
     }
@@ -308,7 +307,6 @@ hu{
         CG{"Kongó (Köztársaság)"}
         CI{"CI"}
         CZ{"Cseh Köztársaság"}
-        FK{"Falkland-szigetek (Malvin-szigetek)"}
         TL{"Timor-Leste"}
     }
     Version{"2.1.48.42"}

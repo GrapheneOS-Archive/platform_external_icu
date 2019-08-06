@@ -110,7 +110,7 @@ tr{
         EZ{"Euro Bölgesi"}
         FI{"Finlandiya"}
         FJ{"Fiji"}
-        FK{"Falkland Adaları"}
+        FK{"Falkland Adaları (Malvinas Adaları)"}
         FM{"Mikronezya"}
         FO{"Faroe Adaları"}
         FR{"Fransa"}
@@ -222,7 +222,7 @@ tr{
         PM{"Saint Pierre ve Miquelon"}
         PN{"Pitcairn Adaları"}
         PR{"Porto Riko"}
-        PS{"Filistin Bölgeleri"}
+        PS{"Filistin"}
         PT{"Portekiz"}
         PW{"Palau"}
         PY{"Paraguay"}
@@ -297,7 +297,6 @@ tr{
     }
     Countries%short{
         GB{"BK"}
-        PS{"Filistin"}
         UN{"BM"}
         US{"ABD"}
     }
@@ -305,7 +304,6 @@ tr{
         CD{"Kongo Demokratik Cumhuriyeti"}
         CG{"Kongo Cumhuriyeti"}
         CZ{"Çek Cumhuriyeti"}
-        FK{"Falkland Adaları (Malvinas Adaları)"}
         SZ{"Svaziland"}
         TL{"Doğu Timor"}
     }

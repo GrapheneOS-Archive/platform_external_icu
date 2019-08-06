@@ -110,7 +110,7 @@ nb{
         EZ{"eurosonen"}
         FI{"Finland"}
         FJ{"Fiji"}
-        FK{"Falklandsøyene"}
+        FK{"Falklandsøyene (Islas Malvinas)"}
         FM{"Mikronesiaføderasjonen"}
         FO{"Færøyene"}
         FR{"Frankrike"}
@@ -222,7 +222,7 @@ nb{
         PM{"Saint-Pierre-et-Miquelon"}
         PN{"Pitcairnøyene"}
         PR{"Puerto Rico"}
-        PS{"Det palestinske området"}
+        PS{"Palestina"}
         PT{"Portugal"}
         PW{"Palau"}
         PY{"Paraguay"}
@@ -297,7 +297,6 @@ nb{
     }
     Countries%short{
         GB{"Storbritannia"}
-        PS{"Palestina"}
         UN{"FN"}
         US{"USA"}
     }
@@ -305,7 +304,6 @@ nb{
         CD{"Den demokratiske republikken Kongo"}
         CG{"Republikken Kongo"}
         CZ{"Den tsjekkiske republikk"}
-        FK{"Falklandsøyene (Islas Malvinas)"}
         SZ{"Swaziland"}
     }
     Version{"2.1.48.42"}

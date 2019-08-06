@@ -110,7 +110,7 @@ so{
         EZ{"Yurusoon"}
         FI{"Finland"}
         FJ{"Fiji"}
-        FK{"Jaziiradaha Fooklaan"}
+        FK{"Jasiiradaha Fookland"}
         FM{"Mikroneesiya"}
         FO{"Jasiiradda Faroo"}
         FR{"Faransiis"}
@@ -222,7 +222,7 @@ so{
         PM{"Saint Pierre and Miquelon"}
         PN{"Bitkairn"}
         PR{"Bueerto Riiko"}
-        PS{"Falastiin Daanka galbeed iyo Qasa"}
+        PS{"Falastiin"}
         PT{"Bortugaal"}
         PW{"Balaaw"}
         PY{"Baraguaay"}
@@ -299,7 +299,6 @@ so{
     }
     Countries%short{
         GB{"UK"}
-        PS{"Falastiin"}
         US{"US"}
     }
     Countries%variant{
@@ -307,7 +306,6 @@ so{
         CG{"Jamhuuriyadda Kongo"}
         CI{"Aayforikoost"}
         CZ{"Jamhuuriyadda Jek"}
-        FK{"Jasiiradaha Fookland"}
         SZ{"Iswaasilaan"}
         TL{"Timoor Bari"}
     }

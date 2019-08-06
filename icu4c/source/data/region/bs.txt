@@ -110,7 +110,7 @@ bs{
         EZ{"Eurozona"}
         FI{"Finska"}
         FJ{"Fidži"}
-        FK{"Folklandska ostrva"}
+        FK{"Folklandska (Malvinska) ostrva"}
         FM{"Mikronezija"}
         FO{"Farska ostrva"}
         FR{"Francuska"}
@@ -222,7 +222,7 @@ bs{
         PM{"Sveti Petar i Mikelon"}
         PN{"Pitkernska Ostrva"}
         PR{"Porto Riko"}
-        PS{"Palestinska Teritorija"}
+        PS{"Palestina"}
         PT{"Portugal"}
         PW{"Palau"}
         PY{"Paragvaj"}
@@ -297,7 +297,6 @@ bs{
     }
     Countries%short{
         GB{"UK"}
-        PS{"Palestina"}
         UN{"UN"}
         US{"SAD"}
     }
@@ -306,7 +305,6 @@ bs{
         CG{"Republika Kongo"}
         CI{"Obala Bjelokosti"}
         CZ{"Češka Republika"}
-        FK{"Folklandska (Malvinska) ostrva"}
         SZ{"Svazi"}
         TL{"TL"}
     }

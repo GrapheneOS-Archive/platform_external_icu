@@ -110,7 +110,7 @@ zu{
         EZ{"EZ"}
         FI{"i-Finland"}
         FJ{"i-Fiji"}
-        FK{"i-Falkland Islands"}
+        FK{"i-Falkland Islands (Islas Malvinas)"}
         FM{"i-Micronesia"}
         FO{"i-Faroe Islands"}
         FR{"i-France"}
@@ -183,7 +183,7 @@ zu{
         MF{"i-Saint Martin"}
         MG{"i-Madagascar"}
         MH{"i-Marshall Islands"}
-        MK{"i-Macedonia"}
+        MK{"i-Macedonia (FYROM)"}
         ML{"iMali"}
         MM{"i-Myanmar (Burma)"}
         MN{"i-Mongolia"}
@@ -222,7 +222,7 @@ zu{
         PM{"i-Saint Pierre kanye ne-Miquelon"}
         PN{"i-Pitcairn Islands"}
         PR{"i-Puerto Rico"}
-        PS{"i-Palestinian Territories"}
+        PS{"i-Palestine"}
         PT{"i-Portugal"}
         PW{"i-Palau"}
         PY{"i-Paraguay"}
@@ -299,7 +299,6 @@ zu{
     }
     Countries%short{
         GB{"i-U.K."}
-        PS{"i-Palestine"}
         UN{"ifulegi"}
         US{"i-U.S"}
     }
@@ -308,8 +307,6 @@ zu{
         CG{"i-Congo (Republic)"}
         CI{"i-Ivory Coast"}
         CZ{"i-Czech Republic"}
-        FK{"i-Falkland Islands (Islas Malvinas)"}
-        MK{"i-Macedonia (FYROM)"}
         SZ{"SZ"}
         TL{"i-East Timor"}
     }

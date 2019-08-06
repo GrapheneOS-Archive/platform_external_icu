@@ -34,7 +34,7 @@ sw_KE{
         LV{"Lativia"}
         MA{"Moroko"}
         MC{"Monako"}
-        MK{"Masedonia"}
+        MK{"Masedonia (FYROM)"}
         MM{"Myama (Burma)"}
         MO{"Makau"}
         MQ{"Martiniki"}
@@ -67,9 +67,6 @@ sw_KE{
         VI{"Visiwa vya Virgin vya Marekani"}
         VN{"Vietnamu"}
         YT{"Mayote"}
-    }
-    Countries%variant{
-        MK{"Masedonia (FYROM)"}
     }
     Version{"2.1.47.71"}
 }

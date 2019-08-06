@@ -110,7 +110,7 @@ tk{
         EZ{"Ýewro sebiti"}
         FI{"Finlýandiýa"}
         FJ{"Fiji"}
-        FK{"Folklend adalary"}
+        FK{"Folklend (Malwina) adalary"}
         FM{"Mikroneziýa"}
         FO{"Farer adalary"}
         FR{"Fransiýa"}
@@ -222,7 +222,7 @@ tk{
         PM{"Sen-Pýer we Mikelon"}
         PN{"Pitkern adalary"}
         PR{"Puerto-Riko"}
-        PS{"Palestina territoriýasy"}
+        PS{"Palestina"}
         PT{"Portugaliýa"}
         PW{"Palau"}
         PY{"Paragwaý"}
@@ -299,7 +299,6 @@ tk{
     }
     Countries%short{
         GB{"Birleşen Patyşalyk"}
-        PS{"Palestina"}
         US{"ABŞ"}
     }
     Countries%variant{
@@ -307,7 +306,6 @@ tk{
         CG{"Kongo (Respublika)"}
         CI{"Şirmaýy kenar"}
         CZ{"Çeh Respublikasy"}
-        FK{"Folklend (Malwina) adalary"}
         TL{"Gündogar Timor"}
     }
     Version{"2.1.49.82"}

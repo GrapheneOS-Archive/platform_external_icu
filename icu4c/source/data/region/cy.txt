@@ -110,7 +110,7 @@ cy{
         EZ{"Ardal yr Ewro"}
         FI{"Y Ffindir"}
         FJ{"Fiji"}
-        FK{"Ynysoedd y Falkland/Malvinas"}
+        FK{"Ynysoedd y Falkland (Ynysoedd y Malfinas)"}
         FM{"Micronesia"}
         FO{"Ynysoedd Ffaro"}
         FR{"Ffrainc"}
@@ -222,7 +222,7 @@ cy{
         PM{"Saint-Pierre-et-Miquelon"}
         PN{"Ynysoedd Pitcairn"}
         PR{"Puerto Rico"}
-        PS{"Tiriogaethau Palesteinaidd"}
+        PS{"Palesteina"}
         PT{"Portiwgal"}
         PW{"Palau"}
         PY{"Paraguay"}
@@ -299,7 +299,6 @@ cy{
     }
     Countries%short{
         GB{"DU"}
-        PS{"Palesteina"}
         UN{"UN"}
         US{"UDA"}
     }
@@ -308,7 +307,6 @@ cy{
         CG{"Y Congo (Gweriniaeth)"}
         CI{"Arfordir Ifori"}
         CZ{"Gweriniaeth Tsiec"}
-        FK{"Ynysoedd y Falkland (Ynysoedd y Malfinas)"}
         SZ{"Gwlad Swazi"}
         TL{"Dwyrain Timor"}
     }

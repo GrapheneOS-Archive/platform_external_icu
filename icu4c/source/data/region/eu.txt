@@ -110,7 +110,7 @@ eu{
         EZ{"Eurogunea"}
         FI{"Finlandia"}
         FJ{"Fiji"}
-        FK{"Falklandak"}
+        FK{"Falklandak (Malvinak)"}
         FM{"Mikronesia"}
         FO{"Faroe uharteak"}
         FR{"Frantzia"}
@@ -222,7 +222,7 @@ eu{
         PM{"Saint-Pierre eta Mikelune"}
         PN{"Pitcairn uharteak"}
         PR{"Puerto Rico"}
-        PS{"Palestinar Lurralde Okupatuak"}
+        PS{"Palestina"}
         PT{"Portugal"}
         PW{"Palau"}
         PY{"Paraguai"}
@@ -297,7 +297,6 @@ eu{
     }
     Countries%short{
         GB{"EB"}
-        PS{"Palestina"}
         US{"AEB"}
     }
     Countries%variant{
@@ -305,7 +304,6 @@ eu{
         CG{"Kongoko Errepublika"}
         CI{"CI"}
         CZ{"Txekiar Errepublika"}
-        FK{"Falklandak (Malvinak)"}
         TL{"TL"}
     }
     Version{"2.1.49.82"}

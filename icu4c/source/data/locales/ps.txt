@@ -234,7 +234,6 @@ ps{
     }
     Version{"2.1.49.82"}
     calendar{
-        default{"persian"}
         generic{
             DateTimePatterns{
                 "H:mm:ss (zzzz)",

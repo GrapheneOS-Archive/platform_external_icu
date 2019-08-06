@@ -110,7 +110,7 @@ pt{
         EZ{"zona do euro"}
         FI{"Finlândia"}
         FJ{"Fiji"}
-        FK{"Ilhas Malvinas"}
+        FK{"Ilhas Falkland (Ilhas Malvinas)"}
         FM{"Micronésia"}
         FO{"Ilhas Faroe"}
         FR{"França"}
@@ -222,7 +222,7 @@ pt{
         PM{"São Pedro e Miquelão"}
         PN{"Ilhas Pitcairn"}
         PR{"Porto Rico"}
-        PS{"Territórios palestinos"}
+        PS{"Palestina"}
         PT{"Portugal"}
         PW{"Palau"}
         PY{"Paraguai"}
@@ -299,7 +299,6 @@ pt{
     }
     Countries%short{
         GB{"Reino Unido"}
-        PS{"Palestina"}
         UN{"ONU"}
         US{"EUA"}
     }
@@ -308,7 +307,6 @@ pt{
         CG{"Congo"}
         CI{"Côte d’Ivoire"}
         CZ{"República Tcheca"}
-        FK{"Ilhas Falkland (Ilhas Malvinas)"}
         TL{"República Democrática de Timor-Leste"}
     }
     Version{"2.1.48.42"}
