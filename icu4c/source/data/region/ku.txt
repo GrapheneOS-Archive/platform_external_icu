@@ -263,5 +263,5 @@ ku{
         CZ{"Komara Çekî"}
         TL{"Tîmora Rojhilat"}
     }
-    Version{"2.1.44.82"}
+    Version{"2.1.47.83"}
 }

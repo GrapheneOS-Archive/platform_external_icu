@@ -22,6 +22,8 @@ import android.icu.util.MeasureUnit;
 /**
  * A NumberFormatter that has a locale associated with it; this means .format() methods are available.
  *
+ * Instances of this class are immutable and thread-safe.
+ *
  * @see NumberFormatter
  * @see NumberFormatter
  * @hide Only a subset of ICU is exposed in Android
@@ -129,6 +131,13 @@ public class LocalizedNumberFormatter extends NumberFormatterSettings<LocalizedN
         return new LocalizedNumberFormatterAsFormat(this, resolve().loc);
     }
 
+    /** Helper method that creates a NumberStringBuilder and formats. */
+    private FormattedNumber format(DecimalQuantity fq) {
+        NumberStringBuilder string = new NumberStringBuilder();
+        formatImpl(fq, string);
+        return new FormattedNumber(string, fq);
+    }
+
     /**
      * This is the core entrypoint to the number formatting pipeline. It performs self-regulation: a
      * static code path for the first few calls, and compiling a more efficient data structure if called
@@ -139,25 +148,24 @@ public class LocalizedNumberFormatter extends NumberFormatterSettings<LocalizedN
      *
      * @param fq
      *            The quantity to be formatted.
-     * @return The formatted number result.
+     * @param string
+     *            The string builder into which to insert the result.
      *
      * @deprecated ICU 60 This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
-    public FormattedNumber format(DecimalQuantity fq) {
-        NumberStringBuilder string = new NumberStringBuilder();
+    public void formatImpl(DecimalQuantity fq, NumberStringBuilder string) {
         if (computeCompiled()) {
             compiled.format(fq, string);
         } else {
             NumberFormatterImpl.formatStatic(resolve(), fq, string);
         }
-        return new FormattedNumber(string, fq);
     }
 
     /**
-     * @deprecated This API is ICU internal only. Use {@link FormattedNumber#populateFieldPosition} or
-     *             {@link FormattedNumber#getFieldIterator} for similar functionality.
+     * @deprecated This API is ICU internal only. Use {@link FormattedNumber#nextPosition}
+     *             for related functionality.
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated

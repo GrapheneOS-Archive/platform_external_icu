@@ -29,7 +29,7 @@
 U_NAMESPACE_BEGIN
 
 // TimeZoneNames object cache handling
-static UMutex gTimeZoneNamesLock = U_MUTEX_INITIALIZER;
+static UMutex gTimeZoneNamesLock;
 static UHashtable *gTimeZoneNamesCache = NULL;
 static UBool gTimeZoneNamesCacheInitialized = FALSE;
 
@@ -105,7 +105,7 @@ public:
     virtual ~TimeZoneNamesDelegate();
 
     virtual UBool operator==(const TimeZoneNames& other) const;
-    virtual UBool operator!=(const TimeZoneNames& other) const {return !operator==(other);};
+    virtual UBool operator!=(const TimeZoneNames& other) const {return !operator==(other);}
     virtual TimeZoneNames* clone() const;
 
     StringEnumeration* getAvailableMetaZoneIDs(UErrorCode& status) const;

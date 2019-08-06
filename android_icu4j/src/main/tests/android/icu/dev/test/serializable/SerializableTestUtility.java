@@ -821,6 +821,8 @@ public class SerializableTestUtility {
         map.put("android.icu.text.DateFormat$Field", new FormatHandler.DateFormatFieldHandler());
         map.put("android.icu.text.ChineseDateFormat$Field", new FormatHandler.ChineseDateFormatFieldHandler());
         map.put("android.icu.text.MessageFormat$Field", new FormatHandler.MessageFormatFieldHandler());
+        map.put("android.icu.text.RelativeDateTimeFormatter$Field", new FormatHandler.RelativeDateTimeFormatterFieldHandler());
+        map.put("android.icu.text.DateIntervalFormat$SpanField", new FormatHandler.DateIntervalSpanFieldHandler());
 
         map.put("android.icu.impl.duration.BasicDurationFormat", new FormatHandler.BasicDurationFormatHandler());
         map.put("android.icu.impl.RelativeDateFormat", new FormatHandler.RelativeDateFormatHandler());

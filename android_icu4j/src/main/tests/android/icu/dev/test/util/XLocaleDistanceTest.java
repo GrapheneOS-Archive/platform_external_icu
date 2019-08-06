@@ -5,9 +5,8 @@ package android.icu.dev.test.util;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import org.junit.Ignore;
@@ -16,18 +15,16 @@ import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
 import android.icu.dev.test.TestFmwk;
-import android.icu.impl.locale.XLikelySubtags.LSR;
-import android.icu.impl.locale.XLocaleDistance;
-import android.icu.impl.locale.XLocaleDistance.DistanceNode;
-import android.icu.impl.locale.XLocaleDistance.DistanceOption;
-import android.icu.impl.locale.XLocaleDistance.DistanceTable;
+import android.icu.impl.locale.LocaleDistance;
+import android.icu.impl.locale.LocaleDistance.DistanceOption;
 import android.icu.util.LocaleMatcher;
 import android.icu.util.Output;
 import android.icu.util.ULocale;
 import android.icu.testsharding.MainTestShard;
 
 /**
- * Test the XLocaleDistance.
+ * Test the LocaleDistance.
+ * TODO: Rename to LocaleDistanceTest.
  *
  * @author markdavis
  */
@@ -36,9 +33,7 @@ import android.icu.testsharding.MainTestShard;
 public class XLocaleDistanceTest extends TestFmwk {
     private static final boolean REFORMAT = false; // set to true to get a reformatted data file listed
 
-    public static final int FAIL = XLocaleDistance.ABOVE_THRESHOLD;
-
-    private XLocaleDistance localeMatcher = XLocaleDistance.getDefault();
+    private LocaleDistance localeDistance = LocaleDistance.INSTANCE;
     DataDrivenTestHelper tfh = new MyTestFileHandler()
             .setFramework(this)
             .load(XLocaleDistanceTest.class, "data/localeDistanceTest.txt");
@@ -61,7 +56,7 @@ public class XLocaleDistanceTest extends TestFmwk {
     @Ignore("Disabled because of Linux; need to investigate.")
     @Test
     public void testTiming() {
-        List<Arguments> testArgs = new ArrayList<Arguments>();
+        List<Arguments> testArgs = new ArrayList<>();
         for (List<String> line : tfh.getLines()) {
             if (tfh.isTestLine(line)) {
                 testArgs.add(new Arguments(line));
@@ -97,13 +92,13 @@ public class XLocaleDistanceTest extends TestFmwk {
                 oldTimeMinusLikely += System.nanoTime()-temp;
 
                 temp = System.nanoTime();
-                final LSR desiredLSR = LSR.fromMaximalized(desired);
-                final LSR supportedLSR = LSR.fromMaximalized(supported);
+//                final LSR desiredLSR = LSR.maximizedFrom(desired);
+//                final LSR supportedLSR = LSR.maximizedFrom(supported);
                 newLikelyTime += System.nanoTime()-temp;
 
                 temp = System.nanoTime();
-                int dist1 = localeMatcher.distanceRaw(desiredLSR, supportedLSR, 1000, DistanceOption.REGION_FIRST);
-                int dist2 = localeMatcher.distanceRaw(supportedLSR, desiredLSR, 1000, DistanceOption.REGION_FIRST);
+                int dist1 = localeDistance.testOnlyDistance(desired, supported, 1000, DistanceOption.REGION_FIRST);
+                int dist2 = localeDistance.testOnlyDistance(supported, desired, 1000, DistanceOption.REGION_FIRST);
                 newTimeMinusLikely += System.nanoTime()-temp;
             }
         }
@@ -121,52 +116,53 @@ public class XLocaleDistanceTest extends TestFmwk {
     }
 
     @Test
-    @SuppressWarnings("deprecation")
     public void testInternalTable() {
-        checkTables(localeMatcher.internalGetDistanceTable(), "", 1);
-    }
-
-    @SuppressWarnings("deprecation")
-    private void checkTables(DistanceTable internalGetDistanceTable, String title, int depth) {
-        // Check that ANY, ANY is always present, and that the table has a depth of exactly 3 everyplace.
-        Map<String, Set<String>> matches = internalGetDistanceTable.getInternalMatches();
-
-        // must have ANY,ANY
-        boolean haveANYANY = false;
-        for (Entry<String, Set<String>> entry : matches.entrySet()) {
-            String first = entry.getKey();
-            boolean haveANYfirst = first.equals(XLocaleDistance.ANY);
-            for (String second : entry.getValue()) {
-                haveANYANY |= haveANYfirst && second.equals(XLocaleDistance.ANY);
-                DistanceNode distanceNode = internalGetDistanceTable.getInternalNode(first, second);
-                DistanceTable subDistanceTable = distanceNode.getDistanceTable();
-                if (subDistanceTable == null || subDistanceTable.isEmpty()) {
-                    if (depth != 3) {
-                        logln("depth should be 3");
-                    }
-                    if (distanceNode.getClass() != DistanceNode.class) {
-                        logln("should be plain DistanceNode");
-                    }
-                } else {
-                    if (depth >= 3) {
-                        logln("depth should be ≤ 3");
-                    }
-                    if (distanceNode.getClass() == DistanceNode.class) {
-                        logln("should NOT be plain DistanceNode");
-                    }
-                    checkTables(subDistanceTable, first + "," + second + ",", depth+1);
+        Set<String> strings = localeDistance.testOnlyGetDistanceTable(false).keySet();
+        // Check that the table has a depth of exactly 3 (desired, supported) pairs everyplace
+        // by removing every prefix of a 6-subtag string from a copy of the set of strings.
+        // Any remaining string is not a prefix of a full-depth string.
+        Set<String> remaining = new HashSet<>(strings);
+        // Check that ANY, ANY is always present.
+        assertTrue("*-*", strings.contains("*-*"));
+        for (String s : strings) {
+            int num = countSubtags(s);
+            assertTrue(s, 1 <= num && num <= 6);
+            if (num > 1) {
+                String oneShorter = removeLastSubtag(s);
+                assertTrue(oneShorter, strings.contains(oneShorter));
+            }
+            if (num == 2 || num == 4) {
+                String sPlusAnyAny = s + "-*-*";
+                assertTrue(sPlusAnyAny, strings.contains(sPlusAnyAny));
+            } else if (num == 6) {
+                for (;; --num) {
+                    remaining.remove(s);
+                    if (num == 1) { break; }
+                    s = removeLastSubtag(s);
                 }
             }
         }
-        if (!haveANYANY) {
-            logln("ANY-ANY not in" + matches);
+        assertTrue("strings that do not lead to 6-subtag matches", remaining.isEmpty());
+    }
+
+    private static final int countSubtags(String s) {
+        if (s.isEmpty()) { return 0; }
+        int num = 1;
+        for (int pos = 0; (pos = s.indexOf('-', pos)) >= 0; ++pos) {
+            ++num;
         }
+        return num;
+    }
+
+    private static final String removeLastSubtag(String s) {
+        int last = s.lastIndexOf('-');
+        return s.substring(0, last);
     }
 
     @Test
     public void testShowDistanceTable() {
         if (isVerbose()) {
-            System.out.println(XLocaleDistance.getDefault().toString(false));
+            localeDistance.testOnlyPrintDistanceTable();
         }
     }
 
@@ -179,10 +175,9 @@ public class XLocaleDistanceTest extends TestFmwk {
     }
 
     class MyTestFileHandler extends DataDrivenTestHelper {
-        final XLocaleDistance distance = XLocaleDistance.getDefault();
-        Output<ULocale> bestDesired = new Output<ULocale>();
+        Output<ULocale> bestDesired = new Output<>();
         private DistanceOption distanceOption = DistanceOption.REGION_FIRST;
-        private Integer threshold = distance.getDefaultScriptDistance();
+        private Integer threshold = localeDistance.getDefaultScriptDistance();
 
         @Override
         public void handle(int lineNumber, boolean breakpoint, String commentBase, List<String> arguments) {
@@ -190,8 +185,8 @@ public class XLocaleDistanceTest extends TestFmwk {
                 breakpoint = false; // put debugger breakpoint here to break at @debug in test file
             }
             Arguments args = new Arguments(arguments);
-            int supportedToDesiredActual = distance.distance(args.supported, args.desired, threshold, distanceOption);
-            int desiredToSupportedActual = distance.distance(args.desired, args.supported, threshold, distanceOption);
+            int supportedToDesiredActual = localeDistance.testOnlyDistance(args.supported, args.desired, threshold, distanceOption);
+            int desiredToSupportedActual = localeDistance.testOnlyDistance(args.desired, args.supported, threshold, distanceOption);
             String desiredTag = args.desired.toLanguageTag();
             String supportedTag = args.supported.toLanguageTag();
             final String comment = commentBase.isEmpty() ? "" : "\t# " + commentBase;

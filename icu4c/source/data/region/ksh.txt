@@ -301,5 +301,5 @@ ksh{
         CG{"de Republik Konggo"}
         CI{"de Älfebeijnköß"}
     }
-    Version{"2.1.41.34"}
+    Version{"2.1.47.82"}
 }
