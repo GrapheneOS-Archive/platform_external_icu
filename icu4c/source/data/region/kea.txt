@@ -108,7 +108,7 @@ kea{
         EU{"Uniãu Europeia"}
         FI{"Finlándia"}
         FJ{"Fidji"}
-        FK{"Ilhas Malvinas"}
+        FK{"Ilhas Falkland (Ilhas Malvinas)"}
         FM{"Mikronézia"}
         FO{"Ilhas Faroe"}
         FR{"Fransa"}
@@ -181,7 +181,7 @@ kea{
         MF{"Sãu Martinhu di Fransa"}
         MG{"Madagaskar"}
         MH{"Ilhas Marxal"}
-        MK{"Masidónia"}
+        MK{"Masidónia (FYROM)"}
         ML{"Mali"}
         MM{"Mianmar (Birmánia)"}
         MN{"Mongólia"}
@@ -301,8 +301,6 @@ kea{
         CG{"Repúblika di Kongu"}
         CI{"Kosta di Marfin (Côte d’Ivoire)"}
         CZ{"Repúblika Txeka"}
-        FK{"Ilhas Falkland (Ilhas Malvinas)"}
-        MK{"Masidónia (FYROM)"}
     }
     Version{"2.1.48.9"}
 }

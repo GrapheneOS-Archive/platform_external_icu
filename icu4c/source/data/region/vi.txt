@@ -110,7 +110,7 @@ vi{
         EZ{"Khu vực đồng Euro"}
         FI{"Phần Lan"}
         FJ{"Fiji"}
-        FK{"Quần đảo Falkland"}
+        FK{"Quần đảo Falkland (Islas Malvinas)"}
         FM{"Micronesia"}
         FO{"Quần đảo Faroe"}
         FR{"Pháp"}
@@ -222,7 +222,7 @@ vi{
         PM{"Saint Pierre và Miquelon"}
         PN{"Quần đảo Pitcairn"}
         PR{"Puerto Rico"}
-        PS{"Lãnh thổ Palestine"}
+        PS{"Palestine"}
         PT{"Bồ Đào Nha"}
         PW{"Palau"}
         PY{"Paraguay"}
@@ -299,7 +299,6 @@ vi{
     }
     Countries%short{
         GB{"Vương quốc Anh"}
-        PS{"Palestine"}
         UN{"Liên hiệp quốc"}
         US{"Hoa Kỳ"}
     }
@@ -308,7 +307,6 @@ vi{
         CG{"Cộng hòa Congo"}
         CI{"Bờ Biển Ngà"}
         CZ{"Cộng hòa Séc"}
-        FK{"Quần đảo Falkland (Islas Malvinas)"}
         TL{"Đông Timor"}
     }
     Version{"2.1.49.82"}

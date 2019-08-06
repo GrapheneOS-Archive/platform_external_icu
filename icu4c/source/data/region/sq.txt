@@ -110,7 +110,7 @@ sq{
         EZ{"Zona euro"}
         FI{"Finlandë"}
         FJ{"Fixhi"}
-        FK{"Ishujt Falkland"}
+        FK{"Ishujt Falkland (Malvine)"}
         FM{"Mikronezi"}
         FO{"Ishujt Faroe"}
         FR{"Francë"}
@@ -222,7 +222,7 @@ sq{
         PM{"Shën-Pier dhe Mikelon"}
         PN{"Ishujt Pitkern"}
         PR{"Porto-Riko"}
-        PS{"Territoret Palestineze"}
+        PS{"Palestinë"}
         PT{"Portugali"}
         PW{"Palau"}
         PY{"Paraguai"}
@@ -299,7 +299,6 @@ sq{
     }
     Countries%short{
         GB{"MB"}
-        PS{"Palestinë"}
         UN{"OKB"}
         US{"SHBA"}
     }
@@ -308,7 +307,6 @@ sq{
         CG{"Kongo (Republika)"}
         CI{"Bregu i Fildishtë"}
         CZ{"Republika Çeke"}
-        FK{"Ishujt Falkland (Malvine)"}
         SZ{"Suazilend"}
         TL{"Timori Lindor"}
     }

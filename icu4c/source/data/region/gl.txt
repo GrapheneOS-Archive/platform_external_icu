@@ -110,7 +110,7 @@ gl{
         EZ{"Eurozona"}
         FI{"Finlandia"}
         FJ{"Fixi"}
-        FK{"Illas Malvinas"}
+        FK{"Illas Malvinas (Falkland)"}
         FM{"Micronesia"}
         FO{"Illas Feroe"}
         FR{"Francia"}
@@ -222,7 +222,7 @@ gl{
         PM{"Saint Pierre et Miquelon"}
         PN{"Illas Pitcairn"}
         PR{"Porto Rico"}
-        PS{"Territorios Palestinos"}
+        PS{"Palestina"}
         PT{"Portugal"}
         PW{"Palau"}
         PY{"O Paraguai"}
@@ -297,7 +297,6 @@ gl{
     }
     Countries%short{
         GB{"RU"}
-        PS{"Palestina"}
         UN{"ONU"}
         US{"EUA"}
     }
@@ -306,7 +305,6 @@ gl{
         CG{"Congo (RC)"}
         CI{"CI"}
         CZ{"República Checa"}
-        FK{"Illas Malvinas (Falkland)"}
         SZ{"Suacilandia"}
         TL{"TL"}
     }

@@ -110,7 +110,7 @@ hr{
         EZ{"eurozona"}
         FI{"Finska"}
         FJ{"Fidži"}
-        FK{"Falklandski otoci"}
+        FK{"Falklandski otoci (Malvini)"}
         FM{"Mikronezija"}
         FO{"Farski otoci"}
         FR{"Francuska"}
@@ -222,7 +222,7 @@ hr{
         PM{"Sveti Petar i Mikelon"}
         PN{"Otoci Pitcairn"}
         PR{"Portoriko"}
-        PS{"Palestinsko područje"}
+        PS{"Palestina"}
         PT{"Portugal"}
         PW{"Palau"}
         PY{"Paragvaj"}
@@ -299,7 +299,6 @@ hr{
     }
     Countries%short{
         GB{"UK"}
-        PS{"Palestina"}
         UN{"UN"}
         US{"SAD"}
     }
@@ -308,7 +307,6 @@ hr{
         CG{"Kongo (RK)"}
         CI{"Bjelokosna Obala"}
         CZ{"Češka Republika"}
-        FK{"Falklandski otoci (Malvini)"}
         TL{"Istočni Timor"}
     }
     Version{"2.1.48.42"}

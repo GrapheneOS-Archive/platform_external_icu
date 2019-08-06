@@ -110,7 +110,7 @@ fo{
         EZ{"Evrasona"}
         FI{"Finnland"}
         FJ{"Fiji"}
-        FK{"Falklandsoyggjar"}
+        FK{"Falklandsoyggjar (Islas Malvinas)"}
         FM{"Mikronesiasamveldið"}
         FO{"Føroyar"}
         FR{"Frakland"}
@@ -183,7 +183,7 @@ fo{
         MF{"St-Martin"}
         MG{"Madagaskar"}
         MH{"Marshalloyggjar"}
-        MK{"Makedónia"}
+        MK{"Makedónia (FJM)"}
         ML{"Mali"}
         MM{"Myanmar (Burma)"}
         MN{"Mongolia"}
@@ -222,7 +222,7 @@ fo{
         PM{"Saint Pierre & Miquelon"}
         PN{"Pitcairnoyggjar"}
         PR{"Puerto Riko"}
-        PS{"Palestinskt landøki"}
+        PS{"Palestina"}
         PT{"Portugal"}
         PW{"Palau"}
         PY{"Paraguai"}
@@ -297,12 +297,7 @@ fo{
     }
     Countries%short{
         GB{"UK"}
-        PS{"Palestina"}
         US{"USA"}
-    }
-    Countries%variant{
-        FK{"Falklandsoyggjar (Islas Malvinas)"}
-        MK{"Makedónia (FJM)"}
     }
     Version{"2.1.48.9"}
 }

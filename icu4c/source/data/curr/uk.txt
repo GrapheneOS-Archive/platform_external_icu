@@ -923,7 +923,7 @@ uk{
             "танзанійський шилінг",
         }
         UAH{
-            "₴",
+            "грн.",
             "українська гривня",
         }
         UAK{
@@ -1124,7 +1124,6 @@ uk{
     }
     Currencies%variant{
         GEL{"₾"}
-        UAH{"грн."}
     }
     CurrencyPlurals{
         ADP{

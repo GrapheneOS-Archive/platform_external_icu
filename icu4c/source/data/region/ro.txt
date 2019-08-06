@@ -110,7 +110,7 @@ ro{
         EZ{"Zona euro"}
         FI{"Finlanda"}
         FJ{"Fiji"}
-        FK{"Insulele Falkland"}
+        FK{"Insulele Falkland (Insulele Malvine)"}
         FM{"Micronezia"}
         FO{"Insulele Feroe"}
         FR{"Franța"}
@@ -222,7 +222,7 @@ ro{
         PM{"Saint-Pierre și Miquelon"}
         PN{"Insulele Pitcairn"}
         PR{"Puerto Rico"}
-        PS{"Teritoriile Palestiniene"}
+        PS{"Palestina"}
         PT{"Portugalia"}
         PW{"Palau"}
         PY{"Paraguay"}
@@ -299,7 +299,6 @@ ro{
     }
     Countries%short{
         GB{"Regatul Unit"}
-        PS{"Palestina"}
         UN{"ONU"}
         US{"S.U.A."}
     }
@@ -308,7 +307,6 @@ ro{
         CG{"Congo (Republica)"}
         CI{"Coasta de Fildeș"}
         CZ{"Republica Cehă"}
-        FK{"Insulele Falkland (Insulele Malvine)"}
         SZ{"Swaziland"}
         TL{"Timorul de Est"}
     }

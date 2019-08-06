@@ -110,7 +110,7 @@ lt{
         EZ{"euro zona"}
         FI{"Suomija"}
         FJ{"Fidžis"}
-        FK{"Folklando Salos"}
+        FK{"Folklando (Malvinų) Salos"}
         FM{"Mikronezija"}
         FO{"Farerų Salos"}
         FR{"Prancūzija"}
@@ -222,7 +222,7 @@ lt{
         PM{"Sen Pjeras ir Mikelonas"}
         PN{"Pitkerno salos"}
         PR{"Puerto Rikas"}
-        PS{"Palestinos teritorija"}
+        PS{"Palestina"}
         PT{"Portugalija"}
         PW{"Palau"}
         PY{"Paragvajus"}
@@ -299,7 +299,6 @@ lt{
     }
     Countries%short{
         GB{"JK"}
-        PS{"Palestina"}
         UN{"JT"}
         US{"JAV"}
     }
@@ -308,7 +307,6 @@ lt{
         CG{"Kongo Respublika"}
         CI{"Dramblio Kaulo Kranto Respublika"}
         CZ{"Čekijos Respublika"}
-        FK{"Folklando (Malvinų) Salos"}
         TL{"TL"}
     }
     Version{"2.1.48.42"}
