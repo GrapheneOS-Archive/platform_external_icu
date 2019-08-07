@@ -9,6 +9,8 @@ import android.icu.impl.number.DecimalQuantity_DualStorageBCD;
 /**
  * A NumberRangeFormatter that has a locale associated with it; this means .formatRange() methods are available.
  *
+ * Instances of this class are immutable and thread-safe.
+ *
  * @author sffc
  * @see NumberRangeFormatter
  * @hide Only a subset of ICU is exposed in Android

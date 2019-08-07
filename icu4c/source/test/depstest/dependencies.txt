@@ -20,10 +20,11 @@ system_symbols:
     c_strings c_string_formatting
     int_functions floating_point trigonometry
     stdlib_qsort
-    pthread system_locale
+    system_locale
     stdio_input stdio_output file_io readlink_function dir_io mmap_functions dlfcn
     # C++
     cplusplus iostream
+    std_mutex
 
 group: PIC
     # Position-Independent Code (-fPIC) requires a Global Offset Table.
@@ -38,6 +39,15 @@ group: system_debug
 group: malloc_functions
     free malloc realloc
 
+group: std_mutex
+    std::condition_variable::notify_one()
+    std::condition_variable::wait(std::unique_lock<std::mutex>&)
+    std::condition_variable::notify_all()
+    std::condition_variable::condition_variable()
+    std::condition_variable::~condition_variable()
+    std::condition_variable_any::condition_variable_any()
+    std::condition_variable_any::~condition_variable_any()
+
 group: ubsan
     # UBSan=UndefinedBehaviorSanitizer, clang -fsanitize=bounds
     __ubsan_handle_out_of_bounds
@@ -47,7 +57,7 @@ group: c_strings
     __ctype_b_loc  # for <ctype.h>
     # We must not use tolower and toupper because they are system-locale-sensitive (Turkish i).
     strlen strchr strrchr strstr strcmp strncmp strcpy strncpy strcat strncat
-    memcmp memcpy memmove memset
+    memchr memcmp memcpy memmove memset
     # Additional symbols in an optimized build.
     __strcpy_chk __strncpy_chk __strcat_chk __strncat_chk
     __rawmemchr __memcpy_chk __memmove_chk __memset_chk
@@ -71,10 +81,6 @@ group: trigonometry
 
 group: stdlib_qsort
     qsort
-
-group: pthread
-    pthread_mutex_init pthread_mutex_destroy pthread_mutex_lock pthread_mutex_unlock
-    pthread_cond_wait pthread_cond_broadcast pthread_cond_signal
 
 group: system_locale
     getenv
@@ -178,6 +184,7 @@ library: common
     uinit utypes errorcode
     icuplug
     platform
+    localebuilder
 
 group: pluralmap
     # TODO: Move to i18n library, ticket #11926.
@@ -633,6 +640,11 @@ group: resourcebundle
     uscript_props propname
     bytesinkutil
 
+group: localebuilder
+    localebuilder.o
+  deps
+    resourcebundle
+
 group: udata
     udata.o ucmndata.o udatamem.o
     umapfile.o
@@ -815,10 +827,11 @@ group: platform
     # The "platform" group has no ICU dependencies.
     PIC system_misc system_debug malloc_functions ubsan
     c_strings c_string_formatting
-    floating_point pthread system_locale
+    floating_point system_locale
     stdio_input readlink_function dir_io
     dlfcn  # Move related code into icuplug.c?
     cplusplus
+    std_mutex
 
 # ICU i18n library ----------------------------------------------------------- #
 
@@ -829,7 +842,7 @@ library: i18n
     dayperiodrules
     listformatter
     formatting formattable_cnv regex regex_cnv translit
-    double_conversion number_representation numberformatter numberparser
+    double_conversion number_representation number_output numberformatter numberparser
     universal_time_scale
     uclean_i18n
 
@@ -905,7 +918,7 @@ group: dayperiodrules
 group: listformatter
     listformatter.o ulistformatter.o
   deps
-    resourcebundle simpleformatter format uclean_i18n
+    resourcebundle simpleformatter format uclean_i18n formatted_value_iterimpl
 
 group: double_conversion
     double-conversion.o double-conversion-bignum.o double-conversion-bignum-dtoa.o
@@ -918,10 +931,23 @@ group: number_representation
     number_decimalquantity.o number_stringbuilder.o numparse_stringsegment.o number_utils.o
   deps
     decnumber double_conversion
+    # for trimming whitespace around fields
+    static_unicode_sets
     # for data loading; that could be split off
     resourcebundle
     int_functions
     ucase uniset_core
+    formatted_value
+
+group: number_output
+    # PluralRules and FormattedNumber
+    number_output.o
+    standardplural.o plurrule.o
+  deps
+    # FormattedNumber internals:
+    number_representation format formatted_value_sbimpl
+    # PluralRules internals:
+    unifiedcache
 
 group: numberformatter
     # ICU 60+ NumberFormatter API
@@ -936,11 +962,9 @@ group: numberformatter
     number_scientific.o number_skeletons.o
     currpinf.o dcfmtsym.o numsys.o
     numrange_fluent.o numrange_impl.o
-    # pluralrules
-    standardplural.o plurrule.o
   deps
-    decnumber double_conversion formattable format units
-    number_representation
+    decnumber double_conversion formattable units
+    number_representation number_output
     uclean_i18n common
 
 group: numberparser
@@ -983,7 +1007,7 @@ group: formatting
     # messageformat
     choicfmt.o msgfmt.o plurfmt.o selfmt.o umsg.o
   deps
-    decnumber formattable format units numberformatter numberparser
+    decnumber formattable format units numberformatter numberparser formatted_value_sbimpl
     listformatter
     dayperiodrules
     collation collation_builder  # for rbnf
@@ -1018,6 +1042,21 @@ group: formattable_cnv
     fmtable_cnv.o
   deps
     formattable unistr_cnv conversion
+
+group: formatted_value
+    formattedvalue.o
+  deps
+    platform
+
+group: formatted_value_iterimpl
+    formattedval_iterimpl.o
+  deps
+    formatted_value format uvector32
+
+group: formatted_value_sbimpl
+    formattedval_sbimpl.o
+  deps
+    number_representation
 
 group: format
     format.o fphdlimp.o fpositer.o ufieldpositer.o

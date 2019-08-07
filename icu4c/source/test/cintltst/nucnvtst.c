@@ -5512,7 +5512,7 @@ static void TestJB5275_1(){
     }
     targetLimit = target;
     target = dest;
-    printUSeq(target, targetLimit-target);
+    printUSeq(target, (int)(targetLimit-target));
     while(target<targetLimit){
         if(*exp!=*target){
             log_err("did not get the expected output. \\u%04X != \\u%04X (got)\n", *exp, *target);
@@ -5559,7 +5559,7 @@ static void TestJB5275(){
     targetLimit = target;
     target = dest;
 
-    printUSeq(target, targetLimit-target);
+    printUSeq(target, (int)(targetLimit-target));
     
     while(target<targetLimit){
         if(*exp!=*target){

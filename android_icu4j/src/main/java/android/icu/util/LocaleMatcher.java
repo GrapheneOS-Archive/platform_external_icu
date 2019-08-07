@@ -26,7 +26,7 @@ import android.icu.impl.ICUResourceBundle;
 import android.icu.impl.Relation;
 import android.icu.impl.Row;
 import android.icu.impl.Row.R3;
-import android.icu.impl.locale.XLocaleDistance.DistanceOption;
+import android.icu.impl.locale.LocaleDistance.DistanceOption;
 import android.icu.impl.locale.XLocaleMatcher;
 import android.icu.impl.locale.XLocaleMatcher.Builder;
 
@@ -260,7 +260,7 @@ public class LocaleMatcher {
         ULocale bestTableMatch = null;
         String baseLanguage = maximized.getLanguage();
         Set<R3<ULocale, ULocale, Double>> searchTable = desiredLanguageToPossibleLocalesToMaxLocaleToData.get(baseLanguage);
-        if (searchTable != null) { // we preprocessed the table so as to filter by lanugage
+        if (searchTable != null) { // we preprocessed the table so as to filter by language
             if (DEBUG) System.out.println("\tSearching: " + searchTable);
             for (final R3<ULocale, ULocale, Double> tableKeyValue : searchTable) {
                 ULocale tableKey = tableKeyValue.get0();

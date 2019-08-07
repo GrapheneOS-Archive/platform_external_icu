@@ -49,8 +49,7 @@ static const UChar NO_NAME[]            = { 0 };   // for empty no-fallback time
 static const char* TZDBNAMES_KEYS[]               = {"ss", "sd"};
 static const int32_t TZDBNAMES_KEYS_SIZE = UPRV_LENGTHOF(TZDBNAMES_KEYS);
 
-static UMutex gTZDBNamesMapLock = U_MUTEX_INITIALIZER;
-static UMutex gDataMutex = U_MUTEX_INITIALIZER;
+static UMutex gDataMutex;
 
 static UHashtable* gTZDBNamesMap = NULL;
 static icu::UInitOnce gTZDBNamesMapInitOnce = U_INITONCE_INITIALIZER;
@@ -357,8 +356,6 @@ TextTrieMap::getChildNode(CharacterNode *parent, UChar c) const {
     return NULL;
 }
 
-// Mutex for protecting the lazy creation of the Trie node structure on the first call to search().
-static UMutex TextTrieMutex = U_MUTEX_INITIALIZER;
 
 // buildTrie() - The Trie node structure is needed.  Create it from the data that was
 //               saved at the time the ZoneStringFormatter was created.  The Trie is only
@@ -386,6 +383,10 @@ TextTrieMap::search(const UnicodeString &text, int32_t start,
         //       the ICU atomic safe functions for assigning and testing.
         //       Don't test the pointer fLazyContents.
         //       Don't do unless it's really required.
+
+        // Mutex for protecting the lazy creation of the Trie node structure on the first call to search().
+        static UMutex TextTrieMutex;
+
         Mutex lock(&TextTrieMutex);
         if (fLazyContents != NULL) {
             TextTrieMap *nonConstThis = const_cast<TextTrieMap *>(this);
@@ -2243,6 +2244,7 @@ TZDBTimeZoneNames::getMetaZoneNames(const UnicodeString& mzID, UErrorCode& statu
     U_ASSERT(status == U_ZERO_ERROR);   // already checked length above
     mzIDKey[mzID.length()] = 0;
 
+    static UMutex gTZDBNamesMapLock;
     umtx_lock(&gTZDBNamesMapLock);
     {
         void *cacheVal = uhash_get(gTZDBNamesMap, mzIDKey);

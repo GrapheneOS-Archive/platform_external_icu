@@ -33,6 +33,10 @@ en_XA{
         "Europe:Dublin"{
             ld{"[Îŕîšĥ Šţåñðåŕð Ţîɱé one two three]"}
         }
+        "Europe:Kiev"{
+            ec{"[Ķîéṽ one]"}
+            ec%formal{"[Ķýîṽ one]"}
+        }
         "Europe:London"{
             ld{"[Ɓŕîţîšĥ Šûɱɱéŕ Ţîɱé one two three]"}
         }
@@ -451,9 +455,9 @@ en_XA{
             ls{"[Ļöŕð Ĥöŵé Šţåñðåŕð Ţîɱé one two three]"}
         }
         "meta:Macau"{
-            ld{"[Ṁåçåû Šûɱɱéŕ Ţîɱé one two three]"}
-            lg{"[Ṁåçåû Ţîɱé one two]"}
-            ls{"[Ṁåçåû Šţåñðåŕð Ţîɱé one two three]"}
+            ld{"[Ṁåçåö Šûɱɱéŕ Ţîɱé one two three]"}
+            lg{"[Ṁåçåö Ţîɱé one two]"}
+            ls{"[Ṁåçåö Šţåñðåŕð Ţîɱé one two three]"}
         }
         "meta:Macquarie"{
             ls{"[Ṁåçǫûåŕîé Îšļåñð Ţîɱé one two three]"}
