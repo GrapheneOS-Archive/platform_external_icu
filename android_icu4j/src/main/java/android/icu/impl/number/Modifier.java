@@ -3,8 +3,9 @@
 // License & terms of use: http://www.unicode.org/copyright.html#License
 package android.icu.impl.number;
 
+import java.text.Format.Field;
+
 import android.icu.impl.StandardPlural;
-import android.icu.text.NumberFormat.Field;
 
 /**
  * A Modifier is an object that can be passed through the formatting pipeline until it is finally applied

@@ -3,7 +3,7 @@
 // License & terms of use: http://www.unicode.org/copyright.html#License
 package android.icu.impl.number;
 
-import android.icu.text.NumberFormat.Field;
+import java.text.Format.Field;
 
 /**
  * The canonical implementation of {@link Modifier}, containing a prefix and suffix string.
