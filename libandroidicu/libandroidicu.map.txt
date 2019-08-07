@@ -495,6 +495,7 @@ LIBANDROIDICU_EXTERNAL_1 {
     udatpg_getBestPatternWithOptions_android;
     udatpg_getDateTimeFormat_android;
     udatpg_getDecimal_android;
+    udatpg_getFieldDisplayName_android;
     udatpg_getPatternForSkeleton_android;
     udatpg_getSkeleton_android;
     udatpg_open_android;
@@ -687,6 +688,16 @@ LIBANDROIDICU_EXTERNAL_1 {
     unum_setSymbol_android;
     unum_setTextAttribute_android;
     unum_toPattern_android;
+    unumf_close_android;
+    unumf_closeResult_android;
+    unumf_formatDecimal_android;
+    unumf_formatDouble_android;
+    unumf_formatInt_android;
+    unumf_openForSkeletonAndLocale_android;
+    unumf_openResult_android;
+    unumf_resultGetAllFieldPositions_android;
+    unumf_resultNextFieldPosition_android;
+    unumf_resultToString_android;
     unumsys_close_android;
     unumsys_getDescription_android;
     unumsys_getName_android;

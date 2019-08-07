@@ -70,7 +70,7 @@ public class MeasureUnitTest extends TestFmwk {
             if (first == null || second == null) {
                 throw new IllegalArgumentException("OrderedPair.of requires non null values.");
             }
-            return new OrderedPair<F, S>(first, second);
+            return new OrderedPair<>(first, second);
         }
 
         @Override
@@ -83,11 +83,11 @@ public class MeasureUnitTest extends TestFmwk {
         }
     }
 
-    private static final String[] DRAFT_VERSIONS = {"61", "62", "63"};
+    private static final String[] DRAFT_VERSIONS = {"62", "63", "64"};
 
-    private static final HashSet<String> DRAFT_VERSION_SET = new HashSet<String>();
+    private static final HashSet<String> DRAFT_VERSION_SET = new HashSet<>();
 
-    private static final HashSet<String> TIME_CODES = new HashSet<String>();
+    private static final HashSet<String> TIME_CODES = new HashSet<>();
 
     private static final String[][] JAVA_VERSIONS = {
         {"G_FORCE", "53"},
@@ -229,9 +229,31 @@ public class MeasureUnitTest extends TestFmwk {
         {"PERMILLE", "63"},
         {"PETABYTE", "63"},
         {"ATMOSPHERE", "63"},
+        {"DUNAM", "64"},
+        {"MOLE", "64"},
+        {"PERMYRIAD", "64"},
+        {"DAY_PERSON", "64"},
+        {"MONTH_PERSON", "64"},
+        {"WEEK_PERSON", "64"},
+        {"YEAR_PERSON", "64"},
+        {"BRITISH_THERMAL_UNIT", "64"},
+        {"ELECTRONVOLT", "64"},
+        {"NEWTON", "64"},
+        {"POUND_FORCE", "64"},
+        {"SOLAR_RADIUS", "64"},
+        {"SOLAR_LUMINOSITY", "64"},
+        {"DALTON", "64"},
+        {"EARTH_MASS", "64"},
+        {"SOLAR_MASS", "64"},
+        {"KILOPASCAL", "64"},
+        {"MEGAPASCAL", "64"},
+        {"NEWTON_METER", "64"},
+        {"POUND_FOOT", "64"},
+        {"BARREL", "64"},
+        {"FLUID_OUNCE_IMPERIAL", "64"},
     };
 
-    private static final HashMap<String, String> JAVA_VERSION_MAP = new HashMap<String, String>();
+    private static final HashMap<String, String> JAVA_VERSION_MAP = new HashMap<>();
 
     static {
         TIME_CODES.add("year");
@@ -254,12 +276,12 @@ public class MeasureUnitTest extends TestFmwk {
         // various generateXXX calls go here, see
         // http://site.icu-project.org/design/formatting/measureformat/updating-measure-unit
         // use this test to run each of the ollowing in succession
-        //generateConstants("63"); // for MeasureUnit.java, update generated MeasureUnit constants
-        //generateBackwardCompatibilityTest("63"); // for MeasureUnitTest.java, create TestCompatible63
-        //generateCXXHConstants("63"); // for measunit.h, update generated createXXX methods
+        //generateConstants("64"); // for MeasureUnit.java, update generated MeasureUnit constants
+        //generateBackwardCompatibilityTest("64"); // for MeasureUnitTest.java, create TestCompatible63
+        //generateCXXHConstants("64"); // for measunit.h, update generated createXXX methods
         //generateCXXConstants(); // for measunit.cpp, update generated code
-        //generateCXXBackwardCompatibilityTest("63"); // for measfmttest.cpp, create TestCompatible63
-        //updateJAVAVersions("63"); // for MeasureUnitTest.java, JAVA_VERSIONS
+        //generateCXXBackwardCompatibilityTest("64"); // for measfmttest.cpp, create TestCompatible63
+        //updateJAVAVersions("64"); // for MeasureUnitTest.java, JAVA_VERSIONS
     }
 
     @Test
@@ -1286,6 +1308,174 @@ public class MeasureUnitTest extends TestFmwk {
     }
 
     @Test
+    public void TestCompatible64() {
+        MeasureUnit[] units = {
+                MeasureUnit.G_FORCE,
+                MeasureUnit.METER_PER_SECOND_SQUARED,
+                MeasureUnit.ARC_MINUTE,
+                MeasureUnit.ARC_SECOND,
+                MeasureUnit.DEGREE,
+                MeasureUnit.RADIAN,
+                MeasureUnit.REVOLUTION_ANGLE,
+                MeasureUnit.ACRE,
+                MeasureUnit.DUNAM,
+                MeasureUnit.HECTARE,
+                MeasureUnit.SQUARE_CENTIMETER,
+                MeasureUnit.SQUARE_FOOT,
+                MeasureUnit.SQUARE_INCH,
+                MeasureUnit.SQUARE_KILOMETER,
+                MeasureUnit.SQUARE_METER,
+                MeasureUnit.SQUARE_MILE,
+                MeasureUnit.SQUARE_YARD,
+                MeasureUnit.KARAT,
+                MeasureUnit.MILLIGRAM_PER_DECILITER,
+                MeasureUnit.MILLIMOLE_PER_LITER,
+                MeasureUnit.MOLE,
+                MeasureUnit.PART_PER_MILLION,
+                MeasureUnit.PERCENT,
+                MeasureUnit.PERMILLE,
+                MeasureUnit.PERMYRIAD,
+                MeasureUnit.LITER_PER_100KILOMETERS,
+                MeasureUnit.LITER_PER_KILOMETER,
+                MeasureUnit.MILE_PER_GALLON,
+                MeasureUnit.MILE_PER_GALLON_IMPERIAL,
+                MeasureUnit.BIT,
+                MeasureUnit.BYTE,
+                MeasureUnit.GIGABIT,
+                MeasureUnit.GIGABYTE,
+                MeasureUnit.KILOBIT,
+                MeasureUnit.KILOBYTE,
+                MeasureUnit.MEGABIT,
+                MeasureUnit.MEGABYTE,
+                MeasureUnit.PETABYTE,
+                MeasureUnit.TERABIT,
+                MeasureUnit.TERABYTE,
+                MeasureUnit.CENTURY,
+                MeasureUnit.DAY,
+                MeasureUnit.DAY_PERSON,
+                MeasureUnit.HOUR,
+                MeasureUnit.MICROSECOND,
+                MeasureUnit.MILLISECOND,
+                MeasureUnit.MINUTE,
+                MeasureUnit.MONTH,
+                MeasureUnit.MONTH_PERSON,
+                MeasureUnit.NANOSECOND,
+                MeasureUnit.SECOND,
+                MeasureUnit.WEEK,
+                MeasureUnit.WEEK_PERSON,
+                MeasureUnit.YEAR,
+                MeasureUnit.YEAR_PERSON,
+                MeasureUnit.AMPERE,
+                MeasureUnit.MILLIAMPERE,
+                MeasureUnit.OHM,
+                MeasureUnit.VOLT,
+                MeasureUnit.BRITISH_THERMAL_UNIT,
+                MeasureUnit.CALORIE,
+                MeasureUnit.ELECTRONVOLT,
+                MeasureUnit.FOODCALORIE,
+                MeasureUnit.JOULE,
+                MeasureUnit.KILOCALORIE,
+                MeasureUnit.KILOJOULE,
+                MeasureUnit.KILOWATT_HOUR,
+                MeasureUnit.NEWTON,
+                MeasureUnit.POUND_FORCE,
+                MeasureUnit.GIGAHERTZ,
+                MeasureUnit.HERTZ,
+                MeasureUnit.KILOHERTZ,
+                MeasureUnit.MEGAHERTZ,
+                MeasureUnit.ASTRONOMICAL_UNIT,
+                MeasureUnit.CENTIMETER,
+                MeasureUnit.DECIMETER,
+                MeasureUnit.FATHOM,
+                MeasureUnit.FOOT,
+                MeasureUnit.FURLONG,
+                MeasureUnit.INCH,
+                MeasureUnit.KILOMETER,
+                MeasureUnit.LIGHT_YEAR,
+                MeasureUnit.METER,
+                MeasureUnit.MICROMETER,
+                MeasureUnit.MILE,
+                MeasureUnit.MILE_SCANDINAVIAN,
+                MeasureUnit.MILLIMETER,
+                MeasureUnit.NANOMETER,
+                MeasureUnit.NAUTICAL_MILE,
+                MeasureUnit.PARSEC,
+                MeasureUnit.PICOMETER,
+                MeasureUnit.POINT,
+                MeasureUnit.SOLAR_RADIUS,
+                MeasureUnit.YARD,
+                MeasureUnit.LUX,
+                MeasureUnit.SOLAR_LUMINOSITY,
+                MeasureUnit.CARAT,
+                MeasureUnit.DALTON,
+                MeasureUnit.EARTH_MASS,
+                MeasureUnit.GRAM,
+                MeasureUnit.KILOGRAM,
+                MeasureUnit.METRIC_TON,
+                MeasureUnit.MICROGRAM,
+                MeasureUnit.MILLIGRAM,
+                MeasureUnit.OUNCE,
+                MeasureUnit.OUNCE_TROY,
+                MeasureUnit.POUND,
+                MeasureUnit.SOLAR_MASS,
+                MeasureUnit.STONE,
+                MeasureUnit.TON,
+                MeasureUnit.GIGAWATT,
+                MeasureUnit.HORSEPOWER,
+                MeasureUnit.KILOWATT,
+                MeasureUnit.MEGAWATT,
+                MeasureUnit.MILLIWATT,
+                MeasureUnit.WATT,
+                MeasureUnit.ATMOSPHERE,
+                MeasureUnit.HECTOPASCAL,
+                MeasureUnit.INCH_HG,
+                MeasureUnit.KILOPASCAL,
+                MeasureUnit.MEGAPASCAL,
+                MeasureUnit.MILLIBAR,
+                MeasureUnit.MILLIMETER_OF_MERCURY,
+                MeasureUnit.POUND_PER_SQUARE_INCH,
+                MeasureUnit.KILOMETER_PER_HOUR,
+                MeasureUnit.KNOT,
+                MeasureUnit.METER_PER_SECOND,
+                MeasureUnit.MILE_PER_HOUR,
+                MeasureUnit.CELSIUS,
+                MeasureUnit.FAHRENHEIT,
+                MeasureUnit.GENERIC_TEMPERATURE,
+                MeasureUnit.KELVIN,
+                MeasureUnit.NEWTON_METER,
+                MeasureUnit.POUND_FOOT,
+                MeasureUnit.ACRE_FOOT,
+                MeasureUnit.BARREL,
+                MeasureUnit.BUSHEL,
+                MeasureUnit.CENTILITER,
+                MeasureUnit.CUBIC_CENTIMETER,
+                MeasureUnit.CUBIC_FOOT,
+                MeasureUnit.CUBIC_INCH,
+                MeasureUnit.CUBIC_KILOMETER,
+                MeasureUnit.CUBIC_METER,
+                MeasureUnit.CUBIC_MILE,
+                MeasureUnit.CUBIC_YARD,
+                MeasureUnit.CUP,
+                MeasureUnit.CUP_METRIC,
+                MeasureUnit.DECILITER,
+                MeasureUnit.FLUID_OUNCE,
+                MeasureUnit.FLUID_OUNCE_IMPERIAL,
+                MeasureUnit.GALLON,
+                MeasureUnit.GALLON_IMPERIAL,
+                MeasureUnit.HECTOLITER,
+                MeasureUnit.LITER,
+                MeasureUnit.MEGALITER,
+                MeasureUnit.MILLILITER,
+                MeasureUnit.PINT,
+                MeasureUnit.PINT_METRIC,
+                MeasureUnit.QUART,
+                MeasureUnit.TABLESPOON,
+                MeasureUnit.TEASPOON,
+        };
+        assertEquals("",  161, units.length);
+    }
+
+    @Test
     public void TestExamplesInDocs() {
         MeasureFormat fmtFr = MeasureFormat.getInstance(
                 ULocale.FRENCH, FormatWidth.SHORT);
@@ -1616,7 +1806,7 @@ public class MeasureUnitTest extends TestFmwk {
     }
 
     static void assertUnique(Collection<?> coll) {
-        int expectedSize = new HashSet<Object>(coll).size();
+        int expectedSize = new HashSet<>(coll).size();
         int actualSize = coll.size();
         assertEquals("Collection should contain only unique elements", expectedSize, actualSize);
     }
@@ -1688,7 +1878,7 @@ public class MeasureUnitTest extends TestFmwk {
             { ulocSpanish,      FormatWidth.NUMERIC, "5:37" },
             { ulocFinnish,      FormatWidth.NARROW,  "5t 37min" },
             { ulocFinnish,      FormatWidth.NUMERIC, "5.37" },
-            { ULocale.FRENCH,   FormatWidth.NARROW,  "5h 37\u202Fmin" },
+            { ULocale.FRENCH,   FormatWidth.NARROW,  "5h 37min" },
             { ULocale.FRENCH,   FormatWidth.NUMERIC, "5:37" },
             { ulocIcelandic,    FormatWidth.NARROW,  "5 klst. og 37 m\u00EDn." },
             { ulocIcelandic,    FormatWidth.NUMERIC, "5:37" },
@@ -1966,14 +2156,14 @@ public class MeasureUnitTest extends TestFmwk {
 
     @Test
     public void testOldFormatWithList() {
-        List<Measure> measures = new ArrayList<Measure>(2);
+        List<Measure> measures = new ArrayList<>(2);
         measures.add(new Measure(5, MeasureUnit.ACRE));
         measures.add(new Measure(3000, MeasureUnit.SQUARE_FOOT));
         MeasureFormat fmt = MeasureFormat.getInstance(
                 ULocale.ENGLISH, FormatWidth.WIDE);
         assertEquals("", "5 acres, 3,000 square feet", fmt.format(measures));
         assertEquals("", "5 acres", fmt.format(measures.subList(0, 1)));
-        List<String> badList = new ArrayList<String>();
+        List<String> badList = new ArrayList<>();
         badList.add("be");
         badList.add("you");
         try {
@@ -2148,7 +2338,7 @@ public class MeasureUnitTest extends TestFmwk {
 
     @Test
     public void testCLDRUnitAvailability() {
-        Set<MeasureUnit> knownUnits = new HashSet<MeasureUnit>();
+        Set<MeasureUnit> knownUnits = new HashSet<>();
         Class cMeasureUnit, cTimeUnit;
         try {
             cMeasureUnit = Class.forName("com.ibm.icu.util.MeasureUnit");
@@ -2193,13 +2383,41 @@ public class MeasureUnitTest extends TestFmwk {
         // Should not throw an exception.
     }
 
+    @Test
+    public void test20332_PersonUnits() {
+        Object[][] cases = new Object[][] {
+            {ULocale.US, MeasureUnit.YEAR_PERSON, MeasureFormat.FormatWidth.NARROW, "25y"},
+            {ULocale.US, MeasureUnit.YEAR_PERSON, MeasureFormat.FormatWidth.SHORT, "25 yrs"},
+            {ULocale.US, MeasureUnit.YEAR_PERSON, MeasureFormat.FormatWidth.WIDE, "25 years"},
+            {ULocale.US, MeasureUnit.MONTH_PERSON, MeasureFormat.FormatWidth.NARROW, "25m"},
+            {ULocale.US, MeasureUnit.MONTH_PERSON, MeasureFormat.FormatWidth.SHORT, "25 mths"},
+            {ULocale.US, MeasureUnit.MONTH_PERSON, MeasureFormat.FormatWidth.WIDE, "25 months"},
+            {ULocale.US, MeasureUnit.WEEK_PERSON, MeasureFormat.FormatWidth.NARROW, "25w"},
+            {ULocale.US, MeasureUnit.WEEK_PERSON, MeasureFormat.FormatWidth.SHORT, "25 wks"},
+            {ULocale.US, MeasureUnit.WEEK_PERSON, MeasureFormat.FormatWidth.WIDE, "25 weeks"},
+            {ULocale.US, MeasureUnit.DAY_PERSON, MeasureFormat.FormatWidth.NARROW, "25d"},
+            {ULocale.US, MeasureUnit.DAY_PERSON, MeasureFormat.FormatWidth.SHORT, "25 days"},
+            {ULocale.US, MeasureUnit.DAY_PERSON, MeasureFormat.FormatWidth.WIDE, "25 days"}
+        };
+        for (Object[] cas : cases) {
+            ULocale locale = (ULocale) cas[0];
+            MeasureUnit unit = (MeasureUnit) cas[1];
+            MeasureFormat.FormatWidth width = (MeasureFormat.FormatWidth) cas[2];
+            String expected = (String) cas[3];
+
+            MeasureFormat fmt = MeasureFormat.getInstance(locale, width);
+            String result = fmt.formatMeasures(new Measure(25, unit));
+            assertEquals("" + locale + " " + unit + " " + width, expected, result);
+        }
+    }
+
     // DO NOT DELETE THIS FUNCTION! It may appear as dead code, but we use this to generate code
     // for MeasureFormat during the release process.
     static Map<MeasureUnit, Pair<MeasureUnit, MeasureUnit>> getUnitsToPerParts() {
         TreeMap<String, List<MeasureUnit>> allUnits = getAllUnits();
         Map<MeasureUnit, Pair<String, String>> unitsToPerStrings =
-                new HashMap<MeasureUnit, Pair<String, String>>();
-        Map<String, MeasureUnit> namesToUnits = new HashMap<String, MeasureUnit>();
+                new HashMap<>();
+        Map<String, MeasureUnit> namesToUnits = new HashMap<>();
         for (Map.Entry<String, List<MeasureUnit>> entry : allUnits.entrySet()) {
             String type = entry.getKey();
             // Currency types are always atomic units, so we can skip these
@@ -2217,7 +2435,7 @@ public class MeasureUnitTest extends TestFmwk {
             }
         }
         Map<MeasureUnit, Pair<MeasureUnit, MeasureUnit>> unitsToPerUnits =
-                new HashMap<MeasureUnit, Pair<MeasureUnit, MeasureUnit>>();
+                new HashMap<>();
         for (Map.Entry<MeasureUnit, Pair<String, String>> entry : unitsToPerStrings.entrySet()) {
             Pair<String, String> perStrings = entry.getValue();
             MeasureUnit unit = namesToUnits.get(perStrings.first);
@@ -2232,7 +2450,7 @@ public class MeasureUnitTest extends TestFmwk {
     // DO NOT DELETE THIS FUNCTION! It may appear as dead code, but we use this to generate code
     // for MeasureFormat during the release process.
     static void generateCXXHConstants(String thisVersion) {
-        Map<String, MeasureUnit> seen = new HashMap<String, MeasureUnit>();
+        Map<String, MeasureUnit> seen = new HashMap<>();
         System.out.println();
         TreeMap<String, List<MeasureUnit>> allUnits = getAllUnits();
         for (Map.Entry<String, List<MeasureUnit>> entry : allUnits.entrySet()) {
@@ -2249,8 +2467,9 @@ public class MeasureUnitTest extends TestFmwk {
                     System.out.println("#ifndef U_HIDE_DRAFT_API");
                 }
                 System.out.println("    /**");
-                System.out.println("     * Returns unit of " + type + ": " + code + ".");
+                System.out.println("     * Returns by pointer, unit of " + type + ": " + code + ".");
                 System.out.println("     * Caller owns returned value and must free it.");
+                System.out.printf("     * Also see {@link #get%s()}.\n", name);
                 System.out.println("     * @param status ICU error code.");
                 if (isDraft(javaName)) {
                     System.out.println("     * @draft ICU " + getVersion(javaName, thisVersion));
@@ -2259,6 +2478,19 @@ public class MeasureUnitTest extends TestFmwk {
                 }
                 System.out.println("     */");
                 System.out.printf("    static MeasureUnit *create%s(UErrorCode &status);\n", name);
+                System.out.println();
+                System.out.println("    /**");
+                System.out.println("     * Returns by value, unit of " + type + ": " + code + ".");
+                System.out.printf("     * Also see {@link #create%s()}.\n", name);
+                // TODO: When the get* methods become stable in ICU 66, update their
+                // @draft code to be more like that for the create* methods above.
+                String getterVersion = getVersion(javaName, thisVersion);
+                if (Integer.valueOf(getterVersion) < 64) {
+                    getterVersion = "64";
+                }
+                System.out.println("     * @draft ICU " + getterVersion);
+                System.out.println("     */");
+                System.out.printf("    static MeasureUnit get%s();\n", name);
                 if (isDraft(javaName)) {
                     System.out.println("#endif /* U_HIDE_DRAFT_API */");
                 }
@@ -2280,7 +2512,7 @@ public class MeasureUnitTest extends TestFmwk {
     // for MeasureFormat during the release process.
     static void updateJAVAVersions(String thisVersion) {
         System.out.println();
-        Map<String, MeasureUnit> seen = new HashMap<String, MeasureUnit>();
+        Map<String, MeasureUnit> seen = new HashMap<>();
         TreeMap<String, List<MeasureUnit>> allUnits = getAllUnits();
         for (Map.Entry<String, List<MeasureUnit>> entry : allUnits.entrySet()) {
             String type = entry.getKey();
@@ -2298,9 +2530,9 @@ public class MeasureUnitTest extends TestFmwk {
     }
 
     static TreeMap<String, List<MeasureUnit>> getAllUnits() {
-        TreeMap<String, List<MeasureUnit>> allUnits = new TreeMap<String, List<MeasureUnit>>();
+        TreeMap<String, List<MeasureUnit>> allUnits = new TreeMap<>();
         for (String type : MeasureUnit.getAvailableTypes()) {
-            ArrayList<MeasureUnit> units = new ArrayList<MeasureUnit>(MeasureUnit.getAvailable(type));
+            ArrayList<MeasureUnit> units = new ArrayList<>(MeasureUnit.getAvailable(type));
             Collections.sort(
                     units,
                     new Comparator<MeasureUnit>() {
@@ -2366,9 +2598,9 @@ public class MeasureUnitTest extends TestFmwk {
         first = true;
         int offset = 0;
         int typeIdx = 0;
-        Map<MeasureUnit, Integer> measureUnitToOffset = new HashMap<MeasureUnit, Integer>();
+        Map<MeasureUnit, Integer> measureUnitToOffset = new HashMap<>();
         Map<MeasureUnit, Pair<Integer, Integer>> measureUnitToTypeSubType =
-                new HashMap<MeasureUnit, Pair<Integer, Integer>>();
+                new HashMap<>();
         for (Map.Entry<String, List<MeasureUnit>> entry : allUnits.entrySet()) {
             int subTypeIdx = 0;
             for (MeasureUnit unit : entry.getValue()) {
@@ -2395,7 +2627,7 @@ public class MeasureUnitTest extends TestFmwk {
         // Build unit per unit offsets to corresponding type sub types sorted by
         // unit first and then per unit.
         TreeMap<OrderedPair<Integer, Integer>, Pair<Integer, Integer>> unitPerUnitOffsetsToTypeSubType
-                = new TreeMap<OrderedPair<Integer, Integer>, Pair<Integer, Integer>>();
+                = new TreeMap<>();
         for (Map.Entry<MeasureUnit, Pair<MeasureUnit, MeasureUnit>> entry
                 : getUnitsToPerParts().entrySet()) {
             Pair<MeasureUnit, MeasureUnit> unitPerUnit = entry.getValue();
@@ -2433,7 +2665,7 @@ public class MeasureUnitTest extends TestFmwk {
         System.out.println("static const int32_t kBaseSubTypeIdx = " + baseSubTypeIdx + ";");
         System.out.println();
 
-        Map<String, MeasureUnit> seen = new HashMap<String, MeasureUnit>();
+        Map<String, MeasureUnit> seen = new HashMap<>();
         for (Map.Entry<String, List<MeasureUnit>> entry : allUnits.entrySet()) {
 
             String type = entry.getKey();
@@ -2449,6 +2681,11 @@ public class MeasureUnitTest extends TestFmwk {
                 checkForDup(seen, name, unit);
                 System.out.printf("MeasureUnit *MeasureUnit::create%s(UErrorCode &status) {\n", name);
                 System.out.printf("    return MeasureUnit::create(%d, %d, status);\n",
+                        typeSubType.first, typeSubType.second);
+                System.out.println("}");
+                System.out.println();
+                System.out.printf("MeasureUnit MeasureUnit::get%s() {\n", name);
+                System.out.printf("    return MeasureUnit(%d, %d);\n",
                         typeSubType.first, typeSubType.second);
                 System.out.println("}");
                 System.out.println();
@@ -2491,7 +2728,7 @@ public class MeasureUnitTest extends TestFmwk {
     // DO NOT DELETE THIS FUNCTION! It may appear as dead code, but we use this to generate code
     // for MeasureFormat during the release process.
     static void generateBackwardCompatibilityTest(String version) {
-        Map<String, MeasureUnit> seen = new HashMap<String, MeasureUnit>();
+        Map<String, MeasureUnit> seen = new HashMap<>();
         System.out.println();
         System.out.printf("    public void TestCompatible%s() {\n", version.replace(".", "_"));
         System.out.println("        MeasureUnit[] units = {");
@@ -2517,10 +2754,11 @@ public class MeasureUnitTest extends TestFmwk {
     // for MeasureFormat during the release process.
     static void generateCXXBackwardCompatibilityTest(String version) {
         System.out.println();
-        Map<String, MeasureUnit> seen = new HashMap<String, MeasureUnit>();
+        Map<String, MeasureUnit> seen = new HashMap<>();
         System.out.printf("void MeasureFormatTest::TestCompatible%s() {\n", version.replace(".", "_"));
         System.out.println("    UErrorCode status = U_ZERO_ERROR;");
         System.out.println("    LocalPointer<MeasureUnit> measureUnit;");
+        System.out.println("    MeasureUnit measureUnitValue;");
         TreeMap<String, List<MeasureUnit>> allUnits = getAllUnits();
         for (Map.Entry<String, List<MeasureUnit>> entry : allUnits.entrySet()) {
             if (isTypeHidden(entry.getKey())) {
@@ -2530,6 +2768,7 @@ public class MeasureUnitTest extends TestFmwk {
                 String camelCase = toCamelCase(unit);
                 checkForDup(seen, camelCase, unit);
                 System.out.printf("    measureUnit.adoptInstead(MeasureUnit::create%s(status));\n", camelCase);
+                System.out.printf("    measureUnitValue = MeasureUnit::get%s();\n", camelCase);
             }
         }
         System.out.println("    assertSuccess(\"\", status);");
@@ -2560,7 +2799,7 @@ public class MeasureUnitTest extends TestFmwk {
     // for MeasureFormat during the release process.
     static void generateConstants(String thisVersion) {
         System.out.println();
-        Map<String, MeasureUnit> seen = new HashMap<String, MeasureUnit>();
+        Map<String, MeasureUnit> seen = new HashMap<>();
         TreeMap<String, List<MeasureUnit>> allUnits = getAllUnits();
         for (Map.Entry<String, List<MeasureUnit>> entry : allUnits.entrySet()) {
             String type = entry.getKey();

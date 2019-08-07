@@ -11,6 +11,8 @@ import android.icu.util.ULocale;
  * A NumberFormatter that does not yet have a locale. In order to format numbers, a locale must be
  * specified.
  *
+ * Instances of this class are immutable and thread-safe.
+ *
  * @see NumberFormatter
  * @hide Only a subset of ICU is exposed in Android
  * @hide draft / provisional / internal are hidden on Android
