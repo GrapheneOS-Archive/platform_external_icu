@@ -50,7 +50,7 @@ static UInitOnce gSpecialInversesInitOnce = U_INITONCE_INITIALIZER;
 /**
  * The mutex controlling access to SPECIAL_INVERSES
  */
-static UMutex LOCK = U_MUTEX_INITIALIZER;
+static UMutex LOCK;
 
 TransliteratorIDParser::Specs::Specs(const UnicodeString& s, const UnicodeString& t,
                                      const UnicodeString& v, UBool sawS,

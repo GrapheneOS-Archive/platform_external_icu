@@ -25,7 +25,7 @@ import com.ibm.icu.impl.ICUResourceBundle;
 import com.ibm.icu.impl.Relation;
 import com.ibm.icu.impl.Row;
 import com.ibm.icu.impl.Row.R3;
-import com.ibm.icu.impl.locale.XLocaleDistance.DistanceOption;
+import com.ibm.icu.impl.locale.LocaleDistance.DistanceOption;
 import com.ibm.icu.impl.locale.XLocaleMatcher;
 import com.ibm.icu.impl.locale.XLocaleMatcher.Builder;
 
@@ -267,7 +267,7 @@ public class LocaleMatcher {
         ULocale bestTableMatch = null;
         String baseLanguage = maximized.getLanguage();
         Set<R3<ULocale, ULocale, Double>> searchTable = desiredLanguageToPossibleLocalesToMaxLocaleToData.get(baseLanguage);
-        if (searchTable != null) { // we preprocessed the table so as to filter by lanugage
+        if (searchTable != null) { // we preprocessed the table so as to filter by language
             if (DEBUG) System.out.println("\tSearching: " + searchTable);
             for (final R3<ULocale, ULocale, Double> tableKeyValue : searchTable) {
                 ULocale tableKey = tableKeyValue.get0();

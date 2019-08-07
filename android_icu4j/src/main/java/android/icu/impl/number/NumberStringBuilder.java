@@ -6,12 +6,15 @@ package android.icu.impl.number;
 import java.text.AttributedCharacterIterator;
 import java.text.AttributedString;
 import java.text.FieldPosition;
+import java.text.Format.Field;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
+import android.icu.impl.StaticUnicodeSets;
+import android.icu.text.ConstrainedFieldPosition;
 import android.icu.text.NumberFormat;
-import android.icu.text.NumberFormat.Field;
+import android.icu.text.UnicodeSet;
 
 /**
  * A StringBuilder optimized for number formatting. It implements the following key features beyond a
@@ -364,15 +367,25 @@ public class NumberStringBuilder implements CharSequence {
         return chars.length;
     }
 
+    /** Note: this returns a NumberStringBuilder. Do not return publicly. */
     @Override
+    @Deprecated
     public CharSequence subSequence(int start, int end) {
-        if (start < 0 || end > length || end < start) {
-            throw new IndexOutOfBoundsException();
-        }
+        assert start >= 0;
+        assert end <= length;
+        assert end >= start;
         NumberStringBuilder other = new NumberStringBuilder(this);
         other.zero = zero + start;
         other.length = end - start;
         return other;
+    }
+
+    /** Use this instead of subSequence if returning publicly. */
+    public String subString(int start, int end) {
+        if (start < 0 || end > length || end < start) {
+            throw new IndexOutOfBoundsException();
+        }
+        return new String(chars, start + zero, end - start);
     }
 
     /**
@@ -386,7 +399,7 @@ public class NumberStringBuilder implements CharSequence {
         return new String(chars, zero, length);
     }
 
-    private static final Map<Field, Character> fieldToDebugChar = new HashMap<Field, Character>();
+    private static final Map<Field, Character> fieldToDebugChar = new HashMap<>();
 
     static {
         fieldToDebugChar.put(NumberFormat.Field.SIGN, '-');
@@ -400,6 +413,8 @@ public class NumberStringBuilder implements CharSequence {
         fieldToDebugChar.put(NumberFormat.Field.PERCENT, '%');
         fieldToDebugChar.put(NumberFormat.Field.PERMILLE, '‰');
         fieldToDebugChar.put(NumberFormat.Field.CURRENCY, '$');
+        fieldToDebugChar.put(NumberFormat.Field.MEASURE_UNIT, 'u');
+        fieldToDebugChar.put(NumberFormat.Field.COMPACT, 'C');
     }
 
     /**
@@ -483,13 +498,6 @@ public class NumberStringBuilder implements CharSequence {
         throw new UnsupportedOperationException("Don't call #hashCode() or #equals() on a mutable.");
     }
 
-    /**
-     * Populates the given {@link FieldPosition} based on this string builder.
-     *
-     * @param fp
-     *            The FieldPosition to populate.
-     * @return true if the field was found; false if it was not found.
-     */
     public boolean nextFieldPosition(FieldPosition fp) {
         java.text.Format.Field rawField = fp.getFieldAttribute();
 
@@ -511,65 +519,148 @@ public class NumberStringBuilder implements CharSequence {
                             + rawField.getClass().toString());
         }
 
-        NumberFormat.Field field = (NumberFormat.Field) rawField;
+        ConstrainedFieldPosition cfpos = new ConstrainedFieldPosition();
+        cfpos.constrainField(rawField);
+        cfpos.setState(rawField, null, fp.getBeginIndex(), fp.getEndIndex());
+        if (nextPosition(cfpos, null)) {
+            fp.setBeginIndex(cfpos.getStart());
+            fp.setEndIndex(cfpos.getLimit());
+            return true;
+        }
 
-        boolean seenStart = false;
-        int fractionStart = -1;
-        int startIndex = fp.getEndIndex();
-        for (int i = zero + startIndex; i <= zero + length; i++) {
-            Field _field = (i < zero + length) ? fields[i] : null;
-            if (seenStart && field != _field) {
-                // Special case: GROUPING_SEPARATOR counts as an INTEGER.
-                if (field == NumberFormat.Field.INTEGER
-                        && _field == NumberFormat.Field.GROUPING_SEPARATOR) {
-                    continue;
+        // Special case: fraction should start after integer if fraction is not present
+        if (rawField == NumberFormat.Field.FRACTION && fp.getEndIndex() == 0) {
+            boolean inside = false;
+            int i = zero;
+            for (; i < zero + length; i++) {
+                if (isIntOrGroup(fields[i]) || fields[i] == NumberFormat.Field.DECIMAL_SEPARATOR) {
+                    inside = true;
+                } else if (inside) {
+                    break;
                 }
-                fp.setEndIndex(i - zero);
-                break;
-            } else if (!seenStart && field == _field) {
-                fp.setBeginIndex(i - zero);
-                seenStart = true;
             }
-            if (_field == NumberFormat.Field.INTEGER || _field == NumberFormat.Field.DECIMAL_SEPARATOR) {
-                fractionStart = i - zero + 1;
-            }
+            fp.setBeginIndex(i - zero);
+            fp.setEndIndex(i - zero);
         }
 
-        // Backwards compatibility: FRACTION needs to start after INTEGER if empty.
-        // Do not return that a field was found, though, since there is not actually a fraction part.
-        if (field == NumberFormat.Field.FRACTION && !seenStart && fractionStart != -1) {
-            fp.setBeginIndex(fractionStart);
-            fp.setEndIndex(fractionStart);
-        }
-
-        return seenStart;
+        return false;
     }
 
-    public AttributedCharacterIterator toCharacterIterator() {
+    public AttributedCharacterIterator toCharacterIterator(Field numericField) {
+        ConstrainedFieldPosition cfpos = new ConstrainedFieldPosition();
         AttributedString as = new AttributedString(toString());
-        Field current = null;
-        int currentStart = -1;
-        for (int i = 0; i < length; i++) {
-            Field field = fields[i + zero];
-            if (current == NumberFormat.Field.INTEGER
-                    && field == NumberFormat.Field.GROUPING_SEPARATOR) {
-                // Special case: GROUPING_SEPARATOR counts as an INTEGER.
-                as.addAttribute(NumberFormat.Field.GROUPING_SEPARATOR,
-                        NumberFormat.Field.GROUPING_SEPARATOR,
-                        i,
-                        i + 1);
-            } else if (current != field) {
-                if (current != null) {
-                    as.addAttribute(current, current, currentStart, i);
+        while (this.nextPosition(cfpos, numericField)) {
+            // Backwards compatibility: field value = field
+            as.addAttribute(cfpos.getField(), cfpos.getField(), cfpos.getStart(), cfpos.getLimit());
+        }
+        return as.getIterator();
+    }
+
+    static class NullField extends Field {
+        private static final long serialVersionUID = 1L;
+        static final NullField END = new NullField("end");
+        private NullField(String name) {
+            super(name);
+        }
+    }
+
+    /**
+     * Implementation of nextPosition consistent with the contract of FormattedValue.
+     *
+     * @param cfpos
+     *            The argument passed to the public API.
+     * @param numericField
+     *            Optional. If non-null, apply this field to the entire numeric portion of the string.
+     * @return See FormattedValue#nextPosition.
+     */
+    public boolean nextPosition(ConstrainedFieldPosition cfpos, Field numericField) {
+        int fieldStart = -1;
+        Field currField = null;
+        for (int i = zero + cfpos.getLimit(); i <= zero + length; i++) {
+            Field _field = (i < zero + length) ? fields[i] : NullField.END;
+            // Case 1: currently scanning a field.
+            if (currField != null) {
+                if (currField != _field) {
+                    int end = i - zero;
+                    // Grouping separators can be whitespace; don't throw them out!
+                    if (currField != NumberFormat.Field.GROUPING_SEPARATOR) {
+                        end = trimBack(end);
+                    }
+                    if (end <= fieldStart) {
+                        // Entire field position is ignorable; skip.
+                        fieldStart = -1;
+                        currField = null;
+                        i--;  // look at this index again
+                        continue;
+                    }
+                    int start = fieldStart;
+                    if (currField != NumberFormat.Field.GROUPING_SEPARATOR) {
+                        start = trimFront(start);
+                    }
+                    cfpos.setState(currField, null, start, end);
+                    return true;
                 }
-                current = field;
-                currentStart = i;
+                continue;
+            }
+            // Special case: coalesce the INTEGER if we are pointing at the end of the INTEGER.
+            if (cfpos.matchesField(NumberFormat.Field.INTEGER, null)
+                    && i > zero
+                    // don't return the same field twice in a row:
+                    && i - zero > cfpos.getLimit()
+                    && isIntOrGroup(fields[i - 1])
+                    && !isIntOrGroup(_field)) {
+                int j = i - 1;
+                for (; j >= zero && isIntOrGroup(fields[j]); j--) {}
+                cfpos.setState(NumberFormat.Field.INTEGER, null, j - zero + 1, i - zero);
+                return true;
+            }
+            // Special case: coalesce NUMERIC if we are pointing at the end of the NUMERIC.
+            if (numericField != null
+                    && cfpos.matchesField(numericField, null)
+                    && i > zero
+                    // don't return the same field twice in a row:
+                    && (i - zero > cfpos.getLimit() || cfpos.getField() != numericField)
+                    && isNumericField(fields[i - 1])
+                    && !isNumericField(_field)) {
+                int j = i - 1;
+                for (; j >= zero && isNumericField(fields[j]); j--) {}
+                cfpos.setState(numericField, null, j - zero + 1, i - zero);
+                return true;
+            }
+            // Special case: skip over INTEGER; will be coalesced later.
+            if (_field == NumberFormat.Field.INTEGER) {
+                _field = null;
+            }
+            // Case 2: no field starting at this position.
+            if (_field == null || _field == NullField.END) {
+                continue;
+            }
+            // Case 3: check for field starting at this position
+            if (cfpos.matchesField(_field, null)) {
+                fieldStart = i - zero;
+                currField = _field;
             }
         }
-        if (current != null) {
-            as.addAttribute(current, current, currentStart, length);
-        }
 
-        return as.getIterator();
+        assert currField == null;
+        return false;
+    }
+
+    private static boolean isIntOrGroup(Field field) {
+        return field == NumberFormat.Field.INTEGER || field == NumberFormat.Field.GROUPING_SEPARATOR;
+    }
+
+    private static boolean isNumericField(Field field) {
+        return field == null || NumberFormat.Field.class.isAssignableFrom(field.getClass());
+    }
+
+    private int trimBack(int limit) {
+        return StaticUnicodeSets.get(StaticUnicodeSets.Key.DEFAULT_IGNORABLES)
+                .spanBack(this, limit, UnicodeSet.SpanCondition.CONTAINED);
+    }
+
+    private int trimFront(int start) {
+        return StaticUnicodeSets.get(StaticUnicodeSets.Key.DEFAULT_IGNORABLES)
+                .span(this, start, UnicodeSet.SpanCondition.CONTAINED);
     }
 }

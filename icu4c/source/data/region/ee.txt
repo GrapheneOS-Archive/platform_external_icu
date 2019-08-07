@@ -292,5 +292,5 @@ ee{
         CI{"Ivory Kost nutome"}
         TL{"Ɣedzeƒe Timɔ nutome"}
     }
-    Version{"2.1.44.88"}
+    Version{"2.1.47.82"}
 }
