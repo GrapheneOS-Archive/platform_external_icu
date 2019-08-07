@@ -3,6 +3,8 @@
 // License & terms of use: http://www.unicode.org/copyright.html#License
 package android.icu.number;
 
+import java.text.Format.Field;
+
 import android.icu.impl.number.DecimalQuantity;
 import android.icu.impl.number.MicroProps;
 import android.icu.impl.number.MicroPropsGenerator;
@@ -14,7 +16,6 @@ import android.icu.number.NumberFormatter.SignDisplay;
 import android.icu.number.Precision.SignificantRounderImpl;
 import android.icu.text.DecimalFormatSymbols;
 import android.icu.text.NumberFormat;
-import android.icu.text.NumberFormat.Field;
 
 /**
  * A class that defines the scientific notation style to be used when formatting numbers in

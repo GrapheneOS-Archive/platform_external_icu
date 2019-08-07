@@ -40,9 +40,9 @@ site.addsitedir(android_path('external/clang/bindings/python'))
 import clang.cindex  # pylint: disable=import-error,wrong-import-position
 
 # TODO: Do not hardcode clang version. http://b/119270767
-CLANG_REVISION = 'r353983b'
+CLANG_REVISION = 'r353983e'
 CLANG_LIB_VERSION = '9svn'
-CLANG_HEADER_VERSION = '9.0.2'
+CLANG_HEADER_VERSION = '9.0.5'
 CLANG_PATH = android_path('prebuilts/clang/host/linux-x86/clang-%s' % CLANG_REVISION)
 
 

@@ -216,7 +216,7 @@ public class NumberSkeletonTest {
         String[] stems = {
                 "precision-increment",
                 "measure-unit",
-                "per-unit",
+                "per-measure-unit",
                 "currency",
                 "integer-width",
                 "numbering-system",

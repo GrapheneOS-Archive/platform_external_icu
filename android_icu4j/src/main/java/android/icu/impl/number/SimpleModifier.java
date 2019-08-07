@@ -3,9 +3,10 @@
 // License & terms of use: http://www.unicode.org/copyright.html#License
 package android.icu.impl.number;
 
+import java.text.Format.Field;
+
 import android.icu.impl.SimpleFormatterImpl;
 import android.icu.impl.number.range.PrefixInfixSuffixLengthHelper;
-import android.icu.text.NumberFormat.Field;
 import android.icu.util.ICUException;
 
 /**
@@ -67,7 +68,7 @@ public class SimpleModifier implements Modifier {
 
     @Override
     public int apply(NumberStringBuilder output, int leftIndex, int rightIndex) {
-        return formatAsPrefixSuffix(output, leftIndex, rightIndex, field);
+        return formatAsPrefixSuffix(output, leftIndex, rightIndex);
     }
 
     @Override
@@ -141,8 +142,7 @@ public class SimpleModifier implements Modifier {
     public int formatAsPrefixSuffix(
             NumberStringBuilder result,
             int startIndex,
-            int endIndex,
-            Field field) {
+            int endIndex) {
         if (suffixOffset == -1) {
             // There is no argument for the inner number; overwrite the entire segment with our string.
             return result.splice(startIndex, endIndex, compiledPattern, 2, 2 + prefixLength, field);
