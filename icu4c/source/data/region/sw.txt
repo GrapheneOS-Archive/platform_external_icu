@@ -305,7 +305,8 @@ sw{
         CG{"Jamhuri ya Kongo"}
         CI{"Ivory Coast"}
         CZ{"Jamhuri ya Cheki"}
+        SZ{"SZ"}
         TL{"Timor ya Mashariki"}
     }
-    Version{"2.1.43.65"}
+    Version{"2.1.48.17"}
 }

@@ -38,6 +38,7 @@
 #include <unicode/umsg.h>
 #include <unicode/unorm2.h>
 #include <unicode/unum.h>
+#include <unicode/unumberformatter.h>
 #include <unicode/unumsys.h>
 #include <unicode/upluralrules.h>
 #include <unicode/uregex.h>
@@ -1510,6 +1511,9 @@ const UChar * udatpg_getDateTimeFormat_android(const UDateTimePatternGenerator *
 const UChar * udatpg_getDecimal_android(const UDateTimePatternGenerator * dtpg, int32_t * pLength) {
   return udatpg_getDecimal(dtpg, pLength);
 }
+int32_t udatpg_getFieldDisplayName_android(const UDateTimePatternGenerator * dtpg, UDateTimePatternField field, UDateTimePGDisplayWidth width, UChar * fieldName, int32_t capacity, UErrorCode * pErrorCode) {
+  return udatpg_getFieldDisplayName(dtpg, field, width, fieldName, capacity, pErrorCode);
+}
 const UChar * udatpg_getPatternForSkeleton_android(const UDateTimePatternGenerator * dtpg, const UChar * skeleton, int32_t skeletonLength, int32_t * pLength) {
   return udatpg_getPatternForSkeleton(dtpg, skeleton, skeletonLength, pLength);
 }
@@ -2093,6 +2097,36 @@ void unum_setTextAttribute_android(UNumberFormat * fmt, UNumberFormatTextAttribu
 }
 int32_t unum_toPattern_android(const UNumberFormat * fmt, UBool isPatternLocalized, UChar * result, int32_t resultLength, UErrorCode * status) {
   return unum_toPattern(fmt, isPatternLocalized, result, resultLength, status);
+}
+void unumf_close_android(UNumberFormatter * uformatter) {
+  unumf_close(uformatter);
+}
+void unumf_closeResult_android(UFormattedNumber * uresult) {
+  unumf_closeResult(uresult);
+}
+void unumf_formatDecimal_android(const UNumberFormatter * uformatter, const char * value, int32_t valueLen, UFormattedNumber * uresult, UErrorCode * ec) {
+  unumf_formatDecimal(uformatter, value, valueLen, uresult, ec);
+}
+void unumf_formatDouble_android(const UNumberFormatter * uformatter, double value, UFormattedNumber * uresult, UErrorCode * ec) {
+  unumf_formatDouble(uformatter, value, uresult, ec);
+}
+void unumf_formatInt_android(const UNumberFormatter * uformatter, int64_t value, UFormattedNumber * uresult, UErrorCode * ec) {
+  unumf_formatInt(uformatter, value, uresult, ec);
+}
+UNumberFormatter * unumf_openForSkeletonAndLocale_android(const UChar * skeleton, int32_t skeletonLen, const char * locale, UErrorCode * ec) {
+  return unumf_openForSkeletonAndLocale(skeleton, skeletonLen, locale, ec);
+}
+UFormattedNumber * unumf_openResult_android(UErrorCode * ec) {
+  return unumf_openResult(ec);
+}
+void unumf_resultGetAllFieldPositions_android(const UFormattedNumber * uresult, UFieldPositionIterator * ufpositer, UErrorCode * ec) {
+  unumf_resultGetAllFieldPositions(uresult, ufpositer, ec);
+}
+UBool unumf_resultNextFieldPosition_android(const UFormattedNumber * uresult, UFieldPosition * ufpos, UErrorCode * ec) {
+  return unumf_resultNextFieldPosition(uresult, ufpos, ec);
+}
+int32_t unumf_resultToString_android(const UFormattedNumber * uresult, UChar * buffer, int32_t bufferCapacity, UErrorCode * ec) {
+  return unumf_resultToString(uresult, buffer, bufferCapacity, ec);
 }
 void unumsys_close_android(UNumberingSystem * unumsys) {
   unumsys_close(unumsys);

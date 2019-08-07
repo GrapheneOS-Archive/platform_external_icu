@@ -707,14 +707,8 @@ public class Icu4jTransform {
   private static final String[] ANDROID_DEPRECATED_SET = {
       /* ASCII order please. */
 
-      // See BreakIterator#getTitleInstance() below for deprecation reason.
-      "field:android.icu.text.BreakIterator#KIND_TITLE",
-
-      // getTitleInstance(...) methods have been deprecated in Unicode 3.2 and are likely to be
-      // deprecated in ICU 64.
-      "method:android.icu.text.BreakIterator#getTitleInstance()",
-      "method:android.icu.text.BreakIterator#getTitleInstance(Locale)",
-      "method:android.icu.text.BreakIterator#getTitleInstance(ULocale)",
+      // Unstable "constant" value - different values in different API levels. http://b/77850660.
+      "field:android.icu.util.JapaneseCalendar#CURRENT_ERA",
   };
 
   /**
