@@ -24,9 +24,9 @@ stubdata_path:= $(call my-dir)
 dat_file := $(notdir $(wildcard $(stubdata_path)/*.dat))
 
 include $(CLEAR_VARS)
-LOCAL_MODULE := icu-data_host_runtime_apex
+LOCAL_MODULE := icu-data_host_i18n_apex
 LOCAL_MODULE_CLASS := ETC
-LOCAL_MODULE_PATH := $(HOST_OUT)/com.android.runtime/etc/icu
+LOCAL_MODULE_PATH := $(HOST_OUT)/com.android.i18n/etc/icu
 LOCAL_MODULE_STEM := $(dat_file)
 LOCAL_SRC_FILES := $(dat_file)
 LOCAL_IS_HOST_MODULE := true
@@ -42,9 +42,9 @@ include $(BUILD_PREBUILT)
 # TODO(b/121117762): Remove this module definition when the ART
 # Buildbot and Golem have full support for the Runtime APEX.
 include $(CLEAR_VARS)
-LOCAL_MODULE := icu-data-art-test-runtime
+LOCAL_MODULE := icu-data-art-test-i18n
 LOCAL_MODULE_CLASS := ETC
-LOCAL_MODULE_PATH := $(TARGET_OUT)/etc/icu
+LOCAL_MODULE_PATH := $(TARGET_OUT)/etc/i18n_module/etc/icu
 LOCAL_MODULE_STEM := $(dat_file)
 LOCAL_SRC_FILES := $(dat_file)
 include $(BUILD_PREBUILT)
