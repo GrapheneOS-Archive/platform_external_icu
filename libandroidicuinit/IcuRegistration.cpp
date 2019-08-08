@@ -177,15 +177,15 @@ IcuRegistration::IcuRegistration() {
     ALOGV("No time zone module override file found: %s", tzModulePath.c_str());
   }
 
-  // Use the ICU data files that shipped with the runtime module for everything
+  // Use the ICU data files that shipped with the i18n module for everything
   // else.
-  std::string runtimeModulePath = getRuntimeModulePath();
-  icu_datamap_from_runtime_module_ = impl::IcuDataMap::Create(runtimeModulePath);
-  if (icu_datamap_from_runtime_module_ == nullptr) {
+  std::string i18nModulePath = getI18nModulePath();
+  icu_datamap_from_i18n_module_ = impl::IcuDataMap::Create(i18nModulePath);
+  if (icu_datamap_from_i18n_module_ == nullptr) {
     // IcuDataMap::Create() will log on error so there is no need to log here.
     abort();
   }
-  ALOGD("Runtime APEX ICU file found: %s", runtimeModulePath.c_str());
+  ALOGD("I18n APEX ICU file found: %s", i18nModulePath.c_str());
 
   // Failures to find the ICU data tend to be somewhat obscure because ICU loads
   // its data on first use, which can be anywhere. Force initialization up front
@@ -203,7 +203,7 @@ IcuRegistration::~IcuRegistration() {
   u_cleanup();
 
   // Unmap ICU data files.
-  icu_datamap_from_runtime_module_.reset();
+  icu_datamap_from_i18n_module_.reset();
   icu_datamap_from_tz_module_.reset();
   icu_datamap_from_data_.reset();
 
@@ -246,19 +246,17 @@ std::string IcuRegistration::getTimeZoneModulePath() {
   return tzdataModulePath;
 }
 
-std::string IcuRegistration::getRuntimeModulePath() {
-  const char* runtimeModulePathPrefix = getenv("ANDROID_RUNTIME_ROOT");
-  if (runtimeModulePathPrefix == NULL) {
-    ALOGE("ANDROID_RUNTIME_ROOT environment variable not set");
+std::string IcuRegistration::getI18nModulePath() {
+  const char* i18nModulePathPrefix = getenv("ANDROID_I18N_ROOT");
+  if (i18nModulePathPrefix == NULL) {
+    ALOGE("ANDROID_I18N_ROOT environment variable not set");
     abort();
   }
 
-  std::string runtimeModulePath;
-  runtimeModulePath = runtimeModulePathPrefix;
-  runtimeModulePath += "/etc/icu/";
-  runtimeModulePath += U_ICUDATA_NAME;
-  runtimeModulePath += ".dat";
-  return runtimeModulePath;
+  std::string i18nModulePath;
+  i18nModulePath = i18nModulePathPrefix;
+  i18nModulePath += "/etc/icu/" U_ICUDATA_NAME ".dat";
+  return i18nModulePath;
 }
 
 }  // namespace androidicuinit

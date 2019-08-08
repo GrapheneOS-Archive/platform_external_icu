@@ -72,11 +72,11 @@ class IcuRegistration final {
   static bool pathExists(const std::string& path);
   static std::string getDataTimeZonePath();
   static std::string getTimeZoneModulePath();
-  static std::string getRuntimeModulePath();
+  static std::string getI18nModulePath();
 
   std::unique_ptr<impl::IcuDataMap> icu_datamap_from_data_;
   std::unique_ptr<impl::IcuDataMap> icu_datamap_from_tz_module_;
-  std::unique_ptr<impl::IcuDataMap> icu_datamap_from_runtime_module_;
+  std::unique_ptr<impl::IcuDataMap> icu_datamap_from_i18n_module_;
 
   DISALLOW_COPY_AND_ASSIGN(IcuRegistration);
 };
