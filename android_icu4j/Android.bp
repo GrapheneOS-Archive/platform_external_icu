@@ -45,6 +45,19 @@ java_library {
     system_modules: "none",
 }
 
+// Same as android_icu4j_resources_lib but compiling against core_current sdk
+// in order to avoid using non-public API from core-libart and core-oj
+// because core-icu4j will be in a different i18n APEX module.
+
+java_library {
+    name: "android_icu4j_resources_lib_sdk_core_current",
+    visibility: [
+        "//libcore",
+    ],
+    java_resource_dirs: ["resources"],
+    sdk_version: "core_current",
+}
+
 //==========================================================
 // build repackaged ICU tests
 //
