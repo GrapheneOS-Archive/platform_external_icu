@@ -744,6 +744,7 @@ public class DateFormatSymbols implements Serializable, Cloneable {
      * @return the narrow era strings.
      * @hide draft / provisional / internal are hidden on Android
      */
+    @libcore.api.IntraCoreApi
     public String[] getNarrowEras() {
         return duplicate(narrowEras);
     }
@@ -2186,6 +2187,7 @@ public class DateFormatSymbols implements Serializable, Cloneable {
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
+    @libcore.api.IntraCoreApi
     @Deprecated
     public DateFormatSymbols(ULocale locale, String calType) {
         initializeData(locale, calType);
