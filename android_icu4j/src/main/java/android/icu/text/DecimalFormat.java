@@ -2025,7 +2025,8 @@ public class DecimalFormat extends NumberFormat {
   /**
    * @hide draft / provisional / internal are hidden on Android
    */
-  public synchronized void setParseStrictMode(ParseMode parseMode) {
+  @libcore.api.IntraCoreApi
+public synchronized void setParseStrictMode(ParseMode parseMode) {
     properties.setParseMode(parseMode);
     refreshFormatter();
   }

@@ -791,7 +791,8 @@ public class Icu4jTransform {
     private static final String SOURCE_CODE_HEADER = "/* GENERATED SOURCE. DO NOT MODIFY. */\n";
     private static final String COMMAND_USAGE = "Usage: " + Icu4jTransform.class.getCanonicalName()
             + " [--hide-non-whitelisted-api <whitelisted-api-file>]"
-            + " <source-dir>+ <target-dir> <core-platform-api-file> <unsupported-app-usage-file>";
+            + " <source-dir>+ <target-dir> <core-platform-api-file> <intra-core-api-file>"
+            + " <unsupported-app-usage-file>";
 
     private final InputFileGenerator inputFileGenerator;
     private final List<Rule> rules;
@@ -804,7 +805,7 @@ public class Icu4jTransform {
       Path whitelistedApiPath = null;
       if ("--hide-non-whitelisted-api".equals(args[0])) {
         whitelistedApiPath = Paths.get(args[1]);
-        if (args.length < 5) {
+        if (args.length < 6) {
           throw new IllegalArgumentException(COMMAND_USAGE);
         }
         String[] newArgs = new String[args.length - 2];
@@ -813,14 +814,15 @@ public class Icu4jTransform {
       }
 
       // Extract the source directories.
-      String[] inputDirNames = new String[args.length - 3];
-      System.arraycopy(args, 0, inputDirNames, 0, args.length - 3);
+      String[] inputDirNames = new String[args.length - 4];
+      System.arraycopy(args, 0, inputDirNames, 0, args.length - 4);
       inputFileGenerator = Icu4jTransformRules.createInputFileGenerator(inputDirNames);
 
       // Extract the additional arguments.
       int argIndex = inputDirNames.length;
       String targetDir = args[argIndex++];
       Path corePlatformApiFile = Paths.get(args[argIndex++]);
+      Path intraCoreApiFile = Paths.get(args[argIndex++]);
       Path unsupportedAppUsageFile = Paths.get(args[argIndex++]);
 
       // Ensure that all the arguments were used.
@@ -828,8 +830,8 @@ public class Icu4jTransform {
         throw new IllegalArgumentException(COMMAND_USAGE);
       }
 
-      rules = createTransformRules(corePlatformApiFile, unsupportedAppUsageFile,
-          whitelistedApiPath);
+      rules = createTransformRules(corePlatformApiFile, intraCoreApiFile,
+          unsupportedAppUsageFile, whitelistedApiPath);
       outputSourceFileGenerator = Icu4jTransformRules.createOutputFileGenerator(targetDir);
     }
 
@@ -866,6 +868,7 @@ public class Icu4jTransform {
     }
 
     private static List<Rule> createTransformRules(Path corePlatformApiFile,
+            Path intraCoreApiFile,
             Path unsupportedAppUsagePath,
             Path whitelistedApiPath) {
       // The rules needed to repackage source code that declares or references com.ibm.icu code
@@ -924,6 +927,10 @@ public class Icu4jTransform {
           // AST change: Add CorePlatformApi to specified classes and members
           createOptionalRule(AddAnnotation.markerAnnotationFromFlatFile(
               "libcore.api.CorePlatformApi", corePlatformApiFile)),
+
+          // AST change: Add CorePlatformApi to specified classes and members
+          createOptionalRule(AddAnnotation.markerAnnotationFromFlatFile(
+              "libcore.api.IntraCoreApi", intraCoreApiFile)),
 
           // AST change: Add default constructors, must come before processor to add
           // UnsupportedAppUsage.
