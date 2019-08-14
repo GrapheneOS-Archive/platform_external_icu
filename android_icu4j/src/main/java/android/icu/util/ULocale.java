@@ -841,6 +841,7 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      * @deprecated This API is ICU internal only.
      * @hide draft / provisional / internal are hidden on Android
      */
+    @libcore.api.IntraCoreApi
     @Deprecated
     public static String getRegionForSupplementalData(
                             ULocale locale, boolean inferRegion) {
