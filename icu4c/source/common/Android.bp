@@ -37,6 +37,7 @@ cc_defaults {
         "-Wno-missing-field-initializers",
         "-Wno-sign-compare",
         "-Wno-deprecated-declarations",
+        "-Wno-ignored-attributes",
     ],
 
     cppflags: [
