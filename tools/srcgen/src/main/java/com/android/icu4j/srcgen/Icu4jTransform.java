@@ -117,6 +117,7 @@ public class Icu4jTransform {
       "android.icu.text.DateIntervalInfo",
       "android.icu.text.DateIntervalInfo$PatternInfo",
       "android.icu.text.DateTimePatternGenerator",
+      "android.icu.text.DateTimePatternGenerator$DisplayWidth",
       "android.icu.text.DateTimePatternGenerator$PatternInfo",
       "android.icu.text.DecimalFormat",
       "android.icu.text.DecimalFormatSymbols",
@@ -226,6 +227,7 @@ public class Icu4jTransform {
       "android.icu.util.ValueIterator",
       "android.icu.util.ValueIterator$Element",
       "android.icu.util.VersionInfo",
+
   };
 
   /**

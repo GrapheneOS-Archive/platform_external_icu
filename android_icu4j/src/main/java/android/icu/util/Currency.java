@@ -90,8 +90,6 @@ public class Currency extends MeasureUnit {
      * The narrow currency symbol is similar to the regular currency
      * symbol, but it always takes the shortest form: for example,
      * "$" instead of "US$" for USD in en-CA.
-     *
-     * @hide Hide new API in Android temporarily
      */
     public static final int NARROW_SYMBOL_NAME = 3;
 
