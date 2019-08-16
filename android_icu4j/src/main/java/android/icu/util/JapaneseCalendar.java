@@ -372,7 +372,6 @@ public class JapaneseCalendar extends GregorianCalendar {
 
     /**
      * Constant for the era starting on May 1, 2019 AD.
-     * @hide Hide new API in Android temporarily
      */
     static public final int REIWA;
 

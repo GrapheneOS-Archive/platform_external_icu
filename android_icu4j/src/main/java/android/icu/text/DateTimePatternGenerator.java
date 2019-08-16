@@ -1099,7 +1099,6 @@ public class DateTimePatternGenerator implements Freezable<DateTimePatternGenera
 
     /**
      * Field display name width constants for getFieldDisplayName
-     * @hide Only a subset of ICU is exposed in Android
      */
     public enum DisplayWidth {
         /**
@@ -1265,8 +1264,7 @@ public class DateTimePatternGenerator implements Freezable<DateTimePatternGenera
      *
      * @param field The field type, such as ERA.
      * @param width The desired DisplayWidth, such as DisplayWidth.ABBREVIATED.
-     * @return.     The display name for the field
-     * @hide Hide new API in Android temporarily
+     * @return      The display name for the field
      */
     public String getFieldDisplayName(int field, DisplayWidth width) {
         if (field >= TYPE_LIMIT || field < 0) {
