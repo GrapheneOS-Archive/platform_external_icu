@@ -846,13 +846,13 @@ public final class UScript {
     /***/
     public static final int OLD_SOGDIAN = 184; /* Sogo */
 
-    /** @hide Hide new API in Android temporarily*/
+    /***/
     public static final int ELYMAIC = 185; /* Elym */
-    /** @hide Hide new API in Android temporarily*/
+    /***/
     public static final int NYIAKENG_PUACHUE_HMONG = 186; /* Hmnp */
-    /** @hide Hide new API in Android temporarily*/
+    /***/
     public static final int NANDINAGARI = 187; /* Nand */
-    /** @hide Hide new API in Android temporarily*/
+    /***/
     public static final int WANCHO = 188; /* Wcho */
 
     /**
