@@ -31,6 +31,7 @@ filegroup {
         "//libcore/mmodules/intracoreapi",
     ],
     srcs: ["src/main/java/**/*.java"],
+    path: "src/main/java",
 }
 
 // Rule generating resource lib for android_icu4j.
