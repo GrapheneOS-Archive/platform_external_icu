@@ -35,12 +35,12 @@ include $(BUILD_PREBUILT)
 # Module definition producing ICU .dat prebuilt files in
 # /system/etc/icu for standalone ART testing purposes. This is a
 # temporary change needed until the ART Buildbot and Golem both fully
-# support the Runtime APEX (see b/121117762). This module should never
+# support the ART APEX (see b/121117762). This module should never
 # be shipped by default (i.e. should never be part of
 # `PRODUCT_PACKAGE`.)
 #
 # TODO(b/121117762): Remove this module definition when the ART
-# Buildbot and Golem have full support for the Runtime APEX.
+# Buildbot and Golem have full support for the ART APEX.
 include $(CLEAR_VARS)
 LOCAL_MODULE := icu-data-art-test-i18n
 LOCAL_MODULE_CLASS := ETC
