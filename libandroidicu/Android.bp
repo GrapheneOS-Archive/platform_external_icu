@@ -12,9 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-
 // A shared library for use on Android by frameworks and other code outside
-// of the runtime mainline module. It provides a subset of ICU APIs, some
+// of the ART mainline module. It provides a subset of ICU APIs, some
 // Android extensions and stable symbols. Most Android target code should
 // depend on this library.
 //
