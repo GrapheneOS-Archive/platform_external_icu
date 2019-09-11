@@ -15,6 +15,7 @@
  */
 
 #include "androidicuinit/IcuRegistration.h"
+#include "androidicuinit/android_icu_reg.h"
 
 #include <sys/mman.h>
 #include <sys/stat.h>
@@ -260,3 +261,14 @@ std::string IcuRegistration::getI18nModulePath() {
 }
 
 }  // namespace androidicuinit
+
+extern "C" {
+void android_icu_register() {
+  androidicuinit::IcuRegistration::Register();
+}
+
+
+void android_icu_deregister() {
+  androidicuinit::IcuRegistration::Deregister();
+}
+}
