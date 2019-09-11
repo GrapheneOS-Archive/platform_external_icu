@@ -42,6 +42,13 @@
 #   include <console.h>
 #endif
 
+// ANDROID_USE_ICU_REG is defined when building against the Android OS source tree.
+// androidicuinit is a static library which helps initialize ICU4C using the data
+// on the device.
+#if defined(__ANDROID__) && defined(ANDROID_USE_ICU_REG)
+#include <androidicuinit/android_icu_reg.h>
+#endif
+
 #define CTST_MAX_ALLOC 8192
 /* Array used as a queue */
 static void * ctst_allocated_stuff[CTST_MAX_ALLOC] = {0};
@@ -249,7 +256,11 @@ int main(int argc, const char* const argv[])
         (int)((diffTime%U_MILLIS_PER_MINUTE)/U_MILLIS_PER_SECOND),
         (int)(diffTime%U_MILLIS_PER_SECOND));
 
+#ifdef ZERO_EXIT_CODE_FOR_FAILURES
+    return 0;
+#else
     return nerrors ? 1 : 0;
+#endif
 }
 
 /*
@@ -301,7 +312,11 @@ static void ctest_appendToDataDirectory(const char *toAppend)
  *                       tests dynamically load some data.
  */
 void ctest_setICU_DATA() {
+    #if defined(__ANDROID__) && defined(ANDROID_USE_ICU_REG)
+    android_icu_register();
+    #else
     u_setDataDirectory(ctest_dataOutDir());
+    #endif
 }
 
 /*  These tests do cleanup and reinitialize ICU in the course of their operation.
@@ -322,12 +337,16 @@ UBool ctest_resetICU() {
     UErrorCode   status = U_ZERO_ERROR;
     char         *dataDir = safeGetICUDataDirectory();
 
+    #if defined(__ANDROID__) && defined(ANDROID_USE_ICU_REG)
+    android_icu_deregister();
+    #else
     u_cleanup();
+    #endif
     if (!initArgs(gOrigArgc, gOrigArgv, NULL, NULL)) {
         /* Error already displayed. */
         return FALSE;
     }
-    u_setDataDirectory(dataDir);
+    ctest_setICU_DATA();
     free(dataDir);
     u_init(&status);
     if (U_FAILURE(status)) {
