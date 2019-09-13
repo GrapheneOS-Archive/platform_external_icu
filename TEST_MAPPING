@@ -1,0 +1,10 @@
+{
+  "postsubmit": [
+    {
+      "name": "intltest"
+    },
+    {
+      "name": "cintltst"
+    }
+  ]
+}
