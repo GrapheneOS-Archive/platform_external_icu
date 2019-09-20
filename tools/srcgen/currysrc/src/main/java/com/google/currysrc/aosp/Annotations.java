@@ -42,6 +42,7 @@ public final class Annotations {
    *  "maxTargetSdk": <int>|<placeholder>,
    *  "trackingBug": <long>|<placeholder>,
    *  "expectedSignature": <string>,
+   *  "publicAlternatives": <string>,
    * }
    * }</pre>
    *
@@ -69,7 +70,8 @@ public final class Annotations {
         .addProperty("maxTargetSdk", int.class)
         .addProperty("trackingBug", long.class)
         .addProperty("implicitMember", String.class)
-        .addProperty("expectedSignature", String.class);
+        .addProperty("expectedSignature", String.class)
+        .addProperty("publicAlternatives", String.class);
     try {
       return AddAnnotation.fromJsonFile(annotationClass, unsupportedAppUsagePath);
     } catch (IOException e) {
