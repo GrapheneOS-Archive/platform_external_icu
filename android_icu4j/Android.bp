@@ -87,8 +87,5 @@ java_test {
 
     patch_module: "java.base",
     sdk_version: "none",
-    libs: [
-        "core-all",
-    ],
     system_modules: "core-all-system-modules",
 }
