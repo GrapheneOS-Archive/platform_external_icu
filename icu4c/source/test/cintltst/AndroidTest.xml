@@ -38,5 +38,8 @@
         <option name="set-option" value="runtime-hint:20s" />
         <option name="set-option" value="no-fail-data-errors:true" />
         <option name="set-option" value="native-test-timeout:300000" />
+        <option name="set-option" value="command-filter-prefix:/" />
+        <!-- Sample include-filter to run a subset of tests in putiltst-->
+        <!-- <option name="set-option" value="include-filter:cintltst.putiltst" /> -->
     </test>
 </configuration>
