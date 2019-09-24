@@ -29,9 +29,11 @@ cc_test {
     ],
     cflags: [
         "-DANDROID_LINK_SHARED_ICU4C",
+        // Force the test to use the data file on
         "-DANDROID_USE_ICU_REG",
         // Disable some file IO tests to workaround test crashing due to missing data files.
         "-DUCONFIG_NO_FILE_IO",
+        "-DZERO_EXIT_CODE_FOR_FAILURES",
     ],
     exclude_srcs: [
         // Not built directly, but #included from other sources.
