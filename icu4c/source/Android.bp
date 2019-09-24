@@ -15,7 +15,17 @@
 subdirs = [
     "common",
     "i18n",
+    "test",
+    "tools/ctestfw",
+    "tools/toolutil",
 ]
+
+filegroup {
+    name: "icu4c_test_data",
+    srcs: [
+        "test/testdata/**/*",
+    ],
+}
 
 cc_library {
     name: "libicuuc_stubdata",
