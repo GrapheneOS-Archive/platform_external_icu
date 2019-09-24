@@ -30,6 +30,7 @@ cc_test {
         "-DANDROID_USE_ICU_REG",
         // Needed for char* shift calculation in the test.
         "-Wno-string-plus-int",
+        "-DZERO_EXIT_CODE_FOR_FAILURES",
     ],
     srcs: [
         "**/*.c",
