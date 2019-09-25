@@ -39,6 +39,8 @@
         <option name="set-option" value="no-fail-data-errors:true" />
         <!-- test-timeout unit is ms, value = 10 minutes -->
         <option name="set-option" value="native-test-timeout:600000" />
+        <!-- Sample include-filter to run a subset of tests in utility-->
+        <!-- <option name="set-option" value="include-filter:intltest.utility" /> -->
     </test>
 
 </configuration>
