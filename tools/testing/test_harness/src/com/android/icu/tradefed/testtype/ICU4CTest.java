@@ -29,6 +29,7 @@ import com.android.tradefed.testtype.IAbiReceiver;
 import com.android.tradefed.testtype.IDeviceTest;
 import com.android.tradefed.testtype.IRemoteTest;
 import com.android.tradefed.testtype.IRuntimeHintProvider;
+import com.android.tradefed.testtype.ITestFilterReceiver;
 import com.android.tradefed.util.CommandResult;
 import com.android.tradefed.util.CommandStatus;
 import com.android.tradefed.util.FileUtil;
@@ -37,8 +38,11 @@ import com.google.common.annotations.VisibleForTesting;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.LinkedList;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Pattern;
 
@@ -46,6 +50,7 @@ import java.util.regex.Pattern;
 @OptionClass(alias = "icu4c")
 public class ICU4CTest
         implements IDeviceTest,
+    ITestFilterReceiver,
     IRemoteTest,
     IAbiReceiver,
     IRuntimeHintProvider {
@@ -57,6 +62,10 @@ public class ICU4CTest
 
     @Option(name = "module-name", description = "The name of the native test module to run.")
     private String mTestModule = null;
+
+    @Option(name = "command-filter-prefix",
+        description = "The prefix required for each test filter when running the shell command")
+    private String mCommandFilterPrefix = "";
 
     @Option(
         name = "native-test-timeout",
@@ -81,6 +90,19 @@ public class ICU4CTest
         description = "Treat data load failures as warnings, not errors."
     )
     private boolean mNoFailDataErrors = false;
+
+    @Option(
+        name = "include-filter",
+        description = "The ICU-specific positive filter of the test names to run."
+    )
+    private Set<String> mIncludeFilters = new LinkedHashSet<>();
+
+
+    @Option(
+        name = "exclude-filter",
+        description = "The ICU-specific negative filter of the test names to run."
+    )
+    private Set<String> mExcludeFilters = new LinkedHashSet<>();
 
     private static final String TEST_FLAG_NO_FAIL_DATA_ERRORS = "-w";
     private static final String TEST_FLAG_XML_OUTPUT = "-x";
@@ -137,6 +159,62 @@ public class ICU4CTest
     @Override
     public long getRuntimeHint() {
         return mRuntimeHint;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void addIncludeFilter(String filter) {
+        mIncludeFilters.add(filter);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void addAllIncludeFilters(Set<String> filters) {
+        mIncludeFilters.addAll(filters);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void addExcludeFilter(String filter) {
+        mExcludeFilters.add(filter);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void addAllExcludeFilters(Set<String> filters) {
+        mExcludeFilters.addAll(filters);
+    }
+
+    @Override
+    public Set<String> getIncludeFilters() {
+        return mIncludeFilters;
+    }
+
+    @Override
+    public Set<String> getExcludeFilters() {
+        return mExcludeFilters;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void clearExcludeFilters() {
+        mExcludeFilters.clear();
+    }
+
+    @Override
+    public void clearIncludeFilters() {
+        mIncludeFilters.clear();
+    }
+
+    public void setCommandFilterPrefix(String s) {
+        if (s == null) {
+            throw new NullPointerException("CommandFilterPrefix can't be null");
+        }
+        mCommandFilterPrefix = s;
+    }
+
+    public String getCommandFilterPrefix() {
+        return mCommandFilterPrefix;
     }
 
     /**
@@ -226,7 +304,8 @@ public class ICU4CTest
             File tmpOutput = FileUtil.createTempFile(testRunName, ".xml");
             testDevice.pullFile(xmlFullPath, tmpOutput);
 
-            ICU4CXmlResultParser parser = new ICU4CXmlResultParser(testRunName, listener);
+            ICU4CXmlResultParser parser = new ICU4CXmlResultParser(mTestModule,
+                testRunName, listener);
 
             parser.parseResult(tmpOutput, commandResult);
         } catch (IOException e) {
@@ -263,7 +342,39 @@ public class ICU4CTest
 
         String cmd = String.join(" ", args);
 
+        List<String> includeFilters = preprocessIncludeFilters();
+        if (!includeFilters.isEmpty()) {
+            cmd += " " + String.join(" ", includeFilters);
+        }
+
         return cmd;
+    }
+
+    private List<String> preprocessIncludeFilters() {
+        Set<String> includeFilters = mIncludeFilters;
+        List<String> results = new ArrayList<>();
+        for (String filter : includeFilters) {
+            if (!filter.startsWith(mTestModule)) {
+                CLog.i("Ignore positive filter which does not contain module prefix \"%s\":%s",
+                    mTestModule, filter);
+                continue;
+            }
+            String modifiedFilter = filter.substring(mTestModule.length());
+            if (filter.length() == 0) {
+                // Ignore because it intends to run all tests when the filter is the module name.
+                continue;
+            }
+            // Android / tradefed uses '.' as package separator, but ICU4C tests use '/'.
+            modifiedFilter = modifiedFilter.replace('.', '/');
+
+            if (modifiedFilter.charAt(0) != '/' || modifiedFilter.length() == 1) {
+                CLog.i("Ignore invalid filter:%s", filter);
+                continue;
+            }
+            modifiedFilter = mCommandFilterPrefix + modifiedFilter.substring(1);
+            results.add(modifiedFilter);
+        }
+        return results;
     }
 
     /** {@inheritDoc} */
@@ -285,6 +396,9 @@ public class ICU4CTest
                     String.format(
                             "%s exists but is not executable in %s.",
                             testPath, mDevice.getSerialNumber()));
+        }
+        if (!mExcludeFilters.isEmpty()) {
+            throw new IllegalStateException("ICU4C test suites do not support exclude filters");
         }
         runTest(mDevice, testPath, listener);
     }
