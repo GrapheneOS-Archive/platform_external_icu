@@ -43,6 +43,7 @@ public class ICU4CXmlResultParser {
     private static final String TEST_CASE_TAG = "testcase";
 
     private final String mTestRunName;
+    private final String mModuleName;
     private int mNumTestsRun = 0;
     private int mNumTestsExpected = 0;
     private long mTotalRunTime = 0;
@@ -51,11 +52,14 @@ public class ICU4CXmlResultParser {
     /**
      * Creates the ICU4CXmlResultParser.
      *
+     * @param moduleName module name
      * @param testRunName the test run name to provide to {@link
      *     ITestInvocationListener#testRunStarted(String, int)}
      * @param listeners informed of test results as the tests are executing
      */
-    public ICU4CXmlResultParser(String testRunName, Collection<ITestInvocationListener> listeners) {
+    public ICU4CXmlResultParser(String moduleName, String testRunName,
+        Collection<ITestInvocationListener> listeners) {
+        mModuleName = moduleName;
         mTestRunName = testRunName;
         mTestListeners = new ArrayList<>(listeners);
     }
@@ -63,11 +67,14 @@ public class ICU4CXmlResultParser {
     /**
      * Creates the ICU4CXmlResultParser for a single listener.
      *
+     * @param moduleName module name
      * @param testRunName the test run name to provide to {@link
      *     ITestInvocationListener#testRunStarted(String, int)}
      * @param listener informed of test results as the tests are executing
      */
-    public ICU4CXmlResultParser(String testRunName, ITestInvocationListener listener) {
+    public ICU4CXmlResultParser(String moduleName, String testRunName,
+        ITestInvocationListener listener) {
+        mModuleName = moduleName;
         mTestRunName = testRunName;
         mTestListeners = new ArrayList<>();
         if (listener != null) {
@@ -161,6 +168,10 @@ public class ICU4CXmlResultParser {
         if (classname.startsWith("/")) {
             classname = classname.substring(1);
         }
+
+        // For test reporting on Android, prefix module name to the class name
+        // and replace '/' with '.'
+        classname = mModuleName + '.' + classname.replace('/', '.');
 
         // TODO: Fix the duplicate test name in the testId
         // Currently, testId is like spoof#spoof or spoof/testBug8654#testBug8654
