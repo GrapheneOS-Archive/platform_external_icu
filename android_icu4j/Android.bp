@@ -59,6 +59,89 @@ java_library {
     sdk_version: "core_current",
 }
 
+// A separated core library that contains ICU4J because ICU4J will be in a different APEX module,
+// not in ART module.
+java_library {
+    name: "core-icu4j",
+    visibility: [
+        "//art/build/apex",
+        "//external/robolectric-shadows",
+        "//frameworks/layoutlib",
+    ],
+    installable: true,
+    hostdex: true,
+
+    srcs: [":android_icu4j_src_files"],
+    libs: ["libcore-unsupportedappusage-annotation"],
+    static_libs: ["android_icu4j_resources_lib_sdk_core_current"],
+
+    // We use art-module-public-api-stubs-system-modules when compiling core-icu4j as ICU4J does not
+    // use any internal or android specific code. If it ever did then it could depend on
+    // core-intra-stubs-system-modules (a superset) instead.
+    // It is important that core-icu4j is restricted to only use stable APIs from the ART module
+    // since it is in a different APEX module that can be updated independently.
+    sdk_version: "none",
+    system_modules: "art-module-public-api-stubs-system-modules",
+
+    dxflags: ["--core-library"],
+    errorprone: {
+        javacflags: [
+            "-Xep:MissingOverride:OFF", // Ignore missing @Override.
+            "-Xep:ConstantOverflow:WARN", // Known constant overflow in SplittableRandom
+        ],
+    },
+}
+
+//
+// Guaranteed unstripped versions of core-icu4j.
+//
+// The build system may or may not strip the core-icu4j. jar,
+// but this will not be stripped. See b/24535627.
+//
+java_library {
+    name: "core-icu4j-testdex",
+    installable: true,
+    static_libs: ["core-icu4j"],
+    sdk_version: "none",
+    system_modules: "art-module-public-api-stubs-system-modules",
+    dxflags: ["--core-library"],
+    dex_preopt: {
+        enabled: false,
+    },
+}
+
+// Generates stubs for the parts of the public SDK API provided by the i18n module.
+//
+// Only for use by i18n.module.public.api.stubs target below.
+droidstubs {
+    name: "i18n-module-public-api-stubs-gen",
+    srcs: [
+        ":android_icu4j_src_files",
+    ],
+    java_version: "1.9",
+    installable: false,
+    sdk_version: "none",
+    libs: [
+        "art.module.public.api.stubs",
+    ],
+}
+
+// A stubs target containing the parts of the public SDK API provided by the i18n module.
+java_library {
+    name: "i18n.module.public.api.stubs",
+    visibility: [
+        "//libcore",
+    ],
+    srcs: [":i18n-module-public-api-stubs-gen"],
+    errorprone: {
+        javacflags: [
+            "-Xep:MissingOverride:OFF",
+        ],
+    },
+    sdk_version: "none",
+    system_modules: "art-module-public-api-stubs-system-modules",
+}
+
 //==========================================================
 // build repackaged ICU tests
 //
