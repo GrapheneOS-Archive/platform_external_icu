@@ -27,8 +27,7 @@ package {
 filegroup {
     name: "android_icu4j_src_files",
     visibility: [
-        "//libcore",
-        "//libcore/mmodules/intracoreapi",
+        "//libcore:__subpackages__",
     ],
     srcs: ["src/main/java/**/*.java"],
     path: "src/main/java",
