@@ -71,7 +71,6 @@ java_library {
     hostdex: true,
 
     srcs: [":android_icu4j_src_files"],
-    libs: ["libcore-unsupportedappusage-annotation"],
     static_libs: ["android_icu4j_resources_lib_sdk_core_current"],
 
     // We use art-module-public-api-stubs-system-modules when compiling core-icu4j as ICU4J does not
