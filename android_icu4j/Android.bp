@@ -220,6 +220,9 @@ java_test {
         "src/main/tests",
         "testing/src",
     ],
+    libs: [
+        "core-icu4j",
+    ],
     static_libs: [
         "junit",
         "junit-params",
@@ -227,5 +230,5 @@ java_test {
 
     patch_module: "java.base",
     sdk_version: "none",
-    system_modules: "core-all-system-modules",
+    system_modules: "art-module-intra-core-api-stubs-system-modules",
 }
