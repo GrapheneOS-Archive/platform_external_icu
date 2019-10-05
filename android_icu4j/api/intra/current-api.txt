@@ -96,6 +96,7 @@ package android.icu.util {
 
   public abstract class BasicTimeZone extends android.icu.util.TimeZone {
     method public abstract android.icu.util.TimeZoneTransition getNextTransition(long, boolean);
+    method public abstract android.icu.util.TimeZoneTransition getPreviousTransition(long, boolean);
     method public abstract android.icu.util.TimeZoneRule[] getTimeZoneRules();
   }
 
@@ -122,6 +123,36 @@ package android.icu.util {
   public class InitialTimeZoneRule extends android.icu.util.TimeZoneRule {
   }
 
+  public final class LocaleData {
+    method public static android.icu.util.VersionInfo getCLDRVersion();
+    method public String getDelimiter(int);
+    method public static android.icu.text.UnicodeSet getExemplarSet(android.icu.util.ULocale, int, int);
+    method public android.icu.text.UnicodeSet getExemplarSet(int, int);
+    method public static android.icu.util.LocaleData getInstance(android.icu.util.ULocale);
+    method public static android.icu.util.LocaleData getInstance();
+    method public static android.icu.util.LocaleData.MeasurementSystem getMeasurementSystem(android.icu.util.ULocale);
+    method public boolean getNoSubstitute();
+    method public static android.icu.util.LocaleData.PaperSize getPaperSize(android.icu.util.ULocale);
+    method public void setNoSubstitute(boolean);
+    field public static final int ALT_QUOTATION_END = 3; // 0x3
+    field public static final int ALT_QUOTATION_START = 2; // 0x2
+    field public static final int ES_INDEX = 2; // 0x2
+    field public static final int ES_STANDARD = 0; // 0x0
+    field public static final int QUOTATION_END = 1; // 0x1
+    field public static final int QUOTATION_START = 0; // 0x0
+  }
+
+  public static final class LocaleData.MeasurementSystem {
+    field public static final android.icu.util.LocaleData.MeasurementSystem SI;
+    field public static final android.icu.util.LocaleData.MeasurementSystem UK;
+    field public static final android.icu.util.LocaleData.MeasurementSystem US;
+  }
+
+  public static final class LocaleData.PaperSize {
+    method public int getHeight();
+    method public int getWidth();
+  }
+
   public abstract class TimeZone implements java.lang.Cloneable android.icu.util.Freezable<android.icu.util.TimeZone> java.io.Serializable {
     method @Deprecated public static void setICUDefault(android.icu.util.TimeZone);
   }
@@ -144,6 +175,7 @@ package android.icu.util {
   public abstract class UResourceBundle extends java.util.ResourceBundle {
     ctor public UResourceBundle();
     method public static android.icu.util.UResourceBundle getBundleInstance(String, java.util.Locale);
+    method public static android.icu.util.UResourceBundle getBundleInstance(String, android.icu.util.ULocale);
     method public String[] getStringArray();
   }
 

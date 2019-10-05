@@ -219,6 +219,7 @@ public abstract class UResourceBundle extends ResourceBundle {
      * @return a resource bundle for the given base name and locale
      */
     @dalvik.annotation.compat.UnsupportedAppUsage
+    @libcore.api.IntraCoreApi
     public static UResourceBundle getBundleInstance(String baseName, ULocale locale) {
         if (baseName == null) {
             baseName = ICUData.ICU_BASE_NAME;
