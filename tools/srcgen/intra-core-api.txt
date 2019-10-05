@@ -75,3 +75,12 @@ type:android.icu.util.InitialTimeZoneRule
 type:android.icu.util.TimeZoneRule
 type:android.icu.util.TimeZoneTransition
 type:android.icu.util.UResourceBundle
+
+# For testing purposes
+field:android.icu.util.LocaleData#ES_INDEX
+field:android.icu.util.LocaleData#ES_STANDARD
+method:android.icu.util.BasicTimeZone#getPreviousTransition(long,boolean)
+method:android.icu.util.LocaleData#getExemplarSet(int,int)
+method:android.icu.util.LocaleData#getExemplarSet(ULocale,int,int)
+method:android.icu.util.UResourceBundle#getBundleInstance(String,ULocale)
+type:android.icu.util.LocaleData

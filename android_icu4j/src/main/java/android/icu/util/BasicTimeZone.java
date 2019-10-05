@@ -62,6 +62,7 @@ public abstract class BasicTimeZone extends TimeZone {
      *          before the given base time, or null if no time zone transitions
      *          are available before the base time.
      */
+    @libcore.api.IntraCoreApi
     public abstract TimeZoneTransition getPreviousTransition(long base, boolean inclusive);
 
     /**
