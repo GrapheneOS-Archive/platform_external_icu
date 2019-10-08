@@ -33,31 +33,6 @@ filegroup {
     path: "src/main/java",
 }
 
-// Rule generating resource lib for android_icu4j.
-// In the downstream branch master-icu-dev, the resource files are generated.
-java_library {
-    name: "android_icu4j_resources_lib",
-    visibility: [
-        "//libcore",
-    ],
-    java_resource_dirs: ["resources"],
-    sdk_version: "none",
-    system_modules: "none",
-}
-
-// Same as android_icu4j_resources_lib but compiling against core_current sdk
-// in order to avoid using non-public API from core-libart and core-oj
-// because core-icu4j will be in a different i18n APEX module.
-
-java_library {
-    name: "android_icu4j_resources_lib_sdk_core_current",
-    visibility: [
-        "//libcore",
-    ],
-    java_resource_dirs: ["resources"],
-    sdk_version: "core_current",
-}
-
 // A separated core library that contains ICU4J because ICU4J will be in a different APEX module,
 // not in ART module.
 java_library {
@@ -71,7 +46,9 @@ java_library {
     hostdex: true,
 
     srcs: [":android_icu4j_src_files"],
-    static_libs: ["android_icu4j_resources_lib_sdk_core_current"],
+
+    // The resource files are generated in the downstream branch master-icu-dev.
+    java_resource_dirs: ["resources"],
 
     // We use art-module-public-api-stubs-system-modules when compiling core-icu4j as ICU4J does not
     // use any internal or android specific code. If it ever did then it could depend on
