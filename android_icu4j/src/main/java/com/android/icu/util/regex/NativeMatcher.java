@@ -23,11 +23,6 @@ public class NativeMatcher {
     private static final NativeAllocationRegistry REGISTRY = NativeAllocationRegistry
         .createMalloced(NativeMatcher.class.getClassLoader(), getNativeFinalizer());
 
-    /*
-     * @ReachabilitySensitive ensures that this and NativePattern remain reachable while we're using
-     * nativePattern.address directly.
-     */
-    @dalvik.annotation.optimization.ReachabilitySensitive
     private final NativePattern nativePattern;
     @dalvik.annotation.optimization.ReachabilitySensitive
     private final long address;
@@ -39,13 +34,13 @@ public class NativeMatcher {
 
     private NativeMatcher(NativePattern pattern) {
         nativePattern = pattern;
-        address = openImpl(pattern.address);
+        address = pattern.openMatcher();
         REGISTRY.registerNativeAllocation(this, address);
     }
 
     @libcore.api.IntraCoreApi
     public int getMatchedGroupIndex(String groupName) {
-        return getMatchedGroupIndexImpl(nativePattern.address, groupName);
+        return nativePattern.getMatchedGroupIndex(groupName);
     }
 
     @libcore.api.IntraCoreApi
@@ -98,8 +93,6 @@ public class NativeMatcher {
         useTransparentBoundsImpl(address, value);
     }
 
-    private static native long openImpl(long patternAddr);
-    private static native int getMatchedGroupIndexImpl(long patternAddr, String name);
     private static native boolean findImpl(long addr, int startIndex, int[] offsets);
     private static native boolean findNextImpl(long addr, int[] offsets);
     private static native int groupCountImpl(long addr);

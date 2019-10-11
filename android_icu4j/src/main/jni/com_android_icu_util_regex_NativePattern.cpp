@@ -21,6 +21,8 @@
 #include <nativehelper/JNIHelp.h>
 #include <nativehelper/jni_macros.h>
 
+#include "IcuUtilities.h"
+#include "MatcherState.h"
 #include "unicode/parseerr.h"
 #include "unicode/regex.h"
 
@@ -96,10 +98,39 @@ static jlong NativePattern_compileImpl(JNIEnv* env, jclass, jstring javaRegex, j
     return static_cast<jlong>(reinterpret_cast<uintptr_t>(result));
 }
 
+static jlong NativePattern_openMatcherImpl(JNIEnv* env, jclass, jlong addr) {
+    icu::RegexPattern* pattern = reinterpret_cast<icu::RegexPattern*>(static_cast<uintptr_t>(addr));
+    UErrorCode status = U_ZERO_ERROR;
+    icu::RegexMatcher* result = pattern->matcher(status);
+    if (maybeThrowIcuException(env, "RegexPattern::matcher", status)) {
+        return 0;
+    }
+
+    return reinterpret_cast<uintptr_t>(new MatcherState(result));
+}
+
+static jint NativePattern_getMatchedGroupIndexImpl(JNIEnv* env, jclass, jlong addr, jstring javaGroupName) {
+  icu::RegexPattern* pattern = reinterpret_cast<icu::RegexPattern*>(static_cast<uintptr_t>(addr));
+  ScopedJavaUnicodeString groupName(env, javaGroupName);
+  UErrorCode status = U_ZERO_ERROR;
+
+  jint result = pattern->groupNumberFromName(groupName.unicodeString(), status);
+  if (U_SUCCESS(status)) {
+    return result;
+  }
+  if (status == U_REGEX_INVALID_CAPTURE_GROUP_NAME) {
+    return -1;
+  }
+  maybeThrowIcuException(env, "RegexPattern::groupNumberFromName", status);
+  return -1;
+}
+
 
 static JNINativeMethod gMethods[] = {
     NATIVE_METHOD(NativePattern, compileImpl, "(Ljava/lang/String;I)J"),
     NATIVE_METHOD(NativePattern, getNativeFinalizer, "()J"),
+    NATIVE_METHOD(NativePattern, openMatcherImpl, "(J)J"),
+    NATIVE_METHOD(NativePattern, getMatchedGroupIndexImpl, "(JLjava/lang/String;)I"),
 };
 
 void register_com_android_icu_util_regex_NativePattern(JNIEnv* env) {
