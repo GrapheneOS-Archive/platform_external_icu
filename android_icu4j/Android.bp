@@ -96,9 +96,7 @@ droidstubs {
     java_version: "1.9",
     installable: false,
     sdk_version: "none",
-    libs: [
-        "art.module.public.api.stubs",
-    ],
+    system_modules: "art-module-public-api-stubs-system-modules",
 }
 
 // A stubs target containing the parts of the public SDK API provided by the i18n module.
@@ -136,9 +134,7 @@ droidstubs {
         ":android_icu4j_src_files",
     ],
     sdk_version: "none",
-    libs: [
-        "art.module.intra.core.api.stubs",
-    ],
+    system_modules: "art-module-intra-core-api-stubs-system-modules",
 
     installable: false,
     args: "--hide-annotation libcore.api.Hide " +
@@ -189,9 +185,7 @@ droidstubs {
         ":android_icu4j_src_files",
     ],
     sdk_version: "none",
-    libs: [
-        "art.module.platform.api.stubs",
-    ],
+    system_modules: "art-module-platform-api-stubs-system-modules",
 
     installable: false,
     args: "--hide-annotation libcore.api.Hide " +
