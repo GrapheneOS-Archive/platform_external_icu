@@ -29,8 +29,75 @@ filegroup {
     visibility: [
         "//libcore:__subpackages__",
     ],
-    srcs: ["src/main/java/**/*.java"],
+    srcs: [
+        ":android_icu4j_repackaged_src_files",
+        ":libcore_icu_bridge_src_files",
+    ],
     path: "src/main/java",
+}
+
+filegroup {
+    name: "android_icu4j_repackaged_src_files",
+    srcs: ["src/main/java/android/icu/**/*.java"],
+    path: "src/main/java",
+}
+
+// The files contains Android-specific codes to expose intra-core APIs
+// from ICU4J/ICU4C to libcore. The package is com.android.icu.* and should not
+// expose any public APIs.
+filegroup {
+    name: "libcore_icu_bridge_src_files",
+    srcs: ["src/main/java/com/android/icu/**/*.java"],
+    path: "src/main/java",
+}
+
+// Rule generating resource lib for android_icu4j.
+// In the downstream branch master-icu-dev, the resource files are generated.
+java_library {
+    name: "android_icu4j_resources_lib",
+    visibility: [
+        "//libcore",
+    ],
+    java_resource_dirs: ["resources"],
+    sdk_version: "none",
+    system_modules: "none",
+}
+
+// Same as android_icu4j_resources_lib but compiling against core_current sdk
+// in order to avoid using non-public API from core-libart and core-oj
+// because core-icu4j will be in a different i18n APEX module.
+
+java_library {
+    name: "android_icu4j_resources_lib_sdk_core_current",
+    visibility: [
+        "//libcore",
+    ],
+    java_resource_dirs: ["resources"],
+    sdk_version: "core_current",
+}
+
+// core-repackaged-icu4j contains only the repackaged ICU4J that does not
+// use any internal or android specific code. If it ever did then it could depend on
+// art-module-intra-core-api-stubs-system-modules (a superset) instead.
+// It is important that core-icu4j is restricted to only use stable APIs from the ART module
+// since it is in a different APEX module that can be updated independently.
+java_library_static {
+    name: "core-repackaged-icu4j",
+    installable: false,
+    srcs: [":android_icu4j_repackaged_src_files"],
+    // The resource files are generated in the downstream branch master-icu-dev.
+    java_resource_dirs: ["resources"],
+
+    sdk_version: "none",
+    system_modules: "art-module-public-api-stubs-system-modules",
+
+    dxflags: ["--core-library"],
+    errorprone: {
+        javacflags: [
+            "-Xep:MissingOverride:OFF", // Ignore missing @Override.
+            "-Xep:ConstantOverflow:WARN", // Known constant overflow in SplittableRandom
+        ],
+    },
 }
 
 // A separated core library that contains ICU4J because ICU4J will be in a different APEX module,
@@ -45,26 +112,15 @@ java_library {
     installable: true,
     hostdex: true,
 
-    srcs: [":android_icu4j_src_files"],
+    srcs: [":libcore_icu_bridge_src_files"],
+    static_libs: ["core-repackaged-icu4j"],
 
-    // The resource files are generated in the downstream branch master-icu-dev.
-    java_resource_dirs: ["resources"],
-
-    // We use art-module-public-api-stubs-system-modules when compiling core-icu4j as ICU4J does not
-    // use any internal or android specific code. If it ever did then it could depend on
-    // art-module-intra-core-api-stubs-system-modules (a superset) instead.
     // It is important that core-icu4j is restricted to only use stable APIs from the ART module
     // since it is in a different APEX module that can be updated independently.
     sdk_version: "none",
-    system_modules: "art-module-public-api-stubs-system-modules",
+    system_modules: "art-module-intra-core-api-stubs-system-modules",
 
     dxflags: ["--core-library"],
-    errorprone: {
-        javacflags: [
-            "-Xep:MissingOverride:OFF", // Ignore missing @Override.
-            "-Xep:ConstantOverflow:WARN", // Known constant overflow in SplittableRandom
-        ],
-    },
 }
 
 //

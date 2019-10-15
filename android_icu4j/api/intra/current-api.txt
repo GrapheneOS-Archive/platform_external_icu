@@ -181,3 +181,26 @@ package android.icu.util {
 
 }
 
+package com.android.icu.util.regex {
+
+  public class NativeMatcher {
+    method public static com.android.icu.util.regex.NativeMatcher create(com.android.icu.util.regex.NativePattern);
+    method public boolean find(int, int[]);
+    method public boolean findNext(int[]);
+    method public int getMatchedGroupIndex(String);
+    method public int groupCount();
+    method public boolean hitEnd();
+    method public boolean lookingAt(int[]);
+    method public boolean matches(int[]);
+    method public boolean requireEnd();
+    method public void setInput(String, int, int);
+    method public void useAnchoringBounds(boolean);
+    method public void useTransparentBounds(boolean);
+  }
+
+  public class NativePattern {
+    method public static com.android.icu.util.regex.NativePattern create(String, int);
+  }
+
+}
+
