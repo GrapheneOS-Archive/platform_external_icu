@@ -45,10 +45,6 @@ cc_defaults {
         },
         windows: {
             enabled: true,
-            cflags: [
-                "-Wno-ignored-attributes", // ICU-20356
-                "-Wno-missing-field-initializers", // ICU-20179
-            ],
         },
     },
 }

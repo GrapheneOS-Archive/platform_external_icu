@@ -37,9 +37,6 @@ cc_library_static {
         },
         windows: {
             enabled: true,
-            cflags: [
-                "-Wno-ignored-attributes", // ICU-20356
-            ],
         },
     },
 }
