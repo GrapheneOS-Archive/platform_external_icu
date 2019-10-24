@@ -73,6 +73,10 @@ jclass JniConstants::GetPatternSyntaxExceptionClass(JNIEnv* env) {
 }
 
 void JniConstants::Invalidate() {
+    // Clean shutdown would require calling DeleteGlobalRef() for each of the
+    // class references. However, JavaVM can't be used for cleanup during
+    // JNI_OnUnload because ART only calls this once all threads are
+    // unregistered.
     std::lock_guard guard(g_constants_mutex);
     g_constants_valid = false;
 }
