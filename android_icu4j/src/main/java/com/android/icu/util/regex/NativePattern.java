@@ -28,7 +28,7 @@ public class NativePattern {
         .createMalloced(NativePattern.class.getClassLoader(), getNativeFinalizer());
 
     @dalvik.annotation.optimization.ReachabilitySensitive
-    final long address;
+    private final long address;
 
     @libcore.api.IntraCoreApi
     public static NativePattern create(String pattern, int flags) {
@@ -38,6 +38,14 @@ public class NativePattern {
     private NativePattern(String pattern, int flags) {
         address = compileImpl(pattern, flags);
         REGISTRY.registerNativeAllocation(this, address);
+    }
+
+    /* package */ int getMatchedGroupIndex(String groupName) {
+        return getMatchedGroupIndexImpl(address, groupName);
+    }
+
+    /* package */ long openMatcher() {
+        return openMatcherImpl(address);
     }
 
     /**
@@ -50,5 +58,17 @@ public class NativePattern {
      *         used to free this kind of native allocation
      */
     private static native long getNativeFinalizer();
+
+    /**
+     * @param addr the NativePattern.address
+     * @return native address of matcher implementation
+     */
+    private static native long openMatcherImpl(long addr);
+
+    /**
+     * @param groupName The name of a named-capturing group
+     * @return the index of the named-capturing group
+     */
+    private static native int getMatchedGroupIndexImpl(long addr, String groupName);
 
 }
