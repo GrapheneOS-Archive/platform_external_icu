@@ -18,8 +18,8 @@ import java.nio.charset.CodingErrorAction;
 
 public final class NativeConverter {
 
-    private static final NativeAllocationRegistry registry = new NativeAllocationRegistry(
-            NativeConverter.class.getClassLoader(), getNativeFinalizer(), getNativeSize());
+    private static final NativeAllocationRegistry registry = NativeAllocationRegistry
+        .createMalloced(NativeConverter.class.getClassLoader(), getNativeFinalizer());
 
     /* package */ static native int decode(long converterHandle, byte[] input, int inEnd,
             char[] output, int outEnd, int[] data, boolean flush);
@@ -82,7 +82,6 @@ public final class NativeConverter {
     private static native void setCallbackEncode(long converterHandle, int onMalformedInput, int onUnmappableInput, byte[] subBytes);
 
     private static native long getNativeFinalizer();
-    private static native long getNativeSize();
 
     // Just the subset of error codes needed by CharsetDecoderICU/CharsetEncoderICU.
     /* package */ static final int U_ZERO_ERROR = 0;

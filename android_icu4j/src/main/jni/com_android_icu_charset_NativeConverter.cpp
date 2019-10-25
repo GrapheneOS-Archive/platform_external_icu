@@ -665,11 +665,6 @@ static jlong NativeConverter_getNativeFinalizer(JNIEnv*, jclass) {
     return reinterpret_cast<jlong>(&FreeNativeConverter);
 }
 
-static jlong NativeConverter_getNativeSize(JNIEnv*, jclass) {
-    // TODO: Improve estimate.
-    return 200;
-}
-
 static JNINativeMethod gMethods[] = {
     NATIVE_METHOD(NativeConverter, charsetForName, "(Ljava/lang/String;)Ljava/nio/charset/Charset;"),
     NATIVE_METHOD(NativeConverter, closeConverter, "(J)V"),
@@ -687,7 +682,6 @@ static JNINativeMethod gMethods[] = {
     NATIVE_METHOD(NativeConverter, setCallbackDecode, "(JIILjava/lang/String;)V"),
     NATIVE_METHOD(NativeConverter, setCallbackEncode, "(JII[B)V"),
     NATIVE_METHOD(NativeConverter, getNativeFinalizer, "()J"),
-    NATIVE_METHOD(NativeConverter, getNativeSize, "()J")
 };
 void register_com_android_icu_util_charset_NativeConverter(JNIEnv* env) {
     jniRegisterNativeMethods(env, "com/android/icu/charset/NativeConverter", gMethods, NELEM(gMethods));
