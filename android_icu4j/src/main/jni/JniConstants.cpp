@@ -40,7 +40,9 @@ static std::mutex g_constants_mutex;
 // Flag indicating whether cached constants are valid
 static bool g_constants_valid = false;
 
+jclass charsetICUClass;
 jclass patternSyntaxExceptionClass;
+jclass stringClass;
 
 // EnsureJniConstantsInitialized initializes cached constants. It should be
 // called before returning a heap object from the cache to ensure cache is
@@ -56,7 +58,9 @@ void EnsureJniConstantsInitialized(JNIEnv* env) {
         return;
     }
 
+    charsetICUClass = findClass(env, "com/android/icu/charset/CharsetICU");
     patternSyntaxExceptionClass = findClass(env, "java/util/regex/PatternSyntaxException");
+    stringClass = findClass(env, "java/lang/String");
 
     g_constants_valid = true;
 }
@@ -67,9 +71,19 @@ void JniConstants::Initialize(JNIEnv* env) {
     EnsureJniConstantsInitialized(env);
 }
 
+jclass JniConstants::GetCharsetICUClass(JNIEnv* env) {
+    EnsureJniConstantsInitialized(env);
+    return charsetICUClass;
+}
+
 jclass JniConstants::GetPatternSyntaxExceptionClass(JNIEnv* env) {
     EnsureJniConstantsInitialized(env);
     return patternSyntaxExceptionClass;
+}
+
+jclass JniConstants::GetStringClass(JNIEnv* env) {
+    EnsureJniConstantsInitialized(env);
+    return stringClass;
 }
 
 void JniConstants::Invalidate() {
