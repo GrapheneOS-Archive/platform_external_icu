@@ -21,29 +21,29 @@ public final class NativeConverter {
     private static final NativeAllocationRegistry registry = new NativeAllocationRegistry(
             NativeConverter.class.getClassLoader(), getNativeFinalizer(), getNativeSize());
 
-    public static native int decode(long converterHandle, byte[] input, int inEnd,
+    /* package */ static native int decode(long converterHandle, byte[] input, int inEnd,
             char[] output, int outEnd, int[] data, boolean flush);
 
-    public static native int encode(long converterHandle, char[] input, int inEnd,
+    /* package */ static native int encode(long converterHandle, char[] input, int inEnd,
             byte[] output, int outEnd, int[] data, boolean flush);
 
-    public static native long openConverter(String charsetName);
-    public static native void closeConverter(long converterHandle);
+    /* package */ static native long openConverter(String charsetName);
+    /* package */ static native void closeConverter(long converterHandle);
 
-    public static void registerConverter(Object referrent, long converterHandle) {
+    /* package */ static void registerConverter(Object referrent, long converterHandle) {
         registry.registerNativeAllocation(referrent, converterHandle);
     }
 
-    public static native void resetByteToChar(long converterHandle);
-    public static native void resetCharToByte(long converterHandle);
+    /* package */ static native void resetByteToChar(long converterHandle);
+    /* package */ static native void resetCharToByte(long converterHandle);
 
-    public static native byte[] getSubstitutionBytes(long converterHandle);
+    /* package */ static native byte[] getSubstitutionBytes(long converterHandle);
 
-    public static native int getMaxBytesPerChar(long converterHandle);
-    public static native float getAveBytesPerChar(long converterHandle);
-    public static native float getAveCharsPerByte(long converterHandle);
+    /* package */ static native int getMaxBytesPerChar(long converterHandle);
+    /* package */ static native float getAveBytesPerChar(long converterHandle);
+    /* package */ static native float getAveCharsPerByte(long converterHandle);
 
-    public static native boolean contains(String converterName1, String converterName2);
+    /* package */ static native boolean contains(String converterName1, String converterName2);
 
 
     @libcore.api.IntraCoreApi
@@ -65,7 +65,7 @@ public final class NativeConverter {
         }
     }
 
-    public static void setCallbackDecode(long converterHandle, CharsetDecoder decoder) {
+    /* package */ static void setCallbackDecode(long converterHandle, CharsetDecoder decoder) {
         setCallbackDecode(converterHandle,
                           translateCodingErrorAction(decoder.malformedInputAction()),
                           translateCodingErrorAction(decoder.unmappableCharacterAction()),
@@ -73,7 +73,7 @@ public final class NativeConverter {
     }
     private static native void setCallbackDecode(long converterHandle, int onMalformedInput, int onUnmappableInput, String subChars);
 
-    public static void setCallbackEncode(long converterHandle, CharsetEncoder encoder) {
+    /* package */ static void setCallbackEncode(long converterHandle, CharsetEncoder encoder) {
         setCallbackEncode(converterHandle,
                           translateCodingErrorAction(encoder.malformedInputAction()),
                           translateCodingErrorAction(encoder.unmappableCharacterAction()),
@@ -81,16 +81,16 @@ public final class NativeConverter {
     }
     private static native void setCallbackEncode(long converterHandle, int onMalformedInput, int onUnmappableInput, byte[] subBytes);
 
-    public static native long getNativeFinalizer();
-    public static native long getNativeSize();
+    private static native long getNativeFinalizer();
+    private static native long getNativeSize();
 
     // Just the subset of error codes needed by CharsetDecoderICU/CharsetEncoderICU.
-    public static final int U_ZERO_ERROR = 0;
-    public static final int U_INVALID_CHAR_FOUND = 10;
-    public static final int U_TRUNCATED_CHAR_FOUND = 11;
-    public static final int U_ILLEGAL_CHAR_FOUND = 12;
-    public static final int U_BUFFER_OVERFLOW_ERROR = 15;
-    public static boolean U_FAILURE(int error) {
+    /* package */ static final int U_ZERO_ERROR = 0;
+    /* package */ static final int U_INVALID_CHAR_FOUND = 10;
+    /* package */ static final int U_TRUNCATED_CHAR_FOUND = 11;
+    /* package */ static final int U_ILLEGAL_CHAR_FOUND = 12;
+    /* package */ static final int U_BUFFER_OVERFLOW_ERROR = 15;
+    /* package */ static boolean U_FAILURE(int error) {
       return error > U_ZERO_ERROR;
     }
 }
