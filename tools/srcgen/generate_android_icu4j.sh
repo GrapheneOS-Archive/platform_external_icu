@@ -50,9 +50,8 @@ UNSUPPORTED_APP_USAGE_FILE=${ICU_SRCGEN_DIR}/unsupported-app-usage.json
 
 # Clean out previous generated code / resources.
 DEST_SRC_DIR=${ANDROID_ICU4J_DIR}/src/main/java
-DEST_GENERATED_SRC_DIR=${DEST_SRC_DIR}/android/icu
-rm -rf ${DEST_GENERATED_SRC_DIR}
-mkdir -p ${DEST_GENERATED_SRC_DIR}
+rm -rf ${DEST_SRC_DIR}
+mkdir -p ${DEST_SRC_DIR}
 
 DEST_RESOURCE_DIR=${ANDROID_ICU4J_DIR}/resources
 rm -rf ${DEST_RESOURCE_DIR}
