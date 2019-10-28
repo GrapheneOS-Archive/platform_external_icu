@@ -23,7 +23,6 @@ import java.nio.charset.CoderResult;
 import java.nio.charset.CodingErrorAction;
 import java.util.HashMap;
 import java.util.Map;
-import libcore.util.EmptyArray;
 
 final class CharsetEncoderICU extends CharsetEncoder {
     private static final Map<String, byte[]> DEFAULT_REPLACEMENTS = new HashMap<String, byte[]>();
@@ -44,6 +43,7 @@ final class CharsetEncoderICU extends CharsetEncoder {
     private static final int INPUT_OFFSET = 0;
     private static final int OUTPUT_OFFSET = 1;
     private static final int INVALID_CHAR_COUNT = 2;
+    private static final char[] EMPTY_CHAR_ARRAY = new char[0];
     /*
      * data[INPUT_OFFSET]   = on input contains the start of input and on output the number of input chars consumed
      * data[OUTPUT_OFFSET]  = on input contains the start of output and on output the number of output bytes written
@@ -137,7 +137,7 @@ final class CharsetEncoderICU extends CharsetEncoder {
     @Override protected CoderResult implFlush(ByteBuffer out) {
         try {
             // ICU needs to see an empty input.
-            input = EmptyArray.CHAR;
+            input = EMPTY_CHAR_ARRAY;
             inEnd = 0;
             data[INPUT_OFFSET] = 0;
 
