@@ -21,7 +21,6 @@ import java.nio.charset.Charset;
 import java.nio.charset.CharsetDecoder;
 import java.nio.charset.CoderResult;
 import java.nio.charset.CodingErrorAction;
-import libcore.util.EmptyArray;
 
 final class CharsetDecoderICU extends CharsetDecoder {
     private static final int MAX_CHARS_PER_BYTE = 2;
@@ -29,6 +28,8 @@ final class CharsetDecoderICU extends CharsetDecoder {
     private static final int INPUT_OFFSET = 0;
     private static final int OUTPUT_OFFSET = 1;
     private static final int INVALID_BYTE_COUNT = 2;
+    private static final byte[] EMPTY_BYTE_ARRAY = new byte[0];
+
     /*
      * data[INPUT_OFFSET]   = on input contains the start of input and on output the number of input bytes consumed
      * data[OUTPUT_OFFSET]  = on input contains the start of output and on output the number of output chars written
@@ -109,7 +110,7 @@ final class CharsetDecoderICU extends CharsetDecoder {
     @Override protected final CoderResult implFlush(CharBuffer out) {
         try {
             // ICU needs to see an empty input.
-            input = EmptyArray.BYTE;
+            input = EMPTY_BYTE_ARRAY;
             inEnd = 0;
             data[INPUT_OFFSET] = 0;
 
