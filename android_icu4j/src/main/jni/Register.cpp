@@ -36,6 +36,7 @@ jint JNI_OnLoad(JavaVM* vm, void*) {
 #define REGISTER(FN) extern void FN(JNIEnv*); FN(env)
     REGISTER(register_com_android_icu_util_regex_NativePattern);
     REGISTER(register_com_android_icu_util_regex_NativeMatcher);
+    REGISTER(register_com_android_icu_util_charset_NativeConverter);
 #undef REGISTER
 
     JniConstants::Initialize(env);

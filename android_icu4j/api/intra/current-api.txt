@@ -181,6 +181,15 @@ package android.icu.util {
 
 }
 
+package com.android.icu.charset {
+
+  public final class NativeConverter {
+    method public static java.nio.charset.Charset charsetForName(String);
+    method public static String[] getAvailableCharsetNames();
+  }
+
+}
+
 package com.android.icu.util.regex {
 
   public class NativeMatcher {
