@@ -28,5 +28,7 @@ struct JniConstants {
     // Invalidate cached heap objects. This should be called in JNI_OnUnload.
     static void Invalidate();
 
+    static jclass GetCharsetICUClass(JNIEnv* env);
     static jclass GetPatternSyntaxExceptionClass(JNIEnv* env);
+    static jclass GetStringClass(JNIEnv* env);
 };
