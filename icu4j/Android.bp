@@ -35,7 +35,7 @@ java_library {
         "//external/icu/tools/srcgen",
         "//external/robolectric-shadows/robolectric",
         "//external/robolectric-shadows/shadows/framework",
-        "//system/timezone/tzlookup_generator",
+        "//system/timezone/input_tools/android/tzlookup_generator",
     ],
     defaults: ["icu4j-defaults"],
 
