@@ -12,5 +12,10 @@ src/       - A transformed copy of icu4j source repackaged into android.icu.
 
 resources/ - A transformed copy of icu4j resources repackaged into android.icu.
 
+libcore_bridge/ - Android-specific codes to expose APIs from ICU4J/ICU4C to libcore.
+                  Some of the JNI codes, NativeConverter, come from open-sourced
+                  but unmaintained ICU4JNI project.
+                  https://github.com/unicode-org/icu4jni
+
 testing/   - Android-specific test helper source. This is not auto-generated
              and may be edited directly.
