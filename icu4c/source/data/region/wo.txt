@@ -42,7 +42,7 @@ wo{
         CC{"Duni Koko (Kilin)"}
         CF{"Repiblik Sàntar Afrik"}
         CH{"Siwis"}
-        CI{"Kodiwaar (Côte d’Ivoire)"}
+        CI{"Kodiwaar"}
         CK{"Duni Kuuk"}
         CL{"Sili"}
         CM{"Kamerun"}
@@ -92,7 +92,6 @@ wo{
         GU{"Guwam"}
         GW{"Gine-Bisaawóo"}
         GY{"Giyaan"}
-        HK{"Ooŋ Koŋ"}
         HM{"Duni Hërd ak Duni MakDonald"}
         HN{"Onduraas"}
         HR{"Korowasi"}
@@ -144,7 +143,6 @@ wo{
         ML{"Mali"}
         MM{"Miyanmaar"}
         MN{"Mongoli"}
-        MO{"Makaawo"}
         MP{"Duni Mariyaan Noor"}
         MQ{"Martinik"}
         MR{"Mooritani"}
@@ -248,9 +246,13 @@ wo{
         ZW{"Simbabwe"}
         ZZ{"Gox buñ xamul"}
     }
+    Countries%short{
+        HK{"Ooŋ Koŋ"}
+        MO{"Makaawo"}
+    }
     Countries%variant{
         CD{"Kongo (R K D)"}
         CG{"Réewum Kongo"}
     }
-    Version{"2.1.49.82"}
+    Version{"36"}
 }

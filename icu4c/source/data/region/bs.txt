@@ -110,12 +110,12 @@ bs{
         EZ{"Eurozona"}
         FI{"Finska"}
         FJ{"Fidži"}
-        FK{"Folklandska (Malvinska) ostrva"}
+        FK{"Folklandska ostrva"}
         FM{"Mikronezija"}
         FO{"Farska ostrva"}
         FR{"Francuska"}
         GA{"Gabon"}
-        GB{"Velika Britanija"}
+        GB{"Ujedinjeno Kraljevstvo"}
         GD{"Grenada"}
         GE{"Gruzija"}
         GF{"Francuska Gvajana"}
@@ -133,7 +133,7 @@ bs{
         GU{"Guam"}
         GW{"Gvineja-Bisao"}
         GY{"Gvajana"}
-        HK{"Hong Kong"}
+        HK{"Hong Kong (SAR Kina)"}
         HM{"Herd i arhipelag MekDonald"}
         HN{"Honduras"}
         HR{"Hrvatska"}
@@ -187,7 +187,7 @@ bs{
         ML{"Mali"}
         MM{"Mjanmar"}
         MN{"Mongolija"}
-        MO{"Makao"}
+        MO{"Makao (SAR Kina)"}
         MP{"Sjeverna Marijanska ostrva"}
         MQ{"Martinik"}
         MR{"Mauritanija"}
@@ -222,7 +222,7 @@ bs{
         PM{"Sveti Petar i Mikelon"}
         PN{"Pitkernska Ostrva"}
         PR{"Porto Riko"}
-        PS{"Palestina"}
+        PS{"Palestinska Teritorija"}
         PT{"Portugal"}
         PW{"Palau"}
         PY{"Paragvaj"}
@@ -253,7 +253,7 @@ bs{
         SV{"Salvador"}
         SX{"Sint Marten"}
         SY{"Sirija"}
-        SZ{"Svazilend"}
+        SZ{"Esvatini"}
         TA{"Tristan da Cunha"}
         TC{"Ostrva Turks i Kaikos"}
         TD{"Čad"}
@@ -275,7 +275,7 @@ bs{
         UG{"Uganda"}
         UM{"Američka Vanjska Ostrva"}
         UN{"Ujedinjene Nacije"}
-        US{"Sjedinjene Američke Države"}
+        US{"Sjedinjene Države"}
         UY{"Urugvaj"}
         UZ{"Uzbekistan"}
         VA{"Vatikan"}
@@ -297,6 +297,9 @@ bs{
     }
     Countries%short{
         GB{"UK"}
+        HK{"Hong Kong"}
+        MO{"Makao"}
+        PS{"Palestina"}
         UN{"UN"}
         US{"SAD"}
     }
@@ -305,8 +308,8 @@ bs{
         CG{"Republika Kongo"}
         CI{"Obala Bjelokosti"}
         CZ{"Češka Republika"}
-        SZ{"Svazi"}
-        TL{"TL"}
+        FK{"Folklandska (Malvinska) ostrva"}
+        SZ{"Svazilend"}
     }
-    Version{"2.1.49.82"}
+    Version{"36"}
 }

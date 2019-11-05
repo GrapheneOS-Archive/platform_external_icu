@@ -12,11 +12,12 @@ import java.io.IOException;
 import java.io.InvalidObjectException;
 import java.text.AttributedCharacterIterator;
 import java.text.Format;
-import java.text.FieldPosition;
 import java.util.EnumMap;
 import java.util.Locale;
 
 import com.ibm.icu.impl.CacheBase;
+import com.ibm.icu.impl.FormattedStringBuilder;
+import com.ibm.icu.impl.FormattedValueStringBuilderImpl;
 import com.ibm.icu.impl.ICUData;
 import com.ibm.icu.impl.ICUResourceBundle;
 import com.ibm.icu.impl.SimpleFormatterImpl;
@@ -25,7 +26,6 @@ import com.ibm.icu.impl.StandardPlural;
 import com.ibm.icu.impl.UResource;
 import com.ibm.icu.impl.number.DecimalQuantity;
 import com.ibm.icu.impl.number.DecimalQuantity_DualStorageBCD;
-import com.ibm.icu.impl.number.NumberStringBuilder;
 import com.ibm.icu.impl.number.SimpleModifier;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.util.Calendar;
@@ -252,6 +252,20 @@ public final class RelativeDateTimeFormatter {
          * @provisional This API might change or be removed in a future release.
          */
         QUARTER,
+
+        /**
+         * Hour
+         * @draft ICU 65
+         * @provisional This API might change or be removed in a future release.
+         */
+        HOUR,
+
+        /**
+         * Minute
+         * @draft ICU 65
+         * @provisional This API might change or be removed in a future release.
+         */
+        MINUTE,
     }
 
     /**
@@ -459,9 +473,9 @@ public final class RelativeDateTimeFormatter {
      */
     public static class FormattedRelativeDateTime implements FormattedValue {
 
-        private final NumberStringBuilder string;
+        private final FormattedStringBuilder string;
 
-        private FormattedRelativeDateTime(NumberStringBuilder string) {
+        private FormattedRelativeDateTime(FormattedStringBuilder string) {
             this.string = string;
         }
 
@@ -534,7 +548,7 @@ public final class RelativeDateTimeFormatter {
          */
         @Override
         public boolean nextPosition(ConstrainedFieldPosition cfpos) {
-            return string.nextPosition(cfpos, Field.NUMERIC);
+            return FormattedValueStringBuilderImpl.nextPosition(string, cfpos, Field.NUMERIC);
         }
 
         /**
@@ -545,7 +559,7 @@ public final class RelativeDateTimeFormatter {
          */
         @Override
         public AttributedCharacterIterator toCharacterIterator() {
-            return string.toCharacterIterator(Field.NUMERIC);
+            return FormattedValueStringBuilderImpl.toCharacterIterator(string, Field.NUMERIC);
         }
     }
 
@@ -618,8 +632,8 @@ public final class RelativeDateTimeFormatter {
         return new RelativeDateTimeFormatter(
                 data.qualitativeUnitMap,
                 data.relUnitPatternMap,
-                // Android-changed: use MessageFormat instead of SimpleFormatterImpl (b/63745717).
-                data.dateTimePattern,
+                SimpleFormatterImpl.compileToStringMinMaxArguments(
+                        data.dateTimePattern, new StringBuilder(), 2, 2),
                 PluralRules.forLocale(locale),
                 nf,
                 style,
@@ -661,7 +675,7 @@ public final class RelativeDateTimeFormatter {
      * @stable ICU 53
      */
     public String format(double quantity, Direction direction, RelativeUnit unit) {
-        NumberStringBuilder output = formatImpl(quantity, direction, unit);
+        FormattedStringBuilder output = formatImpl(quantity, direction, unit);
         return adjustForContext(output.toString());
     }
 
@@ -689,13 +703,13 @@ public final class RelativeDateTimeFormatter {
     }
 
     /** Implementation method for format and formatToValue with RelativeUnit */
-    private NumberStringBuilder formatImpl(double quantity, Direction direction, RelativeUnit unit) {
+    private FormattedStringBuilder formatImpl(double quantity, Direction direction, RelativeUnit unit) {
         if (direction != Direction.LAST && direction != Direction.NEXT) {
             throw new IllegalArgumentException("direction must be NEXT or LAST");
         }
         int pastFutureIndex = (direction == Direction.NEXT ? 1 : 0);
 
-        NumberStringBuilder output = new NumberStringBuilder();
+        FormattedStringBuilder output = new FormattedStringBuilder();
         String pluralKeyword;
         if (numberFormat instanceof DecimalFormat) {
             DecimalQuantity dq = new DecimalQuantity_DualStorageBCD(quantity);
@@ -732,7 +746,7 @@ public final class RelativeDateTimeFormatter {
      * @stable ICU 57
      */
     public String formatNumeric(double offset, RelativeDateTimeUnit unit) {
-        NumberStringBuilder output = formatNumericImpl(offset, unit);
+        FormattedStringBuilder output = formatNumericImpl(offset, unit);
         return adjustForContext(output.toString());
     }
 
@@ -760,7 +774,7 @@ public final class RelativeDateTimeFormatter {
     }
 
     /** Implementation method for formatNumeric and formatNumericToValue */
-    private NumberStringBuilder formatNumericImpl(double offset, RelativeDateTimeUnit unit) {
+    private FormattedStringBuilder formatNumericImpl(double offset, RelativeDateTimeUnit unit) {
         // TODO:
         // The full implementation of this depends on CLDR data that is not yet available,
         // see: http://unicode.org/cldr/trac/ticket/9165 Add more relative field data.
@@ -835,7 +849,7 @@ public final class RelativeDateTimeFormatter {
         if (string == null) {
             return null;
         }
-        NumberStringBuilder nsb = new NumberStringBuilder();
+        FormattedStringBuilder nsb = new FormattedStringBuilder();
         nsb.append(string, Field.LITERAL);
         return new FormattedRelativeDateTime(nsb);
     }
@@ -904,11 +918,11 @@ public final class RelativeDateTimeFormatter {
     public FormattedRelativeDateTime formatToValue(double offset, RelativeDateTimeUnit unit) {
         checkNoAdjustForContext();
         CharSequence cs = formatRelativeImpl(offset, unit);
-        NumberStringBuilder nsb;
-        if (cs instanceof NumberStringBuilder) {
-            nsb = (NumberStringBuilder) cs;
+        FormattedStringBuilder nsb;
+        if (cs instanceof FormattedStringBuilder) {
+            nsb = (FormattedStringBuilder) cs;
         } else {
-            nsb = new NumberStringBuilder();
+            nsb = new FormattedStringBuilder();
             nsb.append(cs, Field.LITERAL);
         }
         return new FormattedRelativeDateTime(nsb);
@@ -953,6 +967,8 @@ public final class RelativeDateTimeFormatter {
             case THURSDAY:  absunit = AbsoluteUnit.THURSDAY; break;
             case FRIDAY:    absunit = AbsoluteUnit.FRIDAY;  break;
             case SATURDAY:  absunit = AbsoluteUnit.SATURDAY; break;
+            case HOUR:      absunit = AbsoluteUnit.HOUR;    break;
+            case MINUTE:    absunit = AbsoluteUnit.MINUTE;  break;
             case SECOND:
                 if (direction == Direction.THIS) {
                     // absunit = AbsoluteUnit.NOW was set above
@@ -962,7 +978,6 @@ public final class RelativeDateTimeFormatter {
                 // could just fall through here but that produces warnings
                 useNumeric = true;
                 break;
-            case HOUR:
             default:
                 useNumeric = true;
                 break;
@@ -1014,13 +1029,8 @@ public final class RelativeDateTimeFormatter {
      * @stable ICU 53
      */
     public String combineDateAndTime(String relativeDateString, String timeString) {
-        // BEGIN Android-changed: use MessageFormat instead of SimpleFormatterImpl (b/63745717).
-        MessageFormat msgFmt = new MessageFormat("");
-        msgFmt.applyPattern(combinedDateAndTime, MessagePattern.ApostropheMode.DOUBLE_REQUIRED);
-        StringBuffer combinedDateTimeBuffer = new StringBuffer(128);
-        return msgFmt.format(new Object[] { timeString, relativeDateString},
-                combinedDateTimeBuffer, new FieldPosition(0)).toString();
-        // END Android-changed: use MessageFormat instead of SimpleFormatterImpl (b/63745717).
+        return SimpleFormatterImpl.formatCompiledPattern(
+                combinedDateAndTime, timeString, relativeDateString);
     }
 
     /**
@@ -1134,8 +1144,7 @@ public final class RelativeDateTimeFormatter {
     private final EnumMap<Style, EnumMap<AbsoluteUnit, EnumMap<Direction, String>>> qualitativeUnitMap;
     private final EnumMap<Style, EnumMap<RelativeUnit, String[][]>> patternMap;
 
-    // Android-changed: use MessageFormat instead of SimpleFormatterImpl (b/63745717).
-    private final String combinedDateAndTime;  // MessageFormat pattern for combining date and time.
+    private final String combinedDateAndTime;  // compiled SimpleFormatter pattern
     private final PluralRules pluralRules;
     private final NumberFormat numberFormat;
 
@@ -1209,8 +1218,8 @@ public final class RelativeDateTimeFormatter {
         // For white list of units to handle in RelativeDateTimeFormatter.
         private enum DateTimeUnit {
             SECOND(RelativeUnit.SECONDS, null),
-            MINUTE(RelativeUnit.MINUTES, null),
-            HOUR(RelativeUnit.HOURS, null),
+            MINUTE(RelativeUnit.MINUTES, AbsoluteUnit.MINUTE),
+            HOUR(RelativeUnit.HOURS, AbsoluteUnit.HOUR),
             DAY(RelativeUnit.DAYS, AbsoluteUnit.DAY),
             WEEK(RelativeUnit.WEEKS, AbsoluteUnit.WEEK),
             MONTH(RelativeUnit.MONTHS, AbsoluteUnit.MONTH),

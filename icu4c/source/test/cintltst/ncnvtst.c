@@ -201,10 +201,6 @@ static void TestSurrogateBehaviour(){
             log_err("u->  not match.\n");
     }
 
-   /* BEGIN android-removed */
-   /* To save space, Android does not build full ISO-2022-CN tables.
-      We skip the tests for ISO-2022-CN. */
-   /* 
     log_verbose("Testing for ISO-2022-cn\n");
     {
         static const UChar    sampleText[] =   { 0x4e00, 0x04e01, 0x0031, 0xd801, 0xdc01, 0x0032};
@@ -226,7 +222,7 @@ static void TestSurrogateBehaviour(){
                                     3,  
                                     5,  };
 
-        // iso-2022-CN  android-change
+        /*iso-2022-CN*/
         if(!convertFromU(sampleText, UPRV_LENGTHOF(sampleText),
                 expected, sizeof(expected), "iso-2022-cn", 0 , TRUE, U_ZERO_ERROR))
             log_err("u-> not match.\n");
@@ -234,8 +230,6 @@ static void TestSurrogateBehaviour(){
                 expected, sizeof(expected), "iso-2022-cn", offsets , TRUE, U_ZERO_ERROR))
             log_err("u-> not match.\n");
     }
-    */
-    /* END android-removed */
 
         log_verbose("Testing for ISO-2022-kr\n");
     {
@@ -491,11 +485,7 @@ static void TestErrorBehaviour(){
             log_err("u-> iso-2022-jp [UCNV_MBCS] \n");
     }
 
-    /* BEGIN android-removed */
-    /* To save space, Android does not build full ISO-2022-CN tables.
-       We skip the tests for ISO-2022-CN. */
     /*iso-2022-cn*/
-    /*
     log_verbose("Testing for iso-2022-cn\n");
     {
         static const UChar    sampleText[]    = { 0x0031, 0xd801};
@@ -545,8 +535,6 @@ static void TestErrorBehaviour(){
                 expected4MBCS, sizeof(expected4MBCS), "iso-2022-cn", offsets4MBCS, FALSE, U_ZERO_ERROR))
             log_err("u-> iso-2022-cn [UCNV_MBCS] \n");
     }
-    */
-    /* END android-removed */
 
     /*iso-2022-kr*/
     log_verbose("Testing for iso-2022-kr\n");
@@ -711,7 +699,7 @@ static void TestRegressionUTF8(){
         offset16 = 0;
         offset8 = 0;
         while(currCh <= UNICODE_LIMIT
-            && offset16 < (MAX_LENGTH/sizeof(UChar) - MAX_UTF16_LEN)
+            && offset16 < ((int32_t)(MAX_LENGTH/sizeof(UChar) - MAX_UTF16_LEN))
             && offset8 < (MAX_LENGTH - MAX_UTF8_LEN))
         {
             if (currCh == SURROGATE_HIGH_START) {
@@ -782,8 +770,8 @@ static void TestRegressionUTF32(){
         offset16 = 0;
         offset32 = 0;
         while(currCh <= UNICODE_LIMIT
-            && offset16 < (MAX_LENGTH/sizeof(UChar) - MAX_UTF16_LEN)
-            && offset32 < (MAX_LENGTH/sizeof(UChar32) - MAX_UTF32_LEN))
+            && offset16 < ((int32_t)(MAX_LENGTH/sizeof(UChar) - MAX_UTF16_LEN))
+            && offset32 < ((int32_t)(MAX_LENGTH/sizeof(UChar32) - MAX_UTF32_LEN)))
         {
             if (currCh == SURROGATE_HIGH_START) {
                 currCh = SURROGATE_LOW_END + 1; /* Skip surrogate range */
@@ -980,7 +968,7 @@ static void TestWithBufferSize(int32_t insize, int32_t outsize){
 
         if(!testConvertToU(sampleText1, sizeof(sampleText1),
                  expected1, UPRV_LENGTHOF(expected1),"utf8", UCNV_TO_U_CALLBACK_SUBSTITUTE, offsets1,FALSE))
-            log_err("utf8->u with substitute did not match.\n");;
+            log_err("utf8->u with substitute did not match.\n");
     }
 
 #if !UCONFIG_NO_LEGACY_CONVERSION
@@ -1603,10 +1591,6 @@ static void TestResetBehaviour(void){
 
     }
 
-    /* BEGIN android-removed */
-    /* To save space, Android does not build full ISO-2022-CN tables.
-       We skip the tests for ISO-2022-CN. */
-    /*
     log_verbose("Testing Reset for ISO-2022-cn\n");
     {
         static const UChar    sampleText[] =   { 0x4e00, 0x04e01, 0x0031, 0xd801, 0xdc01, 0x0032};
@@ -1637,7 +1621,7 @@ static void TestResetBehaviour(void){
                                     };
         static const int32_t offsets1[] =  { 5,7,13,16,17};
 
-        // iso-2022-CN  android-change
+        /*iso-2022-CN*/
         if(!testConvertFromU(sampleText, UPRV_LENGTHOF(sampleText),
                 expected, sizeof(expected), "iso-2022-cn", UCNV_FROM_U_CALLBACK_SUBSTITUTE , NULL, TRUE))
             log_err("u-> not match.\n");
@@ -1650,8 +1634,6 @@ static void TestResetBehaviour(void){
                 offsets1, TRUE))
            log_err("iso-2022-cn -> did not match.\n");
     }
-    */
-    /* END android-removed */
 
         log_verbose("Testing Reset for ISO-2022-kr\n");
     {

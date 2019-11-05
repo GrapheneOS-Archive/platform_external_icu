@@ -42,7 +42,7 @@ public class NumberParserImpl {
         NumberParserImpl parser = new NumberParserImpl(parseFlags);
         Currency currency = Currency.getInstance("USD");
         DecimalFormatSymbols symbols = DecimalFormatSymbols.getInstance(locale);
-        IgnorablesMatcher ignorables = IgnorablesMatcher.DEFAULT;
+        IgnorablesMatcher ignorables = IgnorablesMatcher.getInstance(parseFlags);
 
         AffixTokenMatcherFactory factory = new AffixTokenMatcherFactory();
         factory.currency = currency;
@@ -145,9 +145,10 @@ public class NumberParserImpl {
             affixProvider = new CurrencyPluralInfoAffixProvider(properties.getCurrencyPluralInfo(), properties);
         }
         Currency currency = CustomSymbolCurrency.resolve(properties.getCurrency(), locale, symbols);
-        boolean isStrict = properties.getParseMode() == ParseMode.STRICT;
-        // Android-added: Compatibility mode for j.t.DecimalFormat. http://b/112355520
-        boolean isCompatibilityMode = properties.getParseMode() == ParseMode.COMPATIBILITY;
+        ParseMode parseMode = properties.getParseMode();
+        if (parseMode == null) {
+            parseMode = ParseMode.LENIENT;
+        }
         Grouper grouper = Grouper.forProperties(properties);
         int parseFlags = 0;
         if (!properties.getParseCaseSensitive()) {
@@ -162,16 +163,17 @@ public class NumberParserImpl {
         if (properties.getSignAlwaysShown()) {
             parseFlags |= ParsingUtils.PARSE_FLAG_PLUS_SIGN_ALLOWED;
         }
-        // Android-changed: Compatibility mode for j.t.DecimalFormat. http://b/112355520
-        if (isCompatibilityMode) {
+        if (parseMode == ParseMode.JAVA_COMPATIBILITY) {
             parseFlags |= ParsingUtils.PARSE_FLAG_STRICT_SEPARATORS;
             parseFlags |= ParsingUtils.PARSE_FLAG_USE_FULL_AFFIXES;
             parseFlags |= ParsingUtils.PARSE_FLAG_EXACT_AFFIX;
-        } else if (isStrict) {
+            parseFlags |= ParsingUtils.PARSE_FLAG_JAVA_COMPATIBILITY_IGNORABLES;
+        } else if (parseMode == ParseMode.STRICT) {
             parseFlags |= ParsingUtils.PARSE_FLAG_STRICT_GROUPING_SIZE;
             parseFlags |= ParsingUtils.PARSE_FLAG_STRICT_SEPARATORS;
             parseFlags |= ParsingUtils.PARSE_FLAG_USE_FULL_AFFIXES;
             parseFlags |= ParsingUtils.PARSE_FLAG_EXACT_AFFIX;
+            parseFlags |= ParsingUtils.PARSE_FLAG_STRICT_IGNORABLES;
         } else {
             parseFlags |= ParsingUtils.PARSE_FLAG_INCLUDE_UNPAIRED_AFFIXES;
         }
@@ -184,11 +186,9 @@ public class NumberParserImpl {
         if (!parseCurrency) {
             parseFlags |= ParsingUtils.PARSE_FLAG_NO_FOREIGN_CURRENCIES;
         }
-        // Android-changed: Compatibility mode for j.t.DecimalFormat. http://b/112355520
-        IgnorablesMatcher ignorables = isStrict ? IgnorablesMatcher.STRICT
-            : isCompatibilityMode ? IgnorablesMatcher.COMPATIBILITY : IgnorablesMatcher.DEFAULT;
 
         NumberParserImpl parser = new NumberParserImpl(parseFlags);
+        IgnorablesMatcher ignorables = IgnorablesMatcher.getInstance(parseFlags);
 
         AffixTokenMatcherFactory factory = new AffixTokenMatcherFactory();
         factory.currency = currency;
@@ -218,12 +218,10 @@ public class NumberParserImpl {
 
         // ICU-TC meeting, April 11, 2018: accept percent/permille only if it is in the pattern,
         // and to maintain regressive behavior, divide by 100 even if no percent sign is present.
-        // Android-changed: Compatibility mode for j.t.DecimalFormat. http://b/112355520
-        if (!isStrict && !isCompatibilityMode && affixProvider.containsSymbolType(AffixUtils.TYPE_PERCENT)) {
+        if (parseMode == ParseMode.LENIENT && affixProvider.containsSymbolType(AffixUtils.TYPE_PERCENT)) {
             parser.addMatcher(PercentMatcher.getInstance(symbols));
         }
-        // Android-changed: Compatibility mode for j.t.DecimalFormat. http://b/112355520
-        if (!isStrict && !isCompatibilityMode && affixProvider.containsSymbolType(AffixUtils.TYPE_PERMILLE)) {
+        if (parseMode == ParseMode.LENIENT && affixProvider.containsSymbolType(AffixUtils.TYPE_PERMILLE)) {
             parser.addMatcher(PermilleMatcher.getInstance(symbols));
         }
 
@@ -231,8 +229,7 @@ public class NumberParserImpl {
         /// OTHER STANDARD MATCHERS ///
         ///////////////////////////////
 
-        // Android-changed: Compatibility mode for j.t.DecimalFormat. http://b/112355520
-        if (!isStrict && !isCompatibilityMode) {
+        if (parseMode == ParseMode.LENIENT) {
             parser.addMatcher(PlusSignMatcher.getInstance(symbols, false));
             parser.addMatcher(MinusSignMatcher.getInstance(symbols, false));
         }
@@ -254,8 +251,7 @@ public class NumberParserImpl {
         //////////////////
 
         parser.addMatcher(new RequireNumberValidator());
-        // Android-changed: Compatibility mode for j.t.DecimalFormat. http://b/112355520
-        if (isStrict || isCompatibilityMode) {
+        if (parseMode != ParseMode.LENIENT) {
             parser.addMatcher(new RequireAffixValidator());
         }
         if (parseCurrency) {

@@ -30,6 +30,7 @@ import org.junit.runners.JUnit4;
 
 import com.ibm.icu.dev.test.TestFmwk;
 import com.ibm.icu.impl.Utility;
+import com.ibm.icu.text.ConstrainedFieldPosition;
 import com.ibm.icu.text.DateFormat;
 import com.ibm.icu.text.DateIntervalFormat;
 import com.ibm.icu.text.DateIntervalFormat.FormattedDateInterval;
@@ -38,7 +39,6 @@ import com.ibm.icu.text.DateIntervalInfo.PatternInfo;
 import com.ibm.icu.text.SimpleDateFormat;
 import com.ibm.icu.util.Calendar;
 import com.ibm.icu.util.DateInterval;
-import com.ibm.icu.util.JapaneseCalendar;
 import com.ibm.icu.util.Output;
 import com.ibm.icu.util.TimeZone;
 import com.ibm.icu.util.ULocale;
@@ -649,54 +649,48 @@ public class DateIntervalFormatTest extends TestFmwk {
 
                 // Thai (default calendar buddhist)
 
-                // Android patch: Force default Gregorian calendar.
-
-                "th", "2550 10 10 10:10:10", "2551 10 10 10:10:10", "EEEEdMMMy", "\\u0E27\\u0E31\\u0E19\\u0E40\\u0E2A\\u0E32\\u0E23\\u0E4C\\u0E17\\u0E35\\u0E48 10 \\u0E15.\\u0E04. 2550 \\u2013 \\u0E27\\u0E31\\u0E19\\u0E2D\\u0E32\\u0E17\\u0E34\\u0E15\\u0E22\\u0E4C\\u0E17\\u0E35\\u0E48 10 \\u0E15.\\u0E04. 2551",
+                "th", "BE 2550 10 10 10:10:10", "BE 2551 10 10 10:10:10", "EEEEdMMMy", "\\u0E27\\u0E31\\u0E19\\u0E1E\\u0E38\\u0E18\\u0E17\\u0E35\\u0E48 10 \\u0E15.\\u0E04. 2550 \\u2013 \\u0E27\\u0E31\\u0E19\\u0E28\\u0E38\\u0E01\\u0E23\\u0E4C\\u0E17\\u0E35\\u0E48 10 \\u0E15.\\u0E04. 2551",
 
 
-                "th", "2550 10 10 10:10:10", "2551 10 10 10:10:10", "dMMM", "10 \\u0E15.\\u0E04. 2550 \\u2013 10 \\u0E15.\\u0E04. 2551",
+                "th", "BE 2550 10 10 10:10:10", "BE 2551 10 10 10:10:10", "dMMM", "10 \\u0E15.\\u0E04. 2550 \\u2013 10 \\u0E15.\\u0E04. 2551",
 
-                "th", "2550 10 10 10:10:10", "2551 10 10 10:10:10", "MMMy", "\\u0E15.\\u0E04. 2550 \\u2013 \\u0E15.\\u0E04. 2551",
-
-
-                "th", "2550 10 10 10:10:10", "2551 10 10 10:10:10", "EdMy", "ส. 10/10/2550 – อา. 10/10/2551",
-
-                "th", "2550 10 10 10:10:10", "2551 10 10 10:10:10", "dMy", "10/10/2550 \\u2013 10/10/2551",
+                "th", "BE 2550 10 10 10:10:10", "BE 2551 10 10 10:10:10", "MMMy", "\\u0E15.\\u0E04. 2550 \\u2013 \\u0E15.\\u0E04. 2551",
 
 
-                "th", "2550 10 10 10:10:10", "2551 10 10 10:10:10", "EdMy", "\\u0E2A. 10/10/2550 \\u2013 \\u0E2D\\u0E32. 10/10/2551",
-                "th", "2550 10 10 10:10:10", "2551 10 10 10:10:10", "My", "10/2550 \\u2013 10/2551",
+                "th", "BE 2550 10 10 10:10:10", "BE 2551 10 10 10:10:10", "EdMy", "\\u0E1E. 10/10/2550 \\u2013 \\u0E28. 10/10/2551",
 
-                "th", "2550 10 10 10:10:10", "2551 10 10 10:10:10", "EdM", "ส. 10/10/2550 – อา. 10/10/2551",
-
-
-                "th", "2550 10 10 10:10:10", "2551 10 10 10:10:10", "y", "2550\\u20132551",
-
-                "th", "2550 10 10 10:10:10", "2551 10 10 10:10:10", "EdM", "\\u0E2A. 10/10/2550 \\u2013 \\u0E2D\\u0E32. 10/10/2551",
-                "th", "2550 10 10 10:10:10", "2551 10 10 10:10:10", "M", "10/2550 \\u2013 10/2551",
+                "th", "BE 2550 10 10 10:10:10", "BE 2551 10 10 10:10:10", "dMy", "10/10/2550 \\u2013 10/10/2551",
 
 
-                "th", "2550 10 10 10:10:10", "2550 11 10 10:10:10", "EEEEdMMMy", "วันเสาร์ที่ 10 ต.ค. – วันอังคารที่ 10 พ.ย. 2550",
+                "th", "BE 2550 10 10 10:10:10", "BE 2551 10 10 10:10:10", "My", "10/2550 \\u2013 10/2551",
+
+                "th", "BE 2550 10 10 10:10:10", "BE 2551 10 10 10:10:10", "EdM", "\\u0E1E. 10/10/2550 \\u2013 \\u0E28. 10/10/2551",
 
 
-                "th", "2550 10 10 10:10:10", "2550 11 10 10:10:10", "dMMM", "10 \\u0E15.\\u0E04. \\u2013 10 \\u0E1E.\\u0E22.",
+                "th", "BE 2550 10 10 10:10:10", "BE 2551 10 10 10:10:10", "y", "2550\\u20132551",
 
-                "th", "2550 10 10 10:10:10", "2550 11 10 10:10:10", "EEEEdMMMy", "\\u0E27\\u0E31\\u0E19\\u0E40\\u0E2A\\u0E32\\u0E23\\u0E4C\\u0E17\\u0E35\\u0E48 10 \\u0E15.\\u0E04. \\u2013 \\u0E27\\u0E31\\u0E19\\u0E2D\\u0E31\\u0E07\\u0E04\\u0E32\\u0E23\\u0E17\\u0E35\\u0E48 10 \\u0E1E.\\u0E22. 2550",
-                "th", "2550 10 10 10:10:10", "2550 11 10 10:10:10", "MMMy", "\\u0E15.\\u0E04.\\u2013\\u0E1E.\\u0E22. 2550",
-
-                "th", "2550 10 10 10:10:10", "2550 11 10 10:10:10", "dM", "10/10 \\u2013 10/11",
-
-                "th", "2550 10 10 10:10:10", "2550 11 10 10:10:10", "My", "10/2550 \\u2013 11/2550",
+                "th", "BE 2550 10 10 10:10:10", "BE 2551 10 10 10:10:10", "M", "10/2550 \\u2013 10/2551",
 
 
-                "th", "2550 10 10 10:10:10", "2550 11 10 10:10:10", "d", "10/10 \\u2013 10/11",
-
-                "th", "2550 10 10 10:10:10", "2550 11 10 10:10:10", "y", "2550",
+                "th", "BE 2550 10 10 10:10:10", "BE 2550 11 10 10:10:10", "EEEEdMMMy", "\\u0E27\\u0E31\\u0E19\\u0E1E\\u0E38\\u0E18\\u0E17\\u0E35\\u0E48 10 \\u0E15.\\u0E04. \\u2013 \\u0E27\\u0E31\\u0E19\\u0E40\\u0E2A\\u0E32\\u0E23\\u0E4C\\u0E17\\u0E35\\u0E48 10 \\u0E1E.\\u0E22. 2550",
 
 
-                "th", "2550 10 10 10:10:10", "2550 11 10 10:10:10", "MMM", "ต.ค. – พ.ย.",
+                "th", "BE 2550 10 10 10:10:10", "BE 2550 11 10 10:10:10", "dMMM", "10 \\u0E15.\\u0E04. \\u2013 10 \\u0E1E.\\u0E22.",
 
-                "th", "2550 10 10 10:10:10", "2550 11 10 10:10:10", "y", "2550",
+                "th", "BE 2550 10 10 10:10:10", "BE 2550 11 10 10:10:10", "MMMy", "\\u0E15.\\u0E04.\\u2013\\u0E1E.\\u0E22. 2550",
+
+                "th", "BE 2550 10 10 10:10:10", "BE 2550 11 10 10:10:10", "dM", "10/10 \\u2013 10/11",
+
+                "th", "BE 2550 10 10 10:10:10", "BE 2550 11 10 10:10:10", "My", "10/2550 \\u2013 11/2550",
+
+
+                "th", "BE 2550 10 10 10:10:10", "BE 2550 11 10 10:10:10", "d", "10/10 \\u2013 10/11",
+
+                "th", "BE 2550 10 10 10:10:10", "BE 2550 11 10 10:10:10", "y", "\u0E1E.\u0E28. 2550",
+
+
+                "th", "BE 2550 10 10 10:10:10", "BE 2550 11 10 10:10:10", "MMM", "\u0E15.\u0E04.\u2013\u0E1E.\u0E22.",
+
                 // Tests for Japanese calendar with eras, including new era in 2019 (Heisei 31 through April 30, then new era)
 
                 "en-u-ca-japanese", "H 31 03 15 09:00:00", "H 31 04 15 09:00:00", "GyMMMd", "Mar 15 \u2013 Apr 15, 31 Heisei",
@@ -722,7 +716,6 @@ public class DateIntervalFormatTest extends TestFmwk {
 
                 "ja-u-ca-japanese", "H 31 04 15 09:00:00", DateFormat.JP_ERA_2019_NARROW+" 1 05 15 09:00:00", "GGGGGyMd", "H31/04/15\uFF5E"+DateFormat.JP_ERA_2019_NARROW+"1/05/15",
 
-                // Android patch end.
         };
         expect(DATA, DATA.length);
     }
@@ -1958,6 +1951,30 @@ public class DateIntervalFormatTest extends TestFmwk {
                 result,
                 expectedString,
                 expectedFieldPositions);
+        }
+
+        // Test sample code
+        {
+            Calendar input1 = Calendar.getInstance(ULocale.UK);
+            Calendar input2 = Calendar.getInstance(ULocale.UK);
+            input1.set(2018, 6, 20);
+            input2.set(2018, 7, 3);
+
+            // Let fmt be a DateIntervalFormat for locale en-US and skeleton dMMMMy
+            // Let input1 be July 20, 2018 and input2 be August 3, 2018:
+            FormattedDateInterval result = fmt.formatToValue(input1, input2);
+            assertEquals("Expected output from format",
+                "July 20 \u2013 August 3, 2018", result.toString());
+            ConstrainedFieldPosition cfpos = new ConstrainedFieldPosition();
+            cfpos.constrainFieldAndValue(DateIntervalFormat.SpanField.DATE_INTERVAL_SPAN, 0);
+            if (result.nextPosition(cfpos)) {
+                assertEquals("Expect start index", 0, cfpos.getStart());
+                assertEquals("Expect end index", 7, cfpos.getLimit());
+            } else {
+                // No such span: can happen if input dates are equal.
+            }
+            assertFalse("No more than one occurrence of the field",
+                result.nextPosition(cfpos));
         }
 
         fmt = DateIntervalFormat.getInstance("dMMMha", ULocale.US);

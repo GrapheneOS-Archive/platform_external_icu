@@ -520,9 +520,7 @@ _ISO2022Open(UConverter *cnv, UConverterLoadArgs *pArgs, UErrorCode *errorCode){
             }
             if(jpCharsetMasks[version]&CSM(GB2312)) {
                 myConverterData->myConverterArray[GB2312] =
-                    /* BEGIN android-changed */
-                    ucnv_loadSharedData("noop-gb2312_gl", &stackPieces, &stackArgs, errorCode); /* gb_2312_80-1 */
-                    /* END android-changed */
+                    ucnv_loadSharedData("ibm-5478", &stackPieces, &stackArgs, errorCode);   /* gb_2312_80-1 */
             }
             if(jpCharsetMasks[version]&CSM(KSC5601)) {
                 myConverterData->myConverterArray[KSC5601] =
@@ -553,9 +551,7 @@ _ISO2022Open(UConverter *cnv, UConverterLoadArgs *pArgs, UErrorCode *errorCode){
             if(version==1) {
                 cnvName="icu-internal-25546";
             } else {
-                /* BEGIN android-changed */
-                cnvName="ksc_5601";
-                /* END android-changed */
+                cnvName="ibm-949";
                 myConverterData->version=version=0;
             }
             if(pArgs->onlyTestIsLoadable) {
@@ -599,16 +595,14 @@ _ISO2022Open(UConverter *cnv, UConverterLoadArgs *pArgs, UErrorCode *errorCode){
             }
 
             /* open the required converters and cache them */
-            /* BEGIN android-changed */
             myConverterData->myConverterArray[GB2312_1] =
-                ucnv_loadSharedData("noop-gb2312_gl", &stackPieces, &stackArgs, errorCode);
+                ucnv_loadSharedData("ibm-5478", &stackPieces, &stackArgs, errorCode);
             if(version==1) {
                 myConverterData->myConverterArray[ISO_IR_165] =
-                    ucnv_loadSharedData("noop-iso-ir-165", &stackPieces, &stackArgs, errorCode);
+                    ucnv_loadSharedData("iso-ir-165", &stackPieces, &stackArgs, errorCode);
             }
             myConverterData->myConverterArray[CNS_11643] =
-                ucnv_loadSharedData("noop-cns-11643", &stackPieces, &stackArgs, errorCode);
-            /* END android-changed */
+                ucnv_loadSharedData("cns-11643-1992", &stackPieces, &stackArgs, errorCode);
 
 
             /* set the function pointers to appropriate funtions */
@@ -3577,20 +3571,11 @@ _ISO_2022_WriteSub(UConverterFromUnicodeArgs *args, int32_t offsetIndex, UErrorC
 
 /*
  * Structure for cloning an ISO 2022 converter into a single memory block.
- * ucnv_safeClone() of the converter will align the entire cloneStruct,
- * and then ucnv_safeClone() of the sub-converter may additionally align
- * currentConverter inside the cloneStruct, for which we need the deadSpace
- * after currentConverter.
- * This is because UAlignedMemory may be larger than the actually
- * necessary alignment size for the platform.
- * The other cloneStruct fields will not be moved around,
- * and are aligned properly with cloneStruct's alignment.
  */
 struct cloneStruct
 {
     UConverter cnv;
     UConverter currentConverter;
-    UAlignedMemory deadSpace;
     UConverterDataISO2022 mydata;
 };
 
@@ -3607,6 +3592,10 @@ _ISO_2022_SafeClone(
     struct cloneStruct * localClone;
     UConverterDataISO2022 *cnvData;
     int32_t i, size;
+
+    if (U_FAILURE(*status)){
+        return nullptr;
+    }
 
     if (*pBufferSize == 0) { /* 'preflighting' request - set needed size into *pBufferSize */
         *pBufferSize = (int32_t)sizeof(struct cloneStruct);
@@ -3625,7 +3614,7 @@ _ISO_2022_SafeClone(
     /* share the subconverters */
 
     if(cnvData->currentConverter != NULL) {
-        size = (int32_t)(sizeof(UConverter) + sizeof(UAlignedMemory)); /* include size of padding */
+        size = (int32_t)sizeof(UConverter);
         localClone->mydata.currentConverter =
             ucnv_safeClone(cnvData->currentConverter,
                             &localClone->currentConverter,

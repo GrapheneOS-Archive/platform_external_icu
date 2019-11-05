@@ -132,7 +132,7 @@ void DateIntervalFormatTest::testAPI() {
     status = U_ZERO_ERROR;
     logln("Testing DateIntervalFormat clone");
 
-    DateIntervalFormat* another = (DateIntervalFormat*)dtitvfmt->clone();
+    DateIntervalFormat* another = dtitvfmt->clone();
     if ( (*another) != (*dtitvfmt) ) {
         dataerrln("%s:%d ERROR: clone failed", __FILE__, __LINE__);
     }
@@ -224,7 +224,7 @@ void DateIntervalFormatTest::testAPI() {
     }
 
     status = U_ZERO_ERROR;
-    DateFormat* nonConstFmt = (DateFormat*)fmt->clone();
+    DateFormat* nonConstFmt = fmt->clone();
     dtitvfmt->adoptDateFormat(nonConstFmt, status);
     anotherFmt = dtitvfmt->getDateFormat();
     if ( (*fmt) != (*anotherFmt) || U_FAILURE(status) ) {
@@ -250,7 +250,7 @@ void DateIntervalFormatTest::testAPI() {
     logln("Testing DateIntervalFormat constructor and assigment operator");
     status = U_ZERO_ERROR;
 
-    DateFormat* constFmt = (constFmt*)dtitvfmt->getDateFormat()->clone();
+    DateFormat* constFmt = dtitvfmt->getDateFormat()->clone();
     inf = dtitvfmt->getDateIntervalInfo()->clone();
 
 
@@ -1001,40 +1001,39 @@ void DateIntervalFormatTest::testFormat() {
 
         // Thai (default calendar buddhist)
 
-        // BEGIN ANDROID-changed.  Default calendar in Android is Gregorian for th locale.
-        // "th", "BE 2550 10 10 10:10:10", "BE 2551 10 10 10:10:10", "EEEEdMMMy", "\\u0E27\\u0E31\\u0E19\\u0E1E\\u0E38\\u0E18\\u0E17\\u0E35\\u0E48 10 \\u0E15.\\u0E04. 2550 \\u2013 \\u0E27\\u0E31\\u0E19\\u0E28\\u0E38\\u0E01\\u0E23\\u0E4C\\u0E17\\u0E35\\u0E48 10 \\u0E15.\\u0E04. 2551",
+        "th", "BE 2550 10 10 10:10:10", "BE 2551 10 10 10:10:10", "EEEEdMMMy", "\\u0E27\\u0E31\\u0E19\\u0E1E\\u0E38\\u0E18\\u0E17\\u0E35\\u0E48 10 \\u0E15.\\u0E04. 2550 \\u2013 \\u0E27\\u0E31\\u0E19\\u0E28\\u0E38\\u0E01\\u0E23\\u0E4C\\u0E17\\u0E35\\u0E48 10 \\u0E15.\\u0E04. 2551",
 
 
-        // "th", "BE 2550 10 10 10:10:10", "BE 2551 10 10 10:10:10", "dMMM", "10 \\u0E15.\\u0E04. 2550 \\u2013 10 \\u0E15.\\u0E04. 2551",
+        "th", "BE 2550 10 10 10:10:10", "BE 2551 10 10 10:10:10", "dMMM", "10 \\u0E15.\\u0E04. 2550 \\u2013 10 \\u0E15.\\u0E04. 2551",
 
-        // "th", "BE 2550 10 10 10:10:10", "BE 2551 10 10 10:10:10", "MMMy", "\\u0E15.\\u0E04. 2550 \\u2013 \\u0E15.\\u0E04. 2551",
-
-
-        // "th", "BE 2550 10 10 10:10:10", "BE 2551 10 10 10:10:10", "EdMy", "\\u0E1E. 10/10/2550 \\u2013 \\u0E28. 10/10/2551",
-
-        // "th", "BE 2550 10 10 10:10:10", "BE 2551 10 10 10:10:10", "dMy", "10/10/2550 \\u2013 10/10/2551",
+        "th", "BE 2550 10 10 10:10:10", "BE 2551 10 10 10:10:10", "MMMy", "\\u0E15.\\u0E04. 2550 \\u2013 \\u0E15.\\u0E04. 2551",
 
 
-        // "th", "BE 2550 10 10 10:10:10", "BE 2551 10 10 10:10:10", "My", "10/2550 \\u2013 10/2551",
+        "th", "BE 2550 10 10 10:10:10", "BE 2551 10 10 10:10:10", "EdMy", "\\u0E1E. 10/10/2550 \\u2013 \\u0E28. 10/10/2551",
 
-        // "th", "BE 2550 10 10 10:10:10", "BE 2551 10 10 10:10:10", "EdM", "\\u0E1E. 10/10/2550 \\u2013 \\u0E28. 10/10/2551",
-
-
-        // "th", "BE 2550 10 10 10:10:10", "BE 2551 10 10 10:10:10", "y", "2550\\u20132551",
-
-        // "th", "BE 2550 10 10 10:10:10", "BE 2551 10 10 10:10:10", "M", "10/2550 \\u2013 10/2551",
+        "th", "BE 2550 10 10 10:10:10", "BE 2551 10 10 10:10:10", "dMy", "10/10/2550 \\u2013 10/10/2551",
 
 
-        // "th", "BE 2550 10 10 10:10:10", "BE 2550 11 10 10:10:10", "EEEEdMMMy", "\\u0E27\\u0E31\\u0E19\\u0E1E\\u0E38\\u0E18\\u0E17\\u0E35\\u0E48 10 \\u0E15.\\u0E04. \\u2013 \\u0E27\\u0E31\\u0E19\\u0E40\\u0E2A\\u0E32\\u0E23\\u0E4C\\u0E17\\u0E35\\u0E48 10 \\u0E1E.\\u0E22. 2550",
+        "th", "BE 2550 10 10 10:10:10", "BE 2551 10 10 10:10:10", "My", "10/2550 \\u2013 10/2551",
+
+        "th", "BE 2550 10 10 10:10:10", "BE 2551 10 10 10:10:10", "EdM", "\\u0E1E. 10/10/2550 \\u2013 \\u0E28. 10/10/2551",
 
 
-        // "th", "BE 2550 10 10 10:10:10", "BE 2550 11 10 10:10:10", "dMMM", "10 \\u0E15.\\u0E04. \\u2013 10 \\u0E1E.\\u0E22.",
+        "th", "BE 2550 10 10 10:10:10", "BE 2551 10 10 10:10:10", "y", "2550\\u20132551",
 
-        // "th", "BE 2550 10 10 10:10:10", "BE 2550 11 10 10:10:10", "MMMy", "\\u0E15.\\u0E04.\\u2013\\u0E1E.\\u0E22. 2550",
+        "th", "BE 2550 10 10 10:10:10", "BE 2551 10 10 10:10:10", "M", "10/2550 \\u2013 10/2551",
 
-        // "th", "2550 10 10 10:10:10", "2550 11 10 10:10:10", "dM", "10/10 \\u2013 10/11",
 
-        // "th", "BE 2550 10 10 10:10:10", "BE 2550 11 10 10:10:10", "My", "10/2550 \\u2013 11/2550",
+        "th", "BE 2550 10 10 10:10:10", "BE 2550 11 10 10:10:10", "EEEEdMMMy", "\\u0E27\\u0E31\\u0E19\\u0E1E\\u0E38\\u0E18\\u0E17\\u0E35\\u0E48 10 \\u0E15.\\u0E04. \\u2013 \\u0E27\\u0E31\\u0E19\\u0E40\\u0E2A\\u0E32\\u0E23\\u0E4C\\u0E17\\u0E35\\u0E48 10 \\u0E1E.\\u0E22. 2550",
+
+
+        "th", "BE 2550 10 10 10:10:10", "BE 2550 11 10 10:10:10", "dMMM", "10 \\u0E15.\\u0E04. \\u2013 10 \\u0E1E.\\u0E22.",
+
+        "th", "BE 2550 10 10 10:10:10", "BE 2550 11 10 10:10:10", "MMMy", "\\u0E15.\\u0E04.\\u2013\\u0E1E.\\u0E22. 2550",
+
+        "th", "2550 10 10 10:10:10", "2550 11 10 10:10:10", "dM", "10/10 \\u2013 10/11",
+
+        "th", "BE 2550 10 10 10:10:10", "BE 2550 11 10 10:10:10", "My", "10/2550 \\u2013 11/2550",
 
 
         "th", "BE 2550 10 10 10:10:10", "BE 2550 11 10 10:10:10", "d", "10/10 \\u2013 10/11",
@@ -1042,11 +1041,7 @@ void DateIntervalFormatTest::testFormat() {
         "th", "BE 2550 10 10 10:10:10", "BE 2550 11 10 10:10:10", "y", "\\u0E1E.\\u0E28. 2550",
 
 
-        // "th", "BE 2550 10 10 10:10:10", "BE 2550 11 10 10:10:10", "MMM", "\\u0E15.\\u0E04.\\u2013\\u0E1E.\\u0E22.",
-
-        // "th", "2550 10 10 10:10:10", "2550 11 10 10:10:10", "y", "\\u0E1E.\\u0E28. 2550",
-
-        // "th", "2550 10 10 10:10:10", "2550 11 10 10:10:10", "MMM", "\\u0E15.\\u0E04.\\u2013\\u0E1E.\\u0E22.",
+        "th", "BE 2550 10 10 10:10:10", "BE 2550 11 10 10:10:10", "MMM", "\\u0E15.\\u0E04.\\u2013\\u0E1E.\\u0E22.",
 
         // Tests for Japanese calendar with eras, including new era in 2019 (Heisei 31 through April 30, then new era)
 
@@ -1057,12 +1052,12 @@ void DateIntervalFormatTest::testFormat() {
         "en-u-ca-japanese", "S 64 01 05 09:00:00", "H 1 01 15 09:00:00",  "GyMMMd", "Jan 5, 64 Sh\\u014Dwa \\u2013 Jan 15, 1 Heisei",
 
         "en-u-ca-japanese", "S 64 01 05 09:00:00", "H 1 01 15 09:00:00",  "GGGGGyMd", "1/5/64 S \\u2013 1/15/1 H",
-
+ 
         "en-u-ca-japanese", "H 31 04 15 09:00:00", JP_ERA_2019_NARROW " 1 05 15 09:00:00",  "GyMMMd", "Apr 15, 31 Heisei \\u2013 May 15, 1 " JP_ERA_2019_ROOT,
 
         "en-u-ca-japanese", "H 31 04 15 09:00:00", JP_ERA_2019_NARROW " 1 05 15 09:00:00",  "GGGGGyMd", "4/15/31 H \\u2013 5/15/1 " JP_ERA_2019_NARROW,
-
-
+ 
+ 
         "ja-u-ca-japanese", "H 31 03 15 09:00:00", "H 31 04 15 09:00:00", "GyMMMd", "\\u5E73\\u621031\\u5E743\\u670815\\u65E5\\uFF5E4\\u670815\\u65E5",
 
         "ja-u-ca-japanese", "H 31 03 15 09:00:00", "H 31 04 15 09:00:00", "GGGGGyMd", "H31/03/15\\uFF5E31/04/15",
@@ -1073,7 +1068,6 @@ void DateIntervalFormatTest::testFormat() {
 
         "ja-u-ca-japanese", "H 31 04 15 09:00:00", JP_ERA_2019_NARROW " 1 05 15 09:00:00", "GGGGGyMd", "H31/04/15\\uFF5E" JP_ERA_2019_NARROW "1/05/15",
 
-        // END ANDROID-changed
     };
     // Android patch: b/145129186 Disable failing tests
     #ifndef ANDROID
@@ -1100,7 +1094,7 @@ void DateIntervalFormatTest::expect(const char** data, int32_t data_length) {
             return;
         }
         const char* calType = defCal->getType();
-
+ 
         Locale refLoc("root");
         if (calType) {
             refLoc.setKeywordValue("calendar", calType, ec);
@@ -1492,7 +1486,7 @@ void DateIntervalFormatTest::stress(const char** data, int32_t data_length,
                 GregorianCalendar* gregCal = new GregorianCalendar(loc, ec);
                 if (!assertSuccess("GregorianCalendar()", ec)) return;
                 const DateFormat* dformat = dtitvfmt->getDateFormat();
-                DateFormat* newOne = (DateFormat*)dformat->clone();
+                DateFormat* newOne = dformat->clone();
                 newOne->adoptCalendar(gregCal);
                 //dtitvfmt->adoptDateFormat(newOne, ec);
                 dtitvfmt->setDateFormat(*newOne, ec);
@@ -1649,7 +1643,7 @@ void DateIntervalFormatTest::testTicket12065() {
         dataerrln("FAIL: DateIntervalFormat::createInstance failed for Locale::getEnglish()");
         return;
     }
-    LocalPointer<DateIntervalFormat> clone(dynamic_cast<DateIntervalFormat *>(formatter->clone()));
+    LocalPointer<DateIntervalFormat> clone(formatter->clone());
     if (*formatter != *clone) {
         errln("%s:%d DateIntervalFormat and clone are not equal.", __FILE__, __LINE__);
         return;
@@ -1696,6 +1690,49 @@ void DateIntervalFormatTest::testFormattedDateInterval() {
             expectedString,
             expectedFieldPositions,
             UPRV_LENGTHOF(expectedFieldPositions));
+    }
+
+    {
+        const char16_t* message = u"FormattedDateInterval identical dates test: no span field";
+        const char16_t* expectedString = u"July 20, 2018";
+        LocalPointer<Calendar> input1(Calendar::createInstance("en-GB", status));
+        input1->set(2018, 6, 20);
+        FormattedDateInterval result = fmt->formatToValue(*input1, *input1, status);
+        static const UFieldPositionWithCategory expectedFieldPositions[] = {
+            // field, begin index, end index
+            {UFIELD_CATEGORY_DATE, UDAT_MONTH_FIELD, 0, 4},
+            {UFIELD_CATEGORY_DATE, UDAT_DATE_FIELD, 5, 7},
+            {UFIELD_CATEGORY_DATE, UDAT_YEAR_FIELD, 9, 13}};
+        checkMixedFormattedValue(
+            message,
+            result,
+            expectedString,
+            expectedFieldPositions,
+            UPRV_LENGTHOF(expectedFieldPositions));
+    }
+
+    // Test sample code
+    {
+        LocalPointer<Calendar> input1(Calendar::createInstance("en-GB", status));
+        LocalPointer<Calendar> input2(Calendar::createInstance("en-GB", status));
+        input1->set(2018, 6, 20);
+        input2->set(2018, 7, 3);
+
+        // Let fmt be a DateIntervalFormat for locale en-US and skeleton dMMMMy
+        // Let input1 be July 20, 2018 and input2 be August 3, 2018:
+        FormattedDateInterval result = fmt->formatToValue(*input1, *input2, status);
+        assertEquals("Expected output from format",
+            u"July 20 \u2013 August 3, 2018", result.toString(status));
+        ConstrainedFieldPosition cfpos;
+        cfpos.constrainField(UFIELD_CATEGORY_DATE_INTERVAL_SPAN, 0);
+        if (result.nextPosition(cfpos, status)) {
+            assertEquals("Expect start index", 0, cfpos.getStart());
+            assertEquals("Expect end index", 7, cfpos.getLimit());
+        } else {
+            // No such span: can happen if input dates are equal.
+        }
+        assertFalse("No more than one occurrence of the field",
+            result.nextPosition(cfpos, status));
     }
 
     // To test the fallback pattern behavior, make a custom DateIntervalInfo.

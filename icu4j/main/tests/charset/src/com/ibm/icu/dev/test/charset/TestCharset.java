@@ -21,6 +21,7 @@ import java.nio.charset.CodingErrorAction;
 import java.nio.charset.UnsupportedCharsetException;
 import java.nio.charset.spi.CharsetProvider;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.MissingResourceException;
 import java.util.Set;
@@ -645,9 +646,7 @@ public class TestCharset extends TestFmwk {
                 logln("finish: " + hex(finishArray));
             }
         } catch (CharacterCodingException ex) {
-            // Android patch: Skip tests that fail with customized data.
-            logln(converter + " roundtrip test failed: " + ex.getMessage());
-            // Android patch end.
+            errln(converter + " roundtrip test failed: " + ex.getMessage());
             ex.printStackTrace(System.err);
         }
 
@@ -679,9 +678,7 @@ public class TestCharset extends TestFmwk {
                 }
             } else {
                 if (result.isError()) {
-                    // Android patch: Skip tests that fail with customized data.
-                    logln("Error should not have occurred while encoding HZ.(" + i + ")");
-                    // Android patch end.
+                    errln("Error should not have occurred while encoding HZ.(" + i + ")");
                 }
             }
         }
@@ -832,9 +829,7 @@ public class TestCharset extends TestFmwk {
                 return;
             } catch (RuntimeException ex) {
                 if (!currentlybad) {currentlybad = true; badcount++; logln(""); }
-                // Android patch: Skip tests that fail with customized data.
-                logln(converter + " " + ex.getClass().getName() + ": " + ex.getMessage());
-                // Android patch end.
+                errln(converter + " " + ex.getClass().getName() + ": " + ex.getMessage());
                 continue outer;
             }
 
@@ -2383,10 +2378,8 @@ public class TestCharset extends TestFmwk {
             if(!result.isError()){
                 byte[] expected = {(byte)0xA9, (byte)0xA5, (byte)0xAF, (byte)0xFE, (byte)0xA2, (byte)0xAE};
                 if(!equals(expected, out.array())){
-                    // Android patch: Skip tests that fail with customized data.
-                    logln("Did not get the expected result for substitution bytes. Got: "+
+                    errln("Did not get the expected result for substitution bytes. Got: "+
                            hex(out.array()));
-                    // Android patch end.
                 }
                 logln("Output: "+  hex(out.array()));
             }else{
@@ -3223,6 +3216,28 @@ public class TestCharset extends TestFmwk {
             errln("Overflow buffer while encoding UTF-7 should have occurred.");
         }
         //end of charset encoder code coverage code
+    }
+
+    @Test
+    public void TestBug12956() {
+        final CharsetProvider provider = new CharsetProviderICU();
+        final Charset cs_utf7 = provider.charsetForName("UTF-7");
+        final Charset cs_imap = provider.charsetForName("IMAP-mailbox-name");
+        final String test = "新";
+        final byte[] expected_utf7 = {0x2b, 0x5a, 0x62, 0x41, 0x2d};
+        final byte[] expected_imap = {0x26, 0x5a, 0x62, 0x41, 0x2d};
+
+        byte[] bytes = test.getBytes(cs_utf7);
+        if (!Arrays.equals(bytes, expected_utf7)) {
+            errln("Incorrect UTF-7 conversion. Got " + new String(bytes) + " but expect " +
+                  new String(expected_utf7));
+        }
+
+        bytes = test.getBytes(cs_imap);
+        if (!Arrays.equals(bytes, expected_imap)) {
+            errln("Incorrect IMAP-mailbox-name conversion. Got " + new String(bytes) +
+                  " but expect " + new String(expected_imap));
+        }
     }
 
     //Test Charset ISCII

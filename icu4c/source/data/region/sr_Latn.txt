@@ -32,7 +32,7 @@ sr_Latn{
         151{"Istočna Evropa"}
         154{"Severna Evropa"}
         155{"Zapadna Evropa"}
-        202{"Afrika južno od Sahare"}
+        202{"Podsaharska Afrika"}
         419{"Latinska Amerika"}
         AC{"Ostrvo Asension"}
         AD{"Andora"}
@@ -107,11 +107,11 @@ sr_Latn{
         ER{"Eritreja"}
         ES{"Španija"}
         ET{"Etiopija"}
-        EU{"Evropska Unija"}
+        EU{"Evropska unija"}
         EZ{"Evrozona"}
         FI{"Finska"}
         FJ{"Fidži"}
-        FK{"Foklandska (Malvinska) ostrva"}
+        FK{"Foklandska Ostrva"}
         FM{"Mikronezija"}
         FO{"Farska Ostrva"}
         FR{"Francuska"}
@@ -134,7 +134,7 @@ sr_Latn{
         GU{"Guam"}
         GW{"Gvineja-Bisao"}
         GY{"Gvajana"}
-        HK{"Hongkong"}
+        HK{"SAR Hongkong (Kina)"}
         HM{"Ostrvo Herd i Mekdonaldova ostrva"}
         HN{"Honduras"}
         HR{"Hrvatska"}
@@ -188,7 +188,7 @@ sr_Latn{
         ML{"Mali"}
         MM{"Mijanmar (Burma)"}
         MN{"Mongolija"}
-        MO{"Makao"}
+        MO{"SAR Makao (Kina)"}
         MP{"Severna Marijanska Ostrva"}
         MQ{"Martinik"}
         MR{"Mauritanija"}
@@ -223,7 +223,7 @@ sr_Latn{
         PM{"Sen Pjer i Mikelon"}
         PN{"Pitkern"}
         PR{"Portoriko"}
-        PS{"Palestina"}
+        PS{"Palestinske teritorije"}
         PT{"Portugalija"}
         PW{"Palau"}
         PY{"Paragvaj"}
@@ -288,8 +288,6 @@ sr_Latn{
         VU{"Vanuatu"}
         WF{"Valis i Futuna"}
         WS{"Samoa"}
-        XA{"XA"}
-        XB{"XB"}
         XK{"Kosovo"}
         YE{"Jemen"}
         YT{"Majot"}
@@ -300,6 +298,9 @@ sr_Latn{
     }
     Countries%short{
         GB{"UK"}
+        HK{"Hongkong"}
+        MO{"Makao"}
+        PS{"Palestina"}
         UN{"UN"}
         US{"SAD"}
     }
@@ -308,7 +309,9 @@ sr_Latn{
         CG{"Kongo (Republika)"}
         CI{"Obala Slonovače"}
         CZ{"Češka Republika"}
+        FK{"Foklandska (Malvinska) ostrva"}
+        SZ{"Svazilend"}
         TL{"Istočni Timor"}
     }
-    Version{"2.1.49.82"}
+    Version{"36"}
 }

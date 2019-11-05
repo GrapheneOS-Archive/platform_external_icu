@@ -110,7 +110,7 @@ pt{
         EZ{"zona do euro"}
         FI{"Finlândia"}
         FJ{"Fiji"}
-        FK{"Ilhas Falkland (Ilhas Malvinas)"}
+        FK{"Ilhas Malvinas"}
         FM{"Micronésia"}
         FO{"Ilhas Faroe"}
         FR{"França"}
@@ -133,7 +133,7 @@ pt{
         GU{"Guam"}
         GW{"Guiné-Bissau"}
         GY{"Guiana"}
-        HK{"Hong Kong"}
+        HK{"Hong Kong, RAE da China"}
         HM{"Ilhas Heard e McDonald"}
         HN{"Honduras"}
         HR{"Croácia"}
@@ -187,7 +187,7 @@ pt{
         ML{"Mali"}
         MM{"Mianmar (Birmânia)"}
         MN{"Mongólia"}
-        MO{"Macau"}
+        MO{"Macau, RAE da China"}
         MP{"Ilhas Marianas do Norte"}
         MQ{"Martinica"}
         MR{"Mauritânia"}
@@ -222,7 +222,7 @@ pt{
         PM{"São Pedro e Miquelão"}
         PN{"Ilhas Pitcairn"}
         PR{"Porto Rico"}
-        PS{"Palestina"}
+        PS{"Territórios palestinos"}
         PT{"Portugal"}
         PW{"Palau"}
         PY{"Paraguai"}
@@ -253,7 +253,7 @@ pt{
         SV{"El Salvador"}
         SX{"Sint Maarten"}
         SY{"Síria"}
-        SZ{"Suazilândia"}
+        SZ{"Essuatíni"}
         TA{"Tristão da Cunha"}
         TC{"Ilhas Turcas e Caicos"}
         TD{"Chade"}
@@ -288,7 +288,7 @@ pt{
         WF{"Wallis e Futuna"}
         WS{"Samoa"}
         XA{"Pseudossotaques"}
-        XB{"Pseudobidi"}
+        XB{"Pseudobidirecional"}
         XK{"Kosovo"}
         YE{"Iêmen"}
         YT{"Mayotte"}
@@ -299,6 +299,9 @@ pt{
     }
     Countries%short{
         GB{"Reino Unido"}
+        HK{"Hong Kong"}
+        MO{"Macau"}
+        PS{"Palestina"}
         UN{"ONU"}
         US{"EUA"}
     }
@@ -307,7 +310,9 @@ pt{
         CG{"Congo"}
         CI{"Côte d’Ivoire"}
         CZ{"República Tcheca"}
+        FK{"Ilhas Malvinas (Ilhas Falkland)"}
+        SZ{"Suazilândia"}
         TL{"República Democrática de Timor-Leste"}
     }
-    Version{"2.1.48.42"}
+    Version{"36"}
 }

@@ -50,7 +50,7 @@ cy{
         AW{"Aruba"}
         AX{"Ynysoedd Åland"}
         AZ{"Azerbaijan"}
-        BA{"Bosnia & Herzegovina"}
+        BA{"Bosnia a Herzegovina"}
         BB{"Barbados"}
         BD{"Bangladesh"}
         BE{"Gwlad Belg"}
@@ -110,7 +110,7 @@ cy{
         EZ{"Ardal yr Ewro"}
         FI{"Y Ffindir"}
         FJ{"Fiji"}
-        FK{"Ynysoedd y Falkland (Ynysoedd y Malfinas)"}
+        FK{"Ynysoedd y Falkland/Malvinas"}
         FM{"Micronesia"}
         FO{"Ynysoedd Ffaro"}
         FR{"Ffrainc"}
@@ -133,7 +133,7 @@ cy{
         GU{"Guam"}
         GW{"Guiné-Bissau"}
         GY{"Guyana"}
-        HK{"Hong Kong"}
+        HK{"Hong Kong SAR Tseina"}
         HM{"Ynys Heard ac Ynysoedd McDonald"}
         HN{"Honduras"}
         HR{"Croatia"}
@@ -187,7 +187,7 @@ cy{
         ML{"Mali"}
         MM{"Myanmar (Burma)"}
         MN{"Mongolia"}
-        MO{"Macau"}
+        MO{"Macau RhGA Tsieina"}
         MP{"Ynysoedd Gogledd Mariana"}
         MQ{"Martinique"}
         MR{"Mauritania"}
@@ -222,7 +222,7 @@ cy{
         PM{"Saint-Pierre-et-Miquelon"}
         PN{"Ynysoedd Pitcairn"}
         PR{"Puerto Rico"}
-        PS{"Palesteina"}
+        PS{"Tiriogaethau Palesteinaidd"}
         PT{"Portiwgal"}
         PW{"Palau"}
         PY{"Paraguay"}
@@ -299,6 +299,9 @@ cy{
     }
     Countries%short{
         GB{"DU"}
+        HK{"Hong Kong"}
+        MO{"Macau"}
+        PS{"Palesteina"}
         UN{"UN"}
         US{"UDA"}
     }
@@ -307,8 +310,9 @@ cy{
         CG{"Y Congo (Gweriniaeth)"}
         CI{"Arfordir Ifori"}
         CZ{"Gweriniaeth Tsiec"}
+        FK{"Ynysoedd y Falkland (Ynysoedd y Malfinas)"}
         SZ{"Gwlad Swazi"}
         TL{"Dwyrain Timor"}
     }
-    Version{"2.1.49.82"}
+    Version{"36"}
 }
