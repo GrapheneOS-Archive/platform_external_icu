@@ -15,17 +15,15 @@
  */
 package android.icu.extratest;
 
+import com.android.icu.util.Icu4cMetadata;
 import org.junit.Before;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 import org.junit.Test;
 
-import android.icu.dev.data.TestDataElements_testtypes;
 import android.icu.dev.test.TestFmwk;
 import android.icu.testsharding.MainTestShard;
 import android.icu.util.VersionInfo;
-
-import libcore.icu.ICU;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -33,7 +31,7 @@ import java.util.Properties;
 
 @MainTestShard
 @RunWith(JUnit4.class)
-public class AndroidICUVersionTest extends TestFmwk {
+public class AndroidIcuVersionTest extends TestFmwk {
 
     private static final String PROP_FILE = "android_icu_version.properties";
     private static final String VERSION_PROP_NAME = "version";
@@ -42,7 +40,7 @@ public class AndroidICUVersionTest extends TestFmwk {
 
     @Before
     public void setUp() throws IOException {
-        try (InputStream in = AndroidICUVersionTest.class.getResourceAsStream(PROP_FILE)) {
+        try (InputStream in = AndroidIcuVersionTest.class.getResourceAsStream(PROP_FILE)) {
             Properties prop = new Properties();
             prop.load(in);
             String propValue = prop.getProperty(VERSION_PROP_NAME);
@@ -61,7 +59,7 @@ public class AndroidICUVersionTest extends TestFmwk {
                 expectedIcuVersion.getMinor() <= actualIcu4jVersion.getMinor());
 
         // Check ICU4C.
-        VersionInfo actualIcu4cVersion = VersionInfo.getInstance(ICU.getIcuVersion());
+        VersionInfo actualIcu4cVersion = VersionInfo.getInstance(Icu4cMetadata.getIcuVersion());
         assertEquals("The ICU4C major version is not expected.",
                 expectedIcuVersion.getMajor(), actualIcu4cVersion.getMajor());
         assertTrue("ICU4C minor version can't be smaller than the expected.",
