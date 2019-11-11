@@ -190,6 +190,17 @@ package com.android.icu.charset {
 
 }
 
+package com.android.icu.util {
+
+  public class Icu4cMetadata {
+    method public static String getCldrVersion();
+    method public static String getIcuVersion();
+    method public static String getTzdbVersion();
+    method public static String getUnicodeVersion();
+  }
+
+}
+
 package com.android.icu.util.regex {
 
   public class NativeMatcher {
