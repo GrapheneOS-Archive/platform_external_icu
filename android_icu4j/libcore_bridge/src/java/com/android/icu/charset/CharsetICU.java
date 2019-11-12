@@ -16,22 +16,38 @@ import java.nio.charset.CharsetEncoder;
 /**
  * This class is used from native code associated with {@link NativeConverter}.
  */
-final class CharsetICU extends Charset {
+public final class CharsetICU extends Charset {
     private final String icuCanonicalName;
 
+    @libcore.api.IntraCoreApi
+    public static String[] getAvailableCharsetNames() {
+        return NativeConverter.getAvailableCharsetNames();
+    }
+
+    @libcore.api.IntraCoreApi
+    public static Charset charsetForName(String charsetName) {
+        return NativeConverter.charsetForName(charsetName);
+    }
+
+    /**
+     * Called by native codes.
+     */
     protected CharsetICU(String canonicalName, String icuCanonName, String[] aliases) {
          super(canonicalName, aliases);
          icuCanonicalName = icuCanonName;
     }
 
+    @Override
     public CharsetDecoder newDecoder() {
         return CharsetDecoderICU.newInstance(this, icuCanonicalName);
     }
 
+    @Override
     public CharsetEncoder newEncoder() {
         return CharsetEncoderICU.newInstance(this, icuCanonicalName);
     }
 
+    @Override
     public boolean contains(Charset cs) {
         if (cs == null) {
             return false;

@@ -22,20 +22,20 @@ import libcore.util.NativeAllocationRegistry;
  * Provide an entry point to use ICU4C icu::RegexPattern.
  */
 @libcore.api.IntraCoreApi
-public class NativePattern {
+public class PatternNative {
 
     private static final NativeAllocationRegistry REGISTRY = NativeAllocationRegistry
-        .createMalloced(NativePattern.class.getClassLoader(), getNativeFinalizer());
+        .createMalloced(PatternNative.class.getClassLoader(), getNativeFinalizer());
 
     @dalvik.annotation.optimization.ReachabilitySensitive
     private final long address;
 
     @libcore.api.IntraCoreApi
-    public static NativePattern create(String pattern, int flags) {
-        return new NativePattern(pattern, flags);
+    public static PatternNative create(String pattern, int flags) {
+        return new PatternNative(pattern, flags);
     }
 
-    private NativePattern(String pattern, int flags) {
+    private PatternNative(String pattern, int flags) {
         address = compileImpl(pattern, flags);
         REGISTRY.registerNativeAllocation(this, address);
     }
