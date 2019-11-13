@@ -18,21 +18,21 @@ package com.android.icu.util.regex;
 
 import libcore.util.NativeAllocationRegistry;
 
-public class NativeMatcher {
+public class MatcherNative {
 
     private static final NativeAllocationRegistry REGISTRY = NativeAllocationRegistry
-        .createMalloced(NativeMatcher.class.getClassLoader(), getNativeFinalizer());
+        .createMalloced(MatcherNative.class.getClassLoader(), getNativeFinalizer());
 
-    private final NativePattern nativePattern;
+    private final PatternNative nativePattern;
     @dalvik.annotation.optimization.ReachabilitySensitive
     private final long address;
 
     @libcore.api.IntraCoreApi
-    public static NativeMatcher create(NativePattern pattern) {
-        return new NativeMatcher(pattern);
+    public static MatcherNative create(PatternNative pattern) {
+        return new MatcherNative(pattern);
     }
 
-    private NativeMatcher(NativePattern pattern) {
+    private MatcherNative(PatternNative pattern) {
         nativePattern = pattern;
         address = pattern.openMatcher();
         REGISTRY.registerNativeAllocation(this, address);

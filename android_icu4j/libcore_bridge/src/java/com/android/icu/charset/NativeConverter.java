@@ -45,12 +45,9 @@ public final class NativeConverter {
 
     /* package */ static native boolean contains(String converterName1, String converterName2);
 
+    /* package */ static native String[] getAvailableCharsetNames();
 
-    @libcore.api.IntraCoreApi
-    public static native String[] getAvailableCharsetNames();
-
-    @libcore.api.IntraCoreApi
-    public static native Charset charsetForName(String charsetName);
+    /* package */ static native Charset charsetForName(String charsetName);
 
     // Translates from Java's enum to the magic numbers #defined in "NativeConverter.cpp".
     private static int translateCodingErrorAction(CodingErrorAction action) {
