@@ -183,7 +183,7 @@ package android.icu.util {
 
 package com.android.icu.charset {
 
-  public final class NativeConverter {
+  public final class CharsetICU extends java.nio.charset.Charset {
     method public static java.nio.charset.Charset charsetForName(String);
     method public static String[] getAvailableCharsetNames();
   }
@@ -203,8 +203,8 @@ package com.android.icu.util {
 
 package com.android.icu.util.regex {
 
-  public class NativeMatcher {
-    method public static com.android.icu.util.regex.NativeMatcher create(com.android.icu.util.regex.NativePattern);
+  public class MatcherNative {
+    method public static com.android.icu.util.regex.MatcherNative create(com.android.icu.util.regex.PatternNative);
     method public boolean find(int, int[]);
     method public boolean findNext(int[]);
     method public int getMatchedGroupIndex(String);
@@ -218,8 +218,8 @@ package com.android.icu.util.regex {
     method public void useTransparentBounds(boolean);
   }
 
-  public class NativePattern {
-    method public static com.android.icu.util.regex.NativePattern create(String, int);
+  public class PatternNative {
+    method public static com.android.icu.util.regex.PatternNative create(String, int);
   }
 
 }
