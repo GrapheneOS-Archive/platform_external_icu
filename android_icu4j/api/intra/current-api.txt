@@ -199,6 +199,13 @@ package com.android.icu.util {
     method public static String getUnicodeVersion();
   }
 
+  public final class LocaleNative {
+    method public static String getDisplayCountry(java.util.Locale, java.util.Locale);
+    method public static String getDisplayLanguage(java.util.Locale, java.util.Locale);
+    method public static String getDisplayScript(java.util.Locale, java.util.Locale);
+    method public static String getDisplayVariant(java.util.Locale, java.util.Locale);
+  }
+
 }
 
 package com.android.icu.util.regex {
