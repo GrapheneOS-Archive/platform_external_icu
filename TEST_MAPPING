@@ -1,10 +1,10 @@
 {
   "postsubmit": [
     {
-      "name": "intltest"
+      "name": "intltest_test"
     },
     {
-      "name": "cintltst"
+      "name": "cintltst_test"
     }
   ]
 }
