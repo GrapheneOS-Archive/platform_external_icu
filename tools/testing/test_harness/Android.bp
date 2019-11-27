@@ -20,5 +20,4 @@ java_test_host {
     libs: [
         "tradefed",
     ],
-    test_suites: ["general-tests"],
 }

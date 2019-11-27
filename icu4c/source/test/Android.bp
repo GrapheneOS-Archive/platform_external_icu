@@ -20,7 +20,6 @@ subdirs = [
 cc_defaults {
     name: "icu_test_defaults",
     gtest: false,
-    data: [":icu4c_test_data"],
     rtti: true,
     cflags: [
         "-Wno-deprecated-declarations",
@@ -42,12 +41,6 @@ cc_defaults {
         "libicuctest",
         "libicutoolutil",
         "libandroidicuinit",
-    ],
-    test_suites: [
-        "general-tests",
-    ],
-    host_required: [
-        "ICU4CTestRunner",
     ],
 }
 
