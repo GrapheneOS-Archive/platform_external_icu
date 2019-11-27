@@ -5,6 +5,9 @@
     },
     {
       "name": "cintltst_test"
+    },
+    {
+      "name": "minikin_tests"
     }
   ]
 }
