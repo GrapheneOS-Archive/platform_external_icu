@@ -20,7 +20,7 @@
     <option name="config-descriptor:metadata" key="parameter" value="multi_abi" />
     <target_preparer class="com.android.compatibility.common.tradefed.targetprep.FilePusher">
         <option name="cleanup" value="true" />
-        <option name="push" value="cintltst->/data/local/tmp/cintltst" />
+        <option name="push" value="cintltst->/data/local/tmp/cintltst_test" />
         <option name="append-bitness" value="true" />
     </target_preparer>
     <target_preparer class="com.android.compatibility.common.tradefed.targetprep.FilePusher">
@@ -34,7 +34,7 @@
 
     <test class="com.android.tradefed.testtype.HostTest" >
         <option name="jar" value="ICU4CTestRunner.jar" />
-        <option name="set-option" value="module-name:cintltst" />
+        <option name="set-option" value="module-name:cintltst_test" />
         <option name="set-option" value="runtime-hint:20s" />
         <option name="set-option" value="no-fail-data-errors:true" />
         <option name="set-option" value="native-test-timeout:300000" />

@@ -20,7 +20,7 @@
     <option name="config-descriptor:metadata" key="parameter" value="multi_abi" />
     <target_preparer class="com.android.compatibility.common.tradefed.targetprep.FilePusher">
         <option name="cleanup" value="true" />
-        <option name="push" value="intltest->/data/local/tmp/intltest" />
+        <option name="push" value="intltest->/data/local/tmp/intltest_test" />
         <option name="append-bitness" value="true" />
     </target_preparer>
     <target_preparer class="com.android.compatibility.common.tradefed.targetprep.FilePusher">
@@ -34,7 +34,7 @@
 
     <test class="com.android.tradefed.testtype.HostTest" >
         <option name="jar" value="ICU4CTestRunner.jar" />
-        <option name="set-option" value="module-name:intltest" />
+        <option name="set-option" value="module-name:intltest_test" />
         <option name="set-option" value="runtime-hint:1m30s" />
         <option name="set-option" value="no-fail-data-errors:true" />
         <!-- test-timeout unit is ms, value = 10 minutes -->

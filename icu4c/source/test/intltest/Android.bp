@@ -39,4 +39,19 @@ cc_test {
     exclude_srcs: [
         "numberformat2test.cpp",
     ],
+
+    // Workaround Soong's limitation that data property can only include
+    // dependencies with a single variant
+    compile_multilib: "first",
+}
+
+java_test_host {
+    name: "intltest_test",
+    data: [
+        ":intltest",
+        ":icu4c_test_data",
+        ":ICU4CTestRunner",
+    ],
+    test_config: "AndroidTest.xml",
+    test_suites: ["device-tests"],
 }
