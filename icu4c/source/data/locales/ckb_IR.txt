@@ -3,7 +3,6 @@
 ckb_IR{
     Version{"36"}
     calendar{
-        default{"persian"}
         gregorian{
             DateTimePatterns{
                 "HH:mm:ss zzzz",

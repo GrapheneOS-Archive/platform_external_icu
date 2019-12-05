@@ -110,7 +110,7 @@ kea{
         EZ{"Eurozona"}
         FI{"Finlándia"}
         FJ{"Fidji"}
-        FK{"Ilhas Malvinas"}
+        FK{"Ilhas Falkland (Ilhas Malvinas)"}
         FM{"Mikronézia"}
         FO{"Ilhas Faroe"}
         FR{"Fransa"}
@@ -133,7 +133,7 @@ kea{
         GU{"Guam"}
         GW{"Gine-Bisau"}
         GY{"Giana"}
-        HK{"Hong Kong, Rejion Administrativu Spesial di Xina"}
+        HK{"Hong Kong"}
         HM{"Ilhas Heard i McDonald"}
         HN{"Onduras"}
         HR{"Kroásia"}
@@ -187,7 +187,7 @@ kea{
         ML{"Mali"}
         MM{"Mianmar (Birmánia)"}
         MN{"Mongólia"}
-        MO{"Makau, Rejion Administrativu Spesial di Xina"}
+        MO{"Makau"}
         MP{"Ilhas Marianas di Norti"}
         MQ{"Martinika"}
         MR{"Mauritánia"}
@@ -222,7 +222,7 @@ kea{
         PM{"San Piere i Mikelon"}
         PN{"Ilhas Pitkairn"}
         PR{"Portu Riku"}
-        PS{"Tiritóriu palistinianu"}
+        PS{"Palistina"}
         PT{"Purtugal"}
         PW{"Palau"}
         PY{"Paraguai"}
@@ -299,9 +299,6 @@ kea{
     }
     Countries%short{
         GB{"R.U."}
-        HK{"Hong Kong"}
-        MO{"Makau"}
-        PS{"Palistina"}
         US{"S.U."}
     }
     Countries%variant{
@@ -309,7 +306,6 @@ kea{
         CG{"Repúblika di Kongu"}
         CI{"Kosta di Marfin (Côte d’Ivoire)"}
         CZ{"Repúblika Txeka"}
-        FK{"Ilhas Falkland (Ilhas Malvinas)"}
         SZ{"Suazilándia"}
         TL{"Timor-Leste"}
     }

@@ -183,7 +183,7 @@ yo_BJ{
         PM{"Orílɛ́ède Pɛɛri ati mikuloni"}
         PN{"Orílɛ́ède Pikarini"}
         PR{"Orílɛ́ède Pɔto Riko"}
-        PS{"Agbègbè Palɛsítíànù"}
+        PS{"Palɛsitín"}
         PT{"Orílɛ́ède Pɔ́túgà"}
         PW{"Orílɛ́ède Paalu"}
         PY{"Orílɛ́ède Paraguye"}
@@ -246,9 +246,6 @@ yo_BJ{
         ZM{"Orílɛ́ède shamibia"}
         ZW{"Orílɛ́ède shimibabe"}
         ZZ{"Àgbègbè àìmɔ̀"}
-    }
-    Countries%short{
-        PS{"Palɛsitín"}
     }
     Countries%variant{
         TL{"Ìlà Òòrùn Tímɔ̀"}

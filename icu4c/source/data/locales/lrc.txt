@@ -38,7 +38,6 @@ lrc{
     }
     Version{"36"}
     calendar{
-        default{"persian"}
         generic{
             DateTimePatterns{
                 "HH:mm:ss zzzz",
