@@ -165,7 +165,7 @@ import android.icu.util.ULocale.Category;
  *       <td colspan=2><i>(none)</i>
  *       <td><code>null</code>
  *    <tr>
- *       <td rowspan=6><code>number</code>
+ *       <td rowspan=5><code>number</code>
  *       <td><i>(none)</i>
  *       <td><code>NumberFormat.getInstance(getLocale())</code>
  *    <tr>

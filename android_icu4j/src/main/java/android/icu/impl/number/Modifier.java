@@ -5,6 +5,7 @@ package android.icu.impl.number;
 
 import java.text.Format.Field;
 
+import android.icu.impl.FormattedStringBuilder;
 import android.icu.impl.StandardPlural;
 
 /**
@@ -31,7 +32,7 @@ public interface Modifier {
      *            number is being formatted.
      * @return The number of characters (UTF-16 code units) that were added to the string builder.
      */
-    public int apply(NumberStringBuilder output, int leftIndex, int rightIndex);
+    public int apply(FormattedStringBuilder output, int leftIndex, int rightIndex);
 
     /**
      * Gets the length of the prefix. This information can be used in combination with {@link #apply} to
