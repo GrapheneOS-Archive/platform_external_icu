@@ -2290,6 +2290,7 @@ public synchronized void setParseStrictMode(ParseMode parseMode) {
    * @return An instance of {@link LocalizedNumberFormatter} with the same behavior as this instance of
    * DecimalFormat.
    * @see NumberFormatter
+   * @hide unsupported on Android
    */
   public LocalizedNumberFormatter toNumberFormatter() {
       return formatter;
