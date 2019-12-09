@@ -21,7 +21,7 @@ import (
 func init() {
 	host_whitelist := []string{
 		"art/build/apex/",
-		"device/google/cuttlefish_common/host/commands/",
+		"device/google/cuttlefish/host/commands/",
 		"external/skia",
 		"frameworks/base/libs/hwui",
 	}
