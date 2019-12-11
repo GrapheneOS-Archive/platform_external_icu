@@ -1996,22 +1996,22 @@ public class SpoofChecker {
         // }
         // }
 
-        @dalvik.annotation.compat.UnsupportedAppUsage
+        @android.compat.annotation.UnsupportedAppUsage
         ScriptSet() {
         }
 
-        @dalvik.annotation.compat.UnsupportedAppUsage
+        @android.compat.annotation.UnsupportedAppUsage
         public void and(int script) {
             this.clear(0, script);
             this.clear(script + 1, UScript.CODE_LIMIT);
         }
 
-        @dalvik.annotation.compat.UnsupportedAppUsage
+        @android.compat.annotation.UnsupportedAppUsage
         public void setAll() {
             this.set(0, UScript.CODE_LIMIT);
         }
 
-        @dalvik.annotation.compat.UnsupportedAppUsage
+        @android.compat.annotation.UnsupportedAppUsage
         public boolean isFull() {
             return cardinality() == UScript.CODE_LIMIT;
         }
