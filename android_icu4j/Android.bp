@@ -84,6 +84,7 @@ java_library_static {
     name: "core-repackaged-icu4j",
     installable: false,
     srcs: [":android_icu4j_repackaged_src_files"],
+    libs: ["unsupportedappusage"],
     // The resource files are generated in the downstream branch master-icu-dev.
     java_resource_dirs: ["resources"],
 
