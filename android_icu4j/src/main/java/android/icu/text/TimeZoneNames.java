@@ -585,7 +585,7 @@ public abstract class TimeZoneNames implements Serializable {
          */
         public static class FactoryImpl extends Factory {
 
-            @dalvik.annotation.compat.UnsupportedAppUsage
+            @android.compat.annotation.UnsupportedAppUsage
             public FactoryImpl() {
             }
 
