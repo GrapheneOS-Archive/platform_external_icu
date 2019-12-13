@@ -25,7 +25,6 @@ import android.icu.util.ULocale;
  * for public subclassing.
  *
  * @see NumberFormatter
- * @hide Only a subset of ICU is exposed in Android
  */
 public abstract class NumberFormatterSettings<T extends NumberFormatterSettings<?>> {
 
@@ -129,9 +128,6 @@ public abstract class NumberFormatterSettings<T extends NumberFormatterSettings<
      *
      * <p>
      * See {@link #perUnit} for information on how to format strings like "5 meters per second".
-     *
-     * <p>
-     * The default is to render without units (equivalent to {@link NoUnit#BASE}).
      *
      * @param unit
      *            The unit to render.
@@ -522,6 +518,7 @@ public abstract class NumberFormatterSettings<T extends NumberFormatterSettings<
      * @return A number skeleton string with behavior corresponding to this number formatter.
      * @throws UnsupportedOperationException
      *             If the number formatter has an option that cannot be represented in a skeleton string.
+     * @hide unsupported on Android
      */
     public String toSkeleton() {
         return NumberSkeletonImpl.generate(resolve());

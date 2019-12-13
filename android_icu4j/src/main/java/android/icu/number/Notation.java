@@ -10,7 +10,6 @@ import android.icu.text.CompactDecimalFormat.CompactStyle;
  * A class that defines the notation style to be used when formatting numbers in NumberFormatter.
  *
  * @see NumberFormatter
- * @hide Only a subset of ICU is exposed in Android
  */
 public class Notation {
 

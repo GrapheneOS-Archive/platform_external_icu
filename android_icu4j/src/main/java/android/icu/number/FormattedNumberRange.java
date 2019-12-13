@@ -25,7 +25,6 @@ import android.icu.util.ICUUncheckedIOException;
  *
  * @author sffc
  * @see NumberRangeFormatter
- * @hide Only a subset of ICU is exposed in Android
  */
 public class FormattedNumberRange implements FormattedValue {
     final FormattedStringBuilder string;
@@ -51,6 +50,8 @@ public class FormattedNumberRange implements FormattedValue {
 
     /**
      * {@inheritDoc}
+     *
+     * @hide unsupported on Android
      */
     @Override
     public <A extends Appendable> A appendTo(A appendable) {
