@@ -109,6 +109,10 @@ java_library {
         "//external/robolectric-shadows",
         "//frameworks/layoutlib",
     ],
+    apex_available: [
+        "com.android.art.release",
+        "com.android.art.debug",
+    ],
     installable: true,
     hostdex: true,
 
