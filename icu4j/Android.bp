@@ -60,7 +60,10 @@ java_test {
     name: "icu4j-tests",
     defaults: ["icu4j-defaults"],
 
-    srcs: ["main/tests/**/*.java"],
+    srcs: [
+        "main/tests/**/*.java",
+        "tools/misc/src/com/ibm/icu/dev/tool/locale/*.java",
+    ],
     java_resource_dirs: ["main/tests/*/src"],
 
     exclude_srcs: ["main/tests/localespi/**/*.java"],
