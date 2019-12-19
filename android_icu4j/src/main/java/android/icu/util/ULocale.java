@@ -784,8 +784,7 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      * <strong>[icu] Note:</strong> Unlike the Locale API, this returns an array of <code>ULocale</code>,
      * not <code>Locale</code>.
      *
-     * <p>Returns a list of all installed locales. This is equivalent to calling
-     * {@link #getAvailableLocalesByType} with AvialableType.DEFAULT.
+     * <p>Returns a list of all installed locales.
      */
     public static ULocale[] getAvailableLocales() {
         return ICUResourceBundle.getAvailableULocales().clone();
