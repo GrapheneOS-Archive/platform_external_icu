@@ -72,12 +72,6 @@ cc_library {
     defaults: ["libicui18n_defaults"],
     host_supported: true,
     native_bridge_supported: true,
-    apex_available: [
-        "com.android.art.release",
-        "com.android.art.debug",
-        // b/133140750 Clean this up. This is due to the dependency to from libmedia
-        "//apex_available:platform",
-    ],
     unique_host_soname: true,
     shared_libs: ["libicuuc"],
     header_libs: ["libicui18n_headers"],
