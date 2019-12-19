@@ -312,5 +312,5 @@ ar_XB{
         SZ{"؜‮Swaziland‬؜"}
         TL{"؜‮East‬؜ ؜‮Timor‬؜"}
     }
-    Version{"2.0"}
+    Version{"36"}
 }

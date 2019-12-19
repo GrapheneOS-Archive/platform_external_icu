@@ -29,6 +29,8 @@ cc_defaults {
         "-Wall",
         "-Werror",
         "-Wno-unused-parameter",
+        "-Wno-unused-const-variable",
+        "-Wno-unneeded-internal-declaration",
     ],
     cppflags: [
         "-std=c++11",

@@ -12,7 +12,6 @@ package android.icu.number;
  *
  * @see NumberFormatter
  * @hide Only a subset of ICU is exposed in Android
- * @hide draft / provisional / internal are hidden on Android
  */
 public class SimpleNotation extends Notation {
     /* package-private */ SimpleNotation() {

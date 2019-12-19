@@ -197,7 +197,7 @@ class DeclaredFunctionsParser(object):
     def get_all_cpp_headers(self):
         """Return all C++ header names in icu4c/source/test/hdrtst/cxxfiles.txt"""
         cpp_headers = []
-        with open(android_path('external/icu/icu4c/source/test/hdrtst/cxxfiles.txt'),
+        with open(android_path('external/icu/tools/icu4c_srcgen/cxxfiles.txt'),
                   'r') as f:
             for line in f:
                 line = line.strip()

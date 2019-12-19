@@ -7,9 +7,10 @@ import java.text.AttributedCharacterIterator;
 import java.text.FieldPosition;
 import java.util.Arrays;
 
+import com.ibm.icu.impl.FormattedStringBuilder;
+import com.ibm.icu.impl.FormattedValueStringBuilderImpl;
 import com.ibm.icu.impl.Utility;
 import com.ibm.icu.impl.number.DecimalQuantity;
-import com.ibm.icu.impl.number.NumberStringBuilder;
 import com.ibm.icu.text.ConstrainedFieldPosition;
 import com.ibm.icu.text.FormattedValue;
 import com.ibm.icu.text.PluralRules.IFixedDecimal;
@@ -20,15 +21,14 @@ import com.ibm.icu.text.PluralRules.IFixedDecimal;
  *
  * Instances of this class are immutable and thread-safe.
  *
- * @draft ICU 60
- * @provisional This API might change or be removed in a future release.
+ * @stable ICU 60
  * @see NumberFormatter
  */
 public class FormattedNumber implements FormattedValue {
-    final NumberStringBuilder string;
+    final FormattedStringBuilder string;
     final DecimalQuantity fq;
 
-    FormattedNumber(NumberStringBuilder nsb, DecimalQuantity fq) {
+    FormattedNumber(FormattedStringBuilder nsb, DecimalQuantity fq) {
         this.string = nsb;
         this.fq = fq;
     }
@@ -36,8 +36,7 @@ public class FormattedNumber implements FormattedValue {
     /**
      * {@inheritDoc}
      *
-     * @draft ICU 60
-     * @provisional This API might change or be removed in a future release.
+     * @stable ICU 60
      */
     @Override
     public String toString() {
@@ -80,8 +79,7 @@ public class FormattedNumber implements FormattedValue {
     /**
      * {@inheritDoc}
      *
-     * @draft ICU 60
-     * @provisional This API might change or be removed in a future release.
+     * @stable ICU 60
      */
     @Override
     public <A extends Appendable> A appendTo(A appendable) {
@@ -96,18 +94,17 @@ public class FormattedNumber implements FormattedValue {
      */
     @Override
     public boolean nextPosition(ConstrainedFieldPosition cfpos) {
-        return string.nextPosition(cfpos, null);
+        return FormattedValueStringBuilderImpl.nextPosition(string, cfpos, null);
     }
 
     /**
      * {@inheritDoc}
      *
-     * @draft ICU 62
-     * @provisional This API might change or be removed in a future release.
+     * @stable ICU 62
      */
     @Override
     public AttributedCharacterIterator toCharacterIterator() {
-        return string.toCharacterIterator(null);
+        return FormattedValueStringBuilderImpl.toCharacterIterator(string, null);
     }
 
     /**
@@ -145,7 +142,7 @@ public class FormattedNumber implements FormattedValue {
      */
     public boolean nextFieldPosition(FieldPosition fieldPosition) {
         fq.populateUFieldPosition(fieldPosition);
-        return string.nextFieldPosition(fieldPosition);
+        return FormattedValueStringBuilderImpl.nextFieldPosition(string, fieldPosition);
     }
 
     /**
@@ -154,8 +151,7 @@ public class FormattedNumber implements FormattedValue {
      * pipeline.
      *
      * @return A BigDecimal representation of the formatted number.
-     * @draft ICU 60
-     * @provisional This API might change or be removed in a future release.
+     * @stable ICU 60
      * @see NumberFormatter
      */
     public BigDecimal toBigDecimal() {
@@ -179,7 +175,7 @@ public class FormattedNumber implements FormattedValue {
      */
     @Override
     public int hashCode() {
-        // NumberStringBuilder and BigDecimal are mutable, so we can't call
+        // FormattedStringBuilder and BigDecimal are mutable, so we can't call
         // #equals() or #hashCode() on them directly.
         return Arrays.hashCode(string.toCharArray())
                 ^ Arrays.hashCode(string.toFieldArray())
@@ -200,7 +196,7 @@ public class FormattedNumber implements FormattedValue {
             return false;
         if (!(other instanceof FormattedNumber))
             return false;
-        // NumberStringBuilder and BigDecimal are mutable, so we can't call
+        // FormattedStringBuilder and BigDecimal are mutable, so we can't call
         // #equals() or #hashCode() on them directly.
         FormattedNumber _other = (FormattedNumber) other;
         return Arrays.equals(string.toCharArray(), _other.string.toCharArray())

@@ -8,9 +8,9 @@ import static org.junit.Assert.fail;
 
 import org.junit.Test;
 
+import android.icu.impl.FormattedStringBuilder;
 import android.icu.impl.number.AffixUtils;
 import android.icu.impl.number.AffixUtils.SymbolProvider;
-import android.icu.impl.number.NumberStringBuilder;
 import android.icu.text.UnicodeSet;
 import android.icu.testsharding.MainTestShard;
 
@@ -202,7 +202,7 @@ public class AffixUtilsTest {
             }
         };
 
-        NumberStringBuilder sb = new NumberStringBuilder();
+        FormattedStringBuilder sb = new FormattedStringBuilder();
         for (String[] cas : cases) {
             String input = cas[0];
             String expected = cas[1];
@@ -239,7 +239,7 @@ public class AffixUtilsTest {
     }
 
     private static String unescapeWithDefaults(String input) {
-        NumberStringBuilder nsb = new NumberStringBuilder();
+        FormattedStringBuilder nsb = new FormattedStringBuilder();
         int length = AffixUtils.unescape(input, nsb, 0, DEFAULT_SYMBOL_PROVIDER, null);
         assertEquals("Return value of unescape", nsb.length(), length);
         return nsb.toString();

@@ -18,8 +18,7 @@ import com.ibm.icu.util.Currency.CurrencyUsage;
  * <p>
  * To create a Precision, use one of the factory methods.
  *
- * @draft ICU 62
- * @provisional This API might change or be removed in a future release.
+ * @stable ICU 62
  * @see NumberFormatter
  */
 public abstract class Precision implements Cloneable {
@@ -45,8 +44,7 @@ public abstract class Precision implements Cloneable {
      * http://www.serpentine.com/blog/2011/06/29/here-be-dragons-advances-in-problems-you-didnt-even-know-you-had/
      *
      * @return A Precision for chaining or passing to the NumberFormatter precision() setter.
-     * @draft ICU 60
-     * @provisional This API might change or be removed in a future release.
+     * @stable ICU 60
      * @see NumberFormatter
      */
     public static Precision unlimited() {
@@ -57,8 +55,7 @@ public abstract class Precision implements Cloneable {
      * Show numbers rounded if necessary to the nearest integer.
      *
      * @return A FractionPrecision for chaining or passing to the NumberFormatter precision() setter.
-     * @draft ICU 60
-     * @provisional This API might change or be removed in a future release.
+     * @stable ICU 60
      * @see NumberFormatter
      */
     public static FractionPrecision integer() {
@@ -91,8 +88,7 @@ public abstract class Precision implements Cloneable {
      *            The minimum and maximum number of numerals to display after the decimal separator
      *            (rounding if too long or padding with zeros if too short).
      * @return A FractionPrecision for chaining or passing to the NumberFormatter precision() setter.
-     * @draft ICU 60
-     * @provisional This API might change or be removed in a future release.
+     * @stable ICU 60
      * @see NumberFormatter
      */
     public static FractionPrecision fixedFraction(int minMaxFractionPlaces) {
@@ -117,8 +113,7 @@ public abstract class Precision implements Cloneable {
      *            The minimum number of numerals to display after the decimal separator (padding with
      *            zeros if necessary).
      * @return A FractionPrecision for chaining or passing to the NumberFormatter precision() setter.
-     * @draft ICU 60
-     * @provisional This API might change or be removed in a future release.
+     * @stable ICU 60
      * @see NumberFormatter
      */
     public static FractionPrecision minFraction(int minFractionPlaces) {
@@ -140,8 +135,7 @@ public abstract class Precision implements Cloneable {
      *            The maximum number of numerals to display after the decimal mark (rounding if
      *            necessary).
      * @return A FractionPrecision for chaining or passing to the NumberFormatter precision() setter.
-     * @draft ICU 60
-     * @provisional This API might change or be removed in a future release.
+     * @stable ICU 60
      * @see NumberFormatter
      */
     public static FractionPrecision maxFraction(int maxFractionPlaces) {
@@ -166,8 +160,7 @@ public abstract class Precision implements Cloneable {
      *            The maximum number of numerals to display after the decimal separator (rounding if
      *            necessary).
      * @return A FractionPrecision for chaining or passing to the NumberFormatter precision() setter.
-     * @draft ICU 60
-     * @provisional This API might change or be removed in a future release.
+     * @stable ICU 60
      * @see NumberFormatter
      */
     public static FractionPrecision minMaxFraction(int minFractionPlaces, int maxFractionPlaces) {
@@ -194,8 +187,7 @@ public abstract class Precision implements Cloneable {
      *            The minimum and maximum number of significant digits to display (rounding if too long
      *            or padding with zeros if too short).
      * @return A Precision for chaining or passing to the NumberFormatter precision() setter.
-     * @draft ICU 62
-     * @provisional This API might change or be removed in a future release.
+     * @stable ICU 62
      * @see NumberFormatter
      */
     public static Precision fixedSignificantDigits(int minMaxSignificantDigits) {
@@ -219,8 +211,7 @@ public abstract class Precision implements Cloneable {
      * @param minSignificantDigits
      *            The minimum number of significant digits to display (padding with zeros if too short).
      * @return A Precision for chaining or passing to the NumberFormatter precision() setter.
-     * @draft ICU 62
-     * @provisional This API might change or be removed in a future release.
+     * @stable ICU 62
      * @see NumberFormatter
      */
     public static Precision minSignificantDigits(int minSignificantDigits) {
@@ -239,8 +230,7 @@ public abstract class Precision implements Cloneable {
      * @param maxSignificantDigits
      *            The maximum number of significant digits to display (rounding if too long).
      * @return A Precision for chaining or passing to the NumberFormatter precision() setter.
-     * @draft ICU 62
-     * @provisional This API might change or be removed in a future release.
+     * @stable ICU 62
      * @see NumberFormatter
      */
     public static Precision maxSignificantDigits(int maxSignificantDigits) {
@@ -262,8 +252,7 @@ public abstract class Precision implements Cloneable {
      * @param maxSignificantDigits
      *            The maximum number of significant digits to display (rounding if necessary).
      * @return A Precision for chaining or passing to the NumberFormatter precision() setter.
-     * @draft ICU 62
-     * @provisional This API might change or be removed in a future release.
+     * @stable ICU 62
      * @see NumberFormatter
      */
     public static Precision minMaxSignificantDigits(int minSignificantDigits, int maxSignificantDigits) {
@@ -298,8 +287,7 @@ public abstract class Precision implements Cloneable {
      * @param roundingIncrement
      *            The increment to which to round numbers.
      * @return A Precision for chaining or passing to the NumberFormatter precision() setter.
-     * @draft ICU 60
-     * @provisional This API might change or be removed in a future release.
+     * @stable ICU 60
      * @see NumberFormatter
      */
     public static Precision increment(BigDecimal roundingIncrement) {
@@ -326,8 +314,7 @@ public abstract class Precision implements Cloneable {
      *            Either STANDARD (for digital transactions) or CASH (for transactions where the rounding
      *            increment may be limited by the available denominations of cash or coins).
      * @return A CurrencyPrecision for chaining or passing to the NumberFormatter precision() setter.
-     * @draft ICU 60
-     * @provisional This API might change or be removed in a future release.
+     * @stable ICU 60
      * @see NumberFormatter
      */
     public static CurrencyPrecision currency(CurrencyUsage currencyUsage) {
@@ -431,11 +418,13 @@ public abstract class Precision implements Cloneable {
     static Precision constructFractionSignificant(FractionPrecision base_, int minSig, int maxSig) {
         assert base_ instanceof FractionRounderImpl;
         FractionRounderImpl base = (FractionRounderImpl) base_;
+        Precision returnValue;
         if (base.minFrac == 0 && base.maxFrac == 0 && minSig == 2 /* && maxSig == -1 */) {
-            return COMPACT_STRATEGY;
+            returnValue = COMPACT_STRATEGY;
         } else {
-            return new FracSigRounderImpl(base.minFrac, base.maxFrac, minSig, maxSig);
+            returnValue = new FracSigRounderImpl(base.minFrac, base.maxFrac, minSig, maxSig);
         }
+        return returnValue.withMode(base.mathContext);
     }
 
     static Precision constructIncrement(BigDecimal increment) {
@@ -474,13 +463,15 @@ public abstract class Precision implements Cloneable {
         assert base_ instanceof CurrencyRounderImpl;
         CurrencyRounderImpl base = (CurrencyRounderImpl) base_;
         double incrementDouble = currency.getRoundingIncrement(base.usage);
+        Precision returnValue;
         if (incrementDouble != 0.0) {
             BigDecimal increment = BigDecimal.valueOf(incrementDouble);
-            return constructIncrement(increment);
+            returnValue = constructIncrement(increment);
         } else {
             int minMaxFrac = currency.getDefaultFractionDigits(base.usage);
-            return constructFraction(minMaxFrac, minMaxFrac);
+            returnValue = constructFraction(minMaxFrac, minMaxFrac);
         }
+        return returnValue.withMode(base.mathContext);
     }
 
     static Precision constructPassThrough() {
@@ -522,8 +513,8 @@ public abstract class Precision implements Cloneable {
      * @return The number of orders of magnitude the input was adjusted by this method.
      */
     int chooseMultiplierAndApply(DecimalQuantity input, MultiplierProducer producer) {
-        // Do not call this method with zero.
-        assert !input.isZero();
+        // Do not call this method with zero, NaN, or infinity.
+        assert !input.isZeroish();
 
         // Perform the first attempt at rounding.
         int magnitude = input.getMagnitude();
@@ -532,7 +523,7 @@ public abstract class Precision implements Cloneable {
         apply(input);
 
         // If the number rounded to zero, exit.
-        if (input.isZero()) {
+        if (input.isZeroish()) {
             return multiplier;
         }
 
@@ -603,7 +594,7 @@ public abstract class Precision implements Cloneable {
             value.roundToMagnitude(getRoundingMagnitudeSignificant(value, maxSig), mathContext);
             value.setMinFraction(Math.max(0, -getDisplayMagnitudeSignificant(value, minSig)));
             // Make sure that digits are displayed on zero.
-            if (value.isZero() && minSig > 0) {
+            if (value.isZeroish() && minSig > 0) {
                 value.setMinInteger(1);
             }
         }
@@ -613,7 +604,7 @@ public abstract class Precision implements Cloneable {
          * compatibility mode.
          */
         public void apply(DecimalQuantity quantity, int minInt) {
-            assert quantity.isZero();
+            assert quantity.isZeroish();
             quantity.setMinFraction(minSig - minInt);
         }
     }
@@ -744,7 +735,7 @@ public abstract class Precision implements Cloneable {
         if (maxSig == -1) {
             return Integer.MIN_VALUE;
         }
-        int magnitude = value.isZero() ? 0 : value.getMagnitude();
+        int magnitude = value.isZeroish() ? 0 : value.getMagnitude();
         return magnitude - maxSig + 1;
     }
 
@@ -756,7 +747,7 @@ public abstract class Precision implements Cloneable {
     }
 
     private static int getDisplayMagnitudeSignificant(DecimalQuantity value, int minSig) {
-        int magnitude = value.isZero() ? 0 : value.getMagnitude();
+        int magnitude = value.isZeroish() ? 0 : value.getMagnitude();
         return magnitude - minSig + 1;
     }
 }

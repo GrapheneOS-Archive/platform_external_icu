@@ -2021,16 +2021,17 @@ public class DecimalFormat extends NumberFormat {
     refreshFormatter();
   }
 
-  // BEGIN Android-added: Compatibility mode for j.t.DecimalFormat. http://b/112355520
   /**
-   * @hide draft / provisional / internal are hidden on Android
+   * Android libcore uses this internal method to set {@link ParseMode#JAVA_COMPATIBILITY}.
+   * @deprecated This API is ICU internal only.
+ * @hide draft / provisional / internal are hidden on Android
    */
   @libcore.api.IntraCoreApi
+@Deprecated
 public synchronized void setParseStrictMode(ParseMode parseMode) {
     properties.setParseMode(parseMode);
     refreshFormatter();
   }
-  // END Android-added: Compatibility mode for j.t.DecimalFormat. http://b/112355520
 
   /**
    * {@inheritDoc}
@@ -2289,7 +2290,7 @@ public synchronized void setParseStrictMode(ParseMode parseMode) {
    * @return An instance of {@link LocalizedNumberFormatter} with the same behavior as this instance of
    * DecimalFormat.
    * @see NumberFormatter
-   * @hide draft / provisional / internal are hidden on Android
+   * @hide unsupported on Android
    */
   public LocalizedNumberFormatter toNumberFormatter() {
       return formatter;
