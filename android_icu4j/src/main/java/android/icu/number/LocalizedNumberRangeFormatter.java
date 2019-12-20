@@ -13,7 +13,6 @@ import android.icu.impl.number.DecimalQuantity_DualStorageBCD;
  *
  * @author sffc
  * @see NumberRangeFormatter
- * @hide Only a subset of ICU is exposed in Android
  */
 public class LocalizedNumberRangeFormatter extends NumberRangeFormatterSettings<LocalizedNumberRangeFormatter> {
 

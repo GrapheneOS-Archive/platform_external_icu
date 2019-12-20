@@ -33,7 +33,6 @@ import android.icu.util.ULocale;
  * methods in {@link Notation}.
  *
  * @see NumberFormatter
- * @hide Only a subset of ICU is exposed in Android
  */
 public class CompactNotation extends Notation {
 
