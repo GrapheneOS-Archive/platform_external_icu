@@ -12,7 +12,6 @@ import android.icu.impl.number.RoundingUtils;
  * To create an IntegerWidth, use one of the factory methods.
  *
  * @see NumberFormatter
- * @hide Only a subset of ICU is exposed in Android
  */
 public class IntegerWidth {
 

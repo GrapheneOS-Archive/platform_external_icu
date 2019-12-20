@@ -14,7 +14,6 @@ import android.icu.util.ULocale;
  * Instances of this class are immutable and thread-safe.
  *
  * @see NumberFormatter
- * @hide Only a subset of ICU is exposed in Android
  */
 public class UnlocalizedNumberFormatter extends NumberFormatterSettings<UnlocalizedNumberFormatter> {
 

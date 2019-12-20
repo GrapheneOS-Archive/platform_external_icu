@@ -15,7 +15,6 @@ import android.icu.util.ULocale;
  *
  * @author sffc
  * @see NumberRangeFormatter
- * @hide Only a subset of ICU is exposed in Android
  */
 public abstract class NumberRangeFormatterSettings<T extends NumberRangeFormatterSettings<?>> {
 

@@ -13,7 +13,6 @@ import android.icu.impl.number.RoundingUtils;
  * To create a FractionPrecision, use one of the factory methods on Precision.
  *
  * @see NumberFormatter
- * @hide Only a subset of ICU is exposed in Android
  */
 public abstract class FractionPrecision extends Precision {
 
