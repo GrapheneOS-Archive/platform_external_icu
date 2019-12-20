@@ -138,6 +138,8 @@ public class NumberSkeletonTest {
                 "integer-width/xxx",
                 "integer-width/0+",
                 "integer-width/+0#",
+                "integer-width/+#",
+                "integer-width/+#0",
                 "scientific/foo" };
 
         for (String cas : cases) {

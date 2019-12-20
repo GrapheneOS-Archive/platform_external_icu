@@ -3,10 +3,10 @@
 // License & terms of use: http://www.unicode.org/copyright.html#License
 //---------------------------------------------------------
 // Build tool:  tz2icu
-// Build date:  Mon Sep 16 16:31:36 2019
+// Build date:  Thu Dec 19 00:02:23 2019
 // tz database: ftp://ftp.iana.org/tz/
 // tz version:  2019c
-// ICU version: 64.2
+// ICU version: 65.1
 //---------------------------------------------------------
 // >> !!! >>   THIS IS A MACHINE-GENERATED FILE   << !!! <<
 // >> !!! >>>            DO NOT EDIT             <<< !!! <<

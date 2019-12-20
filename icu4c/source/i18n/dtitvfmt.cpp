@@ -173,7 +173,7 @@ DateIntervalFormat::operator=(const DateIntervalFormat& itvfmt) {
         {
             Mutex lock(&gFormatterMutex);
             if ( itvfmt.fDateFormat ) {
-                fDateFormat = (SimpleDateFormat*)itvfmt.fDateFormat->clone();
+                fDateFormat = itvfmt.fDateFormat->clone();
             } else {
                 fDateFormat = NULL;
             }
@@ -199,9 +199,9 @@ DateIntervalFormat::operator=(const DateIntervalFormat& itvfmt) {
             fIntervalPatterns[i] = itvfmt.fIntervalPatterns[i];
         }
         fLocale = itvfmt.fLocale;
-        fDatePattern    = (itvfmt.fDatePattern)?    (UnicodeString*)itvfmt.fDatePattern->clone(): NULL;
-        fTimePattern    = (itvfmt.fTimePattern)?    (UnicodeString*)itvfmt.fTimePattern->clone(): NULL;
-        fDateTimeFormat = (itvfmt.fDateTimeFormat)? (UnicodeString*)itvfmt.fDateTimeFormat->clone(): NULL;
+        fDatePattern    = (itvfmt.fDatePattern)?    itvfmt.fDatePattern->clone(): NULL;
+        fTimePattern    = (itvfmt.fTimePattern)?    itvfmt.fTimePattern->clone(): NULL;
+        fDateTimeFormat = (itvfmt.fDateTimeFormat)? itvfmt.fDateTimeFormat->clone(): NULL;
     }
     return *this;
 }
@@ -218,8 +218,8 @@ DateIntervalFormat::~DateIntervalFormat() {
 }
 
 
-Format*
-DateIntervalFormat::clone(void) const {
+DateIntervalFormat*
+DateIntervalFormat::clone() const {
     return new DateIntervalFormat(*this);
 }
 

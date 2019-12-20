@@ -14,6 +14,10 @@ import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
@@ -107,6 +111,49 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
             return new LocaleIDParser(tmpLocaleID).getName();
         }
     };
+
+    /**
+     * Types for {@link ULocale#getAvailableLocalesByType}
+     *
+     * @hide Only a subset of ICU is exposed in Android
+     * @hide draft / provisional / internal are hidden on Android
+     */
+    public static enum AvailableType {
+        /**
+         * Locales that return data when passed to ICU APIs,
+         * but not including legacy or alias locales.
+         *
+         * @hide draft / provisional / internal are hidden on Android
+         */
+        DEFAULT,
+
+        /**
+         * Legacy or alias locales that return data when passed to ICU APIs.
+         * Examples of supported legacy or alias locales:
+         *
+         * <ul>
+         * <li>iw (alias to he)
+         * <li>mo (alias to ro)
+         * <li>zh_CN (alias to zh_Hans_CN)
+         * <li>sr_BA (alias to sr_Cyrl_BA)
+         * <li>ars (alias to ar_SA)
+         * </ul>
+         *
+         * The locales in this set are disjoint from the ones in
+         * DEFAULT. To get both sets at the same time, use
+         * WITH_LEGACY_ALIASES.
+         *
+         * @hide draft / provisional / internal are hidden on Android
+         */
+        ONLY_LEGACY_ALIASES,
+
+        /**
+         * The union of the locales in DEFAULT and ONLY_LEGACY_ALIASES.
+         *
+         * @hide draft / provisional / internal are hidden on Android
+         */
+        WITH_LEGACY_ALIASES,
+    }
 
     /**
      * Useful constant for language.
@@ -735,10 +782,34 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
 
     /**
      * <strong>[icu] Note:</strong> Unlike the Locale API, this returns an array of <code>ULocale</code>,
-     * not <code>Locale</code>.  Returns a list of all installed locales.
+     * not <code>Locale</code>.
+     *
+     * <p>Returns a list of all installed locales.
      */
     public static ULocale[] getAvailableLocales() {
-        return ICUResourceBundle.getAvailableULocales();
+        return ICUResourceBundle.getAvailableULocales().clone();
+    }
+
+    /**
+     * Returns a list of all installed locales according to the specified type.
+     *
+     * @hide draft / provisional / internal are hidden on Android
+     */
+    public static Collection<ULocale> getAvailableLocalesByType(AvailableType type) {
+        if (type == null) {
+            throw new IllegalArgumentException();
+        }
+        List<ULocale> result;
+        if (type == ULocale.AvailableType.WITH_LEGACY_ALIASES) {
+            result = new ArrayList<>();
+            Collections.addAll(result,
+                    ICUResourceBundle.getAvailableULocales(ULocale.AvailableType.DEFAULT));
+            Collections.addAll(result,
+                    ICUResourceBundle.getAvailableULocales(ULocale.AvailableType.ONLY_LEGACY_ALIASES));
+        } else {
+            result = Arrays.asList(ICUResourceBundle.getAvailableULocales(type));
+        }
+        return Collections.unmodifiableList(result);
     }
 
     /**

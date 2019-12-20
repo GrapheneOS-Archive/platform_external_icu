@@ -48,7 +48,6 @@ public class EraRulesTest extends TestFmwk {
                         + calId);
             }
 
-            // Android-changed: EraRules.getCurrentEraIndex() uses UTC time. http://b/131766004
             Calendar cal = Calendar.getInstance(TimeZone.GMT_ZONE, new ULocale("en"));
             int currentIdx = rules1.getCurrentEraIndex();
             int currentYear = cal.get(Calendar.YEAR);

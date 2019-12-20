@@ -1,6 +1,6 @@
 enumConstant:android.icu.impl.CacheValue$Strength#SOFT
 enumConstant:android.icu.impl.CacheValue$Strength#STRONG
-enumConstant:android.icu.impl.number.DecimalFormatProperties$ParseMode#COMPATIBILITY
+enumConstant:android.icu.impl.number.DecimalFormatProperties$ParseMode#JAVA_COMPATIBILITY
 field:android.icu.impl.ICUData#ICU_BASE_NAME
 field:android.icu.text.Normalizer#NFC
 field:android.icu.text.Normalizer#NFD

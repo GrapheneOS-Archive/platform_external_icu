@@ -39,6 +39,7 @@
 #include "umutex.h"
 #include "putilimp.h"
 #include "uassert.h"
+#include "uresdata.h"
 
 using namespace icu;
 
@@ -392,7 +393,8 @@ static UResourceDataEntry *init_entry(const char *localeID, const char *path, UE
                 /* We'll try to get alias string from the bundle */
                 aliasres = res_getResource(&(r->fData), "%%ALIAS");
                 if (aliasres != RES_BOGUS) {
-                    const UChar *alias = res_getString(&(r->fData), aliasres, &aliasLen);
+                    // No tracing: called during initial data loading
+                    const UChar *alias = res_getStringNoTrace(&(r->fData), aliasres, &aliasLen);
                     if(alias != NULL && aliasLen > 0) { /* if there is actual alias - unload and load new data */
                         u_UCharsToChars(alias, aliasName, aliasLen+1);
                         r->fAlias = init_entry(aliasName, path, status);
@@ -533,7 +535,8 @@ loadParentsExceptRoot(UResourceDataEntry *&t1,
         Resource parentRes = res_getResource(&t1->fData, "%%Parent");
         if (parentRes != RES_BOGUS) {  // An explicit parent was found.
             int32_t parentLocaleLen = 0;
-            const UChar *parentLocaleName = res_getString(&(t1->fData), parentRes, &parentLocaleLen);
+            // No tracing: called during initial data loading
+            const UChar *parentLocaleName = res_getStringNoTrace(&(t1->fData), parentRes, &parentLocaleLen);
             if(parentLocaleName != NULL && 0 < parentLocaleLen && parentLocaleLen < nameCapacity) {
                 u_UCharsToChars(parentLocaleName, name, parentLocaleLen + 1);
                 if (uprv_strcmp(name, kRootLocaleName) == 0) {
@@ -1164,6 +1167,7 @@ static UResourceBundle *init_resb_result(const ResourceData *rdata, Resource r,
                     if(mainRes != result) {
                         ures_close(mainRes);
                     }
+                    ResourceTracer(resB).maybeTrace("getalias");
                     return result;
                 }
             } else {
@@ -1243,6 +1247,7 @@ static UResourceBundle *init_resb_result(const ResourceData *rdata, Resource r,
     /*resB->fParent = parent->fRes;*/
     uprv_memmove(&resB->fResData, rdata, sizeof(ResourceData));
     resB->fSize = res_countArrayItems(&(resB->fResData), resB->fRes);
+    ResourceTracer(resB).trace("get");
     return resB;
 }
 
@@ -1291,7 +1296,7 @@ U_CAPI const UChar* U_EXPORT2 ures_getString(const UResourceBundle* resB, int32_
         *status = U_ILLEGAL_ARGUMENT_ERROR;
         return NULL;
     }
-    s = res_getString(&(resB->fResData), resB->fRes, len);
+    s = res_getString({resB}, &(resB->fResData), resB->fRes, len);
     if (s == NULL) {
         *status = U_RESOURCE_TYPE_MISMATCH;
     }
@@ -1380,7 +1385,7 @@ U_CAPI const uint8_t* U_EXPORT2 ures_getBinary(const UResourceBundle* resB, int3
     *status = U_ILLEGAL_ARGUMENT_ERROR;
     return NULL;
   }
-  p = res_getBinary(&(resB->fResData), resB->fRes, len);
+  p = res_getBinary({resB}, &(resB->fResData), resB->fRes, len);
   if (p == NULL) {
     *status = U_RESOURCE_TYPE_MISMATCH;
   }
@@ -1397,7 +1402,7 @@ U_CAPI const int32_t* U_EXPORT2 ures_getIntVector(const UResourceBundle* resB, i
     *status = U_ILLEGAL_ARGUMENT_ERROR;
     return NULL;
   }
-  p = res_getIntVector(&(resB->fResData), resB->fRes, len);
+  p = res_getIntVector({resB}, &(resB->fResData), resB->fRes, len);
   if (p == NULL) {
     *status = U_RESOURCE_TYPE_MISMATCH;
   }
@@ -1418,7 +1423,7 @@ U_CAPI int32_t U_EXPORT2 ures_getInt(const UResourceBundle* resB, UErrorCode *st
     *status = U_RESOURCE_TYPE_MISMATCH;
     return 0xffffffff;
   }
-  return RES_GET_INT(resB->fRes);
+  return res_getInt({resB}, resB->fRes);
 }
 
 U_CAPI uint32_t U_EXPORT2 ures_getUInt(const UResourceBundle* resB, UErrorCode *status) {
@@ -1433,7 +1438,7 @@ U_CAPI uint32_t U_EXPORT2 ures_getUInt(const UResourceBundle* resB, UErrorCode *
     *status = U_RESOURCE_TYPE_MISMATCH;
     return 0xffffffff;
   }
-  return RES_GET_UINT(resB->fRes);
+  return res_getUInt({resB}, resB->fRes);
 }
 
 U_CAPI UResType U_EXPORT2 ures_getType(const UResourceBundle *resB) {
@@ -1444,10 +1449,18 @@ U_CAPI UResType U_EXPORT2 ures_getType(const UResourceBundle *resB) {
 }
 
 U_CAPI const char * U_EXPORT2 ures_getKey(const UResourceBundle *resB) {
+  //
+  // TODO: Trace ures_getKey? I guess not usually.
+  //
+  // We usually get the key string to decide whether we want the value, or to
+  // make a key-value pair. Tracing the value should suffice.
+  //
+  // However, I believe we have some data (e.g., in res_index) where the key
+  // strings are the data. Tracing the enclosing table should suffice.
+  //
   if(resB == NULL) {
     return NULL;
   }
-  
   return(resB->fKey);
 }
 
@@ -1467,7 +1480,7 @@ static const UChar* ures_getStringWithAlias(const UResourceBundle *resB, Resourc
     ures_close(tempRes);
     return result;
   } else {
-    return res_getString(&(resB->fResData), r, len); 
+    return res_getString({resB, sIndex}, &(resB->fResData), r, len); 
   }
 }
 
@@ -1503,7 +1516,7 @@ U_CAPI const UChar* U_EXPORT2 ures_getNextString(UResourceBundle *resB, int32_t*
     switch(RES_GET_TYPE(resB->fRes)) {
     case URES_STRING:
     case URES_STRING_V2:
-      return res_getString(&(resB->fResData), resB->fRes, len); 
+      return res_getString({resB}, &(resB->fResData), resB->fRes, len);
     case URES_TABLE:
     case URES_TABLE16:
     case URES_TABLE32:
@@ -1648,7 +1661,7 @@ U_CAPI const UChar* U_EXPORT2 ures_getStringByIndex(const UResourceBundle *resB,
         switch(RES_GET_TYPE(resB->fRes)) {
         case URES_STRING:
         case URES_STRING_V2:
-            return res_getString(&(resB->fResData), resB->fRes, len);
+            return res_getString({resB}, &(resB->fResData), resB->fRes, len);
         case URES_TABLE:
         case URES_TABLE16:
         case URES_TABLE32:
@@ -1940,10 +1953,10 @@ void getAllItemsWithFallback(
     // When the sink sees the no-fallback/no-inheritance marker,
     // then it would remove the parent's item.
     // We would deserialize parent values even though they are overridden in a child bundle.
-    value.pResData = &bundle->fResData;
+    value.setData(&bundle->fResData);
     UResourceDataEntry *parentEntry = bundle->fData->fParent;
     UBool hasParent = parentEntry != NULL && U_SUCCESS(parentEntry->fBogus);
-    value.setResource(bundle->fRes);
+    value.setResource(bundle->fRes, ResourceTracer(bundle));
     sink.put(bundle->fKey, value, !hasParent, errorCode);
     if (hasParent) {
         // We might try to query the sink whether
@@ -1988,31 +2001,60 @@ void getAllItemsWithFallback(
 
 }  // namespace
 
+// Requires a ResourceDataValue fill-in, so that we need not cast from a ResourceValue.
+// Unfortunately, the caller must know which subclass to make and pass in.
+// Alternatively, we could make it as polymorphic as in Java by
+// returning a ResourceValue pointer (possibly wrapped into a LocalPointer)
+// that the caller then owns.
+//
+// Also requires a UResourceBundle fill-in, so that the value's ResourceTracer
+// can point to a non-local bundle.
+// Without tracing, the child bundle could be a function-local object.
 U_CAPI void U_EXPORT2
-ures_getAllItemsWithFallback(const UResourceBundle *bundle, const char *path,
-                             icu::ResourceSink &sink, UErrorCode &errorCode) {
+ures_getValueWithFallback(const UResourceBundle *bundle, const char *path,
+                          UResourceBundle *tempFillIn,
+                          ResourceDataValue &value, UErrorCode &errorCode) {
     if (U_FAILURE(errorCode)) { return; }
-    if (path == NULL) {
+    if (path == nullptr) {
         errorCode = U_ILLEGAL_ARGUMENT_ERROR;
         return;
     }
-    UResourceBundle stackBundle;
-    ures_initStackObject(&stackBundle);
     const UResourceBundle *rb;
     if (*path == 0) {
         // empty path
         rb = bundle;
     } else {
-        rb = ures_getByKeyWithFallback(bundle, path, &stackBundle, &errorCode);
+        rb = ures_getByKeyWithFallback(bundle, path, tempFillIn, &errorCode);
         if (U_FAILURE(errorCode)) {
-            ures_close(&stackBundle);
+            return;
+        }
+    }
+    value.setData(&rb->fResData);
+    value.setResource(rb->fRes, ResourceTracer(rb));
+}
+
+U_CAPI void U_EXPORT2
+ures_getAllItemsWithFallback(const UResourceBundle *bundle, const char *path,
+                             icu::ResourceSink &sink, UErrorCode &errorCode) {
+    if (U_FAILURE(errorCode)) { return; }
+    if (path == nullptr) {
+        errorCode = U_ILLEGAL_ARGUMENT_ERROR;
+        return;
+    }
+    StackUResourceBundle stackBundle;
+    const UResourceBundle *rb;
+    if (*path == 0) {
+        // empty path
+        rb = bundle;
+    } else {
+        rb = ures_getByKeyWithFallback(bundle, path, stackBundle.getAlias(), &errorCode);
+        if (U_FAILURE(errorCode)) {
             return;
         }
     }
     // Get all table items with fallback.
     ResourceDataValue value;
     getAllItemsWithFallback(rb, value, sink, errorCode);
-    ures_close(&stackBundle);
 }
 
 U_CAPI UResourceBundle* U_EXPORT2 ures_getByKey(const UResourceBundle *resB, const char* inKey, UResourceBundle *fillIn, UErrorCode *status) {
@@ -2095,7 +2137,7 @@ U_CAPI const UChar* U_EXPORT2 ures_getStringByKey(const UResourceBundle *resB, c
                     switch (RES_GET_TYPE(res)) {
                     case URES_STRING:
                     case URES_STRING_V2:
-                        return res_getString(rd, res, len);
+                        return res_getString({resB, key}, rd, res, len);
                     case URES_ALIAS:
                       {
                         const UChar* result = 0;
@@ -2117,7 +2159,7 @@ U_CAPI const UChar* U_EXPORT2 ures_getStringByKey(const UResourceBundle *resB, c
             switch (RES_GET_TYPE(res)) {
             case URES_STRING:
             case URES_STRING_V2:
-                return res_getString(&(resB->fResData), res, len);
+                return res_getString({resB, key}, &(resB->fResData), res, len);
             case URES_ALIAS:
               {
                 const UChar* result = 0;
@@ -2138,6 +2180,7 @@ U_CAPI const UChar* U_EXPORT2 ures_getStringByKey(const UResourceBundle *resB, c
         /* here should go a first attempt to locate the key using index table */
         const ResourceData *rd = getFallbackData(resB, &key, &realData, &res, status);
         if(U_SUCCESS(*status)) {
+            // TODO: Tracing
             return res_getString(rd, res, len);
         } else {
             *status = U_MISSING_RESOURCE_ERROR;
@@ -2282,6 +2325,8 @@ ures_openWithType(UResourceBundle *r, const char* path, const char* localeID,
     r->fRes = r->fResData.rootRes;
     r->fSize = res_countArrayItems(&(r->fResData), r->fRes);
     r->fIndex = -1;
+
+    ResourceTracer(r).traceOpen();
 
     return r;
 }

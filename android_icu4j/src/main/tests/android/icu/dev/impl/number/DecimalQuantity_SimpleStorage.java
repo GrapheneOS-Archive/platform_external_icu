@@ -466,7 +466,7 @@ public class DecimalQuantity_SimpleStorage implements DecimalQuantity {
   }
 
   @Override
-  public boolean isZero() {
+  public boolean isZeroish() {
     if (primary == -1) {
       return fallback.compareTo(BigDecimal.ZERO) == 0;
     } else {
@@ -521,7 +521,7 @@ public class DecimalQuantity_SimpleStorage implements DecimalQuantity {
 
   @Override
   public int signum() {
-      return isNegative() ? -1 : isZero() ? 0 : 1;
+      return isNegative() ? -1 : isZeroish() ? 0 : 1;
   }
 
   private void setNegative(boolean isNegative) {

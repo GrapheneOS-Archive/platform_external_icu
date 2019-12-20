@@ -44,7 +44,6 @@ import org.junit.runners.JUnit4;
 import android.icu.dev.test.TestFmwk;
 import android.icu.dev.test.TestUtil;
 import android.icu.dev.test.format.IntlTestDecimalFormatAPIC.FieldContainer;
-import android.icu.dev.text.DecimalFormat_ICU58;
 import android.icu.impl.ICUConfig;
 import android.icu.impl.LocaleUtility;
 import android.icu.impl.data.ResourceReader;
@@ -530,9 +529,9 @@ public class NumberFormatTest extends TestFmwk {
                 {"en_US", "\u00A4#,##0.00;-\u00A4#,##0.00", "-1234.56", "-$1,234.56", "-USD 1,234.56", "-US dollars 1,234.56"},
                 {"en_US", "\u00A4#,##0.00;-\u00A4#,##0.00", "1", "$1.00", "USD 1.00", "US dollars 1.00"},
                 // for CHINA locale
-                {"zh_CN", "\u00A4#,##0.00;(\u00A4#,##0.00)", "1234.56", "\uFFE51,234.56", "CNY 1,234.56", "\u4EBA\u6C11\u5E01 1,234.56"},
-                {"zh_CN", "\u00A4#,##0.00;(\u00A4#,##0.00)", "-1234.56", "(\uFFE51,234.56)", "(CNY 1,234.56)", "(\u4EBA\u6C11\u5E01 1,234.56)"},
-                {"zh_CN", "\u00A4#,##0.00;(\u00A4#,##0.00)", "1", "\uFFE51.00", "CNY 1.00", "\u4EBA\u6C11\u5E01 1.00"}
+                {"zh_CN", "\u00A4#,##0.00;(\u00A4#,##0.00)", "1234.56", "\u00A51,234.56", "CNY 1,234.56", "\u4EBA\u6C11\u5E01 1,234.56"},
+                {"zh_CN", "\u00A4#,##0.00;(\u00A4#,##0.00)", "-1234.56", "(\u00A51,234.56)", "(CNY 1,234.56)", "(\u4EBA\u6C11\u5E01 1,234.56)"},
+                {"zh_CN", "\u00A4#,##0.00;(\u00A4#,##0.00)", "1", "\u00A51.00", "CNY 1.00", "\u4EBA\u6C11\u5E01 1.00"}
         };
 
         String doubleCurrencyStr = "\u00A4\u00A4";
@@ -773,8 +772,8 @@ public class NumberFormatTest extends TestFmwk {
                 {"en_US", "-1234.56", "USD", "-$1,234.56", "-USD 1,234.56", "-1,234.56 US dollars"},
                 {"zh_CN", "1", "USD", "US$1.00", "USD 1.00", "1.00 美元"},
                 {"zh_CN", "1234.56", "USD", "US$1,234.56", "USD 1,234.56", "1,234.56 美元"},
-                {"zh_CN", "1", "CNY", "￥1.00", "CNY 1.00", "1.00 人民币"},
-                {"zh_CN", "1234.56", "CNY", "￥1,234.56", "CNY 1,234.56", "1,234.56 人民币"},
+                {"zh_CN", "1", "CNY", "¥1.00", "CNY 1.00", "1.00 人民币"},
+                {"zh_CN", "1234.56", "CNY", "¥1,234.56", "CNY 1,234.56", "1,234.56 人民币"},
                 {"ru_RU", "1", "RUB", "1,00 \u20BD", "1,00 RUB", "1,00 российского рубля"},
                 {"ru_RU", "2", "RUB", "2,00 \u20BD", "2,00 RUB", "2,00 российского рубля"},
                 {"ru_RU", "5", "RUB", "5,00 \u20BD", "5,00 RUB", "5,00 российского рубля"},
@@ -1704,9 +1703,7 @@ public class NumberFormatTest extends TestFmwk {
     @Test
     public void TestLocalizedPatternSymbolCoverage() {
         String[] standardPatterns = { "#,##0.05+%;#,##0.05-%", "* @@@E0‰" };
-        String[] standardPatterns58 = { "#,##0.05+%;#,##0.05-%", "* @@@E0‰;* -@@@E0‰" };
         String[] localizedPatterns = { "▰⁖▰▰໐⁘໐໕†⁜⁙▰⁖▰▰໐⁘໐໕‡⁜", "⁂ ⁕⁕⁕⁑⁑໐‱" };
-        String[] localizedPatterns58 = { "▰⁖▰▰໐⁘໐໕+⁜⁙▰⁖▰▰໐⁘໐໕‡⁜", "⁂ ⁕⁕⁕⁑⁑໐‱⁙⁂ ‡⁕⁕⁕⁑⁑໐‱" };
 
         DecimalFormatSymbols dfs = new DecimalFormatSymbols();
         dfs.setGroupingSeparator('⁖');
@@ -1724,9 +1721,7 @@ public class NumberFormatTest extends TestFmwk {
 
         for (int i=0; i<2; i++) {
             String standardPattern = standardPatterns[i];
-            String standardPattern58 = standardPatterns58[i];
             String localizedPattern = localizedPatterns[i];
-            String localizedPattern58 = localizedPatterns58[i];
 
             DecimalFormat df1 = new DecimalFormat("#", dfs);
             df1.applyPattern(standardPattern);
@@ -1738,22 +1733,6 @@ public class NumberFormatTest extends TestFmwk {
                     standardPattern, df2.toPattern());
             assertEquals("toLocalizedPattern should match on standardPattern instance",
                     localizedPattern, df1.toLocalizedPattern());
-
-            // Android can't access DecimalFormat_ICU58 for testing (ticket #13283).
-            if (TestUtil.getJavaVendor() == TestUtil.JavaVendor.Android) continue;
-
-            // Note: ICU 58 does not support plus signs in patterns
-            // Note: ICU 58 always prints the negative part of scientific notation patterns,
-            //       even when the negative part is not necessary
-            DecimalFormat_ICU58 df3 = new DecimalFormat_ICU58("#", dfs);
-            df3.applyPattern(standardPattern); // Reading standardPattern is OK
-            DecimalFormat_ICU58 df4 = new DecimalFormat_ICU58("#", dfs);
-            df4.applyLocalizedPattern(localizedPattern58);
-            // Note: DecimalFormat#equals() is broken on ICU 58
-            assertEquals("toPattern should match on ICU58 localizedPattern instance",
-                    standardPattern58, df4.toPattern());
-            assertEquals("toLocalizedPattern should match on ICU58 standardPattern instance",
-                    localizedPattern58, df3.toLocalizedPattern());
         }
     }
 
@@ -4419,6 +4398,18 @@ public class NumberFormatTest extends TestFmwk {
                 {"ja_JP",             "-1000.5",  "-￥1,000",          "-￥1,000",          "(￥1,000)",         "false"},
                 {"ja_JP@cf=account",  "-1000.5",  "(￥1,000)",         "-￥1,000",          "(￥1,000)",         "false"},
                 {"de_DE",             "-23456.7", "-23.456,70\u00A0€", "-23.456,70\u00A0€", "-23.456,70\u00A0€", "true" },
+                {"en_ID",             "1234.5",   "IDR 1,234.50",      "IDR 1,234.50",      "IDR 1,234.50",      "true"},
+                {"en_ID@cf=account",  "1234.5",   "IDR 1,234.50",      "IDR 1,234.50",      "IDR 1,234.50",      "true"},
+                {"en_ID@cf=standard", "1234.5",   "IDR 1,234.50",      "IDR 1,234.50",      "IDR 1,234.50",      "true"},
+                {"en_ID",             "-1234.5",  "-IDR 1,234.50",     "-IDR 1,234.50",     "(IDR 1,234.50)",    "true"},
+                {"en_ID@cf=account",  "-1234.5",  "(IDR 1,234.50)",    "-IDR 1,234.50",     "(IDR 1,234.50)",    "true"},
+                {"en_ID@cf=standard", "-1234.5",  "-IDR 1,234.50",     "-IDR 1,234.50",     "(IDR 1,234.50)",    "true"},
+                {"sh_ME",             "1234.5",   "1.234,50 €",        "1.234,50 €",        "1.234,50 €",        "true"},
+                {"sh_ME@cf=account",  "1234.5",   "1.234,50 €",        "1.234,50 €",        "1.234,50 €",        "true"},
+                {"sh_ME@cf=standard", "1234.5",   "1.234,50 €",        "1.234,50 €",        "1.234,50 €",        "true"},
+                {"sh_ME",             "-1234.5",  "-1.234,50 €",       "-1.234,50 €",       "(1.234,50 €)",      "true"},
+                {"sh_ME@cf=account",  "-1234.5",  "(1.234,50 €)",      "-1.234,50 €",       "(1.234,50 €)",      "true"},
+                {"sh_ME@cf=standard", "-1234.5",  "-1.234,50 €",       "-1.234,50 €",       "(1.234,50 €)",      "true"},
         };
         for (String[] data : tests) {
             ULocale loc = new ULocale(data[0]);
@@ -4437,6 +4428,33 @@ public class NumberFormatTest extends TestFmwk {
             NumberFormat fmtAccount = NumberFormat.getInstance(loc, NumberFormat.ACCOUNTINGCURRENCYSTYLE);
             expect(fmtAccount, num, fmtAccountExpected, rt);
         }
+    }
+
+    /**
+     * en_ID/sh_ME uses language only locales en/sh which requires NumberFormatServiceShim to fill in the currency, but
+     * prior to ICU-20631, currency was not filled in for accounting, cash and standard, so currency placeholder was
+     * used instead of the desired locale's currency.
+     */
+    @Test
+    public void TestCurrencyFormatForMissingLocale() {
+        ULocale loc = new ULocale("sh_ME");
+        Currency cur = Currency.getInstance(loc);
+        NumberFormat curFmt = NumberFormat.getInstance(loc, NumberFormat.CURRENCYSTYLE);
+        assertNotNull("NumberFormat is missing currency instance for CURRENCYSTYLE", curFmt.getCurrency());
+        assertEquals("Currency instance is not for the desired locale for CURRENCYSTYLE", cur, curFmt.getCurrency());
+        assertEquals("NumberFormat format outputs wrong value for CURRENCYSTYLE", "-1.234,50 €", curFmt.format(-1234.5d));
+        NumberFormat accFmt = NumberFormat.getInstance(loc, NumberFormat.ACCOUNTINGCURRENCYSTYLE);
+        assertNotNull("NumberFormat is missing currency instance for ACCOUNTINGCURRENCYSTYLE", accFmt.getCurrency());
+        assertEquals("Currency instance is not for the desired locale for ACCOUNTINGCURRENCYSTYLE", cur, accFmt.getCurrency());
+        assertEquals("NumberFormat format outputs wrong value for ACCOUNTINGCURRENCYSTYLE", "(1.234,50 €)", accFmt.format(-1234.5d));
+        NumberFormat cashFmt = NumberFormat.getInstance(loc, NumberFormat.CASHCURRENCYSTYLE);
+        assertNotNull("NumberFormat is missing currency instance for CASHCURRENCYSTYLE", cashFmt.getCurrency());
+        assertEquals("Currency instance is not for the desired locale for CASHCURRENCYSTYLE", cur, cashFmt.getCurrency());
+        assertEquals("NumberFormat format outputs wrong value for CASHCURRENCYSTYLE", "-1.234,50 €", cashFmt.format(-1234.5d));
+        NumberFormat stdFmt = NumberFormat.getInstance(loc, NumberFormat.STANDARDCURRENCYSTYLE);
+        assertNotNull("NumberFormat is missing currency instance for STANDARDCURRENCYSTYLE", stdFmt.getCurrency());
+        assertEquals("Currency instance is not for the desired locale for STANDARDCURRENCYSTYLE", cur, stdFmt.getCurrency());
+        assertEquals("NumberFormat format outputs wrong value for STANDARDCURRENCYSTYLE", "-1.234,50 €", stdFmt.format(-1234.5d));
     }
 
     @Test
