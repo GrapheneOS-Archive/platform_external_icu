@@ -11,7 +11,6 @@ package android.icu.number;
  * in {@link Notation}.
  *
  * @see NumberFormatter
- * @hide Only a subset of ICU is exposed in Android
  */
 public class SimpleNotation extends Notation {
     /* package-private */ SimpleNotation() {

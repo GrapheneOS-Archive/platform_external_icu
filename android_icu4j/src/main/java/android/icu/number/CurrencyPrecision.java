@@ -13,7 +13,6 @@ import android.icu.util.Currency;
  * To create a CurrencyPrecision, use one of the factory methods on Precision.
  *
  * @see NumberFormatter
- * @hide Only a subset of ICU is exposed in Android
  */
 public abstract class CurrencyPrecision extends Precision {
 

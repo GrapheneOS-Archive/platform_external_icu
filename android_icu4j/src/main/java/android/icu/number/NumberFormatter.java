@@ -62,7 +62,6 @@ import android.icu.util.ULocale;
  * design doc</a>.
  *
  * @author Shane Carr
- * @hide Only a subset of ICU is exposed in Android
  */
 public final class NumberFormatter {
 
@@ -84,7 +83,6 @@ public final class NumberFormatter {
      * This enum is similar to {@link android.icu.text.MeasureFormat.FormatWidth}.
      *
      * @see NumberFormatter
-     * @hide Only a subset of ICU is exposed in Android
      */
     public static enum UnitWidth {
         /**
@@ -174,7 +172,6 @@ public final class NumberFormatter {
      * grouping separator, use the "symbols" setter.
      *
      * @see NumberFormatter
-     * @hide Only a subset of ICU is exposed in Android
      */
     public static enum GroupingStrategy {
         /**
@@ -258,7 +255,6 @@ public final class NumberFormatter {
      * The exact format, including the position and the code point of the sign, differ by locale.
      *
      * @see NumberFormatter
-     * @hide Only a subset of ICU is exposed in Android
      */
     public static enum SignDisplay {
         /**
@@ -340,7 +336,6 @@ public final class NumberFormatter {
      * </ul>
      *
      * @see NumberFormatter
-     * @hide Only a subset of ICU is exposed in Android
      */
     public static enum DecimalSeparatorDisplay {
         /**
@@ -414,6 +409,7 @@ public final class NumberFormatter {
      *            The skeleton string off of which to base this NumberFormatter.
      * @return An {@link UnlocalizedNumberFormatter}, to be used for chaining.
      * @throws SkeletonSyntaxException If the given string is not a valid number formatting skeleton.
+     * @hide unsupported on Android
      */
     public static UnlocalizedNumberFormatter forSkeleton(String skeleton) {
         return NumberSkeletonImpl.getOrCreate(skeleton);

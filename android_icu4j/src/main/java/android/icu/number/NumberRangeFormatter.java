@@ -28,7 +28,6 @@ import android.icu.util.ULocale;
  *
  * @author sffc
  * @see NumberFormatter
- * @hide Only a subset of ICU is exposed in Android
  */
 public abstract class NumberRangeFormatter {
 
@@ -36,7 +35,6 @@ public abstract class NumberRangeFormatter {
      * Defines how to merge fields that are identical across the range sign.
      *
      * @see NumberRangeFormatter
-     * @hide Only a subset of ICU is exposed in Android
      */
     public enum RangeCollapse {
         /**
@@ -78,7 +76,6 @@ public abstract class NumberRangeFormatter {
      * when the identity fallback is used, compare the lower and upper BigDecimals via FormattedNumber.
      *
      * @see NumberRangeFormatter
-     * @hide Only a subset of ICU is exposed in Android
      */
     public static enum RangeIdentityFallback {
         /**
@@ -118,7 +115,6 @@ public abstract class NumberRangeFormatter {
      * were equal or not, and whether or not the identity fallback was applied.
      *
      * @see NumberRangeFormatter
-     * @hide Only a subset of ICU is exposed in Android
      */
     public static enum RangeIdentityResult {
         /**

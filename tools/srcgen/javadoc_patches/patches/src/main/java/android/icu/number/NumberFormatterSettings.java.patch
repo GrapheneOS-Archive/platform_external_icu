@@ -1,0 +1,12 @@
+--- android_icu4j/src/main/java/android/icu/number/NumberFormatterSettings.java	2019-12-20 13:19:52.721019722 +0000
++++ android_icu4j/src/main/java/android/icu/number/NumberFormatterSettings.java	2019-12-20 13:19:51.069006835 +0000
+@@ -129,9 +129,6 @@
+      * <p>
+      * See {@link #perUnit} for information on how to format strings like "5 meters per second".
+      *
+-     * <p>
+-     * The default is to render without units (equivalent to {@link NoUnit#BASE}).
+-     *
+      * @param unit
+      *            The unit to render.
+      * @return The fluent chain.
