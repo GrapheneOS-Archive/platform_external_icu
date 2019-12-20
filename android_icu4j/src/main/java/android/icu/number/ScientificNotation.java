@@ -26,7 +26,6 @@ import android.icu.text.NumberFormat;
  * To create a ScientificNotation, use one of the factory methods in {@link Notation}.
  *
  * @see NumberFormatter
- * @hide Only a subset of ICU is exposed in Android
  */
 public class ScientificNotation extends Notation implements Cloneable {
 

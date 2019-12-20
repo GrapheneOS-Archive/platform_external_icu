@@ -26,7 +26,6 @@ import android.icu.util.MeasureUnit;
  *
  * @see NumberFormatter
  * @see NumberFormatter
- * @hide Only a subset of ICU is exposed in Android
  */
 public class LocalizedNumberFormatter extends NumberFormatterSettings<LocalizedNumberFormatter> {
 

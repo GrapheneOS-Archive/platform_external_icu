@@ -20,7 +20,6 @@ import android.icu.util.Currency.CurrencyUsage;
  * To create a Precision, use one of the factory methods.
  *
  * @see NumberFormatter
- * @hide Only a subset of ICU is exposed in Android
  */
 public abstract class Precision implements Cloneable {
 

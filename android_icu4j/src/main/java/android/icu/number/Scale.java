@@ -17,7 +17,6 @@ import android.icu.impl.number.RoundingUtils;
  * To create a Multiplier, use one of the factory methods.
  *
  * @see NumberFormatter
- * @hide Only a subset of ICU is exposed in Android
  */
 public class Scale {
 
