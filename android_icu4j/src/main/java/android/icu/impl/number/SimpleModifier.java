@@ -5,6 +5,7 @@ package android.icu.impl.number;
 
 import java.text.Format.Field;
 
+import android.icu.impl.FormattedStringBuilder;
 import android.icu.impl.SimpleFormatterImpl;
 import android.icu.impl.number.range.PrefixInfixSuffixLengthHelper;
 import android.icu.util.ICUException;
@@ -67,7 +68,7 @@ public class SimpleModifier implements Modifier {
     }
 
     @Override
-    public int apply(NumberStringBuilder output, int leftIndex, int rightIndex) {
+    public int apply(FormattedStringBuilder output, int leftIndex, int rightIndex) {
         return formatAsPrefixSuffix(output, leftIndex, rightIndex);
     }
 
@@ -140,7 +141,7 @@ public class SimpleModifier implements Modifier {
      * @return The number of characters (UTF-16 code points) that were added to the StringBuilder.
      */
     public int formatAsPrefixSuffix(
-            NumberStringBuilder result,
+            FormattedStringBuilder result,
             int startIndex,
             int endIndex) {
         if (suffixOffset == -1) {
@@ -163,16 +164,16 @@ public class SimpleModifier implements Modifier {
 
     /**
      * TODO: Like above, this belongs with the rest of the SimpleFormatterImpl code.
-     * I put it here so that the SimpleFormatter uses in NumberStringBuilder are near each other.
+     * I put it here so that the SimpleFormatter uses in FormattedStringBuilder are near each other.
      *
      * <p>
-     * Applies the compiled two-argument pattern to the NumberStringBuilder.
+     * Applies the compiled two-argument pattern to the FormattedStringBuilder.
      *
      * <p>
      * This method is optimized for the case where the prefix and suffix are often empty, such as
      * in the range pattern like "{0}-{1}".
      */
-    public static void formatTwoArgPattern(String compiledPattern, NumberStringBuilder result, int index, PrefixInfixSuffixLengthHelper h,
+    public static void formatTwoArgPattern(String compiledPattern, FormattedStringBuilder result, int index, PrefixInfixSuffixLengthHelper h,
             Field field) {
         int argLimit = SimpleFormatterImpl.getArgumentLimit(compiledPattern);
         if (argLimit != 2) {

@@ -14,7 +14,6 @@ import android.icu.impl.number.RoundingUtils;
  *
  * @see NumberFormatter
  * @hide Only a subset of ICU is exposed in Android
- * @hide draft / provisional / internal are hidden on Android
  */
 public abstract class FractionPrecision extends Precision {
 
@@ -37,7 +36,6 @@ public abstract class FractionPrecision extends Precision {
      *            The number of significant figures to guarantee.
      * @return A Precision for chaining or passing to the NumberFormatter rounding() setter.
      * @see NumberFormatter
-     * @hide draft / provisional / internal are hidden on Android
      */
     public Precision withMinDigits(int minSignificantDigits) {
         if (minSignificantDigits >= 1 && minSignificantDigits <= RoundingUtils.MAX_INT_FRAC_SIG) {
@@ -65,7 +63,6 @@ public abstract class FractionPrecision extends Precision {
      *            Round the number to no more than this number of significant figures.
      * @return A Precision for chaining or passing to the NumberFormatter rounding() setter.
      * @see NumberFormatter
-     * @hide draft / provisional / internal are hidden on Android
      */
     public Precision withMaxDigits(int maxSignificantDigits) {
         if (maxSignificantDigits >= 1 && maxSignificantDigits <= RoundingUtils.MAX_INT_FRAC_SIG) {

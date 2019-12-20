@@ -19,6 +19,8 @@
 #include <unicode/ucnvsel.h>
 #include <unicode/ucol.h>
 #include <unicode/ucoleitr.h>
+#include <unicode/ucpmap.h>
+#include <unicode/ucptrie.h>
 #include <unicode/ucsdet.h>
 #include <unicode/ucurr.h>
 #include <unicode/udat.h>
@@ -36,6 +38,7 @@
 #include <unicode/uloc.h>
 #include <unicode/ulocdata.h>
 #include <unicode/umsg.h>
+#include <unicode/umutablecptrie.h>
 #include <unicode/unorm2.h>
 #include <unicode/unum.h>
 #include <unicode/unumberformatter.h>
@@ -168,6 +171,9 @@ int32_t u_formatMessageWithError_android(const char * locale, const UChar * patt
 UChar32 u_getBidiPairedBracket_android(UChar32 c) {
   return u_getBidiPairedBracket(c);
 }
+const USet * u_getBinaryPropertySet_android(UProperty property, UErrorCode * pErrorCode) {
+  return u_getBinaryPropertySet(property, pErrorCode);
+}
 uint8_t u_getCombiningClass_android(UChar32 c) {
   return u_getCombiningClass(c);
 }
@@ -179,6 +185,9 @@ void u_getDataVersion_android(UVersionInfo dataVersionFillin, UErrorCode * statu
 }
 int32_t u_getFC_NFKC_Closure_android(UChar32 c, UChar * dest, int32_t destCapacity, UErrorCode * pErrorCode) {
   return u_getFC_NFKC_Closure(c, dest, destCapacity, pErrorCode);
+}
+const UCPMap * u_getIntPropertyMap_android(UProperty property, UErrorCode * pErrorCode) {
+  return u_getIntPropertyMap(property, pErrorCode);
 }
 int32_t u_getIntPropertyMaxValue_android(UProperty which) {
   return u_getIntPropertyMaxValue(which);
@@ -1274,6 +1283,33 @@ UCollationResult ucol_strcollUTF8_android(const UCollator * coll, const char * s
 int32_t ucol_tertiaryOrder_android(int32_t order) {
   return ucol_tertiaryOrder(order);
 }
+uint32_t ucpmap_get_android(const UCPMap * map, UChar32 c) {
+  return ucpmap_get(map, c);
+}
+UChar32 ucpmap_getRange_android(const UCPMap * map, UChar32 start, UCPMapRangeOption option, uint32_t surrogateValue, UCPMapValueFilter * filter, const void * context, uint32_t * pValue) {
+  return ucpmap_getRange(map, start, option, surrogateValue, filter, context, pValue);
+}
+void ucptrie_close_android(UCPTrie * trie) {
+  ucptrie_close(trie);
+}
+uint32_t ucptrie_get_android(const UCPTrie * trie, UChar32 c) {
+  return ucptrie_get(trie, c);
+}
+UChar32 ucptrie_getRange_android(const UCPTrie * trie, UChar32 start, UCPMapRangeOption option, uint32_t surrogateValue, UCPMapValueFilter * filter, const void * context, uint32_t * pValue) {
+  return ucptrie_getRange(trie, start, option, surrogateValue, filter, context, pValue);
+}
+UCPTrieType ucptrie_getType_android(const UCPTrie * trie) {
+  return ucptrie_getType(trie);
+}
+UCPTrieValueWidth ucptrie_getValueWidth_android(const UCPTrie * trie) {
+  return ucptrie_getValueWidth(trie);
+}
+UCPTrie * ucptrie_openFromBinary_android(UCPTrieType type, UCPTrieValueWidth valueWidth, const void * data, int32_t length, int32_t * pActualLength, UErrorCode * pErrorCode) {
+  return ucptrie_openFromBinary(type, valueWidth, data, length, pActualLength, pErrorCode);
+}
+int32_t ucptrie_toBinary_android(const UCPTrie * trie, void * data, int32_t capacity, UErrorCode * pErrorCode) {
+  return ucptrie_toBinary(trie, data, capacity, pErrorCode);
+}
 void ucsdet_close_android(UCharsetDetector * ucsd) {
   ucsdet_close(ucsd);
 }
@@ -1938,6 +1974,36 @@ int32_t umsg_vformat_android(const UMessageFormat * fmt, UChar * result, int32_t
 }
 void umsg_vparse_android(const UMessageFormat * fmt, const UChar * source, int32_t sourceLength, int32_t * count, va_list ap, UErrorCode * status) {
   umsg_vparse(fmt, source, sourceLength, count, ap, status);
+}
+UCPTrie * umutablecptrie_buildImmutable_android(UMutableCPTrie * trie, UCPTrieType type, UCPTrieValueWidth valueWidth, UErrorCode * pErrorCode) {
+  return umutablecptrie_buildImmutable(trie, type, valueWidth, pErrorCode);
+}
+UMutableCPTrie * umutablecptrie_clone_android(const UMutableCPTrie * other, UErrorCode * pErrorCode) {
+  return umutablecptrie_clone(other, pErrorCode);
+}
+void umutablecptrie_close_android(UMutableCPTrie * trie) {
+  umutablecptrie_close(trie);
+}
+UMutableCPTrie * umutablecptrie_fromUCPMap_android(const UCPMap * map, UErrorCode * pErrorCode) {
+  return umutablecptrie_fromUCPMap(map, pErrorCode);
+}
+UMutableCPTrie * umutablecptrie_fromUCPTrie_android(const UCPTrie * trie, UErrorCode * pErrorCode) {
+  return umutablecptrie_fromUCPTrie(trie, pErrorCode);
+}
+uint32_t umutablecptrie_get_android(const UMutableCPTrie * trie, UChar32 c) {
+  return umutablecptrie_get(trie, c);
+}
+UChar32 umutablecptrie_getRange_android(const UMutableCPTrie * trie, UChar32 start, UCPMapRangeOption option, uint32_t surrogateValue, UCPMapValueFilter * filter, const void * context, uint32_t * pValue) {
+  return umutablecptrie_getRange(trie, start, option, surrogateValue, filter, context, pValue);
+}
+UMutableCPTrie * umutablecptrie_open_android(uint32_t initialValue, uint32_t errorValue, UErrorCode * pErrorCode) {
+  return umutablecptrie_open(initialValue, errorValue, pErrorCode);
+}
+void umutablecptrie_set_android(UMutableCPTrie * trie, UChar32 c, uint32_t value, UErrorCode * pErrorCode) {
+  umutablecptrie_set(trie, c, value, pErrorCode);
+}
+void umutablecptrie_setRange_android(UMutableCPTrie * trie, UChar32 start, UChar32 end, uint32_t value, UErrorCode * pErrorCode) {
+  umutablecptrie_setRange(trie, start, end, value, pErrorCode);
 }
 int32_t unorm2_append_android(const UNormalizer2 * norm2, UChar * first, int32_t firstLength, int32_t firstCapacity, const UChar * second, int32_t secondLength, UErrorCode * pErrorCode) {
   return unorm2_append(norm2, first, firstLength, firstCapacity, second, secondLength, pErrorCode);

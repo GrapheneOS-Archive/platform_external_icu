@@ -1,5 +1,5 @@
---- android_icu4j/src/main/java/android/icu/text/MessageFormat.java	2019-09-13 12:40:41.245485519 +0100
-+++ android_icu4j/src/main/java/android/icu/text/MessageFormat.java	2019-09-13 12:41:03.409567278 +0100
+--- android_icu4j/src/main/java/android/icu/text/MessageFormat.java	2019-12-18 23:17:58.070206945 +0000
++++ android_icu4j/src/main/java/android/icu/text/MessageFormat.java	2019-12-18 23:18:19.478279221 +0000
 @@ -124,7 +124,7 @@
   * argNumber = '0' | ('1'..'9' ('0'..'9')*)
   *
@@ -9,16 +9,27 @@
   * </pre></blockquote>
   *
   * <ul>
-@@ -181,9 +181,6 @@
+@@ -165,7 +165,7 @@
+  *       <td colspan=2><i>(none)</i>
+  *       <td><code>null</code>
+  *    <tr>
+- *       <td rowspan=6><code>number</code>
++ *       <td rowspan=5><code>number</code>
+  *       <td><i>(none)</i>
+  *       <td><code>NumberFormat.getInstance(getLocale())</code>
+  *    <tr>
+@@ -181,10 +181,7 @@
   *       <td><i>argStyleText</i>
   *       <td><code>new DecimalFormat(argStyleText, new DecimalFormatSymbols(getLocale()))</code>
   *    <tr>
 - *       <td><i>argSkeletonText</i>
 - *       <td><code>NumberFormatter.forSkeleton(argSkeletonText).locale(getLocale()).toFormat()</code>
 - *    <tr>
-  *       <td rowspan=6><code>date</code>
+- *       <td rowspan=7><code>date</code>
++ *       <td rowspan=6><code>date</code>
   *       <td><i>(none)</i>
   *       <td><code>DateFormat.getDateInstance(DateFormat.DEFAULT, getLocale())</code>
+  *    <tr>
 @@ -203,9 +200,6 @@
   *       <td><i>argStyleText</i>
   *       <td><code>new SimpleDateFormat(argStyleText, getLocale())</code>

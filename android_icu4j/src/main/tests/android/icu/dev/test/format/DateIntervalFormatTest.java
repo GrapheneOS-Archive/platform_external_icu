@@ -31,6 +31,7 @@ import org.junit.runners.JUnit4;
 
 import android.icu.dev.test.TestFmwk;
 import android.icu.impl.Utility;
+import android.icu.text.ConstrainedFieldPosition;
 import android.icu.text.DateFormat;
 import android.icu.text.DateIntervalFormat;
 import android.icu.text.DateIntervalFormat.FormattedDateInterval;
@@ -39,7 +40,6 @@ import android.icu.text.DateIntervalInfo.PatternInfo;
 import android.icu.text.SimpleDateFormat;
 import android.icu.util.Calendar;
 import android.icu.util.DateInterval;
-import android.icu.util.JapaneseCalendar;
 import android.icu.util.Output;
 import android.icu.util.TimeZone;
 import android.icu.util.ULocale;
@@ -1961,6 +1961,30 @@ public class DateIntervalFormatTest extends TestFmwk {
                 result,
                 expectedString,
                 expectedFieldPositions);
+        }
+
+        // Test sample code
+        {
+            Calendar input1 = Calendar.getInstance(ULocale.UK);
+            Calendar input2 = Calendar.getInstance(ULocale.UK);
+            input1.set(2018, 6, 20);
+            input2.set(2018, 7, 3);
+
+            // Let fmt be a DateIntervalFormat for locale en-US and skeleton dMMMMy
+            // Let input1 be July 20, 2018 and input2 be August 3, 2018:
+            FormattedDateInterval result = fmt.formatToValue(input1, input2);
+            assertEquals("Expected output from format",
+                "July 20 \u2013 August 3, 2018", result.toString());
+            ConstrainedFieldPosition cfpos = new ConstrainedFieldPosition();
+            cfpos.constrainFieldAndValue(DateIntervalFormat.SpanField.DATE_INTERVAL_SPAN, 0);
+            if (result.nextPosition(cfpos)) {
+                assertEquals("Expect start index", 0, cfpos.getStart());
+                assertEquals("Expect end index", 7, cfpos.getLimit());
+            } else {
+                // No such span: can happen if input dates are equal.
+            }
+            assertFalse("No more than one occurrence of the field",
+                result.nextPosition(cfpos));
         }
 
         fmt = DateIntervalFormat.getInstance("dMMMha", ULocale.US);

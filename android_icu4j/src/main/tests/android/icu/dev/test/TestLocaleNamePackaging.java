@@ -141,14 +141,13 @@ public class TestLocaleNamePackaging extends TestFmwk {
             "es",
             "de",
             "",
-
         };
         String[] expectedWithoutLanguageData = {
             "",
             "en",
             "es",
             "de",
-            ""
+            "",
         };
         String[] expected = LocaleDisplayNamesImpl.haveData(LANG) ?
             expectedWithLanguageData : expectedWithoutLanguageData;

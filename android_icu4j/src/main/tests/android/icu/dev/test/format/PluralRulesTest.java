@@ -529,11 +529,29 @@ public class PluralRulesTest extends TestFmwk {
         }
     }
 
+    private void compareLocaleResults(String loc1, String loc2, String loc3) {
+        PluralRules rules1 = PluralRules.forLocale(new ULocale(loc1));
+        PluralRules rules2 = PluralRules.forLocale(new ULocale(loc2));
+        PluralRules rules3 = PluralRules.forLocale(new ULocale(loc3));
+        for (int value = 0; value <= 12; value++) {
+            String result1 = rules1.select(value);
+            String result2 = rules2.select(value);
+            String result3 = rules3.select(value);
+            if (!result1.equals(result2) || !result1.equals(result3)) {
+                errln("PluralRules.select(" + value + ") does not return the same values for "
+                        + loc1 + ", " + loc2 + ", " + loc3);
+            }
+        }
+    }
+
     @Test
     public void testLocaleExtension() {
         PluralRules rules = PluralRules.forLocale(new ULocale("pt@calendar=gregorian"));
         String key = rules.select(1);
         assertEquals("pt@calendar=gregorian select(1)", "one", key);
+        compareLocaleResults("ar", "ar_SA", "ar_SA@calendar=gregorian");
+        compareLocaleResults("ru", "ru_UA", "ru-u-cu-RUB");
+        compareLocaleResults("fr", "fr_CH", "fr@ms=uksystem");
     }
 
     @Test
@@ -1040,7 +1058,7 @@ public class PluralRulesTest extends TestFmwk {
             "ast,ca,de,en,et,fi,fy,gl,it,ji,nl,sv,sw,ur,yi; one: @integer 1; other: @integer 0, 2~16, 100, 1000, 10000, 100000, 1000000, …",
             "pt; one: @integer 1; other: @integer 0, 2~16, 100, 1000, 10000, 100000, 1000000, …",
             "si; one: @integer 0, 1; other: @integer 2~17, 100, 1000, 10000, 100000, 1000000, …",
-            "ak,bh,guw,ln,mg,nso,pa,ti,wa; one: @integer 0, 1; other: @integer 2~17, 100, 1000, 10000, 100000, 1000000, …",
+            "ak,bho,guw,ln,mg,nso,pa,ti,wa; one: @integer 0, 1; other: @integer 2~17, 100, 1000, 10000, 100000, 1000000, …",
             "tzm; one: @integer 0, 1, 11~24; other: @integer 2~10, 100~106, 1000, 10000, 100000, 1000000, …",
             "af,asa,az,bem,bez,bg,brx,cgg,chr,ckb,dv,ee,el,eo,es,eu,fo,fur,gsw,ha,haw,hu,jgo,jmc,ka,kaj,kcg,kk,kkj,kl,ks,ksb,ku,ky,lb,lg,mas,mgo,ml,mn,nah,nb,nd,ne,nn,nnh,no,nr,ny,nyn,om,or,os,pap,ps,rm,rof,rwk,saq,seh,sn,so,sq,ss,ssy,st,syr,ta,te,teo,tig,tk,tn,tr,ts,ug,uz,ve,vo,vun,wae,xh,xog; one: @integer 1; other: @integer 0, 2~16, 100, 1000, 10000, 100000, 1000000, …",
             "pt_PT; one: @integer 1; other: @integer 0, 2~16, 100, 1000, 10000, 100000, 1000000, …",
@@ -1188,5 +1206,16 @@ public class PluralRulesTest extends TestFmwk {
         PluralRules rulesU1 = PluralRules.forLocale(ULocale.FRANCE, PluralType.ORDINAL);
         PluralRules rulesJ1 = PluralRules.forLocale(Locale.FRANCE, PluralType.ORDINAL);
         assertEquals("forLocale() with type", rulesU1, rulesJ1);
+    }
+
+    @Test
+    public void testBug20264() {
+        String expected = "1.23400";
+        FixedDecimal fd = new FixedDecimal(1.234, 5, 2);
+        assertEquals("FixedDecimal toString", expected, fd.toString());
+        Locale.setDefault(Locale.FRENCH);
+        assertEquals("FixedDecimal toString", expected, fd.toString());
+        Locale.setDefault(Locale.GERMAN);
+        assertEquals("FixedDecimal toString", expected, fd.toString());
     }
 }

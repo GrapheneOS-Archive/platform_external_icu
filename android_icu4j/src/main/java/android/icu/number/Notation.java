@@ -11,7 +11,6 @@ import android.icu.text.CompactDecimalFormat.CompactStyle;
  *
  * @see NumberFormatter
  * @hide Only a subset of ICU is exposed in Android
- * @hide draft / provisional / internal are hidden on Android
  */
 public class Notation {
 
@@ -55,7 +54,6 @@ public class Notation {
      *
      * @return A ScientificNotation for chaining or passing to the NumberFormatter notation() setter.
      * @see NumberFormatter
-     * @hide draft / provisional / internal are hidden on Android
      */
     public static ScientificNotation scientific() {
         return SCIENTIFIC;
@@ -82,7 +80,6 @@ public class Notation {
      *
      * @return A ScientificNotation for chaining or passing to the NumberFormatter notation() setter.
      * @see NumberFormatter
-     * @hide draft / provisional / internal are hidden on Android
      */
     public static ScientificNotation engineering() {
         return ENGINEERING;
@@ -128,7 +125,6 @@ public class Notation {
      *
      * @return A CompactNotation for passing to the NumberFormatter notation() setter.
      * @see NumberFormatter
-     * @hide draft / provisional / internal are hidden on Android
      */
     public static CompactNotation compactShort() {
         return COMPACT_SHORT;
@@ -155,7 +151,6 @@ public class Notation {
      *
      * @return A CompactNotation for passing to the NumberFormatter notation() setter.
      * @see NumberFormatter
-     * @hide draft / provisional / internal are hidden on Android
      */
     public static CompactNotation compactLong() {
         return COMPACT_LONG;
@@ -185,7 +180,6 @@ public class Notation {
      *
      * @return A SimpleNotation for passing to the NumberFormatter notation() setter.
      * @see NumberFormatter
-     * @hide draft / provisional / internal are hidden on Android
      */
     public static SimpleNotation simple() {
         return SIMPLE;

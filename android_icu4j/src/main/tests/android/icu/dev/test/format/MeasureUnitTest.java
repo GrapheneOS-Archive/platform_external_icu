@@ -31,6 +31,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
@@ -86,7 +87,7 @@ public class MeasureUnitTest extends TestFmwk {
         }
     }
 
-    private static final String[] DRAFT_VERSIONS = {"62", "63", "64"};
+    private static final String[] DRAFT_VERSIONS = {"64", "65"};
 
     private static final HashSet<String> DRAFT_VERSION_SET = new HashSet<>();
 
@@ -254,6 +255,17 @@ public class MeasureUnitTest extends TestFmwk {
         {"POUND_FOOT", "64"},
         {"BARREL", "64"},
         {"FLUID_OUNCE_IMPERIAL", "64"},
+        {"DECADE", "65"},
+        {"THERM_US", "65"},
+        {"DOT_PER_CENTIMETER", "65"},
+        {"DOT_PER_INCH", "65"},
+        {"EM", "65"},
+        {"MEGAPIXEL", "65"},
+        {"PIXEL", "65"},
+        {"PIXEL_PER_CENTIMETER", "65"},
+        {"PIXEL_PER_INCH", "65"},
+        {"BAR", "65"},
+        {"PASCAL", "65"},
     };
 
     private static final HashMap<String, String> JAVA_VERSION_MAP = new HashMap<>();
@@ -279,12 +291,12 @@ public class MeasureUnitTest extends TestFmwk {
         // various generateXXX calls go here, see
         // http://site.icu-project.org/design/formatting/measureformat/updating-measure-unit
         // use this test to run each of the ollowing in succession
-        //generateConstants("64"); // for MeasureUnit.java, update generated MeasureUnit constants
-        //generateBackwardCompatibilityTest("64"); // for MeasureUnitTest.java, create TestCompatible63
-        //generateCXXHConstants("64"); // for measunit.h, update generated createXXX methods
+        //generateConstants("65"); // for MeasureUnit.java, update generated MeasureUnit constants
+        //generateBackwardCompatibilityTest("65"); // for MeasureUnitTest.java, create TestCompatible65
+        //generateCXXHConstants("65"); // for measunit.h, update generated createXXX methods
         //generateCXXConstants(); // for measunit.cpp, update generated code
-        //generateCXXBackwardCompatibilityTest("64"); // for measfmttest.cpp, create TestCompatible63
-        //updateJAVAVersions("64"); // for MeasureUnitTest.java, JAVA_VERSIONS
+        //generateCXXBackwardCompatibilityTest("65"); // for measfmttest.cpp, create TestCompatible65
+        //updateJAVAVersions("65"); // for MeasureUnitTest.java, JAVA_VERSIONS
     }
 
     @Test
@@ -1479,6 +1491,185 @@ public class MeasureUnitTest extends TestFmwk {
     }
 
     @Test
+    public void TestCompatible65() {
+        MeasureUnit[] units = {
+                MeasureUnit.G_FORCE,
+                MeasureUnit.METER_PER_SECOND_SQUARED,
+                MeasureUnit.ARC_MINUTE,
+                MeasureUnit.ARC_SECOND,
+                MeasureUnit.DEGREE,
+                MeasureUnit.RADIAN,
+                MeasureUnit.REVOLUTION_ANGLE,
+                MeasureUnit.ACRE,
+                MeasureUnit.DUNAM,
+                MeasureUnit.HECTARE,
+                MeasureUnit.SQUARE_CENTIMETER,
+                MeasureUnit.SQUARE_FOOT,
+                MeasureUnit.SQUARE_INCH,
+                MeasureUnit.SQUARE_KILOMETER,
+                MeasureUnit.SQUARE_METER,
+                MeasureUnit.SQUARE_MILE,
+                MeasureUnit.SQUARE_YARD,
+                MeasureUnit.KARAT,
+                MeasureUnit.MILLIGRAM_PER_DECILITER,
+                MeasureUnit.MILLIMOLE_PER_LITER,
+                MeasureUnit.MOLE,
+                MeasureUnit.PART_PER_MILLION,
+                MeasureUnit.PERCENT,
+                MeasureUnit.PERMILLE,
+                MeasureUnit.PERMYRIAD,
+                MeasureUnit.LITER_PER_100KILOMETERS,
+                MeasureUnit.LITER_PER_KILOMETER,
+                MeasureUnit.MILE_PER_GALLON,
+                MeasureUnit.MILE_PER_GALLON_IMPERIAL,
+                MeasureUnit.BIT,
+                MeasureUnit.BYTE,
+                MeasureUnit.GIGABIT,
+                MeasureUnit.GIGABYTE,
+                MeasureUnit.KILOBIT,
+                MeasureUnit.KILOBYTE,
+                MeasureUnit.MEGABIT,
+                MeasureUnit.MEGABYTE,
+                MeasureUnit.PETABYTE,
+                MeasureUnit.TERABIT,
+                MeasureUnit.TERABYTE,
+                MeasureUnit.CENTURY,
+                MeasureUnit.DAY,
+                MeasureUnit.DAY_PERSON,
+                MeasureUnit.DECADE,
+                MeasureUnit.HOUR,
+                MeasureUnit.MICROSECOND,
+                MeasureUnit.MILLISECOND,
+                MeasureUnit.MINUTE,
+                MeasureUnit.MONTH,
+                MeasureUnit.MONTH_PERSON,
+                MeasureUnit.NANOSECOND,
+                MeasureUnit.SECOND,
+                MeasureUnit.WEEK,
+                MeasureUnit.WEEK_PERSON,
+                MeasureUnit.YEAR,
+                MeasureUnit.YEAR_PERSON,
+                MeasureUnit.AMPERE,
+                MeasureUnit.MILLIAMPERE,
+                MeasureUnit.OHM,
+                MeasureUnit.VOLT,
+                MeasureUnit.BRITISH_THERMAL_UNIT,
+                MeasureUnit.CALORIE,
+                MeasureUnit.ELECTRONVOLT,
+                MeasureUnit.FOODCALORIE,
+                MeasureUnit.JOULE,
+                MeasureUnit.KILOCALORIE,
+                MeasureUnit.KILOJOULE,
+                MeasureUnit.KILOWATT_HOUR,
+                MeasureUnit.THERM_US,
+                MeasureUnit.NEWTON,
+                MeasureUnit.POUND_FORCE,
+                MeasureUnit.GIGAHERTZ,
+                MeasureUnit.HERTZ,
+                MeasureUnit.KILOHERTZ,
+                MeasureUnit.MEGAHERTZ,
+                MeasureUnit.DOT_PER_CENTIMETER,
+                MeasureUnit.DOT_PER_INCH,
+                MeasureUnit.EM,
+                MeasureUnit.MEGAPIXEL,
+                MeasureUnit.PIXEL,
+                MeasureUnit.PIXEL_PER_CENTIMETER,
+                MeasureUnit.PIXEL_PER_INCH,
+                MeasureUnit.ASTRONOMICAL_UNIT,
+                MeasureUnit.CENTIMETER,
+                MeasureUnit.DECIMETER,
+                MeasureUnit.FATHOM,
+                MeasureUnit.FOOT,
+                MeasureUnit.FURLONG,
+                MeasureUnit.INCH,
+                MeasureUnit.KILOMETER,
+                MeasureUnit.LIGHT_YEAR,
+                MeasureUnit.METER,
+                MeasureUnit.MICROMETER,
+                MeasureUnit.MILE,
+                MeasureUnit.MILE_SCANDINAVIAN,
+                MeasureUnit.MILLIMETER,
+                MeasureUnit.NANOMETER,
+                MeasureUnit.NAUTICAL_MILE,
+                MeasureUnit.PARSEC,
+                MeasureUnit.PICOMETER,
+                MeasureUnit.POINT,
+                MeasureUnit.SOLAR_RADIUS,
+                MeasureUnit.YARD,
+                MeasureUnit.LUX,
+                MeasureUnit.SOLAR_LUMINOSITY,
+                MeasureUnit.CARAT,
+                MeasureUnit.DALTON,
+                MeasureUnit.EARTH_MASS,
+                MeasureUnit.GRAM,
+                MeasureUnit.KILOGRAM,
+                MeasureUnit.METRIC_TON,
+                MeasureUnit.MICROGRAM,
+                MeasureUnit.MILLIGRAM,
+                MeasureUnit.OUNCE,
+                MeasureUnit.OUNCE_TROY,
+                MeasureUnit.POUND,
+                MeasureUnit.SOLAR_MASS,
+                MeasureUnit.STONE,
+                MeasureUnit.TON,
+                MeasureUnit.GIGAWATT,
+                MeasureUnit.HORSEPOWER,
+                MeasureUnit.KILOWATT,
+                MeasureUnit.MEGAWATT,
+                MeasureUnit.MILLIWATT,
+                MeasureUnit.WATT,
+                MeasureUnit.ATMOSPHERE,
+                MeasureUnit.BAR,
+                MeasureUnit.HECTOPASCAL,
+                MeasureUnit.INCH_HG,
+                MeasureUnit.KILOPASCAL,
+                MeasureUnit.MEGAPASCAL,
+                MeasureUnit.MILLIBAR,
+                MeasureUnit.MILLIMETER_OF_MERCURY,
+                MeasureUnit.PASCAL,
+                MeasureUnit.POUND_PER_SQUARE_INCH,
+                MeasureUnit.KILOMETER_PER_HOUR,
+                MeasureUnit.KNOT,
+                MeasureUnit.METER_PER_SECOND,
+                MeasureUnit.MILE_PER_HOUR,
+                MeasureUnit.CELSIUS,
+                MeasureUnit.FAHRENHEIT,
+                MeasureUnit.GENERIC_TEMPERATURE,
+                MeasureUnit.KELVIN,
+                MeasureUnit.NEWTON_METER,
+                MeasureUnit.POUND_FOOT,
+                MeasureUnit.ACRE_FOOT,
+                MeasureUnit.BARREL,
+                MeasureUnit.BUSHEL,
+                MeasureUnit.CENTILITER,
+                MeasureUnit.CUBIC_CENTIMETER,
+                MeasureUnit.CUBIC_FOOT,
+                MeasureUnit.CUBIC_INCH,
+                MeasureUnit.CUBIC_KILOMETER,
+                MeasureUnit.CUBIC_METER,
+                MeasureUnit.CUBIC_MILE,
+                MeasureUnit.CUBIC_YARD,
+                MeasureUnit.CUP,
+                MeasureUnit.CUP_METRIC,
+                MeasureUnit.DECILITER,
+                MeasureUnit.FLUID_OUNCE,
+                MeasureUnit.FLUID_OUNCE_IMPERIAL,
+                MeasureUnit.GALLON,
+                MeasureUnit.GALLON_IMPERIAL,
+                MeasureUnit.HECTOLITER,
+                MeasureUnit.LITER,
+                MeasureUnit.MEGALITER,
+                MeasureUnit.MILLILITER,
+                MeasureUnit.PINT,
+                MeasureUnit.PINT_METRIC,
+                MeasureUnit.QUART,
+                MeasureUnit.TABLESPOON,
+                MeasureUnit.TEASPOON,
+        };
+        assertEquals("",  172, units.length);
+    }
+
+    @Test
     public void TestExamplesInDocs() {
         MeasureFormat fmtFr = MeasureFormat.getInstance(
                 ULocale.FRENCH, FormatWidth.SHORT);
@@ -1626,6 +1817,30 @@ public class MeasureUnitTest extends TestFmwk {
                 {_0h_0m_17s, "0:00:17"},
                 {_6h_56_92m, "6:56,92"},
                 {_3h_5h, "3 Std., 5 Std."}};
+        Object[][] numericDataBn = {
+                {_1m_59_9996s, "১:৫৯.৯৯৯৬"},
+                {_19m, "১৯ মিঃ"},
+                {_1h_23_5s, "১:০০:২৩.৫"},
+                {_1h_0m_23s, "১:০০:২৩"},
+                {_1h_23_5m, "১:২৩.৫"},
+                {_5h_17m, "৫:১৭"},
+                {_19m_28s, "১৯:২৮"},
+                {_2y_5M_3w_4d, "২ বছর, ৫ মাস, ৩ সপ্তাহ, ৪ দিন"},
+                {_0h_0m_17s, "০:০০:১৭"},
+                {_6h_56_92m, "৬:৫৬.৯২"},
+                {_3h_5h, "৩ ঘঃ, ৫ ঘঃ"}};
+        Object[][] numericDataBnLatn = {
+                {_1m_59_9996s, "1:59.9996"},
+                {_19m, "19 মিঃ"},
+                {_1h_23_5s, "1:00:23.5"},
+                {_1h_0m_23s, "1:00:23"},
+                {_1h_23_5m, "1:23.5"},
+                {_5h_17m, "5:17"},
+                {_19m_28s, "19:28"},
+                {_2y_5M_3w_4d, "2 বছর, 5 মাস, 3 সপ্তাহ, 4 দিন"},
+                {_0h_0m_17s, "0:00:17"},
+                {_6h_56_92m, "6:56.92"},
+                {_3h_5h, "3 ঘঃ, 5 ঘঃ"}};
 
         NumberFormat nf = NumberFormat.getNumberInstance(ULocale.ENGLISH);
         nf.setMaximumFractionDigits(4);
@@ -1653,6 +1868,17 @@ public class MeasureUnitTest extends TestFmwk {
         mf = MeasureFormat.getInstance(Locale.GERMAN, FormatWidth.NUMERIC, nf);
         verifyFormatPeriod("de NUMERIC(Java Locale)", mf, numericDataDe);
 
+        ULocale bengali = ULocale.forLanguageTag("bn");
+        nf = NumberFormat.getNumberInstance(bengali);
+        nf.setMaximumFractionDigits(4);
+        mf = MeasureFormat.getInstance(bengali, FormatWidth.NUMERIC, nf);
+        verifyFormatPeriod("bn NUMERIC(Java Locale)", mf, numericDataBn);
+
+        bengali = ULocale.forLanguageTag("bn-u-nu-latn");
+        nf = NumberFormat.getNumberInstance(bengali);
+        nf.setMaximumFractionDigits(4);
+        mf = MeasureFormat.getInstance(bengali, FormatWidth.NUMERIC, nf);
+        verifyFormatPeriod("bn NUMERIC(Java Locale)", mf, numericDataBnLatn);
     }
 
     private void verifyFormatPeriod(String desc, MeasureFormat mf, Object[][] testData) {
@@ -1871,13 +2097,13 @@ public class MeasureUnitTest extends TestFmwk {
         ULocale ulocDutch        = new ULocale("nl");
         ULocale ulocSwedish      = new ULocale("sv");
         Object[][] data = new Object[][] {
-            { ulocDanish,       FormatWidth.NARROW,  "5 t og 37 min" },
+            { ulocDanish,       FormatWidth.NARROW,  "5 t og 37 m" },
             { ulocDanish,       FormatWidth.NUMERIC, "5.37" },
             { ULocale.GERMAN,   FormatWidth.NARROW,  "5 Std., 37 Min." },
             { ULocale.GERMAN,   FormatWidth.NUMERIC, "5:37" },
             { ULocale.ENGLISH,  FormatWidth.NARROW,  "5h 37m" },
             { ULocale.ENGLISH,  FormatWidth.NUMERIC, "5:37" },
-            { ulocSpanish,      FormatWidth.NARROW,  "5h 37min" },
+            { ulocSpanish,      FormatWidth.NARROW,  "5 h 37 min" },
             { ulocSpanish,      FormatWidth.NUMERIC, "5:37" },
             { ulocFinnish,      FormatWidth.NARROW,  "5t 37min" },
             { ulocFinnish,      FormatWidth.NUMERIC, "5.37" },
@@ -2981,5 +3207,66 @@ public class MeasureUnitTest extends TestFmwk {
             }
             return false;
         }
+    }
+
+    @Test
+    public void TestNumericTimeNonLatin() {
+        ULocale ulocale = ULocale.forLanguageTag("bn");
+        MeasureFormat fmt = MeasureFormat.getInstance(ulocale, FormatWidth.NUMERIC);
+        String actual = fmt.formatMeasures(new Measure(12, MeasureUnit.MINUTE), new Measure(39.12345, MeasureUnit.SECOND));
+        assertEquals("Incorect digits", "১২:৩৯.১২৩", actual);
+    }
+
+    @Test
+    public void TestNumericTime() {
+        MeasureFormat fmt = MeasureFormat.getInstance(ULocale.forLanguageTag("en"), FormatWidth.NUMERIC);
+
+        Measure hours = new Measure(112, MeasureUnit.HOUR);
+        Measure minutes = new Measure(113, MeasureUnit.MINUTE);
+        Measure seconds = new Measure(114, MeasureUnit.SECOND);
+        Measure fhours = new Measure(112.8765, MeasureUnit.HOUR);
+        Measure fminutes = new Measure(113.8765, MeasureUnit.MINUTE);
+        Measure fseconds = new Measure(114.8765, MeasureUnit.SECOND);
+
+        Assert.assertEquals("112h", fmt.formatMeasures(hours));
+        Assert.assertEquals("113m", fmt.formatMeasures(minutes));
+        Assert.assertEquals("114s", fmt.formatMeasures(seconds));
+
+        Assert.assertEquals("112.876h", fmt.formatMeasures(fhours));
+        Assert.assertEquals("113.876m", fmt.formatMeasures(fminutes));
+        Assert.assertEquals("114.876s", fmt.formatMeasures(fseconds));
+
+        Assert.assertEquals("112:113", fmt.formatMeasures(hours, minutes));
+        Assert.assertEquals("112:00:114", fmt.formatMeasures(hours, seconds));
+        Assert.assertEquals("113:114", fmt.formatMeasures(minutes, seconds));
+
+        Assert.assertEquals("112:113.876", fmt.formatMeasures(hours, fminutes));
+        Assert.assertEquals("112:00:114.876", fmt.formatMeasures(hours, fseconds));
+        Assert.assertEquals("113:114.876", fmt.formatMeasures(minutes, fseconds));
+
+        Assert.assertEquals("112:113", fmt.formatMeasures(fhours, minutes));
+        Assert.assertEquals("112:00:114", fmt.formatMeasures(fhours, seconds));
+        Assert.assertEquals("113:114", fmt.formatMeasures(fminutes, seconds));
+
+        Assert.assertEquals("112:113.876", fmt.formatMeasures(fhours, fminutes));
+        Assert.assertEquals("112:00:114.876", fmt.formatMeasures(fhours, fseconds));
+        Assert.assertEquals("113:114.876", fmt.formatMeasures(fminutes, fseconds));
+
+        Assert.assertEquals("112:113:114", fmt.formatMeasures(hours, minutes, seconds));
+        Assert.assertEquals("112:113:114.876", fmt.formatMeasures(fhours, fminutes, fseconds));
+    }
+
+    @Test
+    public void TestNumericTimeSomeSpecialFormats() {
+        Measure fhours = new Measure(2.8765432, MeasureUnit.HOUR);
+        Measure fminutes = new Measure(3.8765432, MeasureUnit.MINUTE);
+
+        // Latvian is one of the very few locales 0-padding the hour
+        MeasureFormat fmt = MeasureFormat.getInstance(ULocale.forLanguageTag("lt"), FormatWidth.NUMERIC);
+        Assert.assertEquals("02:03,877", fmt.formatMeasures(fhours, fminutes));
+
+        // Danish is one of the very few locales using '.' as separator
+        fmt = MeasureFormat.getInstance(ULocale.forLanguageTag("da"), FormatWidth.NUMERIC);
+        Assert.assertEquals("2.03,877", fmt.formatMeasures(fhours, fminutes));
     }
 }

@@ -29,7 +29,6 @@ import android.icu.util.ULocale;
  * @author sffc
  * @see NumberFormatter
  * @hide Only a subset of ICU is exposed in Android
- * @hide draft / provisional / internal are hidden on Android
  */
 public abstract class NumberRangeFormatter {
 
@@ -38,7 +37,6 @@ public abstract class NumberRangeFormatter {
      *
      * @see NumberRangeFormatter
      * @hide Only a subset of ICU is exposed in Android
-     * @hide draft / provisional / internal are hidden on Android
      */
     public enum RangeCollapse {
         /**
@@ -48,7 +46,6 @@ public abstract class NumberRangeFormatter {
          * The heuristics used for this option are subject to change over time.
          *
          * @see NumberRangeFormatter
-         * @hide draft / provisional / internal are hidden on Android
          */
         AUTO,
 
@@ -56,7 +53,6 @@ public abstract class NumberRangeFormatter {
          * Do not collapse any part of the number. Example: "3.2 thousand kilograms – 5.3 thousand kilograms"
          *
          * @see NumberRangeFormatter
-         * @hide draft / provisional / internal are hidden on Android
          */
         NONE,
 
@@ -65,7 +61,6 @@ public abstract class NumberRangeFormatter {
          * kilograms"
          *
          * @see NumberRangeFormatter
-         * @hide draft / provisional / internal are hidden on Android
          */
         UNIT,
 
@@ -74,7 +69,6 @@ public abstract class NumberRangeFormatter {
          * number. Example: "3.2 – 5.3 thousand kilograms"
          *
          * @see NumberRangeFormatter
-         * @hide draft / provisional / internal are hidden on Android
          */
         ALL
     }
@@ -85,14 +79,12 @@ public abstract class NumberRangeFormatter {
      *
      * @see NumberRangeFormatter
      * @hide Only a subset of ICU is exposed in Android
-     * @hide draft / provisional / internal are hidden on Android
      */
     public static enum RangeIdentityFallback {
         /**
          * Show the number as a single value rather than a range. Example: "$5"
          *
          * @see NumberRangeFormatter
-         * @hide draft / provisional / internal are hidden on Android
          */
         SINGLE_VALUE,
 
@@ -101,7 +93,6 @@ public abstract class NumberRangeFormatter {
          * show the single value. Example: "~$5" or "$5"
          *
          * @see NumberRangeFormatter
-         * @hide draft / provisional / internal are hidden on Android
          */
         APPROXIMATELY_OR_SINGLE_VALUE,
 
@@ -110,7 +101,6 @@ public abstract class NumberRangeFormatter {
          * inputs are the same. Example: "~$5"
          *
          * @see NumberRangeFormatter
-         * @hide draft / provisional / internal are hidden on Android
          */
         APPROXIMATELY,
 
@@ -119,7 +109,6 @@ public abstract class NumberRangeFormatter {
          * same. Example (with RangeCollapse.NONE): "$5 – $5"
          *
          * @see NumberRangeFormatter
-         * @hide draft / provisional / internal are hidden on Android
          */
         RANGE
     }
@@ -130,14 +119,12 @@ public abstract class NumberRangeFormatter {
      *
      * @see NumberRangeFormatter
      * @hide Only a subset of ICU is exposed in Android
-     * @hide draft / provisional / internal are hidden on Android
      */
     public static enum RangeIdentityResult {
         /**
          * Used to indicate that the two numbers in the range were equal, even before any rounding rules were applied.
          *
          * @see NumberRangeFormatter
-         * @hide draft / provisional / internal are hidden on Android
          */
         EQUAL_BEFORE_ROUNDING,
 
@@ -145,7 +132,6 @@ public abstract class NumberRangeFormatter {
          * Used to indicate that the two numbers in the range were equal, but only after rounding rules were applied.
          *
          * @see NumberRangeFormatter
-         * @hide draft / provisional / internal are hidden on Android
          */
         EQUAL_AFTER_ROUNDING,
 
@@ -153,7 +139,6 @@ public abstract class NumberRangeFormatter {
          * Used to indicate that the two numbers in the range were not equal, even after rounding rules were applied.
          *
          * @see NumberRangeFormatter
-         * @hide draft / provisional / internal are hidden on Android
          */
         NOT_EQUAL
     }
@@ -165,7 +150,6 @@ public abstract class NumberRangeFormatter {
      * known at the call site.
      *
      * @return An {@link UnlocalizedNumberRangeFormatter}, to be used for chaining.
-     * @hide draft / provisional / internal are hidden on Android
      */
     public static UnlocalizedNumberRangeFormatter with() {
         return BASE;
@@ -178,7 +162,6 @@ public abstract class NumberRangeFormatter {
      * @param locale
      *            The locale from which to load formats and symbols for number range formatting.
      * @return A {@link LocalizedNumberRangeFormatter}, to be used for chaining.
-     * @hide draft / provisional / internal are hidden on Android
      */
     public static LocalizedNumberRangeFormatter withLocale(Locale locale) {
         return BASE.locale(locale);
@@ -191,7 +174,6 @@ public abstract class NumberRangeFormatter {
      * @param locale
      *            The locale from which to load formats and symbols for number range formatting.
      * @return A {@link LocalizedNumberRangeFormatter}, to be used for chaining.
-     * @hide draft / provisional / internal are hidden on Android
      */
     public static LocalizedNumberRangeFormatter withLocale(ULocale locale) {
         return BASE.locale(locale);

@@ -8,12 +8,12 @@ import java.text.Format;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicLongFieldUpdater;
 
+import android.icu.impl.FormattedStringBuilder;
 import android.icu.impl.StandardPlural;
 import android.icu.impl.number.DecimalQuantity;
 import android.icu.impl.number.DecimalQuantity_DualStorageBCD;
 import android.icu.impl.number.LocalizedNumberFormatterAsFormat;
 import android.icu.impl.number.MacroProps;
-import android.icu.impl.number.NumberStringBuilder;
 import android.icu.math.BigDecimal;
 import android.icu.util.CurrencyAmount;
 import android.icu.util.Measure;
@@ -27,7 +27,6 @@ import android.icu.util.MeasureUnit;
  * @see NumberFormatter
  * @see NumberFormatter
  * @hide Only a subset of ICU is exposed in Android
- * @hide draft / provisional / internal are hidden on Android
  */
 public class LocalizedNumberFormatter extends NumberFormatterSettings<LocalizedNumberFormatter> {
 
@@ -50,7 +49,6 @@ public class LocalizedNumberFormatter extends NumberFormatterSettings<LocalizedN
      *            The number to format.
      * @return A FormattedNumber object; call .toString() to get the string.
      * @see NumberFormatter
-     * @hide draft / provisional / internal are hidden on Android
      */
     public FormattedNumber format(long input) {
         return format(new DecimalQuantity_DualStorageBCD(input));
@@ -64,7 +62,6 @@ public class LocalizedNumberFormatter extends NumberFormatterSettings<LocalizedN
      *            The number to format.
      * @return A FormattedNumber object; call .toString() to get the string.
      * @see NumberFormatter
-     * @hide draft / provisional / internal are hidden on Android
      */
     public FormattedNumber format(double input) {
         return format(new DecimalQuantity_DualStorageBCD(input));
@@ -78,7 +75,6 @@ public class LocalizedNumberFormatter extends NumberFormatterSettings<LocalizedN
      *            The number to format.
      * @return A FormattedNumber object; call .toString() to get the string.
      * @see NumberFormatter
-     * @hide draft / provisional / internal are hidden on Android
      */
     public FormattedNumber format(Number input) {
         return format(new DecimalQuantity_DualStorageBCD(input));
@@ -96,7 +92,6 @@ public class LocalizedNumberFormatter extends NumberFormatterSettings<LocalizedN
      *            The number to format.
      * @return A FormattedNumber object; call .toString() to get the string.
      * @see NumberFormatter
-     * @hide draft / provisional / internal are hidden on Android
      */
     public FormattedNumber format(Measure input) {
         MeasureUnit unit = input.getUnit();
@@ -125,15 +120,14 @@ public class LocalizedNumberFormatter extends NumberFormatterSettings<LocalizedN
      *
      * @return A Format wrapping this LocalizedNumberFormatter.
      * @see NumberFormatter
-     * @hide draft / provisional / internal are hidden on Android
      */
     public Format toFormat() {
         return new LocalizedNumberFormatterAsFormat(this, resolve().loc);
     }
 
-    /** Helper method that creates a NumberStringBuilder and formats. */
+    /** Helper method that creates a FormattedStringBuilder and formats. */
     private FormattedNumber format(DecimalQuantity fq) {
-        NumberStringBuilder string = new NumberStringBuilder();
+        FormattedStringBuilder string = new FormattedStringBuilder();
         formatImpl(fq, string);
         return new FormattedNumber(string, fq);
     }
@@ -155,7 +149,7 @@ public class LocalizedNumberFormatter extends NumberFormatterSettings<LocalizedN
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
-    public void formatImpl(DecimalQuantity fq, NumberStringBuilder string) {
+    public void formatImpl(DecimalQuantity fq, FormattedStringBuilder string) {
         if (computeCompiled()) {
             compiled.format(fq, string);
         } else {
@@ -170,7 +164,7 @@ public class LocalizedNumberFormatter extends NumberFormatterSettings<LocalizedN
      */
     @Deprecated
     public String getAffixImpl(boolean isPrefix, boolean isNegative) {
-        NumberStringBuilder string = new NumberStringBuilder();
+        FormattedStringBuilder string = new FormattedStringBuilder();
         byte signum = (byte) (isNegative ? -1 : 1);
         // Always return affixes for plural form OTHER.
         StandardPlural plural = StandardPlural.OTHER;
