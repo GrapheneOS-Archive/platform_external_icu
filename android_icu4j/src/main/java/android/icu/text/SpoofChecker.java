@@ -439,8 +439,6 @@ public class SpoofChecker {
      * with combining class 0 or combining class "Above" (230, same class as U+0307).
      * <p>
      * This list and the number of combing characters considered by this check may grow over time.
-     *
-     * @hide draft / provisional / internal are hidden on Android
      */
     public static final int HIDDEN_OVERLAY = 256;
 

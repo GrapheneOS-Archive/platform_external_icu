@@ -5,6 +5,7 @@ package android.icu.number;
 
 import android.icu.impl.CurrencyData;
 import android.icu.impl.CurrencyData.CurrencyFormatInfo;
+import android.icu.impl.FormattedStringBuilder;
 import android.icu.impl.StandardPlural;
 import android.icu.impl.number.CompactData.CompactType;
 import android.icu.impl.number.ConstantAffixModifier;
@@ -17,7 +18,6 @@ import android.icu.impl.number.MicroProps;
 import android.icu.impl.number.MicroPropsGenerator;
 import android.icu.impl.number.MultiplierFormatHandler;
 import android.icu.impl.number.MutablePatternModifier;
-import android.icu.impl.number.NumberStringBuilder;
 import android.icu.impl.number.Padder;
 import android.icu.impl.number.PatternStringParser;
 import android.icu.impl.number.PatternStringParser.ParsedPatternInfo;
@@ -55,7 +55,7 @@ class NumberFormatterImpl {
     public static int formatStatic(
             MacroProps macros,
             DecimalQuantity inValue,
-            NumberStringBuilder outString) {
+            FormattedStringBuilder outString) {
         MicroProps micros = preProcessUnsafe(macros, inValue);
         int length = writeNumber(micros, inValue, outString, 0);
         length += writeAffixes(micros, outString, 0, length);
@@ -72,7 +72,7 @@ class NumberFormatterImpl {
             MacroProps macros,
             byte signum,
             StandardPlural plural,
-            NumberStringBuilder output) {
+            FormattedStringBuilder output) {
         MicroProps micros = new MicroProps(false);
         MicroPropsGenerator microPropsGenerator = macrosToMicroGenerator(macros, micros, false);
         return getPrefixSuffixImpl(microPropsGenerator, signum, output);
@@ -86,7 +86,7 @@ class NumberFormatterImpl {
     /**
      * Evaluates the "safe" MicroPropsGenerator created by "fromMacros".
      */
-    public int format(DecimalQuantity inValue, NumberStringBuilder outString) {
+    public int format(DecimalQuantity inValue, FormattedStringBuilder outString) {
         MicroProps micros = preProcess(inValue);
         int length = writeNumber(micros, inValue, outString, 0);
         length += writeAffixes(micros, outString, 0, length);
@@ -122,11 +122,11 @@ class NumberFormatterImpl {
         return micros;
     }
 
-    public int getPrefixSuffix(byte signum, StandardPlural plural, NumberStringBuilder output) {
+    public int getPrefixSuffix(byte signum, StandardPlural plural, FormattedStringBuilder output) {
         return getPrefixSuffixImpl(microPropsGenerator, signum, output);
     }
 
-    private static int getPrefixSuffixImpl(MicroPropsGenerator generator, byte signum, NumberStringBuilder output) {
+    private static int getPrefixSuffixImpl(MicroPropsGenerator generator, byte signum, FormattedStringBuilder output) {
         // #13453: DecimalFormat wants the affixes from the pattern only (modMiddle).
         // TODO: Clean this up, closer to C++. The pattern modifier is not as accessible as in C++.
         // Right now, ignore the plural form, run the pipeline with number 0, and get the modifier from the result.
@@ -396,7 +396,7 @@ class NumberFormatterImpl {
      */
     public static int writeAffixes(
             MicroProps micros,
-            NumberStringBuilder string,
+            FormattedStringBuilder string,
             int start,
             int end) {
         // Always apply the inner modifier (which is "strong").
@@ -417,7 +417,7 @@ class NumberFormatterImpl {
     public static int writeNumber(
             MicroProps micros,
             DecimalQuantity quantity,
-            NumberStringBuilder string,
+            FormattedStringBuilder string,
             int index) {
         int length = 0;
         if (quantity.isInfinite()) {
@@ -449,7 +449,7 @@ class NumberFormatterImpl {
     private static int writeIntegerDigits(
             MicroProps micros,
             DecimalQuantity quantity,
-            NumberStringBuilder string,
+            FormattedStringBuilder string,
             int index) {
         int length = 0;
         int integerCount = quantity.getUpperDisplayMagnitude() + 1;
@@ -480,7 +480,7 @@ class NumberFormatterImpl {
     private static int writeFractionDigits(
             MicroProps micros,
             DecimalQuantity quantity,
-            NumberStringBuilder string,
+            FormattedStringBuilder string,
             int index) {
         int length = 0;
         int fractionCount = -quantity.getLowerDisplayMagnitude();

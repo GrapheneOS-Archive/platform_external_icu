@@ -29,7 +29,6 @@ public class StaticUnicodeSets {
      * @hide Only a subset of ICU is exposed in Android
      */
     public static enum Key {
-        // Android-added: Compatibility mode for j.t.DecimalFormat. http://b/112355520
         EMPTY,
         // Ignorables
         DEFAULT_IGNORABLES,
@@ -238,7 +237,6 @@ public class StaticUnicodeSets {
     }
 
     static {
-        // Android-added: Compatibility mode for j.t.DecimalFormat. http://b/112355520
         unicodeSets.put(Key.EMPTY, new UnicodeSet("[]").freeze());
         // These sets were decided after discussion with icu-design@. See tickets #13084 and #13309.
         // Zs+TAB is "horizontal whitespace" according to UTS #18 (blank property).

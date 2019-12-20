@@ -620,7 +620,7 @@ SimpleDateFormat& SimpleDateFormat::operator=(const SimpleDateFormat& other)
 
 //----------------------------------------------------------------------
 
-Format*
+SimpleDateFormat*
 SimpleDateFormat::clone() const
 {
     return new SimpleDateFormat(*this);
@@ -1220,10 +1220,14 @@ _appendSymbolWithMonthPattern(UnicodeString& dst, int32_t value, const UnicodeSt
 //----------------------------------------------------------------------
 
 static number::LocalizedNumberFormatter*
-createFastFormatter(const DecimalFormat* df, int32_t minInt, int32_t maxInt) {
-    return new number::LocalizedNumberFormatter(
-            df->toNumberFormatter()
-                    .integerWidth(number::IntegerWidth::zeroFillTo(minInt).truncateAt(maxInt)));
+createFastFormatter(const DecimalFormat* df, int32_t minInt, int32_t maxInt, UErrorCode& status) {
+    const number::LocalizedNumberFormatter* lnfBase = df->toNumberFormatter(status);
+    if (U_FAILURE(status)) {
+        return nullptr;
+    }
+    return lnfBase->integerWidth(
+        number::IntegerWidth::zeroFillTo(minInt).truncateAt(maxInt)
+    ).clone().orphan();
 }
 
 void SimpleDateFormat::initFastNumberFormatters(UErrorCode& status) {
@@ -1234,11 +1238,11 @@ void SimpleDateFormat::initFastNumberFormatters(UErrorCode& status) {
     if (df == nullptr) {
         return;
     }
-    fFastNumberFormatters[SMPDTFMT_NF_1x10] = createFastFormatter(df, 1, 10);
-    fFastNumberFormatters[SMPDTFMT_NF_2x10] = createFastFormatter(df, 2, 10);
-    fFastNumberFormatters[SMPDTFMT_NF_3x10] = createFastFormatter(df, 3, 10);
-    fFastNumberFormatters[SMPDTFMT_NF_4x10] = createFastFormatter(df, 4, 10);
-    fFastNumberFormatters[SMPDTFMT_NF_2x2] = createFastFormatter(df, 2, 2);
+    fFastNumberFormatters[SMPDTFMT_NF_1x10] = createFastFormatter(df, 1, 10, status);
+    fFastNumberFormatters[SMPDTFMT_NF_2x10] = createFastFormatter(df, 2, 10, status);
+    fFastNumberFormatters[SMPDTFMT_NF_3x10] = createFastFormatter(df, 3, 10, status);
+    fFastNumberFormatters[SMPDTFMT_NF_4x10] = createFastFormatter(df, 4, 10, status);
+    fFastNumberFormatters[SMPDTFMT_NF_2x2] = createFastFormatter(df, 2, 2, status);
 }
 
 void SimpleDateFormat::freeFastNumberFormatters() {
@@ -1977,9 +1981,11 @@ SimpleDateFormat::subFormat(UnicodeString &appendTo,
                 break;
         }
         if (titlecase) {
+            BreakIterator* const mutableCapitalizationBrkIter = fCapitalizationBrkIter->clone();
             UnicodeString firstField(appendTo, beginOffset);
-            firstField.toTitle(fCapitalizationBrkIter, fLocale, U_TITLECASE_NO_LOWERCASE | U_TITLECASE_NO_BREAK_ADJUSTMENT);
+            firstField.toTitle(mutableCapitalizationBrkIter, fLocale, U_TITLECASE_NO_LOWERCASE | U_TITLECASE_NO_BREAK_ADJUSTMENT);
             appendTo.replaceBetween(beginOffset, appendTo.length(), firstField);
+            delete mutableCapitalizationBrkIter;
         }
     }
 #endif
@@ -2104,7 +2110,7 @@ SimpleDateFormat::zeroPaddingNumber(
     // Fall back to slow path (clone and mutate the NumberFormat)
     if (currentNumberFormat != nullptr) {
         FieldPosition pos(FieldPosition::DONT_CARE);
-        LocalPointer<NumberFormat> nf(dynamic_cast<NumberFormat*>(currentNumberFormat->clone()));
+        LocalPointer<NumberFormat> nf(currentNumberFormat->clone());
         nf->setMinimumIntegerDigits(minDigits);
         nf->setMaximumIntegerDigits(maxDigits);
         nf->format(value, appendTo, pos);  // 3rd arg is there to speed up processing
@@ -3767,7 +3773,7 @@ void SimpleDateFormat::parseInt(const UnicodeString& text,
     auto* fmtAsDF = dynamic_cast<const DecimalFormat*>(fmt);
     LocalPointer<DecimalFormat> df;
     if (!allowNegative && fmtAsDF != nullptr) {
-        df.adoptInstead(dynamic_cast<DecimalFormat*>(fmtAsDF->clone()));
+        df.adoptInstead(fmtAsDF->clone());
         if (df.isNull()) {
             // Memory allocation error
             return;
@@ -3995,6 +4001,7 @@ void SimpleDateFormat::adoptCalendar(Calendar* calendarToAdopt)
   DateFormatSymbols *newSymbols =
           DateFormatSymbols::createForLocale(calLocale, status);
   if (U_FAILURE(status)) {
+      delete calendarToAdopt;
       return;
   }
   DateFormat::adoptCalendar(calendarToAdopt);

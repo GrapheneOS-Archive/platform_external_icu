@@ -11,7 +11,7 @@ package android.icu.impl {
   }
 
   public final class ICUData {
-    field public static final String ICU_BASE_NAME = "android/icu/impl/data/icudt64b";
+    field public static final String ICU_BASE_NAME = "android/icu/impl/data/icudt65b";
   }
 
   public class ICUResourceBundle extends android.icu.util.UResourceBundle {
@@ -35,7 +35,7 @@ package android.icu.impl.number {
   }
 
   public enum DecimalFormatProperties.ParseMode {
-    enum_constant public static final android.icu.impl.number.DecimalFormatProperties.ParseMode COMPATIBILITY;
+    enum_constant public static final android.icu.impl.number.DecimalFormatProperties.ParseMode JAVA_COMPATIBILITY;
   }
 
 }
@@ -52,7 +52,7 @@ package android.icu.text {
   }
 
   public class DecimalFormat extends android.icu.text.NumberFormat {
-    method public void setParseStrictMode(android.icu.impl.number.DecimalFormatProperties.ParseMode);
+    method @Deprecated public void setParseStrictMode(android.icu.impl.number.DecimalFormatProperties.ParseMode);
   }
 
   public abstract class IDNA {

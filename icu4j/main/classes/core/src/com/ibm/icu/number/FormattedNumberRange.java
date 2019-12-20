@@ -8,8 +8,9 @@ import java.text.AttributedCharacterIterator;
 import java.text.FieldPosition;
 import java.util.Arrays;
 
+import com.ibm.icu.impl.FormattedStringBuilder;
+import com.ibm.icu.impl.FormattedValueStringBuilderImpl;
 import com.ibm.icu.impl.number.DecimalQuantity;
-import com.ibm.icu.impl.number.NumberStringBuilder;
 import com.ibm.icu.number.NumberRangeFormatter.RangeIdentityResult;
 import com.ibm.icu.text.ConstrainedFieldPosition;
 import com.ibm.icu.text.FormattedValue;
@@ -22,17 +23,16 @@ import com.ibm.icu.util.ICUUncheckedIOException;
  * Instances of this class are immutable and thread-safe.
  *
  * @author sffc
- * @draft ICU 63
- * @provisional This API might change or be removed in a future release.
+ * @stable ICU 63
  * @see NumberRangeFormatter
  */
 public class FormattedNumberRange implements FormattedValue {
-    final NumberStringBuilder string;
+    final FormattedStringBuilder string;
     final DecimalQuantity quantity1;
     final DecimalQuantity quantity2;
     final RangeIdentityResult identityResult;
 
-    FormattedNumberRange(NumberStringBuilder string, DecimalQuantity quantity1, DecimalQuantity quantity2,
+    FormattedNumberRange(FormattedStringBuilder string, DecimalQuantity quantity1, DecimalQuantity quantity2,
             RangeIdentityResult identityResult) {
         this.string = string;
         this.quantity1 = quantity1;
@@ -43,8 +43,7 @@ public class FormattedNumberRange implements FormattedValue {
     /**
      * {@inheritDoc}
      *
-     * @draft ICU 63
-     * @provisional This API might change or be removed in a future release.
+     * @stable ICU 63
      */
     @Override
     public String toString() {
@@ -54,8 +53,7 @@ public class FormattedNumberRange implements FormattedValue {
     /**
      * {@inheritDoc}
      *
-     * @draft ICU 63
-     * @provisional This API might change or be removed in a future release.
+     * @stable ICU 63
      */
     @Override
     public <A extends Appendable> A appendTo(A appendable) {
@@ -109,7 +107,7 @@ public class FormattedNumberRange implements FormattedValue {
      */
     @Override
     public boolean nextPosition(ConstrainedFieldPosition cfpos) {
-        return string.nextPosition(cfpos, null);
+        return FormattedValueStringBuilderImpl.nextPosition(string, cfpos, null);
     }
 
     /**
@@ -142,18 +140,17 @@ public class FormattedNumberRange implements FormattedValue {
      * @see NumberRangeFormatter
      */
     public boolean nextFieldPosition(FieldPosition fieldPosition) {
-        return string.nextFieldPosition(fieldPosition);
+        return FormattedValueStringBuilderImpl.nextFieldPosition(string, fieldPosition);
     }
 
     /**
      * {@inheritDoc}
      *
-     * @draft ICU 63
-     * @provisional This API might change or be removed in a future release.
+     * @stable ICU 63
      */
     @Override
     public AttributedCharacterIterator toCharacterIterator() {
-        return string.toCharacterIterator(null);
+        return FormattedValueStringBuilderImpl.toCharacterIterator(string, null);
     }
 
     /**
@@ -161,8 +158,7 @@ public class FormattedNumberRange implements FormattedValue {
      * printed after scaling and rounding have been applied by the number range formatting pipeline.
      *
      * @return A BigDecimal representation of the first formatted number.
-     * @draft ICU 63
-     * @provisional This API might change or be removed in a future release.
+     * @stable ICU 63
      * @see NumberRangeFormatter
      * @see #getSecondBigDecimal
      */
@@ -175,8 +171,7 @@ public class FormattedNumberRange implements FormattedValue {
      * printed after scaling and rounding have been applied by the number range formatting pipeline.
      *
      * @return A BigDecimal representation of the second formatted number.
-     * @draft ICU 63
-     * @provisional This API might change or be removed in a future release.
+     * @stable ICU 63
      * @see NumberRangeFormatter
      * @see #getFirstBigDecimal
      */
@@ -190,8 +185,7 @@ public class FormattedNumberRange implements FormattedValue {
      * identity fallback was used.
      *
      * @return A RangeIdentityType indicating the resulting identity situation in the formatted number range.
-     * @draft ICU 63
-     * @provisional This API might change or be removed in a future release.
+     * @stable ICU 63
      * @see NumberRangeFormatter
      * @see NumberRangeFormatter.RangeIdentityFallback
      */
@@ -207,7 +201,7 @@ public class FormattedNumberRange implements FormattedValue {
      */
     @Override
     public int hashCode() {
-        // NumberStringBuilder and BigDecimal are mutable, so we can't call
+        // FormattedStringBuilder and BigDecimal are mutable, so we can't call
         // #equals() or #hashCode() on them directly.
         return Arrays.hashCode(string.toCharArray()) ^ Arrays.hashCode(string.toFieldArray())
                 ^ quantity1.toBigDecimal().hashCode() ^ quantity2.toBigDecimal().hashCode();
@@ -227,7 +221,7 @@ public class FormattedNumberRange implements FormattedValue {
             return false;
         if (!(other instanceof FormattedNumberRange))
             return false;
-        // NumberStringBuilder and BigDecimal are mutable, so we can't call
+        // FormattedStringBuilder and BigDecimal are mutable, so we can't call
         // #equals() or #hashCode() on them directly.
         FormattedNumberRange _other = (FormattedNumberRange) other;
         return Arrays.equals(string.toCharArray(), _other.string.toCharArray())
