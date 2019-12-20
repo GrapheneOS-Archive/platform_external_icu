@@ -9,8 +9,9 @@ import java.text.AttributedCharacterIterator;
 import java.text.FieldPosition;
 import java.util.Arrays;
 
+import android.icu.impl.FormattedStringBuilder;
+import android.icu.impl.FormattedValueStringBuilderImpl;
 import android.icu.impl.number.DecimalQuantity;
-import android.icu.impl.number.NumberStringBuilder;
 import android.icu.number.NumberRangeFormatter.RangeIdentityResult;
 import android.icu.text.ConstrainedFieldPosition;
 import android.icu.text.FormattedValue;
@@ -25,15 +26,14 @@ import android.icu.util.ICUUncheckedIOException;
  * @author sffc
  * @see NumberRangeFormatter
  * @hide Only a subset of ICU is exposed in Android
- * @hide draft / provisional / internal are hidden on Android
  */
 public class FormattedNumberRange implements FormattedValue {
-    final NumberStringBuilder string;
+    final FormattedStringBuilder string;
     final DecimalQuantity quantity1;
     final DecimalQuantity quantity2;
     final RangeIdentityResult identityResult;
 
-    FormattedNumberRange(NumberStringBuilder string, DecimalQuantity quantity1, DecimalQuantity quantity2,
+    FormattedNumberRange(FormattedStringBuilder string, DecimalQuantity quantity1, DecimalQuantity quantity2,
             RangeIdentityResult identityResult) {
         this.string = string;
         this.quantity1 = quantity1;
@@ -43,8 +43,6 @@ public class FormattedNumberRange implements FormattedValue {
 
     /**
      * {@inheritDoc}
-     *
-     * @hide draft / provisional / internal are hidden on Android
      */
     @Override
     public String toString() {
@@ -53,8 +51,6 @@ public class FormattedNumberRange implements FormattedValue {
 
     /**
      * {@inheritDoc}
-     *
-     * @hide draft / provisional / internal are hidden on Android
      */
     @Override
     public <A extends Appendable> A appendTo(A appendable) {
@@ -104,7 +100,7 @@ public class FormattedNumberRange implements FormattedValue {
      */
     @Override
     public boolean nextPosition(ConstrainedFieldPosition cfpos) {
-        return string.nextPosition(cfpos, null);
+        return FormattedValueStringBuilderImpl.nextPosition(string, cfpos, null);
     }
 
     /**
@@ -136,17 +132,15 @@ public class FormattedNumberRange implements FormattedValue {
      * @hide draft / provisional / internal are hidden on Android
      */
     public boolean nextFieldPosition(FieldPosition fieldPosition) {
-        return string.nextFieldPosition(fieldPosition);
+        return FormattedValueStringBuilderImpl.nextFieldPosition(string, fieldPosition);
     }
 
     /**
      * {@inheritDoc}
-     *
-     * @hide draft / provisional / internal are hidden on Android
      */
     @Override
     public AttributedCharacterIterator toCharacterIterator() {
-        return string.toCharacterIterator(null);
+        return FormattedValueStringBuilderImpl.toCharacterIterator(string, null);
     }
 
     /**
@@ -156,7 +150,6 @@ public class FormattedNumberRange implements FormattedValue {
      * @return A BigDecimal representation of the first formatted number.
      * @see NumberRangeFormatter
      * @see #getSecondBigDecimal
-     * @hide draft / provisional / internal are hidden on Android
      */
     public BigDecimal getFirstBigDecimal() {
         return quantity1.toBigDecimal();
@@ -169,7 +162,6 @@ public class FormattedNumberRange implements FormattedValue {
      * @return A BigDecimal representation of the second formatted number.
      * @see NumberRangeFormatter
      * @see #getFirstBigDecimal
-     * @hide draft / provisional / internal are hidden on Android
      */
     public BigDecimal getSecondBigDecimal() {
         return quantity2.toBigDecimal();
@@ -183,7 +175,6 @@ public class FormattedNumberRange implements FormattedValue {
      * @return A RangeIdentityType indicating the resulting identity situation in the formatted number range.
      * @see NumberRangeFormatter
      * @see NumberRangeFormatter.RangeIdentityFallback
-     * @hide draft / provisional / internal are hidden on Android
      */
     public RangeIdentityResult getIdentityResult() {
         return identityResult;
@@ -196,7 +187,7 @@ public class FormattedNumberRange implements FormattedValue {
      */
     @Override
     public int hashCode() {
-        // NumberStringBuilder and BigDecimal are mutable, so we can't call
+        // FormattedStringBuilder and BigDecimal are mutable, so we can't call
         // #equals() or #hashCode() on them directly.
         return Arrays.hashCode(string.toCharArray()) ^ Arrays.hashCode(string.toFieldArray())
                 ^ quantity1.toBigDecimal().hashCode() ^ quantity2.toBigDecimal().hashCode();
@@ -215,7 +206,7 @@ public class FormattedNumberRange implements FormattedValue {
             return false;
         if (!(other instanceof FormattedNumberRange))
             return false;
-        // NumberStringBuilder and BigDecimal are mutable, so we can't call
+        // FormattedStringBuilder and BigDecimal are mutable, so we can't call
         // #equals() or #hashCode() on them directly.
         FormattedNumberRange _other = (FormattedNumberRange) other;
         return Arrays.equals(string.toCharArray(), _other.string.toCharArray())

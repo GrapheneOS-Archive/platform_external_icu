@@ -31,8 +31,7 @@ import com.ibm.icu.util.ULocale;
  * This class exposes no public functionality. To create a CompactNotation, use one of the factory
  * methods in {@link Notation}.
  *
- * @draft ICU 60
- * @provisional This API might change or be removed in a future release.
+ * @stable ICU 60
  * @see NumberFormatter
  */
 public class CompactNotation extends Notation {
@@ -122,14 +121,14 @@ public class CompactNotation extends Notation {
             MicroProps micros = parent.processQuantity(quantity);
             assert micros.rounder != null;
 
-            // Treat zero as if it had magnitude 0
+            // Treat zero, NaN, and infinity as if they had magnitude 0
             int magnitude;
-            if (quantity.isZero()) {
+            if (quantity.isZeroish()) {
                 magnitude = 0;
                 micros.rounder.apply(quantity);
             } else {
                 int multiplier = micros.rounder.chooseMultiplierAndApply(quantity, data);
-                magnitude = quantity.isZero() ? 0 : quantity.getMagnitude();
+                magnitude = quantity.isZeroish() ? 0 : quantity.getMagnitude();
                 magnitude -= multiplier;
             }
 

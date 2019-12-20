@@ -8,7 +8,7 @@ en_XA{
     NumberElements{
         default{"latn"}
     }
-    Version{"2.0"}
+    Version{"36"}
     calendar{
         buddhist{
             eras{

@@ -63,7 +63,6 @@ import android.icu.util.ULocale;
  *
  * @author Shane Carr
  * @hide Only a subset of ICU is exposed in Android
- * @hide draft / provisional / internal are hidden on Android
  */
 public final class NumberFormatter {
 
@@ -86,7 +85,6 @@ public final class NumberFormatter {
      *
      * @see NumberFormatter
      * @hide Only a subset of ICU is exposed in Android
-     * @hide draft / provisional / internal are hidden on Android
      */
     public static enum UnitWidth {
         /**
@@ -100,7 +98,6 @@ public final class NumberFormatter {
          * placeholder for currencies.
          *
          * @see NumberFormatter
-         * @hide draft / provisional / internal are hidden on Android
          */
         NARROW,
 
@@ -117,7 +114,6 @@ public final class NumberFormatter {
          * placeholder for currencies.
          *
          * @see NumberFormatter
-         * @hide draft / provisional / internal are hidden on Android
          */
         SHORT,
 
@@ -129,7 +125,6 @@ public final class NumberFormatter {
          * placeholder for currencies.
          *
          * @see NumberFormatter
-         * @hide draft / provisional / internal are hidden on Android
          */
         FULL_NAME,
 
@@ -141,7 +136,6 @@ public final class NumberFormatter {
          * In CLDR, this option corresponds to the "¤¤" placeholder for currencies.
          *
          * @see NumberFormatter
-         * @hide draft / provisional / internal are hidden on Android
          */
         ISO_CODE,
 
@@ -151,7 +145,6 @@ public final class NumberFormatter {
          * For measure units, the behavior is equivalent to not specifying the unit at all.
          *
          * @see NumberFormatter
-         * @hide draft / provisional / internal are hidden on Android
          */
         HIDDEN,
     }
@@ -182,14 +175,12 @@ public final class NumberFormatter {
      *
      * @see NumberFormatter
      * @hide Only a subset of ICU is exposed in Android
-     * @hide draft / provisional / internal are hidden on Android
      */
     public static enum GroupingStrategy {
         /**
          * Do not display grouping separators in any locale.
          *
          * @see NumberFormatter
-         * @hide draft / provisional / internal are hidden on Android
          */
         OFF,
 
@@ -206,7 +197,6 @@ public final class NumberFormatter {
          * (customary in South Asia) or groups of 3 (customary in Europe and the Americas).
          *
          * @see NumberFormatter
-         * @hide draft / provisional / internal are hidden on Android
          */
         MIN2,
 
@@ -222,7 +212,6 @@ public final class NumberFormatter {
          * (customary in South Asia) or groups of 3 (customary in Europe and the Americas).
          *
          * @see NumberFormatter
-         * @hide draft / provisional / internal are hidden on Android
          */
         AUTO,
 
@@ -239,7 +228,6 @@ public final class NumberFormatter {
          * (customary in South Asia) or groups of 3 (customary in Europe and the Americas).
          *
          * @see NumberFormatter
-         * @hide draft / provisional / internal are hidden on Android
          */
         ON_ALIGNED,
 
@@ -248,7 +236,6 @@ public final class NumberFormatter {
          * locale data for determining the grouping strategy.
          *
          * @see NumberFormatter
-         * @hide draft / provisional / internal are hidden on Android
          */
         THOUSANDS
     }
@@ -272,7 +259,6 @@ public final class NumberFormatter {
      *
      * @see NumberFormatter
      * @hide Only a subset of ICU is exposed in Android
-     * @hide draft / provisional / internal are hidden on Android
      */
     public static enum SignDisplay {
         /**
@@ -280,7 +266,6 @@ public final class NumberFormatter {
          * the default behavior.
          *
          * @see NumberFormatter
-         * @hide draft / provisional / internal are hidden on Android
          */
         AUTO,
 
@@ -289,7 +274,6 @@ public final class NumberFormatter {
          * To hide the sign on zero, see {@link #EXCEPT_ZERO}.
          *
          * @see NumberFormatter
-         * @hide draft / provisional / internal are hidden on Android
          */
         ALWAYS,
 
@@ -297,7 +281,6 @@ public final class NumberFormatter {
          * Do not show the sign on positive or negative numbers.
          *
          * @see NumberFormatter
-         * @hide draft / provisional / internal are hidden on Android
          */
         NEVER,
 
@@ -315,7 +298,6 @@ public final class NumberFormatter {
          * limitation may be lifted in the future.
          *
          * @see NumberFormatter
-         * @hide draft / provisional / internal are hidden on Android
          */
         ACCOUNTING,
 
@@ -326,26 +308,24 @@ public final class NumberFormatter {
          * {@link #ACCOUNTING_EXCEPT_ZERO}.
          *
          * @see NumberFormatter
-         * @hide draft / provisional / internal are hidden on Android
          */
         ACCOUNTING_ALWAYS,
 
         /**
          * Show the minus sign on negative numbers and the plus sign on positive numbers. Do not show a
-         * sign on zero.
+         * sign on zero or NaN, unless the sign bit is set (-0.0 gets a sign).
          *
          * @see NumberFormatter
-         * @hide draft / provisional / internal are hidden on Android
          */
         EXCEPT_ZERO,
 
         /**
          * Use the locale-dependent accounting format on negative numbers, and show the plus sign on
-         * positive numbers. Do not show a sign on zero. For more information on the accounting format,
-         * see the ACCOUNTING sign display strategy.
+         * positive numbers. Do not show a sign on zero or NaN, unless the sign bit is set (-0.0 gets a
+         * sign). For more information on the accounting format, see the ACCOUNTING sign display
+         * strategy.
          *
          * @see NumberFormatter
-         * @hide draft / provisional / internal are hidden on Android
          */
         ACCOUNTING_EXCEPT_ZERO,
     }
@@ -361,7 +341,6 @@ public final class NumberFormatter {
      *
      * @see NumberFormatter
      * @hide Only a subset of ICU is exposed in Android
-     * @hide draft / provisional / internal are hidden on Android
      */
     public static enum DecimalSeparatorDisplay {
         /**
@@ -369,7 +348,6 @@ public final class NumberFormatter {
          * and do not show it otherwise. This is the default behavior.
          *
          * @see NumberFormatter
-         * @hide draft / provisional / internal are hidden on Android
          */
         AUTO,
 
@@ -377,7 +355,6 @@ public final class NumberFormatter {
          * Always show the decimal separator, even if there are no digits to display after the separator.
          *
          * @see NumberFormatter
-         * @hide draft / provisional / internal are hidden on Android
          */
         ALWAYS,
     }
@@ -400,7 +377,6 @@ public final class NumberFormatter {
      * currently known at the call site.
      *
      * @return An {@link UnlocalizedNumberFormatter}, to be used for chaining.
-     * @hide draft / provisional / internal are hidden on Android
      */
     public static UnlocalizedNumberFormatter with() {
         return BASE;
@@ -413,7 +389,6 @@ public final class NumberFormatter {
      * @param locale
      *            The locale from which to load formats and symbols for number formatting.
      * @return A {@link LocalizedNumberFormatter}, to be used for chaining.
-     * @hide draft / provisional / internal are hidden on Android
      */
     public static LocalizedNumberFormatter withLocale(Locale locale) {
         return BASE.locale(locale);
@@ -426,7 +401,6 @@ public final class NumberFormatter {
      * @param locale
      *            The locale from which to load formats and symbols for number formatting.
      * @return A {@link LocalizedNumberFormatter}, to be used for chaining.
-     * @hide draft / provisional / internal are hidden on Android
      */
     public static LocalizedNumberFormatter withLocale(ULocale locale) {
         return BASE.locale(locale);
@@ -440,7 +414,6 @@ public final class NumberFormatter {
      *            The skeleton string off of which to base this NumberFormatter.
      * @return An {@link UnlocalizedNumberFormatter}, to be used for chaining.
      * @throws SkeletonSyntaxException If the given string is not a valid number formatting skeleton.
-     * @hide draft / provisional / internal are hidden on Android
      */
     public static UnlocalizedNumberFormatter forSkeleton(String skeleton) {
         return NumberSkeletonImpl.getOrCreate(skeleton);

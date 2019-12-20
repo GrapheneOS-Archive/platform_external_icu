@@ -28,6 +28,7 @@ cc_library_static {
     cflags: [
         "-Wall",
         "-Werror",
+        "-DU_SHOW_CPLUSPLUS_API=0",
     ],
     target: {
         android: {

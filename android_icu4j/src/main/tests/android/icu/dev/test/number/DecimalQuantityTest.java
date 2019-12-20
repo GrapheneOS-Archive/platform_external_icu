@@ -20,10 +20,10 @@ import android.icu.dev.impl.number.DecimalQuantity_64BitBCD;
 import android.icu.dev.impl.number.DecimalQuantity_ByteArrayBCD;
 import android.icu.dev.impl.number.DecimalQuantity_SimpleStorage;
 import android.icu.dev.test.TestFmwk;
+import android.icu.impl.FormattedStringBuilder;
 import android.icu.impl.number.DecimalFormatProperties;
 import android.icu.impl.number.DecimalQuantity;
 import android.icu.impl.number.DecimalQuantity_DualStorageBCD;
-import android.icu.impl.number.NumberStringBuilder;
 import android.icu.impl.number.RoundingUtils;
 import android.icu.number.LocalizedNumberFormatter;
 import android.icu.number.NumberFormatter;
@@ -239,8 +239,8 @@ public class DecimalQuantityTest extends TestFmwk {
         for (LocalizedNumberFormatter format : formats) {
             DecimalQuantity q0 = rq0.createCopy();
             DecimalQuantity q1 = rq1.createCopy();
-            NumberStringBuilder nsb1 = new NumberStringBuilder();
-            NumberStringBuilder nsb2 = new NumberStringBuilder();
+            FormattedStringBuilder nsb1 = new FormattedStringBuilder();
+            FormattedStringBuilder nsb2 = new FormattedStringBuilder();
             format.formatImpl(q0, nsb1);
             format.formatImpl(q1, nsb2);
             String s1 = nsb1.toString();

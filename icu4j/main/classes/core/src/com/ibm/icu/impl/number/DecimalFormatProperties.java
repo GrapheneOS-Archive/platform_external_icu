@@ -62,13 +62,12 @@ public class DecimalFormatProperties implements Cloneable, Serializable {
          */
         STRICT,
 
-        // BEGIN Android-added: Compatibility mode for j.t.DecimalFormat. http://b/112355520
         /**
-         * Internal parse mode for libcore to achieve a compatibility mode for
-         * backward-compatibility reasons.
+         * Internal parse mode for increased compatibility with java.text.DecimalFormat.
+         * Used by Android libcore. To enable this feature, java.text.DecimalFormat holds an instance of
+         * ICU4J's DecimalFormat and enable it by calling setParseStrictMode(ParseMode.JAVA_COMPATIBILITY).
          */
-        COMPATIBILITY,
-        // END Android-added: Compatibility mode for j.t.DecimalFormat. http://b/112355520
+        JAVA_COMPATIBILITY,
     }
 
     // The setters in this class should NOT have any side-effects or perform any validation. It is
@@ -1404,8 +1403,8 @@ public class DecimalFormatProperties implements Cloneable, Serializable {
         // Extra int for possible future use
         oos.writeInt(0);
 
-        ArrayList<Field> fieldsToSerialize = new ArrayList<Field>();
-        ArrayList<Object> valuesToSerialize = new ArrayList<Object>();
+        ArrayList<Field> fieldsToSerialize = new ArrayList<>();
+        ArrayList<Object> valuesToSerialize = new ArrayList<>();
         Field[] fields = DecimalFormatProperties.class.getDeclaredFields();
         for (Field field : fields) {
             if (Modifier.isStatic(field.getModifiers())) {

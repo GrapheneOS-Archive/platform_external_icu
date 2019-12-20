@@ -140,6 +140,7 @@ en_XA{
         chp{"[Çĥîþéŵýåñ one two]"}
         chr{"[Çĥéŕöķéé one]"}
         chy{"[Çĥéýéññé one]"}
+        cic{"[Çĥîçķåšåŵ one two]"}
         ckb{"[Çéñţŕåļ Ķûŕðîšĥ one two]"}
         co{"[Çöŕšîçåñ one]"}
         cop{"[Çöþţîç one]"}
@@ -408,7 +409,7 @@ en_XA{
         mt{"[Ṁåļţéšé one]"}
         mua{"[Ṁûñðåñĝ one]"}
         mul{"[Ṁûļţîþļé ļåñĝûåĝéš one two three]"}
-        mus{"[Çŕééķ one]"}
+        mus{"[Ṁûšçöĝéé one]"}
         mwl{"[Ṁîŕåñðéšé one two]"}
         mwr{"[Ṁåŕŵåŕî one]"}
         mwv{"[Ṁéñţåŵåî one]"}
@@ -661,6 +662,12 @@ en_XA{
     }
     Languages%long{
         zh{"[Ṁåñðåŕîñ Çĥîñéšé one two]"}
+        zh_Hans{"[Šîɱþļîƒîéð Ṁåñðåŕîñ Çĥîñéšé one two three]"}
+        zh_Hant{"[Ţŕåðîţîöñåļ Ṁåñðåŕîñ Çĥîñéšé one two three]"}
+    }
+    Languages%menu{
+        yue{"[Çĥîñéšé، Çåñţöñéšé one two three]"}
+        zh{"[Çĥîñéšé، Ṁåñðåŕîñ one two three]"}
     }
     Languages%short{
         az{"[Åžéŕî one]"}
@@ -807,6 +814,7 @@ en_XA{
         Phnx{"[Þĥöéñîçîåñ one two]"}
         Plrd{"[Þöļļåŕð Þĥöñéţîç one two]"}
         Prti{"[Îñšçŕîþţîöñåļ Þåŕţĥîåñ one two three]"}
+        Qaag{"[Žåŵĝýî one]"}
         Rjng{"[Ŕéĵåñĝ one]"}
         Rohg{"[Ĥåñîƒî Ŕöĥîñĝýå one two]"}
         Roro{"[Ŕöñĝöŕöñĝö one two]"}
@@ -1296,7 +1304,7 @@ en_XA{
         VALENCIA{"[Ṽåļéñçîåñ one two]"}
         WADEGILE{"[Ŵåðé‐Ĝîļéš Ŕöɱåñîžåţîöñ one two three]"}
     }
-    Version{"2.0"}
+    Version{"36"}
     characterLabelPattern{
         all{"[{0} — åļļ one]"}
         category-list{"[{0}∶ {1} one]"}

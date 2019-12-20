@@ -16,7 +16,6 @@ import android.icu.util.ULocale;
  * @author sffc
  * @see NumberRangeFormatter
  * @hide Only a subset of ICU is exposed in Android
- * @hide draft / provisional / internal are hidden on Android
  */
 public abstract class NumberRangeFormatterSettings<T extends NumberRangeFormatterSettings<?>> {
 
@@ -52,7 +51,6 @@ public abstract class NumberRangeFormatterSettings<T extends NumberRangeFormatte
      * @return The fluent chain.
      * @see NumberFormatter
      * @see NumberRangeFormatter
-     * @hide draft / provisional / internal are hidden on Android
      */
     @SuppressWarnings("unchecked")
     public T numberFormatterBoth(UnlocalizedNumberFormatter formatter) {
@@ -70,7 +68,6 @@ public abstract class NumberRangeFormatterSettings<T extends NumberRangeFormatte
      * @return The fluent chain.
      * @see NumberFormatter
      * @see NumberRangeFormatter
-     * @hide draft / provisional / internal are hidden on Android
      */
     @SuppressWarnings("unchecked")
     public T numberFormatterFirst(UnlocalizedNumberFormatter formatterFirst) {
@@ -88,7 +85,6 @@ public abstract class NumberRangeFormatterSettings<T extends NumberRangeFormatte
      * @return The fluent chain.
      * @see NumberFormatter
      * @see NumberRangeFormatter
-     * @hide draft / provisional / internal are hidden on Android
      */
     @SuppressWarnings("unchecked")
     public T numberFormatterSecond(UnlocalizedNumberFormatter formatterSecond) {
@@ -110,7 +106,6 @@ public abstract class NumberRangeFormatterSettings<T extends NumberRangeFormatte
      *            The collapsing strategy to use for this range.
      * @return The fluent chain.
      * @see NumberRangeFormatter
-     * @hide draft / provisional / internal are hidden on Android
      */
     public T collapse(RangeCollapse collapse) {
         return create(KEY_COLLAPSE, collapse);
@@ -134,7 +129,6 @@ public abstract class NumberRangeFormatterSettings<T extends NumberRangeFormatte
      *            The strategy to use when formatting two numbers that end up being the same.
      * @return The fluent chain.
      * @see NumberRangeFormatter
-     * @hide draft / provisional / internal are hidden on Android
      */
     public T identityFallback(RangeIdentityFallback identityFallback) {
         return create(KEY_IDENTITY_FALLBACK, identityFallback);
@@ -205,8 +199,6 @@ public abstract class NumberRangeFormatterSettings<T extends NumberRangeFormatte
 
     /**
      * {@inheritDoc}
-     *
-     * @hide draft / provisional / internal are hidden on Android
      */
     @Override
     public int hashCode() {
@@ -215,8 +207,6 @@ public abstract class NumberRangeFormatterSettings<T extends NumberRangeFormatte
 
     /**
      * {@inheritDoc}
-     *
-     * @hide draft / provisional / internal are hidden on Android
      */
     @Override
     public boolean equals(Object other) {
