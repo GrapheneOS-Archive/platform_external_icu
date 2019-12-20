@@ -39,4 +39,10 @@ cc_library_static {
             enabled: true,
         },
     },
+    apex_available: [
+        "com.android.art.release",
+        "com.android.art.debug",
+        // b/133140750 Clean this up. This is due to the dependency to from libmedia
+        "//apex_available:platform",
+    ],
 }
