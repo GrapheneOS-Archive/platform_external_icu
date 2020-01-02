@@ -276,9 +276,18 @@ void
 doStringPrepTest(const char* binFileName, const char* txtFileName, int32_t options, UErrorCode* errorCode){
     (void)options; // suppress compiler warnings about unused variable
     const char *testdatapath = loadTestData(errorCode);
-    const char *srcdatapath = ctest_testDataDir();
+    const char *srcdatapath = NULL;
+    const char *relativepath = NULL;
     char *filename = NULL;
     UStringPrepProfile* profile = NULL;
+
+#ifdef U_TOPSRCDIR
+    srcdatapath = U_TOPSRCDIR;
+    relativepath = U_FILE_SEP_STRING"test"U_FILE_SEP_STRING"testdata"U_FILE_SEP_STRING;
+#else
+    srcdatapath = ctest_dataOutDir();
+    relativepath = ".."U_FILE_SEP_STRING".."U_FILE_SEP_STRING"test"U_FILE_SEP_STRING"testdata"U_FILE_SEP_STRING;
+#endif
 
     profile = usprep_open(testdatapath, binFileName, errorCode);
 
@@ -289,9 +298,10 @@ doStringPrepTest(const char* binFileName, const char* txtFileName, int32_t optio
         log_err("Failed to load %s data file. Error: %s \n", binFileName, u_errorName(*errorCode));
         return;
     }
-    filename = (char*)malloc(strlen(srcdatapath) + strlen(txtFileName) + 1);
+    filename = (char*) malloc(strlen(srcdatapath)+strlen(relativepath)+strlen(txtFileName)+10 );
     /* open and load the txt file */
     strcpy(filename,srcdatapath);
+    strcat(filename,relativepath);
     strcat(filename,txtFileName);
 
     parseMappings(filename,profile, TRUE,errorCode);

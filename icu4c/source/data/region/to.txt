@@ -110,7 +110,7 @@ to{
         EZ{"ʻEulope fekauʻaki-paʻanga"}
         FI{"Finilani"}
         FJ{"Fisi"}
-        FK{"ʻOtumotu Malivina"}
+        FK{"ʻOtumotu Fokulani"}
         FM{"Mikolonīsia"}
         FO{"ʻOtumotu Faloe"}
         FR{"Falanisē"}
@@ -133,7 +133,7 @@ to{
         GU{"Kuamu"}
         GW{"Kini-Pisau"}
         GY{"Kuiana"}
-        HK{"Hongi Kongi"}
+        HK{"Hongi Kongi SAR Siaina"}
         HM{"ʻOtumotu Heati mo Makitonali"}
         HN{"Honitulasi"}
         HR{"Kuloisia"}
@@ -187,7 +187,7 @@ to{
         ML{"Māli"}
         MM{"Mianimā (Pema)"}
         MN{"Mongokōlia"}
-        MO{"Makau"}
+        MO{"Makau SAR Siaina"}
         MP{"ʻOtumotu Maliana tokelau"}
         MQ{"Mātiniki"}
         MR{"Maulitenia"}
@@ -222,7 +222,7 @@ to{
         PM{"Sā Piea mo Mikeloni"}
         PN{"ʻOtumotu Pitikeni"}
         PR{"Puēto Liko"}
-        PS{"Palesitaine"}
+        PS{"Potu Palesitaine"}
         PT{"Potukali"}
         PW{"Palau"}
         PY{"Palakuai"}
@@ -299,6 +299,9 @@ to{
     }
     Countries%short{
         GB{"Pilitānia"}
+        HK{"Hongi Kongi"}
+        MO{"Makau"}
+        PS{"Palesitaine"}
         US{"ʻAmelika"}
     }
     Countries%variant{
@@ -306,8 +309,9 @@ to{
         CG{"Kongo (Lepupelika)"}
         CI{"Matafonua ʻAivolī"}
         CZ{"Lepupelika Seki"}
+        FK{"ʻOtumotu Malivina"}
         SZ{"Suasilani"}
         TL{"Timoa fakahahake"}
     }
-    Version{"36"}
+    Version{"36.1"}
 }

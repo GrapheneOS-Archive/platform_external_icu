@@ -261,8 +261,9 @@ ig{
         CG{"Congo (Republik)"}
         CI{"Ivory Coast"}
         CZ{"Czech Republik"}
+        FK{"Agwaetiti Falkland"}
         SZ{"Swaziland"}
         TL{"East Timor"}
     }
-    Version{"36"}
+    Version{"36.1"}
 }

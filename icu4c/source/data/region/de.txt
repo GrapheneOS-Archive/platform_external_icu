@@ -110,7 +110,7 @@ de{
         EZ{"Eurozone"}
         FI{"Finnland"}
         FJ{"Fidschi"}
-        FK{"Falklandinseln (Malwinen)"}
+        FK{"Falklandinseln"}
         FM{"Mikronesien"}
         FO{"Färöer"}
         FR{"Frankreich"}
@@ -133,7 +133,7 @@ de{
         GU{"Guam"}
         GW{"Guinea-Bissau"}
         GY{"Guyana"}
-        HK{"Hongkong"}
+        HK{"Sonderverwaltungsregion Hongkong"}
         HM{"Heard und McDonaldinseln"}
         HN{"Honduras"}
         HR{"Kroatien"}
@@ -187,7 +187,7 @@ de{
         ML{"Mali"}
         MM{"Myanmar"}
         MN{"Mongolei"}
-        MO{"Macau"}
+        MO{"Sonderverwaltungsregion Macau"}
         MP{"Nördliche Marianen"}
         MQ{"Martinique"}
         MR{"Mauretanien"}
@@ -222,7 +222,7 @@ de{
         PM{"St. Pierre und Miquelon"}
         PN{"Pitcairninseln"}
         PR{"Puerto Rico"}
-        PS{"Palästina"}
+        PS{"Palästinensische Autonomiegebiete"}
         PT{"Portugal"}
         PW{"Palau"}
         PY{"Paraguay"}
@@ -299,6 +299,9 @@ de{
     }
     Countries%short{
         GB{"GB"}
+        HK{"Hongkong"}
+        MO{"Macau"}
+        PS{"Palästina"}
         UN{"UN"}
         US{"USA"}
     }
@@ -307,8 +310,9 @@ de{
         CG{"Kongo (Republik)"}
         CI{"Elfenbeinküste"}
         CZ{"Tschechische Republik"}
+        FK{"Falklandinseln (Malwinen)"}
         SZ{"Swasiland"}
         TL{"Osttimor"}
     }
-    Version{"36"}
+    Version{"36.1"}
 }

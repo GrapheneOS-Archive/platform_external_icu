@@ -36,8 +36,9 @@ lrc{
         }
         native{"arabext"}
     }
-    Version{"36"}
+    Version{"36.1"}
     calendar{
+        default{"persian"}
         generic{
             DateTimePatterns{
                 "HH:mm:ss zzzz",

@@ -110,7 +110,7 @@ sl{
         EZ{"evroobmočje"}
         FI{"Finska"}
         FJ{"Fidži"}
-        FK{"Falklandski otoki (Malvini)"}
+        FK{"Falklandski otoki"}
         FM{"Mikronezija"}
         FO{"Ferski otoki"}
         FR{"Francija"}
@@ -133,7 +133,7 @@ sl{
         GU{"Guam"}
         GW{"Gvineja Bissau"}
         GY{"Gvajana"}
-        HK{"Hongkong"}
+        HK{"Posebno administrativno območje LR Kitajske Hongkong"}
         HM{"Heardov otok in McDonaldovi otoki"}
         HN{"Honduras"}
         HR{"Hrvaška"}
@@ -222,7 +222,7 @@ sl{
         PM{"Saint Pierre in Miquelon"}
         PN{"Pitcairn"}
         PR{"Portoriko"}
-        PS{"Palestina"}
+        PS{"Palestinsko ozemlje"}
         PT{"Portugalska"}
         PW{"Palau"}
         PY{"Paragvaj"}
@@ -299,6 +299,9 @@ sl{
     }
     Countries%short{
         GB{"ZK"}
+        HK{"Hongkong"}
+        MO{"Posebno administrativno območje LR Kitajske Macao"}
+        PS{"Palestina"}
         UN{"ZN"}
         US{"ZDA"}
     }
@@ -307,8 +310,9 @@ sl{
         CG{"Kongo (Republika)"}
         CI{"Côte d’Ivoire"}
         CZ{"Češka republika"}
+        FK{"Falklandski otoki (Malvini)"}
         SZ{"Svazi"}
         TL{"Vzhodni Timor"}
     }
-    Version{"36"}
+    Version{"36.1"}
 }

@@ -42,8 +42,8 @@
             </or>
         </condition>
         <fail unless="is.cldr.classes.set" message="CLDR classes not found in ${cldrtools.dir}. Please either set the CLDR_CLASSES environment variable or build cldr.jar."/>
-        <!-- Android-changed: By default proddata is getting build to cldr-staging instead of cldr-aux -->
-        <property name="env.CLDR_TMP_DIR" location="${env.CLDR_DIR}/../cldr-staging" />
+
+        <property name="env.CLDR_TMP_DIR" location="${env.CLDR_DIR}/../cldr-aux" /> <!-- Hack: see CLDRPaths -->
         <property name="cldr.prod.dir" location="${env.CLDR_TMP_DIR}/production/" />
         <echo message="java home: ${java.home}"/>
         <echo message="java version: ${java.version}"/>
@@ -135,7 +135,6 @@
                     <arg name="--specialsdir"     value="${env.ICU4C_DIR}/source/data/xml/main"/>
                     <arg name="--supplementaldir" value="${cldr.prod.dir}/common/supplemental" />
                     <arg name="--type" value="locales"/>
-                    <arg name="--filter"/>  <!-- Android patch: Use dataModifiers.txt filtering. -->
                     <arg name="--depgraphfile" value="../../python/icutools/databuilder/locale_dependencies.py"/>
                 </args>
 		<remapper>

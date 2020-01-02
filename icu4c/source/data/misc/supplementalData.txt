@@ -1896,8 +1896,8 @@ supplementalData:table(nofallback){
             "islamic-tbla",
         }
         AF{
-            "gregorian",
             "persian",
+            "gregorian",
             "islamic",
             "islamic-civil",
             "islamic-tbla",
@@ -1974,8 +1974,8 @@ supplementalData:table(nofallback){
             "islamic-tbla",
         }
         IR{
-            "gregorian",
             "persian",
+            "gregorian",
             "islamic",
             "islamic-civil",
             "islamic-tbla",
@@ -2055,8 +2055,8 @@ supplementalData:table(nofallback){
             "islamic-tbla",
         }
         SA{
-            "gregorian",
             "islamic-umalqura",
+            "gregorian",
             "islamic",
             "islamic-rgsa",
         }
@@ -2083,8 +2083,8 @@ supplementalData:table(nofallback){
             "islamic-tbla",
         }
         TH{
-            "gregorian",
             "buddhist",
+            "gregorian",
         }
         TN{
             "gregorian",
@@ -2104,7 +2104,7 @@ supplementalData:table(nofallback){
             "islamic-tbla",
         }
     }
-    cldrVersion{"36"}
+    cldrVersion{"36.1"}
     codeMappings{
         {
             "AA",
@@ -7718,10 +7718,12 @@ supplementalData:table(nofallback){
                 "Cari",
                 "Cham",
                 "Cher",
+                "Chrs",
                 "Copt",
                 "Cprt",
                 "Cyrl",
                 "Deva",
+                "Diak",
                 "Dogr",
                 "Dsrt",
                 "Dupl",
@@ -7760,6 +7762,7 @@ supplementalData:table(nofallback){
                 "Khar",
                 "Khmr",
                 "Khoj",
+                "Kits",
                 "Knda",
                 "Kore",
                 "Kthi",
@@ -7848,6 +7851,7 @@ supplementalData:table(nofallback){
                 "Wcho",
                 "Xpeo",
                 "Xsux",
+                "Yezi",
                 "Yiii",
             }
             reserved{
@@ -17230,8 +17234,8 @@ supplementalData:table(nofallback){
     languageMatching{
         written{
             {
-                "nb",
                 "no",
+                "nb",
                 "99",
                 "0",
             }
@@ -17729,13 +17733,13 @@ supplementalData:table(nofallback){
             }
             {
                 "nn",
-                "no",
+                "nb",
                 "90",
                 "0",
             }
             {
                 "nn",
-                "nb",
+                "no",
                 "90",
                 "1",
             }

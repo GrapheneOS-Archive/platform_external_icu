@@ -156,7 +156,6 @@ yo{
         ML{"Orílẹ́ède Mali"}
         MM{"Orílẹ́ède Manamari"}
         MN{"Orílẹ́ède Mogolia"}
-        MO{"Màkáò"}
         MP{"Orílẹ́ède Etikun Guusu Mariana"}
         MQ{"Orílẹ́ède Matinikuwi"}
         MR{"Orílẹ́ède Maritania"}
@@ -191,7 +190,7 @@ yo{
         PM{"Orílẹ́ède Pẹẹri ati mikuloni"}
         PN{"Orílẹ́ède Pikarini"}
         PR{"Orílẹ́ède Pọto Riko"}
-        PS{"Palẹsitín"}
+        PS{"Agbègbè Palẹsítíànù"}
         PT{"Orílẹ́ède Pọ́túgà"}
         PW{"Orílẹ́ède Paalu"}
         PY{"Orílẹ́ède Paraguye"}
@@ -258,9 +257,13 @@ yo{
         ZW{"Orílẹ́ède ṣimibabe"}
         ZZ{"Àgbègbè àìmọ̀"}
     }
+    Countries%short{
+        MO{"Màkáò"}
+        PS{"Palẹsitín"}
+    }
     Countries%variant{
         SZ{"Síwásìlandì"}
         TL{"Ìlà Òòrùn Tímọ̀"}
     }
-    Version{"36"}
+    Version{"36.1"}
 }

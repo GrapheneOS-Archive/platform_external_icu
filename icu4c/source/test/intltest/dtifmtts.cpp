@@ -57,6 +57,7 @@ void DateIntervalFormatTest::runIndexedTest( int32_t index, UBool exec, const ch
         TESTCASE(8, testTicket11669);
         TESTCASE(9, testTicket12065);
         TESTCASE(10, testFormattedDateInterval);
+        TESTCASE(11, testCreateInstanceForAllLocales);
         default: name = ""; break;
     }
 }
@@ -1001,40 +1002,39 @@ void DateIntervalFormatTest::testFormat() {
 
         // Thai (default calendar buddhist)
 
-        // BEGIN ANDROID-changed.  Default calendar in Android is Gregorian for th locale.
-        // "th", "BE 2550 10 10 10:10:10", "BE 2551 10 10 10:10:10", "EEEEdMMMy", "\\u0E27\\u0E31\\u0E19\\u0E1E\\u0E38\\u0E18\\u0E17\\u0E35\\u0E48 10 \\u0E15.\\u0E04. 2550 \\u2013 \\u0E27\\u0E31\\u0E19\\u0E28\\u0E38\\u0E01\\u0E23\\u0E4C\\u0E17\\u0E35\\u0E48 10 \\u0E15.\\u0E04. 2551",
+        "th", "BE 2550 10 10 10:10:10", "BE 2551 10 10 10:10:10", "EEEEdMMMy", "\\u0E27\\u0E31\\u0E19\\u0E1E\\u0E38\\u0E18\\u0E17\\u0E35\\u0E48 10 \\u0E15.\\u0E04. 2550 \\u2013 \\u0E27\\u0E31\\u0E19\\u0E28\\u0E38\\u0E01\\u0E23\\u0E4C\\u0E17\\u0E35\\u0E48 10 \\u0E15.\\u0E04. 2551",
 
 
-        // "th", "BE 2550 10 10 10:10:10", "BE 2551 10 10 10:10:10", "dMMM", "10 \\u0E15.\\u0E04. 2550 \\u2013 10 \\u0E15.\\u0E04. 2551",
+        "th", "BE 2550 10 10 10:10:10", "BE 2551 10 10 10:10:10", "dMMM", "10 \\u0E15.\\u0E04. 2550 \\u2013 10 \\u0E15.\\u0E04. 2551",
 
-        // "th", "BE 2550 10 10 10:10:10", "BE 2551 10 10 10:10:10", "MMMy", "\\u0E15.\\u0E04. 2550 \\u2013 \\u0E15.\\u0E04. 2551",
-
-
-        // "th", "BE 2550 10 10 10:10:10", "BE 2551 10 10 10:10:10", "EdMy", "\\u0E1E. 10/10/2550 \\u2013 \\u0E28. 10/10/2551",
-
-        // "th", "BE 2550 10 10 10:10:10", "BE 2551 10 10 10:10:10", "dMy", "10/10/2550 \\u2013 10/10/2551",
+        "th", "BE 2550 10 10 10:10:10", "BE 2551 10 10 10:10:10", "MMMy", "\\u0E15.\\u0E04. 2550 \\u2013 \\u0E15.\\u0E04. 2551",
 
 
-        // "th", "BE 2550 10 10 10:10:10", "BE 2551 10 10 10:10:10", "My", "10/2550 \\u2013 10/2551",
+        "th", "BE 2550 10 10 10:10:10", "BE 2551 10 10 10:10:10", "EdMy", "\\u0E1E. 10/10/2550 \\u2013 \\u0E28. 10/10/2551",
 
-        // "th", "BE 2550 10 10 10:10:10", "BE 2551 10 10 10:10:10", "EdM", "\\u0E1E. 10/10/2550 \\u2013 \\u0E28. 10/10/2551",
-
-
-        // "th", "BE 2550 10 10 10:10:10", "BE 2551 10 10 10:10:10", "y", "2550\\u20132551",
-
-        // "th", "BE 2550 10 10 10:10:10", "BE 2551 10 10 10:10:10", "M", "10/2550 \\u2013 10/2551",
+        "th", "BE 2550 10 10 10:10:10", "BE 2551 10 10 10:10:10", "dMy", "10/10/2550 \\u2013 10/10/2551",
 
 
-        // "th", "BE 2550 10 10 10:10:10", "BE 2550 11 10 10:10:10", "EEEEdMMMy", "\\u0E27\\u0E31\\u0E19\\u0E1E\\u0E38\\u0E18\\u0E17\\u0E35\\u0E48 10 \\u0E15.\\u0E04. \\u2013 \\u0E27\\u0E31\\u0E19\\u0E40\\u0E2A\\u0E32\\u0E23\\u0E4C\\u0E17\\u0E35\\u0E48 10 \\u0E1E.\\u0E22. 2550",
+        "th", "BE 2550 10 10 10:10:10", "BE 2551 10 10 10:10:10", "My", "10/2550 \\u2013 10/2551",
+
+        "th", "BE 2550 10 10 10:10:10", "BE 2551 10 10 10:10:10", "EdM", "\\u0E1E. 10/10/2550 \\u2013 \\u0E28. 10/10/2551",
 
 
-        // "th", "BE 2550 10 10 10:10:10", "BE 2550 11 10 10:10:10", "dMMM", "10 \\u0E15.\\u0E04. \\u2013 10 \\u0E1E.\\u0E22.",
+        "th", "BE 2550 10 10 10:10:10", "BE 2551 10 10 10:10:10", "y", "2550\\u20132551",
 
-        // "th", "BE 2550 10 10 10:10:10", "BE 2550 11 10 10:10:10", "MMMy", "\\u0E15.\\u0E04.\\u2013\\u0E1E.\\u0E22. 2550",
+        "th", "BE 2550 10 10 10:10:10", "BE 2551 10 10 10:10:10", "M", "10/2550 \\u2013 10/2551",
 
-        // "th", "2550 10 10 10:10:10", "2550 11 10 10:10:10", "dM", "10/10 \\u2013 10/11",
 
-        // "th", "BE 2550 10 10 10:10:10", "BE 2550 11 10 10:10:10", "My", "10/2550 \\u2013 11/2550",
+        "th", "BE 2550 10 10 10:10:10", "BE 2550 11 10 10:10:10", "EEEEdMMMy", "\\u0E27\\u0E31\\u0E19\\u0E1E\\u0E38\\u0E18\\u0E17\\u0E35\\u0E48 10 \\u0E15.\\u0E04. \\u2013 \\u0E27\\u0E31\\u0E19\\u0E40\\u0E2A\\u0E32\\u0E23\\u0E4C\\u0E17\\u0E35\\u0E48 10 \\u0E1E.\\u0E22. 2550",
+
+
+        "th", "BE 2550 10 10 10:10:10", "BE 2550 11 10 10:10:10", "dMMM", "10 \\u0E15.\\u0E04. \\u2013 10 \\u0E1E.\\u0E22.",
+
+        "th", "BE 2550 10 10 10:10:10", "BE 2550 11 10 10:10:10", "MMMy", "\\u0E15.\\u0E04.\\u2013\\u0E1E.\\u0E22. 2550",
+
+        "th", "2550 10 10 10:10:10", "2550 11 10 10:10:10", "dM", "10/10 \\u2013 10/11",
+
+        "th", "BE 2550 10 10 10:10:10", "BE 2550 11 10 10:10:10", "My", "10/2550 \\u2013 11/2550",
 
 
         "th", "BE 2550 10 10 10:10:10", "BE 2550 11 10 10:10:10", "d", "10/10 \\u2013 10/11",
@@ -1042,11 +1042,7 @@ void DateIntervalFormatTest::testFormat() {
         "th", "BE 2550 10 10 10:10:10", "BE 2550 11 10 10:10:10", "y", "\\u0E1E.\\u0E28. 2550",
 
 
-        // "th", "BE 2550 10 10 10:10:10", "BE 2550 11 10 10:10:10", "MMM", "\\u0E15.\\u0E04.\\u2013\\u0E1E.\\u0E22.",
-
-        // "th", "2550 10 10 10:10:10", "2550 11 10 10:10:10", "y", "\\u0E1E.\\u0E28. 2550",
-
-        // "th", "2550 10 10 10:10:10", "2550 11 10 10:10:10", "MMM", "\\u0E15.\\u0E04.\\u2013\\u0E1E.\\u0E22.",
+        "th", "BE 2550 10 10 10:10:10", "BE 2550 11 10 10:10:10", "MMM", "\\u0E15.\\u0E04.\\u2013\\u0E1E.\\u0E22.",
 
         // Tests for Japanese calendar with eras, including new era in 2019 (Heisei 31 through April 30, then new era)
 
@@ -1057,12 +1053,12 @@ void DateIntervalFormatTest::testFormat() {
         "en-u-ca-japanese", "S 64 01 05 09:00:00", "H 1 01 15 09:00:00",  "GyMMMd", "Jan 5, 64 Sh\\u014Dwa \\u2013 Jan 15, 1 Heisei",
 
         "en-u-ca-japanese", "S 64 01 05 09:00:00", "H 1 01 15 09:00:00",  "GGGGGyMd", "1/5/64 S \\u2013 1/15/1 H",
-
+ 
         "en-u-ca-japanese", "H 31 04 15 09:00:00", JP_ERA_2019_NARROW " 1 05 15 09:00:00",  "GyMMMd", "Apr 15, 31 Heisei \\u2013 May 15, 1 " JP_ERA_2019_ROOT,
 
         "en-u-ca-japanese", "H 31 04 15 09:00:00", JP_ERA_2019_NARROW " 1 05 15 09:00:00",  "GGGGGyMd", "4/15/31 H \\u2013 5/15/1 " JP_ERA_2019_NARROW,
-
-
+ 
+ 
         "ja-u-ca-japanese", "H 31 03 15 09:00:00", "H 31 04 15 09:00:00", "GyMMMd", "\\u5E73\\u621031\\u5E743\\u670815\\u65E5\\uFF5E4\\u670815\\u65E5",
 
         "ja-u-ca-japanese", "H 31 03 15 09:00:00", "H 31 04 15 09:00:00", "GGGGGyMd", "H31/03/15\\uFF5E31/04/15",
@@ -1073,12 +1069,8 @@ void DateIntervalFormatTest::testFormat() {
 
         "ja-u-ca-japanese", "H 31 04 15 09:00:00", JP_ERA_2019_NARROW " 1 05 15 09:00:00", "GGGGGyMd", "H31/04/15\\uFF5E" JP_ERA_2019_NARROW "1/05/15",
 
-        // END ANDROID-changed
     };
-    // Android patch: b/145129186 Disable failing tests
-    #ifndef ANDROID
     expect(DATA, UPRV_LENGTHOF(DATA));
-    #endif /* ANDROID */
 }
 
 
@@ -1100,7 +1092,7 @@ void DateIntervalFormatTest::expect(const char** data, int32_t data_length) {
             return;
         }
         const char* calType = defCal->getType();
-
+ 
         Locale refLoc("root");
         if (calType) {
             refLoc.setKeywordValue("calendar", calType, ec);
@@ -1777,5 +1769,40 @@ void DateIntervalFormatTest::testFormattedDateInterval() {
     }
 }
 
+void DateIntervalFormatTest::testCreateInstanceForAllLocales() {
+    IcuTestErrorCode status(*this, "testCreateInstanceForAllLocales");
+    int32_t locale_count = 0;
+    const Locale* locales = icu::Locale::getAvailableLocales(locale_count);
+    // Iterate through all locales
+    for (int32_t i = 0; i < locale_count; i++) {
+        std::unique_ptr<icu::StringEnumeration> calendars(
+            icu::Calendar::getKeywordValuesForLocale(
+                "calendar", locales[i], FALSE, status));
+        int32_t calendar_count = calendars->count(status);
+        if (status.errIfFailureAndReset()) { break; }
+        // In quick mode, only run 1/5 of locale combination
+        // to make the test run faster.
+        if (quick && (i % 5 != 0)) continue;
+        LocalPointer<DateIntervalFormat> fmt(
+            DateIntervalFormat::createInstance(u"dMMMMy", locales[i], status),
+            status);
+        if (status.errIfFailureAndReset(locales[i].getName())) {
+            continue;
+        }
+        // Iterate through all calendars in this locale
+        for (int32_t j = 0; j < calendar_count; j++) {
+            // In quick mode, only run 1/7 of locale/calendar combination
+            // to make the test run faster.
+            if (quick && ((i * j) % 7 != 0)) continue;
+            const char* calendar = calendars->next(nullptr, status);
+            Locale locale(locales[i]);
+            locale.setKeywordValue("calendar", calendar, status);
+            fmt.adoptInsteadAndCheckErrorCode(
+                DateIntervalFormat::createInstance(u"dMMMMy", locale, status),
+                status);
+            status.errIfFailureAndReset(locales[i].getName());
+        }
+    }
+}
 
 #endif /* #if !UCONFIG_NO_FORMATTING */
