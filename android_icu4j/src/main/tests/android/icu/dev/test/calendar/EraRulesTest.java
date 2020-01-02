@@ -12,8 +12,8 @@ import android.icu.impl.CalType;
 import android.icu.impl.EraRules;
 import android.icu.util.Calendar;
 import android.icu.util.JapaneseCalendar;
-import android.icu.util.ULocale;
 import android.icu.util.TimeZone;
+import android.icu.util.ULocale;
 import android.icu.testsharding.MainTestShard;
 
 /**
