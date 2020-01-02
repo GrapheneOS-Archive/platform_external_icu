@@ -110,7 +110,7 @@ cs{
         EZ{"eurozóna"}
         FI{"Finsko"}
         FJ{"Fidži"}
-        FK{"Falklandské ostrovy"}
+        FK{"Falklandské ostrovy (Malvíny)"}
         FM{"Mikronésie"}
         FO{"Faerské ostrovy"}
         FR{"Francie"}
@@ -133,7 +133,7 @@ cs{
         GU{"Guam"}
         GW{"Guinea-Bissau"}
         GY{"Guyana"}
-        HK{"Hongkong – ZAO Číny"}
+        HK{"Hongkong"}
         HM{"Heardův ostrov a McDonaldovy ostrovy"}
         HN{"Honduras"}
         HR{"Chorvatsko"}
@@ -187,7 +187,7 @@ cs{
         ML{"Mali"}
         MM{"Myanmar (Barma)"}
         MN{"Mongolsko"}
-        MO{"Macao – ZAO Číny"}
+        MO{"Macao"}
         MP{"Severní Mariany"}
         MQ{"Martinik"}
         MR{"Mauritánie"}
@@ -222,7 +222,7 @@ cs{
         PM{"Saint-Pierre a Miquelon"}
         PN{"Pitcairnovy ostrovy"}
         PR{"Portoriko"}
-        PS{"Palestinská území"}
+        PS{"Palestina"}
         PT{"Portugalsko"}
         PW{"Palau"}
         PY{"Paraguay"}
@@ -299,9 +299,6 @@ cs{
     }
     Countries%short{
         GB{"GB"}
-        HK{"Hongkong"}
-        MO{"Macao"}
-        PS{"Palestina"}
         UN{"OSN"}
         US{"USA"}
     }
@@ -310,7 +307,6 @@ cs{
         CG{"Kongo (republika)"}
         CI{"Côte d’Ivoire"}
         CZ{"Česká republika"}
-        FK{"Falklandské ostrovy (Malvíny)"}
         SZ{"Eswatini"}
         TL{"Timor-Leste"}
     }

@@ -2,7 +2,4 @@
 // License & terms of use: http://www.unicode.org/copyright.html#License
 uz_Arab_AF{
     Version{"36.1"}
-    calendar{
-        default{"persian"}
-    }
 }

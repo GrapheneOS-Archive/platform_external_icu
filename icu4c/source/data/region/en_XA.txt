@@ -312,5 +312,5 @@ en_XA{
         SZ{"[Šŵåžîļåñð one two]"}
         TL{"[Éåšţ Ţîɱöŕ one two]"}
     }
-    Version{"36"}
+    Version{"36.1"}
 }

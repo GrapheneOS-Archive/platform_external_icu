@@ -706,12 +706,14 @@ ar_XB{
         Cari{"؜‮Carian‬؜"}
         Cham{"؜‮Cham‬؜"}
         Cher{"؜‮Cherokee‬؜"}
+        Chrs{"؜‮Chorasmian‬؜"}
         Cirt{"؜‮Cirth‬؜"}
         Copt{"؜‮Coptic‬؜"}
         Cprt{"؜‮Cypriot‬؜"}
         Cyrl{"؜‮Cyrillic‬؜"}
         Cyrs{"؜‮Old‬؜ ؜‮Church‬؜ ؜‮Slavonic‬؜ ؜‮Cyrillic‬؜"}
         Deva{"؜‮Devanagari‬؜"}
+        Diak{"؜‮Dives‬؜ ؜‮Akuru‬؜"}
         Dogr{"؜‮Dogra‬؜"}
         Dsrt{"؜‮Deseret‬؜"}
         Dupl{"؜‮Duployan‬؜ ؜‮shorthand‬؜"}
@@ -756,6 +758,7 @@ ar_XB{
         Khar{"؜‮Kharoshthi‬؜"}
         Khmr{"؜‮Khmer‬؜"}
         Khoj{"؜‮Khojki‬؜"}
+        Kits{"؜‮Khitan‬؜ ؜‮small‬؜ ؜‮script‬؜"}
         Knda{"؜‮Kannada‬؜"}
         Kore{"؜‮Korean‬؜"}
         Kpel{"؜‮Kpelle‬؜"}
@@ -862,6 +865,7 @@ ar_XB{
         Wole{"؜‮Woleai‬؜"}
         Xpeo{"؜‮Old‬؜ ؜‮Persian‬؜"}
         Xsux{"؜‮Sumero‬؜-؜‮Akkadian‬؜ ؜‮Cuneiform‬؜"}
+        Yezi{"؜‮Yezidi‬؜"}
         Yiii{"؜‮Yi‬؜"}
         Zanb{"؜‮Zanabazar‬؜ ؜‮Square‬؜"}
         Zinh{"؜‮Inherited‬؜"}
@@ -1132,6 +1136,7 @@ ar_XB{
             cham{"؜‮Cham‬؜ ؜‮Digits‬؜"}
             cyrl{"؜‮Cyrillic‬؜ ؜‮Numerals‬؜"}
             deva{"؜‮Devanagari‬؜ ؜‮Digits‬؜"}
+            diak{"؜‮Dives‬؜ ؜‮Akuru‬؜ ؜‮Digits‬؜"}
             ethi{"؜‮Ethiopic‬؜ ؜‮Numerals‬؜"}
             finance{"؜‮Financial‬؜ ؜‮Numerals‬؜"}
             fullwide{"؜‮Full‬؜-؜‮Width‬؜ ؜‮Digits‬؜"}
@@ -1289,7 +1294,7 @@ ar_XB{
         VALENCIA{"؜‮Valencian‬؜"}
         WADEGILE{"؜‮Wade‬؜-؜‮Giles‬؜ ؜‮Romanization‬؜"}
     }
-    Version{"36"}
+    Version{"36.1"}
     characterLabelPattern{
         all{"{0} — ؜‮all‬؜"}
         compatibility{"{0} — ؜‮compatibility‬؜"}

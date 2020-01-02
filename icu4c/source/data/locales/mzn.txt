@@ -28,7 +28,6 @@ mzn{
     }
     Version{"36.1"}
     calendar{
-        default{"persian"}
         gregorian{
             eras{
                 abbreviated{

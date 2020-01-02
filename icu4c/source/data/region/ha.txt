@@ -271,9 +271,6 @@ ha{
         ZW{"Zimbabuwe"}
         ZZ{"Yanki da ba a sani ba"}
     }
-    Countries%short{
-        PS{"Palasɗinu"}
-    }
     Countries%variant{
         CD{"Kongo (DRC)"}
         CG{"Jamhuriyar Kongo"}
