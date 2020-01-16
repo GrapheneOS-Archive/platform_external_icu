@@ -310,5 +310,5 @@ sw{
         SZ{"Uswazi"}
         TL{"Timor ya Mashariki"}
     }
-    Version{"36"}
+    Version{"36.1"}
 }
