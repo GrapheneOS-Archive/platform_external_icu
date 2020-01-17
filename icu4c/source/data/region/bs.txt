@@ -307,5 +307,5 @@ bs{
         CZ{"Češka Republika"}
         SZ{"Svazilend"}
     }
-    Version{"36"}
+    Version{"36.1"}
 }
