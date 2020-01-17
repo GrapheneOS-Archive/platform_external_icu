@@ -310,5 +310,5 @@ is{
         SZ{"Svasíland"}
         TL{"Austur-Tímor"}
     }
-    Version{"36"}
+    Version{"36.1"}
 }
