@@ -2228,14 +2228,14 @@ public final class UCharacter implements ECharacterCategory, ECharacterDirection
 
         // New blocks in Unicode 13.0
 
-        /** @hide unsupported on Android*/
+        /***/
         public static final UnicodeBlock CHORASMIAN =
                 new UnicodeBlock("CHORASMIAN", CHORASMIAN_ID); /*[10FB0]*/
-        /** @hide unsupported on Android*/
+        /***/
         public static final UnicodeBlock CJK_UNIFIED_IDEOGRAPHS_EXTENSION_G =
                 new UnicodeBlock("CJK_UNIFIED_IDEOGRAPHS_EXTENSION_G",
                         CJK_UNIFIED_IDEOGRAPHS_EXTENSION_G_ID); /*[30000]*/
-        /** @hide unsupported on Android*/
+        /***/
         public static final UnicodeBlock DIVES_AKURU =
                 new UnicodeBlock("DIVES_AKURU", DIVES_AKURU_ID); /*[11900]*/
         /***/

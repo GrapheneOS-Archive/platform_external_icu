@@ -649,11 +649,7 @@ public class Icu4jTransform {
       "field:android.icu.lang.UCharacter$LineBreak#COUNT",
       "field:android.icu.lang.UCharacter$NumericType#COUNT",
       "field:android.icu.lang.UCharacter$SentenceBreak#COUNT",
-      // Hide temporarily for ICU 66 preview upgrade (CHORASMIAN, CJK_UNIFIED_IDEOGRAPHS_EXTENSION_G and DIVES_AKURU)
-      "field:android.icu.lang.UCharacter$UnicodeBlock#CHORASMIAN",
-      "field:android.icu.lang.UCharacter$UnicodeBlock#CJK_UNIFIED_IDEOGRAPHS_EXTENSION_G",
       "field:android.icu.lang.UCharacter$UnicodeBlock#COUNT",
-      "field:android.icu.lang.UCharacter$UnicodeBlock#DIVES_AKURU",
       "field:android.icu.lang.UCharacter$WordBreak#COUNT",
       "field:android.icu.lang.UCharacterEnums$ECharacterCategory#CHAR_CATEGORY_COUNT",
       "field:android.icu.lang.UCharacterEnums$ECharacterDirection#CHAR_DIRECTION_COUNT",
@@ -674,8 +670,6 @@ public class Icu4jTransform {
       "field:android.icu.util.LocaleData#ES_INDEX",
       "field:android.icu.util.LocaleData#ES_PUNCTUATION",
       "field:android.icu.util.LocaleData#ES_STANDARD",
-      // Hide temporarily for ICU 66 preview upgrade
-      "field:android.icu.util.VersionInfo#UNICODE_13_0",
       // Hide appendTo APIs until we find the value of these APIs.
       // Particularly, the open question is throwing ICUUncheckedIOException/checked IOException.
       "method:android.icu.number.FormattedNumber#appendTo(A)",
