@@ -197,6 +197,14 @@ package com.android.icu.charset {
 
 }
 
+package com.android.icu.text {
+
+  public final class TimeZoneNamesNative {
+    method public static String[][] getFilledZoneStrings(@NonNull java.util.Locale, @NonNull String[]);
+  }
+
+}
+
 package com.android.icu.util {
 
   public class CaseMapperNative {
