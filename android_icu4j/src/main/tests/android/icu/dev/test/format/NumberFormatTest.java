@@ -44,6 +44,7 @@ import org.junit.runners.JUnit4;
 import android.icu.dev.test.TestFmwk;
 import android.icu.dev.test.TestUtil;
 import android.icu.dev.test.format.IntlTestDecimalFormatAPIC.FieldContainer;
+import android.icu.impl.DontCareFieldPosition;
 import android.icu.impl.ICUConfig;
 import android.icu.impl.LocaleUtility;
 import android.icu.impl.data.ResourceReader;
@@ -6614,6 +6615,26 @@ public class NumberFormatTest extends TestFmwk {
             "-$", fmt.getNegativePrefix());
         assertEquals("Set negative prefix format",
             "$100.00", fmt.format(100));
+    }
+
+    @Test
+    public void test20956_MonetarySymbolGetters() {
+        Locale locale = new Locale.Builder().setLocale(Locale.forLanguageTag("et")).build();
+        DecimalFormat decimalFormat = (DecimalFormat) NumberFormat.getCurrencyInstance(locale);
+        Currency currency = Currency.getInstance("EEK");
+
+        decimalFormat.setCurrency(currency);
+
+        DecimalFormatSymbols decimalFormatSymbols = decimalFormat.getDecimalFormatSymbols();
+        assertEquals("MONETARY DECIMAL SEPARATOR", ".", decimalFormatSymbols.getMonetaryDecimalSeparatorString());
+        assertEquals("DECIMAL SEPARATOR", ",", decimalFormatSymbols.getDecimalSeparatorString());
+        assertEquals("MONETARY GROUPING SEPARATOR", " ", decimalFormatSymbols.getMonetaryGroupingSeparatorString());
+        assertEquals("GROUPING SEPARATOR", " ", decimalFormatSymbols.getGroupingSeparatorString());
+        assertEquals("CURRENCY SYMBOL", "kr", decimalFormatSymbols.getCurrencySymbol());
+
+        StringBuffer sb = new StringBuffer();
+        decimalFormat.format(new BigDecimal(12345.12), sb, DontCareFieldPosition.INSTANCE);
+        assertEquals("OUTPUT", "12 345.12 kr", sb.toString());
     }
 
     @Test
