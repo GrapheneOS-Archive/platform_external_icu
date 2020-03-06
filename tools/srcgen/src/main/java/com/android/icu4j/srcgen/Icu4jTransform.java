@@ -689,6 +689,7 @@ public class Icu4jTransform {
       "method:android.icu.text.Collator#registerInstance(Collator,ULocale)",
       "method:android.icu.text.Collator#unregister(Object)",
       "method:android.icu.text.DecimalFormat#toNumberFormatter()",
+      "method:android.icu.text.DecimalFormatSymbols#getCurrencyPattern()",
       "method:android.icu.text.NumberFormat#registerFactory(NumberFormatFactory)",
       "method:android.icu.text.NumberFormat#unregister(Object)",
       "method:android.icu.text.RuleBasedCollator#getRawCollationKey(String,RawCollationKey)",
