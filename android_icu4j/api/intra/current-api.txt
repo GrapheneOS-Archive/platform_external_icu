@@ -44,6 +44,7 @@ package android.icu.text {
 
   public class DateFormatSymbols implements java.lang.Cloneable java.io.Serializable {
     ctor @Deprecated public DateFormatSymbols(android.icu.util.ULocale, String);
+    method public String[] getAmpmNarrowStrings();
     method public String[] getNarrowEras();
   }
 
@@ -174,9 +175,15 @@ package android.icu.util {
 
   public abstract class UResourceBundle extends java.util.ResourceBundle {
     ctor public UResourceBundle();
+    method public android.icu.util.UResourceBundle get(int);
     method public static android.icu.util.UResourceBundle getBundleInstance(String, java.util.Locale);
     method public static android.icu.util.UResourceBundle getBundleInstance(String, android.icu.util.ULocale);
+    method public String getString();
+    method public String getString(int);
     method public String[] getStringArray();
+    method public int getType();
+    field public static final int ARRAY = 8; // 0x8
+    field public static final int STRING = 0; // 0x0
   }
 
 }
