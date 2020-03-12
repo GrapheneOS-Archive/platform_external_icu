@@ -50,3 +50,13 @@ package android.icu.util {
 
 }
 
+package com.android.icu.text {
+
+  public class DateSorterBridge {
+    method public static com.android.icu.text.DateSorterBridge createInstance(java.util.Locale) throws java.lang.AssertionError;
+    method public String getToday();
+    method public String getYesterday();
+  }
+
+}
+
