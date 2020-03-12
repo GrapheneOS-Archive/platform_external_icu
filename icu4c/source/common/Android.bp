@@ -100,6 +100,12 @@ cc_library {
             // Windows requires importing data as a DLL when building with U_COMMON_IMPLEMENTATION
             shared_libs: ["libicuuc_stubdata"],
         },
+        windows_x86_64: {
+            dist: {
+                targets: ["layoutlib"],
+                dir: "layoutlib_native/windows",
+            },
+        },
     },
     header_libs: ["libicuuc_headers"],
     export_header_lib_headers: ["libicuuc_headers"],
