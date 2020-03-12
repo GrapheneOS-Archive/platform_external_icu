@@ -409,6 +409,7 @@ public abstract class UResourceBundle extends ResourceBundle {
      * @throws UResourceTypeMismatchException If resource bundle has a type mismatch.
      */
     @android.compat.annotation.UnsupportedAppUsage
+    @libcore.api.IntraCoreApi
     public String getString() {
         throw new UResourceTypeMismatchException("");
     }
@@ -532,6 +533,7 @@ public abstract class UResourceBundle extends ResourceBundle {
      * @throws IndexOutOfBoundsException If the index value is out of bounds of accepted values.
      * @throws UResourceTypeMismatchException If resource bundle type mismatch.
      */
+    @libcore.api.IntraCoreApi
     public String getString(int index) {
         ICUResourceBundle temp = (ICUResourceBundle)get(index);
         if (temp.getType() == STRING) {
@@ -548,6 +550,7 @@ public abstract class UResourceBundle extends ResourceBundle {
      * @throws IndexOutOfBoundsException If the index value is out of bounds of accepted values.
      * @throws MissingResourceException If the resource bundle is missing.
      */
+    @libcore.api.IntraCoreApi
     public UResourceBundle get(int index) {
         UResourceBundle obj = handleGet(index, null, this);
         if (obj == null) {
@@ -687,6 +690,7 @@ public abstract class UResourceBundle extends ResourceBundle {
      * @return type of the given resource.
      */
     @android.compat.annotation.UnsupportedAppUsage
+    @libcore.api.IntraCoreApi
     public int getType() {
         return NONE;
     }
@@ -727,6 +731,7 @@ public abstract class UResourceBundle extends ResourceBundle {
     /**
      * <strong>[icu]</strong> Resource type constant for strings.
      */
+    @libcore.api.IntraCoreApi
     public static final int STRING = 0;
 
     /**
@@ -749,6 +754,7 @@ public abstract class UResourceBundle extends ResourceBundle {
     /**
      * <strong>[icu]</strong> Resource type constant for arrays of resources.
      */
+    @libcore.api.IntraCoreApi
     public static final int ARRAY = 8;
 
     /**
