@@ -37,6 +37,12 @@ cc_library {
         windows: {
             enabled: true,
         },
+        windows_x86_64: {
+            dist: {
+                targets: ["layoutlib"],
+                dir: "layoutlib_native/windows",
+            },
+        },
         android: {
             cflags: [
                 "-DANDROID_LINK_SHARED_ICU4C",
