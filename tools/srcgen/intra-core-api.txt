@@ -14,6 +14,8 @@ field:android.icu.util.DateTimeRule#DOW_LEQ_DOM
 field:android.icu.util.DateTimeRule#STANDARD_TIME
 field:android.icu.util.DateTimeRule#UTC_TIME
 field:android.icu.util.DateTimeRule#WALL_TIME
+field:android.icu.util.UResourceBundle#STRING
+field:android.icu.util.UResourceBundle#ARRAY
 method:android.icu.impl.CacheValue#setStrength(Strength)
 method:android.icu.impl.ICUResourceBundle#getStringWithFallback(String)
 method:android.icu.impl.ICUResourceBundle#getWithFallback(String)
@@ -21,6 +23,7 @@ method:android.icu.impl.JavaTimeZone#JavaTimeZone(java.util.TimeZone,String)
 method:android.icu.impl.ZoneMeta#getCanonicalCLDRID(String)
 method:android.icu.text.DateFormatSymbols#DateFormatSymbols(ULocale,String)
 method:android.icu.text.DateFormatSymbols#getNarrowEras()
+method:android.icu.text.DateFormatSymbols#getAmpmNarrowStrings()
 method:android.icu.text.DateTimePatternGenerator#getFrozenInstance(ULocale)
 method:android.icu.text.DecimalFormat#setParseStrictMode(ParseMode)
 method:android.icu.text.IDNA#convertIDNToASCII(String,int)
@@ -57,7 +60,11 @@ method:android.icu.util.TimeZoneTransition#getTo()
 method:android.icu.util.ULocale#getRegionForSupplementalData(ULocale,boolean)
 method:android.icu.util.UResourceBundle#UResourceBundle()
 method:android.icu.util.UResourceBundle#getBundleInstance(String,Locale)
+method:android.icu.util.UResourceBundle#get(int)
+method:android.icu.util.UResourceBundle#getString()
+method:android.icu.util.UResourceBundle#getString(int)
 method:android.icu.util.UResourceBundle#getStringArray()
+method:android.icu.util.UResourceBundle#getType()
 type:android.icu.impl.CacheValue
 type:android.icu.impl.CacheValue$Strength
 type:android.icu.impl.ICUData
