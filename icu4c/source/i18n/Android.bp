@@ -31,6 +31,7 @@ cc_defaults {
         "-Wno-unused-parameter",
         "-Wno-unused-const-variable",
         "-Wno-unneeded-internal-declaration",
+        "-Wno-unreachable-code-loop-increment",
     ],
     cppflags: [
         "-std=c++11",
