@@ -32,6 +32,8 @@ LOCAL_SRC_FILES := $(dat_file)
 LOCAL_IS_HOST_MODULE := true
 include $(BUILD_PREBUILT)
 
+$(call dist-for-goals, layoutlib, $(LOCAL_MODULE_PATH)/$(dat_file):layoutlib_native/icu/$(dat_file))
+
 # Module definition producing ICU .dat prebuilt files in
 # /system/etc/icu for standalone ART testing purposes. This is a
 # temporary change needed until the ART Buildbot and Golem both fully
