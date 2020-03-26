@@ -86,6 +86,7 @@ public abstract class Precision {
      *            The minimum and maximum number of numerals to display after the decimal separator
      *            (rounding if too long or padding with zeros if too short).
      * @return A FractionPrecision for chaining or passing to the NumberFormatter precision() setter.
+     * @throws IllegalArgumentException if the input number is too big or smaller than 0.
      * @see NumberFormatter
      */
     public static FractionPrecision fixedFraction(int minMaxFractionPlaces) {
@@ -110,6 +111,7 @@ public abstract class Precision {
      *            The minimum number of numerals to display after the decimal separator (padding with
      *            zeros if necessary).
      * @return A FractionPrecision for chaining or passing to the NumberFormatter precision() setter.
+     * @throws IllegalArgumentException if the input number is too big or smaller than 0.
      * @see NumberFormatter
      */
     public static FractionPrecision minFraction(int minFractionPlaces) {
@@ -131,6 +133,7 @@ public abstract class Precision {
      *            The maximum number of numerals to display after the decimal mark (rounding if
      *            necessary).
      * @return A FractionPrecision for chaining or passing to the NumberFormatter precision() setter.
+     * @throws IllegalArgumentException if the input number is too big or smaller than 0.
      * @see NumberFormatter
      */
     public static FractionPrecision maxFraction(int maxFractionPlaces) {
@@ -155,6 +158,7 @@ public abstract class Precision {
      *            The maximum number of numerals to display after the decimal separator (rounding if
      *            necessary).
      * @return A FractionPrecision for chaining or passing to the NumberFormatter precision() setter.
+     * @throws IllegalArgumentException if the input number is too big or smaller than 0.
      * @see NumberFormatter
      */
     public static FractionPrecision minMaxFraction(int minFractionPlaces, int maxFractionPlaces) {
@@ -181,6 +185,7 @@ public abstract class Precision {
      *            The minimum and maximum number of significant digits to display (rounding if too long
      *            or padding with zeros if too short).
      * @return A Precision for chaining or passing to the NumberFormatter precision() setter.
+     * @throws IllegalArgumentException if the input number is too big or smaller than 1.
      * @see NumberFormatter
      */
     public static Precision fixedSignificantDigits(int minMaxSignificantDigits) {
@@ -204,6 +209,7 @@ public abstract class Precision {
      * @param minSignificantDigits
      *            The minimum number of significant digits to display (padding with zeros if too short).
      * @return A Precision for chaining or passing to the NumberFormatter precision() setter.
+     * @throws IllegalArgumentException if the input number is too big or smaller than 1.
      * @see NumberFormatter
      */
     public static Precision minSignificantDigits(int minSignificantDigits) {
@@ -222,6 +228,7 @@ public abstract class Precision {
      * @param maxSignificantDigits
      *            The maximum number of significant digits to display (rounding if too long).
      * @return A Precision for chaining or passing to the NumberFormatter precision() setter.
+     * @throws IllegalArgumentException if the input number is too big or smaller than 1.
      * @see NumberFormatter
      */
     public static Precision maxSignificantDigits(int maxSignificantDigits) {
@@ -243,6 +250,7 @@ public abstract class Precision {
      * @param maxSignificantDigits
      *            The maximum number of significant digits to display (rounding if necessary).
      * @return A Precision for chaining or passing to the NumberFormatter precision() setter.
+     * @throws IllegalArgumentException if the input number is too big or smaller than 1.
      * @see NumberFormatter
      */
     public static Precision minMaxSignificantDigits(int minSignificantDigits, int maxSignificantDigits) {
@@ -277,6 +285,7 @@ public abstract class Precision {
      * @param roundingIncrement
      *            The increment to which to round numbers.
      * @return A Precision for chaining or passing to the NumberFormatter precision() setter.
+     * @throws IllegalArgumentException if the rounding increment is null or non-positive.
      * @see NumberFormatter
      */
     public static Precision increment(BigDecimal roundingIncrement) {
@@ -303,6 +312,7 @@ public abstract class Precision {
      *            Either STANDARD (for digital transactions) or CASH (for transactions where the rounding
      *            increment may be limited by the available denominations of cash or coins).
      * @return A CurrencyPrecision for chaining or passing to the NumberFormatter precision() setter.
+     * @throws IllegalArgumentException if currencyUsage is null.
      * @see NumberFormatter
      */
     public static CurrencyPrecision currency(CurrencyUsage currencyUsage) {
