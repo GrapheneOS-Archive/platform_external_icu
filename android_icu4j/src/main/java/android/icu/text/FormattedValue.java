@@ -35,6 +35,7 @@ public interface FormattedValue extends CharSequence {
      *
      * @param appendable The Appendable to which to append the string output.
      * @return The same Appendable, for chaining.
+     * @throws ICUUncheckedIOException if the Appendable throws IOException
      * @hide draft / provisional / internal are hidden on Android
      */
     public <A extends Appendable> A appendTo(A appendable);
