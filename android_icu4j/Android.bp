@@ -127,24 +127,6 @@ java_library {
     dxflags: ["--core-library"],
 }
 
-//
-// Guaranteed unstripped versions of core-icu4j.
-//
-// The build system may or may not strip the core-icu4j. jar,
-// but this will not be stripped. See b/24535627.
-//
-java_library {
-    name: "core-icu4j-testdex",
-    installable: true,
-    static_libs: ["core-icu4j"],
-    sdk_version: "none",
-    system_modules: "art-module-public-api-stubs-system-modules",
-    dxflags: ["--core-library"],
-    dex_preopt: {
-        enabled: false,
-    },
-}
-
 // Generates stubs for the parts of the public SDK API provided by the i18n module.
 //
 // Only for use by i18n.module.public.api.stubs target below.
