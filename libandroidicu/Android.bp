@@ -38,12 +38,6 @@ cc_library_shared {
         "//apex_available:platform",
     ],
 
-    // include/aicu/: extra utility APIs added by android
-    // include/unicode/: Includes modified C headers from ICU4C,
-    //                   but excludes C++ headers.
-    // include/uconfig_local.h: local configuration specific for libandroidicu
-    export_include_dirs: ["include"],
-
     // The implementation of libandroidicu depends on libicuuc and and libicui18n,
     // but we need to export the headers in include/.
     //
@@ -62,6 +56,8 @@ cc_library_shared {
         "libicui18n",
         "liblog",
     ],
+    header_libs: ["libandroidicu_headers"],
+    export_header_lib_headers: ["libandroidicu_headers"],
     stubs: {
         symbol_file: "libandroidicu.map.txt",
         versions: [
@@ -85,6 +81,27 @@ cc_library_shared {
                 "libandroidicuinit",
             ],
         },
+        windows: {
+            enabled: true,
+        },
+    },
+}
+
+cc_library_headers {
+    name: "libandroidicu_headers",
+    host_supported: true,
+    native_bridge_supported: true,
+    apex_available: [
+        "com.android.art.release",
+        "com.android.art.debug",
+    ],
+
+    // include/aicu/: extra utility APIs added by android
+    // include/unicode/: Includes modified C headers from ICU4C,
+    //                   but excludes C++ headers.
+    // include/uconfig_local.h: local configuration specific for libandroidicu
+    export_include_dirs: ["include"],
+    target: {
         windows: {
             enabled: true,
         },
