@@ -25,6 +25,13 @@ __BEGIN_DECLS
 // This must be called when the process is single threaded.
 void AIcu_initializeIcuOrDie();
 
+
+#ifdef __ANDROID__
+void AIcu_register();
+
+void AIcu_deregister();
+#endif
+
 __END_DECLS
 
 #endif  // AICU_H
