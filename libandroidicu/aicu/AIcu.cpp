@@ -19,15 +19,25 @@
 #include <stdlib.h>
 
 #ifdef __ANDROID__
-#include <androidicuinit/IcuRegistration.h>
+#include <androidicuinit/android_icu_reg.h>
 #endif
 
 void AIcu_initializeIcuOrDie() {
 #ifdef __ANDROID__
-    androidicuinit::IcuRegistration::Register();
+    android_icu_register();
 #else
     // This function is only supported when there is access to
     // androidicuinit.
     abort();
 #endif
 }
+
+#ifdef __ANDROID__
+void AIcu_register() {
+    android_icu_register();
+}
+
+void AIcu_deregister() {
+    android_icu_deregister();
+}
+#endif
