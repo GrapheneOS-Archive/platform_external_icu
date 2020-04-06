@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-#include "androidicuinit/IcuRegistration.h"
 #include "androidicuinit/android_icu_reg.h"
+#include "IcuRegistration.h"
 
 #include <sys/mman.h>
 #include <sys/stat.h>
