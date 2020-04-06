@@ -21,7 +21,6 @@
 #include <string>
 
 #include <android-base/macros.h>
-#include <jni.h>
 
 namespace androidicuinit {
 namespace impl {
