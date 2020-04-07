@@ -22,6 +22,7 @@ package {
 cc_library_shared {
     name: "libicu_jni",
     host_supported: true,
+    header_libs: ["jni_headers"],
     shared_libs: [
         "libbase",
         "libicuuc",
