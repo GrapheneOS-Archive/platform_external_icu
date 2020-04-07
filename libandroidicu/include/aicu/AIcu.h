@@ -19,18 +19,29 @@
 
 #include <sys/cdefs.h>
 
+// Disable declaration of register functions in Windows because
+// sys/mman.h is not available in MinGW.
+#if !defined (WINVER) && !defined (_WIN32_WINNT)
+  #define ENABLE_ICU_REGISTER 1
+#endif
+
 __BEGIN_DECLS
 
+#ifdef ENABLE_ICU_REGISTER
+
+#ifdef __ANDROID__
 // Initializes ICU using the best available data files or dies trying.
 // This must be called when the process is single threaded.
 void AIcu_initializeIcuOrDie();
+#endif
 
-
-#ifdef __ANDROID__
+// The AIcu_register and AIcu_deregister should only be called by libcore.
+// For other clients, please call AIcu_initializeIcuOrDie instead.
 void AIcu_register();
 
 void AIcu_deregister();
-#endif
+
+#endif // ENABLE_ICU_REGISTER
 
 __END_DECLS
 
