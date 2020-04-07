@@ -18,21 +18,17 @@
 
 #include <stdlib.h>
 
-#ifdef __ANDROID__
+#ifdef ENABLE_ICU_REGISTER
 #include <androidicuinit/android_icu_reg.h>
-#endif
 
+#ifdef __ANDROID__
 void AIcu_initializeIcuOrDie() {
-#ifdef __ANDROID__
     android_icu_register();
-#else
-    // This function is only supported when there is access to
-    // androidicuinit.
-    abort();
-#endif
+    // This function is used to abort() on host, but the host variant is now
+    // disabled.
 }
+#endif
 
-#ifdef __ANDROID__
 void AIcu_register() {
     android_icu_register();
 }
@@ -40,4 +36,4 @@ void AIcu_register() {
 void AIcu_deregister() {
     android_icu_deregister();
 }
-#endif
+#endif // ENABLE_ICU_REGISTER
