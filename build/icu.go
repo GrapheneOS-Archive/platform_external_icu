@@ -24,6 +24,7 @@ func init() {
 		"device/google/cuttlefish/host/commands/",
 		"external/skia",
 		"frameworks/base/libs/hwui",
+		"libcore/",
 	}
 
 	device_whitelist := []string{
