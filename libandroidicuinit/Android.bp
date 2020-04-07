@@ -42,6 +42,5 @@ cc_library_static {
     visibility: [
         "//external/icu/libandroidicu",
         "//external/icu/icu4c/source/test:__subpackages__",
-        "//libcore",
     ],
 }

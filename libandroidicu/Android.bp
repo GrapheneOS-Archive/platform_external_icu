@@ -26,8 +26,9 @@ cc_library_shared {
     srcs: [
         "aicu/AIcu.cpp",
     ],
-    // host_supported is required for host apex. This library is not intended
-    // for general host use.
+    // host_supported is required for some cases, e.g. host apex. This library
+    // is not intended for general host use.  Please refer to
+    // external/icu/build/icu.go for the full whitelist.
     host_supported: true,
     native_bridge_supported: true,
     unique_host_soname: true,
@@ -73,10 +74,17 @@ cc_library_shared {
     ],
     target: {
         android: {
+            static_libs: [
+                "libandroidicuinit",
+            ],
             cflags: [
                 "-DANDROID_LINK_SHARED_ICU4C",
             ],
             version_script: "libandroidicu.map.txt",
+        },
+        not_windows: {
+            // libandroidicuinit requires mmap(2) in sys/mman.h, but it's not
+            // available in the latest MinGW version.
             static_libs: [
                 "libandroidicuinit",
             ],
