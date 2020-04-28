@@ -47,4 +47,9 @@ cc_library_static {
         "//external/icu/icu4c/source/test:__subpackages__",
         "//libcore",
     ],
+
+    apex_available: [
+        "com.android.art.release",
+        "com.android.art.debug",
+    ],
 }
