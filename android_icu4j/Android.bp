@@ -27,7 +27,7 @@ package {
 filegroup {
     name: "android_icu4j_public_api_files",
     visibility: [
-        "//libcore:__subpackages__",
+        "//frameworks/base",
     ],
     srcs: [
         ":android_icu4j_repackaged_src_files",
