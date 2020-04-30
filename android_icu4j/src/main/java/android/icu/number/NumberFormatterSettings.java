@@ -134,7 +134,6 @@ public abstract class NumberFormatterSettings<T extends NumberFormatterSettings<
      * @return The fluent chain.
      * @see MeasureUnit
      * @see Currency
-     * @see NoUnit
      * @see #perUnit
      */
     public T unit(MeasureUnit unit) {
