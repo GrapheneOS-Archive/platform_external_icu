@@ -25,9 +25,6 @@ cc_library {
     host_supported: true,
     native_bridge_supported: true,
     srcs: ["stubdata/stubdata.cpp"],
-    apex_available: [
-        "com.android.i18n",
-    ],
     header_libs: [
         "libicuuc_headers",
     ],
