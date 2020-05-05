@@ -92,9 +92,6 @@ java_library_static {
     system_modules: "art-module-public-api-stubs-system-modules",
 
     dxflags: ["--core-library"],
-    apex_available: [
-        "com.android.i18n",
-    ],
     errorprone: {
         javacflags: [
             "-Xep:MissingOverride:OFF", // Ignore missing @Override.
@@ -108,20 +105,16 @@ java_library_static {
 java_library {
     name: "core-icu4j",
     visibility: [
-        "//libcore/apex",
+        "//art/build/apex",
         "//external/robolectric-shadows",
         "//frameworks/layoutlib",
-        "//art/build",
     ],
     apex_available: [
-        "com.android.i18n",
-    ],
-    permitted_packages: [
-        "android.icu",
-        "com.android.icu",
+        "com.android.art.release",
+        "com.android.art.debug",
     ],
     installable: true,
-    hostdex: false,
+    hostdex: true,
 
     srcs: [":libcore_icu_bridge_src_files"],
     static_libs: ["core-repackaged-icu4j"],

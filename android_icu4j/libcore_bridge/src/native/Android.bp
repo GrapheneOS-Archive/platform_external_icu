@@ -15,7 +15,7 @@
 //
 package {
     default_visibility: [
-        "//libcore/apex",
+        "//art/build/apex",
     ],
 }
 
@@ -50,6 +50,7 @@ cc_library_shared {
         },
     },
     apex_available: [
-        "com.android.i18n",
+        "com.android.art.release",
+        "com.android.art.debug",
     ],
 }

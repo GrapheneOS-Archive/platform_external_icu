@@ -57,9 +57,6 @@ cc_library_headers {
     host_supported: true,
     native_bridge_supported: true,
     export_include_dirs: ["."],
-    apex_available: [
-        "com.android.i18n",
-    ],
     target: {
         windows: {
             enabled: true,
@@ -79,7 +76,8 @@ cc_library {
     host_supported: true,
     native_bridge_supported: true,
     apex_available: [
-        "com.android.i18n",
+        "com.android.art.release",
+        "com.android.art.debug",
         // b/133140750 Clean this up. This is due to the dependency to from libmedia
         "//apex_available:platform",
     ],
