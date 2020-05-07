@@ -39,6 +39,9 @@ cc_library_static {
             ],
         },
     },
+    apex_available: [
+        "com.android.i18n",
+    ],
     visibility: [
         "//external/icu/libandroidicu",
         "//external/icu/icu4c/source/test:__subpackages__",
