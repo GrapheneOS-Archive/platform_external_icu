@@ -33,8 +33,7 @@ cc_library_shared {
     native_bridge_supported: true,
     unique_host_soname: true,
     apex_available: [
-        "com.android.art.release",
-        "com.android.art.debug",
+        "com.android.i18n",
         // b/133140750 Clean this up. This is due to the dependency to from libmedia
         "//apex_available:platform",
     ],
@@ -102,6 +101,7 @@ cc_library_headers {
     apex_available: [
         "com.android.art.release",
         "com.android.art.debug",
+        "com.android.i18n",
     ],
 
     // include/aicu/: extra utility APIs added by android
