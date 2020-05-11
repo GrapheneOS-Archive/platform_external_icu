@@ -140,13 +140,12 @@ def MakeAndCopyIcuDataFiles(icu_build_dir):
   shutil.copy(dat_file, icu_dat_data_dir)
 
   # Generate the ICU4J .jar files
-  os.chdir('%s/data' % icu_build_dir)
   subprocess.check_call(['make', '-j32', 'icu4j-data'])
 
   # Copy the ICU4J .jar files to their ultimate destination.
   icu_jar_data_dir = '%s/main/shared/data' % icu4jDir()
-  jarfiles = glob.glob('out/icu4j/*.jar')
-  if len(jarfiles) != 2:
+  jarfiles = glob.glob('data/out/icu4j/*.jar')
+  if len(jarfiles) != 3:
     print('ERROR: Unexpectedly found %d .jar files (%s). Halting.' % (len(jarfiles), jarfiles))
     sys.exit(1)
   for jarfile in jarfiles:
