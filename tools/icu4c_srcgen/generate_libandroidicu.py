@@ -92,19 +92,32 @@ def copy_header_only_files():
             subprocess.check_call(cmd, stdout=destfile)
 
 
+def get_whitelisted_apis():
+    """Return all whitelisted API in libandroidicu_whitelisted_api.txt"""
+    whitelisted_apis = set()
+    with open(os.path.join(THIS_DIR, 'libandroidicu_whitelisted_api.txt'), 'r') as f:
+        for line in f:
+            line = line.strip()
+            if line and not line.startswith("#"):
+                whitelisted_apis.add(line)
+    return whitelisted_apis
+
+
 def main():
     """Parse the ICU4C headers and generate the shim libandroidicu."""
     logging.basicConfig(level=logging.DEBUG)
 
     decl_filters = [StableDeclarationFilter()]
-    whitelisted_filters = [WhitelistedDeclarationFilter(WHITELISTED_FUNCTION_NAMES)]
-    parser = DeclaredFunctionsParser(decl_filters, whitelisted_filters)
-    parser.set_va_functions_mapping(KNOWN_VA_FUNCTIONS)
+    parser = DeclaredFunctionsParser(decl_filters, [])
 
     parser.parse()
 
     includes = parser.header_includes
     functions = parser.declared_functions
+
+    # The shim has the whitelisted functions only
+    whitelisted_apis = get_whitelisted_apis()
+    functions = [f for f in functions if f.name in whitelisted_apis]
 
     headers_folder = android_path('external/icu/libandroidicu/include/unicode')
     if os.path.exists(headers_folder):
