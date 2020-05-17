@@ -98,6 +98,11 @@ java_library_static {
             "-Xep:ConstantOverflow:WARN", // Known constant overflow in SplittableRandom
         ],
     },
+
+    apex_available: [
+        "com.android.art.release",
+        "com.android.art.debug",
+    ],
 }
 
 // A separated core library that contains ICU4J because ICU4J will be in a different APEX module,

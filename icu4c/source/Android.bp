@@ -43,4 +43,9 @@ cc_library {
             ],
         },
     },
+
+    apex_available: [
+        "com.android.art.release",
+        "com.android.art.debug",
+    ],
 }
