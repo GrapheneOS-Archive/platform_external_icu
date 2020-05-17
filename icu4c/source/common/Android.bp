@@ -71,6 +71,12 @@ cc_library_headers {
             enabled: true,
         },
     },
+
+    apex_available: [
+        "//apex_available:platform",
+        "com.android.art.debug",
+        "com.android.art.release",
+    ],
 }
 
 //
@@ -103,4 +109,9 @@ cc_library {
     },
     header_libs: ["libicuuc_headers"],
     export_header_lib_headers: ["libicuuc_headers"],
+
+    apex_available: [
+        "com.android.art.debug",
+        "com.android.art.release",
+    ],
 }
