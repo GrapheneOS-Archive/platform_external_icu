@@ -61,11 +61,6 @@ cc_library_headers {
             enabled: true,
         },
     },
-
-    apex_available: [
-        "com.android.art.debug",
-        "com.android.art.release",
-    ],
 }
 
 //
