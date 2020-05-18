@@ -25,4 +25,10 @@ cc_library_headers {
             enabled: true,
         },
     },
+
+    apex_available: [
+        "//apex_available:platform",
+        "com.android.art.debug",
+        "com.android.art.release",
+    ],
 }
