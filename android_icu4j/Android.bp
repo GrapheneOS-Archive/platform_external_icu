@@ -42,37 +42,12 @@ filegroup {
 }
 
 // The files contains Android-specific codes to expose intra-core APIs
-// from ICU4J/ICU4C to libcore. The package is com.android.icu.* and should not
-// expose any public APIs.
+// from ICU4J/ICU4C to libcore or core platform APIs to the framework.
+// The package is com.android.icu.* and should not expose any public APIs.
 filegroup {
     name: "libcore_icu_bridge_src_files",
     srcs: ["libcore_bridge/src/java/**/*.java"],
     path: "libcore_bridge/src/java",
-}
-
-// Rule generating resource lib for android_icu4j.
-// In the downstream branch master-icu-dev, the resource files are generated.
-java_library {
-    name: "android_icu4j_resources_lib",
-    visibility: [
-        "//libcore",
-    ],
-    java_resource_dirs: ["resources"],
-    sdk_version: "none",
-    system_modules: "none",
-}
-
-// Same as android_icu4j_resources_lib but compiling against core_current sdk
-// in order to avoid using non-public API from core-libart and core-oj
-// because core-icu4j will be in a different i18n APEX module.
-
-java_library {
-    name: "android_icu4j_resources_lib_sdk_core_current",
-    visibility: [
-        "//libcore",
-    ],
-    java_resource_dirs: ["resources"],
-    sdk_version: "core_current",
 }
 
 // core-repackaged-icu4j contains only the repackaged ICU4J that does not
