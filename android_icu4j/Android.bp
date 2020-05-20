@@ -83,7 +83,7 @@ java_library_static {
 java_library {
     name: "core-icu4j",
     visibility: [
-        "//libcore/apex",
+        "//packages/modules/RuntimeI18n/apex",
         "//external/robolectric-shadows",
         "//frameworks/layoutlib",
         "//art/build",
