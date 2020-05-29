@@ -46,8 +46,6 @@ cc_defaults {
 
     rtti: true,
 
-    required: ["icu-data_host_i18n_apex"],
-
     target: {
         android: {
             cflags: [
@@ -55,6 +53,9 @@ cc_defaults {
                 "-DPIC",
                 "-fPIC",
             ],
+        },
+        not_windows: {
+            required: ["icu-data_host_i18n_apex"],
         },
     },
 }
