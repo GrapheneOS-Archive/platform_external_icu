@@ -109,32 +109,27 @@ java_library {
     dxflags: ["--core-library"],
 }
 
-// Generates stubs for the parts of the public SDK API provided by the i18n module.
-//
-// Only for use by i18n.module.public.api.stubs target below.
-droidstubs {
-    name: "i18n-module-public-api-stubs-gen",
+java_sdk_library {
+    name: "i18n.module.public.api",
+    visibility: [
+        "//libcore",
+        "//packages/modules/RuntimeI18n/apex",
+        // Visibility for prebuilt i18n-module-sdk from the prebuilt of
+        // this module.
+        // TODO(b/155921753): Restrict this when prebuilts are in their proper
+        // locations.
+        "//prebuilts:__subpackages__",
+    ],
     srcs: [
         ":android_icu4j_public_api_files",
     ],
-    java_version: "1.9",
-    installable: false,
-    sdk_version: "none",
-    system_modules: "art-module-public-api-stubs-system-modules",
-}
-
-// A stubs target containing the parts of the public SDK API provided by the i18n module.
-java_library {
-    name: "i18n.module.public.api.stubs",
-    visibility: [
-        "//libcore",
-    ],
-    srcs: [":i18n-module-public-api-stubs-gen"],
     errorprone: {
         javacflags: [
             "-Xep:MissingOverride:OFF",
         ],
     },
+    api_dir: "api/public",
+    api_only: true,
     sdk_version: "none",
     system_modules: "art-module-public-api-stubs-system-modules",
 }
