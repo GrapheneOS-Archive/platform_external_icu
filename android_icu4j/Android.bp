@@ -197,6 +197,22 @@ java_library {
     system_modules: "art-module-intra-core-api-stubs-system-modules",
 }
 
+// Referenced implicitly from i18n.module.platform.api.
+filegroup {
+    name: "i18n.module.platform.api.api.public.latest",
+    srcs: [
+        "api/platform/last-api.txt",
+    ],
+}
+
+// Referenced implicitly from i18n.module.platform.api.
+filegroup {
+    name: "i18n.module.platform.api-removed.api.public.latest",
+    srcs: [
+        "api/platform/last-removed.txt",
+    ],
+}
+
 // Generates stub source files for the core platform API of the I18N module.
 // i.e. every class/member that is either in the public API or annotated with
 // @CorePlatformApi.
@@ -204,52 +220,32 @@ java_library {
 // The API specification .txt files managed by this only contain the additional
 // classes/members that are in the intra-core API but which are not in the public
 // API.
-droidstubs {
-    name: "i18n-module-platform-api-stubs-source",
+java_sdk_library {
+    name: "i18n.module.platform.api",
     srcs: [
         ":android_icu4j_repackaged_src_files",
         ":libcore_icu_bridge_src_files",
     ],
-    sdk_version: "none",
-    system_modules: "art-module-platform-api-stubs-system-modules",
-
-    installable: false,
-    args: "--hide-annotation libcore.api.Hide " +
-        "--show-single-annotation libcore.api.CorePlatformApi " +
-        "--skip-annotation-instance-methods=false ",
-
-    api_filename: "api.txt",
-    removed_api_filename: "removed.txt",
-    previous_api: "previous.txt",
-
-    check_api: {
-        current: {
-            api_file: "api/platform/current-api.txt",
-            removed_api_file: "api/platform/current-removed.txt",
-        },
-        last_released: {
-            api_file: "api/platform/last-api.txt",
-            removed_api_file: "api/platform/last-removed.txt",
-        },
-    },
-}
-
-// A library containing the core platform API stubs of the I18N module.
-//
-// Core platform APIs are only intended for use of other parts of the platform, not the
-// core library modules.
-java_library {
-    name: "i18n.module.platform.api.stubs",
     visibility: [
         "//libcore:__subpackages__",
-    ],
-    srcs: [
-        ":i18n-module-platform-api-stubs-source",
+        "//packages/modules/RuntimeI18n/apex",
+        // Visibility for prebuilt i18n-module-sdk from the prebuilt of
+        // this module.
+        // TODO(b/155921753): Restrict this when prebuilts are in their proper
+        // locations.
+        "//prebuilts:__subpackages__",
     ],
     hostdex: true,
-
+    api_dir: "api/platform",
+    api_only: true,
     sdk_version: "none",
     system_modules: "art-module-platform-api-stubs-system-modules",
+
+    droiddoc_options: [
+        "--hide-annotation libcore.api.Hide ",
+        "--show-single-annotation libcore.api.CorePlatformApi ",
+        "--skip-annotation-instance-methods=false ",
+    ],
 }
 
 //==========================================================
