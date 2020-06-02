@@ -138,6 +138,9 @@ UBool u_isalnum_android(UChar32 c) {
 UBool u_isalpha_android(UChar32 c) {
   return u_isalpha(c);
 }
+UBool u_iscntrl_android(UChar32 c) {
+  return u_iscntrl(c);
+}
 UBool u_isdefined_android(UChar32 c) {
   return u_isdefined(c);
 }
@@ -189,6 +192,12 @@ void ubidi_close_android(UBiDi * pBiDi) {
 int32_t ubidi_countRuns_android(UBiDi * pBiDi, UErrorCode * pErrorCode) {
   return ubidi_countRuns(pBiDi, pErrorCode);
 }
+int32_t ubidi_getLength_android(const UBiDi * pBiDi) {
+  return ubidi_getLength(pBiDi);
+}
+UBiDiLevel ubidi_getLevelAt_android(const UBiDi * pBiDi, int32_t charIndex) {
+  return ubidi_getLevelAt(pBiDi, charIndex);
+}
 UBiDiLevel ubidi_getParaLevel_android(const UBiDi * pBiDi) {
   return ubidi_getParaLevel(pBiDi);
 }
@@ -197,6 +206,12 @@ UBiDiDirection ubidi_getVisualRun_android(UBiDi * pBiDi, int32_t runIndex, int32
 }
 UBiDi * ubidi_open_android() {
   return ubidi_open();
+}
+UBiDi * ubidi_openSized_android(int32_t maxLength, int32_t maxRunCount, UErrorCode * pErrorCode) {
+  return ubidi_openSized(maxLength, maxRunCount, pErrorCode);
+}
+void ubidi_reorderVisual_android(const UBiDiLevel * levels, int32_t length, int32_t * indexMap) {
+  ubidi_reorderVisual(levels, length, indexMap);
 }
 void ubidi_setClassCallback_android(UBiDi * pBiDi, UBiDiClassCallback * newFn, const void * newContext, UBiDiClassCallback ** oldFn, const void ** oldContext, UErrorCode * pErrorCode) {
   ubidi_setClassCallback(pBiDi, newFn, newContext, oldFn, oldContext, pErrorCode);
@@ -215,6 +230,9 @@ int32_t ubrk_first_android(UBreakIterator * bi) {
 }
 int32_t ubrk_following_android(UBreakIterator * bi, int32_t offset) {
   return ubrk_following(bi, offset);
+}
+int32_t ubrk_getRuleStatus_android(UBreakIterator * bi) {
+  return ubrk_getRuleStatus(bi);
 }
 UBool ubrk_isBoundary_android(UBreakIterator * bi, int32_t offset) {
   return ubrk_isBoundary(bi, offset);
