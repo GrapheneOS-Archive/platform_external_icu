@@ -33,6 +33,7 @@ u_getNumericValue
 u_hasBinaryProperty
 u_isalnum
 u_isalpha
+u_iscntrl
 u_isdefined
 u_isdigit
 u_isIDIgnorable
@@ -59,14 +60,19 @@ u_toupper
 ubidi_close
 ubidi_countRuns
 ubidi_getParaLevel
+ubidi_getLength
+ubidi_getLevelAt
 ubidi_getVisualRun
 ubidi_open
+ubidi_openSized
+ubidi_reorderVisual
 ubidi_setClassCallback
 ubidi_setPara
 ubrk_close
 ubrk_current
 ubrk_first
 ubrk_following
+ubrk_getRuleStatus
 ubrk_isBoundary
 ubrk_next
 ubrk_open

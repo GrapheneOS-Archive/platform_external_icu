@@ -42,6 +42,7 @@ LIBANDROIDICU_EXTERNAL_1 {
     u_isWhitespace_android;
     u_isalnum_android;
     u_isalpha_android;
+    u_iscntrl_android;
     u_isdefined_android;
     u_isdigit_android;
     u_islower_android;
@@ -59,15 +60,20 @@ LIBANDROIDICU_EXTERNAL_1 {
     u_toupper_android;
     ubidi_close_android;
     ubidi_countRuns_android;
+    ubidi_getLength_android;
+    ubidi_getLevelAt_android;
     ubidi_getParaLevel_android;
     ubidi_getVisualRun_android;
     ubidi_open_android;
+    ubidi_openSized_android;
+    ubidi_reorderVisual_android;
     ubidi_setClassCallback_android;
     ubidi_setPara_android;
     ubrk_close_android;
     ubrk_current_android;
     ubrk_first_android;
     ubrk_following_android;
+    ubrk_getRuleStatus_android;
     ubrk_isBoundary_android;
     ubrk_next_android;
     ubrk_open_android;
