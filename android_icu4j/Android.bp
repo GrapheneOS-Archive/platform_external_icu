@@ -184,19 +184,35 @@ java_sdk_library {
     ],
 }
 
-// Referenced implicitly from i18n.module.platform.api.
+// Referenced implicitly from legacy.i18n.module.platform.api.
 filegroup {
-    name: "i18n.module.platform.api.api.public.latest",
+    name: "legacy.i18n.module.platform.api.api.public.latest",
     srcs: [
-        "api/platform/last-api.txt",
+        "api/legacy_platform/last-api.txt",
     ],
 }
 
-// Referenced implicitly from i18n.module.platform.api.
+// Referenced implicitly from legacy.i18n.module.platform.api.
 filegroup {
-    name: "i18n.module.platform.api-removed.api.public.latest",
+    name: "legacy.i18n.module.platform.api-removed.api.public.latest",
     srcs: [
-        "api/platform/last-removed.txt",
+        "api/legacy_platform/last-removed.txt",
+    ],
+}
+
+// Referenced implicitly from stable.i18n.module.platform.api.
+filegroup {
+    name: "stable.i18n.module.platform.api.api.public.latest",
+    srcs: [
+        "api/stable_platform/last-api.txt",
+    ],
+}
+
+// Referenced implicitly from stable.i18n.module.platform.api.
+filegroup {
+    name: "stable.i18n.module.platform.api-removed.api.public.latest",
+    srcs: [
+        "api/stable_platform/last-removed.txt",
     ],
 }
 
@@ -207,8 +223,11 @@ filegroup {
 // The API specification .txt files managed by this only contain the additional
 // classes/members that are in the intra-core API but which are not in the public
 // API.
+//
+// For notes on the legacy and stable versions see mmodules/core_platform_api/Android.bp.
+
 java_sdk_library {
-    name: "i18n.module.platform.api",
+    name: "legacy.i18n.module.platform.api",
     srcs: [
         ":android_icu4j_repackaged_src_files",
         ":libcore_icu_bridge_src_files",
@@ -223,7 +242,7 @@ java_sdk_library {
         "//prebuilts:__subpackages__",
     ],
     hostdex: true,
-    api_dir: "api/platform",
+    api_dir: "api/legacy_platform",
     api_only: true,
     sdk_version: "none",
     system_modules: "legacy-art-module-platform-api-stubs-system-modules",
@@ -231,6 +250,34 @@ java_sdk_library {
     droiddoc_options: [
         "--hide-annotation libcore.api.Hide ",
         "--show-single-annotation libcore.api.CorePlatformApi ",
+        "--skip-annotation-instance-methods=false ",
+    ],
+}
+
+java_sdk_library {
+    name: "stable.i18n.module.platform.api",
+    srcs: [
+        ":android_icu4j_repackaged_src_files",
+        ":libcore_icu_bridge_src_files",
+    ],
+    visibility: [
+        "//libcore:__subpackages__",
+        "//packages/modules/RuntimeI18n/apex",
+        // Visibility for prebuilt i18n-module-sdk from the prebuilt of
+        // this module.
+        // TODO(b/155921753): Restrict this when prebuilts are in their proper
+        // locations.
+        "//prebuilts:__subpackages__",
+    ],
+    hostdex: true,
+    api_dir: "api/stable_platform",
+    api_only: true,
+    sdk_version: "none",
+    system_modules: "stable-art-module-platform-api-stubs-system-modules",
+
+    droiddoc_options: [
+        "--hide-annotation libcore.api.Hide ",
+        "--show-single-annotation libcore.api.CorePlatformApi\\(status=libcore.api.CorePlatformApi.Status.STABLE\\)",
         "--skip-annotation-instance-methods=false ",
     ],
 }
