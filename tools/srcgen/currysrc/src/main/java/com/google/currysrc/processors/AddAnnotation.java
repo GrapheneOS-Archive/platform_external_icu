@@ -223,6 +223,58 @@ public class AddAnnotation implements Processor {
     return new AddAnnotation(locator2AnnotationInfo);
   }
 
+  /**
+   * Create a {@link Processor} that will add annotations of the supplied class to classes and class
+   * members specified in the supplied file. The annotations will have a single property.
+   *
+   * <p>Each line in the supplied file can be empty, start with a {@code #} or be in the format
+   * expected by {@link BodyDeclarationLocators#fromStringForm(String)}. Lines that are empty or
+   * start with a {@code #} are ignored.
+   *
+   * @param annotationClassName the fully qualified class name of the annotation to add.
+   * @param propertyName the name of the property to add
+   * @param propertyClass the class of the property to add (use {@link Enum} for enums)
+   * @param propertyValue the value of the property to add
+   * @param file the flat file.
+   */
+  public static AddAnnotation markerAnnotationWithPropertyFromFlatFile(
+      String annotationClassName,
+      String propertyName,
+      Class<?> propertyClass,
+      Object propertyValue,
+      Path file) {
+    List<BodyDeclarationLocator> locators =
+        BodyDeclarationLocators.readBodyDeclarationLocators(file);
+    return markerAnnotationWithPropertyFromLocators(
+        annotationClassName, propertyName, propertyClass, propertyValue, locators);
+  }
+
+  /**
+   * Create a {@link Processor} that will add annotations of the supplied class to classes and class
+   * members specified in the locators. The annotations will have a single property.
+   *
+   * @param annotationClassName the fully qualified class name of the annotation to add.
+   * @param propertyName the name of the property to add
+   * @param propertyClass the class of the property to add (use {@link Enum} for enums)
+   * @param propertyValue the value of the property to add
+   * @param locators list of BodyDeclarationLocator
+   */
+  public static AddAnnotation markerAnnotationWithPropertyFromLocators(
+      String annotationClassName,
+      String propertyName,
+      Class<?> propertyClass,
+      Object propertyValue,
+      List<BodyDeclarationLocator> locators) {
+    AnnotationClass annotationClass =
+        new AnnotationClass(annotationClassName).addProperty(propertyName, propertyClass);
+    AnnotationInfo markerAnnotation =
+        new AnnotationInfo(annotationClass, Collections.singletonMap(propertyName, propertyValue));
+    BodyDeclarationLocatorStore<AnnotationInfo> locator2AnnotationInfo =
+        new BodyDeclarationLocatorStore<>();
+    locators.forEach(l -> locator2AnnotationInfo.add(l, markerAnnotation));
+    return new AddAnnotation(locator2AnnotationInfo);
+  }
+
   public interface Listener {
 
     /**
