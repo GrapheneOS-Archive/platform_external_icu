@@ -13,36 +13,35 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package libcore.libcore.util;
+package com.android.i18n.test.timezone;
 
-import junit.framework.TestCase;
-
+import android.icu.testsharding.MainTestShard;
+import com.android.i18n.timezone.ZoneInfoData;
+import com.android.i18n.timezone.ZoneInfoDb;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.ObjectInputStream;
 import java.nio.ByteBuffer;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.Arrays;
 import java.util.Date;
-import libcore.io.BufferIterator;
-import libcore.timezone.ZoneInfoDb;
+import junit.framework.TestCase;
+import com.android.i18n.timezone.internal.BufferIterator;
 import libcore.timezone.testing.ZoneInfoTestHelper;
-import libcore.util.ZoneInfo;
 
 /**
- * Tests for {@link ZoneInfo}
+ * Tests for {@link ZoneInfoData}
  */
-public class ZoneInfoTest extends TestCase {
+@MainTestShard
+public class ZoneInfoDataTest extends TestCase {
 
   /**
-   * Checks that a {@link ZoneInfo} cannot be created without any types.
+   * Checks that a {@link ZoneInfoData} cannot be created without any types.
    */
   public void testMakeTimeZone_NoTypes() throws Exception {
     long[][] transitions = {};
     int[][] types = {};
     try {
-      createZoneInfo(transitions, types);
+      createZoneInfoData(transitions, types);
       fail();
     } catch (IOException expected) {
     }
@@ -56,7 +55,7 @@ public class ZoneInfoTest extends TestCase {
     int[][] types = {
         { 4800, 0 }
     };
-    ZoneInfo zoneInfo = createZoneInfo(transitions, types);
+    ZoneInfoData zoneInfoData = createZoneInfoData(transitions, types);
 
     // If there are no transitions then the offset should be constant irrespective of the time.
     Instant[] times = {
@@ -64,14 +63,14 @@ public class ZoneInfoTest extends TestCase {
             Instant.ofEpochMilli(0),
             Instant.ofEpochMilli(Long.MAX_VALUE),
     };
-    assertOffsetAt(zoneInfo, offsetFromSeconds(4800), times);
+    assertOffsetAt(zoneInfoData, offsetFromSeconds(4800), times);
 
     // No transitions means no DST.
-    assertFalse("Doesn't use DST", zoneInfo.useDaylightTime());
-    assertDSTSavings(zoneInfo, offsetFromSeconds(0));
+    assertFalse("Doesn't use DST", zoneInfoData.useDaylightTime());
+    assertDSTSavings(zoneInfoData, offsetFromSeconds(0));
 
     // The raw offset should be the offset of the first type.
-    assertRawOffset(zoneInfo, offsetFromSeconds(4800));
+    assertRawOffset(zoneInfoData, offsetFromSeconds(4800));
   }
 
   /**
@@ -84,18 +83,18 @@ public class ZoneInfoTest extends TestCase {
     int[][] types = {
         { 3600, 0 }
     };
-    ZoneInfo zoneInfo = createZoneInfo(transitions, types);
+    ZoneInfoData zoneInfoData = createZoneInfoData(transitions, types);
 
     // Any time before the first transition is assumed to use the first standard transition.
     Instant[] times = { timeFromSeconds(-2), timeFromSeconds(0), timeFromSeconds(2) };
-    assertOffsetAt(zoneInfo, offsetFromSeconds(3600), times);
+    assertOffsetAt(zoneInfoData, offsetFromSeconds(3600), times);
 
     // No transitions means no DST.
-    assertFalse("Doesn't use DST", zoneInfo.useDaylightTime());
-    assertDSTSavings(zoneInfo, offsetFromSeconds(0));
+    assertFalse("Doesn't use DST", zoneInfoData.useDaylightTime());
+    assertDSTSavings(zoneInfoData, offsetFromSeconds(0));
 
     // The raw offset should be the offset of the first type.
-    assertRawOffset(zoneInfo, offsetFromSeconds(3600));
+    assertRawOffset(zoneInfoData, offsetFromSeconds(3600));
   }
 
   /**
@@ -109,7 +108,7 @@ public class ZoneInfoTest extends TestCase {
         { 3600, 1 }
     };
     try {
-      createZoneInfo(transitions, types);
+      createZoneInfoData(transitions, types);
       fail("Did not detect no non-DST transitions");
     } catch (IllegalStateException expected) {
     }
@@ -130,26 +129,26 @@ public class ZoneInfoTest extends TestCase {
         { 3600, 1 },
         { 5400, 0 }
     };
-    ZoneInfo zoneInfo = createZoneInfo(transitions, types);
+    ZoneInfoData zoneInfoData = createZoneInfoData(transitions, types);
     Instant transitionTime = timeFromSeconds(-5);
 
     // Even a millisecond before a transition means that the transition is not active.
     Instant beforeTransitionTime = transitionTime.minusMillis(1);
-    assertOffsetAt(zoneInfo, offsetFromSeconds(1800), beforeTransitionTime);
-    assertInDaylightTime(zoneInfo, beforeTransitionTime, false);
+    assertOffsetAt(zoneInfoData, offsetFromSeconds(1800), beforeTransitionTime);
+    assertInDaylightTime(zoneInfoData, beforeTransitionTime, false);
 
     // A time equal to the transition point activates the transition.
-    assertOffsetAt(zoneInfo, offsetFromSeconds(3600), transitionTime);
-    assertInDaylightTime(zoneInfo, transitionTime, true);
+    assertOffsetAt(zoneInfoData, offsetFromSeconds(3600), transitionTime);
+    assertInDaylightTime(zoneInfoData, transitionTime, true);
 
     // A time after the transition point but before the next activates the transition.
     Instant afterTransitionTime = transitionTime.plusMillis(1);
-    assertOffsetAt(zoneInfo, offsetFromSeconds(3600), afterTransitionTime);
-    assertInDaylightTime(zoneInfo, afterTransitionTime, true);
+    assertOffsetAt(zoneInfoData, offsetFromSeconds(3600), afterTransitionTime);
+    assertInDaylightTime(zoneInfoData, afterTransitionTime, true);
 
-    assertFalse("Doesn't use DST", zoneInfo.useDaylightTime());
-    assertDSTSavings(zoneInfo, offsetFromSeconds(0));
-    assertRawOffset(zoneInfo, offsetFromSeconds(5400));
+    assertFalse("Doesn't use DST", zoneInfoData.useDaylightTime());
+    assertDSTSavings(zoneInfoData, offsetFromSeconds(0));
+    assertRawOffset(zoneInfoData, offsetFromSeconds(5400));
   }
 
   /**
@@ -167,27 +166,27 @@ public class ZoneInfoTest extends TestCase {
         { 3600, 1 },
         { 5400, 0 }
     };
-    ZoneInfo zoneInfo = createZoneInfo(transitions, types);
+    ZoneInfoData zoneInfoData = createZoneInfoData(transitions, types);
 
     Instant transitionTime = timeFromSeconds(5);
 
     // Even a millisecond before a transition means that the transition is not active.
     Instant beforeTransitionTime = transitionTime.minusMillis(1);
-    assertOffsetAt(zoneInfo, offsetFromSeconds(1800), beforeTransitionTime);
-    assertInDaylightTime(zoneInfo, beforeTransitionTime, false);
+    assertOffsetAt(zoneInfoData, offsetFromSeconds(1800), beforeTransitionTime);
+    assertInDaylightTime(zoneInfoData, beforeTransitionTime, false);
 
     // A time equal to the transition point activates the transition.
-    assertOffsetAt(zoneInfo, offsetFromSeconds(3600), transitionTime);
-    assertInDaylightTime(zoneInfo, transitionTime, true);
+    assertOffsetAt(zoneInfoData, offsetFromSeconds(3600), transitionTime);
+    assertInDaylightTime(zoneInfoData, transitionTime, true);
 
     // A time after the transition point but before the next activates the transition.
     Instant afterTransitionTime = transitionTime.plusMillis(1);
-    assertOffsetAt(zoneInfo, offsetFromSeconds(3600), afterTransitionTime);
-    assertInDaylightTime(zoneInfo, afterTransitionTime, true);
+    assertOffsetAt(zoneInfoData, offsetFromSeconds(3600), afterTransitionTime);
+    assertInDaylightTime(zoneInfoData, afterTransitionTime, true);
 
-    assertFalse("Doesn't use DST", zoneInfo.useDaylightTime());
-    assertDSTSavings(zoneInfo, offsetFromSeconds(0));
-    assertRawOffset(zoneInfo, offsetFromSeconds(5400));
+    assertFalse("Doesn't use DST", zoneInfoData.useDaylightTime());
+    assertDSTSavings(zoneInfoData, offsetFromSeconds(0));
+    assertRawOffset(zoneInfoData, offsetFromSeconds(5400));
   }
 
   /**
@@ -210,17 +209,17 @@ public class ZoneInfoTest extends TestCase {
     // Or in other words (5400 - 3600) * 1000
     Duration expectedDSTSavings = offsetFromSeconds(5400 - 3600);
 
-    ZoneInfo zoneInfo = createZoneInfo(transitions, types, timeFromSeconds(-700));
+    ZoneInfoData zoneInfoData = createZoneInfoData(transitions, types, timeFromSeconds(-700));
 
-    assertTrue("Should use DST but doesn't", zoneInfo.useDaylightTime());
-    assertDSTSavings(zoneInfo, expectedDSTSavings);
+    assertTrue("Should use DST but doesn't", zoneInfoData.useDaylightTime());
+    assertDSTSavings(zoneInfoData, expectedDSTSavings);
 
     // Now create one a few milliseconds before the DST transition to make sure that rounding
     // errors don't cause a problem.
-    zoneInfo = createZoneInfo(transitions, types, timeFromSeconds(-100).minusMillis(5));
+    zoneInfoData = createZoneInfoData(transitions, types, timeFromSeconds(-100).minusMillis(5));
 
-    assertTrue("Should use DST but doesn't", zoneInfo.useDaylightTime());
-    assertDSTSavings(zoneInfo, expectedDSTSavings);
+    assertTrue("Should use DST but doesn't", zoneInfoData.useDaylightTime());
+    assertDSTSavings(zoneInfoData, expectedDSTSavings);
   }
 
   /**
@@ -243,17 +242,18 @@ public class ZoneInfoTest extends TestCase {
     // Or in other words (7200 - 3600) * 1000
     Duration expectedDSTSavings = offsetFromSeconds(7200 - 3600);
 
-    ZoneInfo zoneInfo = createZoneInfo(transitions, types, timeFromSeconds(4500) /* currentTime */);
+    ZoneInfoData zoneInfoData = createZoneInfoData(transitions, types,
+        timeFromSeconds(4500) /* currentTime */);
 
-    assertTrue("Should use DST but doesn't", zoneInfo.useDaylightTime());
-    assertDSTSavings(zoneInfo, expectedDSTSavings);
+    assertTrue("Should use DST but doesn't", zoneInfoData.useDaylightTime());
+    assertDSTSavings(zoneInfoData, expectedDSTSavings);
 
     // Now create one a few milliseconds before the DST transition to make sure that rounding
     // errors don't cause a problem.
-    zoneInfo = createZoneInfo(transitions, types, timeFromSeconds(6000).minusMillis(5));
+    zoneInfoData = createZoneInfoData(transitions, types, timeFromSeconds(6000).minusMillis(5));
 
-    assertTrue("Should use DST but doesn't", zoneInfo.useDaylightTime());
-    assertDSTSavings(zoneInfo, expectedDSTSavings);
+    assertTrue("Should use DST but doesn't", zoneInfoData.useDaylightTime());
+    assertDSTSavings(zoneInfoData, expectedDSTSavings);
   }
 
   /**
@@ -272,17 +272,18 @@ public class ZoneInfoTest extends TestCase {
         { 1800, 1 },
         { 5400, 0 }
     };
-    ZoneInfo zoneInfo = createZoneInfo(transitions, types, timeFromSeconds(-1) /* currentTime */);
+    ZoneInfoData zoneInfoData = createZoneInfoData(transitions, types,
+        timeFromSeconds(-1) /* currentTime */);
 
-    assertFalse("Shouldn't use DST but does", zoneInfo.useDaylightTime());
-    assertDSTSavings(zoneInfo, offsetFromSeconds(0));
+    assertFalse("Shouldn't use DST but does", zoneInfoData.useDaylightTime());
+    assertDSTSavings(zoneInfoData, offsetFromSeconds(0));
 
     // Now create one a few milliseconds after the DST transition to make sure that rounding
     // errors don't cause a problem.
-    zoneInfo = createZoneInfo(transitions, types, timeFromSeconds(-2000).plusMillis(5));
+    zoneInfoData = createZoneInfoData(transitions, types, timeFromSeconds(-2000).plusMillis(5));
 
-    assertFalse("Shouldn't use DST but does", zoneInfo.useDaylightTime());
-    assertDSTSavings(zoneInfo, offsetFromSeconds(0));
+    assertFalse("Shouldn't use DST but does", zoneInfoData.useDaylightTime());
+    assertDSTSavings(zoneInfoData, offsetFromSeconds(0));
   }
 
   /**
@@ -301,17 +302,17 @@ public class ZoneInfoTest extends TestCase {
         { 1800, 1 },
         { 5400, 0 }
     };
-    ZoneInfo zoneInfo = createZoneInfo(transitions, types, timeFromSeconds(4700));
+    ZoneInfoData zoneInfoData = createZoneInfoData(transitions, types, timeFromSeconds(4700));
 
-    assertFalse("Shouldn't use DST but does", zoneInfo.useDaylightTime());
-    assertDSTSavings(zoneInfo, offsetFromSeconds(0));
+    assertFalse("Shouldn't use DST but does", zoneInfoData.useDaylightTime());
+    assertDSTSavings(zoneInfoData, offsetFromSeconds(0));
 
     // Now create one a few milliseconds after the DST transition to make sure that rounding
     // errors don't cause a problem.
-    zoneInfo = createZoneInfo(transitions, types, timeFromSeconds(4000).plusMillis(5));
+    zoneInfoData = createZoneInfoData(transitions, types, timeFromSeconds(4000).plusMillis(5));
 
-    assertFalse("Shouldn't use DST but does", zoneInfo.useDaylightTime());
-    assertDSTSavings(zoneInfo, offsetFromSeconds(0));
+    assertFalse("Shouldn't use DST but does", zoneInfoData.useDaylightTime());
+    assertDSTSavings(zoneInfoData, offsetFromSeconds(0));
   }
 
   /**
@@ -356,15 +357,15 @@ public class ZoneInfoTest extends TestCase {
       long[][] transitions = {
               { timeToSeconds(firstRealTransitionTime), 2 /* type 2 */ },
       };
-      ZoneInfo oldZoneInfo = createZoneInfo(transitions, types, currentTime);
-      assertRawOffset(oldZoneInfo, type2Offset);
+      ZoneInfoData oldZoneInfoData = createZoneInfoData(transitions, types, currentTime);
+      assertRawOffset(oldZoneInfoData, type2Offset);
 
       // We use the first non-DST type for times before the first transition.
-      assertOffsetAt(oldZoneInfo, type0Offset, before32BitTime);
-      assertOffsetAt(oldZoneInfo, type0Offset, earlyTimes);
+      assertOffsetAt(oldZoneInfoData, type0Offset, before32BitTime);
+      assertOffsetAt(oldZoneInfoData, type0Offset, earlyTimes);
 
       // This is after the first transition, so type 2.
-      assertOffsetAt(oldZoneInfo, type2Offset, afterFirstRealTransitionTimes);
+      assertOffsetAt(oldZoneInfoData, type2Offset, afterFirstRealTransitionTimes);
     }
 
     // Simulation a zone where there is an explicit transition at Integer.MIN_VALUE seconds. This
@@ -374,17 +375,17 @@ public class ZoneInfoTest extends TestCase {
               { Integer.MIN_VALUE, 1 /* type 1 */ },
               { timeToSeconds(firstRealTransitionTime), 2 /* type 2 */ },
       };
-      ZoneInfo newZoneInfo = createZoneInfo(transitions, types, currentTime);
-      assertRawOffset(newZoneInfo, type2Offset);
+      ZoneInfoData newZoneInfoData = createZoneInfoData(transitions, types, currentTime);
+      assertRawOffset(newZoneInfoData, type2Offset);
 
       // We use the first non-DST type for times before the first transition.
-      assertOffsetAt(newZoneInfo, type0Offset, before32BitTime);
+      assertOffsetAt(newZoneInfoData, type0Offset, before32BitTime);
 
       // After the first transition, so type 1.
-      assertOffsetAt(newZoneInfo, type1Offset, earlyTimes);
+      assertOffsetAt(newZoneInfoData, type1Offset, earlyTimes);
 
       // This is after the second transition, so type 2.
-      assertOffsetAt(newZoneInfo, type2Offset, afterFirstRealTransitionTimes);
+      assertOffsetAt(newZoneInfoData, type2Offset, afterFirstRealTransitionTimes);
     }
   }
 
@@ -418,8 +419,8 @@ public class ZoneInfoTest extends TestCase {
               { 1000, 0 },
               { 2000, 1 },
       };
-      ZoneInfo oldZoneInfo = createZoneInfo(transitions, types, currentTime);
-      assertOffsetAt(oldZoneInfo, expectedLateOffset, timesToCheck);
+      ZoneInfoData oldZoneInfoData = createZoneInfoData(transitions, types, currentTime);
+      assertOffsetAt(oldZoneInfoData, expectedLateOffset, timesToCheck);
     }
 
     // Create a simulation of a zone where there is an explicit transition at Integer.MAX_VALUE
@@ -430,13 +431,13 @@ public class ZoneInfoTest extends TestCase {
               { 2000, 1 },
               { Integer.MAX_VALUE, 1}, // The extra transition.
       };
-      ZoneInfo newZoneInfo = createZoneInfo(transitions, types, currentTime);
-      assertOffsetAt(newZoneInfo, expectedLateOffset, timesToCheck);
+      ZoneInfoData newZoneInfoData = createZoneInfoData(transitions, types, currentTime);
+      assertOffsetAt(newZoneInfoData, expectedLateOffset, timesToCheck);
     }
   }
 
   /**
-   * Checks to make sure that ZoneInfo can handle up to 256 types.
+   * Checks to make sure that ZoneInfoData can handle up to 256 types.
    */
   public void testReadTimeZone_MaxTypeCount() throws Exception {
     long[][] transitions = {
@@ -448,23 +449,23 @@ public class ZoneInfoTest extends TestCase {
     Arrays.fill(types, new int[2]);
     types[255] = new int[] { 3600, 0 };
 
-    ZoneInfo zoneInfo = createZoneInfo(getName(), transitions, types,
+    ZoneInfoData zoneInfoData = createZoneInfoData(getName(), transitions, types,
             timeFromSeconds(Integer.MIN_VALUE));
 
-    assertFalse("Shouldn't use DST but does", zoneInfo.useDaylightTime());
-    assertDSTSavings(zoneInfo, offsetFromSeconds(0));
+    assertFalse("Shouldn't use DST but does", zoneInfoData.useDaylightTime());
+    assertDSTSavings(zoneInfoData, offsetFromSeconds(0));
 
-    // Make sure that WallTime works properly with a ZoneInfo with 256 types.
-    ZoneInfo.WallTime wallTime = new ZoneInfo.WallTime();
-    wallTime.localtime(0, zoneInfo);
-    wallTime.mktime(zoneInfo);
+    // Make sure that WallTime works properly with a ZoneInfoData with 256 types.
+    ZoneInfoData.WallTime wallTime = new ZoneInfoData.WallTime();
+    wallTime.localtime(0, zoneInfoData);
+    wallTime.mktime(zoneInfoData);
   }
 
   /**
    * Create an instance for every available time zone for which we have data to ensure that they
    * can all be handled correctly.
    *
-   * <p>This is to ensure that ZoneInfo can read all time zone data without failing, it doesn't
+   * <p>This is to ensure that ZoneInfoData can read all time zone data without failing, it doesn't
    * check that it reads it correctly or that the data itself is correct. This is a sanity test
    * to ensure that any additional checks added to the code that reads the data source and
    * creates the {@link ZoneInfo} instances does not prevent any of the time zones being loaded.
@@ -476,12 +477,12 @@ public class ZoneInfoTest extends TestCase {
     for (String id : availableIDs) {
       BufferIterator bufferIterator = instance.getBufferIterator(id);
 
-      // Create a ZoneInfo at the earliest possible time to allow us to use the
+      // Create a ZoneInfoData at the earliest possible time to allow us to use the
       // useDaylightTime() method to check whether it ever has or ever will support daylight
       // savings time.
-      ZoneInfo zoneInfo = ZoneInfo.readTimeZone(id, bufferIterator, Long.MIN_VALUE);
-      assertNotNull("TimeZone " + id + " was not created", zoneInfo);
-      assertEquals(id, zoneInfo.getID());
+      ZoneInfoData zoneInfoData = ZoneInfoData.readTimeZone(id, bufferIterator, Long.MIN_VALUE);
+      assertNotNull("TimeZone " + id + " was not created", zoneInfoData);
+      assertEquals(id, zoneInfoData.getID());
     }
   }
 
@@ -489,7 +490,7 @@ public class ZoneInfoTest extends TestCase {
     ZoneInfoTestHelper.ZicDataBuilder builder =
             new ZoneInfoTestHelper.ZicDataBuilder()
                     .initializeToValid();
-    assertNotNull(createZoneInfo(getName(), Instant.now(), builder.build()));
+    assertNotNull(createZoneInfoData(getName(), Instant.now(), builder.build()));
   }
 
   public void testReadTimeZone_BadMagic() {
@@ -498,13 +499,13 @@ public class ZoneInfoTest extends TestCase {
                     .initializeToValid()
                     .setMagic(0xdeadbeef); // Bad magic.
     try {
-      createZoneInfo(getName(), Instant.now(), builder.build());
+        createZoneInfoData(getName(), Instant.now(), builder.build());
       fail();
     } catch (IOException expected) {}
   }
 
   /**
-   * Checks to make sure that ZoneInfo rejects more than 256 types.
+   * Checks to make sure that ZoneInfoData rejects more than 256 types.
    */
   public void testReadTimeZone_TooManyTypes() {
     int typeCount = 257; // Max types allowed is 256
@@ -517,14 +518,14 @@ public class ZoneInfoTest extends TestCase {
                     .setTransitionsAndTypes(transitions, types);
     byte[] bytes = builder.build();
     try {
-      createZoneInfo(getName(), Instant.now(), bytes);
+      createZoneInfoData(getName(), Instant.now(), bytes);
       fail("Did not detect too many types");
     } catch (IOException expected) {
     }
   }
 
   /**
-   * Checks to make sure that ZoneInfo rejects more than 2000 transitions.
+   * Checks to make sure that ZoneInfoData rejects more than 2000 transitions.
    */
   public void testReadTimeZone_TooManyTransitions() {
     int typeCount = 5;
@@ -537,7 +538,7 @@ public class ZoneInfoTest extends TestCase {
                     .setTransitionsAndTypes(transitions, types);
     byte[] bytes = builder.build();
     try {
-      createZoneInfo(getName(), Instant.now(), bytes);
+      createZoneInfoData(getName(), Instant.now(), bytes);
       fail("Did not detect too many transitions");
     } catch (IOException expected) {
     }
@@ -561,7 +562,7 @@ public class ZoneInfoTest extends TestCase {
 
     byte[] bytes = builder.build();
     try {
-      createZoneInfo(getName(), Instant.now(), bytes);
+      createZoneInfoData(getName(), Instant.now(), bytes);
       fail();
     } catch (IOException expected) {
     }
@@ -585,7 +586,7 @@ public class ZoneInfoTest extends TestCase {
 
     byte[] bytes = builder.build();
     try {
-      createZoneInfo(getName(), Instant.now(), bytes);
+      createZoneInfoData(getName(), Instant.now(), bytes);
       fail();
     } catch (IOException expected) {
     }
@@ -609,69 +610,30 @@ public class ZoneInfoTest extends TestCase {
 
     byte[] bytes = builder.build();
     try {
-      createZoneInfo(getName(), Instant.now(), bytes);
+      createZoneInfoData(getName(), Instant.now(), bytes);
       fail();
     } catch (IOException expected) {
     }
   }
 
-  /**
-   * Checks that we can read the serialized form of a {@link ZoneInfo} created in pre-OpenJDK
-   * AOSP.
-   *
-   * <p>One minor difference is that in pre-OpenJDK {@link ZoneInfo#mDstSavings} can be non-zero
-   * even if {@link ZoneInfo#mUseDst} was false. That was not visible externally (except through
-   * the {@link ZoneInfo#toString()} method) as the {@link ZoneInfo#getDSTSavings()} would check
-   * {@link ZoneInfo#mUseDst} and if it was false then would return 0. This checks to make sure
-   * that is handled properly. See {@link ZoneInfo#readObject(ObjectInputStream)}.
-   */
-  public void testReadSerialized() throws Exception {
-    ZoneInfo zoneInfoRead;
-    try (InputStream is = getClass().getResourceAsStream("ZoneInfoTest_ZoneInfo.golden.ser");
-         ObjectInputStream ois = new ObjectInputStream(is)) {
-      Object object = ois.readObject();
-      assertTrue("Not a ZoneInfo instance", object instanceof ZoneInfo);
-      zoneInfoRead = (ZoneInfo) object;
-    }
-
-    long[][] transitions = {
-        { -5000, 0 },
-        { -2000, 1 },
-        { -500, 0 },
-        { 0, 2 },
-    };
-    int[][] types = {
-        { 3600, 0 },
-        { 1800, 1 },
-        { 5400, 0 }
-    };
-    ZoneInfo zoneInfoCreated = createZoneInfo(
-            "test", transitions, types, timeFromSeconds(-1));
-
-    assertEquals("Read ZoneInfo does not match created one", zoneInfoCreated, zoneInfoRead);
-    assertEquals("useDaylightTime() mismatch",
-        zoneInfoCreated.useDaylightTime(), zoneInfoRead.useDaylightTime());
-    assertEquals("getDSTSavings() mismatch",
-        zoneInfoCreated.getDSTSavings(), zoneInfoRead.getDSTSavings());
+  private static void assertRawOffset(ZoneInfoData zoneInfoData, Duration expectedOffset) {
+    assertEquals(expectedOffset.toMillis(), zoneInfoData.getRawOffset());
   }
 
-  private static void assertRawOffset(ZoneInfo zoneInfo, Duration expectedOffset) {
-    assertEquals(expectedOffset.toMillis(), zoneInfo.getRawOffset());
+  private static void assertDSTSavings(ZoneInfoData zoneInfoData, Duration expectedDSTSavings) {
+    assertEquals(expectedDSTSavings.toMillis(), zoneInfoData.getDSTSavings());
   }
 
-  private static void assertDSTSavings(ZoneInfo zoneInfo, Duration expectedDSTSavings) {
-    assertEquals(expectedDSTSavings.toMillis(), zoneInfo.getDSTSavings());
-  }
-
-  private static void assertInDaylightTime(ZoneInfo zoneInfo, Instant time, boolean expectedValue) {
-    assertEquals(expectedValue, zoneInfo.inDaylightTime(new Date(time.toEpochMilli())));
+  private static void assertInDaylightTime(ZoneInfoData zoneInfoData, Instant time,
+      boolean expectedValue) {
+    assertEquals(expectedValue, zoneInfoData.inDaylightTime(new Date(time.toEpochMilli())));
   }
 
   private static void assertOffsetAt(
-          ZoneInfo zoneInfo, Duration expectedOffset, Instant... times) {
+          ZoneInfoData zoneInfoData, Duration expectedOffset, Instant... times) {
     for (Instant time : times) {
       assertEquals("Unexpected offset at " + time,
-              expectedOffset.toMillis(), zoneInfo.getOffset(time.toEpochMilli()));
+              expectedOffset.toMillis(), zoneInfoData.getOffset(time.toEpochMilli()));
     }
   }
 
@@ -695,29 +657,29 @@ public class ZoneInfoTest extends TestCase {
     return (int) seconds;
   }
 
-  private ZoneInfo createZoneInfo(long[][] transitions, int[][] types)
+  private ZoneInfoData createZoneInfoData(long[][] transitions, int[][] types)
       throws Exception {
-    return createZoneInfo(getName(), transitions, types, Instant.now());
+    return createZoneInfoData(getName(), transitions, types, Instant.now());
   }
 
-  private ZoneInfo createZoneInfo(long[][] transitions, int[][] types, Instant currentTime)
+  private ZoneInfoData createZoneInfoData(long[][] transitions, int[][] types, Instant currentTime)
           throws Exception {
-    return createZoneInfo(getName(), transitions, types, currentTime);
+    return createZoneInfoData(getName(), transitions, types, currentTime);
   }
 
-  private ZoneInfo createZoneInfo(String name, long[][] transitions, int[][] types,
+  private ZoneInfoData createZoneInfoData(String name, long[][] transitions, int[][] types,
           Instant currentTime) throws Exception {
 
     ZoneInfoTestHelper.ZicDataBuilder builder =
             new ZoneInfoTestHelper.ZicDataBuilder()
                     .setTransitionsAndTypes(transitions, types);
-    return createZoneInfo(name, currentTime, builder.build());
+    return createZoneInfoData(name, currentTime, builder.build());
   }
 
-  private static ZoneInfo createZoneInfo(String name, Instant currentTime, byte[] bytes)
+  private static ZoneInfoData createZoneInfoData(String name, Instant currentTime, byte[] bytes)
           throws IOException {
     ByteBufferIterator bufferIterator = new ByteBufferIterator(ByteBuffer.wrap(bytes));
-    return ZoneInfo.readTimeZone(
+    return ZoneInfoData.readTimeZone(
             "TimeZone for '" + name + "'", bufferIterator, currentTime.toEpochMilli());
   }
 

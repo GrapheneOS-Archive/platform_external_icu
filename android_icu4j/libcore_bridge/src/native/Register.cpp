@@ -35,6 +35,8 @@ jint JNI_OnLoad(JavaVM* vm, void*) {
 
 #define REGISTER(FN) extern void FN(JNIEnv*); FN(env)
     REGISTER(register_com_android_icu_text_TimeZoneNamesNative);
+    REGISTER(register_com_android_i18n_timezone_internal_Memory);
+    REGISTER(register_com_android_i18n_util_Log);
     REGISTER(register_com_android_icu_util_CaseMapperNative);
     REGISTER(register_com_android_icu_util_Icu4cMetadata);
     REGISTER(register_com_android_icu_util_LocaleNative);

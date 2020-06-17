@@ -14,13 +14,15 @@
  * limitations under the License.
  */
 
-package libcore.libcore.timezone;
+package com.android.i18n.test.timezone;
 
+import android.icu.testsharding.MainTestShard;
 import junit.framework.TestCase;
 
-import libcore.timezone.TzDataSetVersion;
-import libcore.timezone.TzDataSetVersion.TzDataSetException;
+import com.android.i18n.timezone.TzDataSetVersion;
+import com.android.i18n.timezone.TzDataSetVersion.TzDataSetException;
 
+@MainTestShard
 public class TzDataSetVersionTest extends TestCase {
 
     private static final int INVALID_VERSION_LOW = -1;
