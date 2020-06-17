@@ -16,6 +16,7 @@
 
 #define LOG_TAG "Memory"
 
+#include <byteswap.h>
 #include <errno.h>
 #include <stdlib.h>
 #include <string.h>
@@ -27,7 +28,6 @@
 #include <nativehelper/jni_macros.h>
 
 #include "JniConstants.h"
-#include "Portability.h"
 
 // Use packed structures for access to unaligned data on targets with alignment restrictions.
 // The compiler will generate appropriate code to access these structures without
@@ -90,18 +90,6 @@ static inline void swapLongs(jlong* dstLongs, const jlong* srcLongs, size_t coun
         put_unaligned<jint>(dst++, bswap_32(v2));
         put_unaligned<jint>(dst++, bswap_32(v1));
     }
-}
-
-static void Memory_memmove(JNIEnv* env, jclass, jobject dstObject, jint dstOffset, jobject srcObject, jint srcOffset, jlong length) {
-    ScopedBytesRW dstBytes(env, dstObject);
-    if (dstBytes.get() == NULL) {
-        return;
-    }
-    ScopedBytesRO srcBytes(env, srcObject);
-    if (srcBytes.get() == NULL) {
-        return;
-    }
-    memmove(dstBytes.get() + dstOffset, srcBytes.get() + srcOffset, length);
 }
 
 static jbyte Memory_peekByte(JNIEnv*, jclass, jlong srcAddress) {
@@ -233,64 +221,7 @@ static void Memory_pokeLongNative(JNIEnv*, jclass, jlong dstAddress, jlong value
     put_unaligned<jlong>(cast<jlong*>(dstAddress), value);
 }
 
-static void unsafeBulkCopy(jbyte* dst, const jbyte* src, jint byteCount,
-        jint sizeofElement, jboolean swap) {
-    if (!swap) {
-        memcpy(dst, src, byteCount);
-        return;
-    }
-
-    if (sizeofElement == 2) {
-        jshort* dstShorts = reinterpret_cast<jshort*>(dst);
-        const jshort* srcShorts = reinterpret_cast<const jshort*>(src);
-        swapShorts(dstShorts, srcShorts, byteCount / 2);
-    } else if (sizeofElement == 4) {
-        jint* dstInts = reinterpret_cast<jint*>(dst);
-        const jint* srcInts = reinterpret_cast<const jint*>(src);
-        swapInts(dstInts, srcInts, byteCount / 4);
-    } else if (sizeofElement == 8) {
-        jlong* dstLongs = reinterpret_cast<jlong*>(dst);
-        const jlong* srcLongs = reinterpret_cast<const jlong*>(src);
-        swapLongs(dstLongs, srcLongs, byteCount / 8);
-    }
-}
-
-static void Memory_unsafeBulkGet(JNIEnv* env, jclass, jobject dstObject, jint dstOffset,
-        jint byteCount, jbyteArray srcArray, jint srcOffset, jint sizeofElement, jboolean swap) {
-    ScopedByteArrayRO srcBytes(env, srcArray);
-    if (srcBytes.get() == NULL) {
-        return;
-    }
-    jarray dstArray = reinterpret_cast<jarray>(dstObject);
-    jbyte* dstBytes = reinterpret_cast<jbyte*>(env->GetPrimitiveArrayCritical(dstArray, NULL));
-    if (dstBytes == NULL) {
-        return;
-    }
-    jbyte* dst = dstBytes + dstOffset*sizeofElement;
-    const jbyte* src = srcBytes.get() + srcOffset;
-    unsafeBulkCopy(dst, src, byteCount, sizeofElement, swap);
-    env->ReleasePrimitiveArrayCritical(dstArray, dstBytes, 0);
-}
-
-static void Memory_unsafeBulkPut(JNIEnv* env, jclass, jbyteArray dstArray, jint dstOffset,
-        jint byteCount, jobject srcObject, jint srcOffset, jint sizeofElement, jboolean swap) {
-    ScopedByteArrayRW dstBytes(env, dstArray);
-    if (dstBytes.get() == NULL) {
-        return;
-    }
-    jarray srcArray = reinterpret_cast<jarray>(srcObject);
-    jbyte* srcBytes = reinterpret_cast<jbyte*>(env->GetPrimitiveArrayCritical(srcArray, NULL));
-    if (srcBytes == NULL) {
-        return;
-    }
-    jbyte* dst = dstBytes.get() + dstOffset;
-    const jbyte* src = srcBytes + srcOffset*sizeofElement;
-    unsafeBulkCopy(dst, src, byteCount, sizeofElement, swap);
-    env->ReleasePrimitiveArrayCritical(srcArray, srcBytes, 0);
-}
-
 static JNINativeMethod gMethods[] = {
-    NATIVE_METHOD(Memory, memmove, "(Ljava/lang/Object;ILjava/lang/Object;IJ)V"),
     FAST_NATIVE_METHOD(Memory, peekByte, "(J)B"),
     NATIVE_METHOD(Memory, peekByteArray, "(J[BII)V"),
     NATIVE_METHOD(Memory, peekCharArray, "(J[CIIZ)V"),
@@ -313,9 +244,7 @@ static JNINativeMethod gMethods[] = {
     NATIVE_METHOD(Memory, pokeLongArray, "(J[JIIZ)V"),
     FAST_NATIVE_METHOD(Memory, pokeShortNative, "(JS)V"),
     NATIVE_METHOD(Memory, pokeShortArray, "(J[SIIZ)V"),
-    NATIVE_METHOD(Memory, unsafeBulkGet, "(Ljava/lang/Object;II[BIIZ)V"),
-    NATIVE_METHOD(Memory, unsafeBulkPut, "([BIILjava/lang/Object;IIZ)V"),
 };
-void register_libcore_io_Memory(JNIEnv* env) {
-    jniRegisterNativeMethods(env, "libcore/io/Memory", gMethods, NELEM(gMethods));
+void register_com_android_i18n_timezone_internal_Memory(JNIEnv* env) {
+    jniRegisterNativeMethods(env, "com/android/i18n/timezone/internal/Memory", gMethods, NELEM(gMethods));
 }

@@ -50,6 +50,92 @@ package android.icu.util {
 
 }
 
+package com.android.i18n.timezone {
+
+  public class DebugInfo {
+    ctor public DebugInfo();
+    method public com.android.i18n.timezone.DebugInfo addStringEntry(String, String);
+    method public com.android.i18n.timezone.DebugInfo addStringEntry(String, int);
+    method public java.util.List<com.android.i18n.timezone.DebugInfo.DebugEntry> getDebugEntries();
+  }
+
+  public static class DebugInfo.DebugEntry {
+    ctor public DebugInfo.DebugEntry(String, String);
+    method public String getKey();
+    method public String getStringValue();
+  }
+
+  public class I18nModuleDebug {
+    method public static com.android.i18n.timezone.DebugInfo getDebugInfo();
+  }
+
+  public final class TimeZoneDataFiles {
+    method public static String getDataTimeZoneFile(String);
+    method public static String getDataTimeZoneRootDir();
+    method public static String getTimeZoneModuleTzVersionFile();
+  }
+
+  public final class TzDataSetVersion {
+    ctor public TzDataSetVersion(int, int, String, int) throws com.android.i18n.timezone.TzDataSetVersion.TzDataSetException;
+    method public static int currentFormatMajorVersion();
+    method public static int currentFormatMinorVersion();
+    method public int getFormatMajorVersion();
+    method public int getFormatMinorVersion();
+    method public int getRevision();
+    method public String getRulesVersion();
+    method public static boolean isCompatibleWithThisDevice(com.android.i18n.timezone.TzDataSetVersion);
+    method public static com.android.i18n.timezone.TzDataSetVersion readFromFile(java.io.File) throws java.io.IOException, com.android.i18n.timezone.TzDataSetVersion.TzDataSetException;
+    method public static com.android.i18n.timezone.TzDataSetVersion readTimeZoneModuleVersion() throws java.io.IOException, com.android.i18n.timezone.TzDataSetVersion.TzDataSetException;
+    method public byte[] toBytes();
+    field public static final String DEFAULT_FILE_NAME = "tz_version";
+  }
+
+  public static class TzDataSetVersion.TzDataSetException extends java.lang.Exception {
+    ctor public TzDataSetVersion.TzDataSetException(String);
+    ctor public TzDataSetVersion.TzDataSetException(String, Throwable);
+  }
+
+  public final class ZoneInfoData implements java.lang.Cloneable {
+    method public String getID();
+  }
+
+  public static class ZoneInfoData.WallTime {
+    ctor public ZoneInfoData.WallTime();
+    method public int getGmtOffset();
+    method public int getHour();
+    method public int getIsDst();
+    method public int getMinute();
+    method public int getMonth();
+    method public int getMonthDay();
+    method public int getSecond();
+    method public int getWeekDay();
+    method public int getYear();
+    method public int getYearDay();
+    method public void localtime(int, com.android.i18n.timezone.ZoneInfoData);
+    method public int mktime(com.android.i18n.timezone.ZoneInfoData);
+    method public void setGmtOffset(int);
+    method public void setHour(int);
+    method public void setIsDst(int);
+    method public void setMinute(int);
+    method public void setMonth(int);
+    method public void setMonthDay(int);
+    method public void setSecond(int);
+    method public void setWeekDay(int);
+    method public void setYear(int);
+    method public void setYearDay(int);
+  }
+
+  public final class ZoneInfoDb implements java.lang.AutoCloseable {
+    method public static com.android.i18n.timezone.ZoneInfoDb getInstance();
+    method public String getVersion();
+    method public boolean hasTimeZone(String);
+    method public static com.android.i18n.timezone.ZoneInfoDb loadTzData(String);
+    method public com.android.i18n.timezone.ZoneInfoData makeZoneInfoData(String);
+    method public void validate() throws java.io.IOException;
+  }
+
+}
+
 package com.android.icu.text {
 
   public class DateSorterBridge {

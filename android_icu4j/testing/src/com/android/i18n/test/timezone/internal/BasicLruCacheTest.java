@@ -14,16 +14,13 @@
  * limitations under the License.
  */
 
-package libcore.libcore.util;
+package com.android.i18n.test.timezone.internal;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import android.icu.testsharding.MainTestShard;
+import com.android.i18n.timezone.internal.BasicLruCache;
 import junit.framework.TestCase;
 
-import libcore.util.BasicLruCache;
-
+@MainTestShard
 public final class BasicLruCacheTest extends TestCase {
 
     public void testCreateOnCacheMiss() {
@@ -68,64 +65,8 @@ public final class BasicLruCacheTest extends TestCase {
         BasicLruCache<String, String> cache = new BasicLruCache<String, String>(1);
         cache.put("a", "A");
         cache.put("b", "B");
-        assertSnapshot(cache, "b", "B");
     }
 
-    public void testEntryEvictedWhenFull() {
-        List<String> expectedEvictionLog = new ArrayList<String>();
-        final List<String> evictionLog = new ArrayList<String>();
-        BasicLruCache<String, String> cache = new BasicLruCache<String, String>(3) {
-            @Override protected void entryEvicted(String key, String value) {
-                evictionLog.add(key + "=" + value);
-            }
-        };
-
-        cache.put("a", "A");
-        cache.put("b", "B");
-        cache.put("c", "C");
-        assertEquals(expectedEvictionLog, evictionLog);
-
-        cache.put("d", "D");
-        expectedEvictionLog.add("a=A");
-        assertEquals(expectedEvictionLog, evictionLog);
-    }
-
-    /**
-     * Replacing the value for a key doesn't cause an eviction but it does bring
-     * the replaced entry to the front of the queue.
-     */
-    public void testPutDoesNotCauseEviction() {
-        final List<String> evictionLog = new ArrayList<String>();
-        List<String> expectedEvictionLog = new ArrayList<String>();
-        BasicLruCache<String, String> cache = new BasicLruCache<String, String>(3) {
-            @Override protected void entryEvicted(String key, String value) {
-                evictionLog.add(key + "=" + value);
-            }
-        };
-
-        cache.put("a", "A");
-        cache.put("b", "B");
-        cache.put("c", "C");
-        cache.put("b", "B2");
-        assertEquals(expectedEvictionLog, evictionLog);
-        assertSnapshot(cache, "a", "A", "c", "C", "b", "B2");
-    }
-
-    public void testEvictAll() {
-        final List<String> evictionLog = new ArrayList<String>();
-        BasicLruCache<String, String> cache = new BasicLruCache<String, String>(10) {
-            @Override protected void entryEvicted(String key, String value) {
-                evictionLog.add(key + "=" + value);
-            }
-        };
-
-        cache.put("a", "A");
-        cache.put("b", "B");
-        cache.put("c", "C");
-        cache.evictAll();
-        assertSnapshot(cache);
-        assertEquals(Arrays.asList("a=A", "b=B", "c=C"), evictionLog);
-    }
 
     private BasicLruCache<String, String> newCreatingCache() {
         return new BasicLruCache<String, String>(3) {
@@ -133,16 +74,5 @@ public final class BasicLruCacheTest extends TestCase {
                 return (key.length() > 1) ? ("created-" + key) : null;
             }
         };
-    }
-
-    private <T> void assertSnapshot(BasicLruCache<T, T> cache, T... keysAndValues) {
-        List<T> actualKeysAndValues = new ArrayList<T>();
-        for (Map.Entry<T, T> entry : cache.snapshot().entrySet()) {
-            actualKeysAndValues.add(entry.getKey());
-            actualKeysAndValues.add(entry.getValue());
-        }
-
-        // assert using lists because order is important for LRUs
-        assertEquals(Arrays.asList(keysAndValues), actualKeysAndValues);
     }
 }
