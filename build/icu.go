@@ -25,6 +25,7 @@ func init() {
 		"external/skia",
 		"frameworks/base/libs/hwui",
 		"libcore/",
+		"packages/modules/RuntimeI18n/apex/",
 	}
 
 	device_whitelist := []string{
