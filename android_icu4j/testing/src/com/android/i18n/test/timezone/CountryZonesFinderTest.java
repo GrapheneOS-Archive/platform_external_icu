@@ -14,22 +14,25 @@
  * limitations under the License.
  */
 
-package libcore.libcore.timezone;
+package com.android.i18n.test.timezone;
 
 import org.junit.Test;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import libcore.timezone.CountryTimeZones;
-import libcore.timezone.CountryTimeZones.TimeZoneMapping;
-import libcore.timezone.CountryZonesFinder;
+import com.android.i18n.timezone.CountryTimeZones;
+import com.android.i18n.timezone.CountryTimeZones.TimeZoneMapping;
+import com.android.i18n.timezone.CountryZonesFinder;
+
+import android.icu.testsharding.MainTestShard;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.fail;
 
+@MainTestShard
 public class CountryZonesFinderTest {
 
     private static final CountryTimeZones GB_ZONES = CountryTimeZones.createValidated(
