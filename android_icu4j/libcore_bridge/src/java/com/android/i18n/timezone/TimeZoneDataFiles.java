@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package libcore.timezone;
+package com.android.i18n.timezone;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +25,7 @@ import java.util.List;
  * @hide
  */
 @libcore.api.CorePlatformApi
+@libcore.api.IntraCoreApi
 public final class TimeZoneDataFiles {
     private static final String ANDROID_ROOT_ENV = "ANDROID_ROOT";
     private static final String ANDROID_I18N_ROOT_ENV = "ANDROID_I18N_ROOT";
@@ -42,6 +43,7 @@ public final class TimeZoneDataFiles {
      * </ul>
      */
     // VisibleForTesting
+    @libcore.api.IntraCoreApi
     public static String[] getTimeZoneFilePaths(String fileName) {
         return new String[] {
                 getDataTimeZoneFile(fileName),
@@ -61,6 +63,7 @@ public final class TimeZoneDataFiles {
         return getDataTimeZoneRootDir() + "current/" + fileName;
     }
 
+    @libcore.api.IntraCoreApi
     public static String getTimeZoneModuleTzFile(String fileName) {
         return getTimeZoneModuleFile("tz/" + fileName);
     }
@@ -88,6 +91,7 @@ public final class TimeZoneDataFiles {
         return System.getenv(ANDROID_I18N_ROOT_ENV) + "/etc/" + fileName;
     }
 
+    @libcore.api.IntraCoreApi
     public static String getSystemTzFile(String fileName) {
         return getEnvironmentPath(ANDROID_ROOT_ENV, "/usr/share/zoneinfo/" + fileName);
     }
@@ -96,6 +100,7 @@ public final class TimeZoneDataFiles {
         return getEnvironmentPath(ANDROID_ROOT_ENV, "/usr/icu/" + fileName);
     }
 
+    @libcore.api.IntraCoreApi
     public static String generateIcuDataPath() {
         List<String> paths = new ArrayList<>(3);
 

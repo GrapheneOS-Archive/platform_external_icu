@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package libcore.io;
+package com.android.i18n.timezone.internal;
 
 /**
  * Iterates over big- or little-endian bytes on the native heap.

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package libcore.timezone;
+package com.android.i18n.timezone;
 
 import java.io.File;
 import java.io.FileInputStream;
