@@ -14,9 +14,7 @@
  * limitations under the License.
  */
 
-package libcore.io;
-
-import android.compat.annotation.UnsupportedAppUsage;
+package com.android.i18n.timezone.internal;
 
 /**
  * Iterates over big- or little-endian bytes. See {@link MemoryMappedFile#bigEndianIterator} and
@@ -29,13 +27,11 @@ public abstract class BufferIterator {
      * Seeks to the absolute position {@code offset}, measured in bytes from the start of the
      * buffer.
      */
-    @UnsupportedAppUsage
     public abstract void seek(int offset);
 
     /**
      * Skips forwards or backwards {@code byteCount} bytes from the current position.
      */
-    @UnsupportedAppUsage
     public abstract void skip(int byteCount);
 
     /**
@@ -49,7 +45,6 @@ public abstract class BufferIterator {
      *
      * @throws IndexOutOfBoundsException if the read / write would be outside of the buffer / array
      */
-    @UnsupportedAppUsage
     public abstract void readByteArray(byte[] bytes, int arrayOffset, int byteCount);
 
     /**
@@ -57,7 +52,6 @@ public abstract class BufferIterator {
      *
      * @throws IndexOutOfBoundsException if the read would be outside of the buffer
      */
-    @UnsupportedAppUsage
     public abstract byte readByte();
 
     /**
@@ -65,7 +59,6 @@ public abstract class BufferIterator {
      *
      * @throws IndexOutOfBoundsException if the read would be outside of the buffer
      */
-    @UnsupportedAppUsage
     public abstract int readInt();
 
     /**
@@ -74,7 +67,6 @@ public abstract class BufferIterator {
      *
      * @throws IndexOutOfBoundsException if the read / write would be outside of the buffer / array
      */
-    @UnsupportedAppUsage
     public abstract void readIntArray(int[] ints, int arrayOffset, int intCount);
 
     /**

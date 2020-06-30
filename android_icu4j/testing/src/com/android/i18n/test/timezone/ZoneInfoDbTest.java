@@ -14,19 +14,21 @@
  * limitations under the License.
  */
 
-package libcore.libcore.timezone;
+package com.android.i18n.test.timezone;
 
+import static com.android.i18n.timezone.ZoneInfoDb.SIZEOF_INDEX_ENTRY;
+
+import android.icu.testsharding.MainTestShard;
+import android.icu.util.TimeZone;
+import com.android.i18n.timezone.TimeZoneDataFiles;
+import com.android.i18n.timezone.ZoneInfoData;
+import com.android.i18n.timezone.ZoneInfoDb;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.RandomAccessFile;
-
-import libcore.timezone.TimeZoneDataFiles;
 import libcore.timezone.testing.ZoneInfoTestHelper;
-import libcore.util.ZoneInfo;
-import libcore.timezone.ZoneInfoDb;
 
-import static libcore.timezone.ZoneInfoDb.SIZEOF_INDEX_ENTRY;
-
+@MainTestShard
 public class ZoneInfoDbTest extends junit.framework.TestCase {
 
   // The base tzdata file, always present on a device.
@@ -213,19 +215,15 @@ public class ZoneInfoDbTest extends junit.framework.TestCase {
     }
   }
 
-  // Confirms any caching that exists correctly handles TimeZone mutability.
+  // Confirms any caching that exists correctly handles ZoneInfoData mutability.
   public void testMakeTimeZone_timeZoneMutability() throws Exception {
     try (ZoneInfoDb data = ZoneInfoDb.loadTzData(TZDATA_FILE)) {
       String tzId = "Europe/London";
-      ZoneInfo first = data.makeTimeZone(tzId);
-      ZoneInfo second = data.makeTimeZone(tzId);
+      ZoneInfoData first = data.makeZoneInfoData(tzId);
+      ZoneInfoData second = data.makeZoneInfoData(tzId);
       assertNotSame(first, second);
 
       assertTrue(first.hasSameRules(second));
-
-      first.setID("Not Europe/London");
-
-      assertFalse(first.getID().equals(second.getID()));
 
       first.setRawOffset(3600);
       assertFalse(first.getRawOffset() == second.getRawOffset());
@@ -234,14 +232,14 @@ public class ZoneInfoDbTest extends junit.framework.TestCase {
 
   public void testMakeTimeZone_notFound() throws Exception {
     try (ZoneInfoDb data = ZoneInfoDb.loadTzData(TZDATA_FILE)) {
-      assertNull(data.makeTimeZone("THIS_TZ_DOES_NOT_EXIST"));
+      assertNull(data.makeZoneInfoData("THIS_TZ_DOES_NOT_EXIST"));
       assertFalse(data.hasTimeZone("THIS_TZ_DOES_NOT_EXIST"));
     }
   }
 
   public void testMakeTimeZone_found() throws Exception {
     try (ZoneInfoDb data = ZoneInfoDb.loadTzData(TZDATA_FILE)) {
-      assertNotNull(data.makeTimeZone("Europe/London"));
+      assertNotNull(data.makeZoneInfoData("Europe/London"));
       assertTrue(data.hasTimeZone("Europe/London"));
     }
   }

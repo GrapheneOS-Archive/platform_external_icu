@@ -14,22 +14,19 @@
  * limitations under the License.
  */
 
-package libcore.io;
+package com.android.i18n.timezone.internal;
 
-import android.compat.annotation.UnsupportedAppUsage;
 import android.system.ErrnoException;
-
+import android.system.Os;
 import java.io.FileDescriptor;
 import java.nio.ByteOrder;
-
-import static android.system.OsConstants.MAP_SHARED;
-import static android.system.OsConstants.O_RDONLY;
-import static android.system.OsConstants.PROT_READ;
 
 /**
  * A memory-mapped file. Use {@link #mmapRO} to map a file, {@link #close} to unmap a file,
  * and either {@link #bigEndianIterator} or {@link #littleEndianIterator} to get a seekable
  * {@link BufferIterator} over the mapped data. This class is not thread safe.
+ *
+ * @hide
  */
 public final class MemoryMappedFile implements AutoCloseable {
     private boolean closed;
@@ -49,15 +46,14 @@ public final class MemoryMappedFile implements AutoCloseable {
     /**
      * Use this to mmap the whole file read-only.
      */
-    @UnsupportedAppUsage
     public static MemoryMappedFile mmapRO(String path) throws ErrnoException {
-        FileDescriptor fd = Libcore.os.open(path, O_RDONLY, 0);
+        FileDescriptor fd = Os.open(path, 0 /* O_RDONLY */, 0);
         try {
-            long size = Libcore.os.fstat(fd).st_size;
-            long address = Libcore.os.mmap(0L, size, PROT_READ, MAP_SHARED, fd, 0);
+            long size = Os.fstat(fd).st_size;
+            long address = Os.mmap(0L, size, 0x1 /* PROT_READ */, 0x01 /* MAP_SHARED */, fd, 0);
             return new MemoryMappedFile(address, size);
         } finally {
-            Libcore.os.close(fd);
+            Os.close(fd);
         }
     }
 
@@ -72,7 +68,7 @@ public final class MemoryMappedFile implements AutoCloseable {
     public void close() throws ErrnoException {
         if (!closed) {
             closed = true;
-            Libcore.os.munmap(address, size);
+            Os.munmap(address, size);
         }
     }
 
@@ -83,7 +79,6 @@ public final class MemoryMappedFile implements AutoCloseable {
     /**
      * Returns a new iterator that treats the mapped data as big-endian.
      */
-    @UnsupportedAppUsage
     public BufferIterator bigEndianIterator() {
         return new NioBufferIterator(
                 this, address, size, ByteOrder.nativeOrder() != ByteOrder.BIG_ENDIAN);
