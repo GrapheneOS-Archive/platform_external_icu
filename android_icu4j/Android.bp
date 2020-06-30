@@ -50,6 +50,18 @@ filegroup {
     path: "libcore_bridge/src/java",
 }
 
+// timezone-related source that is also used in host tests / tools and its
+// dependencies.
+filegroup {
+    name: "timezone_host_files",
+    srcs: [
+        "libcore_bridge/src/java/com/android/i18n/timezone/TimeZoneDataFiles.java",
+        "libcore_bridge/src/java/com/android/i18n/timezone/TzDataSetVersion.java",
+    ],
+    path: "libcore_bridge/src/java",
+    visibility: ["//libcore"],
+}
+
 // core-repackaged-icu4j contains only the repackaged ICU4J that does not
 // use any internal or android specific code. If it ever did then it could depend on
 // art-module-intra-core-api-stubs-system-modules (a superset) instead.
@@ -94,6 +106,7 @@ java_library {
     permitted_packages: [
         "android.icu",
         "com.android.icu",
+        "com.android.i18n.timezone",
     ],
     installable: true,
     hostdex: false,
@@ -309,6 +322,7 @@ java_test {
     static_libs: [
         "junit",
         "junit-params",
+        "tzdata-testing",
     ],
 
     patch_module: "java.base",

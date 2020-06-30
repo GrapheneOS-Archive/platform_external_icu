@@ -14,13 +14,13 @@
  * limitations under the License
  */
 
-package libcore.libcore.io;
+package com.android.i18n.test.timezone.internal;
 
-import junit.framework.TestCase;
-
+import android.icu.testsharding.MainTestShard;
 import android.system.ErrnoException;
 import android.system.OsConstants;
-
+import com.android.i18n.timezone.internal.BufferIterator;
+import com.android.i18n.timezone.internal.MemoryMappedFile;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.nio.ByteBuffer;
@@ -28,10 +28,9 @@ import java.nio.ByteOrder;
 import java.nio.IntBuffer;
 import java.util.Arrays;
 import java.util.function.Function;
-import libcore.io.BufferIterator;
-import libcore.io.MemoryMappedFile;
-import libcore.testing.io.TestIoUtils;
+import junit.framework.TestCase;
 
+@MainTestShard
 public class MemoryMappedFileTest extends TestCase {
 
     private File tempDir;

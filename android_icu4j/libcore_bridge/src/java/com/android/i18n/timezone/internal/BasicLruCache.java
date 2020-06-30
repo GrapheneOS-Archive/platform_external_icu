@@ -14,9 +14,8 @@
  * limitations under the License.
  */
 
-package libcore.util;
+package com.android.i18n.timezone.internal;
 
-import android.compat.annotation.UnsupportedAppUsage;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -26,17 +25,28 @@ import java.util.Map;
  * @hide
  */
 public class BasicLruCache<K, V> {
-    @UnsupportedAppUsage
-    private final LinkedHashMap<K, V> map;
-    private final int maxSize;
+    private static class CacheMap<K, V> extends LinkedHashMap<K, V> {
 
-    @UnsupportedAppUsage
+        private final int maxSize;
+
+        private CacheMap(int maxSize) {
+            super(0, 0.75f, true);
+            this.maxSize = maxSize;
+        }
+
+        @Override
+        protected boolean removeEldestEntry(Map.Entry<K, V> eldest) {
+            return this.size() > maxSize;
+        }
+    }
+
+    private final CacheMap<K, V> map;
+
     public BasicLruCache(int maxSize) {
         if (maxSize <= 0) {
             throw new IllegalArgumentException("maxSize <= 0");
         }
-        this.maxSize = maxSize;
-        this.map = new LinkedHashMap<K, V>(0, 0.75f, true);
+        this.map = new CacheMap<K, V>(maxSize);
     }
 
     /**
@@ -45,7 +55,6 @@ public class BasicLruCache<K, V> {
      * head of the queue. This returns null if a value is not cached and cannot
      * be created.
      */
-    @UnsupportedAppUsage
     public final V get(K key) {
         if (key == null) {
             throw new NullPointerException("key == null");
@@ -70,7 +79,6 @@ public class BasicLruCache<K, V> {
             // isn't design for such usage anyway).
             if (result != null) {
                 map.put(key, result);
-                trimToSize(maxSize);
             }
         }
 
@@ -82,9 +90,8 @@ public class BasicLruCache<K, V> {
      * the queue.
      *
      * @return the previous value mapped by {@code key}. Although that entry is
-     *     no longer cached, it has not been passed to {@link #entryEvicted}.
+     *     no longer cached, it has not been evicted.
      */
-    @UnsupportedAppUsage
     public synchronized final V put(K key, V value) {
         if (key == null) {
             throw new NullPointerException("key == null");
@@ -93,27 +100,8 @@ public class BasicLruCache<K, V> {
         }
 
         V previous = map.put(key, value);
-        trimToSize(maxSize);
         return previous;
     }
-
-    private void trimToSize(int maxSize) {
-        while (map.size() > maxSize) {
-            Map.Entry<K, V> toEvict = map.eldest();
-
-            K key = toEvict.getKey();
-            V value = toEvict.getValue();
-            map.remove(key);
-
-            entryEvicted(key, value);
-        }
-    }
-
-    /**
-     * Called for entries that have reached the tail of the least recently used
-     * queue and are be removed. The default implementation does nothing.
-     */
-    protected void entryEvicted(K key, V value) {}
 
     /**
      * Called after a cache miss to compute a value for the corresponding key.
@@ -125,18 +113,9 @@ public class BasicLruCache<K, V> {
     }
 
     /**
-     * Returns a copy of the current contents of the cache, ordered from least
-     * recently accessed to most recently accessed.
-     */
-    public synchronized final Map<K, V> snapshot() {
-        return new LinkedHashMap<K, V>(map);
-    }
-
-    /**
      * Clear the cache, calling {@link #entryEvicted} on each removed entry.
      */
-    @UnsupportedAppUsage
     public synchronized final void evictAll() {
-        trimToSize(0);
+        map.clear();
     }
 }

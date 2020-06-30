@@ -14,16 +14,17 @@
  * limitations under the License.
  */
 
-package libcore.libcore.timezone;
-
-import org.junit.Test;
-
-import libcore.timezone.TimeZoneDataFiles;
+package com.android.i18n.test.timezone;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
+import android.icu.testsharding.MainTestShard;
+import com.android.i18n.timezone.TimeZoneDataFiles;
+import org.junit.Test;
+
+@MainTestShard
 public class TimeZoneDataFilesTest {
 
     private static final String ANDROID_TZDATA_ROOT_ENV = "ANDROID_TZDATA_ROOT";

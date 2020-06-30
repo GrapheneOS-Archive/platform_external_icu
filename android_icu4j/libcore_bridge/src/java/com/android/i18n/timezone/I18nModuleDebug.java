@@ -14,30 +14,27 @@
  * limitations under the License.
  */
 
-package libcore.util;
+package com.android.i18n.timezone;
 
+import com.android.i18n.timezone.TzDataSetVersion.TzDataSetException;
+import com.android.i18n.util.Log;
 import com.android.icu.util.Icu4cMetadata;
-
-import libcore.timezone.TimeZoneDataFiles;
-import libcore.timezone.TzDataSetVersion;
-import libcore.timezone.TzDataSetVersion.TzDataSetException;
-import libcore.timezone.ZoneInfoDb;
 
 import java.io.File;
 import java.io.IOException;
 
 /**
- * Provides APIs for obtaining metadata for the managed core library and lower-level
- * components like bionic and the runtime.
+ * Provides APIs for obtaining metadata for the i18n library and lower-level
+ * components like timezone.
  *
  * @hide
  */
 @libcore.api.CorePlatformApi
-public class CoreLibraryDebug {
+public class I18nModuleDebug {
 
     private static final String CORE_LIBRARY_TIMEZONE_DEBUG_PREFIX = "core_library.timezone.";
 
-    private CoreLibraryDebug() {}
+    private I18nModuleDebug() {}
 
     /**
      * Returns information about the Core Library for debugging.
@@ -95,7 +92,7 @@ public class CoreLibraryDebug {
                 debugInfo.addStringEntry(statusKey, "ERROR");
                 debugInfo.addStringEntry(debugKeyPrefix + "exception_class", e.getClass().getName());
                 debugInfo.addStringEntry(debugKeyPrefix + "exception_msg", e.getMessage());
-                System.logE("Error reading " + file, e);
+                Log.e("Error reading " + file, e);
             }
         } else {
             debugInfo.addStringEntry(statusKey, "NOT_FOUND");
