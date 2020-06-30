@@ -20,19 +20,22 @@
  * This file is in the public domain, so clarified as of
  * 1996-06-05 by Arthur David Olson.
  */
-package libcore.util;
+package com.android.i18n.timezone;
 
-import android.compat.annotation.UnsupportedAppUsage;
-
+import com.android.i18n.timezone.internal.BufferIterator;
+import com.android.i18n.timezone.internal.ByteBufferIterator;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.ObjectInputStream.GetField;
+import java.io.ObjectOutputStream;
+import java.io.ObjectStreamField;
+import java.nio.ByteBuffer;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.TimeZone;
-import libcore.io.BufferIterator;
-import libcore.timezone.ZoneInfoDb;
+import libcore.api.IntraCoreApi;
 
 /**
  * Our concrete TimeZone implementation, backed by zoneinfo data.
@@ -47,19 +50,17 @@ import libcore.timezone.ZoneInfoDb;
  * reading the index and creating a {@link BufferIterator} that provides access to an entry for a
  * specific file. This class is responsible for reading the data from that {@link BufferIterator}
  * and storing it a representation to support the {@link TimeZone} and {@link GregorianCalendar}
- * implementations. See {@link ZoneInfo#readTimeZone(String, BufferIterator, long)}.
+ * implementations. See {@link ZoneInfoData#readTimeZone(String, BufferIterator, long)}.
  *
  * <p>This class does not use all the information from the {@code tzfile}; it uses:
  * {@code tzh_timecnt} and the associated transition times and type information. For each type
  * (described by {@code struct ttinfo}) it uses {@code tt_gmtoff} and {@code tt_isdst}.
  *
- * <p>This class should be in libcore.timezone but this class is Serializable so cannot
- * be moved there without breaking apps that have (for some reason) serialized TimeZone objects.
- *
- * @hide - used to implement TimeZone
+ * @hide
  */
+@libcore.api.IntraCoreApi
 @libcore.api.CorePlatformApi
-public final class ZoneInfo extends TimeZone {
+public final class ZoneInfoData implements Cloneable {
     private static final long MILLISECONDS_PER_DAY = 24 * 60 * 60 * 1000;
     private static final long MILLISECONDS_PER_400_YEARS =
             MILLISECONDS_PER_DAY * (400 * 365 + 100 - 3);
@@ -74,8 +75,22 @@ public final class ZoneInfo extends TimeZone {
         0, 31, 60, 91, 121, 152, 182, 213, 244, 274, 305, 335,
     };
 
-    // Proclaim serialization compatibility with pre-OpenJDK AOSP
-    static final long serialVersionUID = -4598738130123921552L;
+    /**
+     * The serialized fields in {@link libcore.util.ZoneInfo} kept for backward app compatibility.
+     */
+    @IntraCoreApi
+    public static final ObjectStreamField[] ZONEINFO_SERIALIZED_FIELDS = new ObjectStreamField[] {
+        new ObjectStreamField("mRawOffset", int.class),
+        new ObjectStreamField("mEarliestRawOffset", int.class),
+        new ObjectStreamField("mUseDst", boolean.class),
+        new ObjectStreamField("mDstSavings", int.class),
+        new ObjectStreamField("mTransitions", long[].class),
+        new ObjectStreamField("mTypes", byte[].class),
+        new ObjectStreamField("mOffsets", int[].class),
+        new ObjectStreamField("mIsDsts", byte[].class),
+    };
+
+    private final String mId;
 
     /**
      * The (best guess) non-DST offset used "today". It is stored in milliseconds.
@@ -109,8 +124,9 @@ public final class ZoneInfo extends TimeZone {
      * Implements {@link #getDSTSavings()}
      *
      * <p>This should be final but is not because it may need to be fixed up by
-     * {@link #readObject(ObjectInputStream)} to correct an inconsistency in the previous version
-     * of the code whereby this was set to a non-zero value even though DST was not actually used.
+     * {@link #createFromSerializationFields(String, GetField)} to correct an inconsistency in
+     * the previous version of the code whereby this was set to a non-zero value even though DST was
+     * not actually used.
      *
      * @see #mUseDst
      */
@@ -121,13 +137,13 @@ public final class ZoneInfo extends TimeZone {
      * in the offset from UTC or a change in the DST.
      *
      * <p>These times are pre-calculated externally from a set of rules (both historical and
-     * future) and stored in a file from which {@link ZoneInfo#readTimeZone(String, BufferIterator,
+     * future) and stored in a file from which {@link ZoneInfoData#readTimeZone(String, BufferIterator,
      * long)} reads the data. That is quite different to {@link java.util.SimpleTimeZone}, which has
      * essentially human readable rules (e.g. DST starts at 01:00 on the first Sunday in March and
      * ends at 01:00 on the last Sunday in October) that can be used to determine the DST transition
      * times across a number of years
      *
-     * <p>In terms of {@link ZoneInfo tzfile} structure this array is of length {@code tzh_timecnt}
+     * <p>In terms of {@link ZoneInfoData tzfile} structure this array is of length {@code tzh_timecnt}
      * and contains the times in seconds converted to long to make them safer to use.
      *
      * <p>They are stored in order from earliest (lowest) time to latest (highest). A transition is
@@ -137,7 +153,6 @@ public final class ZoneInfo extends TimeZone {
      *
      * @see #mTypes
      */
-    @UnsupportedAppUsage
     private final long[] mTransitions;
 
     /**
@@ -148,7 +163,7 @@ public final class ZoneInfo extends TimeZone {
      * index. The type is an index into the arrays {@link #mOffsets} and {@link #mIsDsts} that each
      * contain one part of the pair.
      *
-     * <p>In the {@link ZoneInfo tzfile} structure the type array only contains unique instances of
+     * <p>In the {@link ZoneInfoData tzfile} structure the type array only contains unique instances of
      * the {@code struct ttinfo} to save space and each type may be referenced by multiple
      * transitions. However, the type pairs stored in this class are not guaranteed unique because
      * they do not include the {@code tt_abbrind}, which is the abbreviated identifier to use for
@@ -185,7 +200,39 @@ public final class ZoneInfo extends TimeZone {
      */
     private final byte[] mIsDsts;
 
-    public static ZoneInfo readTimeZone(String id, BufferIterator it, long currentTimeMillis)
+    private ZoneInfoData(String id, int rawOffset, int earliestRawOffset, boolean useDst,
+            int dstSavings, long[] transitions, byte[] types, int[] offsets, byte[] isDsts) {
+        mId = id;
+        mRawOffset = rawOffset;
+        mEarliestRawOffset = earliestRawOffset;
+        mUseDst = useDst;
+        mDstSavings = dstSavings;
+        mTransitions = transitions;
+        mTypes = types;
+        mOffsets = offsets;
+        mIsDsts = isDsts;
+    }
+
+    /**
+     * Copy constructor
+     */
+    @IntraCoreApi
+    public ZoneInfoData(ZoneInfoData that) {
+        if (that == null) {
+            throw new NullPointerException("ZoneInfoData can't be null");
+        }
+        mId = that.mId;
+        mRawOffset = that.mRawOffset;
+        mDstSavings = that.mDstSavings;
+        mEarliestRawOffset = that.mEarliestRawOffset;
+        mUseDst = that.mUseDst;
+        mTransitions = that.mTransitions == null ? null : that.mTransitions.clone();
+        mTypes = that.mTypes == null ? null : that.mTypes.clone();
+        mOffsets = that.mOffsets == null ? null : that.mOffsets.clone();
+        mIsDsts = that.mIsDsts == null ? null : that.mIsDsts.clone();
+
+    }
+    public static ZoneInfoData readTimeZone(String id, BufferIterator it, long currentTimeMillis)
             throws IOException {
 
         // Skip over the superseded 32-bit header and data.
@@ -251,7 +298,7 @@ public final class ZoneInfo extends TimeZone {
      * Read the 64-bit header and data for {@code id} from the current position of {@code it} and
      * return a ZoneInfo.
      */
-    private static ZoneInfo read64BitData(String id, BufferIterator it, long currentTimeMillis)
+    private static ZoneInfoData read64BitData(String id, BufferIterator it, long currentTimeMillis)
             throws IOException {
         // Variable names beginning tzh_ correspond to those in "tzfile.h".
 
@@ -330,7 +377,7 @@ public final class ZoneInfo extends TimeZone {
             // for any locale. (The RI doesn't do any better than us here either.)
             it.skip(1);
         }
-        return new ZoneInfo(id, transitions64, types, gmtOffsets, isDsts, currentTimeMillis);
+        return new ZoneInfoData(id, transitions64, types, gmtOffsets, isDsts, currentTimeMillis);
     }
 
     private static void checkTzifVersionAcceptable(String id, byte tzh_version) throws IOException {
@@ -345,7 +392,7 @@ public final class ZoneInfo extends TimeZone {
         }
     }
 
-    private ZoneInfo(String name, long[] transitions, byte[] types, int[] gmtOffsets, byte[] isDsts,
+    private ZoneInfoData(String name, long[] transitions, byte[] types, int[] gmtOffsets, byte[] isDsts,
             long currentTimeMillis) {
         if (gmtOffsets.length == 0) {
             throw new IllegalArgumentException("ZoneInfo requires at least one offset "
@@ -354,7 +401,7 @@ public final class ZoneInfo extends TimeZone {
         mTransitions = transitions;
         mTypes = types;
         mIsDsts = isDsts;
-        setID(name);
+        mId = name;
 
         // Find the latest daylight and standard offsets (if any).
         int lastStdTransitionIndex = -1;
@@ -456,17 +503,49 @@ public final class ZoneInfo extends TimeZone {
     }
 
     /**
-     * Ensure that when deserializing an instance that {@link #mDstSavings} is always 0 when
-     * {@link #mUseDst} is false.
+     * Create an instance from the serialized fields from {@link libcore.util.ZoneInfo}
+     * for backward app compatibility.
      */
-    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
-        in.defaultReadObject();
-        if (!mUseDst && mDstSavings != 0) {
-            mDstSavings = 0;
+    @libcore.api.IntraCoreApi
+    public static ZoneInfoData createFromSerializationFields(String id,
+            ObjectInputStream.GetField getField) throws IOException {
+        int rawOffset = getField.get("mRawOffset", 0);
+        int earliestRawOffset = getField.get("mEarliestRawOffset", 0);
+        boolean useDst = getField.get("mUseDst", false);
+        int dstSavings = getField.get("mDstSavings", 0);
+        long[] transitions = (long[]) getField.get("mTransitions", null);
+        byte[] types = (byte[]) getField.get("mTypes", null);
+        int[] offsets = (int[]) getField.get("mOffsets", null);
+        byte[] isDsts = (byte[]) getField.get("mIsDsts", null);
+        /** For pre-OpenJDK compatibility, ensure that when deserializing an instance that
+         * {@link #mDstSavings} is always 0 when {@link #mUseDst} is false
+         */
+        if (!useDst && dstSavings != 0) {
+            dstSavings = 0;
         }
+
+        return new ZoneInfoData(
+                id, rawOffset, earliestRawOffset,
+                useDst, dstSavings, transitions, types,
+            offsets, isDsts);
     }
 
-    @Override
+    /**
+     * Serialize {@link libcore.util.ZoneInfo} into backward app compatible form.
+     */
+    @libcore.api.IntraCoreApi
+    public void writeToSerializationFields(ObjectOutputStream.PutField putField) {
+        putField.put("mRawOffset", mRawOffset);
+        putField.put("mEarliestRawOffset", mEarliestRawOffset);
+        putField.put("mUseDst", mUseDst);
+        putField.put("mDstSavings", mDstSavings);
+        putField.put("mTransitions", mTransitions);
+        putField.put("mTypes", mTypes);
+        putField.put("mOffsets", mOffsets);
+        putField.put("mIsDsts", mIsDsts);
+    }
+
+    @libcore.api.IntraCoreApi
     public int getOffset(int era, int year, int month, int day, int dayOfWeek, int millis) {
         // XXX This assumes Gregorian always; Calendar switches from
         // Julian to Gregorian in 1582.  What calendar system are the
@@ -619,6 +698,7 @@ public final class ZoneInfo extends TimeZone {
      * @param offsets the array whose length must be greater than or equal to 2.
      * @return the total offset which is the sum of the raw and DST offsets.
      */
+    @libcore.api.IntraCoreApi
     public int getOffsetsByUtcTime(long utcTimeInMillis, int[] offsets) {
         int transitionIndex = findTransitionIndex(roundDownMillisToSeconds(utcTimeInMillis));
         int totalOffset;
@@ -666,7 +746,7 @@ public final class ZoneInfo extends TimeZone {
         return totalOffset;
     }
 
-    @Override
+    @libcore.api.IntraCoreApi
     public int getOffset(long when) {
         int offsetIndex = findOffsetIndexForTimeInMilliseconds(when);
         if (offsetIndex == -1) {
@@ -678,7 +758,8 @@ public final class ZoneInfo extends TimeZone {
         return mRawOffset + mOffsets[offsetIndex] * 1000;
     }
 
-    @Override public boolean inDaylightTime(Date time) {
+    @libcore.api.IntraCoreApi
+    public boolean inDaylightTime(Date time) {
         long when = time.getTime();
         int offsetIndex = findOffsetIndexForTimeInMilliseconds(when);
         if (offsetIndex == -1) {
@@ -691,27 +772,28 @@ public final class ZoneInfo extends TimeZone {
         return mIsDsts[offsetIndex] == 1;
     }
 
-    @Override public int getRawOffset() {
+    @libcore.api.IntraCoreApi
+    public int getRawOffset() {
         return mRawOffset;
     }
 
-    @Override public void setRawOffset(int off) {
+    @libcore.api.IntraCoreApi
+    public void setRawOffset(int off) {
         mRawOffset = off;
     }
 
-    @Override public int getDSTSavings() {
+    @libcore.api.IntraCoreApi
+    public int getDSTSavings() {
         return mDstSavings;
     }
 
-    @Override public boolean useDaylightTime() {
+    @libcore.api.IntraCoreApi
+    public boolean useDaylightTime() {
         return mUseDst;
     }
 
-    @Override public boolean hasSameRules(TimeZone timeZone) {
-        if (!(timeZone instanceof ZoneInfo)) {
-            return false;
-        }
-        ZoneInfo other = (ZoneInfo) timeZone;
+    @libcore.api.IntraCoreApi
+    public boolean hasSameRules(ZoneInfoData other) {
         if (mUseDst != other.mUseDst) {
             return false;
         }
@@ -727,10 +809,10 @@ public final class ZoneInfo extends TimeZone {
     }
 
     @Override public boolean equals(Object obj) {
-        if (!(obj instanceof ZoneInfo)) {
+        if (!(obj instanceof ZoneInfoData)) {
             return false;
         }
-        ZoneInfo other = (ZoneInfo) obj;
+        ZoneInfoData other = (ZoneInfoData) obj;
         return getID().equals(other.getID()) && hasSameRules(other);
     }
 
@@ -750,7 +832,7 @@ public final class ZoneInfo extends TimeZone {
 
     @Override
     public String toString() {
-        return getClass().getName() + "[id=\"" + getID() + "\"" +
+        return "[id=\"" + getID() + "\"" +
             ",mRawOffset=" + mRawOffset +
             ",mEarliestRawOffset=" + mEarliestRawOffset +
             ",mUseDst=" + mUseDst +
@@ -759,13 +841,15 @@ public final class ZoneInfo extends TimeZone {
             "]";
     }
 
-    @Override
-    public Object clone() {
-        // Overridden for documentation. The default clone() behavior is exactly what we want.
-        // Though mutable, the arrays of offset data are treated as immutable. Only ID and
-        // mRawOffset are mutable in this class, and those are an immutable object and a primitive
-        // respectively.
-        return super.clone();
+    @libcore.api.CorePlatformApi
+    @libcore.api.IntraCoreApi
+    public String getID() {
+        return mId;
+    }
+
+    @libcore.api.IntraCoreApi
+    public long[] getTransitionsForAppCompat() {
+        return mTransitions;
     }
 
     /**
@@ -826,7 +910,7 @@ public final class ZoneInfo extends TimeZone {
          * is only one offset rule acting at any given instant. We do not consider leap seconds.
          */
         @libcore.api.CorePlatformApi
-        public void localtime(int timeSeconds, ZoneInfo zoneInfo) {
+        public void localtime(int timeSeconds, ZoneInfoData zoneInfo) {
             try {
                 int offsetSeconds = zoneInfo.mRawOffset / 1000;
 
@@ -887,7 +971,7 @@ public final class ZoneInfo extends TimeZone {
          * occur for other reasons such as when a zone changes its raw offset.
          */
         @libcore.api.CorePlatformApi
-        public int mktime(ZoneInfo zoneInfo) {
+        public int mktime(ZoneInfoData zoneInfo) {
             // Normalize isDst to -1, 0 or 1 to simplify isDst equality checks below.
             this.isDst = this.isDst > 0 ? this.isDst = 1 : this.isDst < 0 ? this.isDst = -1 : 0;
 
@@ -978,7 +1062,7 @@ public final class ZoneInfo extends TimeZone {
          * {@code targetInterval}, apply it, and see if we are still in {@code targetInterval}. If
          * we are, then we have found an adjustment.
          */
-        private Integer tryOffsetAdjustments(ZoneInfo zoneInfo, int oldWallTimeSeconds,
+        private Integer tryOffsetAdjustments(ZoneInfoData zoneInfo, int oldWallTimeSeconds,
                 OffsetInterval targetInterval, int transitionIndex, int isDstToFind)
                 throws CheckedArithmeticException {
 
@@ -1011,7 +1095,7 @@ public final class ZoneInfo extends TimeZone {
          * The {@code startIndex} is used as a starting point so transitions nearest
          * to that index are returned first.
          */
-        private static int[] getOffsetsOfType(ZoneInfo zoneInfo, int startIndex, int isDst) {
+        private static int[] getOffsetsOfType(ZoneInfoData zoneInfo, int startIndex, int isDst) {
             // +1 to account for the synthetic transition we invent before the first recorded one.
             int[] offsets = new int[zoneInfo.mOffsets.length + 1];
             boolean[] seen = new boolean[zoneInfo.mOffsets.length];
@@ -1075,7 +1159,7 @@ public final class ZoneInfo extends TimeZone {
          * in seconds if a match has been found and modifies fields, or it returns {@code null} and
          * leaves the field state unmodified.
          */
-        private Integer doWallTimeSearch(ZoneInfo zoneInfo, int initialTransitionIndex,
+        private Integer doWallTimeSearch(ZoneInfoData zoneInfo, int initialTransitionIndex,
                 int wallTimeSeconds, boolean mustMatchDst) throws CheckedArithmeticException {
 
             // The loop below starts at the initialTransitionIndex and radiates out from that point
@@ -1351,7 +1435,7 @@ public final class ZoneInfo extends TimeZone {
          *   </li>
          * </ol>
          */
-        public static OffsetInterval create(ZoneInfo timeZone, int transitionIndex) {
+        public static OffsetInterval create(ZoneInfoData timeZone, int transitionIndex) {
             if (transitionIndex < -1 || transitionIndex >= timeZone.mTransitions.length) {
                 return null;
             }
@@ -1468,4 +1552,16 @@ public final class ZoneInfo extends TimeZone {
         }
         return (int) result;
     }
+
+    /**
+     * IntraCoreApi made visible for testing in libcore
+     */
+    @libcore.api.IntraCoreApi
+    public static ZoneInfoData createZoneInfo(String name, long timeInMilli, ByteBuffer buf)
+        throws IOException {
+        ByteBufferIterator bufferIterator = new ByteBufferIterator(buf);
+        return ZoneInfoData.readTimeZone(
+            "TimeZone for '" + name + "'", bufferIterator, timeInMilli);
+    }
+
 }

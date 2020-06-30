@@ -14,8 +14,14 @@
  * limitations under the License.
  */
 
-package libcore.libcore.icu;
+package com.android.i18n.test.timezone;
 
+import android.icu.testsharding.MainTestShard;
+import com.android.i18n.timezone.I18nModuleDebug;
+import com.android.i18n.timezone.DebugInfo;
+import com.android.i18n.timezone.TimeZoneDataFiles;
+import com.android.i18n.timezone.TzDataSetVersion;
+import com.android.i18n.timezone.ZoneInfoDb;
 import org.junit.Test;
 
 import android.icu.text.TimeZoneNames;
@@ -39,12 +45,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-import libcore.timezone.TimeZoneDataFiles;
 import libcore.timezone.TimeZoneFinder;
-import libcore.timezone.TzDataSetVersion;
-import libcore.timezone.ZoneInfoDb;
-import libcore.util.CoreLibraryDebug;
-import libcore.util.DebugInfo;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -54,6 +55,7 @@ import static org.junit.Assert.fail;
 /**
  * Tests that compare ICU and libcore time zone behavior and similar cross-cutting concerns.
  */
+@MainTestShard
 public class TimeZoneIntegrationTest {
 
     // http://b/28949992
@@ -259,7 +261,7 @@ public class TimeZoneIntegrationTest {
      */
     @Test
     public void testTimeZoneDebugInfo() throws Exception {
-        DebugInfo debugInfo = CoreLibraryDebug.getDebugInfo();
+        DebugInfo debugInfo = I18nModuleDebug.getDebugInfo();
 
         // Devices are expected to have a time zone module which overrides or extends the data in
         // the runtime module depending on the file. It's not actually mandatory for all Android

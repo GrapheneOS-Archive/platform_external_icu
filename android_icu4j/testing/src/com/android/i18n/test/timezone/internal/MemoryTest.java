@@ -15,14 +15,15 @@
  * limitations under the License.
  */
 
-package libcore.libcore.io;
+package com.android.i18n.test.timezone.internal;
 
+import android.icu.testsharding.MainTestShard;
+import com.android.i18n.timezone.internal.Memory;
 import dalvik.system.VMRuntime;
 import java.util.Arrays;
 import junit.framework.TestCase;
 
-import libcore.io.Memory;
-
+@MainTestShard
 public class MemoryTest extends TestCase {
     public void testSetIntArray() {
         int[] values = { 3, 7, 31, 127, 8191, 131071, 524287, 2147483647 };

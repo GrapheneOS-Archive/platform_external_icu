@@ -14,26 +14,18 @@
  * limitations under the License.
  */
 
-package libcore.testing.io;
+package com.android.i18n.test.timezone.internal;
 
+import android.icu.testsharding.MainTestShard;
 import java.io.File;
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.Random;
 
+
+@MainTestShard
 public class TestIoUtils {
     private final static Random random = new Random();
 
     private TestIoUtils() {}
-
-    /**
-     * Returns the contents of 'path' as a string. The contents are assumed to be UTF-8.
-     */
-    public static String readFileAsString(String absolutePath) throws IOException {
-        return new String(Files.readAllBytes(Paths.get(absolutePath)), StandardCharsets.UTF_8);
-    }
 
     /**
      * Creates a unique new temporary directory under "java.io.tmpdir".

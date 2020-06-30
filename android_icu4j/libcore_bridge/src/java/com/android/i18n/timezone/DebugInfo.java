@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package libcore.util;
+package com.android.i18n.timezone;
 
 import java.util.ArrayList;
 import java.util.List;
