@@ -42,6 +42,16 @@ package android.icu.impl.number {
 
 package android.icu.text {
 
+  public class CurrencyMetaInfo {
+    method public java.util.List<java.lang.String> currencies(android.icu.text.CurrencyMetaInfo.CurrencyFilter);
+    method public static android.icu.text.CurrencyMetaInfo getInstance();
+  }
+
+  public static final class CurrencyMetaInfo.CurrencyFilter {
+    method public static android.icu.text.CurrencyMetaInfo.CurrencyFilter onRegion(String);
+    method public android.icu.text.CurrencyMetaInfo.CurrencyFilter withDate(java.util.Date);
+  }
+
   public class DateFormatSymbols implements java.lang.Cloneable java.io.Serializable {
     ctor @Deprecated public DateFormatSymbols(android.icu.util.ULocale, String);
     method public String[] getAmpmNarrowStrings();

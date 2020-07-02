@@ -21,6 +21,10 @@ method:android.icu.impl.ICUResourceBundle#getStringWithFallback(String)
 method:android.icu.impl.ICUResourceBundle#getWithFallback(String)
 method:android.icu.impl.JavaTimeZone#JavaTimeZone(java.util.TimeZone,String)
 method:android.icu.impl.ZoneMeta#getCanonicalCLDRID(String)
+method:android.icu.text.CurrencyMetaInfo#getInstance()
+method:android.icu.text.CurrencyMetaInfo#currencies(CurrencyFilter)
+method:android.icu.text.CurrencyMetaInfo$CurrencyFilter#onRegion(String)
+method:android.icu.text.CurrencyMetaInfo$CurrencyFilter#withDate(Date)
 method:android.icu.text.DateFormatSymbols#DateFormatSymbols(ULocale,String)
 method:android.icu.text.DateFormatSymbols#getNarrowEras()
 method:android.icu.text.DateFormatSymbols#getAmpmNarrowStrings()
@@ -73,6 +77,8 @@ type:android.icu.impl.JavaTimeZone
 type:android.icu.impl.number.DecimalFormatProperties
 type:android.icu.impl.number.DecimalFormatProperties$ParseMode
 type:android.icu.impl.ZoneMeta
+type:android.icu.text.CurrencyMetaInfo
+type:android.icu.text.CurrencyMetaInfo$CurrencyFilter
 type:android.icu.text.Normalizer$Mode
 type:android.icu.text.TimeZoneNames$MatchInfo
 type:android.icu.util.AnnualTimeZoneRule

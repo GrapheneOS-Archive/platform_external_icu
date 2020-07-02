@@ -31,6 +31,7 @@ import android.icu.util.Currency.CurrencyUsage;
  *
  * @hide Only a subset of ICU is exposed in Android
  */
+@libcore.api.IntraCoreApi
 public class CurrencyMetaInfo {
     private static final CurrencyMetaInfo impl;
     private static final boolean hasData;
@@ -39,6 +40,7 @@ public class CurrencyMetaInfo {
      * Returns the unique instance of the currency meta info.
      * @return the meta info
      */
+    @libcore.api.IntraCoreApi
     public static CurrencyMetaInfo getInstance() {
         return impl;
     }
@@ -77,6 +79,7 @@ public class CurrencyMetaInfo {
      * A filter used to select which currency info is returned.
      * @hide Only a subset of ICU is exposed in Android
      */
+    @libcore.api.IntraCoreApi
     public static final class CurrencyFilter {
         /**
          * The region to filter on.  If null, accepts any region.
@@ -141,6 +144,7 @@ public class CurrencyMetaInfo {
          * @return a filter
          * @see #withRegion(String)
          */
+        @libcore.api.IntraCoreApi
         public static CurrencyFilter onRegion(String region) {
             return ALL.withRegion(region);
         }
@@ -235,6 +239,7 @@ public class CurrencyMetaInfo {
          * @return the filter
          * @see #onDate(Date)
          */
+        @libcore.api.IntraCoreApi
         public CurrencyFilter withDate(Date date) {
             return new CurrencyFilter(this.region, this.currency, date.getTime(), date.getTime(), this.tenderOnly);
         }
@@ -478,6 +483,7 @@ public class CurrencyMetaInfo {
      * returns all currencies for which information is available.
      * @return the matching currency codes
      */
+    @libcore.api.IntraCoreApi
     public List<String> currencies(CurrencyFilter filter) {
         return Collections.emptyList();
     }
