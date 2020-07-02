@@ -45,7 +45,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-import libcore.timezone.TimeZoneFinder;
+import com.android.i18n.timezone.TimeZoneFinder;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;

@@ -14,11 +14,12 @@
  * limitations under the License.
  */
 
-package libcore.timezone;
+package com.android.i18n.timezone;
 
-import static libcore.timezone.XmlUtils.normalizeCountryIso;
+import static com.android.i18n.timezone.XmlUtils.normalizeCountryIso;
 
-import libcore.timezone.TelephonyNetwork.MccMnc;
+import com.android.i18n.timezone.TelephonyNetwork.MccMnc;
+import com.android.i18n.util.Log;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -49,14 +50,14 @@ public final class TelephonyNetworkFinder {
         Map<MccMnc, TelephonyNetwork> networksMap = new HashMap<>();
         for (TelephonyNetwork network : networksList) {
             if (!validCountryIsoCodes.contains(network.getCountryIsoCode())) {
-                System.logW("Unrecognized country code: " + network.getCountryIsoCode()
+                Log.w("Unrecognized country code: " + network.getCountryIsoCode()
                         + " for telephony network=" + network);
             }
 
             MccMnc mccMnc = network.getMccMnc();
             TelephonyNetwork existingEntry = networksMap.put(mccMnc, network);
             if (existingEntry != null) {
-                System.logW("Duplicate MccMnc detected for " + mccMnc
+                Log.w("Duplicate MccMnc detected for " + mccMnc
                         + ". New entry=" + network + " replacing previous entry.");
             }
         }
