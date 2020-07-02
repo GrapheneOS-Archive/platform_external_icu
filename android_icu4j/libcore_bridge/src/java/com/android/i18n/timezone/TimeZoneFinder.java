@@ -14,18 +14,17 @@
  * limitations under the License.
  */
 
-package libcore.timezone;
+package com.android.i18n.timezone;
 
-import static libcore.timezone.XmlUtils.checkOnEndTag;
-import static libcore.timezone.XmlUtils.consumeText;
-import static libcore.timezone.XmlUtils.consumeUntilEndTag;
-import static libcore.timezone.XmlUtils.findNextStartTagOrEndTagNoRecurse;
-import static libcore.timezone.XmlUtils.findNextStartTagOrThrowNoRecurse;
-import static libcore.timezone.XmlUtils.normalizeCountryIso;
-import static libcore.timezone.XmlUtils.parseBooleanAttribute;
-import static libcore.timezone.XmlUtils.parseLongAttribute;
+import static com.android.i18n.timezone.XmlUtils.checkOnEndTag;
+import static com.android.i18n.timezone.XmlUtils.consumeText;
+import static com.android.i18n.timezone.XmlUtils.consumeUntilEndTag;
+import static com.android.i18n.timezone.XmlUtils.findNextStartTagOrEndTagNoRecurse;
+import static com.android.i18n.timezone.XmlUtils.findNextStartTagOrThrowNoRecurse;
+import static com.android.i18n.timezone.XmlUtils.normalizeCountryIso;
+import static com.android.i18n.timezone.XmlUtils.parseBooleanAttribute;
+import static com.android.i18n.timezone.XmlUtils.parseLongAttribute;
 
-import com.android.i18n.timezone.TimeZoneDataFiles;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
@@ -40,19 +39,17 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import libcore.timezone.CountryTimeZones.TimeZoneMapping;
-import libcore.timezone.XmlUtils.ReaderSupplier;
+import com.android.i18n.timezone.CountryTimeZones.TimeZoneMapping;
+import com.android.i18n.timezone.XmlUtils.ReaderSupplier;
+import com.android.i18n.util.Log;
 
 /**
  * A class that can find matching time zones by loading data from the tzlookup.xml file.
  * @hide
  */
 @libcore.api.CorePlatformApi
-@libcore.api.IntraCoreApi
 public final class TimeZoneFinder {
 
-    // VisibleForTesting
-    @libcore.api.IntraCoreApi
     public static final String TZLOOKUP_FILE_NAME = "tzlookup.xml";
 
     // Root element. e.g. <timezones ianaversion="2017b">
@@ -97,7 +94,6 @@ public final class TimeZoneFinder {
      * in-depth validation is performed on the file content, see {@link #validate()}.
      */
     @libcore.api.CorePlatformApi
-    @libcore.api.IntraCoreApi
     public static TimeZoneFinder getInstance() {
         synchronized(TimeZoneFinder.class) {
             if (instance == null) {
@@ -129,7 +125,7 @@ public final class TimeZoneFinder {
             }
         }
 
-        System.logE("No valid file found in set: " + Arrays.toString(tzLookupFilePaths)
+        Log.e("No valid file found in set: " + Arrays.toString(tzLookupFilePaths)
                 + " Printing exceptions and falling back to empty map.", lastException);
         return createInstanceForTests("<timezones><countryzones /></timezones>");
     }
@@ -168,7 +164,6 @@ public final class TimeZoneFinder {
      * or there is a problem reading the file then {@code null} is returned.
      */
     @libcore.api.CorePlatformApi
-    @libcore.api.IntraCoreApi
     public String getIanaVersion() {
         IanaVersionExtractor ianaVersionExtractor = new IanaVersionExtractor();
         try {
@@ -191,7 +186,7 @@ public final class TimeZoneFinder {
 
             return extractor.getCountryZonesLookup();
         } catch (XmlPullParserException | IOException e) {
-            System.logW("Error reading country zones ", e);
+            Log.w("Error reading country zones ", e);
             return null;
         }
     }
@@ -227,7 +222,7 @@ public final class TimeZoneFinder {
             }
             return countryTimeZones;
         } catch (XmlPullParserException | IOException e) {
-            System.logW("Error reading country zones ", e);
+            Log.w("Error reading country zones ", e);
 
             // Error - don't change the cached value.
             return null;

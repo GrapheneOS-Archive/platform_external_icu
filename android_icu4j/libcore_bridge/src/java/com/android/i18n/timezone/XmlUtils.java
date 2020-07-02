@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package libcore.timezone;
+package com.android.i18n.timezone;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;

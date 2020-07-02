@@ -14,14 +14,15 @@
  * limitations under the License.
  */
 
-package libcore.timezone;
+package com.android.i18n.timezone;
 
-import static libcore.timezone.XmlUtils.normalizeCountryIso;
+import static com.android.i18n.timezone.XmlUtils.normalizeCountryIso;
+
+import com.android.i18n.timezone.CountryTimeZones.TimeZoneMapping;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import libcore.timezone.CountryTimeZones.TimeZoneMapping;
 
 /**
  * An in-memory representation of country &lt;-&gt; time zone mapping data.
