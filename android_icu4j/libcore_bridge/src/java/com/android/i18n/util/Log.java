@@ -33,6 +33,13 @@ public class Log {
     public static void e(String msg, Throwable e) {
         log(ERROR, msg, e);
     }
+    public static void w(String msg) {
+        w(msg, null);
+    }
+
+    public static void w(String msg, Throwable e) {
+        log(WARN, msg, e);
+    }
 
     private static native void log(int priority, String msg, Throwable th);
 }
