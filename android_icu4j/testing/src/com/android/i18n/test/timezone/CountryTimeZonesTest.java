@@ -14,10 +14,11 @@
  * limitations under the License.
  */
 
-package libcore.libcore.timezone;
+package com.android.i18n.test.timezone;
 
 import org.junit.Test;
 
+import android.icu.testsharding.MainTestShard;
 import android.icu.util.TimeZone;
 
 import java.util.ArrayList;
@@ -26,9 +27,9 @@ import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import java.util.stream.Collectors;
-import libcore.timezone.CountryTimeZones;
-import libcore.timezone.CountryTimeZones.OffsetResult;
-import libcore.timezone.CountryTimeZones.TimeZoneMapping;
+import com.android.i18n.timezone.CountryTimeZones;
+import com.android.i18n.timezone.CountryTimeZones.OffsetResult;
+import com.android.i18n.timezone.CountryTimeZones.TimeZoneMapping;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -36,6 +37,7 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
+@MainTestShard
 public class CountryTimeZonesTest {
 
     private static final int HOUR_MILLIS = 60 * 60 * 1000;

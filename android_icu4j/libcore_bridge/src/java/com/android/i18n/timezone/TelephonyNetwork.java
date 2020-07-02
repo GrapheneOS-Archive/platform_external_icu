@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-package libcore.timezone;
+package com.android.i18n.timezone;
 
-import static libcore.timezone.XmlUtils.normalizeCountryIso;
+import static com.android.i18n.timezone.XmlUtils.normalizeCountryIso;
 
 import java.util.Objects;
 

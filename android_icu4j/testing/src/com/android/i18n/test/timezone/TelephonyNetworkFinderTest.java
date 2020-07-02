@@ -14,19 +14,22 @@
  * limitations under the License.
  */
 
-package libcore.libcore.timezone;
+package com.android.i18n.test.timezone;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
-import libcore.timezone.TelephonyNetwork;
-import libcore.timezone.TelephonyNetworkFinder;
+import com.android.i18n.timezone.TelephonyNetwork;
+import com.android.i18n.timezone.TelephonyNetworkFinder;
 
 import org.junit.Test;
+
+import android.icu.testsharding.MainTestShard;
 
 import java.util.Arrays;
 import java.util.List;
 
+@MainTestShard
 public class TelephonyNetworkFinderTest {
 
     @Test

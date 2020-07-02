@@ -14,17 +14,17 @@
  * limitations under the License.
  */
 
-package libcore.timezone;
+package com.android.i18n.timezone;
 
-import static libcore.timezone.XmlUtils.checkOnEndTag;
-import static libcore.timezone.XmlUtils.consumeUntilEndTag;
-import static libcore.timezone.XmlUtils.findNextStartTagOrEndTagNoRecurse;
-import static libcore.timezone.XmlUtils.findNextStartTagOrThrowNoRecurse;
-import static libcore.timezone.XmlUtils.normalizeCountryIso;
+import static com.android.i18n.timezone.XmlUtils.checkOnEndTag;
+import static com.android.i18n.timezone.XmlUtils.consumeUntilEndTag;
+import static com.android.i18n.timezone.XmlUtils.findNextStartTagOrEndTagNoRecurse;
+import static com.android.i18n.timezone.XmlUtils.findNextStartTagOrThrowNoRecurse;
+import static com.android.i18n.timezone.XmlUtils.normalizeCountryIso;
 
-import com.android.i18n.timezone.TimeZoneDataFiles;
-import libcore.timezone.TelephonyNetwork.MccMnc;
-import libcore.timezone.XmlUtils.ReaderSupplier;
+import com.android.i18n.timezone.TelephonyNetwork.MccMnc;
+import com.android.i18n.timezone.XmlUtils.ReaderSupplier;
+import com.android.i18n.util.Log;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -110,7 +110,7 @@ public final class TelephonyLookup {
             }
         }
 
-        System.logE("No valid file found in set: " + Arrays.toString(telephonyLookupFilePaths)
+        Log.e("No valid file found in set: " + Arrays.toString(telephonyLookupFilePaths)
                 + " Printing exceptions and falling back to empty map.", lastException);
         return createInstanceForTests("<telephony_lookup><networks /></telephony_lookup>");
     }
@@ -156,7 +156,7 @@ public final class TelephonyLookup {
 
             return extractor.getTelephonyNetworkFinder();
         } catch (XmlPullParserException | IOException e) {
-            System.logW("Error reading telephony networks", e);
+            Log.w("Error reading telephony networks", e);
             return null;
         }
     }
