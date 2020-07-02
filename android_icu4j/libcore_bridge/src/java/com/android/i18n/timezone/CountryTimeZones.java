@@ -14,11 +14,12 @@
  * limitations under the License.
  */
 
-package libcore.timezone;
+package com.android.i18n.timezone;
 
 import android.icu.util.TimeZone;
 
-import com.android.i18n.timezone.ZoneInfoDb;
+import com.android.i18n.util.Log;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -232,7 +233,7 @@ public final class CountryTimeZones {
         for (TimeZoneMapping timeZoneMapping : timeZoneMappings) {
             String timeZoneId = timeZoneMapping.timeZoneId;
             if (!validTimeZoneIdsSet.contains(timeZoneId)) {
-                System.logW("Skipping invalid zone: " + timeZoneId + " at " + debugInfo);
+                Log.w("Skipping invalid zone: " + timeZoneId + " at " + debugInfo);
             } else {
                 validCountryTimeZoneMappings.add(timeZoneMapping);
             }
@@ -243,7 +244,7 @@ public final class CountryTimeZones {
         // assume the data was validated by earlier steps). The default time zone ID must just
         // be a recognized zone ID: if it's not valid we leave it null.
         if (!validTimeZoneIdsSet.contains(defaultTimeZoneId)) {
-            System.logW("Invalid default time zone ID: " + defaultTimeZoneId
+            Log.w("Invalid default time zone ID: " + defaultTimeZoneId
                     + " at " + debugInfo);
             defaultTimeZoneId = null;
         }

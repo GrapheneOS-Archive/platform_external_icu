@@ -14,20 +14,22 @@
  * limitations under the License.
  */
 
-package libcore.libcore.timezone;
+package com.android.i18n.test.timezone;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
-import libcore.timezone.TelephonyLookup;
-import libcore.timezone.TelephonyNetwork;
-import libcore.timezone.TelephonyNetworkFinder;
+import com.android.i18n.timezone.TelephonyLookup;
+import com.android.i18n.timezone.TelephonyNetwork;
+import com.android.i18n.timezone.TelephonyNetworkFinder;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import android.icu.testsharding.MainTestShard;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -40,6 +42,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
+@MainTestShard
 public class TelephonyLookupTest {
 
     private Path testDir;
