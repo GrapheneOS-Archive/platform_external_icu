@@ -247,6 +247,10 @@ package com.android.icu.charset {
 
 package com.android.icu.text {
 
+  public class DecimalFormatSymbolsBridge {
+    method public static String getLocalizedPatternSeparator(android.icu.util.ULocale, android.icu.text.NumberingSystem);
+  }
+
   public final class TimeZoneNamesNative {
     method public static String[][] getFilledZoneStrings(@NonNull java.util.Locale, @NonNull String[]);
   }
