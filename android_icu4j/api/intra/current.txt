@@ -19,10 +19,6 @@ package android.icu.impl {
     method public android.icu.impl.ICUResourceBundle getWithFallback(String) throws java.util.MissingResourceException;
   }
 
-  public class JavaTimeZone extends android.icu.util.TimeZone {
-    ctor public JavaTimeZone(java.util.TimeZone, String);
-  }
-
   public final class ZoneMeta {
     method public static String getCanonicalCLDRID(String);
   }
