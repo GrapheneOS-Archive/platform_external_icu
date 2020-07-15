@@ -33,6 +33,7 @@ java_library {
     visibility: [
         "//bootable/recovery/tools/image_generator",
         "//external/icu/tools/srcgen",
+        "//external/jimfs/jimfs",
         "//external/robolectric-shadows/robolectric",
         "//external/robolectric-shadows/shadows/framework",
         "//system/timezone/input_tools/android/telephonylookup_generator",
