@@ -460,19 +460,24 @@ public class TimeZoneFinderTest {
                 + "      <id>America/Los_Angeles</id>\n"
                 + "      <!-- Explicit picker=\"n\" -->\n"
                 + "      <id picker=\"n\">America/Indiana/Vincennes</id>\n"
+                + "      <!-- Explicit notafter=\"1234\" alts=\"abc,def\"-->\n"
+                + "      <id notafter=\"972802800000\" alts=\"America/New_York\">"
+                + "America/Kentucky/Monticello</id>\n"
                 + "    </country>\n"
                 + "  </countryzones>\n"
                 + "</timezones>\n");
         CountryTimeZones usTimeZones = finder.lookupCountryTimeZones("us");
         List<TimeZoneMapping> actualTimeZoneMappings = usTimeZones.getTimeZoneMappings();
         List<TimeZoneMapping> expectedTimeZoneMappings = list(
-                TimeZoneMapping.createForTests(
-                        "America/New_York", true /* shownInPicker */, null /* notUsedAfter */),
-                TimeZoneMapping.createForTests(
-                        "America/Los_Angeles", true /* shownInPicker */, null /* notUsedAfter */),
-                TimeZoneMapping.createForTests(
-                        "America/Indiana/Vincennes", false /* shownInPicker */,
-                        null /* notUsedAfter */)
+                TimeZoneMapping.createForTests("America/New_York", true /* shownInPicker */,
+                        null /* notUsedAfter */, list()),
+                TimeZoneMapping.createForTests("America/Los_Angeles", true /* shownInPicker */,
+                        null /* notUsedAfter */, list()),
+                TimeZoneMapping.createForTests("America/Indiana/Vincennes",
+                        false /* shownInPicker */, null /* notUsedAfter */, list()),
+                TimeZoneMapping.createForTests("America/Kentucky/Monticello",
+                        true /* shownInPicker */, 972802800000L /* notUsedAfter */,
+                        list("America/New_York"))
         );
         assertEquals(expectedTimeZoneMappings, actualTimeZoneMappings);
     }
@@ -503,11 +508,10 @@ public class TimeZoneFinderTest {
         CountryTimeZones usTimeZones = finder.lookupCountryTimeZones("us");
         List<TimeZoneMapping> actualTimeZoneMappings = usTimeZones.getTimeZoneMappings();
         List<TimeZoneMapping> expectedTimeZoneMappings = list(
-                TimeZoneMapping.createForTests(
-                        "America/New_York", true /* shownInPicker */, 1234L /* notUsedAfter */),
-                TimeZoneMapping.createForTests(
-                        "America/Indiana/Vincennes", true /* shownInPicker */,
-                        null /* notUsedAfter */)
+                TimeZoneMapping.createForTests("America/New_York", true /* shownInPicker */,
+                        1234L /* notUsedAfter */, list()),
+                TimeZoneMapping.createForTests("America/Indiana/Vincennes",
+                        true /* shownInPicker */, null /* notUsedAfter */, list())
         );
         assertEquals(expectedTimeZoneMappings, actualTimeZoneMappings);
     }
@@ -638,7 +642,7 @@ public class TimeZoneFinderTest {
     private static List<TimeZoneMapping> timeZoneMappings(String... timeZoneIds) {
         return Arrays.stream(timeZoneIds)
                 .map(x -> TimeZoneMapping.createForTests(
-                        x, true /* showInPicker */, null /* notUsedAfter */))
+                        x, true /* showInPicker */, null /* notUsedAfter */, list()))
                 .collect(Collectors.toList());
     }
 

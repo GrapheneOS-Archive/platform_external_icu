@@ -24,6 +24,7 @@ import static com.android.i18n.timezone.XmlUtils.findNextStartTagOrThrowNoRecurs
 import static com.android.i18n.timezone.XmlUtils.normalizeCountryIso;
 import static com.android.i18n.timezone.XmlUtils.parseBooleanAttribute;
 import static com.android.i18n.timezone.XmlUtils.parseLongAttribute;
+import static com.android.i18n.timezone.XmlUtils.parseStringListAttribute;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -68,14 +69,17 @@ public final class TimeZoneFinder {
     private static final String EVER_USES_UTC_ATTRIBUTE = "everutc";
 
     // Country -> Time zone mapping. e.g. <id>ZoneId</id>, <id picker="n">ZoneId</id>,
-    // <id notafter={timestamp}>ZoneId</id>
+    // <id notafter={timestamp} alts="{alternative ids}">ZoneId</id>
     // The default for the picker attribute when unspecified is "y".
     // The notafter attribute is optional. It specifies a timestamp (time in milliseconds from Unix
     // epoch start) after which the zone is not (effectively) in use. If unspecified the zone is in
     // use forever.
+    // The alts attribute is optional. It contains a comma-separated String of alternative IDs that
+    // are exact synonyms for the ZoneId.
     private static final String ZONE_ID_ELEMENT = "id";
     private static final String ZONE_SHOW_IN_PICKER_ATTRIBUTE = "picker";
     private static final String ZONE_NOT_USED_AFTER_ATTRIBUTE = "notafter";
+    private static final String ZONE_ALTERNATIVE_IDS_ATTRIBUTE = "alts";
 
     private static TimeZoneFinder instance;
 
@@ -352,6 +356,8 @@ public final class TimeZoneFinder {
                     parser, ZONE_SHOW_IN_PICKER_ATTRIBUTE, true /* defaultValue */);
             Long notUsedAfter = parseLongAttribute(
                     parser, ZONE_NOT_USED_AFTER_ATTRIBUTE, null /* defaultValue */);
+            List<String> alternativeIds = parseStringListAttribute(
+                    parser, ZONE_ALTERNATIVE_IDS_ATTRIBUTE, Collections.emptyList());
             String zoneIdString = consumeText(parser);
 
             // Make sure we are on the </id> element.
@@ -364,7 +370,7 @@ public final class TimeZoneFinder {
             }
 
             TimeZoneMapping timeZoneMapping =
-                    new TimeZoneMapping(zoneIdString, showInPicker, notUsedAfter);
+                    new TimeZoneMapping(zoneIdString, showInPicker, notUsedAfter, alternativeIds);
             timeZoneMappings.add(timeZoneMapping);
         }
 
