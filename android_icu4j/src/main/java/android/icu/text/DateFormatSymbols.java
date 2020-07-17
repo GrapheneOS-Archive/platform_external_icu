@@ -1290,7 +1290,7 @@ public class DateFormatSymbols implements Serializable, Cloneable {
      * @return narrow ampm strings
      * @hide draft / provisional / internal are hidden on Android
      */
-    @libcore.api.IntraCoreApi
+    @libcore.api.CorePlatformApi
     public String[] getAmpmNarrowStrings() {
         return duplicate(ampmsNarrow);
     }

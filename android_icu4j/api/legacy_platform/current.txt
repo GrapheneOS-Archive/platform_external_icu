@@ -15,6 +15,10 @@ package android.icu.impl {
 
 package android.icu.text {
 
+  public class DateFormatSymbols implements java.lang.Cloneable java.io.Serializable {
+    method public String[] getAmpmNarrowStrings();
+  }
+
   public final class StringPrep {
     method public static android.icu.text.StringPrep getInstance(int);
     method public String prepare(String, int) throws android.icu.text.StringPrepParseException;
