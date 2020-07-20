@@ -289,7 +289,10 @@ public final class ZoneInfoDb implements AutoCloseable {
       if (len == 0) {
         throw new IOException("Invalid ID at index=" + i);
       }
-      ids[i] = new String(idBytes, 0, len, StandardCharsets.US_ASCII);
+      String zoneId = new String(idBytes, 0, len, StandardCharsets.US_ASCII);
+      // intern() zone Ids because they are a fixed set of well-known strings that are used in
+      // other low-level library calls.
+      ids[i] = zoneId.intern();
       if (i > 0) {
         if (ids[i].compareTo(ids[i - 1]) <= 0) {
           throw new IOException("Index not sorted or contains multiple entries with the same ID"
