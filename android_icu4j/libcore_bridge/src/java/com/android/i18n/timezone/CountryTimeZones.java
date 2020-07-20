@@ -46,14 +46,17 @@ public final class CountryTimeZones {
         private final String timeZoneId;
         private final boolean shownInPicker;
         private final Long notUsedAfter;
+        private final List<String> alternativeIds;
 
         /** Memoized TimeZone object for {@link #timeZoneId}. */
         private TimeZone timeZone;
 
-        TimeZoneMapping(String timeZoneId, boolean shownInPicker, Long notUsedAfter) {
+        TimeZoneMapping(String timeZoneId, boolean shownInPicker, Long notUsedAfter,
+                List<String> alternativeIds) {
             this.timeZoneId = Objects.requireNonNull(timeZoneId);
             this.shownInPicker = shownInPicker;
             this.notUsedAfter = notUsedAfter;
+            this.alternativeIds = Collections.unmodifiableList(new ArrayList<>(alternativeIds));
         }
 
         @libcore.api.CorePlatformApi
@@ -69,6 +72,15 @@ public final class CountryTimeZones {
         @libcore.api.CorePlatformApi
         public Long getNotUsedAfter() {
             return notUsedAfter;
+        }
+
+        /**
+         * Returns a list of alternative time zone IDs that are linked to this one. Can be empty,
+         * never returns null.
+         */
+        @libcore.api.CorePlatformApi
+        public List<String> getAlternativeIds() {
+            return alternativeIds;
         }
 
         /**
@@ -104,9 +116,9 @@ public final class CountryTimeZones {
 
         // VisibleForTesting
         @libcore.api.CorePlatformApi
-        public static TimeZoneMapping createForTests(
-                String timeZoneId, boolean showInPicker, Long notUsedAfter) {
-            return new TimeZoneMapping(timeZoneId, showInPicker, notUsedAfter);
+        public static TimeZoneMapping createForTests(String timeZoneId, boolean showInPicker,
+                Long notUsedAfter, List<String> alternativeIds) {
+            return new TimeZoneMapping(timeZoneId, showInPicker, notUsedAfter, alternativeIds);
         }
 
         @Override
@@ -120,12 +132,13 @@ public final class CountryTimeZones {
             TimeZoneMapping that = (TimeZoneMapping) o;
             return shownInPicker == that.shownInPicker &&
                     Objects.equals(timeZoneId, that.timeZoneId) &&
-                    Objects.equals(notUsedAfter, that.notUsedAfter);
+                    Objects.equals(notUsedAfter, that.notUsedAfter) &&
+                    Objects.equals(alternativeIds, that.alternativeIds);
         }
 
         @Override
         public int hashCode() {
-            return Objects.hash(timeZoneId, shownInPicker, notUsedAfter);
+            return Objects.hash(timeZoneId, shownInPicker, notUsedAfter, alternativeIds);
         }
 
         @Override
@@ -134,6 +147,7 @@ public final class CountryTimeZones {
                     + "timeZoneId='" + timeZoneId + '\''
                     + ", shownInPicker=" + shownInPicker
                     + ", notUsedAfter=" + notUsedAfter
+                    + ", alternativeIds=" + alternativeIds
                     + '}';
         }
 

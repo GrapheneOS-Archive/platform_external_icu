@@ -19,6 +19,7 @@ package com.android.i18n.test.timezone;
 import org.junit.Test;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import com.android.i18n.timezone.CountryTimeZones;
@@ -36,19 +37,19 @@ import static org.junit.Assert.fail;
 public class CountryZonesFinderTest {
 
     private static final CountryTimeZones GB_ZONES = CountryTimeZones.createValidated(
-            "gb", "Europe/London", false /* defaultTimeZoneBoost */, true,
+            "gb", "Europe/London", false /* defaultTimeZoneBoost */, true /* everUsesUtc */,
             timeZoneMappings("Europe/London"), "test");
 
     private static final CountryTimeZones IM_ZONES = CountryTimeZones.createValidated(
-            "im", "Europe/London", false /* defaultTimeZoneBoost */, true,
+            "im", "Europe/London", false /* defaultTimeZoneBoost */, true  /* everUsesUtc */,
             timeZoneMappings("Europe/London"), "test");
 
     private static final CountryTimeZones FR_ZONES = CountryTimeZones.createValidated(
-            "fr", "Europe/Paris", false /* defaultTimeZoneBoost */, true,
+            "fr", "Europe/Paris", false /* defaultTimeZoneBoost */, true  /* everUsesUtc */,
             timeZoneMappings("Europe/Paris"), "test");
 
     private static final CountryTimeZones US_ZONES = CountryTimeZones.createValidated(
-            "us", "America/New_York", false /* defaultTimeZoneBoost */, true,
+            "us", "America/New_York", false /* defaultTimeZoneBoost */, false  /* everUsesUtc */,
             timeZoneMappings("America/New_York", "America/Los_Angeles"), "test");
 
     @Test
@@ -78,6 +79,33 @@ public class CountryZonesFinderTest {
                 countryZonesFinder.lookupCountryTimeZonesForZoneId("America/New_York"));
         assertEqualsAndImmutable(list(US_ZONES),
                 countryZonesFinder.lookupCountryTimeZonesForZoneId("America/Los_Angeles"));
+        assertEqualsAndImmutable(list(),
+                countryZonesFinder.lookupCountryTimeZonesForZoneId("DOES_NOT_EXIST"));
+    }
+
+    @Test
+    public void lookupCountryCodesForZoneId_alternativeIds() throws Exception {
+        TimeZoneMapping usesNewZoneId = timeZoneMappingWithAlts("America/Detroit",
+                list("US/Michigan"));
+        TimeZoneMapping usesOldZoneId = timeZoneMappingWithAlts("US/Central",
+                list("America/Chicago"));
+        CountryTimeZones countryWithAlternativeZones = CountryTimeZones.createValidated(
+                "us", "America/Detroit" /* defaultTimeZoneId */, false /* defaultTimeZoneBoost */,
+                false /* everUsesUtc */,
+                list(usesNewZoneId, usesOldZoneId),
+                "debug info");
+
+        CountryZonesFinder countryZonesFinder = CountryZonesFinder.createForTests(
+                list(GB_ZONES, IM_ZONES, FR_ZONES, countryWithAlternativeZones));
+
+        assertEqualsAndImmutable(list(countryWithAlternativeZones),
+                countryZonesFinder.lookupCountryTimeZonesForZoneId("America/Detroit"));
+        assertEqualsAndImmutable(list(countryWithAlternativeZones),
+                countryZonesFinder.lookupCountryTimeZonesForZoneId("US/Michigan"));
+        assertEqualsAndImmutable(list(countryWithAlternativeZones),
+                countryZonesFinder.lookupCountryTimeZonesForZoneId("US/Central"));
+        assertEqualsAndImmutable(list(countryWithAlternativeZones),
+                countryZonesFinder.lookupCountryTimeZonesForZoneId("America/Chicago"));
         assertEqualsAndImmutable(list(),
                 countryZonesFinder.lookupCountryTimeZonesForZoneId("DOES_NOT_EXIST"));
     }
@@ -113,8 +141,16 @@ public class CountryZonesFinderTest {
      */
     private static List<TimeZoneMapping> timeZoneMappings(String... timeZoneIds) {
         return Arrays.stream(timeZoneIds)
-                .map(x -> TimeZoneMapping.createForTests(
-                        x, true /* picker */, null /* notUsedAfter */))
+                .map(x -> timeZoneMappingWithAlts(x, Collections.emptyList()))
                 .collect(Collectors.toList());
+    }
+
+    /**
+     * Creates a {@link TimeZoneMapping} object with the specified time zone ID and alternative IDs.
+     */
+    private static TimeZoneMapping timeZoneMappingWithAlts(
+            String timeZoneId, List<String> alternativeIds) {
+        return TimeZoneMapping.createForTests(
+                timeZoneId, true /* picker */, null /* notUsedAfter */, alternativeIds);
     }
 }

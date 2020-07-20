@@ -27,7 +27,10 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
+import java.util.StringTokenizer;
 
 class XmlUtils {
 
@@ -73,6 +76,26 @@ class XmlUtils {
                     + "\" is not \"y\" or \"n\": " + parser.getPositionDescription());
         }
         return isTrue;
+    }
+
+    /**
+     * Parses an attribute value, which must be either {@code null} or a comma-separated String
+     * list. There is no support for escaping the comma. If the attribute value is {@code null} then
+     * {@code defaultValue} is returned.
+     */
+    static List<String> parseStringListAttribute(XmlPullParser parser, String attributeName,
+            List<String> defaultValue) throws XmlPullParserException {
+        String attributeValueString = parser.getAttributeValue(null /* namespace */, attributeName);
+        if (attributeValueString == null) {
+            return defaultValue;
+        }
+        StringTokenizer stringTokenizer = new StringTokenizer(attributeValueString, ",", false);
+        ArrayList<String> strings = new ArrayList<>();
+        while (stringTokenizer.hasMoreTokens()) {
+            strings.add(stringTokenizer.nextToken());
+        }
+        strings.trimToSize();
+        return strings;
     }
 
     /**
