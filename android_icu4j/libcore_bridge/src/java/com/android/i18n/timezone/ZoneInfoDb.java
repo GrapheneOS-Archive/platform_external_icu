@@ -208,6 +208,7 @@ public final class ZoneInfoDb implements AutoCloseable {
     // int index_offset
     // int data_offset
     // int zonetab_offset
+    // int final_offset
     BufferIterator it = mappedFile.bigEndianIterator();
 
     try {
@@ -226,15 +227,19 @@ public final class ZoneInfoDb implements AutoCloseable {
       validateOffset(data_offset, fileSize);
       int zonetab_offset = it.readInt();
       validateOffset(zonetab_offset, fileSize);
+      int final_offset = it.readInt();
 
-      if (index_offset >= data_offset || data_offset >= zonetab_offset) {
+      if (index_offset >= data_offset
+              || data_offset >= zonetab_offset
+              || zonetab_offset >= final_offset
+              || final_offset > fileSize) {
         throw new IOException("Invalid offset: index_offset=" + index_offset
                 + ", data_offset=" + data_offset + ", zonetab_offset=" + zonetab_offset
-                + ", fileSize=" + fileSize);
+                + ", final_offset=" + final_offset + ", fileSize=" + fileSize);
       }
 
       readIndex(it, index_offset, data_offset);
-      readZoneTab(it, zonetab_offset, fileSize - zonetab_offset);
+      readZoneTab(it, zonetab_offset, final_offset - zonetab_offset);
     } catch (IndexOutOfBoundsException e) {
       throw new IOException("Invalid read from data file", e);
     }
