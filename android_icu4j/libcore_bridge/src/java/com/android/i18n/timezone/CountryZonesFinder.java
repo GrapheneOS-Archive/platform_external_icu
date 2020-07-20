@@ -57,15 +57,32 @@ public final class CountryZonesFinder {
 
     /**
      * Returns an immutable list of {@link CountryTimeZones} for countries that use the specified
-     * time zone. An exact, case-sensitive match is performed on the zone ID. This method never
-     * returns null.
+     * time zone. An exact, case-sensitive match is performed on the zone ID. If the match  but the method also
+     * checks for alternative zone IDs. This method never returns null and will usually return a
+     * list containing a single element. It can return an empty list if the zone ID is
+     * not recognized or it is not associated with a country.
      */
     @libcore.api.CorePlatformApi
     public List<CountryTimeZones> lookupCountryTimeZonesForZoneId(String zoneId) {
         List<CountryTimeZones> matches = new ArrayList<>(2);
+
+        // This implementation is deliberately flexible about supporting alternative (newer or
+        // legacy) IDs, e.g. zoneId might have come from the device's persist.sys.timezone setting,
+        // which may have been set before a tzdb upgrade, so we look at alternative IDs and accept
+        // them too. Most of the ~250 countries have a small number of zones (most have 1-2, the max
+        // is ~30), and most zones do not have an alternative ID, those that do have 1-2.
         for (CountryTimeZones countryTimeZones : countryTimeZonesList) {
-            boolean match = TimeZoneMapping.containsTimeZoneId(
-                    countryTimeZones.getTimeZoneMappings(), zoneId);
+            boolean match = false;
+            // We get all time zone mappings, even those with a notafter= value to ensure the most
+            // complete search.
+            List<TimeZoneMapping> countryTimeZoneMappings = countryTimeZones.getTimeZoneMappings();
+            for (TimeZoneMapping timeZoneMapping : countryTimeZoneMappings) {
+                if (timeZoneMapping.getTimeZoneId().equals(zoneId)
+                        || timeZoneMapping.getAlternativeIds().contains(zoneId)) {
+                    match = true;
+                    break;
+                }
+            }
             if (match) {
                 matches.add(countryTimeZones);
             }
