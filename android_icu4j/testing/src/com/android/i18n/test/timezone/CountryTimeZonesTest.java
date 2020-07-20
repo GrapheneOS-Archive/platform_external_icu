@@ -23,6 +23,7 @@ import android.icu.util.TimeZone;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
@@ -31,6 +32,7 @@ import com.android.i18n.timezone.CountryTimeZones;
 import com.android.i18n.timezone.CountryTimeZones.OffsetResult;
 import com.android.i18n.timezone.CountryTimeZones.TimeZoneMapping;
 
+import static java.util.Collections.emptyList;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
@@ -481,7 +483,7 @@ public class CountryTimeZonesTest {
     @Test
     public void timeZoneMapping_getTimeZone_badZoneId() {
         TimeZoneMapping timeZoneMapping =
-                TimeZoneMapping.createForTests("DOES_NOT_EXIST", true, 1234L);
+                TimeZoneMapping.createForTests("DOES_NOT_EXIST", true, 1234L, list());
         try {
             timeZoneMapping.getTimeZone();
             fail();
@@ -492,7 +494,7 @@ public class CountryTimeZonesTest {
     @Test
     public void timeZoneMapping_getTimeZone_validZoneId() {
         TimeZoneMapping timeZoneMapping =
-                TimeZoneMapping.createForTests("Europe/London", true, 1234L);
+                TimeZoneMapping.createForTests("Europe/London", true, 1234L, list());
         TimeZone timeZone = timeZoneMapping.getTimeZone();
         assertTrue(timeZone.isFrozen());
         assertEquals("Europe/London", timeZone.getID());
@@ -531,7 +533,7 @@ public class CountryTimeZonesTest {
      */
     private static TimeZoneMapping timeZoneMapping(String timeZoneId, Long notUsedAfterMillis) {
         return TimeZoneMapping.createForTests(
-                        timeZoneId, true /* picker */, notUsedAfterMillis);
+                        timeZoneId, true /* picker */, notUsedAfterMillis, list());
     }
 
     /**
@@ -539,8 +541,7 @@ public class CountryTimeZonesTest {
      */
     private static List<TimeZoneMapping> timeZoneMappings(String... timeZoneIds) {
         return Arrays.stream(timeZoneIds)
-                .map(x -> TimeZoneMapping.createForTests(
-                        x, true /* picker */, null /* notUsedAfter */))
+                .map(x -> timeZoneMapping(x, null /* notUsedAfter */))
                 .collect(Collectors.toList());
     }
 

@@ -71,7 +71,8 @@ package com.android.i18n.timezone {
   }
 
   public static final class CountryTimeZones.TimeZoneMapping {
-    method public static com.android.i18n.timezone.CountryTimeZones.TimeZoneMapping createForTests(String, boolean, Long);
+    method public static com.android.i18n.timezone.CountryTimeZones.TimeZoneMapping createForTests(String, boolean, Long, java.util.List<java.lang.String>);
+    method public java.util.List<java.lang.String> getAlternativeIds();
     method public Long getNotUsedAfter();
     method public android.icu.util.TimeZone getTimeZone();
     method public String getTimeZoneId();
