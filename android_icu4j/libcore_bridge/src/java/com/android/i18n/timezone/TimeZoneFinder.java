@@ -369,13 +369,30 @@ public final class TimeZoneFinder {
                         + parser.getPositionDescription());
             }
 
-            TimeZoneMapping timeZoneMapping =
-                    new TimeZoneMapping(zoneIdString, showInPicker, notUsedAfter, alternativeIds);
+            // intern() zone Ids because they are a fixed set of well-known strings that are used in
+            // other low-level library calls.
+            String internedZoneIdString = zoneIdString.intern();
+            List<String> internedAlternativeIds = internStrings(alternativeIds);
+
+            TimeZoneMapping timeZoneMapping = new TimeZoneMapping(
+                    internedZoneIdString, showInPicker, notUsedAfter, internedAlternativeIds);
             timeZoneMappings.add(timeZoneMapping);
         }
 
         // The list is made unmodifiable to avoid callers changing it.
         return Collections.unmodifiableList(timeZoneMappings);
+    }
+
+    private static List<String> internStrings(List<String> stringsToIntern) {
+        if (stringsToIntern.isEmpty()) {
+            return stringsToIntern;
+        }
+
+        List<String> internedStrings = new ArrayList<>(stringsToIntern.size());
+        for (String stringToIntern : stringsToIntern) {
+            internedStrings.add(stringToIntern.intern());
+        }
+        return internedStrings;
     }
 
     /**
