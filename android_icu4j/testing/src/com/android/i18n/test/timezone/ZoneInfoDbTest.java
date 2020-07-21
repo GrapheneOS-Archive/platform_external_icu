@@ -128,15 +128,25 @@ public class ZoneInfoDbTest extends junit.framework.TestCase {
     checkInvalidDataDetected(data);
   }
 
-  public void testLoadTzData_zoneTabOutsideFile() throws Exception {
+  public void testLoadTzData_zoneTabOffsetOutsideFile() throws Exception {
     ZoneInfoTestHelper.TzDataBuilder builder =
             new ZoneInfoTestHelper.TzDataBuilder()
                     .initializeToValid();
 
-    // Sections must be in the correct order: section sizing is calculated using them.
-    builder.setIndexOffsetOverride(10);
-    builder.setDataOffsetOverride(10 + SIZEOF_INDEX_ENTRY);
     builder.setZoneTabOffsetOverride(3000); // This is invalid if it is outside of the file.
+
+    byte[] data = builder.build();
+    // The zoneTab offset must be outside of the file for this test to be valid.
+    assertTrue(3000 > data.length);
+    checkInvalidDataDetected(data);
+  }
+
+  public void testLoadTzData_finalOffsetOutsideFile() throws Exception {
+    ZoneInfoTestHelper.TzDataBuilder builder =
+            new ZoneInfoTestHelper.TzDataBuilder()
+                    .initializeToValid();
+
+    builder.setFinalOffsetOverride(3000); // This is invalid if it is outside of the file.
 
     byte[] data = builder.build();
     // The zoneTab offset must be outside of the file for this test to be valid.
@@ -242,6 +252,20 @@ public class ZoneInfoDbTest extends junit.framework.TestCase {
       assertNotNull(data.makeZoneInfoData("Europe/London"));
       assertTrue(data.hasTimeZone("Europe/London"));
     }
+  }
+
+  public void testGetZoneTab() throws Exception {
+    String zoneTab = "This is my zone.tab";
+    ZoneInfoTestHelper.TzDataBuilder builder =
+            new ZoneInfoTestHelper.TzDataBuilder()
+                    .initializeToValid()
+                    .setZoneTab(zoneTab);
+
+    byte[] data = builder.build();
+    File testFile = makeTemporaryFile(data);
+
+    ZoneInfoDb zoneInfoDb = ZoneInfoDb.loadTzData(testFile.getPath());
+    assertEquals(zoneTab, zoneInfoDb.getZoneTab());
   }
 
   private static File makeCorruptFile() throws Exception {
