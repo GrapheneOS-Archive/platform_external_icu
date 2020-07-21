@@ -50,7 +50,6 @@ package android.icu.text {
 
   public class DateFormatSymbols implements java.lang.Cloneable java.io.Serializable {
     ctor @Deprecated public DateFormatSymbols(android.icu.util.ULocale, String);
-    method public String[] getAmpmNarrowStrings();
     method public String[] getNarrowEras();
   }
 
