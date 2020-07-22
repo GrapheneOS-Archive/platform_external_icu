@@ -128,19 +128,6 @@ public class ZoneInfoDbTest extends junit.framework.TestCase {
     checkInvalidDataDetected(data);
   }
 
-  public void testLoadTzData_zoneTabOffsetOutsideFile() throws Exception {
-    ZoneInfoTestHelper.TzDataBuilder builder =
-            new ZoneInfoTestHelper.TzDataBuilder()
-                    .initializeToValid();
-
-    builder.setZoneTabOffsetOverride(3000); // This is invalid if it is outside of the file.
-
-    byte[] data = builder.build();
-    // The zoneTab offset must be outside of the file for this test to be valid.
-    assertTrue(3000 > data.length);
-    checkInvalidDataDetected(data);
-  }
-
   public void testLoadTzData_finalOffsetOutsideFile() throws Exception {
     ZoneInfoTestHelper.TzDataBuilder builder =
             new ZoneInfoTestHelper.TzDataBuilder()
@@ -163,7 +150,7 @@ public class ZoneInfoDbTest extends junit.framework.TestCase {
     builder.setIndexOffsetOverride(indexOffset);
     int dataOffset = indexOffset + ZoneInfoDb.SIZEOF_INDEX_ENTRY - 1;
     builder.setDataOffsetOverride(dataOffset);
-    builder.setZoneTabOffsetOverride(dataOffset + 40);
+    builder.setFinalOffsetOverride(dataOffset + 40);
 
     byte[] data = builder.build();
     // The zoneTab offset must be outside of the file for this test to be valid.
@@ -252,20 +239,6 @@ public class ZoneInfoDbTest extends junit.framework.TestCase {
       assertNotNull(data.makeZoneInfoData("Europe/London"));
       assertTrue(data.hasTimeZone("Europe/London"));
     }
-  }
-
-  public void testGetZoneTab() throws Exception {
-    String zoneTab = "This is my zone.tab";
-    ZoneInfoTestHelper.TzDataBuilder builder =
-            new ZoneInfoTestHelper.TzDataBuilder()
-                    .initializeToValid()
-                    .setZoneTab(zoneTab);
-
-    byte[] data = builder.build();
-    File testFile = makeTemporaryFile(data);
-
-    ZoneInfoDb zoneInfoDb = ZoneInfoDb.loadTzData(testFile.getPath());
-    assertEquals(zoneTab, zoneInfoDb.getZoneTab());
   }
 
   private static File makeCorruptFile() throws Exception {
