@@ -75,7 +75,6 @@ public final class ZoneInfoDb implements AutoCloseable {
   private MemoryMappedFile mappedFile;
 
   private String version;
-  private String zoneTab;
 
   /**
    * The 'ids' array contains time zone ids sorted alphabetically, for binary searching.
@@ -174,7 +173,6 @@ public final class ZoneInfoDb implements AutoCloseable {
 
   private void populateFallback() {
     version = "missing";
-    zoneTab = "# Emergency fallback data.\n";
     ids = new String[] { "GMT" };
     byteOffsets = rawUtcOffsetsCache = new int[1];
   }
@@ -207,7 +205,6 @@ public final class ZoneInfoDb implements AutoCloseable {
     // byte[12] tzdata_version  -- "tzdata2012f\0"
     // int index_offset
     // int data_offset
-    // int zonetab_offset
     // int final_offset
     BufferIterator it = mappedFile.bigEndianIterator();
 
@@ -222,40 +219,21 @@ public final class ZoneInfoDb implements AutoCloseable {
 
       final int fileSize = mappedFile.size();
       int index_offset = it.readInt();
-      validateOffset(index_offset, fileSize);
       int data_offset = it.readInt();
-      validateOffset(data_offset, fileSize);
-      int zonetab_offset = it.readInt();
-      validateOffset(zonetab_offset, fileSize);
       int final_offset = it.readInt();
 
       if (index_offset >= data_offset
-              || data_offset >= zonetab_offset
-              || zonetab_offset >= final_offset
+              || data_offset >= final_offset
               || final_offset > fileSize) {
         throw new IOException("Invalid offset: index_offset=" + index_offset
-                + ", data_offset=" + data_offset + ", zonetab_offset=" + zonetab_offset
-                + ", final_offset=" + final_offset + ", fileSize=" + fileSize);
+                + ", data_offset=" + data_offset + ", final_offset=" + final_offset
+                + ", fileSize=" + fileSize);
       }
 
       readIndex(it, index_offset, data_offset);
-      readZoneTab(it, zonetab_offset, final_offset - zonetab_offset);
     } catch (IndexOutOfBoundsException e) {
       throw new IOException("Invalid read from data file", e);
     }
-  }
-
-  private static void validateOffset(int offset, int size) throws IOException {
-    if (offset < 0 || offset >= size) {
-      throw new IOException("Invalid offset=" + offset + ", size=" + size);
-    }
-  }
-
-  private void readZoneTab(BufferIterator it, int zoneTabOffset, int zoneTabSize) {
-    byte[] bytes = new byte[zoneTabSize];
-    it.seek(zoneTabOffset);
-    it.readByteArray(bytes, 0, bytes.length);
-    zoneTab = new String(bytes, 0, bytes.length, StandardCharsets.US_ASCII);
   }
 
   private void readIndex(BufferIterator it, int indexOffset, int dataOffset) throws IOException {
@@ -372,11 +350,6 @@ public final class ZoneInfoDb implements AutoCloseable {
   public String getVersion() {
     checkNotClosed();
     return version;
-  }
-
-  public String getZoneTab() {
-    checkNotClosed();
-    return zoneTab;
   }
 
   @libcore.api.CorePlatformApi
