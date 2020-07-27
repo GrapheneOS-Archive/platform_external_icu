@@ -112,16 +112,16 @@ def logger():
 class DeclaredFunctionsParser(object):
     """Parser to get declared functions from ICU4C headers. """
 
-    def __init__(self, decl_filters, whitelisted_decl_filter):
+    def __init__(self, decl_filters, allowlisted_decl_filter):
         """
         Args:
             decl_filters: A list of filters for declared functions.
-            whitelisted_decl_filter: A list of whitelisting filters for declared functions.
-            If the function is whitelisted here, the function will not filtered by the filter added
+            allowlisted_decl_filter: A list of allowlisting filters for declared functions.
+            If the function is allowlisted here, the function will not filtered by the filter added
             in decl_filters
         """
         self.decl_filters = decl_filters
-        self.whitelisted_decl_filters = whitelisted_decl_filter
+        self.allowlisted_decl_filters = allowlisted_decl_filter
         self.va_functions_mapping = {}
 
         # properties to store the parsing result
@@ -305,7 +305,7 @@ class DeclaredFunctionsParser(object):
             return False
         if not self.is_function_visible(decl):
             return False
-        for whitlisted_decl_filter in self.whitelisted_decl_filters:
+        for whitlisted_decl_filter in self.allowlisted_decl_filters:
             if whitlisted_decl_filter(decl):
                 return True
         for decl_filter in self.decl_filters:
@@ -369,24 +369,24 @@ class StableDeclarationFilter(object):
         return False
 
 
-class WhitelistedDeclarationFilter(object):
-    """A filter for whitelisting function declarations."""
-    def __init__(self, whitelisted_function_names):
-        self.whitelisted_function_names = whitelisted_function_names
+class AllowlistedDeclarationFilter(object):
+    """A filter for allowlisting function declarations."""
+    def __init__(self, allowlisted_function_names):
+        self.allowlisted_function_names = allowlisted_function_names
 
     def __call__(self, decl):
-        """Returns True if the given decl is whitelisted"""
-        return decl.spelling in self.whitelisted_function_names
+        """Returns True if the given decl is allowlisted"""
+        return decl.spelling in self.allowlisted_function_names
 
 
-class BlacklistedlistedDeclarationFilter(object):
-    """A filter for blacklisting function declarations."""
-    def __init__(self, blacklisted_function_names):
-        self.blacklisted_function_names = blacklisted_function_names
+class BlocklistedlistedDeclarationFilter(object):
+    """A filter for blocklisting function declarations."""
+    def __init__(self, blocklisted_function_names):
+        self.blocklisted_function_names = blocklisted_function_names
 
     def __call__(self, decl):
-        """Returns True if the given decl is nor blacklisted"""
-        return decl.spelling not in self.blacklisted_function_names
+        """Returns True if the given decl is nor blocklisted"""
+        return decl.spelling not in self.blocklisted_function_names
 
 
 # Functions w/ variable argument lists (...) need special care to call
@@ -412,7 +412,7 @@ KNOWN_VA_FUNCTIONS = {
 }
 
 # The following functions are not @stable
-WHITELISTED_FUNCTION_NAMES = (
+ALLOWLISTED_FUNCTION_NAMES = (
     # Not intended to be called directly, but are used by @stable macros.
     'utf8_nextCharSafeBody',
     'utf8_appendCharSafeBody',
