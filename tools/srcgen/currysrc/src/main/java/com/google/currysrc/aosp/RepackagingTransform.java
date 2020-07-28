@@ -261,8 +261,8 @@ public class RepackagingTransform {
   }
 
   private static Rule createHidePublicClassesRule() {
-    List<TypeLocator> publicApiClassesWhitelist = Collections.emptyList();
-    return createOptionalRule(new HidePublicClasses(publicApiClassesWhitelist,
+    List<TypeLocator> publicApiClassesAllowlist = Collections.emptyList();
+    return createOptionalRule(new HidePublicClasses(publicApiClassesAllowlist,
         "This class is not part of the Android public SDK API"));
   }
 
