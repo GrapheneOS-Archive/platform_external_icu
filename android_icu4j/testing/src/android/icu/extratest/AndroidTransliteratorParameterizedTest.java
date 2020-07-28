@@ -33,7 +33,7 @@ import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 
 /**
- * Sanity test to ensure that {@link Transliterator#transliterate(String)} transliterate
+ * Confidence test to ensure that {@link Transliterator#transliterate(String)} transliterate
  * some strings successfully.
  */
 @MainTestShard
