@@ -201,7 +201,7 @@ public class TimeZoneIntegrationTest {
      * Asserts that the time zone format major / minor versions meets expectations.
      *
      * <p>If a set of time zone files is to be compatible with a device then the format of the files
-     * must meet the Android team's expectations. This is a sanity check to ensure that devices
+     * must meet the Android team's expectations. This is a confidence check to ensure that devices
      * running the test (e.g. under CTS) have not modified the TzDataSetVersion major / minor
      * versions for some reason: if they have it would render updated time zone files sent to the
      * device incompatible.
@@ -223,7 +223,7 @@ public class TimeZoneIntegrationTest {
      * <p>This uses the device's knowledge of the format version it expects and the
      * {@link TzDataSetVersion} files that accompany the known time zone data files.
      *
-     * <p>This is a sanity check to ensure that there's no way of installing incompatible data
+     * <p>This is a confidence check to ensure that there's no way of installing incompatible data
      * on a device. It assumes that {@link TzDataSetVersion} is updated as it should be when changes
      * are made that might affect time zone code / time zone data compatibility.
      */

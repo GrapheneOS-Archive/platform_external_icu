@@ -173,7 +173,7 @@ public class TimeZoneFinderTest {
                 + "</timezones>\n");
         assertEquals(expectedCountryTimeZones, finder.lookupCountryTimeZones("gb"));
 
-        // This is a crazy comment, but also helps prove that TEXT nodes are coalesced by the
+        // This is a baffling comment, but also helps prove that TEXT nodes are coalesced by the
         // parser.
         finder = validate("<timezones ianaversion=\"2017b\">\n"
                 + "  <countryzones>\n"

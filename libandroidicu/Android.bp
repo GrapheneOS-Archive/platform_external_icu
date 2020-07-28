@@ -28,7 +28,7 @@ cc_library_shared {
     ],
     // host_supported is required for some cases, e.g. host apex. This library
     // is not intended for general host use.  Please refer to
-    // external/icu/build/icu.go for the full whitelist.
+    // external/icu/build/icu.go for the full allowlist.
     host_supported: true,
     native_bridge_supported: true,
     unique_host_soname: true,
