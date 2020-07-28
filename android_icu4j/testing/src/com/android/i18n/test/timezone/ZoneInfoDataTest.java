@@ -466,7 +466,7 @@ public class ZoneInfoDataTest extends TestCase {
    * can all be handled correctly.
    *
    * <p>This is to ensure that ZoneInfoData can read all time zone data without failing, it doesn't
-   * check that it reads it correctly or that the data itself is correct. This is a sanity test
+   * check that it reads it correctly or that the data itself is correct. This is a confidence test
    * to ensure that any additional checks added to the code that reads the data source and
    * creates the {@link ZoneInfo} instances does not prevent any of the time zones being loaded.
    */

@@ -39,9 +39,9 @@ from genutil import (
     android_path,
     DeclaredFunctionsParser,
     StableDeclarationFilter,
-    WhitelistedDeclarationFilter,
+    AllowlistedDeclarationFilter,
     KNOWN_VA_FUNCTIONS,
-    WHITELISTED_FUNCTION_NAMES,
+    ALLOWLISTED_FUNCTION_NAMES,
 )
 
 THIS_DIR = os.path.dirname(os.path.realpath(__file__))
@@ -92,15 +92,15 @@ def copy_header_only_files():
             subprocess.check_call(cmd, stdout=destfile)
 
 
-def get_whitelisted_apis():
-    """Return all whitelisted API in libandroidicu_whitelisted_api.txt"""
-    whitelisted_apis = set()
-    with open(os.path.join(THIS_DIR, 'libandroidicu_whitelisted_api.txt'), 'r') as f:
+def get_allowlisted_apis():
+    """Return all allowlisted API in libandroidicu_allowlisted_api.txt"""
+    allowlisted_apis = set()
+    with open(os.path.join(THIS_DIR, 'libandroidicu_allowlisted_api.txt'), 'r') as f:
         for line in f:
             line = line.strip()
             if line and not line.startswith("#"):
-                whitelisted_apis.add(line)
-    return whitelisted_apis
+                allowlisted_apis.add(line)
+    return allowlisted_apis
 
 
 def main():
@@ -115,9 +115,9 @@ def main():
     includes = parser.header_includes
     functions = parser.declared_functions
 
-    # The shim has the whitelisted functions only
-    whitelisted_apis = get_whitelisted_apis()
-    functions = [f for f in functions if f.name in whitelisted_apis]
+    # The shim has the allowlisted functions only
+    allowlisted_apis = get_allowlisted_apis()
+    functions = [f for f in functions if f.name in allowlisted_apis]
 
     headers_folder = android_path('external/icu/libandroidicu/include/unicode')
     if os.path.exists(headers_folder):

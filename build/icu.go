@@ -19,7 +19,7 @@ import (
 )
 
 func init() {
-	host_whitelist := []string{
+	host_allowlist := []string{
 		"art/build/apex/",
 		"device/google/cuttlefish/host/commands/",
 		"external/skia",
@@ -28,7 +28,7 @@ func init() {
 		"packages/modules/RuntimeI18n/apex/",
 	}
 
-	device_whitelist := []string{
+	device_allowlist := []string{
 		"art/",
 		"external/chromium-libpac",
 		"external/icu/",
@@ -44,17 +44,17 @@ func init() {
 		android.NeverAllow().
 			InDirectDeps("libandroidicu").
 			WithOsClass(android.Host).
-			NotIn(host_whitelist...).
+			NotIn(host_allowlist...).
 			Because("libandroidicu is not intended to be used on host"),
 		android.NeverAllow().
 			InDirectDeps("libicuuc").
 			WithOsClass(android.Device).
-			NotIn(device_whitelist...).
+			NotIn(device_allowlist...).
 			Because("libicuuc is not intended to be used on device"),
 		android.NeverAllow().
 			InDirectDeps("libicui18n").
 			WithOsClass(android.Device).
-			NotIn(device_whitelist...).
+			NotIn(device_allowlist...).
 			Because("libicui18n is not intended to be used on device"),
 	)
 }
