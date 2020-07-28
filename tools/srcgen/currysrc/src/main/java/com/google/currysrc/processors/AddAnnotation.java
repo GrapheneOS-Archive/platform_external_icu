@@ -63,7 +63,7 @@ import org.eclipse.jdt.core.dom.rewrite.ListRewrite;
 import org.eclipse.text.edits.TextEditGroup;
 
 /**
- * Add annotations to a white list of classes and class members.
+ * Add annotations to an allowlist of classes and class members.
  */
 public class AddAnnotation implements Processor {
 

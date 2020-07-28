@@ -952,7 +952,7 @@ public final class ZoneInfoData implements Cloneable {
          * function.
          *
          * <p>When going from a wall time to an instant the answer can be ambiguous. A wall
-         * time can map to zero, one or two instants given sane date/time transitions. Sane
+         * time can map to zero, one or two instants given rational date/time transitions. Rational
          * in this case means that transitions occur less frequently than the offset
          * differences between them (which could cause all sorts of craziness like the
          * skipping out of transitions).

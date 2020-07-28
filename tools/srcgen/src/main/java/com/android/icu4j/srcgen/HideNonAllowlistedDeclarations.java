@@ -39,21 +39,21 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * Adds a @hide javadoc tag to {@link BodyDeclaration}s that are not whitelisted.
+ * Adds a @hide javadoc tag to {@link BodyDeclaration}s that are not allowlisted.
  */
-public class HideNonWhitelistedDeclarations implements Processor {
-  private final List<BodyDeclarationLocator> whitelist;
+public class HideNonAllowlistedDeclarations implements Processor {
+  private final List<BodyDeclarationLocator> allowlist;
   private final String tagComment;
 
-  public HideNonWhitelistedDeclarations(List<BodyDeclarationLocator> whitelist, String tagComment) {
-    this.whitelist = whitelist;
+  public HideNonAllowlistedDeclarations(List<BodyDeclarationLocator> allowlist, String tagComment) {
+    this.allowlist = allowlist;
     this.tagComment = tagComment;
   }
 
   @Override
   public void process(Context context, CompilationUnit cu) {
-    // Ignore this process if the whitelist is not provided
-    if (whitelist == null) {
+    // Ignore this process if the allowlist is not provided
+    if (allowlist == null) {
       return;
     }
     List<BodyDeclaration> matchingNodes = Lists.newArrayList();
@@ -79,18 +79,18 @@ public class HideNonWhitelistedDeclarations implements Processor {
       }
 
       private boolean handleTypeDeclarationNode(AbstractTypeDeclaration node) {
-        matchIfNotWhitelistedAndNotHidden(node);
+        matchIfNotAllowlistedAndNotHidden(node);
         // Continue processing for nested types / methods.
         return true;
       }
 
       private boolean handleMemberDeclarationNode(BodyDeclaration node) {
-        matchIfNotWhitelistedAndNotHidden(node);
+        matchIfNotAllowlistedAndNotHidden(node);
         // Leaf declaration (i.e. a method, fields, enum constant).
         return false;
       }
 
-      private void matchIfNotWhitelistedAndNotHidden(final BodyDeclaration node) {
+      private void matchIfNotAllowlistedAndNotHidden(final BodyDeclaration node) {
         if (node == null) {
           return;
         }
@@ -99,7 +99,7 @@ public class HideNonWhitelistedDeclarations implements Processor {
           return;
         }
 
-        if (BodyDeclarationLocators.matchesAny(whitelist, node)) {
+        if (BodyDeclarationLocators.matchesAny(allowlist, node)) {
           return;
         }
         matchingNodes.add(node);
@@ -115,8 +115,8 @@ public class HideNonWhitelistedDeclarations implements Processor {
   }
 
   @Override public String toString() {
-    return "HideNonWhitelistedDeclarations{" +
-        "whitelist=" + whitelist +
+    return "HideNonAllowlistedDeclarations{" +
+        "allowlist=" + allowlist +
         "tagComment=" + tagComment +
         '}';
   }
