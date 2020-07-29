@@ -1,12 +1,6 @@
 // Signature format: 2.0
 package android.icu.impl {
 
-  public class CalendarAstronomer {
-    ctor public CalendarAstronomer(double, double);
-    method public long getSunRiseSet(boolean);
-    method public void setTime(long);
-  }
-
   public class TimeZoneAdapter extends java.util.TimeZone {
     method public static java.util.TimeZone wrap(android.icu.util.TimeZone);
   }
