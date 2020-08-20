@@ -32,7 +32,7 @@ You may obtain a copy of the License at
 extern "C" {
 {# Generates a wrapper function for each exposed ICU function. #}
 {% for func in functions %}
-{{ func.result_type }} {{ func.name }}_android({{ func.param_str }}) {
+{{ func.result_type }} {{ func.name }}{{ suffix }}({{ func.param_str }}) {
   {% if func.is_variadic and func.return_void %}
   va_list args;
   va_start(args, {{ func.last_param }});

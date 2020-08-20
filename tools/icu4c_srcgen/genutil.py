@@ -26,9 +26,44 @@ import sys
 import textwrap
 from collections import deque
 
+import jinja2
+
 THIS_DIR = os.path.dirname(os.path.realpath(__file__))
 ANDROID_TOP = os.path.realpath(os.path.join(THIS_DIR, '../../../..'))
 
+JINJA_ENV = jinja2.Environment(loader=jinja2.FileSystemLoader(
+    os.path.join(THIS_DIR, 'jinja_templates')))
+JINJA_ENV.trim_blocks = True
+JINJA_ENV.lstrip_blocks = True
+
+def generate_shim(functions, includes, suffix, template_file):
+    """Generates the library source file from the given functions."""
+    data = {
+        'functions': functions,
+        'icu_headers': includes,
+        'suffix': suffix,
+    }
+    return JINJA_ENV.get_template(template_file).render(data)
+
+def generate_symbol_txt(shim_functions, extra_function_names, template_file):
+    """Generates the symbol txt file from the given functions."""
+    data = {
+        # Each shim_function is given a suffix.
+        'shim_functions' : shim_functions,
+        # Each extra function name is included as given.
+        'extra_function_names': extra_function_names,
+    }
+    return JINJA_ENV.get_template(template_file).render(data)
+
+def get_allowlisted_apis(allowlist_file):
+    """Return all allowlisted API in allowlist_file"""
+    allowlisted_apis = set()
+    with open(os.path.join(THIS_DIR, allowlist_file), 'r') as file:
+        for line in file:
+            line = line.strip()
+            if line and not line.startswith("#"):
+                allowlisted_apis.add(line)
+    return allowlisted_apis
 
 def android_path(*args):
     """Returns the absolute path to a directory within the Android tree."""
@@ -46,7 +81,7 @@ CLANG_HEADER_VERSION = '11.0.3'
 CLANG_PATH = android_path('prebuilts/clang/host/linux-x86/clang-%s' % CLANG_REVISION)
 
 
-class Function(object):
+class Function:
     """A visible function found in an ICU header."""
 
     def __init__(self, name, result_type, params, is_variadic, module):
@@ -109,7 +144,7 @@ def logger():
     return logging.getLogger(__name__)
 
 
-class DeclaredFunctionsParser(object):
+class DeclaredFunctionsParser:
     """Parser to get declared functions from ICU4C headers. """
 
     def __init__(self, decl_filters, allowlisted_decl_filter):
@@ -129,6 +164,7 @@ class DeclaredFunctionsParser(object):
         self.all_header_paths_to_copy = set()
         self.all_declared_functions = []
         self.seen_functions = set()
+        self.all_header_to_function_names = {}
 
         # Configures libclang to load in our environment
         # Set up LD_LIBRARY_PATH to include libclang.so, libLLVM.so, etc.  Note
@@ -155,7 +191,7 @@ class DeclaredFunctionsParser(object):
         """Return all headers declaring the functions returned in get_all_declared_functions.
 
         If all functions in the header are filtered, the header is not included in here."""
-        return [self.short_header_path(header) for header in self.all_headers]
+        return [DeclaredFunctionsParser.short_header_path(header) for header in self.all_headers]
 
     @property
     def header_paths_to_copy(self):
@@ -167,7 +203,13 @@ class DeclaredFunctionsParser(object):
         """Return all declared functions after filtering"""
         return self.all_declared_functions
 
-    def get_cflags(self):
+    @property
+    def header_to_function_names(self):
+        """Return the mapping from the header file name to a list of function names in the file"""
+        return self.all_header_to_function_names
+
+    @staticmethod
+    def get_cflags():
         """Returns the cflags that should be used for parsing."""
         clang_flags = [
             '-x',
@@ -194,12 +236,12 @@ class DeclaredFunctionsParser(object):
             clang_flags.append('-I' + include_dir)
         return clang_flags
 
-    def get_all_cpp_headers(self):
+    @staticmethod
+    def get_all_cpp_headers():
         """Return all C++ header names in icu4c/source/test/hdrtst/cxxfiles.txt"""
         cpp_headers = []
-        with open(android_path('external/icu/tools/icu4c_srcgen/cxxfiles.txt'),
-                  'r') as f:
-            for line in f:
+        with open(android_path('external/icu/tools/icu4c_srcgen/cxxfiles.txt'), 'r') as file:
+            for line in file:
                 line = line.strip()
                 if not line.startswith("#"):
                     cpp_headers.append(line)
@@ -221,16 +263,19 @@ class DeclaredFunctionsParser(object):
                      for f in os.listdir(path) if f.endswith('.h')]
 
             for file_path in files:
+                base_header_name = os.path.basename(file_path)
                 # Ignore C++ headers.
-                if os.path.basename(file_path) in self.get_all_cpp_headers():
+                if base_header_name in DeclaredFunctionsParser.get_all_cpp_headers():
                     continue
 
-                tunit = index.parse(file_path, self.get_cflags())
-                self.handle_diagnostics(tunit)
+                tunit = index.parse(file_path, DeclaredFunctionsParser.get_cflags())
+                DeclaredFunctionsParser.handle_diagnostics(tunit)
                 header_dependencies[file_path] = [file_inclusion.include.name for file_inclusion
                                                   in tunit.get_includes()]
                 visible_functions = self.get_visible_functions(
                     tunit.cursor, module, file_path)
+                self.all_header_to_function_names[base_header_name] = \
+                    [f.name for f in visible_functions]
                 for function in visible_functions:
                     self.seen_functions.add(function.name)
                     self.all_declared_functions.append(function)
@@ -258,16 +303,17 @@ class DeclaredFunctionsParser(object):
             file_queue.appendleft(header)
             self.all_header_paths_to_copy.add(header)
         while file_queue:
-            f = file_queue.pop()
-            if f in file_processed:
+            file = file_queue.pop()
+            if file in file_processed:
                 continue
-            file_processed.add(f)
-            for header in header_dependencies[f]:
+            file_processed.add(file)
+            for header in header_dependencies[file]:
                 if header in header_dependencies:  # Do not care non-icu4c headers
                     self.all_header_paths_to_copy.add(header)
                     file_queue.appendleft(header)
 
-    def handle_diagnostics(self, tunit):
+    @staticmethod
+    def handle_diagnostics(tunit):
         """Prints compiler diagnostics to stdout. Exits if errors occurred."""
         errors = 0
         for diag in tunit.diagnostics:
@@ -303,32 +349,35 @@ class DeclaredFunctionsParser(object):
             return False
         if decl.spelling in self.seen_functions:
             return False
-        if not self.is_function_visible(decl):
+        if not DeclaredFunctionsParser.is_function_visible(decl):
             return False
-        for whitlisted_decl_filter in self.allowlisted_decl_filters:
-            if whitlisted_decl_filter(decl):
+        for allowlisted_decl_filter in self.allowlisted_decl_filters:
+            if allowlisted_decl_filter(decl):
                 return True
         for decl_filter in self.decl_filters:
             if not decl_filter(decl):
                 return False
         return True
 
-    def is_function_visible(self, decl):
+    @staticmethod
+    def is_function_visible(decl):
         """Returns True if the function has default visibility."""
         visible = False
-        vis_attrs = self.get_children_by_kind(
+        vis_attrs = DeclaredFunctionsParser.get_children_by_kind(
             decl, clang.cindex.CursorKind.VISIBILITY_ATTR)
         for child in vis_attrs:
             visible = child.spelling == 'default'
         return visible
 
-    def get_children_by_kind(self, cursor, kind):
+    @staticmethod
+    def get_children_by_kind(cursor, kind):
         """Returns a generator of cursor's children of a specific kind."""
         for child in cursor.get_children():
             if child.kind == kind:
                 yield child
 
-    def short_header_path(self, name):
+    @staticmethod
+    def short_header_path(name):
         """Trim the given file name to 'unicode/xyz.h'."""
         return name[name.rfind('unicode/'):]
 
@@ -353,12 +402,12 @@ class DeclaredFunctionsParser(object):
         function = Function(name, result_type, params, is_variadic, module)
         # For variadic function, set the callee and va_list position
         if function.is_variadic and function.name in self.va_functions_mapping:
-            m = self.va_functions_mapping[function.name]
-            function.set_variadic_callee(m[0], m[1])
+            va_func = self.va_functions_mapping[function.name]
+            function.set_variadic_callee(va_func[0], va_func[1])
         return function
 
 
-class StableDeclarationFilter(object):
+class StableDeclarationFilter:
     """Return true if it's @stable API"""
     def __call__(self, decl):
         """Returns True if the given decl has a doxygen stable tag."""
@@ -369,7 +418,7 @@ class StableDeclarationFilter(object):
         return False
 
 
-class AllowlistedDeclarationFilter(object):
+class AllowlistedDeclarationFilter:
     """A filter for allowlisting function declarations."""
     def __init__(self, allowlisted_function_names):
         self.allowlisted_function_names = allowlisted_function_names
@@ -379,7 +428,7 @@ class AllowlistedDeclarationFilter(object):
         return decl.spelling in self.allowlisted_function_names
 
 
-class BlocklistedlistedDeclarationFilter(object):
+class BlocklistedlistedDeclarationFilter:
     """A filter for blocklisting function declarations."""
     def __init__(self, blocklisted_function_names):
         self.blocklisted_function_names = blocklisted_function_names
