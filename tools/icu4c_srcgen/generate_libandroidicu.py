@@ -17,8 +17,8 @@
 """Generate ICU stable C API wrapper source.
 
 This script parses all the header files specified by the ICU module names. For
-each function marked as ICU stable, it generates a wrapper function to be
-called by NDK, which in turn calls the available function at runtime. The tool
+each function in the allowlist, it generates a wrapper function to be
+called by libandroidicu, which in turn calls the available function at runtime. The tool
 relies on libclang to parse header files, which is a component provided by
 Clang.
 
@@ -33,43 +33,16 @@ import os
 import shutil
 import subprocess
 
-import jinja2
-
 from genutil import (
     android_path,
+    generate_shim,
+    generate_symbol_txt,
+    get_allowlisted_apis,
     DeclaredFunctionsParser,
     StableDeclarationFilter,
-    AllowlistedDeclarationFilter,
-    KNOWN_VA_FUNCTIONS,
-    ALLOWLISTED_FUNCTION_NAMES,
 )
 
-THIS_DIR = os.path.dirname(os.path.realpath(__file__))
-
-JINJA_ENV = jinja2.Environment(loader=jinja2.FileSystemLoader(
-    os.path.join(THIS_DIR, 'jinja_templates')))
-JINJA_ENV.trim_blocks = True
-JINJA_ENV.lstrip_blocks = True
-
-
-def generate_shim(functions, includes):
-    """Generates the library source file from the given functions."""
-    data = {
-        'functions': functions,
-        'icu_headers': includes,
-    }
-    return JINJA_ENV.get_template('shim.cpp.j2').render(data)
-
-
-def generate_symbol_txt(shim_functions, extra_function_names):
-    """Generates the symbol txt file from the given functions."""
-    data = {
-        # Each shim_function is given an _android suffix.
-        'shim_functions' : shim_functions,
-        # Each extra function name is included as given.
-        'extra_function_names': extra_function_names,
-    }
-    return JINJA_ENV.get_template('libandroidicu.map.txt.j2').render(data)
+SYMBOL_SUFFIX = '_android'
 
 def copy_header_only_files():
     """Copy required header only files"""
@@ -83,25 +56,13 @@ def copy_header_only_files():
 
     for src_path in header_only_files:
         dest_path = base_dest_path + os.path.basename(src_path)
-        cmd = [ 'sed',
-                "s/U_SHOW_CPLUSPLUS_API/LIBANDROIDICU_U_SHOW_CPLUSPLUS_API/g",
-                src_path
-                ]
+        cmd = ['sed',
+               "s/U_SHOW_CPLUSPLUS_API/LIBANDROIDICU_U_SHOW_CPLUSPLUS_API/g",
+               src_path
+               ]
 
         with open(dest_path, "w") as destfile:
             subprocess.check_call(cmd, stdout=destfile)
-
-
-def get_allowlisted_apis():
-    """Return all allowlisted API in libandroidicu_allowlisted_api.txt"""
-    allowlisted_apis = set()
-    with open(os.path.join(THIS_DIR, 'libandroidicu_allowlisted_api.txt'), 'r') as f:
-        for line in f:
-            line = line.strip()
-            if line and not line.startswith("#"):
-                allowlisted_apis.add(line)
-    return allowlisted_apis
-
 
 def main():
     """Parse the ICU4C headers and generate the shim libandroidicu."""
@@ -116,7 +77,7 @@ def main():
     functions = parser.declared_functions
 
     # The shim has the allowlisted functions only
-    allowlisted_apis = get_allowlisted_apis()
+    allowlisted_apis = get_allowlisted_apis('libandroidicu_allowlisted_api.txt')
     functions = [f for f in functions if f.name in allowlisted_apis]
 
     headers_folder = android_path('external/icu/libandroidicu/include/unicode')
@@ -126,17 +87,21 @@ def main():
 
     with open(android_path('external/icu/libandroidicu/static_shim/shim.cpp'),
               'w') as out_file:
-        out_file.write(generate_shim(functions, includes).encode('utf8'))
+        out_file.write(generate_shim(functions, includes, SYMBOL_SUFFIX,
+                                     'libandroidicu_shim.cpp.j2')
+                       .encode('utf8'))
 
     with open(android_path('external/icu/libandroidicu/aicu/extra_function_names.txt'),
               'r') as in_file:
         extra_function_names = [
-                line.strip() for line in in_file.readlines() if not line.startswith('#')
+            line.strip() for line in in_file.readlines() if not line.startswith('#')
         ]
 
     with open(android_path('external/icu/libandroidicu/libandroidicu.map.txt'),
               'w') as out_file:
-        out_file.write(generate_symbol_txt(functions, extra_function_names).encode('utf8'))
+        out_file.write(generate_symbol_txt(functions, extra_function_names,
+                                           'libandroidicu.map.txt.j2')
+                       .encode('utf8'))
 
     for path in parser.header_paths_to_copy:
         basename = os.path.basename(path)
