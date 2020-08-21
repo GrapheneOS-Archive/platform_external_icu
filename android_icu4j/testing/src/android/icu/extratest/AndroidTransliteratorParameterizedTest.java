@@ -60,6 +60,9 @@ public class AndroidTransliteratorParameterizedTest {
         Transliterator transliterator = Transliterator.getInstance(id);
         UnicodeSet sourceSet = transliterator.getSourceSet();
 
+        // Test sample text "hello"
+        transliterator.transliterate("hello");
+
         if (sourceSet.size() == 0) {
             // Example id: ASCII-Latin
 
@@ -89,6 +92,5 @@ public class AndroidTransliteratorParameterizedTest {
                         + "\nSourceString: " + sourceString
                         + "\nid: " + testId,
                 resultUnicodeSet.containsAll(targetString));
-
     }
 }
