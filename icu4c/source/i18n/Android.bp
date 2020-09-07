@@ -18,6 +18,7 @@
 
 cc_defaults {
     name: "libicui18n_defaults",
+    defaults: ["icu4c_defaults"],
     srcs: [
         "*.cpp",
     ],
@@ -26,28 +27,16 @@ cc_defaults {
         "-DU_I18N_IMPLEMENTATION",
         "-O3",
         "-fvisibility=hidden",
-        "-Wall",
-        "-Werror",
-        "-Wno-unused-parameter",
-        "-Wno-unused-const-variable",
-        "-Wno-unneeded-internal-declaration",
+
         "-Wno-unreachable-code-loop-increment",
     ],
-    cppflags: [
-        "-std=c++11",
-    ],
     rtti: true,
-
     target: {
         android: {
             cflags: [
-                "-DANDROID_LINK_SHARED_ICU4C",
                 "-DPIC",
                 "-fPIC",
             ],
-        },
-        windows: {
-            enabled: true,
         },
     },
 }
