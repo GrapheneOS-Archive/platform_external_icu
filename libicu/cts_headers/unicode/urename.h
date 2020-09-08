@@ -1067,7 +1067,7 @@
 // #define uloc_getCountry U_ICU_ENTRY_POINT_RENAME(uloc_getCountry)
 #define uloc_getCurrentCountryID U_ICU_ENTRY_POINT_RENAME(uloc_getCurrentCountryID)
 #define uloc_getCurrentLanguageID U_ICU_ENTRY_POINT_RENAME(uloc_getCurrentLanguageID)
-#define uloc_getDefault U_ICU_ENTRY_POINT_RENAME(uloc_getDefault)
+// #define uloc_getDefault U_ICU_ENTRY_POINT_RENAME(uloc_getDefault)
 // #define uloc_getDisplayCountry U_ICU_ENTRY_POINT_RENAME(uloc_getDisplayCountry)
 // #define uloc_getDisplayKeyword U_ICU_ENTRY_POINT_RENAME(uloc_getDisplayKeyword)
 // #define uloc_getDisplayKeywordValue U_ICU_ENTRY_POINT_RENAME(uloc_getDisplayKeywordValue)
