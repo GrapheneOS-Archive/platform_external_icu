@@ -11,24 +11,41 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-package {
-    default_visibility: ["//external/icu:__subpackages__"],
+
+ndk_library {
+    name: "libicu",
+    symbol_file: "libicu.map.txt",
+    first_version: "31",
+    unversioned_until: "current",
 }
 
-// Android repo only headers for icu4c
-// The header should mainly contain config for C preprocessor,
-// but not actual C / C++ source code
-cc_library_headers {
-    name: "icu4c_extra_headers",
+ndk_headers {
+    name: "libicu_ndk_headers",
+    from: "ndk_headers",
+    to: "",
+    srcs: ["ndk_headers/**/*.h"],
+    license: ":icu_license",
+}
+
+cc_library_shared {
+    name: "libicu",
+    defaults: ["icu4c_defaults"],
     host_supported: true,
     native_bridge_supported: true,
-    export_include_dirs: ["include"],
+    export_include_dirs: ["ndk_headers"],
+    // The whole implementation comes from the intermediate library libicu_static because
+    // ndk_headers/ has symbol name collisions with the headers in libicuuc/libicui18n.
+    whole_static_libs: ["libicu_static"],
+    shared_libs: [
+        "libicuuc",
+        "libicui18n",
+    ],
     apex_available: [
         "com.android.i18n",
     ],
     target: {
-        windows: {
-            enabled: true,
+        android: {
+            version_script: "libicu.map.txt",
         },
     },
 }
