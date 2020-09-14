@@ -49,3 +49,25 @@ cc_library_shared {
         },
     },
 }
+
+cc_library_shared {
+    name: "libicu_cts_stub",
+    defaults: ["icu4c_defaults"],
+    host_supported: false,
+    native_bridge_supported: false,
+    installable: false,
+    stem: "libicu",
+    export_include_dirs: ["cts_headers"],
+    // The whole implementation comes from the intermediate library libicu_static because
+    // ndk_headers/ has collision with the headers in libicuuc/libicui18n.
+    whole_static_libs: ["libicu_static"],
+    shared_libs: [
+        "libicuuc_cts_stub",
+        "libicui18n_cts_stub",
+    ],
+    target: {
+        android: {
+            version_script: "libicu.map.txt",
+        },
+    },
+}
