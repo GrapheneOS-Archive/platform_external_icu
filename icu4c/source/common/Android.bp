@@ -101,14 +101,3 @@ cc_library {
     header_libs: ["libicuuc_headers"],
     export_header_lib_headers: ["libicuuc_headers"],
 }
-
-cc_library_shared {
-    name: "libicuuc_cts_stub",
-    defaults: ["libicuuc_defaults"],
-    host_supported: false,
-    native_bridge_supported: false,
-    installable: false,
-    stem: "libicuuc",
-    header_libs: ["libicuuc_headers"],
-    visibility: ["//external/icu:__subpackages__"],
-}

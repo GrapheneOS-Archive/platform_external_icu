@@ -12,9 +12,17 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-cc_defaults {
-    name: "intltest_defaults",
+cc_test {
+    name: "intltest",
     defaults: ["icu_test_defaults"],
+    multilib: {
+        lib64: {
+            suffix: "64",
+        },
+        lib32: {
+            suffix: "32",
+        },
+    },
 
     cflags: [
         "-DANDROID_LINK_SHARED_ICU4C",
@@ -31,27 +39,8 @@ cc_defaults {
     exclude_srcs: [
         "numberformat2test.cpp",
     ],
-}
 
-cc_test {
-    name: "intltest32",
-    defaults: ["intltest_defaults"],
-
-    // Workaround Soong's limitation that java_test_host data property can only include
-    // dependencies with a single variant
-    compile_multilib: "32",
-}
-
-cc_test {
-    name: "intltest64",
-    defaults: ["intltest_defaults"],
-    multilib: {
-        // On 32-bit platform, this binary is compiled, but not used.
-        lib32: {
-            suffix: "_fake",
-        },
-    },
-    // Workaround Soong's limitation that java_test_host data property can only include
+    // Workaround Soong's limitation that data property can only include
     // dependencies with a single variant
     compile_multilib: "first",
 }
@@ -59,8 +48,7 @@ cc_test {
 java_test_host {
     name: "intltest_test",
     data: [
-        ":intltest32",
-        ":intltest64",
+        ":intltest",
         ":icu4c_test_data",
         ":ICU4CTestRunner",
     ],
