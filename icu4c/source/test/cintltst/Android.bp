@@ -12,17 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-cc_test {
-    name: "cintltst",
+cc_defaults {
+    name: "cintltst_defaults",
     defaults: ["icu_test_defaults"],
-    multilib: {
-        lib64: {
-            suffix: "64",
-        },
-        lib32: {
-            suffix: "32",
-        },
-    },
     srcs: [
         "**/*.c",
         "**/*.cpp",
@@ -39,7 +31,26 @@ cc_test {
         // Not built directly, but #included from other sources.
         "usrchdat.c",
     ],
-    // Workaround Soong's limitation that data property can only include
+}
+
+cc_test {
+    name: "cintltst32",
+    defaults: ["cintltst_defaults"],
+    // Workaround Soong's limitation that java_test_host data property can only include
+    // dependencies with a single variant
+    compile_multilib: "32",
+}
+
+cc_test {
+    name: "cintltst64",
+    defaults: ["cintltst_defaults"],
+    multilib: {
+        // On 32-bit platform, this binary is compiled, but not used.
+        lib32: {
+            suffix: "_fake",
+        },
+    },
+    // Workaround Soong's limitation that java_test_host data property can only include
     // dependencies with a single variant
     compile_multilib: "first",
 }
@@ -47,7 +58,8 @@ cc_test {
 java_test_host {
     name: "cintltst_test",
     data: [
-        ":cintltst",
+        ":cintltst32",
+        ":cintltst64",
         ":icu4c_test_data",
         ":ICU4CTestRunner",
     ],
