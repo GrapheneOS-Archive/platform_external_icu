@@ -31,9 +31,8 @@ cc_defaults {
     c_std: "c11",
     cpp_std: "c++11",
     shared_libs: [
-        "libicu_cts_stub",
-        "libicuuc_cts_stub",
-        "libicui18n_cts_stub",
+        "libicuuc",
+        "libicui18n",
         "libbase",
         "liblog",
     ],
