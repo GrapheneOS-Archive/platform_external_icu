@@ -43,6 +43,10 @@ cc_library_shared {
     apex_available: [
         "com.android.i18n",
     ],
+    stubs: {
+        symbol_file: "libicu.map.txt",
+        versions: ["31"],
+    },
     target: {
         android: {
             version_script: "libicu.map.txt",
