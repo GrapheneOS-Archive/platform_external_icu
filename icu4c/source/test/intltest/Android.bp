@@ -15,15 +15,8 @@
 cc_test {
     name: "intltest",
     defaults: ["icu_test_defaults"],
-    multilib: {
-        lib64: {
-            suffix: "64",
-        },
-        lib32: {
-            suffix: "32",
-        },
-    },
-
+    // Workaround to run primary abi only in CTS
+    stem: "icu.intltest",
     cflags: [
         "-DANDROID_LINK_SHARED_ICU4C",
         // Force the test to use the data file on
