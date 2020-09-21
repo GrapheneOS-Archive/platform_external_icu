@@ -15,14 +15,8 @@
 cc_test {
     name: "cintltst",
     defaults: ["icu_test_defaults"],
-    multilib: {
-        lib64: {
-            suffix: "64",
-        },
-        lib32: {
-            suffix: "32",
-        },
-    },
+    // Workaround to run primary abi only in CTS
+    stem: "icu.cintltst",
     srcs: [
         "**/*.c",
         "**/*.cpp",

@@ -84,3 +84,15 @@ cc_library {
         },
     },
 }
+
+cc_library_shared {
+    name: "libicui18n_cts_stub",
+    defaults: ["libicui18n_defaults"],
+    host_supported: false,
+    native_bridge_supported: false,
+    installable: false,
+    stem: "libicui18n",
+    shared_libs: ["libicuuc"],
+    header_libs: ["libicui18n_headers"],
+    visibility: ["//external/icu:__subpackages__"],
+}
