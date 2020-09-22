@@ -43,6 +43,7 @@ cc_library_static {
         "com.android.i18n",
     ],
     visibility: [
+        "//external/icu/android_icu4j/libcore_bridge/src/native",
         "//external/icu/libandroidicu",
         "//external/icu/icu4c/source/test:__subpackages__",
     ],
