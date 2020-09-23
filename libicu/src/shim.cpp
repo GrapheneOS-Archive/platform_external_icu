@@ -127,6 +127,7 @@
 #undef uloc_getBaseName
 #undef uloc_getCharacterOrientation
 #undef uloc_getCountry
+#undef uloc_getDefault
 #undef uloc_getDisplayCountry
 #undef uloc_getDisplayKeyword
 #undef uloc_getDisplayKeywordValue
@@ -505,6 +506,9 @@ ULayoutType uloc_getCharacterOrientation(const char * localeId, UErrorCode * sta
 }
 int32_t uloc_getCountry(const char * localeID, char * country, int32_t countryCapacity, UErrorCode * err) {
   return U_ICU_ENTRY_POINT_RENAME(uloc_getCountry)(localeID, country, countryCapacity, err);
+}
+const char * uloc_getDefault() {
+  return U_ICU_ENTRY_POINT_RENAME(uloc_getDefault)();
 }
 int32_t uloc_getDisplayCountry(const char * locale, const char * displayLocale, UChar * country, int32_t countryCapacity, UErrorCode * status) {
   return U_ICU_ENTRY_POINT_RENAME(uloc_getDisplayCountry)(locale, displayLocale, country, countryCapacity, status);
