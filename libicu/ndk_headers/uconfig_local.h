@@ -19,7 +19,10 @@
 #pragma once
 
 // Include API-level tagging facility provided by NDK.
+#include <android/log.h>
+#ifdef __ANDROID__
 #include <android/versioning.h>
+#endif
 
 #define U_DISABLE_RENAMING 1
 #define U_HIDE_DRAFT_API 1
