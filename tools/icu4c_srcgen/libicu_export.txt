@@ -134,6 +134,7 @@ uloc_getAvailable
 uloc_getBaseName
 uloc_getCharacterOrientation
 uloc_getCountry
+uloc_getDefault
 uloc_getDisplayCountry
 uloc_getDisplayKeyword
 uloc_getDisplayKeywordValue
