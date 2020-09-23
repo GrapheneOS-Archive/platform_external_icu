@@ -360,7 +360,23 @@ typedef enum {
 } ULocDataLocaleType;
 
 #ifndef U_HIDE_SYSTEM_API
+#if __ANDROID_API__ >= 31
 
+/**
+ * Gets ICU's default locale.  
+ * The returned string is a snapshot in time, and will remain valid
+ *   and unchanged even when uloc_setDefault() is called.
+ *   The returned storage is owned by ICU, and must not be altered or deleted
+ *   by the caller.
+ *  
+ * @return the ICU default locale
+ * @system
+ * @stable ICU 2.0
+ */
+U_STABLE const char* U_EXPORT2
+uloc_getDefault(void) __INTRODUCED_IN(31);
+
+#endif // __ANDROID_API__ >= 31
 
 
 #endif  /* U_HIDE_SYSTEM_API */
