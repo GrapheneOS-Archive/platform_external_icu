@@ -25,6 +25,18 @@ import libcore.api.IntraCoreApi;
  */
 public final class LocaleNative {
 
+    /**
+     * Libcore's default locale is synchronized with the ICU4C's default locale. But libicu.so
+     * does not expose uloc_setDefault via NDK because app can otherwise break this synchronization.
+     * Instead, expose this uloc_setDefault as @IntraCoreApi called by libcore.
+     */
+    @IntraCoreApi
+    public static void setDefault(String languageTag) {
+        setDefaultNative(languageTag);
+    }
+
+    private static native void setDefaultNative(String languageTag);
+
     @IntraCoreApi
     public static String getDisplayCountry(Locale targetLocale, Locale locale) {
         return getDisplayCountryNative(targetLocale.toLanguageTag(), locale.toLanguageTag());
