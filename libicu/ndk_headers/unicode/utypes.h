@@ -709,7 +709,7 @@ typedef enum UErrorCode {
 #   define U_FAILURE(x) ((x)>U_ZERO_ERROR)
 #endif
 
-#if __ANDROID_API__ >= 31
+#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Return a string for a UErrorCode value.
@@ -720,7 +720,7 @@ typedef enum UErrorCode {
 U_STABLE const char * U_EXPORT2
 u_errorName(UErrorCode code) __INTRODUCED_IN(31);
 
-#endif // __ANDROID_API__ >= 31
+#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 
 #endif /* _UTYPES */

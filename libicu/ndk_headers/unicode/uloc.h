@@ -360,7 +360,7 @@ typedef enum {
 } ULocDataLocaleType;
 
 #ifndef U_HIDE_SYSTEM_API
-#if __ANDROID_API__ >= 31
+#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Gets ICU's default locale.  
@@ -376,12 +376,12 @@ typedef enum {
 U_STABLE const char* U_EXPORT2
 uloc_getDefault(void) __INTRODUCED_IN(31);
 
-#endif // __ANDROID_API__ >= 31
+#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 
 #endif  /* U_HIDE_SYSTEM_API */
 
-#if __ANDROID_API__ >= 31
+#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Gets the language code for the specified locale.
@@ -401,9 +401,9 @@ uloc_getLanguage(const char*    localeID,
          int32_t languageCapacity,
          UErrorCode* err) __INTRODUCED_IN(31);
 
-#endif // __ANDROID_API__ >= 31
+#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if __ANDROID_API__ >= 31
+#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Gets the script code for the specified locale.
@@ -423,9 +423,9 @@ uloc_getScript(const char*    localeID,
          int32_t scriptCapacity,
          UErrorCode* err) __INTRODUCED_IN(31);
 
-#endif // __ANDROID_API__ >= 31
+#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if __ANDROID_API__ >= 31
+#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Gets the  country code for the specified locale.
@@ -445,9 +445,9 @@ uloc_getCountry(const char*    localeID,
         int32_t countryCapacity,
         UErrorCode* err) __INTRODUCED_IN(31);
 
-#endif // __ANDROID_API__ >= 31
+#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if __ANDROID_API__ >= 31
+#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Gets the variant code for the specified locale.
@@ -467,10 +467,10 @@ uloc_getVariant(const char*    localeID,
         int32_t variantCapacity,
         UErrorCode* err) __INTRODUCED_IN(31);
 
-#endif // __ANDROID_API__ >= 31
+#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 
-#if __ANDROID_API__ >= 31
+#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Gets the full name for the specified locale.
@@ -494,9 +494,9 @@ uloc_getName(const char*    localeID,
          int32_t nameCapacity,
          UErrorCode* err) __INTRODUCED_IN(31);
 
-#endif // __ANDROID_API__ >= 31
+#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if __ANDROID_API__ >= 31
+#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Gets the full name for the specified locale.
@@ -521,9 +521,9 @@ uloc_canonicalize(const char*    localeID,
          int32_t nameCapacity,
          UErrorCode* err) __INTRODUCED_IN(31);
 
-#endif // __ANDROID_API__ >= 31
+#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if __ANDROID_API__ >= 31
+#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Gets the ISO language code for the specified locale.
@@ -535,10 +535,10 @@ uloc_canonicalize(const char*    localeID,
 U_STABLE const char* U_EXPORT2
 uloc_getISO3Language(const char* localeID) __INTRODUCED_IN(31);
 
-#endif // __ANDROID_API__ >= 31
+#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 
-#if __ANDROID_API__ >= 31
+#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Gets the ISO country code for the specified locale.
@@ -550,11 +550,11 @@ uloc_getISO3Language(const char* localeID) __INTRODUCED_IN(31);
 U_STABLE const char* U_EXPORT2
 uloc_getISO3Country(const char* localeID) __INTRODUCED_IN(31);
 
-#endif // __ANDROID_API__ >= 31
+#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 
 
-#if __ANDROID_API__ >= 31
+#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Gets the language name suitable for display for the specified locale.
@@ -579,9 +579,9 @@ uloc_getDisplayLanguage(const char* locale,
             int32_t languageCapacity,
             UErrorCode* status) __INTRODUCED_IN(31);
 
-#endif // __ANDROID_API__ >= 31
+#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if __ANDROID_API__ >= 31
+#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Gets the script name suitable for display for the specified locale.
@@ -606,9 +606,9 @@ uloc_getDisplayScript(const char* locale,
             int32_t scriptCapacity,
             UErrorCode* status) __INTRODUCED_IN(31);
 
-#endif // __ANDROID_API__ >= 31
+#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if __ANDROID_API__ >= 31
+#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Gets the country name suitable for display for the specified locale.
@@ -635,10 +635,10 @@ uloc_getDisplayCountry(const char* locale,
                        int32_t countryCapacity,
                        UErrorCode* status) __INTRODUCED_IN(31);
 
-#endif // __ANDROID_API__ >= 31
+#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 
-#if __ANDROID_API__ >= 31
+#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Gets the variant name suitable for display for the specified locale.
@@ -663,9 +663,9 @@ uloc_getDisplayVariant(const char* locale,
                        int32_t variantCapacity,
                        UErrorCode* status) __INTRODUCED_IN(31);
 
-#endif // __ANDROID_API__ >= 31
+#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if __ANDROID_API__ >= 31
+#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Gets the keyword name suitable for display for the specified locale.
@@ -714,8 +714,8 @@ uloc_getDisplayKeyword(const char* keyword,
                        int32_t destCapacity,
                        UErrorCode* status) __INTRODUCED_IN(31);
 
-#endif // __ANDROID_API__ >= 31
-#if __ANDROID_API__ >= 31
+#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
+#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Gets the value of the keyword suitable for display for the specified locale.
@@ -745,8 +745,8 @@ uloc_getDisplayKeywordValue(   const char* locale,
                                int32_t destCapacity,
                                UErrorCode* status) __INTRODUCED_IN(31);
 
-#endif // __ANDROID_API__ >= 31
-#if __ANDROID_API__ >= 31
+#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
+#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Gets the full name suitable for display for the specified locale.
@@ -771,10 +771,10 @@ uloc_getDisplayName(const char* localeID,
             int32_t maxResultSize,
             UErrorCode* err) __INTRODUCED_IN(31);
 
-#endif // __ANDROID_API__ >= 31
+#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 
-#if __ANDROID_API__ >= 31
+#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Gets the specified locale from a list of available locales.
@@ -795,9 +795,9 @@ uloc_getDisplayName(const char* localeID,
 U_STABLE const char* U_EXPORT2
 uloc_getAvailable(int32_t n) __INTRODUCED_IN(31);
 
-#endif // __ANDROID_API__ >= 31
+#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if __ANDROID_API__ >= 31
+#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Gets the size of the all available locale list.
@@ -807,7 +807,7 @@ uloc_getAvailable(int32_t n) __INTRODUCED_IN(31);
  */
 U_STABLE int32_t U_EXPORT2 uloc_countAvailable(void) __INTRODUCED_IN(31);
 
-#endif // __ANDROID_API__ >= 31
+#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 #ifndef U_HIDE_DRAFT_API
 
@@ -863,7 +863,7 @@ typedef enum ULocAvailableType {
 
 #endif // U_HIDE_DRAFT_API
 
-#if __ANDROID_API__ >= 31
+#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  *
@@ -879,9 +879,9 @@ typedef enum ULocAvailableType {
 U_STABLE const char* const* U_EXPORT2
 uloc_getISOLanguages(void) __INTRODUCED_IN(31);
 
-#endif // __ANDROID_API__ >= 31
+#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if __ANDROID_API__ >= 31
+#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  *
@@ -895,14 +895,14 @@ uloc_getISOLanguages(void) __INTRODUCED_IN(31);
 U_STABLE const char* const* U_EXPORT2
 uloc_getISOCountries(void) __INTRODUCED_IN(31);
 
-#endif // __ANDROID_API__ >= 31
+#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 
 
 
 
 
-#if __ANDROID_API__ >= 31
+#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Gets the full name for the specified locale, like uloc_getName(),
@@ -932,9 +932,9 @@ uloc_getBaseName(const char*    localeID,
          int32_t nameCapacity,
          UErrorCode* err) __INTRODUCED_IN(31);
 
-#endif // __ANDROID_API__ >= 31
+#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if __ANDROID_API__ >= 31
+#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Gets an enumeration of keywords for the specified locale. Enumeration
@@ -949,9 +949,9 @@ U_STABLE UEnumeration* U_EXPORT2
 uloc_openKeywords(const char* localeID,
                         UErrorCode* status) __INTRODUCED_IN(31);
 
-#endif // __ANDROID_API__ >= 31
+#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if __ANDROID_API__ >= 31
+#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Get the value for a keyword. Locale name does not need to be normalized.
@@ -972,10 +972,10 @@ uloc_getKeywordValue(const char* localeID,
                      char* buffer, int32_t bufferCapacity,
                      UErrorCode* status) __INTRODUCED_IN(31);
 
-#endif // __ANDROID_API__ >= 31
+#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 
-#if __ANDROID_API__ >= 31
+#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Sets or removes the value of the specified keyword.
@@ -1013,9 +1013,9 @@ uloc_setKeywordValue(const char* keywordName,
                      char* buffer, int32_t bufferCapacity,
                      UErrorCode* status) __INTRODUCED_IN(31);
 
-#endif // __ANDROID_API__ >= 31
+#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if __ANDROID_API__ >= 31
+#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Returns whether the locale's script is written right-to-left.
@@ -1034,7 +1034,7 @@ uloc_setKeywordValue(const char* keywordName,
 U_STABLE UBool U_EXPORT2
 uloc_isRightToLeft(const char *locale) __INTRODUCED_IN(31);
 
-#endif // __ANDROID_API__ >= 31
+#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * enums for the  return value for the character and line orientation
@@ -1049,7 +1049,7 @@ typedef enum {
   ULOC_LAYOUT_UNKNOWN
 } ULayoutType;
 
-#if __ANDROID_API__ >= 31
+#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Get the layout character orientation for the specified locale.
@@ -1063,9 +1063,9 @@ U_STABLE ULayoutType U_EXPORT2
 uloc_getCharacterOrientation(const char* localeId,
                              UErrorCode *status) __INTRODUCED_IN(31);
 
-#endif // __ANDROID_API__ >= 31
+#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if __ANDROID_API__ >= 31
+#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Get the layout line orientation for the specified locale.
@@ -1079,7 +1079,7 @@ U_STABLE ULayoutType U_EXPORT2
 uloc_getLineOrientation(const char* localeId,
                         UErrorCode *status) __INTRODUCED_IN(31);
 
-#endif // __ANDROID_API__ >= 31
+#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * enums for the 'outResult' parameter return value
@@ -1096,7 +1096,7 @@ typedef enum {
 } UAcceptResult;
 
 
-#if __ANDROID_API__ >= 31
+#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Based on a HTTP header from a web browser and a list of available locales,
@@ -1117,9 +1117,9 @@ uloc_acceptLanguageFromHTTP(char *result, int32_t resultAvailable,
                             UEnumeration* availableLocales,
                             UErrorCode *status) __INTRODUCED_IN(31);
 
-#endif // __ANDROID_API__ >= 31
+#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if __ANDROID_API__ >= 31
+#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Based on a list of available locales,
@@ -1141,13 +1141,13 @@ uloc_acceptLanguage(char *result, int32_t resultAvailable,
                     UEnumeration* availableLocales,
                     UErrorCode *status) __INTRODUCED_IN(31);
 
-#endif // __ANDROID_API__ >= 31
+#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 
 
 
 
-#if __ANDROID_API__ >= 31
+#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Add the likely subtags for a provided locale ID, per the algorithm described
@@ -1188,10 +1188,10 @@ uloc_addLikelySubtags(const char*    localeID,
          int32_t maximizedLocaleIDCapacity,
          UErrorCode* err) __INTRODUCED_IN(31);
 
-#endif // __ANDROID_API__ >= 31
+#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 
-#if __ANDROID_API__ >= 31
+#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Minimize the subtags for a provided locale ID, per the algorithm described
@@ -1232,9 +1232,9 @@ uloc_minimizeSubtags(const char*    localeID,
          int32_t minimizedLocaleIDCapacity,
          UErrorCode* err) __INTRODUCED_IN(31);
 
-#endif // __ANDROID_API__ >= 31
+#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if __ANDROID_API__ >= 31
+#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Returns a locale ID for the specified BCP47 language tag string.
@@ -1266,9 +1266,9 @@ uloc_forLanguageTag(const char* langtag,
                     int32_t* parsedLength,
                     UErrorCode* err) __INTRODUCED_IN(31);
 
-#endif // __ANDROID_API__ >= 31
+#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if __ANDROID_API__ >= 31
+#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Returns a well-formed language tag for this locale ID. 
@@ -1298,9 +1298,9 @@ uloc_toLanguageTag(const char* localeID,
                    UBool strict,
                    UErrorCode* err) __INTRODUCED_IN(31);
 
-#endif // __ANDROID_API__ >= 31
+#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if __ANDROID_API__ >= 31
+#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Converts the specified keyword (legacy key, or BCP 47 Unicode locale
@@ -1326,9 +1326,9 @@ uloc_toLanguageTag(const char* localeID,
 U_STABLE const char* U_EXPORT2
 uloc_toUnicodeLocaleKey(const char* keyword) __INTRODUCED_IN(31);
 
-#endif // __ANDROID_API__ >= 31
+#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if __ANDROID_API__ >= 31
+#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Converts the specified keyword value (legacy type, or BCP 47
@@ -1361,9 +1361,9 @@ uloc_toUnicodeLocaleKey(const char* keyword) __INTRODUCED_IN(31);
 U_STABLE const char* U_EXPORT2
 uloc_toUnicodeLocaleType(const char* keyword, const char* value) __INTRODUCED_IN(31);
 
-#endif // __ANDROID_API__ >= 31
+#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if __ANDROID_API__ >= 31
+#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Converts the specified keyword (BCP 47 Unicode locale extension key, or
@@ -1380,9 +1380,9 @@ uloc_toUnicodeLocaleType(const char* keyword, const char* value) __INTRODUCED_IN
 U_STABLE const char* U_EXPORT2
 uloc_toLegacyKey(const char* keyword) __INTRODUCED_IN(31);
 
-#endif // __ANDROID_API__ >= 31
+#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if __ANDROID_API__ >= 31
+#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Converts the specified keyword value (BCP 47 Unicode locale extension type,
@@ -1413,6 +1413,6 @@ uloc_toLegacyKey(const char* keyword) __INTRODUCED_IN(31);
 U_STABLE const char* U_EXPORT2
 uloc_toLegacyType(const char* keyword, const char* value) __INTRODUCED_IN(31);
 
-#endif // __ANDROID_API__ >= 31
+#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 #endif /*_ULOC*/
