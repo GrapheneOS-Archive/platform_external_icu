@@ -28,9 +28,6 @@
 #define U_HIDE_INTERNAL_API 1
 #define U_HIDE_OBSOLETE_UTF_OLD_H 1
 
-// Hide system API until we need to expose system apis, e.g. uloc_getDefault
-#define U_HIDE_SYSTEM_API 1
-
 // Set this flag to allow header-only C++ usages when using a C++ compiler
 #ifdef __cplusplus
 #   ifndef LIBICU_U_SHOW_CPLUSPLUS_API
