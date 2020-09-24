@@ -213,5 +213,9 @@ def main():
 
     generate_cts_headers(allowlisted_apis)
 
+    # Apply documentation patches by the following shell script
+    subprocess.check_call(
+        [android_path('external/icu/tools/icu4c_srcgen/doc_patches/apply_patches.sh')])
+
 if __name__ == '__main__':
     main()
