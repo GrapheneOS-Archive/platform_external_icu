@@ -368,6 +368,9 @@ typedef enum {
  *   and unchanged even when uloc_setDefault() is called.
  *   The returned storage is owned by ICU, and must not be altered or deleted
  *   by the caller.
+ * On Android, uloc_setDefault() is not visible because the default Locale in ICU4C,
+ * ICU4J and java.util.Locale are synchronized. To set a default locale, call
+ * java.util.Locale#setDefault in java or by reverse JNI.
  *  
  * @return the ICU default locale
  * @system
