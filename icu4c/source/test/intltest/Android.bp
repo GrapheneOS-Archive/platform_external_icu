@@ -19,7 +19,7 @@ cc_test {
     stem: "icu.intltest",
     cflags: [
         "-DANDROID_LINK_SHARED_ICU4C",
-        // Force the test to use the data file on
+        // Do not set the data directory explicitly.
         "-DANDROID_USE_ICU_REG",
         // Needed for char* shift calculation in the test.
         "-Wno-string-plus-int",

@@ -47,12 +47,6 @@ cc_library_shared {
                 // for more information.
                 "-DANDROID_LINK_SHARED_ICU4C",
             ],
-            static_libs: ["libandroidicuinit"],
-        },
-        not_windows: {
-            // libandroidicuinit requires mmap(2) in sys/mman.h, but it's not
-            // available in the latest MinGW version.
-            static_libs: ["libandroidicuinit"],
         },
     },
     apex_available: [
