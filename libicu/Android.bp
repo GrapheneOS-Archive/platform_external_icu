@@ -42,7 +42,7 @@ cc_library_shared {
     ],
     apex_available: [
         "com.android.i18n",
-        // Required for host testing in ART
+        // STOPSHIP: Required for http://b/169846585 host testing in ART
         "//apex_available:platform",
     ],
     stubs: {
