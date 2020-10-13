@@ -13,6 +13,10 @@ package android.icu.text {
     method public String[] getAmpmNarrowStrings();
   }
 
+  public class DateTimePatternGenerator implements java.lang.Cloneable android.icu.util.Freezable<android.icu.text.DateTimePatternGenerator> {
+    method public String getBestPattern(String, boolean);
+  }
+
   public final class StringPrep {
     method public static android.icu.text.StringPrep getInstance(int);
     method public String prepare(String, int) throws android.icu.text.StringPrepParseException;
