@@ -1,41 +1,4 @@
 // Signature format: 2.0
-package android.icu.impl {
-
-  public abstract class CacheValue<V> {
-    method public static void setStrength(android.icu.impl.CacheValue.Strength);
-  }
-
-  public enum CacheValue.Strength {
-    enum_constant public static final android.icu.impl.CacheValue.Strength SOFT;
-    enum_constant public static final android.icu.impl.CacheValue.Strength STRONG;
-  }
-
-  public final class ICUData {
-    field public static final String ICU_BASE_NAME = "android/icu/impl/data/icudt66b";
-  }
-
-  public class ICUResourceBundle extends android.icu.util.UResourceBundle {
-    method public String getStringWithFallback(String) throws java.util.MissingResourceException;
-    method public android.icu.impl.ICUResourceBundle getWithFallback(String) throws java.util.MissingResourceException;
-  }
-
-  public final class ZoneMeta {
-    method public static String getCanonicalCLDRID(String);
-  }
-
-}
-
-package android.icu.impl.number {
-
-  public class DecimalFormatProperties implements java.lang.Cloneable java.io.Serializable {
-  }
-
-  public enum DecimalFormatProperties.ParseMode {
-    enum_constant public static final android.icu.impl.number.DecimalFormatProperties.ParseMode JAVA_COMPATIBILITY;
-  }
-
-}
-
 package android.icu.text {
 
   public class CurrencyMetaInfo {
@@ -59,24 +22,11 @@ package android.icu.text {
 
   public class DecimalFormat extends android.icu.text.NumberFormat {
     method public void setParseJavaCompatible(boolean);
-    method @Deprecated public void setParseStrictMode(android.icu.impl.number.DecimalFormatProperties.ParseMode);
   }
 
   public abstract class IDNA {
     method @Deprecated public static StringBuffer convertIDNToASCII(String, int) throws android.icu.text.StringPrepParseException;
     method @Deprecated public static StringBuffer convertIDNToUnicode(String, int) throws android.icu.text.StringPrepParseException;
-  }
-
-  public final class Normalizer implements java.lang.Cloneable {
-    method @Deprecated public static boolean isNormalized(String, android.icu.text.Normalizer.Mode, int);
-    method @Deprecated public static String normalize(String, android.icu.text.Normalizer.Mode);
-    field @Deprecated public static final android.icu.text.Normalizer.Mode NFC;
-    field @Deprecated public static final android.icu.text.Normalizer.Mode NFD;
-    field @Deprecated public static final android.icu.text.Normalizer.Mode NFKC;
-    field @Deprecated public static final android.icu.text.Normalizer.Mode NFKD;
-  }
-
-  @Deprecated public abstract static class Normalizer.Mode {
   }
 
   public abstract class TimeZoneNames implements java.io.Serializable {
@@ -130,36 +80,6 @@ package android.icu.util {
   public class InitialTimeZoneRule extends android.icu.util.TimeZoneRule {
   }
 
-  public final class LocaleData {
-    method public static android.icu.util.VersionInfo getCLDRVersion();
-    method public String getDelimiter(int);
-    method public static android.icu.text.UnicodeSet getExemplarSet(android.icu.util.ULocale, int, int);
-    method public android.icu.text.UnicodeSet getExemplarSet(int, int);
-    method public static android.icu.util.LocaleData getInstance(android.icu.util.ULocale);
-    method public static android.icu.util.LocaleData getInstance();
-    method public static android.icu.util.LocaleData.MeasurementSystem getMeasurementSystem(android.icu.util.ULocale);
-    method public boolean getNoSubstitute();
-    method public static android.icu.util.LocaleData.PaperSize getPaperSize(android.icu.util.ULocale);
-    method public void setNoSubstitute(boolean);
-    field public static final int ALT_QUOTATION_END = 3; // 0x3
-    field public static final int ALT_QUOTATION_START = 2; // 0x2
-    field public static final int ES_INDEX = 2; // 0x2
-    field public static final int ES_STANDARD = 0; // 0x0
-    field public static final int QUOTATION_END = 1; // 0x1
-    field public static final int QUOTATION_START = 0; // 0x0
-  }
-
-  public static final class LocaleData.MeasurementSystem {
-    field public static final android.icu.util.LocaleData.MeasurementSystem SI;
-    field public static final android.icu.util.LocaleData.MeasurementSystem UK;
-    field public static final android.icu.util.LocaleData.MeasurementSystem US;
-  }
-
-  public static final class LocaleData.PaperSize {
-    method public int getHeight();
-    method public int getWidth();
-  }
-
   public abstract class TimeZone implements java.lang.Cloneable android.icu.util.Freezable<android.icu.util.TimeZone> java.io.Serializable {
     method @Deprecated public static void setICUDefault(android.icu.util.TimeZone);
   }
@@ -177,19 +97,6 @@ package android.icu.util {
 
   public final class ULocale implements java.lang.Comparable<android.icu.util.ULocale> java.io.Serializable {
     method @Deprecated public static String getRegionForSupplementalData(android.icu.util.ULocale, boolean);
-  }
-
-  public abstract class UResourceBundle extends java.util.ResourceBundle {
-    ctor public UResourceBundle();
-    method public android.icu.util.UResourceBundle get(int);
-    method public static android.icu.util.UResourceBundle getBundleInstance(String, java.util.Locale);
-    method public static android.icu.util.UResourceBundle getBundleInstance(String, android.icu.util.ULocale);
-    method public String getString();
-    method public String getString(int);
-    method public String[] getStringArray();
-    method public int getType();
-    field public static final int ARRAY = 8; // 0x8
-    field public static final int STRING = 0; // 0x0
   }
 
 }
