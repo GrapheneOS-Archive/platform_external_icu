@@ -58,6 +58,7 @@ package android.icu.text {
   }
 
   public class DecimalFormat extends android.icu.text.NumberFormat {
+    method public void setParseJavaCompatible(boolean);
     method @Deprecated public void setParseStrictMode(android.icu.impl.number.DecimalFormatProperties.ParseMode);
   }
 
