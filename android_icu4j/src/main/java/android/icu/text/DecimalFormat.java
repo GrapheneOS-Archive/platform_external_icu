@@ -2026,6 +2026,17 @@ public class DecimalFormat extends NumberFormat {
     refreshFormatter();
   }
 
+  // BEGIN android-added: Allow libcore to use java-compatible parsing mode
+  /**
+   * @param parseJavaCompatible true for java-compatible mode, and otherwise lenient mode.
+   * @hide draft / provisional / internal are hidden on Android
+   */
+  @libcore.api.IntraCoreApi
+public void setParseJavaCompatible(boolean parseJavaCompatible) {
+    setParseStrictMode(parseJavaCompatible ? ParseMode.JAVA_COMPATIBILITY : ParseMode.LENIENT);
+  }
+  // END android-added: Allow libcore to use java-compatible parsing mode
+
   /**
    * Android libcore uses this internal method to set {@link ParseMode#JAVA_COMPATIBILITY}.
    * @deprecated This API is ICU internal only.
