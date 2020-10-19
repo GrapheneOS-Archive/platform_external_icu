@@ -194,6 +194,15 @@ package android.icu.util {
 
 }
 
+package com.android.i18n.system {
+
+  public final class ZygoteHooks {
+    method public static void onBeginPreload();
+    method public static void onEndPreload();
+  }
+
+}
+
 package com.android.i18n.timezone {
 
   public final class TimeZoneDataFiles {
