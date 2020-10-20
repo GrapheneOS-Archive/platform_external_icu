@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 
-#include "androidicuinit/android_icu_reg.h"
 #include "IcuRegistration.h"
 
 #include <sys/mman.h>
@@ -25,7 +24,6 @@
 #include <android-base/logging.h>
 #include <android-base/unique_fd.h>
 #include <log/log.h>
-#include <unicode/uclean.h>
 #include <unicode/udata.h>
 #include <unicode/utypes.h>
 
@@ -133,14 +131,6 @@ void IcuRegistration::Deregister() {
 
 // Init ICU, configuring it and loading the data files.
 IcuRegistration::IcuRegistration() {
-  UErrorCode status = U_ZERO_ERROR;
-  // Tell ICU it can *only* use our memory-mapped data.
-  udata_setFileAccess(UDATA_NO_FILES, &status);
-  if (status != U_ZERO_ERROR) {
-    ALOGE("Couldn't initialize ICU (s_setFileAccess): %s", u_errorName(status));
-    abort();
-  }
-
   // Note: This logic below should match the logic for ICU4J in
   // TimeZoneDataFiles.java in libcore/ to ensure consistent behavior between
   // ICU4C and ICU4J.
@@ -187,29 +177,14 @@ IcuRegistration::IcuRegistration() {
     abort();
   }
   ALOGD("I18n APEX ICU file found: %s", i18nModulePath.c_str());
-
-  // Failures to find the ICU data tend to be somewhat obscure because ICU loads
-  // its data on first use, which can be anywhere. Force initialization up front
-  // so we can report a nice clear error and bail.
-  u_init(&status);
-  if (status != U_ZERO_ERROR) {
-    ALOGE("Couldn't initialize ICU (u_init): %s", u_errorName(status));
-    abort();
-  }
 }
 
 // De-init ICU, unloading the data files. Do the opposite of the above function.
 IcuRegistration::~IcuRegistration() {
-  // Reset libicu state to before it was loaded.
-  u_cleanup();
-
   // Unmap ICU data files.
   icu_datamap_from_i18n_module_.reset();
   icu_datamap_from_tz_module_.reset();
   icu_datamap_from_data_.reset();
-
-  // We don't need to call udata_setFileAccess because u_cleanup takes care of
-  // it.
 }
 
 bool IcuRegistration::pathExists(const std::string& path) {
@@ -262,13 +237,14 @@ std::string IcuRegistration::getI18nModulePath() {
 
 }  // namespace androidicuinit
 
-extern "C" {
 void android_icu_register() {
   androidicuinit::IcuRegistration::Register();
 }
 
-
 void android_icu_deregister() {
   androidicuinit::IcuRegistration::Deregister();
 }
+
+bool android_icu_is_registered() {
+  return androidicuinit::gIcuRegistration.get() != nullptr;
 }
