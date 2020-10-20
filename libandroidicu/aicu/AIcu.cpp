@@ -18,22 +18,17 @@
 
 #include <stdlib.h>
 
+// TODO: remove this entire implementation when all users are removed.
 #ifdef ENABLE_ICU_REGISTER
-#include <androidicuinit/android_icu_reg.h>
 
 #ifdef __ANDROID__
 void AIcu_initializeIcuOrDie() {
-    android_icu_register();
-    // This function is used to abort() on host, but the host variant is now
-    // disabled.
 }
 #endif
 
 void AIcu_register() {
-    android_icu_register();
 }
 
 void AIcu_deregister() {
-    android_icu_deregister();
 }
 #endif // ENABLE_ICU_REGISTER

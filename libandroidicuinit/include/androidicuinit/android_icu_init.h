@@ -16,15 +16,14 @@
 
 #pragma once
 
-// Declare C wrapper of androidicuinit::IcuRegistration
-#ifdef __cplusplus
-extern "C" {
-#endif
+/**
+ * Load the ICU common data. This function should only be called once per process,
+ * and is not thread-safe.
+ */
+void android_icu_init();
 
-void android_icu_register();
 
-void android_icu_deregister();
-
-#ifdef __cplusplus
-}
-#endif
+/**
+ * Cleanup the resources loaded by android_icu_init(). This function is not thread-safe.
+ */
+void android_icu_cleanup();
