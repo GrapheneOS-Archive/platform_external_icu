@@ -137,9 +137,6 @@ LIBANDROIDICU_EXTERNAL_1 {
     utrans_close_android;
     utrans_openU_android;
     utrans_transUChars_android;
-    AIcu_initializeIcuOrDie;
-    AIcu_register;
-    AIcu_deregister;
   local:
     *;
 };
