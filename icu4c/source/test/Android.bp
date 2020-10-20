@@ -41,7 +41,6 @@ cc_defaults {
     static_libs: [
         "libicuctest",
         "libicutoolutil",
-        "libandroidicuinit",
     ],
 }
 

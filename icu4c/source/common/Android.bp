@@ -41,10 +41,29 @@ cc_defaults {
                 "-DPIC",
                 "-fPIC",
             ],
-            static_libs: ["libicuuc_stubdata"],
+            static_libs: [
+                "libandroidicuinit", // Required to set the data files in libicuuc.
+                "libicuuc_stubdata",
+            ],
+            shared_libs: [
+                "libbase", // required by libandroidicuinit
+                "liblog", // required by libandroidicuinit
+            ],
         },
         not_windows: {
-            static_libs: ["libicuuc_stubdata"],
+            static_libs: [
+                "libicuuc_stubdata",
+            ],
+            // linkerconfig links libicuuc statically on host, but we need to avoid exposing
+            // libandroidicuinit independently to other modules. Thus, we links the entire
+            // libandroidicuinit into libicuuc on host.
+            whole_static_libs: [
+                "libandroidicuinit", // Required to set the data files in libicuuc in ART testing.
+            ],
+            shared_libs: [
+                "libbase", // required by libandroidicuinit
+                "liblog", // required by libandroidicuinit
+            ],
             required: ["icu-data_host_i18n_apex"],
         },
         windows: {
