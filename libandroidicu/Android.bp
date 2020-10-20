@@ -22,10 +22,8 @@
 cc_library_shared {
     name: "libandroidicu",
 
-    // Most code is imported via libandroidicu_static.
-    srcs: [
-        "aicu/AIcu.cpp",
-    ],
+    // All code is imported via libandroidicu_static.
+    srcs: [],
     // host_supported is required for some cases, e.g. host apex. This library
     // is not intended for general host use.  Please refer to
     // external/icu/build/icu.go for the full allowlist.
@@ -73,20 +71,10 @@ cc_library_shared {
     ],
     target: {
         android: {
-            static_libs: [
-                "libandroidicuinit",
-            ],
             cflags: [
                 "-DANDROID_LINK_SHARED_ICU4C",
             ],
             version_script: "libandroidicu.map.txt",
-        },
-        not_windows: {
-            // libandroidicuinit requires mmap(2) in sys/mman.h, but it's not
-            // available in the latest MinGW version.
-            static_libs: [
-                "libandroidicuinit",
-            ],
         },
         windows: {
             enabled: true,
@@ -104,7 +92,6 @@ cc_library_headers {
         "com.android.i18n",
     ],
 
-    // include/aicu/: extra utility APIs added by android
     // include/unicode/: Includes modified C headers from ICU4C,
     //                   but excludes C++ headers.
     // include/uconfig_local.h: local configuration specific for libandroidicu

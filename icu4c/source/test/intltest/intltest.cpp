@@ -46,13 +46,6 @@
 #include "umutex.h"
 #include "uoptions.h"
 
-// ANDROID_USE_ICU_REG is defined when building against the Android OS source tree.
-// androidicuinit is a static library which helps initialize ICU4C using the data
-// on the device.
-#if defined(__ANDROID__) && defined(ANDROID_USE_ICU_REG)
-#include <androidicuinit/android_icu_reg.h>
-#endif
-
 #ifdef XP_MAC_CONSOLE
 #include <console.h>
 #include "Files.h"
@@ -427,9 +420,8 @@ IntlTest::prettify(const UnicodeString &source, UBool parseBackslash)
  *                       tests dynamically load some data.
  */
 void IntlTest::setICU_DATA() {
-    #if defined(__ANDROID__) && defined(ANDROID_USE_ICU_REG)
-    android_icu_register();
-    #else
+    // Android-changed: Do not u_setDataDirectory because libicuuc.so initializes itself.
+    #if !defined(ANDROID_USE_ICU_REG)
     u_setDataDirectory(ctest_dataOutDir());
     #endif
 }

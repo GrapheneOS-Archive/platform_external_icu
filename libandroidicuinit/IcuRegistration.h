@@ -82,4 +82,23 @@ class IcuRegistration final {
 
 }  // namespace androidicuinit
 
+/**
+ * Initialize the ICU and load the data from .dat files from system image and
+ * various mainline modules.
+ * If ICU has already been registered, the function calls abort() and the process terminates.
+ * This function is NOT thread-safe.
+ */
+void android_icu_register();
+
+/**
+ * Unregister and unload the data. After this call, user can re-register.
+ */
+void android_icu_deregister();
+
+/**
+ * @return true if ICU has been registered.
+ */
+bool android_icu_is_registered();
+
+
 #endif  // ICU_REGISTRATION_H_included

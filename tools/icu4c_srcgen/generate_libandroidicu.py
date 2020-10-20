@@ -91,16 +91,9 @@ def main():
                                      'libandroidicu_shim.cpp.j2')
                        .encode('utf8'))
 
-    with open(android_path('external/icu/libandroidicu/aicu/extra_function_names.txt'),
-              'r') as in_file:
-        extra_function_names = [
-            line.strip() for line in in_file.readlines() if not line.startswith('#')
-        ]
-
     with open(android_path('external/icu/libandroidicu/libandroidicu.map.txt'),
               'w') as out_file:
-        out_file.write(generate_symbol_txt(functions, extra_function_names,
-                                           'libandroidicu.map.txt.j2')
+        out_file.write(generate_symbol_txt(functions, [], 'libandroidicu.map.txt.j2')
                        .encode('utf8'))
 
     for path in parser.header_paths_to_copy:
