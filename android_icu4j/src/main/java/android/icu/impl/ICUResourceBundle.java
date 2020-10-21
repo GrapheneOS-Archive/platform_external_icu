@@ -37,7 +37,6 @@ import android.icu.util.UResourceTypeMismatchException;
 /**
  * @hide Only a subset of ICU is exposed in Android
  */
-@libcore.api.IntraCoreApi
 public  class ICUResourceBundle extends UResourceBundle {
     /**
      * CLDR string value "∅∅∅" prevents fallback to the parent bundle.
@@ -299,7 +298,6 @@ public  class ICUResourceBundle extends UResourceBundle {
      * @exception MissingResourceException If a resource was not found.
      */
     @android.compat.annotation.UnsupportedAppUsage
-    @libcore.api.IntraCoreApi
     public ICUResourceBundle getWithFallback(String path) throws MissingResourceException {
         ICUResourceBundle actualBundle = this;
 
@@ -356,7 +354,6 @@ public  class ICUResourceBundle extends UResourceBundle {
     }
 
     // will throw type mismatch exception if the resource is not a string
-    @libcore.api.IntraCoreApi
     public String getStringWithFallback(String path) throws MissingResourceException {
         // Optimized form of getWithFallback(path).getString();
         ICUResourceBundle actualBundle = this;
