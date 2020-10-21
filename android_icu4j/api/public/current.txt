@@ -4296,7 +4296,7 @@ package android.icu.util {
     field public static final int TAISHO;
   }
 
-  @libcore.api.IntraCoreApi public final class LocaleData {
+  public final class LocaleData {
     method public static android.icu.util.VersionInfo getCLDRVersion();
     method public String getDelimiter(int);
     method public static android.icu.util.LocaleData getInstance(android.icu.util.ULocale);

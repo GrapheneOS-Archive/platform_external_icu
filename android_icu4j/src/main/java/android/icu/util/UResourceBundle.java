@@ -93,7 +93,6 @@ import android.icu.impl.ResourceBundleWrapper;
  * @author ram
  * @hide Only a subset of ICU is exposed in Android
  */
-@libcore.api.IntraCoreApi
 public abstract class UResourceBundle extends ResourceBundle {
 
 
@@ -153,7 +152,6 @@ public abstract class UResourceBundle extends ResourceBundle {
      * implicit.)  This is public for compatibility with Java, whose compiler
      * will generate public default constructors for an abstract class.
      */
-    @libcore.api.IntraCoreApi
     public UResourceBundle() {
     }
 
@@ -198,7 +196,6 @@ public abstract class UResourceBundle extends ResourceBundle {
      * @return a resource bundle for the given base name and locale
      */
 
-    @libcore.api.IntraCoreApi
     public static UResourceBundle getBundleInstance(String baseName, Locale locale) {
         if (baseName == null) {
             baseName = ICUData.ICU_BASE_NAME;
@@ -219,7 +216,6 @@ public abstract class UResourceBundle extends ResourceBundle {
      * @return a resource bundle for the given base name and locale
      */
     @android.compat.annotation.UnsupportedAppUsage
-    @libcore.api.IntraCoreApi
     public static UResourceBundle getBundleInstance(String baseName, ULocale locale) {
         if (baseName == null) {
             baseName = ICUData.ICU_BASE_NAME;
@@ -409,7 +405,6 @@ public abstract class UResourceBundle extends ResourceBundle {
      * @throws UResourceTypeMismatchException If resource bundle has a type mismatch.
      */
     @android.compat.annotation.UnsupportedAppUsage
-    @libcore.api.IntraCoreApi
     public String getString() {
         throw new UResourceTypeMismatchException("");
     }
@@ -423,7 +418,6 @@ public abstract class UResourceBundle extends ResourceBundle {
      * @throws MissingResourceException If resource bundle is missing.
      * @throws UResourceTypeMismatchException If resource bundle has a type mismatch.
      */
-    @libcore.api.IntraCoreApi
     public String[] getStringArray() {
         throw new UResourceTypeMismatchException("");
     }
@@ -533,7 +527,6 @@ public abstract class UResourceBundle extends ResourceBundle {
      * @throws IndexOutOfBoundsException If the index value is out of bounds of accepted values.
      * @throws UResourceTypeMismatchException If resource bundle type mismatch.
      */
-    @libcore.api.IntraCoreApi
     public String getString(int index) {
         ICUResourceBundle temp = (ICUResourceBundle)get(index);
         if (temp.getType() == STRING) {
@@ -550,7 +543,6 @@ public abstract class UResourceBundle extends ResourceBundle {
      * @throws IndexOutOfBoundsException If the index value is out of bounds of accepted values.
      * @throws MissingResourceException If the resource bundle is missing.
      */
-    @libcore.api.IntraCoreApi
     public UResourceBundle get(int index) {
         UResourceBundle obj = handleGet(index, null, this);
         if (obj == null) {
@@ -690,7 +682,6 @@ public abstract class UResourceBundle extends ResourceBundle {
      * @return type of the given resource.
      */
     @android.compat.annotation.UnsupportedAppUsage
-    @libcore.api.IntraCoreApi
     public int getType() {
         return NONE;
     }
@@ -731,7 +722,6 @@ public abstract class UResourceBundle extends ResourceBundle {
     /**
      * <strong>[icu]</strong> Resource type constant for strings.
      */
-    @libcore.api.IntraCoreApi
     public static final int STRING = 0;
 
     /**
@@ -754,7 +744,6 @@ public abstract class UResourceBundle extends ResourceBundle {
     /**
      * <strong>[icu]</strong> Resource type constant for arrays of resources.
      */
-    @libcore.api.IntraCoreApi
     public static final int ARRAY = 8;
 
     /**
