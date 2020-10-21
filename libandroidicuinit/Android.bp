@@ -18,10 +18,6 @@ cc_library_static {
     host_supported: true, // for ART host testing.
     native_bridge_supported: true,
     srcs: ["*.cpp"],
-    shared_libs: [
-        "libbase",
-        "liblog",
-    ],
     // Caution: Don't invoke the caller, e.g. openCommonData, from this library because it could
     //   cause an indefinite loop. This library interacts with libicuuc closely, but this library is
     //   stored in a separate directory to avoid a larger patch which could incur more works when
@@ -39,6 +35,10 @@ cc_library_static {
                 // See external/icu/android_icu4c/include/uconfig_local.h
                 // for more information.
                 "-DANDROID_LINK_SHARED_ICU4C",
+            ],
+            shared_libs: [
+                "libbase",
+                "liblog",
             ],
         },
     },
