@@ -1,11 +1,3 @@
-enumConstant:android.icu.impl.CacheValue$Strength#SOFT
-enumConstant:android.icu.impl.CacheValue$Strength#STRONG
-enumConstant:android.icu.impl.number.DecimalFormatProperties$ParseMode#JAVA_COMPATIBILITY
-field:android.icu.impl.ICUData#ICU_BASE_NAME
-field:android.icu.text.Normalizer#NFC
-field:android.icu.text.Normalizer#NFD
-field:android.icu.text.Normalizer#NFKC
-field:android.icu.text.Normalizer#NFKD
 field:android.icu.util.AnnualTimeZoneRule#MAX_YEAR
 field:android.icu.util.DateTimeRule#DOM
 field:android.icu.util.DateTimeRule#DOW
@@ -14,12 +6,6 @@ field:android.icu.util.DateTimeRule#DOW_LEQ_DOM
 field:android.icu.util.DateTimeRule#STANDARD_TIME
 field:android.icu.util.DateTimeRule#UTC_TIME
 field:android.icu.util.DateTimeRule#WALL_TIME
-field:android.icu.util.UResourceBundle#STRING
-field:android.icu.util.UResourceBundle#ARRAY
-method:android.icu.impl.CacheValue#setStrength(Strength)
-method:android.icu.impl.ICUResourceBundle#getStringWithFallback(String)
-method:android.icu.impl.ICUResourceBundle#getWithFallback(String)
-method:android.icu.impl.ZoneMeta#getCanonicalCLDRID(String)
 method:android.icu.text.CurrencyMetaInfo#getInstance()
 method:android.icu.text.CurrencyMetaInfo#currencies(CurrencyFilter)
 method:android.icu.text.CurrencyMetaInfo$CurrencyFilter#onRegion(String)
@@ -28,11 +14,8 @@ method:android.icu.text.DateFormatSymbols#DateFormatSymbols(ULocale,String)
 method:android.icu.text.DateFormatSymbols#getNarrowEras()
 method:android.icu.text.DateTimePatternGenerator#getFrozenInstance(ULocale)
 method:android.icu.text.DecimalFormat#setParseJavaCompatible(boolean)
-method:android.icu.text.DecimalFormat#setParseStrictMode(ParseMode)
 method:android.icu.text.IDNA#convertIDNToASCII(String,int)
 method:android.icu.text.IDNA#convertIDNToUnicode(String,int)
-method:android.icu.text.Normalizer#isNormalized(String,Mode,int)
-method:android.icu.text.Normalizer#normalize(String,Mode)
 method:android.icu.text.TimeZoneNames$MatchInfo#getNarrowEras()
 method:android.icu.text.TimeZoneNames$MatchInfo#matchLength()
 method:android.icu.text.TimeZoneNames$MatchInfo#mzID()
@@ -61,23 +44,8 @@ method:android.icu.util.TimeZoneTransition#getFrom()
 method:android.icu.util.TimeZoneTransition#getTime()
 method:android.icu.util.TimeZoneTransition#getTo()
 method:android.icu.util.ULocale#getRegionForSupplementalData(ULocale,boolean)
-method:android.icu.util.UResourceBundle#UResourceBundle()
-method:android.icu.util.UResourceBundle#getBundleInstance(String,Locale)
-method:android.icu.util.UResourceBundle#get(int)
-method:android.icu.util.UResourceBundle#getString()
-method:android.icu.util.UResourceBundle#getString(int)
-method:android.icu.util.UResourceBundle#getStringArray()
-method:android.icu.util.UResourceBundle#getType()
-type:android.icu.impl.CacheValue
-type:android.icu.impl.CacheValue$Strength
-type:android.icu.impl.ICUData
-type:android.icu.impl.ICUResourceBundle
-type:android.icu.impl.number.DecimalFormatProperties
-type:android.icu.impl.number.DecimalFormatProperties$ParseMode
-type:android.icu.impl.ZoneMeta
 type:android.icu.text.CurrencyMetaInfo
 type:android.icu.text.CurrencyMetaInfo$CurrencyFilter
-type:android.icu.text.Normalizer$Mode
 type:android.icu.text.TimeZoneNames$MatchInfo
 type:android.icu.util.AnnualTimeZoneRule
 type:android.icu.util.BasicTimeZone
@@ -85,13 +53,6 @@ type:android.icu.util.DateTimeRule
 type:android.icu.util.InitialTimeZoneRule
 type:android.icu.util.TimeZoneRule
 type:android.icu.util.TimeZoneTransition
-type:android.icu.util.UResourceBundle
 
 # For testing purposes
-field:android.icu.util.LocaleData#ES_INDEX
-field:android.icu.util.LocaleData#ES_STANDARD
 method:android.icu.util.BasicTimeZone#getPreviousTransition(long,boolean)
-method:android.icu.util.LocaleData#getExemplarSet(int,int)
-method:android.icu.util.LocaleData#getExemplarSet(ULocale,int,int)
-method:android.icu.util.UResourceBundle#getBundleInstance(String,ULocale)
-type:android.icu.util.LocaleData

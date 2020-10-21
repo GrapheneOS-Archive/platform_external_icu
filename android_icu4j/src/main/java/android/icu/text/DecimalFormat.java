@@ -2042,8 +2042,7 @@ public void setParseJavaCompatible(boolean parseJavaCompatible) {
    * @deprecated This API is ICU internal only.
  * @hide draft / provisional / internal are hidden on Android
    */
-  @libcore.api.IntraCoreApi
-@Deprecated
+  @Deprecated
 public synchronized void setParseStrictMode(ParseMode parseMode) {
     properties.setParseMode(parseMode);
     refreshFormatter();
