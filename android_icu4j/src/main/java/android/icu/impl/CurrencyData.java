@@ -22,7 +22,7 @@ import android.icu.util.ULocale;
 public class CurrencyData {
     public static final CurrencyDisplayInfoProvider provider;
 
-    @android.compat.annotation.UnsupportedAppUsage
+    @android.compat.annotation.UnsupportedAppUsage(maxTargetSdk = 30, trackingBug = 170729553)
     private CurrencyData() {}
 
     /**
