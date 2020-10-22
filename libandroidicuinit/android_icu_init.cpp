@@ -18,7 +18,6 @@
 
 #include "androidicuinit/android_icu_init.h"
 #include "IcuRegistration.h"
-#include <log/log.h>
 
 void android_icu_init() {
     bool runAndroidInit = false;
@@ -36,7 +35,7 @@ void android_icu_init() {
         if (!android_icu_is_registered()) {
             android_icu_register();
         } else {
-            ALOGE("libicuuc has already been initialized but android_icu_init() is called.");
+            AICU_LOGE("libicuuc has already been initialized but android_icu_init() is called.");
         }
     }
 }
@@ -45,7 +44,7 @@ void android_icu_cleanup() {
     if (android_icu_is_registered()) {
         android_icu_deregister();
     } else {
-        ALOGW("libicuuc is not initialized and possibly never used, "
+        AICU_LOGW("libicuuc is not initialized and possibly never used, "
               "but android_icu_cleanup() is called.");
     }
 }
