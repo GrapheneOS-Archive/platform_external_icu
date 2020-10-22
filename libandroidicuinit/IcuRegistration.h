@@ -19,8 +19,32 @@
 
 #include <memory>
 #include <string>
+#include <cstdio>
 
-#include <android-base/macros.h>
+#ifdef __ANDROID__
+  #include <android-base/logging.h>
+  #include <android-base/unique_fd.h>
+  #include <log/log.h>
+  #define AICU_LOGE(...) ALOGE(__VA_ARGS__)
+  #define AICU_LOGW(...) ALOGW(__VA_ARGS__)
+  #define AICU_LOGD(...) ALOGD(__VA_ARGS__)
+  #define AICU_LOGV(...) ALOGV(__VA_ARGS__)
+#else
+  // http://b/171371690 Avoid dependency on liblog and libbase on host for
+  // downstream unbundled branches. In this case, liblog and libbase are not
+  // very useful on host and we just try to avoid it here in our best effort.
+  #define AICU_LOGE(...) fprintf(stderr, __VA_ARGS__)
+  #define AICU_LOGW(...) fprintf(stderr, __VA_ARGS__)
+  #define AICU_LOGD(...) fprintf(stderr, __VA_ARGS__)
+  #define AICU_LOGV(...) fprintf(stderr, __VA_ARGS__)
+  #ifndef CHECK
+    #define CHECK(cond)       \
+      if (!(cond)) {             \
+        AICU_LOGE(#cond "\n");     \
+        abort();              \
+      }
+  #endif
+#endif
 
 namespace androidicuinit {
 namespace impl {
@@ -48,7 +72,9 @@ class IcuDataMap final {
   void* data_;          // Save for munmap.
   size_t data_length_;  // Save for munmap.
 
-  DISALLOW_COPY_AND_ASSIGN(IcuDataMap);
+  // Disable copy constructor and assignment operator
+  IcuDataMap(const IcuDataMap&) = delete;
+  void operator=(const IcuDataMap&) = delete;
 };
 
 }  // namespace impl
@@ -77,7 +103,9 @@ class IcuRegistration final {
   std::unique_ptr<impl::IcuDataMap> icu_datamap_from_tz_module_;
   std::unique_ptr<impl::IcuDataMap> icu_datamap_from_i18n_module_;
 
-  DISALLOW_COPY_AND_ASSIGN(IcuRegistration);
+  // Disable copy constructor and assignment operator
+  IcuRegistration(const IcuRegistration&) = delete;
+  void operator=(const IcuRegistration&) = delete;
 };
 
 }  // namespace androidicuinit
