@@ -60,10 +60,6 @@ cc_defaults {
             whole_static_libs: [
                 "libandroidicuinit", // Required to set the data files in libicuuc in ART testing.
             ],
-            shared_libs: [
-                "libbase", // required by libandroidicuinit
-                "liblog", // required by libandroidicuinit
-            ],
             required: ["icu-data_host_i18n_apex"],
         },
         windows: {

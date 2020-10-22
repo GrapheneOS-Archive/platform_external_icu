@@ -19,19 +19,61 @@
 #include <sys/mman.h>
 #include <sys/stat.h>
 #include <sys/types.h>
+#include <errno.h>
+#include <fcntl.h>
 #include <unistd.h>
 
-#include <android-base/logging.h>
-#include <android-base/unique_fd.h>
-#include <log/log.h>
 #include <unicode/udata.h>
 #include <unicode/utypes.h>
 
 namespace androidicuinit {
 namespace impl {
 
-// Map in ICU data at the path, returning null if it failed (prints error to
-// ALOGE).
+#ifndef __ANDROID__
+// http://b/171371690 Avoid dependency on liblog and libbase on host
+// Simplified version of android::base::unique_fd for host.
+class simple_unique_fd final {
+ public:
+  simple_unique_fd(int fd) {
+    reset(fd);
+  }
+  ~simple_unique_fd() {
+    reset();
+  }
+  int get() {
+    return fd_;
+  }
+
+ private:
+  int fd_ = -1;
+  void reset(int new_fd = -1) {
+    if (fd_ != -1) {
+      close(fd_);
+    }
+    fd_ = new_fd;
+  }
+  // Disable copy constructor and assignment operator
+  simple_unique_fd(const simple_unique_fd&) = delete;
+  void operator=(const simple_unique_fd&) = delete;
+
+};
+
+  // A copy of TEMP_FAILURE_RETRY from android-base/macros.h
+  // bionic and glibc both have TEMP_FAILURE_RETRY, but eg Mac OS' libc doesn't.
+  #ifndef TEMP_FAILURE_RETRY
+    #define TEMP_FAILURE_RETRY(exp)            \
+      ({                                       \
+        decltype(exp) _rc;                     \
+        do {                                   \
+          _rc = (exp);                         \
+        } while (_rc == -1 && errno == EINTR); \
+        _rc;                                   \
+      })
+  #endif
+#endif // #ifndef __ANDROID__
+
+
+// Map in ICU data at the path, returning null to print error if it failed.
 std::unique_ptr<IcuDataMap> IcuDataMap::Create(const std::string& path) {
   std::unique_ptr<IcuDataMap> map(new IcuDataMap(path));
 
@@ -49,17 +91,23 @@ IcuDataMap::~IcuDataMap() { TryUnmap(); }
 
 bool IcuDataMap::TryMap() {
   // Open the file and get its length.
-  android::base::unique_fd fd(
-      TEMP_FAILURE_RETRY(open(path_.c_str(), O_RDONLY)));
+  #ifdef __ANDROID__
+    #define UNIQUE_FD android::base::unique_fd
+  #else
+    // http://b/171371690 Avoid dependency on liblog and libbase on host
+    #define UNIQUE_FD simple_unique_fd
+  #endif
+  UNIQUE_FD fd(TEMP_FAILURE_RETRY(open(path_.c_str(), O_RDONLY)));
+  #undef UNIQUE_FD
 
   if (fd.get() == -1) {
-    ALOGE("Couldn't open '%s': %s", path_.c_str(), strerror(errno));
+    AICU_LOGE("Couldn't open '%s': %s", path_.c_str(), strerror(errno));
     return false;
   }
 
   struct stat sb;
   if (fstat(fd.get(), &sb) == -1) {
-    ALOGE("Couldn't stat '%s': %s", path_.c_str(), strerror(errno));
+    AICU_LOGE("Couldn't stat '%s': %s", path_.c_str(), strerror(errno));
     return false;
   }
 
@@ -69,14 +117,14 @@ bool IcuDataMap::TryMap() {
   data_ =
       mmap(NULL, data_length_, PROT_READ, MAP_SHARED, fd.get(), 0 /* offset */);
   if (data_ == MAP_FAILED) {
-    ALOGE("Couldn't mmap '%s': %s", path_.c_str(), strerror(errno));
+    AICU_LOGE("Couldn't mmap '%s': %s", path_.c_str(), strerror(errno));
     return false;
   }
 
   // Tell the kernel that accesses are likely to be random rather than
   // sequential.
   if (madvise(data_, data_length_, MADV_RANDOM) == -1) {
-    ALOGE("Couldn't madvise(MADV_RANDOM) '%s': %s", path_.c_str(),
+    AICU_LOGE("Couldn't madvise(MADV_RANDOM) '%s': %s", path_.c_str(),
           strerror(errno));
     return false;
   }
@@ -86,7 +134,7 @@ bool IcuDataMap::TryMap() {
   // Tell ICU to use our memory-mapped data.
   udata_setCommonData(data_, &status);
   if (status != U_ZERO_ERROR) {
-    ALOGE("Couldn't initialize ICU (udata_setCommonData): %s (%s)",
+    AICU_LOGE("Couldn't initialize ICU (udata_setCommonData): %s (%s)",
           u_errorName(status), path_.c_str());
     return false;
   }
@@ -103,7 +151,7 @@ bool IcuDataMap::TryUnmap() {
 
   if (data_ != nullptr && data_ != MAP_FAILED) {
     if (munmap(data_, data_length_) == -1) {
-      ALOGE("Couldn't munmap '%s': %s", path_.c_str(), strerror(errno));
+      AICU_LOGE("Couldn't munmap '%s': %s", path_.c_str(), strerror(errno));
       return false;
     }
   }
@@ -141,31 +189,31 @@ IcuRegistration::IcuRegistration() {
   // If it does, map it first so we use its data in preference to later ones.
   std::string dataPath = getDataTimeZonePath();
   if (pathExists(dataPath)) {
-    ALOGD("Time zone override file found: %s", dataPath.c_str());
+    AICU_LOGD("Time zone override file found: %s", dataPath.c_str());
     icu_datamap_from_data_ = impl::IcuDataMap::Create(dataPath);
     if (icu_datamap_from_data_ == nullptr) {
-      ALOGW(
+      AICU_LOGW(
           "TZ override /data file %s exists but could not be loaded. Skipping.",
           dataPath.c_str());
     }
   } else {
-    ALOGV("No timezone override /data file found: %s", dataPath.c_str());
+    AICU_LOGV("No timezone override /data file found: %s", dataPath.c_str());
   }
 
   // Check the timezone override file exists from a mounted APEX file.
   // If it does, map it next so we use its data in preference to later ones.
   std::string tzModulePath = getTimeZoneModulePath();
   if (pathExists(tzModulePath)) {
-    ALOGD("Time zone APEX ICU file found: %s", tzModulePath.c_str());
+    AICU_LOGD("Time zone APEX ICU file found: %s", tzModulePath.c_str());
     icu_datamap_from_tz_module_ = impl::IcuDataMap::Create(tzModulePath);
     if (icu_datamap_from_tz_module_ == nullptr) {
-      ALOGW(
+      AICU_LOGW(
           "TZ module override file %s exists but could not be loaded. "
           "Skipping.",
           tzModulePath.c_str());
     }
   } else {
-    ALOGV("No time zone module override file found: %s", tzModulePath.c_str());
+    AICU_LOGV("No time zone module override file found: %s", tzModulePath.c_str());
   }
 
   // Use the ICU data files that shipped with the i18n module for everything
@@ -176,7 +224,7 @@ IcuRegistration::IcuRegistration() {
     // IcuDataMap::Create() will log on error so there is no need to log here.
     abort();
   }
-  ALOGD("I18n APEX ICU file found: %s", i18nModulePath.c_str());
+  AICU_LOGD("I18n APEX ICU file found: %s", i18nModulePath.c_str());
 }
 
 // De-init ICU, unloading the data files. Do the opposite of the above function.
@@ -197,7 +245,7 @@ bool IcuRegistration::pathExists(const std::string& path) {
 std::string IcuRegistration::getDataTimeZonePath() {
   const char* dataPathPrefix = getenv("ANDROID_DATA");
   if (dataPathPrefix == NULL) {
-    ALOGE("ANDROID_DATA environment variable not set");
+    AICU_LOGE("ANDROID_DATA environment variable not set");
     abort();
   }
   std::string dataPath;
@@ -212,7 +260,7 @@ std::string IcuRegistration::getDataTimeZonePath() {
 std::string IcuRegistration::getTimeZoneModulePath() {
   const char* tzdataModulePathPrefix = getenv("ANDROID_TZDATA_ROOT");
   if (tzdataModulePathPrefix == NULL) {
-    ALOGE("ANDROID_TZDATA_ROOT environment variable not set");
+    AICU_LOGE("ANDROID_TZDATA_ROOT environment variable not set");
     abort();
   }
 
@@ -225,7 +273,7 @@ std::string IcuRegistration::getTimeZoneModulePath() {
 std::string IcuRegistration::getI18nModulePath() {
   const char* i18nModulePathPrefix = getenv("ANDROID_I18N_ROOT");
   if (i18nModulePathPrefix == NULL) {
-    ALOGE("ANDROID_I18N_ROOT environment variable not set");
+    AICU_LOGE("ANDROID_I18N_ROOT environment variable not set");
     abort();
   }
 
