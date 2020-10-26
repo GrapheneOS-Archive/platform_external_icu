@@ -33,10 +33,15 @@
   // http://b/171371690 Avoid dependency on liblog and libbase on host for
   // downstream unbundled branches. In this case, liblog and libbase are not
   // very useful on host and we just try to avoid it here in our best effort.
-  #define AICU_LOGE(...) fprintf(stderr, __VA_ARGS__)
-  #define AICU_LOGW(...) fprintf(stderr, __VA_ARGS__)
-  #define AICU_LOGD(...) fprintf(stderr, __VA_ARGS__)
-  #define AICU_LOGV(...) fprintf(stderr, __VA_ARGS__)
+  #define AICU_LOG_PRINTLN(...)       \
+    ({                                \
+      fprintf(stderr, __VA_ARGS__);   \
+      fprintf(stderr, "\n");          \
+    })
+  #define AICU_LOGE(...) AICU_LOG_PRINTLN(__VA_ARGS__)
+  #define AICU_LOGW(...) AICU_LOG_PRINTLN(__VA_ARGS__)
+  #define AICU_LOGD(...) AICU_LOG_PRINTLN(__VA_ARGS__)
+  #define AICU_LOGV(...) AICU_LOG_PRINTLN(__VA_ARGS__)
   #ifndef CHECK
     #define CHECK(cond)       \
       if (!(cond)) {             \
