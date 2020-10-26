@@ -72,6 +72,12 @@ class simple_unique_fd final {
   #endif
 #endif // #ifndef __ANDROID__
 
+// http://b/171371690 Avoid dependency on liblog and libbase on host
+#ifdef __ANDROID__
+  typedef android::base::unique_fd aicu_unique_fd;
+#else
+  typedef simple_unique_fd aicu_unique_fd;
+#endif
 
 // Map in ICU data at the path, returning null to print error if it failed.
 std::unique_ptr<IcuDataMap> IcuDataMap::Create(const std::string& path) {
@@ -91,14 +97,7 @@ IcuDataMap::~IcuDataMap() { TryUnmap(); }
 
 bool IcuDataMap::TryMap() {
   // Open the file and get its length.
-  #ifdef __ANDROID__
-    #define UNIQUE_FD android::base::unique_fd
-  #else
-    // http://b/171371690 Avoid dependency on liblog and libbase on host
-    #define UNIQUE_FD simple_unique_fd
-  #endif
-  UNIQUE_FD fd(TEMP_FAILURE_RETRY(open(path_.c_str(), O_RDONLY)));
-  #undef UNIQUE_FD
+  aicu_unique_fd fd(TEMP_FAILURE_RETRY(open(path_.c_str(), O_RDONLY)));
 
   if (fd.get() == -1) {
     AICU_LOGE("Couldn't open '%s': %s", path_.c_str(), strerror(errno));
