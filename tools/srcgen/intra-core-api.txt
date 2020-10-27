@@ -6,13 +6,8 @@ field:android.icu.util.DateTimeRule#DOW_LEQ_DOM
 field:android.icu.util.DateTimeRule#STANDARD_TIME
 field:android.icu.util.DateTimeRule#UTC_TIME
 field:android.icu.util.DateTimeRule#WALL_TIME
-method:android.icu.text.CurrencyMetaInfo#getInstance()
-method:android.icu.text.CurrencyMetaInfo#currencies(CurrencyFilter)
-method:android.icu.text.CurrencyMetaInfo$CurrencyFilter#onRegion(String)
-method:android.icu.text.CurrencyMetaInfo$CurrencyFilter#withDate(Date)
 method:android.icu.text.DateFormatSymbols#DateFormatSymbols(ULocale,String)
 method:android.icu.text.DateFormatSymbols#getNarrowEras()
-method:android.icu.text.DateTimePatternGenerator#getFrozenInstance(ULocale)
 method:android.icu.text.DecimalFormat#setParseJavaCompatible(boolean)
 method:android.icu.text.IDNA#convertIDNToASCII(String,int)
 method:android.icu.text.IDNA#convertIDNToUnicode(String,int)
@@ -44,8 +39,6 @@ method:android.icu.util.TimeZoneTransition#getFrom()
 method:android.icu.util.TimeZoneTransition#getTime()
 method:android.icu.util.TimeZoneTransition#getTo()
 method:android.icu.util.ULocale#getRegionForSupplementalData(ULocale,boolean)
-type:android.icu.text.CurrencyMetaInfo
-type:android.icu.text.CurrencyMetaInfo$CurrencyFilter
 type:android.icu.text.TimeZoneNames$MatchInfo
 type:android.icu.util.AnnualTimeZoneRule
 type:android.icu.util.BasicTimeZone
