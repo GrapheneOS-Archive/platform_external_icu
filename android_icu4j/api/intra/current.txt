@@ -1,23 +1,9 @@
 // Signature format: 2.0
 package android.icu.text {
 
-  public class CurrencyMetaInfo {
-    method public java.util.List<java.lang.String> currencies(android.icu.text.CurrencyMetaInfo.CurrencyFilter);
-    method public static android.icu.text.CurrencyMetaInfo getInstance();
-  }
-
-  public static final class CurrencyMetaInfo.CurrencyFilter {
-    method public static android.icu.text.CurrencyMetaInfo.CurrencyFilter onRegion(String);
-    method public android.icu.text.CurrencyMetaInfo.CurrencyFilter withDate(java.util.Date);
-  }
-
   public class DateFormatSymbols implements java.lang.Cloneable java.io.Serializable {
     ctor @Deprecated public DateFormatSymbols(android.icu.util.ULocale, String);
     method public String[] getNarrowEras();
-  }
-
-  public class DateTimePatternGenerator implements java.lang.Cloneable android.icu.util.Freezable<android.icu.text.DateTimePatternGenerator> {
-    method @Deprecated public static android.icu.text.DateTimePatternGenerator getFrozenInstance(android.icu.util.ULocale);
   }
 
   public class DecimalFormat extends android.icu.text.NumberFormat {
@@ -185,7 +171,6 @@ package com.android.icu.util {
   public class Icu4cMetadata {
     method public static String getCldrVersion();
     method public static String getIcuVersion();
-    method public static String getTzdbVersion();
     method public static String getUnicodeVersion();
   }
 
