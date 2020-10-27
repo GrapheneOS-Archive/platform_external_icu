@@ -158,6 +158,7 @@ class DeclaredFunctionsParser:
         self.decl_filters = decl_filters
         self.allowlisted_decl_filters = allowlisted_decl_filter
         self.va_functions_mapping = {}
+        self.ignored_include_dependency = {}
 
         # properties to store the parsing result
         self.all_headers = []
@@ -185,6 +186,13 @@ class DeclaredFunctionsParser:
         'umsg_format', it will call 'umsg_vformat' instead, with the va_list arg
         inserted as the 3rd argument."""
         self.va_functions_mapping = mapping
+
+    def set_ignored_include_dependency(self, mapping):
+        """
+        A sample mapping is { "ulocdata.h" : [ "uloc.h", "ures.h" ] }.
+        The include dependencies will explicitly be ignored when producing header_paths_to_copy.
+        """
+        self.ignored_include_dependency = mapping
 
     @property
     def header_includes(self):
@@ -304,10 +312,16 @@ class DeclaredFunctionsParser:
             self.all_header_paths_to_copy.add(header)
         while file_queue:
             file = file_queue.pop()
+            file_basename = os.path.basename(file)
             if file in file_processed:
                 continue
             file_processed.add(file)
             for header in header_dependencies[file]:
+                header_basename = os.path.basename(header)
+                # Skip this header if this dependency is explicitly ignored
+                if file_basename in self.ignored_include_dependency and \
+                    header_basename in self.ignored_include_dependency[file_basename]:
+                    continue
                 if header in header_dependencies:  # Do not care non-icu4c headers
                     self.all_header_paths_to_copy.add(header)
                     file_queue.appendleft(header)
