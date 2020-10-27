@@ -112,7 +112,6 @@ public class DateTimePatternGenerator implements Freezable<DateTimePatternGenera
      * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
-    @libcore.api.IntraCoreApi
     @Deprecated
     public static DateTimePatternGenerator getFrozenInstance(ULocale uLocale) {
         String localeKey = uLocale.toString();

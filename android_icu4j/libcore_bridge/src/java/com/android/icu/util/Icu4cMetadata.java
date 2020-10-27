@@ -19,7 +19,6 @@ package com.android.icu.util;
 public class Icu4cMetadata {
 
     /** Returns the TZData version as reported by ICU4C. */
-    @libcore.api.IntraCoreApi
     public static native String getTzdbVersion();
 
     /**
