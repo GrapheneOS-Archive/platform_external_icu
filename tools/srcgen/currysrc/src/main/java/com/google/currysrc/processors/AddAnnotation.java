@@ -161,6 +161,8 @@ public class AddAnnotation implements Processor {
                     value = reader.nextInt();
                   } else if (propertyType == double.class) {
                     value = reader.nextDouble();
+                  } else if (propertyType == long.class) {
+                    value = reader.nextLong();
                   } else {
                     throw new IllegalStateException(
                         "Unknown property type: " + propertyType + " for " + annotationClassName);
@@ -392,7 +394,7 @@ public class AddAnnotation implements Processor {
       stringLiteral.setLiteralValue((String) value);
       return stringLiteral;
     }
-    if (value instanceof Integer) {
+    if ((value instanceof Integer) || (value instanceof Long)) {
       NumberLiteral numberLiteral = rewrite.getAST().newNumberLiteral();
       numberLiteral.setToken(value.toString());
       return numberLiteral;
