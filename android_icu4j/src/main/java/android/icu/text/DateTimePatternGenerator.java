@@ -2729,7 +2729,7 @@ public class DateTimePatternGenerator implements Freezable<DateTimePatternGenera
     private static class DistanceInfo {
         int missingFieldMask;
         int extraFieldMask;
-        @android.compat.annotation.UnsupportedAppUsage
+        @android.compat.annotation.UnsupportedAppUsage(maxTargetSdk = 30, trackingBug = 170729553)
         private DistanceInfo() {
         }
         void clear() {
