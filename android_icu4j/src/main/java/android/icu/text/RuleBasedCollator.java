@@ -1800,7 +1800,7 @@ public final class RuleBasedCollator extends Collator {
      * {@inheritDoc}
      * @hide draft / provisional / internal are hidden on Android
      */
-    @android.compat.annotation.UnsupportedAppUsage
+    @android.compat.annotation.UnsupportedAppUsage(maxTargetSdk = 30, trackingBug = 170729553)
     @Override
     public ULocale getLocale(ULocale.Type type) {
         if (type == ULocale.ACTUAL_LOCALE) {

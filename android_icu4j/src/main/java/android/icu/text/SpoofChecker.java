@@ -1995,22 +1995,22 @@ public class SpoofChecker {
         // }
         // }
 
-        @android.compat.annotation.UnsupportedAppUsage
+        @android.compat.annotation.UnsupportedAppUsage(maxTargetSdk = 30, trackingBug = 170729553)
         ScriptSet() {
         }
 
-        @android.compat.annotation.UnsupportedAppUsage
+        @android.compat.annotation.UnsupportedAppUsage(maxTargetSdk = 30, trackingBug = 170729553)
         public void and(int script) {
             this.clear(0, script);
             this.clear(script + 1, UScript.CODE_LIMIT);
         }
 
-        @android.compat.annotation.UnsupportedAppUsage
+        @android.compat.annotation.UnsupportedAppUsage(maxTargetSdk = 30, trackingBug = 170729553)
         public void setAll() {
             this.set(0, UScript.CODE_LIMIT);
         }
 
-        @android.compat.annotation.UnsupportedAppUsage
+        @android.compat.annotation.UnsupportedAppUsage(maxTargetSdk = 30, trackingBug = 170729553)
         public boolean isFull() {
             return cardinality() == UScript.CODE_LIMIT;
         }

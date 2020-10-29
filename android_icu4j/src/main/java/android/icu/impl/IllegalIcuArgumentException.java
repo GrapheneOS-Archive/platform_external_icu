@@ -17,7 +17,7 @@ package android.icu.impl;
 public class IllegalIcuArgumentException extends IllegalArgumentException {
     private static final long serialVersionUID = 3789261542830211225L;
 
-    @android.compat.annotation.UnsupportedAppUsage
+    @android.compat.annotation.UnsupportedAppUsage(maxTargetSdk = 30, trackingBug = 170729553)
     public IllegalIcuArgumentException(String errorMessage) {
         super(errorMessage);
     }
