@@ -5,6 +5,7 @@
 
 #include <unicode/uchar.h>
 #include <unicode/uloc.h>
+#include <unicode/ulocdata.h>
 #include <unicode/ustring.h>
 #include <unicode/utypes.h>
 #include <unicode/uversion.h>
@@ -154,6 +155,7 @@
 #undef uloc_toLegacyType
 #undef uloc_toUnicodeLocaleKey
 #undef uloc_toUnicodeLocaleType
+#undef ulocdata_getCLDRVersion
 
 extern "C" {
 void u_charAge(UChar32 c, UVersionInfo versionArray) {
@@ -587,5 +589,8 @@ const char * uloc_toUnicodeLocaleKey(const char * keyword) {
 }
 const char * uloc_toUnicodeLocaleType(const char * keyword, const char * value) {
   return U_ICU_ENTRY_POINT_RENAME(uloc_toUnicodeLocaleType)(keyword, value);
+}
+void ulocdata_getCLDRVersion(UVersionInfo versionArray, UErrorCode * status) {
+  U_ICU_ENTRY_POINT_RENAME(ulocdata_getCLDRVersion)(versionArray, status);
 }
 }
