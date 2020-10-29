@@ -21,10 +21,43 @@
 #include <sys/types.h>
 #include <errno.h>
 #include <fcntl.h>
+#include <string.h>
 #include <unistd.h>
 
 #include <unicode/udata.h>
 #include <unicode/utypes.h>
+
+#ifndef __ANDROID__
+static int PriorityToLevel(char priority) {
+  // Priority is just the array index of priority in kPriorities.
+  static const char* kPriorities = "VDIWEF";
+  static const int kLogSuppress = sizeof(kPriorities);
+  const char* matching_priority = strchr(kPriorities, toupper(priority));
+  return (matching_priority != nullptr) ? matching_priority - kPriorities : kLogSuppress;
+}
+
+static int GetHostLogLevel() {
+  const char* log_tags = getenv("ANDROID_LOG_TAGS");
+  if (log_tags == nullptr) {
+    return 0;
+  }
+  // Find the wildcard prefix if present in ANDROID_LOG_TAGS.
+  static constexpr const char* kLogWildcardPrefix = "*:";
+  static constexpr size_t kLogWildcardPrefixLength = sizeof(kLogWildcardPrefixLength) - 1;
+  const char* wildcard_start = strstr(log_tags, kLogWildcardPrefix);
+  if (wildcard_start == nullptr) {
+    return 0;
+  }
+  // Priority is based on the character after the wildcard prefix.
+  char priority = *(wildcard_start + kLogWildcardPrefixLength);
+  return PriorityToLevel(priority);
+}
+
+bool AIcuHostShouldLog(char priority) {
+  static int g_LogLevel = GetHostLogLevel();
+  return PriorityToLevel(priority) >= g_LogLevel;
+}
+#endif  // __ANDROID__
 
 namespace androidicuinit {
 namespace impl {
