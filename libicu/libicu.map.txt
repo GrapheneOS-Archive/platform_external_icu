@@ -160,6 +160,7 @@ LIBICU_31 { # introduced=31
     uloc_toLegacyType;
     uloc_toUnicodeLocaleKey;
     uloc_toUnicodeLocaleType;
+    ulocdata_getCLDRVersion;
   local:
     *;
 };
