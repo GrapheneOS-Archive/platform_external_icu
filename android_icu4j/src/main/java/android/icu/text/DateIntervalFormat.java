@@ -488,7 +488,7 @@ public class DateIntervalFormat extends UFormat {
     /*
      * default constructor; private because we don't want anyone to use
      */
-    @android.compat.annotation.UnsupportedAppUsage
+    @android.compat.annotation.UnsupportedAppUsage(maxTargetSdk = 30, trackingBug = 170729553)
     @SuppressWarnings("unused")
     private DateIntervalFormat() {
     }
