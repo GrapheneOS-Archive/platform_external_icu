@@ -42,8 +42,8 @@ static int GetHostLogLevel() {
     return 0;
   }
   // Find the wildcard prefix if present in ANDROID_LOG_TAGS.
-  static constexpr const char* kLogWildcardPrefix = "*:";
-  static constexpr size_t kLogWildcardPrefixLength = sizeof(kLogWildcardPrefixLength) - 1;
+  static constexpr const char kLogWildcardPrefix[] = "*:";
+  static constexpr size_t kLogWildcardPrefixLength = sizeof(kLogWildcardPrefix) - 1;
   const char* wildcard_start = strstr(log_tags, kLogWildcardPrefix);
   if (wildcard_start == nullptr) {
     return 0;
