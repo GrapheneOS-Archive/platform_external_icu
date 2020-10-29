@@ -125,6 +125,7 @@ u_tolower
 u_totitle
 u_toupper
 u_versionToString
+ulocdata_getCLDRVersion
 uloc_acceptLanguage
 uloc_addLikelySubtags
 uloc_canonicalize

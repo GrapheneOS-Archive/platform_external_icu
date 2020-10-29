@@ -171,6 +171,7 @@ def generate_cts_headers(decl_names):
         out.write(modified)
 
 IGNORED_INCLUDE_DEPENDENCY = {
+    "ulocdata.h" : [ "ures.h", "uset.h", ],
 }
 
 def main():

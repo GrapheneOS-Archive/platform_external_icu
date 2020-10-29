@@ -1103,7 +1103,7 @@
 // #define uloc_toUnicodeLocaleKey U_ICU_ENTRY_POINT_RENAME(uloc_toUnicodeLocaleKey)
 // #define uloc_toUnicodeLocaleType U_ICU_ENTRY_POINT_RENAME(uloc_toUnicodeLocaleType)
 #define ulocdata_close U_ICU_ENTRY_POINT_RENAME(ulocdata_close)
-#define ulocdata_getCLDRVersion U_ICU_ENTRY_POINT_RENAME(ulocdata_getCLDRVersion)
+// #define ulocdata_getCLDRVersion U_ICU_ENTRY_POINT_RENAME(ulocdata_getCLDRVersion)
 #define ulocdata_getDelimiter U_ICU_ENTRY_POINT_RENAME(ulocdata_getDelimiter)
 #define ulocdata_getExemplarSet U_ICU_ENTRY_POINT_RENAME(ulocdata_getExemplarSet)
 #define ulocdata_getLocaleDisplayPattern U_ICU_ENTRY_POINT_RENAME(ulocdata_getLocaleDisplayPattern)
