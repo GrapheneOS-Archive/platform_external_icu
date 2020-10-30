@@ -16,21 +16,27 @@
 
 package com.android.i18n.timezone;
 
+import android.icu.platform.AndroidDataFiles;
+
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Utility methods associated with finding updateable time zone data files.
+ * Utility methods associated with finding updateable time zone data files. ICU4C and ICU4J also
+ * read files affected by time zone updates. That logic is kept in {@link AndroidDataFiles}
+ * and should be updated if file locations or lookup order changes.
  *
  * @hide
  */
 @libcore.api.CorePlatformApi
 @libcore.api.IntraCoreApi
 public final class TimeZoneDataFiles {
-    private static final String ANDROID_ROOT_ENV = "ANDROID_ROOT";
-    private static final String ANDROID_I18N_ROOT_ENV = "ANDROID_I18N_ROOT";
-    private static final String ANDROID_TZDATA_ROOT_ENV = "ANDROID_TZDATA_ROOT";
-    private static final String ANDROID_DATA_ENV = "ANDROID_DATA";
+    private static final String ANDROID_ROOT_ENV = AndroidDataFiles.ANDROID_ROOT_ENV;
+    private static final String ANDROID_I18N_ROOT_ENV = AndroidDataFiles.ANDROID_I18N_ROOT_ENV;
+    private static final String ANDROID_TZDATA_ROOT_ENV = AndroidDataFiles.ANDROID_TZDATA_ROOT_ENV;
+    private static final String ANDROID_DATA_ENV = AndroidDataFiles.ANDROID_DATA_ENV;
 
     private TimeZoneDataFiles() {}
 
@@ -76,6 +82,16 @@ public final class TimeZoneDataFiles {
         return getTimeZoneModuleTzFile(TzDataSetVersion.DEFAULT_FILE_NAME);
     }
 
+    /**
+     * Reads the version of time zone data supplied by the time zone data module.
+     */
+    @libcore.api.CorePlatformApi
+    public static TzDataSetVersion readTimeZoneModuleVersion()
+            throws IOException, TzDataSetVersion.TzDataSetException {
+        String tzVersionFileName = getTimeZoneModuleTzFile(TzDataSetVersion.DEFAULT_FILE_NAME);
+        return TzDataSetVersion.readFromFile(new File(tzVersionFileName));
+    }
+
     // VisibleForTesting
     public static String getTimeZoneModuleFile(String fileName) {
         return System.getenv(ANDROID_TZDATA_ROOT_ENV) + "/etc/" + fileName;
@@ -91,10 +107,6 @@ public final class TimeZoneDataFiles {
 
     public static String getSystemTzFile(String fileName) {
         return getEnvironmentPath(ANDROID_ROOT_ENV, "/usr/share/zoneinfo/" + fileName);
-    }
-
-    public static String getSystemIcuFile(String fileName) {
-        return getEnvironmentPath(ANDROID_ROOT_ENV, "/usr/icu/" + fileName);
     }
 
     @libcore.api.IntraCoreApi
@@ -123,6 +135,11 @@ public final class TimeZoneDataFiles {
         paths.add(i18nModuleIcuDataPath);
 
         return String.join(":", paths);
+    }
+
+    // VisibleForTesting
+    public static String getSystemIcuFile(String fileName) {
+        return getEnvironmentPath(ANDROID_ROOT_ENV, "/usr/icu/" + fileName);
     }
 
     /**

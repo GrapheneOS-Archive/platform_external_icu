@@ -16,11 +16,17 @@
 
 package com.android.i18n.system;
 
+import android.compat.Compatibility;
+import android.compat.annotation.ChangeId;
+import android.compat.annotation.EnabledAfter;
+import android.icu.platform.AndroidDataFiles;
 import android.icu.impl.CacheValue;
 import android.icu.text.DateFormatSymbols;
 import android.icu.text.DecimalFormatSymbols;
 import android.icu.util.TimeZone;
 import android.icu.util.ULocale;
+
+import dalvik.annotation.compat.VersionCodes;
 
 /**
  * Provides hooks for {@link dalvik.system.ZygoteHooks} to call into this class to initialize
@@ -66,5 +72,31 @@ public final class ZygoteHooks {
     public static void onEndPreload() {
         // All cache references created by ICU from this point will be soft.
         CacheValue.setStrength(CacheValue.Strength.SOFT);
+
+        // The PROP_ICUBINARY_DATA_PATH property was used on Android before S to configure its copy
+        // of ICU4J before the ART module was split out. ICU4J on Android now carries a patch so the
+        // system property is not needed. It is still set as a System property and it is cleared in
+        // disableCompatChangesBeforeAppStart() after forking, if android.compat.Compatibility
+        // allow.
+        // It's in the end of preload because preload and ICU4J initialization should succeed
+        // without this property. Otherwise, it indicates that the Android patch is not working.
+        System.setProperty(PROP_ICUBINARY_DATA_PATH, AndroidDataFiles.generateIcuDataPath());
+    }
+
+    /**
+     * Remove "android.icu.impl.ICUBinary.dataPath" property for apps targeting S+. The ICU data
+     * path should not visible to the apps.
+     */
+    @ChangeId
+    @EnabledAfter(targetSdkVersion = VersionCodes.R)
+    private static final long HIDE_PROP_ICUBINARY_DATA_PATH = 171979766L; // This is a bug id.
+
+    // VisibleForTesting
+    public static final String PROP_ICUBINARY_DATA_PATH = "android.icu.impl.ICUBinary.dataPath";
+
+    static void handleCompatChangesBeforeBindingApplication() {
+        if (Compatibility.isChangeEnabled(HIDE_PROP_ICUBINARY_DATA_PATH)) {
+            System.clearProperty(PROP_ICUBINARY_DATA_PATH);
+        }
     }
 }
