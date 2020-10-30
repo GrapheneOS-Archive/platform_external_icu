@@ -101,10 +101,6 @@ package com.android.i18n.system {
 
 package com.android.i18n.timezone {
 
-  public final class TimeZoneDataFiles {
-    method public static String generateIcuDataPath();
-  }
-
   public final class ZoneInfoData implements java.lang.Cloneable {
     ctor public ZoneInfoData(com.android.i18n.timezone.ZoneInfoData);
     method public static com.android.i18n.timezone.ZoneInfoData createFromSerializationFields(String, java.io.ObjectInputStream.GetField) throws java.io.IOException;
