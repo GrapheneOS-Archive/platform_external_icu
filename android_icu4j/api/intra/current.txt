@@ -100,9 +100,6 @@ package com.android.i18n.timezone {
 
   public final class TimeZoneDataFiles {
     method public static String generateIcuDataPath();
-    method public static String getSystemTzFile(String);
-    method public static String[] getTimeZoneFilePaths(String);
-    method public static String getTimeZoneModuleTzFile(String);
   }
 
   public final class ZoneInfoData implements java.lang.Cloneable {
