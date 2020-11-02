@@ -43,7 +43,6 @@ public final class TimeZoneDataFiles {
      * </ul>
      */
     // VisibleForTesting
-    @libcore.api.IntraCoreApi
     public static String[] getTimeZoneFilePaths(String fileName) {
         return new String[] {
                 getDataTimeZoneFile(fileName),
@@ -63,7 +62,6 @@ public final class TimeZoneDataFiles {
         return getDataTimeZoneRootDir() + "current/" + fileName;
     }
 
-    @libcore.api.IntraCoreApi
     public static String getTimeZoneModuleTzFile(String fileName) {
         return getTimeZoneModuleFile("tz/" + fileName);
     }
@@ -91,7 +89,6 @@ public final class TimeZoneDataFiles {
         return System.getenv(ANDROID_I18N_ROOT_ENV) + "/etc/" + fileName;
     }
 
-    @libcore.api.IntraCoreApi
     public static String getSystemTzFile(String fileName) {
         return getEnvironmentPath(ANDROID_ROOT_ENV, "/usr/share/zoneinfo/" + fileName);
     }
