@@ -17,7 +17,6 @@ package android.icu.text {
 
   public abstract class TimeZoneNames implements java.io.Serializable {
     method public java.util.Collection<android.icu.text.TimeZoneNames.MatchInfo> find(CharSequence, int, java.util.EnumSet<android.icu.text.TimeZoneNames.NameType>);
-    method @Deprecated public void getDisplayNames(String, android.icu.text.TimeZoneNames.NameType[], long, String[], int);
   }
 
   public static class TimeZoneNames.MatchInfo {
