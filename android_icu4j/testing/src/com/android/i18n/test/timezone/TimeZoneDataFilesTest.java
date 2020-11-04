@@ -20,6 +20,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
+import android.icu.platform.AndroidDataFiles;
 import android.icu.testsharding.MainTestShard;
 import com.android.i18n.timezone.TimeZoneDataFiles;
 import org.junit.Test;
@@ -55,8 +56,7 @@ public class TimeZoneDataFilesTest {
     // http://b/34867424
     @Test
     public void generateIcuDataPath_includesTimeZoneOverride() {
-        String icuDataPath = System.getProperty("android.icu.impl.ICUBinary.dataPath");
-        assertEquals(icuDataPath, TimeZoneDataFiles.generateIcuDataPath());
+        String icuDataPath = AndroidDataFiles.generateIcuDataPath();
 
         String[] paths = icuDataPath.split(":");
         assertEquals(3, paths.length);

@@ -125,6 +125,7 @@ package com.android.i18n.timezone {
     method public static String getDataTimeZoneFile(String);
     method public static String getDataTimeZoneRootDir();
     method public static String getTimeZoneModuleTzVersionFile();
+    method public static com.android.i18n.timezone.TzDataSetVersion readTimeZoneModuleVersion() throws java.io.IOException, com.android.i18n.timezone.TzDataSetVersion.TzDataSetException;
   }
 
   public final class TimeZoneFinder {
@@ -146,7 +147,6 @@ package com.android.i18n.timezone {
     method public String getRulesVersion();
     method public static boolean isCompatibleWithThisDevice(com.android.i18n.timezone.TzDataSetVersion);
     method public static com.android.i18n.timezone.TzDataSetVersion readFromFile(java.io.File) throws java.io.IOException, com.android.i18n.timezone.TzDataSetVersion.TzDataSetException;
-    method public static com.android.i18n.timezone.TzDataSetVersion readTimeZoneModuleVersion() throws java.io.IOException, com.android.i18n.timezone.TzDataSetVersion.TzDataSetException;
     method public byte[] toBytes();
     field public static final String DEFAULT_FILE_NAME = "tz_version";
   }

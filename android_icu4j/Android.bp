@@ -50,12 +50,22 @@ filegroup {
     path: "libcore_bridge/src/java",
 }
 
+java_defaults {
+    name: "libcore_icu_bridge_defaults",
+    srcs: [
+        "libcore_bridge/src/java/**/*.java",
+        ":app-compat-annotations-source",
+    ],
+    plugins: [
+        "compat-changeid-annotation-processor",
+    ],
+}
+
 // timezone-related source that is also used in host tests / tools and its
 // dependencies.
 filegroup {
     name: "timezone_host_files",
     srcs: [
-        "libcore_bridge/src/java/com/android/i18n/timezone/TimeZoneDataFiles.java",
         "libcore_bridge/src/java/com/android/i18n/timezone/TzDataSetVersion.java",
     ],
     path: "libcore_bridge/src/java",
@@ -94,6 +104,7 @@ java_library_static {
 // not in ART module.
 java_library {
     name: "core-icu4j",
+    defaults: ["libcore_icu_bridge_defaults"],
     visibility: [
         "//packages/modules/RuntimeI18n/apex",
         "//external/robolectric-shadows",
@@ -111,7 +122,6 @@ java_library {
     installable: true,
     hostdex: false,
 
-    srcs: [":libcore_icu_bridge_src_files"],
     static_libs: ["core-repackaged-icu4j"],
 
     // It is important that core-icu4j is restricted to only use stable APIs from the ART module
@@ -120,6 +130,11 @@ java_library {
     system_modules: "art-module-intra-core-api-stubs-system-modules",
 
     dxflags: ["--core-library"],
+}
+
+platform_compat_config {
+    name: "icu4j-platform-compat-config",
+    src: ":core-icu4j",
 }
 
 java_sdk_library {
@@ -172,9 +187,9 @@ filegroup {
 // API.
 java_sdk_library {
     name: "i18n.module.intra.core.api",
+    defaults: ["libcore_icu_bridge_defaults"],
     srcs: [
         ":android_icu4j_repackaged_src_files",
-        ":libcore_icu_bridge_src_files",
     ],
     visibility: [
         "//libcore:__subpackages__",
@@ -241,9 +256,9 @@ filegroup {
 
 java_sdk_library {
     name: "legacy.i18n.module.platform.api",
+    defaults: ["libcore_icu_bridge_defaults"],
     srcs: [
         ":android_icu4j_repackaged_src_files",
-        ":libcore_icu_bridge_src_files",
     ],
     visibility: [
         "//libcore:__subpackages__",
@@ -269,9 +284,9 @@ java_sdk_library {
 
 java_sdk_library {
     name: "stable.i18n.module.platform.api",
+    defaults: ["libcore_icu_bridge_defaults"],
     srcs: [
         ":android_icu4j_repackaged_src_files",
-        ":libcore_icu_bridge_src_files",
     ],
     visibility: [
         "//libcore:__subpackages__",

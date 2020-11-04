@@ -88,6 +88,10 @@ package android.icu.util {
 
 package com.android.i18n.system {
 
+  public class AppSpecializationHooks {
+    method public static void handleCompatChangesBeforeBindingApplication();
+  }
+
   public final class ZygoteHooks {
     method public static void onBeginPreload();
     method public static void onEndPreload();
