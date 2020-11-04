@@ -167,17 +167,6 @@ public final class TzDataSetVersion {
         return fromBytes(versionBytes);
     }
 
-    /**
-     * Reads the version of time zone data supplied by the time zone data module.
-     */
-    @libcore.api.CorePlatformApi
-    public static TzDataSetVersion readTimeZoneModuleVersion()
-            throws IOException, TzDataSetException {
-        String tzVersionFileName =
-                TimeZoneDataFiles.getTimeZoneModuleTzFile(TzDataSetVersion.DEFAULT_FILE_NAME);
-        return readFromFile(new File(tzVersionFileName));
-    }
-
     /** Returns the major version number. See {@link TzDataSetVersion}. */
     @libcore.api.CorePlatformApi
     public int getFormatMajorVersion() {

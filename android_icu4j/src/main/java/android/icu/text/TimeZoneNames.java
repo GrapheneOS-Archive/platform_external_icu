@@ -425,7 +425,6 @@ public abstract class TimeZoneNames implements Serializable {
      * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
-    @libcore.api.IntraCoreApi
     @Deprecated
     public void getDisplayNames(String tzID, NameType[] types, long date,
             String[] dest, int destOffset) {
