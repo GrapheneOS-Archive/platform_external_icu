@@ -66,7 +66,6 @@ cc_library {
     name: "libicui18n",
     defaults: ["libicui18n_defaults"],
     host_supported: true,
-    native_bridge_supported: true,
     apex_available: [
         "com.android.i18n",
         // b/133140750 Clean this up. This is due to the dependency to from libmedia
@@ -89,7 +88,6 @@ cc_library_shared {
     name: "libicui18n_cts_stub",
     defaults: ["libicui18n_defaults"],
     host_supported: false,
-    native_bridge_supported: false,
     installable: false,
     stem: "libicui18n",
     shared_libs: ["libicuuc"],

@@ -51,6 +51,16 @@ cc_library_shared {
         android: {
             version_script: "libicu.map.txt",
         },
+        native_bridge: {
+            exclude_shared_libs: [
+                "libicuuc",
+                "libicui18n",
+            ],
+            shared_libs: [
+                "libnative_bridge_guest_libicuuc",
+                "libnative_bridge_guest_libicui18n",
+            ],
+        },
     },
 }
 
