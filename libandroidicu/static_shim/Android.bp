@@ -40,6 +40,20 @@ cc_library_static {
                 "-DANDROID_LINK_SHARED_ICU4C",
             ],
         },
+        native_bridge: {
+            exclude_shared_libs: [
+                "libicuuc",
+                "libicui18n",
+            ],
+            header_libs: [
+                "libicuuc_headers",
+                "libicui18n_headers",
+            ],
+            shared_libs: [
+                "libnative_bridge_guest_libicuuc",
+                "libnative_bridge_guest_libicui18n",
+            ],
+        },
         windows: {
             enabled: true,
         },
