@@ -76,6 +76,16 @@ cc_library_shared {
             ],
             version_script: "libandroidicu.map.txt",
         },
+        native_bridge: {
+            exclude_shared_libs: [
+                "libicuuc",
+                "libicui18n",
+            ],
+            shared_libs: [
+                "libnative_bridge_guest_libicuuc",
+                "libnative_bridge_guest_libicui18n",
+            ],
+        },
         windows: {
             enabled: true,
         },
