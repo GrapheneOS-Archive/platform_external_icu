@@ -156,7 +156,7 @@ package com.android.i18n.timezone {
     ctor public TzDataSetVersion.TzDataSetException(String, Throwable);
   }
 
-  public final class ZoneInfoData implements java.lang.Cloneable {
+  public final class ZoneInfoData {
     method public String getID();
   }
 

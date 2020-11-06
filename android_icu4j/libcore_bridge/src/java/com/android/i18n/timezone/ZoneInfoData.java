@@ -59,21 +59,7 @@ import java.util.TimeZone;
  */
 @libcore.api.IntraCoreApi
 @libcore.api.CorePlatformApi
-public final class ZoneInfoData implements Cloneable {
-    private static final long MILLISECONDS_PER_DAY = 24 * 60 * 60 * 1000;
-    private static final long MILLISECONDS_PER_400_YEARS =
-            MILLISECONDS_PER_DAY * (400 * 365 + 100 - 3);
-
-    private static final long UNIX_OFFSET = 62167219200000L;
-
-    private static final int[] NORMAL = new int[] {
-        0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334,
-    };
-
-    private static final int[] LEAP = new int[] {
-        0, 31, 60, 91, 121, 152, 182, 213, 244, 274, 305, 335,
-    };
-
+public final class ZoneInfoData {
     /**
      * The serialized fields in {@link libcore.util.ZoneInfo} kept for backward app compatibility.
      */
@@ -542,35 +528,6 @@ public final class ZoneInfoData implements Cloneable {
         putField.put("mTypes", mTypes);
         putField.put("mOffsets", mOffsets);
         putField.put("mIsDsts", mIsDsts);
-    }
-
-    @libcore.api.IntraCoreApi
-    public int getOffset(int era, int year, int month, int day, int dayOfWeek, int millis) {
-        // XXX This assumes Gregorian always; Calendar switches from
-        // Julian to Gregorian in 1582.  What calendar system are the
-        // arguments supposed to come from?
-
-        long calc = (year / 400) * MILLISECONDS_PER_400_YEARS;
-        year %= 400;
-
-        calc += year * (365 * MILLISECONDS_PER_DAY);
-        calc += ((year + 3) / 4) * MILLISECONDS_PER_DAY;
-
-        if (year > 0) {
-            calc -= ((year - 1) / 100) * MILLISECONDS_PER_DAY;
-        }
-
-        boolean isLeap = (year == 0 || (year % 4 == 0 && year % 100 != 0));
-        int[] mlen = isLeap ? LEAP : NORMAL;
-
-        calc += mlen[month] * MILLISECONDS_PER_DAY;
-        calc += (day - 1) * MILLISECONDS_PER_DAY;
-        calc += millis;
-
-        calc -= mRawOffset;
-        calc -= UNIX_OFFSET;
-
-        return getOffset(calc);
     }
 
     /**
