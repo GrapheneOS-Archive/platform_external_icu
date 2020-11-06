@@ -156,12 +156,8 @@ package com.android.i18n.timezone {
     ctor public TzDataSetVersion.TzDataSetException(String, Throwable);
   }
 
-  public final class ZoneInfoData {
-    method public String getID();
-  }
-
-  public static class ZoneInfoData.WallTime {
-    ctor public ZoneInfoData.WallTime();
+  public class WallTime {
+    ctor public WallTime();
     method public int getGmtOffset();
     method public int getHour();
     method public int getIsDst();
@@ -184,6 +180,10 @@ package com.android.i18n.timezone {
     method public void setWeekDay(int);
     method public void setYear(int);
     method public void setYearDay(int);
+  }
+
+  public final class ZoneInfoData {
+    method public String getID();
   }
 
   public final class ZoneInfoDb implements java.lang.AutoCloseable {
