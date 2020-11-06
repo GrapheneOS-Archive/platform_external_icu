@@ -297,7 +297,6 @@ public final class ZoneInfoDb implements AutoCloseable {
     }
   }
 
-  @libcore.api.IntraCoreApi
   ZoneInfoData makeZoneInfoDataUncached(String id) throws IOException {
     BufferIterator it = getBufferIterator(id);
     if (it == null) {
@@ -367,6 +366,7 @@ public final class ZoneInfoDb implements AutoCloseable {
     return cache.get(id) != null;
   }
 
+  @Override
   public void close() {
     if (!closed) {
       closed = true;
