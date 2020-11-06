@@ -101,13 +101,12 @@ package com.android.i18n.system {
 
 package com.android.i18n.timezone {
 
-  public final class ZoneInfoData implements java.lang.Cloneable {
+  public final class ZoneInfoData {
     ctor public ZoneInfoData(com.android.i18n.timezone.ZoneInfoData);
     method public static com.android.i18n.timezone.ZoneInfoData createFromSerializationFields(String, java.io.ObjectInputStream.GetField) throws java.io.IOException;
     method public static com.android.i18n.timezone.ZoneInfoData createZoneInfo(String, long, java.nio.ByteBuffer) throws java.io.IOException;
     method public int getDSTSavings();
     method public String getID();
-    method public int getOffset(int, int, int, int, int, int);
     method public int getOffset(long);
     method public int getOffsetsByUtcTime(long, int[]);
     method public int getRawOffset();
