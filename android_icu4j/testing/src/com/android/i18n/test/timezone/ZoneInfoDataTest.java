@@ -16,6 +16,8 @@
 package com.android.i18n.test.timezone;
 
 import android.icu.testsharding.MainTestShard;
+
+import com.android.i18n.timezone.WallTime;
 import com.android.i18n.timezone.ZoneInfoData;
 import com.android.i18n.timezone.ZoneInfoDb;
 import java.io.IOException;
@@ -456,7 +458,7 @@ public class ZoneInfoDataTest extends TestCase {
     assertDSTSavings(zoneInfoData, offsetFromSeconds(0));
 
     // Make sure that WallTime works properly with a ZoneInfoData with 256 types.
-    ZoneInfoData.WallTime wallTime = new ZoneInfoData.WallTime();
+    WallTime wallTime = new WallTime();
     wallTime.localtime(0, zoneInfoData);
     wallTime.mktime(zoneInfoData);
   }
