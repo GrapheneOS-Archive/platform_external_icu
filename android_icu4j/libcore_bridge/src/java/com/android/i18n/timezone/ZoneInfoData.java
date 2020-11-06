@@ -35,7 +35,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.TimeZone;
-import libcore.api.IntraCoreApi;
 
 /**
  * Our concrete TimeZone implementation, backed by zoneinfo data.
@@ -78,7 +77,7 @@ public final class ZoneInfoData implements Cloneable {
     /**
      * The serialized fields in {@link libcore.util.ZoneInfo} kept for backward app compatibility.
      */
-    @IntraCoreApi
+    @libcore.api.IntraCoreApi
     public static final ObjectStreamField[] ZONEINFO_SERIALIZED_FIELDS = new ObjectStreamField[] {
         new ObjectStreamField("mRawOffset", int.class),
         new ObjectStreamField("mEarliestRawOffset", int.class),
@@ -216,7 +215,7 @@ public final class ZoneInfoData implements Cloneable {
     /**
      * Copy constructor
      */
-    @IntraCoreApi
+    @libcore.api.IntraCoreApi
     public ZoneInfoData(ZoneInfoData that) {
         if (that == null) {
             throw new NullPointerException("ZoneInfoData can't be null");
