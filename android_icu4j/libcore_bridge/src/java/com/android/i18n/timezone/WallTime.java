@@ -86,7 +86,7 @@ public class WallTime {
     @libcore.api.CorePlatformApi
     public void localtime(int timeSeconds, ZoneInfoData zoneInfo) {
         try {
-            int offsetSeconds = zoneInfo.mRawOffset / 1000;
+            int offsetSeconds = zoneInfo.getRawOffset() / 1000;
 
             // Find out the timezone DST state and adjustment.
             byte isDst;
@@ -99,7 +99,7 @@ public class WallTime {
                     // -1 means timeSeconds is "before the first recorded transition". The first
                     // recorded transition is treated as a transition from non-DST and the
                     // earliest known raw offset.
-                    offsetSeconds = zoneInfo.mEarliestRawOffset / 1000;
+                    offsetSeconds = zoneInfo.getEarliestRawOffset() / 1000;
                     isDst = 0;
                 } else {
                     offsetSeconds += zoneInfo.mOffsets[offsetIndex];
@@ -160,7 +160,7 @@ public class WallTime {
 
         try {
             final int wallTimeSeconds =  (int) longWallTimeSeconds;
-            final int rawOffsetSeconds = zoneInfo.mRawOffset / 1000;
+            final int rawOffsetSeconds = zoneInfo.getRawOffset() / 1000;
             final int rawTimeSeconds = checked32BitSubtract(wallTimeSeconds, rawOffsetSeconds);
 
             if (zoneInfo.mTransitions.length == 0) {
@@ -242,7 +242,7 @@ public class WallTime {
 
         int[] offsetsToTry = getOffsetsOfType(zoneInfo, transitionIndex, isDstToFind);
         for (int j = 0; j < offsetsToTry.length; j++) {
-            int rawOffsetSeconds = zoneInfo.mRawOffset / 1000;
+            int rawOffsetSeconds = zoneInfo.getRawOffset() / 1000;
             int jOffsetSeconds = rawOffsetSeconds + offsetsToTry[j];
             int targetIntervalOffsetSeconds = targetInterval.getTotalOffsetSeconds();
             int adjustmentSeconds = targetIntervalOffsetSeconds - jOffsetSeconds;
@@ -612,7 +612,7 @@ public class WallTime {
             }
 
             if (transitionIndex == -1) {
-                int totalOffsetSeconds = zoneInfo.mEarliestRawOffset / 1000;
+                int totalOffsetSeconds = zoneInfo.getEarliestRawOffset() / 1000;
                 int isDst = 0;
 
                 int startWallTimeSeconds = Integer.MIN_VALUE;
