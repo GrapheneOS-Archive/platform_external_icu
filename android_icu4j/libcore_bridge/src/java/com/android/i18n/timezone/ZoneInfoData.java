@@ -73,13 +73,13 @@ public final class ZoneInfoData {
      * The (best guess) non-DST offset used "today". It is stored in milliseconds.
      * See also {@link #mOffsets} which holds values relative to this value, albeit in seconds.
      */
-    int mRawOffset;
+    private int mRawOffset;
 
     /**
      * The earliest non-DST offset for the zone. It is stored in milliseconds and is absolute, i.e.
      * it is not relative to mRawOffset.
      */
-    final int mEarliestRawOffset;
+    private final int mEarliestRawOffset;
 
     /**
      * Implements {@link #useDaylightTime()}
@@ -741,6 +741,10 @@ public final class ZoneInfoData {
         return mUseDst;
     }
 
+    int getEarliestRawOffset() {
+        return mEarliestRawOffset;
+    }
+
     @libcore.api.IntraCoreApi
     public boolean hasSameRules(ZoneInfoData other) {
         if (mUseDst != other.mUseDst) {
@@ -811,5 +815,4 @@ public final class ZoneInfoData {
         return ZoneInfoData.readTimeZone(
             "TimeZone for '" + name + "'", bufferIterator, timeInMilli);
     }
-
 }
