@@ -306,12 +306,19 @@ public final class ZoneInfoDb implements AutoCloseable {
     return ZoneInfoData.readTimeZone(id, it, System.currentTimeMillis());
   }
 
+  /**
+   * Returns an array containing all time zone ids sorted in lexicographical order for
+   * binary searching.
+   */
   @libcore.api.IntraCoreApi
   public String[] getAvailableIDs() {
     checkNotClosed();
     return ids.clone();
   }
 
+  /**
+   * Returns ids of all time zones with the given raw UTC offset.
+   */
   @libcore.api.IntraCoreApi
   public String[] getAvailableIDs(int rawUtcOffset) {
     checkNotClosed();
@@ -351,6 +358,10 @@ public final class ZoneInfoDb implements AutoCloseable {
     return version;
   }
 
+  /**
+   * Creates {@link ZoneInfoData} object from the time zone {@code id}. Returns null if the id
+   * is not found.
+   */
   @libcore.api.CorePlatformApi
   @libcore.api.IntraCoreApi
   public ZoneInfoData makeZoneInfoData(String id) {
@@ -394,7 +405,8 @@ public final class ZoneInfoDb implements AutoCloseable {
     }
   }
 
-  @Override protected void finalize() throws Throwable {
+  @Override
+  protected void finalize() throws Throwable {
     try {
       close();
     } finally {
