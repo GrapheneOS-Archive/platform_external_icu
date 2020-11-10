@@ -103,6 +103,8 @@ package com.android.i18n.timezone {
 
   public final class ZoneInfoData {
     ctor public ZoneInfoData(com.android.i18n.timezone.ZoneInfoData);
+    method public com.android.i18n.timezone.ZoneInfoData createCopy();
+    method public com.android.i18n.timezone.ZoneInfoData createCopyWithRawOffset(int);
     method public static com.android.i18n.timezone.ZoneInfoData createFromSerializationFields(String, java.io.ObjectInputStream.GetField) throws java.io.IOException;
     method public static com.android.i18n.timezone.ZoneInfoData createZoneInfo(String, long, java.nio.ByteBuffer) throws java.io.IOException;
     method public int getDSTSavings();
