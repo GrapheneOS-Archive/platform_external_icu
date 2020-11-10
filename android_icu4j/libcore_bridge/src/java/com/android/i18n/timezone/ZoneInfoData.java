@@ -99,14 +99,9 @@ public final class ZoneInfoData {
     /**
      * Implements {@link #getDSTSavings()}
      *
-     * <p>This should be final but is not because it may need to be fixed up by
-     * {@link #createFromSerializationFields(String, GetField)} to correct an inconsistency in
-     * the previous version of the code whereby this was set to a non-zero value even though DST was
-     * not actually used.
-     *
      * @see #mUseDst
      */
-    private int mDstSavings;
+    private final int mDstSavings;
 
     /**
      * The times (in seconds) at which the offsets changes for any reason, whether that is a change
