@@ -25,7 +25,6 @@ import java.nio.ByteBuffer;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.Arrays;
-import java.util.Date;
 import junit.framework.TestCase;
 import com.android.i18n.timezone.internal.BufferIterator;
 import libcore.timezone.testing.ZoneInfoTestHelper;
@@ -628,7 +627,7 @@ public class ZoneInfoDataTest extends TestCase {
 
   private static void assertInDaylightTime(ZoneInfoData zoneInfoData, Instant time,
       boolean expectedValue) {
-    assertEquals(expectedValue, zoneInfoData.inDaylightTime(new Date(time.toEpochMilli())));
+    assertEquals(expectedValue, zoneInfoData.isInDaylightTime(time.toEpochMilli()));
   }
 
   private static void assertOffsetAt(
