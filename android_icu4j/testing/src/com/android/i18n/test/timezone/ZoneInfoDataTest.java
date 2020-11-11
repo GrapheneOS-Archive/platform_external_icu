@@ -15,6 +15,8 @@
  */
 package com.android.i18n.test.timezone;
 
+import static org.junit.Assert.assertArrayEquals;
+
 import android.icu.testsharding.MainTestShard;
 
 import com.android.i18n.timezone.WallTime;
@@ -49,7 +51,7 @@ public class ZoneInfoDataTest extends TestCase {
   }
 
   /**
-   * Checks that a {@link ZoneInfo} can be created with one type and no transitions.
+   * Checks that a {@link ZoneInfoData} can be created with one type and no transitions.
    */
   public void testMakeTimeZone_OneType_NoTransitions() throws Exception {
     long[][] transitions = {};
@@ -75,7 +77,7 @@ public class ZoneInfoDataTest extends TestCase {
   }
 
   /**
-   * Checks that a {@link ZoneInfo} can be created with one non-DST transition.
+   * Checks that a {@link ZoneInfoData} can be created with one non-DST transition.
    */
   public void testReadTimeZone_OneNonDstTransition() throws Exception {
     long[][] transitions = {
@@ -99,7 +101,7 @@ public class ZoneInfoDataTest extends TestCase {
   }
 
   /**
-   * Checks that a {@link ZoneInfo} cannot be created with one DST but no non-DSTs transitions.
+   * Checks that a {@link ZoneInfoData} cannot be created with one DST but no non-DSTs transitions.
    */
   public void testReadTimeZone_OneDstTransition() throws Exception {
     long[][] transitions = {
@@ -131,6 +133,8 @@ public class ZoneInfoDataTest extends TestCase {
         { 5400, 0 }
     };
     ZoneInfoData zoneInfoData = createZoneInfoData(transitions, types);
+    assertArrayEquals(new long[] { -2000, -5, 0 }, zoneInfoData.getTransitions());
+
     Instant transitionTime = timeFromSeconds(-5);
 
     // Even a millisecond before a transition means that the transition is not active.
@@ -168,6 +172,7 @@ public class ZoneInfoDataTest extends TestCase {
         { 5400, 0 }
     };
     ZoneInfoData zoneInfoData = createZoneInfoData(transitions, types);
+    assertArrayEquals(new long[] { 0, 5, 2000 }, zoneInfoData.getTransitions());
 
     Instant transitionTime = timeFromSeconds(5);
 
@@ -191,7 +196,7 @@ public class ZoneInfoDataTest extends TestCase {
   }
 
   /**
-   * Checks that creating a {@link ZoneInfo} with future DST transitions but no past DST
+   * Checks that creating a {@link ZoneInfoData} with future DST transitions but no past DST
    * transitions where the transition times are negative is not affected by rounding issues.
    */
   public void testReadTimeZone_HasFutureDST_NoPastDST_NegativeTransitions() throws Exception {
@@ -224,7 +229,7 @@ public class ZoneInfoDataTest extends TestCase {
   }
 
   /**
-   * Checks that creating a {@link ZoneInfo} with future DST transitions but no past DST
+   * Checks that creating a {@link ZoneInfoData} with future DST transitions but no past DST
    * transitions where the transition times are positive is not affected by rounding issues.
    */
   public void testReadTimeZone_HasFutureDST_NoPastDST_PositiveTransitions() throws Exception {
@@ -258,7 +263,7 @@ public class ZoneInfoDataTest extends TestCase {
   }
 
   /**
-   * Checks that creating a {@link ZoneInfo} with past DST transitions but no future DST
+   * Checks that creating a {@link ZoneInfoData} with past DST transitions but no future DST
    * transitions where the transition times are negative is not affected by rounding issues.
    */
   public void testReadTimeZone_HasPastDST_NoFutureDST_NegativeTransitions() throws Exception {
@@ -288,7 +293,7 @@ public class ZoneInfoDataTest extends TestCase {
   }
 
   /**
-   * Checks that creating a {@link ZoneInfo} with past DST transitions but no future DST
+   * Checks that creating a {@link ZoneInfoData} with past DST transitions but no future DST
    * transitions where the transition times are positive is not affected by rounding issues.
    */
   public void testReadTimeZone_HasPastDST_NoFutureDST_PositiveTransitions() throws Exception {
@@ -469,7 +474,7 @@ public class ZoneInfoDataTest extends TestCase {
    * <p>This is to ensure that ZoneInfoData can read all time zone data without failing, it doesn't
    * check that it reads it correctly or that the data itself is correct. This is a confidence test
    * to ensure that any additional checks added to the code that reads the data source and
-   * creates the {@link ZoneInfo} instances does not prevent any of the time zones being loaded.
+   * creates the {@link ZoneInfoData} instances does not prevent any of the time zones being loaded.
    */
   public void testReadTimeZone_All() throws Exception {
     ZoneInfoDb instance = ZoneInfoDb.getInstance();
