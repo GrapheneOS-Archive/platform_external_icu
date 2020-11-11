@@ -190,11 +190,15 @@ public final class ZoneInfoData {
      */
     @libcore.api.IntraCoreApi
     public ZoneInfoData(ZoneInfoData that) {
-        if (that == null) {
-            throw new NullPointerException("ZoneInfoData can't be null");
-        }
+        this(that, that.mRawOffset);
+    }
+
+    /**
+     * Copy constructor with a new raw offset.
+     */
+    private ZoneInfoData(ZoneInfoData that, int newRawOffset) {
+        mRawOffset = newRawOffset;
         mId = that.mId;
-        mRawOffset = that.mRawOffset;
         mDstSavings = that.mDstSavings;
         mEarliestRawOffset = that.mEarliestRawOffset;
         mUseDst = that.mUseDst;
@@ -202,7 +206,6 @@ public final class ZoneInfoData {
         mTypes = that.mTypes == null ? null : that.mTypes.clone();
         mOffsets = that.mOffsets == null ? null : that.mOffsets.clone();
         mIsDsts = that.mIsDsts == null ? null : that.mIsDsts.clone();
-
     }
 
     public static ZoneInfoData readTimeZone(String id, BufferIterator it, long currentTimeMillis)
@@ -832,6 +835,22 @@ public final class ZoneInfoData {
     @libcore.api.IntraCoreApi
     public String getID() {
         return mId;
+    }
+
+    /**
+     * Create a deep copy of this object.
+     */
+    @libcore.api.IntraCoreApi
+    public ZoneInfoData createCopy() {
+        return new ZoneInfoData(this);
+    }
+
+    /**
+     * Create a deep copy of this object with a new raw offset.
+     */
+    @libcore.api.IntraCoreApi
+    public ZoneInfoData createCopyWithRawOffset(int newRawOffset) {
+        return new ZoneInfoData(this, newRawOffset);
     }
 
     /**

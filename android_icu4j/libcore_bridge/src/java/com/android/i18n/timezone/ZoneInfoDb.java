@@ -368,7 +368,7 @@ public final class ZoneInfoDb implements AutoCloseable {
     checkNotClosed();
     ZoneInfoData zoneInfoData = cache.get(id);
     // The object from the cache is cloned because TimeZone / ZoneInfo are mutable.
-    return zoneInfoData == null ? null : new ZoneInfoData(zoneInfoData);
+    return zoneInfoData == null ? null : zoneInfoData.createCopy();
   }
 
   @libcore.api.CorePlatformApi
