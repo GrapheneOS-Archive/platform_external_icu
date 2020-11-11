@@ -834,6 +834,19 @@ public final class ZoneInfoData {
         return mId;
     }
 
+    /**
+     * Returns the times (in seconds) at which the offsets changes for any reason, whether that is a
+     * change in the offset from UTC or a change in the DST.
+     *
+     * WARNING: This API is exposed only for app compat usage in {@link libcore.util.ZoneInfo}. The
+     * data is read-only. Do not write any data into the returned array, which is an internal
+     * data structure.
+     */
+    @libcore.api.IntraCoreApi
+    public long[] getTransitions() {
+        return mTransitions;
+    }
+
     @libcore.api.IntraCoreApi
     public long[] getTransitionsForAppCompat() {
         return mTransitions;
