@@ -61,15 +61,21 @@ java_defaults {
     ],
 }
 
-// timezone-related source that is also used in host tests / tools and its
-// dependencies.
-filegroup {
-    name: "timezone_host_files",
+// A host library containing time zone related classes. Used for
+// host-side tools and tests that have to deal with Android
+// time zone data.
+java_library_host {
+    name: "timezone-host",
+    visibility: [
+        "//packages/modules/RuntimeI18n/apex",
+        "//system/timezone/distro/core",
+    ],
     srcs: [
         "libcore_bridge/src/java/com/android/i18n/timezone/TzDataSetVersion.java",
     ],
-    path: "libcore_bridge/src/java",
-    visibility: ["//libcore"],
+    libs: [
+        "art.module.api.annotations",
+    ],
 }
 
 // core-repackaged-icu4j contains only the repackaged ICU4J that does not
