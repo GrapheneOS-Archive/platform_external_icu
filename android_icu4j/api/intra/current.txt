@@ -113,6 +113,7 @@ package com.android.i18n.timezone {
     method public long[] getTransitionsForAppCompat();
     method public boolean hasSameRules(com.android.i18n.timezone.ZoneInfoData);
     method public boolean inDaylightTime(java.util.Date);
+    method public boolean isInDaylightTime(long);
     method public void setRawOffset(int);
     method public boolean useDaylightTime();
     method public void writeToSerializationFields(java.io.ObjectOutputStream.PutField);
