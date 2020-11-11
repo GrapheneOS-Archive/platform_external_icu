@@ -110,6 +110,7 @@ package com.android.i18n.timezone {
     method public int getOffset(long);
     method public int getOffsetsByUtcTime(long, int[]);
     method public int getRawOffset();
+    method public long[] getTransitions();
     method public long[] getTransitionsForAppCompat();
     method public boolean hasSameRules(com.android.i18n.timezone.ZoneInfoData);
     method public boolean inDaylightTime(java.util.Date);
