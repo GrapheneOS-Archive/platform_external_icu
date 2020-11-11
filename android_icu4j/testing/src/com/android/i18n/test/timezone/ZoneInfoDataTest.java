@@ -622,6 +622,50 @@ public class ZoneInfoDataTest extends TestCase {
     }
   }
 
+  public void testCreateCopy() throws Exception {
+    long[][] transitions = {
+            { 0, 0 },
+            { 5, 1 },
+            { 2000, 2 },
+    };
+    int[][] types = {
+            { 1800, 0 },
+            { 3600, 1 },
+            { 5400, 0 }
+    };
+    ZoneInfoData zoneInfoData = createZoneInfoData(transitions, types);
+    ZoneInfoData copy = zoneInfoData.createCopy();
+    assertNotSame(zoneInfoData, copy);
+    assertTrue("zoneInfoData does not have the same rule as its copy",
+            zoneInfoData.hasSameRules(copy));
+  }
+
+  public void testCreateCopyWithRawOffset() throws Exception {
+    long[][] transitions = {
+            { 0, 0 },
+            { 5, 1 },
+    };
+    int[][] types = {
+            { 1800, 0 },
+            { 3600, 1 },
+    };
+    ZoneInfoData zoneInfoData = createZoneInfoData(transitions, types);
+    ZoneInfoData copyWithSameOffset = zoneInfoData.createCopyWithRawOffset(
+            zoneInfoData.getRawOffset());
+    assertNotSame(zoneInfoData, copyWithSameOffset);
+    assertTrue("zoneInfoData does not have the same rule as its copy",
+            zoneInfoData.hasSameRules(copyWithSameOffset));
+
+    Duration originalOffset = offsetFromSeconds(1800);
+    Duration newOffset = offsetFromSeconds(7200);
+    ZoneInfoData copyWithDiffOffset = zoneInfoData.createCopyWithRawOffset(
+            (int) newOffset.toMillis());
+    assertRawOffset(zoneInfoData, originalOffset);
+    assertRawOffset(copyWithDiffOffset, newOffset);
+    assertFalse("zoneInfoData has different raw offsets, and should not have the same rules.",
+            zoneInfoData.hasSameRules(copyWithDiffOffset));
+  }
+
   private static void assertRawOffset(ZoneInfoData zoneInfoData, Duration expectedOffset) {
     assertEquals(expectedOffset.toMillis(), zoneInfoData.getRawOffset());
   }
