@@ -123,7 +123,7 @@ package com.android.i18n.timezone {
     field public static final java.io.ObjectStreamField[] ZONEINFO_SERIALIZED_FIELDS;
   }
 
-  public final class ZoneInfoDb implements java.lang.AutoCloseable {
+  public final class ZoneInfoDb {
     method public String[] getAvailableIDs();
     method public String[] getAvailableIDs(int);
     method public static com.android.i18n.timezone.ZoneInfoDb getInstance();
