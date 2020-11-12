@@ -38,7 +38,7 @@ import java.util.List;
  */
 @libcore.api.CorePlatformApi
 @libcore.api.IntraCoreApi
-public final class ZoneInfoDb implements AutoCloseable {
+public final class ZoneInfoDb {
 
   // VisibleForTesting
   public static final String TZDATA_FILE_NAME = "tzdata";
@@ -135,7 +135,7 @@ public final class ZoneInfoDb implements AutoCloseable {
    * Loads the data at the specified path and returns the {@link ZoneInfoDb} object if it is valid,
    * otherwise {@code null}.
    */
-  @libcore.api.CorePlatformApi
+  // VisibleForTesting
   public static ZoneInfoDb loadTzData(String path) {
     ZoneInfoDb tzData = new ZoneInfoDb();
     if (tzData.loadData(path)) {
@@ -285,8 +285,24 @@ public final class ZoneInfoDb implements AutoCloseable {
     }
   }
 
+
+  /**
+   * Validate the data at the specified path. Throws {@link IOException} if it's not valid.
+   */
   @libcore.api.CorePlatformApi
-  public void validate() throws IOException {
+  public static void validateTzData(String path) throws IOException {
+    ZoneInfoDb tzData = ZoneInfoDb.loadTzData(path);
+    if (tzData == null) {
+      throw new IOException("failed to read tzData at " + path);
+    }
+    try {
+      tzData.validate();
+    } finally {
+      tzData.close();
+    }
+  }
+
+  private void validate() throws IOException {
     checkNotClosed();
     // Validate the data in the tzdata file by loading each and every zone.
     for (String id : getAvailableIDs()) {
@@ -377,7 +393,7 @@ public final class ZoneInfoDb implements AutoCloseable {
     return cache.get(id) != null;
   }
 
-  @Override
+  // VisibleForTesting
   public void close() {
     if (!closed) {
       closed = true;
