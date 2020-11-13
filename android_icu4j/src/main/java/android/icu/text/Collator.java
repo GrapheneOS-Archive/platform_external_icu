@@ -1249,6 +1249,7 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
      * @see RawCollationKey
      * @hide unsupported on Android
      */
+    @SuppressWarnings("HiddenAbstractMethod")
     public abstract RawCollationKey getRawCollationKey(String source,
                                                        RawCollationKey key);
 
@@ -1306,6 +1307,7 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
      * @deprecated ICU 53 Call {@link #setMaxVariable(int)} instead.
      * @hide original deprecated declaration
      */
+    @SuppressWarnings("HiddenAbstractMethod")
     @Deprecated
     public abstract int setVariableTop(String varTop);
 
@@ -1331,6 +1333,7 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
      * @deprecated ICU 53 Call setMaxVariable() instead.
      * @hide original deprecated declaration
      */
+    @SuppressWarnings("HiddenAbstractMethod")
     @Deprecated
     public abstract void setVariableTop(int varTop);
 
