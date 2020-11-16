@@ -632,24 +632,6 @@ public class ZoneInfoDataTest extends TestCase {
     }
   }
 
-  public void testCreateCopy() throws Exception {
-    long[][] transitions = {
-            { 0, 0 },
-            { 5, 1 },
-            { 2000, 2 },
-    };
-    int[][] types = {
-            { 1800, 0 },
-            { 3600, 1 },
-            { 5400, 0 }
-    };
-    ZoneInfoData zoneInfoData = createZoneInfoData(transitions, types);
-    ZoneInfoData copy = zoneInfoData.createCopy();
-    assertNotSame(zoneInfoData, copy);
-    assertTrue("zoneInfoData does not have the same rule as its copy",
-            zoneInfoData.hasSameRules(copy));
-  }
-
   public void testCreateCopyWithRawOffset() throws Exception {
     long[][] transitions = {
             { 0, 0 },
