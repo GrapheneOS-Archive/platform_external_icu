@@ -782,6 +782,17 @@ public class Icu4jTransform {
       "android.icu.text.TimeZoneNames$DefaultTimeZoneNames$FactoryImpl",
   };
 
+  // Metalava disallows hidden abstract methods in public abstract classes because classes
+  // inheriting such class can cause runtime crashes instead of a compile error. Due to historic
+  // reason, we have such classes in the public SDK. This is the allowlist of hidden abstract
+  // methods, and @SuppressWarnings("HiddenAbstractMethod") annotation will be added into those
+  // methods. See http://b/147445486 for more details.
+  private static final String[] HIDDEN_ABSTRACT_METHODS = {
+      "method:android.icu.text.Collator#getRawCollationKey(String,RawCollationKey)",
+      "method:android.icu.text.Collator#setVariableTop(String)",
+      "method:android.icu.text.Collator#setVariableTop(int)",
+  };
+
   public static final String ANDROID_ICU4J_SAMPLE_DIR =
       "external/icu/android_icu4j/src/samples/java";
 
@@ -979,6 +990,9 @@ public class Icu4jTransform {
 
           // AST change: Add UnsupportedAppUsage to specified classes and members
           createOptionalRule(Annotations.addUnsupportedAppUsage(unsupportedAppUsagePath)),
+
+          // AST change: Add @SuppressWarnings("HiddenAbstractMethod") to specified methods
+          createHiddenAbstractMethodRule(),
       };
 
       List<Rule> rulesList = Lists.newArrayList(repackageRules);
@@ -1033,6 +1047,14 @@ public class Icu4jTransform {
       List<TypeLocator> allowlist = TypeLocator.createLocatorsFromStrings(PUBLIC_API_CLASSES);
       return createOptionalRule(
           new HidePublicClasses(allowlist, "Only a subset of ICU is exposed in Android"));
+    }
+
+    private static Rule createHiddenAbstractMethodRule() {
+      List<BodyDeclarationLocator> loactors =
+              BodyDeclarationLocators.createLocatorsFromStrings(HIDDEN_ABSTRACT_METHODS);
+      return createOptionalRule(
+              AddAnnotation.markerAnnotationWithPropertyFromLocators("SuppressWarnings",
+                      "value", String.class, "HiddenAbstractMethod", loactors));
     }
   }
 
