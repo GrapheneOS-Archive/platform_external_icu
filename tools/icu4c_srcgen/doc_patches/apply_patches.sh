@@ -19,4 +19,6 @@
 source $(dirname $BASH_SOURCE)/common.sh
 
 cd ${ICU_DIR}
-find ${PATCHES_DIR} -name '*.patch' -type f -exec patch -p0 -s -i '{}' \;
+if [ -d "${PATCHES_DIR}" ]; then
+  find ${PATCHES_DIR} -name '*.patch' -type f -exec patch -p0 -s -i '{}' \;
+fi
