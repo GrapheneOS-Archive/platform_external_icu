@@ -166,6 +166,9 @@ java_sdk_library {
     api_only: true,
     sdk_version: "none",
     system_modules: "art-module-public-api-stubs-system-modules",
+
+    // Don't copy any output files to the dist.
+    no_dist: true,
 }
 
 // Referenced implicitly from i18n.module.intra.api.
@@ -216,6 +219,9 @@ java_sdk_library {
         "--show-single-annotation libcore.api.IntraCoreApi ",
         "--skip-annotation-instance-methods=false ",
     ],
+
+    // Don't copy any output files to the dist.
+    no_dist: true,
 }
 
 // Referenced implicitly from legacy.i18n.module.platform.api.
@@ -286,6 +292,9 @@ java_sdk_library {
         "--show-single-annotation libcore.api.CorePlatformApi ",
         "--skip-annotation-instance-methods=false ",
     ],
+
+    // Don't copy any output files to the dist.
+    no_dist: true,
 }
 
 java_sdk_library {
@@ -314,6 +323,9 @@ java_sdk_library {
         "--show-single-annotation libcore.api.CorePlatformApi\\(status=libcore.api.CorePlatformApi.Status.STABLE\\)",
         "--skip-annotation-instance-methods=false ",
     ],
+
+    // Don't copy any output files to the dist.
+    no_dist: true,
 }
 
 //==========================================================
