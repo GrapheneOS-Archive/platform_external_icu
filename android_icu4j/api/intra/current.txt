@@ -102,7 +102,6 @@ package com.android.i18n.system {
 package com.android.i18n.timezone {
 
   public final class ZoneInfoData {
-    ctor public ZoneInfoData(com.android.i18n.timezone.ZoneInfoData);
     method public com.android.i18n.timezone.ZoneInfoData createCopy();
     method public com.android.i18n.timezone.ZoneInfoData createCopyWithRawOffset(int);
     method public static com.android.i18n.timezone.ZoneInfoData createFromSerializationFields(String, java.io.ObjectInputStream.GetField) throws java.io.IOException;
@@ -113,11 +112,8 @@ package com.android.i18n.timezone {
     method public int getOffsetsByUtcTime(long, int[]);
     method public int getRawOffset();
     method public long[] getTransitions();
-    method public long[] getTransitionsForAppCompat();
     method public boolean hasSameRules(com.android.i18n.timezone.ZoneInfoData);
-    method public boolean inDaylightTime(java.util.Date);
     method public boolean isInDaylightTime(long);
-    method public void setRawOffset(int);
     method public boolean useDaylightTime();
     method public void writeToSerializationFields(java.io.ObjectOutputStream.PutField);
     field public static final java.io.ObjectStreamField[] ZONEINFO_SERIALIZED_FIELDS;
@@ -127,7 +123,6 @@ package com.android.i18n.timezone {
     method public String[] getAvailableIDs();
     method public String[] getAvailableIDs(int);
     method public static com.android.i18n.timezone.ZoneInfoDb getInstance();
-    method public String getVersion();
     method public com.android.i18n.timezone.ZoneInfoData makeZoneInfoData(String);
   }
 

@@ -23,10 +23,9 @@ import java.io.ObjectOutputStream.PutField;
 import java.io.ObjectStreamField;
 import java.nio.ByteBuffer;
 import java.util.Arrays;
-import java.util.Date;
 
 /**
- * Our concrete TimeZone implementation, backed by zoneinfo data.
+ * This class holds the data of a time zone backed by the tzfiles. An instance is immutable.
  *
  * <p>This reads time zone information from a binary file stored on the platform. The binary file
  * is essentially a single file containing compacted versions of all the tzfiles produced by the
@@ -72,7 +71,7 @@ public final class ZoneInfoData {
      * The (best guess) non-DST offset used "today". It is stored in milliseconds.
      * See also {@link #mOffsets} which holds values relative to this value, albeit in seconds.
      */
-    private int mRawOffset;
+    private final int mRawOffset;
 
     /**
      * The earliest non-DST offset for the zone. It is stored in milliseconds and is absolute, i.e.
@@ -188,8 +187,7 @@ public final class ZoneInfoData {
     /**
      * Copy constructor
      */
-    @libcore.api.IntraCoreApi
-    public ZoneInfoData(ZoneInfoData that) {
+    private ZoneInfoData(ZoneInfoData that) {
         this(that, that.mRawOffset);
     }
 
@@ -393,19 +391,20 @@ public final class ZoneInfoData {
             }
         }
 
+        final int rawOffsetInSeconds;
         // Use the latest non-daylight offset (if any) as the raw offset.
         if (mTransitions.length == 0) {
             // This case is no longer expected to occur in the data used on Android after changes
             // made in zic version 2014c. It is kept as a fallback.
             // If there are no transitions then use the first GMT offset.
-            mRawOffset = gmtOffsets[0];
+            rawOffsetInSeconds = gmtOffsets[0];
         } else {
             if (lastStdTransitionIndex == -1) {
                 throw new IllegalStateException( "ZoneInfo requires at least one non-DST "
                         + "transition to be provided for each timezone that has at least one "
                         + "transition but could not find one for '" + name + "'");
             }
-            mRawOffset = gmtOffsets[mTypes[lastStdTransitionIndex] & 0xff];
+            rawOffsetInSeconds = gmtOffsets[mTypes[lastStdTransitionIndex] & 0xff];
         }
 
         if (lastDstTransitionIndex != -1) {
@@ -464,17 +463,17 @@ public final class ZoneInfoData {
         }
 
         int earliestRawOffset = (firstStdTypeIndex != -1)
-                ? gmtOffsets[firstStdTypeIndex] : mRawOffset;
+                ? gmtOffsets[firstStdTypeIndex] : rawOffsetInSeconds;
 
         // Rather than keep offsets from UTC, we use offsets from local time, so the raw offset
-        // can be changed and automatically affect all the offsets.
+        // can be changed in the new instance and automatically affects all the offsets.
         mOffsets = gmtOffsets;
         for (int i = 0; i < mOffsets.length; i++) {
-            mOffsets[i] -= mRawOffset;
+            mOffsets[i] -= rawOffsetInSeconds;
         }
 
         // tzdata uses seconds, but Java uses milliseconds.
-        mRawOffset *= 1000;
+        mRawOffset = rawOffsetInSeconds * 1000;
         mEarliestRawOffset = earliestRawOffset * 1000;
     }
 
@@ -729,27 +728,11 @@ public final class ZoneInfoData {
     }
 
     /**
-     * Returns whether the given {@code time} is in daylight saving time in this time zone.
-     */
-    @libcore.api.IntraCoreApi
-    public boolean inDaylightTime(Date time) {
-        return isInDaylightTime(time.getTime());
-    }
-
-    /**
      * Returns the raw offset in milliseconds. The value is not affected by daylight saving.
      */
     @libcore.api.IntraCoreApi
     public int getRawOffset() {
         return mRawOffset;
-    }
-
-    /**
-     * Sets the raw offset.
-     */
-    @libcore.api.IntraCoreApi
-    public void setRawOffset(int off) {
-        mRawOffset = off;
     }
 
     /**
@@ -863,11 +846,6 @@ public final class ZoneInfoData {
      */
     @libcore.api.IntraCoreApi
     public long[] getTransitions() {
-        return mTransitions;
-    }
-
-    @libcore.api.IntraCoreApi
-    public long[] getTransitionsForAppCompat() {
         return mTransitions;
     }
 

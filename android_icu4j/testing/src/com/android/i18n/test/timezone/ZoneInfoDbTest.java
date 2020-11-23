@@ -226,13 +226,12 @@ public class ZoneInfoDbTest extends junit.framework.TestCase {
       ZoneInfoDb data = db.getDelegate();
       String tzId = "Europe/London";
       ZoneInfoData first = data.makeZoneInfoData(tzId);
-      ZoneInfoData second = data.makeZoneInfoData(tzId);
+      ZoneInfoData second = first.createCopyWithRawOffset(3600);
+      // Confirms that makeZoneInfoData(tzId) creates a new different instance.
       assertNotSame(first, second);
 
-      assertTrue(first.hasSameRules(second));
-
-      first.setRawOffset(3600);
       assertFalse(first.getRawOffset() == second.getRawOffset());
+      assertFalse(first.hasSameRules(second));
     }
   }
 
