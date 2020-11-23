@@ -368,7 +368,6 @@ public final class ZoneInfoDb {
    * Returns the tzdb version in use.
    */
   @libcore.api.CorePlatformApi
-  @libcore.api.IntraCoreApi
   public String getVersion() {
     checkNotClosed();
     return version;
