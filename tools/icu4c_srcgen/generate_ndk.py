@@ -64,7 +64,7 @@ def get_allowlisted_regex_string(decl_names):
     """Return a regex in string to capture the C function declarations in the decl_names list"""
     tag = "|".join(decl_names)
     return r"(" + DOC_BLOCK_COMMENT + STABLE_MACRO + r"[^(]*(?=" + tag + r")(" + tag + ")" \
-           + TILL_CLOSE_PARENTHESIS +");$"
+           + r"\("+ TILL_CLOSE_PARENTHESIS +");$"
 
 def get_replacement_adding_api_level_macro(api_level):
     """Return the replacement string adding the NDK C macro
@@ -80,8 +80,8 @@ def modify_func_declarations(src_path, dst_path, decl_names):
     and output to the dst_path """
     allowlist_regex_string = get_allowlisted_regex_string(decl_names)
     allowlist_decl_regex = re.compile('^' + allowlist_regex_string, re.MULTILINE)
-    secrete_allowlist_decl_regex = re.compile('^' + SECRET_PROCESSING_TOKEN
-                                              + allowlist_regex_string, re.MULTILINE)
+    secret_allowlist_decl_regex = re.compile('^' + SECRET_PROCESSING_TOKEN
+                                             + allowlist_regex_string, re.MULTILINE)
     with open(src_path, "r") as file:
         src = file.read()
 
@@ -94,11 +94,31 @@ def modify_func_declarations(src_path, dst_path, decl_names):
     # Remove all other stable declarations not in the allowlist
     modified = REGEX_STABLE_FUNCTION_DECLARATION.sub('', modified)
     # Insert C macro and annotation to indicate the API level to each functions in the allowlist
-    modified = secrete_allowlist_decl_regex.sub(
+    modified = secret_allowlist_decl_regex.sub(
         get_replacement_adding_api_level_macro(31), modified)
 
     with open(dst_path, "w") as out:
         out.write(modified)
+def remove_ignored_includes(file_path, include_list):
+    """
+    Remove the included header, i.e. #include lines, listed in include_list from the file_path
+    header.
+    """
+
+    # Do nothing if the list is empty
+    if not include_list:
+        return
+
+    tag = "|".join(include_list)
+
+    with open(file_path, "r") as file:
+        content = file.read()
+
+    regex = re.compile(r"^#include \"unicode\/(" + tag + ")\"\n", re.MULTILINE)
+    content = regex.sub('', content)
+
+    with open(file_path, "w") as out:
+        out.write(content)
 
 def copy_header_only_files():
     """Copy required header only files"""
@@ -171,7 +191,8 @@ def generate_cts_headers(decl_names):
         out.write(modified)
 
 IGNORED_INCLUDE_DEPENDENCY = {
-    "ulocdata.h" : [ "ures.h", "uset.h", ],
+    "ulocdata.h": ["ures.h", "uset.h", ],
+    "ustring.h": ["uiter.h", ],
 }
 
 def main():
@@ -212,6 +233,9 @@ def main():
         basename = os.path.basename(src_path)
         dst_path = os.path.join(headers_folder, basename)
         modify_func_declarations(src_path, dst_path, header_to_function_names[basename])
+        # Remove #include lines from the header files.
+        if basename in IGNORED_INCLUDE_DEPENDENCY:
+            remove_ignored_includes(dst_path, IGNORED_INCLUDE_DEPENDENCY[basename])
 
     copy_header_only_files()
 
