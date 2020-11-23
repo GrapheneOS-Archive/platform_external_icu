@@ -1099,28 +1099,7 @@ typedef enum {
 } UAcceptResult;
 
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-/**
- * Based on a HTTP header from a web browser and a list of available locales,
- * determine an acceptable locale for the user.
- * @param result - buffer to accept the result locale
- * @param resultAvailable the size of the result buffer.
- * @param outResult - An out parameter that contains the fallback status
- * @param httpAcceptLanguage - "Accept-Language:" header as per HTTP.
- * @param availableLocales - list of available locales to match
- * @param status Error status, may be BUFFER_OVERFLOW_ERROR
- * @return length needed for the locale.
- * @stable ICU 3.2
- */
-U_STABLE int32_t U_EXPORT2
-uloc_acceptLanguageFromHTTP(char *result, int32_t resultAvailable,
-                            UAcceptResult *outResult,
-                            const char *httpAcceptLanguage,
-                            UEnumeration* availableLocales,
-                            UErrorCode *status) __INTRODUCED_IN(31);
-
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 #if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 

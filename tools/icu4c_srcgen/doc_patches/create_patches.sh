@@ -25,7 +25,7 @@ fi
 # Create libicu/ copy without patches
 cd ${ICU_DIR}
 git checkout -- ${LIBICU_DIR}
-if [ -d "$DIR" ]; then
+if [ -d "${PATCHES_DIR}" ]; then
   rm -r ${PATCHES_DIR} 2> /dev/null
 fi
 cd ${SRCGEN_DIR}

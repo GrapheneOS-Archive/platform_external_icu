@@ -20,7 +20,6 @@
 
 #include "unicode/utypes.h"
 #include "unicode/putil.h"
-#include "unicode/uiter.h"
 
 /**
  * \def UBRK_TYPEDEF_UBREAK_ITERATOR
@@ -554,32 +553,7 @@ u_strCompare(const UChar *s1, int32_t length1,
 
 #endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-/**
- * Compare two Unicode strings (binary order)
- * as presented by UCharIterator objects.
- * Works otherwise just like u_strCompare().
- *
- * Both iterators are reset to their start positions.
- * When the function returns, it is undefined where the iterators
- * have stopped.
- *
- * @param iter1 First source string iterator.
- * @param iter2 Second source string iterator.
- * @param codePointOrder Choose between code unit order (FALSE)
- *                       and code point order (TRUE).
- *
- * @return <0 or 0 or >0 as usual for string comparisons
- *
- * @see u_strCompare
- *
- * @stable ICU 2.6
- */
-U_STABLE int32_t U_EXPORT2
-u_strCompareIter(UCharIterator *iter1, UCharIterator *iter2, UBool codePointOrder) __INTRODUCED_IN(31);
-
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 #if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
