@@ -106,8 +106,10 @@ package com.android.i18n.timezone {
     method public com.android.i18n.timezone.ZoneInfoData createCopyWithRawOffset(int);
     method public static com.android.i18n.timezone.ZoneInfoData createFromSerializationFields(String, java.io.ObjectInputStream.GetField) throws java.io.IOException;
     method public static com.android.i18n.timezone.ZoneInfoData createZoneInfo(String, long, java.nio.ByteBuffer) throws java.io.IOException;
+    method public static com.android.i18n.timezone.ZoneInfoData createZoneInfo(String, java.nio.ByteBuffer) throws java.io.IOException;
     method public int getDSTSavings();
     method public String getID();
+    method public Integer getLatestDstSavings(long);
     method public int getOffset(long);
     method public int getOffsetsByUtcTime(long, int[]);
     method public int getRawOffset();
