@@ -751,6 +751,68 @@ public final class ZoneInfoData {
         return mUseDst;
     }
 
+    /**
+     * Returns the offset of daylight saving in milliseconds in the latest Daylight Savings Time
+     * after the time {@code when}. If no known DST occurs after {@code when}, it returns
+     * {@code null}.
+     *
+     * @param when the number of milliseconds since January 1, 1970, 00:00:00 GMT
+     */
+    @libcore.api.IntraCoreApi
+    public Integer getLatestDstSavings(long when) {
+        // Find the latest daylight and standard offsets (if any).
+        int lastStdTransitionIndex = -1;
+        int lastDstTransitionIndex = -1;
+        for (int i = mTransitions.length - 1;
+                (lastStdTransitionIndex == -1 || lastDstTransitionIndex == -1) && i >= 0; --i) {
+            int typeIndex = mTypes[i] & 0xff;
+            if (lastStdTransitionIndex == -1 && mIsDsts[typeIndex] == 0) {
+                lastStdTransitionIndex = i;
+            }
+            if (lastDstTransitionIndex == -1 && mIsDsts[typeIndex] != 0) {
+                lastDstTransitionIndex = i;
+            }
+        }
+
+        if (lastDstTransitionIndex != -1) {
+            // Check to see if the last DST transition is in the future or the past. If it is in
+            // the past then we treat it as if it doesn't exist, at least for the purposes of
+            // setting mDstSavings and mUseDst.
+            long lastDSTTransitionTime = mTransitions[lastDstTransitionIndex];
+
+            // Convert the current time in millis into seconds. Unlike other places that convert
+            // time in milliseconds into seconds in order to compare with transition time this
+            // rounds up rather than down. It does that because this is interested in what
+            // transitions apply in future
+            long currentUnixTimeSeconds = roundUpMillisToSeconds(when);
+
+            // Is this zone observing DST currently or in the future?
+            // We don't care if they've historically used it: most places have at least once.
+            // See http://b/36905574.
+            // This test means that for somewhere like Morocco, which tried DST in 2009 but has
+            // no future plans (and thus no future schedule info) will report "true" from
+            // useDaylightTime at the start of 2009 but "false" at the end. This seems appropriate.
+            if (lastDSTTransitionTime < currentUnixTimeSeconds) {
+                // The last DST transition is before now so treat it as if it doesn't exist.
+                lastDstTransitionIndex = -1;
+            }
+        }
+
+        final Integer dstSavings;
+        if (lastDstTransitionIndex == -1) {
+            // There were no DST transitions or at least no future DST transitions so DST is not
+            // used.
+            dstSavings = null;
+        } else {
+            // Use the latest transition's pair of offsets to compute the DST savings.
+            // This isn't generally useful, but it's exposed by TimeZone.getDSTSavings.
+            int lastGmtOffset = mOffsets[mTypes[lastStdTransitionIndex] & 0xff];
+            int lastDstOffset = mOffsets[mTypes[lastDstTransitionIndex] & 0xff];
+            dstSavings = (lastDstOffset - lastGmtOffset) * 1000;
+        }
+        return dstSavings;
+    }
+
     int getEarliestRawOffset() {
         return mEarliestRawOffset;
     }
@@ -858,5 +920,14 @@ public final class ZoneInfoData {
         ByteBufferIterator bufferIterator = new ByteBufferIterator(buf);
         return ZoneInfoData.readTimeZone(
             "TimeZone for '" + name + "'", bufferIterator, timeInMilli);
+    }
+
+    /**
+     * IntraCoreApi made visible for testing in libcore
+     */
+    @libcore.api.IntraCoreApi
+    public static ZoneInfoData createZoneInfo(String name, ByteBuffer buf) throws IOException {
+        // TODO: temp implementation to use current system time until libcore is updated
+        return createZoneInfo(name, System.currentTimeMillis(), buf);
     }
 }
