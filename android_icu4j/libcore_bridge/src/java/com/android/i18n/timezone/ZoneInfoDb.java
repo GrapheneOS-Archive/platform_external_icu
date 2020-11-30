@@ -382,8 +382,9 @@ public final class ZoneInfoDb {
   public ZoneInfoData makeZoneInfoData(String id) {
     checkNotClosed();
     ZoneInfoData zoneInfoData = cache.get(id);
-    // The object from the cache is cloned because TimeZone / ZoneInfo are mutable.
-    return zoneInfoData == null ? null : zoneInfoData.createCopy();
+    // The object from the cache is not cloned because ZoneInfoData is immutable.
+    // Note that zoneInfoData can be null here.
+    return zoneInfoData;
   }
 
   @libcore.api.CorePlatformApi
