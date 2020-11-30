@@ -775,14 +775,6 @@ public final class ZoneInfoData {
     }
 
     /**
-     * Create a deep copy of this object.
-     */
-    @libcore.api.IntraCoreApi
-    public ZoneInfoData createCopy() {
-        return new ZoneInfoData(this);
-    }
-
-    /**
      * Create a deep copy of this object with a new raw offset.
      */
     @libcore.api.IntraCoreApi
@@ -794,13 +786,11 @@ public final class ZoneInfoData {
      * Returns the times (in seconds) at which the offsets changes for any reason, whether that is a
      * change in the offset from UTC or a change in the DST.
      *
-     * WARNING: This API is exposed only for app compat usage in {@link libcore.util.ZoneInfo}. The
-     * data is read-only. Do not write any data into the returned array, which is an internal
-     * data structure.
+     * WARNING: This API is exposed only for app compat usage in @link libcore.util.ZoneInfo}.
      */
     @libcore.api.IntraCoreApi
     public long[] getTransitions() {
-        return mTransitions;
+        return mTransitions == null ? null : mTransitions.clone();
     }
 
     /**
