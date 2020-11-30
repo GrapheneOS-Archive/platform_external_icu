@@ -39,7 +39,7 @@ import java.util.Arrays;
  * specific file. This class is responsible for reading the data from that {@link BufferIterator}
  * and storing it a representation to support the {@link java.util.TimeZone} and
  * {@link java.util.GregorianCalendar} implementations. See
- * {@link ZoneInfoData#readTimeZone(String, BufferIterator, long)}.
+ * {@link ZoneInfoData#readTimeZone(String, BufferIterator)}.
  *
  * <p>This class does not use all the information from the {@code tzfile}; it uses:
  * {@code tzh_timecnt} and the associated transition times and type information. For each type
@@ -57,8 +57,6 @@ public final class ZoneInfoData {
     public static final ObjectStreamField[] ZONEINFO_SERIALIZED_FIELDS = new ObjectStreamField[] {
         new ObjectStreamField("mRawOffset", int.class),
         new ObjectStreamField("mEarliestRawOffset", int.class),
-        new ObjectStreamField("mUseDst", boolean.class),
-        new ObjectStreamField("mDstSavings", int.class),
         new ObjectStreamField("mTransitions", long[].class),
         new ObjectStreamField("mTypes", byte[].class),
         new ObjectStreamField("mOffsets", int[].class),
@@ -80,38 +78,15 @@ public final class ZoneInfoData {
     private final int mEarliestRawOffset;
 
     /**
-     * Implements {@link #useDaylightTime()}
-     *
-     * <p>True if the transition active at the time this instance was created, or future
-     * transitions support DST. It is possible that caching this value at construction time and
-     * using it for the lifetime of the instance does not match the contract of the
-     * {@link java.util.TimeZone#useDaylightTime()} method but it appears to be what the RI does
-     * and that method is not particularly useful when it comes to historical or future times as it
-     * does not allow the time to be specified.
-     *
-     * <p>When this is false then {@link #mDstSavings} will be 0.
-     *
-     * @see #mDstSavings
-     */
-    private final boolean mUseDst;
-
-    /**
-     * Implements {@link #getDSTSavings()}
-     *
-     * @see #mUseDst
-     */
-    private final int mDstSavings;
-
-    /**
      * The times (in seconds) at which the offsets changes for any reason, whether that is a change
      * in the offset from UTC or a change in the DST.
      *
      * <p>These times are pre-calculated externally from a set of rules (both historical and
      * future) and stored in a file from which {@link ZoneInfoData#readTimeZone(String,
-     * BufferIterator, long)} reads the data. That is quite different to
-     * {@link java.util.SimpleTimeZone}, which has essentially human readable rules (e.g. DST starts
-     * at 01:00 on the first Sunday in March and ends at 01:00 on the last Sunday in October) that
-     * can be used to determine the DST transition times across a number of years
+     * BufferIterator)} reads the data. That is quite different to {@link java.util.SimpleTimeZone},
+     * which has essentially human readable rules (e.g. DST starts at 01:00 on the first Sunday in
+     * March and ends at 01:00 on the last Sunday in October) that can be used to determine the
+     * DST transition times across a number of years
      *
      * <p>In terms of {@link ZoneInfoData tzfile} structure this array is of length
      * {@code tzh_timecnt} and contains the times in seconds converted to long to make them safer
@@ -171,13 +146,11 @@ public final class ZoneInfoData {
      */
     final byte[] mIsDsts;
 
-    private ZoneInfoData(String id, int rawOffset, int earliestRawOffset, boolean useDst,
-            int dstSavings, long[] transitions, byte[] types, int[] offsets, byte[] isDsts) {
+    private ZoneInfoData(String id, int rawOffset, int earliestRawOffset,
+            long[] transitions, byte[] types, int[] offsets, byte[] isDsts) {
         mId = id;
         mRawOffset = rawOffset;
         mEarliestRawOffset = earliestRawOffset;
-        mUseDst = useDst;
-        mDstSavings = dstSavings;
         mTransitions = transitions;
         mTypes = types;
         mOffsets = offsets;
@@ -197,23 +170,22 @@ public final class ZoneInfoData {
     private ZoneInfoData(ZoneInfoData that, int newRawOffset) {
         mRawOffset = newRawOffset;
         mId = that.mId;
-        mDstSavings = that.mDstSavings;
         mEarliestRawOffset = that.mEarliestRawOffset;
-        mUseDst = that.mUseDst;
         mTransitions = that.mTransitions == null ? null : that.mTransitions.clone();
         mTypes = that.mTypes == null ? null : that.mTypes.clone();
         mOffsets = that.mOffsets == null ? null : that.mOffsets.clone();
         mIsDsts = that.mIsDsts == null ? null : that.mIsDsts.clone();
     }
 
-    public static ZoneInfoData readTimeZone(String id, BufferIterator it, long currentTimeMillis)
+    // VisibleForTesting
+    public static ZoneInfoData readTimeZone(String id, BufferIterator it)
             throws IOException {
 
         // Skip over the superseded 32-bit header and data.
         skipOver32BitData(id, it);
 
         // Read the v2+ 64-bit header and data.
-        return read64BitData(id, it, currentTimeMillis);
+        return read64BitData(id, it);
     }
 
     /**
@@ -272,7 +244,7 @@ public final class ZoneInfoData {
      * Read the 64-bit header and data for {@code id} from the current position of {@code it} and
      * return a ZoneInfo.
      */
-    private static ZoneInfoData read64BitData(String id, BufferIterator it, long currentTimeMillis)
+    private static ZoneInfoData read64BitData(String id, BufferIterator it)
             throws IOException {
         // Variable names beginning tzh_ correspond to those in "tzfile.h".
 
@@ -351,7 +323,7 @@ public final class ZoneInfoData {
             // for any locale. (The RI doesn't do any better than us here either.)
             it.skip(1);
         }
-        return new ZoneInfoData(id, transitions64, types, gmtOffsets, isDsts, currentTimeMillis);
+        return new ZoneInfoData(id, transitions64, types, gmtOffsets, isDsts);
     }
 
     private static void checkTzifVersionAcceptable(String id, byte tzh_version) throws IOException {
@@ -367,7 +339,7 @@ public final class ZoneInfoData {
     }
 
     private ZoneInfoData(String name, long[] transitions, byte[] types, int[] gmtOffsets,
-            byte[] isDsts, long currentTimeMillis) {
+            byte[] isDsts) {
         if (gmtOffsets.length == 0) {
             throw new IllegalArgumentException("ZoneInfo requires at least one offset "
                     + "to be provided for each timezone but could not find one for '" + name + "'");
@@ -377,17 +349,12 @@ public final class ZoneInfoData {
         mIsDsts = isDsts;
         mId = name;
 
-        // Find the latest daylight and standard offsets (if any).
+        // Find the latest standard offsets (if any).
         int lastStdTransitionIndex = -1;
-        int lastDstTransitionIndex = -1;
-        for (int i = mTransitions.length - 1;
-                (lastStdTransitionIndex == -1 || lastDstTransitionIndex == -1) && i >= 0; --i) {
+        for (int i = mTransitions.length - 1; lastStdTransitionIndex == -1 && i >= 0; --i) {
             int typeIndex = mTypes[i] & 0xff;
             if (lastStdTransitionIndex == -1 && mIsDsts[typeIndex] == 0) {
                 lastStdTransitionIndex = i;
-            }
-            if (lastDstTransitionIndex == -1 && mIsDsts[typeIndex] != 0) {
-                lastDstTransitionIndex = i;
             }
         }
 
@@ -405,44 +372,6 @@ public final class ZoneInfoData {
                         + "transition but could not find one for '" + name + "'");
             }
             rawOffsetInSeconds = gmtOffsets[mTypes[lastStdTransitionIndex] & 0xff];
-        }
-
-        if (lastDstTransitionIndex != -1) {
-            // Check to see if the last DST transition is in the future or the past. If it is in
-            // the past then we treat it as if it doesn't exist, at least for the purposes of
-            // setting mDstSavings and mUseDst.
-            long lastDSTTransitionTime = mTransitions[lastDstTransitionIndex];
-
-            // Convert the current time in millis into seconds. Unlike other places that convert
-            // time in milliseconds into seconds in order to compare with transition time this
-            // rounds up rather than down. It does that because this is interested in what
-            // transitions apply in future
-            long currentUnixTimeSeconds = roundUpMillisToSeconds(currentTimeMillis);
-
-            // Is this zone observing DST currently or in the future?
-            // We don't care if they've historically used it: most places have at least once.
-            // See http://b/36905574.
-            // This test means that for somewhere like Morocco, which tried DST in 2009 but has
-            // no future plans (and thus no future schedule info) will report "true" from
-            // useDaylightTime at the start of 2009 but "false" at the end. This seems appropriate.
-            if (lastDSTTransitionTime < currentUnixTimeSeconds) {
-                // The last DST transition is before now so treat it as if it doesn't exist.
-                lastDstTransitionIndex = -1;
-            }
-        }
-
-        if (lastDstTransitionIndex == -1) {
-            // There were no DST transitions or at least no future DST transitions so DST is not
-            // used.
-            mDstSavings = 0;
-            mUseDst = false;
-        } else {
-            // Use the latest transition's pair of offsets to compute the DST savings.
-            // This isn't generally useful, but it's exposed by TimeZone.getDSTSavings.
-            int lastGmtOffset = gmtOffsets[mTypes[lastStdTransitionIndex] & 0xff];
-            int lastDstOffset = gmtOffsets[mTypes[lastDstTransitionIndex] & 0xff];
-            mDstSavings = (lastDstOffset - lastGmtOffset) * 1000;
-            mUseDst = true;
         }
 
         // From the tzfile docs (Jan 2019):
@@ -486,23 +415,13 @@ public final class ZoneInfoData {
             throws IOException {
         int rawOffset = getField.get("mRawOffset", 0);
         int earliestRawOffset = getField.get("mEarliestRawOffset", 0);
-        boolean useDst = getField.get("mUseDst", false);
-        int dstSavings = getField.get("mDstSavings", 0);
         long[] transitions = (long[]) getField.get("mTransitions", null);
         byte[] types = (byte[]) getField.get("mTypes", null);
         int[] offsets = (int[]) getField.get("mOffsets", null);
         byte[] isDsts = (byte[]) getField.get("mIsDsts", null);
-        /** For pre-OpenJDK compatibility, ensure that when deserializing an instance that
-         * {@link #mDstSavings} is always 0 when {@link #mUseDst} is false
-         */
-        if (!useDst && dstSavings != 0) {
-            dstSavings = 0;
-        }
 
-        return new ZoneInfoData(
-                id, rawOffset, earliestRawOffset,
-                useDst, dstSavings, transitions, types,
-            offsets, isDsts);
+        return new ZoneInfoData(id, rawOffset, earliestRawOffset, transitions, types, offsets,
+                isDsts);
     }
 
     /**
@@ -512,8 +431,6 @@ public final class ZoneInfoData {
     public void writeToSerializationFields(PutField putField) {
         putField.put("mRawOffset", mRawOffset);
         putField.put("mEarliestRawOffset", mEarliestRawOffset);
-        putField.put("mUseDst", mUseDst);
-        putField.put("mDstSavings", mDstSavings);
         putField.put("mTransitions", mTransitions);
         putField.put("mTypes", mTypes);
         putField.put("mOffsets", mOffsets);
@@ -736,22 +653,6 @@ public final class ZoneInfoData {
     }
 
     /**
-     * Returns the offset of daylight saving in milliseconds.
-     */
-    @libcore.api.IntraCoreApi
-    public int getDSTSavings() {
-        return mDstSavings;
-    }
-
-    /**
-     * Returns {@code true} if this time zone still uses daylight saving time currently.
-     */
-    @libcore.api.IntraCoreApi
-    public boolean useDaylightTime() {
-        return mUseDst;
-    }
-
-    /**
      * Returns the offset of daylight saving in milliseconds in the latest Daylight Savings Time
      * after the time {@code when}. If no known DST occurs after {@code when}, it returns
      * {@code null}.
@@ -777,7 +678,7 @@ public final class ZoneInfoData {
         if (lastDstTransitionIndex != -1) {
             // Check to see if the last DST transition is in the future or the past. If it is in
             // the past then we treat it as if it doesn't exist, at least for the purposes of
-            // setting mDstSavings and mUseDst.
+            // TimeZone#useDaylightTime() and #getDSTSavings()
             long lastDSTTransitionTime = mTransitions[lastDstTransitionIndex];
 
             // Convert the current time in millis into seconds. Unlike other places that convert
@@ -822,12 +723,6 @@ public final class ZoneInfoData {
      */
     @libcore.api.IntraCoreApi
     public boolean hasSameRules(ZoneInfoData other) {
-        if (mUseDst != other.mUseDst) {
-            return false;
-        }
-        if (!mUseDst) {
-            return mRawOffset == other.mRawOffset;
-        }
         return mRawOffset == other.mRawOffset
                 // Arrays.equals returns true if both arrays are null
                 && Arrays.equals(mOffsets, other.mOffsets)
@@ -855,7 +750,6 @@ public final class ZoneInfoData {
         result = prime * result + mRawOffset;
         result = prime * result + Arrays.hashCode(mTransitions);
         result = prime * result + Arrays.hashCode(mTypes);
-        result = prime * result + (mUseDst ? 1231 : 1237);
         return result;
     }
 
@@ -867,8 +761,6 @@ public final class ZoneInfoData {
         return "[id=\"" + getID() + "\"" +
             ",mRawOffset=" + mRawOffset +
             ",mEarliestRawOffset=" + mEarliestRawOffset +
-            ",mUseDst=" + mUseDst +
-            ",mDstSavings=" + mDstSavings +
             ",transitions=" + mTransitions.length +
             "]";
     }
@@ -915,19 +807,8 @@ public final class ZoneInfoData {
      * IntraCoreApi made visible for testing in libcore
      */
     @libcore.api.IntraCoreApi
-    public static ZoneInfoData createZoneInfo(String name, long timeInMilli, ByteBuffer buf)
-        throws IOException {
-        ByteBufferIterator bufferIterator = new ByteBufferIterator(buf);
-        return ZoneInfoData.readTimeZone(
-            "TimeZone for '" + name + "'", bufferIterator, timeInMilli);
-    }
-
-    /**
-     * IntraCoreApi made visible for testing in libcore
-     */
-    @libcore.api.IntraCoreApi
     public static ZoneInfoData createZoneInfo(String name, ByteBuffer buf) throws IOException {
-        // TODO: temp implementation to use current system time until libcore is updated
-        return createZoneInfo(name, System.currentTimeMillis(), buf);
+        ByteBufferIterator bufferIterator = new ByteBufferIterator(buf);
+        return ZoneInfoData.readTimeZone("TimeZone for '" + name + "'", bufferIterator);
     }
 }

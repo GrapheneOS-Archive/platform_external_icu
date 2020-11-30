@@ -319,7 +319,7 @@ public final class ZoneInfoDb {
       return null;
     }
 
-    return ZoneInfoData.readTimeZone(id, it, System.currentTimeMillis());
+    return ZoneInfoData.readTimeZone(id, it);
   }
 
   /**
