@@ -160,12 +160,6 @@ package com.android.icu.util {
     method public static String toUpperCase(String, java.util.Locale);
   }
 
-  public class Icu4cMetadata {
-    method public static String getCldrVersion();
-    method public static String getIcuVersion();
-    method public static String getUnicodeVersion();
-  }
-
   public final class LocaleNative {
     method public static String getDisplayCountry(java.util.Locale, java.util.Locale);
     method public static String getDisplayLanguage(java.util.Locale, java.util.Locale);
