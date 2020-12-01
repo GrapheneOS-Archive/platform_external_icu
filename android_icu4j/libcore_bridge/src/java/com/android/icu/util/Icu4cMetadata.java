@@ -24,19 +24,16 @@ public class Icu4cMetadata {
     /**
      * Returns the version of the CLDR data in use, such as "22.1.1".
      */
-    @libcore.api.IntraCoreApi
     public static native String getCldrVersion();
 
     /**
      * Returns the icu4c version in use, such as "50.1.1".
      */
-    @libcore.api.IntraCoreApi
     public static native String getIcuVersion();
 
     /**
      * Returns the Unicode version our ICU supports, such as "6.2".
      */
-    @libcore.api.IntraCoreApi
     public static native String getUnicodeVersion();
 
 }
