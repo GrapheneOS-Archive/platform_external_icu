@@ -3,10 +3,17 @@
 // © 2018 and later: Unicode, Inc. and others.'
 // License & terms of use: http://www.unicode.org/copyright.html
 
+#include <unicode/ubidi.h>
+#include <unicode/ubrk.h>
 #include <unicode/uchar.h>
+#include <unicode/uenum.h>
+#include <unicode/uldnames.h>
 #include <unicode/uloc.h>
 #include <unicode/ulocdata.h>
+#include <unicode/unorm2.h>
+#include <unicode/uscript.h>
 #include <unicode/ustring.h>
+#include <unicode/utext.h>
 #include <unicode/utypes.h>
 #include <unicode/uversion.h>
 
@@ -119,6 +126,84 @@
 #undef u_totitle
 #undef u_toupper
 #undef u_versionToString
+#undef ubidi_close
+#undef ubidi_countParagraphs
+#undef ubidi_countRuns
+#undef ubidi_getBaseDirection
+#undef ubidi_getClassCallback
+#undef ubidi_getCustomizedClass
+#undef ubidi_getDirection
+#undef ubidi_getLength
+#undef ubidi_getLevelAt
+#undef ubidi_getLevels
+#undef ubidi_getLogicalIndex
+#undef ubidi_getLogicalMap
+#undef ubidi_getLogicalRun
+#undef ubidi_getParaLevel
+#undef ubidi_getParagraph
+#undef ubidi_getParagraphByIndex
+#undef ubidi_getProcessedLength
+#undef ubidi_getReorderingMode
+#undef ubidi_getReorderingOptions
+#undef ubidi_getResultLength
+#undef ubidi_getText
+#undef ubidi_getVisualIndex
+#undef ubidi_getVisualMap
+#undef ubidi_getVisualRun
+#undef ubidi_invertMap
+#undef ubidi_isInverse
+#undef ubidi_isOrderParagraphsLTR
+#undef ubidi_open
+#undef ubidi_openSized
+#undef ubidi_orderParagraphsLTR
+#undef ubidi_reorderLogical
+#undef ubidi_reorderVisual
+#undef ubidi_setClassCallback
+#undef ubidi_setContext
+#undef ubidi_setInverse
+#undef ubidi_setLine
+#undef ubidi_setPara
+#undef ubidi_setReorderingMode
+#undef ubidi_setReorderingOptions
+#undef ubidi_writeReordered
+#undef ubidi_writeReverse
+#undef ubrk_close
+#undef ubrk_countAvailable
+#undef ubrk_current
+#undef ubrk_first
+#undef ubrk_following
+#undef ubrk_getAvailable
+#undef ubrk_getRuleStatus
+#undef ubrk_getRuleStatusVec
+#undef ubrk_isBoundary
+#undef ubrk_last
+#undef ubrk_next
+#undef ubrk_open
+#undef ubrk_preceding
+#undef ubrk_previous
+#undef ubrk_setText
+#undef ubrk_setUText
+#undef uenum_close
+#undef uenum_count
+#undef uenum_next
+#undef uenum_openCharStringsEnumeration
+#undef uenum_openUCharStringsEnumeration
+#undef uenum_reset
+#undef uenum_unext
+#undef uldn_close
+#undef uldn_getContext
+#undef uldn_getDialectHandling
+#undef uldn_getLocale
+#undef uldn_keyDisplayName
+#undef uldn_keyValueDisplayName
+#undef uldn_languageDisplayName
+#undef uldn_localeDisplayName
+#undef uldn_open
+#undef uldn_openForContext
+#undef uldn_regionDisplayName
+#undef uldn_scriptCodeDisplayName
+#undef uldn_scriptDisplayName
+#undef uldn_variantDisplayName
 #undef uloc_acceptLanguage
 #undef uloc_addLikelySubtags
 #undef uloc_canonicalize
@@ -156,6 +241,52 @@
 #undef uloc_toUnicodeLocaleKey
 #undef uloc_toUnicodeLocaleType
 #undef ulocdata_getCLDRVersion
+#undef unorm2_append
+#undef unorm2_close
+#undef unorm2_composePair
+#undef unorm2_getCombiningClass
+#undef unorm2_getDecomposition
+#undef unorm2_getNFCInstance
+#undef unorm2_getNFDInstance
+#undef unorm2_getNFKCCasefoldInstance
+#undef unorm2_getNFKCInstance
+#undef unorm2_getNFKDInstance
+#undef unorm2_getRawDecomposition
+#undef unorm2_hasBoundaryAfter
+#undef unorm2_hasBoundaryBefore
+#undef unorm2_isInert
+#undef unorm2_isNormalized
+#undef unorm2_normalize
+#undef unorm2_normalizeSecondAndAppend
+#undef unorm2_quickCheck
+#undef unorm2_spanQuickCheckYes
+#undef uscript_breaksBetweenLetters
+#undef uscript_getCode
+#undef uscript_getName
+#undef uscript_getSampleString
+#undef uscript_getScript
+#undef uscript_getScriptExtensions
+#undef uscript_getShortName
+#undef uscript_getUsage
+#undef uscript_hasScript
+#undef uscript_isCased
+#undef uscript_isRightToLeft
+#undef utext_char32At
+#undef utext_clone
+#undef utext_close
+#undef utext_current32
+#undef utext_equals
+#undef utext_extract
+#undef utext_getNativeIndex
+#undef utext_moveIndex32
+#undef utext_nativeLength
+#undef utext_next32
+#undef utext_next32From
+#undef utext_openUChars
+#undef utext_openUTF8
+#undef utext_previous32
+#undef utext_previous32From
+#undef utext_setNativeIndex
 
 extern "C" {
 void u_charAge(UChar32 c, UVersionInfo versionArray) {
@@ -482,6 +613,240 @@ UChar32 u_toupper(UChar32 c) {
 void u_versionToString(const UVersionInfo versionArray, char * versionString) {
   U_ICU_ENTRY_POINT_RENAME(u_versionToString)(versionArray, versionString);
 }
+void ubidi_close(UBiDi * pBiDi) {
+  U_ICU_ENTRY_POINT_RENAME(ubidi_close)(pBiDi);
+}
+int32_t ubidi_countParagraphs(UBiDi * pBiDi) {
+  return U_ICU_ENTRY_POINT_RENAME(ubidi_countParagraphs)(pBiDi);
+}
+int32_t ubidi_countRuns(UBiDi * pBiDi, UErrorCode * pErrorCode) {
+  return U_ICU_ENTRY_POINT_RENAME(ubidi_countRuns)(pBiDi, pErrorCode);
+}
+UBiDiDirection ubidi_getBaseDirection(const UChar * text, int32_t length) {
+  return U_ICU_ENTRY_POINT_RENAME(ubidi_getBaseDirection)(text, length);
+}
+void ubidi_getClassCallback(UBiDi * pBiDi, UBiDiClassCallback ** fn, const void ** context) {
+  U_ICU_ENTRY_POINT_RENAME(ubidi_getClassCallback)(pBiDi, fn, context);
+}
+UCharDirection ubidi_getCustomizedClass(UBiDi * pBiDi, UChar32 c) {
+  return U_ICU_ENTRY_POINT_RENAME(ubidi_getCustomizedClass)(pBiDi, c);
+}
+UBiDiDirection ubidi_getDirection(const UBiDi * pBiDi) {
+  return U_ICU_ENTRY_POINT_RENAME(ubidi_getDirection)(pBiDi);
+}
+int32_t ubidi_getLength(const UBiDi * pBiDi) {
+  return U_ICU_ENTRY_POINT_RENAME(ubidi_getLength)(pBiDi);
+}
+UBiDiLevel ubidi_getLevelAt(const UBiDi * pBiDi, int32_t charIndex) {
+  return U_ICU_ENTRY_POINT_RENAME(ubidi_getLevelAt)(pBiDi, charIndex);
+}
+const UBiDiLevel * ubidi_getLevels(UBiDi * pBiDi, UErrorCode * pErrorCode) {
+  return U_ICU_ENTRY_POINT_RENAME(ubidi_getLevels)(pBiDi, pErrorCode);
+}
+int32_t ubidi_getLogicalIndex(UBiDi * pBiDi, int32_t visualIndex, UErrorCode * pErrorCode) {
+  return U_ICU_ENTRY_POINT_RENAME(ubidi_getLogicalIndex)(pBiDi, visualIndex, pErrorCode);
+}
+void ubidi_getLogicalMap(UBiDi * pBiDi, int32_t * indexMap, UErrorCode * pErrorCode) {
+  U_ICU_ENTRY_POINT_RENAME(ubidi_getLogicalMap)(pBiDi, indexMap, pErrorCode);
+}
+void ubidi_getLogicalRun(const UBiDi * pBiDi, int32_t logicalPosition, int32_t * pLogicalLimit, UBiDiLevel * pLevel) {
+  U_ICU_ENTRY_POINT_RENAME(ubidi_getLogicalRun)(pBiDi, logicalPosition, pLogicalLimit, pLevel);
+}
+UBiDiLevel ubidi_getParaLevel(const UBiDi * pBiDi) {
+  return U_ICU_ENTRY_POINT_RENAME(ubidi_getParaLevel)(pBiDi);
+}
+int32_t ubidi_getParagraph(const UBiDi * pBiDi, int32_t charIndex, int32_t * pParaStart, int32_t * pParaLimit, UBiDiLevel * pParaLevel, UErrorCode * pErrorCode) {
+  return U_ICU_ENTRY_POINT_RENAME(ubidi_getParagraph)(pBiDi, charIndex, pParaStart, pParaLimit, pParaLevel, pErrorCode);
+}
+void ubidi_getParagraphByIndex(const UBiDi * pBiDi, int32_t paraIndex, int32_t * pParaStart, int32_t * pParaLimit, UBiDiLevel * pParaLevel, UErrorCode * pErrorCode) {
+  U_ICU_ENTRY_POINT_RENAME(ubidi_getParagraphByIndex)(pBiDi, paraIndex, pParaStart, pParaLimit, pParaLevel, pErrorCode);
+}
+int32_t ubidi_getProcessedLength(const UBiDi * pBiDi) {
+  return U_ICU_ENTRY_POINT_RENAME(ubidi_getProcessedLength)(pBiDi);
+}
+UBiDiReorderingMode ubidi_getReorderingMode(UBiDi * pBiDi) {
+  return U_ICU_ENTRY_POINT_RENAME(ubidi_getReorderingMode)(pBiDi);
+}
+uint32_t ubidi_getReorderingOptions(UBiDi * pBiDi) {
+  return U_ICU_ENTRY_POINT_RENAME(ubidi_getReorderingOptions)(pBiDi);
+}
+int32_t ubidi_getResultLength(const UBiDi * pBiDi) {
+  return U_ICU_ENTRY_POINT_RENAME(ubidi_getResultLength)(pBiDi);
+}
+const UChar * ubidi_getText(const UBiDi * pBiDi) {
+  return U_ICU_ENTRY_POINT_RENAME(ubidi_getText)(pBiDi);
+}
+int32_t ubidi_getVisualIndex(UBiDi * pBiDi, int32_t logicalIndex, UErrorCode * pErrorCode) {
+  return U_ICU_ENTRY_POINT_RENAME(ubidi_getVisualIndex)(pBiDi, logicalIndex, pErrorCode);
+}
+void ubidi_getVisualMap(UBiDi * pBiDi, int32_t * indexMap, UErrorCode * pErrorCode) {
+  U_ICU_ENTRY_POINT_RENAME(ubidi_getVisualMap)(pBiDi, indexMap, pErrorCode);
+}
+UBiDiDirection ubidi_getVisualRun(UBiDi * pBiDi, int32_t runIndex, int32_t * pLogicalStart, int32_t * pLength) {
+  return U_ICU_ENTRY_POINT_RENAME(ubidi_getVisualRun)(pBiDi, runIndex, pLogicalStart, pLength);
+}
+void ubidi_invertMap(const int32_t * srcMap, int32_t * destMap, int32_t length) {
+  U_ICU_ENTRY_POINT_RENAME(ubidi_invertMap)(srcMap, destMap, length);
+}
+UBool ubidi_isInverse(UBiDi * pBiDi) {
+  return U_ICU_ENTRY_POINT_RENAME(ubidi_isInverse)(pBiDi);
+}
+UBool ubidi_isOrderParagraphsLTR(UBiDi * pBiDi) {
+  return U_ICU_ENTRY_POINT_RENAME(ubidi_isOrderParagraphsLTR)(pBiDi);
+}
+UBiDi * ubidi_open() {
+  return U_ICU_ENTRY_POINT_RENAME(ubidi_open)();
+}
+UBiDi * ubidi_openSized(int32_t maxLength, int32_t maxRunCount, UErrorCode * pErrorCode) {
+  return U_ICU_ENTRY_POINT_RENAME(ubidi_openSized)(maxLength, maxRunCount, pErrorCode);
+}
+void ubidi_orderParagraphsLTR(UBiDi * pBiDi, UBool orderParagraphsLTR) {
+  U_ICU_ENTRY_POINT_RENAME(ubidi_orderParagraphsLTR)(pBiDi, orderParagraphsLTR);
+}
+void ubidi_reorderLogical(const UBiDiLevel * levels, int32_t length, int32_t * indexMap) {
+  U_ICU_ENTRY_POINT_RENAME(ubidi_reorderLogical)(levels, length, indexMap);
+}
+void ubidi_reorderVisual(const UBiDiLevel * levels, int32_t length, int32_t * indexMap) {
+  U_ICU_ENTRY_POINT_RENAME(ubidi_reorderVisual)(levels, length, indexMap);
+}
+void ubidi_setClassCallback(UBiDi * pBiDi, UBiDiClassCallback * newFn, const void * newContext, UBiDiClassCallback ** oldFn, const void ** oldContext, UErrorCode * pErrorCode) {
+  U_ICU_ENTRY_POINT_RENAME(ubidi_setClassCallback)(pBiDi, newFn, newContext, oldFn, oldContext, pErrorCode);
+}
+void ubidi_setContext(UBiDi * pBiDi, const UChar * prologue, int32_t proLength, const UChar * epilogue, int32_t epiLength, UErrorCode * pErrorCode) {
+  U_ICU_ENTRY_POINT_RENAME(ubidi_setContext)(pBiDi, prologue, proLength, epilogue, epiLength, pErrorCode);
+}
+void ubidi_setInverse(UBiDi * pBiDi, UBool isInverse) {
+  U_ICU_ENTRY_POINT_RENAME(ubidi_setInverse)(pBiDi, isInverse);
+}
+void ubidi_setLine(const UBiDi * pParaBiDi, int32_t start, int32_t limit, UBiDi * pLineBiDi, UErrorCode * pErrorCode) {
+  U_ICU_ENTRY_POINT_RENAME(ubidi_setLine)(pParaBiDi, start, limit, pLineBiDi, pErrorCode);
+}
+void ubidi_setPara(UBiDi * pBiDi, const UChar * text, int32_t length, UBiDiLevel paraLevel, UBiDiLevel * embeddingLevels, UErrorCode * pErrorCode) {
+  U_ICU_ENTRY_POINT_RENAME(ubidi_setPara)(pBiDi, text, length, paraLevel, embeddingLevels, pErrorCode);
+}
+void ubidi_setReorderingMode(UBiDi * pBiDi, UBiDiReorderingMode reorderingMode) {
+  U_ICU_ENTRY_POINT_RENAME(ubidi_setReorderingMode)(pBiDi, reorderingMode);
+}
+void ubidi_setReorderingOptions(UBiDi * pBiDi, uint32_t reorderingOptions) {
+  U_ICU_ENTRY_POINT_RENAME(ubidi_setReorderingOptions)(pBiDi, reorderingOptions);
+}
+int32_t ubidi_writeReordered(UBiDi * pBiDi, UChar * dest, int32_t destSize, uint16_t options, UErrorCode * pErrorCode) {
+  return U_ICU_ENTRY_POINT_RENAME(ubidi_writeReordered)(pBiDi, dest, destSize, options, pErrorCode);
+}
+int32_t ubidi_writeReverse(const UChar * src, int32_t srcLength, UChar * dest, int32_t destSize, uint16_t options, UErrorCode * pErrorCode) {
+  return U_ICU_ENTRY_POINT_RENAME(ubidi_writeReverse)(src, srcLength, dest, destSize, options, pErrorCode);
+}
+void ubrk_close(UBreakIterator * bi) {
+  U_ICU_ENTRY_POINT_RENAME(ubrk_close)(bi);
+}
+int32_t ubrk_countAvailable() {
+  return U_ICU_ENTRY_POINT_RENAME(ubrk_countAvailable)();
+}
+int32_t ubrk_current(const UBreakIterator * bi) {
+  return U_ICU_ENTRY_POINT_RENAME(ubrk_current)(bi);
+}
+int32_t ubrk_first(UBreakIterator * bi) {
+  return U_ICU_ENTRY_POINT_RENAME(ubrk_first)(bi);
+}
+int32_t ubrk_following(UBreakIterator * bi, int32_t offset) {
+  return U_ICU_ENTRY_POINT_RENAME(ubrk_following)(bi, offset);
+}
+const char * ubrk_getAvailable(int32_t index) {
+  return U_ICU_ENTRY_POINT_RENAME(ubrk_getAvailable)(index);
+}
+int32_t ubrk_getRuleStatus(UBreakIterator * bi) {
+  return U_ICU_ENTRY_POINT_RENAME(ubrk_getRuleStatus)(bi);
+}
+int32_t ubrk_getRuleStatusVec(UBreakIterator * bi, int32_t * fillInVec, int32_t capacity, UErrorCode * status) {
+  return U_ICU_ENTRY_POINT_RENAME(ubrk_getRuleStatusVec)(bi, fillInVec, capacity, status);
+}
+UBool ubrk_isBoundary(UBreakIterator * bi, int32_t offset) {
+  return U_ICU_ENTRY_POINT_RENAME(ubrk_isBoundary)(bi, offset);
+}
+int32_t ubrk_last(UBreakIterator * bi) {
+  return U_ICU_ENTRY_POINT_RENAME(ubrk_last)(bi);
+}
+int32_t ubrk_next(UBreakIterator * bi) {
+  return U_ICU_ENTRY_POINT_RENAME(ubrk_next)(bi);
+}
+UBreakIterator * ubrk_open(UBreakIteratorType type, const char * locale, const UChar * text, int32_t textLength, UErrorCode * status) {
+  return U_ICU_ENTRY_POINT_RENAME(ubrk_open)(type, locale, text, textLength, status);
+}
+int32_t ubrk_preceding(UBreakIterator * bi, int32_t offset) {
+  return U_ICU_ENTRY_POINT_RENAME(ubrk_preceding)(bi, offset);
+}
+int32_t ubrk_previous(UBreakIterator * bi) {
+  return U_ICU_ENTRY_POINT_RENAME(ubrk_previous)(bi);
+}
+void ubrk_setText(UBreakIterator * bi, const UChar * text, int32_t textLength, UErrorCode * status) {
+  U_ICU_ENTRY_POINT_RENAME(ubrk_setText)(bi, text, textLength, status);
+}
+void ubrk_setUText(UBreakIterator * bi, UText * text, UErrorCode * status) {
+  U_ICU_ENTRY_POINT_RENAME(ubrk_setUText)(bi, text, status);
+}
+void uenum_close(UEnumeration * en) {
+  U_ICU_ENTRY_POINT_RENAME(uenum_close)(en);
+}
+int32_t uenum_count(UEnumeration * en, UErrorCode * status) {
+  return U_ICU_ENTRY_POINT_RENAME(uenum_count)(en, status);
+}
+const char * uenum_next(UEnumeration * en, int32_t * resultLength, UErrorCode * status) {
+  return U_ICU_ENTRY_POINT_RENAME(uenum_next)(en, resultLength, status);
+}
+UEnumeration * uenum_openCharStringsEnumeration(const char *const  strings[], int32_t count, UErrorCode * ec) {
+  return U_ICU_ENTRY_POINT_RENAME(uenum_openCharStringsEnumeration)(strings, count, ec);
+}
+UEnumeration * uenum_openUCharStringsEnumeration(const UChar *const  strings[], int32_t count, UErrorCode * ec) {
+  return U_ICU_ENTRY_POINT_RENAME(uenum_openUCharStringsEnumeration)(strings, count, ec);
+}
+void uenum_reset(UEnumeration * en, UErrorCode * status) {
+  U_ICU_ENTRY_POINT_RENAME(uenum_reset)(en, status);
+}
+const UChar * uenum_unext(UEnumeration * en, int32_t * resultLength, UErrorCode * status) {
+  return U_ICU_ENTRY_POINT_RENAME(uenum_unext)(en, resultLength, status);
+}
+void uldn_close(ULocaleDisplayNames * ldn) {
+  U_ICU_ENTRY_POINT_RENAME(uldn_close)(ldn);
+}
+UDisplayContext uldn_getContext(const ULocaleDisplayNames * ldn, UDisplayContextType type, UErrorCode * pErrorCode) {
+  return U_ICU_ENTRY_POINT_RENAME(uldn_getContext)(ldn, type, pErrorCode);
+}
+UDialectHandling uldn_getDialectHandling(const ULocaleDisplayNames * ldn) {
+  return U_ICU_ENTRY_POINT_RENAME(uldn_getDialectHandling)(ldn);
+}
+const char * uldn_getLocale(const ULocaleDisplayNames * ldn) {
+  return U_ICU_ENTRY_POINT_RENAME(uldn_getLocale)(ldn);
+}
+int32_t uldn_keyDisplayName(const ULocaleDisplayNames * ldn, const char * key, UChar * result, int32_t maxResultSize, UErrorCode * pErrorCode) {
+  return U_ICU_ENTRY_POINT_RENAME(uldn_keyDisplayName)(ldn, key, result, maxResultSize, pErrorCode);
+}
+int32_t uldn_keyValueDisplayName(const ULocaleDisplayNames * ldn, const char * key, const char * value, UChar * result, int32_t maxResultSize, UErrorCode * pErrorCode) {
+  return U_ICU_ENTRY_POINT_RENAME(uldn_keyValueDisplayName)(ldn, key, value, result, maxResultSize, pErrorCode);
+}
+int32_t uldn_languageDisplayName(const ULocaleDisplayNames * ldn, const char * lang, UChar * result, int32_t maxResultSize, UErrorCode * pErrorCode) {
+  return U_ICU_ENTRY_POINT_RENAME(uldn_languageDisplayName)(ldn, lang, result, maxResultSize, pErrorCode);
+}
+int32_t uldn_localeDisplayName(const ULocaleDisplayNames * ldn, const char * locale, UChar * result, int32_t maxResultSize, UErrorCode * pErrorCode) {
+  return U_ICU_ENTRY_POINT_RENAME(uldn_localeDisplayName)(ldn, locale, result, maxResultSize, pErrorCode);
+}
+ULocaleDisplayNames * uldn_open(const char * locale, UDialectHandling dialectHandling, UErrorCode * pErrorCode) {
+  return U_ICU_ENTRY_POINT_RENAME(uldn_open)(locale, dialectHandling, pErrorCode);
+}
+ULocaleDisplayNames * uldn_openForContext(const char * locale, UDisplayContext * contexts, int32_t length, UErrorCode * pErrorCode) {
+  return U_ICU_ENTRY_POINT_RENAME(uldn_openForContext)(locale, contexts, length, pErrorCode);
+}
+int32_t uldn_regionDisplayName(const ULocaleDisplayNames * ldn, const char * region, UChar * result, int32_t maxResultSize, UErrorCode * pErrorCode) {
+  return U_ICU_ENTRY_POINT_RENAME(uldn_regionDisplayName)(ldn, region, result, maxResultSize, pErrorCode);
+}
+int32_t uldn_scriptCodeDisplayName(const ULocaleDisplayNames * ldn, UScriptCode scriptCode, UChar * result, int32_t maxResultSize, UErrorCode * pErrorCode) {
+  return U_ICU_ENTRY_POINT_RENAME(uldn_scriptCodeDisplayName)(ldn, scriptCode, result, maxResultSize, pErrorCode);
+}
+int32_t uldn_scriptDisplayName(const ULocaleDisplayNames * ldn, const char * script, UChar * result, int32_t maxResultSize, UErrorCode * pErrorCode) {
+  return U_ICU_ENTRY_POINT_RENAME(uldn_scriptDisplayName)(ldn, script, result, maxResultSize, pErrorCode);
+}
+int32_t uldn_variantDisplayName(const ULocaleDisplayNames * ldn, const char * variant, UChar * result, int32_t maxResultSize, UErrorCode * pErrorCode) {
+  return U_ICU_ENTRY_POINT_RENAME(uldn_variantDisplayName)(ldn, variant, result, maxResultSize, pErrorCode);
+}
 int32_t uloc_acceptLanguage(char * result, int32_t resultAvailable, UAcceptResult * outResult, const char ** acceptList, int32_t acceptListCount, UEnumeration * availableLocales, UErrorCode * status) {
   return U_ICU_ENTRY_POINT_RENAME(uloc_acceptLanguage)(result, resultAvailable, outResult, acceptList, acceptListCount, availableLocales, status);
 }
@@ -592,5 +957,143 @@ const char * uloc_toUnicodeLocaleType(const char * keyword, const char * value) 
 }
 void ulocdata_getCLDRVersion(UVersionInfo versionArray, UErrorCode * status) {
   U_ICU_ENTRY_POINT_RENAME(ulocdata_getCLDRVersion)(versionArray, status);
+}
+int32_t unorm2_append(const UNormalizer2 * norm2, UChar * first, int32_t firstLength, int32_t firstCapacity, const UChar * second, int32_t secondLength, UErrorCode * pErrorCode) {
+  return U_ICU_ENTRY_POINT_RENAME(unorm2_append)(norm2, first, firstLength, firstCapacity, second, secondLength, pErrorCode);
+}
+void unorm2_close(UNormalizer2 * norm2) {
+  U_ICU_ENTRY_POINT_RENAME(unorm2_close)(norm2);
+}
+UChar32 unorm2_composePair(const UNormalizer2 * norm2, UChar32 a, UChar32 b) {
+  return U_ICU_ENTRY_POINT_RENAME(unorm2_composePair)(norm2, a, b);
+}
+uint8_t unorm2_getCombiningClass(const UNormalizer2 * norm2, UChar32 c) {
+  return U_ICU_ENTRY_POINT_RENAME(unorm2_getCombiningClass)(norm2, c);
+}
+int32_t unorm2_getDecomposition(const UNormalizer2 * norm2, UChar32 c, UChar * decomposition, int32_t capacity, UErrorCode * pErrorCode) {
+  return U_ICU_ENTRY_POINT_RENAME(unorm2_getDecomposition)(norm2, c, decomposition, capacity, pErrorCode);
+}
+const UNormalizer2 * unorm2_getNFCInstance(UErrorCode * pErrorCode) {
+  return U_ICU_ENTRY_POINT_RENAME(unorm2_getNFCInstance)(pErrorCode);
+}
+const UNormalizer2 * unorm2_getNFDInstance(UErrorCode * pErrorCode) {
+  return U_ICU_ENTRY_POINT_RENAME(unorm2_getNFDInstance)(pErrorCode);
+}
+const UNormalizer2 * unorm2_getNFKCCasefoldInstance(UErrorCode * pErrorCode) {
+  return U_ICU_ENTRY_POINT_RENAME(unorm2_getNFKCCasefoldInstance)(pErrorCode);
+}
+const UNormalizer2 * unorm2_getNFKCInstance(UErrorCode * pErrorCode) {
+  return U_ICU_ENTRY_POINT_RENAME(unorm2_getNFKCInstance)(pErrorCode);
+}
+const UNormalizer2 * unorm2_getNFKDInstance(UErrorCode * pErrorCode) {
+  return U_ICU_ENTRY_POINT_RENAME(unorm2_getNFKDInstance)(pErrorCode);
+}
+int32_t unorm2_getRawDecomposition(const UNormalizer2 * norm2, UChar32 c, UChar * decomposition, int32_t capacity, UErrorCode * pErrorCode) {
+  return U_ICU_ENTRY_POINT_RENAME(unorm2_getRawDecomposition)(norm2, c, decomposition, capacity, pErrorCode);
+}
+UBool unorm2_hasBoundaryAfter(const UNormalizer2 * norm2, UChar32 c) {
+  return U_ICU_ENTRY_POINT_RENAME(unorm2_hasBoundaryAfter)(norm2, c);
+}
+UBool unorm2_hasBoundaryBefore(const UNormalizer2 * norm2, UChar32 c) {
+  return U_ICU_ENTRY_POINT_RENAME(unorm2_hasBoundaryBefore)(norm2, c);
+}
+UBool unorm2_isInert(const UNormalizer2 * norm2, UChar32 c) {
+  return U_ICU_ENTRY_POINT_RENAME(unorm2_isInert)(norm2, c);
+}
+UBool unorm2_isNormalized(const UNormalizer2 * norm2, const UChar * s, int32_t length, UErrorCode * pErrorCode) {
+  return U_ICU_ENTRY_POINT_RENAME(unorm2_isNormalized)(norm2, s, length, pErrorCode);
+}
+int32_t unorm2_normalize(const UNormalizer2 * norm2, const UChar * src, int32_t length, UChar * dest, int32_t capacity, UErrorCode * pErrorCode) {
+  return U_ICU_ENTRY_POINT_RENAME(unorm2_normalize)(norm2, src, length, dest, capacity, pErrorCode);
+}
+int32_t unorm2_normalizeSecondAndAppend(const UNormalizer2 * norm2, UChar * first, int32_t firstLength, int32_t firstCapacity, const UChar * second, int32_t secondLength, UErrorCode * pErrorCode) {
+  return U_ICU_ENTRY_POINT_RENAME(unorm2_normalizeSecondAndAppend)(norm2, first, firstLength, firstCapacity, second, secondLength, pErrorCode);
+}
+UNormalizationCheckResult unorm2_quickCheck(const UNormalizer2 * norm2, const UChar * s, int32_t length, UErrorCode * pErrorCode) {
+  return U_ICU_ENTRY_POINT_RENAME(unorm2_quickCheck)(norm2, s, length, pErrorCode);
+}
+int32_t unorm2_spanQuickCheckYes(const UNormalizer2 * norm2, const UChar * s, int32_t length, UErrorCode * pErrorCode) {
+  return U_ICU_ENTRY_POINT_RENAME(unorm2_spanQuickCheckYes)(norm2, s, length, pErrorCode);
+}
+UBool uscript_breaksBetweenLetters(UScriptCode script) {
+  return U_ICU_ENTRY_POINT_RENAME(uscript_breaksBetweenLetters)(script);
+}
+int32_t uscript_getCode(const char * nameOrAbbrOrLocale, UScriptCode * fillIn, int32_t capacity, UErrorCode * err) {
+  return U_ICU_ENTRY_POINT_RENAME(uscript_getCode)(nameOrAbbrOrLocale, fillIn, capacity, err);
+}
+const char * uscript_getName(UScriptCode scriptCode) {
+  return U_ICU_ENTRY_POINT_RENAME(uscript_getName)(scriptCode);
+}
+int32_t uscript_getSampleString(UScriptCode script, UChar * dest, int32_t capacity, UErrorCode * pErrorCode) {
+  return U_ICU_ENTRY_POINT_RENAME(uscript_getSampleString)(script, dest, capacity, pErrorCode);
+}
+UScriptCode uscript_getScript(UChar32 codepoint, UErrorCode * err) {
+  return U_ICU_ENTRY_POINT_RENAME(uscript_getScript)(codepoint, err);
+}
+int32_t uscript_getScriptExtensions(UChar32 c, UScriptCode * scripts, int32_t capacity, UErrorCode * errorCode) {
+  return U_ICU_ENTRY_POINT_RENAME(uscript_getScriptExtensions)(c, scripts, capacity, errorCode);
+}
+const char * uscript_getShortName(UScriptCode scriptCode) {
+  return U_ICU_ENTRY_POINT_RENAME(uscript_getShortName)(scriptCode);
+}
+UScriptUsage uscript_getUsage(UScriptCode script) {
+  return U_ICU_ENTRY_POINT_RENAME(uscript_getUsage)(script);
+}
+UBool uscript_hasScript(UChar32 c, UScriptCode sc) {
+  return U_ICU_ENTRY_POINT_RENAME(uscript_hasScript)(c, sc);
+}
+UBool uscript_isCased(UScriptCode script) {
+  return U_ICU_ENTRY_POINT_RENAME(uscript_isCased)(script);
+}
+UBool uscript_isRightToLeft(UScriptCode script) {
+  return U_ICU_ENTRY_POINT_RENAME(uscript_isRightToLeft)(script);
+}
+UChar32 utext_char32At(UText * ut, int64_t nativeIndex) {
+  return U_ICU_ENTRY_POINT_RENAME(utext_char32At)(ut, nativeIndex);
+}
+UText * utext_clone(UText * dest, const UText * src, UBool deep, UBool readOnly, UErrorCode * status) {
+  return U_ICU_ENTRY_POINT_RENAME(utext_clone)(dest, src, deep, readOnly, status);
+}
+UText * utext_close(UText * ut) {
+  return U_ICU_ENTRY_POINT_RENAME(utext_close)(ut);
+}
+UChar32 utext_current32(UText * ut) {
+  return U_ICU_ENTRY_POINT_RENAME(utext_current32)(ut);
+}
+UBool utext_equals(const UText * a, const UText * b) {
+  return U_ICU_ENTRY_POINT_RENAME(utext_equals)(a, b);
+}
+int32_t utext_extract(UText * ut, int64_t nativeStart, int64_t nativeLimit, UChar * dest, int32_t destCapacity, UErrorCode * status) {
+  return U_ICU_ENTRY_POINT_RENAME(utext_extract)(ut, nativeStart, nativeLimit, dest, destCapacity, status);
+}
+int64_t utext_getNativeIndex(const UText * ut) {
+  return U_ICU_ENTRY_POINT_RENAME(utext_getNativeIndex)(ut);
+}
+UBool utext_moveIndex32(UText * ut, int32_t delta) {
+  return U_ICU_ENTRY_POINT_RENAME(utext_moveIndex32)(ut, delta);
+}
+int64_t utext_nativeLength(UText * ut) {
+  return U_ICU_ENTRY_POINT_RENAME(utext_nativeLength)(ut);
+}
+UChar32 utext_next32(UText * ut) {
+  return U_ICU_ENTRY_POINT_RENAME(utext_next32)(ut);
+}
+UChar32 utext_next32From(UText * ut, int64_t nativeIndex) {
+  return U_ICU_ENTRY_POINT_RENAME(utext_next32From)(ut, nativeIndex);
+}
+UText * utext_openUChars(UText * ut, const UChar * s, int64_t length, UErrorCode * status) {
+  return U_ICU_ENTRY_POINT_RENAME(utext_openUChars)(ut, s, length, status);
+}
+UText * utext_openUTF8(UText * ut, const char * s, int64_t length, UErrorCode * status) {
+  return U_ICU_ENTRY_POINT_RENAME(utext_openUTF8)(ut, s, length, status);
+}
+UChar32 utext_previous32(UText * ut) {
+  return U_ICU_ENTRY_POINT_RENAME(utext_previous32)(ut);
+}
+UChar32 utext_previous32From(UText * ut, int64_t nativeIndex) {
+  return U_ICU_ENTRY_POINT_RENAME(utext_previous32From)(ut, nativeIndex);
+}
+void utext_setNativeIndex(UText * ut, int64_t nativeIndex) {
+  U_ICU_ENTRY_POINT_RENAME(utext_setNativeIndex)(ut, nativeIndex);
 }
 }
