@@ -191,7 +191,9 @@ def generate_cts_headers(decl_names):
         out.write(modified)
 
 IGNORED_INCLUDE_DEPENDENCY = {
+    "ubrk.h": ["parseerr.h", ],
     "ulocdata.h": ["ures.h", "uset.h", ],
+    "unorm2.h": ["uset.h", ],
     "ustring.h": ["uiter.h", ],
 }
 
