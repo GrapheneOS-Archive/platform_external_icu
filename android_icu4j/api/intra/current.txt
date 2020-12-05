@@ -79,10 +79,6 @@ package android.icu.util {
     method public android.icu.util.TimeZoneRule getTo();
   }
 
-  public final class ULocale implements java.lang.Comparable<android.icu.util.ULocale> java.io.Serializable {
-    method @Deprecated public static String getRegionForSupplementalData(android.icu.util.ULocale, boolean);
-  }
-
 }
 
 package com.android.i18n.system {
