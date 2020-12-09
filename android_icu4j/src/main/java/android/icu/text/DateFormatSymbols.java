@@ -2301,21 +2301,6 @@ public class DateFormatSymbols implements Serializable, Cloneable {
         initializeData(locale, calType);
     }
 
-    // Android patch (http://b/30464240) start: Add constructor taking a calendar type.
-    /**
-     * Variant of DateFormatSymbols(Calendar, ULocale) that takes the calendar type
-     * instead of a Calendar instance.
-     * @see #DateFormatSymbols(Calendar, Locale)
-     * @deprecated This API is ICU internal only.
-     * @hide draft / provisional / internal are hidden on Android
-     */
-    @libcore.api.IntraCoreApi
-    @Deprecated
-    public DateFormatSymbols(ULocale locale, String calType) {
-        initializeData(locale, calType);
-    }
-    // Android patch end.
-
     /**
      * Fetches a custom calendar's DateFormatSymbols out of the given resource
      * bundle.  Symbols that are not overridden are inherited from the
