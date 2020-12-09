@@ -29,6 +29,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
+import java.util.Locale;
+
 /**
  * Test for Android patches in ICU's calendar.
  */
@@ -56,6 +58,25 @@ public class CalendarTest {
                     ICUData.ICU_BASE_NAME, locale);
             String calType = bundle.getStringWithFallback("calendar/default");
             assertEquals("calendar/default should be Gregorian: " + locale, "gregorian", calType);
+        }
+    }
+
+    /**
+     * Test the consistency between {@link Calendar#getWeekData()} and
+     * {@link Calendar#getWeekDataForRegion(String)}. It makes sure that we didn't regress
+     * when switching to use the {@link Calendar#getWeekData()}.
+     */
+    @Test
+    public void testGetWeekData_consistency() {
+        for (Locale l : Locale.getAvailableLocales()) {
+            Calendar calendar = Calendar.getInstance(l);
+            Calendar.WeekData weekData1 = calendar.getWeekData();
+
+            ULocale uLocale = ULocale.forLocale(l);
+            String region = ULocale.getRegionForSupplementalData(uLocale, true);
+            Calendar.WeekData weekData2 = Calendar.getWeekDataForRegion(region);
+
+            assertEquals(weekData1, weekData2);
         }
     }
 }

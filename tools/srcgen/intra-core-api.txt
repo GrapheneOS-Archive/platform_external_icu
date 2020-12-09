@@ -35,7 +35,6 @@ method:android.icu.util.TimeZone#setICUDefault(TimeZone)
 method:android.icu.util.TimeZoneTransition#getFrom()
 method:android.icu.util.TimeZoneTransition#getTime()
 method:android.icu.util.TimeZoneTransition#getTo()
-method:android.icu.util.ULocale#getRegionForSupplementalData(ULocale,boolean)
 type:android.icu.text.TimeZoneNames$MatchInfo
 type:android.icu.util.AnnualTimeZoneRule
 type:android.icu.util.BasicTimeZone
