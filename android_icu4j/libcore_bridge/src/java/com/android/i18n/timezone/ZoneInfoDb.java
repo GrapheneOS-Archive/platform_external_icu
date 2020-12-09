@@ -390,7 +390,7 @@ public final class ZoneInfoDb {
   @libcore.api.CorePlatformApi
   public boolean hasTimeZone(String id) {
     checkNotClosed();
-    return cache.get(id) != null;
+    return Arrays.binarySearch(ids, id) >= 0;
   }
 
   // VisibleForTesting
