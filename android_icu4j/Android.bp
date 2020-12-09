@@ -56,6 +56,7 @@ java_defaults {
         "libcore_bridge/src/java/**/*.java",
         ":app-compat-annotations-source",
     ],
+    jarjar_rules: "jarjar-rules.txt",
     plugins: [
         "compat-changeid-annotation-processor",
     ],
