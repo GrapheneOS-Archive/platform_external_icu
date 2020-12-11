@@ -26,9 +26,6 @@ package {
 //==========================================================
 filegroup {
     name: "android_icu4j_public_api_files",
-    visibility: [
-        "//frameworks/base",
-    ],
     srcs: [
         ":android_icu4j_repackaged_src_files",
     ],
@@ -146,6 +143,8 @@ platform_compat_config {
 java_sdk_library {
     name: "i18n.module.public.api",
     visibility: [
+        "//frameworks/base",
+        "//frameworks/base/api",
         "//libcore",
         "//packages/modules/RuntimeI18n/apex",
         // Visibility for prebuilt i18n-module-sdk from the prebuilt of
@@ -167,24 +166,12 @@ java_sdk_library {
     sdk_version: "none",
     system_modules: "art-module-public-api-stubs-system-modules",
 
-    // Don't copy any output files to the dist.
-    no_dist: true,
-}
-
-// Referenced implicitly from i18n.module.intra.api.
-filegroup {
-    name: "i18n.module.intra.api.api.public.latest",
-    srcs: [
-        "api/intra/last-api.txt",
-    ],
-}
-
-// Referenced implicitly from i18n.module.intra.api.
-filegroup {
-    name: "i18n.module.intra.api-removed.api.public.latest",
-    srcs: [
-        "api/intra/last-removed.txt",
-    ],
+    // The base name for the artifacts that are automatically published to the
+    // dist and which end up in one of the sub-directories of prebuilts/sdk.
+    // As long as this matches the name of the artifacts in prebuilts/sdk then
+    // the API will be checked for compatibility against the latest released
+    // version of the API.
+    dist_stem: "runtime-i18n",
 }
 
 // Generates stub source files for the intra-core API of the I18N module.
