@@ -51,10 +51,6 @@ package android.icu.util {
   public class InitialTimeZoneRule extends android.icu.util.TimeZoneRule {
   }
 
-  public abstract class TimeZone implements java.lang.Cloneable android.icu.util.Freezable<android.icu.util.TimeZone> java.io.Serializable {
-    method @Deprecated public static void setICUDefault(android.icu.util.TimeZone);
-  }
-
   public abstract class TimeZoneRule implements java.io.Serializable {
     method public int getDSTSavings();
     method public int getRawOffset();
