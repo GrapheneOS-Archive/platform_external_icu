@@ -29,6 +29,7 @@ import android.icu.text.TimeZoneNames;
 import android.icu.util.VersionInfo;
 import android.system.Os;
 
+import com.android.icu.util.ExtendedTimeZone;
 import com.android.icu.util.Icu4cMetadata;
 
 import java.io.File;
@@ -143,7 +144,7 @@ public class TimeZoneIntegrationTest {
                 // This is not public API but can effectively be invoked via
                 // java.util.TimeZone.setDefault. Call it directly to reduce the amount of code
                 // involved in this test.
-                android.icu.util.TimeZone.setICUDefault(null);
+                ExtendedTimeZone.clearDefaultTimeZone();
             }
         });
         clearer.setName("testSetDefaultRace clearer");
