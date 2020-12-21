@@ -212,6 +212,22 @@ java_sdk_library {
     no_dist: true,
 }
 
+// Referenced implicitly from i18n.module.intra.core.api.
+filegroup {
+    name: "i18n.module.intra.core.api.api.public.latest",
+    srcs: [
+        "api/intra/last-api.txt",
+    ],
+}
+
+// Referenced implicitly from i18n.module.intra.core.api.
+filegroup {
+    name: "i18n.module.intra.core.api-removed.api.public.latest",
+    srcs: [
+        "api/intra/last-removed.txt",
+    ],
+}
+
 // Referenced implicitly from legacy.i18n.module.platform.api.
 filegroup {
     name: "legacy.i18n.module.platform.api.api.public.latest",
