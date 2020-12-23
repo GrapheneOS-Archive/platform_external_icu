@@ -116,15 +116,6 @@ ConversionTest::TestToUnicode() {
                 s.extract(0, 0x7fffffff, charset, sizeof(charset), "");
                 cc.charset=charset;
 
-                // BEGIN android-added
-                // To save space, Android does not build full ISO-2022-CN tables.
-                // We skip the TestGetKeywordValuesForLocale for counting available collations.
-                if (strlen(charset) >= 8 &&
-                    strncmp(charset+4, "2022-CN", 4) == 0) {
-                    continue;
-                }
-                // END android-added
-
                 cc.bytes=testCase->getBinary(cc.bytesLength, "bytes", errorCode);
                 unicode=testCase->getString("unicode", errorCode);
                 cc.unicode=unicode.getBuffer();
@@ -237,15 +228,6 @@ ConversionTest::TestFromUnicode() {
                 s=testCase->getString("charset", errorCode);
                 s.extract(0, 0x7fffffff, charset, sizeof(charset), "");
                 cc.charset=charset;
-
-                // BEGIN android-added
-                // To save space, Android does not build full ISO-2022-CN tables.
-                // We skip the TestGetKeywordValuesForLocale for counting available collations.
-                if (strlen(charset) >= 8 &&
-                    strncmp(charset+4, "2022-CN", 4) == 0) {
-                    continue;
-                }
-                // END android-added
 
                 unicode=testCase->getString("unicode", errorCode);
                 cc.unicode=unicode.getBuffer();
@@ -399,15 +381,6 @@ ConversionTest::TestGetUnicodeSet() {
 
                 s=testCase->getString("charset", errorCode);
                 s.extract(0, 0x7fffffff, charset, sizeof(charset), "");
-
-                // BEGIN android-added
-                // To save space, Android does not build full ISO-2022-CN tables.
-                // We skip the TestGetKeywordValuesForLocale for counting available collations.
-                if (strlen(charset) >= 8 &&
-                    strncmp(charset+4, "2022-CN", 4) == 0) {
-                    continue;
-                }
-                // END android-added
 
                 map=testCase->getString("map", errorCode);
                 mapnot=testCase->getString("mapnot", errorCode);
@@ -1212,9 +1185,13 @@ ConversionTest::ToUnicodeCase(ConversionCase &cc, UConverterToUCallback callback
             cc.offsets=NULL;
         }
         else {
-            memset(resultOffsets, -1, UPRV_LENGTHOF(resultOffsets));
+            for (int32_t i = 0; i < UPRV_LENGTHOF(resultOffsets); i++) {
+                resultOffsets[i] = -1;
+            }
         }
-        memset(result, -1, UPRV_LENGTHOF(result));
+        for (int32_t i = 0; i < UPRV_LENGTHOF(result); i++) {
+            result[i] = -1;
+        }
         errorCode.reset();
         resultLength=stepToUnicode(cc, cnv.getAlias(),
                                 result, UPRV_LENGTHOF(result),
@@ -1642,8 +1619,12 @@ ConversionTest::FromUnicodeCase(ConversionCase &cc, UConverterFromUCallback call
     ok=TRUE;
     for(i=0; i<UPRV_LENGTHOF(steps) && ok; ++i) {
         step=steps[i].step;
-        memset(resultOffsets, -1, UPRV_LENGTHOF(resultOffsets));
-        memset(result, -1, UPRV_LENGTHOF(result));
+        for (int32_t i = 0; i < UPRV_LENGTHOF(resultOffsets); i++) {
+            resultOffsets[i] = -1;
+        }
+        for (int32_t i = 0; i < UPRV_LENGTHOF(result); i++) {
+            result[i] = -1;
+        }
         errorCode=U_ZERO_ERROR;
         resultLength=stepFromUnicode(cc, cnv,
                                 result, UPRV_LENGTHOF(result),

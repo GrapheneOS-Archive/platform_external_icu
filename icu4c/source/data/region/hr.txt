@@ -110,7 +110,7 @@ hr{
         EZ{"eurozona"}
         FI{"Finska"}
         FJ{"Fidži"}
-        FK{"Falklandski otoci (Malvini)"}
+        FK{"Falklandski otoci"}
         FM{"Mikronezija"}
         FO{"Farski otoci"}
         FR{"Francuska"}
@@ -133,7 +133,7 @@ hr{
         GU{"Guam"}
         GW{"Gvineja Bisau"}
         GY{"Gvajana"}
-        HK{"Hong Kong"}
+        HK{"PUP Hong Kong Kina"}
         HM{"Otoci Heard i McDonald"}
         HN{"Honduras"}
         HR{"Hrvatska"}
@@ -187,7 +187,7 @@ hr{
         ML{"Mali"}
         MM{"Mjanmar (Burma)"}
         MN{"Mongolija"}
-        MO{"Makao"}
+        MO{"PUP Makao Kina"}
         MP{"Sjevernomarijanski otoci"}
         MQ{"Martinique"}
         MR{"Mauretanija"}
@@ -222,7 +222,7 @@ hr{
         PM{"Saint-Pierre-et-Miquelon"}
         PN{"Otoci Pitcairn"}
         PR{"Portoriko"}
-        PS{"Palestina"}
+        PS{"Palestinsko područje"}
         PT{"Portugal"}
         PW{"Palau"}
         PY{"Paragvaj"}
@@ -299,6 +299,9 @@ hr{
     }
     Countries%short{
         GB{"UK"}
+        HK{"Hong Kong"}
+        MO{"Makao"}
+        PS{"Palestina"}
         UN{"UN"}
         US{"SAD"}
     }
@@ -307,8 +310,9 @@ hr{
         CG{"Kongo (RK)"}
         CI{"Bjelokosna Obala"}
         CZ{"Češka Republika"}
+        FK{"Falklandski otoci (Malvini)"}
         SZ{"Svazi"}
         TL{"Istočni Timor"}
     }
-    Version{"36.1"}
+    Version{"37"}
 }

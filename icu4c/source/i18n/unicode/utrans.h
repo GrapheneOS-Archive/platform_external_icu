@@ -17,14 +17,11 @@
 
 #if !UCONFIG_NO_TRANSLITERATION
 
+#include "unicode/localpointer.h"
 #include "unicode/urep.h"
 #include "unicode/parseerr.h"
 #include "unicode/uenum.h"
 #include "unicode/uset.h"
-
-#if U_SHOW_CPLUSPLUS_API
-#include "unicode/localpointer.h"
-#endif   // U_SHOW_CPLUSPLUS_API
 
 /********************************************************************
  * General Notes

@@ -2150,36 +2150,32 @@ public class CalendarRegressionTest extends com.ibm.icu.dev.test.TestFmwk {
         Locale loc = new Locale("en", "TH");
         Calendar cal = Calendar.getInstance(loc);
         String calType = cal.getType();
-        // Android patch: Force default Gregorian calendar.
-        if ( !calType.equals("gregorian")) {
-            errln("FAIL: Calendar type for en_TH should still be gregorian");
+        if ( !calType.equals("buddhist")) {
+            errln("FAIL: Calendar type for en_TH should still be buddhist");
         }
-        // Android patch end.
     }
 
     @Test
     public void TestGetKeywordValuesForLocale(){
 
-        // Android patch: Force default Gregorian calendar.
         final String[][] PREFERRED = {
             {"root",        "gregorian"},
             {"und",         "gregorian"},
             {"en_US",       "gregorian"},
             {"en_029",      "gregorian"},
-            {"th_TH",       "gregorian", "buddhist"},
-            {"und_TH",      "gregorian", "buddhist"},
-            {"en_TH",       "gregorian", "buddhist"},
+            {"th_TH",       "buddhist", "gregorian"},
+            {"und_TH",      "buddhist", "gregorian"},
+            {"en_TH",       "buddhist", "gregorian"},
             {"he_IL",       "gregorian", "hebrew", "islamic", "islamic-civil", "islamic-tbla"},
             {"ar_EG",       "gregorian", "coptic", "islamic", "islamic-civil", "islamic-tbla"},
             {"ja",          "gregorian", "japanese"},
             {"ps_Guru_IN",  "gregorian", "indian"},
-            {"th@calendar=gregorian",   "gregorian", "buddhist"},
+            {"th@calendar=gregorian",   "buddhist", "gregorian"},
             {"en@calendar=islamic",     "gregorian"},
             {"zh_TW",       "gregorian", "roc", "chinese"},
-            {"ar_IR",       "gregorian", "persian", "islamic", "islamic-civil", "islamic-tbla"},
-            {"th@rg=SAZZZZ", "gregorian", "islamic-umalqura", "islamic", "islamic-rgsa"},
+            {"ar_IR",       "persian", "gregorian", "islamic", "islamic-civil", "islamic-tbla"},
+            {"th@rg=SAZZZZ", "islamic-umalqura", "gregorian", "islamic", "islamic-rgsa"},
         };
-        // Android patch end.
 
         String[] ALL = Calendar.getKeywordValuesForLocale("calendar", ULocale.getDefault(), false);
         HashSet ALLSET = new HashSet();
@@ -2291,7 +2287,7 @@ public class CalendarRegressionTest extends com.ibm.icu.dev.test.TestFmwk {
         gc.setFirstDayOfWeek(Calendar.MONDAY);
         gc.setMinimalDaysInFirstWeek(4);
 
-        // Force the calender to resolve the fields once.
+        // Force the calendar to resolve the fields once.
         // The maximum week number in 2011 is 52.
         gc.set(Calendar.YEAR, 2011);
         gc.get(Calendar.YEAR);

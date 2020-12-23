@@ -30,11 +30,8 @@
 
 #if !UCONFIG_NO_REGULAR_EXPRESSIONS
 
-#include "unicode/parseerr.h"
-
-#if U_SHOW_CPLUSPLUS_API
 #include "unicode/localpointer.h"
-#endif   // U_SHOW_CPLUSPLUS_API
+#include "unicode/parseerr.h"
 
 struct URegularExpression;
 /**

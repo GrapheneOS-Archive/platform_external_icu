@@ -230,13 +230,6 @@ static const int32_t gFieldRangeBias[] = {
 static const int32_t HEBREW_CAL_CUR_MILLENIUM_START_YEAR = 5000;
 static const int32_t HEBREW_CAL_CUR_MILLENIUM_END_YEAR = 6000;
 
-/**
- * Maximum range for detecting daylight offset of a time zone when parsed time zone
- * string indicates it's daylight saving time, but the detected time zone does not
- * observe daylight saving time at the parsed date.
- */
-static const double MAX_DAYLIGHT_DETECTION_RANGE = 30*365*24*60*60*1000.0;
-
 static UMutex LOCK;
 
 UOBJECT_DEFINE_RTTI_IMPLEMENTATION(SimpleDateFormat)
@@ -590,11 +583,14 @@ SimpleDateFormat& SimpleDateFormat::operator=(const SimpleDateFormat& other)
     fHasMinute = other.fHasMinute;
     fHasSecond = other.fHasSecond;
 
-    // TimeZoneFormat in ICU4C only depends on a locale for now
-    if (fLocale != other.fLocale) {
-        delete fTimeZoneFormat;
-        fTimeZoneFormat = NULL; // forces lazy instantiation with the other locale
-        fLocale = other.fLocale;
+    fLocale = other.fLocale;
+
+    // TimeZoneFormat can now be set independently via setter.
+    // If it is NULL, it will be lazily initialized from locale
+    delete fTimeZoneFormat;
+    fTimeZoneFormat = NULL;
+    if (other.fTimeZoneFormat) {
+        fTimeZoneFormat = new TimeZoneFormat(*other.fTimeZoneFormat);
     }
 
 #if !UCONFIG_NO_BREAK_ITERATION
@@ -1003,7 +999,8 @@ SimpleDateFormat::_format(Calendar& cal, UnicodeString& appendTo,
         // Use subFormat() to format a repeated pattern character
         // when a different pattern or non-pattern character is seen
         if (ch != prevCh && count > 0) {
-            subFormat(appendTo, prevCh, count, capitalizationContext, fieldNum++, handler, *workCal, status);
+            subFormat(appendTo, prevCh, count, capitalizationContext, fieldNum++,
+                      prevCh, handler, *workCal, status);
             count = 0;
         }
         if (ch == QUOTE) {
@@ -1030,7 +1027,8 @@ SimpleDateFormat::_format(Calendar& cal, UnicodeString& appendTo,
 
     // Format the last item in the pattern, if any
     if (count > 0) {
-        subFormat(appendTo, prevCh, count, capitalizationContext, fieldNum++, handler, *workCal, status);
+        subFormat(appendTo, prevCh, count, capitalizationContext, fieldNum++,
+                  prevCh, handler, *workCal, status);
     }
 
     if (calClone != NULL) {
@@ -1409,10 +1407,11 @@ SimpleDateFormat::processOverrideString(const Locale &locale, const UnicodeStrin
 //---------------------------------------------------------------------
 void
 SimpleDateFormat::subFormat(UnicodeString &appendTo,
-                            UChar ch,
+                            char16_t ch,
                             int32_t count,
                             UDisplayContext capitalizationContext,
                             int32_t fieldNum,
+                            char16_t fieldToOutput,
                             FieldPositionHandler& handler,
                             Calendar& cal,
                             UErrorCode& status) const
@@ -1860,8 +1859,11 @@ SimpleDateFormat::subFormat(UnicodeString &appendTo,
         // In either case, fall back to am/pm.
         if (toAppend == NULL || toAppend->isBogus()) {
             // Reformat with identical arguments except ch, now changed to 'a'.
-            subFormat(appendTo, 0x61, count, capitalizationContext, fieldNum,
-                      handler, cal, status);
+            // We are passing a different fieldToOutput because we want to add
+            // 'b' to field position. This makes this fallback stable when
+            // there is a data change on locales.
+            subFormat(appendTo, u'a', count, capitalizationContext, fieldNum, u'b', handler, cal, status);
+            return;
         } else {
             appendTo += *toAppend;
         }
@@ -1881,9 +1883,11 @@ SimpleDateFormat::subFormat(UnicodeString &appendTo,
         if (ruleSet == NULL) {
             // Data doesn't exist for the locale we're looking for.
             // Falling back to am/pm.
-            subFormat(appendTo, 0x61, count, capitalizationContext, fieldNum,
-                      handler, cal, status);
-            break;
+            // We are passing a different fieldToOutput because we want to add
+            // 'B' to field position. This makes this fallback stable when
+            // there is a data change on locales.
+            subFormat(appendTo, u'a', count, capitalizationContext, fieldNum, u'B', handler, cal, status);
+            return;
         }
 
         // Get current display time.
@@ -1952,8 +1956,11 @@ SimpleDateFormat::subFormat(UnicodeString &appendTo,
         if (periodType == DayPeriodRules::DAYPERIOD_AM ||
             periodType == DayPeriodRules::DAYPERIOD_PM ||
             toAppend->isBogus()) {
-            subFormat(appendTo, 0x61, count, capitalizationContext, fieldNum,
-                      handler, cal, status);
+            // We are passing a different fieldToOutput because we want to add
+            // 'B' to field position iterator. This makes this fallback stable when
+            // there is a data change on locales.
+            subFormat(appendTo, u'a', count, capitalizationContext, fieldNum, u'B', handler, cal, status);
+            return;
         }
         else {
             appendTo += *toAppend;
@@ -1997,7 +2004,7 @@ SimpleDateFormat::subFormat(UnicodeString &appendTo,
     }
 #endif
 
-    handler.addAttribute(fgPatternIndexToDateFormatField[patternCharIndex], beginOffset, appendTo.length());
+    handler.addAttribute(DateFormatSymbols::getPatternCharIndex(fieldToOutput), beginOffset, appendTo.length());
 }
 
 //----------------------------------------------------------------------
@@ -2517,47 +2524,51 @@ SimpleDateFormat::parse(const UnicodeString& text, Calendar& cal, ParsePosition&
             } else { // tztype == TZTYPE_DST
                 if (dst == 0) {
                     if (btz != NULL) {
-                        // This implementation resolves daylight saving time offset
-                        // closest rule after the given time.
-                        UDate baseTime = localMillis + raw;
-                        UDate time = baseTime;
-                        UDate limit = baseTime + MAX_DAYLIGHT_DETECTION_RANGE;
-                        TimeZoneTransition trs;
-                        UBool trsAvail;
+                        UDate time = localMillis + raw;
+                        // We use the nearest daylight saving time rule.
+                        TimeZoneTransition beforeTrs, afterTrs;
+                        UDate beforeT = time, afterT = time;
+                        int32_t beforeSav = 0, afterSav = 0;
+                        UBool beforeTrsAvail, afterTrsAvail;
 
-                        // Search for DST rule after the given time
-                        while (time < limit) {
-                            trsAvail = btz->getNextTransition(time, FALSE, trs);
-                            if (!trsAvail) {
+                        // Search for DST rule before or on the time
+                        while (TRUE) {
+                            beforeTrsAvail = btz->getPreviousTransition(beforeT, TRUE, beforeTrs);
+                            if (!beforeTrsAvail) {
                                 break;
                             }
-                            resolvedSavings = trs.getTo()->getDSTSavings();
-                            if (resolvedSavings != 0) {
+                            beforeT = beforeTrs.getTime() - 1;
+                            beforeSav = beforeTrs.getFrom()->getDSTSavings();
+                            if (beforeSav != 0) {
                                 break;
                             }
-                            time = trs.getTime();
                         }
 
-                        if (resolvedSavings == 0) {
-                            // If no DST rule after the given time was found, search for
-                            // DST rule before.
-                            time = baseTime;
-                            limit = baseTime - MAX_DAYLIGHT_DETECTION_RANGE;
-                            while (time > limit) {
-                                trsAvail = btz->getPreviousTransition(time, TRUE, trs);
-                                if (!trsAvail) {
-                                    break;
-                                }
-                                resolvedSavings = trs.getFrom()->getDSTSavings();
-                                if (resolvedSavings != 0) {
-                                    break;
-                                }
-                                time = trs.getTime() - 1;
+                        // Search for DST rule after the time
+                        while (TRUE) {
+                            afterTrsAvail = btz->getNextTransition(afterT, FALSE, afterTrs);
+                            if (!afterTrsAvail) {
+                                break;
                             }
+                            afterT = afterTrs.getTime();
+                            afterSav = afterTrs.getTo()->getDSTSavings();
+                            if (afterSav != 0) {
+                                break;
+                            }
+                        }
 
-                            if (resolvedSavings == 0) {
-                                resolvedSavings = btz->getDSTSavings();
+                        if (beforeTrsAvail && afterTrsAvail) {
+                            if (time - beforeT > afterT - time) {
+                                resolvedSavings = afterSav;
+                            } else {
+                                resolvedSavings = beforeSav;
                             }
+                        } else if (beforeTrsAvail && beforeSav != 0) {
+                            resolvedSavings = beforeSav;
+                        } else if (afterTrsAvail && afterSav != 0) {
+                            resolvedSavings = afterSav;
+                        } else {
+                            resolvedSavings = btz->getDSTSavings();
                         }
                     } else {
                         resolvedSavings = tz.getDSTSavings();

@@ -222,7 +222,7 @@ sv{
         PM{"S:t Pierre och Miquelon"}
         PN{"Pitcairnöarna"}
         PR{"Puerto Rico"}
-        PS{"Palestina"}
+        PS{"Palestinska territorierna"}
         PT{"Portugal"}
         PW{"Palau"}
         PY{"Paraguay"}
@@ -298,17 +298,14 @@ sv{
         ZZ{"okänd region"}
     }
     Countries%short{
-        GB{"Storbritannien"}
+        PS{"Palestina"}
         UN{"FN"}
-        US{"USA"}
     }
     Countries%variant{
         CD{"Demokratiska republiken Kongo"}
         CG{"Republiken Kongo"}
-        CI{"Côte d’Ivoire"}
-        CZ{"Tjeckien"}
         SZ{"Eswatini"}
         TL{"Timor-Leste"}
     }
-    Version{"36.1"}
+    Version{"37"}
 }

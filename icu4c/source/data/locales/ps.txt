@@ -226,8 +226,9 @@ ps{
         minimumGroupingDigits{"1"}
         native{"arabext"}
     }
-    Version{"36.1"}
+    Version{"37"}
     calendar{
+        default{"persian"}
         generic{
             DateTimePatterns{
                 "H:mm:ss (zzzz)",

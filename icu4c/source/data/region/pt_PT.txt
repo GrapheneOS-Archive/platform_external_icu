@@ -29,7 +29,7 @@ pt_PT{
         EE{"Estónia"}
         EH{"Sara Ocidental"}
         EZ{"Zona Euro"}
-        FK{"Ilhas Falkland (Malvinas)"}
+        FK{"Ilhas Malvinas (Falkland)"}
         FO{"Ilhas Faroé"}
         GG{"Guernesey"}
         GL{"Gronelândia"}
@@ -82,6 +82,7 @@ pt_PT{
         CG{"República do Congo"}
         CI{"Costa do Marfim"}
         CZ{"República Checa"}
+        FK{"Ilhas Falkland (Malvinas)"}
     }
-    Version{"36.1"}
+    Version{"37"}
 }

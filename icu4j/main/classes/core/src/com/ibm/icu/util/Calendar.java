@@ -3563,51 +3563,6 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
         return result;
     }
 
-    // Android patch (http://b/28832222) start.
-    // Expose method to get format string for java.time.
-    /**
-     * Get the date time format string for the specified values.
-     * This is a copy of {@link #formatHelper(Calendar, ULocale, int, int)} with the following
-     * changes:
-     * <ul>
-     *     <li>Made public, but hidden</li>
-     *     <li>take calendar type string instead of Calendar</li>
-     *     <li>Ignore overrides</li>
-     *     <li>Return format string instead of DateFormat.</li>
-     * </ul>
-     * This is not meant as public API.
-     * @internal
-     */
-    // TODO: Check if calType can be passed via keyword on loc parameter instead.
-    public static String getDateTimeFormatString(ULocale loc, String calType, int dateStyle,
-            int timeStyle) {
-        if (timeStyle < DateFormat.NONE || timeStyle > DateFormat.SHORT) {
-            throw new IllegalArgumentException("Illegal time style " + timeStyle);
-        }
-        if (dateStyle < DateFormat.NONE || dateStyle > DateFormat.SHORT) {
-            throw new IllegalArgumentException("Illegal date style " + dateStyle);
-        }
-
-        PatternData patternData = PatternData.make(loc, calType);
-
-        // Resolve a pattern for the date/time style
-        String pattern = null;
-        if ((timeStyle >= 0) && (dateStyle >= 0)) {
-            pattern = SimpleFormatterImpl.formatRawPattern(
-                    patternData.getDateTimePattern(dateStyle), 2, 2,
-                    patternData.patterns[timeStyle],
-                    patternData.patterns[dateStyle + 4]);
-        } else if (timeStyle >= 0) {
-            pattern = patternData.patterns[timeStyle];
-        } else if (dateStyle >= 0) {
-            pattern = patternData.patterns[dateStyle + 4];
-        } else {
-            throw new IllegalArgumentException("No date or time style specified");
-        }
-        return pattern;
-    }
-    // Android patch (http://b/28832222) end.
-
     static class PatternData {
         // TODO make this even more object oriented
         private String[] patterns;
@@ -3625,12 +3580,8 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
             return dateTimePattern;
         }
         private static PatternData make(Calendar cal, ULocale loc) {
-            // Android patch (http://b/28832222) start.
-            return make(loc, cal.getType());
-        }
-        private static PatternData make(ULocale loc, String calType) {
-            // Android patch (http://b/28832222) end.
             // First, try to get a pattern from PATTERN_CACHE
+            String calType = cal.getType();
             String key = loc.getBaseName() + "+" + calType;
             PatternData patternData = PATTERN_CACHE.get(key);
             if (patternData == null) {
@@ -4715,7 +4666,7 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
     }
 
     /**
-     * Simple, immutable struct-like class for access to the CLDR weekend data.
+     * Simple, immutable struct-like class for access to the CLDR week data.
      *
      * @stable ICU 54
      */
@@ -4832,7 +4783,7 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
     }
 
     /**
-     * {@icu} Return simple, immutable struct-like class for access to the CLDR weekend data.
+     * {@icu} Return simple, immutable struct-like class for access to the CLDR week data.
      * @param region The input region. The results are undefined if the region code is not valid.
      * @return the WeekData for the input region. It is never null.
      *
@@ -4843,7 +4794,7 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
     }
 
     /**
-     * {@icu} Return simple, immutable struct-like class for access to the weekend data in this calendar.
+     * {@icu} Return simple, immutable struct-like class for access to the week data in this calendar.
      * @return the WeekData for this calendar.
      *
      * @stable ICU 54
@@ -4914,7 +4865,7 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
     private static final WeekDataCache WEEK_DATA_CACHE = new WeekDataCache();
 
     /*
-     * Set this calendar to contain week and weekend data for the given region.
+     * Set this calendar to contain week and week data for the given region.
      */
     private void setWeekData(String region) {
         if (region == null) {

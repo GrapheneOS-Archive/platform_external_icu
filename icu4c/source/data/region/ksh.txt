@@ -108,7 +108,7 @@ ksh{
         EU{"de Europähjesche Unijon"}
         FI{"Finnland"}
         FJ{"de Fidschi-Endelle"}
-        FK{"de malleviinesche Enselle"}
+        FK{"de Falkland-Enselle"}
         FM{"Mikroneesije"}
         FO{"de Färrör-Enselle"}
         FR{"Frankrisch"}
@@ -292,13 +292,13 @@ ksh{
         ZZ{"- Jähjend onbikannt -"}
     }
     Countries%short{
-        GB{"Jruußbrettannije"}
         US{"USA"}
     }
     Countries%variant{
         CD{"de Demmokraatesche Republik Konggo"}
         CG{"de Republik Konggo"}
         CI{"de Älfebeijnköß"}
+        FK{"de malleviinesche Enselle"}
     }
-    Version{"36.1"}
+    Version{"37"}
 }

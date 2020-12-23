@@ -37,10 +37,10 @@ void TestGregorianChange(void);
 void TestFieldDifference(void);
 void TestAddRollEra0AndEraBounds(void);
 void TestGetTZTransition(void);
-
 void TestGetWindowsTimeZoneID(void);
 void TestGetTimeZoneIDByWindowsID(void);
 void TestJpnCalAddSetNextEra(void);
+void TestUcalOpenBufferRead(void);
 
 void addCalTest(TestNode** root);
 
@@ -64,6 +64,7 @@ void addCalTest(TestNode** root)
     addTest(root, &TestGetWindowsTimeZoneID, "tsformat/ccaltst/TestGetWindowsTimeZoneID");
     addTest(root, &TestGetTimeZoneIDByWindowsID, "tsformat/ccaltst/TestGetTimeZoneIDByWindowsID");
     addTest(root, &TestJpnCalAddSetNextEra, "tsformat/ccaltst/TestJpnCalAddSetNextEra");
+    addTest(root, &TestUcalOpenBufferRead, "tsformat/ccaltst/TestUcalOpenBufferRead");
 }
 
 /* "GMT" */
@@ -87,15 +88,15 @@ static const UCalGetTypeTest ucalGetTypeTests[] = {
     { "en_US",                   UCAL_GREGORIAN, "gregorian" },
     { "ja_JP@calendar=japanese", UCAL_DEFAULT,   "japanese"  },
     { "th_TH",                   UCAL_GREGORIAN, "gregorian" },
-    { "th_TH",                   UCAL_DEFAULT,   "gregorian"  },  // android-changed
+    { "th_TH",                   UCAL_DEFAULT,   "buddhist"  },
     { "th-TH-u-ca-gregory",      UCAL_DEFAULT,   "gregorian" },
     { "ja_JP@calendar=japanese", UCAL_GREGORIAN, "gregorian" },
     { "fr_CH",                   UCAL_DEFAULT,   "gregorian" },
-    { "fr_SA",                   UCAL_DEFAULT,   "gregorian" },  // android-changed
-    { "fr_CH@rg=sazzzz",         UCAL_DEFAULT,   "gregorian" },  // android-changed
+    { "fr_SA",                   UCAL_DEFAULT,   "islamic-umalqura" },
+    { "fr_CH@rg=sazzzz",         UCAL_DEFAULT,   "islamic-umalqura" },
     { "fr_CH@calendar=japanese;rg=sazzzz", UCAL_DEFAULT, "japanese" },
-    { "fr_TH@rg=SA",             UCAL_DEFAULT,   "gregorian"  }, /* ignore malformed rg tag */  // android-changed
-    { "th@rg=SA",                UCAL_DEFAULT,   "gregorian"  }, /* ignore malformed rg tag */  // android-changed
+    { "fr_TH@rg=SA",             UCAL_DEFAULT,   "buddhist"  }, /* ignore malformed rg tag */
+    { "th@rg=SA",                UCAL_DEFAULT,   "buddhist"  }, /* ignore malformed rg tag */
     { "",                        UCAL_GREGORIAN, "gregorian" },
     { NULL,                      UCAL_GREGORIAN, "gregorian" },
     { NULL, 0, NULL } /* terminator */
@@ -1590,18 +1591,18 @@ static void TestGetKeywordValuesForLocale() {
             { "und",         "gregorian", NULL, NULL, NULL, NULL },
             { "en_US",       "gregorian", NULL, NULL, NULL, NULL },
             { "en_029",      "gregorian", NULL, NULL, NULL, NULL },
-            { "th_TH",       "gregorian", "buddhist", NULL, NULL, NULL },  // android-changed
-            { "und_TH",      "gregorian", "buddhist", NULL, NULL, NULL },  // android-changed
-            { "en_TH",       "gregorian", "buddhist", NULL, NULL, NULL },  // android-changed
+            { "th_TH",       "buddhist", "gregorian", NULL, NULL, NULL },
+            { "und_TH",      "buddhist", "gregorian", NULL, NULL, NULL },
+            { "en_TH",       "buddhist", "gregorian", NULL, NULL, NULL },
             { "he_IL",       "gregorian", "hebrew", "islamic", "islamic-civil", "islamic-tbla" },
             { "ar_EG",       "gregorian", "coptic", "islamic", "islamic-civil", "islamic-tbla" },
             { "ja",          "gregorian", "japanese", NULL, NULL, NULL },
             { "ps_Guru_IN",  "gregorian", "indian", NULL, NULL, NULL },
-            { "th@calendar=gregorian", "gregorian", "buddhist", NULL, NULL, NULL },  // android-changed
+            { "th@calendar=gregorian", "buddhist", "gregorian", NULL, NULL, NULL },
             { "en@calendar=islamic",   "gregorian", NULL, NULL, NULL, NULL },
             { "zh_TW",       "gregorian", "roc", "chinese", NULL, NULL },
-            { "ar_IR",       "gregorian", "persian", "islamic", "islamic-civil", "islamic-tbla" },  // android-changed
-            { "th@rg=SAZZZZ", "gregorian", "islamic-umalqura", "islamic", "islamic-rgsa", NULL },  // android-changed
+            { "ar_IR",       "persian", "gregorian", "islamic", "islamic-civil", "islamic-tbla" },
+            { "th@rg=SAZZZZ", "islamic-umalqura", "gregorian", "islamic", "islamic-rgsa", NULL },
     };
     const int32_t EXPECTED_SIZE[PREFERRED_SIZE] = { 1, 1, 1, 1, 2, 2, 2, 5, 5, 2, 2, 2, 1, 3, 5, 4 };
     UErrorCode status = U_ZERO_ERROR;
@@ -2541,6 +2542,15 @@ void TestJpnCalAddSetNextEra() {
         }
         ucal_close(jCal);
     }
+}
+
+void TestUcalOpenBufferRead() {
+    // ICU-21004: The issue shows under valgrind or as an Address Sanitizer failure.
+    UErrorCode status = U_ZERO_ERROR;
+    // string length: 157 + 1 + 100 = 258
+    const char *localeID = "x-privatebutreallylongtagfoobarfoobarfoobarfoobarfoobarfoobarfoobarfoobarfoobarfoobarfoobarfoobarfoobarfoobarfoobarfoobarfoobarfoobarfoobarfoobarfoobarfoobar-foobarfoobarfoobarfoobarfoobarfoobarfoobarfoobarfoobarfoobarfoobarfoobarfoobarfoobarfoorbarfoobarfoo";
+    UCalendar *cal = ucal_open(NULL, 0, localeID, UCAL_GREGORIAN, &status);
+    ucal_close(cal);
 }
 
 #endif /* #if !UCONFIG_NO_FORMATTING */

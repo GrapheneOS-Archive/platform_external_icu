@@ -110,7 +110,7 @@ is{
         EZ{"Evrusvæðið"}
         FI{"Finnland"}
         FJ{"Fídjíeyjar"}
-        FK{"Falklandseyjar (Malvinas)"}
+        FK{"Falklandseyjar"}
         FM{"Míkrónesía"}
         FO{"Færeyjar"}
         FR{"Frakkland"}
@@ -133,7 +133,7 @@ is{
         GU{"Gvam"}
         GW{"Gínea-Bissá"}
         GY{"Gvæjana"}
-        HK{"Hong Kong"}
+        HK{"sérstjórnarsvæðið Hong Kong"}
         HM{"Heard og McDonaldseyjar"}
         HN{"Hondúras"}
         HR{"Króatía"}
@@ -187,7 +187,7 @@ is{
         ML{"Malí"}
         MM{"Mjanmar (Búrma)"}
         MN{"Mongólía"}
-        MO{"Makaó"}
+        MO{"sérstjórnarsvæðið Makaó"}
         MP{"Norður-Maríanaeyjar"}
         MQ{"Martiník"}
         MR{"Máritanía"}
@@ -222,7 +222,7 @@ is{
         PM{"Sankti Pierre og Miquelon"}
         PN{"Pitcairn-eyjar"}
         PR{"Púertó Ríkó"}
-        PS{"Palestína"}
+        PS{"Heimastjórnarsvæði Palestínumanna"}
         PT{"Portúgal"}
         PW{"Palá"}
         PY{"Paragvæ"}
@@ -298,17 +298,17 @@ is{
         ZZ{"Óþekkt svæði"}
     }
     Countries%short{
-        GB{"Bretland"}
+        HK{"Hong Kong"}
+        MO{"Makaó"}
+        PS{"Palestína"}
         UN{"SÞ"}
         US{"BNA"}
     }
     Countries%variant{
         CD{"Kongó (Lýðstjórnarlýðveldið)"}
         CG{"Kongó (Lýðveldið)"}
-        CI{"Fílabeinsströndin"}
-        CZ{"Tékkland"}
-        SZ{"Svasíland"}
+        FK{"Falklandseyjar (Malvinas)"}
         TL{"Austur-Tímor"}
     }
-    Version{"36.1"}
+    Version{"37"}
 }

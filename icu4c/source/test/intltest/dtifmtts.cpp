@@ -58,6 +58,8 @@ void DateIntervalFormatTest::runIndexedTest( int32_t index, UBool exec, const ch
         TESTCASE(9, testTicket12065);
         TESTCASE(10, testFormattedDateInterval);
         TESTCASE(11, testCreateInstanceForAllLocales);
+        TESTCASE(12, testTicket20707);
+        TESTCASE(13, testFormatMillisecond);
         default: name = ""; break;
     }
 }
@@ -1002,40 +1004,39 @@ void DateIntervalFormatTest::testFormat() {
 
         // Thai (default calendar buddhist)
 
-        // BEGIN ANDROID-changed.  Default calendar in Android is Gregorian for th locale.
-        // "th", "BE 2550 10 10 10:10:10", "BE 2551 10 10 10:10:10", "EEEEdMMMy", "\\u0E27\\u0E31\\u0E19\\u0E1E\\u0E38\\u0E18\\u0E17\\u0E35\\u0E48 10 \\u0E15.\\u0E04. 2550 \\u2013 \\u0E27\\u0E31\\u0E19\\u0E28\\u0E38\\u0E01\\u0E23\\u0E4C\\u0E17\\u0E35\\u0E48 10 \\u0E15.\\u0E04. 2551",
+        "th", "BE 2550 10 10 10:10:10", "BE 2551 10 10 10:10:10", "EEEEdMMMy", "\\u0E27\\u0E31\\u0E19\\u0E1E\\u0E38\\u0E18\\u0E17\\u0E35\\u0E48 10 \\u0E15.\\u0E04. 2550 \\u2013 \\u0E27\\u0E31\\u0E19\\u0E28\\u0E38\\u0E01\\u0E23\\u0E4C\\u0E17\\u0E35\\u0E48 10 \\u0E15.\\u0E04. 2551",
 
 
-        // "th", "BE 2550 10 10 10:10:10", "BE 2551 10 10 10:10:10", "dMMM", "10 \\u0E15.\\u0E04. 2550 \\u2013 10 \\u0E15.\\u0E04. 2551",
+        "th", "BE 2550 10 10 10:10:10", "BE 2551 10 10 10:10:10", "dMMM", "10 \\u0E15.\\u0E04. 2550 \\u2013 10 \\u0E15.\\u0E04. 2551",
 
-        // "th", "BE 2550 10 10 10:10:10", "BE 2551 10 10 10:10:10", "MMMy", "\\u0E15.\\u0E04. 2550 \\u2013 \\u0E15.\\u0E04. 2551",
-
-
-        // "th", "BE 2550 10 10 10:10:10", "BE 2551 10 10 10:10:10", "EdMy", "\\u0E1E. 10/10/2550 \\u2013 \\u0E28. 10/10/2551",
-
-        // "th", "BE 2550 10 10 10:10:10", "BE 2551 10 10 10:10:10", "dMy", "10/10/2550 \\u2013 10/10/2551",
+        "th", "BE 2550 10 10 10:10:10", "BE 2551 10 10 10:10:10", "MMMy", "\\u0E15.\\u0E04. 2550 \\u2013 \\u0E15.\\u0E04. 2551",
 
 
-        // "th", "BE 2550 10 10 10:10:10", "BE 2551 10 10 10:10:10", "My", "10/2550 \\u2013 10/2551",
+        "th", "BE 2550 10 10 10:10:10", "BE 2551 10 10 10:10:10", "EdMy", "\\u0E1E. 10/10/2550 \\u2013 \\u0E28. 10/10/2551",
 
-        // "th", "BE 2550 10 10 10:10:10", "BE 2551 10 10 10:10:10", "EdM", "\\u0E1E. 10/10/2550 \\u2013 \\u0E28. 10/10/2551",
-
-
-        // "th", "BE 2550 10 10 10:10:10", "BE 2551 10 10 10:10:10", "y", "2550\\u20132551",
-
-        // "th", "BE 2550 10 10 10:10:10", "BE 2551 10 10 10:10:10", "M", "10/2550 \\u2013 10/2551",
+        "th", "BE 2550 10 10 10:10:10", "BE 2551 10 10 10:10:10", "dMy", "10/10/2550 \\u2013 10/10/2551",
 
 
-        // "th", "BE 2550 10 10 10:10:10", "BE 2550 11 10 10:10:10", "EEEEdMMMy", "\\u0E27\\u0E31\\u0E19\\u0E1E\\u0E38\\u0E18\\u0E17\\u0E35\\u0E48 10 \\u0E15.\\u0E04. \\u2013 \\u0E27\\u0E31\\u0E19\\u0E40\\u0E2A\\u0E32\\u0E23\\u0E4C\\u0E17\\u0E35\\u0E48 10 \\u0E1E.\\u0E22. 2550",
+        "th", "BE 2550 10 10 10:10:10", "BE 2551 10 10 10:10:10", "My", "10/2550 \\u2013 10/2551",
+
+        "th", "BE 2550 10 10 10:10:10", "BE 2551 10 10 10:10:10", "EdM", "\\u0E1E. 10/10/2550 \\u2013 \\u0E28. 10/10/2551",
 
 
-        // "th", "BE 2550 10 10 10:10:10", "BE 2550 11 10 10:10:10", "dMMM", "10 \\u0E15.\\u0E04. \\u2013 10 \\u0E1E.\\u0E22.",
+        "th", "BE 2550 10 10 10:10:10", "BE 2551 10 10 10:10:10", "y", "2550\\u20132551",
 
-        // "th", "BE 2550 10 10 10:10:10", "BE 2550 11 10 10:10:10", "MMMy", "\\u0E15.\\u0E04.\\u2013\\u0E1E.\\u0E22. 2550",
+        "th", "BE 2550 10 10 10:10:10", "BE 2551 10 10 10:10:10", "M", "10/2550 \\u2013 10/2551",
 
-        // "th", "2550 10 10 10:10:10", "2550 11 10 10:10:10", "dM", "10/10 \\u2013 10/11",
 
-        // "th", "BE 2550 10 10 10:10:10", "BE 2550 11 10 10:10:10", "My", "10/2550 \\u2013 11/2550",
+        "th", "BE 2550 10 10 10:10:10", "BE 2550 11 10 10:10:10", "EEEEdMMMy", "\\u0E27\\u0E31\\u0E19\\u0E1E\\u0E38\\u0E18\\u0E17\\u0E35\\u0E48 10 \\u0E15.\\u0E04. \\u2013 \\u0E27\\u0E31\\u0E19\\u0E40\\u0E2A\\u0E32\\u0E23\\u0E4C\\u0E17\\u0E35\\u0E48 10 \\u0E1E.\\u0E22. 2550",
+
+
+        "th", "BE 2550 10 10 10:10:10", "BE 2550 11 10 10:10:10", "dMMM", "10 \\u0E15.\\u0E04. \\u2013 10 \\u0E1E.\\u0E22.",
+
+        "th", "BE 2550 10 10 10:10:10", "BE 2550 11 10 10:10:10", "MMMy", "\\u0E15.\\u0E04.\\u2013\\u0E1E.\\u0E22. 2550",
+
+        "th", "2550 10 10 10:10:10", "2550 11 10 10:10:10", "dM", "10/10 \\u2013 10/11",
+
+        "th", "BE 2550 10 10 10:10:10", "BE 2550 11 10 10:10:10", "My", "10/2550 \\u2013 11/2550",
 
 
         "th", "BE 2550 10 10 10:10:10", "BE 2550 11 10 10:10:10", "d", "10/10 \\u2013 10/11",
@@ -1043,11 +1044,7 @@ void DateIntervalFormatTest::testFormat() {
         "th", "BE 2550 10 10 10:10:10", "BE 2550 11 10 10:10:10", "y", "\\u0E1E.\\u0E28. 2550",
 
 
-        // "th", "BE 2550 10 10 10:10:10", "BE 2550 11 10 10:10:10", "MMM", "\\u0E15.\\u0E04.\\u2013\\u0E1E.\\u0E22.",
-
-        // "th", "2550 10 10 10:10:10", "2550 11 10 10:10:10", "y", "\\u0E1E.\\u0E28. 2550",
-
-        // "th", "2550 10 10 10:10:10", "2550 11 10 10:10:10", "MMM", "\\u0E15.\\u0E04.\\u2013\\u0E1E.\\u0E22.",
+        "th", "BE 2550 10 10 10:10:10", "BE 2550 11 10 10:10:10", "MMM", "\\u0E15.\\u0E04.\\u2013\\u0E1E.\\u0E22.",
 
         // Tests for Japanese calendar with eras, including new era in 2019 (Heisei 31 through April 30, then new era)
 
@@ -1058,12 +1055,12 @@ void DateIntervalFormatTest::testFormat() {
         "en-u-ca-japanese", "S 64 01 05 09:00:00", "H 1 01 15 09:00:00",  "GyMMMd", "Jan 5, 64 Sh\\u014Dwa \\u2013 Jan 15, 1 Heisei",
 
         "en-u-ca-japanese", "S 64 01 05 09:00:00", "H 1 01 15 09:00:00",  "GGGGGyMd", "1/5/64 S \\u2013 1/15/1 H",
-
+ 
         "en-u-ca-japanese", "H 31 04 15 09:00:00", JP_ERA_2019_NARROW " 1 05 15 09:00:00",  "GyMMMd", "Apr 15, 31 Heisei \\u2013 May 15, 1 " JP_ERA_2019_ROOT,
 
         "en-u-ca-japanese", "H 31 04 15 09:00:00", JP_ERA_2019_NARROW " 1 05 15 09:00:00",  "GGGGGyMd", "4/15/31 H \\u2013 5/15/1 " JP_ERA_2019_NARROW,
-
-
+ 
+ 
         "ja-u-ca-japanese", "H 31 03 15 09:00:00", "H 31 04 15 09:00:00", "GyMMMd", "\\u5E73\\u621031\\u5E743\\u670815\\u65E5\\uFF5E4\\u670815\\u65E5",
 
         "ja-u-ca-japanese", "H 31 03 15 09:00:00", "H 31 04 15 09:00:00", "GGGGGyMd", "H31/03/15\\uFF5E31/04/15",
@@ -1074,12 +1071,8 @@ void DateIntervalFormatTest::testFormat() {
 
         "ja-u-ca-japanese", "H 31 04 15 09:00:00", JP_ERA_2019_NARROW " 1 05 15 09:00:00", "GGGGGyMd", "H31/04/15\\uFF5E" JP_ERA_2019_NARROW "1/05/15",
 
-        // END ANDROID-changed
     };
-    // Android patch: b/145129186 Disable failing tests
-    #ifndef ANDROID
     expect(DATA, UPRV_LENGTHOF(DATA));
-    #endif /* ANDROID */
 }
 
 
@@ -1101,7 +1094,7 @@ void DateIntervalFormatTest::expect(const char** data, int32_t data_length) {
             return;
         }
         const char* calType = defCal->getType();
-
+ 
         Locale refLoc("root");
         if (calType) {
             refLoc.setKeywordValue("calendar", calType, ec);
@@ -1811,6 +1804,157 @@ void DateIntervalFormatTest::testCreateInstanceForAllLocales() {
                 status);
             status.errIfFailureAndReset(locales[i].getName());
         }
+    }
+}
+
+void DateIntervalFormatTest::testFormatMillisecond() {
+    struct
+    {
+        int year;
+        int month;
+        int day;
+        int from_hour;
+        int from_miniute;
+        int from_second;
+        int from_millisecond;
+        int to_hour;
+        int to_miniute;
+        int to_second;
+        int to_millisecond;
+        const char* skeleton;
+        const char16_t* expected;
+    }
+    kTestCases [] =
+    {
+        //           From            To
+        //   y  m  d   h  m   s   ms   h  m   s   ms   skeleton  expected
+        { 2019, 2, 10, 1, 23, 45, 321, 1, 23, 45, 321, "ms",     u"23:45"},
+        { 2019, 2, 10, 1, 23, 45, 321, 1, 23, 45, 321, "msS",    u"23:45.3"},
+        { 2019, 2, 10, 1, 23, 45, 321, 1, 23, 45, 321, "msSS",   u"23:45.32"},
+        { 2019, 2, 10, 1, 23, 45, 321, 1, 23, 45, 321, "msSSS",  u"23:45.321"},
+        { 2019, 2, 10, 1, 23, 45, 321, 1, 23, 45, 987, "ms",     u"23:45"},
+        { 2019, 2, 10, 1, 23, 45, 321, 1, 23, 45, 987, "msS",    u"23:45.3 \u2013 23:45.9"},
+        { 2019, 2, 10, 1, 23, 45, 321, 1, 23, 45, 987, "msSS",   u"23:45.32 \u2013 23:45.98"},
+        { 2019, 2, 10, 1, 23, 45, 321, 1, 23, 45, 987, "msSSS",  u"23:45.321 \u2013 23:45.987"},
+        { 2019, 2, 10, 1, 23, 45, 321, 1, 23, 46, 987, "ms",     u"23:45 \u2013 23:46"},
+        { 2019, 2, 10, 1, 23, 45, 321, 1, 23, 46, 987, "msS",    u"23:45.3 \u2013 23:46.9"},
+        { 2019, 2, 10, 1, 23, 45, 321, 1, 23, 46, 987, "msSS",   u"23:45.32 \u2013 23:46.98"},
+        { 2019, 2, 10, 1, 23, 45, 321, 1, 23, 46, 987, "msSSS",  u"23:45.321 \u2013 23:46.987"},
+        { 2019, 2, 10, 1, 23, 45, 321, 2, 24, 45, 987, "ms",     u"23:45 \u2013 24:45"},
+        { 2019, 2, 10, 1, 23, 45, 321, 2, 24, 45, 987, "msS",    u"23:45.3 \u2013 24:45.9"},
+        { 2019, 2, 10, 1, 23, 45, 321, 2, 24, 45, 987, "msSS",   u"23:45.32 \u2013 24:45.98"},
+        { 2019, 2, 10, 1, 23, 45, 321, 2, 24, 45, 987, "msSSS",  u"23:45.321 \u2013 24:45.987"},
+        { 2019, 2, 10, 1, 23, 45, 321, 1, 23, 45, 321, "s",      u"45"},
+        { 2019, 2, 10, 1, 23, 45, 321, 1, 23, 45, 321, "sS",     u"45.3"},
+        { 2019, 2, 10, 1, 23, 45, 321, 1, 23, 45, 321, "sSS",    u"45.32"},
+        { 2019, 2, 10, 1, 23, 45, 321, 1, 23, 45, 321, "sSSS",   u"45.321"},
+        { 2019, 2, 10, 1, 23, 45, 321, 1, 23, 45, 987, "s",      u"45"},
+        { 2019, 2, 10, 1, 23, 45, 321, 1, 23, 45, 987, "sS",     u"45.3 \u2013 45.9"},
+        { 2019, 2, 10, 1, 23, 45, 321, 1, 23, 45, 987, "sSS",    u"45.32 \u2013 45.98"},
+        { 2019, 2, 10, 1, 23, 45, 321, 1, 23, 45, 987, "sSSS",   u"45.321 \u2013 45.987"},
+        { 2019, 2, 10, 1, 23, 45, 321, 1, 23, 46, 987, "s",      u"45 \u2013 46"},
+        { 2019, 2, 10, 1, 23, 45, 321, 1, 23, 46, 987, "sS",     u"45.3 \u2013 46.9"},
+        { 2019, 2, 10, 1, 23, 45, 321, 1, 23, 46, 987, "sSS",    u"45.32 \u2013 46.98"},
+        { 2019, 2, 10, 1, 23, 45, 321, 1, 23, 46, 987, "sSSS",   u"45.321 \u2013 46.987"},
+        { 2019, 2, 10, 1, 23, 45, 321, 2, 24, 45, 987, "s",      u"45 \u2013 45"},
+        { 2019, 2, 10, 1, 23, 45, 321, 2, 24, 45, 987, "sS",     u"45.3 \u2013 45.9"},
+        { 2019, 2, 10, 1, 23, 45, 321, 2, 24, 45, 987, "sSS",    u"45.32 \u2013 45.98"},
+        { 2019, 2, 10, 1, 23, 45, 321, 2, 24, 45, 987, "sSSS",   u"45.321 \u2013 45.987"},
+        { 2019, 2, 10, 1, 23, 45, 321, 1, 23, 45, 321, "S",      u"3"},
+        { 2019, 2, 10, 1, 23, 45, 321, 1, 23, 45, 321, "SS",     u"32"},
+        { 2019, 2, 10, 1, 23, 45, 321, 1, 23, 45, 321, "SSS",    u"321"},
+
+        // Same millisecond but in different second.
+        { 2019, 2, 10, 1, 23, 45, 321, 1, 23, 46, 321, "S",      u"3 \u2013 3"},
+        { 2019, 2, 10, 1, 23, 45, 321, 1, 23, 46, 321, "SS",     u"32 \u2013 32"},
+        { 2019, 2, 10, 1, 23, 45, 321, 1, 23, 46, 321, "SSS",    u"321 \u2013 321"},
+
+        { 2019, 2, 10, 1, 23, 45, 321, 1, 23, 45, 987, "S",      u"3 \u2013 9"},
+        { 2019, 2, 10, 1, 23, 45, 321, 1, 23, 45, 987, "SS",     u"32 \u2013 98"},
+        { 2019, 2, 10, 1, 23, 45, 321, 1, 23, 45, 987, "SSS",    u"321 \u2013 987"},
+        { 2019, 2, 10, 1, 23, 45, 321, 1, 23, 46, 987, "S",      u"3 \u2013 9"},
+        { 2019, 2, 10, 1, 23, 45, 321, 1, 23, 46, 987, "SS",     u"32 \u2013 98"},
+        { 2019, 2, 10, 1, 23, 45, 321, 1, 23, 46, 987, "SSS",    u"321 \u2013 987"},
+        { 2019, 2, 10, 1, 23, 45, 321, 2, 24, 45, 987, "S",      u"3 \u2013 9"},
+        { 2019, 2, 10, 1, 23, 45, 321, 2, 24, 45, 987, "SS",     u"32 \u2013 98"},
+        { 2019, 2, 10, 1, 23, 45, 321, 2, 24, 45, 987, "SSS",    u"321 \u2013 987"},
+        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, nullptr, nullptr},
+    };
+
+    const Locale &enLocale = Locale::getEnglish();
+    IcuTestErrorCode status(*this, "testFormatMillisecond");
+    LocalPointer<Calendar> calendar(Calendar::createInstance(enLocale, status));
+    if (status.errIfFailureAndReset()) { return; }
+
+    for (int32_t i = 0; kTestCases[i].year > 0; i++) {
+        LocalPointer<DateIntervalFormat> fmt(DateIntervalFormat::createInstance(
+            kTestCases[i].skeleton, enLocale, status));
+        if (status.errIfFailureAndReset()) { continue; }
+
+        calendar->clear();
+        calendar->set(kTestCases[i].year, kTestCases[i].month, kTestCases[i].day,
+                      kTestCases[i].from_hour, kTestCases[i].from_miniute, kTestCases[i].from_second);
+        UDate from = calendar->getTime(status) + kTestCases[i].from_millisecond;
+        if (status.errIfFailureAndReset()) { continue; }
+
+        calendar->clear();
+        calendar->set(kTestCases[i].year, kTestCases[i].month, kTestCases[i].day,
+                      kTestCases[i].to_hour, kTestCases[i].to_miniute, kTestCases[i].to_second);
+        UDate to = calendar->getTime(status) + kTestCases[i].to_millisecond;
+        FormattedDateInterval  res = fmt->formatToValue(DateInterval(from, to), status);
+        if (status.errIfFailureAndReset()) { continue; }
+
+        UnicodeString formatted = res.toString(status);
+        if (status.errIfFailureAndReset()) { continue; }
+        if (formatted != kTestCases[i].expected) {
+            std::string tmp1;
+            std::string tmp2;
+            errln("Case %d for skeleton %s : Got %s but expect %s",
+                  i, kTestCases[i].skeleton, formatted.toUTF8String<std::string>(tmp1).c_str(),
+                  UnicodeString(kTestCases[i].expected).toUTF8String<std::string>(tmp2).c_str());
+        }
+    }
+}
+
+void DateIntervalFormatTest::testTicket20707() {
+    IcuTestErrorCode status(*this, "testTicket20707");
+
+    const char16_t timeZone[] = u"UTC";
+    Locale locales[] = {"en-u-hc-h24", "en-u-hc-h23", "en-u-hc-h12", "en-u-hc-h11", "en", "en-u-hc-h25", "hi-IN-u-hc-h11"};
+
+    // Clomuns: hh, HH, kk, KK, jj, JJs, CC
+    UnicodeString expected[][7] = {
+        // Hour-cycle: k
+        {u"12 AM", u"24", u"24", u"12 AM", u"24", u"0 (hour: 24)", u"12 AM"},
+        // Hour-cycle: H
+        {u"12 AM", u"00", u"00", u"12 AM", u"00", u"0 (hour: 00)", u"12 AM"},
+        // Hour-cycle: h
+        {u"12 AM", u"00", u"00", u"12 AM", u"12 AM", u"0 (hour: 12)", u"12 AM"},
+        // Hour-cycle: K
+        {u"0 AM", u"00", u"00", u"0 AM", u"0 AM", u"0 (hour: 00)", u"0 AM"},
+        {u"12 AM", u"00", u"00", u"12 AM", u"12 AM", u"0 (hour: 12)", u"12 AM"},
+        {u"12 AM", u"00", u"00", u"12 AM", u"12 AM", u"0 (hour: 12)", u"12 AM"},
+        // Hour-cycle: K
+        {u"0 am", u"00", u"00", u"0 am", u"0 am", u"0 (\u0918\u0902\u091F\u093E: 00)", u"\u0930\u093E\u0924 0"}
+    };
+
+    int32_t i = 0;
+    for (Locale locale : locales) {
+        int32_t j = 0;
+        for (const UnicodeString skeleton : {u"hh", u"HH", u"kk", u"KK", u"jj", u"JJs", u"CC"}) {
+            LocalPointer<DateIntervalFormat> dtifmt(DateIntervalFormat::createInstance(skeleton, locale, status));
+            if (status.errDataIfFailureAndReset()) {
+                continue;
+            }
+            FieldPosition fposition;
+            UnicodeString result;
+            LocalPointer<Calendar> calendar(Calendar::createInstance(TimeZone::createTimeZone(timeZone), status));
+            calendar->setTime(UDate(1563235200000), status);
+            dtifmt->format(*calendar, *calendar, result, fposition, status);
+
+            assertEquals("Formatted result", expected[i][j++], result);
+        }
+        i++;
     }
 }
 

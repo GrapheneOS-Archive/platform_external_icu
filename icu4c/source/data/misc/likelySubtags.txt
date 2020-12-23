@@ -221,6 +221,7 @@ likelySubtags:table(nofallback){
     bzh{"bzh_Latn_ZZ"}
     bzw{"bzw_Latn_ZZ"}
     ca{"ca_Latn_ES"}
+    cad{"cad_Latn_US"}
     can{"can_Latn_ZZ"}
     cbj{"cbj_Latn_ZZ"}
     cch{"cch_Latn_NG"}
@@ -461,6 +462,7 @@ likelySubtags:table(nofallback){
     he{"he_Hebr_IL"}
     hhy{"hhy_Latn_ZZ"}
     hi{"hi_Deva_IN"}
+    hi_Latn{"hi_Latn_IN"}
     hia{"hia_Latn_ZZ"}
     hif{"hif_Latn_FJ"}
     hig{"hig_Latn_ZZ"}
@@ -533,6 +535,7 @@ likelySubtags:table(nofallback){
     jen{"jen_Latn_ZZ"}
     jgk{"jgk_Latn_ZZ"}
     jgo{"jgo_Latn_CM"}
+    ji{"ji_Hebr_UA"}
     jib{"jib_Latn_ZZ"}
     jmc{"jmc_Latn_TZ"}
     jml{"jml_Deva_NP"}
@@ -636,6 +639,7 @@ likelySubtags:table(nofallback){
     krs{"krs_Latn_ZZ"}
     kru{"kru_Deva_IN"}
     ks{"ks_Arab_IN"}
+    ks_Deva{"ks_Deva_IN"}
     ksb{"ksb_Latn_TZ"}
     ksd{"ksd_Latn_ZZ"}
     ksf{"ksf_Latn_CM"}
@@ -648,7 +652,6 @@ likelySubtags:table(nofallback){
     ktr{"ktr_Latn_MY"}
     ku{"ku_Latn_TR"}
     ku_Arab{"ku_Arab_IQ"}
-    ku_IR{"ku_Arab_IR"}
     ku_LB{"ku_Arab_LB"}
     ku_Yezi{"ku_Yezi_GE"}
     kub{"kub_Latn_ZZ"}
@@ -837,7 +840,7 @@ likelySubtags:table(nofallback){
     mro{"mro_Mroo_BD"}
     ms{"ms_Latn_MY"}
     ms_CC{"ms_Arab_CC"}
-    ms_ID{"ms_Arab_ID"}
+    ms_ID{"ms_Latn_ID"}
     mt{"mt_Latn_MT"}
     mtc{"mtc_Latn_ZZ"}
     mtf{"mtf_Latn_ZZ"}
@@ -1047,7 +1050,7 @@ likelySubtags:table(nofallback){
     sah{"sah_Cyrl_RU"}
     saq{"saq_Latn_KE"}
     sas{"sas_Latn_ID"}
-    sat{"sat_Latn_IN"}
+    sat{"sat_Olck_IN"}
     sav{"sav_Latn_SN"}
     saz{"saz_Saur_IN"}
     sba{"sba_Latn_ZZ"}
@@ -1075,7 +1078,6 @@ likelySubtags:table(nofallback){
     sgs{"sgs_Latn_LT"}
     sgw{"sgw_Ethi_ZZ"}
     sgz{"sgz_Latn_ZZ"}
-    sh{"sr_Latn_RS"}
     shi{"shi_Tfng_MA"}
     shk{"shk_Latn_ZZ"}
     shn{"shn_Mymr_MM"}
@@ -1568,7 +1570,7 @@ likelySubtags:table(nofallback){
     und_NE{"ha_Latn_NE"}
     und_NI{"es_Latn_NI"}
     und_NL{"nl_Latn_NL"}
-    und_NO{"no_Latn_NO"}
+    und_NO{"nb_Latn_NO"}
     und_NP{"ne_Deva_NP"}
     und_Nand{"sa_Nand_IN"}
     und_Narb{"xna_Narb_SA"}
@@ -1620,7 +1622,7 @@ likelySubtags:table(nofallback){
     und_SD{"ar_Arab_SD"}
     und_SE{"sv_Latn_SE"}
     und_SI{"sl_Latn_SI"}
-    und_SJ{"no_Latn_SJ"}
+    und_SJ{"nb_Latn_SJ"}
     und_SK{"sk_Latn_SK"}
     und_SM{"it_Latn_SM"}
     und_SN{"fr_Latn_SN"}

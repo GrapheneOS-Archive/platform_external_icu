@@ -332,11 +332,9 @@ public class IBMCalendarTest extends CalendarTestFmwk {
         // Thai locale
         Calendar cal = Calendar.getInstance(new ULocale("th_TH"));
         String type = cal.getType();
-        // Android patch: Force default Gregorian calendar.
-        if (!type.equals("gregorian")) {
-            errln("FAIL: Gregorian calendar is not returned for locale " + cal.toString());
+        if (!type.equals("buddhist")) {
+            errln("FAIL: Buddhist calendar is not returned for locale " + cal.toString());
         }
-        // Android patch end.
     }
 
     /**
@@ -1103,7 +1101,6 @@ public class IBMCalendarTest extends CalendarTestFmwk {
                 "th@rg=SA",		// ignore malformed rg tag, use buddhist
         };
 
-        // Android patch: Force default Gregorian calendar.
         String[] types = {
                 "gregorian",
                 "japanese",
@@ -1111,21 +1108,20 @@ public class IBMCalendarTest extends CalendarTestFmwk {
                 "japanese",
                 "buddhist",
                 "gregorian",
+                "buddhist",
                 "gregorian",
                 "gregorian",
-                "gregorian",
-                "gregorian",
-                "gregorian",
-                "gregorian",
+                "buddhist",
+                "buddhist",
+                "buddhist",
                 "gregorian",    // iso8601 is a gregorian sub type
                 "gregorian",
-                "gregorian",
-                "gregorian",
+                "islamic-umalqura",
+                "islamic-umalqura",
                 "japanese",
-                "gregorian",
-                "gregorian",
+                "buddhist",
+                "buddhist",
         };
-        // Android patch end.
 
         for (int i = 0; i < locs.length; i++) {
             Calendar cal = Calendar.getInstance(new ULocale(locs[i]));

@@ -243,7 +243,7 @@ fa{
         minimumGroupingDigits{"1"}
         native{"arabext"}
     }
-    Version{"36.1"}
+    Version{"37"}
     calendar{
         buddhist{
             eras{
@@ -362,6 +362,7 @@ fa{
                 }
             }
         }
+        default{"persian"}
         ethiopic{
             eras{
                 abbreviated{

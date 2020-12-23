@@ -51,7 +51,7 @@
 
 using namespace std;
 
-bool ICU44PLUS = true;
+bool ICU44PLUS = TRUE;
 string TZ_RESOURCE_NAME = ICU_TZ_RESOURCE;
 
 //--------------------------------------------------------------------
@@ -1431,19 +1431,19 @@ void FinalRule::print(ostream& os) const {
 
 int main(int argc, char *argv[]) {
     string rootpath, zonetab, version;
-    bool validArgs = false;
+    bool validArgs = FALSE;
 
     if (argc == 4 || argc == 5) {
-        validArgs = true;
+        validArgs = TRUE;
         rootpath = argv[1];
         zonetab = argv[2];
         version = argv[3];
         if (argc == 5) {
             if (strcmp(argv[4], "--old") == 0) {
-                ICU44PLUS = false;
+                ICU44PLUS = FALSE;
                 TZ_RESOURCE_NAME = ICU_TZ_RESOURCE_OLD;
             } else {
-                validArgs = false;
+                validArgs = FALSE;
             }
         }
     }
@@ -1781,6 +1781,7 @@ int main(int argc, char *argv[]) {
     time_t sec;
     time(&sec);
     struct tm* now = localtime(&sec);
+    int32_t thisYear = now->tm_year + 1900;
 
     string filename = TZ_RESOURCE_NAME + ".txt";
     // Write out a resource-bundle source file containing data for
