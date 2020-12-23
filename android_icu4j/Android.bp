@@ -157,6 +157,9 @@ java_sdk_library {
     srcs: [
         ":android_icu4j_public_api_files",
     ],
+    droiddoc_options: [
+        "--force-convert-to-warning-nullability-annotations +*:-android.*:+android.icu.*:-dalvik.* ",
+    ],
     errorprone: {
         javacflags: [
             "-Xep:MissingOverride:OFF",
