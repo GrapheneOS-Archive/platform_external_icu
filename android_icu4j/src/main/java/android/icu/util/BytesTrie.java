@@ -53,8 +53,6 @@ public final class BytesTrie implements Cloneable, Iterable<BytesTrie.Entry> {
      * Makes a shallow copy of the other trie reader object and its state.
      * Does not copy the byte array which will be shared.
      * Same as clone() but without the throws clause.
-     *
-     * @hide draft / provisional / internal are hidden on Android
      */
     public BytesTrie(BytesTrie other) {
         bytes_ = other.bytes_;
@@ -89,7 +87,6 @@ public final class BytesTrie implements Cloneable, Iterable<BytesTrie.Entry> {
      *
      * @return opaque state value
      * @see #resetToState64
-     * @hide draft / provisional / internal are hidden on Android
      */
     public long getState64() {
         return ((long)remainingMatchLength_ << 32) | pos_;
@@ -107,7 +104,6 @@ public final class BytesTrie implements Cloneable, Iterable<BytesTrie.Entry> {
      * @see #getState64
      * @see #resetToState
      * @see #reset
-     * @hide draft / provisional / internal are hidden on Android
      */
     public BytesTrie resetToState64(long state) {
         remainingMatchLength_ = (int)(state >> 32);
