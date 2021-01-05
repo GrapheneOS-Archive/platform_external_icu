@@ -22,6 +22,10 @@ import com.android.i18n.timezone.internal.BufferIterator;
 import com.android.i18n.timezone.internal.MemoryMappedFile;
 
 import dalvik.annotation.optimization.ReachabilitySensitive;
+
+import libcore.util.NonNull;
+import libcore.util.Nullable;
+
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
@@ -104,10 +108,12 @@ public final class ZoneInfoDb {
 
   /**
    * Obtains the singleton instance.
+   *
+   * @hide
    */
   @libcore.api.CorePlatformApi
   @libcore.api.IntraCoreApi
-  public static ZoneInfoDb getInstance() {
+  public static @NonNull ZoneInfoDb getInstance() {
     return DATA;
   }
 
@@ -290,7 +296,7 @@ public final class ZoneInfoDb {
    * Validate the data at the specified path. Throws {@link IOException} if it's not valid.
    */
   @libcore.api.CorePlatformApi
-  public static void validateTzData(String path) throws IOException {
+  public static void validateTzData(@NonNull String path) throws IOException {
     ZoneInfoDb tzData = ZoneInfoDb.loadTzData(path);
     if (tzData == null) {
       throw new IOException("failed to read tzData at " + path);
@@ -325,18 +331,22 @@ public final class ZoneInfoDb {
   /**
    * Returns an array containing all time zone ids sorted in lexicographical order for
    * binary searching.
+   *
+   * @hide
    */
   @libcore.api.IntraCoreApi
-  public String[] getAvailableIDs() {
+  public @NonNull String @NonNull[] getAvailableIDs() {
     checkNotClosed();
     return ids.clone();
   }
 
   /**
    * Returns ids of all time zones with the given raw UTC offset.
+   *
+   * @hide
    */
   @libcore.api.IntraCoreApi
-  public String[] getAvailableIDs(int rawUtcOffset) {
+  public @NonNull String @NonNull[] getAvailableIDs(int rawUtcOffset) {
     checkNotClosed();
     List<String> matches = new ArrayList<String>();
     int[] rawUtcOffsets = getRawUtcOffsets();
@@ -368,7 +378,7 @@ public final class ZoneInfoDb {
    * Returns the tzdb version in use.
    */
   @libcore.api.CorePlatformApi
-  public String getVersion() {
+  public @NonNull String getVersion() {
     checkNotClosed();
     return version;
   }
@@ -376,10 +386,12 @@ public final class ZoneInfoDb {
   /**
    * Creates {@link ZoneInfoData} object from the time zone {@code id}. Returns null if the id
    * is not found.
+   *
+   * @hide
    */
   @libcore.api.CorePlatformApi
   @libcore.api.IntraCoreApi
-  public ZoneInfoData makeZoneInfoData(String id) {
+  public @Nullable ZoneInfoData makeZoneInfoData(@NonNull String id) {
     checkNotClosed();
     ZoneInfoData zoneInfoData = cache.get(id);
     // The object from the cache is not cloned because ZoneInfoData is immutable.
@@ -388,7 +400,7 @@ public final class ZoneInfoDb {
   }
 
   @libcore.api.CorePlatformApi
-  public boolean hasTimeZone(String id) {
+  public boolean hasTimeZone(@NonNull String id) {
     checkNotClosed();
     return Arrays.binarySearch(ids, id) >= 0;
   }

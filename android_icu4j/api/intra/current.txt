@@ -97,31 +97,36 @@ package com.android.i18n.system {
 package com.android.i18n.timezone {
 
   public final class ZoneInfoData {
-    method public com.android.i18n.timezone.ZoneInfoData createCopyWithRawOffset(int);
-    method public static com.android.i18n.timezone.ZoneInfoData createFromSerializationFields(String, java.io.ObjectInputStream.GetField) throws java.io.IOException;
-    method public static com.android.i18n.timezone.ZoneInfoData createZoneInfo(String, java.nio.ByteBuffer) throws java.io.IOException;
-    method public String getID();
-    method public Integer getLatestDstSavings(long);
+    method @NonNull public com.android.i18n.timezone.ZoneInfoData createCopyWithRawOffset(int);
+    method @NonNull public static com.android.i18n.timezone.ZoneInfoData createFromSerializationFields(@NonNull String, @NonNull java.io.ObjectInputStream.GetField) throws java.io.IOException;
+    method @NonNull public static com.android.i18n.timezone.ZoneInfoData createZoneInfo(@NonNull String, @NonNull java.nio.ByteBuffer) throws java.io.IOException;
+    method @NonNull public String getID();
+    method @Nullable public Integer getLatestDstSavings(long);
     method public int getOffset(long);
-    method public int getOffsetsByUtcTime(long, int[]);
+    method public int getOffsetsByUtcTime(long, @NonNull int[]);
     method public int getRawOffset();
-    method public long[] getTransitions();
-    method public boolean hasSameRules(com.android.i18n.timezone.ZoneInfoData);
+    method @Nullable public long[] getTransitions();
+    method public boolean hasSameRules(@NonNull com.android.i18n.timezone.ZoneInfoData);
     method public boolean isInDaylightTime(long);
-    method public void writeToSerializationFields(java.io.ObjectOutputStream.PutField);
-    field public static final java.io.ObjectStreamField[] ZONEINFO_SERIALIZED_FIELDS;
+    method public void writeToSerializationFields(@NonNull java.io.ObjectOutputStream.PutField);
+    field @NonNull public static final java.io.ObjectStreamField[] ZONEINFO_SERIALIZED_FIELDS;
   }
 
   public final class ZoneInfoDb {
-    method public String[] getAvailableIDs();
-    method public String[] getAvailableIDs(int);
-    method public static com.android.i18n.timezone.ZoneInfoDb getInstance();
-    method public com.android.i18n.timezone.ZoneInfoData makeZoneInfoData(String);
+    method @NonNull public String[] getAvailableIDs();
+    method @NonNull public String[] getAvailableIDs(int);
+    method @NonNull public static com.android.i18n.timezone.ZoneInfoDb getInstance();
+    method @Nullable public com.android.i18n.timezone.ZoneInfoData makeZoneInfoData(@NonNull String);
   }
 
 }
 
 package com.android.icu.charset {
+
+  public class CharsetFactory {
+    method public static java.nio.charset.Charset create(String);
+    method public static String[] getAvailableCharsetNames();
+  }
 
   public final class CharsetICU extends java.nio.charset.Charset {
     method public static java.nio.charset.Charset charsetForName(String);
@@ -132,6 +137,10 @@ package com.android.icu.charset {
 
 package com.android.icu.text {
 
+  public class CompatibleDecimalFormatFactory {
+    method public static android.icu.text.DecimalFormat create(String, android.icu.text.DecimalFormatSymbols);
+  }
+
   public class DecimalFormatSymbolsBridge {
     method public static String getLocalizedPatternSeparator(android.icu.util.ULocale, android.icu.text.NumberingSystem);
   }
@@ -140,6 +149,16 @@ package com.android.icu.text {
     method public android.icu.text.DateFormatSymbols getDateFormatSymbols();
     method public static com.android.icu.text.ExtendedDateFormatSymbols getInstance(android.icu.util.ULocale);
     method public String[] getNarrowQuarters(int);
+  }
+
+  public class ExtendedDecimalFormatSymbols {
+    method public static com.android.icu.text.ExtendedDecimalFormatSymbols getInstance(android.icu.util.ULocale, android.icu.text.NumberingSystem);
+    method public String getLocalizedPatternSeparator();
+  }
+
+  public class ExtendedIDNA {
+    method public static StringBuffer convertIDNToASCII(String, int) throws android.icu.text.StringPrepParseException;
+    method public static StringBuffer convertIDNToUnicode(String, int) throws android.icu.text.StringPrepParseException;
   }
 
   public final class TimeZoneNamesNative {
@@ -153,6 +172,11 @@ package com.android.icu.util {
   public class CaseMapperNative {
     method public static String toLowerCase(String, java.util.Locale);
     method public static String toUpperCase(String, java.util.Locale);
+  }
+
+  public class ExtendedCalendar {
+    method public String getDateTimePattern(int, int);
+    method public static com.android.icu.util.ExtendedCalendar getInstance(android.icu.util.ULocale);
   }
 
   public final class LocaleNative {
