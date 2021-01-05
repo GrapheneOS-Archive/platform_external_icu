@@ -17,6 +17,10 @@ package com.android.i18n.timezone;
 
 import com.android.i18n.timezone.internal.BufferIterator;
 import com.android.i18n.timezone.internal.ByteBufferIterator;
+
+import libcore.util.NonNull;
+import libcore.util.Nullable;
+
 import java.io.IOException;
 import java.io.ObjectInputStream.GetField;
 import java.io.ObjectOutputStream.PutField;
@@ -52,16 +56,19 @@ import java.util.Arrays;
 public final class ZoneInfoData {
     /**
      * The serialized fields in {@link libcore.util.ZoneInfo} kept for backward app compatibility.
+     *
+     * @hide
      */
     @libcore.api.IntraCoreApi
-    public static final ObjectStreamField[] ZONEINFO_SERIALIZED_FIELDS = new ObjectStreamField[] {
-        new ObjectStreamField("mRawOffset", int.class),
-        new ObjectStreamField("mEarliestRawOffset", int.class),
-        new ObjectStreamField("mTransitions", long[].class),
-        new ObjectStreamField("mTypes", byte[].class),
-        new ObjectStreamField("mOffsets", int[].class),
-        new ObjectStreamField("mIsDsts", byte[].class),
-    };
+    public static final @NonNull ObjectStreamField @NonNull [] ZONEINFO_SERIALIZED_FIELDS =
+            new ObjectStreamField[] {
+                    new ObjectStreamField("mRawOffset", int.class),
+                    new ObjectStreamField("mEarliestRawOffset", int.class),
+                    new ObjectStreamField("mTransitions", long[].class),
+                    new ObjectStreamField("mTypes", byte[].class),
+                    new ObjectStreamField("mOffsets", int[].class),
+                    new ObjectStreamField("mIsDsts", byte[].class),
+            };
 
     private final String mId;
 
@@ -409,9 +416,12 @@ public final class ZoneInfoData {
     /**
      * Create an instance from the serialized fields from {@link libcore.util.ZoneInfo}
      * for backward app compatibility.
+     *
+     * @hide
      */
     @libcore.api.IntraCoreApi
-    public static ZoneInfoData createFromSerializationFields(String id, GetField getField)
+    public static @NonNull ZoneInfoData createFromSerializationFields(@NonNull String id,
+            @NonNull GetField getField)
             throws IOException {
         int rawOffset = getField.get("mRawOffset", 0);
         int earliestRawOffset = getField.get("mEarliestRawOffset", 0);
@@ -426,9 +436,11 @@ public final class ZoneInfoData {
 
     /**
      * Serialize {@link libcore.util.ZoneInfo} into backward app compatible form.
+     *
+     * @hide
      */
     @libcore.api.IntraCoreApi
-    public void writeToSerializationFields(PutField putField) {
+    public void writeToSerializationFields(@NonNull PutField putField) {
         putField.put("mRawOffset", mRawOffset);
         putField.put("mEarliestRawOffset", mEarliestRawOffset);
         putField.put("mTransitions", mTransitions);
@@ -560,9 +572,11 @@ public final class ZoneInfoData {
      * @param utcTimeInMillis the UTC time in milliseconds.
      * @param offsets the array whose length must be greater than or equal to 2.
      * @return the total offset which is the sum of the raw and DST offsets.
+     *
+     * @hide
      */
     @libcore.api.IntraCoreApi
-    public int getOffsetsByUtcTime(long utcTimeInMillis, int[] offsets) {
+    public int getOffsetsByUtcTime(long utcTimeInMillis, @NonNull int[] offsets) {
         int transitionIndex = findTransitionIndex(roundDownMillisToSeconds(utcTimeInMillis));
         int totalOffset;
         int rawOffset;
@@ -613,6 +627,8 @@ public final class ZoneInfoData {
      * Returns the offset from UTC in milliseconds at the specified time {@when}.
      *
      * @param when the number of milliseconds since January 1, 1970, 00:00:00 GMT
+     *
+     * @hide
      */
     @libcore.api.IntraCoreApi
     public int getOffset(long when) {
@@ -630,6 +646,8 @@ public final class ZoneInfoData {
      * Returns whether the given {@code when} is in daylight saving time in this time zone.
      *
      * @param when the number of milliseconds since January 1, 1970, 00:00:00 GMT
+     *
+     * @hide
      */
     @libcore.api.IntraCoreApi
     public boolean isInDaylightTime(long when) {
@@ -646,6 +664,8 @@ public final class ZoneInfoData {
 
     /**
      * Returns the raw offset in milliseconds. The value is not affected by daylight saving.
+     *
+     * @hide
      */
     @libcore.api.IntraCoreApi
     public int getRawOffset() {
@@ -658,9 +678,11 @@ public final class ZoneInfoData {
      * {@code null}.
      *
      * @param when the number of milliseconds since January 1, 1970, 00:00:00 GMT
+     *
+     * @hide
      */
     @libcore.api.IntraCoreApi
-    public Integer getLatestDstSavings(long when) {
+    public @Nullable Integer getLatestDstSavings(long when) {
         // Find the latest daylight and standard offsets (if any).
         int lastStdTransitionIndex = -1;
         int lastDstTransitionIndex = -1;
@@ -720,9 +742,11 @@ public final class ZoneInfoData {
 
     /**
      * Returns {@code true} if 2 time zones have the same time zone rule.
+     *
+     * @hide
      */
     @libcore.api.IntraCoreApi
-    public boolean hasSameRules(ZoneInfoData other) {
+    public boolean hasSameRules(@NonNull ZoneInfoData other) {
         return mRawOffset == other.mRawOffset
                 // Arrays.equals returns true if both arrays are null
                 && Arrays.equals(mOffsets, other.mOffsets)
@@ -767,18 +791,22 @@ public final class ZoneInfoData {
 
     /**
      * Returns the time zone id.
+     *
+     * @hide
      */
     @libcore.api.CorePlatformApi
     @libcore.api.IntraCoreApi
-    public String getID() {
+    public @NonNull String getID() {
         return mId;
     }
 
     /**
      * Create a deep copy of this object with a new raw offset.
+     *
+     * @hide
      */
     @libcore.api.IntraCoreApi
-    public ZoneInfoData createCopyWithRawOffset(int newRawOffset) {
+    public @NonNull ZoneInfoData createCopyWithRawOffset(int newRawOffset) {
         return new ZoneInfoData(this, newRawOffset);
     }
 
@@ -787,17 +815,22 @@ public final class ZoneInfoData {
      * change in the offset from UTC or a change in the DST.
      *
      * WARNING: This API is exposed only for app compat usage in @link libcore.util.ZoneInfo}.
+     *
+     * @hide
      */
     @libcore.api.IntraCoreApi
-    public long[] getTransitions() {
+    public @Nullable long[] getTransitions() {
         return mTransitions == null ? null : mTransitions.clone();
     }
 
     /**
      * IntraCoreApi made visible for testing in libcore
+     *
+     * @hide
      */
     @libcore.api.IntraCoreApi
-    public static ZoneInfoData createZoneInfo(String name, ByteBuffer buf) throws IOException {
+    public static @NonNull ZoneInfoData createZoneInfo(@NonNull String name,
+            @NonNull ByteBuffer buf) throws IOException {
         ByteBufferIterator bufferIterator = new ByteBufferIterator(buf);
         return ZoneInfoData.readTimeZone("TimeZone for '" + name + "'", bufferIterator);
     }
