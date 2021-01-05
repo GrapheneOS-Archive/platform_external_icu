@@ -183,15 +183,15 @@ package com.android.i18n.timezone {
   }
 
   public final class ZoneInfoData {
-    method public String getID();
+    method @NonNull public String getID();
   }
 
   public final class ZoneInfoDb {
-    method public static com.android.i18n.timezone.ZoneInfoDb getInstance();
-    method public String getVersion();
-    method public boolean hasTimeZone(String);
-    method public com.android.i18n.timezone.ZoneInfoData makeZoneInfoData(String);
-    method public static void validateTzData(String) throws java.io.IOException;
+    method @NonNull public static com.android.i18n.timezone.ZoneInfoDb getInstance();
+    method @NonNull public String getVersion();
+    method public boolean hasTimeZone(@NonNull String);
+    method @Nullable public com.android.i18n.timezone.ZoneInfoData makeZoneInfoData(@NonNull String);
+    method public static void validateTzData(@NonNull String) throws java.io.IOException;
   }
 
 }

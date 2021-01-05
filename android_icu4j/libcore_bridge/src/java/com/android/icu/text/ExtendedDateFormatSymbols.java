@@ -55,6 +55,8 @@ public class ExtendedDateFormatSymbols {
     }
 
     /**
+     * Returns {@link DateFormatSymbols#NARROW} quarter strings.
+     *
      * @param context {@link DateFormatSymbols#FORMAT} or {@link DateFormatSymbols#STANDALONE}.
      * @throws IllegalArgumentException for bad context or no data.
      * @hide
