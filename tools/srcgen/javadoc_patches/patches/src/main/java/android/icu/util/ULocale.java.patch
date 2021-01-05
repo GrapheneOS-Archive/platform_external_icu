@@ -1,6 +1,6 @@
---- android_icu4j/src/main/java/android/icu/util/ULocale.java	2019-12-19 21:05:06.890553695 +0000
-+++ android_icu4j/src/main/java/android/icu/util/ULocale.java	2019-12-19 21:05:27.638617146 +0000
-@@ -90,19 +90,6 @@
+--- android_icu4j/src/main/java/android/icu/util/ULocale.java	2021-01-05 16:28:07.821255870 +0000
++++ android_icu4j/src/main/java/android/icu/util/ULocale.java	2021-01-05 16:28:34.161428994 +0000
+@@ -88,19 +88,6 @@
   * to canonical form, or the <code>canonicalInstance</code> factory method
   * can be called.
   *
