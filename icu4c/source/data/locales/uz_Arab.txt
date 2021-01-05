@@ -31,7 +31,6 @@ uz_Arab{
     }
     Version{"37"}
     calendar{
-        default{"persian"}
         gregorian{
             dayNames{
                 format{

@@ -256,8 +256,5 @@ vai{
         ZM{"ꕤꔭꕩ"}
         ZW{"ꔽꕓꖜꔃ"}
     }
-    Countries%short{
-        MO{"ꕮꗛꖺ"}
-    }
     Version{"37"}
 }

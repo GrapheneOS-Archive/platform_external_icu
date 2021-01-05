@@ -110,7 +110,7 @@ sw{
         EZ{"Jumuiya ya Ulaya"}
         FI{"Ufini"}
         FJ{"Fiji"}
-        FK{"Visiwa vya Falkland"}
+        FK{"Visiwa vya Falkland (Islas Malvinas)"}
         FM{"Micronesia"}
         FO{"Visiwa vya Faroe"}
         FR{"Ufaransa"}
@@ -133,7 +133,7 @@ sw{
         GU{"Guam"}
         GW{"Ginebisau"}
         GY{"Guyana"}
-        HK{"Hong Kong SAR China"}
+        HK{"Hong Kong"}
         HM{"Kisiwa cha Heard na Visiwa vya McDonald"}
         HN{"Honduras"}
         HR{"Croatia"}
@@ -187,7 +187,7 @@ sw{
         ML{"Mali"}
         MM{"Myanmar (Burma)"}
         MN{"Mongolia"}
-        MO{"Makau SAR China"}
+        MO{"Makau"}
         MP{"Visiwa vya Mariana vya Kaskazini"}
         MQ{"Martinique"}
         MR{"Moritania"}
@@ -222,7 +222,7 @@ sw{
         PM{"Santapierre na Miquelon"}
         PN{"Visiwa vya Pitcairn"}
         PR{"Puerto Rico"}
-        PS{"Maeneo ya Palestina"}
+        PS{"Palestina"}
         PT{"Ureno"}
         PW{"Palau"}
         PY{"Paraguay"}
@@ -298,9 +298,6 @@ sw{
         ZZ{"Eneo lisilojulikana"}
     }
     Countries%short{
-        HK{"Hong Kong"}
-        MO{"Makau"}
-        PS{"Palestina"}
         US{"US"}
     }
     Countries%variant{
@@ -308,7 +305,6 @@ sw{
         CG{"Jamhuri ya Kongo"}
         CI{"Ivory Coast"}
         CZ{"Jamhuri ya Cheki"}
-        FK{"Visiwa vya Falkland (Islas Malvinas)"}
         TL{"Timor ya Mashariki"}
     }
     Version{"37"}

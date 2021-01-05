@@ -8,7 +8,7 @@ sr_Latn_BA{
         CZ{"Češka Republika"}
         DE{"Njemačka"}
         KN{"Sveti Kits i Nevis"}
-        MO{"SAR Makao"}
+        MO{"Makao"}
         PM{"Sveti Pjer i Mikelon"}
         RE{"Reunion"}
         UM{"Manja udaljena ostrva SAD"}
