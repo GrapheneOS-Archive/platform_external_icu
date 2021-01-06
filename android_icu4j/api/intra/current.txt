@@ -5,15 +5,6 @@ package android.icu.text {
     method public String[] getNarrowEras();
   }
 
-  public class DecimalFormat extends android.icu.text.NumberFormat {
-    method public void setParseJavaCompatible(boolean);
-  }
-
-  public abstract class IDNA {
-    method @Deprecated public static StringBuffer convertIDNToASCII(String, int) throws android.icu.text.StringPrepParseException;
-    method @Deprecated public static StringBuffer convertIDNToUnicode(String, int) throws android.icu.text.StringPrepParseException;
-  }
-
   public abstract class TimeZoneNames implements java.io.Serializable {
     method public java.util.Collection<android.icu.text.TimeZoneNames.MatchInfo> find(CharSequence, int, java.util.EnumSet<android.icu.text.TimeZoneNames.NameType>);
   }
@@ -39,10 +30,6 @@ package android.icu.util {
     method public abstract android.icu.util.TimeZoneTransition getNextTransition(long, boolean);
     method public abstract android.icu.util.TimeZoneTransition getPreviousTransition(long, boolean);
     method public abstract android.icu.util.TimeZoneRule[] getTimeZoneRules();
-  }
-
-  public abstract class Calendar implements java.lang.Cloneable java.lang.Comparable<android.icu.util.Calendar> java.io.Serializable {
-    method public static String getDateTimeFormatString(android.icu.util.ULocale, String, int, int);
   }
 
   public class DateTimeRule implements java.io.Serializable {
@@ -128,21 +115,12 @@ package com.android.icu.charset {
     method public static String[] getAvailableCharsetNames();
   }
 
-  public final class CharsetICU extends java.nio.charset.Charset {
-    method public static java.nio.charset.Charset charsetForName(String);
-    method public static String[] getAvailableCharsetNames();
-  }
-
 }
 
 package com.android.icu.text {
 
   public class CompatibleDecimalFormatFactory {
     method public static android.icu.text.DecimalFormat create(String, android.icu.text.DecimalFormatSymbols);
-  }
-
-  public class DecimalFormatSymbolsBridge {
-    method public static String getLocalizedPatternSeparator(android.icu.util.ULocale, android.icu.text.NumberingSystem);
   }
 
   public class ExtendedDateFormatSymbols {

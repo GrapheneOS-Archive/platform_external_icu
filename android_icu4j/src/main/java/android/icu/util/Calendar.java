@@ -3472,7 +3472,6 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
      * @hide draft / provisional / internal are hidden on Android
      */
     // TODO: Check if calType can be passed via keyword on loc parameter instead.
-    @libcore.api.IntraCoreApi
     public static String getDateTimeFormatString(ULocale loc, String calType, int dateStyle,
             int timeStyle) {
         if (timeStyle < DateFormat.NONE || timeStyle > DateFormat.SHORT) {
