@@ -7,9 +7,6 @@ field:android.icu.util.DateTimeRule#STANDARD_TIME
 field:android.icu.util.DateTimeRule#UTC_TIME
 field:android.icu.util.DateTimeRule#WALL_TIME
 method:android.icu.text.DateFormatSymbols#getNarrowEras()
-method:android.icu.text.DecimalFormat#setParseJavaCompatible(boolean)
-method:android.icu.text.IDNA#convertIDNToASCII(String,int)
-method:android.icu.text.IDNA#convertIDNToUnicode(String,int)
 method:android.icu.text.TimeZoneNames$MatchInfo#matchLength()
 method:android.icu.text.TimeZoneNames$MatchInfo#mzID()
 method:android.icu.text.TimeZoneNames$MatchInfo#nameType()
@@ -21,7 +18,6 @@ method:android.icu.util.AnnualTimeZoneRule#getRawOffset()
 method:android.icu.util.AnnualTimeZoneRule#getRule()
 method:android.icu.util.BasicTimeZone#getNextTransition(long,boolean)
 method:android.icu.util.BasicTimeZone#getTimeZoneRules()
-method:android.icu.util.Calendar#getDateTimeFormatString(ULocale,String,int,int)
 method:android.icu.util.DateTimeRule#getDateRuleType()
 method:android.icu.util.DateTimeRule#getRuleDayOfMonth()
 method:android.icu.util.DateTimeRule#getRuleDayOfWeek()
