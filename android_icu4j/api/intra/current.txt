@@ -134,6 +134,7 @@ package com.android.icu.text {
   public class ExtendedTimeZoneNames {
     method @NonNull public static com.android.icu.text.ExtendedTimeZoneNames getInstance(@NonNull android.icu.util.ULocale);
     method @NonNull public android.icu.text.TimeZoneNames getTimeZoneNames();
+    method @Nullable public com.android.icu.text.ExtendedTimeZoneNames.MatchedTimeZone matchName(@NonNull CharSequence, int, @NonNull String);
   }
 
   public static class ExtendedTimeZoneNames.MatchedTimeZone {
@@ -162,6 +163,7 @@ package com.android.icu.util {
 
   public class ExtendedTimeZone {
     method public static void clearDefaultTimeZone();
+    method public java.time.zone.ZoneRules createZoneRules();
     method public static com.android.icu.util.ExtendedTimeZone getInstance(String);
     method public android.icu.util.TimeZone getTimeZone();
   }
