@@ -11,6 +11,9 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+package {
+    default_visibility: ["//external/icu:__subpackages__"],
+}
 
 // Android repo only headers for icu4c
 // The header should mainly contain config for C preprocessor,
@@ -20,6 +23,9 @@ cc_library_headers {
     host_supported: true,
     native_bridge_supported: true,
     export_include_dirs: ["include"],
+    apex_available: [
+        "com.android.i18n",
+    ],
     target: {
         windows: {
             enabled: true,

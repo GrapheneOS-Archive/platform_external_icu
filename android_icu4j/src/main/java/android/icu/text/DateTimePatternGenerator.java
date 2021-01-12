@@ -112,7 +112,6 @@ public class DateTimePatternGenerator implements Freezable<DateTimePatternGenera
      * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
-    @libcore.api.IntraCoreApi
     @Deprecated
     public static DateTimePatternGenerator getFrozenInstance(ULocale uLocale) {
         String localeKey = uLocale.toString();
@@ -599,16 +598,35 @@ public class DateTimePatternGenerator implements Freezable<DateTimePatternGenera
         return getBestPattern(skeleton, null, options);
     }
 
+    // BEGIN Android-added: http://b/170233598 Allow duplicate fields
+    /**
+     * @hide draft / provisional / internal are hidden on Android
+     */
+    @libcore.api.CorePlatformApi
+    public String getBestPattern(String skeleton, boolean allowDuplicateFields) {
+        return getBestPattern(skeleton, null, MATCH_NO_OPTIONS, allowDuplicateFields);
+    }
+
+    private String getBestPattern(String skeleton, DateTimeMatcher skipMatcher, int options) {
+        return getBestPattern(skeleton, skipMatcher, options, false);
+    }
+    // END Android-added: http://b/170233598 Allow duplicate fields
+
     /*
      * getBestPattern which takes optional skip matcher
      */
-    private String getBestPattern(String skeleton, DateTimeMatcher skipMatcher, int options) {
+    // Android-changed: http://b/170233598 Allow duplicate fields
+    // private String getBestPattern(String skeleton, DateTimeMatcher skipMatcher, int options) {
+    private String getBestPattern(String skeleton, DateTimeMatcher skipMatcher, int options,
+            boolean allowDuplicateFields) {
         EnumSet<DTPGflags> flags = EnumSet.noneOf(DTPGflags.class);
         // Replace hour metacharacters 'j', 'C', and 'J', set flags as necessary
         String skeletonMapped = mapSkeletonMetacharacters(skeleton, flags);
         String datePattern, timePattern;
         synchronized(this) {
-            current.set(skeletonMapped, fp, false);
+            // Android-changed: http://b/170233598 Allow duplicate fields
+            // current.set(skeletonMapped, fp, false);
+            current.set(skeletonMapped, fp, allowDuplicateFields);
             PatternWithMatcher bestWithMatcher = getBestRaw(current, -1, _distanceInfo, skipMatcher);
             if (_distanceInfo.missingFieldMask == 0 && _distanceInfo.extraFieldMask == 0) {
                 // we have a good item. Adjust the field types
@@ -2711,7 +2729,7 @@ public class DateTimePatternGenerator implements Freezable<DateTimePatternGenera
     private static class DistanceInfo {
         int missingFieldMask;
         int extraFieldMask;
-        @android.compat.annotation.UnsupportedAppUsage
+        @android.compat.annotation.UnsupportedAppUsage(maxTargetSdk = 30, trackingBug = 170729553)
         private DistanceInfo() {
         }
         void clear() {

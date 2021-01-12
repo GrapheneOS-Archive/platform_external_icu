@@ -15,21 +15,15 @@
 cc_test {
     name: "cintltst",
     defaults: ["icu_test_defaults"],
-    multilib: {
-        lib64: {
-            suffix: "64",
-        },
-        lib32: {
-            suffix: "32",
-        },
-    },
+    // Workaround to run primary abi only in CTS
+    stem: "icu.cintltst",
     srcs: [
         "**/*.c",
         "**/*.cpp",
     ],
     cflags: [
         "-DANDROID_LINK_SHARED_ICU4C",
-        // Force the test to use the data file on
+        // Do not set the data directory explicitly.
         "-DANDROID_USE_ICU_REG",
         // Disable some file IO tests to workaround test crashing due to missing data files.
         "-DUCONFIG_NO_FILE_IO",
@@ -42,15 +36,4 @@ cc_test {
     // Workaround Soong's limitation that data property can only include
     // dependencies with a single variant
     compile_multilib: "first",
-}
-
-java_test_host {
-    name: "cintltst_test",
-    data: [
-        ":cintltst",
-        ":icu4c_test_data",
-        ":ICU4CTestRunner",
-    ],
-    test_config: "AndroidTest.xml",
-    test_suites: ["device-tests"],
 }

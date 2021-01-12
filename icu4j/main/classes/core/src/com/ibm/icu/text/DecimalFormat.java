@@ -787,7 +787,15 @@ public class DecimalFormat extends NumberFormat {
    */
   @Override
   public StringBuffer format(CurrencyAmount currAmt, StringBuffer result, FieldPosition fieldPosition) {
-    FormattedNumber output = formatter.format(currAmt);
+    // We need to make localSymbols in order for monetary symbols to be initialized.
+    // Also, bypass the CurrencyAmount override of LocalizedNumberFormatter#format,
+    // because its caching mechanism will not provide any benefit here.
+    DecimalFormatSymbols localSymbols = (DecimalFormatSymbols) symbols.clone();
+    localSymbols.setCurrency(currAmt.getCurrency());
+    FormattedNumber output = formatter
+            .symbols(localSymbols)
+            .unit(currAmt.getCurrency())
+            .format(currAmt.getNumber());
     fieldPositionHelper(output, fieldPosition, result.length());
     output.appendTo(result);
     return result;
@@ -2043,11 +2051,8 @@ public class DecimalFormat extends NumberFormat {
   @Override
   public synchronized void setCurrency(Currency currency) {
     properties.setCurrency(currency);
-    // Backwards compatibility: also set the currency in the DecimalFormatSymbols
     if (currency != null) {
       symbols.setCurrency(currency);
-      String symbol = currency.getName(symbols.getULocale(), Currency.SYMBOL_NAME, null);
-      symbols.setCurrencySymbol(symbol);
     }
     refreshFormatter();
   }
@@ -2193,6 +2198,16 @@ public class DecimalFormat extends NumberFormat {
     properties.setParseMode(mode);
     refreshFormatter();
   }
+
+  // BEGIN android-added: Allow libcore to use java-compatible parsing mode
+  /**
+   * @param parseJavaCompatible true for java-compatible mode, and otherwise lenient mode.
+   * @internal
+   */
+  public void setParseJavaCompatible(boolean parseJavaCompatible) {
+    setParseStrictMode(parseJavaCompatible ? ParseMode.JAVA_COMPATIBILITY : ParseMode.LENIENT);
+  }
+  // END android-added: Allow libcore to use java-compatible parsing mode
 
   /**
    * Android libcore uses this internal method to set {@link ParseMode#JAVA_COMPATIBILITY}.

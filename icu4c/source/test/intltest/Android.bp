@@ -15,18 +15,11 @@
 cc_test {
     name: "intltest",
     defaults: ["icu_test_defaults"],
-    multilib: {
-        lib64: {
-            suffix: "64",
-        },
-        lib32: {
-            suffix: "32",
-        },
-    },
-
+    // Workaround to run primary abi only in CTS
+    stem: "icu.intltest",
     cflags: [
         "-DANDROID_LINK_SHARED_ICU4C",
-        // Force the test to use the data file on
+        // Do not set the data directory explicitly.
         "-DANDROID_USE_ICU_REG",
         // Needed for char* shift calculation in the test.
         "-Wno-string-plus-int",
@@ -43,15 +36,4 @@ cc_test {
     // Workaround Soong's limitation that data property can only include
     // dependencies with a single variant
     compile_multilib: "first",
-}
-
-java_test_host {
-    name: "intltest_test",
-    data: [
-        ":intltest",
-        ":icu4c_test_data",
-        ":ICU4CTestRunner",
-    ],
-    test_config: "AndroidTest.xml",
-    test_suites: ["device-tests"],
 }

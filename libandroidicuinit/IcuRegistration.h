@@ -19,8 +19,57 @@
 
 #include <memory>
 #include <string>
+#include <cstdio>
 
-#include <android-base/macros.h>
+#ifdef __ANDROID__
+  #include <android-base/logging.h>
+  #include <android-base/unique_fd.h>
+  #include <log/log.h>
+  #define AICU_LOGE(...) ALOGE(__VA_ARGS__)
+  #define AICU_LOGW(...) ALOGW(__VA_ARGS__)
+  #define AICU_LOGD(...) ALOGD(__VA_ARGS__)
+  #define AICU_LOGV(...) ALOGV(__VA_ARGS__)
+#else
+  // http://b/171371690 Avoid dependency on liblog and libbase on host for
+  // downstream unbundled branches. In this case, liblog and libbase are not
+  // very useful on host and we just try to avoid it here in our best effort.
+
+  // Check if a host should log a message.
+  //
+  // This method checks the priority argument against the wildcard level set
+  // in the ANDROID_LOG_TAGS environment variable. The priority specified
+  // corresponds to the standard Android set:
+  //
+  //   V - verbose    D - debug
+  //   I - info       W - warn
+  //   E - error      F - fatal
+  //
+  // If the ANDROID_LOG_TAGS variable is not set then this method returns true.
+  // Otherwise, the priority is compared to the level in ANDROID_LOG_TAGS.
+  //
+  // Example: if ANDROID_LOG_TAGS has the value "*:W" then this method will
+  // return true if the priority is warn or above.
+  bool AIcuHostShouldLog(char priority);
+
+  #define AICU_LOG_PRINTLN(priority, ...)       \
+    do {                                        \
+      if (AIcuHostShouldLog(priority)) {        \
+        fprintf(stderr, __VA_ARGS__);           \
+        fputc('\n', stderr);                    \
+      }                                         \
+    } while (0)
+  #define AICU_LOGE(...) AICU_LOG_PRINTLN('E', __VA_ARGS__)
+  #define AICU_LOGW(...) AICU_LOG_PRINTLN('W', __VA_ARGS__)
+  #define AICU_LOGD(...) AICU_LOG_PRINTLN('D', __VA_ARGS__)
+  #define AICU_LOGV(...) AICU_LOG_PRINTLN('V', __VA_ARGS__)
+  #ifndef CHECK
+    #define CHECK(cond)       \
+      if (!(cond)) {             \
+        AICU_LOGE(#cond "\n");     \
+        abort();              \
+      }
+  #endif
+#endif
 
 namespace androidicuinit {
 namespace impl {
@@ -48,7 +97,9 @@ class IcuDataMap final {
   void* data_;          // Save for munmap.
   size_t data_length_;  // Save for munmap.
 
-  DISALLOW_COPY_AND_ASSIGN(IcuDataMap);
+  // Disable copy constructor and assignment operator
+  IcuDataMap(const IcuDataMap&) = delete;
+  void operator=(const IcuDataMap&) = delete;
 };
 
 }  // namespace impl
@@ -77,9 +128,30 @@ class IcuRegistration final {
   std::unique_ptr<impl::IcuDataMap> icu_datamap_from_tz_module_;
   std::unique_ptr<impl::IcuDataMap> icu_datamap_from_i18n_module_;
 
-  DISALLOW_COPY_AND_ASSIGN(IcuRegistration);
+  // Disable copy constructor and assignment operator
+  IcuRegistration(const IcuRegistration&) = delete;
+  void operator=(const IcuRegistration&) = delete;
 };
 
 }  // namespace androidicuinit
+
+/**
+ * Initialize the ICU and load the data from .dat files from system image and
+ * various mainline modules.
+ * If ICU has already been registered, the function calls abort() and the process terminates.
+ * This function is NOT thread-safe.
+ */
+void android_icu_register();
+
+/**
+ * Unregister and unload the data. After this call, user can re-register.
+ */
+void android_icu_deregister();
+
+/**
+ * @return true if ICU has been registered.
+ */
+bool android_icu_is_registered();
+
 
 #endif  // ICU_REGISTRATION_H_included
