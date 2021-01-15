@@ -1998,15 +1998,11 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      * availableLocales matched).  No ULocale array element should be null; behavior is
      * undefined if this is the case.
      *
-     * <p>This is a thin wrapper over {@link LocalePriorityList} + {@link LocaleMatcher}.
-     *
      * @param acceptLanguageList list in HTTP "Accept-Language:" format of acceptable locales
      * @param availableLocales list of available locales. One of these will be returned.
      * @param fallback if non-null, a 1-element array containing a boolean to be set with
      * the fallback status
      * @return one of the locales from the availableLocales list, or null if none match
-     * @see LocaleMatcher
-     * @see LocalePriorityList
      */
     public static ULocale acceptLanguage(String acceptLanguageList, ULocale[] availableLocales,
             boolean[] fallback) {
@@ -2043,14 +2039,11 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      * locale was used as a fallback (because nothing else in availableLocales matched).
      * No ULocale array element should be null; behavior is undefined if this is the case.
      *
-     * <p>This is a thin wrapper over {@link LocaleMatcher}.
-     *
      * @param acceptLanguageList list of acceptable locales
      * @param availableLocales list of available locales. One of these will be returned.
      * @param fallback if non-null, a 1-element array containing a boolean to be set with
      * the fallback status
      * @return one of the locales from the availableLocales list, or null if none match
-     * @see LocaleMatcher
      */
 
     public static ULocale acceptLanguage(ULocale[] acceptLanguageList, ULocale[] availableLocales,
@@ -2089,15 +2082,11 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      * undefined if this is the case.  This function will choose a locale from the
      * ULocale.getAvailableLocales() list as available.
      *
-     * <p>This is a thin wrapper over {@link LocalePriorityList} + {@link LocaleMatcher}.
-     *
      * @param acceptLanguageList list in HTTP "Accept-Language:" format of acceptable locales
      * @param fallback if non-null, a 1-element array containing a boolean to be set with
      * the fallback status
      * @return one of the locales from the ULocale.getAvailableLocales() list, or null if
      * none match
-     * @see LocaleMatcher
-     * @see LocalePriorityList
      */
     public static ULocale acceptLanguage(String acceptLanguageList, boolean[] fallback) {
         return acceptLanguage(acceptLanguageList, ULocale.getAvailableLocales(),
@@ -2115,13 +2104,10 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      * undefined if this is the case.  This function will choose a locale from the
      * ULocale.getAvailableLocales() list as available.
      *
-     * <p>This is a thin wrapper over {@link LocaleMatcher}.
-     *
      * @param acceptLanguageList ordered array of acceptable locales (preferred are listed first)
      * @param fallback if non-null, a 1-element array containing a boolean to be set with
      * the fallback status
      * @return one of the locales from the ULocale.getAvailableLocales() list, or null if none match
-     * @see LocaleMatcher
      */
     public static ULocale acceptLanguage(ULocale[] acceptLanguageList, boolean[] fallback) {
         return acceptLanguage(acceptLanguageList, ULocale.getAvailableLocales(),
