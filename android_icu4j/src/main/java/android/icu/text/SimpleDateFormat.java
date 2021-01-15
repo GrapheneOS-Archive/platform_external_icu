@@ -1386,10 +1386,10 @@ public class SimpleDateFormat extends DateFormat {
                 }
                 if (useFastFormat) {
                     subFormat(toAppendTo, item.type, item.length, toAppendTo.length(),
-                              i, capitalizationContext, pos, cal);
+                              i, capitalizationContext, pos, item.type, cal);
                 } else {
                     toAppendTo.append(subFormat(item.type, item.length, toAppendTo.length(),
-                                                i, capitalizationContext, pos, cal));
+                                                i, capitalizationContext, pos, item.type, cal));
                 }
                 if (attributes != null) {
                     // Check the sub format length
@@ -1535,7 +1535,7 @@ public class SimpleDateFormat extends DateFormat {
         throws IllegalArgumentException
     {
         // Note: formatData is ignored
-        return subFormat(ch, count, beginOffset, 0, DisplayContext.CAPITALIZATION_NONE, pos, cal);
+        return subFormat(ch, count, beginOffset, 0, DisplayContext.CAPITALIZATION_NONE, pos, ch, cal);
     }
 
      /**
@@ -1543,17 +1543,17 @@ public class SimpleDateFormat extends DateFormat {
      * adds fieldNum and capitalizationContext parameters.
      *
      * @deprecated This API is ICU internal only.
-     * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
     protected String subFormat(char ch, int count, int beginOffset,
                                int fieldNum, DisplayContext capitalizationContext,
                                FieldPosition pos,
+                               char patternCharToOutput,
                                Calendar cal)
     {
         StringBuffer buf = new StringBuffer();
-        subFormat(buf, ch, count, beginOffset, fieldNum, capitalizationContext, pos, cal);
+        subFormat(buf, ch, count, beginOffset, fieldNum, capitalizationContext, pos, patternCharToOutput, cal);
         return buf.toString();
     }
 
@@ -1567,7 +1567,6 @@ public class SimpleDateFormat extends DateFormat {
      * has to pass it in to us.
      *
      * @deprecated This API is ICU internal only.
- * @hide original deprecated declaration
  * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
@@ -1576,6 +1575,7 @@ public class SimpleDateFormat extends DateFormat {
                              char ch, int count, int beginOffset,
                              int fieldNum, DisplayContext capitalizationContext,
                              FieldPosition pos,
+                             char patternCharToOutput,
                              Calendar cal) {
 
         final int maxIntCount = Integer.MAX_VALUE;
@@ -1934,7 +1934,10 @@ public class SimpleDateFormat extends DateFormat {
             if (toAppend == null) {
                 // Time isn't exactly midnight or noon (as displayed) or localized string doesn't
                 // exist for requested period. Fall back to am/pm instead.
-                subFormat(buf, 'a', count, beginOffset, fieldNum, capitalizationContext, pos, cal);
+                // We are passing a different patternCharToOutput because we want to add
+                // 'b' to field position. This makes this fallback stable when
+                // there is a data change on locales.
+                subFormat(buf, 'a', count, beginOffset, fieldNum, capitalizationContext, pos, 'b', cal);
             } else {
                 buf.append(toAppend);
             }
@@ -1949,8 +1952,11 @@ public class SimpleDateFormat extends DateFormat {
             if (ruleSet == null) {
                 // Data doesn't exist for the locale we're looking for.
                 // Fall back to am/pm.
-                subFormat(buf, 'a', count, beginOffset, fieldNum, capitalizationContext, pos, cal);
-                break;
+                // We are passing a different patternCharToOutput because we want to add
+                // 'B' to field position. This makes this fallback stable when
+                // there is a data change on locales.
+                subFormat(buf, 'a', count, beginOffset, fieldNum, capitalizationContext, pos, 'B', cal);
+                return;
             }
 
             // Get current display time.
@@ -2015,7 +2021,11 @@ public class SimpleDateFormat extends DateFormat {
             if (periodType == DayPeriodRules.DayPeriod.AM ||
                     periodType == DayPeriodRules.DayPeriod.PM ||
                     toAppend == null) {
-                subFormat(buf, 'a', count, beginOffset, fieldNum, capitalizationContext, pos, cal);
+                // We are passing a different patternCharToOutput because we want to add
+                // 'B' to field position. This makes this fallback stable when
+                // there is a data change on locales.
+                subFormat(buf, 'a', count, beginOffset, fieldNum, capitalizationContext, pos, 'B', cal);
+                return;
             }
             else {
                 buf.append(toAppend);
@@ -2079,12 +2089,13 @@ public class SimpleDateFormat extends DateFormat {
         }
 
         // Set the FieldPosition (for the first occurrence only)
+        int outputCharIndex = getIndexFromChar(patternCharToOutput);
         if (pos.getBeginIndex() == pos.getEndIndex()) {
-            if (pos.getField() == PATTERN_INDEX_TO_DATE_FORMAT_FIELD[patternCharIndex]) {
+            if (pos.getField() == PATTERN_INDEX_TO_DATE_FORMAT_FIELD[outputCharIndex]) {
                 pos.setBeginIndex(beginOffset);
                 pos.setEndIndex(beginOffset + buf.length() - bufstart);
             } else if (pos.getFieldAttribute() ==
-                       PATTERN_INDEX_TO_DATE_FORMAT_ATTRIBUTE[patternCharIndex]) {
+                       PATTERN_INDEX_TO_DATE_FORMAT_ATTRIBUTE[outputCharIndex]) {
                 pos.setBeginIndex(beginOffset);
                 pos.setEndIndex(beginOffset + buf.length() - bufstart);
             }
@@ -4341,10 +4352,10 @@ public class SimpleDateFormat extends DateFormat {
                 PatternItem item = (PatternItem)items[i];
                 if (useFastFormat) {
                     subFormat(appendTo, item.type, item.length, appendTo.length(),
-                              i, capSetting, pos, fromCalendar);
+                              i, capSetting, pos, item.type, fromCalendar);
                 } else {
                     appendTo.append(subFormat(item.type, item.length, appendTo.length(),
-                                              i, capSetting, pos, fromCalendar));
+                                              i, capSetting, pos, item.type, fromCalendar));
                 }
             }
         }
@@ -4359,10 +4370,10 @@ public class SimpleDateFormat extends DateFormat {
                 PatternItem item = (PatternItem)items[i];
                 if (useFastFormat) {
                     subFormat(appendTo, item.type, item.length, appendTo.length(),
-                              i, capSetting, pos, toCalendar);
+                              i, capSetting, pos, item.type, toCalendar);
                 } else {
                     appendTo.append(subFormat(item.type, item.length, appendTo.length(),
-                                              i, capSetting, pos, toCalendar));
+                                              i, capSetting, pos, item.type, toCalendar));
                 }
             }
         }

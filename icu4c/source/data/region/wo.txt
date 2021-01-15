@@ -92,7 +92,6 @@ wo{
         GU{"Guwam"}
         GW{"Gine-Bisaawóo"}
         GY{"Giyaan"}
-        HK{"Ooŋ Koŋ"}
         HM{"Duni Hërd ak Duni MakDonald"}
         HN{"Onduraas"}
         HR{"Korowasi"}
@@ -144,7 +143,6 @@ wo{
         ML{"Mali"}
         MM{"Miyanmaar"}
         MN{"Mongoli"}
-        MO{"Makaawo"}
         MP{"Duni Mariyaan Noor"}
         MQ{"Martinik"}
         MR{"Mooritani"}
@@ -252,5 +250,5 @@ wo{
         CD{"Kongo (R K D)"}
         CG{"Réewum Kongo"}
     }
-    Version{"36.1"}
+    Version{"37"}
 }

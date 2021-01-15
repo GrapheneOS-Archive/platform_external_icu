@@ -31,15 +31,12 @@ public abstract class UFormat extends Format {
      * SpanField classes usually have an associated value.
      *
      * @hide Only a subset of ICU is exposed in Android
-     * @hide draft / provisional / internal are hidden on Android
      */
     public static abstract class SpanField extends Format.Field {
         private static final long serialVersionUID = -4732719509273350606L;
 
         /**
          * Construct a new instance.
-         *
-         * @hide draft / provisional / internal are hidden on Android
          */
         protected SpanField(String name) {
             super(name);

@@ -370,8 +370,6 @@ public abstract class Precision {
     static final CurrencyRounderImpl MONETARY_STANDARD = new CurrencyRounderImpl(CurrencyUsage.STANDARD);
     static final CurrencyRounderImpl MONETARY_CASH = new CurrencyRounderImpl(CurrencyUsage.CASH);
 
-    static final PassThroughRounderImpl PASS_THROUGH = new PassThroughRounderImpl();
-
     static Precision constructInfinite() {
         return NONE;
     }
@@ -458,10 +456,6 @@ public abstract class Precision {
             returnValue = constructFraction(minMaxFrac, minMaxFrac);
         }
         return returnValue.withMode(base.mathContext);
-    }
-
-    static Precision constructPassThrough() {
-        return PASS_THROUGH;
     }
 
     /**
@@ -752,24 +746,6 @@ public abstract class Precision {
             CurrencyRounderImpl copy = new CurrencyRounderImpl(usage);
             copy.mathContext = mathContext;
             return copy;
-        }
-    }
-
-    static class PassThroughRounderImpl extends Precision {
-
-        public PassThroughRounderImpl() {
-        }
-
-        @Override
-        Precision createCopy() {
-            PassThroughRounderImpl copy = new PassThroughRounderImpl();
-            copy.mathContext = mathContext;
-            return copy;
-        }
-
-        @Override
-        public void apply(DecimalQuantity value) {
-            // TODO: Assert that value has already been rounded
         }
     }
 

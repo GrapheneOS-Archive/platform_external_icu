@@ -1263,10 +1263,10 @@ public class DateIntervalFormatTest extends TestFmwk {
     @Test
     public void TestGetIntervalPattern(){
         // Tests when "if ( field > MINIMUM_SUPPORTED_CALENDAR_FIELD )" is true
-        // MINIMUM_SUPPORTED_CALENDAR_FIELD = Calendar.SECOND;
+        // MINIMUM_SUPPORTED_CALENDAR_FIELD = Calendar.MILLISECOND;
         DateIntervalInfo dii = new DateIntervalInfo();
         try{
-            dii.getIntervalPattern("", Calendar.SECOND+1);
+            dii.getIntervalPattern("", Calendar.MILLISECOND+1);
             errln("DateIntervalInfo.getIntervalPattern(String,int) was suppose " +
                     "to return an exception for the 'int field' parameter " +
                     "when it exceeds MINIMUM_SUPPORTED_CALENDAR_FIELD.");
@@ -1289,10 +1289,10 @@ public class DateIntervalFormatTest extends TestFmwk {
         } catch(Exception e){}
 
         // Tests when "if ( lrgDiffCalUnit > MINIMUM_SUPPORTED_CALENDAR_FIELD )" is true
-        // MINIMUM_SUPPORTED_CALENDAR_FIELD = Calendar.SECOND;
+        // MINIMUM_SUPPORTED_CALENDAR_FIELD = Calendar.MILLISECOND;
         try{
             dii = dii.cloneAsThawed();
-            dii.setIntervalPattern("", Calendar.SECOND+1, "");
+            dii.setIntervalPattern("", Calendar.MILLISECOND+1, "");
             errln("DateIntervalInfo.setIntervalPattern(String,int,String) " +
                     "was suppose to return an exception when the " +
                     "variable 'lrgDiffCalUnit' is greater than " +
@@ -2058,6 +2058,102 @@ public class DateIntervalFormatTest extends TestFmwk {
                 ULocale l = locale.setKeywordValue("calendar", calendar);
                 fmt = DateIntervalFormat.getInstance("dMMMMy", l);
             }
+        }
+    }
+
+    @Test
+    public void testTicket20707() {
+        TimeZone tz = TimeZone.getTimeZone("UTC");
+        Locale locales[] = {
+            new Locale("en-u-hc-h24"),
+            new Locale("en-u-hc-h23"),
+            new Locale("en-u-hc-h12"),
+            new Locale("en-u-hc-h11"),
+            new Locale("en"),
+            new Locale("en-u-hc-h25"),
+            new Locale("hi-IN-u-hc-h11")
+        };
+
+        // Clomuns: hh, HH, kk, KK, jj, JJs, CC
+        String expected[][] = {
+            // Hour-cycle: k
+            {"12 AM", "24", "24", "12 AM", "24", "0 (hour: 24)", "12 AM"},
+            // Hour-cycle: H
+            {"12 AM", "00", "00", "12 AM", "00", "0 (hour: 00)", "12 AM"},
+            // Hour-cycle: h
+            {"12 AM", "00", "00", "12 AM", "12 AM", "0 (hour: 12)", "12 AM"},
+            // Hour-cycle: K
+            {"0 AM", "00", "00", "0 AM", "0 AM", "0 (hour: 00)", "0 AM"},
+            {"12 AM", "00", "00", "12 AM", "12 AM", "0 (hour: 12)", "12 AM"},
+            {"12 AM", "00", "00", "12 AM", "12 AM", "0 (hour: 12)", "12 AM"},
+            {"0 am", "00", "00", "0 am", "0 am", "0 (\u0918\u0902\u091F\u093E: 00)", "\u0930\u093E\u0924 0"}
+        };
+
+        int i = 0;
+        for (Locale locale : locales) {
+            int j = 0;
+            String skeletons[] = {"hh", "HH", "kk", "KK", "jj", "JJs", "CC"};
+            for (String skeleton : skeletons) {
+                DateIntervalFormat dateFormat = DateIntervalFormat.getInstance(skeleton, locale);
+                Calendar calendar = Calendar.getInstance(tz);
+                calendar.setTime(new Date(1563235200000L));
+                StringBuffer resultBuffer = dateFormat.format(calendar, calendar, new StringBuffer(""), new FieldPosition(0));
+
+                assertEquals("Formatted result for " + skeleton + " locale: " + locale.getDisplayName(), expected[i][j++], resultBuffer.toString());
+            }
+            i++;
+        }
+    }
+
+    @Test
+    public void testFormatMillisecond() {
+        Object[][] kTestCases = {
+            { new Date(2019, 2, 10, 1, 23, 45), 321, new Date(2019, 2, 10, 1, 23, 45), 321, "ms",     "23:45"},
+            { new Date(2019, 2, 10, 1, 23, 45), 321, new Date(2019, 2, 10, 1, 23, 45), 321, "msS",    "23:45.3"},
+            { new Date(2019, 2, 10, 1, 23, 45), 321, new Date(2019, 2, 10, 1, 23, 45), 321, "msSS",   "23:45.32"},
+            { new Date(2019, 2, 10, 1, 23, 45), 321, new Date(2019, 2, 10, 1, 23, 45), 321, "msSSS",  "23:45.321"},
+            { new Date(2019, 2, 10, 1, 23, 45), 321, new Date(2019, 2, 10, 1, 23, 45), 987, "ms",     "23:45"},
+            { new Date(2019, 2, 10, 1, 23, 45), 321, new Date(2019, 2, 10, 1, 23, 45), 987, "msS",    "23:45.3 – 23:45.9"},
+            { new Date(2019, 2, 10, 1, 23, 45), 321, new Date(2019, 2, 10, 1, 23, 45), 987, "msSS",   "23:45.32 – 23:45.98"},
+            { new Date(2019, 2, 10, 1, 23, 45), 321, new Date(2019, 2, 10, 1, 23, 45), 987, "msSSS",  "23:45.321 – 23:45.987"},
+            { new Date(2019, 2, 10, 1, 23, 45), 321, new Date(2019, 2, 10, 1, 23, 46), 987, "ms",     "23:45 – 23:46"},
+            { new Date(2019, 2, 10, 1, 23, 45), 321, new Date(2019, 2, 10, 1, 23, 46), 987, "msS",    "23:45.3 – 23:46.9"},
+            { new Date(2019, 2, 10, 1, 23, 45), 321, new Date(2019, 2, 10, 1, 23, 46), 987, "msSS",   "23:45.32 – 23:46.98"},
+            { new Date(2019, 2, 10, 1, 23, 45), 321, new Date(2019, 2, 10, 1, 23, 46), 987, "msSSS",  "23:45.321 – 23:46.987"},
+            { new Date(2019, 2, 10, 1, 23, 45), 321, new Date(2019, 2, 10, 2, 24, 45), 987, "ms",     "23:45 – 24:45"},
+            { new Date(2019, 2, 10, 1, 23, 45), 321, new Date(2019, 2, 10, 2, 24, 45), 987, "msS",    "23:45.3 – 24:45.9"},
+            { new Date(2019, 2, 10, 1, 23, 45), 321, new Date(2019, 2, 10, 2, 24, 45), 987, "msSS",   "23:45.32 – 24:45.98"},
+            { new Date(2019, 2, 10, 1, 23, 45), 321, new Date(2019, 2, 10, 2, 24, 45), 987, "msSSS",  "23:45.321 – 24:45.987"},
+            { new Date(2019, 2, 10, 1, 23, 45), 321, new Date(2019, 2, 10, 1, 23, 45), 321, "s",      "45"},
+            { new Date(2019, 2, 10, 1, 23, 45), 321, new Date(2019, 2, 10, 1, 23, 45), 321, "sS",     "45.3"},
+            { new Date(2019, 2, 10, 1, 23, 45), 321, new Date(2019, 2, 10, 1, 23, 45), 321, "sSS",    "45.32"},
+            { new Date(2019, 2, 10, 1, 23, 45), 321, new Date(2019, 2, 10, 1, 23, 45), 321, "sSSS",   "45.321"},
+            { new Date(2019, 2, 10, 1, 23, 45), 321, new Date(2019, 2, 10, 1, 23, 45), 987, "s",      "45"},
+            { new Date(2019, 2, 10, 1, 23, 45), 321, new Date(2019, 2, 10, 1, 23, 45), 987, "sS",     "45.3 – 45.9"},
+            { new Date(2019, 2, 10, 1, 23, 45), 321, new Date(2019, 2, 10, 1, 23, 45), 987, "sSS",    "45.32 – 45.98"},
+            { new Date(2019, 2, 10, 1, 23, 45), 321, new Date(2019, 2, 10, 1, 23, 45), 987, "sSSS",   "45.321 – 45.987"},
+            { new Date(2019, 2, 10, 1, 23, 45), 321, new Date(2019, 2, 10, 1, 23, 46), 987, "s",      "45 – 46"},
+            { new Date(2019, 2, 10, 1, 23, 45), 321, new Date(2019, 2, 10, 1, 23, 46), 987, "sS",     "45.3 – 46.9"},
+            { new Date(2019, 2, 10, 1, 23, 45), 321, new Date(2019, 2, 10, 1, 23, 46), 987, "sSS",    "45.32 – 46.98"},
+            { new Date(2019, 2, 10, 1, 23, 45), 321, new Date(2019, 2, 10, 1, 23, 46), 987, "sSSS",   "45.321 – 46.987"},
+            { new Date(2019, 2, 10, 1, 23, 45), 321, new Date(2019, 2, 10, 2, 24, 45), 987, "s",      "45 – 45"},
+            { new Date(2019, 2, 10, 1, 23, 45), 321, new Date(2019, 2, 10, 2, 24, 45), 987, "sS",     "45.3 – 45.9"},
+            { new Date(2019, 2, 10, 1, 23, 45), 321, new Date(2019, 2, 10, 2, 24, 45), 987, "sSS",    "45.32 – 45.98"},
+            { new Date(2019, 2, 10, 1, 23, 45), 321, new Date(2019, 2, 10, 2, 24, 45), 987, "sSSS",   "45.321 – 45.987"},
+        };
+
+        Locale enLocale = Locale.ENGLISH;
+
+        for (Object[] testCase : kTestCases) {
+            DateIntervalFormat fmt = DateIntervalFormat.getInstance((String)testCase[4], enLocale);
+
+            Date fromDate = (Date)testCase[0];
+            long from = fromDate.getTime() + (Integer)testCase[1];
+            Date toDate = (Date)testCase[2];
+            long to = toDate.getTime() + (Integer)testCase[3];
+
+            FormattedDateInterval res = fmt.formatToValue(new DateInterval(from, to));
+            assertEquals("Formate for " + testCase[4], testCase[5], res.toString());
         }
     }
 }

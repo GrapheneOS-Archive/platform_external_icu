@@ -9,7 +9,6 @@
  */
 package android.icu.text;
 
-import java.io.IOException;
 import java.io.InvalidObjectException;
 import java.text.AttributedCharacterIterator;
 import java.text.Format;
@@ -26,13 +25,12 @@ import android.icu.impl.SimpleFormatterImpl;
 import android.icu.impl.SoftCache;
 import android.icu.impl.StandardPlural;
 import android.icu.impl.UResource;
+import android.icu.impl.Utility;
 import android.icu.impl.number.DecimalQuantity;
 import android.icu.impl.number.DecimalQuantity_DualStorageBCD;
-import android.icu.impl.number.SimpleModifier;
 import android.icu.lang.UCharacter;
 import android.icu.util.Calendar;
 import android.icu.util.ICUException;
-import android.icu.util.ICUUncheckedIOException;
 import android.icu.util.ULocale;
 import android.icu.util.UResourceBundle;
 
@@ -223,7 +221,7 @@ public final class RelativeDateTimeFormatter {
 
         /**
          * Quarter
-         * @hide draft / provisional / internal are hidden on Android
+         * @hide Hide new API in Android temporarily
          */
         QUARTER,
 
@@ -366,22 +364,17 @@ public final class RelativeDateTimeFormatter {
      * constants defined here.
      * <p>
      * @hide Only a subset of ICU is exposed in Android
-     * @hide draft / provisional / internal are hidden on Android
      */
     public static class Field extends Format.Field {
         private static final long serialVersionUID = -5327685528663492325L;
 
         /**
          * Represents a literal text string, like "tomorrow" or "days ago".
-         *
-         * @hide draft / provisional / internal are hidden on Android
          */
         public static final Field LITERAL = new Field("literal");
 
         /**
          * Represents a number quantity, like "3" in "3 days ago".
-         *
-         * @hide draft / provisional / internal are hidden on Android
          */
         public static final Field NUMERIC = new Field("numeric");
 
@@ -415,7 +408,6 @@ public final class RelativeDateTimeFormatter {
      *
      * @author sffc
      * @hide Only a subset of ICU is exposed in Android
-     * @hide draft / provisional / internal are hidden on Android
      */
     public static class FormattedRelativeDateTime implements FormattedValue {
 
@@ -427,8 +419,6 @@ public final class RelativeDateTimeFormatter {
 
         /**
          * {@inheritDoc}
-         *
-         * @hide draft / provisional / internal are hidden on Android
          */
         @Override
         public String toString() {
@@ -437,8 +427,6 @@ public final class RelativeDateTimeFormatter {
 
         /**
          * {@inheritDoc}
-         *
-         * @hide draft / provisional / internal are hidden on Android
          */
         @Override
         public int length() {
@@ -447,8 +435,6 @@ public final class RelativeDateTimeFormatter {
 
         /**
          * {@inheritDoc}
-         *
-         * @hide draft / provisional / internal are hidden on Android
          */
         @Override
         public char charAt(int index) {
@@ -457,8 +443,6 @@ public final class RelativeDateTimeFormatter {
 
         /**
          * {@inheritDoc}
-         *
-         * @hide draft / provisional / internal are hidden on Android
          */
         @Override
         public CharSequence subSequence(int start, int end) {
@@ -467,24 +451,14 @@ public final class RelativeDateTimeFormatter {
 
         /**
          * {@inheritDoc}
-         *
-         * @hide draft / provisional / internal are hidden on Android
          */
         @Override
         public <A extends Appendable> A appendTo(A appendable) {
-            try {
-                appendable.append(string);
-            } catch (IOException e) {
-                // Throw as an unchecked exception to avoid users needing try/catch
-                throw new ICUUncheckedIOException(e);
-            }
-            return appendable;
+            return Utility.appendTo(string, appendable);
         }
 
         /**
          * {@inheritDoc}
-         *
-         * @hide draft / provisional / internal are hidden on Android
          */
         @Override
         public boolean nextPosition(ConstrainedFieldPosition cfpos) {
@@ -493,8 +467,6 @@ public final class RelativeDateTimeFormatter {
 
         /**
          * {@inheritDoc}
-         *
-         * @hide draft / provisional / internal are hidden on Android
          */
         @Override
         public AttributedCharacterIterator toCharacterIterator() {
@@ -626,7 +598,7 @@ public final class RelativeDateTimeFormatter {
      * @return the formatted relative datetime
      * @throws IllegalArgumentException if direction is something other than
      * NEXT or LAST.
-     * @hide draft / provisional / internal are hidden on Android
+     * @hide Hide new API in Android temporarily
      */
     public FormattedRelativeDateTime formatToValue(double quantity, Direction direction, RelativeUnit unit) {
         checkNoAdjustForContext();
@@ -654,8 +626,7 @@ public final class RelativeDateTimeFormatter {
         StandardPlural pluralForm = StandardPlural.orOtherFromString(pluralKeyword);
 
         String compiledPattern = getRelativeUnitPluralPattern(style, unit, pastFutureIndex, pluralForm);
-        SimpleModifier modifier = new SimpleModifier(compiledPattern, Field.LITERAL, false);
-        modifier.formatAsPrefixSuffix(output, 0, output.length());
+        SimpleFormatterImpl.formatPrefixSuffix(compiledPattern, Field.LITERAL, 0, output.length(), output);
         return output;
     }
 
@@ -695,7 +666,7 @@ public final class RelativeDateTimeFormatter {
      *                  date, e.g. RelativeDateTimeUnit.WEEK,
      *                  RelativeDateTimeUnit.FRIDAY.
      * @return          The formatted string (may be empty in case of error)
-     * @hide draft / provisional / internal are hidden on Android
+     * @hide Hide new API in Android temporarily
      */
     public FormattedRelativeDateTime formatNumericToValue(double offset, RelativeDateTimeUnit unit) {
         checkNoAdjustForContext();
@@ -768,7 +739,7 @@ public final class RelativeDateTimeFormatter {
      *  return null to signal that no formatted string is available.
      * @throws IllegalArgumentException if the direction is incompatible with
      * unit this can occur with NOW which can only take PLAIN.
-     * @hide draft / provisional / internal are hidden on Android
+     * @hide Hide new API in Android temporarily
      */
     public FormattedRelativeDateTime formatToValue(Direction direction, AbsoluteUnit unit) {
         checkNoAdjustForContext();
@@ -838,7 +809,7 @@ public final class RelativeDateTimeFormatter {
      *                  date, e.g. RelativeDateTimeUnit.WEEK,
      *                  RelativeDateTimeUnit.FRIDAY.
      * @return          The formatted string (may be empty in case of error)
-     * @hide draft / provisional / internal are hidden on Android
+     * @hide Hide new API in Android temporarily
      */
     public FormattedRelativeDateTime formatToValue(double offset, RelativeDateTimeUnit unit) {
         checkNoAdjustForContext();
