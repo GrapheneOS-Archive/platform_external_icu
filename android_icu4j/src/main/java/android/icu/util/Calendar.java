@@ -4580,7 +4580,7 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
     }
 
     /**
-     * Simple, immutable struct-like class for access to the CLDR weekend data.
+     * Simple, immutable struct-like class for access to the CLDR week data.
      */
     public static final class WeekData {
         /**
@@ -4675,7 +4675,7 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
     }
 
     /**
-     * <strong>[icu]</strong> Return simple, immutable struct-like class for access to the CLDR weekend data.
+     * <strong>[icu]</strong> Return simple, immutable struct-like class for access to the CLDR week data.
      * @param region The input region. The results are undefined if the region code is not valid.
      * @return the WeekData for the input region. It is never null.
      */
@@ -4684,7 +4684,7 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
     }
 
     /**
-     * <strong>[icu]</strong> Return simple, immutable struct-like class for access to the weekend data in this calendar.
+     * <strong>[icu]</strong> Return simple, immutable struct-like class for access to the week data in this calendar.
      * @return the WeekData for this calendar.
      */
     public WeekData getWeekData() {
@@ -4751,7 +4751,7 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
     private static final WeekDataCache WEEK_DATA_CACHE = new WeekDataCache();
 
     /*
-     * Set this calendar to contain week and weekend data for the given region.
+     * Set this calendar to contain week and week data for the given region.
      */
     private void setWeekData(String region) {
         if (region == null) {

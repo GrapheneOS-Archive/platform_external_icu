@@ -180,7 +180,7 @@ public final class VersionInfo implements Comparable<VersionInfo>
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
-    public static final String ICU_DATA_VERSION_PATH = "66b";
+    public static final String ICU_DATA_VERSION_PATH = "67b";
 
     /**
      * Data version in ICU4J.
@@ -551,7 +551,7 @@ public final class VersionInfo implements Comparable<VersionInfo>
         UNICODE_12_1   = getInstance(12, 1, 0, 0);
         UNICODE_13_0   = getInstance(13, 0, 0, 0);
 
-        ICU_VERSION   = getInstance(66, 1, 0, 0);
+        ICU_VERSION   = getInstance(67, 1, 0, 0);
         ICU_DATA_VERSION = ICU_VERSION;
         UNICODE_VERSION = UNICODE_13_0;
 

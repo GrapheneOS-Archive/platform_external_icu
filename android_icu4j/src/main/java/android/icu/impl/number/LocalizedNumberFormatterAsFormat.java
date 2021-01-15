@@ -13,7 +13,9 @@ import java.text.FieldPosition;
 import java.text.Format;
 import java.text.ParsePosition;
 
-import android.icu.number.FormattedNumber;
+import android.icu.impl.FormattedStringBuilder;
+import android.icu.impl.FormattedValueStringBuilderImpl;
+import android.icu.impl.Utility;
 import android.icu.number.LocalizedNumberFormatter;
 import android.icu.number.NumberFormatter;
 import android.icu.util.ULocale;
@@ -48,16 +50,18 @@ public class LocalizedNumberFormatterAsFormat extends Format {
         if (!(obj instanceof Number)) {
             throw new IllegalArgumentException();
         }
-        FormattedNumber result = formatter.format((Number) obj);
+        DecimalQuantity dq = new DecimalQuantity_DualStorageBCD((Number) obj);
+        FormattedStringBuilder string = new FormattedStringBuilder();
+        formatter.formatImpl(dq, string);
         // always return first occurrence:
         pos.setBeginIndex(0);
         pos.setEndIndex(0);
-        boolean found = result.nextFieldPosition(pos);
+        boolean found = FormattedValueStringBuilderImpl.nextFieldPosition(string, pos);
         if (found && toAppendTo.length() != 0) {
             pos.setBeginIndex(pos.getBeginIndex() + toAppendTo.length());
             pos.setEndIndex(pos.getEndIndex() + toAppendTo.length());
         }
-        result.appendTo(toAppendTo);
+        Utility.appendTo(string, toAppendTo);
         return toAppendTo;
     }
 

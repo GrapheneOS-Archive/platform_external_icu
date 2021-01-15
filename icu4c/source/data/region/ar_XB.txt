@@ -287,8 +287,8 @@ ar_XB{
         VU{"؜‮Vanuatu‬؜"}
         WF{"؜‮Wallis‬؜ & ؜‮Futuna‬؜"}
         WS{"؜‮Samoa‬؜"}
-        XA{"[XA]"}
-        XB{"[XB]"}
+        XA{"؜‮Pseudo‬؜-؜‮Accents‬؜"}
+        XB{"؜‮Pseudo‬؜-؜‮Bidi‬؜"}
         XK{"؜‮Kosovo‬؜"}
         YE{"؜‮Yemen‬؜"}
         YT{"؜‮Mayotte‬؜"}
@@ -308,9 +308,10 @@ ar_XB{
         CD{"؜‮Congo‬؜ (؜‮DRC‬؜)"}
         CG{"؜‮Congo‬؜ (؜‮Republic‬؜)"}
         CI{"؜‮Ivory‬؜ ؜‮Coast‬؜"}
+        CV{"؜‮Cabo‬؜ ؜‮Verde‬؜"}
         CZ{"؜‮Czech‬؜ ؜‮Republic‬؜"}
         SZ{"؜‮Swaziland‬؜"}
         TL{"؜‮East‬؜ ؜‮Timor‬؜"}
     }
-    Version{"36.1"}
+    Version{"37"}
 }

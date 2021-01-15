@@ -1,6 +1,6 @@
---- android_icu4j/src/main/java/android/icu/text/DateTimePatternGenerator.java	2020-10-13 19:07:47.825269153 +0100
-+++ android_icu4j/src/main/java/android/icu/text/DateTimePatternGenerator.java	2020-10-13 19:08:11.285442568 +0100
-@@ -1285,7 +1285,6 @@
+--- android_icu4j/src/main/java/android/icu/text/DateTimePatternGenerator.java	2021-01-05 17:00:09.445888443 +0000
++++ android_icu4j/src/main/java/android/icu/text/DateTimePatternGenerator.java	2021-01-05 17:00:31.878035651 +0000
+@@ -1303,7 +1303,6 @@
       *
       * @param field The index to get the append item name.
       * @return name for field
