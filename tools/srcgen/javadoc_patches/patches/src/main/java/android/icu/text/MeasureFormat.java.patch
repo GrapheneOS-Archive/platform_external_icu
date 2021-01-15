@@ -1,6 +1,6 @@
---- android_icu4j/src/main/java/android/icu/text/MeasureFormat.java	2019-09-13 12:40:40.773483778 +0100
-+++ android_icu4j/src/main/java/android/icu/text/MeasureFormat.java	2019-09-13 12:41:03.369567130 +0100
-@@ -58,12 +58,6 @@
+--- android_icu4j/src/main/java/android/icu/text/MeasureFormat.java	2021-01-05 16:28:14.205297829 +0000
++++ android_icu4j/src/main/java/android/icu/text/MeasureFormat.java	2021-01-05 16:28:33.829426812 +0000
+@@ -61,12 +61,6 @@
   * A formatter for Measure objects.
   *
   * <p>

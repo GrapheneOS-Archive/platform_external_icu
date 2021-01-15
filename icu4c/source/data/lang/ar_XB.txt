@@ -666,6 +666,8 @@ ar_XB{
         zh_Hant{"؜‮Traditional‬؜ ؜‮Mandarin‬؜ ؜‮Chinese‬؜"}
     }
     Languages%menu{
+        ars{"؜‮Arabic‬؜, ؜‮Najdi‬؜"}
+        ckb{"؜‮Kurdish‬؜, ؜‮Central‬؜"}
         yue{"؜‮Chinese‬؜, ؜‮Cantonese‬؜"}
         zh{"؜‮Chinese‬؜, ؜‮Mandarin‬؜"}
     }
@@ -675,6 +677,7 @@ ar_XB{
         en_US{"؜‮US‬؜ ؜‮English‬؜"}
     }
     Languages%variant{
+        ckb{"؜‮Kurdish‬؜, ؜‮Sorani‬؜"}
         ky{"؜‮Kirghiz‬؜"}
         my{"؜‮Myanmar‬؜ ؜‮Language‬؜"}
         ps{"؜‮Pushto‬؜"}
@@ -686,6 +689,7 @@ ar_XB{
         Aghb{"؜‮Caucasian‬؜ ؜‮Albanian‬؜"}
         Ahom{"؜‮Ahom‬؜"}
         Arab{"؜‮Arabic‬؜"}
+        Aran{"؜‮Nastaliq‬؜"}
         Armi{"؜‮Imperial‬؜ ؜‮Aramaic‬؜"}
         Armn{"؜‮Armenian‬؜"}
         Avst{"؜‮Avestan‬؜"}
@@ -1192,6 +1196,7 @@ ar_XB{
             roman{"؜‮Roman‬؜ ؜‮Numerals‬؜"}
             romanlow{"؜‮Roman‬؜ ؜‮Lowercase‬؜ ؜‮Numerals‬؜"}
             saur{"؜‮Saurashtra‬؜ ؜‮Digits‬؜"}
+            segment{"؜‮Segmented‬؜ ؜‮Digits‬؜"}
             shrd{"؜‮Sharada‬؜ ؜‮Digits‬؜"}
             sind{"؜‮Khudawadi‬؜ ؜‮Digits‬؜"}
             sinh{"؜‮Sinhala‬؜ ؜‮Lith‬؜ ؜‮Digits‬؜"}
@@ -1294,9 +1299,10 @@ ar_XB{
         VALENCIA{"؜‮Valencian‬؜"}
         WADEGILE{"؜‮Wade‬؜-؜‮Giles‬؜ ؜‮Romanization‬؜"}
     }
-    Version{"36.1"}
+    Version{"37"}
     characterLabelPattern{
         all{"{0} — ؜‮all‬؜"}
+        category-list{"{0}: {1}"}
         compatibility{"{0} — ؜‮compatibility‬؜"}
         enclosed{"{0} — ؜‮enclosed‬؜"}
         extended{"{0} — ؜‮extended‬؜"}

@@ -187,25 +187,6 @@ utext_close(UText *ut) __INTRODUCED_IN(31);
 
 #endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if U_SHOW_CPLUSPLUS_API
-
-U_NAMESPACE_BEGIN
-
-/**
- * \class LocalUTextPointer
- * "Smart pointer" class, closes a UText via utext_close().
- * For most methods see the LocalPointerBase base class.
- *
- * @see LocalPointerBase
- * @see LocalPointer
- * @stable ICU 4.4
- */
-U_DEFINE_LOCAL_OPEN_POINTER(LocalUTextPointer, UText, utext_close);
-
-U_NAMESPACE_END
-
-#endif
-
 #if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
@@ -680,6 +661,25 @@ utext_extract(UText *ut,
 
 U_CDECL_END
 
+
+#if U_SHOW_CPLUSPLUS_API
+
+U_NAMESPACE_BEGIN
+
+/**
+ * \class LocalUTextPointer
+ * "Smart pointer" class, closes a UText via utext_close().
+ * For most methods see the LocalPointerBase base class.
+ *
+ * @see LocalPointerBase
+ * @see LocalPointer
+ * @stable ICU 4.4
+ */
+U_DEFINE_LOCAL_OPEN_POINTER(LocalUTextPointer, UText, utext_close);
+
+U_NAMESPACE_END
+
+#endif
 
 
 #endif
