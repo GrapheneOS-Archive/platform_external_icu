@@ -173,20 +173,11 @@ public class PluralRules implements Serializable {
     static final UnicodeSet ALLOWED_ID = new UnicodeSet("[a-z]").freeze();
 
     // TODO Remove RulesList by moving its API and fields into PluralRules.
+
     /**
-     * @deprecated This API is ICU internal only.
      * @hide original deprecated declaration
-     * @hide draft / provisional / internal are hidden on Android
      */
-    @Deprecated
-    public static final String CATEGORY_SEPARATOR = ";  ";
-    /**
-     * @deprecated This API is ICU internal only.
-     * @hide original deprecated declaration
-     * @hide draft / provisional / internal are hidden on Android
-     */
-    @Deprecated
-    public static final String KEYWORD_RULE_SEPARATOR = ": ";
+    private static final String CATEGORY_SEPARATOR = ";  ";
 
     private static final long serialVersionUID = 1;
 
@@ -471,6 +462,16 @@ public class PluralRules implements Serializable {
          */
         @Deprecated
         w,
+
+        /**
+         * Suppressed exponent for compact notation (exponent needed in
+         * scientific notation with compact notation to approximate i).
+         *
+         * @deprecated This API is ICU internal only.
+         * @hide draft / provisional / internal are hidden on Android
+         */
+        @Deprecated
+        e,
 
         /**
          * THIS OPERAND IS DEPRECATED AND HAS BEEN REMOVED FROM THE SPEC.
@@ -847,6 +848,7 @@ public class PluralRules implements Serializable {
             case t: return decimalDigitsWithoutTrailingZeros;
             case v: return visibleDecimalDigitCount;
             case w: return visibleDecimalDigitCountWithoutTrailingZeros;
+            case e: return 0;
             default: return source;
             }
         }
@@ -2113,7 +2115,7 @@ public class PluralRules implements Serializable {
      *
      * @param number The number for which the rule has to be determined.
      * @return The keyword of the selected rule.
-     * @hide draft / provisional / internal are hidden on Android
+     * @hide Hide new API in Android temporarily
      */
     public String select(FormattedNumber number) {
         return rules.select(number.getFixedDecimal());
@@ -2287,12 +2289,9 @@ public class PluralRules implements Serializable {
     }
 
     /**
-     * @deprecated This API is ICU internal only.
      * @hide original deprecated declaration
-     * @hide draft / provisional / internal are hidden on Android
      */
-    @Deprecated
-    public boolean addSample(String keyword, Number sample, int maxCount, Set<Double> result) {
+    private boolean addSample(String keyword, Number sample, int maxCount, Set<Double> result) {
         String selectedKeyword = sample instanceof FixedDecimal ? select((FixedDecimal)sample) : select(sample.doubleValue());
         if (selectedKeyword.equals(keyword)) {
             result.add(sample.doubleValue());
@@ -2542,12 +2541,9 @@ public class PluralRules implements Serializable {
     }
 
     /**
-     * @deprecated internal
      * @hide original deprecated declaration
-     * @hide draft / provisional / internal are hidden on Android
      */
-    @Deprecated
-    public Boolean isLimited(String keyword) {
+    Boolean isLimited(String keyword) {
         return rules.isLimited(keyword, SampleType.INTEGER);
     }
 

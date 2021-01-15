@@ -1787,7 +1787,6 @@ public class TimeZoneTest extends TestFmwk
 
             {"America/Sao_Paulo",   "en",   Boolean.FALSE,  TZSHORT,    "GMT-3"/*"BRT"*/},
             {"America/Sao_Paulo",   "en",   Boolean.FALSE,  TZLONG,     "Brasilia Standard Time"},
-
             // Per https://mm.icann.org/pipermail/tz-announce/2019-July/000056.html
             // Brazil has canceled DST and will stay on standard time indefinitely.
             // {"America/Sao_Paulo",   "en",   Boolean.TRUE,   TZSHORT,    "GMT-2"/*"BRST"*/},

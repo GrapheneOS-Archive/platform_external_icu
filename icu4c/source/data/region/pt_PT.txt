@@ -53,7 +53,7 @@ pt_PT{
         NC{"Nova Caledónia"}
         NU{"Niuê"}
         PL{"Polónia"}
-        PS{"Territórios palestinianos"}
+        PS{"Palestina"}
         QO{"Oceânia Insular"}
         RO{"Roménia"}
         SI{"Eslovénia"}
@@ -83,5 +83,5 @@ pt_PT{
         CI{"Costa do Marfim"}
         CZ{"República Checa"}
     }
-    Version{"36.1"}
+    Version{"37"}
 }

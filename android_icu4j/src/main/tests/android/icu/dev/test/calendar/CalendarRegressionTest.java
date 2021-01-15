@@ -2294,7 +2294,7 @@ public class CalendarRegressionTest extends android.icu.dev.test.TestFmwk {
         gc.setFirstDayOfWeek(Calendar.MONDAY);
         gc.setMinimalDaysInFirstWeek(4);
 
-        // Force the calender to resolve the fields once.
+        // Force the calendar to resolve the fields once.
         // The maximum week number in 2011 is 52.
         gc.set(Calendar.YEAR, 2011);
         gc.get(Calendar.YEAR);

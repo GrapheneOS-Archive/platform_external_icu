@@ -30,6 +30,7 @@
 #include <unicode/uenum.h>
 #include <unicode/ufieldpositer.h>
 #include <unicode/uformattable.h>
+#include <unicode/uformattedvalue.h>
 #include <unicode/ugender.h>
 #include <unicode/uidna.h>
 #include <unicode/uiter.h>

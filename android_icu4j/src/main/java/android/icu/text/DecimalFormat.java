@@ -13,9 +13,14 @@ import java.text.AttributedCharacterIterator;
 import java.text.FieldPosition;
 import java.text.ParsePosition;
 
+import android.icu.impl.FormattedStringBuilder;
+import android.icu.impl.FormattedValueStringBuilderImpl;
+import android.icu.impl.Utility;
 import android.icu.impl.number.AffixUtils;
 import android.icu.impl.number.DecimalFormatProperties;
 import android.icu.impl.number.DecimalFormatProperties.ParseMode;
+import android.icu.impl.number.DecimalQuantity;
+import android.icu.impl.number.DecimalQuantity_DualStorageBCD;
 import android.icu.impl.number.Padder;
 import android.icu.impl.number.Padder.PadPosition;
 import android.icu.impl.number.PatternStringParser;
@@ -693,9 +698,11 @@ public class DecimalFormat extends NumberFormat {
    */
   @Override
   public StringBuffer format(double number, StringBuffer result, FieldPosition fieldPosition) {
-    FormattedNumber output = formatter.format(number);
-    fieldPositionHelper(output, fieldPosition, result.length());
-    output.appendTo(result);
+    DecimalQuantity dq = new DecimalQuantity_DualStorageBCD(number);
+    FormattedStringBuilder string = new FormattedStringBuilder();
+    formatter.formatImpl(dq, string);
+    fieldPositionHelper(dq, string, fieldPosition, result.length());
+    Utility.appendTo(string, result);
     return result;
   }
 
@@ -704,9 +711,11 @@ public class DecimalFormat extends NumberFormat {
    */
   @Override
   public StringBuffer format(long number, StringBuffer result, FieldPosition fieldPosition) {
-    FormattedNumber output = formatter.format(number);
-    fieldPositionHelper(output, fieldPosition, result.length());
-    output.appendTo(result);
+    DecimalQuantity dq = new DecimalQuantity_DualStorageBCD(number);
+    FormattedStringBuilder string = new FormattedStringBuilder();
+    formatter.formatImpl(dq, string);
+    fieldPositionHelper(dq, string, fieldPosition, result.length());
+    Utility.appendTo(string, result);
     return result;
   }
 
@@ -715,9 +724,11 @@ public class DecimalFormat extends NumberFormat {
    */
   @Override
   public StringBuffer format(BigInteger number, StringBuffer result, FieldPosition fieldPosition) {
-    FormattedNumber output = formatter.format(number);
-    fieldPositionHelper(output, fieldPosition, result.length());
-    output.appendTo(result);
+    DecimalQuantity dq = new DecimalQuantity_DualStorageBCD(number);
+    FormattedStringBuilder string = new FormattedStringBuilder();
+    formatter.formatImpl(dq, string);
+    fieldPositionHelper(dq, string, fieldPosition, result.length());
+    Utility.appendTo(string, result);
     return result;
   }
 
@@ -727,9 +738,11 @@ public class DecimalFormat extends NumberFormat {
   @Override
   public StringBuffer format(
       java.math.BigDecimal number, StringBuffer result, FieldPosition fieldPosition) {
-    FormattedNumber output = formatter.format(number);
-    fieldPositionHelper(output, fieldPosition, result.length());
-    output.appendTo(result);
+    DecimalQuantity dq = new DecimalQuantity_DualStorageBCD(number);
+    FormattedStringBuilder string = new FormattedStringBuilder();
+    formatter.formatImpl(dq, string);
+    fieldPositionHelper(dq, string, fieldPosition, result.length());
+    Utility.appendTo(string, result);
     return result;
   }
 
@@ -738,9 +751,11 @@ public class DecimalFormat extends NumberFormat {
    */
   @Override
   public StringBuffer format(BigDecimal number, StringBuffer result, FieldPosition fieldPosition) {
-    FormattedNumber output = formatter.format(number);
-    fieldPositionHelper(output, fieldPosition, result.length());
-    output.appendTo(result);
+    DecimalQuantity dq = new DecimalQuantity_DualStorageBCD(number);
+    FormattedStringBuilder string = new FormattedStringBuilder();
+    formatter.formatImpl(dq, string);
+    fieldPositionHelper(dq, string, fieldPosition, result.length());
+    Utility.appendTo(string, result);
     return result;
   }
 
@@ -765,12 +780,14 @@ public class DecimalFormat extends NumberFormat {
     // because its caching mechanism will not provide any benefit here.
     DecimalFormatSymbols localSymbols = (DecimalFormatSymbols) symbols.clone();
     localSymbols.setCurrency(currAmt.getCurrency());
-    FormattedNumber output = formatter
-            .symbols(localSymbols)
+
+    DecimalQuantity dq = new DecimalQuantity_DualStorageBCD(currAmt.getNumber());
+    FormattedStringBuilder string = new FormattedStringBuilder();
+    formatter.symbols(localSymbols)
             .unit(currAmt.getCurrency())
-            .format(currAmt.getNumber());
-    fieldPositionHelper(output, fieldPosition, result.length());
-    output.appendTo(result);
+            .formatImpl(dq, string);
+    fieldPositionHelper(dq, string, fieldPosition, result.length());
+    Utility.appendTo(string, result);
     return result;
   }
 
@@ -1016,7 +1033,7 @@ public class DecimalFormat extends NumberFormat {
    *
    * @return Whether the sign is shown on positive numbers and zero.
    * @see #setSignAlwaysShown
-   * @hide draft / provisional / internal are hidden on Android
+   * @hide Hide new API in Android temporarily
    */
   public synchronized boolean isSignAlwaysShown() {
     // This is not in the exported properties
@@ -1044,7 +1061,7 @@ public class DecimalFormat extends NumberFormat {
    * signs in the pattern is undefined.
    *
    * @param value true to always show a sign; false to hide the sign on positive numbers and zero.
-   * @hide draft / provisional / internal are hidden on Android
+   * @hide Hide new API in Android temporarily
    */
   public synchronized void setSignAlwaysShown(boolean value) {
     properties.setSignAlwaysShown(value);
@@ -1824,7 +1841,7 @@ public class DecimalFormat extends NumberFormat {
    * <strong>[icu]</strong> Returns the minimum number of digits before grouping is triggered.
    *
    * @see #setMinimumGroupingDigits
-   * @hide draft / provisional / internal are hidden on Android
+   * @hide Hide new API in Android temporarily
    */
   public synchronized int getMinimumGroupingDigits() {
     if (properties.getMinimumGroupingDigits() > 0) {
@@ -1839,7 +1856,7 @@ public class DecimalFormat extends NumberFormat {
    * to 2, in <em>en-US</em>, 1234 will be printed as "1234" and 12345 will be printed as "12,345".
    *
    * @param number The minimum number of digits before grouping is triggered.
-   * @hide draft / provisional / internal are hidden on Android
+   * @hide Hide new API in Android temporarily
    */
   public synchronized void setMinimumGroupingDigits(int number) {
     properties.setMinimumGroupingDigits(number);
@@ -2123,7 +2140,7 @@ public synchronized void setParseStrictMode(ParseMode parseMode) {
    * <strong>[icu]</strong> Returns whether to ignore exponents when parsing.
    *
    * @see #setParseNoExponent
-   * @hide draft / provisional / internal are hidden on Android
+   * @hide Hide new API in Android temporarily
    */
   public synchronized boolean isParseNoExponent() {
     return properties.getParseNoExponent();
@@ -2135,7 +2152,7 @@ public synchronized void setParseStrictMode(ParseMode parseMode) {
    * 5).
    *
    * @param value true to prevent exponents from being parsed; false to allow them to be parsed.
-   * @hide draft / provisional / internal are hidden on Android
+   * @hide Hide new API in Android temporarily
    */
   public synchronized void setParseNoExponent(boolean value) {
     properties.setParseNoExponent(value);
@@ -2146,7 +2163,7 @@ public synchronized void setParseStrictMode(ParseMode parseMode) {
    * <strong>[icu]</strong> Returns whether to force case (uppercase/lowercase) to match when parsing.
    *
    * @see #setParseNoExponent
-   * @hide draft / provisional / internal are hidden on Android
+   * @hide Hide new API in Android temporarily
    */
   public synchronized boolean isParseCaseSensitive() {
     return properties.getParseCaseSensitive();
@@ -2159,7 +2176,7 @@ public synchronized void setParseStrictMode(ParseMode parseMode) {
    *
    * @param value true to force case (uppercase/lowercase) to match when parsing; false to ignore
    *     case and perform case folding.
-   * @hide draft / provisional / internal are hidden on Android
+   * @hide Hide new API in Android temporarily
    */
   public synchronized void setParseCaseSensitive(boolean value) {
     properties.setParseCaseSensitive(value);
@@ -2398,11 +2415,13 @@ public synchronized void setParseStrictMode(ParseMode parseMode) {
     PatternStringParser.parseToExistingProperties(pattern, properties, ignoreRounding);
   }
 
-  static void fieldPositionHelper(FormattedNumber formatted, FieldPosition fieldPosition, int offset) {
+  static void fieldPositionHelper(
+          DecimalQuantity dq, FormattedStringBuilder string, FieldPosition fieldPosition, int offset) {
       // always return first occurrence:
       fieldPosition.setBeginIndex(0);
       fieldPosition.setEndIndex(0);
-      boolean found = formatted.nextFieldPosition(fieldPosition);
+      dq.populateUFieldPosition(fieldPosition);
+      boolean found = FormattedValueStringBuilderImpl.nextFieldPosition(string, fieldPosition);;
       if (found && offset != 0) {
           fieldPosition.setBeginIndex(fieldPosition.getBeginIndex() + offset);
           fieldPosition.setEndIndex(fieldPosition.getEndIndex() + offset);
