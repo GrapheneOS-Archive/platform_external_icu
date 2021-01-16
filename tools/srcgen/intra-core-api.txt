@@ -6,7 +6,6 @@ field:android.icu.util.DateTimeRule#DOW_LEQ_DOM
 field:android.icu.util.DateTimeRule#STANDARD_TIME
 field:android.icu.util.DateTimeRule#UTC_TIME
 field:android.icu.util.DateTimeRule#WALL_TIME
-method:android.icu.text.DateFormatSymbols#getNarrowEras()
 method:android.icu.text.TimeZoneNames$MatchInfo#matchLength()
 method:android.icu.text.TimeZoneNames$MatchInfo#mzID()
 method:android.icu.text.TimeZoneNames$MatchInfo#nameType()

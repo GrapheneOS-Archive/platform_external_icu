@@ -1033,7 +1033,6 @@ public class DecimalFormat extends NumberFormat {
    *
    * @return Whether the sign is shown on positive numbers and zero.
    * @see #setSignAlwaysShown
-   * @hide Hide new API in Android temporarily
    */
   public synchronized boolean isSignAlwaysShown() {
     // This is not in the exported properties
@@ -1061,7 +1060,6 @@ public class DecimalFormat extends NumberFormat {
    * signs in the pattern is undefined.
    *
    * @param value true to always show a sign; false to hide the sign on positive numbers and zero.
-   * @hide Hide new API in Android temporarily
    */
   public synchronized void setSignAlwaysShown(boolean value) {
     properties.setSignAlwaysShown(value);
@@ -1841,7 +1839,6 @@ public class DecimalFormat extends NumberFormat {
    * <strong>[icu]</strong> Returns the minimum number of digits before grouping is triggered.
    *
    * @see #setMinimumGroupingDigits
-   * @hide Hide new API in Android temporarily
    */
   public synchronized int getMinimumGroupingDigits() {
     if (properties.getMinimumGroupingDigits() > 0) {
@@ -1856,7 +1853,6 @@ public class DecimalFormat extends NumberFormat {
    * to 2, in <em>en-US</em>, 1234 will be printed as "1234" and 12345 will be printed as "12,345".
    *
    * @param number The minimum number of digits before grouping is triggered.
-   * @hide Hide new API in Android temporarily
    */
   public synchronized void setMinimumGroupingDigits(int number) {
     properties.setMinimumGroupingDigits(number);
@@ -2130,7 +2126,6 @@ public synchronized void setParseStrictMode(ParseMode parseMode) {
    * <strong>[icu]</strong> Returns whether to ignore exponents when parsing.
    *
    * @see #setParseNoExponent
-   * @hide Hide new API in Android temporarily
    */
   public synchronized boolean isParseNoExponent() {
     return properties.getParseNoExponent();
@@ -2142,7 +2137,6 @@ public synchronized void setParseStrictMode(ParseMode parseMode) {
    * 5).
    *
    * @param value true to prevent exponents from being parsed; false to allow them to be parsed.
-   * @hide Hide new API in Android temporarily
    */
   public synchronized void setParseNoExponent(boolean value) {
     properties.setParseNoExponent(value);
@@ -2153,7 +2147,6 @@ public synchronized void setParseStrictMode(ParseMode parseMode) {
    * <strong>[icu]</strong> Returns whether to force case (uppercase/lowercase) to match when parsing.
    *
    * @see #setParseNoExponent
-   * @hide Hide new API in Android temporarily
    */
   public synchronized boolean isParseCaseSensitive() {
     return properties.getParseCaseSensitive();
@@ -2166,7 +2159,6 @@ public synchronized void setParseStrictMode(ParseMode parseMode) {
    *
    * @param value true to force case (uppercase/lowercase) to match when parsing; false to ignore
    *     case and perform case folding.
-   * @hide Hide new API in Android temporarily
    */
   public synchronized void setParseCaseSensitive(boolean value) {
     properties.setParseCaseSensitive(value);

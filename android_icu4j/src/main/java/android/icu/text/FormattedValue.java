@@ -12,7 +12,6 @@ import android.icu.util.ICUUncheckedIOException;
  * Many formatters format to classes implementing FormattedValue.
  *
  * @author sffc
- * @hide Only a subset of ICU is exposed in Android
  */
 public interface FormattedValue extends CharSequence {
     /**
