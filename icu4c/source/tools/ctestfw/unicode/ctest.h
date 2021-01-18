@@ -228,7 +228,7 @@ log_data_err(const char *pattern, ...);
 
 /**
  * Log a known issue.
- * @param ticket ticket number such as "12345" for ICU tickets or "cldrbug:6636" for CLDR tickets.
+ * @param ticket ticket number such as "ICU-12345" for ICU tickets or "CLDR-6636" for CLDR tickets.
  * @param fmt ...  sprintf-style format, optional message. can be NULL.
  * @return TRUE if known issue test should be skipped, FALSE if it should be run
  */
@@ -310,46 +310,5 @@ ctest_xml_fini(void);
 T_CTEST_API int32_t
 T_CTEST_EXPORT2
 ctest_xml_testcase(const char *classname, const char *name, const char *time, const char *failMsg);
-
-/**
- * Returns the path to icu4c/source/data.
- *
- * @return The path to icu4c/source/data. Do not free this pointer.
- */
-T_CTEST_API const char* T_CTEST_EXPORT2
-ctest_dataSrcDir(void);
-
-/**
- * Returns the path to the ICU data.
- *
- * Uses, in order of preference:
- *
- * 1. The path in the ICU_DATA environment variable.
- * 2. icu4c/source/data/out.
- *
- * @return The path to the ICU data. Do not free this pointer.
- */
-T_CTEST_API const char* T_CTEST_EXPORT2
-ctest_dataOutDir(void);
-
-/**
- * Returns the path to icu4c/source/test/testdata.
- *
- * @return The path to icu4c/source/test/testdata. Do not free this pointer.
- */
-T_CTEST_API const char* T_CTEST_EXPORT2
-ctest_testDataDir(void);
-
-/**
- * Returns the path to icu4c/source/test/testdata/out/testdata if it is
- * loadable.
- *
- * @param err Out parameter for any errors.
- * @return The path to icu4c/source/test/testdata/out/testdata if it can be
- *         loaded, or the empty string if it could not be loaded. Do not free
- *         this pointer.
- */
-T_CTEST_API const char* T_CTEST_EXPORT2
-ctest_loadTestData(UErrorCode* err);
 
 #endif

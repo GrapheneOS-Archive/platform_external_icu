@@ -1,5 +1,5 @@
 // © 2016 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
 /**
  *******************************************************************************
  * Copyright (C) 2001-2015, International Business Machines Corporation and
@@ -1324,9 +1324,7 @@ public class CollationTest extends TestFmwk {
             coll = new RuleBasedCollator(rules.toString());
         } catch (Exception e) {
             logln(rules.toString());
-            // Android patch: Add --omitCollationRules to genrb.
-            logln("RuleBasedCollator(rules) failed - " + e.getMessage());
-            // Android patch end.
+            errln("RuleBasedCollator(rules) failed - " + e.getMessage());
             coll = null;
         }
     }

@@ -1,5 +1,6 @@
 ﻿// © 2016 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
+// Generated using tools/cldr/cldr-to-icu/build-icu-data.xml
 ksh{
     Countries{
         001{"de Ääd"}
@@ -108,7 +109,7 @@ ksh{
         EU{"de Europähjesche Unijon"}
         FI{"Finnland"}
         FJ{"de Fidschi-Endelle"}
-        FK{"de malleviinesche Enselle"}
+        FK{"de Falkland-Enselle"}
         FM{"Mikroneesije"}
         FO{"de Färrör-Enselle"}
         FR{"Frankrisch"}
@@ -298,6 +299,6 @@ ksh{
         CD{"de Demmokraatesche Republik Konggo"}
         CG{"de Republik Konggo"}
         CI{"de Älfebeijnköß"}
+        FK{"de malleviinesche Enselle"}
     }
-    Version{"37"}
 }

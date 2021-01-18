@@ -163,10 +163,7 @@ def generate_conversion_mappings(config, io, common_vars):
             input_files = input_files,
             output_files = output_files,
             tool = IcuTool("makeconv"),
-            # BEGIN android-changed
-            # args = "-s {IN_DIR} -d {OUT_DIR} -c {INPUT_FILE_PLACEHOLDER}",
-            args = "-s {IN_DIR} -d {OUT_DIR} -c --small {INPUT_FILE_PLACEHOLDER}",
-            # END android-changed
+            args = "-s {IN_DIR} -d {OUT_DIR} -c {INPUT_FILE_PLACEHOLDER}",
             format_with = {},
             repeat_with = {
                 "INPUT_FILE_PLACEHOLDER": utils.SpaceSeparatedList(file.filename for file in input_files)
@@ -365,7 +362,7 @@ def generate_misc(config, io, common_vars):
         RepeatedExecutionRequest(
             name = "misc_res",
             category = "misc",
-            dep_targets = [],
+            dep_targets = [DepTarget("cnvalias")], # ICU-21175
             input_files = input_files,
             output_files = output_files,
             tool = IcuTool("genrb"),
@@ -521,12 +518,9 @@ def generate_tree(
             input_files = input_files,
             output_files = output_files,
             tool = IcuTool("genrb"),
-            # BEGIN android-changed
-            args = "-s {IN_DIR}/{IN_SUB_DIR} -d {OUT_DIR}/{OUT_PREFIX} -i {OUT_DIR} " +
-                ("--omitCollationRules " if sub_dir == "coll" else "") +
+            args = "-s {IN_DIR}/{IN_SUB_DIR} -d {OUT_DIR}/{OUT_PREFIX} -i {OUT_DIR} "
                 "{EXTRA_OPTION} -k "
                 "{INPUT_BASENAME}",
-            # END android-changed
             format_with = {
                 "IN_SUB_DIR": sub_dir,
                 "OUT_PREFIX": out_prefix,

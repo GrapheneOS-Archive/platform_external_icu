@@ -1,5 +1,6 @@
 ﻿// © 2016 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
+// Generated using tools/cldr/cldr-to-icu/build-icu-data.xml
 lt{
     Countries{
         001{"pasaulis"}
@@ -110,7 +111,7 @@ lt{
         EZ{"euro zona"}
         FI{"Suomija"}
         FJ{"Fidžis"}
-        FK{"Folklando (Malvinų) Salos"}
+        FK{"Folklando Salos"}
         FM{"Mikronezija"}
         FO{"Farerų Salos"}
         FR{"Prancūzija"}
@@ -133,7 +134,7 @@ lt{
         GU{"Guamas"}
         GW{"Bisau Gvinėja"}
         GY{"Gajana"}
-        HK{"Honkongas"}
+        HK{"Ypatingasis Administracinis Kinijos Regionas Honkongas"}
         HM{"Herdo ir Makdonaldo Salos"}
         HN{"Hondūras"}
         HR{"Kroatija"}
@@ -187,7 +188,7 @@ lt{
         ML{"Malis"}
         MM{"Mianmaras (Birma)"}
         MN{"Mongolija"}
-        MO{"Makao"}
+        MO{"Ypatingasis Administracinis Kinijos Regionas Makao"}
         MP{"Marianos Šiaurinės Salos"}
         MQ{"Martinika"}
         MR{"Mauritanija"}
@@ -222,7 +223,7 @@ lt{
         PM{"Sen Pjeras ir Mikelonas"}
         PN{"Pitkerno salos"}
         PR{"Puerto Rikas"}
-        PS{"Palestina"}
+        PS{"Palestinos teritorija"}
         PT{"Portugalija"}
         PW{"Palau"}
         PY{"Paragvajus"}
@@ -254,7 +255,7 @@ lt{
         SX{"Sint Martenas"}
         SY{"Sirija"}
         SZ{"Svazilandas"}
-        TA{"Tristanas da Kunja"}
+        TA{"Tristano da Kunjos"}
         TC{"Terkso ir Kaikoso Salos"}
         TD{"Čadas"}
         TF{"Prancūzijos Pietų sritys"}
@@ -299,6 +300,9 @@ lt{
     }
     Countries%short{
         GB{"JK"}
+        HK{"Honkongas"}
+        MO{"Makao"}
+        PS{"Palestina"}
         UN{"JT"}
         US{"JAV"}
     }
@@ -307,6 +311,6 @@ lt{
         CG{"Kongo Respublika"}
         CI{"Dramblio Kaulo Kranto Respublika"}
         CZ{"Čekijos Respublika"}
+        FK{"Folklando (Malvinų) Salos"}
     }
-    Version{"37"}
 }

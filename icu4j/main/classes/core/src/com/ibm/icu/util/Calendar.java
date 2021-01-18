@@ -1,5 +1,5 @@
 // © 2016 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
 /*
  *   Copyright (C) 1996-2016, International Business Machines
  *   Corporation and others.  All Rights Reserved.
@@ -27,6 +27,7 @@ import com.ibm.icu.impl.SimpleFormatterImpl;
 import com.ibm.icu.impl.SoftCache;
 import com.ibm.icu.text.DateFormat;
 import com.ibm.icu.text.DateFormatSymbols;
+import com.ibm.icu.text.DateTimePatternGenerator;
 import com.ibm.icu.text.SimpleDateFormat;
 import com.ibm.icu.util.ULocale.Category;
 
@@ -1764,7 +1765,7 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
             locale = ULocale.getDefault(Category.FORMAT);
         }
         if (tz == null) {
-            tz = TimeZone.getDefault();
+            tz = TimeZone.forULocaleOrDefault(locale);
         }
 
         Calendar cal = createInstance(locale);
@@ -1796,7 +1797,7 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
 
     private static Calendar createInstance(ULocale locale) {
         Calendar cal = null;
-        TimeZone zone = TimeZone.getDefault();
+        TimeZone zone = TimeZone.forULocaleOrDefault(locale);
         CalType calType = getCalendarTypeForLocale(locale);
         if (calType == CalType.UNKNOWN) {
             // fallback to Gregorian
@@ -3514,6 +3515,13 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
         "{1} {0}",
         "{1} {0}"
     };
+    // final fallback patterns
+    private static final String[] TIME_SKELETONS = {
+        "jmmsszzzz",    // Full
+        "jmmssz",       // Long
+        "jmmss",        // Medium
+        "jmm"           // Short
+    };
 
     static private DateFormat formatHelper(Calendar cal, ULocale loc, int dateStyle,
             int timeStyle) {
@@ -3563,51 +3571,6 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
         return result;
     }
 
-    // Android patch (http://b/28832222) start.
-    // Expose method to get format string for java.time.
-    /**
-     * Get the date time format string for the specified values.
-     * This is a copy of {@link #formatHelper(Calendar, ULocale, int, int)} with the following
-     * changes:
-     * <ul>
-     *     <li>Made public, but hidden</li>
-     *     <li>take calendar type string instead of Calendar</li>
-     *     <li>Ignore overrides</li>
-     *     <li>Return format string instead of DateFormat.</li>
-     * </ul>
-     * This is not meant as public API.
-     * @internal
-     */
-    // TODO: Check if calType can be passed via keyword on loc parameter instead.
-    public static String getDateTimeFormatString(ULocale loc, String calType, int dateStyle,
-            int timeStyle) {
-        if (timeStyle < DateFormat.NONE || timeStyle > DateFormat.SHORT) {
-            throw new IllegalArgumentException("Illegal time style " + timeStyle);
-        }
-        if (dateStyle < DateFormat.NONE || dateStyle > DateFormat.SHORT) {
-            throw new IllegalArgumentException("Illegal date style " + dateStyle);
-        }
-
-        PatternData patternData = PatternData.make(loc, calType);
-
-        // Resolve a pattern for the date/time style
-        String pattern = null;
-        if ((timeStyle >= 0) && (dateStyle >= 0)) {
-            pattern = SimpleFormatterImpl.formatRawPattern(
-                    patternData.getDateTimePattern(dateStyle), 2, 2,
-                    patternData.patterns[timeStyle],
-                    patternData.patterns[dateStyle + 4]);
-        } else if (timeStyle >= 0) {
-            pattern = patternData.patterns[timeStyle];
-        } else if (dateStyle >= 0) {
-            pattern = patternData.patterns[dateStyle + 4];
-        } else {
-            throw new IllegalArgumentException("No date or time style specified");
-        }
-        return pattern;
-    }
-    // Android patch (http://b/28832222) end.
-
     static class PatternData {
         // TODO make this even more object oriented
         private String[] patterns;
@@ -3625,12 +3588,8 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
             return dateTimePattern;
         }
         private static PatternData make(Calendar cal, ULocale loc) {
-            // Android patch (http://b/28832222) start.
-            return make(loc, cal.getType());
-        }
-        private static PatternData make(ULocale loc, String calType) {
-            // Android patch (http://b/28832222) end.
             // First, try to get a pattern from PATTERN_CACHE
+            String calType = cal.getType();
             String key = loc.getBaseName() + "+" + calType;
             PatternData patternData = PATTERN_CACHE.get(key);
             if (patternData == null) {
@@ -3664,7 +3623,39 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
         int patternsSize = dtPatternsRb.getSize();
         String[] dateTimePatterns = new String[patternsSize];
         String[] dateTimePatternsOverrides = new String[patternsSize];
-        for (int i = 0; i < patternsSize; i++) {
+        int i = 0; // index for dateTimePatterns, dateTimePatternsOverrides
+
+        String baseLocID = locale.getBaseName();
+        if (baseLocID.length() > 0 && !baseLocID.equals("und")) {
+            ULocale baseLoc = new ULocale(baseLocID);
+            // The following is different from ICU4C, where we can get the valid locale
+            // for the SimpleDateFormat object. Here we do not have a SimpleDateFormat and
+            // valid locale for the Calendar is a bit meaningless.
+            ULocale validLoc = ULocale.addLikelySubtags(dtPatternsRb.getULocale());
+            if (validLoc != baseLoc) {
+                String baseReg = baseLoc.getCountry();
+                if ((baseReg.length() > 0 && !baseReg.equals(validLoc.getCountry()))
+                        || !baseLoc.getLanguage().equals(validLoc.getLanguage())) {
+                    // use DTPG if the standard time formats may have the wrong time cycle,
+                    // because the valid locale differs in important ways (region, language)
+                    // from the base locale.
+                    // We could *also* check whether they do actually have a mismatch with
+                    // the time cycle preferences for the region, but that is a lot more
+                    // work for little or no additional benefit, since just going ahead
+                    // and always synthesizing the time format as per the following should
+                    // create a locale-appropriate pattern with cycle that matches the
+                    // region preferences anyway.
+                    // In this case we get the first 4 entries of dateTimePatterns using
+                    // DateTimePatternGenerator, not resource data.
+                    DateTimePatternGenerator dtpg = DateTimePatternGenerator.getInstanceNoStdPat(locale);
+                    for (; i < 4; i++) {
+                        dateTimePatterns[i] = dtpg.getBestPattern(TIME_SKELETONS[i]);
+                    }
+                }
+            }
+        }
+
+        for (; i < patternsSize; i++) { // get all or remaining dateTimePatterns entries
             ICUResourceBundle concatenationPatternRb = (ICUResourceBundle) dtPatternsRb.get(i);
             switch (concatenationPatternRb.getType()) {
                 case UResourceBundle.STRING:

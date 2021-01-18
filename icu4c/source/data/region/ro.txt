@@ -1,5 +1,6 @@
 ﻿// © 2016 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
+// Generated using tools/cldr/cldr-to-icu/build-icu-data.xml
 ro{
     Countries{
         001{"Lume"}
@@ -110,7 +111,7 @@ ro{
         EZ{"Zona euro"}
         FI{"Finlanda"}
         FJ{"Fiji"}
-        FK{"Insulele Falkland (Insulele Malvine)"}
+        FK{"Insulele Falkland"}
         FM{"Micronezia"}
         FO{"Insulele Feroe"}
         FR{"Franța"}
@@ -133,7 +134,7 @@ ro{
         GU{"Guam"}
         GW{"Guineea-Bissau"}
         GY{"Guyana"}
-        HK{"Hong Kong"}
+        HK{"R.A.S. Hong Kong, China"}
         HM{"Insula Heard și Insulele McDonald"}
         HN{"Honduras"}
         HR{"Croația"}
@@ -187,7 +188,7 @@ ro{
         ML{"Mali"}
         MM{"Myanmar (Birmania)"}
         MN{"Mongolia"}
-        MO{"Macao"}
+        MO{"R.A.S. Macao, China"}
         MP{"Insulele Mariane de Nord"}
         MQ{"Martinica"}
         MR{"Mauritania"}
@@ -222,7 +223,7 @@ ro{
         PM{"Saint-Pierre și Miquelon"}
         PN{"Insulele Pitcairn"}
         PR{"Puerto Rico"}
-        PS{"Palestina"}
+        PS{"Teritoriile Palestiniene"}
         PT{"Portugalia"}
         PW{"Palau"}
         PY{"Paraguay"}
@@ -253,7 +254,7 @@ ro{
         SV{"El Salvador"}
         SX{"Sint-Maarten"}
         SY{"Siria"}
-        SZ{"eSwatini"}
+        SZ{"Eswatini"}
         TA{"Tristan da Cunha"}
         TC{"Insulele Turks și Caicos"}
         TD{"Ciad"}
@@ -298,6 +299,9 @@ ro{
         ZZ{"Regiune necunoscută"}
     }
     Countries%short{
+        HK{"Hong Kong"}
+        MO{"Macao"}
+        PS{"Palestina"}
         UN{"ONU"}
         US{"S.U.A."}
     }
@@ -306,8 +310,8 @@ ro{
         CG{"Congo (Republica)"}
         CI{"Coasta de Fildeș"}
         CZ{"Republica Cehă"}
+        FK{"Insulele Falkland (Insulele Malvine)"}
         SZ{"Swaziland"}
         TL{"Timorul de Est"}
     }
-    Version{"37"}
 }

@@ -1,5 +1,6 @@
 ﻿// © 2016 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
+// Generated using tools/cldr/cldr-to-icu/build-icu-data.xml
 tt{
     Countries{
         AD{"Андорра"}
@@ -92,7 +93,7 @@ tt{
         GU{"Гуам"}
         GW{"Гвинея-Бисау"}
         GY{"Гайана"}
-        HK{"Гонконг"}
+        HK{"Гонконг Махсус Идарәле Төбәге"}
         HM{"Херд утравы һәм Макдональд утраулары"}
         HN{"Гондурас"}
         HR{"Хорватия"}
@@ -143,7 +144,7 @@ tt{
         MK{"Төньяк Македония"}
         ML{"Мали"}
         MN{"Монголия"}
-        MO{"Макао"}
+        MO{"Макао Махсус Идарәле Төбәге"}
         MP{"Төньяк Мариана утраулары"}
         MQ{"Мартиника"}
         MR{"Мавритания"}
@@ -245,8 +246,11 @@ tt{
         ZW{"Зимбабве"}
         ZZ{"билгесез төбәк"}
     }
+    Countries%short{
+        HK{"Гонконг"}
+        MO{"Макао"}
+    }
     Countries%variant{
         CD{"Конго (КДР)"}
     }
-    Version{"37"}
 }

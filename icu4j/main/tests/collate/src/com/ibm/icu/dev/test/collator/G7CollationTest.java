@@ -1,5 +1,5 @@
 // © 2016 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
 /*
  *******************************************************************************
  * Copyright (C) 2002-2014, International Business Machines Corporation and
@@ -243,9 +243,7 @@ public class G7CollationTest extends TestFmwk{
             if (ok1) {
                 logln(msg1 + source + msg2 + target + msg3 + sResult);
             } else {
-                // Android patch: Add --omitCollationRules to genrb.
-                logln(msg1 + source + msg2 + target + msg3 + sResult + msg4 + sExpect);
-                // Android patch end.
+                errln(msg1 + source + msg2 + target + msg3 + sResult + msg4 + sExpect);
             }
 
             msg1 = ok2 ? "Ok: key(\"" : "FAIL: key(\"";
@@ -255,14 +253,10 @@ public class G7CollationTest extends TestFmwk{
             if (ok2) {
                 logln(msg1 + source + msg2 + target + msg3 + sResult);
             } else {
-                // Android patch: Add --omitCollationRules to genrb.
-                logln(msg1 + source + msg2 + target + msg3 + sResult + msg4 + sExpect);
-                // Android patch end.
+                errln(msg1 + source + msg2 + target + msg3 + sResult + msg4 + sExpect);
                 msg1 = "  ";
                 msg2 = " vs. ";
-                // Android patch: Add --omitCollationRules to genrb.
-                logln(msg1 + CollationTest.prettify(sourceKey) + msg2 + CollationTest.prettify(targetKey));
-                // Android patch end.
+                errln(msg1 + CollationTest.prettify(sourceKey) + msg2 + CollationTest.prettify(targetKey));
             }
 
             msg1 = ok3 ? "Ok: incCompare(\"" : "FAIL: incCompare(\"";
@@ -274,9 +268,7 @@ public class G7CollationTest extends TestFmwk{
             if (ok3) {
                 logln(msg1 + source + msg2 + target + msg3 + sResult);
             } else {
-                // Android patch: Add --omitCollationRules to genrb.
-                logln(msg1 + source + msg2 + target + msg3 + sResult + msg4 + sExpect);
-                // Android patch end.
+                errln(msg1 + source + msg2 + target + msg3 + sResult + msg4 + sExpect);
             }
         }
     }

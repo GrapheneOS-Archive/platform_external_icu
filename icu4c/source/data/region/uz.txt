@@ -1,5 +1,6 @@
 ﻿// © 2016 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
+// Generated using tools/cldr/cldr-to-icu/build-icu-data.xml
 uz{
     Countries{
         001{"Dunyo"}
@@ -110,7 +111,7 @@ uz{
         EZ{"yevrozona"}
         FI{"Finlandiya"}
         FJ{"Fiji"}
-        FK{"Folklend (Malvin) orollari"}
+        FK{"Folklend orollari"}
         FM{"Mikroneziya"}
         FO{"Farer orollari"}
         FR{"Fransiya"}
@@ -133,7 +134,7 @@ uz{
         GU{"Guam"}
         GW{"Gvineya-Bisau"}
         GY{"Gayana"}
-        HK{"Gonkong"}
+        HK{"Gonkong (Xitoy MMH)"}
         HM{"Xerd va Makdonald orollari"}
         HN{"Gonduras"}
         HR{"Xorvatiya"}
@@ -187,7 +188,7 @@ uz{
         ML{"Mali"}
         MM{"Myanma (Birma)"}
         MN{"Mongoliya"}
-        MO{"Makao"}
+        MO{"Makao (Xitoy MMH)"}
         MP{"Shimoliy Mariana orollari"}
         MQ{"Martinika"}
         MR{"Mavritaniya"}
@@ -222,7 +223,7 @@ uz{
         PM{"Sen-Pyer va Mikelon"}
         PN{"Pitkern orollari"}
         PR{"Puerto-Riko"}
-        PS{"Falastin"}
+        PS{"Falastin hududlari"}
         PT{"Portugaliya"}
         PW{"Palau"}
         PY{"Paragvay"}
@@ -299,6 +300,9 @@ uz{
     }
     Countries%short{
         GB{"Britaniya"}
+        HK{"Gonkong"}
+        MO{"Makao"}
+        PS{"Falastin"}
         UN{"BMT"}
         US{"AQSH"}
     }
@@ -307,7 +311,7 @@ uz{
         CG{"Kongo (Respublika)"}
         CI{"Fil suyagi qirg‘og‘i"}
         CZ{"Chexiya Respublikasi"}
+        FK{"Folklend (Malvin) orollari"}
         TL{"Sharqiy Timor"}
     }
-    Version{"37"}
 }

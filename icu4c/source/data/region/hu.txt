@@ -1,5 +1,6 @@
 ﻿// © 2016 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
+// Generated using tools/cldr/cldr-to-icu/build-icu-data.xml
 hu{
     Countries{
         001{"Világ"}
@@ -73,9 +74,9 @@ hu{
         BZ{"Belize"}
         CA{"Kanada"}
         CC{"Kókusz (Keeling)-szigetek"}
-        CD{"Kongó - Kinshasa"}
+        CD{"Kongó – Kinshasa"}
         CF{"Közép-afrikai Köztársaság"}
-        CG{"Kongó - Brazzaville"}
+        CG{"Kongó – Brazzaville"}
         CH{"Svájc"}
         CI{"Elefántcsontpart"}
         CK{"Cook-szigetek"}
@@ -110,7 +111,7 @@ hu{
         EZ{"Eurózóna"}
         FI{"Finnország"}
         FJ{"Fidzsi"}
-        FK{"Falkland-szigetek (Malvin-szigetek)"}
+        FK{"Falkland-szigetek"}
         FM{"Mikronézia"}
         FO{"Feröer szigetek"}
         FR{"Franciaország"}
@@ -133,7 +134,7 @@ hu{
         GU{"Guam"}
         GW{"Bissau-Guinea"}
         GY{"Guyana"}
-        HK{"Hongkong"}
+        HK{"Hongkong KKT"}
         HM{"Heard-sziget és McDonald-szigetek"}
         HN{"Honduras"}
         HR{"Horvátország"}
@@ -187,7 +188,7 @@ hu{
         ML{"Mali"}
         MM{"Mianmar"}
         MN{"Mongólia"}
-        MO{"Makaó"}
+        MO{"Makaó KKT"}
         MP{"Északi Mariana-szigetek"}
         MQ{"Martinique"}
         MR{"Mauritánia"}
@@ -222,7 +223,7 @@ hu{
         PM{"Saint-Pierre és Miquelon"}
         PN{"Pitcairn-szigetek"}
         PR{"Puerto Rico"}
-        PS{"Palesztina"}
+        PS{"Palesztin Autonómia"}
         PT{"Portugália"}
         PW{"Palau"}
         PY{"Paraguay"}
@@ -299,6 +300,9 @@ hu{
     }
     Countries%short{
         GB{"UK"}
+        HK{"Hongkong"}
+        MO{"Makaó"}
+        PS{"Palesztina"}
         UN{"ENSZ"}
         US{"USA"}
     }
@@ -306,8 +310,8 @@ hu{
         CD{"Kongó (KDK)"}
         CG{"Kongó (Köztársaság)"}
         CZ{"Cseh Köztársaság"}
+        FK{"Falkland-szigetek (Malvin-szigetek)"}
         SZ{"Eswatini"}
         TL{"Timor-Leste"}
     }
-    Version{"37"}
 }

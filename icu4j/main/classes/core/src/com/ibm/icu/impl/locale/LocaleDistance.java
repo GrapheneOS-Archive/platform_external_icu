@@ -1,5 +1,5 @@
 // © 2017 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
 package com.ibm.icu.impl.locale;
 
 import java.nio.ByteBuffer;
@@ -92,7 +92,7 @@ public class LocaleDistance {
         return shiftedDistance / (1 << DISTANCE_SHIFT);
     }
 
-    private static final int getDistanceFloor(int indexAndDistance) {
+    public static final int getDistanceFloor(int indexAndDistance) {
         return (indexAndDistance & DISTANCE_MASK) >> DISTANCE_SHIFT;
     }
 

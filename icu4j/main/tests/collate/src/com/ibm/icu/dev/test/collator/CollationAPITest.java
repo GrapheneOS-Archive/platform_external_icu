@@ -1,5 +1,5 @@
 // © 2016 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
 /*
  *******************************************************************************
  * Copyright (C) 2002-2014, International Business Machines Corporation and
@@ -496,10 +496,8 @@ public class CollationAPITest extends TestFmwk {
         doAssert((col.getDecomposition() == Collator.NO_DECOMPOSITION), "Decomposition mode = Collator.NO_DECOMPOSITION");
 
 
-        // Android patch: Add --omitCollationRules to genrb.
-        // RuleBasedCollator rcol = (RuleBasedCollator)Collator.getInstance(new Locale("da", "DK"));
-        // doAssert(rcol.getRules().length() != 0, "da_DK rules does not have length 0");
-        // Android patch end.
+        RuleBasedCollator rcol = (RuleBasedCollator)Collator.getInstance(new Locale("da", "DK"));
+        doAssert(rcol.getRules().length() != 0, "da_DK rules does not have length 0");
 
         try {
             col = Collator.getInstance(Locale.FRENCH);

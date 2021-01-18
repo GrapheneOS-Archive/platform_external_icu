@@ -1,5 +1,5 @@
 // © 2017 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
 package com.ibm.icu.number;
 
 import java.math.BigDecimal;
@@ -365,6 +365,13 @@ public abstract class Precision {
     // PACKAGE-PRIVATE APIS //
     //////////////////////////
 
+    /**
+     * @internal
+     * @deprecated ICU internal only.
+     */
+    @Deprecated
+    public static final BogusRounder BOGUS_PRECISION = new BogusRounder();
+
     static final InfiniteRounderImpl NONE = new InfiniteRounderImpl();
 
     static final FractionRounderImpl FIXED_FRAC_0 = new FractionRounderImpl(0, 0);
@@ -543,6 +550,55 @@ public abstract class Precision {
     ///////////////
     // INTERNALS //
     ///////////////
+
+    /**
+     * An BogusRounder's MathContext into precision.
+     *
+     * @internal
+     * @deprecated This API is ICU internal only.
+     */
+    @Deprecated
+    public static class BogusRounder extends Precision {
+        /**
+         * Default constructor.
+         * @internal
+         * @deprecated This API is ICU internal only.
+         */
+        @Deprecated
+        public BogusRounder() {
+        }
+
+        /**
+         * {@inheritDoc}
+         * @internal
+         * @deprecated This API is ICU internal only.
+         */
+        @Override
+        @Deprecated
+        public void apply(DecimalQuantity value) {
+            throw new AssertionError("BogusRounder must not be applied");
+        }
+
+        @Override
+        BogusRounder createCopy() {
+            BogusRounder copy = new BogusRounder();
+            copy.mathContext = mathContext;
+            return copy;
+        }
+
+        /**
+         * Copies the BogusRounder's MathContext into precision.
+         *
+         * @internal
+         * @deprecated This API is ICU internal only.
+         */
+        @Deprecated
+        public Precision into(Precision precision) {
+            Precision copy = precision.createCopy();
+            copy.mathContext = mathContext;
+            return copy;
+        }
+    }
 
     static class InfiniteRounderImpl extends Precision {
 

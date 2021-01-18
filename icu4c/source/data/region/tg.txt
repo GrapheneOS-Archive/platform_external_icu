@@ -1,5 +1,6 @@
 ﻿// © 2016 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
+// Generated using tools/cldr/cldr-to-icu/build-icu-data.xml
 tg{
     Countries{
         AC{"Асунсон"}
@@ -93,7 +94,7 @@ tg{
         GU{"Гуам"}
         GW{"Гвинея-Бисау"}
         GY{"Гайана"}
-        HK{"Ҳонконг"}
+        HK{"Ҳонконг (МММ)"}
         HM{"Ҷазираи Ҳерд ва Ҷазираҳои Макдоналд"}
         HN{"Гондурас"}
         HR{"Хорватия"}
@@ -145,7 +146,7 @@ tg{
         ML{"Мали"}
         MM{"Мянма"}
         MN{"Муғулистон"}
-        MO{"Макао"}
+        MO{"Макао (МММ)"}
         MP{"Ҷазираҳои Марианаи Шимолӣ"}
         MQ{"Мартиника"}
         MR{"Мавритания"}
@@ -251,11 +252,12 @@ tg{
         ZZ{"Минтақаи номаълум"}
     }
     Countries%short{
+        HK{"Ҳонконг"}
+        MO{"Макао"}
         US{"ИМ"}
     }
     Countries%variant{
         CD{"Конго (ҶДК)"}
         CG{"Конго"}
     }
-    Version{"37"}
 }

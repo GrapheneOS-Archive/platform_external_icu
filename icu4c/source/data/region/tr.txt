@@ -1,5 +1,6 @@
 ﻿// © 2016 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
+// Generated using tools/cldr/cldr-to-icu/build-icu-data.xml
 tr{
     Countries{
         001{"Dünya"}
@@ -110,7 +111,7 @@ tr{
         EZ{"Euro Bölgesi"}
         FI{"Finlandiya"}
         FJ{"Fiji"}
-        FK{"Falkland Adaları (Malvinas Adaları)"}
+        FK{"Falkland Adaları"}
         FM{"Mikronezya"}
         FO{"Faroe Adaları"}
         FR{"Fransa"}
@@ -133,7 +134,7 @@ tr{
         GU{"Guam"}
         GW{"Gine-Bissau"}
         GY{"Guyana"}
-        HK{"Hong Kong"}
+        HK{"Çin Hong Kong ÖİB"}
         HM{"Heard Adası ve McDonald Adaları"}
         HN{"Honduras"}
         HR{"Hırvatistan"}
@@ -187,7 +188,7 @@ tr{
         ML{"Mali"}
         MM{"Myanmar (Burma)"}
         MN{"Moğolistan"}
-        MO{"Makao"}
+        MO{"Çin Makao ÖİB"}
         MP{"Kuzey Mariana Adaları"}
         MQ{"Martinik"}
         MR{"Moritanya"}
@@ -222,7 +223,7 @@ tr{
         PM{"Saint Pierre ve Miquelon"}
         PN{"Pitcairn Adaları"}
         PR{"Porto Riko"}
-        PS{"Filistin"}
+        PS{"Filistin Bölgeleri"}
         PT{"Portekiz"}
         PW{"Palau"}
         PY{"Paraguay"}
@@ -299,6 +300,9 @@ tr{
     }
     Countries%short{
         GB{"BK"}
+        HK{"Hong Kong"}
+        MO{"Makao"}
+        PS{"Filistin"}
         UN{"BM"}
         US{"ABD"}
     }
@@ -307,8 +311,8 @@ tr{
         CG{"Kongo Cumhuriyeti"}
         CI{"Fildişi Sahili"}
         CZ{"Çek Cumhuriyeti"}
+        FK{"Falkland Adaları (Malvinas Adaları)"}
         SZ{"Svaziland"}
         TL{"Doğu Timor"}
     }
-    Version{"37"}
 }

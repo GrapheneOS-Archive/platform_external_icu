@@ -1,5 +1,5 @@
 // © 2016 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
 /*
  *******************************************************************************
  * Copyright (C) 2002-2014, International Business Machines Corporation and         *
@@ -120,9 +120,7 @@ public class CollationCreationMethodTest extends TestFmwk
             msg.append(" failed to produce identical keys on both collators\n");
             msg.append("  localeCollator key: ").append(CollationTest.prettify(k1)).append('\n');
             msg.append("  ruleCollator   key: ").append(CollationTest.prettify(k2)).append('\n');
-            // Android patch: Add --omitCollationRules to genrb.
-            logln(msg.toString());
-            // Android patch end.
+            errln(msg.toString());
         }
     }
 }

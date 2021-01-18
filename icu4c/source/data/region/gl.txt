@@ -1,5 +1,6 @@
 ﻿// © 2016 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
+// Generated using tools/cldr/cldr-to-icu/build-icu-data.xml
 gl{
     Countries{
         001{"Mundo"}
@@ -110,7 +111,7 @@ gl{
         EZ{"Eurozona"}
         FI{"Finlandia"}
         FJ{"Fixi"}
-        FK{"Illas Malvinas (Falkland)"}
+        FK{"Illas Malvinas"}
         FM{"Micronesia"}
         FO{"Illas Feroe"}
         FR{"Francia"}
@@ -133,7 +134,7 @@ gl{
         GU{"Guam"}
         GW{"A Guinea Bissau"}
         GY{"Güiana"}
-        HK{"Hong Kong"}
+        HK{"Hong Kong RAE da China"}
         HM{"Illa Heard e Illas McDonald"}
         HN{"Honduras"}
         HR{"Croacia"}
@@ -187,7 +188,7 @@ gl{
         ML{"Malí"}
         MM{"Myanmar (Birmania)"}
         MN{"Mongolia"}
-        MO{"Macau"}
+        MO{"Macau RAE da China"}
         MP{"Illas Marianas do Norte"}
         MQ{"Martinica"}
         MR{"Mauritania"}
@@ -222,7 +223,7 @@ gl{
         PM{"Saint Pierre et Miquelon"}
         PN{"Illas Pitcairn"}
         PR{"Porto Rico"}
-        PS{"Palestina"}
+        PS{"Territorios Palestinos"}
         PT{"Portugal"}
         PW{"Palau"}
         PY{"O Paraguai"}
@@ -299,6 +300,9 @@ gl{
     }
     Countries%short{
         GB{"RU"}
+        HK{"Hong Kong"}
+        MO{"Macau"}
+        PS{"Palestina"}
         UN{"ONU"}
         US{"EUA"}
     }
@@ -307,7 +311,7 @@ gl{
         CG{"Congo (RC)"}
         CI{"Costa do Marfil"}
         CZ{"República Checa"}
-        SZ{"Suacilandia"}
+        FK{"Illas Malvinas (Falkland)"}
+        SZ{"Swazilandia"}
     }
-    Version{"37"}
 }

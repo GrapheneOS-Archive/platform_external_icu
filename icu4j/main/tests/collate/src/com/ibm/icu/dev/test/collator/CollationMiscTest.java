@@ -1,5 +1,5 @@
 // © 2016 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
 /*
  *******************************************************************************
  * Copyright (C) 2002-2016, International Business Machines Corporation and
@@ -1986,9 +1986,7 @@ public class CollationMiscTest extends TestFmwk {
             }
             coll = new RuleBasedCollator(rule);
         } catch (Exception e) {
-            // Android patch: Add --omitCollationRules to genrb.
-            logln(e.getMessage());
-            // Android patch end.
+            warnln(e.getMessage());
         }
     }
 
@@ -3083,9 +3081,7 @@ public class CollationMiscTest extends TestFmwk {
             }
 
         }catch(Exception e){
-            // Android patch: Add --omitCollationRules to genrb.
-            logln("ERROR: in creation of rule based collator");
-            // Android patch end.
+            warnln("ERROR: in creation of rule based collator");
         }
     }
 
@@ -3114,9 +3110,7 @@ public class CollationMiscTest extends TestFmwk {
             }
 
         }catch(Exception e){
-            // Android patch: Add --omitCollationRules to genrb.
-            logln("ERROR: in creation of rule based collator");
-            // Android patch end.
+            warnln("ERROR: in creation of rule based collator");
         }
     }
 

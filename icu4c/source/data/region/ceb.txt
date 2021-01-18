@@ -1,10 +1,11 @@
 ﻿// © 2016 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
+// Generated using tools/cldr/cldr-to-icu/build-icu-data.xml
 ceb{
     Countries{
         001{"Kalibutan"}
         002{"Africa"}
-        003{"North America"}
+        003{"Amihanang Amerika"}
         005{"South America"}
         009{"Oceania"}
         011{"Western Africa"}
@@ -104,13 +105,13 @@ ceb{
         EG{"Egypt"}
         EH{"Western Sahara"}
         ER{"Eritrea"}
-        ES{"Spain"}
+        ES{"Espanya"}
         ET{"Ethiopia"}
         EU{"European Union"}
         EZ{"Eurozone"}
         FI{"Finland"}
         FJ{"Fiji"}
-        FK{"Falkland Islands (Islas Malvinas)"}
+        FK{"Falkland Islands"}
         FM{"Micronesia"}
         FO{"Faroe Islands"}
         FR{"Pransya"}
@@ -133,7 +134,7 @@ ceb{
         GU{"Guam"}
         GW{"Guinea-Bissau"}
         GY{"Guyana"}
-        HK{"Hong Kong"}
+        HK{"Hong Kong SAR China"}
         HM{"Heard & McDonald Islands"}
         HN{"Honduras"}
         HR{"Croatia"}
@@ -187,7 +188,7 @@ ceb{
         ML{"Mali"}
         MM{"Myanmar (Burma)"}
         MN{"Mongolia"}
-        MO{"Macao"}
+        MO{"Macao SAR China"}
         MP{"Northern Mariana Islands"}
         MQ{"Martinique"}
         MR{"Mauritania"}
@@ -222,7 +223,7 @@ ceb{
         PM{"St. Pierre & Miquelon"}
         PN{"Pitcairn Islands"}
         PR{"Puerto Rico"}
-        PS{"Palestine"}
+        PS{"Palestinian Territories"}
         PT{"Portugal"}
         PW{"Palau"}
         PY{"Paraguay"}
@@ -274,7 +275,7 @@ ceb{
         UA{"Ukraine"}
         UG{"Uganda"}
         UM{"U.S. Outlying Islands"}
-        UN{"United Nations"}
+        UN{"Hiniusang Kanasoran"}
         US{"Estados Unidos"}
         UY{"Uruguay"}
         UZ{"Uzbekistan"}
@@ -299,15 +300,18 @@ ceb{
     }
     Countries%short{
         GB{"UK"}
+        HK{"Hong Kong"}
+        MO{"Macao"}
+        PS{"Palestine"}
         US{"US"}
     }
     Countries%variant{
         CD{"Congo (DRC)"}
-        CG{"Congo (Republic)"}
+        CG{"Congo (Republika)"}
         CI{"Ivory Coast"}
         CZ{"Czech Republic"}
+        FK{"Falkland Islands (Islas Malvinas)"}
         SZ{"Swaziland"}
         TL{"East Timor"}
     }
-    Version{"37"}
 }

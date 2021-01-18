@@ -360,6 +360,43 @@ static void U_CALLCONV DataDrivenPrintf(void)
 U_CDECL_END
 
 U_CDECL_BEGIN
+static void U_CALLCONV ScanfMultipleIntegers(void)
+{
+#if !UCONFIG_NO_FORMATTING && !UCONFIG_NO_FILE_IO
+    UnicodeString input = UNICODE_STRING("[1.2.3]", 7);
+    UnicodeString fmt = UNICODE_STRING("[%d.%d.%d]", 10);
+    DataDrivenLogger logger;
+
+    const int32_t expectedFirst = 1;
+    const int32_t expectedSecond = 2;
+    const int32_t expectedThird = 3;
+    const int32_t expectedResult = 3;
+    int32_t first = 0;
+    int32_t second = 0;
+    int32_t third = 0;
+    int32_t result = u_sscanf_u(input.getBuffer(), fmt.getBuffer(), &first, &second, &third);
+
+    if(first != expectedFirst){
+        log_err("error in scanfmultipleintegers test 'first' Got: %d Exp: %d\n", 
+                first, expectedFirst);
+    }
+    if(second != expectedSecond){
+        log_err("error in scanfmultipleintegers test 'second' Got: %d Exp: %d\n",
+                second, expectedSecond);
+    }
+    if(third != expectedThird){
+        log_err("error in scanfmultipleintegers test 'third' Got: %d Exp: %d\n",
+                third, expectedThird);
+    }
+    if(result != expectedResult){
+        log_err("error in scanfmultipleintegers test 'result'  Got: %d Exp: %d\n",
+                result, expectedResult);
+    }
+#endif
+}
+U_CDECL_END
+
+U_CDECL_BEGIN
 static void U_CALLCONV DataDrivenScanf(void)
 {
 #if !UCONFIG_NO_FORMATTING && !UCONFIG_NO_FILE_IO
@@ -697,8 +734,75 @@ static void addAllTests(TestNode** root) {
     addTest(root, &DataDrivenPrintf, "datadriv/DataDrivenPrintf");
     addTest(root, &DataDrivenPrintfPrecision, "datadriv/DataDrivenPrintfPrecision");
     addTest(root, &DataDrivenScanf, "datadriv/DataDrivenScanf");
+    addTest(root, &ScanfMultipleIntegers, "ScanfMultipleIntegers");
 #endif
     addStreamTests(root);
+}
+
+/* returns the path to icu/source/data/out */
+static const char *ctest_dataOutDir()
+{
+    static const char *dataOutDir = NULL;
+
+    if(dataOutDir) {
+        return dataOutDir;
+    }
+
+    /* U_TOPBUILDDIR is set by the makefiles on UNIXes when building cintltst and intltst
+    //              to point to the top of the build hierarchy, which may or
+    //              may not be the same as the source directory, depending on
+    //              the configure options used.  At any rate,
+    //              set the data path to the built data from this directory.
+    //              The value is complete with quotes, so it can be used
+    //              as-is as a string constant.
+    */
+#if defined (U_TOPBUILDDIR)
+    {
+        dataOutDir = U_TOPBUILDDIR "data" U_FILE_SEP_STRING "out" U_FILE_SEP_STRING;
+    }
+#else
+
+    /* On Windows, the file name obtained from __FILE__ includes a full path.
+     *             This file is "wherever\icu\source\test\cintltst\cintltst.c"
+     *             Change to    "wherever\icu\source\data"
+     */
+    {
+        static char p[sizeof(__FILE__) + 20];
+        char *pBackSlash;
+        int i;
+
+        strcpy(p, __FILE__);
+        /* We want to back over three '\' chars.                            */
+        /*   Only Windows should end up here, so looking for '\' is safe.   */
+        for (i=1; i<=3; i++) {
+            pBackSlash = strrchr(p, U_FILE_SEP_CHAR);
+            if (pBackSlash != NULL) {
+                *pBackSlash = 0;        /* Truncate the string at the '\'   */
+            }
+        }
+
+        if (pBackSlash != NULL) {
+            /* We found and truncated three names from the path.
+             *  Now append "source\data" and set the environment
+             */
+            strcpy(pBackSlash, U_FILE_SEP_STRING "data" U_FILE_SEP_STRING "out" U_FILE_SEP_STRING);
+            dataOutDir = p;
+        }
+        else {
+            /* __FILE__ on MSVC7 does not contain the directory */
+            FILE *file = fopen(".." U_FILE_SEP_STRING ".." U_FILE_SEP_STRING "data" U_FILE_SEP_STRING "Makefile.in", "r");
+            if (file) {
+                fclose(file);
+                dataOutDir = ".." U_FILE_SEP_STRING ".." U_FILE_SEP_STRING "data" U_FILE_SEP_STRING "out" U_FILE_SEP_STRING;
+            }
+            else {
+                dataOutDir = ".." U_FILE_SEP_STRING ".." U_FILE_SEP_STRING ".." U_FILE_SEP_STRING "data" U_FILE_SEP_STRING "out" U_FILE_SEP_STRING;
+            }
+        }
+    }
+#endif
+
+    return dataOutDir;
 }
 
 /*  ctest_setICU_DATA  - if the ICU_DATA environment variable is not already
@@ -711,7 +815,14 @@ static void addAllTests(TestNode** root) {
  *                       tests dynamically load some data.
  */
 static void ctest_setICU_DATA() {
-    u_setDataDirectory(ctest_dataOutDir());
+
+    /* No location for the data dir was identifiable.
+     *   Add other fallbacks for the test data location here if the need arises
+     */
+    if (getenv("ICU_DATA") == NULL) {
+        /* If ICU_DATA isn't set, set it to the usual location */
+        u_setDataDirectory(ctest_dataOutDir());
+    }
 }
 
 U_CDECL_BEGIN
@@ -780,15 +891,20 @@ int main(int argc, char* argv[])
     nerrors = runTestRequest(root, argc, argv);
 
 #if 1
+    static const char* filenamesToRemove[] = { STANDARD_TEST_FILE, MEDIUMNAME_TEST_FILE, LONGNAME_TEST_FILE, nullptr };
+    const char** filenamesToRemovePtr = filenamesToRemove;
+    const char* filenameToRemove;
+    while ((filenameToRemove = *filenamesToRemovePtr++) != nullptr)
     {
-        FILE* fileToRemove = fopen(STANDARD_TEST_FILE, "r");
+
+        FILE* fileToRemove = fopen(filenameToRemove, "r");
         /* This should delete any temporary files. */
         if (fileToRemove) {
             fclose(fileToRemove);
-            log_verbose("Deleting: %s\n", STANDARD_TEST_FILE);
-            if (remove(STANDARD_TEST_FILE) != 0) {
+            log_verbose("Deleting: %s\n", filenameToRemove);
+            if (remove(filenameToRemove) != 0) {
                 /* Maybe someone didn't close the file correctly. */
-                fprintf(stderr, "FAIL: Could not delete %s\n", STANDARD_TEST_FILE);
+                fprintf(stderr, "FAIL: Could not delete %s\n", filenameToRemove);
                 nerrors += 1;
             }
         }

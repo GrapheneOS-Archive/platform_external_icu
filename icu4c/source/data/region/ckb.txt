@@ -1,5 +1,6 @@
 ﻿// © 2016 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
+// Generated using tools/cldr/cldr-to-icu/build-icu-data.xml
 ckb{
     Countries{
         001{"جیهان"}
@@ -222,7 +223,7 @@ ckb{
         PM{"سەن پیێر و میکێلۆن"}
         PN{"دوورگەکانی پیتکەرن"}
         PR{"پۆرتۆڕیکۆ"}
-        PS{"فەلەستین"}
+        PS{"ناوچە فەلەستینیەکان"}
         PT{"پورتوگال"}
         PW{"پالاو"}
         PY{"پاراگوای"}
@@ -295,9 +296,11 @@ ckb{
         ZW{"زیمبابوی"}
         ZZ{"ناوچەی نەناسراو"}
     }
+    Countries%short{
+        PS{"فەلەستین"}
+    }
     Countries%variant{
         CD{"کۆماری دیموکراتیی کۆنگۆ"}
         CG{"کۆماری کۆنگۆ"}
     }
-    Version{"37"}
 }
