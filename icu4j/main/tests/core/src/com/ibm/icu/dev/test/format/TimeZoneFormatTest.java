@@ -385,7 +385,7 @@ public class TimeZoneFormatTest extends TestFmwk {
 
                 Set<String> ids = null;
                 if (JDKTZ) {
-                    ids = new TreeSet<String>();
+                    ids = new TreeSet<>();
                     String[] jdkIDs = java.util.TimeZone.getAvailableIDs();
                     for (String jdkID : jdkIDs) {
                         if (EXCL_TZ_PATTERN.matcher(jdkID).matches()) {
@@ -659,7 +659,7 @@ public class TimeZoneFormatTest extends TestFmwk {
             TimeType expType = (TimeType)test[7];
 
             TimeZoneFormat tzfmt = TimeZoneFormat.getInstance(loc);
-            Output<TimeType> timeType = new Output<TimeType>(TimeType.UNKNOWN);
+            Output<TimeType> timeType = new Output<>(TimeType.UNKNOWN);
             ParsePosition pos = new ParsePosition(inPos);
             TimeZone tz = tzfmt.parse(style, text, pos, options, timeType);
 
@@ -950,7 +950,7 @@ public class TimeZoneFormatTest extends TestFmwk {
 
         for (Object[] testCase : TESTDATA) {
             TimeZone tz = TimeZone.getTimeZone((String)testCase[1]);
-            Output<TimeType> timeType = new Output<TimeType>();
+            Output<TimeType> timeType = new Output<>();
 
             ULocale uloc = new ULocale((String)testCase[0]);
             TimeZoneFormat tzfmt = TimeZoneFormat.getInstance(uloc);
@@ -1046,7 +1046,7 @@ public class TimeZoneFormatTest extends TestFmwk {
             tzfmt.setTimeZoneNames(tzdbNames);
 
             TimeZone tz = TimeZone.getTimeZone((String)testCase[1]);
-            Output<TimeType> timeType = new Output<TimeType>();
+            Output<TimeType> timeType = new Output<>();
             String out = tzfmt.format((Style)testCase[3], tz, ((Date)testCase[2]).getTime(), timeType);
 
             if (!out.equals(testCase[4]) || timeType.value != testCase[5]) {
@@ -1102,7 +1102,7 @@ public class TimeZoneFormatTest extends TestFmwk {
     public void TestTZDBNamesThreading() {
         final TZDBTimeZoneNames names = new TZDBTimeZoneNames(ULocale.ENGLISH);
         final AtomicInteger found = new AtomicInteger();
-        List<Thread> threads = new ArrayList<Thread>();
+        List<Thread> threads = new ArrayList<>();
         final int numIteration = 1000;
 
         try {
