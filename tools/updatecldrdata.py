@@ -128,6 +128,26 @@ def main():
       '{dst}'.format(dst=icu4c_data_source_dir)
   ])
 
+  # Generate icu4c/source/data/misc/langInfo.txt by a ICU4J tool
+  langInfo_dst_path =  os.path.join(icu4c_data_source_dir, 'misc', 'langInfo.txt')
+  print('Building %s' % langInfo_dst_path)
+  langInfo_out_path = '/tmp/langInfo.txt' # path hardcoded in the LocaleDistanceBuilder tool
+  if os.path.exists(langInfo_out_path):
+    os.remove(langInfo_out_path)
+
+  os.chdir(icu4j_build_dir)
+  subprocess.check_call(['ant', 'icu4jJar'])
+  os.chdir(os.path.join(icu4j_build_dir, 'tools', 'misc'))
+  subprocess.check_call(['ant', 'jar'])
+  subprocess.check_call([
+      'java',
+      '-cp',
+      'out/lib/icu4j-tools.jar:../../icu4j.jar',
+      'com.ibm.icu.dev.tool.locale.LocaleDistanceBuilder',
+  ])
+  print('Copying {src} to {dst}'.format(src=langInfo_out_path, dst=langInfo_dst_path))
+  shutil.copyfile(langInfo_out_path, langInfo_dst_path)
+
   print('Look in %s for new data source files' % icu4c_data_source_dir)
   sys.exit(0)
 
