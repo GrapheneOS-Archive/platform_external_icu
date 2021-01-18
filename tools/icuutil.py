@@ -142,6 +142,9 @@ def MakeAndCopyIcuDataFiles(icu_build_dir):
   # Generate the ICU4J .jar files
   subprocess.check_call(['make', '-j32', 'icu4j-data'])
 
+  # Generate the test data in icu4c/source/test/testdata/out
+  subprocess.check_call(['make', '-j32', 'tests'])
+
   # Copy the ICU4J .jar files to their ultimate destination.
   icu_jar_data_dir = '%s/main/shared/data' % icu4jDir()
   jarfiles = glob.glob('data/out/icu4j/*.jar')
@@ -155,6 +158,12 @@ def MakeAndCopyIcuDataFiles(icu_build_dir):
     else:
       print('Copying %s to %s ...' % (jarfile, icu_jar_data_dir))
       shutil.copy(jarfile, icu_jar_data_dir)
+
+  testdata_out_dir = '%s/test/testdata/out' % icu4cDir()
+  print('Copying test data to %s ' % testdata_out_dir)
+  if os.path.exists(testdata_out_dir):
+    shutil.rmtree(testdata_out_dir)
+  shutil.copytree('test/testdata/out', testdata_out_dir)
 
   # Switch back to the original working cwd.
   os.chdir(original_working_dir)
