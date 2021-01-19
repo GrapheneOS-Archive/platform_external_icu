@@ -2870,8 +2870,8 @@ LocaleTest::TestAddLikelyAndMinimizeSubtags() {
             "nl"
         }, {
             "und_NO",
-            "nb_Latn_NO",
-            "nb"
+            "no_Latn_NO",
+            "no"
         }, {
             "und_NP",
             "ne_Deva_NP",
@@ -2982,8 +2982,8 @@ LocaleTest::TestAddLikelyAndMinimizeSubtags() {
             "sl"
         }, {
             "und_SJ",
-            "nb_Latn_SJ",
-            "nb_SJ"
+            "no_Latn_SJ",
+            "no_SJ"
         }, {
             "und_SK",
             "sk_Latn_SK",
