@@ -22,6 +22,9 @@
 #include "unicode/calendar.h"
 #include "unicode/dtptngen.h"
 #include "unicode/dtitvinf.h"
+// Android patch (CLDR ticket #10321) begin.
+#include "unicode/msgfmt.h"
+// Android patch (CLDR ticket #10321) begin.
 #include "unicode/simpleformatter.h"
 #include "unicode/udisplaycontext.h"
 #include "cmemory.h"
