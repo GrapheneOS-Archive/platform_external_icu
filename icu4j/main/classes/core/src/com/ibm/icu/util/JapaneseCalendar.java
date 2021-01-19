@@ -399,8 +399,12 @@ public class JapaneseCalendar extends GregorianCalendar {
         TAISHO = 233;
         SHOWA = 234;
         HEISEI = 235;
+        // Android-changed: Android doesn't use system time to initialize CURRENT_ERA.
+        //   Android could initialize this class during device boot with incorrect time, and
+        //   all forked process, e.g. app processes, may have incorrect current era.
+        // CURRENT_ERA = ERA_RULES.getCurrentEraIndex();
         REIWA = 236;
-        CURRENT_ERA = ERA_RULES.getCurrentEraIndex();
+        CURRENT_ERA = REIWA;
     }
 
     /**
