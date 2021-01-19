@@ -18,6 +18,12 @@
 #include <ctype.h>
 #include <limits.h>
 
+#if defined(__ANDROID__)
+#include <errno.h>
+#include <libgen.h>
+#include <unistd.h>
+#endif
+
 #if defined(__linux__)
 #include <features.h>
 #endif
@@ -1354,7 +1360,23 @@ static const char* ctest_icuSrcDir(void) {
         return srcDir;
     }
 
-#if defined(U_TOPSRCDIR)
+#if defined(__ANDROID__)
+    /*
+     * On Android, the source tree is not available as the tests are cross
+     * compiled. Test data is found at paths relative to the test binary.
+     */
+    char exePath[PATH_MAX];
+    ssize_t len = readlink("/proc/self/exe", exePath, sizeof(exePath));
+    if (len == -1) {
+        fprintf(stderr, "Failed to read /proc/self/exe: %s\n", strerror(errno));
+        abort();
+    }
+    exePath[len] = '\0';
+
+    static char path[PATH_MAX];
+    snprintf(path, sizeof(path), "%s/", dirname(exePath));
+    srcDir = path;
+#elif defined(U_TOPSRCDIR)
     /* U_TOPSRCDIR is set by the makefiles on UNIXes when building cintltst and
      * intltst to point to the top of the build hierarchy, which may or may not
      * be the same as the source directory, depending on the configure options
@@ -1439,10 +1461,17 @@ ctest_dataOutDir(void) {
         return path;
     }
 
+#if defined(__ANDROID__)
+    // Android has the ICU data installed to a known location on the device. Use
+    // that if ICU_DATA is not set.
+    snprintf(path, sizeof(path), "/system/usr/icu/");
+    return path;
+#else
     // But fallback to the source directory if needed.
     snprintf(path, sizeof(path), "%sout%s", ctest_dataSrcDir(),
              U_FILE_SEP_STRING);
     return path;
+#endif
 }
 
 const char* T_CTEST_EXPORT2
