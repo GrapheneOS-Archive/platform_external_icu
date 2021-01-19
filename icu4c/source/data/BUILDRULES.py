@@ -567,9 +567,12 @@ def generate_tree(
             input_files = input_files,
             output_files = output_files,
             tool = IcuTool("genrb"),
-            args = "-s {IN_DIR}/{IN_SUB_DIR} -d {OUT_DIR}/{OUT_PREFIX} -i {OUT_DIR} "
+            # BEGIN android-changed
+            args = "-s {IN_DIR}/{IN_SUB_DIR} -d {OUT_DIR}/{OUT_PREFIX} -i {OUT_DIR} " +
+                ("--omitCollationRules " if sub_dir == "coll" else "") +
                 "{EXTRA_OPTION} -k "
                 "{INPUT_BASENAME}",
+            # END android-changed
             format_with = {
                 "IN_SUB_DIR": sub_dir,
                 "OUT_PREFIX": out_prefix,
