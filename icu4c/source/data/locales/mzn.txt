@@ -28,7 +28,6 @@ mzn{
         native{"arabext"}
     }
     calendar{
-        default{"persian"}
         gregorian{
             eras{
                 abbreviated{

@@ -111,7 +111,7 @@ nn{
         EZ{"eurosona"}
         FI{"Finland"}
         FJ{"Fiji"}
-        FK{"Falklandsøyane"}
+        FK{"Falklandsøyane (Islas Malvinas)"}
         FM{"Mikronesiaføderasjonen"}
         FO{"Færøyane"}
         FR{"Frankrike"}
@@ -134,7 +134,7 @@ nn{
         GU{"Guam"}
         GW{"Guinea-Bissau"}
         GY{"Guyana"}
-        HK{"Hongkong SAR Kina"}
+        HK{"Hongkong"}
         HM{"Heardøya og McDonaldøyane"}
         HN{"Honduras"}
         HR{"Kroatia"}
@@ -188,7 +188,7 @@ nn{
         ML{"Mali"}
         MM{"Myanmar (Burma)"}
         MN{"Mongolia"}
-        MO{"Macao SAR Kina"}
+        MO{"Macao"}
         MP{"Nord-Marianane"}
         MQ{"Martinique"}
         MR{"Mauritania"}
@@ -223,7 +223,7 @@ nn{
         PM{"Saint-Pierre-et-Miquelon"}
         PN{"Pitcairn"}
         PR{"Puerto Rico"}
-        PS{"Det palestinske området"}
+        PS{"Palestina"}
         PT{"Portugal"}
         PW{"Palau"}
         PY{"Paraguay"}
@@ -298,15 +298,9 @@ nn{
         ZW{"Zimbabwe"}
         ZZ{"ukjent område"}
     }
-    Countries%short{
-        HK{"Hongkong"}
-        MO{"Macao"}
-        PS{"Palestina"}
-    }
     Countries%variant{
         CD{"Den demokratiske republikken Kongo"}
         CG{"Republikken Kongo"}
-        FK{"Falklandsøyane (Islas Malvinas)"}
         SZ{"Swaziland"}
     }
 }

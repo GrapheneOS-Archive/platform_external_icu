@@ -31,7 +31,6 @@ uz_Arab{
         native{"arabext"}
     }
     calendar{
-        default{"persian"}
         gregorian{
             dayNames{
                 format{
