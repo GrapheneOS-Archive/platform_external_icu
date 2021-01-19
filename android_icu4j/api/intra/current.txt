@@ -1,10 +1,6 @@
 // Signature format: 2.0
 package android.icu.text {
 
-  public class DateFormatSymbols implements java.lang.Cloneable java.io.Serializable {
-    method public String[] getNarrowEras();
-  }
-
   public abstract class TimeZoneNames implements java.io.Serializable {
     method public java.util.Collection<android.icu.text.TimeZoneNames.MatchInfo> find(CharSequence, int, java.util.EnumSet<android.icu.text.TimeZoneNames.NameType>);
   }

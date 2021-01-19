@@ -16,7 +16,6 @@ import java.util.Objects;
  *   3. It is used for the newer FormattedValue APIs.
  *
  * @author sffc
- * @hide Only a subset of ICU is exposed in Android
  */
 public class ConstrainedFieldPosition {
 
