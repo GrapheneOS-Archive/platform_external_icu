@@ -136,7 +136,7 @@ typedef struct UNormalizer2 UNormalizer2;  /**< C typedef for struct UNormalizer
  * @return the requested Normalizer2, if successful
  * @stable ICU 49
  */
-U_STABLE const UNormalizer2 * U_EXPORT2
+U_CAPI const UNormalizer2 * U_EXPORT2
 unorm2_getNFCInstance(UErrorCode *pErrorCode) __INTRODUCED_IN(31);
 
 #endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
@@ -154,7 +154,7 @@ unorm2_getNFCInstance(UErrorCode *pErrorCode) __INTRODUCED_IN(31);
  * @return the requested Normalizer2, if successful
  * @stable ICU 49
  */
-U_STABLE const UNormalizer2 * U_EXPORT2
+U_CAPI const UNormalizer2 * U_EXPORT2
 unorm2_getNFDInstance(UErrorCode *pErrorCode) __INTRODUCED_IN(31);
 
 #endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
@@ -172,7 +172,7 @@ unorm2_getNFDInstance(UErrorCode *pErrorCode) __INTRODUCED_IN(31);
  * @return the requested Normalizer2, if successful
  * @stable ICU 49
  */
-U_STABLE const UNormalizer2 * U_EXPORT2
+U_CAPI const UNormalizer2 * U_EXPORT2
 unorm2_getNFKCInstance(UErrorCode *pErrorCode) __INTRODUCED_IN(31);
 
 #endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
@@ -190,7 +190,7 @@ unorm2_getNFKCInstance(UErrorCode *pErrorCode) __INTRODUCED_IN(31);
  * @return the requested Normalizer2, if successful
  * @stable ICU 49
  */
-U_STABLE const UNormalizer2 * U_EXPORT2
+U_CAPI const UNormalizer2 * U_EXPORT2
 unorm2_getNFKDInstance(UErrorCode *pErrorCode) __INTRODUCED_IN(31);
 
 #endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
@@ -208,7 +208,7 @@ unorm2_getNFKDInstance(UErrorCode *pErrorCode) __INTRODUCED_IN(31);
  * @return the requested Normalizer2, if successful
  * @stable ICU 49
  */
-U_STABLE const UNormalizer2 * U_EXPORT2
+U_CAPI const UNormalizer2 * U_EXPORT2
 unorm2_getNFKCCasefoldInstance(UErrorCode *pErrorCode) __INTRODUCED_IN(31);
 
 #endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
@@ -225,7 +225,7 @@ unorm2_getNFKCCasefoldInstance(UErrorCode *pErrorCode) __INTRODUCED_IN(31);
  * @param norm2 UNormalizer2 instance to be closed
  * @stable ICU 4.4
  */
-U_STABLE void U_EXPORT2
+U_CAPI void U_EXPORT2
 unorm2_close(UNormalizer2 *norm2) __INTRODUCED_IN(31);
 
 #endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
@@ -267,7 +267,7 @@ U_NAMESPACE_END
  * @return dest
  * @stable ICU 4.4
  */
-U_STABLE int32_t U_EXPORT2
+U_CAPI int32_t U_EXPORT2
 unorm2_normalize(const UNormalizer2 *norm2,
                  const UChar *src, int32_t length,
                  UChar *dest, int32_t capacity,
@@ -294,7 +294,7 @@ unorm2_normalize(const UNormalizer2 *norm2,
  * @return first
  * @stable ICU 4.4
  */
-U_STABLE int32_t U_EXPORT2
+U_CAPI int32_t U_EXPORT2
 unorm2_normalizeSecondAndAppend(const UNormalizer2 *norm2,
                                 UChar *first, int32_t firstLength, int32_t firstCapacity,
                                 const UChar *second, int32_t secondLength,
@@ -321,7 +321,7 @@ unorm2_normalizeSecondAndAppend(const UNormalizer2 *norm2,
  * @return first
  * @stable ICU 4.4
  */
-U_STABLE int32_t U_EXPORT2
+U_CAPI int32_t U_EXPORT2
 unorm2_append(const UNormalizer2 *norm2,
               UChar *first, int32_t firstLength, int32_t firstCapacity,
               const UChar *second, int32_t secondLength,
@@ -350,7 +350,7 @@ unorm2_append(const UNormalizer2 *norm2,
  * @return the non-negative length of c's decomposition, if there is one; otherwise a negative value
  * @stable ICU 4.6
  */
-U_STABLE int32_t U_EXPORT2
+U_CAPI int32_t U_EXPORT2
 unorm2_getDecomposition(const UNormalizer2 *norm2,
                         UChar32 c, UChar *decomposition, int32_t capacity,
                         UErrorCode *pErrorCode) __INTRODUCED_IN(31);
@@ -388,7 +388,7 @@ unorm2_getDecomposition(const UNormalizer2 *norm2,
  * @return the non-negative length of c's raw decomposition, if there is one; otherwise a negative value
  * @stable ICU 49
  */
-U_STABLE int32_t U_EXPORT2
+U_CAPI int32_t U_EXPORT2
 unorm2_getRawDecomposition(const UNormalizer2 *norm2,
                            UChar32 c, UChar *decomposition, int32_t capacity,
                            UErrorCode *pErrorCode) __INTRODUCED_IN(31);
@@ -412,7 +412,7 @@ unorm2_getRawDecomposition(const UNormalizer2 *norm2,
  * @return The non-negative composite code point if there is one; otherwise a negative value.
  * @stable ICU 49
  */
-U_STABLE UChar32 U_EXPORT2
+U_CAPI UChar32 U_EXPORT2
 unorm2_composePair(const UNormalizer2 *norm2, UChar32 a, UChar32 b) __INTRODUCED_IN(31);
 
 #endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
@@ -428,7 +428,7 @@ unorm2_composePair(const UNormalizer2 *norm2, UChar32 a, UChar32 b) __INTRODUCED
  * @return c's combining class
  * @stable ICU 49
  */
-U_STABLE uint8_t U_EXPORT2
+U_CAPI uint8_t U_EXPORT2
 unorm2_getCombiningClass(const UNormalizer2 *norm2, UChar32 c) __INTRODUCED_IN(31);
 
 #endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
@@ -448,10 +448,10 @@ unorm2_getCombiningClass(const UNormalizer2 *norm2, UChar32 c) __INTRODUCED_IN(3
  *                   pass the U_SUCCESS() test, or else the function returns
  *                   immediately. Check for U_FAILURE() on output or use with
  *                   function chaining. (See User Guide for details.)
- * @return TRUE if s is normalized
+ * @return true if s is normalized
  * @stable ICU 4.4
  */
-U_STABLE UBool U_EXPORT2
+U_CAPI UBool U_EXPORT2
 unorm2_isNormalized(const UNormalizer2 *norm2,
                     const UChar *s, int32_t length,
                     UErrorCode *pErrorCode) __INTRODUCED_IN(31);
@@ -477,7 +477,7 @@ unorm2_isNormalized(const UNormalizer2 *norm2,
  * @return UNormalizationCheckResult
  * @stable ICU 4.4
  */
-U_STABLE UNormalizationCheckResult U_EXPORT2
+U_CAPI UNormalizationCheckResult U_EXPORT2
 unorm2_quickCheck(const UNormalizer2 *norm2,
                   const UChar *s, int32_t length,
                   UErrorCode *pErrorCode) __INTRODUCED_IN(31);
@@ -510,7 +510,7 @@ unorm2_quickCheck(const UNormalizer2 *norm2,
  * @return "yes" span end index
  * @stable ICU 4.4
  */
-U_STABLE int32_t U_EXPORT2
+U_CAPI int32_t U_EXPORT2
 unorm2_spanQuickCheckYes(const UNormalizer2 *norm2,
                          const UChar *s, int32_t length,
                          UErrorCode *pErrorCode) __INTRODUCED_IN(31);
@@ -525,10 +525,10 @@ unorm2_spanQuickCheckYes(const UNormalizer2 *norm2,
  * For details see the Normalizer2 base class documentation.
  * @param norm2 UNormalizer2 instance
  * @param c character to test
- * @return TRUE if c has a normalization boundary before it
+ * @return true if c has a normalization boundary before it
  * @stable ICU 4.4
  */
-U_STABLE UBool U_EXPORT2
+U_CAPI UBool U_EXPORT2
 unorm2_hasBoundaryBefore(const UNormalizer2 *norm2, UChar32 c) __INTRODUCED_IN(31);
 
 #endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
@@ -541,10 +541,10 @@ unorm2_hasBoundaryBefore(const UNormalizer2 *norm2, UChar32 c) __INTRODUCED_IN(3
  * For details see the Normalizer2 base class documentation.
  * @param norm2 UNormalizer2 instance
  * @param c character to test
- * @return TRUE if c has a normalization boundary after it
+ * @return true if c has a normalization boundary after it
  * @stable ICU 4.4
  */
-U_STABLE UBool U_EXPORT2
+U_CAPI UBool U_EXPORT2
 unorm2_hasBoundaryAfter(const UNormalizer2 *norm2, UChar32 c) __INTRODUCED_IN(31);
 
 #endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
@@ -556,10 +556,10 @@ unorm2_hasBoundaryAfter(const UNormalizer2 *norm2, UChar32 c) __INTRODUCED_IN(31
  * For details see the Normalizer2 base class documentation.
  * @param norm2 UNormalizer2 instance
  * @param c character to test
- * @return TRUE if c is normalization-inert
+ * @return true if c is normalization-inert
  * @stable ICU 4.4
  */
-U_STABLE UBool U_EXPORT2
+U_CAPI UBool U_EXPORT2
 unorm2_isInert(const UNormalizer2 *norm2, UChar32 c) __INTRODUCED_IN(31);
 
 #endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
