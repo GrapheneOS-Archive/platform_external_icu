@@ -774,6 +774,8 @@ public class Icu4jTransform {
 
       // Unstable "constant" value - different values in different API levels. http://b/77850660.
       "field:android.icu.util.JapaneseCalendar#CURRENT_ERA",
+      // The method reads unstable .nrm file format. http://b/173821060
+      "method:android.icu.text.Normalizer2#getInstance(InputStream,String,Mode)",
   };
 
   /**

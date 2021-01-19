@@ -3051,7 +3051,7 @@ package android.icu.text {
     method public int composePair(int, int);
     method public int getCombiningClass(int);
     method public abstract String getDecomposition(int);
-    method public static android.icu.text.Normalizer2 getInstance(java.io.InputStream, String, android.icu.text.Normalizer2.Mode);
+    method @Deprecated public static android.icu.text.Normalizer2 getInstance(java.io.InputStream, String, android.icu.text.Normalizer2.Mode);
     method public static android.icu.text.Normalizer2 getNFCInstance();
     method public static android.icu.text.Normalizer2 getNFDInstance();
     method public static android.icu.text.Normalizer2 getNFKCCasefoldInstance();
