@@ -1,6 +1,6 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 // © 2016 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
 /*
  *   Copyright (C) 1996-2016, International Business Machines
  *   Corporation and others.  All Rights Reserved.
@@ -2193,7 +2193,7 @@ public abstract class DateFormat extends UFormat {
             GregorianCalendar cal = new GregorianCalendar();
             CAL_FIELD_COUNT = cal.getFieldCount();
             CAL_FIELDS = new Field[CAL_FIELD_COUNT];
-            FIELD_NAME_MAP = new HashMap<String, Field>(CAL_FIELD_COUNT);
+            FIELD_NAME_MAP = new HashMap<>(CAL_FIELD_COUNT);
         }
 
         // Java fields -------------------

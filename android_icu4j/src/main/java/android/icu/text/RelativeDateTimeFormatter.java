@@ -1,6 +1,6 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 // © 2016 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
 /*
  *******************************************************************************
  * Copyright (C) 2013-2016, International Business Machines Corporation and
@@ -226,13 +226,13 @@ public final class RelativeDateTimeFormatter {
 
         /**
          * Hour
-         * @hide draft / provisional / internal are hidden on Android
+         * @hide Hide new API in Android temporarily
          */
         HOUR,
 
         /**
          * Minute
-         * @hide draft / provisional / internal are hidden on Android
+         * @hide Hide new API in Android temporarily
          */
         MINUTE,
     }

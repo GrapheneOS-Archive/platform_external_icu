@@ -1,6 +1,6 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 // © 2016 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
 /*
  *******************************************************************************
  * Copyright (C) 2001-2016, International Business Machines Corporation and
@@ -682,7 +682,7 @@ public class NumberFormatTest extends TestFmwk {
     @Test
     public void TestCurrency() {
         String[] DATA = {
-                "fr_CA", "1,50\u00a0$",
+                "fr_CA", "1,50\u00a0$\u00a0CA",
                 "de_DE", "1,50\u00a0\u20AC",
                 "de_DE@currency=DEM", "1,50\u00a0DM",
                 "fr_FR", "1,50\u00a0\u20AC",
@@ -6139,6 +6139,41 @@ public class NumberFormatTest extends TestFmwk {
             actual = df.format(l);
             assertEquals("Output is wrong for 2, "+i, allExpected[i][1], actual);
         }
+
+        String[] locales = {"en-US", "es"};
+        int[] groupingDigits = {
+          1,
+          DecimalFormat.MINIMUM_GROUPING_DIGITS_AUTO,
+          DecimalFormat.MINIMUM_GROUPING_DIGITS_MIN2
+        };
+        int[] values = {1000, 10000};
+        String[] allExpected2 = {
+          // locale: en-US
+          "1,000", "10,000",  // minimumGroupingDigits = 1
+          "1,000", "10,000",  // minimumGroupingDigits = MINIMUM_GROUPING_DIGITS_AUTO
+          "1000" , "10,000",  // minimumGroupingDigits = MINIMUM_GROUPING_DIGITS_MIN2
+          // locale: es
+          "1.000", "10.000",  // minimumGroupingDigits = 1
+          "1000",  "10.000",  // minimumGroupingDigits = MINIMUM_GROUPING_DIGITS_AUTO
+          "1000",  "10.000"   // minimumGroupingDigits = MINIMUM_GROUPING_DIGITS_MIN2
+        };
+
+        int i = 0;
+        for (String locale : locales) {
+          for (int minimumGroupingDigits : groupingDigits) {
+            for (int value : values) {
+              NumberFormat f = NumberFormat.getInstance(new ULocale(locale));
+              df = (DecimalFormat) f;
+              df.setMinimumGroupingDigits(minimumGroupingDigits);
+              String actual = df.format(value);
+              String expected = allExpected2[i++];
+              assertEquals("Output is wrong for " + value +
+                  " locale=" + locale + " minimumGroupingDigits=" + minimumGroupingDigits,
+                  expected, actual);
+            }
+          }
+        }
+
     }
 
     @Test
@@ -6796,5 +6831,95 @@ public class NumberFormatTest extends TestFmwk {
     public void test20961_CurrencyPluralPattern() {
         DecimalFormat decimalFormat = (DecimalFormat) NumberFormat.getInstance(ULocale.US, NumberFormat.PLURALCURRENCYSTYLE);
         assertEquals("Currency pattern", "#,##0.00 ¤¤¤", decimalFormat.toPattern());
+    }
+
+    @Test
+    public void test13733_StrictAndLenient() {
+        Object[][] cases = { {"CA$ 12", "¤ 0", 12, 12},
+                {"CA$12", "¤0", 12, 12},
+                {"CAD 12", "¤¤ 0", 12, 12},
+                {"12 CAD", "0 ¤¤", 12, 12},
+                {"12 Canadian dollars", "0 ¤¤¤", 12, 12},
+                {"$12 ", "¤¤¤¤0", 12, 12},
+                {"12$", "0¤¤¤¤", 12, 12},
+                {"CA$ 12", "¤0", 0, 12},
+                {"CA$ 12", "0 ¤¤", 0, 12},
+                {"CA$ 12", "0 ¤¤¤", 0, 12},
+                {"CA$ 12", "¤¤¤¤0", 0, 12},
+                {"CA$ 12", "0¤¤¤¤", 0, 12},
+                {"CA$12", "¤ 0", 0, 12},
+                {"CA$12", "¤¤ 0", 0, 12},
+                {"CA$12", "0 ¤¤", 0, 12},
+                {"CA$12", "0 ¤¤¤", 0, 12},
+                {"CA$12", "0¤¤¤¤", 0, 12},
+                {"CAD 12", "¤0", 0, 12},
+                {"CAD 12", "0 ¤¤", 0, 12},
+                {"CAD 12", "0 ¤¤¤", 0, 12},
+                {"CAD 12", "¤¤¤¤0", 0, 12},
+                {"CAD 12", "0¤¤¤¤", 0, 12},
+                {"12 CAD", "¤ 0", 0, 12},
+                {"12 CAD", "¤0", 0, 12},
+                {"12 CAD", "¤¤ 0", 0, 12},
+                {"12 CAD", "¤¤¤¤0", 0, 12},
+                {"12 CAD", "0¤¤¤¤", 0, 12},
+                {"12 Canadian dollars", "¤ 0", 0, 12},
+                {"12 Canadian dollars", "¤0", 0, 12},
+                {"12 Canadian dollars", "¤¤ 0", 0, 12},
+                {"12 Canadian dollars", "¤¤¤¤0", 0, 12},
+                {"12 Canadian dollars", "0¤¤¤¤", 0, 12},
+                {"$12 ", "¤ 0", 0, 12},
+                {"$12 ", "¤¤ 0", 0, 12},
+                {"$12 ", "0 ¤¤", 0, 12},
+                {"$12 ", "0 ¤¤¤", 0, 12},
+                {"$12 ", "0¤¤¤¤", 0, 12},
+                {"12$", "¤ 0", 0, 12},
+                {"12$", "¤0", 0, 12},
+                {"12$", "¤¤ 0", 0, 12},
+                {"12$", "0 ¤¤", 0, 12},
+                {"12$", "0 ¤¤¤", 0, 12},
+                {"12$", "¤¤¤¤0", 0, 12} };
+
+        for (Object[] cas : cases) {
+            String inputString = (String) cas[0];
+            String patternString = (String) cas[1];
+            int expectedStrictParse = (int) cas[2];
+            int expectedLenientParse = (int) cas[3];
+
+            int parsedStrictValue = 0;
+            int parsedLenientValue = 0;
+            ParsePosition ppos = new ParsePosition(0);
+            DecimalFormatSymbols dfs = DecimalFormatSymbols.getInstance(ULocale.ENGLISH);
+            DecimalFormat df = new DecimalFormat(patternString, dfs);
+
+            df.setParseStrict(true);
+            CurrencyAmount ca_strict = df.parseCurrency(inputString, ppos);
+            if (null != ca_strict) {
+                parsedStrictValue = ca_strict.getNumber().intValue();
+            }
+            assertEquals("Strict parse of " + inputString + " using " + patternString,
+                    parsedStrictValue, expectedStrictParse);
+
+            ppos.setIndex(0);
+            df.setParseStrict(false);
+            CurrencyAmount ca_lenient = df.parseCurrency(inputString, ppos);
+            if (null != ca_lenient) {
+                parsedLenientValue = ca_lenient.getNumber().intValue();
+            }
+            assertEquals("Strict parse of " + inputString + " using " + patternString,
+                    parsedLenientValue, expectedLenientParse);
+        }
+    }
+
+    @Test
+    public void Test21232_ParseTimeout() throws ParseException {
+        DecimalFormat df = new DecimalFormat();
+        StringBuilder input = new StringBuilder();
+        input.append("4444444444444444444444444444444444444444");
+        for (int i = 0; i < 8; i++) {
+            input.append(input);
+        }
+        assertEquals("Long input of digits", 10240, input.length());
+        df.parse(input.toString());
+        // Should not hang
     }
 }

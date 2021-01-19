@@ -1,6 +1,6 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 // © 2017 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
 package android.icu.impl.number;
 
 import android.icu.impl.FormattedStringBuilder;
@@ -16,7 +16,7 @@ public class CurrencySpacingEnabledModifier extends ConstantMultiFieldModifier {
     // Pre-compute them for performance.
     // The unit test testCurrencySpacingPatternStability() will start failing if these change in CLDR.
     private static final UnicodeSet UNISET_DIGIT = new UnicodeSet("[:digit:]").freeze();
-    private static final UnicodeSet UNISET_NOTS = new UnicodeSet("[:^S:]").freeze();
+    private static final UnicodeSet UNISET_NOTSZ = new UnicodeSet("[[:^S:]&[:^Z:]]").freeze();
 
     // Constants for better readability. Types are for compiler checking.
     static final byte PREFIX = 0;
@@ -159,8 +159,8 @@ public class CurrencySpacingEnabledModifier extends ConstantMultiFieldModifier {
                         affix == SUFFIX);
         if (pattern.equals("[:digit:]")) {
             return UNISET_DIGIT;
-        } else if (pattern.equals("[:^S:]")) {
-            return UNISET_NOTS;
+        } else if (pattern.equals("[[:^S:]&[:^Z:]]")) {
+            return UNISET_NOTSZ;
         } else {
             return new UnicodeSet(pattern);
         }
