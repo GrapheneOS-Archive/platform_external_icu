@@ -1,5 +1,5 @@
---- libicu/ndk_headers/unicode/utext.h	2021-01-05 23:51:30.030377543 +0000
-+++ libicu/ndk_headers/unicode/utext.h	2021-01-05 23:51:30.242378962 +0000
+--- libicu/ndk_headers/unicode/utext.h	2021-01-19 16:37:46.283487871 +0000
++++ libicu/ndk_headers/unicode/utext.h	2021-01-19 16:37:46.503489433 +0000
 @@ -657,787 +657,6 @@
  
  
@@ -199,7 +199,7 @@
 -  *  @param dest   A UText struct to be filled in with the result of the clone operation,
 -  *                or NULL if the clone function should heap-allocate a new UText struct.
 -  *  @param src    The UText to be cloned.
--  *  @param deep   TRUE to request a deep clone, FALSE for a shallow clone.
+-  *  @param deep   true to request a deep clone, false for a shallow clone.
 -  *  @param status Errors are returned here.  For deep clones, U_UNSUPPORTED_ERROR
 -  *                should be returned if the text provider is unable to clone the
 -  *                original text.
@@ -235,9 +235,9 @@
 - *
 - * @param ut          the UText being accessed.
 - * @param nativeIndex Requested index of the text to be accessed.
-- * @param forward     If TRUE, then the returned chunk must contain text
+- * @param forward     If true, then the returned chunk must contain text
 - *                    starting from the index, so that start<=index<limit.
-- *                    If FALSE, then the returned chunk must contain text
+- *                    If false, then the returned chunk must contain text
 - *                    before the index, so that start<index<=limit.
 - * @return            True if the requested index could be accessed.  The chunk
 - *                    will contain the requested text.
@@ -341,7 +341,7 @@
 - * @param nativeStart  The index of the start of the region to be copied or moved
 - * @param nativeLimit  The index of the character following the region to be replaced.
 - * @param nativeDest   The destination index to which the source substring is copied or moved.
-- * @param move         If TRUE, then the substring is moved, not copied/duplicated.
+- * @param move         If true, then the substring is moved, not copied/duplicated.
 - * @param status       receives any error status.  Possible errors include U_NO_WRITE_PERMISSION
 - *
 - * @stable ICU 3.4

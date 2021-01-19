@@ -1,5 +1,5 @@
---- libicu/ndk_headers/unicode/uloc.h	2020-11-20 20:54:36.898730971 +0000
-+++ libicu/ndk_headers/unicode/uloc.h	2020-11-20 20:54:37.010731778 +0000
+--- libicu/ndk_headers/unicode/uloc.h	2021-01-19 16:37:46.343488297 +0000
++++ libicu/ndk_headers/unicode/uloc.h	2021-01-19 16:37:46.447489035 +0000
 @@ -368,6 +368,9 @@
   *   and unchanged even when uloc_setDefault() is called.
   *   The returned storage is owned by ICU, and must not be altered or deleted
