@@ -1,5 +1,5 @@
---- android_icu4j/src/main/java/android/icu/text/DecimalFormat.java	2021-01-05 16:28:13.777295016 +0000
-+++ android_icu4j/src/main/java/android/icu/text/DecimalFormat.java	2021-01-05 16:28:33.737426208 +0000
+--- android_icu4j/src/main/java/android/icu/text/DecimalFormat.java	2021-01-19 16:26:29.614685814 +0000
++++ android_icu4j/src/main/java/android/icu/text/DecimalFormat.java	2021-01-19 16:26:50.998837611 +0000
 @@ -43,12 +43,6 @@
  /**
   * <strong>[icu enhancement]</strong> ICU's replacement for {@link java.text.DecimalFormat}.&nbsp;Methods, fields, and other functionality specific to ICU are labeled '<strong>[icu]</strong>'.
