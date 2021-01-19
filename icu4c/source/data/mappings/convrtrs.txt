@@ -660,7 +660,9 @@ java-sjis_0213-1.6_P { UTR22* }
 # Here are various interpretations and extensions of Big5
 ibm-1373_P100-2002 { UTR22* } # IBM's interpretation of Windows' Taiwan Big-5 without HKSCS extensions
                         ibm-1373 { IBM* }
-                        windows-950 # Alternate mapping. Leave untagged. This is the IBM interpretation of a Windows codepage.
+                        # BEGIN android-removed
+                        # windows-950 # Alternate mapping. Leave untagged. This is the IBM interpretation of a Windows codepage.
+                        # END android-removed
 windows-950-2000 { UTR22* }
                         Big5 { IANA* MIME* JAVA* WINDOWS }
                         csBig5 { IANA WINDOWS }
@@ -701,26 +703,42 @@ windows-936-2000 { UTR22* }
                         CP936 { IANA JAVA }
                         MS936 { IANA }  # In JDK 1.5, this goes to x-mswin-936. This is an IANA name split.
                         windows-936 { IANA WINDOWS* JAVA }
+                        # BEGIN android-added
+                        chinese { IANA }
+                        iso-ir-58 { IANA }
+                        gb2312-1980
+                        GB2312 { IANA }
+                        EUC-CN
+                        csGB2312 { IANA }
+                        GB_2312-80 { IANA }
+                        csISO58GB231280 { IANA }
+                        # END android-added
 
 # Java has two different tables for ibm-1383 and gb2312. We pick closest set for tagging.
 ibm-1383_P110-1999 { UTR22* }       # China EUC.
                         ibm-1383 { IBM* JAVA }
-                        GB2312 { IANA* MIME* }
-                        csGB2312 { IANA }
+                        # BEGIN android-removed
+                        # GB2312 { IANA* MIME* }
+                        # csGB2312 { IANA }
+                        # END android-removed
                         cp1383 { JAVA* }
                         1383 { JAVA }
-                        EUC-CN  # According to other platforms, windows-20936 looks more like euc-cn. x-euc-cn is also a MIME name
+                        # BEGIN android-removed
+                        # EUC-CN  # According to other platforms, windows-20936 looks more like euc-cn. x-euc-cn is also a MIME name
+                        # END android-removed
                         ibm-eucCN
                         hp15CN  # From HP-UX?
                         ibm-1383_VPUA
                         # gb          # This is not an IANA name. gb in IANA means Great Britain.
 
 ibm-5478_P100-1995 { UTR22* } ibm-5478 { IBM* } # This gb_2312_80 DBCS mapping is needed by iso-2022.
-                        GB_2312-80 { IANA* }    # Windows maps this alias incorrectly
-                        chinese { IANA }
-                        iso-ir-58 { IANA }
-                        csISO58GB231280 { IANA }
-                        gb2312-1980
+                        # BEGIN android-removed
+                        # GB_2312-80 { IANA* }    # Windows maps this alias incorrectly
+                        # chinese { IANA }
+                        # iso-ir-58 { IANA }
+                        # csISO58GB231280 { IANA }
+                        # gb2312-1980
+                        # END android-removed
                         GB2312.1980-0   # From X11R6
 
 euc-tw-2014 { UTR22* }                # Updated EUC-TW converter based on ibm-964
@@ -775,13 +793,17 @@ ibm-949_P11A-1999 { UTR22* }
 # Java has both ibm-970 and EUC-KR as separate converters.
 ibm-970_P110_P110-2006_U2 { UTR22* }
                         ibm-970 { IBM* JAVA }
-                        EUC-KR { IANA* MIME* WINDOWS JAVA }
-                        KS_C_5601-1987 { JAVA }
-                        windows-51949 { WINDOWS* }
-                        csEUCKR { IANA WINDOWS }  # x-euc-kr is also a MIME name
+            # BEGIN android-removed
+                        # EUC-KR { IANA* MIME* WINDOWS JAVA }
+                        # KS_C_5601-1987 { JAVA }
+                        # windows-51949 { WINDOWS* }
+                        # csEUCKR { IANA WINDOWS }  # x-euc-kr is also a MIME name
+            # END android-removed
                         ibm-eucKR { JAVA }
-                        KSC_5601 { JAVA } # Needed by iso-2022
-                        5601 { JAVA }
+            # BEGIN android-removed
+                        # KSC_5601 { JAVA } # Needed by iso-2022
+                        # 5601 { JAVA }
+            # END android-removed
                         cp970 { JAVA* }
                         970 { JAVA }
                         ibm-970_VPUA
@@ -794,16 +816,22 @@ ibm-971_P100-1995       ibm-971 { IBM* } ibm-971_VPUA x-IBM971 { JAVA* }
 # ibm-1363 is almost a superset of ibm-970.
 ibm-1363_P11B-1998 { UTR22* }
                         ibm-1363 # Leave untagged because this isn't the default
-                        KS_C_5601-1987 { IANA* }
-                        KS_C_5601-1989 { IANA }
-                        KSC_5601 { IANA }
-                        csKSC56011987 { IANA }
-                        korean { IANA }
-                        iso-ir-149 { IANA }
+                        # BEGIN android-removed
+                        # KS_C_5601-1987 { IANA* }
+                        # KS_C_5601-1989 { IANA }
+                        # KSC_5601 { IANA }
+                        # csKSC56011987 { IANA }
+                        # korean { IANA }
+                        # iso-ir-149 { IANA }
+                        # END android-removed
                         cp1363 { MIME* }
-                        5601
+                        # BEGIN android-removed
+                        # 5601
+                        # END android-removed
                         ksc
-                        windows-949 # Alternate mapping. Leave untagged. This is the IBM interpretation of a Windows codepage.
+                        # BEGIN android-removed
+                        # windows-949 # Alternate mapping. Leave untagged. This is the IBM interpretation of a Windows codepage.
+                        # END android-removed
                         ibm-1363_VSUB_VPUA
                         x-IBM1363C { JAVA* }
                         # ks_x_1001:1992
@@ -815,13 +843,18 @@ ibm-1363_P110-1997 { UTR22* } # Korean KSC MBCS with \ <-> Won mapping
                         x-IBM1363 { JAVA* }
 
 windows-949-2000 { UTR22* }
-                        windows-949 { JAVA* WINDOWS* }
-                        KS_C_5601-1987 { WINDOWS }
-                        KS_C_5601-1989 { WINDOWS }
-                        KSC_5601 { MIME* WINDOWS } # Needed by iso-2022
-                        csKSC56011987 { WINDOWS }
-                        korean { WINDOWS }
-                        iso-ir-149 { WINDOWS }
+                        # BEGIN android-changed
+                        windows-949 { JAVA* WINDOWS }
+                        EUC-KR { IANA* MIME* WINDOWS }
+                        KS_C_5601-1987 { WINDOWS* IANA }
+                        KS_C_5601-1989 { WINDOWS IANA }
+                        KSC_5601 { IANA MIME WINDOWS } # Needed by iso-2022
+                        csKSC56011987 { IANA WINDOWS }
+                        korean { IANA WINDOWS }
+                        iso-ir-149 { IANA WINDOWS }
+                        csEUCKR { IANA WINDOWS }
+                        5601
+                        # END android-changed
                         ms949 { JAVA }
                         x-KSC5601 { JAVA }
 
