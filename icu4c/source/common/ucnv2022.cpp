@@ -520,7 +520,9 @@ _ISO2022Open(UConverter *cnv, UConverterLoadArgs *pArgs, UErrorCode *errorCode){
             }
             if(jpCharsetMasks[version]&CSM(GB2312)) {
                 myConverterData->myConverterArray[GB2312] =
-                    ucnv_loadSharedData("ibm-5478", &stackPieces, &stackArgs, errorCode);   /* gb_2312_80-1 */
+                    /* BEGIN android-changed */
+                    ucnv_loadSharedData("noop-gb2312_gl", &stackPieces, &stackArgs, errorCode); /* gb_2312_80-1 */
+                    /* END android-changed */
             }
             if(jpCharsetMasks[version]&CSM(KSC5601)) {
                 myConverterData->myConverterArray[KSC5601] =
@@ -551,7 +553,9 @@ _ISO2022Open(UConverter *cnv, UConverterLoadArgs *pArgs, UErrorCode *errorCode){
             if(version==1) {
                 cnvName="icu-internal-25546";
             } else {
-                cnvName="ibm-949";
+                /* BEGIN android-changed */
+                cnvName="ksc_5601";
+                /* END android-changed */
                 myConverterData->version=version=0;
             }
             if(pArgs->onlyTestIsLoadable) {
@@ -595,14 +599,16 @@ _ISO2022Open(UConverter *cnv, UConverterLoadArgs *pArgs, UErrorCode *errorCode){
             }
 
             /* open the required converters and cache them */
+            /* BEGIN android-changed */
             myConverterData->myConverterArray[GB2312_1] =
-                ucnv_loadSharedData("ibm-5478", &stackPieces, &stackArgs, errorCode);
+                ucnv_loadSharedData("noop-gb2312_gl", &stackPieces, &stackArgs, errorCode);
             if(version==1) {
                 myConverterData->myConverterArray[ISO_IR_165] =
-                    ucnv_loadSharedData("iso-ir-165", &stackPieces, &stackArgs, errorCode);
+                    ucnv_loadSharedData("noop-iso-ir-165", &stackPieces, &stackArgs, errorCode);
             }
             myConverterData->myConverterArray[CNS_11643] =
-                ucnv_loadSharedData("cns-11643-1992", &stackPieces, &stackArgs, errorCode);
+                ucnv_loadSharedData("noop-cns-11643", &stackPieces, &stackArgs, errorCode);
+            /* END android-changed */
 
 
             /* set the function pointers to appropriate functions */
