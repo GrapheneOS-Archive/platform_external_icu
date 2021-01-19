@@ -369,6 +369,24 @@
             <!-- <altPath target="//path/to/value[@attr='foo']"
                           source="//path/to/value[@attr='bar']"
                           locales="xx,yy_ZZ"/> -->
+            <!-- Android patch (b/36123938) begin. -->
+            <altPath target="//ldml/localeDisplayNames/territories/territory[@type='FK']"
+                     source="//ldml/localeDisplayNames/territories/territory[@type='FK'][@alt='variant']"/>
+            <altPath target="//ldml/localeDisplayNames/territories/territory[@type='HK']"
+                     source="//ldml/localeDisplayNames/territories/territory[@type='HK'][@alt='short']"/>
+            <altPath target="//ldml/localeDisplayNames/territories/territory[@type='MK']"
+                     source="//ldml/localeDisplayNames/territories/territory[@type='MK'][@alt='variant']"/>
+            <altPath target="//ldml/localeDisplayNames/territories/territory[@type='MO']"
+                     source="//ldml/localeDisplayNames/territories/territory[@type='MO'][@alt='short']"/>
+            <!-- Android patch (b/36123938) end. -->
+            <!-- Android patch (b/8264703) begin. -->
+            <altPath target="//ldml/localeDisplayNames/territories/territory[@type='PS']"
+                     source="//ldml/localeDisplayNames/territories/territory[@type='PS'][@alt='short']"/>
+            <!-- Android patch (b/8264703) end. -->
+            <!-- Android patch (b/21295835) begin. -->
+            <altPath target="//ldml/numbers/currencies/currency[@type='UAH']/symbol"
+                     source="//ldml/numbers/currencies/currency[@type='UAH']/symbol[@alt='variant']"/>
+            <!-- Android patch (b/21295835) end. -->
         </convert>
     </target>
 
