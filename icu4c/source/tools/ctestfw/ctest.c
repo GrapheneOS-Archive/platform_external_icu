@@ -1113,6 +1113,7 @@ runTestRequest(const TestNode* root,
     int                i;
     int                doList = FALSE;
     int                subtreeOptionSeen = FALSE;
+    int                skipNext = FALSE;
 
     int                errorCount = 0;
 
@@ -1124,6 +1125,11 @@ runTestRequest(const TestNode* root,
 
     for( i=1; i<argc; i++)
     {
+        if (skipNext) {
+            skipNext = FALSE;
+            continue;
+        }
+
         if ( argv[i][0] == '/' )
         {
             printf("Selecting subtree '%s'\n", argv[i]);
@@ -1155,6 +1161,10 @@ runTestRequest(const TestNode* root,
             subtreeOptionSeen=FALSE;
         } else if (strcmp( argv[i], "-l") == 0) {
             doList = TRUE;
+        } else if (strcmp( argv[i], "-x") == 0) {
+            // Need to skip the next argument since it will be wrongly
+            // identified as a test filter if it is an absolute path.
+            skipNext = TRUE;
         }
         /* else option already handled by initArgs */
     }
