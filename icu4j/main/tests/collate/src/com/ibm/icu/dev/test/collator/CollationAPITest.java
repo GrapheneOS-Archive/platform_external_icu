@@ -496,8 +496,10 @@ public class CollationAPITest extends TestFmwk {
         doAssert((col.getDecomposition() == Collator.NO_DECOMPOSITION), "Decomposition mode = Collator.NO_DECOMPOSITION");
 
 
-        RuleBasedCollator rcol = (RuleBasedCollator)Collator.getInstance(new Locale("da", "DK"));
-        doAssert(rcol.getRules().length() != 0, "da_DK rules does not have length 0");
+        // Android patch: Add --omitCollationRules to genrb.
+        // RuleBasedCollator rcol = (RuleBasedCollator)Collator.getInstance(new Locale("da", "DK"));
+        // doAssert(rcol.getRules().length() != 0, "da_DK rules does not have length 0");
+        // Android patch end.
 
         try {
             col = Collator.getInstance(Locale.FRENCH);
