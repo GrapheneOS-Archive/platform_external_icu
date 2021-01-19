@@ -42,8 +42,8 @@
             </or>
         </condition>
         <fail unless="is.cldr.classes.set" message="CLDR classes not found in ${cldrtools.dir}/cldr-code/target/classes. Please either set the CLDR_CLASSES environment variable or build cldr-code.jar."/>
-
-        <property name="env.CLDR_TMP_DIR" location="${env.CLDR_DIR}/../cldr-aux" /> <!-- Hack: see CLDRPaths -->
+        <!-- Android-changed: By default proddata is getting build to cldr-staging instead of cldr-aux -->
+        <property name="env.CLDR_TMP_DIR" location="${env.CLDR_DIR}/../cldr-staging" />
         <property name="cldr.prod.dir" location="${env.CLDR_TMP_DIR}/production/" />
         <echo message="java home: ${java.home}"/>
         <echo message="java version: ${java.version}"/>
