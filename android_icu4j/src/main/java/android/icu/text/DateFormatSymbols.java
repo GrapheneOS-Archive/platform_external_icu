@@ -742,9 +742,7 @@ public class DateFormatSymbols implements Serializable, Cloneable {
     /**
      * <strong>[icu]</strong> Returns narrow era name strings. For example: "A" and "B".
      * @return the narrow era strings.
-     * @hide Hide new API in Android temporarily
      */
-    @libcore.api.IntraCoreApi
     public String[] getNarrowEras() {
         return duplicate(narrowEras);
     }
@@ -752,7 +750,6 @@ public class DateFormatSymbols implements Serializable, Cloneable {
     /**
      * <strong>[icu]</strong> Sets narrow era name strings. For example: "A" and "B".
      * @param newNarrowEras the new narrow era strings.
-     * @hide Hide new API in Android temporarily
      */
     public void setNarrowEras(String[] newNarrowEras) {
         narrowEras = duplicate(newNarrowEras);

@@ -41,8 +41,6 @@ public class FormattedNumber implements FormattedValue {
 
     /**
      * {@inheritDoc}
-     *
-     * @hide Hide new API in Android temporarily
      */
     @Override
     public int length() {
@@ -51,8 +49,6 @@ public class FormattedNumber implements FormattedValue {
 
     /**
      * {@inheritDoc}
-     *
-     * @hide Hide new API in Android temporarily
      */
     @Override
     public char charAt(int index) {
@@ -61,8 +57,6 @@ public class FormattedNumber implements FormattedValue {
 
     /**
      * {@inheritDoc}
-     *
-     * @hide Hide new API in Android temporarily
      */
     @Override
     public CharSequence subSequence(int start, int end) {
@@ -71,8 +65,6 @@ public class FormattedNumber implements FormattedValue {
 
     /**
      * {@inheritDoc}
-     *
-     * @hide unsupported on Android
      */
     @Override
     public <A extends Appendable> A appendTo(A appendable) {
@@ -81,8 +73,6 @@ public class FormattedNumber implements FormattedValue {
 
     /**
      * {@inheritDoc}
-     *
-     * @hide Hide new API in Android temporarily
      */
     @Override
     public boolean nextPosition(ConstrainedFieldPosition cfpos) {

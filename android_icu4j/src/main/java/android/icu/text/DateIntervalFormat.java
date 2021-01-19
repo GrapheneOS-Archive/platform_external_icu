@@ -274,8 +274,6 @@ public class DateIntervalFormat extends UFormat {
      * Instances of this class are immutable and thread-safe.
      *
      * Not intended for public subclassing.
-     *
-     * @hide Only a subset of ICU is exposed in Android
      */
     public static final class FormattedDateInterval implements FormattedValue {
         private final String string;
@@ -767,7 +765,6 @@ public class DateIntervalFormat extends UFormat {
      *
      * @param dtInterval        DateInterval to be formatted.
      * @return                  A FormattedDateInterval containing the format result.
-     * @hide Hide new API in Android temporarily
      */
     public FormattedDateInterval formatToValue(DateInterval dtInterval) {
         StringBuffer sb = new StringBuffer();
@@ -874,7 +871,6 @@ public class DateIntervalFormat extends UFormat {
      * @param toCalendar        calendar set to the to date in date interval
      *                          to be formatted into date interval string
      * @return                  A FormattedDateInterval containing the format result.
-     * @hide Hide new API in Android temporarily
      */
     public FormattedDateInterval formatToValue(Calendar fromCalendar, Calendar toCalendar) {
         StringBuffer sb = new StringBuffer();

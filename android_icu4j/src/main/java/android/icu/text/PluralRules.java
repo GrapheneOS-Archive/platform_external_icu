@@ -2115,7 +2115,6 @@ public class PluralRules implements Serializable {
      *
      * @param number The number for which the rule has to be determined.
      * @return The keyword of the selected rule.
-     * @hide Hide new API in Android temporarily
      */
     public String select(FormattedNumber number) {
         return rules.select(number.getFixedDecimal());

@@ -221,7 +221,6 @@ public final class RelativeDateTimeFormatter {
 
         /**
          * Quarter
-         * @hide Hide new API in Android temporarily
          */
         QUARTER,
 
@@ -407,7 +406,6 @@ public final class RelativeDateTimeFormatter {
      * Not intended for public subclassing.
      *
      * @author sffc
-     * @hide Only a subset of ICU is exposed in Android
      */
     public static class FormattedRelativeDateTime implements FormattedValue {
 
@@ -598,7 +596,6 @@ public final class RelativeDateTimeFormatter {
      * @return the formatted relative datetime
      * @throws IllegalArgumentException if direction is something other than
      * NEXT or LAST.
-     * @hide Hide new API in Android temporarily
      */
     public FormattedRelativeDateTime formatToValue(double quantity, Direction direction, RelativeUnit unit) {
         checkNoAdjustForContext();
@@ -666,7 +663,6 @@ public final class RelativeDateTimeFormatter {
      *                  date, e.g. RelativeDateTimeUnit.WEEK,
      *                  RelativeDateTimeUnit.FRIDAY.
      * @return          The formatted string (may be empty in case of error)
-     * @hide Hide new API in Android temporarily
      */
     public FormattedRelativeDateTime formatNumericToValue(double offset, RelativeDateTimeUnit unit) {
         checkNoAdjustForContext();
@@ -739,7 +735,6 @@ public final class RelativeDateTimeFormatter {
      *  return null to signal that no formatted string is available.
      * @throws IllegalArgumentException if the direction is incompatible with
      * unit this can occur with NOW which can only take PLAIN.
-     * @hide Hide new API in Android temporarily
      */
     public FormattedRelativeDateTime formatToValue(Direction direction, AbsoluteUnit unit) {
         checkNoAdjustForContext();
@@ -809,7 +804,6 @@ public final class RelativeDateTimeFormatter {
      *                  date, e.g. RelativeDateTimeUnit.WEEK,
      *                  RelativeDateTimeUnit.FRIDAY.
      * @return          The formatted string (may be empty in case of error)
-     * @hide Hide new API in Android temporarily
      */
     public FormattedRelativeDateTime formatToValue(double offset, RelativeDateTimeUnit unit) {
         checkNoAdjustForContext();
