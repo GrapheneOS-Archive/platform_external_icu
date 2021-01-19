@@ -177,7 +177,9 @@ public abstract class Normalizer2 {
      * @param name "nfc" or "nfkc" or "nfkc_cf" or name of custom data file
      * @param mode normalization mode (compose or decompose etc.)
      * @return the requested Normalizer2, if successful
+     * @deprecated on Android but not deprecated in ICU
      */
+    @Deprecated
     public static Normalizer2 getInstance(InputStream data, String name, Mode mode) {
         // TODO: If callers really use this API, then we should add an overload that takes a ByteBuffer.
         ByteBuffer bytes = null;
