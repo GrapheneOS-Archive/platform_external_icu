@@ -1343,7 +1343,7 @@ T_CTEST_EXPORT2
 ctest_xml_testcase(const char *classname, const char *name, const char *timeSeconds, const char *failMsg) {
   if(!XML_FILE) return 0;
 
-  fprintf(XML_FILE, "\t<testcase classname=\"%s:%s\" name=\"%s:%s\" time=\"%s\"", XML_PREFIX, classname, XML_PREFIX, name, timeSeconds);
+  fprintf(XML_FILE, "\t<testcase classname=\"%s\" name=\"%s\" time=\"%s\"", name, classname, timeSeconds);
   if(failMsg) {
     fprintf(XML_FILE, ">\n\t\t<failure type=\"err\" message=\"%s\"/>\n\t</testcase>\n", failMsg);
   } else {
