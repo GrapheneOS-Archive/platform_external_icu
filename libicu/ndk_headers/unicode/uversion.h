@@ -149,7 +149,7 @@ typedef uint8_t UVersionInfo[U_MAX_VERSION_LENGTH];
  *                      The buffer size must be at least U_MAX_VERSION_STRING_LENGTH.
  * @stable ICU 2.4
  */
-U_STABLE void U_EXPORT2
+U_CAPI void U_EXPORT2
 u_versionToString(const UVersionInfo versionArray, char *versionString) __INTRODUCED_IN(31);
 
 #endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
@@ -164,7 +164,7 @@ u_versionToString(const UVersionInfo versionArray, char *versionString) __INTROD
  * @param versionArray the version # information, the result will be filled in
  * @stable ICU 2.0
  */
-U_STABLE void U_EXPORT2
+U_CAPI void U_EXPORT2
 u_getVersion(UVersionInfo versionArray) __INTRODUCED_IN(31);
 
 #endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31

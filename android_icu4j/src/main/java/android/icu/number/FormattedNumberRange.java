@@ -1,6 +1,6 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 // © 2018 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
 package android.icu.number;
 
 import java.io.IOException;
@@ -14,6 +14,7 @@ import android.icu.impl.number.DecimalQuantity;
 import android.icu.number.NumberRangeFormatter.RangeIdentityResult;
 import android.icu.text.ConstrainedFieldPosition;
 import android.icu.text.FormattedValue;
+import android.icu.text.PluralRules.IFixedDecimal;
 import android.icu.util.ICUUncheckedIOException;
 
 /**
@@ -167,5 +168,23 @@ public class FormattedNumberRange implements FormattedValue {
                 && Arrays.equals(string.toFieldArray(), _other.string.toFieldArray())
                 && quantity1.toBigDecimal().equals(_other.quantity1.toBigDecimal())
                 && quantity2.toBigDecimal().equals(_other.quantity2.toBigDecimal());
+    }
+
+    /**
+     * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
+     */
+    @Deprecated
+    public IFixedDecimal getFirstFixedDecimal() {
+        return quantity1;
+    }
+
+    /**
+     * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
+     */
+    @Deprecated
+    public IFixedDecimal getSecondFixedDecimal() {
+        return quantity2;
     }
 }

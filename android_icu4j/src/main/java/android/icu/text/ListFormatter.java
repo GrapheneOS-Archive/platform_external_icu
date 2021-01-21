@@ -1,6 +1,6 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 // © 2016 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
 /*
  *******************************************************************************
  * Copyright (C) 2012-2016, Google, International Business Machines Corporation and
@@ -520,7 +520,7 @@ final public class ListFormatter {
     }
 
     // A static handler just returns the pattern without considering the input text.
-    private class StaticHandler implements PatternHandler {
+    private static final class StaticHandler implements PatternHandler {
         StaticHandler(String two, String end) {
             twoPattern = two;
             endPattern = end;
@@ -537,7 +537,7 @@ final public class ListFormatter {
     }
 
     // A contextual handler returns one of the two patterns depending on whether the text matched the regexp.
-    private class ContextualHandler implements PatternHandler {
+    private static final class ContextualHandler implements PatternHandler {
         ContextualHandler(Pattern regexp, String thenTwo, String elseTwo, String thenEnd, String elseEnd) {
             this.regexp = regexp;
             thenTwoPattern = thenTwo;

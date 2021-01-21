@@ -1,5 +1,6 @@
 ﻿// © 2016 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
+// Generated using tools/cldr/cldr-to-icu/build-icu-data.xml
 en_XA{
     Keys{
         calendar{"[Çåļéñðåŕ one two]"}
@@ -15,6 +16,7 @@ en_XA{
         collation{"[Šöŕţ Öŕðéŕ one two]"}
         currency{"[Çûŕŕéñçý one two]"}
         d0{"[Ţŕåñšƒöŕɱ Ðéšţîñåţîöñ one two three]"}
+        dx{"[Ðîçţîöñåŕý Ɓŕéåķ Éẋçļûšîöñš one two three four]"}
         em{"[Éɱöĵî Þŕéšéñţåţîöñ Šţýļé one two three]"}
         fw{"[Ƒîŕšţ ðåý öƒ ŵééķ one two three]"}
         h0{"[Ṁîẋéð‐îñ one two]"}
@@ -1314,7 +1316,6 @@ en_XA{
         VALENCIA{"[Ṽåļéñçîåñ one two]"}
         WADEGILE{"[Ŵåðé‐Ĝîļéš Ŕöɱåñîžåţîöñ one two three]"}
     }
-    Version{"37"}
     characterLabelPattern{
         all{"[{0} — åļļ one two]"}
         category-list{"[{0}∶ {1} one two]"}

@@ -1,6 +1,6 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 // © 2018 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
 package android.icu.text;
 
 import java.text.Format.Field;
@@ -282,7 +282,9 @@ public class ConstrainedFieldPosition {
      */
     public void setState(Field field, Object value, int start, int limit) {
         // Check matchesField only as an assertion (debug build)
-        assert matchesField(field, value);
+        if (field != null) {
+            assert matchesField(field, value);
+        }
 
         fField = field;
         fValue = value;
