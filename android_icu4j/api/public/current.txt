@@ -3263,6 +3263,8 @@ package android.icu.text {
   public enum RelativeDateTimeFormatter.AbsoluteUnit {
     enum_constant public static final android.icu.text.RelativeDateTimeFormatter.AbsoluteUnit DAY;
     enum_constant public static final android.icu.text.RelativeDateTimeFormatter.AbsoluteUnit FRIDAY;
+    enum_constant public static final android.icu.text.RelativeDateTimeFormatter.AbsoluteUnit HOUR;
+    enum_constant public static final android.icu.text.RelativeDateTimeFormatter.AbsoluteUnit MINUTE;
     enum_constant public static final android.icu.text.RelativeDateTimeFormatter.AbsoluteUnit MONDAY;
     enum_constant public static final android.icu.text.RelativeDateTimeFormatter.AbsoluteUnit MONTH;
     enum_constant public static final android.icu.text.RelativeDateTimeFormatter.AbsoluteUnit NOW;
@@ -4423,9 +4425,13 @@ package android.icu.util {
     field public static final android.icu.util.MeasureUnit CUP;
     field public static final android.icu.util.MeasureUnit CUP_METRIC;
     field public static final android.icu.util.TimeUnit DAY;
+    field public static final android.icu.util.MeasureUnit DECADE;
     field public static final android.icu.util.MeasureUnit DECILITER;
     field public static final android.icu.util.MeasureUnit DECIMETER;
     field public static final android.icu.util.MeasureUnit DEGREE;
+    field public static final android.icu.util.MeasureUnit DOT_PER_CENTIMETER;
+    field public static final android.icu.util.MeasureUnit DOT_PER_INCH;
+    field public static final android.icu.util.MeasureUnit EM;
     field public static final android.icu.util.MeasureUnit FAHRENHEIT;
     field public static final android.icu.util.MeasureUnit FATHOM;
     field public static final android.icu.util.MeasureUnit FLUID_OUNCE;
@@ -4472,6 +4478,7 @@ package android.icu.util {
     field public static final android.icu.util.MeasureUnit MEGABYTE;
     field public static final android.icu.util.MeasureUnit MEGAHERTZ;
     field public static final android.icu.util.MeasureUnit MEGALITER;
+    field public static final android.icu.util.MeasureUnit MEGAPIXEL;
     field public static final android.icu.util.MeasureUnit MEGAWATT;
     field public static final android.icu.util.MeasureUnit METER;
     field public static final android.icu.util.MeasureUnit METER_PER_SECOND;
@@ -4511,6 +4518,9 @@ package android.icu.util {
     field public static final android.icu.util.MeasureUnit PICOMETER;
     field public static final android.icu.util.MeasureUnit PINT;
     field public static final android.icu.util.MeasureUnit PINT_METRIC;
+    field public static final android.icu.util.MeasureUnit PIXEL;
+    field public static final android.icu.util.MeasureUnit PIXEL_PER_CENTIMETER;
+    field public static final android.icu.util.MeasureUnit PIXEL_PER_INCH;
     field public static final android.icu.util.MeasureUnit POINT;
     field public static final android.icu.util.MeasureUnit POUND;
     field public static final android.icu.util.MeasureUnit POUND_PER_SQUARE_INCH;
@@ -4651,6 +4661,7 @@ package android.icu.util {
     method public static android.icu.util.ULocale forLanguageTag(String);
     method public static android.icu.util.ULocale forLocale(java.util.Locale);
     method public static android.icu.util.ULocale[] getAvailableLocales();
+    method public static java.util.Collection<android.icu.util.ULocale> getAvailableLocalesByType(android.icu.util.ULocale.AvailableType);
     method public String getBaseName();
     method public static String getBaseName(String);
     method public String getCharacterOrientation();
@@ -4753,6 +4764,12 @@ package android.icu.util {
     field public static final android.icu.util.ULocale UK;
     field public static final char UNICODE_LOCALE_EXTENSION = 117; // 0x0075 'u'
     field public static final android.icu.util.ULocale US;
+  }
+
+  public enum ULocale.AvailableType {
+    enum_constant public static final android.icu.util.ULocale.AvailableType DEFAULT;
+    enum_constant public static final android.icu.util.ULocale.AvailableType ONLY_LEGACY_ALIASES;
+    enum_constant public static final android.icu.util.ULocale.AvailableType WITH_LEGACY_ALIASES;
   }
 
   public static final class ULocale.Builder {

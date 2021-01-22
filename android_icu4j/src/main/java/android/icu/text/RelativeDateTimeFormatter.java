@@ -226,13 +226,11 @@ public final class RelativeDateTimeFormatter {
 
         /**
          * Hour
-         * @hide Hide new API in Android temporarily
          */
         HOUR,
 
         /**
          * Minute
-         * @hide Hide new API in Android temporarily
          */
         MINUTE,
     }
