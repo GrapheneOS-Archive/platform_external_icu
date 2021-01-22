@@ -242,7 +242,7 @@ typedef enum USentenceBreakTag {
  * @see ubrk_openRules
  * @stable ICU 2.0
  */
-U_STABLE UBreakIterator* U_EXPORT2
+U_CAPI UBreakIterator* U_EXPORT2
 ubrk_open(UBreakIteratorType type,
       const char *locale,
       const UChar *text,
@@ -275,7 +275,7 @@ ubrk_open(UBreakIteratorType type,
 * @param bi The break iterator to close.
  * @stable ICU 2.0
 */
-U_STABLE void U_EXPORT2
+U_CAPI void U_EXPORT2
 ubrk_close(UBreakIterator *bi) __INTRODUCED_IN(31);
 
 #endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
@@ -313,7 +313,7 @@ U_NAMESPACE_END
  * @param status The error code
  * @stable ICU 2.0
  */
-U_STABLE void U_EXPORT2
+U_CAPI void U_EXPORT2
 ubrk_setText(UBreakIterator* bi,
              const UChar*    text,
              int32_t         textLength,
@@ -341,7 +341,7 @@ ubrk_setText(UBreakIterator* bi,
  * @param status The error code
  * @stable ICU 3.4
  */
-U_STABLE void U_EXPORT2
+U_CAPI void U_EXPORT2
 ubrk_setUText(UBreakIterator* bi,
              UText*          text,
              UErrorCode*     status) __INTRODUCED_IN(31);
@@ -360,7 +360,7 @@ ubrk_setUText(UBreakIterator* bi,
  * \ref ubrk_first, or \ref ubrk_last.
  * @stable ICU 2.0
  */
-U_STABLE int32_t U_EXPORT2
+U_CAPI int32_t U_EXPORT2
 ubrk_current(const UBreakIterator *bi) __INTRODUCED_IN(31);
 
 #endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
@@ -376,7 +376,7 @@ ubrk_current(const UBreakIterator *bi) __INTRODUCED_IN(31);
  * @see ubrk_previous
  * @stable ICU 2.0
  */
-U_STABLE int32_t U_EXPORT2
+U_CAPI int32_t U_EXPORT2
 ubrk_next(UBreakIterator *bi) __INTRODUCED_IN(31);
 
 #endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
@@ -392,7 +392,7 @@ ubrk_next(UBreakIterator *bi) __INTRODUCED_IN(31);
  * @see ubrk_next
  * @stable ICU 2.0
  */
-U_STABLE int32_t U_EXPORT2
+U_CAPI int32_t U_EXPORT2
 ubrk_previous(UBreakIterator *bi) __INTRODUCED_IN(31);
 
 #endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
@@ -406,7 +406,7 @@ ubrk_previous(UBreakIterator *bi) __INTRODUCED_IN(31);
  * @see ubrk_last
  * @stable ICU 2.0
  */
-U_STABLE int32_t U_EXPORT2
+U_CAPI int32_t U_EXPORT2
 ubrk_first(UBreakIterator *bi) __INTRODUCED_IN(31);
 
 #endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
@@ -422,7 +422,7 @@ ubrk_first(UBreakIterator *bi) __INTRODUCED_IN(31);
  * @see ubrk_first
  * @stable ICU 2.0
  */
-U_STABLE int32_t U_EXPORT2
+U_CAPI int32_t U_EXPORT2
 ubrk_last(UBreakIterator *bi) __INTRODUCED_IN(31);
 
 #endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
@@ -438,7 +438,7 @@ ubrk_last(UBreakIterator *bi) __INTRODUCED_IN(31);
  * @see ubrk_following
  * @stable ICU 2.0
  */
-U_STABLE int32_t U_EXPORT2
+U_CAPI int32_t U_EXPORT2
 ubrk_preceding(UBreakIterator *bi,
            int32_t offset) __INTRODUCED_IN(31);
 
@@ -455,7 +455,7 @@ ubrk_preceding(UBreakIterator *bi,
  * @see ubrk_preceding
  * @stable ICU 2.0
  */
-U_STABLE int32_t U_EXPORT2
+U_CAPI int32_t U_EXPORT2
 ubrk_following(UBreakIterator *bi,
            int32_t offset) __INTRODUCED_IN(31);
 
@@ -472,7 +472,7 @@ ubrk_following(UBreakIterator *bi,
 * @see ubrk_countAvailable
 * @stable ICU 2.0
 */
-U_STABLE const char* U_EXPORT2
+U_CAPI const char* U_EXPORT2
 ubrk_getAvailable(int32_t index) __INTRODUCED_IN(31);
 
 #endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
@@ -487,7 +487,7 @@ ubrk_getAvailable(int32_t index) __INTRODUCED_IN(31);
 * @see ubrk_getAvailable
 * @stable ICU 2.0
 */
-U_STABLE int32_t U_EXPORT2
+U_CAPI int32_t U_EXPORT2
 ubrk_countAvailable(void) __INTRODUCED_IN(31);
 
 #endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
@@ -504,7 +504,7 @@ ubrk_countAvailable(void) __INTRODUCED_IN(31);
 * @return True if "offset" is a boundary position.
 * @stable ICU 2.0
 */
-U_STABLE  UBool U_EXPORT2
+U_CAPI  UBool U_EXPORT2
 ubrk_isBoundary(UBreakIterator *bi, int32_t offset) __INTRODUCED_IN(31);
 
 #endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
@@ -520,7 +520,7 @@ ubrk_isBoundary(UBreakIterator *bi, int32_t offset) __INTRODUCED_IN(31);
  * For word break iterators, the possible values are defined in enum UWordBreak.
  * @stable ICU 2.2
  */
-U_STABLE  int32_t U_EXPORT2
+U_CAPI  int32_t U_EXPORT2
 ubrk_getRuleStatus(UBreakIterator *bi) __INTRODUCED_IN(31);
 
 #endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
@@ -544,7 +544,7 @@ ubrk_getRuleStatus(UBreakIterator *bi) __INTRODUCED_IN(31);
  *                  the most recent boundary returned by the break iterator.
  * @stable ICU 3.0
  */
-U_STABLE  int32_t U_EXPORT2
+U_CAPI  int32_t U_EXPORT2
 ubrk_getRuleStatusVec(UBreakIterator *bi, int32_t *fillInVec, int32_t capacity, UErrorCode *status) __INTRODUCED_IN(31);
 
 #endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31

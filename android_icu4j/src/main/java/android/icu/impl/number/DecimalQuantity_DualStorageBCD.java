@@ -1,10 +1,11 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 // © 2017 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
 package android.icu.impl.number;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.util.Arrays;
 
 /**
  * A DecimalQuantity with internal storage as a 64-bit BCD, with fallback to a byte array for numbers
@@ -125,13 +126,8 @@ public final class DecimalQuantity_DualStorageBCD extends DecimalQuantity_Abstra
         }
         if (usingBytes) {
             ensureCapacity(precision + numDigits);
-            int i = precision + numDigits - 1;
-            for (; i >= numDigits; i--) {
-                bcdBytes[i] = bcdBytes[i - numDigits];
-            }
-            for (; i >= 0; i--) {
-                bcdBytes[i] = 0;
-            }
+            System.arraycopy(bcdBytes, 0, bcdBytes, numDigits, precision);
+            Arrays.fill(bcdBytes, 0, numDigits, (byte) 0);
         } else {
             bcdLong <<= (numDigits * 4);
         }

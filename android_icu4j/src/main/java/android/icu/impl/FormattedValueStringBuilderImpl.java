@@ -1,6 +1,6 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 // © 2019 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
 package android.icu.impl;
 
 import java.text.AttributedCharacterIterator;
@@ -230,6 +230,12 @@ public class FormattedValueStringBuilderImpl {
         }
 
         assert currField == null;
+        // Always set the position to the end so that we don't revisit previous sections
+        cfpos.setState(
+            cfpos.getField(),
+            cfpos.getFieldValue(),
+            self.length,
+            self.length);
         return false;
     }
 

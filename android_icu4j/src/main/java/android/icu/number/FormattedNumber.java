@@ -1,6 +1,6 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 // © 2017 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
 package android.icu.number;
 
 import java.math.BigDecimal;
@@ -13,6 +13,7 @@ import android.icu.impl.number.DecimalQuantity;
 import android.icu.text.ConstrainedFieldPosition;
 import android.icu.text.FormattedValue;
 import android.icu.text.PluralRules.IFixedDecimal;
+import android.icu.util.MeasureUnit;
 
 /**
  * The result of a number formatting operation. This class allows the result to be exported in several
@@ -25,10 +26,12 @@ import android.icu.text.PluralRules.IFixedDecimal;
 public class FormattedNumber implements FormattedValue {
     final FormattedStringBuilder string;
     final DecimalQuantity fq;
+    final MeasureUnit outputUnit;
 
-    FormattedNumber(FormattedStringBuilder nsb, DecimalQuantity fq) {
+    FormattedNumber(FormattedStringBuilder nsb, DecimalQuantity fq, MeasureUnit outputUnit) {
         this.string = nsb;
         this.fq = fq;
+        this.outputUnit = outputUnit;
     }
 
     /**
@@ -97,6 +100,21 @@ public class FormattedNumber implements FormattedValue {
      */
     public BigDecimal toBigDecimal() {
         return fq.toBigDecimal();
+    }
+
+    /**
+     * Gets the resolved output unit.
+     * <p>
+     * The output unit is dependent upon the localized preferences for the usage
+     * specified via NumberFormatterSettings.usage(), and may be a unit with
+     * MeasureUnit.Complexity.MIXED unit complexity (MeasureUnit.getComplexity()), such
+     * as "foot-and-inch" or "hour-and-minute-and-second".
+     *
+     * @return `MeasureUnit`.
+     * @hide draft / provisional / internal are hidden on Android
+     */
+    public MeasureUnit getOutputUnit() {
+        return this.outputUnit;
     }
 
     /**

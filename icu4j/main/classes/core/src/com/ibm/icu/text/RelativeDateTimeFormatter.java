@@ -1,5 +1,5 @@
 // © 2016 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
 /*
  *******************************************************************************
  * Copyright (C) 2013-2016, International Business Machines Corporation and
@@ -253,15 +253,13 @@ public final class RelativeDateTimeFormatter {
 
         /**
          * Hour
-         * @draft ICU 65
-         * @provisional This API might change or be removed in a future release.
+         * @stable ICU 65
          */
         HOUR,
 
         /**
          * Minute
-         * @draft ICU 65
-         * @provisional This API might change or be removed in a future release.
+         * @stable ICU 65
          */
         MINUTE,
     }

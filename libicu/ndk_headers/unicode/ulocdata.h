@@ -48,7 +48,7 @@
  * @param status error code - could be U_MISSING_RESOURCE_ERROR if the version was not found.
  * @stable ICU 4.2
  */
-U_STABLE void U_EXPORT2
+U_CAPI void U_EXPORT2
 ulocdata_getCLDRVersion(UVersionInfo versionArray, UErrorCode *status) __INTRODUCED_IN(31);
 
 #endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31

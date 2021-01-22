@@ -1,7 +1,7 @@
 ﻿// © 2016 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
+// Generated using tools/cldr/cldr-to-icu/build-icu-data.xml
 ar_XB{
-    Version{"37"}
     zoneStrings{
         "Africa:Sao_Tome"{
             ec{"؜‮São‬؜ ؜‮Tomé‬؜"}
@@ -32,6 +32,9 @@ ar_XB{
         }
         "Antarctica:DumontDUrville"{
             ec{"؜‮Dumont‬؜ ؜‮d‬؜’؜‮Urville‬؜"}
+        }
+        "Asia:Aqtau"{
+            ec{"؜‮Aqtau‬؜"}
         }
         "Asia:Qostanay"{
             ec{"؜‮Kostanay‬؜"}
