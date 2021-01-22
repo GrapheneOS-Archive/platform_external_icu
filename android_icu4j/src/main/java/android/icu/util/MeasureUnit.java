@@ -1030,7 +1030,6 @@ public class MeasureUnit implements Serializable {
 
     /**
      * Constant for unit of duration: decade
-     * @hide Hide new API in Android temporarily
      */
     public static final MeasureUnit DECADE = MeasureUnit.internalGetInstance("duration", "decade");
 
@@ -1161,7 +1160,7 @@ public class MeasureUnit implements Serializable {
 
     /**
      * Constant for unit of energy: therm-us
-     * @hide Hide new API in Android temporarily
+     * @hide unsupported on Android
      */
     public static final MeasureUnit THERM_US = MeasureUnit.internalGetInstance("energy", "therm-us");
 
@@ -1205,43 +1204,36 @@ public class MeasureUnit implements Serializable {
 
     /**
      * Constant for unit of graphics: dot-per-centimeter
-     * @hide Hide new API in Android temporarily
      */
     public static final MeasureUnit DOT_PER_CENTIMETER = MeasureUnit.internalGetInstance("graphics", "dot-per-centimeter");
 
     /**
      * Constant for unit of graphics: dot-per-inch
-     * @hide Hide new API in Android temporarily
      */
     public static final MeasureUnit DOT_PER_INCH = MeasureUnit.internalGetInstance("graphics", "dot-per-inch");
 
     /**
      * Constant for unit of graphics: em
-     * @hide Hide new API in Android temporarily
      */
     public static final MeasureUnit EM = MeasureUnit.internalGetInstance("graphics", "em");
 
     /**
      * Constant for unit of graphics: megapixel
-     * @hide Hide new API in Android temporarily
      */
     public static final MeasureUnit MEGAPIXEL = MeasureUnit.internalGetInstance("graphics", "megapixel");
 
     /**
      * Constant for unit of graphics: pixel
-     * @hide Hide new API in Android temporarily
      */
     public static final MeasureUnit PIXEL = MeasureUnit.internalGetInstance("graphics", "pixel");
 
     /**
      * Constant for unit of graphics: pixel-per-centimeter
-     * @hide Hide new API in Android temporarily
      */
     public static final MeasureUnit PIXEL_PER_CENTIMETER = MeasureUnit.internalGetInstance("graphics", "pixel-per-centimeter");
 
     /**
      * Constant for unit of graphics: pixel-per-inch
-     * @hide Hide new API in Android temporarily
      */
     public static final MeasureUnit PIXEL_PER_INCH = MeasureUnit.internalGetInstance("graphics", "pixel-per-inch");
 
@@ -1496,7 +1488,7 @@ public class MeasureUnit implements Serializable {
 
     /**
      * Constant for unit of pressure: bar
-     * @hide Hide new API in Android temporarily
+     * @hide unsupported on Android
      */
     public static final MeasureUnit BAR = MeasureUnit.internalGetInstance("pressure", "bar");
 
@@ -1534,7 +1526,7 @@ public class MeasureUnit implements Serializable {
 
     /**
      * Constant for unit of pressure: pascal
-     * @hide Hide new API in Android temporarily
+     * @hide unsupported on Android
      */
     public static final MeasureUnit PASCAL = MeasureUnit.internalGetInstance("pressure", "pascal");
 
