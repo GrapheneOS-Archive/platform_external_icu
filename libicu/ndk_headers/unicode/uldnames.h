@@ -70,7 +70,7 @@ typedef struct ULocaleDisplayNames ULocaleDisplayNames;
  * @param pErrorCode the status code
  * @stable ICU 4.4
  */
-U_STABLE ULocaleDisplayNames * U_EXPORT2
+U_CAPI ULocaleDisplayNames * U_EXPORT2
 uldn_open(const char * locale,
           UDialectHandling dialectHandling,
           UErrorCode *pErrorCode) __INTRODUCED_IN(31);
@@ -84,7 +84,7 @@ uldn_open(const char * locale,
  * @param ldn the ULocaleDisplayNames instance to be closed
  * @stable ICU 4.4
  */
-U_STABLE void U_EXPORT2
+U_CAPI void U_EXPORT2
 uldn_close(ULocaleDisplayNames *ldn) __INTRODUCED_IN(31);
 
 #endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
@@ -119,7 +119,7 @@ U_NAMESPACE_END
  * @return the display locale 
  * @stable ICU 4.4
  */
-U_STABLE const char * U_EXPORT2
+U_CAPI const char * U_EXPORT2
 uldn_getLocale(const ULocaleDisplayNames *ldn) __INTRODUCED_IN(31);
 
 #endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
@@ -132,7 +132,7 @@ uldn_getLocale(const ULocaleDisplayNames *ldn) __INTRODUCED_IN(31);
  * @return the dialect handling enum
  * @stable ICU 4.4
  */
-U_STABLE UDialectHandling U_EXPORT2
+U_CAPI UDialectHandling U_EXPORT2
 uldn_getDialectHandling(const ULocaleDisplayNames *ldn) __INTRODUCED_IN(31);
 
 #endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
@@ -152,7 +152,7 @@ uldn_getDialectHandling(const ULocaleDisplayNames *ldn) __INTRODUCED_IN(31);
  * greater than maxResultSize, the returned name will be truncated.
  * @stable ICU 4.4
  */
-U_STABLE int32_t U_EXPORT2
+U_CAPI int32_t U_EXPORT2
 uldn_localeDisplayName(const ULocaleDisplayNames *ldn,
                        const char *locale,
                        UChar *result,
@@ -176,7 +176,7 @@ uldn_localeDisplayName(const ULocaleDisplayNames *ldn,
  * greater than maxResultSize, the returned name will be truncated.
  * @stable ICU 4.4
  */
-U_STABLE int32_t U_EXPORT2
+U_CAPI int32_t U_EXPORT2
 uldn_languageDisplayName(const ULocaleDisplayNames *ldn,
                          const char *lang,
                          UChar *result,
@@ -198,7 +198,7 @@ uldn_languageDisplayName(const ULocaleDisplayNames *ldn,
  * greater than maxResultSize, the returned name will be truncated.
  * @stable ICU 4.4
  */
-U_STABLE int32_t U_EXPORT2
+U_CAPI int32_t U_EXPORT2
 uldn_scriptDisplayName(const ULocaleDisplayNames *ldn,
                        const char *script,
                        UChar *result,
@@ -220,7 +220,7 @@ uldn_scriptDisplayName(const ULocaleDisplayNames *ldn,
  * greater than maxResultSize, the returned name will be truncated.
  * @stable ICU 4.4
  */
-U_STABLE int32_t U_EXPORT2
+U_CAPI int32_t U_EXPORT2
 uldn_scriptCodeDisplayName(const ULocaleDisplayNames *ldn,
                            UScriptCode scriptCode,
                            UChar *result,
@@ -242,7 +242,7 @@ uldn_scriptCodeDisplayName(const ULocaleDisplayNames *ldn,
  * greater than maxResultSize, the returned name will be truncated.
  * @stable ICU 4.4
  */
-U_STABLE int32_t U_EXPORT2
+U_CAPI int32_t U_EXPORT2
 uldn_regionDisplayName(const ULocaleDisplayNames *ldn,
                        const char *region,
                        UChar *result,
@@ -264,7 +264,7 @@ uldn_regionDisplayName(const ULocaleDisplayNames *ldn,
  * greater than maxResultSize, the returned name will be truncated.
  * @stable ICU 4.4
  */
-U_STABLE int32_t U_EXPORT2
+U_CAPI int32_t U_EXPORT2
 uldn_variantDisplayName(const ULocaleDisplayNames *ldn,
                         const char *variant,
                         UChar *result,
@@ -286,7 +286,7 @@ uldn_variantDisplayName(const ULocaleDisplayNames *ldn,
  * greater than maxResultSize, the returned name will be truncated.
  * @stable ICU 4.4
  */
-U_STABLE int32_t U_EXPORT2
+U_CAPI int32_t U_EXPORT2
 uldn_keyDisplayName(const ULocaleDisplayNames *ldn,
                     const char *key,
                     UChar *result,
@@ -309,7 +309,7 @@ uldn_keyDisplayName(const ULocaleDisplayNames *ldn,
  * greater than maxResultSize, the returned name will be truncated.
  * @stable ICU 4.4
  */
-U_STABLE int32_t U_EXPORT2
+U_CAPI int32_t U_EXPORT2
 uldn_keyValueDisplayName(const ULocaleDisplayNames *ldn,
                          const char *key,
                          const char *value,
@@ -335,7 +335,7 @@ uldn_keyValueDisplayName(const ULocaleDisplayNames *ldn,
 * @return a ULocaleDisplayNames instance 
 * @stable ICU 51
 */
-U_STABLE ULocaleDisplayNames * U_EXPORT2
+U_CAPI ULocaleDisplayNames * U_EXPORT2
 uldn_openForContext(const char * locale, UDisplayContext *contexts,
                     int32_t length, UErrorCode *pErrorCode) __INTRODUCED_IN(31);
 
@@ -353,7 +353,7 @@ uldn_openForContext(const char * locale, UDisplayContext *contexts,
 * @return the UDisplayContextValue for the specified type.
 * @stable ICU 51
 */
-U_STABLE UDisplayContext U_EXPORT2
+U_CAPI UDisplayContext U_EXPORT2
 uldn_getContext(const ULocaleDisplayNames *ldn, UDisplayContextType type,
                 UErrorCode *pErrorCode) __INTRODUCED_IN(31);
 

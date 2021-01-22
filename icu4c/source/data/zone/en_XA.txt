@@ -1,7 +1,7 @@
 ﻿// © 2016 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
+// Generated using tools/cldr/cldr-to-icu/build-icu-data.xml
 en_XA{
-    Version{"37"}
     zoneStrings{
         "Africa:Sao_Tome"{
             ec{"[Šãö Ţöɱé one two]"}
@@ -32,6 +32,9 @@ en_XA{
         }
         "Antarctica:DumontDUrville"{
             ec{"[Ðûɱöñţ ð’Ûŕṽîļļé one two three]"}
+        }
+        "Asia:Aqtau"{
+            ec{"[Åǫţåû one]"}
         }
         "Asia:Qostanay"{
             ec{"[Ķöšţåñåý one two]"}

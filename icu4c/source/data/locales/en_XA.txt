@@ -1,11 +1,11 @@
 ﻿// © 2016 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
+// Generated using tools/cldr/cldr-to-icu/build-icu-data.xml
 en_XA{
     AuxExemplarCharacters{
         "[a å b ƀ c ç d ð e é f ƒ g ĝ h ĥ i î j ĵ k ķ l ļ m ɱ n ñ o ö p þ q ǫ r ŕ s š"
         " t ţ u û v ṽ w ŵ x ẋ y ý z ž]"
     }
-    Version{"37"}
     calendar{
         buddhist{
             eras{
@@ -471,7 +471,7 @@ en_XA{
                 "[h:mm:ss a zzzz 'one' 'two']",
                 "[h:mm:ss a z 'one' 'two']",
                 "[h:mm:ss a 'one' 'two']",
-                "[h:mm a 'one']",
+                "[H:mm]",
                 "[EEEE, MMMM d, y 'one' 'two' 'three']",
                 "[MMMM d, y 'one' 'two']",
                 "[MMM d, y 'one' 'two']",

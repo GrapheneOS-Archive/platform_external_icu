@@ -1,6 +1,6 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 // © 2017 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
 package android.icu.number;
 
 import java.math.BigInteger;
@@ -14,6 +14,7 @@ import android.icu.impl.number.DecimalQuantity;
 import android.icu.impl.number.DecimalQuantity_DualStorageBCD;
 import android.icu.impl.number.LocalizedNumberFormatterAsFormat;
 import android.icu.impl.number.MacroProps;
+import android.icu.impl.number.MicroProps;
 import android.icu.math.BigDecimal;
 import android.icu.util.CurrencyAmount;
 import android.icu.util.Measure;
@@ -96,8 +97,8 @@ public class LocalizedNumberFormatter extends NumberFormatterSettings<LocalizedN
         DecimalQuantity fq = new DecimalQuantity_DualStorageBCD(input.getNumber());
         MeasureUnit unit = input.getUnit();
         FormattedStringBuilder string = new FormattedStringBuilder();
-        formatImpl(fq, unit, string);
-        return new FormattedNumber(string, fq);
+        MicroProps micros = formatImpl(fq, unit, string);
+        return new FormattedNumber(string, fq, micros.outputUnit);
     }
 
     /**
@@ -115,11 +116,13 @@ public class LocalizedNumberFormatter extends NumberFormatterSettings<LocalizedN
         return new LocalizedNumberFormatterAsFormat(this, resolve().loc);
     }
 
-    /** Helper method that creates a FormattedStringBuilder and formats. */
+    /**
+     *  Helper method that creates a FormattedStringBuilder and formats.
+     */
     private FormattedNumber format(DecimalQuantity fq) {
         FormattedStringBuilder string = new FormattedStringBuilder();
-        formatImpl(fq, string);
-        return new FormattedNumber(string, fq);
+        MicroProps micros = formatImpl(fq, string);
+        return new FormattedNumber(string, fq, micros.outputUnit);
     }
 
     /**
@@ -139,12 +142,11 @@ public class LocalizedNumberFormatter extends NumberFormatterSettings<LocalizedN
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
-    public void formatImpl(DecimalQuantity fq, FormattedStringBuilder string) {
+    public MicroProps formatImpl(DecimalQuantity fq, FormattedStringBuilder string) {
         if (computeCompiled()) {
-            compiled.format(fq, string);
-        } else {
-            NumberFormatterImpl.formatStatic(resolve(), fq, string);
+            return compiled.format(fq, string);
         }
+        return NumberFormatterImpl.formatStatic(resolve(), fq, string);
     }
 
     /**
@@ -154,11 +156,11 @@ public class LocalizedNumberFormatter extends NumberFormatterSettings<LocalizedN
      * @hide draft / provisional / internal are hidden on Android
      */
     @Deprecated
-    public void formatImpl(DecimalQuantity fq, MeasureUnit unit, FormattedStringBuilder string) {
+    public MicroProps formatImpl(DecimalQuantity fq, MeasureUnit unit, FormattedStringBuilder string) {
         // Use this formatter if possible
         if (Objects.equals(resolve().unit, unit)) {
-            formatImpl(fq, string);
-            return;
+            return formatImpl(fq, string);
+
         }
         // This mechanism saves the previously used unit, so if the user calls this method with the
         // same unit multiple times in a row, they get a more efficient code path.
@@ -167,7 +169,7 @@ public class LocalizedNumberFormatter extends NumberFormatterSettings<LocalizedN
             withUnit = new LocalizedNumberFormatter(this, KEY_UNIT, unit);
             savedWithUnit = withUnit;
         }
-        withUnit.formatImpl(fq, string);
+        return withUnit.formatImpl(fq, string);
     }
 
     /**

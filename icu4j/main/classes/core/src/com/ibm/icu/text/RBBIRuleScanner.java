@@ -1,5 +1,5 @@
 // © 2016 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
 /*
  *******************************************************************************
  * Copyright (C) 2003-2016, International Business Machines Corporation and others. All Rights Reserved.
@@ -697,16 +697,14 @@ class RBBIRuleScanner {
     static String stripRules(String rules) {
         StringBuilder strippedRules = new StringBuilder();
         int rulesLength = rules.length();
-        boolean skippingSpaces = false;
 
         for (int idx = 0; idx < rulesLength; idx = rules.offsetByCodePoints(idx, 1)) {
             int cp = rules.codePointAt(idx);
             boolean whiteSpace = UCharacter.hasBinaryProperty(cp, UProperty.PATTERN_WHITE_SPACE);
-            if (skippingSpaces && whiteSpace) {
+            if (whiteSpace) {
                 continue;
             }
             strippedRules.appendCodePoint(cp);
-            skippingSpaces = whiteSpace;
         }
         return strippedRules.toString();
     }

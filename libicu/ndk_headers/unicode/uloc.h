@@ -376,7 +376,7 @@ typedef enum {
  * @system
  * @stable ICU 2.0
  */
-U_STABLE const char* U_EXPORT2
+U_CAPI const char* U_EXPORT2
 uloc_getDefault(void) __INTRODUCED_IN(31);
 
 #endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
@@ -398,7 +398,7 @@ uloc_getDefault(void) __INTRODUCED_IN(31);
  * than languageCapacity, the returned language code will be truncated.  
  * @stable ICU 2.0
  */
-U_STABLE int32_t U_EXPORT2
+U_CAPI int32_t U_EXPORT2
 uloc_getLanguage(const char*    localeID,
          char* language,
          int32_t languageCapacity,
@@ -420,7 +420,7 @@ uloc_getLanguage(const char*    localeID,
  * than scriptCapacity, the returned language code will be truncated.  
  * @stable ICU 2.8
  */
-U_STABLE int32_t U_EXPORT2
+U_CAPI int32_t U_EXPORT2
 uloc_getScript(const char*    localeID,
          char* script,
          int32_t scriptCapacity,
@@ -442,7 +442,7 @@ uloc_getScript(const char*    localeID,
  * than countryCapacity, the returned country code will be truncated.  
  * @stable ICU 2.0
  */
-U_STABLE int32_t U_EXPORT2
+U_CAPI int32_t U_EXPORT2
 uloc_getCountry(const char*    localeID,
         char* country,
         int32_t countryCapacity,
@@ -464,7 +464,7 @@ uloc_getCountry(const char*    localeID,
  * than variantCapacity, the returned variant code will be truncated.  
  * @stable ICU 2.0
  */
-U_STABLE int32_t U_EXPORT2
+U_CAPI int32_t U_EXPORT2
 uloc_getVariant(const char*    localeID,
         char* variant,
         int32_t variantCapacity,
@@ -491,7 +491,7 @@ uloc_getVariant(const char*    localeID,
  * than nameCapacity, the returned full name will be truncated.  
  * @stable ICU 2.0
  */
-U_STABLE int32_t U_EXPORT2
+U_CAPI int32_t U_EXPORT2
 uloc_getName(const char*    localeID,
          char* name,
          int32_t nameCapacity,
@@ -518,7 +518,7 @@ uloc_getName(const char*    localeID,
  * than nameCapacity, the returned full name will be truncated.  
  * @stable ICU 2.8
  */
-U_STABLE int32_t U_EXPORT2
+U_CAPI int32_t U_EXPORT2
 uloc_canonicalize(const char*    localeID,
          char* name,
          int32_t nameCapacity,
@@ -535,7 +535,7 @@ uloc_canonicalize(const char*    localeID,
  * @return language the ISO language code for localeID
  * @stable ICU 2.0
  */
-U_STABLE const char* U_EXPORT2
+U_CAPI const char* U_EXPORT2
 uloc_getISO3Language(const char* localeID) __INTRODUCED_IN(31);
 
 #endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
@@ -550,7 +550,7 @@ uloc_getISO3Language(const char* localeID) __INTRODUCED_IN(31);
  * @return country the ISO country code for localeID
  * @stable ICU 2.0
  */
-U_STABLE const char* U_EXPORT2
+U_CAPI const char* U_EXPORT2
 uloc_getISO3Country(const char* localeID) __INTRODUCED_IN(31);
 
 #endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
@@ -563,19 +563,24 @@ uloc_getISO3Country(const char* localeID) __INTRODUCED_IN(31);
  * Gets the language name suitable for display for the specified locale.
  *
  * @param locale the locale to get the ISO language code with
- * @param displayLocale Specifies the locale to be used to display the name.  In other words,
- *                 if the locale's language code is "en", passing Locale::getFrench() for
- *                 inLocale would result in "Anglais", while passing Locale::getGerman()
- *                 for inLocale would result in "Englisch".
+ * @param displayLocale Specifies the locale to be used to display the name. In
+ *                 other words, if the locale's language code is "en", passing
+ *                 Locale::getFrench() for inLocale would result in "Anglais",
+ *                 while passing Locale::getGerman() for inLocale would result
+ *                 in "Englisch".
  * @param language the displayable language code for localeID
- * @param languageCapacity the size of the language buffer to store the  
- * displayable language code with
- * @param status error information if retrieving the displayable language code failed
- * @return the actual buffer size needed for the displayable language code.  If it's greater 
- * than languageCapacity, the returned language code will be truncated.  
+ * @param languageCapacity the size of the language buffer to store the
+ *                 displayable language code with.
+ * @param status error information if retrieving the displayable language code
+ *                 failed. U_USING_DEFAULT_WARNING indicates that no data was
+ *                 found from the locale resources and a case canonicalized
+ *                 language code is placed into language as fallback.
+ * @return the actual buffer size needed for the displayable language code. If
+ *                 it's greater than languageCapacity, the returned language
+ *                 code will be truncated.
  * @stable ICU 2.0
  */
-U_STABLE int32_t U_EXPORT2
+U_CAPI int32_t U_EXPORT2
 uloc_getDisplayLanguage(const char* locale,
             const char* displayLocale,
             UChar* language,
@@ -589,20 +594,26 @@ uloc_getDisplayLanguage(const char* locale,
 /**
  * Gets the script name suitable for display for the specified locale.
  *
- * @param locale the locale to get the displayable script code with. NULL may be used to specify the default.
- * @param displayLocale Specifies the locale to be used to display the name.  In other words,
- *                 if the locale's language code is "en", passing Locale::getFrench() for
- *                 inLocale would result in "", while passing Locale::getGerman()
- *                 for inLocale would result in "". NULL may be used to specify the default.
- * @param script the displayable script for the localeID
- * @param scriptCapacity the size of the script buffer to store the  
- * displayable script code with
- * @param status error information if retrieving the displayable script code failed
- * @return the actual buffer size needed for the displayable script code.  If it's greater 
- * than scriptCapacity, the returned displayable script code will be truncated.  
+ * @param locale the locale to get the displayable script code with. NULL may be
+ *                 used to specify the default.
+ * @param displayLocale Specifies the locale to be used to display the name. In
+ *                 other words, if the locale's language code is "en", passing
+ *                 Locale::getFrench() for inLocale would result in "", while
+ *                 passing Locale::getGerman() for inLocale would result in "".
+ *                 NULL may be used to specify the default.
+ * @param script the displayable script for the localeID.
+ * @param scriptCapacity the size of the script buffer to store the displayable
+ *                 script code with.
+ * @param status error information if retrieving the displayable script code
+ *                 failed. U_USING_DEFAULT_WARNING indicates that no data was
+ *                 found from the locale resources and a case canonicalized
+ *                 script code is placed into script as fallback.
+ * @return the actual buffer size needed for the displayable script code. If
+ *                 it's greater than scriptCapacity, the returned displayable
+ *                 script code will be truncated.
  * @stable ICU 2.8
  */
-U_STABLE int32_t U_EXPORT2
+U_CAPI int32_t U_EXPORT2
 uloc_getDisplayScript(const char* locale,
             const char* displayLocale,
             UChar* script,
@@ -615,23 +626,30 @@ uloc_getDisplayScript(const char* locale,
 
 /**
  * Gets the country name suitable for display for the specified locale.
- * Warning: this is for the region part of a valid locale ID; it cannot just be the region code (like "FR").
- * To get the display name for a region alone, or for other options, use ULocaleDisplayNames instead.
+ * Warning: this is for the region part of a valid locale ID; it cannot just be
+ * the region code (like "FR"). To get the display name for a region alone, or
+ * for other options, use ULocaleDisplayNames instead.
  *
- * @param locale the locale to get the displayable country code with. NULL may be used to specify the default.
- * @param displayLocale Specifies the locale to be used to display the name.  In other words,
- *                 if the locale's language code is "en", passing Locale::getFrench() for
- *                 inLocale would result in "Anglais", while passing Locale::getGerman()
- *                 for inLocale would result in "Englisch". NULL may be used to specify the default.
- * @param country the displayable country code for localeID
- * @param countryCapacity the size of the country buffer to store the  
- * displayable country code with
- * @param status error information if retrieving the displayable country code failed
- * @return the actual buffer size needed for the displayable country code.  If it's greater 
- * than countryCapacity, the returned displayable country code will be truncated.  
+ * @param locale the locale to get the displayable country code with. NULL may
+ *                 be used to specify the default.
+ * @param displayLocale Specifies the locale to be used to display the name. In
+ *                 other words, if the locale's language code is "en", passing
+ *                 Locale::getFrench() for inLocale would result in "Anglais",
+ *                 while passing Locale::getGerman() for inLocale would result
+ *                 in "Englisch". NULL may be used to specify the default.
+ * @param country the displayable country code for localeID.
+ * @param countryCapacity the size of the country buffer to store the
+ *                 displayable country code with.
+ * @param status error information if retrieving the displayable country code
+ *                 failed. U_USING_DEFAULT_WARNING indicates that no data was
+ *                 found from the locale resources and a case canonicalized
+ *                 country code is placed into country as fallback.
+ * @return the actual buffer size needed for the displayable country code. If
+ *                 it's greater than countryCapacity, the returned displayable
+ *                 country code will be truncated.
  * @stable ICU 2.0
  */
-U_STABLE int32_t U_EXPORT2
+U_CAPI int32_t U_EXPORT2
 uloc_getDisplayCountry(const char* locale,
                        const char* displayLocale,
                        UChar* country,
@@ -646,20 +664,26 @@ uloc_getDisplayCountry(const char* locale,
 /**
  * Gets the variant name suitable for display for the specified locale.
  *
- * @param locale the locale to get the displayable variant code with. NULL may be used to specify the default.
- * @param displayLocale Specifies the locale to be used to display the name.  In other words,
- *                 if the locale's language code is "en", passing Locale::getFrench() for
- *                 inLocale would result in "Anglais", while passing Locale::getGerman()
- *                 for inLocale would result in "Englisch". NULL may be used to specify the default.
- * @param variant the displayable variant code for localeID
- * @param variantCapacity the size of the variant buffer to store the 
- * displayable variant code with
- * @param status error information if retrieving the displayable variant code failed
- * @return the actual buffer size needed for the displayable variant code.  If it's greater 
- * than variantCapacity, the returned displayable variant code will be truncated.  
+ * @param locale the locale to get the displayable variant code with. NULL may
+ *                 be used to specify the default.
+ * @param displayLocale Specifies the locale to be used to display the name. In
+ *                 other words, if the locale's language code is "en", passing
+ *                 Locale::getFrench() for inLocale would result in "Anglais",
+ *                 while passing Locale::getGerman() for inLocale would result
+ *                 in "Englisch". NULL may be used to specify the default.
+ * @param variant the displayable variant code for localeID.
+ * @param variantCapacity the size of the variant buffer to store the
+ *                 displayable variant code with.
+ * @param status error information if retrieving the displayable variant code
+ *                 failed. U_USING_DEFAULT_WARNING indicates that no data was
+ *                 found from the locale resources and a case canonicalized
+ *                 variant code is placed into variant as fallback.
+ * @return the actual buffer size needed for the displayable variant code. If
+ *                 it's greater than variantCapacity, the returned displayable
+ *                 variant code will be truncated.
  * @stable ICU 2.0
  */
-U_STABLE int32_t U_EXPORT2
+U_CAPI int32_t U_EXPORT2
 uloc_getDisplayVariant(const char* locale,
                        const char* displayLocale,
                        UChar* variant,
@@ -671,9 +695,9 @@ uloc_getDisplayVariant(const char* locale,
 #if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
- * Gets the keyword name suitable for display for the specified locale.
- * E.g: for the locale string de_DE\@collation=PHONEBOOK, this API gets the display 
- * string for the keyword collation. 
+ * Gets the keyword name suitable for display for the specified locale. E.g:
+ * for the locale string de_DE\@collation=PHONEBOOK, this API gets the display
+ * string for the keyword collation.
  * Usage:
  * <code>
  *    UErrorCode status = U_ZERO_ERROR;
@@ -702,15 +726,17 @@ uloc_getDisplayVariant(const char* locale,
  *                          for inLocale would result in "Englisch". NULL may be used to specify the default.
  * @param dest              the buffer to which the displayable keyword should be written.
  * @param destCapacity      The size of the buffer (number of UChars). If it is 0, then
- *                          dest may be NULL and the function will only return the length of the 
+ *                          dest may be NULL and the function will only return the length of the
  *                          result without writing any of the result string (pre-flighting).
- * @param status            error information if retrieving the displayable string failed. 
+ * @param status            error information if retrieving the displayable string failed.
  *                          Should not be NULL and should not indicate failure on entry.
- * @return the actual buffer size needed for the displayable variant code.  
+ *                          U_USING_DEFAULT_WARNING indicates that no data was found from the locale
+ *                          resources and the keyword is placed into dest as fallback.
+ * @return the actual buffer size needed for the displayable variant code.
  * @see #uloc_openKeywords
  * @stable ICU 2.8
  */
-U_STABLE int32_t U_EXPORT2
+U_CAPI int32_t U_EXPORT2
 uloc_getDisplayKeyword(const char* keyword,
                        const char* displayLocale,
                        UChar* dest,
@@ -722,7 +748,7 @@ uloc_getDisplayKeyword(const char* keyword,
 
 /**
  * Gets the value of the keyword suitable for display for the specified locale.
- * E.g: for the locale string de_DE\@collation=PHONEBOOK, this API gets the display 
+ * E.g: for the locale string de_DE\@collation=PHONEBOOK, this API gets the display
  * string for PHONEBOOK, in the display locale, when "collation" is specified as the keyword.
  *
  * @param locale            The locale to get the displayable variant code with. NULL may be used to specify the default.
@@ -733,14 +759,16 @@ uloc_getDisplayKeyword(const char* keyword,
  *                          for inLocale would result in "Englisch". NULL may be used to specify the default.
  * @param dest              the buffer to which the displayable keyword should be written.
  * @param destCapacity      The size of the buffer (number of UChars). If it is 0, then
- *                          dest may be NULL and the function will only return the length of the 
+ *                          dest may be NULL and the function will only return the length of the
  *                          result without writing any of the result string (pre-flighting).
- * @param status            error information if retrieving the displayable string failed. 
+ * @param status            error information if retrieving the displayable string failed.
  *                          Should not be NULL and must not indicate failure on entry.
- * @return the actual buffer size needed for the displayable variant code.  
+ *                          U_USING_DEFAULT_WARNING indicates that no data was found from the locale
+ *                          resources and the value of the keyword is placed into dest as fallback.
+ * @return the actual buffer size needed for the displayable variant code.
  * @stable ICU 2.8
  */
-U_STABLE int32_t U_EXPORT2
+U_CAPI int32_t U_EXPORT2
 uloc_getDisplayKeywordValue(   const char* locale,
                                const char* keyword,
                                const char* displayLocale,
@@ -767,7 +795,7 @@ uloc_getDisplayKeywordValue(   const char* locale,
  * than maxResultSize, the returned displayable name will be truncated.  
  * @stable ICU 2.0
  */
-U_STABLE int32_t U_EXPORT2
+U_CAPI int32_t U_EXPORT2
 uloc_getDisplayName(const char* localeID,
             const char* inLocaleID,
             UChar* result,
@@ -795,7 +823,7 @@ uloc_getDisplayName(const char* localeID,
  * @return a specified locale name of all available locales
  * @stable ICU 2.0
  */
-U_STABLE const char* U_EXPORT2
+U_CAPI const char* U_EXPORT2
 uloc_getAvailable(int32_t n) __INTRODUCED_IN(31);
 
 #endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
@@ -808,23 +836,21 @@ uloc_getAvailable(int32_t n) __INTRODUCED_IN(31);
  * @return the size of the locale list
  * @stable ICU 2.0
  */
-U_STABLE int32_t U_EXPORT2 uloc_countAvailable(void) __INTRODUCED_IN(31);
+U_CAPI int32_t U_EXPORT2 uloc_countAvailable(void) __INTRODUCED_IN(31);
 
 #endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
-
-#ifndef U_HIDE_DRAFT_API
 
 /**
  * Types for uloc_getAvailableByType and uloc_countAvailableByType.
  *
- * @draft ICU 65
+ * @stable ICU 65
  */
 typedef enum ULocAvailableType {
   /**
    * Locales that return data when passed to ICU APIs,
    * but not including legacy or alias locales.
    *
-   * @draft ICU 65
+   * @stable ICU 65
    */
   ULOC_AVAILABLE_DEFAULT,
 
@@ -842,7 +868,7 @@ typedef enum ULocAvailableType {
    * ULOC_AVAILABLE_DEFAULT. To get both sets at the same time, use
    * ULOC_AVAILABLE_WITH_LEGACY_ALIASES.
    *
-   * @draft ICU 65
+   * @stable ICU 65
    */
   ULOC_AVAILABLE_ONLY_LEGACY_ALIASES,
 
@@ -850,7 +876,7 @@ typedef enum ULocAvailableType {
    * The union of the locales in ULOC_AVAILABLE_DEFAULT and
    * ULOC_AVAILABLE_ONLY_LEGACY_ALIAS.
    *
-   * @draft ICU 65
+   * @stable ICU 65
    */
   ULOC_AVAILABLE_WITH_LEGACY_ALIASES,
 
@@ -863,8 +889,6 @@ typedef enum ULocAvailableType {
 } ULocAvailableType;
 
 
-
-#endif // U_HIDE_DRAFT_API
 
 #if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
@@ -879,7 +903,7 @@ typedef enum ULocAvailableType {
  * @return a list of all available language codes
  * @stable ICU 2.0
  */
-U_STABLE const char* const* U_EXPORT2
+U_CAPI const char* const* U_EXPORT2
 uloc_getISOLanguages(void) __INTRODUCED_IN(31);
 
 #endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
@@ -895,7 +919,7 @@ uloc_getISOLanguages(void) __INTRODUCED_IN(31);
  * @return a list of all available country codes
  * @stable ICU 2.0
  */
-U_STABLE const char* const* U_EXPORT2
+U_CAPI const char* const* U_EXPORT2
 uloc_getISOCountries(void) __INTRODUCED_IN(31);
 
 #endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
@@ -929,7 +953,7 @@ uloc_getISOCountries(void) __INTRODUCED_IN(31);
  * than nameCapacity, the returned full name will be truncated.  
  * @stable ICU 2.8
  */
-U_STABLE int32_t U_EXPORT2
+U_CAPI int32_t U_EXPORT2
 uloc_getBaseName(const char*    localeID,
          char* name,
          int32_t nameCapacity,
@@ -948,7 +972,7 @@ uloc_getBaseName(const char*    localeID,
  * @return enumeration of keywords or NULL if there are no keywords.
  * @stable ICU 2.8
  */
-U_STABLE UEnumeration* U_EXPORT2
+U_CAPI UEnumeration* U_EXPORT2
 uloc_openKeywords(const char* localeID,
                         UErrorCode* status) __INTRODUCED_IN(31);
 
@@ -969,7 +993,7 @@ uloc_openKeywords(const char* localeID,
  * @return the length of keyword value
  * @stable ICU 2.8
  */
-U_STABLE int32_t U_EXPORT2
+U_CAPI int32_t U_EXPORT2
 uloc_getKeywordValue(const char* localeID,
                      const char* keywordName,
                      char* buffer, int32_t bufferCapacity,
@@ -1010,7 +1034,7 @@ uloc_getKeywordValue(const char* localeID,
  * @see uloc_getKeywordValue
  * @stable ICU 3.2
  */
-U_STABLE int32_t U_EXPORT2
+U_CAPI int32_t U_EXPORT2
 uloc_setKeywordValue(const char* keywordName,
                      const char* keywordValue,
                      char* buffer, int32_t bufferCapacity,
@@ -1023,18 +1047,18 @@ uloc_setKeywordValue(const char* keywordName,
 /**
  * Returns whether the locale's script is written right-to-left.
  * If there is no script subtag, then the likely script is used, see uloc_addLikelySubtags().
- * If no likely script is known, then FALSE is returned.
+ * If no likely script is known, then false is returned.
  *
  * A script is right-to-left according to the CLDR script metadata
  * which corresponds to whether the script's letters have Bidi_Class=R or AL.
  *
- * Returns TRUE for "ar" and "en-Hebr", FALSE for "zh" and "fa-Cyrl".
+ * Returns true for "ar" and "en-Hebr", false for "zh" and "fa-Cyrl".
  *
  * @param locale input locale ID
- * @return TRUE if the locale's script is written right-to-left
+ * @return true if the locale's script is written right-to-left
  * @stable ICU 54
  */
-U_STABLE UBool U_EXPORT2
+U_CAPI UBool U_EXPORT2
 uloc_isRightToLeft(const char *locale) __INTRODUCED_IN(31);
 
 #endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
@@ -1062,7 +1086,7 @@ typedef enum {
  * @return an enum indicating the layout orientation for characters.
  * @stable ICU 4.0
  */
-U_STABLE ULayoutType U_EXPORT2
+U_CAPI ULayoutType U_EXPORT2
 uloc_getCharacterOrientation(const char* localeId,
                              UErrorCode *status) __INTRODUCED_IN(31);
 
@@ -1078,7 +1102,7 @@ uloc_getCharacterOrientation(const char* localeId,
  * @return an enum indicating the layout orientation for lines.
  * @stable ICU 4.0
  */
-U_STABLE ULayoutType U_EXPORT2
+U_CAPI ULayoutType U_EXPORT2
 uloc_getLineOrientation(const char* localeId,
                         UErrorCode *status) __INTRODUCED_IN(31);
 
@@ -1132,7 +1156,7 @@ typedef enum {
  * @return length needed for the locale.
  * @stable ICU 3.2
  */
-U_STABLE int32_t U_EXPORT2
+U_CAPI int32_t U_EXPORT2
 uloc_acceptLanguage(char *result, int32_t resultAvailable, 
                     UAcceptResult *outResult, const char **acceptList,
                     int32_t acceptListCount,
@@ -1180,7 +1204,7 @@ uloc_acceptLanguage(char *result, int32_t resultAvailable,
  * On error, the return value is -1.
  * @stable ICU 4.0
  */
-U_STABLE int32_t U_EXPORT2
+U_CAPI int32_t U_EXPORT2
 uloc_addLikelySubtags(const char*    localeID,
          char* maximizedLocaleID,
          int32_t maximizedLocaleIDCapacity,
@@ -1224,7 +1248,7 @@ uloc_addLikelySubtags(const char*    localeID,
  * On error, the return value is -1.
  * @stable ICU 4.0
  */
-U_STABLE int32_t U_EXPORT2
+U_CAPI int32_t U_EXPORT2
 uloc_minimizeSubtags(const char*    localeID,
          char* minimizedLocaleID,
          int32_t minimizedLocaleIDCapacity,
@@ -1238,14 +1262,18 @@ uloc_minimizeSubtags(const char*    localeID,
  * Returns a locale ID for the specified BCP47 language tag string.
  * If the specified language tag contains any ill-formed subtags,
  * the first such subtag and all following subtags are ignored.
- * <p> 
- * This implements the 'Language-Tag' production of BCP47, and so
- * supports grandfathered (regular and irregular) as well as private
- * use language tags.  Private use tags are represented as 'x-whatever',
- * and grandfathered tags are converted to their canonical replacements
- * where they exist.  Note that a few grandfathered tags have no modern
- * replacement, these will be converted using the fallback described in
+ * <p>
+ * This implements the 'Language-Tag' production of BCP 47, and so
+ * supports legacy language tags (marked as “Type: grandfathered” in BCP 47)
+ * (regular and irregular) as well as private use language tags.
+ *
+ * Private use tags are represented as 'x-whatever',
+ * and legacy tags are converted to their canonical replacements where they exist.
+ *
+ * Note that a few legacy tags have no modern replacement;
+ * these will be converted using the fallback described in
  * the first paragraph, so some information might be lost.
+ *
  * @param langtag   the input BCP47 language tag.
  * @param localeID  the output buffer receiving a locale ID for the
  *                  specified BCP47 language tag.
@@ -1257,7 +1285,7 @@ uloc_minimizeSubtags(const char*    localeID,
  * @return          the length of the locale ID.
  * @stable ICU 4.2
  */
-U_STABLE int32_t U_EXPORT2
+U_CAPI int32_t U_EXPORT2
 uloc_forLanguageTag(const char* langtag,
                     char* localeID,
                     int32_t localeIDCapacity,
@@ -1271,10 +1299,10 @@ uloc_forLanguageTag(const char* langtag,
 /**
  * Returns a well-formed language tag for this locale ID. 
  * <p> 
- * <b>Note</b>: When <code>strict</code> is FALSE, any locale
+ * <b>Note</b>: When <code>strict</code> is false, any locale
  * fields which do not satisfy the BCP47 syntax requirement will
  * be omitted from the result.  When <code>strict</code> is
- * TRUE, this function sets U_ILLEGAL_ARGUMENT_ERROR to the
+ * true, this function sets U_ILLEGAL_ARGUMENT_ERROR to the
  * <code>err</code> if any locale fields do not satisfy the
  * BCP47 syntax requirement.
  * @param localeID  the input locale ID
@@ -1289,7 +1317,7 @@ uloc_forLanguageTag(const char* langtag,
  * @return          The length of the BCP47 language tag.
  * @stable ICU 4.2
  */
-U_STABLE int32_t U_EXPORT2
+U_CAPI int32_t U_EXPORT2
 uloc_toLanguageTag(const char* localeID,
                    char* langtag,
                    int32_t langtagCapacity,
@@ -1321,7 +1349,7 @@ uloc_toLanguageTag(const char* localeID,
  * @see uloc_toLegacyKey
  * @stable ICU 54
  */
-U_STABLE const char* U_EXPORT2
+U_CAPI const char* U_EXPORT2
 uloc_toUnicodeLocaleKey(const char* keyword) __INTRODUCED_IN(31);
 
 #endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
@@ -1356,7 +1384,7 @@ uloc_toUnicodeLocaleKey(const char* keyword) __INTRODUCED_IN(31);
  * @see uloc_toLegacyType
  * @stable ICU 54
  */
-U_STABLE const char* U_EXPORT2
+U_CAPI const char* U_EXPORT2
 uloc_toUnicodeLocaleType(const char* keyword, const char* value) __INTRODUCED_IN(31);
 
 #endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
@@ -1375,7 +1403,7 @@ uloc_toUnicodeLocaleType(const char* keyword, const char* value) __INTRODUCED_IN
  * @see toUnicodeLocaleKey
  * @stable ICU 54
  */
-U_STABLE const char* U_EXPORT2
+U_CAPI const char* U_EXPORT2
 uloc_toLegacyKey(const char* keyword) __INTRODUCED_IN(31);
 
 #endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
@@ -1408,7 +1436,7 @@ uloc_toLegacyKey(const char* keyword) __INTRODUCED_IN(31);
  * @see toUnicodeLocaleType
  * @stable ICU 54
  */
-U_STABLE const char* U_EXPORT2
+U_CAPI const char* U_EXPORT2
 uloc_toLegacyType(const char* keyword, const char* value) __INTRODUCED_IN(31);
 
 #endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31

@@ -16,6 +16,10 @@ import icuutil
 # Run with no arguments from any directory, with no special setup required.
 # See icu4c/source/data/cldr-icu-readme.txt for the upstream ICU instructions.
 def main():
+  if subprocess.call(["which", "mvn"]) != 0 or subprocess.call(["which", "ant"]) != 0:
+    print("Can't find the required tools. Run `sudo apt-get install maven ant` to install")
+    exit(1)
+
   cldr_dir = icuutil.cldrDir()
   print('Found cldr in %s ...' % cldr_dir)
   icu_dir = icuutil.icuDir()
@@ -45,111 +49,70 @@ def main():
 
   # This is the location of the original CLDR source tree (not the temporary
   # copy of the tools source code) from where the data files are to be read:
-  os.environ['CLDR_DIR'] = cldr_build_dir #os.path.join(os.getcwd(), 'cldr')
+  os.environ['CLDR_DIR'] = cldr_build_dir  # os.path.join(os.getcwd(), 'cldr')
 
   os.environ['ICU4C_ROOT'] = icu4c_build_dir
   os.environ['ICU4J_ROOT'] = icu4j_build_dir
-  os.environ['TOOLS_ROOT'] = os.path.join(icu_dir, 'tools')
+  os.environ['TOOLS_ROOT'] = icu_tools_build_dir
   cldr_tmp_dir = os.path.join(build_dir, 'cldr-staging')
   os.environ['CLDR_TMP_DIR'] = cldr_tmp_dir
 
-  print('Building CLDR tools ...')
-  os.chdir(os.path.join(cldr_build_dir, 'tools', 'java'))
-  subprocess.check_call(['ant', 'clean'])
-  subprocess.check_call(['ant', 'all'])
-  subprocess.check_call(['ant', 'jar'])
+  icu_tools_cldr_dir = os.path.join(icu_tools_build_dir, 'cldr')
+  print('Installing CLDR tools ...')
+  os.chdir(icu_tools_cldr_dir)
+  subprocess.check_call(['ant', 'install-cldr-libs'])
 
-  # As per tools/cldr/cldr-to-icu/lib/README.txt we need to ensure local maven
-  # repository contains both cldr.jar and utilities.jar
-  icu_tools_lib_dir = os.path.join(icu_tools_build_dir, 'cldr', 'cldr-to-icu', 'lib')
-  cldr_jar = os.path.join(cldr_build_dir, 'tools', 'java', 'cldr.jar')
-  utilities_jar = os.path.join(cldr_build_dir, 'tools', 'java', 'libs', 'utilities.jar')
-
-  os.chdir(icu_tools_lib_dir)
-  subprocess.check_call([
-    'mvn',
-    'install:install-file',
-    '-DgroupId=org.unicode.cldr',
-    '-DartifactId=cldr-api',
-    '-Dversion=0.1-SNAPSHOT',
-    '-Dpackaging=jar',
-    '-DgeneratePom=true',
-    '-DlocalRepositoryPath=.',
-    '-Dfile={cldr_jar}'.format(cldr_jar=cldr_jar)
-  ])
-
-  subprocess.check_call([
-      'mvn',
-      'install:install-file',
-      '-DgroupId=com.ibm.icu',
-      '-DartifactId=icu-utilities',
-      '-Dversion=0.1-SNAPSHOT',
-      '-Dpackaging=jar',
-      '-DgeneratePom=true',
-      '-DlocalRepositoryPath=.',
-      '-Dfile={utilities_jar}'.format(utilities_jar=utilities_jar)
-  ])
-
-  os.chdir(os.path.join(icu_tools_build_dir, 'cldr', 'cldr-to-icu'))
-  subprocess.check_call([
-      'mvn',
-      'dependency:purge-local-repository',
-      '-DsnapshotsOnly=true'
-  ])
-
+  print('Building ICU data...')
   icu4c_data_build_dir = os.path.join(icu4c_build_dir, 'source/data')
   os.chdir(icu4c_data_build_dir)
   subprocess.check_call(['ant', 'cleanprod'])
   subprocess.check_call(['ant', 'setup'])
   subprocess.check_call(['ant', 'proddata'])
 
-  os.chdir(os.path.join(icu_tools_build_dir, 'cldr', 'cldr-to-icu'))
-
-  cldr_production_data_build_dir = os.path.join(build_dir, 'proddata')
-  os.mkdir(cldr_production_data_build_dir)
-
   # Finally we "compile" CLDR-data to a "production" form and place it in ICU
-  # Temporarily redefining CLDR_DIR per cldr-icu-readme.txt
-  build_production_data_env = os.environ.copy()
-  build_production_data_env["CLDR_DIR"] = os.path.join(cldr_tmp_dir, 'production')
+  os.chdir(os.path.join(icu_tools_build_dir, 'cldr', 'cldr-to-icu'))
+  cldr_production_tmp_dir = os.path.join(cldr_tmp_dir, 'production')
   subprocess.check_call([
-      'ant',
-      '-f',
-      'build-icu-data.xml',
-      '-DoutDir=' + cldr_production_data_build_dir,
-      '-DincludePseudoLocales=true'
-  ], env=build_production_data_env)
+    'ant',
+    '-f',
+    'build-icu-data.xml',
+    '-DcldrDataDir=' + cldr_production_tmp_dir,
+    '-DforceDelete=true',
+    '-DincludePseudoLocales=true'
+  ])
 
+  os.chdir(icu_tools_cldr_dir)
+  subprocess.check_call([
+    'ant',
+    'copy-cldr-testdata',
+  ])
+
+  # Copy the generated data files from the temporary directory into AOSP.
   icu4c_data_source_dir = os.path.join(icu_dir, 'icu4c/source/data')
-  subprocess.check_call([
-      'rsync',
-      '-a',
-      '{src}/'.format(src=cldr_production_data_build_dir),
-      '{dst}'.format(dst=icu4c_data_source_dir)
-  ])
+  rmAndCopyTree(icu4c_data_build_dir, icu4c_data_source_dir)
+  rmAndCopyTree(
+    os.path.join(icu4c_build_dir, 'source/test/testdata/cldr'),
+    os.path.join(icu_dir, 'icu4c/source/test/testdata/cldr'))
+  rmAndCopyTree(
+    os.path.join(icu4j_build_dir, 'main/tests/core/src/com/ibm/icu/dev/data/cldr'),
+    os.path.join(icu_dir, 'icu4j/main/tests/core/src/com/ibm/icu/dev/data/cldr'))
 
-  # Generate icu4c/source/data/misc/langInfo.txt by a ICU4J tool
-  langInfo_dst_path =  os.path.join(icu4c_data_source_dir, 'misc', 'langInfo.txt')
-  print('Building %s' % langInfo_dst_path)
-  langInfo_out_path = '/tmp/langInfo.txt' # path hardcoded in the LocaleDistanceBuilder tool
-  if os.path.exists(langInfo_out_path):
-    os.remove(langInfo_out_path)
-
-  os.chdir(icu4j_build_dir)
-  subprocess.check_call(['ant', 'icu4jJar'])
-  os.chdir(os.path.join(icu4j_build_dir, 'tools', 'misc'))
-  subprocess.check_call(['ant', 'jar'])
-  subprocess.check_call([
-      'java',
-      '-cp',
-      'out/lib/icu4j-tools.jar:../../icu4j.jar',
-      'com.ibm.icu.dev.tool.locale.LocaleDistanceBuilder',
-  ])
-  print('Copying {src} to {dst}'.format(src=langInfo_out_path, dst=langInfo_dst_path))
-  shutil.copyfile(langInfo_out_path, langInfo_dst_path)
+  localeCanonicalization_src = os.path.join(
+    cldr_production_tmp_dir, 'common/testData/localeIdentifiers/localeCanonicalization.txt')
+  shutil.copy(localeCanonicalization_src, os.path.join(
+    icu_dir, 'icu4c/source/test/testdata/localeCanonicalization.txt'))
+  shutil.copy(localeCanonicalization_src, os.path.join(
+    icu_dir, 'icu4j/main/tests/core/src/com/ibm/icu/dev/data/unicode/localeCanonicalization.txt'))
 
   print('Look in %s for new data source files' % icu4c_data_source_dir)
   sys.exit(0)
+
+
+def rmAndCopyTree(src, dst):
+  if os.path.exists(dst):
+    shutil.rmtree(dst)
+  shutil.copytree(src, dst)
+
 
 if __name__ == '__main__':
   main()

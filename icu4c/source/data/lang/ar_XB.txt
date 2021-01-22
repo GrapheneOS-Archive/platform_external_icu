@@ -1,5 +1,6 @@
 ﻿// © 2016 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
+// Generated using tools/cldr/cldr-to-icu/build-icu-data.xml
 ar_XB{
     Keys{
         calendar{"؜‮Calendar‬؜"}
@@ -15,6 +16,7 @@ ar_XB{
         collation{"؜‮Sort‬؜ ؜‮Order‬؜"}
         currency{"؜‮Currency‬؜"}
         d0{"؜‮Transform‬؜ ؜‮Destination‬؜"}
+        dx{"؜‮Dictionary‬؜ ؜‮Break‬؜ ؜‮Exclusions‬؜"}
         em{"؜‮Emoji‬؜ ؜‮Presentation‬؜ ؜‮Style‬؜"}
         fw{"؜‮First‬؜ ؜‮day‬؜ ؜‮of‬؜ ؜‮week‬؜"}
         h0{"؜‮Mixed‬؜-؜‮in‬؜"}
@@ -1299,7 +1301,6 @@ ar_XB{
         VALENCIA{"؜‮Valencian‬؜"}
         WADEGILE{"؜‮Wade‬؜-؜‮Giles‬؜ ؜‮Romanization‬؜"}
     }
-    Version{"37"}
     characterLabelPattern{
         all{"{0} — ؜‮all‬؜"}
         category-list{"{0}: {1}"}

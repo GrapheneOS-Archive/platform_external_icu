@@ -1,11 +1,11 @@
 ﻿// © 2016 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
+// Generated using tools/cldr/cldr-to-icu/build-icu-data.xml
 ar_XB{
-    AuxExemplarCharacters{"[a b c d e f g h i j k l m n o p q r s t u v w x y z]"}
+    AuxExemplarCharacters{"[a b c d e f g h i j k l m n o p q r s t u v w x y z \u061C \u202E \u202C]"}
     NumberElements{
         default{"latn"}
     }
-    Version{"37"}
     calendar{
         buddhist{
             eras{
@@ -471,7 +471,7 @@ ar_XB{
                 "h:mm:ss a zzzz",
                 "h:mm:ss a z",
                 "h:mm:ss a",
-                "h:mm a",
+                "[H:mm]",
                 "EEEE, MMMM d, y",
                 "MMMM d, y",
                 "MMM d, y",

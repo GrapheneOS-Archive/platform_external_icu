@@ -28,15 +28,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Optional;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -47,6 +39,8 @@ import org.unicode.cldr.api.CldrDataType;
 import org.unicode.cldr.api.CldrPath;
 import org.unicode.cldr.api.PathMatcher;
 import org.unicode.icu.tool.cldrtoicu.LdmlConverterConfig.IcuLocaleDir;
+import org.unicode.icu.tool.cldrtoicu.LdmlConverterConfig.IcuVersionInfo;
+import org.unicode.icu.tool.cldrtoicu.localedistance.LocaleDistanceMapper;
 import org.unicode.icu.tool.cldrtoicu.mapper.Bcp47Mapper;
 import org.unicode.icu.tool.cldrtoicu.mapper.BreakIteratorMapper;
 import org.unicode.icu.tool.cldrtoicu.mapper.CollationMapper;
@@ -109,11 +103,16 @@ public final class LdmlConverter {
             "territoryContainment",
             "territoryInfo",
             "timeData",
-            "unitPreferenceData",
             "weekData",
             "weekOfPreference");
     private static final Predicate<CldrPath> CURRENCY_DATA_PATHS =
         supplementalMatcher("currencyData");
+    private static final Predicate<CldrPath> UNITS_DATA_PATHS =
+        supplementalMatcher(
+            "convertUnits",
+            "unitConstants",
+            "unitQuantities",
+            "unitPreferenceData");
     private static final Predicate<CldrPath> NUMBERING_SYSTEMS_PATHS =
         supplementalMatcher("numberingSystems");
     private static final Predicate<CldrPath> WINDOWS_ZONES_PATHS =
@@ -153,6 +152,7 @@ public final class LdmlConverter {
         GENDER_LIST(SUPPLEMENTAL),
         LIKELY_SUBTAGS(SUPPLEMENTAL),
         SUPPLEMENTAL_DATA(SUPPLEMENTAL),
+        UNITS(SUPPLEMENTAL),
         CURRENCY_DATA(SUPPLEMENTAL),
         METADATA(SUPPLEMENTAL),
         META_ZONES(SUPPLEMENTAL),
@@ -161,6 +161,8 @@ public final class LdmlConverter {
         PLURAL_RANGES(SUPPLEMENTAL),
         WINDOWS_ZONES(SUPPLEMENTAL),
         TRANSFORMS(SUPPLEMENTAL),
+        LOCALE_DISTANCE(SUPPLEMENTAL),
+        VERSION(SUPPLEMENTAL),
         KEY_TYPE_DATA(BCP47);
 
         public static final ImmutableSet<OutputType> ALL = ImmutableSet.copyOf(OutputType.values());
@@ -242,7 +244,7 @@ public final class LdmlConverter {
 
     private static ImmutableList<String> readLinesFromResource(String name) {
         try (InputStream in = LdmlConverter.class.getResourceAsStream(name)) {
-            return ImmutableList.copyOf(CharStreams.readLines(new InputStreamReader(in)));
+            return ImmutableList.copyOf(CharStreams.readLines(new InputStreamReader(in, UTF_8)));
         } catch (IOException e) {
             throw new RuntimeException("cannot read resource: " + name, e);
         }
@@ -275,7 +277,7 @@ public final class LdmlConverter {
             return;
         }
 
-        String cldrVersion = config.getCldrVersion();
+        String cldrVersion = config.getVersionInfo().getCldrVersion();
 
         Map<IcuLocaleDir, DependencyGraph> graphMetadata = new HashMap<>();
         splitDirs.forEach(d -> graphMetadata.put(d, new DependencyGraph(cldrVersion)));
@@ -346,7 +348,9 @@ public final class LdmlConverter {
                 });
 
                 if (!splitData.getPaths().isEmpty() || isBaseLanguage || dir.includeEmpty()) {
-                    splitData.setVersion(cldrVersion);
+                    if (id.equals("root")) {
+                        splitData.setVersion(cldrVersion);
+                    }
                     write(splitData, outDir, false);
                     writtenLocaleIds.put(dir, id);
                 }
@@ -472,6 +476,10 @@ public final class LdmlConverter {
                 processSupplemental("supplementalData", SUPPLEMENTAL_DATA_PATHS, "misc", true);
                 break;
 
+            case UNITS:
+                processSupplemental("units", UNITS_DATA_PATHS, "misc", true);
+                break;
+
             case CURRENCY_DATA:
                 processSupplemental("supplementalData", CURRENCY_DATA_PATHS, "curr", false);
                 break;
@@ -496,6 +504,10 @@ public final class LdmlConverter {
                 write(PluralRangesMapper.process(src), "misc");
                 break;
 
+            case LOCALE_DISTANCE:
+                write(LocaleDistanceMapper.process(src), "misc");
+                break;
+
             case WINDOWS_ZONES:
                 processSupplemental("windowsZones", WINDOWS_ZONES_PATHS, "misc", false);
                 break;
@@ -503,6 +515,10 @@ public final class LdmlConverter {
             case TRANSFORMS:
                 Path transformDir = createDirectory(config.getOutputDir().resolve("translit"));
                 write(TransformsMapper.process(src, transformDir, fileHeader), transformDir, false);
+                break;
+
+            case VERSION:
+                writeIcuVersionInfo();
                 break;
 
             case KEY_TYPE_DATA:
@@ -525,7 +541,7 @@ public final class LdmlConverter {
         // supplemental data XML files.
         if (addCldrVersion) {
             // Not the same path as used by "setVersion()"
-            icuData.add(RB_CLDR_VERSION, config.getCldrVersion());
+            icuData.add(RB_CLDR_VERSION, config.getVersionInfo().getCldrVersion());
         }
         write(icuData, dir);
     }
@@ -547,11 +563,34 @@ public final class LdmlConverter {
         } else {
             // These empty files only exist because the target of an alias has a parent locale
             // which is itself not in the set of written ICU files. An "indirect alias target".
-            icuData.setVersion(config.getCldrVersion());
+            // No need to add data: Just write a resource bundle with an empty top-level table.
         }
         write(icuData, dir, false);
     }
 
+    private void writeIcuVersionInfo() {
+        IcuVersionInfo versionInfo = config.getVersionInfo();
+        IcuData versionData = new IcuData("icuver", false);
+        versionData.add(RbPath.of("ICUVersion"), versionInfo.getIcuVersion());
+        versionData.add(RbPath.of("DataVersion"), versionInfo.getIcuDataVersion());
+        versionData.add(RbPath.of("CLDRVersion"), versionInfo.getCldrVersion());
+        // Write file via non-helper methods since we need to include a legacy copyright.
+        Path miscDir = config.getOutputDir().resolve("misc");
+        createDirectory(miscDir);
+        ImmutableList<String> versionHeader = ImmutableList.<String>builder()
+            .addAll(fileHeader)
+            .add(
+                "***************************************************************************",
+                "*",
+                "* Copyright (C) 2010-2016 International Business Machines",
+                "* Corporation and others.  All Rights Reserved.",
+                "*",
+                "***************************************************************************")
+            .build();
+        IcuTextWriter.writeToFile(versionData, miscDir, versionHeader, false);
+    }
+
+    // Commonest case for writing data files in "normal" directories.
     private void write(IcuData icuData, String dir) {
         write(icuData, config.getOutputDir().resolve(dir), false);
     }

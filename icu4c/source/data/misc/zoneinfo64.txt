@@ -1,12 +1,12 @@
 //---------------------------------------------------------
 // Copyright (C) 2016 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
 //---------------------------------------------------------
 // Build tool:  tz2icu
-// Build date:  Tue Jan 12 16:41:20 2021
+// Build date:  Thu Jan 21 17:59:57 2021
 // tz database: ftp://ftp.iana.org/tz/
 // tz version:  2020f
-// ICU version: 67.1
+// ICU version: 68.2
 //---------------------------------------------------------
 // >> !!! >>   THIS IS A MACHINE-GENERATED FILE   << !!! <<
 // >> !!! >>>            DO NOT EDIT             <<< !!! <<
