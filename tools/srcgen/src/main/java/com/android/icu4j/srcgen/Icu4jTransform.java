@@ -251,6 +251,7 @@ public class Icu4jTransform {
       "android.icu.util.TimeZone",
       "android.icu.util.TimeZone$SystemTimeZoneType",
       "android.icu.util.ULocale",
+      "android.icu.util.ULocale$AvailableType",
       "android.icu.util.ULocale$Builder",
       "android.icu.util.ULocale$Category",
       "android.icu.util.UniversalTimeScale",
@@ -699,6 +700,9 @@ public class Icu4jTransform {
       "field:android.icu.util.MeasureUnit#POUND_FOOT",
       "field:android.icu.util.MeasureUnit#BARREL",
       "field:android.icu.util.MeasureUnit#FLUID_OUNCE_IMPERIAL",
+      "field:android.icu.util.MeasureUnit#BAR",
+      "field:android.icu.util.MeasureUnit#PASCAL",
+      "field:android.icu.util.MeasureUnit#THERM_US",
       // Skeleton syntax can evolve over time. Currently, the skeleton APIs are not prioritized to
       // be public. Android developers could easily miss the API version check for new syntax and
       // cause app crashing on older devices.

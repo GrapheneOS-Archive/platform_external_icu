@@ -117,8 +117,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
 
     /**
      * Types for {@link ULocale#getAvailableLocalesByType}
-     *
-     * @hide Only a subset of ICU is exposed in Android
      */
     public static enum AvailableType {
         /**
@@ -790,8 +788,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
 
     /**
      * Returns a list of all installed locales according to the specified type.
-     *
-     * @hide Hide new API in Android temporarily
      */
     public static Collection<ULocale> getAvailableLocalesByType(AvailableType type) {
         if (type == null) {
