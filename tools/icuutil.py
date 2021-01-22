@@ -18,6 +18,7 @@
 
 from __future__ import print_function
 
+import filecmp
 import glob
 import os
 import shutil
@@ -245,6 +246,36 @@ def MakeAndCopyOverlayTzIcuData(icu_build_dir, dest_file):
   # Switch back to the original working cwd.
   os.chdir(original_working_dir)
 
+def RequiredToMakeLangInfo():
+  """ Returns true if icu4c/source/data/misc/langInfo.txt has been re-generated.
+  Returns false if re-generation is not needed.
+  """
+
+  # Generate icu4c/source/data/misc/langInfo.txt by a ICU4J tool
+  langInfo_dst_path = os.path.join(icu4cDir(), 'data/misc/langInfo.txt')
+  print('Building %s' % langInfo_dst_path)
+  langInfo_out_path = '/tmp/langInfo.txt'  # path hardcoded in the LocaleDistanceBuilder tool
+  if os.path.exists(langInfo_out_path):
+    os.remove(langInfo_out_path)
+
+  icu4j_dir = icu4jDir()
+  os.chdir(icu4j_dir)
+  subprocess.check_call(['ant', 'icu4jJar'])
+  os.chdir(os.path.join(icu4j_dir, 'tools', 'misc'))
+  subprocess.check_call(['ant', 'jar'])
+  subprocess.check_call([
+    'java',
+    '-cp',
+    'out/lib/icu4j-tools.jar:../../icu4j.jar',
+    'com.ibm.icu.dev.tool.locale.LocaleDistanceBuilder',
+  ])
+  if (filecmp.cmp(langInfo_dst_path, langInfo_out_path)):
+    print('The files {src} and {dst} are the same'.format(src=langInfo_out_path, dst=langInfo_dst_path))
+    return False
+
+  print('Copying {src} to {dst}'.format(src=langInfo_out_path, dst=langInfo_dst_path))
+  shutil.copyfile(langInfo_out_path, langInfo_dst_path)
+  return True
 
 def CopyLicenseFiles(target_dir):
   """Copies ICU license files to the target_dir"""

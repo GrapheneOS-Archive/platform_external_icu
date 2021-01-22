@@ -1,5 +1,5 @@
 // © 2017 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
 package com.ibm.icu.text;
 
 import java.io.IOException;
@@ -131,8 +131,8 @@ import com.ibm.icu.util.ULocale.Category;
  * <p>It is also possible to specify the <em>rounding mode</em> to use. The default rounding mode is
  * "half even", which rounds numbers to their closest increment, with ties broken in favor of
  * trailing numbers being even. For more information, see {@link #setRoundingMode} and <a
- * href="http://userguide.icu-project.org/formatparse/numbers/rounding-modes">the ICU User
- * Guide</a>.
+ * href="https://unicode-org.github.io/icu/userguide/format_parse/numbers/rounding-modes">the ICU
+ * User Guide</a>.
  *
  * <h3>Pattern Strings</h3>
  *
@@ -1272,8 +1272,8 @@ public class DecimalFormat extends NumberFormat {
    * number, and rounds to the closest even number if at the midpoint.
    *
    * <p>For more detail on rounding modes, see <a
-   * href="http://userguide.icu-project.org/formatparse/numbers/rounding-modes">the ICU User
-   * Guide</a>.
+   * href="https://unicode-org.github.io/icu/userguide/format_parse/numbers/rounding-modes">the ICU
+   * User Guide</a>.
    *
    * <p>For backwards compatibility, the rounding mode is specified as an int argument, which can be
    * from either the constants in {@link BigDecimal} or the ordinal value of {@link RoundingMode}.
@@ -1995,6 +1995,16 @@ public class DecimalFormat extends NumberFormat {
    * order for the grouping separator to be printed. For example, if minimum grouping digits is set
    * to 2, in <em>en-US</em>, 1234 will be printed as "1234" and 12345 will be printed as "12,345".
    *
+    * Set the value to:
+   * <ul>
+   * <li>1 to turn off minimum grouping digits.</li>
+   * <li>MINIMUM_GROUPING_DIGITS_AUTO to display grouping using the default
+   * strategy for all locales.</li>
+   * <li>MINIMUM_GROUPING_DIGITS_MIN2 to display grouping using locale defaults,
+   * except do not show grouping on values smaller than 10000 (such that there is a minimum of
+   * two digits before the first separator).</li>
+   * </ul>
+   *
    * @param number The minimum number of digits before grouping is triggered.
    * @category Separators
    * @stable ICU 64
@@ -2003,6 +2013,31 @@ public class DecimalFormat extends NumberFormat {
     properties.setMinimumGroupingDigits(number);
     refreshFormatter();
   }
+
+  /**
+   * {@icu} Constant for {@link #setMinimumGroupingDigits(int)} to specify display
+   * grouping using the default strategy for all locales.
+   *
+   * @see #setMinimumGroupingDigits(int)
+   * @see #MINIMUM_GROUPING_DIGITS_MIN2
+   * @category Separators
+   * @provisional This API might change or be removed in a future release.
+   * @draft ICU 68
+   */
+  public static final int MINIMUM_GROUPING_DIGITS_AUTO = -2;
+
+  /**
+   * {@icu} Constant for {@link #setMinimumGroupingDigits(int)} to specify display
+   * grouping using locale defaults, except do not show grouping on values smaller than
+   * 10000 (such that there is a minimum of two digits before the first separator).
+   *
+   * @see #setMinimumGroupingDigits(int)
+   * @see #MINIMUM_GROUPING_DIGITS_AUTO
+   * @category Separators
+   * @provisional This API might change or be removed in a future release.
+   * @draft ICU 68
+   */
+  public static final int MINIMUM_GROUPING_DIGITS_MIN2 = -3;
 
   /**
    * Returns whether the decimal separator is shown on integers.
@@ -2211,6 +2246,16 @@ public class DecimalFormat extends NumberFormat {
     properties.setParseMode(mode);
     refreshFormatter();
   }
+
+  // BEGIN android-added: Allow libcore to use java-compatible parsing mode
+  /**
+   * @param parseJavaCompatible true for java-compatible mode, and otherwise lenient mode.
+   * @internal
+   */
+  public void setParseJavaCompatible(boolean parseJavaCompatible) {
+    setParseStrictMode(parseJavaCompatible ? ParseMode.JAVA_COMPATIBILITY : ParseMode.LENIENT);
+  }
+  // END android-added: Allow libcore to use java-compatible parsing mode
 
   /**
    * Android libcore uses this internal method to set {@link ParseMode#JAVA_COMPATIBILITY}.

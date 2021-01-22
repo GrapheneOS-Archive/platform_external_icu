@@ -516,7 +516,7 @@ typedef enum UScriptCode {
  * @return The number of script codes filled in the buffer passed in
  * @stable ICU 2.4
  */
-U_STABLE int32_t  U_EXPORT2
+U_CAPI int32_t  U_EXPORT2
 uscript_getCode(const char* nameOrAbbrOrLocale,UScriptCode* fillIn,int32_t capacity,UErrorCode *err) __INTRODUCED_IN(31);
 
 #endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
@@ -533,7 +533,7 @@ uscript_getCode(const char* nameOrAbbrOrLocale,UScriptCode* fillIn,int32_t capac
  * or NULL if scriptCode is invalid
  * @stable ICU 2.4
  */
-U_STABLE const char*  U_EXPORT2
+U_CAPI const char*  U_EXPORT2
 uscript_getName(UScriptCode scriptCode) __INTRODUCED_IN(31);
 
 #endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
@@ -549,7 +549,7 @@ uscript_getName(UScriptCode scriptCode) __INTRODUCED_IN(31);
  * @return short script name (4-letter code), or NULL if scriptCode is invalid
  * @stable ICU 2.4
  */
-U_STABLE const char*  U_EXPORT2
+U_CAPI const char*  U_EXPORT2
 uscript_getShortName(UScriptCode scriptCode) __INTRODUCED_IN(31);
 
 #endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
@@ -564,7 +564,7 @@ uscript_getShortName(UScriptCode scriptCode) __INTRODUCED_IN(31);
  * @return The UScriptCode, or 0 if codepoint is invalid
  * @stable ICU 2.4
  */
-U_STABLE UScriptCode  U_EXPORT2
+U_CAPI UScriptCode  U_EXPORT2
 uscript_getScript(UChar32 codepoint, UErrorCode *err) __INTRODUCED_IN(31);
 
 #endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
@@ -580,10 +580,10 @@ uscript_getScript(UChar32 codepoint, UErrorCode *err) __INTRODUCED_IN(31);
  * For more information, see UAX #24: http://www.unicode.org/reports/tr24/.
  * @param c code point
  * @param sc script code
- * @return TRUE if sc is in Script_Extensions(c)
+ * @return true if sc is in Script_Extensions(c)
  * @stable ICU 49
  */
-U_STABLE UBool U_EXPORT2
+U_CAPI UBool U_EXPORT2
 uscript_hasScript(UChar32 c, UScriptCode sc) __INTRODUCED_IN(31);
 
 #endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
@@ -619,7 +619,7 @@ uscript_hasScript(UChar32 c, UScriptCode sc) __INTRODUCED_IN(31);
  *         written to scripts unless U_BUFFER_OVERFLOW_ERROR indicates insufficient capacity
  * @stable ICU 49
  */
-U_STABLE int32_t U_EXPORT2
+U_CAPI int32_t U_EXPORT2
 uscript_getScriptExtensions(UChar32 c,
                             UScriptCode *scripts, int32_t capacity,
                             UErrorCode *errorCode) __INTRODUCED_IN(31);
@@ -662,7 +662,7 @@ typedef enum UScriptUsage {
  * @return the string length, even if U_BUFFER_OVERFLOW_ERROR
  * @stable ICU 51
  */
-U_STABLE int32_t U_EXPORT2
+U_CAPI int32_t U_EXPORT2
 uscript_getSampleString(UScriptCode script, UChar *dest, int32_t capacity, UErrorCode *pErrorCode) __INTRODUCED_IN(31);
 
 #endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
@@ -698,7 +698,7 @@ uscript_getSampleUnicodeString(UScriptCode script);
  * @see UScriptUsage
  * @stable ICU 51
  */
-U_STABLE UScriptUsage U_EXPORT2
+U_CAPI UScriptUsage U_EXPORT2
 uscript_getUsage(UScriptCode script) __INTRODUCED_IN(31);
 
 #endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
@@ -706,14 +706,14 @@ uscript_getUsage(UScriptCode script) __INTRODUCED_IN(31);
 #if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
- * Returns TRUE if the script is written right-to-left.
+ * Returns true if the script is written right-to-left.
  * For example, Arab and Hebr.
  *
  * @param script script code
- * @return TRUE if the script is right-to-left
+ * @return true if the script is right-to-left
  * @stable ICU 51
  */
-U_STABLE UBool U_EXPORT2
+U_CAPI UBool U_EXPORT2
 uscript_isRightToLeft(UScriptCode script) __INTRODUCED_IN(31);
 
 #endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
@@ -721,15 +721,15 @@ uscript_isRightToLeft(UScriptCode script) __INTRODUCED_IN(31);
 #if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
- * Returns TRUE if the script allows line breaks between letters (excluding hyphenation).
+ * Returns true if the script allows line breaks between letters (excluding hyphenation).
  * Such a script typically requires dictionary-based line breaking.
  * For example, Hani and Thai.
  *
  * @param script script code
- * @return TRUE if the script allows line breaks between letters
+ * @return true if the script allows line breaks between letters
  * @stable ICU 51
  */
-U_STABLE UBool U_EXPORT2
+U_CAPI UBool U_EXPORT2
 uscript_breaksBetweenLetters(UScriptCode script) __INTRODUCED_IN(31);
 
 #endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
@@ -737,14 +737,14 @@ uscript_breaksBetweenLetters(UScriptCode script) __INTRODUCED_IN(31);
 #if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
- * Returns TRUE if in modern (or most recent) usage of the script case distinctions are customary.
+ * Returns true if in modern (or most recent) usage of the script case distinctions are customary.
  * For example, Latn and Cyrl.
  *
  * @param script script code
- * @return TRUE if the script is cased
+ * @return true if the script is cased
  * @stable ICU 51
  */
-U_STABLE UBool U_EXPORT2
+U_CAPI UBool U_EXPORT2
 uscript_isCased(UScriptCode script) __INTRODUCED_IN(31);
 
 #endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31

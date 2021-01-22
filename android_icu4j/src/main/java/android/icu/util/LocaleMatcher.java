@@ -1,6 +1,6 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 // © 2016 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
 /*
  ****************************************************************************************
  * Copyright (C) 2009-2016, Google, Inc.; International Business Machines Corporation
@@ -90,20 +90,15 @@ public final class LocaleMatcher {
      *
      * @see LocaleMatcher.Builder#setFavorSubtag(LocaleMatcher.FavorSubtag)
      * @hide Only a subset of ICU is exposed in Android
-     * @hide draft / provisional / internal are hidden on Android
      */
     public enum FavorSubtag {
         /**
          * Language differences are most important, then script differences, then region differences.
          * (This is the default behavior.)
-         *
-         * @hide draft / provisional / internal are hidden on Android
          */
         LANGUAGE,
         /**
          * Makes script differences matter relatively more than language differences.
-         *
-         * @hide draft / provisional / internal are hidden on Android
          */
         SCRIPT
     }
@@ -114,13 +109,10 @@ public final class LocaleMatcher {
      *
      * @see LocaleMatcher.Builder#setDemotionPerDesiredLocale(LocaleMatcher.Demotion)
      * @hide Only a subset of ICU is exposed in Android
-     * @hide draft / provisional / internal are hidden on Android
      */
     public enum Demotion {
         /**
          * All desired locales are treated equally.
-         *
-         * @hide draft / provisional / internal are hidden on Android
          */
         NONE,
         /**
@@ -146,8 +138,6 @@ public final class LocaleMatcher {
          *       (As of CLDR 35 there is no such case, but
          *        this is possible in future versions of the data.)
          * </ul>
-         *
-         * @hide draft / provisional / internal are hidden on Android
          */
         REGION
     }
@@ -190,7 +180,6 @@ public final class LocaleMatcher {
      * Data for the best-matching pair of a desired and a supported locale.
      *
      * @hide Only a subset of ICU is exposed in Android
-     * @hide draft / provisional / internal are hidden on Android
      */
     public static final class Result {
         private final ULocale desiredULocale;
@@ -216,7 +205,6 @@ public final class LocaleMatcher {
          * null if the list of desired locales is empty or if none matched well enough.
          *
          * @return the best-matching desired locale, or null.
-         * @hide draft / provisional / internal are hidden on Android
          */
         public ULocale getDesiredULocale() {
             return desiredULocale == null && desiredLocale != null ?
@@ -227,7 +215,6 @@ public final class LocaleMatcher {
          * null if the list of desired locales is empty or if none matched well enough.
          *
          * @return the best-matching desired locale, or null.
-         * @hide draft / provisional / internal are hidden on Android
          */
         public Locale getDesiredLocale() {
             return desiredLocale == null && desiredULocale != null ?
@@ -237,21 +224,19 @@ public final class LocaleMatcher {
         /**
          * Returns the best-matching supported locale.
          * If none matched well enough, this is the default locale.
-         * The default locale is null if the list of supported locales is empty and
-         * no explicit default locale is set.
+         * The default locale is null if {@link Builder#setNoDefaultLocale()} was called,
+         * or if the list of supported locales is empty and no explicit default locale is set.
          *
          * @return the best-matching supported locale, or null.
-         * @hide draft / provisional / internal are hidden on Android
          */
         public ULocale getSupportedULocale() { return supportedULocale; }
         /**
          * Returns the best-matching supported locale.
          * If none matched well enough, this is the default locale.
-         * The default locale is null if the list of supported locales is empty and
-         * no explicit default locale is set.
+         * The default locale is null if {@link Builder#setNoDefaultLocale()} was called,
+         * or if the list of supported locales is empty and no explicit default locale is set.
          *
          * @return the best-matching supported locale, or null.
-         * @hide draft / provisional / internal are hidden on Android
          */
         public Locale getSupportedLocale() { return supportedLocale; }
 
@@ -260,7 +245,6 @@ public final class LocaleMatcher {
          * -1 if the list of desired locales is empty or if none matched well enough.
          *
          * @return the index of the best-matching desired locale, or -1.
-         * @hide draft / provisional / internal are hidden on Android
          */
         public int getDesiredIndex() { return desiredIndex; }
 
@@ -272,7 +256,6 @@ public final class LocaleMatcher {
          * -1 if the list of supported locales is empty or if none matched well enough.
          *
          * @return the index of the best-matching supported locale, or -1.
-         * @hide draft / provisional / internal are hidden on Android
          */
         public int getSupportedIndex() { return supportedIndex; }
 
@@ -286,7 +269,6 @@ public final class LocaleMatcher {
          * <p>Example: desired=ar-SA-u-nu-latn, supported=ar-EG, resolved locale=ar-SA-u-nu-latn
          *
          * @return a locale combining the best-matching desired and supported locales.
-         * @hide draft / provisional / internal are hidden on Android
          */
         public ULocale makeResolvedULocale() {
             ULocale bestDesired = getDesiredULocale();
@@ -331,7 +313,6 @@ public final class LocaleMatcher {
          * <p>Example: desired=ar-SA-u-nu-latn, supported=ar-EG, resolved locale=ar-SA-u-nu-latn
          *
          * @return a locale combining the best-matching desired and supported locales.
-         * @hide draft / provisional / internal are hidden on Android
          */
         public Locale makeResolvedLocale() {
             ULocale resolved = makeResolvedULocale();
@@ -362,15 +343,17 @@ public final class LocaleMatcher {
      *
      * @see LocaleMatcher#builder()
      * @hide Only a subset of ICU is exposed in Android
-     * @hide draft / provisional / internal are hidden on Android
      */
     public static final class Builder {
         private List<ULocale> supportedLocales;
         private int thresholdDistance = -1;
         private Demotion demotion;
         private ULocale defaultLocale;
+        private boolean withDefault = true;
         private FavorSubtag favor;
         private Direction direction;
+        private ULocale maxDistanceDesired;
+        private ULocale maxDistanceSupported;
 
         private Builder() {}
 
@@ -381,7 +364,6 @@ public final class LocaleMatcher {
          *
          * @param locales the string of locales to set, to be parsed like LocalePriorityList does
          * @return this Builder object
-         * @hide draft / provisional / internal are hidden on Android
          */
         public Builder setSupportedLocales(String locales) {
             return setSupportedULocales(LocalePriorityList.add(locales).build().getULocales());
@@ -394,7 +376,6 @@ public final class LocaleMatcher {
          *
          * @param locales the list of locales
          * @return this Builder object
-         * @hide draft / provisional / internal are hidden on Android
          */
         public Builder setSupportedULocales(Collection<ULocale> locales) {
             supportedLocales = new ArrayList<>(locales);
@@ -408,7 +389,6 @@ public final class LocaleMatcher {
          *
          * @param locales the list of locale
          * @return this Builder object
-         * @hide draft / provisional / internal are hidden on Android
          */
         public Builder setSupportedLocales(Collection<Locale> locales) {
             supportedLocales = new ArrayList<>(locales.size());
@@ -424,7 +404,6 @@ public final class LocaleMatcher {
          *
          * @param locale another locale
          * @return this Builder object
-         * @hide draft / provisional / internal are hidden on Android
          */
         public Builder addSupportedULocale(ULocale locale) {
             if (supportedLocales == null) {
@@ -440,35 +419,52 @@ public final class LocaleMatcher {
          *
          * @param locale another locale
          * @return this Builder object
-         * @hide draft / provisional / internal are hidden on Android
          */
         public Builder addSupportedLocale(Locale locale) {
             return addSupportedULocale(ULocale.forLocale(locale));
         }
 
         /**
-         * Sets the default locale; if null, or if it is not set explicitly,
-         * then the first supported locale is used as the default locale.
+         * Sets no default locale.
+         * There will be no explicit or implicit default locale.
+         * If there is no good match, then the matcher will return null for the
+         * best supported locale.
          *
-         * @param defaultLocale the default locale
-         * @return this Builder object
          * @hide draft / provisional / internal are hidden on Android
          */
-        public Builder setDefaultULocale(ULocale defaultLocale) {
-            this.defaultLocale = defaultLocale;
+        public Builder setNoDefaultLocale() {
+            this.defaultLocale = null;
+            withDefault = false;
             return this;
         }
 
         /**
          * Sets the default locale; if null, or if it is not set explicitly,
          * then the first supported locale is used as the default locale.
+         * There is no default locale at all (null will be returned instead)
+         * if {@link #setNoDefaultLocale()} is called.
          *
          * @param defaultLocale the default locale
          * @return this Builder object
-         * @hide draft / provisional / internal are hidden on Android
+         */
+        public Builder setDefaultULocale(ULocale defaultLocale) {
+            this.defaultLocale = defaultLocale;
+            withDefault = true;
+            return this;
+        }
+
+        /**
+         * Sets the default locale; if null, or if it is not set explicitly,
+         * then the first supported locale is used as the default locale.
+         * There is no default locale at all (null will be returned instead)
+         * if {@link #setNoDefaultLocale()} is called.
+         *
+         * @param defaultLocale the default locale
+         * @return this Builder object
          */
         public Builder setDefaultLocale(Locale defaultLocale) {
             this.defaultLocale = ULocale.forLocale(defaultLocale);
+            withDefault = true;
             return this;
         }
 
@@ -479,7 +475,6 @@ public final class LocaleMatcher {
          *
          * @param subtag the subtag to favor
          * @return this Builder object
-         * @hide draft / provisional / internal are hidden on Android
          */
         public Builder setFavorSubtag(FavorSubtag subtag) {
             this.favor = subtag;
@@ -492,7 +487,6 @@ public final class LocaleMatcher {
          *
          * @param demotion the demotion per desired locale to set.
          * @return this Builder object
-         * @hide draft / provisional / internal are hidden on Android
          */
         public Builder setDemotionPerDesiredLocale(Demotion demotion) {
             this.demotion = demotion;
@@ -509,6 +503,64 @@ public final class LocaleMatcher {
          */
         public Builder setDirection(Direction direction) {
             this.direction = direction;
+            return this;
+        }
+
+        /**
+         * Sets the maximum distance for an acceptable match.
+         * The matcher will return a match for a pair of locales only if
+         * they match at least as well as the pair given here.
+         *
+         * <p>For example, setMaxDistance(en-US, en-GB) limits matches to ones where the
+         * (desired, support) locales have a distance no greater than a region subtag difference.
+         * This is much stricter than the CLDR default.
+         *
+         * <p>The details of locale matching are subject to changes in
+         * CLDR data and in the algorithm.
+         * Specifying a maximum distance in relative terms via a sample pair of locales
+         * insulates from changes that affect all distance metrics similarly,
+         * but some changes will necessarily affect relative distances between
+         * different pairs of locales.
+         *
+         * @param desired the desired locale for distance comparison.
+         * @param supported the supported locale for distance comparison.
+         * @return this Builder object
+         * @hide draft / provisional / internal are hidden on Android
+         */
+        public Builder setMaxDistance(Locale desired, Locale supported) {
+            if (desired == null || supported == null) {
+                throw new IllegalArgumentException("desired/supported locales must not be null");
+            }
+            return setMaxDistance(ULocale.forLocale(desired), ULocale.forLocale(supported));
+        }
+
+        /**
+         * Sets the maximum distance for an acceptable match.
+         * The matcher will return a match for a pair of locales only if
+         * they match at least as well as the pair given here.
+         *
+         * <p>For example, setMaxDistance(en-US, en-GB) limits matches to ones where the
+         * (desired, support) locales have a distance no greater than a region subtag difference.
+         * This is much stricter than the CLDR default.
+         *
+         * <p>The details of locale matching are subject to changes in
+         * CLDR data and in the algorithm.
+         * Specifying a maximum distance in relative terms via a sample pair of locales
+         * insulates from changes that affect all distance metrics similarly,
+         * but some changes will necessarily affect relative distances between
+         * different pairs of locales.
+         *
+         * @param desired the desired locale for distance comparison.
+         * @param supported the supported locale for distance comparison.
+         * @return this Builder object
+         * @hide draft / provisional / internal are hidden on Android
+         */
+        public Builder setMaxDistance(ULocale desired, ULocale supported) {
+            if (desired == null || supported == null) {
+                throw new IllegalArgumentException("desired/supported locales must not be null");
+            }
+            maxDistanceDesired = desired;
+            maxDistanceSupported = supported;
             return this;
         }
 
@@ -534,7 +586,6 @@ public final class LocaleMatcher {
          * This builder can continue to be used.
          *
          * @return new LocaleMatcher.
-         * @hide draft / provisional / internal are hidden on Android
          */
         public LocaleMatcher build() {
             return new LocaleMatcher(this);
@@ -542,7 +593,6 @@ public final class LocaleMatcher {
 
         /**
          * {@inheritDoc}
-         * @hide draft / provisional / internal are hidden on Android
          */
         @Override
         public String toString() {
@@ -570,7 +620,6 @@ public final class LocaleMatcher {
      * Returns a builder used in chaining parameters for building a LocaleMatcher.
      *
      * @return a new Builder object
-     * @hide draft / provisional / internal are hidden on Android
      */
     public static Builder builder() {
         return new Builder();
@@ -600,8 +649,6 @@ public final class LocaleMatcher {
     }
 
     private LocaleMatcher(Builder builder) {
-        thresholdDistance = builder.thresholdDistance < 0 ?
-                LocaleDistance.INSTANCE.getDefaultScriptDistance() : builder.thresholdDistance;
         ULocale udef = builder.defaultLocale;
         Locale def = null;
         LSR defLSR = null;
@@ -645,13 +692,14 @@ public final class LocaleMatcher {
         i = 0;
         for (ULocale locale : supportedULocales) {
             LSR lsr = lsrs[i];
-            if (defLSR == null) {
+            if (defLSR == null && builder.withDefault) {
+                // Implicit default locale = first supported locale, if not turned off.
                 assert i == 0;
                 udef = locale;
                 def = supportedLocales[0];
                 defLSR = lsr;
                 suppLength = putIfAbsent(lsr, 0, suppLength);
-            } else if (lsr.isEquivalentTo(defLSR)) {
+            } else if (defLSR != null && lsr.isEquivalentTo(defLSR)) {
                 suppLength = putIfAbsent(lsr, i, suppLength);
             } else if (LocaleDistance.INSTANCE.isParadigmLSR(lsr)) {
                 order[i] = 2;
@@ -686,6 +734,22 @@ public final class LocaleMatcher {
                     LocaleDistance.INSTANCE.getDefaultDemotionPerDesiredLocale();  // null or REGION
         favorSubtag = builder.favor;
         direction = builder.direction;
+
+        int threshold;
+        if (builder.thresholdDistance >= 0) {
+            threshold = builder.thresholdDistance;
+        } else if (builder.maxDistanceDesired != null) {
+            int indexAndDistance = LocaleDistance.INSTANCE.getBestIndexAndDistance(
+                    getMaximalLsrOrUnd(builder.maxDistanceDesired),
+                    new LSR[] { getMaximalLsrOrUnd(builder.maxDistanceSupported) }, 1,
+                    LocaleDistance.shiftDistance(100), favorSubtag, direction);
+            // +1 for an exclusive threshold from an inclusive max.
+            threshold = LocaleDistance.getDistanceFloor(indexAndDistance) + 1;
+        } else {
+            threshold = LocaleDistance.INSTANCE.getDefaultScriptDistance();
+        }
+        thresholdDistance = threshold;
+
         if (TRACE_MATCHER) {
             System.err.printf("new LocaleMatcher: %s\n", toString());
         }
@@ -815,7 +879,6 @@ public final class LocaleMatcher {
      *
      * @param desiredLocale Typically a user's language.
      * @return the best-matching supported locale.
-     * @hide draft / provisional / internal are hidden on Android
      */
     public Locale getBestLocale(Locale desiredLocale) {
         LSR desiredLSR = getMaximalLsrOrUnd(desiredLocale);
@@ -828,7 +891,6 @@ public final class LocaleMatcher {
      *
      * @param desiredLocales Typically a user's languages, in order of preference (descending).
      * @return the best-matching supported locale.
-     * @hide draft / provisional / internal are hidden on Android
      */
     public Locale getBestLocale(Iterable<Locale> desiredLocales) {
         Iterator<Locale> desiredIter = desiredLocales.iterator();
@@ -875,7 +937,6 @@ public final class LocaleMatcher {
      *
      * @param desiredLocale Typically a user's language.
      * @return the best-matching pair of the desired and a supported locale.
-     * @hide draft / provisional / internal are hidden on Android
      */
     public Result getBestMatchResult(ULocale desiredLocale) {
         LSR desiredLSR = getMaximalLsrOrUnd(desiredLocale);
@@ -888,7 +949,6 @@ public final class LocaleMatcher {
      *
      * @param desiredLocales Typically a user's languages, in order of preference (descending).
      * @return the best-matching pair of a desired and a supported locale.
-     * @hide draft / provisional / internal are hidden on Android
      */
     public Result getBestMatchResult(Iterable<ULocale> desiredLocales) {
         Iterator<ULocale> desiredIter = desiredLocales.iterator();
@@ -906,7 +966,6 @@ public final class LocaleMatcher {
      *
      * @param desiredLocale Typically a user's language.
      * @return the best-matching pair of the desired and a supported locale.
-     * @hide draft / provisional / internal are hidden on Android
      */
     public Result getBestLocaleResult(Locale desiredLocale) {
         LSR desiredLSR = getMaximalLsrOrUnd(desiredLocale);
@@ -919,7 +978,6 @@ public final class LocaleMatcher {
      *
      * @param desiredLocales Typically a user's languages, in order of preference (descending).
      * @return the best-matching pair of a desired and a supported locale.
-     * @hide draft / provisional / internal are hidden on Android
      */
     public Result getBestLocaleResult(Iterable<Locale> desiredLocales) {
         Iterator<Locale> desiredIter = desiredLocales.iterator();
@@ -989,6 +1047,42 @@ public final class LocaleMatcher {
                     sb, supportedULocales[suppIndex]);
         }
         return suppIndex;
+    }
+
+    /**
+     * Returns true if the pair of locales matches acceptably.
+     * This is influenced by Builder options such as setDirection(), setFavorSubtag(),
+     * and setMaxDistance().
+     *
+     * @param desired The desired locale.
+     * @param supported The supported locale.
+     * @return true if the pair of locales matches acceptably.
+     * @hide draft / provisional / internal are hidden on Android
+     */
+    public boolean isMatch(Locale desired, Locale supported) {
+        int indexAndDistance = LocaleDistance.INSTANCE.getBestIndexAndDistance(
+                getMaximalLsrOrUnd(desired),
+                new LSR[] { getMaximalLsrOrUnd(supported) }, 1,
+                LocaleDistance.shiftDistance(thresholdDistance), favorSubtag, direction);
+        return indexAndDistance >= 0;
+    }
+
+    /**
+     * Returns true if the pair of locales matches acceptably.
+     * This is influenced by Builder options such as setDirection(), setFavorSubtag(),
+     * and setMaxDistance().
+     *
+     * @param desired The desired locale.
+     * @param supported The supported locale.
+     * @return true if the pair of locales matches acceptably.
+     * @hide draft / provisional / internal are hidden on Android
+     */
+    public boolean isMatch(ULocale desired, ULocale supported) {
+        int indexAndDistance = LocaleDistance.INSTANCE.getBestIndexAndDistance(
+                getMaximalLsrOrUnd(desired),
+                new LSR[] { getMaximalLsrOrUnd(supported) }, 1,
+                LocaleDistance.shiftDistance(thresholdDistance), favorSubtag, direction);
+        return indexAndDistance >= 0;
     }
 
     /**

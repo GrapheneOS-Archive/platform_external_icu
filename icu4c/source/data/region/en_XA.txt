@@ -1,5 +1,6 @@
 ﻿// © 2016 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
+// Generated using tools/cldr/cldr-to-icu/build-icu-data.xml
 en_XA{
     Countries{
         001{"[Ŵöŕļð one]"}
@@ -313,5 +314,4 @@ en_XA{
         SZ{"[Šŵåžîļåñð one two]"}
         TL{"[Éåšţ Ţîɱöŕ one two]"}
     }
-    Version{"37"}
 }
