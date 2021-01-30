@@ -18,9 +18,6 @@ cc_test {
     // Workaround to run primary abi only in CTS
     stem: "icu.intltest",
     cflags: [
-        "-DANDROID_LINK_SHARED_ICU4C",
-        // Do not set the data directory explicitly.
-        "-DANDROID_USE_ICU_REG",
         // Needed for char* shift calculation in the test.
         "-Wno-string-plus-int",
         "-DZERO_EXIT_CODE_FOR_FAILURES",
