@@ -22,9 +22,6 @@ cc_test {
         "**/*.cpp",
     ],
     cflags: [
-        "-DANDROID_LINK_SHARED_ICU4C",
-        // Do not set the data directory explicitly.
-        "-DANDROID_USE_ICU_REG",
         // Disable some file IO tests to workaround test crashing due to missing data files.
         "-DUCONFIG_NO_FILE_IO",
         "-DZERO_EXIT_CODE_FOR_FAILURES",
