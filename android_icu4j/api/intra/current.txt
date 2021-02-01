@@ -78,6 +78,7 @@ package com.android.i18n.timezone {
   public final class ZoneInfoData {
     method @NonNull public com.android.i18n.timezone.ZoneInfoData createCopyWithRawOffset(int);
     method @NonNull public static com.android.i18n.timezone.ZoneInfoData createFromSerializationFields(@NonNull String, @NonNull java.io.ObjectInputStream.GetField) throws java.io.IOException;
+    method @NonNull public static com.android.i18n.timezone.ZoneInfoData createInstance(@NonNull String, @NonNull long[], @NonNull byte[], @NonNull int[], @NonNull boolean[]);
     method @NonNull public static com.android.i18n.timezone.ZoneInfoData createZoneInfo(@NonNull String, @NonNull java.nio.ByteBuffer) throws java.io.IOException;
     method @NonNull public String getID();
     method @Nullable public Integer getLatestDstSavings(long);
