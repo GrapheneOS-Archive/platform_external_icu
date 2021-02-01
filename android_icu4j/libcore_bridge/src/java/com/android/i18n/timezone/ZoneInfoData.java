@@ -834,4 +834,32 @@ public final class ZoneInfoData {
         ByteBufferIterator bufferIterator = new ByteBufferIterator(buf);
         return ZoneInfoData.readTimeZone("TimeZone for '" + name + "'", bufferIterator);
     }
+
+    /**
+     * Creates an instance. This method is only for testing purposes.
+     *
+     * @param transitions The times (in seconds) since beginning of the Unix epoch at which
+     *                    the offsets changes
+     * @param types the type of the transition. The offsets and standard/daylight states are
+     *              represented in the corresponding entry in <code>offsets</code> and
+     *              <code>isDsts</code> respectively
+     * @param offsets the total offsets of each type. The max allowed size of this array is 256.
+     * @param isDsts an entry is {@code true} if the type is daylight saving time. The max allowed
+     *               size of this array is 256.
+     * @hide
+     */
+    @libcore.api.IntraCoreApi
+    public static @NonNull ZoneInfoData createInstance(@NonNull String id,
+            @NonNull long[] transitions, @NonNull byte[] types, @NonNull int[] offsets,
+            @NonNull boolean[] isDsts) {
+        return new ZoneInfoData(id, transitions, types, offsets, toByteArray(isDsts));
+    }
+
+    private static byte[] toByteArray(boolean[] isDsts) {
+        byte[] result = new byte[isDsts.length];
+        for (int i = 0; i < isDsts.length; i++) {
+            result[i] = (byte) (isDsts[i] ? 1 : 0);
+        }
+        return result;
+    }
 }
