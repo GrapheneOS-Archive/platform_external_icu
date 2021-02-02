@@ -42,91 +42,91 @@ cc_defaults {
 }
 
 cc_fuzz {
-    name: "break_iterator_fuzzer",
+    name: "libicu_break_iterator_fuzzer",
     defaults: ["libicu_fuzzer_defaults"],
     srcs: ["break_iterator_fuzzer.cpp"],
 }
 
 cc_fuzz {
-    name: "collator_compare_fuzzer",
+    name: "libicu_collator_compare_fuzzer",
     defaults: ["libicu_fuzzer_defaults"],
     srcs: ["collator_compare_fuzzer.cpp"],
 }
 
 cc_fuzz {
-    name: "collator_rulebased_fuzzer",
+    name: "libicu_collator_rulebased_fuzzer",
     defaults: ["libicu_fuzzer_defaults"],
     srcs: ["collator_rulebased_fuzzer.cpp"],
     corpus: ["collator_rulebased_fuzzer_seed_corpus.txt"],
 }
 
 cc_fuzz {
-    name: "converter_fuzzer",
+    name: "libicu_converter_fuzzer",
     defaults: ["libicu_fuzzer_defaults"],
     srcs: ["converter_fuzzer.cpp"],
 }
 
 cc_fuzz {
-    name: "locale_fuzzer",
+    name: "libicu_locale_fuzzer",
     defaults: ["libicu_fuzzer_defaults"],
     srcs: ["locale_fuzzer.cpp"],
 }
 
 cc_fuzz {
-    name: "number_format_fuzzer",
+    name: "libicu_number_format_fuzzer",
     defaults: ["libicu_fuzzer_defaults"],
     srcs: ["number_format_fuzzer.cpp"],
 }
 
 cc_fuzz {
-    name: "ucasemap_fuzzer",
+    name: "libicu_ucasemap_fuzzer",
     defaults: ["libicu_fuzzer_defaults"],
     srcs: ["ucasemap_fuzzer.cpp"],
 }
 
 cc_fuzz {
-    name: "uloc_canonicalize_fuzzer",
+    name: "libicu_uloc_canonicalize_fuzzer",
     defaults: ["libicu_fuzzer_defaults"],
     srcs: ["uloc_canonicalize_fuzzer.cpp"],
     corpus: ["uloc_canonicalize_fuzzer_seed_corpus.txt"],
 }
 
 cc_fuzz {
-    name: "uloc_for_language_tag_fuzzer",
+    name: "libicu_uloc_for_language_tag_fuzzer",
     defaults: ["libicu_fuzzer_defaults"],
     srcs: ["uloc_for_language_tag_fuzzer.cpp"],
     corpus: ["uloc_for_language_tag_fuzzer_seed_corpus.txt"],
 }
 
 cc_fuzz {
-    name: "uloc_get_name_fuzzer",
+    name: "libicu_uloc_get_name_fuzzer",
     defaults: ["libicu_fuzzer_defaults"],
     srcs: ["uloc_get_name_fuzzer.cpp"],
     corpus: ["uloc_get_name_fuzzer_seed_corpus.txt"],
 }
 
 cc_fuzz {
-    name: "uloc_is_right_to_left_fuzzer",
+    name: "libicu_uloc_is_right_to_left_fuzzer",
     defaults: ["libicu_fuzzer_defaults"],
     srcs: ["uloc_is_right_to_left_fuzzer.cpp"],
     corpus: ["uloc_is_right_to_left_fuzzer_seed_corpus.txt"],
 }
 
 cc_fuzz {
-    name: "uloc_open_keywords_fuzzer",
+    name: "libicu_uloc_open_keywords_fuzzer",
     defaults: ["libicu_fuzzer_defaults"],
     srcs: ["uloc_open_keywords_fuzzer.cpp"],
     corpus: ["uloc_open_keywords_fuzzer_seed_corpus.txt"],
 }
 
 cc_fuzz {
-    name: "unicode_string_codepage_create_fuzzer",
+    name: "libicu_unicode_string_codepage_create_fuzzer",
     defaults: ["libicu_fuzzer_defaults"],
     srcs: ["unicode_string_codepage_create_fuzzer.cpp"],
 }
 
 cc_fuzz {
-    name: "uregex_open_fuzzer",
+    name: "libicu_uregex_open_fuzzer",
     defaults: ["libicu_fuzzer_defaults"],
     srcs: ["uregex_open_fuzzer.cpp"],
     dictionary: "uregex_open_fuzzer.dict",
