@@ -824,18 +824,6 @@ public final class ZoneInfoData {
     }
 
     /**
-     * IntraCoreApi made visible for testing in libcore
-     *
-     * @hide
-     */
-    @libcore.api.IntraCoreApi
-    public static @NonNull ZoneInfoData createZoneInfo(@NonNull String name,
-            @NonNull ByteBuffer buf) throws IOException {
-        ByteBufferIterator bufferIterator = new ByteBufferIterator(buf);
-        return ZoneInfoData.readTimeZone("TimeZone for '" + name + "'", bufferIterator);
-    }
-
-    /**
      * Creates an instance. This method is only for testing purposes.
      *
      * @param transitions The times (in seconds) since beginning of the Unix epoch at which
