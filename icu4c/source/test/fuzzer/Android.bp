@@ -27,7 +27,7 @@ cc_defaults {
     fuzz_config: {
         componentid: 24949, // Bugs are filed to the "Core library" component
         hotlists: ["930429"], // The hotlist applied on the bug
-        fuzz_on_haiku_device: true,
+        fuzz_on_haiku_device: false,
         // Email addresses of users who should be CC'd on bugs.
         cc: [
             "vichang@google.com",
