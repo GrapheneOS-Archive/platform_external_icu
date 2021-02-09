@@ -17,11 +17,19 @@
 package com.android.icu.text;
 
 import android.icu.text.TimeZoneNames;
+import android.icu.util.TimeZone;
 import android.icu.util.ULocale;
 
 import libcore.api.IntraCoreApi;
 import libcore.util.NonNull;
 import libcore.util.Nullable;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.EnumSet;
+import java.util.List;
+import java.util.Set;
 
 /**
  * Provide extra functionalities on top of {@link TimeZoneNames} public APIs.
@@ -31,6 +39,20 @@ import libcore.util.Nullable;
 @IntraCoreApi
 public class ExtendedTimeZoneNames {
 
+    private static final Set<TimeZoneNames.NameType> DST_NAME_TYPES =
+            Collections.unmodifiableSet(
+                    EnumSet.of(
+                            TimeZoneNames.NameType.LONG_DAYLIGHT,
+                            TimeZoneNames.NameType.SHORT_DAYLIGHT));
+
+    private static final EnumSet<TimeZoneNames.NameType> STANDARD_AND_DST_TYPES =
+            EnumSet.of(
+                    TimeZoneNames.NameType.SHORT_STANDARD,
+                    TimeZoneNames.NameType.LONG_STANDARD,
+                    TimeZoneNames.NameType.SHORT_DAYLIGHT,
+                    TimeZoneNames.NameType.LONG_DAYLIGHT);
+
+    private final ULocale locale;
     private final TimeZoneNames timeZoneNames;
 
     /**
@@ -83,6 +105,7 @@ public class ExtendedTimeZoneNames {
     }
 
     private ExtendedTimeZoneNames(ULocale locale) {
+        this.locale = locale;
         this.timeZoneNames = TimeZoneNames.getInstance(locale);
     }
 
@@ -104,6 +127,102 @@ public class ExtendedTimeZoneNames {
     @IntraCoreApi
     public @NonNull TimeZoneNames getTimeZoneNames() {
         return timeZoneNames;
+    }
+
+    /**
+     * Returns {@link MatchedTimeZone} if a time zone name in ICU can be matched against the input
+     * CharSequence {@code s}.
+     * The best match is found by the following principles:
+     * <ul>
+     * <li>Length of the matched name. Longest name matched to the given {@code s} has the
+     * highest priority.</li>
+     * <li>The current time zone and meta zones possible in the current country have higher
+     * priority than other zones.</li>
+     * <li>If only meta zones are matched, the country/region in the locale is used to select
+     * a reference time zone. For example, if the name is "Pacific Standard Time" and the country
+     * is US, America/Los_Angeles is returned.</li>
+     * </ul>
+     *
+     * @param s input string to be matched against time zone names in ICU
+     * @param start the begin index in the CharSequence {@code s}
+     * @param currentTzId the time zone ID prioritized to be matched if multiple time zone IDs can
+     *                    be matched and this is one of the matched IDs.
+     * @return null if no match is found
+     *
+     * @hide
+     */
+    @IntraCoreApi
+    public @Nullable MatchedTimeZone matchName(@NonNull CharSequence s, int start,
+            @NonNull String currentTzId) {
+        currentTzId = TimeZone.getCanonicalID(currentTzId);
+
+        Collection<TimeZoneNames.MatchInfo> matchedInfos =
+                timeZoneNames.find(s, start, STANDARD_AND_DST_TYPES);
+
+        if (matchedInfos.isEmpty()) {
+            return null;
+        }
+
+        List<TimeZoneNames.MatchInfo> maxLengthMatchInfos = new ArrayList<>();
+        int maxMatchedInfoLength = 0;
+
+        for (TimeZoneNames.MatchInfo matchInfo : matchedInfos) {
+            if (matchInfo.matchLength() > maxMatchedInfoLength) {
+                maxMatchedInfoLength = matchInfo.matchLength();
+                maxLengthMatchInfos.clear();
+            }
+
+            if (matchInfo.matchLength() >= maxMatchedInfoLength) {
+                maxLengthMatchInfos.add(matchInfo);
+            }
+        }
+
+        Set<String> metaZonesInCurrentZone = timeZoneNames.getAvailableMetaZoneIDs(currentTzId);
+
+        TimeZoneNames.MatchInfo tzMatchInfo = null;
+
+        for (TimeZoneNames.MatchInfo matchInfo : maxLengthMatchInfos) {
+            if (matchInfo.tzID() != null && matchInfo.tzID().equals(currentTzId)) {
+                return matchedTimeZone(matchInfo.tzID(), matchInfo);
+            }
+            if (matchInfo.mzID() != null && metaZonesInCurrentZone.contains(matchInfo.mzID())) {
+                return matchedTimeZone(currentTzId, matchInfo);
+            }
+
+            if (matchInfo.tzID() != null) {
+                tzMatchInfo = matchInfo;
+            }
+        }
+
+        if (tzMatchInfo != null) {
+            return matchedTimeZone(tzMatchInfo.tzID(), tzMatchInfo);
+        }
+
+        String region = locale.getCountry();
+        if (region == null || region.isEmpty()) {
+            // An UN M49 code to represent the world. See TimeZoneNames#getReferenceZoneID().
+            region = "001";
+        }
+
+        for (TimeZoneNames.MatchInfo matchInfo : maxLengthMatchInfos) {
+            if (matchInfo.mzID() != null) {
+                String timeZoneId = timeZoneNames.getReferenceZoneID(matchInfo.mzID(), region);
+                if (timeZoneId != null) {
+                    return matchedTimeZone(timeZoneId, matchInfo);
+                }
+            }
+        }
+
+        return null;
+    }
+
+    private static MatchedTimeZone matchedTimeZone(
+            String timeZoneId, TimeZoneNames.MatchInfo matchInfo) {
+        return new MatchedTimeZone(
+                matchInfo.matchLength(),
+                timeZoneId,
+                DST_NAME_TYPES.contains(matchInfo.nameType()));
+
     }
 
 }
