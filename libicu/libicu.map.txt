@@ -165,6 +165,7 @@ LIBICU_31 { # introduced=31
     ubidi_setReorderingOptions;
     ubidi_writeReordered;
     ubidi_writeReverse;
+    ubrk_clone;
     ubrk_close;
     ubrk_countAvailable;
     ubrk_current;
