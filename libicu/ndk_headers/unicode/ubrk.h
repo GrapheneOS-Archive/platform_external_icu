@@ -223,8 +223,6 @@ typedef enum USentenceBreakTag {
 } USentenceBreakTag;
 
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
-
 /**
  * Open a new UBreakIterator for locating text boundaries for a specified locale.
  * A UBreakIterator may be used for detecting character, line, word,
@@ -249,7 +247,7 @@ ubrk_open(UBreakIteratorType type,
       int32_t textLength,
       UErrorCode *status) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
+
 
 
 
@@ -261,8 +259,6 @@ ubrk_open(UBreakIteratorType type,
 
 #endif /* U_HIDE_DEPRECATED_API */
 
-
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Thread safe cloning operation.
@@ -275,7 +271,7 @@ U_CAPI UBreakIterator * U_EXPORT2
 ubrk_clone(const UBreakIterator *bi,
            UErrorCode *status) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
+
 
 
 #ifndef U_HIDE_DEPRECATED_API
@@ -288,8 +284,6 @@ ubrk_clone(const UBreakIterator *bi,
 
 #endif /* U_HIDE_DEPRECATED_API */
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
-
 /**
 * Close a UBreakIterator.
 * Once closed, a UBreakIterator may no longer be used.
@@ -299,7 +293,7 @@ ubrk_clone(const UBreakIterator *bi,
 U_CAPI void U_EXPORT2
 ubrk_close(UBreakIterator *bi) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
+
 
 #if U_SHOW_CPLUSPLUS_API
 
@@ -320,8 +314,6 @@ U_NAMESPACE_END
 
 #endif
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
-
 /**
  * Sets an existing iterator to point to a new piece of text.
  * The break iterator retains a pointer to the supplied text.
@@ -340,10 +332,8 @@ ubrk_setText(UBreakIterator* bi,
              int32_t         textLength,
              UErrorCode*     status) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Sets an existing iterator to point to a new piece of text.
@@ -367,11 +357,9 @@ ubrk_setUText(UBreakIterator* bi,
              UText*          text,
              UErrorCode*     status) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Determine the most recently-returned text boundary.
@@ -384,9 +372,7 @@ ubrk_setUText(UBreakIterator* bi,
 U_CAPI int32_t U_EXPORT2
 ubrk_current(const UBreakIterator *bi) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Advance the iterator to the boundary following the current boundary.
@@ -400,9 +386,7 @@ ubrk_current(const UBreakIterator *bi) __INTRODUCED_IN(31);
 U_CAPI int32_t U_EXPORT2
 ubrk_next(UBreakIterator *bi) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Set the iterator position to the boundary preceding the current boundary.
@@ -416,9 +400,7 @@ ubrk_next(UBreakIterator *bi) __INTRODUCED_IN(31);
 U_CAPI int32_t U_EXPORT2
 ubrk_previous(UBreakIterator *bi) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Set the iterator position to zero, the start of the text being scanned.
@@ -430,9 +412,7 @@ ubrk_previous(UBreakIterator *bi) __INTRODUCED_IN(31);
 U_CAPI int32_t U_EXPORT2
 ubrk_first(UBreakIterator *bi) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Set the iterator position to the index immediately <EM>beyond</EM> the last character in the text being scanned.
@@ -446,9 +426,7 @@ ubrk_first(UBreakIterator *bi) __INTRODUCED_IN(31);
 U_CAPI int32_t U_EXPORT2
 ubrk_last(UBreakIterator *bi) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Set the iterator position to the first boundary preceding the specified offset.
@@ -463,9 +441,7 @@ U_CAPI int32_t U_EXPORT2
 ubrk_preceding(UBreakIterator *bi,
            int32_t offset) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Advance the iterator to the first boundary following the specified offset.
@@ -480,9 +456,7 @@ U_CAPI int32_t U_EXPORT2
 ubrk_following(UBreakIterator *bi,
            int32_t offset) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
 * Get a locale for which text breaking information is available.
@@ -496,9 +470,7 @@ ubrk_following(UBreakIterator *bi,
 U_CAPI const char* U_EXPORT2
 ubrk_getAvailable(int32_t index) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
 * Determine how many locales have text breaking information available.
@@ -511,10 +483,8 @@ ubrk_getAvailable(int32_t index) __INTRODUCED_IN(31);
 U_CAPI int32_t U_EXPORT2
 ubrk_countAvailable(void) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
 * Returns true if the specified position is a boundary position.  As a side
@@ -528,9 +498,7 @@ ubrk_countAvailable(void) __INTRODUCED_IN(31);
 U_CAPI  UBool U_EXPORT2
 ubrk_isBoundary(UBreakIterator *bi, int32_t offset) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Return the status from the break rule that determined the most recently
@@ -544,9 +512,7 @@ ubrk_isBoundary(UBreakIterator *bi, int32_t offset) __INTRODUCED_IN(31);
 U_CAPI  int32_t U_EXPORT2
 ubrk_getRuleStatus(UBreakIterator *bi) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Get the statuses from the break rules that determined the most recently
@@ -568,7 +534,7 @@ ubrk_getRuleStatus(UBreakIterator *bi) __INTRODUCED_IN(31);
 U_CAPI  int32_t U_EXPORT2
 ubrk_getRuleStatusVec(UBreakIterator *bi, int32_t *fillInVec, int32_t capacity, UErrorCode *status) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
+
 
 
 

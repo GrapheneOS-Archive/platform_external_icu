@@ -69,9 +69,7 @@ def get_allowlisted_regex_string(decl_names):
 def get_replacement_adding_api_level_macro(api_level):
     """Return the replacement string adding the NDK C macro
     guarding C function declaration by the api_level"""
-    return r"#if !defined(__ANDROID__) || __ANDROID_API__ >= {0}\n\n" \
-           r"\1 __INTRODUCED_IN({0});\n\n" \
-           r"#endif // !defined(__ANDROID__) || __ANDROID_API__ >= {0}".format(api_level)
+    return r"\1 __INTRODUCED_IN({0});\n\n".format(api_level)
 
 def modify_func_declarations(src_path, dst_path, decl_names):
     """Process the source file,

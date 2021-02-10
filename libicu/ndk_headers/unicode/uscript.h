@@ -495,8 +495,6 @@ typedef enum UScriptCode {
 #endif  // U_HIDE_DEPRECATED_API
 } UScriptCode;
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
-
 /**
  * Gets the script codes associated with the given locale or ISO 15924 abbreviation or name.
  * Fills in USCRIPT_MALAYALAM given "Malayam" OR "Mlym".
@@ -519,9 +517,7 @@ typedef enum UScriptCode {
 U_CAPI int32_t  U_EXPORT2
 uscript_getCode(const char* nameOrAbbrOrLocale,UScriptCode* fillIn,int32_t capacity,UErrorCode *err) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Returns the long Unicode script name, if there is one.
@@ -536,9 +532,7 @@ uscript_getCode(const char* nameOrAbbrOrLocale,UScriptCode* fillIn,int32_t capac
 U_CAPI const char*  U_EXPORT2
 uscript_getName(UScriptCode scriptCode) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Returns the 4-letter ISO 15924 script code,
@@ -552,9 +546,7 @@ uscript_getName(UScriptCode scriptCode) __INTRODUCED_IN(31);
 U_CAPI const char*  U_EXPORT2
 uscript_getShortName(UScriptCode scriptCode) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Gets the script code associated with the given codepoint.
@@ -567,9 +559,7 @@ uscript_getShortName(UScriptCode scriptCode) __INTRODUCED_IN(31);
 U_CAPI UScriptCode  U_EXPORT2
 uscript_getScript(UChar32 codepoint, UErrorCode *err) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Do the Script_Extensions of code point c contain script sc?
@@ -586,9 +576,7 @@ uscript_getScript(UChar32 codepoint, UErrorCode *err) __INTRODUCED_IN(31);
 U_CAPI UBool U_EXPORT2
 uscript_hasScript(UChar32 c, UScriptCode sc) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Writes code point c's Script_Extensions as a list of UScriptCode values
@@ -624,7 +612,7 @@ uscript_getScriptExtensions(UChar32 c,
                             UScriptCode *scripts, int32_t capacity,
                             UErrorCode *errorCode) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
+
 
 /**
  * Script usage constants.
@@ -648,8 +636,6 @@ typedef enum UScriptUsage {
     USCRIPT_USAGE_RECOMMENDED
 } UScriptUsage;
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
-
 /**
  * Writes the script sample character string.
  * This string normally consists of one code point but might be longer.
@@ -665,7 +651,7 @@ typedef enum UScriptUsage {
 U_CAPI int32_t U_EXPORT2
 uscript_getSampleString(UScriptCode script, UChar *dest, int32_t capacity, UErrorCode *pErrorCode) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
+
 
 #if U_SHOW_CPLUSPLUS_API
 
@@ -687,8 +673,6 @@ uscript_getSampleUnicodeString(UScriptCode script);
 
 #endif
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
-
 /**
  * Returns the script usage according to UAX #31 Unicode Identifier and Pattern Syntax.
  * Returns USCRIPT_USAGE_NOT_ENCODED if the script is not encoded in Unicode.
@@ -701,9 +685,7 @@ uscript_getSampleUnicodeString(UScriptCode script);
 U_CAPI UScriptUsage U_EXPORT2
 uscript_getUsage(UScriptCode script) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Returns true if the script is written right-to-left.
@@ -716,9 +698,7 @@ uscript_getUsage(UScriptCode script) __INTRODUCED_IN(31);
 U_CAPI UBool U_EXPORT2
 uscript_isRightToLeft(UScriptCode script) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Returns true if the script allows line breaks between letters (excluding hyphenation).
@@ -732,9 +712,7 @@ uscript_isRightToLeft(UScriptCode script) __INTRODUCED_IN(31);
 U_CAPI UBool U_EXPORT2
 uscript_breaksBetweenLetters(UScriptCode script) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Returns true if in modern (or most recent) usage of the script case distinctions are customary.
@@ -747,6 +725,6 @@ uscript_breaksBetweenLetters(UScriptCode script) __INTRODUCED_IN(31);
 U_CAPI UBool U_EXPORT2
 uscript_isCased(UScriptCode script) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
+
 
 #endif
