@@ -261,11 +261,9 @@ ubrk_open(UBreakIteratorType type,
 
 #endif /* U_HIDE_DEPRECATED_API */
 
-#ifndef U_HIDE_DRAFT_API
 
 
 
-#endif  // U_HIDE_DRAFT_API
 
 #ifndef U_HIDE_DEPRECATED_API
 
