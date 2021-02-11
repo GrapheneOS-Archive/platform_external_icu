@@ -167,6 +167,7 @@
 #undef ubidi_setReorderingOptions
 #undef ubidi_writeReordered
 #undef ubidi_writeReverse
+#undef ubrk_clone
 #undef ubrk_close
 #undef ubrk_countAvailable
 #undef ubrk_current
@@ -735,6 +736,9 @@ int32_t ubidi_writeReordered(UBiDi * pBiDi, UChar * dest, int32_t destSize, uint
 }
 int32_t ubidi_writeReverse(const UChar * src, int32_t srcLength, UChar * dest, int32_t destSize, uint16_t options, UErrorCode * pErrorCode) {
   return U_ICU_ENTRY_POINT_RENAME(ubidi_writeReverse)(src, srcLength, dest, destSize, options, pErrorCode);
+}
+UBreakIterator * ubrk_clone(const UBreakIterator * bi, UErrorCode * status) {
+  return U_ICU_ENTRY_POINT_RENAME(ubrk_clone)(bi, status);
 }
 void ubrk_close(UBreakIterator * bi) {
   U_ICU_ENTRY_POINT_RENAME(ubrk_close)(bi);
