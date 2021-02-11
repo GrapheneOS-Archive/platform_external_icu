@@ -2569,8 +2569,6 @@ typedef enum UVerticalOrientation {
     U_VO_UPRIGHT,
 } UVerticalOrientation;
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
-
 /**
  * Check a binary Unicode property for a code point.
  *
@@ -2601,11 +2599,9 @@ typedef enum UVerticalOrientation {
 U_CAPI UBool U_EXPORT2
 u_hasBinaryProperty(UChar32 c, UProperty which) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Check if a code point has the Alphabetic Unicode property.
@@ -2622,9 +2618,7 @@ u_hasBinaryProperty(UChar32 c, UProperty which) __INTRODUCED_IN(31);
 U_CAPI UBool U_EXPORT2
 u_isUAlphabetic(UChar32 c) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Check if a code point has the Lowercase Unicode property.
@@ -2641,9 +2635,7 @@ u_isUAlphabetic(UChar32 c) __INTRODUCED_IN(31);
 U_CAPI UBool U_EXPORT2
 u_isULowercase(UChar32 c) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Check if a code point has the Uppercase Unicode property.
@@ -2660,9 +2652,7 @@ u_isULowercase(UChar32 c) __INTRODUCED_IN(31);
 U_CAPI UBool U_EXPORT2
 u_isUUppercase(UChar32 c) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Check if a code point has the White_Space Unicode property.
@@ -2685,9 +2675,7 @@ u_isUUppercase(UChar32 c) __INTRODUCED_IN(31);
 U_CAPI UBool U_EXPORT2
 u_isUWhiteSpace(UChar32 c) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Get the property value for an enumerated or integer Unicode property for a code point.
@@ -2730,9 +2718,7 @@ u_isUWhiteSpace(UChar32 c) __INTRODUCED_IN(31);
 U_CAPI int32_t U_EXPORT2
 u_getIntPropertyValue(UChar32 c, UProperty which) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Get the minimum value for an enumerated/integer/binary Unicode property.
@@ -2755,9 +2741,7 @@ u_getIntPropertyValue(UChar32 c, UProperty which) __INTRODUCED_IN(31);
 U_CAPI int32_t U_EXPORT2
 u_getIntPropertyMinValue(UProperty which) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Get the maximum value for an enumerated/integer/binary Unicode property.
@@ -2788,11 +2772,9 @@ u_getIntPropertyMinValue(UProperty which) __INTRODUCED_IN(31);
 U_CAPI int32_t U_EXPORT2
 u_getIntPropertyMaxValue(UProperty which) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Get the numeric value for a Unicode code point as defined in the
@@ -2819,7 +2801,7 @@ u_getIntPropertyMaxValue(UProperty which) __INTRODUCED_IN(31);
 U_CAPI double U_EXPORT2
 u_getNumericValue(UChar32 c) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
+
 
 /**
  * Special value that is returned by u_getNumericValue when
@@ -2829,8 +2811,6 @@ u_getNumericValue(UChar32 c) __INTRODUCED_IN(31);
  * @stable ICU 2.2
  */
 #define U_NO_NUMERIC_VALUE ((double)-123456789.)
-
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Determines whether the specified code point has the general category "Ll"
@@ -2858,9 +2838,7 @@ u_getNumericValue(UChar32 c) __INTRODUCED_IN(31);
 U_CAPI UBool U_EXPORT2
 u_islower(UChar32 c) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Determines whether the specified code point has the general category "Lu"
@@ -2889,9 +2867,7 @@ u_islower(UChar32 c) __INTRODUCED_IN(31);
 U_CAPI UBool U_EXPORT2
 u_isupper(UChar32 c) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Determines whether the specified code point is a titlecase letter.
@@ -2910,9 +2886,7 @@ u_isupper(UChar32 c) __INTRODUCED_IN(31);
 U_CAPI UBool U_EXPORT2
 u_istitle(UChar32 c) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Determines whether the specified code point is a digit character according to Java.
@@ -2935,9 +2909,7 @@ u_istitle(UChar32 c) __INTRODUCED_IN(31);
 U_CAPI UBool U_EXPORT2
 u_isdigit(UChar32 c) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Determines whether the specified code point is a letter character.
@@ -2960,9 +2932,7 @@ u_isdigit(UChar32 c) __INTRODUCED_IN(31);
 U_CAPI UBool U_EXPORT2
 u_isalpha(UChar32 c) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Determines whether the specified code point is an alphanumeric character
@@ -2985,9 +2955,7 @@ u_isalpha(UChar32 c) __INTRODUCED_IN(31);
 U_CAPI UBool U_EXPORT2
 u_isalnum(UChar32 c) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Determines whether the specified code point is a hexadecimal digit.
@@ -3012,9 +2980,7 @@ u_isalnum(UChar32 c) __INTRODUCED_IN(31);
 U_CAPI UBool U_EXPORT2
 u_isxdigit(UChar32 c) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Determines whether the specified code point is a punctuation character.
@@ -3032,9 +2998,7 @@ u_isxdigit(UChar32 c) __INTRODUCED_IN(31);
 U_CAPI UBool U_EXPORT2
 u_ispunct(UChar32 c) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Determines whether the specified code point is a "graphic" character
@@ -3055,9 +3019,7 @@ u_ispunct(UChar32 c) __INTRODUCED_IN(31);
 U_CAPI UBool U_EXPORT2
 u_isgraph(UChar32 c) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Determines whether the specified code point is a "blank" or "horizontal space",
@@ -3087,9 +3049,7 @@ u_isgraph(UChar32 c) __INTRODUCED_IN(31);
 U_CAPI UBool U_EXPORT2
 u_isblank(UChar32 c) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Determines whether the specified code point is "defined",
@@ -3116,9 +3076,7 @@ u_isblank(UChar32 c) __INTRODUCED_IN(31);
 U_CAPI UBool U_EXPORT2
 u_isdefined(UChar32 c) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Determines if the specified character is a space character or not.
@@ -3141,9 +3099,7 @@ u_isdefined(UChar32 c) __INTRODUCED_IN(31);
 U_CAPI UBool U_EXPORT2
 u_isspace(UChar32 c) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Determine if the specified code point is a space character according to Java.
@@ -3166,9 +3122,7 @@ u_isspace(UChar32 c) __INTRODUCED_IN(31);
 U_CAPI UBool U_EXPORT2
 u_isJavaSpaceChar(UChar32 c) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Determines if the specified code point is a whitespace character according to Java/ICU.
@@ -3210,9 +3164,7 @@ u_isJavaSpaceChar(UChar32 c) __INTRODUCED_IN(31);
 U_CAPI UBool U_EXPORT2
 u_isWhitespace(UChar32 c) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Determines whether the specified code point is a control character
@@ -3238,9 +3190,7 @@ u_isWhitespace(UChar32 c) __INTRODUCED_IN(31);
 U_CAPI UBool U_EXPORT2
 u_iscntrl(UChar32 c) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Determines whether the specified code point is an ISO control code.
@@ -3257,9 +3207,7 @@ u_iscntrl(UChar32 c) __INTRODUCED_IN(31);
 U_CAPI UBool U_EXPORT2
 u_isISOControl(UChar32 c) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Determines whether the specified code point is a printable character.
@@ -3279,9 +3227,7 @@ u_isISOControl(UChar32 c) __INTRODUCED_IN(31);
 U_CAPI UBool U_EXPORT2
 u_isprint(UChar32 c) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Non-standard: Determines whether the specified code point is a base character.
@@ -3303,9 +3249,7 @@ u_isprint(UChar32 c) __INTRODUCED_IN(31);
 U_CAPI UBool U_EXPORT2
 u_isbase(UChar32 c) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Returns the bidirectional category value for the code point,
@@ -3326,9 +3270,7 @@ u_isbase(UChar32 c) __INTRODUCED_IN(31);
 U_CAPI UCharDirection U_EXPORT2
 u_charDirection(UChar32 c) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Determines whether the code point has the Bidi_Mirrored property.
@@ -3348,9 +3290,7 @@ u_charDirection(UChar32 c) __INTRODUCED_IN(31);
 U_CAPI UBool U_EXPORT2
 u_isMirrored(UChar32 c) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Maps the specified character to a "mirror-image" character.
@@ -3374,9 +3314,7 @@ u_isMirrored(UChar32 c) __INTRODUCED_IN(31);
 U_CAPI UChar32 U_EXPORT2
 u_charMirror(UChar32 c) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Maps the specified character to its paired bracket character.
@@ -3397,9 +3335,7 @@ u_charMirror(UChar32 c) __INTRODUCED_IN(31);
 U_CAPI UChar32 U_EXPORT2
 u_getBidiPairedBracket(UChar32 c) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Returns the general category value for the code point.
@@ -3415,7 +3351,7 @@ u_getBidiPairedBracket(UChar32 c) __INTRODUCED_IN(31);
 U_CAPI int8_t U_EXPORT2
 u_charType(UChar32 c) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
+
 
 /**
  * Get a single-bit bit set for the general category of a character.
@@ -3452,8 +3388,6 @@ u_charType(UChar32 c) __INTRODUCED_IN(31);
 typedef UBool U_CALLCONV
 UCharEnumTypeRange(const void *context, UChar32 start, UChar32 limit, UCharCategory type);
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
-
 /**
  * Enumerate efficiently all code points with their Unicode general categories.
  *
@@ -3476,11 +3410,9 @@ UCharEnumTypeRange(const void *context, UChar32 start, UChar32 limit, UCharCateg
 U_CAPI void U_EXPORT2
 u_enumCharTypes(UCharEnumTypeRange *enumRange, const void *context) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
+
 
 #if !UCONFIG_NO_NORMALIZATION
-
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Returns the combining class of the code point as specified in UnicodeData.txt.
@@ -3492,11 +3424,9 @@ u_enumCharTypes(UCharEnumTypeRange *enumRange, const void *context) __INTRODUCED
 U_CAPI uint8_t U_EXPORT2
 u_getCombiningClass(UChar32 c) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
+
 
 #endif
-
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Returns the decimal digit value of a decimal digit character.
@@ -3524,11 +3454,9 @@ u_getCombiningClass(UChar32 c) __INTRODUCED_IN(31);
 U_CAPI int32_t U_EXPORT2
 u_charDigitValue(UChar32 c) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Retrieve the name of a Unicode character.
@@ -3567,13 +3495,11 @@ u_charName(UChar32 code, UCharNameChoice nameChoice,
            char *buffer, int32_t bufferLength,
            UErrorCode *pErrorCode) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
+
 
 #ifndef U_HIDE_DEPRECATED_API
 
 #endif  /* U_HIDE_DEPRECATED_API */
-
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Find a Unicode character by its name and return its code point value.
@@ -3600,7 +3526,7 @@ u_charFromName(UCharNameChoice nameChoice,
                const char *name,
                UErrorCode *pErrorCode) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
+
 
 /**
  * Type of a callback function for u_enumCharNames() that gets called
@@ -3624,8 +3550,6 @@ typedef UBool U_CALLCONV UEnumCharNamesFn(void *context,
                                UCharNameChoice nameChoice,
                                const char *name,
                                int32_t length);
-
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Enumerate all assigned Unicode characters between the start and limit
@@ -3655,9 +3579,7 @@ u_enumCharNames(UChar32 start, UChar32 limit,
                 UCharNameChoice nameChoice,
                 UErrorCode *pErrorCode) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Return the Unicode name for a given property, as given in the
@@ -3694,9 +3616,7 @@ U_CAPI const char* U_EXPORT2
 u_getPropertyName(UProperty property,
                   UPropertyNameChoice nameChoice) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Return the UProperty enum for a given property name, as specified
@@ -3720,9 +3640,7 @@ u_getPropertyName(UProperty property,
 U_CAPI UProperty U_EXPORT2
 u_getPropertyEnum(const char* alias) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Return the Unicode name for a given property value, as given in the
@@ -3776,9 +3694,7 @@ u_getPropertyValueName(UProperty property,
                        int32_t value,
                        UPropertyNameChoice nameChoice) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Return the property value integer for a given value name, as
@@ -3815,9 +3731,7 @@ U_CAPI int32_t U_EXPORT2
 u_getPropertyValueEnum(UProperty property,
                        const char* alias) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Determines if the specified character is permissible as the
@@ -3839,9 +3753,7 @@ u_getPropertyValueEnum(UProperty property,
 U_CAPI UBool U_EXPORT2
 u_isIDStart(UChar32 c) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Determines if the specified character is permissible
@@ -3867,9 +3779,7 @@ u_isIDStart(UChar32 c) __INTRODUCED_IN(31);
 U_CAPI UBool U_EXPORT2
 u_isIDPart(UChar32 c) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Determines if the specified character should be regarded
@@ -3894,9 +3804,7 @@ u_isIDPart(UChar32 c) __INTRODUCED_IN(31);
 U_CAPI UBool U_EXPORT2
 u_isIDIgnorable(UChar32 c) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Determines if the specified character is permissible as the
@@ -3917,9 +3825,7 @@ u_isIDIgnorable(UChar32 c) __INTRODUCED_IN(31);
 U_CAPI UBool U_EXPORT2
 u_isJavaIDStart(UChar32 c) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Determines if the specified character is permissible
@@ -3942,9 +3848,7 @@ u_isJavaIDStart(UChar32 c) __INTRODUCED_IN(31);
 U_CAPI UBool U_EXPORT2
 u_isJavaIDPart(UChar32 c) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * The given character is mapped to its lowercase equivalent according to
@@ -3971,9 +3875,7 @@ u_isJavaIDPart(UChar32 c) __INTRODUCED_IN(31);
 U_CAPI UChar32 U_EXPORT2
 u_tolower(UChar32 c) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * The given character is mapped to its uppercase equivalent according to UnicodeData.txt;
@@ -4000,9 +3902,7 @@ u_tolower(UChar32 c) __INTRODUCED_IN(31);
 U_CAPI UChar32 U_EXPORT2
 u_toupper(UChar32 c) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * The given character is mapped to its titlecase equivalent
@@ -4029,9 +3929,7 @@ u_toupper(UChar32 c) __INTRODUCED_IN(31);
 U_CAPI UChar32 U_EXPORT2
 u_totitle(UChar32 c) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * The given character is mapped to its case folding equivalent according to
@@ -4058,9 +3956,7 @@ u_totitle(UChar32 c) __INTRODUCED_IN(31);
 U_CAPI UChar32 U_EXPORT2
 u_foldCase(UChar32 c, uint32_t options) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Returns the decimal digit value of the code point in the
@@ -4103,9 +3999,7 @@ u_foldCase(UChar32 c, uint32_t options) __INTRODUCED_IN(31);
 U_CAPI int32_t U_EXPORT2
 u_digit(UChar32 ch, int8_t radix) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Determines the character representation for a specific digit in
@@ -4138,9 +4032,7 @@ u_digit(UChar32 ch, int8_t radix) __INTRODUCED_IN(31);
 U_CAPI UChar32 U_EXPORT2
 u_forDigit(int32_t digit, int8_t radix) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Get the "age" of the code point.
@@ -4159,9 +4051,7 @@ u_forDigit(int32_t digit, int8_t radix) __INTRODUCED_IN(31);
 U_CAPI void U_EXPORT2
 u_charAge(UChar32 c, UVersionInfo versionArray) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Gets the Unicode version information.
@@ -4177,7 +4067,7 @@ u_charAge(UChar32 c, UVersionInfo versionArray) __INTRODUCED_IN(31);
 U_CAPI void U_EXPORT2
 u_getUnicodeVersion(UVersionInfo versionArray) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
+
 
 #if !UCONFIG_NO_NORMALIZATION
 

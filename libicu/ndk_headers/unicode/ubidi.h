@@ -484,8 +484,6 @@ struct UBiDi;
 /** @stable ICU 2.0 */
 typedef struct UBiDi UBiDi;
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
-
 /**
  * Allocate a <code>UBiDi</code> structure.
  * Such an object is initially empty. It is assigned
@@ -504,9 +502,7 @@ typedef struct UBiDi UBiDi;
 U_CAPI UBiDi * U_EXPORT2
 ubidi_open(void) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Allocate a <code>UBiDi</code> structure with preallocated memory
@@ -545,9 +541,7 @@ ubidi_open(void) __INTRODUCED_IN(31);
 U_CAPI UBiDi * U_EXPORT2
 ubidi_openSized(int32_t maxLength, int32_t maxRunCount, UErrorCode *pErrorCode) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * <code>ubidi_close()</code> must be called to free the memory
@@ -572,7 +566,7 @@ ubidi_openSized(int32_t maxLength, int32_t maxRunCount, UErrorCode *pErrorCode) 
 U_CAPI void U_EXPORT2
 ubidi_close(UBiDi *pBiDi) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
+
 
 #if U_SHOW_CPLUSPLUS_API
 
@@ -592,8 +586,6 @@ U_DEFINE_LOCAL_OPEN_POINTER(LocalUBiDiPointer, UBiDi, ubidi_close);
 U_NAMESPACE_END
 
 #endif
-
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Modify the operation of the Bidi algorithm such that it
@@ -646,7 +638,7 @@ U_NAMESPACE_END
 U_CAPI void U_EXPORT2
 ubidi_setInverse(UBiDi *pBiDi, UBool isInverse) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
+
 
 /**
  * Is this Bidi object set to perform the inverse Bidi algorithm?
@@ -666,8 +658,6 @@ ubidi_setInverse(UBiDi *pBiDi, UBool isInverse) __INTRODUCED_IN(31);
 
 U_CAPI UBool U_EXPORT2
 ubidi_isInverse(UBiDi *pBiDi);
-
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Specify whether block separators must be allocated level zero,
@@ -692,9 +682,7 @@ ubidi_isInverse(UBiDi *pBiDi);
 U_CAPI void U_EXPORT2
 ubidi_orderParagraphsLTR(UBiDi *pBiDi, UBool orderParagraphsLTR) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Is this Bidi object set to allocate level 0 to block separators so that
@@ -710,7 +698,7 @@ ubidi_orderParagraphsLTR(UBiDi *pBiDi, UBool orderParagraphsLTR) __INTRODUCED_IN
 U_CAPI UBool U_EXPORT2
 ubidi_isOrderParagraphsLTR(UBiDi *pBiDi) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
+
 
 /**
  * <code>UBiDiReorderingMode</code> values indicate which variant of the Bidi
@@ -761,8 +749,6 @@ typedef enum UBiDiReorderingMode {
     UBIDI_REORDER_COUNT
 #endif  // U_HIDE_DEPRECATED_API
 } UBiDiReorderingMode;
-
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Modify the operation of the Bidi algorithm such that it implements some
@@ -918,9 +904,7 @@ typedef enum UBiDiReorderingMode {
 U_CAPI void U_EXPORT2
 ubidi_setReorderingMode(UBiDi *pBiDi, UBiDiReorderingMode reorderingMode) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * What is the requested reordering mode for a given Bidi object?
@@ -933,7 +917,7 @@ ubidi_setReorderingMode(UBiDi *pBiDi, UBiDiReorderingMode reorderingMode) __INTR
 U_CAPI UBiDiReorderingMode U_EXPORT2
 ubidi_getReorderingMode(UBiDi *pBiDi) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
+
 
 /**
  * <code>UBiDiReorderingOption</code> values indicate which options are
@@ -1064,8 +1048,6 @@ typedef enum UBiDiReorderingOption {
     UBIDI_OPTION_STREAMING = 4
 } UBiDiReorderingOption;
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
-
 /**
  * Specify which of the reordering options
  * should be applied during Bidi transformations.
@@ -1082,9 +1064,7 @@ typedef enum UBiDiReorderingOption {
 U_CAPI void U_EXPORT2
 ubidi_setReorderingOptions(UBiDi *pBiDi, uint32_t reorderingOptions) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * What are the reordering options applied to a given Bidi object?
@@ -1097,9 +1077,7 @@ ubidi_setReorderingOptions(UBiDi *pBiDi, uint32_t reorderingOptions) __INTRODUCE
 U_CAPI uint32_t U_EXPORT2
 ubidi_getReorderingOptions(UBiDi *pBiDi) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Set the context before a call to ubidi_setPara().<p>
@@ -1191,9 +1169,7 @@ ubidi_setContext(UBiDi *pBiDi,
                  const UChar *epilogue, int32_t epiLength,
                  UErrorCode *pErrorCode) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Perform the Unicode Bidi algorithm. It is defined in the
@@ -1282,9 +1258,7 @@ ubidi_setPara(UBiDi *pBiDi, const UChar *text, int32_t length,
               UBiDiLevel paraLevel, UBiDiLevel *embeddingLevels,
               UErrorCode *pErrorCode) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * <code>ubidi_setLine()</code> sets a <code>UBiDi</code> to
@@ -1338,9 +1312,7 @@ ubidi_setLine(const UBiDi *pParaBiDi,
               UBiDi *pLineBiDi,
               UErrorCode *pErrorCode) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Get the directionality of the text.
@@ -1360,9 +1332,7 @@ ubidi_setLine(const UBiDi *pParaBiDi,
 U_CAPI UBiDiDirection U_EXPORT2
 ubidi_getDirection(const UBiDi *pBiDi) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Gets the base direction of the text provided according
@@ -1394,9 +1364,7 @@ ubidi_getDirection(const UBiDi *pBiDi) __INTRODUCED_IN(31);
 U_CAPI UBiDiDirection U_EXPORT2
 ubidi_getBaseDirection(const UChar *text,  int32_t length ) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Get the pointer to the text.
@@ -1412,9 +1380,7 @@ ubidi_getBaseDirection(const UChar *text,  int32_t length ) __INTRODUCED_IN(31);
 U_CAPI const UChar * U_EXPORT2
 ubidi_getText(const UBiDi *pBiDi) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Get the length of the text.
@@ -1427,9 +1393,7 @@ ubidi_getText(const UBiDi *pBiDi) __INTRODUCED_IN(31);
 U_CAPI int32_t U_EXPORT2
 ubidi_getLength(const UBiDi *pBiDi) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Get the paragraph level of the text.
@@ -1449,9 +1413,7 @@ ubidi_getLength(const UBiDi *pBiDi) __INTRODUCED_IN(31);
 U_CAPI UBiDiLevel U_EXPORT2
 ubidi_getParaLevel(const UBiDi *pBiDi) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Get the number of paragraphs.
@@ -1464,9 +1426,7 @@ ubidi_getParaLevel(const UBiDi *pBiDi) __INTRODUCED_IN(31);
 U_CAPI int32_t U_EXPORT2
 ubidi_countParagraphs(UBiDi *pBiDi) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Get a paragraph, given a position within the text.
@@ -1507,9 +1467,7 @@ ubidi_getParagraph(const UBiDi *pBiDi, int32_t charIndex, int32_t *pParaStart,
                    int32_t *pParaLimit, UBiDiLevel *pParaLevel,
                    UErrorCode *pErrorCode) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Get a paragraph, given the index of this paragraph.
@@ -1543,9 +1501,7 @@ ubidi_getParagraphByIndex(const UBiDi *pBiDi, int32_t paraIndex,
                           int32_t *pParaStart, int32_t *pParaLimit,
                           UBiDiLevel *pParaLevel, UErrorCode *pErrorCode) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Get the level for one character.
@@ -1565,9 +1521,7 @@ ubidi_getParagraphByIndex(const UBiDi *pBiDi, int32_t paraIndex,
 U_CAPI UBiDiLevel U_EXPORT2
 ubidi_getLevelAt(const UBiDi *pBiDi, int32_t charIndex) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Get an array of levels for each character.<p>
@@ -1590,9 +1544,7 @@ ubidi_getLevelAt(const UBiDi *pBiDi, int32_t charIndex) __INTRODUCED_IN(31);
 U_CAPI const UBiDiLevel * U_EXPORT2
 ubidi_getLevels(UBiDi *pBiDi, UErrorCode *pErrorCode) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Get a logical run.
@@ -1622,9 +1574,7 @@ U_CAPI void U_EXPORT2
 ubidi_getLogicalRun(const UBiDi *pBiDi, int32_t logicalPosition,
                     int32_t *pLogicalLimit, UBiDiLevel *pLevel) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Get the number of runs.
@@ -1644,9 +1594,7 @@ ubidi_getLogicalRun(const UBiDi *pBiDi, int32_t logicalPosition,
 U_CAPI int32_t U_EXPORT2
 ubidi_countRuns(UBiDi *pBiDi, UErrorCode *pErrorCode) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Get one run's logical start, length, and directionality,
@@ -1708,9 +1656,7 @@ U_CAPI UBiDiDirection U_EXPORT2
 ubidi_getVisualRun(UBiDi *pBiDi, int32_t runIndex,
                    int32_t *pLogicalStart, int32_t *pLength) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Get the visual position from a logical text position.
@@ -1752,9 +1698,7 @@ ubidi_getVisualRun(UBiDi *pBiDi, int32_t runIndex,
 U_CAPI int32_t U_EXPORT2
 ubidi_getVisualIndex(UBiDi *pBiDi, int32_t logicalIndex, UErrorCode *pErrorCode) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Get the logical text position from a visual position.
@@ -1791,9 +1735,7 @@ ubidi_getVisualIndex(UBiDi *pBiDi, int32_t logicalIndex, UErrorCode *pErrorCode)
 U_CAPI int32_t U_EXPORT2
 ubidi_getLogicalIndex(UBiDi *pBiDi, int32_t visualIndex, UErrorCode *pErrorCode) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Get a logical-to-visual index map (array) for the characters in the UBiDi
@@ -1838,9 +1780,7 @@ ubidi_getLogicalIndex(UBiDi *pBiDi, int32_t visualIndex, UErrorCode *pErrorCode)
 U_CAPI void U_EXPORT2
 ubidi_getLogicalMap(UBiDi *pBiDi, int32_t *indexMap, UErrorCode *pErrorCode) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Get a visual-to-logical index map (array) for the characters in the UBiDi
@@ -1878,9 +1818,7 @@ ubidi_getLogicalMap(UBiDi *pBiDi, int32_t *indexMap, UErrorCode *pErrorCode) __I
 U_CAPI void U_EXPORT2
 ubidi_getVisualMap(UBiDi *pBiDi, int32_t *indexMap, UErrorCode *pErrorCode) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * This is a convenience function that does not use a UBiDi object.
@@ -1905,9 +1843,7 @@ ubidi_getVisualMap(UBiDi *pBiDi, int32_t *indexMap, UErrorCode *pErrorCode) __IN
 U_CAPI void U_EXPORT2
 ubidi_reorderLogical(const UBiDiLevel *levels, int32_t length, int32_t *indexMap) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * This is a convenience function that does not use a UBiDi object.
@@ -1932,9 +1868,7 @@ ubidi_reorderLogical(const UBiDiLevel *levels, int32_t length, int32_t *indexMap
 U_CAPI void U_EXPORT2
 ubidi_reorderVisual(const UBiDiLevel *levels, int32_t length, int32_t *indexMap) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Invert an index map.
@@ -1971,7 +1905,7 @@ ubidi_reorderVisual(const UBiDiLevel *levels, int32_t length, int32_t *indexMap)
 U_CAPI void U_EXPORT2
 ubidi_invertMap(const int32_t *srcMap, int32_t *destMap, int32_t length) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
+
 
 /** option flags for ubidi_writeReordered() */
 
@@ -2037,8 +1971,6 @@ ubidi_invertMap(const int32_t *srcMap, int32_t *destMap, int32_t length) __INTRO
  */
 #define UBIDI_OUTPUT_REVERSE            16
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
-
 /**
  * Get the length of the source text processed by the last call to
  * <code>ubidi_setPara()</code>. This length may be different from the length
@@ -2080,9 +2012,7 @@ ubidi_invertMap(const int32_t *srcMap, int32_t *destMap, int32_t length) __INTRO
 U_CAPI int32_t U_EXPORT2
 ubidi_getProcessedLength(const UBiDi *pBiDi) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Get the length of the reordered text resulting from the last call to
@@ -2114,7 +2044,7 @@ ubidi_getProcessedLength(const UBiDi *pBiDi) __INTRODUCED_IN(31);
 U_CAPI int32_t U_EXPORT2
 ubidi_getResultLength(const UBiDi *pBiDi) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
+
 
 U_CDECL_BEGIN
 
@@ -2156,8 +2086,6 @@ UBiDiClassCallback(const void *context, UChar32 c);
 
 U_CDECL_END
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
-
 /**
  * Retrieve the Bidi class for a given code point.
  * <p>If a <code>#UBiDiClassCallback</code> callback is defined and returns a
@@ -2176,9 +2104,7 @@ U_CDECL_END
 U_CAPI UCharDirection U_EXPORT2
 ubidi_getCustomizedClass(UBiDi *pBiDi, UChar32 c) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Set the callback function and callback data used by the UBA
@@ -2212,9 +2138,7 @@ ubidi_setClassCallback(UBiDi *pBiDi, UBiDiClassCallback *newFn,
                        const void *newContext, UBiDiClassCallback **oldFn,
                        const void **oldContext, UErrorCode *pErrorCode) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Get the current callback function used for Bidi class determination.
@@ -2231,9 +2155,7 @@ ubidi_setClassCallback(UBiDi *pBiDi, UBiDiClassCallback *newFn,
 U_CAPI void U_EXPORT2
 ubidi_getClassCallback(UBiDi *pBiDi, UBiDiClassCallback **fn, const void **context) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Take a <code>UBiDi</code> object containing the reordering
@@ -2306,9 +2228,7 @@ ubidi_writeReordered(UBiDi *pBiDi,
                      uint16_t options,
                      UErrorCode *pErrorCode) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Reverse a Right-To-Left run of Unicode text.
@@ -2362,7 +2282,7 @@ ubidi_writeReverse(const UChar *src, int32_t srcLength,
                    uint16_t options,
                    UErrorCode *pErrorCode) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
+
 
 /*#define BIDI_SAMPLE_CODE*/
 /*@}*/

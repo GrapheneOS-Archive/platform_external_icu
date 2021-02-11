@@ -56,8 +56,6 @@ typedef struct ULocaleDisplayNames ULocaleDisplayNames;
 
 #if !UCONFIG_NO_FORMATTING
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
-
 /**
  * Returns an instance of LocaleDisplayNames that returns names
  * formatted for the provided locale, using the provided
@@ -75,9 +73,7 @@ uldn_open(const char * locale,
           UDialectHandling dialectHandling,
           UErrorCode *pErrorCode) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Closes a ULocaleDisplayNames instance obtained from uldn_open().
@@ -87,7 +83,7 @@ uldn_open(const char * locale,
 U_CAPI void U_EXPORT2
 uldn_close(ULocaleDisplayNames *ldn) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
+
 
 #if U_SHOW_CPLUSPLUS_API
 
@@ -110,8 +106,6 @@ U_NAMESPACE_END
 
 /* getters for state */
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
-
 /**
  * Returns the locale used to determine the display names. This is
  * not necessarily the same locale passed to {@link #uldn_open}.
@@ -122,9 +116,7 @@ U_NAMESPACE_END
 U_CAPI const char * U_EXPORT2
 uldn_getLocale(const ULocaleDisplayNames *ldn) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Returns the dialect handling used in the display names.
@@ -135,11 +127,9 @@ uldn_getLocale(const ULocaleDisplayNames *ldn) __INTRODUCED_IN(31);
 U_CAPI UDialectHandling U_EXPORT2
 uldn_getDialectHandling(const ULocaleDisplayNames *ldn) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
+
 
 /* names for entire locales */
-
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Returns the display name of the provided locale.
@@ -159,11 +149,9 @@ uldn_localeDisplayName(const ULocaleDisplayNames *ldn,
                        int32_t maxResultSize,
                        UErrorCode *pErrorCode) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
+
 
 /* names for components of a locale */
-
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Returns the display name of the provided language code.
@@ -183,9 +171,7 @@ uldn_languageDisplayName(const ULocaleDisplayNames *ldn,
                          int32_t maxResultSize,
                          UErrorCode *pErrorCode) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Returns the display name of the provided script.
@@ -205,9 +191,7 @@ uldn_scriptDisplayName(const ULocaleDisplayNames *ldn,
                        int32_t maxResultSize,
                        UErrorCode *pErrorCode) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Returns the display name of the provided script code.
@@ -227,9 +211,7 @@ uldn_scriptCodeDisplayName(const ULocaleDisplayNames *ldn,
                            int32_t maxResultSize,
                            UErrorCode *pErrorCode) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Returns the display name of the provided region code.
@@ -249,9 +231,7 @@ uldn_regionDisplayName(const ULocaleDisplayNames *ldn,
                        int32_t maxResultSize,
                        UErrorCode *pErrorCode) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Returns the display name of the provided variant
@@ -271,9 +251,7 @@ uldn_variantDisplayName(const ULocaleDisplayNames *ldn,
                         int32_t maxResultSize,
                         UErrorCode *pErrorCode) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Returns the display name of the provided locale key
@@ -293,9 +271,7 @@ uldn_keyDisplayName(const ULocaleDisplayNames *ldn,
                     int32_t maxResultSize,
                     UErrorCode *pErrorCode) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Returns the display name of the provided value (used with the provided key).
@@ -317,9 +293,7 @@ uldn_keyValueDisplayName(const ULocaleDisplayNames *ldn,
                          int32_t maxResultSize,
                          UErrorCode *pErrorCode) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
 * Returns an instance of LocaleDisplayNames that returns names formatted
@@ -339,9 +313,7 @@ U_CAPI ULocaleDisplayNames * U_EXPORT2
 uldn_openForContext(const char * locale, UDisplayContext *contexts,
                     int32_t length, UErrorCode *pErrorCode) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
 * Returns the UDisplayContext value for the specified UDisplayContextType.
@@ -357,7 +329,7 @@ U_CAPI UDisplayContext U_EXPORT2
 uldn_getContext(const ULocaleDisplayNames *ldn, UDisplayContextType type,
                 UErrorCode *pErrorCode) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
+
 
 #endif  /* !UCONFIG_NO_FORMATTING */
 #endif  /* __ULDNAMES_H__ */
