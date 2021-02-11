@@ -123,8 +123,6 @@ typedef struct UNormalizer2 UNormalizer2;  /**< C typedef for struct UNormalizer
 
 #if !UCONFIG_NO_NORMALIZATION
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
-
 /**
  * Returns a UNormalizer2 instance for Unicode NFC normalization.
  * Same as unorm2_getInstance(NULL, "nfc", UNORM2_COMPOSE, pErrorCode).
@@ -139,9 +137,7 @@ typedef struct UNormalizer2 UNormalizer2;  /**< C typedef for struct UNormalizer
 U_CAPI const UNormalizer2 * U_EXPORT2
 unorm2_getNFCInstance(UErrorCode *pErrorCode) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Returns a UNormalizer2 instance for Unicode NFD normalization.
@@ -157,9 +153,7 @@ unorm2_getNFCInstance(UErrorCode *pErrorCode) __INTRODUCED_IN(31);
 U_CAPI const UNormalizer2 * U_EXPORT2
 unorm2_getNFDInstance(UErrorCode *pErrorCode) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Returns a UNormalizer2 instance for Unicode NFKC normalization.
@@ -175,9 +169,7 @@ unorm2_getNFDInstance(UErrorCode *pErrorCode) __INTRODUCED_IN(31);
 U_CAPI const UNormalizer2 * U_EXPORT2
 unorm2_getNFKCInstance(UErrorCode *pErrorCode) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Returns a UNormalizer2 instance for Unicode NFKD normalization.
@@ -193,9 +185,7 @@ unorm2_getNFKCInstance(UErrorCode *pErrorCode) __INTRODUCED_IN(31);
 U_CAPI const UNormalizer2 * U_EXPORT2
 unorm2_getNFKDInstance(UErrorCode *pErrorCode) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Returns a UNormalizer2 instance for Unicode NFKC_Casefold normalization.
@@ -211,13 +201,11 @@ unorm2_getNFKDInstance(UErrorCode *pErrorCode) __INTRODUCED_IN(31);
 U_CAPI const UNormalizer2 * U_EXPORT2
 unorm2_getNFKCCasefoldInstance(UErrorCode *pErrorCode) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 
 
 
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Closes a UNormalizer2 instance from unorm2_openFiltered().
@@ -228,7 +216,7 @@ unorm2_getNFKCCasefoldInstance(UErrorCode *pErrorCode) __INTRODUCED_IN(31);
 U_CAPI void U_EXPORT2
 unorm2_close(UNormalizer2 *norm2) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
+
 
 #if U_SHOW_CPLUSPLUS_API
 
@@ -248,8 +236,6 @@ U_DEFINE_LOCAL_OPEN_POINTER(LocalUNormalizer2Pointer, UNormalizer2, unorm2_close
 U_NAMESPACE_END
 
 #endif
-
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Writes the normalized form of the source string to the destination string
@@ -273,8 +259,6 @@ unorm2_normalize(const UNormalizer2 *norm2,
                  UChar *dest, int32_t capacity,
                  UErrorCode *pErrorCode) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Appends the normalized form of the second string to the first string
@@ -300,8 +284,6 @@ unorm2_normalizeSecondAndAppend(const UNormalizer2 *norm2,
                                 const UChar *second, int32_t secondLength,
                                 UErrorCode *pErrorCode) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Appends the second string to the first string
@@ -327,9 +309,7 @@ unorm2_append(const UNormalizer2 *norm2,
               const UChar *second, int32_t secondLength,
               UErrorCode *pErrorCode) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Gets the decomposition mapping of c.
@@ -355,9 +335,7 @@ unorm2_getDecomposition(const UNormalizer2 *norm2,
                         UChar32 c, UChar *decomposition, int32_t capacity,
                         UErrorCode *pErrorCode) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Gets the raw decomposition mapping of c.
@@ -393,9 +371,7 @@ unorm2_getRawDecomposition(const UNormalizer2 *norm2,
                            UChar32 c, UChar *decomposition, int32_t capacity,
                            UErrorCode *pErrorCode) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Performs pairwise composition of a & b and returns the composite if there is one.
@@ -415,9 +391,7 @@ unorm2_getRawDecomposition(const UNormalizer2 *norm2,
 U_CAPI UChar32 U_EXPORT2
 unorm2_composePair(const UNormalizer2 *norm2, UChar32 a, UChar32 b) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Gets the combining class of c.
@@ -431,9 +405,7 @@ unorm2_composePair(const UNormalizer2 *norm2, UChar32 a, UChar32 b) __INTRODUCED
 U_CAPI uint8_t U_EXPORT2
 unorm2_getCombiningClass(const UNormalizer2 *norm2, UChar32 c) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Tests if the string is normalized.
@@ -456,9 +428,7 @@ unorm2_isNormalized(const UNormalizer2 *norm2,
                     const UChar *s, int32_t length,
                     UErrorCode *pErrorCode) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Tests if the string is normalized.
@@ -482,9 +452,7 @@ unorm2_quickCheck(const UNormalizer2 *norm2,
                   const UChar *s, int32_t length,
                   UErrorCode *pErrorCode) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Returns the end of the normalized substring of the input string.
@@ -515,9 +483,7 @@ unorm2_spanQuickCheckYes(const UNormalizer2 *norm2,
                          const UChar *s, int32_t length,
                          UErrorCode *pErrorCode) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Tests if the character always has a normalization boundary before it,
@@ -531,9 +497,7 @@ unorm2_spanQuickCheckYes(const UNormalizer2 *norm2,
 U_CAPI UBool U_EXPORT2
 unorm2_hasBoundaryBefore(const UNormalizer2 *norm2, UChar32 c) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Tests if the character always has a normalization boundary after it,
@@ -547,9 +511,7 @@ unorm2_hasBoundaryBefore(const UNormalizer2 *norm2, UChar32 c) __INTRODUCED_IN(3
 U_CAPI UBool U_EXPORT2
 unorm2_hasBoundaryAfter(const UNormalizer2 *norm2, UChar32 c) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
-#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 /**
  * Tests if the character is normalization-inert.
@@ -562,7 +524,7 @@ unorm2_hasBoundaryAfter(const UNormalizer2 *norm2, UChar32 c) __INTRODUCED_IN(31
 U_CAPI UBool U_EXPORT2
 unorm2_isInert(const UNormalizer2 *norm2, UChar32 c) __INTRODUCED_IN(31);
 
-#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
+
 
 
 
