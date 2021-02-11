@@ -166,6 +166,7 @@ ubidi_setReorderingMode
 ubidi_setReorderingOptions
 ubidi_writeReordered
 ubidi_writeReverse
+ubrk_clone
 ubrk_close
 ubrk_countAvailable
 ubrk_current
@@ -190,8 +191,6 @@ ubrk_setUText
 #   ubrk_getLocaleByType
 #   ubrk_openBinaryRules
 #   ubrk_openRules
-# The API below has a deprecated argument stackBuffer, and users has other API substitutes.
-#   ubrk_safeClone
 uenum_close
 uenum_count
 uenum_next

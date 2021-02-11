@@ -262,7 +262,20 @@ ubrk_open(UBreakIteratorType type,
 #endif /* U_HIDE_DEPRECATED_API */
 
 
+#if !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
+/**
+ * Thread safe cloning operation.
+ * @param bi iterator to be cloned
+ * @param status to indicate whether the operation went on smoothly or there were errors
+ * @return pointer to the new clone
+ * @stable ICU 69
+ */
+U_CAPI UBreakIterator * U_EXPORT2
+ubrk_clone(const UBreakIterator *bi,
+           UErrorCode *status) __INTRODUCED_IN(31);
+
+#endif // !defined(__ANDROID__) || __ANDROID_API__ >= 31
 
 
 #ifndef U_HIDE_DEPRECATED_API
