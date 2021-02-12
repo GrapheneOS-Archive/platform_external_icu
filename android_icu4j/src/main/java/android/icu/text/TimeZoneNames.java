@@ -313,7 +313,6 @@ public abstract class TimeZoneNames implements Serializable {
      * @see MatchInfo
      * @hide draft / provisional / internal are hidden on Android
      */
-    @libcore.api.IntraCoreApi
     public Collection<MatchInfo> find(CharSequence text, int start, EnumSet<NameType> types) {
         throw new UnsupportedOperationException("The method is not implemented in TimeZoneNames base class.");
     }
@@ -324,7 +323,6 @@ public abstract class TimeZoneNames implements Serializable {
      * @hide Only a subset of ICU is exposed in Android
      * @hide draft / provisional / internal are hidden on Android
      */
-    @libcore.api.IntraCoreApi
     public static class MatchInfo {
         private NameType _nameType;
         private String _tzID;
@@ -370,7 +368,6 @@ public abstract class TimeZoneNames implements Serializable {
          * @see #mzID()
          * @hide draft / provisional / internal are hidden on Android
          */
-        @libcore.api.IntraCoreApi
         public String tzID() {
             return _tzID;
         }
@@ -385,7 +382,6 @@ public abstract class TimeZoneNames implements Serializable {
          * @see #tzID()
          * @hide draft / provisional / internal are hidden on Android
          */
-        @libcore.api.IntraCoreApi
         public String mzID() {
             return _mzID;
         }
@@ -396,7 +392,6 @@ public abstract class TimeZoneNames implements Serializable {
          * @see NameType
          * @hide draft / provisional / internal are hidden on Android
          */
-        @libcore.api.IntraCoreApi
         public NameType nameType() {
             return _nameType;
         }
@@ -406,7 +401,6 @@ public abstract class TimeZoneNames implements Serializable {
          * @return the match length.
          * @hide draft / provisional / internal are hidden on Android
          */
-        @libcore.api.IntraCoreApi
         public int matchLength() {
             return _matchLength;
         }
