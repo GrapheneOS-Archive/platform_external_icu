@@ -24,6 +24,15 @@
  /data/local/tmp/ && adb shell /data/local/tmp/icu4c_sample_break
 
 */
+package {
+    // See: http://go/android-license-faq
+    // A large-scale-change added 'default_applicable_licenses' to import
+    // all of the 'license_kinds' from "external_icu_icu4c_license"
+    // to get the below license kinds:
+    //   SPDX-license-identifier-Unicode-DFS
+    default_applicable_licenses: ["external_icu_icu4c_license"],
+}
+
 cc_test {
     name: "icu4c_sample_break",
     host_supported: true,
