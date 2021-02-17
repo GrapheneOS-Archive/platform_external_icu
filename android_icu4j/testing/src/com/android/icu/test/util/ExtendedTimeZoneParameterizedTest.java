@@ -18,12 +18,17 @@ package com.android.icu.test.util;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assume.assumeTrue;
 
+import android.icu.impl.Grego;
 import android.icu.testsharding.MainTestShard;
+import android.icu.text.DateFormat;
+import android.icu.util.AnnualTimeZoneRule;
 import android.icu.util.BasicTimeZone;
 import android.icu.util.TimeZone;
 import android.icu.util.TimeZoneRule;
 import android.icu.util.TimeZoneTransition;
+import android.icu.util.ULocale;
 
 import com.android.icu.util.ExtendedTimeZone;
 
@@ -38,6 +43,11 @@ import java.time.Month;
 import java.time.ZoneOffset;
 import java.time.zone.ZoneOffsetTransition;
 import java.time.zone.ZoneRules;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
 
 /**
  * Test the {@link ExtendedTimeZone}.
@@ -48,6 +58,12 @@ import java.time.zone.ZoneRules;
 @MainTestShard
 @RunWith(Parameterized.class)
 public class ExtendedTimeZoneParameterizedTest {
+    private static final DateFormat DATE_FORMATTER =
+            DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.MEDIUM, ULocale.US);
+
+    static {
+        DATE_FORMATTER.setTimeZone(TimeZone.GMT_ZONE);
+    }
 
     @Parameterized.Parameters(name = "{0}")
     public static String[] getZoneIds() {
@@ -85,7 +101,7 @@ public class ExtendedTimeZoneParameterizedTest {
         };
         // Coincidentally this test verifies that all zones can be converted to ZoneRules and
         // don't violate any of the assumptions.
-        ZoneRules rules = ExtendedTimeZone.getInstance(zoneId).createZoneRules();
+        ZoneRules rules = getZoneRules();
         BasicTimeZone timeZone = (BasicTimeZone) TimeZone.getTimeZone(zoneId);
 
         int[] icuOffsets = new int[2];
@@ -131,7 +147,7 @@ public class ExtendedTimeZoneParameterizedTest {
         final Instant end = LocalDateTime.of(2100, Month.DECEMBER, 31, 12, 0)
                 .toInstant(ZoneOffset.UTC);
 
-        ZoneRules rules = ExtendedTimeZone.getInstance(zoneId).createZoneRules();
+        ZoneRules rules = getZoneRules();
         BasicTimeZone timeZone = (BasicTimeZone) TimeZone.getTimeZone(zoneId);
 
         Instant instant = start;
@@ -150,6 +166,90 @@ public class ExtendedTimeZoneParameterizedTest {
             }
             instant = jtTrans.getInstant();
         }
+    }
+
+    private static final int[] INTERESTING_OFFSET_FROM_TRANSITION = new int[] {
+            0, // at the transition
+            Grego.MILLIS_PER_MINUTE * 30,
+            - Grego.MILLIS_PER_MINUTE * 30,
+            Grego.MILLIS_PER_HOUR,
+            - Grego.MILLIS_PER_HOUR,
+            Grego.MILLIS_PER_HOUR * 2,
+            - Grego.MILLIS_PER_HOUR * 2,
+            Grego.MILLIS_PER_DAY,
+            - Grego.MILLIS_PER_DAY,
+    };
+
+    @Test
+    public void testZoneRules_consistencyWithIcu4j() {
+        ZoneRules zoneRules = getZoneRules();
+        TimeZone icuTimeZone = getTimeZone();
+        assumeTrue(icuTimeZone instanceof BasicTimeZone);
+
+        BasicTimeZone timeZone = (BasicTimeZone) icuTimeZone;
+
+        List<Long> interestingInstantInMills = new ArrayList<>(Arrays.asList(
+                -3786825600000L,// 00:00:00 1 Jan 1850
+                -3771187200000L,// 00:00:00 1 Jul 1850
+                0L, // epoch time
+                2145916800000L, // 00:00:00 1 Jan 2038
+                2177452800000L, // 00:00:00 1 Jan 2039
+                4102444800000L, // 00:00:00 1 Jan 2100
+                4118083200000L // 00:00:00 1 Jul 2100
+        ));
+
+        addTransitionsUntilAnnualRule(timeZone, interestingInstantInMills);
+
+        Collections.sort(interestingInstantInMills);
+        // Put future time first because such test failure is more alarming than ones in the past
+        Collections.reverse(interestingInstantInMills);
+
+        for (long interestingInstant : interestingInstantInMills) {
+            for (int offset : INTERESTING_OFFSET_FROM_TRANSITION) {
+                long utcTimeInMillis = interestingInstant + offset;
+                assertSameOffset(utcTimeInMillis, timeZone, zoneRules);
+            }
+        }
+    }
+
+    /**
+     * Add transition time until annual rule is applied. Annual rule is recurring and there are
+     * a lot of transitions when the annaul rule is in effect, and too exhaustive for testing.
+     */
+    private static void addTransitionsUntilAnnualRule(BasicTimeZone timeZone, List<Long> result) {
+        long millis = Long.MIN_VALUE;
+        TimeZoneTransition transition = null;
+        do {
+            transition = timeZone.getNextTransition(millis, false);
+            if (transition != null) {
+                millis = transition.getTime();
+                result.add(millis);
+            }
+        } while(transition != null && !(transition.getFrom() instanceof AnnualTimeZoneRule));
+
+    }
+
+    private void assertSameOffset(long utcTimeInMillis, BasicTimeZone timeZone,
+            ZoneRules zoneRules) {
+        int[] offsets = new int[2];
+        int icuDataTotalOffset = timeZone.getOffset(utcTimeInMillis);
+        timeZone.getOffset(utcTimeInMillis, false, offsets);
+        int icuDataStandardOffset = offsets[0];
+        int icuInfoDataDstOffset = offsets[1];
+
+        Instant instant = Instant.ofEpochMilli(utcTimeInMillis);
+        ZoneOffset zoneRulesTotalOffset = zoneRules.getOffset(instant);
+        ZoneOffset zoneRulesStandardOffset = zoneRules.getStandardOffset(instant);
+        Duration zoneRulesDstOffset = zoneRules.getDaylightSavings(instant);
+
+        String msg = "" + zoneId + " at UTC time: " + utcTimeInMillis + " (" +
+                DATE_FORMATTER.format(new Date(utcTimeInMillis)) + ") ";
+        assertEquals(msg + "Total offset", icuDataTotalOffset,
+                zoneRulesTotalOffset.getTotalSeconds() * 1000);
+        assertEquals(msg + "Standard offset", icuDataStandardOffset,
+                zoneRulesStandardOffset.getTotalSeconds() * 1000);
+        assertEquals(msg + "Daylight savings offset", icuInfoDataDstOffset,
+                zoneRulesDstOffset.getSeconds() * 1000);
     }
 
     /**
@@ -186,5 +286,13 @@ public class ExtendedTimeZoneParameterizedTest {
         assertEquals("offset after",
                 (to.getDSTSavings() + to.getRawOffset()) / 1000,
                 jtTransition.getOffsetAfter().getTotalSeconds());
+    }
+
+    private ZoneRules getZoneRules() {
+        return ExtendedTimeZone.getInstance(zoneId).createZoneRules();
+    }
+
+    private TimeZone getTimeZone() {
+        return ExtendedTimeZone.getInstance(zoneId).getTimeZone();
     }
 }
