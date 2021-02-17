@@ -1,4 +1,5 @@
-// Copyright (C) 2020 The Android Open Source Project
+//
+// Copyright (C) 2021 The Android Open Source Project
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -13,7 +14,7 @@
 // limitations under the License.
 
 package {
-    default_applicable_licenses: ["external_icu_license"],
+    default_applicable_licenses: ["external_icu_icu4c_license"],
 }
 
 // Added automatically by a large-scale-change that took the approach of
@@ -29,14 +30,17 @@ package {
 // For unused files, consider creating a 'fileGroup' with "//visibility:private"
 // to attach the license to, and including a comment whether the files may be
 // used in the current project.
+//
+// large-scale-change included anything that looked like it might be a license
+// text as a license_text. e.g. LICENSE, NOTICE, COPYING etc.
+//
+// Please consider removing redundant or irrelevant files from 'license_text:'.
 // See: http://go/android-license-faq
 license {
-    name: "external_icu_license",
+    name: "external_icu_icu4c_license",
     visibility: [":__subpackages__"],
     license_kinds: [
-        "SPDX-license-identifier-Apache-2.0",
         "SPDX-license-identifier-BSD",
-        "SPDX-license-identifier-EPL",
         "SPDX-license-identifier-ICU",
         "SPDX-license-identifier-ISC",
         "SPDX-license-identifier-MIT",
@@ -44,45 +48,7 @@ license {
         "legacy_unencumbered",
     ],
     license_text: [
-        "NOTICE",
+        "LICENSE",
+        "license.html",
     ],
-}
-
-filegroup {
-    name: "icu_license",
-    visibility: [
-        "//external/icu:__subpackages__",
-    ],
-    path: "NOTICE",
-    srcs: ["NOTICE"],
-}
-
-cc_defaults {
-    name: "icu4c_defaults",
-    cflags: [
-        "-Wall",
-        "-Werror",
-        // Make all warnings into errors, but ignore a set of warnings used in headers by default.
-        "-Wno-unused-parameter",
-        "-Wno-unused-const-variable",
-        "-Wno-unneeded-internal-declaration",
-        "-Wno-deprecated-declarations",
-        "-Wno-ignored-attributes",
-    ],
-    // Upstream requires C++11 as the minimum version.
-    cppflags: [
-        "-std=c++11",
-    ],
-    target: {
-        android: {
-            cflags: [
-                // Require this flag to compile against libicuuc and libicui18n
-                "-DANDROID_LINK_SHARED_ICU4C",
-            ],
-        },
-        // Windows build required by layoutlib
-        windows: {
-            enabled: true,
-        },
-    },
 }
