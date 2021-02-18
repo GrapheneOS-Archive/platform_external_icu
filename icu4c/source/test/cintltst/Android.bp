@@ -21,11 +21,9 @@ package {
     default_applicable_licenses: ["external_icu_icu4c_license"],
 }
 
-cc_test {
-    name: "cintltst",
+cc_defaults {
+    name: "cintltst_defaults",
     defaults: ["icu_test_defaults"],
-    // Workaround to run primary abi only in CTS
-    stem: "icu.cintltst",
     srcs: [
         "**/*.c",
         "**/*.cpp",
@@ -39,7 +37,33 @@ cc_test {
         // Not built directly, but #included from other sources.
         "usrchdat.c",
     ],
-    // Workaround Soong's limitation that data property can only include
-    // dependencies with a single variant
+}
+
+// Build exactly one variant even for 32-bit / 64-bit only target, because
+// CtsIcu4cTestCases depends on this module from the "data:" property which allows single-variant
+// dependency only.
+// Soong selects the first variant where 32-bit is prioritized on "cintltst32" and 64-bit is
+// prioritized on "cintltst64".
+cc_test {
+    name: "cintltst32",
+    defaults: ["cintltst_defaults"],
+    multilib: {
+        // On 64-bit platform, this binary is compiled, but not used.
+        lib64: {
+            suffix: "_fake",
+        },
+    },
+    compile_multilib: "first_prefer32",
+}
+
+cc_test {
+    name: "cintltst64",
+    defaults: ["cintltst_defaults"],
+    multilib: {
+        // On 32-bit platform, this binary is compiled, but not used.
+        lib32: {
+            suffix: "_fake",
+        },
+    },
     compile_multilib: "first",
 }
