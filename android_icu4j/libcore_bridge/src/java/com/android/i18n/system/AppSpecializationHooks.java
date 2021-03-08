@@ -28,8 +28,11 @@ import libcore.api.IntraCoreApi;
 public class AppSpecializationHooks {
 
     /**
-     * Called by
+     * This is a good place to change system properties / clear cache due to an app compat change
+     * before an app starts. It's called by
      * {@link dalvik.system.AppSpecializationHooks#handleCompatChangesBeforeBindingApplication()}.
+     *
+     * @hide
      */
     @IntraCoreApi
     public static void handleCompatChangesBeforeBindingApplication() {
