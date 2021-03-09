@@ -344,7 +344,7 @@ public class JapaneseCalendar extends GregorianCalendar {
 
     // Constant for the current era.  This must be regularly updated.
     /**
-     * @deprecated on Android but not deprecated in ICU
+     * @deprecated Use era constants, e.g. {@link #REIWA}, instead.
      * @removed on Android but @stable in ICU
      */
     @Deprecated

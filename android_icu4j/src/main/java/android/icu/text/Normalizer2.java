@@ -177,7 +177,7 @@ public abstract class Normalizer2 {
      * @param name "nfc" or "nfkc" or "nfkc_cf" or name of custom data file
      * @param mode normalization mode (compose or decompose etc.)
      * @return the requested Normalizer2, if successful
-     * @deprecated on Android but not deprecated in ICU
+     * @deprecated Don't use because the binary {@code data} format is not stable across API levels.
      */
     @Deprecated
     public static Normalizer2 getInstance(InputStream data, String name, Mode mode) {
