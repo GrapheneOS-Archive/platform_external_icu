@@ -683,6 +683,20 @@ public final class ZoneInfoData {
      */
     @libcore.api.IntraCoreApi
     public @Nullable Integer getLatestDstSavings(long when) {
+        return getLatestDstSavingsMillis(when);
+    }
+
+    /**
+     * Returns the offset of daylight saving in milliseconds in the latest Daylight Savings Time
+     * after the time {@code when}. If no known DST occurs after {@code when}, it returns
+     * {@code null}.
+     *
+     * @param when the number of milliseconds since January 1, 1970, 00:00:00 GMT
+     *
+     * @hide
+     */
+    @libcore.api.IntraCoreApi
+    public @Nullable Integer getLatestDstSavingsMillis(long when) {
         // Find the latest daylight and standard offsets (if any).
         int lastStdTransitionIndex = -1;
         int lastDstTransitionIndex = -1;
