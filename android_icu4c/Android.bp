@@ -41,15 +41,3 @@ cc_library_headers {
         },
     },
 }
-
-// TODO(b/180394055): Remove this module when the libicu NDK headers are available for mainline
-//  modules / apps.
-// Temporary module to expose header-only functions / macros that do not depend on the
-// on-device implementation of icu4c_extra_headers.
-cc_library_headers {
-    name: "icu4c_extra_headers_for_app",
-    export_include_dirs: ["include"],
-    apex_available: [
-        "com.android.extservices",
-    ],
-}
