@@ -48,6 +48,7 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * Applies Android's ICU4J source code transformation rules. If you make any changes to this class
@@ -773,14 +774,16 @@ public class Icu4jTransform {
    * Entries are usually the result of Android mistakenly exposing an API, an ICU API problem,
    * and/or ICU's stability guarantees differing from Android's requirements.
    */
-  private static final String[] ANDROID_DEPRECATED_SET = {
+  private static final Map<String, String> ANDROID_DEPRECATED_SET = Map.of(
       /* ASCII order please. */
 
       // Unstable "constant" value - different values in different API levels. http://b/77850660.
       "field:android.icu.util.JapaneseCalendar#CURRENT_ERA",
+          "Use era constants, e.g. {@link #REIWA}, instead.",
       // The method reads unstable .nrm file format. http://b/173821060
       "method:android.icu.text.Normalizer2#getInstance(InputStream,String,Mode)",
-  };
+          "Don't use because the binary {@code data} format is not stable across API levels."
+  );
 
   /**
    * ICU APIs that are in the Android SDK API but are removed on Android and @stable in ICU.
@@ -1048,16 +1051,19 @@ public class Icu4jTransform {
 
     private static Rule createMarkElementsWithDeprecatedAnnotationRule() {
       List<BodyDeclarationLocator> locators =
-          BodyDeclarationLocators.createLocatorsFromStrings(ANDROID_DEPRECATED_SET);
+          BodyDeclarationLocators.createLocatorsFromStrings(
+                  ANDROID_DEPRECATED_SET.keySet().toArray(new String[0]));
       return createOptionalRule(AddAnnotation.markerAnnotationFromLocators(
           "Deprecated", locators));
     }
 
     private static Rule createMarkElementsWithDeprecatedJavadocTagRule() {
-      List<BodyDeclarationLocator> locators =
-          BodyDeclarationLocators.createLocatorsFromStrings(ANDROID_DEPRECATED_SET);
-      return createOptionalRule(new TagMatchingDeclarations(locators,
-          "@deprecated on Android but not deprecated in ICU"));
+      Map<BodyDeclarationLocator, String> locatorTags = ANDROID_DEPRECATED_SET.entrySet().stream()
+              .collect(Collectors.toMap(
+                      (entry) -> BodyDeclarationLocators.fromStringForm(entry.getKey()),
+                      (entry) -> "@deprecated " + entry.getValue())
+              );
+      return createOptionalRule(new TagMatchingDeclarations(locatorTags));
     }
 
     private static Rule createMarkElementsWithRemovedJavadocTagRule() {
