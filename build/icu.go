@@ -20,20 +20,16 @@ import (
 
 func init() {
 	host_allowlist := []string{
-		"art/build/apex/",
 		"device/google/cuttlefish/host/commands/",
 		"external/skia",
 		"frameworks/base/libs/hwui",
-		"libcore/",
 		"packages/modules/RuntimeI18n/apex/",
 	}
 
 	device_allowlist := []string{
-		"art/",
 		"external/chromium-libpac",
 		"external/icu/",
 		"external/v8/",
-		"libcore/",
 		"packages/modules/RuntimeI18n/",
 		// TODO(b/155921753): Restrict this when prebuilts are in their proper
 		// locations.
