@@ -498,7 +498,7 @@ public class ZoneInfoDataTest extends TestCase {
       assertNotNull("TimeZone " + id + " was not created", zoneInfoData);
       assertEquals(id, zoneInfoData.getID());
       // Make sure that getLatestDstSavings() at the earliest possible time does not crash.
-      zoneInfoData.getLatestDstSavings(Long.MIN_VALUE);
+      zoneInfoData.getLatestDstSavingsMillis(Long.MIN_VALUE);
     }
   }
 
@@ -663,13 +663,14 @@ public class ZoneInfoDataTest extends TestCase {
   }
 
   private static void assertNoDSTSavings(ZoneInfoData zoneInfoData, Instant time) {
-    assertNull(zoneInfoData.getLatestDstSavings(time.toEpochMilli()));
+    assertNull(zoneInfoData.getLatestDstSavingsMillis(time.toEpochMilli()));
   }
 
   private static void assertDSTSavings(ZoneInfoData zoneInfoData, Duration expectedDSTSavings,
           Instant time) {
     Integer expectedLatestDstSavings = (int) expectedDSTSavings.toMillis();
-    assertEquals(expectedLatestDstSavings, zoneInfoData.getLatestDstSavings(time.toEpochMilli()));
+    assertEquals(expectedLatestDstSavings,
+            zoneInfoData.getLatestDstSavingsMillis(time.toEpochMilli()));
   }
 
   private static void assertInDaylightTime(ZoneInfoData zoneInfoData, Instant time,
