@@ -29,8 +29,6 @@ cc_defaults {
         "**/*.cpp",
     ],
     cflags: [
-        // Disable some file IO tests to workaround test crashing due to missing data files.
-        "-DUCONFIG_NO_FILE_IO",
         "-DZERO_EXIT_CODE_FOR_FAILURES",
     ],
     exclude_srcs: [
