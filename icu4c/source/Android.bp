@@ -66,3 +66,14 @@ cc_library {
         },
     },
 }
+
+genrule {
+    name: "icu4c_test_data",
+    srcs: [
+        "test/testdata/**/*",
+        "data/**/*",
+    ],
+    out: ["icu4c_test_data.zip"],
+    tools: ["soong_zip"],
+    cmd: "$(location soong_zip) -o $(out) -C external/icu/icu4c/source/ -D external/icu/icu4c/source/test/testdata -D external/icu/icu4c/source/data",
+}
