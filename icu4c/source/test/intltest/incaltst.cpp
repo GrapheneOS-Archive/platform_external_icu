@@ -433,8 +433,6 @@ void IntlCalendarTest::TestJapanese() {
 
 
 void IntlCalendarTest::TestBuddhistFormat() {
-    // Android patch: b/145129186 Disable failing tests
-    #ifndef ANDROID
     UErrorCode status = U_ZERO_ERROR;
     
     // Test simple parse/format with adopt
@@ -505,7 +503,6 @@ void IntlCalendarTest::TestBuddhistFormat() {
         
         simpleTest(loc, expect, expectDate, status);
     }
-    #endif /* ANDROID */
 }
 
 // TaiwanFormat has been moved to testdata/format.txt
