@@ -43,8 +43,8 @@ static bool setStringArrayElement(JNIEnv* env, jobjectArray array, int i, const 
   return true;
 }
 
-static void TimeZoneNamesNative_fillZoneStringsNative(JNIEnv* env, jclass, jstring javaLocaleName, jobjectArray result) {
-  ScopedIcuLocale icuLocale(env, javaLocaleName);
+static void TimeZoneNamesNative_fillZoneStringsNative(JNIEnv* env, jclass, jstring javaLanguageTag, jobjectArray result) {
+  ScopedIcuLocale icuLocale(env, javaLanguageTag);
   if (!icuLocale.valid()) {
     return;
   }
