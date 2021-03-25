@@ -101,7 +101,8 @@ public class ExtendedTimeZone {
     /**
      * Returns a {@link ZoneRules} instance for this time zone.
      *
-     * @throws ZoneRulesException if the zone rules can't be created.
+     * @throws ZoneRulesException if the internal rules can't be parsed correctly, or it's not
+     * implemented for the subtype of {@link TimeZone}.
      *
      * @implNote This implementations relies on {@link BasicTimeZone#getTimeZoneRules()} in the
      * following way:
