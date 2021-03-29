@@ -253,6 +253,9 @@ void ubrk_setUText_android(UBreakIterator * bi, UText * text, UErrorCode * statu
 void ucnv_close_android(UConverter * converter) {
   ucnv_close(converter);
 }
+int32_t ucnv_convert_android(const char * toConverterName, const char * fromConverterName, char * target, int32_t targetCapacity, const char * source, int32_t sourceLength, UErrorCode * pErrorCode) {
+  return ucnv_convert(toConverterName, fromConverterName, target, targetCapacity, source, sourceLength, pErrorCode);
+}
 void ucnv_convertEx_android(UConverter * targetCnv, UConverter * sourceCnv, char ** target, const char * targetLimit, const char ** source, const char * sourceLimit, UChar * pivotStart, UChar ** pivotSource, UChar ** pivotTarget, const UChar * pivotLimit, UBool reset, UBool flush, UErrorCode * pErrorCode) {
   ucnv_convertEx(targetCnv, sourceCnv, target, targetLimit, source, sourceLimit, pivotStart, pivotSource, pivotTarget, pivotLimit, reset, flush, pErrorCode);
 }
