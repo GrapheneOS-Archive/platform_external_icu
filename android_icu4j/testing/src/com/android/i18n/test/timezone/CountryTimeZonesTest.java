@@ -21,9 +21,9 @@ import org.junit.Test;
 import android.icu.testsharding.MainTestShard;
 import android.icu.util.TimeZone;
 
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
@@ -32,7 +32,6 @@ import com.android.i18n.timezone.CountryTimeZones;
 import com.android.i18n.timezone.CountryTimeZones.OffsetResult;
 import com.android.i18n.timezone.CountryTimeZones.TimeZoneMapping;
 
-import static java.util.Collections.emptyList;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
@@ -498,6 +497,34 @@ public class CountryTimeZonesTest {
         TimeZone timeZone = timeZoneMapping.getTimeZone();
         assertTrue(timeZone.isFrozen());
         assertEquals("Europe/London", timeZone.getID());
+    }
+
+    @Test
+    public void timeZoneMapping_isShownInPickerAfter_notHidden() {
+        long notUsedAfter = 1234;
+        TimeZoneMapping timeZoneMapping =
+                TimeZoneMapping.createForTests(
+                        "Europe/London", true /* showInPicker */, notUsedAfter, list());
+
+        assertTrue(timeZoneMapping.isShownInPickerAt(
+                Instant.ofEpochMilli(notUsedAfter - 1_000)));
+        assertTrue(timeZoneMapping.isShownInPickerAt(Instant.ofEpochMilli(notUsedAfter)));
+        assertFalse(timeZoneMapping.isShownInPickerAt(
+                Instant.ofEpochMilli(notUsedAfter + 1_000)));
+    }
+
+    @Test
+    public void timeZoneMapping_isShownInPickerAfter_hiddenTimeZone() {
+        long notUsedAfter = 1234;
+        TimeZoneMapping hiddenTimeZoneMapping =
+                TimeZoneMapping.createForTests(
+                        "Moon/Secret_base", false /* showInPicker */, notUsedAfter, list());
+
+        assertFalse(hiddenTimeZoneMapping.isShownInPickerAt(
+                Instant.ofEpochMilli(notUsedAfter - 1_000)));
+        assertFalse(hiddenTimeZoneMapping.isShownInPickerAt(Instant.ofEpochMilli(notUsedAfter)));
+        assertFalse(hiddenTimeZoneMapping.isShownInPickerAt(
+                Instant.ofEpochMilli(notUsedAfter + 1_000)));
     }
 
     private void assertImmutableTimeZone(TimeZone timeZone) {
