@@ -79,6 +79,8 @@ ubrk_open
 ubrk_preceding
 ubrk_setUText
 ucnv_close
+# Temporarily keep ucnv_convert in Android S due to this feature request. http://b/163081189
+ucnv_convert
 ucnv_convertEx
 ucnv_getNextUChar
 ucnv_open
