@@ -66,14 +66,9 @@ public final class CountryTimeZones {
         }
 
         @libcore.api.CorePlatformApi
-        public boolean isShownInPicker() {
-            return shownInPicker;
-        }
-
-        @libcore.api.CorePlatformApi
-        public boolean isShownInPickerAt(Instant date) {
-            return isShownInPicker()
-                    && (notUsedAfter == null || notUsedAfter >= date.toEpochMilli());
+        public boolean isShownInPickerAt(Instant time) {
+            return shownInPicker
+                    && (notUsedAfter == null || notUsedAfter >= time.toEpochMilli());
         }
 
         /**
