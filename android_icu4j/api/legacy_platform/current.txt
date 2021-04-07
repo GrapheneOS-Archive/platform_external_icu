@@ -77,7 +77,6 @@ package com.android.i18n.timezone {
     method public java.util.List<java.lang.String> getAlternativeIds();
     method public android.icu.util.TimeZone getTimeZone();
     method public String getTimeZoneId();
-    method public boolean isShownInPicker();
     method public boolean isShownInPickerAt(java.time.Instant);
   }
 
