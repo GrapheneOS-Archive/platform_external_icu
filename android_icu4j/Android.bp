@@ -147,6 +147,21 @@ java_library {
     dxflags: ["--core-library"],
 }
 
+// Java library for use on host, e.g. by robolectric.
+java_library {
+    name: "core-icu4j-for-host",
+    visibility: [
+        "//art/build",
+        "//external/robolectric-shadows",
+        "//packages/modules/RuntimeI18n/apex",
+    ],
+    static_libs: [
+        "core-icu4j",
+    ],
+    sdk_version: "none",
+    system_modules: "none",
+}
+
 platform_compat_config {
     name: "icu4j-platform-compat-config",
     src: ":core-icu4j",
