@@ -643,11 +643,21 @@ public class DateTimePatternGenerator implements Freezable<DateTimePatternGenera
 
     // BEGIN Android-added: http://b/170233598 Allow duplicate fields
     /**
+     * Return the best pattern matching the input skeleton. It is guaranteed to
+     * have all of the fields in the skeleton.
+     *
+     * @param skeleton The skeleton is a pattern containing only the variable fields.
+     *            For example, "MMMdd" and "mmhh" are skeletons.
+     * @param options MATCH_xxx options for forcing the length of specified fields in
+     *            the returned pattern to match those in the skeleton (when this would
+     *            not happen otherwise). For default behavior, use MATCH_NO_OPTIONS.
+     * @param allowDuplicateFields allows duplicated field in the skeleton
+     * @return Best pattern matching the input skeleton (and options).
      * @hide draft / provisional / internal are hidden on Android
      */
     @libcore.api.CorePlatformApi
-    public String getBestPattern(String skeleton, boolean allowDuplicateFields) {
-        return getBestPattern(skeleton, null, MATCH_NO_OPTIONS, allowDuplicateFields);
+    public String getBestPattern(String skeleton, int options, boolean allowDuplicateFields) {
+        return getBestPattern(skeleton, null, options, allowDuplicateFields);
     }
 
     private String getBestPattern(String skeleton, DateTimeMatcher skipMatcher, int options) {
