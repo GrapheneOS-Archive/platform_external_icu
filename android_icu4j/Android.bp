@@ -153,6 +153,7 @@ java_library {
     visibility: [
         "//art/build",
         "//external/robolectric-shadows",
+        "//frameworks/layoutlib",
         "//packages/modules/RuntimeI18n/apex",
     ],
     static_libs: [
