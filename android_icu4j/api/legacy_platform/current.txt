@@ -14,7 +14,7 @@ package android.icu.text {
   }
 
   public class DateTimePatternGenerator implements java.lang.Cloneable android.icu.util.Freezable<android.icu.text.DateTimePatternGenerator> {
-    method public String getBestPattern(String, boolean);
+    method public String getBestPattern(String, int, boolean);
   }
 
   public final class StringPrep {
