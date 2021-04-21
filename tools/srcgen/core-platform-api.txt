@@ -3,7 +3,7 @@ field:android.icu.text.StringPrep#RFC3920_RESOURCEPREP
 enumConstant:android.icu.util.Region$RegionType#TERRITORY
 method:android.icu.impl.TimeZoneAdapter#wrap(android.icu.util.TimeZone)
 method:android.icu.text.DateFormatSymbols#getAmpmNarrowStrings()
-method:android.icu.text.DateTimePatternGenerator#getBestPattern(String,boolean)
+method:android.icu.text.DateTimePatternGenerator#getBestPattern(String,int,boolean)
 method:android.icu.text.StringPrep#getInstance(int)
 method:android.icu.text.StringPrep#prepare(String,int)
 method:android.icu.util.BasicTimeZone#getNextTransition(long,boolean)
