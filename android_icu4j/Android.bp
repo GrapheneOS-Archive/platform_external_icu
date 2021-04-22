@@ -122,9 +122,6 @@ java_library {
     defaults: ["libcore_icu_bridge_defaults"],
     visibility: [
         "//packages/modules/RuntimeI18n/apex",
-        "//external/robolectric-shadows",
-        "//frameworks/layoutlib",
-        "//art/build",
     ],
     apex_available: [
         "com.android.i18n",
