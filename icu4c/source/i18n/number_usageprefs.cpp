@@ -34,6 +34,7 @@ Usage::Usage(const Usage &other) : Usage() {
 
 // Copy assignment operator
 Usage &Usage::operator=(const Usage &other) {
+    if (this == &other) { return *this; }  // self-assignment: no-op
     fLength = 0;
     fError = other.fError;
     if (fUsage != nullptr) {
