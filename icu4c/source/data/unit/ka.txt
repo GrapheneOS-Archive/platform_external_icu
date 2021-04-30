@@ -1392,9 +1392,9 @@ ka{
                 other{"{0} გბიტი"}
             }
             gigabyte{
-                dnam{"გბაიტი"}
-                one{"{0} გბაიტი"}
-                other{"{0} გბაიტი"}
+                dnam{"GB"}
+                one{"{0} GB"}
+                other{"{0} GB"}
             }
             kilobit{
                 dnam{"კბიტი"}
@@ -1412,9 +1412,9 @@ ka{
                 other{"{0} მბიტი"}
             }
             megabyte{
-                dnam{"მბაიტი"}
-                one{"{0} მბაიტი"}
-                other{"{0} მბაიტი"}
+                dnam{"MB"}
+                one{"{0} MB"}
+                other{"{0} MB"}
             }
             petabyte{
                 dnam{"პბაიტი"}
