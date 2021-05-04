@@ -16,22 +16,26 @@
 
 package com.android.i18n.test.timezone;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertSame;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+
+import android.icu.testsharding.MainTestShard;
+
+import com.android.i18n.timezone.CountryTimeZones;
+import com.android.i18n.timezone.CountryTimeZones.TimeZoneMapping;
+import com.android.i18n.timezone.CountryZonesFinder;
+
 import org.junit.Test;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
-import com.android.i18n.timezone.CountryTimeZones;
-import com.android.i18n.timezone.CountryTimeZones.TimeZoneMapping;
-import com.android.i18n.timezone.CountryZonesFinder;
-
-import android.icu.testsharding.MainTestShard;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertSame;
-import static org.junit.Assert.fail;
 
 @MainTestShard
 public class CountryZonesFinderTest {
@@ -117,6 +121,26 @@ public class CountryZonesFinderTest {
         assertSame(GB_ZONES, countryZonesFinder.lookupCountryTimeZones(GB_ZONES.getCountryIso()));
         assertSame(IM_ZONES, countryZonesFinder.lookupCountryTimeZones(IM_ZONES.getCountryIso()));
         assertNull(countryZonesFinder.lookupCountryTimeZones("DOES_NOT_EXIST"));
+    }
+
+    @Test
+    public void findCanonicalTimeZoneId() {
+        TimeZoneMapping usesNewZoneId = timeZoneMappingWithAlts("America/Detroit",
+                list("US/Michigan"));
+        TimeZoneMapping usesOldZoneId = timeZoneMappingWithAlts("US/Central",
+                list("America/Chicago"));
+        CountryTimeZones countryWithAlternativeZones = CountryTimeZones.createValidated(
+                "us", "America/Detroit" /* defaultTimeZoneId */, false /* defaultTimeZoneBoost */,
+                false /* everUsesUtc */,
+                list(usesNewZoneId, usesOldZoneId),
+                "debug info");
+        CountryZonesFinder countryZonesFinder =
+                CountryZonesFinder.createForTests(list(countryWithAlternativeZones));
+
+        assertEquals(countryZonesFinder.findCanonicalTimeZoneId("America/Chicago"), "US/Central");
+        assertEquals(countryZonesFinder.findCanonicalTimeZoneId("US/Michigan"), "America/Detroit");
+        assertEquals(countryZonesFinder.findCanonicalTimeZoneId("America/Detroit"), "America/Detroit");
+        assertNull(countryZonesFinder.findCanonicalTimeZoneId("Mars/Base"));
     }
 
     private static <X> void assertEqualsAndImmutable(List<X> expected, List<X> actual) {
