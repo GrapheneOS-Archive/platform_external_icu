@@ -19,6 +19,7 @@ package com.android.i18n.timezone;
 import static com.android.i18n.timezone.XmlUtils.normalizeCountryIso;
 
 import com.android.i18n.timezone.CountryTimeZones.TimeZoneMapping;
+import libcore.util.Nullable;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -57,10 +58,11 @@ public final class CountryZonesFinder {
 
     /**
      * Returns an immutable list of {@link CountryTimeZones} for countries that use the specified
-     * time zone. An exact, case-sensitive match is performed on the zone ID. If the match  but the method also
-     * checks for alternative zone IDs. This method never returns null and will usually return a
-     * list containing a single element. It can return an empty list if the zone ID is
-     * not recognized or it is not associated with a country.
+     * time zone. An exact, case-sensitive match is performed on the zone ID. Search is done
+     * over currently used time zone IDs and also over no longer used deprecated(alternative) IDs.
+     * This method never returns null and will usually return a list containing a single element.
+     * It can return an empty list if the zone ID is not recognized or it is not associated with a
+     * country.
      */
     @libcore.api.CorePlatformApi
     public List<CountryTimeZones> lookupCountryTimeZonesForZoneId(String zoneId) {
@@ -102,6 +104,39 @@ public final class CountryZonesFinder {
                 return countryTimeZones;
             }
         }
+        return null;
+    }
+
+    /**
+     * Returns a canonical time zone ID for the {@code timeZoneId} specified. It is intended for use
+     * when behavioral equivalence of time zones needs to be determined.
+     *
+     * <p>When a time zone ID is returned, it is guaranteed to have the same offset / daylight
+     * savings behavior as the argument, but it might be used in a different country and could
+     * have different I18N properties like display name. The original {@code timeZoneId} will
+     * often be returned.
+     *
+     * <p>If {@code timeZoneId} is unknown or not associated with a country, {@code null} is
+     * returned. e.g. time zones such as Etc/GMT+-XX.
+     *
+     * This method behavior is based on tzlookup.xml file and works with Olson IDs attached to
+     * countries, unlike {@link android.icu.util.TimeZone} which works with wider set of arguments.
+     */
+    @libcore.api.CorePlatformApi
+    @Nullable
+    public String findCanonicalTimeZoneId(String timeZoneId) {
+        for (CountryTimeZones countryTimeZones : countryTimeZonesList) {
+
+            // notafter is ignored as timeZoneId might be deprecated a while ago
+            List<TimeZoneMapping> countryTimeZoneMappings = countryTimeZones.getTimeZoneMappings();
+            for (TimeZoneMapping timeZoneMapping : countryTimeZoneMappings) {
+                if (timeZoneMapping.getTimeZoneId().equals(timeZoneId)
+                        || timeZoneMapping.getAlternativeIds().contains(timeZoneId)) {
+                    return timeZoneMapping.getTimeZoneId();
+                }
+            }
+        }
+
         return null;
     }
 }
