@@ -81,6 +81,7 @@ package com.android.i18n.timezone {
   }
 
   public final class CountryZonesFinder {
+    method @Nullable public String findCanonicalTimeZoneId(String);
     method public java.util.List<java.lang.String> lookupAllCountryIsoCodes();
     method public com.android.i18n.timezone.CountryTimeZones lookupCountryTimeZones(String);
     method public java.util.List<com.android.i18n.timezone.CountryTimeZones> lookupCountryTimeZonesForZoneId(String);
