@@ -103,55 +103,6 @@ public class ExtendedTimeZoneNames {
             return isDst;
         }
     }
-    /**
-     * A class representing the return result of {@link #matchName(CharSequence, int, String)}
-     *
-     * @hide
-     */
-    @IntraCoreApi
-    public static class MatchedTimeZone {
-
-        private final int matchLength;
-        private final @NonNull String tzId;
-        private final boolean isDst;
-
-        private MatchedTimeZone(int matchLength, @NonNull String tzId, boolean isDst) {
-            this.matchLength = matchLength;
-            this.tzId = tzId;
-            this.isDst = isDst;
-        }
-
-        /**
-         * Returns the number of chars in the matched name.
-         *
-         * @hide
-         */
-        @IntraCoreApi
-        public int getMatchLength() {
-            return matchLength;
-        }
-
-        /**
-         * Returns the time zone id associated with the matched name.
-         *
-         * @hide
-         */
-        @IntraCoreApi
-        public @NonNull String getTzId() {
-            return tzId;
-        }
-
-        /**
-         * Returns true if the matched name is a display name for daylight saving time. For example,
-         * returns true for "Pacific Daylight Time", but false for "Pacific Standard Time".
-         *
-         * @hide
-         */
-        @IntraCoreApi
-        public boolean isDst() {
-            return isDst;
-        }
-    }
 
     private ExtendedTimeZoneNames(ULocale locale) {
         this.locale = locale;
@@ -203,15 +154,11 @@ public class ExtendedTimeZoneNames {
     @IntraCoreApi
     public @Nullable Match matchNameToBeRenamed(@NonNull CharSequence text, int start,
             @NonNull String currentTzId) {
-        MatchedTimeZone matchedTimeZone  = matchName(text, start, currentTzId);
-        if (matchedTimeZone == null) {
-            return null;
-        }
-        return new Match(matchedTimeZone.matchLength, matchedTimeZone.tzId, matchedTimeZone.isDst);
+        return matchName(text, start, currentTzId);
     }
 
     /**
-     * Returns {@link MatchedTimeZone} if a time zone name in ICU can be matched against the input
+     * Returns {@link Match} if a time zone name in ICU can be matched against the input
      * CharSequence {@code s}.
      * The best match is found by the following principles:
      * <ul>
@@ -233,7 +180,7 @@ public class ExtendedTimeZoneNames {
      * @hide
      */
     @IntraCoreApi
-    public @Nullable MatchedTimeZone matchName(@NonNull CharSequence text, int start,
+    public @Nullable Match matchName(@NonNull CharSequence text, int start,
             @NonNull String currentTzId) {
         currentTzId = TimeZone.getCanonicalID(currentTzId);
 
@@ -297,9 +244,9 @@ public class ExtendedTimeZoneNames {
         return null;
     }
 
-    private static MatchedTimeZone matchedTimeZone(
+    private static Match matchedTimeZone(
             String timeZoneId, TimeZoneNames.MatchInfo matchInfo) {
-        return new MatchedTimeZone(
+        return new Match(
                 matchInfo.matchLength(),
                 timeZoneId,
                 DST_NAME_TYPES.contains(matchInfo.nameType()));
