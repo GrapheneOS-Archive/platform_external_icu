@@ -152,34 +152,6 @@ public class ExtendedTimeZoneNames {
      * @hide
      */
     @IntraCoreApi
-    public @Nullable Match matchNameToBeRenamed(@NonNull CharSequence text, int start,
-            @NonNull String currentTzId) {
-        return matchName(text, start, currentTzId);
-    }
-
-    /**
-     * Returns {@link Match} if a time zone name in ICU can be matched against the input
-     * CharSequence {@code s}.
-     * The best match is found by the following principles:
-     * <ul>
-     * <li>Length of the matched name. Longest name matched to the given {@code s} has the
-     * highest priority.</li>
-     * <li>The current time zone and meta zones possible in the current country have higher
-     * priority than other zones.</li>
-     * <li>If only meta zones are matched, the country/region in the locale is used to select
-     * a reference time zone. For example, if the name is "Pacific Standard Time" and the country
-     * is US, America/Los_Angeles is returned.</li>
-     * </ul>
-     *
-     * @param text input string to be matched against time zone names in ICU
-     * @param start the begin index in the CharSequence {@code s}
-     * @param currentTzId the time zone ID prioritized to be matched if multiple time zone IDs can
-     *                    be matched and this is one of the matched IDs.
-     * @return null if no match is found
-     *
-     * @hide
-     */
-    @IntraCoreApi
     public @Nullable Match matchName(@NonNull CharSequence text, int start,
             @NonNull String currentTzId) {
         currentTzId = TimeZone.getCanonicalID(currentTzId);
