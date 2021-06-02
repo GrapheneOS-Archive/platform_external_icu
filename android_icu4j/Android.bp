@@ -200,6 +200,7 @@ java_sdk_library {
     // the API will be checked for compatibility against the latest released
     // version of the API.
     dist_stem: "runtime-i18n",
+    dist_group: "android",
 }
 
 // Generates stub source files for the intra-core API of the I18N module.
