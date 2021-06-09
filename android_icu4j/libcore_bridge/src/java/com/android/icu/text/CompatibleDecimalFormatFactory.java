@@ -31,6 +31,9 @@ import libcore.api.IntraCoreApi;
 @IntraCoreApi
 public class CompatibleDecimalFormatFactory {
 
+    /** All methods are static, no need to instantiate. */
+    private CompatibleDecimalFormatFactory() {}
+
     /**
      * Creates an instance compatible with {@link java.text.DecimalFormat}.
      *

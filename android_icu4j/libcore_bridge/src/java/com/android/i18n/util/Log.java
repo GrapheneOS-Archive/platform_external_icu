@@ -22,6 +22,9 @@ package com.android.i18n.util;
  * @hide
  */
 public class Log {
+    /** All methods are static, no need to instantiate. */
+    private Log() {}
+
     // liblog's log priorities from android_LogPriority in log.h.
     private static int VERBOSE = 2;
     private static int DEBUG = 3;
