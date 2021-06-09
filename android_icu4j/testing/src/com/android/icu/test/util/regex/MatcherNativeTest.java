@@ -164,6 +164,14 @@ public class MatcherNativeTest {
             return matcherNative.hitEnd();
         }
 
+        public boolean requireEnd() {
+            return matcherNative.requireEnd();
+        }
+
+        public boolean lookingAt() {
+            return matcherNative.lookingAt(groups);
+        }
+
         public String group() {
             return group(0);
         }
@@ -210,6 +218,24 @@ public class MatcherNativeTest {
         assertEquals(1, m.regionStart());
         assertEquals(6, m.regionEnd());
         assertTrue(m.matches());
+    }
+
+    @Test
+    public void testLookingAt() {
+        Pattern p = Pattern.compile("abc");
+        Matcher m = p.matcher("aabc");
+        assertTrue(m.find());
+
+        m.reset();
+        assertFalse(m.lookingAt());
+    }
+
+    @Test
+    public void testRequireEnd() {
+        Pattern p = Pattern.compile("abc$");
+        Matcher m = p.matcher("abc");
+        assertTrue(m.find());
+        assertTrue(m.requireEnd());
     }
 
     @Test
