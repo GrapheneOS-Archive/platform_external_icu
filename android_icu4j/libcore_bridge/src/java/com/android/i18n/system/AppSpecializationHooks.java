@@ -27,6 +27,9 @@ import libcore.api.IntraCoreApi;
 @IntraCoreApi
 public class AppSpecializationHooks {
 
+    /** All methods are static, no need to instantiate. */
+    private AppSpecializationHooks() {}
+
     /**
      * This is a good place to change system properties / clear cache due to an app compat change
      * before an app starts. It's called by
