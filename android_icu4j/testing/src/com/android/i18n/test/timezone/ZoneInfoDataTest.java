@@ -22,7 +22,14 @@ import android.icu.testsharding.MainTestShard;
 import com.android.i18n.timezone.WallTime;
 import com.android.i18n.timezone.ZoneInfoData;
 import com.android.i18n.timezone.ZoneInfoDb;
+
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.ObjectStreamField;
+import java.io.Serializable;
 import java.nio.ByteBuffer;
 import java.time.Duration;
 import java.time.Instant;
@@ -169,6 +176,50 @@ public class ZoneInfoDataTest extends TestCase {
         { 5400, 0 }
     };
     ZoneInfoData zoneInfoData = createZoneInfoData(transitions, types);
+    assertArrayEquals(new long[] { 0, 5, 2000 }, zoneInfoData.getTransitions());
+
+    Instant transitionTime = timeFromSeconds(5);
+
+    // Even a millisecond before a transition means that the transition is not active.
+    Instant beforeTransitionTime = transitionTime.minusMillis(1);
+    assertOffsetAt(zoneInfoData, offsetFromSeconds(1800), beforeTransitionTime);
+    assertOffsetAt(zoneInfoData, offsetFromSeconds(1800), offsetFromSeconds(0),
+            beforeTransitionTime);
+    assertInDaylightTime(zoneInfoData, beforeTransitionTime, false);
+
+    // A time equal to the transition point activates the transition.
+    assertOffsetAt(zoneInfoData, offsetFromSeconds(3600), transitionTime);
+    assertOffsetAt(zoneInfoData, offsetFromSeconds(1800), offsetFromSeconds(1800),
+            transitionTime);
+    assertInDaylightTime(zoneInfoData, transitionTime, true);
+
+    // A time after the transition point but before the next activates the transition.
+    Instant afterTransitionTime = transitionTime.plusMillis(1);
+    assertOffsetAt(zoneInfoData, offsetFromSeconds(3600), afterTransitionTime);
+    assertOffsetAt(zoneInfoData, offsetFromSeconds(1800), offsetFromSeconds(1800),
+            afterTransitionTime);
+    assertInDaylightTime(zoneInfoData, afterTransitionTime, true);
+
+    assertNoDSTSavings(zoneInfoData, timeFromSeconds(5400));
+    assertRawOffset(zoneInfoData, offsetFromSeconds(5400));
+  }
+
+  /**
+   * Tests {@link ZoneInfoData#createInstance}, and checks to make sure that rounding the time from
+   * milliseconds to seconds does not cause issues around the boundary of positive transitions.
+   */
+  public void testCreateInstance() throws Exception {
+    long[][] transitions = {
+            { 0, 0 },
+            { 5, 1 },
+            { 2000, 2 },
+    };
+    int[][] types = {
+            { 1800, 0 },
+            { 3600, 1 },
+            { 5400, 0 }
+    };
+    ZoneInfoData zoneInfoData = createInstance(transitions, types);
     assertArrayEquals(new long[] { 0, 5, 2000 }, zoneInfoData.getTransitions());
 
     Instant transitionTime = timeFromSeconds(5);
@@ -658,6 +709,63 @@ public class ZoneInfoDataTest extends TestCase {
             zoneInfoData.hasSameRules(copyWithDiffOffset));
   }
 
+  public void testSerialization() throws IOException, ClassNotFoundException {
+    String tzId = TestSerialization.TZID;
+    ZoneInfoData zone = ZoneInfoDb.getInstance().makeZoneInfoData(tzId);
+    assertNotNull(zone);
+    TestSerialization testObj = new TestSerialization(zone);
+
+    final byte[] data;
+    try (ByteArrayOutputStream baos = new ByteArrayOutputStream();
+         ObjectOutputStream oos = new ObjectOutputStream(baos)) {
+      oos.writeObject(testObj);
+      data = baos.toByteArray();
+    }
+
+    final TestSerialization newTestObj;
+    try (ByteArrayInputStream bais = new ByteArrayInputStream(data);
+         ObjectInputStream ois = new ObjectInputStream(bais)) {
+      newTestObj = (TestSerialization) ois.readObject();
+    }
+
+    assertEquals(zone, newTestObj.data);
+    assertEquals(testObj, newTestObj);
+  }
+
+  private static class TestSerialization implements Serializable {
+
+    private static final String TZID = "Europe/London";
+
+    private static final ObjectStreamField[] serialPersistentFields =
+            ZoneInfoData.ZONEINFO_SERIALIZED_FIELDS;
+
+    private ZoneInfoData data;
+
+    private TestSerialization(ZoneInfoData data) {
+      this.data = data;
+    }
+
+    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+      ObjectInputStream.GetField getField = in.readFields();
+      data = ZoneInfoData.createFromSerializationFields(TZID, getField);
+    }
+
+    private void writeObject(ObjectOutputStream out) throws IOException {
+      ObjectOutputStream.PutField putField = out.putFields();
+      data.writeToSerializationFields(putField);
+      out.writeFields();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+      if (!(obj instanceof TestSerialization)) {
+        return false;
+      }
+
+      return data.equals(((TestSerialization) obj).data);
+    }
+  }
+
   private static void assertRawOffset(ZoneInfoData zoneInfoData, Duration expectedOffset) {
     assertEquals(expectedOffset.toMillis(), zoneInfoData.getRawOffset());
   }
@@ -683,6 +791,17 @@ public class ZoneInfoDataTest extends TestCase {
     for (Instant time : times) {
       assertEquals("Unexpected offset at " + time,
               expectedOffset.toMillis(), zoneInfoData.getOffset(time.toEpochMilli()));
+    }
+  }
+
+  private static void assertOffsetAt( ZoneInfoData zoneInfoData, Duration expectedStandardOffset,
+          Duration expectedDstOffset, Instant... times) {
+    int[] offsets = new int[2];
+    for (Instant time : times) {
+      zoneInfoData.getOffsetsByUtcTime(time.toEpochMilli(), offsets);
+      assertEquals("Unexpected standard offset at " + time,
+              expectedStandardOffset.toMillis(), offsets[0]);
+      assertEquals("Unexpected Dst offset at " + time, expectedDstOffset.toMillis(), offsets[1]);
     }
   }
 
@@ -722,6 +841,23 @@ public class ZoneInfoDataTest extends TestCase {
           throws IOException {
     ByteBufferIterator bufferIterator = new ByteBufferIterator(ByteBuffer.wrap(bytes));
     return ZoneInfoData.readTimeZone("TimeZone for '" + name + "'", bufferIterator);
+  }
+
+  private ZoneInfoData createInstance(long[][] transitionMap, int[][] typeMap) {
+    long[] transitions = new long[transitionMap.length];
+    byte[] types =  new byte[transitionMap.length];
+    for (int i = 0; i < transitionMap.length; ++i) {
+      transitions[i] = transitionMap[i][0];
+      types[i] = (byte) transitionMap[i][1];
+    }
+    int[] offsets = new int[typeMap.length];
+    boolean[] isDsts = new boolean[typeMap.length];
+    for (int i = 0; i < typeMap.length; ++i) {
+      offsets[i] = typeMap[i][0];
+      isDsts[i] = (typeMap[i][1] != 0);
+    }
+
+    return ZoneInfoData.createInstance(getName(), transitions, types, offsets, isDsts);
   }
 
   /**
