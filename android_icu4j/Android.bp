@@ -233,7 +233,6 @@ java_sdk_library {
     droiddoc_options: [
         "--hide-annotation libcore.api.Hide ",
         "--show-single-annotation libcore.api.IntraCoreApi ",
-        "--skip-annotation-instance-methods=false ",
     ],
 
     // Don't copy any output files to the dist.
@@ -346,7 +345,6 @@ java_sdk_library {
     droiddoc_options: [
         "--hide-annotation libcore.api.Hide ",
         "--show-single-annotation libcore.api.CorePlatformApi ",
-        "--skip-annotation-instance-methods=false ",
     ],
 
     // Don't copy any output files to the dist.
@@ -377,7 +375,6 @@ java_sdk_library {
     droiddoc_options: [
         "--hide-annotation libcore.api.Hide ",
         "--show-single-annotation libcore.api.CorePlatformApi\\(status=libcore.api.CorePlatformApi.Status.STABLE\\)",
-        "--skip-annotation-instance-methods=false ",
     ],
 
     // Don't copy any output files to the dist.
