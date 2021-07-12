@@ -168,9 +168,9 @@ platform_compat_config {
 java_sdk_library {
     name: "i18n.module.public.api",
     visibility: [
+        "//build/soong/java/core-libraries",
         "//frameworks/base",
         "//frameworks/base/api",
-        "//libcore",
         "//packages/modules/RuntimeI18n/apex",
         // Visibility for prebuilt i18n-module-sdk from the prebuilt of
         // this module.
@@ -328,7 +328,7 @@ java_sdk_library {
         ":android_icu4j_repackaged_src_files",
     ],
     visibility: [
-        "//libcore:__subpackages__",
+        "//build/soong/java/core-libraries",
         "//packages/modules/RuntimeI18n/apex",
         // Visibility for prebuilt i18n-module-sdk from the prebuilt of
         // this module.
@@ -358,7 +358,7 @@ java_sdk_library {
         ":android_icu4j_repackaged_src_files",
     ],
     visibility: [
-        "//libcore:__subpackages__",
+        "//build/soong/java/core-libraries",
         "//packages/modules/RuntimeI18n/apex",
         // Visibility for prebuilt i18n-module-sdk from the prebuilt of
         // this module.
