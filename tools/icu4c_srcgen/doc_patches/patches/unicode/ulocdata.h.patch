@@ -1,23 +1,17 @@
---- libicu/ndk_headers/unicode/ulocdata.h	2021-07-29 18:38:27.377303598 +0100
-+++ libicu/ndk_headers/unicode/ulocdata.h	2021-07-29 18:38:27.497304646 +0100
-@@ -21,16 +21,7 @@
+--- libicu/ndk_headers/unicode/ulocdata.h	2021-07-29 18:40:17.450265175 +0100
++++ libicu/ndk_headers/unicode/ulocdata.h	2021-07-29 18:40:17.566266189 +0100
+@@ -21,10 +21,6 @@
  
  #include "unicode/uloc.h"
  
 -#if U_SHOW_CPLUSPLUS_API
 -#include "unicode/localpointer.h"
 -#endif   // U_SHOW_CPLUSPLUS_API
- 
--/**
-- * @addtogroup ICU4C
-- * @{
-- * \file
-- * \brief C API: Provides access to locale data.
-- */
- 
- /** Forward declaration of the ULocaleData structure. \xrefitem stable "Stable" "Stable List" ICU 3.6 */
- struct ULocaleData;
-@@ -40,70 +31,15 @@
+-
+ /**
+  * @addtogroup ICU4C
+  * @{
+@@ -40,70 +36,12 @@
  
  
  
@@ -62,9 +56,9 @@
 -    ULOCDATA_DELIMITER_COUNT = 4
 -#endif  /* U_HIDE_DEPRECATED_API */
 -} ULocaleDataDelimiterType;
- 
- 
- 
+-
+-
+-
  
  
 -#if U_SHOW_CPLUSPLUS_API
@@ -88,7 +82,7 @@
  
  
  
-@@ -113,25 +49,6 @@
+@@ -113,22 +51,6 @@
  
  
  
@@ -108,15 +102,6 @@
 -    UMS_LIMIT
 -#endif  /* U_HIDE_DEPRECATED_API */
 -} UMeasurementSystem;
--
--
--
  
  
- /**
-@@ -150,5 +67,3 @@
  
- 
- #endif
--
--/** @} */ // addtogroup
