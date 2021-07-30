@@ -78,11 +78,6 @@
  */
 
 /**
- * \defgroup ustring_ustrlen String Length
- * \ingroup ustring_strlen
- */
-/*@{*/
-/**
  * Determine the length of an array of UChar.
  *
  * @param s The array of UChars, NULL (U+0000) terminated.
@@ -91,7 +86,6 @@
  */
 U_CAPI int32_t U_EXPORT2
 u_strlen(const UChar *s);
-/*@}*/
 
 /**
  * Count Unicode code points in the length UChar code units of the string.
