@@ -195,6 +195,69 @@ IGNORED_INCLUDE_DEPENDENCY = {
     "ustring.h": ["uiter.h", ],
 }
 
+IGNORED_HEADER_FOR_DOXYGEN_GROUPING = set([
+    "uconfig.h", # pre-defined config that NDK users shouldn't change
+    "platform.h", # pre-defined variable not to be changed by the NDK users
+    "utf_old.h", # deprecated UTF macros
+    "uvernum.h", # ICU version information not useful for version-independent usage in NDK
+])
+
+"""
+This map should mirror the mapping in external/icu/icu4c/source/Doxyfile.in.
+This is needed because NDK doesn't allow per-module Doxyfile,
+apart from the shared frameworks/native/docs/Doxyfile.
+"""
+DOXYGEN_ALIASES = {
+    "@memo": '\\par Note:\n',
+    "@draft": '\\xrefitem draft "Draft" "Draft List" This API may be changed in the future versions and was introduced in',
+    "@stable": '\\xrefitem stable "Stable" "Stable List"',
+    "@deprecated": '\\xrefitem deprecated "Deprecated" "Deprecated List"',
+    "@obsolete": '\\xrefitem obsolete "Obsolete" "Obsolete List"',
+    "@system": '\\xrefitem system "System" "System List" Do not use unless you know what you are doing.',
+    "@internal": '\\xrefitem internal "Internal"  "Internal List"  Do not use. This API is for internal use only.',
+}
+
+def add_ndk_required_doxygen_grouping():
+    """Add @addtogroup annotation to the header files for NDK API docs"""
+    path = android_path('external/icu/libicu/ndk_headers/unicode')
+    files = [os.path.join(path, f) for f in os.listdir(path) if f.endswith('.h')]
+
+    for src_path in files:
+        with open(src_path, 'r') as file:
+            header_content = file.read()
+
+        for old, new in DOXYGEN_ALIASES.items():
+            header_content = header_content.replace(old, new)
+
+        with open(src_path, 'w') as file:
+            file.write(header_content)
+
+
+    for src_path in files:
+        if os.path.basename(src_path) in IGNORED_HEADER_FOR_DOXYGEN_GROUPING:
+            continue
+
+        cmd_add_addtogroup_annotation = ['sed',
+               '-i',
+               '0,/^\( *\)\(\* *\\\\file\)/s//\\1* @addtogroup ICU4C\\n\\1* @{\\n\\1\\2/',
+               src_path
+               ]
+
+        subprocess.check_call(cmd_add_addtogroup_annotation)
+
+        # Next iteration if the above sed regex doesn't add the text
+        if not has_string_in_file(src_path, 'addtogroup'):
+            continue
+
+        # Add the closing bracket for @addtogroup
+        with open(src_path, 'a') as header_file:
+            header_file.write('\n/** @} */ // addtogroup\n')
+
+def has_string_in_file(path, str):
+    """Return True if the a string exists in the file"""
+    with open(path, 'r') as file:
+        return file.read().find(str) != -1
+
 def main():
     """Parse the ICU4C headers and generate the shim libicu."""
     logging.basicConfig(level=logging.DEBUG)
@@ -238,6 +301,8 @@ def main():
     copy_header_only_files()
 
     generate_cts_headers(allowlisted_apis)
+
+    add_ndk_required_doxygen_grouping()
 
     # Apply documentation patches by the following shell script
     subprocess.check_call(
