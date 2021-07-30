@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 #
 # Copyright (C) 2018 The Android Open Source Project
 #
@@ -221,12 +221,10 @@ def main():
 
     with open(android_path('external/icu/libicu/src/shim.cpp'),
               'w') as out_file:
-        out_file.write(generate_shim(functions, includes, SYMBOL_SUFFIX, 'libicu_shim.cpp.j2')
-                       .encode('utf8'))
+        out_file.write(generate_shim(functions, includes, SYMBOL_SUFFIX, 'libicu_shim.cpp.j2'))
 
     with open(android_path('external/icu/libicu/libicu.map.txt'), 'w') as out_file:
-        out_file.write(generate_symbol_txt(functions, [], 'libicu.map.txt.j2')
-                       .encode('utf8'))
+        out_file.write(generate_symbol_txt(functions, [], 'libicu.map.txt.j2'))
 
     # Process the C headers and put them into the ndk folder.
     for src_path in parser.header_paths_to_copy:
@@ -244,6 +242,8 @@ def main():
     # Apply documentation patches by the following shell script
     subprocess.check_call(
         [android_path('external/icu/tools/icu4c_srcgen/doc_patches/apply_patches.sh')])
+
+    print("Done. See the generated headers at libicu/ndk_headers/.")
 
 if __name__ == '__main__':
     main()
