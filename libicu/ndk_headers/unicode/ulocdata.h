@@ -21,7 +21,12 @@
 
 #include "unicode/uloc.h"
 
-
+/**
+ * @addtogroup ICU4C
+ * @{
+ * \file
+ * \brief C API: Provides access to locale data.
+ */
 
 /** Forward declaration of the ULocaleData structure. \xrefitem stable "Stable" "Stable List" ICU 3.6 */
 struct ULocaleData;
@@ -67,3 +72,5 @@ ulocdata_getCLDRVersion(UVersionInfo versionArray, UErrorCode *status) __INTRODU
 
 
 #endif
+
+/** @} */ // addtogroup
