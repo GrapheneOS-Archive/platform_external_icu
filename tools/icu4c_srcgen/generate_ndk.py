@@ -222,20 +222,16 @@ DOXYGEN_ALIASES = {
 def add_ndk_required_doxygen_grouping():
     """Add @addtogroup annotation to the header files for NDK API docs"""
     path = android_path('external/icu/libicu/ndk_headers/unicode')
-    files = [os.path.join(path, f) for f in Path(path).glob("*.h")]
+    files = Path(path).glob("*.h")
 
     for src_path in files:
-        with open(src_path, 'r') as file:
-            header_content = file.read()
+        header_content = src_path.read_text()
 
         for old, new in DOXYGEN_ALIASES.items():
             header_content = header_content.replace(old, new)
 
-        with open(src_path, 'w') as file:
-            file.write(header_content)
+        src_path.write_text(header_content)
 
-
-    for src_path in files:
         if os.path.basename(src_path) in IGNORED_HEADER_FOR_DOXYGEN_GROUPING:
             continue
 
@@ -249,7 +245,8 @@ def add_ndk_required_doxygen_grouping():
 
         # Next iteration if the above sed regex doesn't add the text
         if not has_string_in_file(src_path, 'addtogroup'):
-            print('Warning: unicode/%s has no "\\file" annotation' % os.path.basename(src_path))
+            basename = os.path.basename(src_path)
+            print(f'Warning: unicode/{basename} has no "\\file" annotation')
             continue
 
         # Add the closing bracket for @addtogroup
