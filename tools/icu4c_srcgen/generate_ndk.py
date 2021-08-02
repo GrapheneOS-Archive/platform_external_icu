@@ -33,6 +33,7 @@ import os
 import re
 import shutil
 import subprocess
+from pathlib import Path
 
 from genutil import (
     android_path,
@@ -200,6 +201,7 @@ IGNORED_HEADER_FOR_DOXYGEN_GROUPING = set([
     "platform.h", # pre-defined variable not to be changed by the NDK users
     "utf_old.h", # deprecated UTF macros
     "uvernum.h", # ICU version information not useful for version-independent usage in NDK
+    "urename.h" # Renaming symbols, but not used in NDK
 ])
 
 """
@@ -220,7 +222,7 @@ DOXYGEN_ALIASES = {
 def add_ndk_required_doxygen_grouping():
     """Add @addtogroup annotation to the header files for NDK API docs"""
     path = android_path('external/icu/libicu/ndk_headers/unicode')
-    files = [os.path.join(path, f) for f in os.listdir(path) if f.endswith('.h')]
+    files = [os.path.join(path, f) for f in Path(path).glob("*.h")]
 
     for src_path in files:
         with open(src_path, 'r') as file:
@@ -247,16 +249,17 @@ def add_ndk_required_doxygen_grouping():
 
         # Next iteration if the above sed regex doesn't add the text
         if not has_string_in_file(src_path, 'addtogroup'):
+            print('Warning: unicode/%s has no "\\file" annotation' % os.path.basename(src_path))
             continue
 
         # Add the closing bracket for @addtogroup
         with open(src_path, 'a') as header_file:
             header_file.write('\n/** @} */ // addtogroup\n')
 
-def has_string_in_file(path, str):
+def has_string_in_file(path, s):
     """Return True if the a string exists in the file"""
     with open(path, 'r') as file:
-        return file.read().find(str) != -1
+        return s in file.read()
 
 def main():
     """Parse the ICU4C headers and generate the shim libicu."""
