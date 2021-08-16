@@ -360,7 +360,7 @@ public:
 
     virtual int32_t IncDataErrorCount( void );
 
-    virtual UBool callTest( IntlTest& testToBeCalled, char* par, const char* basename = "");
+    virtual UBool callTest( IntlTest& testToBeCalled, char* par );
 
 
     UBool       verbose;
@@ -391,10 +391,8 @@ private:
     int32_t     numProps;
 
 protected:
-    std::string   currErr; // Error message of the current test case
 
-    virtual void LL_err_message( const UnicodeString& message, UBool newline );
-    virtual void LL_message( UnicodeString message, UBool newlin, UBool isErr = FALSE );
+    virtual void LL_message( UnicodeString message, UBool newline );
 
     // used for collation result reporting, defined here for convenience
 
@@ -422,6 +420,7 @@ public:
 // static members
 public:
     static IntlTest* gTest;
+    static const char* fgDataDir;
 
 };
 

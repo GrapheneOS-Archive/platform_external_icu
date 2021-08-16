@@ -16,6 +16,7 @@
 package com.ibm.icu.dev.test.format;
 
 import java.text.FieldPosition;
+import java.text.Format.Field;
 import java.text.ParseException;
 import java.text.ParsePosition;
 import java.util.ArrayList;
@@ -40,6 +41,7 @@ import com.ibm.icu.text.DisplayContext;
 import com.ibm.icu.text.SimpleDateFormat;
 import com.ibm.icu.util.Calendar;
 import com.ibm.icu.util.DateInterval;
+import com.ibm.icu.util.GregorianCalendar;
 import com.ibm.icu.util.Output;
 import com.ibm.icu.util.TimeZone;
 import com.ibm.icu.util.ULocale;
@@ -650,54 +652,48 @@ public class DateIntervalFormatTest extends TestFmwk {
 
                 // Thai (default calendar buddhist)
 
-                // Android patch: Force default Gregorian calendar.
-
-                "th", "2550 10 10 10:10:10", "2551 10 10 10:10:10", "EEEEdMMMy", "\\u0E27\\u0E31\\u0E19\\u0E40\\u0E2A\\u0E32\\u0E23\\u0E4C\\u0E17\\u0E35\\u0E48 10 \\u0E15.\\u0E04. 2550 \\u2013 \\u0E27\\u0E31\\u0E19\\u0E2D\\u0E32\\u0E17\\u0E34\\u0E15\\u0E22\\u0E4C\\u0E17\\u0E35\\u0E48 10 \\u0E15.\\u0E04. 2551",
+                "th", "BE 2550 10 10 10:10:10", "BE 2551 10 10 10:10:10", "EEEEdMMMy", "\\u0E27\\u0E31\\u0E19\\u0E1E\\u0E38\\u0E18\\u0E17\\u0E35\\u0E48 10 \\u0E15.\\u0E04. 2550 \\u2013 \\u0E27\\u0E31\\u0E19\\u0E28\\u0E38\\u0E01\\u0E23\\u0E4C\\u0E17\\u0E35\\u0E48 10 \\u0E15.\\u0E04. 2551",
 
 
-                "th", "2550 10 10 10:10:10", "2551 10 10 10:10:10", "dMMM", "10 \\u0E15.\\u0E04. 2550 \\u2013 10 \\u0E15.\\u0E04. 2551",
+                "th", "BE 2550 10 10 10:10:10", "BE 2551 10 10 10:10:10", "dMMM", "10 \\u0E15.\\u0E04. 2550 \\u2013 10 \\u0E15.\\u0E04. 2551",
 
-                "th", "2550 10 10 10:10:10", "2551 10 10 10:10:10", "MMMy", "\\u0E15.\\u0E04. 2550 \\u2013 \\u0E15.\\u0E04. 2551",
-
-
-                "th", "2550 10 10 10:10:10", "2551 10 10 10:10:10", "EdMy", "ส. 10/10/2550 – อา. 10/10/2551",
-
-                "th", "2550 10 10 10:10:10", "2551 10 10 10:10:10", "dMy", "10/10/2550 \\u2013 10/10/2551",
+                "th", "BE 2550 10 10 10:10:10", "BE 2551 10 10 10:10:10", "MMMy", "\\u0E15.\\u0E04. 2550 \\u2013 \\u0E15.\\u0E04. 2551",
 
 
-                "th", "2550 10 10 10:10:10", "2551 10 10 10:10:10", "EdMy", "\\u0E2A. 10/10/2550 \\u2013 \\u0E2D\\u0E32. 10/10/2551",
-                "th", "2550 10 10 10:10:10", "2551 10 10 10:10:10", "My", "10/2550 \\u2013 10/2551",
+                "th", "BE 2550 10 10 10:10:10", "BE 2551 10 10 10:10:10", "EdMy", "\\u0E1E. 10/10/2550 \\u2013 \\u0E28. 10/10/2551",
 
-                "th", "2550 10 10 10:10:10", "2551 10 10 10:10:10", "EdM", "ส. 10/10/2550 – อา. 10/10/2551",
-
-
-                "th", "2550 10 10 10:10:10", "2551 10 10 10:10:10", "y", "2550\\u20132551",
-
-                "th", "2550 10 10 10:10:10", "2551 10 10 10:10:10", "EdM", "\\u0E2A. 10/10/2550 \\u2013 \\u0E2D\\u0E32. 10/10/2551",
-                "th", "2550 10 10 10:10:10", "2551 10 10 10:10:10", "M", "10/2550 \\u2013 10/2551",
+                "th", "BE 2550 10 10 10:10:10", "BE 2551 10 10 10:10:10", "dMy", "10/10/2550 \\u2013 10/10/2551",
 
 
-                "th", "2550 10 10 10:10:10", "2550 11 10 10:10:10", "EEEEdMMMy", "วันเสาร์ที่ 10 ต.ค. – วันอังคารที่ 10 พ.ย. 2550",
+                "th", "BE 2550 10 10 10:10:10", "BE 2551 10 10 10:10:10", "My", "10/2550 \\u2013 10/2551",
+
+                "th", "BE 2550 10 10 10:10:10", "BE 2551 10 10 10:10:10", "EdM", "\\u0E1E. 10/10/2550 \\u2013 \\u0E28. 10/10/2551",
 
 
-                "th", "2550 10 10 10:10:10", "2550 11 10 10:10:10", "dMMM", "10 \\u0E15.\\u0E04. \\u2013 10 \\u0E1E.\\u0E22.",
+                "th", "BE 2550 10 10 10:10:10", "BE 2551 10 10 10:10:10", "y", "2550\\u20132551",
 
-                "th", "2550 10 10 10:10:10", "2550 11 10 10:10:10", "EEEEdMMMy", "\\u0E27\\u0E31\\u0E19\\u0E40\\u0E2A\\u0E32\\u0E23\\u0E4C\\u0E17\\u0E35\\u0E48 10 \\u0E15.\\u0E04. \\u2013 \\u0E27\\u0E31\\u0E19\\u0E2D\\u0E31\\u0E07\\u0E04\\u0E32\\u0E23\\u0E17\\u0E35\\u0E48 10 \\u0E1E.\\u0E22. 2550",
-                "th", "2550 10 10 10:10:10", "2550 11 10 10:10:10", "MMMy", "\\u0E15.\\u0E04.\\u2013\\u0E1E.\\u0E22. 2550",
-
-                "th", "2550 10 10 10:10:10", "2550 11 10 10:10:10", "dM", "10/10 \\u2013 10/11",
-
-                "th", "2550 10 10 10:10:10", "2550 11 10 10:10:10", "My", "10/2550 \\u2013 11/2550",
+                "th", "BE 2550 10 10 10:10:10", "BE 2551 10 10 10:10:10", "M", "10/2550 \\u2013 10/2551",
 
 
-                "th", "2550 10 10 10:10:10", "2550 11 10 10:10:10", "d", "10/10 \\u2013 10/11",
-
-                "th", "2550 10 10 10:10:10", "2550 11 10 10:10:10", "y", "2550",
+                "th", "BE 2550 10 10 10:10:10", "BE 2550 11 10 10:10:10", "EEEEdMMMy", "\\u0E27\\u0E31\\u0E19\\u0E1E\\u0E38\\u0E18\\u0E17\\u0E35\\u0E48 10 \\u0E15.\\u0E04. \\u2013 \\u0E27\\u0E31\\u0E19\\u0E40\\u0E2A\\u0E32\\u0E23\\u0E4C\\u0E17\\u0E35\\u0E48 10 \\u0E1E.\\u0E22. 2550",
 
 
-                "th", "2550 10 10 10:10:10", "2550 11 10 10:10:10", "MMM", "ต.ค. – พ.ย.",
+                "th", "BE 2550 10 10 10:10:10", "BE 2550 11 10 10:10:10", "dMMM", "10 \\u0E15.\\u0E04. \\u2013 10 \\u0E1E.\\u0E22.",
 
-                "th", "2550 10 10 10:10:10", "2550 11 10 10:10:10", "y", "2550",
+                "th", "BE 2550 10 10 10:10:10", "BE 2550 11 10 10:10:10", "MMMy", "\\u0E15.\\u0E04.\\u2013\\u0E1E.\\u0E22. 2550",
+
+                "th", "BE 2550 10 10 10:10:10", "BE 2550 11 10 10:10:10", "dM", "10/10 \\u2013 10/11",
+
+                "th", "BE 2550 10 10 10:10:10", "BE 2550 11 10 10:10:10", "My", "10/2550 \\u2013 11/2550",
+
+
+                "th", "BE 2550 10 10 10:10:10", "BE 2550 11 10 10:10:10", "d", "10/10 \\u2013 10/11",
+
+                "th", "BE 2550 10 10 10:10:10", "BE 2550 11 10 10:10:10", "y", "\u0E1E.\u0E28. 2550",
+
+
+                "th", "BE 2550 10 10 10:10:10", "BE 2550 11 10 10:10:10", "MMM", "\u0E15.\u0E04.\u2013\u0E1E.\u0E22.",
+
                 // Tests for Japanese calendar with eras, including new era in 2019 (Heisei 31 through April 30, then new era)
 
                 "en-u-ca-japanese", "H 31 03 15 09:00:00", "H 31 04 15 09:00:00", "GyMMMd", "Mar 15 \u2013 Apr 15, 31 Heisei",
@@ -723,7 +719,6 @@ public class DateIntervalFormatTest extends TestFmwk {
 
                 "ja-u-ca-japanese", "H 31 04 15 09:00:00", DateFormat.JP_ERA_2019_NARROW+" 1 05 15 09:00:00", "GGGGGyMd", "H31/04/15\uFF5E"+DateFormat.JP_ERA_2019_NARROW+"1/05/15",
 
-                // Android patch end.
         };
         expect(DATA, DATA.length);
     }
@@ -2309,5 +2304,154 @@ public class DateIntervalFormatTest extends TestFmwk {
             FormattedDateInterval res = fmt.formatToValue(new DateInterval(from, to));
             assertEquals("Formate for " + testCase[4], testCase[5], res.toString());
         }
+    }
+
+    @Test
+    public void testTicket21222GregorianEraDiff() {
+        Calendar cal = Calendar.getInstance(TimeZone.GMT_ZONE);
+        DateIntervalFormat g = DateIntervalFormat.getInstance("h", Locale.ENGLISH);
+        g.setTimeZone(TimeZone.GMT_ZONE);
+
+        cal.set(123, Calendar.APRIL, 5, 6, 0);
+        Date date0123Apr5AD = cal.getTime();
+
+        cal.set(Calendar.YEAR, 124);
+        Date date0124Apr5AD = cal.getTime();
+
+        cal.set(Calendar.ERA, GregorianCalendar.BC);
+        Date date0124Apr5BC = cal.getTime();
+
+        cal.set(Calendar.YEAR, 123);
+        Date date0123Apr5BC = cal.getTime();
+
+        DateInterval bothAD = new DateInterval(date0123Apr5AD.getTime(), date0124Apr5AD.getTime());
+        DateInterval bothBC = new DateInterval(date0124Apr5BC.getTime(), date0123Apr5BC.getTime());
+        DateInterval BCtoAD = new DateInterval(date0123Apr5BC.getTime(), date0124Apr5AD.getTime());
+
+        FormattedDateInterval formatted = g.formatToValue(bothAD);
+        assertEquals("Gregorian - calendar both dates in AD",
+                     "4/5/123, 6 AM \u2013 4/5/124, 6 AM",
+                     formatted.toString());
+
+        formatted = g.formatToValue(bothBC);
+        assertEquals("Gregorian - calendar both dates in BC",
+                     "4/5/124, 6 AM \u2013 4/5/123, 6 AM",
+                     formatted.toString());
+
+        formatted = g.formatToValue(BCtoAD);
+        assertEquals("Gregorian - BC to AD",
+                     "4 5, 123 BC, 6 AM \u2013 4 5, 124 AD, 6 AM",
+                     formatted.toString());
+    }
+
+    private List<Field>  getFields(FormattedDateInterval formatted) {
+        List<Field> fields = new ArrayList<Field>();
+        ConstrainedFieldPosition cfpos = new ConstrainedFieldPosition();
+        while (formatted.nextPosition(cfpos)) {
+            fields.add(cfpos.getField());
+        }
+        return fields;
+    }
+
+    private void verifyFields(
+            FormattedDateInterval formatted, List<Field> fields) {
+        int i = 0;
+        ConstrainedFieldPosition cfpos = new ConstrainedFieldPosition();
+        while (formatted.nextPosition(cfpos)) {
+            assertEquals("Field", cfpos.getField(), fields.get(i));
+            i++;
+        }
+    }
+
+    @Test
+    public void testTicket21222ROCEraDiff() {
+        Calendar cal = Calendar.getInstance(TimeZone.GMT_ZONE);
+        DateIntervalFormat roc = DateIntervalFormat.getInstance(
+            "h", new ULocale("zh-Hant-TW@calendar=roc"));
+        roc.setTimeZone(TimeZone.GMT_ZONE);
+
+        // set date1910Jan2 to 1910/1/2 AD which is prior to MG
+        cal.set(1910, Calendar.JANUARY, 2, 6, 0);
+        Date date1910Jan2 = cal.getTime();
+
+        // set date1911Jan2 to 1911/1/2 AD which is also prior to MG
+        cal.set(Calendar.YEAR, 1911);
+        Date date1911Jan2 = cal.getTime();
+
+        // set date1912Jan2 to 1912/1/2 AD which is after MG
+        cal.set(Calendar.YEAR, 1912);
+        Date date1912Jan2 = cal.getTime();
+
+        // set date1913Jan2 to 1913/1/2 AD which is also after MG
+        cal.set(Calendar.YEAR, 1913);
+        Date date1913Jan2 = cal.getTime();
+
+        DateInterval bothBeforeMG = new DateInterval(date1910Jan2.getTime(), date1911Jan2.getTime());
+        DateInterval beforeAfterMG = new DateInterval(date1911Jan2.getTime(), date1913Jan2.getTime());
+        DateInterval bothAfterMG = new DateInterval(date1912Jan2.getTime(), date1913Jan2.getTime());
+
+
+        FormattedDateInterval formatted = roc.formatToValue(bothAfterMG);
+        assertEquals("roc calendar - both dates in MG Era",
+                     "民國1/1/2 6 上午 – 民國2/1/2 6 上午",
+                     formatted.toString());
+        List<Field> expectedFields = getFields(formatted);
+
+        formatted = roc.formatToValue(beforeAfterMG);
+        assertEquals("roc calendar - prior MG Era and in MG Era",
+                     "民國前1年1月2日 6 上午 – 民國2年1月2日 6 上午",
+                     formatted.toString());
+        verifyFields(formatted, expectedFields);
+
+        formatted = roc.formatToValue(bothBeforeMG);
+        assertEquals("roc calendar - both dates prior MG Era",
+                     "民國前2/1/2 6 上午 – 民國前1/1/2 6 上午",
+                     formatted.toString());
+        verifyFields(formatted, expectedFields);
+    }
+
+    @Test
+    public void testTicket21222JapaneseEraDiff() {
+        Calendar cal = Calendar.getInstance(TimeZone.GMT_ZONE);
+        DateIntervalFormat japanese = DateIntervalFormat.getInstance(
+            "h", new ULocale("ja@calendar=japanese"));
+        japanese.setTimeZone(TimeZone.GMT_ZONE);
+
+        cal.set(2019, Calendar.MARCH, 2, 6, 0);
+        Date date2019Mar2 = cal.getTime();
+
+        cal.set(Calendar.MONTH, Calendar.APRIL);
+        cal.set(Calendar.DAY_OF_MONTH, 3);
+        Date date2019Apr3 = cal.getTime();
+
+        cal.set(Calendar.MONTH, Calendar.MAY);
+        cal.set(Calendar.DAY_OF_MONTH, 4);
+        Date date2019May4 = cal.getTime();
+
+        cal.set(Calendar.MONTH, Calendar.JUNE);
+        cal.set(Calendar.DAY_OF_MONTH, 5);
+        Date date2019Jun5 = cal.getTime();
+
+        DateInterval bothBeforeReiwa = new DateInterval(date2019Mar2.getTime(), date2019Apr3.getTime());
+        DateInterval beforeAfterReiwa = new DateInterval(date2019Mar2.getTime(), date2019May4.getTime());
+        DateInterval bothAfterReiwa = new DateInterval(date2019May4.getTime(), date2019Jun5.getTime());
+
+        FormattedDateInterval formatted = japanese.formatToValue(bothAfterReiwa);
+        assertEquals("japanese calendar - both dates in Reiwa",
+                     "R1/5/4 午前6時～R1/6/5 午前6時",
+                     formatted.toString());
+        List<Field> expectedFields = getFields(formatted);
+
+        formatted = japanese.formatToValue(bothBeforeReiwa);
+        assertEquals("japanese calendar - both dates before Reiwa",
+                     "H31/3/2 午前6時～H31/4/3 午前6時",
+                     formatted.toString());
+        verifyFields(formatted, expectedFields);
+
+        formatted = japanese.formatToValue(beforeAfterReiwa);
+        assertEquals("japanese calendar - date before and in Reiwa",
+                     "平成31年3月2日 午前6時～令和元年5月4日 午前6時",
+                     formatted.toString());
+        verifyFields(formatted, expectedFields);
     }
 }

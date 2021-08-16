@@ -644,44 +644,16 @@ public class DateTimePatternGenerator implements Freezable<DateTimePatternGenera
         return getBestPattern(skeleton, null, options);
     }
 
-    // BEGIN Android-added: http://b/170233598 Allow duplicate fields
-    /**
-     * Return the best pattern matching the input skeleton. It is guaranteed to
-     * have all of the fields in the skeleton.
-     *
-     * @param skeleton The skeleton is a pattern containing only the variable fields.
-     *            For example, "MMMdd" and "mmhh" are skeletons.
-     * @param options MATCH_xxx options for forcing the length of specified fields in
-     *            the returned pattern to match those in the skeleton (when this would
-     *            not happen otherwise). For default behavior, use MATCH_NO_OPTIONS.
-     * @param allowDuplicateFields allows duplicated field in the skeleton
-     * @return Best pattern matching the input skeleton (and options).
-     * @internal
-     */
-    public String getBestPattern(String skeleton, int options, boolean allowDuplicateFields) {
-        return getBestPattern(skeleton, null, options, allowDuplicateFields);
-    }
-
-    private String getBestPattern(String skeleton, DateTimeMatcher skipMatcher, int options) {
-        return getBestPattern(skeleton, skipMatcher, options, false);
-    }
-    // END Android-added: http://b/170233598 Allow duplicate fields
-
     /*
      * getBestPattern which takes optional skip matcher
      */
-    // Android-changed: http://b/170233598 Allow duplicate fields
-    // private String getBestPattern(String skeleton, DateTimeMatcher skipMatcher, int options) {
-    private String getBestPattern(String skeleton, DateTimeMatcher skipMatcher, int options,
-            boolean allowDuplicateFields) {
+    private String getBestPattern(String skeleton, DateTimeMatcher skipMatcher, int options) {
         EnumSet<DTPGflags> flags = EnumSet.noneOf(DTPGflags.class);
         // Replace hour metacharacters 'j', 'C', and 'J', set flags as necessary
         String skeletonMapped = mapSkeletonMetacharacters(skeleton, flags);
         String datePattern, timePattern;
         synchronized(this) {
-            // Android-changed: http://b/170233598 Allow duplicate fields
-            // current.set(skeletonMapped, fp, false);
-            current.set(skeletonMapped, fp, allowDuplicateFields);
+            current.set(skeletonMapped, fp, false);
             PatternWithMatcher bestWithMatcher = getBestRaw(current, -1, _distanceInfo, skipMatcher);
             if (_distanceInfo.missingFieldMask == 0 && _distanceInfo.extraFieldMask == 0) {
                 // we have a good item. Adjust the field types
@@ -1385,8 +1357,7 @@ public class DateTimePatternGenerator implements Freezable<DateTimePatternGenera
 
     /**
      * Return the default hour cycle.
-     * @draft ICU 67
-     * @provisional This API might change or be removed in a future release.
+     * @stable ICU 67
      */
     public DateFormat.HourCycle getDefaultHourCycle() {
       switch(getDefaultHourFormatChar()) {

@@ -903,6 +903,7 @@ th{
                 }
             }
         }
+        default{"buddhist"}
         ethiopic{
             monthNames{
                 format{

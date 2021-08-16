@@ -111,7 +111,7 @@ pcm{
         EZ{"Yúróéria"}
         FI{"Fínland"}
         FJ{"Fíji"}
-        FK{"Fọ́klánd Aílands (Íslás Malvínas)"}
+        FK{"Fọ́klánd Aílands"}
         FM{"Maikroníshia"}
         FO{"Fáro Aílands"}
         FR{"Frans"}
@@ -134,7 +134,7 @@ pcm{
         GU{"Guam"}
         GW{"Gíní-Bisáu"}
         GY{"Gayána"}
-        HK{"Họng Kọng"}
+        HK{"Họng Kọng SAR"}
         HM{"Hiád & MakDónáld Aílands"}
         HN{"Họndúras"}
         HR{"Kroéshia"}
@@ -188,7 +188,7 @@ pcm{
         ML{"Máli"}
         MM{"Miánma (Bọ́ma)"}
         MN{"Mọngólia"}
-        MO{"Makáo"}
+        MO{"Makáo SAR Chaína"}
         MP{"Nọ́tán Mariána Aílands"}
         MQ{"Matínik"}
         MR{"Mọriténia"}
@@ -223,7 +223,7 @@ pcm{
         PM{"Sent Piẹr & Míkẹlọn"}
         PN{"Pítkén Aílands"}
         PR{"Puẹ́rto Ríkọ"}
-        PS{"Pálẹ́stain"}
+        PS{"Pálẹ́staín Éria-dẹm"}
         PT{"Pọ́túgal"}
         PW{"Palau"}
         PY{"Párágwue"}
@@ -300,6 +300,9 @@ pcm{
     }
     Countries%short{
         GB{"UK"}
+        HK{"Họng Kọng"}
+        MO{"Makáo"}
+        PS{"Pálẹ́stain"}
         US{"US"}
     }
     Countries%variant{
@@ -307,6 +310,7 @@ pcm{
         CG{"Kóngó (Ripọ́blik)"}
         CI{"Kót Divua"}
         CZ{"Chẹ́k Ripọ́blik"}
+        FK{"Fọ́klánd Aílands (Íslás Malvínas)"}
         SZ{"Swáziland"}
     }
 }

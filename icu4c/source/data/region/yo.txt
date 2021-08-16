@@ -134,7 +134,7 @@ yo{
         GU{"Guamu"}
         GW{"Gene-Busau"}
         GY{"Guyana"}
-        HK{"Hong Kong"}
+        HK{"Agbègbè Ìṣàkóso Ìṣúná Hong Kong Tí Ṣánà Ń Darí"}
         HM{"Erékùsù Heard àti Erékùsù McDonald"}
         HN{"Hondurasi"}
         HR{"Kòróátíà"}
@@ -188,7 +188,7 @@ yo{
         ML{"Mali"}
         MM{"Manamari"}
         MN{"Mogolia"}
-        MO{"Màkáò"}
+        MO{"Agbègbè Ìṣàkóso Pàtàkì Macao"}
         MP{"Etikun Guusu Mariana"}
         MQ{"Matinikuwi"}
         MR{"Maritania"}
@@ -223,7 +223,7 @@ yo{
         PM{"Pẹẹri ati mikuloni"}
         PN{"Pikarini"}
         PR{"Pọto Riko"}
-        PS{"Palẹsítínì"}
+        PS{"Agbègbè ara Palẹsítínì"}
         PT{"Pọ́túgà"}
         PW{"Paalu"}
         PY{"Paraguye"}
@@ -297,6 +297,11 @@ yo{
         ZM{"Ṣamibia"}
         ZW{"Ṣimibabe"}
         ZZ{"Àgbègbè àìmọ̀"}
+    }
+    Countries%short{
+        HK{"Hong Kong"}
+        MO{"Màkáò"}
+        PS{"Palẹsítínì"}
     }
     Countries%variant{
         CD{"Kóńgò (Tiwantiwa)"}

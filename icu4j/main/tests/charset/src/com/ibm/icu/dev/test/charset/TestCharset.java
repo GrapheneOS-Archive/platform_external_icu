@@ -646,9 +646,7 @@ public class TestCharset extends TestFmwk {
                 logln("finish: " + hex(finishArray));
             }
         } catch (CharacterCodingException ex) {
-            // Android patch: Skip tests that fail with customized data.
-            logln(converter + " roundtrip test failed: " + ex.getMessage());
-            // Android patch end.
+            errln(converter + " roundtrip test failed: " + ex.getMessage());
             ex.printStackTrace(System.err);
         }
 
@@ -680,9 +678,7 @@ public class TestCharset extends TestFmwk {
                 }
             } else {
                 if (result.isError()) {
-                    // Android patch: Skip tests that fail with customized data.
-                    logln("Error should not have occurred while encoding HZ.(" + i + ")");
-                    // Android patch end.
+                    errln("Error should not have occurred while encoding HZ.(" + i + ")");
                 }
             }
         }
@@ -833,9 +829,7 @@ public class TestCharset extends TestFmwk {
                 return;
             } catch (RuntimeException ex) {
                 if (!currentlybad) {currentlybad = true; badcount++; logln(""); }
-                // Android patch: Skip tests that fail with customized data.
-                logln(converter + " " + ex.getClass().getName() + ": " + ex.getMessage());
-                // Android patch end.
+                errln(converter + " " + ex.getClass().getName() + ": " + ex.getMessage());
                 continue outer;
             }
 
@@ -2384,10 +2378,8 @@ public class TestCharset extends TestFmwk {
             if(!result.isError()){
                 byte[] expected = {(byte)0xA9, (byte)0xA5, (byte)0xAF, (byte)0xFE, (byte)0xA2, (byte)0xAE};
                 if(!equals(expected, out.array())){
-                    // Android patch: Skip tests that fail with customized data.
-                    logln("Did not get the expected result for substitution bytes. Got: "+
+                    errln("Did not get the expected result for substitution bytes. Got: "+
                            hex(out.array()));
-                    // Android patch end.
                 }
                 logln("Output: "+  hex(out.array()));
             }else{

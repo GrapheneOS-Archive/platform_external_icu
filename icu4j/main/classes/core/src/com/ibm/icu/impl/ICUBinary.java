@@ -24,7 +24,6 @@ import java.util.List;
 import java.util.MissingResourceException;
 import java.util.Set;
 
-import com.ibm.icu.platform.AndroidDataFiles;
 import com.ibm.icu.util.ICUUncheckedIOException;
 import com.ibm.icu.util.VersionInfo;
 
@@ -282,17 +281,8 @@ public final class ICUBinary {
     private static final List<DataFile> icuDataFiles = new ArrayList<>();
 
     static {
-        // BEGIN Android-changed: Initialize ICU data file paths.
-        /*
         // Normally com.ibm.icu.impl.ICUBinary.dataPath.
         String dataPath = ICUConfig.get(ICUBinary.class.getName() + ".dataPath");
-        */
-        String dataPath = null;
-        // Only when runs after repackaging ICU4J. Otherwise the jar should have the ICU resources.
-        if (ICUBinary.class.getName().startsWith("android.icu")) {
-            dataPath = AndroidDataFiles.generateIcuDataPath();
-        }
-        // END Android-changed: Initialize ICU data file paths.
         if (dataPath != null) {
             addDataFilesFromPath(dataPath, icuDataFiles);
         }

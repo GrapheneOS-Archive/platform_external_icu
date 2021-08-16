@@ -111,7 +111,7 @@ vi{
         EZ{"Khu vực đồng Euro"}
         FI{"Phần Lan"}
         FJ{"Fiji"}
-        FK{"Quần đảo Falkland (Islas Malvinas)"}
+        FK{"Quần đảo Falkland"}
         FM{"Micronesia"}
         FO{"Quần đảo Faroe"}
         FR{"Pháp"}
@@ -134,7 +134,7 @@ vi{
         GU{"Guam"}
         GW{"Guinea-Bissau"}
         GY{"Guyana"}
-        HK{"Hồng Kông"}
+        HK{"Đặc khu Hành chính Hồng Kông, Trung Quốc"}
         HM{"Quần đảo Heard và McDonald"}
         HN{"Honduras"}
         HR{"Croatia"}
@@ -188,7 +188,7 @@ vi{
         ML{"Mali"}
         MM{"Myanmar (Miến Điện)"}
         MN{"Mông Cổ"}
-        MO{"Macao"}
+        MO{"Đặc khu Hành chính Macao, Trung Quốc"}
         MP{"Quần đảo Bắc Mariana"}
         MQ{"Martinique"}
         MR{"Mauritania"}
@@ -223,7 +223,7 @@ vi{
         PM{"Saint Pierre và Miquelon"}
         PN{"Quần đảo Pitcairn"}
         PR{"Puerto Rico"}
-        PS{"Palestine"}
+        PS{"Lãnh thổ Palestine"}
         PT{"Bồ Đào Nha"}
         PW{"Palau"}
         PY{"Paraguay"}
@@ -298,11 +298,17 @@ vi{
         ZW{"Zimbabwe"}
         ZZ{"Vùng không xác định"}
     }
+    Countries%short{
+        HK{"Hồng Kông"}
+        MO{"Macao"}
+        PS{"Palestine"}
+    }
     Countries%variant{
         CD{"Cộng hòa Dân chủ Congo"}
         CG{"Cộng hòa Congo"}
         CI{"Bờ Biển Ngà"}
         CZ{"Cộng hòa Séc"}
+        FK{"Quần đảo Falkland (Islas Malvinas)"}
         SZ{"Swaziland"}
         TL{"Đông Timor"}
     }

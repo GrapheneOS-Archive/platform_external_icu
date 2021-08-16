@@ -29,6 +29,7 @@ import com.ibm.icu.text.DateFormat;
 import com.ibm.icu.text.DateFormatSymbols;
 import com.ibm.icu.text.DateTimePatternGenerator;
 import com.ibm.icu.text.SimpleDateFormat;
+import com.ibm.icu.util.BasicTimeZone.LocalOption;
 import com.ibm.icu.util.ULocale.Category;
 
 /**
@@ -378,7 +379,7 @@ import com.ibm.icu.util.ULocale.Category;
  *     numbers must be restricted to a 32-bit <code>int</code>.  This
  *     restricts the overall supported range. Furthermore, restricting
  *     the supported range simplifies the computations by removing
- *     special case code that was used to accomodate arithmetic overflow
+ *     special case code that was used to accommodate arithmetic overflow
  *     at millis near <code>Long.MIN_VALUE</code> and
  *     <code>Long.MAX_VALUE</code>.</li>
  *
@@ -554,7 +555,7 @@ import com.ibm.icu.util.ULocale.Category;
  *     between days at sunset or at other times, all ICU4J calendars
  *     transition between days at <em>local zone midnight</em>.  This
  *     allows ICU4J to centralize the time computations in
- *     <code>Calendar</code> and to maintain basic correpsondences
+ *     <code>Calendar</code> and to maintain basic correspondences
  *     between calendar systems. Affected fields: {@link #AM_PM},
  *     {@link #HOUR}, {@link #HOUR_OF_DAY}, {@link #MINUTE},
  *     {@link #SECOND}, {@link #MILLISECOND},
@@ -1881,7 +1882,6 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
      * {@icu} Returns the list of locales for which Calendars are installed.
      * @return the list of locales for which Calendars are installed.
      * @draft ICU 3.2 (retain)
-     * @provisional This API might change or be removed in a future release.
      */
     public static ULocale[] getAvailableULocales()
     {
@@ -1935,7 +1935,7 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
         for (int i = 0; i < caltypes.length; i++) {
             values.add(caltypes[i]);
         }
-        // then, add other available clanedars
+        // then, add other available calendars
         for (CalType t : CalType.values()) {
             if (!values.contains(t.getId())) {
                 values.add(t.getId());
@@ -3483,7 +3483,6 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
      * @param locale the locale for which the symbols should be drawn
      * @return a <code>DateFormat</code> appropriate to this calendar
      * @draft ICU 3.2 (retain)
-     * @provisional This API might change or be removed in a future release.
      */
     protected DateFormat handleGetDateFormat(String pattern, String override, ULocale locale) {
         FormatConfiguration fmtConfig = new FormatConfiguration();
@@ -3571,51 +3570,6 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
         return result;
     }
 
-    // Android patch (http://b/28832222) start.
-    // Expose method to get format string for java.time.
-    /**
-     * Get the date time format string for the specified values.
-     * This is a copy of {@link #formatHelper(Calendar, ULocale, int, int)} with the following
-     * changes:
-     * <ul>
-     *     <li>Made public, but hidden</li>
-     *     <li>take calendar type string instead of Calendar</li>
-     *     <li>Ignore overrides</li>
-     *     <li>Return format string instead of DateFormat.</li>
-     * </ul>
-     * This is not meant as public API.
-     * @internal
-     */
-    // TODO: Check if calType can be passed via keyword on loc parameter instead.
-    public static String getDateTimeFormatString(ULocale loc, String calType, int dateStyle,
-            int timeStyle) {
-        if (timeStyle < DateFormat.NONE || timeStyle > DateFormat.SHORT) {
-            throw new IllegalArgumentException("Illegal time style " + timeStyle);
-        }
-        if (dateStyle < DateFormat.NONE || dateStyle > DateFormat.SHORT) {
-            throw new IllegalArgumentException("Illegal date style " + dateStyle);
-        }
-
-        PatternData patternData = PatternData.make(loc, calType);
-
-        // Resolve a pattern for the date/time style
-        String pattern = null;
-        if ((timeStyle >= 0) && (dateStyle >= 0)) {
-            pattern = SimpleFormatterImpl.formatRawPattern(
-                    patternData.getDateTimePattern(dateStyle), 2, 2,
-                    patternData.patterns[timeStyle],
-                    patternData.patterns[dateStyle + 4]);
-        } else if (timeStyle >= 0) {
-            pattern = patternData.patterns[timeStyle];
-        } else if (dateStyle >= 0) {
-            pattern = patternData.patterns[dateStyle + 4];
-        } else {
-            throw new IllegalArgumentException("No date or time style specified");
-        }
-        return pattern;
-    }
-    // Android patch (http://b/28832222) end.
-
     static class PatternData {
         // TODO make this even more object oriented
         private String[] patterns;
@@ -3633,12 +3587,8 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
             return dateTimePattern;
         }
         private static PatternData make(Calendar cal, ULocale loc) {
-            // Android patch (http://b/28832222) start.
-            return make(loc, cal.getType());
-        }
-        private static PatternData make(ULocale loc, String calType) {
-            // Android patch (http://b/28832222) end.
             // First, try to get a pattern from PATTERN_CACHE
+            String calType = cal.getType();
             String key = loc.getBaseName() + "+" + calType;
             PatternData patternData = PATTERN_CACHE.get(key);
             if (patternData == null) {
@@ -4060,7 +4010,7 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
         int min = 0;
         long startMs = getTimeInMillis();
         long targetMs = when.getTime();
-        // Always add from the start millis.  This accomodates
+        // Always add from the start millis.  This accommodates
         // operations like adding years from February 29, 2000 up to
         // February 29, 2004.  If 1, 1, 1, 1 is added to the year
         // field, the DOM gets pinned to 28 and stays there, giving an
@@ -4208,7 +4158,7 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
     /**
      * {@icu}Sets the behavior for handling wall time repeating multiple times
      * at negative time zone offset transitions. For example, 1:30 AM on
-     * November 6, 2011 in US Eastern time (Ameirca/New_York) occurs twice;
+     * November 6, 2011 in US Eastern time (America/New_York) occurs twice;
      * 1:30 AM EDT, then 1:30 AM EST one hour later. When <code>WALLTIME_FIRST</code>
      * is used, the wall time 1:30AM in this example will be interpreted as 1:30 AM EDT
      * (first occurrence). When <code>WALLTIME_LAST</code> is used, it will be
@@ -5774,8 +5724,8 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
         int[] offsets = new int[2];
         long wall = millis + millisInDay;
         if (zone instanceof BasicTimeZone) {
-            int duplicatedTimeOpt = (repeatedWallTime == WALLTIME_FIRST) ? BasicTimeZone.LOCAL_FORMER : BasicTimeZone.LOCAL_LATTER;
-            int nonExistingTimeOpt = (skippedWallTime == WALLTIME_FIRST) ? BasicTimeZone.LOCAL_LATTER : BasicTimeZone.LOCAL_FORMER;
+            LocalOption nonExistingTimeOpt = (skippedWallTime == WALLTIME_FIRST) ? LocalOption.LATTER : LocalOption.FORMER;
+            LocalOption duplicatedTimeOpt = (repeatedWallTime == WALLTIME_FIRST) ? LocalOption.FORMER : LocalOption.LATTER;
             ((BasicTimeZone)zone).getOffsetFromLocal(wall, nonExistingTimeOpt, duplicatedTimeOpt, offsets);
         } else {
             // By default, TimeZone#getOffset behaves WALLTIME_LAST for both.
@@ -5827,8 +5777,8 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
         int[] offsets = new int[2];
         long wall = millis + millisInDay;
         if (zone instanceof BasicTimeZone) {
-            int duplicatedTimeOpt = (repeatedWallTime == WALLTIME_FIRST) ? BasicTimeZone.LOCAL_FORMER : BasicTimeZone.LOCAL_LATTER;
-            int nonExistingTimeOpt = (skippedWallTime == WALLTIME_FIRST) ? BasicTimeZone.LOCAL_LATTER : BasicTimeZone.LOCAL_FORMER;
+            LocalOption nonExistingTimeOpt = (skippedWallTime == WALLTIME_FIRST) ? LocalOption.LATTER : LocalOption.FORMER;
+            LocalOption duplicatedTimeOpt = (repeatedWallTime == WALLTIME_FIRST) ? LocalOption.FORMER : LocalOption.LATTER;
             ((BasicTimeZone)zone).getOffsetFromLocal(wall, nonExistingTimeOpt, duplicatedTimeOpt, offsets);
         } else {
             // By default, TimeZone#getOffset behaves WALLTIME_LAST for both.
@@ -5982,7 +5932,6 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
      * @param extendedYear the extendedYear, as returned by handleGetExtendedYear
      * @return the default month
      * @draft ICU 3.6 (retain)
-     * @provisional This API might change or be removed in a future release.
      * @see #MONTH
      */
     protected int getDefaultMonthInYear(int extendedYear) {
@@ -5997,7 +5946,6 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
      * @param month the month, as returned by getDefaultMonthInYear
      * @return the default day of the month
      * @draft ICU 3.6 (retain)
-     * @provisional This API might change or be removed in a future release.
      * @see #DAY_OF_MONTH
      */
     protected int getDefaultDayInMonth(int extendedYear, int month) {
@@ -6548,7 +6496,6 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
      * @see com.ibm.icu.util.ULocale#VALID_LOCALE
      * @see com.ibm.icu.util.ULocale#ACTUAL_LOCALE
      * @draft ICU 2.8 (retain)
-     * @provisional This API might change or be removed in a future release.
      */
     public final ULocale getLocale(ULocale.Type type) {
         return type == ULocale.ACTUAL_LOCALE ?

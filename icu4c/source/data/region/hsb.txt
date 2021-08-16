@@ -109,7 +109,7 @@ hsb{
         EU{"Europska unija"}
         FI{"Finska"}
         FJ{"Fidźi"}
-        FK{"Falklandske kupy (Malwiny)"}
+        FK{"Falklandske kupy"}
         FM{"Mikroneziska"}
         FO{"Färöske kupy"}
         FR{"Francoska"}
@@ -132,7 +132,7 @@ hsb{
         GU{"Guam"}
         GW{"Gineja-Bissau"}
         GY{"Guyana"}
-        HK{"Hongkong"}
+        HK{"Wosebita zarjadniska cona Hongkong"}
         HM{"Heardowa kupa a McDonaldowe kupy"}
         HN{"Honduras"}
         HR{"Chorwatska"}
@@ -185,7 +185,7 @@ hsb{
         ML{"Mali"}
         MM{"Myanmar"}
         MN{"Mongolska"}
-        MO{"Macao"}
+        MO{"Wosebita zarjadniska cona Macao"}
         MP{"Sewjerne Mariany"}
         MQ{"Martinique"}
         MR{"Mawretanska"}
@@ -220,7 +220,7 @@ hsb{
         PM{"St. Pierre a Miquelon"}
         PN{"Pitcairnowe kupy"}
         PR{"Puerto Rico"}
-        PS{"Palestina"}
+        PS{"Palestinski awtonomny teritorij"}
         PT{"Portugalska"}
         PW{"Palau"}
         PY{"Paraguay"}
@@ -295,12 +295,16 @@ hsb{
     }
     Countries%short{
         GB{"UK"}
+        HK{"Hongkong"}
+        MO{"Macao"}
+        PS{"Palestina"}
         US{"USA"}
     }
     Countries%variant{
         CD{"Kongo (Demokratiska republika)"}
         CG{"Kongo (Republika)"}
         CI{"Słonowinowy pobrjóh"}
+        FK{"Falklandske kupy (Malwiny)"}
         TL{"Wuchodny Timor"}
     }
 }

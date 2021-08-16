@@ -19,21 +19,24 @@ sr_Latn_BA{
         DE{"Njemačka"}
         GS{"Južna Džordžija i Južna Sendvička ostrva"}
         GU{"Gvam"}
-        HK{"Hongkong"}
+        HK{"Hongkong (SAO Kine)"}
         HM{"ostrvo Herd i ostrva Makdonald"}
         KN{"Sveti Kits i Nevis"}
         KP{"Sjeverna Koreja"}
         MK{"Sjeverna Makedonija"}
-        MO{"Makao"}
+        MO{"SAR Makao"}
         MP{"Sjeverna Marijanska ostrva"}
         NF{"ostrvo Norfok"}
         NU{"Nijue"}
         PM{"Sveti Pjer i Mikelon"}
-        PS{"Palestina"}
+        PS{"palestinske teritorije"}
         RE{"Reunion"}
         UM{"Spoljna ostrva SAD"}
         VC{"Sveti Vinsent i Grenadini"}
         VG{"Britanska Djevičanska Ostrva"}
         VI{"Američka Djevičanska Ostrva"}
+    }
+    Countries%variant{
+        FK{"Folklandska (Malvinska) ostrva"}
     }
 }

@@ -188,7 +188,7 @@ ig{
         ML{"Mali"}
         MM{"Myanmar (Burma)"}
         MN{"Mongolia"}
-        MO{"Macao"}
+        MO{"Macao SAR China"}
         MP{"Agwaetiti Northern Mariana"}
         MQ{"Martinique"}
         MR{"Mauritania"}
@@ -300,6 +300,7 @@ ig{
     }
     Countries%short{
         GB{"UK"}
+        MO{"Macao"}
     }
     Countries%variant{
         CD{"Congo (DRC)"}

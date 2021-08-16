@@ -8,34 +8,15 @@
 *
 ********************************************************************************
 */
-#include "unicode/ctest.h"
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <assert.h>
 #include <stdarg.h>
 #include <ctype.h>
-#include <limits.h>
-
-#if defined(__ANDROID__)
-#include <errno.h>
-#include <libgen.h>
-#include <unistd.h>
-#endif
-
-#if defined(__linux__)
-#include <features.h>
-#endif
-
-#if defined(__GLIBC__)
-// Glibc's PATH_MAX is not in limits.h.
-#include <linux/limits.h>
-#endif
 
 #include "unicode/utrace.h"
 #include "unicode/uclean.h"
-#include "unicode/ures.h"
 #include "putilimp.h"
 #include "udbgutil.h"
 
@@ -58,12 +39,6 @@
 
 #ifndef SHOW_TIMES
 #define SHOW_TIMES 1
-#endif
-
-#if defined(_WIN32)
-#define PATH_MAX MAX_PATH
-#elif !defined(PATH_MAX)
-#define PATH_MAX 256  // The minimum value allowed by POSIX.
 #endif
 
 struct TestNode
@@ -916,18 +891,22 @@ log_data_err(const char* pattern, ...)
 static int traceFnNestingDepth = 0;
 U_CDECL_BEGIN
 static void U_CALLCONV TraceEntry(const void *context, int32_t fnNumber) {
+    (void)context; // suppress compiler warnings about unused variable
     char buf[500];
-    utrace_format(buf, sizeof(buf), traceFnNestingDepth*3, "%s() enter.\n", utrace_functionName(fnNumber));    buf[sizeof(buf)-1]=0;  
+    utrace_format(buf, sizeof(buf), traceFnNestingDepth*3, "%s() enter.\n", utrace_functionName(fnNumber));
+    buf[sizeof(buf)-1]=0;  
     fputs(buf, stdout);
     traceFnNestingDepth++;
 }   
  
-static void U_CALLCONV TraceExit(const void *context, int32_t fnNumber, const char *fmt, va_list args) {    char buf[500];
-    
+static void U_CALLCONV TraceExit(const void *context, int32_t fnNumber, const char *fmt, va_list args) {
+    (void)context; // suppress compiler warnings about unused variable
+    char buf[500];
     if (traceFnNestingDepth>0) {
         traceFnNestingDepth--; 
     }
-    utrace_format(buf, sizeof(buf), traceFnNestingDepth*3, "%s() ", utrace_functionName(fnNumber));    buf[sizeof(buf)-1]=0;
+    utrace_format(buf, sizeof(buf), traceFnNestingDepth*3, "%s() ", utrace_functionName(fnNumber));
+    buf[sizeof(buf)-1]=0;
     fputs(buf, stdout);
     utrace_vformat(buf, sizeof(buf), traceFnNestingDepth*3, fmt, args);
     buf[sizeof(buf)-1]=0;
@@ -937,6 +916,10 @@ static void U_CALLCONV TraceExit(const void *context, int32_t fnNumber, const ch
 
 static void U_CALLCONV TraceData(const void *context, int32_t fnNumber,
                           int32_t level, const char *fmt, va_list args) {
+    // suppress compiler warnings about unused variables
+    (void)context;  
+    (void)fnNumber;
+    (void)level;
     char buf[500];
     utrace_vformat(buf, sizeof(buf), traceFnNestingDepth*3, fmt, args);
     buf[sizeof(buf)-1]=0;
@@ -945,6 +928,7 @@ static void U_CALLCONV TraceData(const void *context, int32_t fnNumber,
 }
 
 static void *U_CALLCONV ctest_libMalloc(const void *context, size_t size) {
+    (void)context; // suppress compiler warnings about unused variable
     /*if (VERBOSITY) {
         printf("Allocated %ld\n", (long)size);
     }*/
@@ -954,6 +938,7 @@ static void *U_CALLCONV ctest_libMalloc(const void *context, size_t size) {
     return malloc(size);
 }
 static void *U_CALLCONV ctest_libRealloc(const void *context, void *mem, size_t size) {
+    (void)context; // suppress compiler warnings about unused variable
     /*if (VERBOSITY) {
         printf("Reallocated %ld\n", (long)size);
     }*/
@@ -964,6 +949,7 @@ static void *U_CALLCONV ctest_libRealloc(const void *context, void *mem, size_t 
     return realloc(mem, size);
 }
 static void U_CALLCONV ctest_libFree(const void *context, void *mem) {
+    (void)context; // suppress compiler warnings about unused variable
     free(mem);
 }
 
@@ -1119,7 +1105,6 @@ runTestRequest(const TestNode* root,
     int                i;
     int                doList = FALSE;
     int                subtreeOptionSeen = FALSE;
-    int                skipNext = FALSE;
 
     int                errorCount = 0;
 
@@ -1131,11 +1116,6 @@ runTestRequest(const TestNode* root,
 
     for( i=1; i<argc; i++)
     {
-        if (skipNext) {
-            skipNext = FALSE;
-            continue;
-        }
-
         if ( argv[i][0] == '/' )
         {
             printf("Selecting subtree '%s'\n", argv[i]);
@@ -1167,10 +1147,6 @@ runTestRequest(const TestNode* root,
             subtreeOptionSeen=FALSE;
         } else if (strcmp( argv[i], "-l") == 0) {
             doList = TRUE;
-        } else if (strcmp( argv[i], "-x") == 0) {
-            // Need to skip the next argument since it will be wrongly
-            // identified as a test filter if it is an absolute path.
-            skipNext = TRUE;
         }
         /* else option already handled by initArgs */
     }
@@ -1334,7 +1310,7 @@ T_CTEST_EXPORT2
 ctest_xml_testcase(const char *classname, const char *name, const char *timeSeconds, const char *failMsg) {
   if(!XML_FILE) return 0;
 
-  fprintf(XML_FILE, "\t<testcase classname=\"%s\" name=\"%s\" time=\"%s\"", name, classname, timeSeconds);
+  fprintf(XML_FILE, "\t<testcase classname=\"%s:%s\" name=\"%s:%s\" time=\"%s\"", XML_PREFIX, classname, XML_PREFIX, name, timeSeconds);
   if(failMsg) {
     fprintf(XML_FILE, ">\n\t\t<failure type=\"err\" message=\"%s\"/>\n\t</testcase>\n", failMsg);
   } else {
@@ -1344,161 +1320,4 @@ ctest_xml_testcase(const char *classname, const char *name, const char *timeSeco
   return 0;
 }
 
-static const char* ctest_icuSrcDir(void) {
-    static const char* srcDir = NULL;
 
-    if (srcDir) {
-        return srcDir;
-    }
-
-#if defined(__ANDROID__)
-    /*
-     * On Android, the source tree is not available as the tests are cross
-     * compiled. Test data is found at paths relative to the test binary.
-     */
-    char exePath[PATH_MAX];
-    ssize_t len = readlink("/proc/self/exe", exePath, sizeof(exePath));
-    if (len == -1) {
-        fprintf(stderr, "Failed to read /proc/self/exe: %s\n", strerror(errno));
-        abort();
-    }
-    exePath[len] = '\0';
-
-    static char path[PATH_MAX];
-    snprintf(path, sizeof(path), "%s/", dirname(exePath));
-    srcDir = path;
-#elif defined(U_TOPSRCDIR)
-    /* U_TOPSRCDIR is set by the makefiles on UNIXes when building cintltst and
-     * intltst to point to the top of the build hierarchy, which may or may not
-     * be the same as the source directory, depending on the configure options
-     * used.  At any rate, set the data path to the built data from this
-     * directory.  The value is complete with quotes, so it can be used as-is as
-     * a string constant.
-     */
-    srcDir = U_TOPSRCDIR U_FILE_SEP_STRING;
-#elif defined(_WIN32)
-    /* On Windows, the file name obtained from __FILE__ includes a full path.
-     * This file is "wherever\icu\source\test\cintltst\cintltst.c" Change to
-     * "wherever\icu\source\data"
-     */
-    static char p[sizeof(__FILE__) + 20];
-    char* pBackSlash;
-    int i;
-
-    strcpy(p, __FILE__);
-    /* We want to back over three '\' chars.                            */
-    /*   Only Windows should end up here, so looking for '\' is safe.   */
-    for (i=1; i<=3; i++) {
-        pBackSlash = strrchr(p, U_FILE_SEP_CHAR);
-        if (pBackSlash != NULL) {
-            *pBackSlash = 0;        /* Truncate the string at the '\'   */
-        }
-    }
-
-    if (pBackSlash != NULL) {
-        /* We found and truncated three names from the path.
-         *  Now append "source\data" and set the environment
-         */
-        strcpy(pBackSlash, U_FILE_SEP_STRING);
-        srcDir = p;
-    }
-    else {
-        /* __FILE__ on MSVC7 does not contain the directory */
-        FILE* file = fopen(".." U_FILE_SEP_STRING ".." U_FILE_SEP_STRING
-                           "runConfigureICU",
-                           "r");
-        if (file) {
-            fclose(file);
-            srcDir = ".." U_FILE_SEP_STRING ".." U_FILE_SEP_STRING;
-        }
-        else {
-          srcDir = ".." U_FILE_SEP_STRING ".." U_FILE_SEP_STRING
-                   ".." U_FILE_SEP_STRING ".." U_FILE_SEP_STRING;
-        }
-    }
-#else
-#error ctest_icuSrcDir not implemented on this platform.
-#endif
-
-    return srcDir;
-}
-
-const char* T_CTEST_EXPORT2
-ctest_dataSrcDir(void) {
-    static char path[PATH_MAX];
-
-    if (path[0]) {
-        return path;
-    }
-
-    snprintf(path, sizeof(path), "%sdata%s", ctest_icuSrcDir(),
-             U_FILE_SEP_STRING);
-    return path;
-}
-
-const char* T_CTEST_EXPORT2
-ctest_dataOutDir(void) {
-    static char path[PATH_MAX];
-
-    if (path[0]) {
-        return path;
-    }
-
-    // Try the ICU_DATA environment variable first. This is the default location
-    // since the user will have explicitly requested it.
-    const char* fromEnv = getenv("ICU_DATA");
-    if (fromEnv != NULL && fromEnv[0] != '\0') {
-        snprintf(path, sizeof(path), "%s%s", fromEnv, U_FILE_SEP_STRING);
-        return path;
-    }
-
-#if defined(__ANDROID__)
-    // Android has the ICU data installed to a known location on the device. Use
-    // that if ICU_DATA is not set.
-    snprintf(path, sizeof(path), "/system/usr/icu/");
-    return path;
-#else
-    // But fallback to the source directory if needed.
-    snprintf(path, sizeof(path), "%sout%s", ctest_dataSrcDir(),
-             U_FILE_SEP_STRING);
-    return path;
-#endif
-}
-
-const char* T_CTEST_EXPORT2
-ctest_testDataDir(void) {
-    static char path[PATH_MAX];
-
-    if (path[0]) {
-        return path;
-    }
-
-    snprintf(path, sizeof(path), "%stest%stestdata%s", ctest_icuSrcDir(),
-             U_FILE_SEP_STRING, U_FILE_SEP_STRING);
-    return path;
-}
-
-const char* T_CTEST_EXPORT2
-ctest_loadTestData(UErrorCode* err) {
-    static char path[PATH_MAX];
-
-    if (path[0]) {
-        return path;
-    }
-
-    snprintf(path, sizeof(path), "%sout%stestdata", ctest_testDataDir(),
-             U_FILE_SEP_STRING);
-
-    UResourceBundle* test = ures_open(path, "testtypes", err);
-    if (U_FAILURE(*err)) {
-        *err = U_FILE_ACCESS_ERROR;
-        log_data_err(
-            "Could not load testtypes.res in testdata bundle with path %s - "
-            "%s\n",
-            path, u_errorName(*err));
-        return "";
-    }
-    ures_close(test);
-
-    return path;
-}
