@@ -111,7 +111,7 @@ et{
         EZ{"euroala"}
         FI{"Soome"}
         FJ{"Fidži"}
-        FK{"Falklandi saared"}
+        FK{"Falklandi saared (Malviini saared)"}
         FM{"Mikroneesia"}
         FO{"Fääri saared"}
         FR{"Prantsusmaa"}
@@ -134,7 +134,7 @@ et{
         GU{"Guam"}
         GW{"Guinea-Bissau"}
         GY{"Guyana"}
-        HK{"Hongkongi erihalduspiirkond"}
+        HK{"Hongkong"}
         HM{"Heardi ja McDonaldi saared"}
         HN{"Honduras"}
         HR{"Horvaatia"}
@@ -188,7 +188,7 @@ et{
         ML{"Mali"}
         MM{"Myanmar (Birma)"}
         MN{"Mongoolia"}
-        MO{"Macau erihalduspiirkond"}
+        MO{"Macau"}
         MP{"Põhja-Mariaanid"}
         MQ{"Martinique"}
         MR{"Mauritaania"}
@@ -223,7 +223,7 @@ et{
         PM{"Saint-Pierre ja Miquelon"}
         PN{"Pitcairni saared"}
         PR{"Puerto Rico"}
-        PS{"Palestiina alad"}
+        PS{"Palestiina"}
         PT{"Portugal"}
         PW{"Belau"}
         PY{"Paraguay"}
@@ -300,9 +300,6 @@ et{
     }
     Countries%short{
         GB{"ÜK"}
-        HK{"Hongkong"}
-        MO{"Macau"}
-        PS{"Palestiina"}
         UN{"ÜRO"}
         US{"USA"}
     }
@@ -311,7 +308,6 @@ et{
         CG{"Kongo-Brazzaville"}
         CI{"Elevandiluurannik"}
         CZ{"Tšehhi Vabariik"}
-        FK{"Falklandi saared (Malviini saared)"}
         SZ{"eSwatini"}
         TL{"Timor-Leste"}
     }

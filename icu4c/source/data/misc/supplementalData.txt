@@ -1897,8 +1897,8 @@ supplementalData:table(nofallback){
             "islamic-tbla",
         }
         AF{
-            "persian",
             "gregorian",
+            "persian",
             "islamic",
             "islamic-civil",
             "islamic-tbla",
@@ -1975,8 +1975,8 @@ supplementalData:table(nofallback){
             "islamic-tbla",
         }
         IR{
-            "persian",
             "gregorian",
+            "persian",
             "islamic",
             "islamic-civil",
             "islamic-tbla",
@@ -2056,8 +2056,8 @@ supplementalData:table(nofallback){
             "islamic-tbla",
         }
         SA{
-            "islamic-umalqura",
             "gregorian",
+            "islamic-umalqura",
             "islamic",
             "islamic-rgsa",
         }
@@ -2084,8 +2084,8 @@ supplementalData:table(nofallback){
             "islamic-tbla",
         }
         TH{
-            "buddhist",
             "gregorian",
+            "buddhist",
         }
         TN{
             "gregorian",

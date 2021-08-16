@@ -111,7 +111,7 @@ ga{
         EZ{"Limistéar an euro"}
         FI{"an Fhionlainn"}
         FJ{"Fidsí"}
-        FK{"Oileáin Fháclainne"}
+        FK{"Oileáin Fháclainne (Islas Malvinas)"}
         FM{"an Mhicrinéis"}
         FO{"Oileáin Fharó"}
         FR{"an Fhrainc"}
@@ -134,7 +134,7 @@ ga{
         GU{"Guam"}
         GW{"Guine Bissau"}
         GY{"an Ghuáin"}
-        HK{"S.R.R. na Síne Hong Cong"}
+        HK{"Hong Cong"}
         HM{"Oileán Heard agus Oileáin McDonald"}
         HN{"Hondúras"}
         HR{"an Chróit"}
@@ -188,7 +188,7 @@ ga{
         ML{"Mailí"}
         MM{"Maenmar (Burma)"}
         MN{"an Mhongóil"}
-        MO{"S.R.R. na Síne Macao"}
+        MO{"Macao"}
         MP{"na hOileáin Mháirianacha Thuaidh"}
         MQ{"Martinique"}
         MR{"an Mháratáin"}
@@ -223,7 +223,7 @@ ga{
         PM{"San Pierre agus Miquelon"}
         PN{"Oileáin Pitcairn"}
         PR{"Pórtó Ríce"}
-        PS{"na Críocha Palaistíneacha"}
+        PS{"an Phalaistín"}
         PT{"an Phortaingéil"}
         PW{"Oileáin Palau"}
         PY{"Paragua"}
@@ -300,9 +300,6 @@ ga{
     }
     Countries%short{
         GB{"RA"}
-        HK{"Hong Cong"}
-        MO{"Macao"}
-        PS{"an Phalaistín"}
         UN{"NA"}
         US{"SAM"}
     }
@@ -311,7 +308,6 @@ ga{
         CG{"an Congó (Poblacht)"}
         CI{"Côte d’Ivoire"}
         CZ{"Poblacht na Seice"}
-        FK{"Oileáin Fháclainne (Islas Malvinas)"}
         SZ{"an tSuasalainn"}
     }
 }

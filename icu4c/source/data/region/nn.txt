@@ -24,7 +24,7 @@ nn{
         DO{"Den dominikanske republikken"}
         EU{"Den europeiske unionen"}
         EZ{"eurosona"}
-        FK{"Falklandsøyane"}
+        FK{"Falklandsøyane (Islas Malvinas)"}
         FO{"Færøyane"}
         GS{"Sør-Georgia og Sør-Sandwichøyane"}
         HM{"Heardøya og McDonaldøyane"}
@@ -53,7 +53,6 @@ nn{
         XB{"pseudospråk – RTL"}
     }
     Countries%variant{
-        FK{"Falklandsøyane (Islas Malvinas)"}
         TL{"Aust-Timor"}
     }
 }
