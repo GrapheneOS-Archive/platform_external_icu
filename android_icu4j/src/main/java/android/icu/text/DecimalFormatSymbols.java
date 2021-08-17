@@ -190,7 +190,7 @@ public class DecimalFormatSymbols implements Cloneable, Serializable {
      *
      * @return An array of <code>ULocale</code>s for which localized
      * <code>DecimalFormatSymbols</code> instances are available.
-     * @hide draft / provisional / internal are hidden on Android
+     * @hide Hide new API in Android temporarily
      */
     public static ULocale[] getAvailableULocales() {
         return ICUResourceBundle.getAvailableULocales();
