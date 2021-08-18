@@ -200,6 +200,7 @@ public class DecimalFormatSymbols implements Cloneable, Serializable {
     /**
      * Returns the character used for zero. Different for Arabic, etc.
      * @return the character
+     * @apiNote <strong>Discouraged:</strong> ICU 58 use {@link #getDigitStrings()} instead.
      */
     public char getZeroDigit() {
         return zeroDigit;
@@ -208,6 +209,8 @@ public class DecimalFormatSymbols implements Cloneable, Serializable {
     /**
      * Returns the array of characters used as digits, in order from 0 through 9
      * @return The array
+     * @see #getDigitStrings()
+     * @apiNote <strong>Discouraged:</strong> ICU 58 use {@link #getDigitStrings()} instead.
      */
     public char[] getDigits() {
         return digits.clone();
@@ -220,6 +223,7 @@ public class DecimalFormatSymbols implements Cloneable, Serializable {
      * digit 9 by incrementing code point one by one.
      *
      * @param zeroDigit the zero character.
+     * @apiNote <strong>Discouraged:</strong> ICU 58 use {@link #setDigitStrings(String[])} instead.
      */
     public void setZeroDigit(char zeroDigit) {
         this.zeroDigit = zeroDigit;
@@ -379,6 +383,7 @@ public class DecimalFormatSymbols implements Cloneable, Serializable {
     /**
      * Returns the character used for grouping separator. Different for French, etc.
      * @return the thousands character
+     * @apiNote <strong>Discouraged:</strong> ICU 58 use {@link #getGroupingSeparatorString()} instead.
      */
     public char getGroupingSeparator() {
         return groupingSeparator;
@@ -387,6 +392,7 @@ public class DecimalFormatSymbols implements Cloneable, Serializable {
     /**
      * Sets the character used for grouping separator. Different for French, etc.
      * @param groupingSeparator the thousands character
+     * @see #setGroupingSeparatorString(String)
      */
     public void setGroupingSeparator(char groupingSeparator) {
         this.groupingSeparator = groupingSeparator;
@@ -429,6 +435,7 @@ public class DecimalFormatSymbols implements Cloneable, Serializable {
     /**
      * Returns the character used for decimal sign. Different for French, etc.
      * @return the decimal character
+     * @apiNote <strong>Discouraged:</strong> ICU 58 use {@link #getDecimalSeparatorString()} instead.
      */
     public char getDecimalSeparator() {
         return decimalSeparator;
@@ -479,6 +486,7 @@ public class DecimalFormatSymbols implements Cloneable, Serializable {
     /**
      * Returns the character used for mille percent sign. Different for Arabic, etc.
      * @return the mille percent character
+     * @apiNote <strong>Discouraged:</strong> ICU 58 use {@link #getPerMillString()} instead.
      */
     public char getPerMill() {
         return perMill;
@@ -529,6 +537,7 @@ public class DecimalFormatSymbols implements Cloneable, Serializable {
     /**
      * Returns the character used for percent sign. Different for Arabic, etc.
      * @return the percent character
+     * @apiNote <strong>Discouraged:</strong> ICU 58 use {@link #getPercentString()} instead.
      */
     public char getPercent() {
         return percent;
@@ -654,6 +663,7 @@ public class DecimalFormatSymbols implements Cloneable, Serializable {
      * negative format is specified, one is formed by prefixing
      * minusSign to the positive format.
      * @return the minus sign character
+     * @apiNote <strong>Discouraged:</strong> ICU 58 use {@link #getMinusSignString()} instead.
      */
     public char getMinusSign() {
         return minusSign;
@@ -710,6 +720,7 @@ public class DecimalFormatSymbols implements Cloneable, Serializable {
      * @see #setPlusSign
      * @see #setMinusSign
      * @see #getMinusSign
+     * @apiNote <strong>Discouraged:</strong> ICU 58 use {@link #getPlusSignString()} instead.
      */
     public char getPlusSign() {
         return plusSign;
@@ -852,6 +863,7 @@ public class DecimalFormatSymbols implements Cloneable, Serializable {
     /**
      * Returns the monetary decimal separator.
      * @return the monetary decimal separator character
+     * @apiNote <strong>Discouraged:</strong> ICU 58 use {@link #getMonetaryDecimalSeparatorString()} instead.
      */
     public char getMonetaryDecimalSeparator() {
         return monetarySeparator;
@@ -902,6 +914,7 @@ public class DecimalFormatSymbols implements Cloneable, Serializable {
     /**
      * <strong>[icu]</strong> Returns the monetary grouping separator.
      * @return the monetary grouping separator character
+     * @apiNote <strong>Discouraged:</strong> ICU 58 use {@link #getMonetaryGroupingSeparatorString()} instead.
      */
     public char getMonetaryGroupingSeparator() {
         return monetaryGroupingSeparator;
