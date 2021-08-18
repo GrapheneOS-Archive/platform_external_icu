@@ -43,6 +43,12 @@ import android.icu.util.ULocale.Category;
 /**
  * <strong>[icu enhancement]</strong> ICU's replacement for {@link java.text.DecimalFormat}.&nbsp;Methods, fields, and other functionality specific to ICU are labeled '<strong>[icu]</strong>'.
  *
+ * <p>
+ * <strong>IMPORTANT:</strong> New users are strongly encouraged to see if
+ * {@link NumberFormatter} fits their use case.  Although not deprecated, this
+ * class, DecimalFormat, is only provided for java.text.DecimalFormat compatibility.
+ * <hr>
+ *
  * <code>DecimalFormat</code> is the primary
  * concrete subclass of {@link NumberFormat}. It has a variety of features designed to make it
  * possible to parse and format numbers in any locale, including support for Western, Arabic, or
