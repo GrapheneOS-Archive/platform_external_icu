@@ -382,8 +382,10 @@ public final class RelativeDateTimeFormatter {
         /**
          * Serizalization method resolve instances to the constant Field values
          *
+         * @deprecated This API is ICU internal only.
          * @hide draft / provisional / internal are hidden on Android
          */
+        @Deprecated
         @Override
         protected Object readResolve() throws InvalidObjectException {
             if (this.getName().equals(LITERAL.getName()))
@@ -1176,7 +1178,7 @@ public final class RelativeDateTimeFormatter {
                     break;
                 case 7:
                     if ("quarter".contentEquals(keyword)) {
-                        return QUARTER;  // TODO: Check @provisional
+                        return QUARTER;  // RelativeUnit.QUARTERS is deprecated
                     }
                     break;
                 default:

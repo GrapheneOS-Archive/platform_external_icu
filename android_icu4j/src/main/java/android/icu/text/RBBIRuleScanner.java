@@ -210,7 +210,7 @@ class RBBIRuleScanner {
             break;
 
         case RBBIRuleParseTable.doEndAssign: {
-            // We have reached the end of an assignement statement.
+            // We have reached the end of an assignment statement.
             //   Current scan char is the ';' that terminates the assignment.
 
             // Terminate expression, leaves expression parse tree rooted in TOS
@@ -724,6 +724,9 @@ class RBBIRuleScanner {
             return -1;
         }
         ch = UTF16.charAt(fRB.fRules, fNextIndex);
+        if (Character.isBmpCodePoint(ch) && Character.isSurrogate((char)ch)) {
+            error(RBBIRuleBuilder.U_ILLEGAL_CHAR_FOUND);
+        }
         fNextIndex = UTF16.moveCodePointOffset(fRB.fRules, fNextIndex, 1);
 
         if (ch == '\r' ||
