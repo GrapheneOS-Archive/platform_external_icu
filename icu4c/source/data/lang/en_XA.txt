@@ -498,7 +498,6 @@ en_XA{
         ro_MD{"[Ṁöļðåṽîåñ one two]"}
         rof{"[Ŕöɱƀö one]"}
         rom{"[Ŕöɱåñý one]"}
-        root{"[Ŕööţ one]"}
         rtm{"[Ŕöţûɱåñ one two]"}
         ru{"[Ŕûššîåñ one two]"}
         rue{"[Ŕûšýñ one]"}

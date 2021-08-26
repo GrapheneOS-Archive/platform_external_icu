@@ -2562,7 +2562,7 @@ TestSBCS() {
     {
     static const uint8_t input1[]={ 0xA1 };
     const char* illegalsource=(const char*)input1;
-    TestNextUCharError(cnv, illegalsource, illegalsource+sizeof(illegalsource), U_INVALID_CHAR_FOUND, "source has a illegal characte");
+    TestNextUCharError(cnv, illegalsource, illegalsource+sizeof(illegalsource), U_INVALID_CHAR_FOUND, "source has a illegal character");
     }
    */
     ucnv_close(cnv);
