@@ -100,7 +100,59 @@ en_XA{
             }
         }
         compound{
+            1024p1{"[ķîƀî{0} one two]"}
+            1024p2{"[ɱéƀî{0} one two]"}
+            1024p3{"[ĝîƀî{0} one two]"}
+            1024p4{"[ţéƀî{0} one two]"}
+            1024p5{"[þéƀî{0} one two]"}
+            1024p6{"[éẋƀî{0} one two]"}
+            1024p7{"[žéƀî{0} one two]"}
+            1024p8{"[ýöƀî{0} one two]"}
+            10p-1{"[ðéçî{0} one two]"}
+            10p-12{"[þîçö{0} one two]"}
+            10p-15{"[ƒéɱţö{0} one two]"}
+            10p-18{"[åţţö{0} one two]"}
+            10p-2{"[çéñţî{0} one two]"}
+            10p-21{"[žéþţö{0} one two]"}
+            10p-24{"[ýöçţö{0} one two]"}
+            10p-3{"[ɱîļļî{0} one two]"}
+            10p-6{"[ɱîçŕö{0} one two]"}
+            10p-9{"[ñåñö{0} one two]"}
+            10p1{"[ðéķå{0} one two]"}
+            10p12{"[ţéŕå{0} one two]"}
+            10p15{"[þéţå{0} one two]"}
+            10p18{"[éẋå{0} one]"}
+            10p2{"[ĥéçţö{0} one two]"}
+            10p21{"[žéţţå{0} one two]"}
+            10p24{"[ýöţţå{0} one two]"}
+            10p3{"[ķîļö{0} one two]"}
+            10p6{"[ɱéĝå{0} one two]"}
+            10p9{"[ĝîĝå{0} one two]"}
             per{"[{0} þéŕ {1} one two]"}
+            power2{
+                one{
+                    _{
+                        _{"[šǫûåŕé {0} one two]"}
+                    }
+                }
+                other{
+                    _{
+                        _{"[šǫûåŕé {0} one two]"}
+                    }
+                }
+            }
+            power3{
+                one{
+                    _{
+                        _{"[çûƀîç {0} one two]"}
+                    }
+                }
+                other{
+                    _{
+                        _{"[çûƀîç {0} one two]"}
+                    }
+                }
+            }
             times{"[{0}‐{1} one two]"}
         }
         concentr{
@@ -109,7 +161,7 @@ en_XA{
                 one{"[{0} ķåŕåţ one two]"}
                 other{"[{0} ķåŕåţš one two]"}
             }
-            milligram-per-deciliter{
+            milligram-ofglucose-per-deciliter{
                 dnam{"[ɱîļļîĝŕåɱš þéŕ ðéçîļîţéŕ one two three]"}
                 one{"[{0} ɱîļļîĝŕåɱ þéŕ ðéçîļîţéŕ one two three four]"}
                 other{"[{0} ɱîļļîĝŕåɱš þéŕ ðéçîļîţéŕ one two three four]"}
@@ -1087,7 +1139,7 @@ en_XA{
                 one{"[{0} ķţ one]"}
                 other{"[{0} ķţ one]"}
             }
-            milligram-per-deciliter{
+            milligram-ofglucose-per-deciliter{
                 dnam{"[ɱĝ⁄ðĻ one]"}
                 one{"[{0} ɱĝ⁄ðĻ one two]"}
                 other{"[{0} ɱĝ⁄ðĻ one two]"}
@@ -1233,9 +1285,9 @@ en_XA{
                 per{"[{0}⁄ĥ one]"}
             }
             microsecond{
-                dnam{"[µšéçš one]"}
-                one{"[{0} µš one]"}
-                other{"[{0} µš one]"}
+                dnam{"[μšéçš one]"}
+                one{"[{0} μš one]"}
+                other{"[{0} μš one]"}
             }
             millisecond{
                 dnam{"[ɱîļļîšéçš one two]"}
@@ -1382,9 +1434,6 @@ en_XA{
             }
         }
         graphics{
-            dot{
-                other{"[{0} ðöţ one two]"}
-            }
             dot-per-centimeter{
                 dnam{"[ðþçɱ one]"}
                 one{"[{0} ðþçɱ one two]"}
@@ -1478,9 +1527,9 @@ en_XA{
                 per{"[{0}⁄ɱ one]"}
             }
             micrometer{
-                dnam{"[µɱéţéŕš one two]"}
-                one{"[{0} µɱ one]"}
-                other{"[{0} µɱ one]"}
+                dnam{"[μɱéţéŕš one two]"}
+                one{"[{0} μɱ one]"}
+                other{"[{0} μɱ one]"}
             }
             mile{
                 dnam{"[ɱîļéš one]"}
@@ -1582,9 +1631,9 @@ en_XA{
                 other{"[{0} ţ one]"}
             }
             microgram{
-                dnam{"[µĝ one]"}
-                one{"[{0} µĝ one]"}
-                other{"[{0} µĝ one]"}
+                dnam{"[μĝ one]"}
+                one{"[{0} μĝ one]"}
+                other{"[{0} μĝ one]"}
             }
             milligram{
                 dnam{"[ɱĝ one]"}

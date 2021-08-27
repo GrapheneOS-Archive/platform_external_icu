@@ -340,7 +340,7 @@ import android.icu.util.UResourceBundle;
  *
  * <p>It is also possible to match the beginning or the end of the text using a <code>UnicodeSet</code>.
  * This is done by including a virtual anchor character '<code>$</code>' at the end of the
- * set pattern. Although this is usually the match chafacter for the end anchor, the set will
+ * set pattern. Although this is usually the match character for the end anchor, the set will
  * match either the beginning or the end of the text, depending on its placement. For
  * example:
  *
@@ -991,7 +991,7 @@ public abstract class Transliterator implements StringTransform  {
      * @param text the text to be transliterated
      * @param index the position indices
      * @param incremental if TRUE, then assume more characters may be inserted
-     * at index.limit, and postpone processing to accomodate future incoming
+     * at index.limit, and postpone processing to accommodate future incoming
      * characters
      * @param rollback if TRUE and if incremental is TRUE, then perform special
      * incremental processing, as described above, and undo partial
@@ -1308,7 +1308,7 @@ public abstract class Transliterator implements StringTransform  {
      * @param text the text to be transliterated
      * @param index the position indices
      * @param incremental if TRUE, then assume more characters may be inserted
-     * at index.limit, and postpone processing to accomodate future incoming
+     * at index.limit, and postpone processing to accommodate future incoming
      * characters
      */
     public void filteredTransliterate(Replaceable text,

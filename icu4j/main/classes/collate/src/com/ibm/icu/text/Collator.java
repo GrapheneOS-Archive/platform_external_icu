@@ -76,7 +76,7 @@ import com.ibm.icu.util.VersionInfo;
 *     When all other strengths are equal, the IDENTICAL strength is used as a
 *     tiebreaker. The Unicode code point values of the NFD form of each string
 *     are compared, just in case there is no difference.
-*     For example, Hebrew cantellation marks are only distinguished at this
+*     For example, Hebrew cantillation marks are only distinguished at this
 *     strength. This strength should be used sparingly, as only code point
 *     value differences between two strings is an extremely rare occurrence.
 *     Using this strength substantially decreases the performance for both
@@ -1509,7 +1509,6 @@ public abstract class Collator implements Comparator<Object>, Freezable<Collator
      * @see com.ibm.icu.util.ULocale#VALID_LOCALE
      * @see com.ibm.icu.util.ULocale#ACTUAL_LOCALE
      * @draft ICU 2.8 (retain)
-     * @provisional This API might change or be removed in a future release.
      */
     public ULocale getLocale(ULocale.Type type) {
         return ULocale.ROOT;
