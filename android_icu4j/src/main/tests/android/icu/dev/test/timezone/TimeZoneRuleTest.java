@@ -25,6 +25,7 @@ import org.junit.runners.JUnit4;
 import android.icu.dev.test.TestFmwk;
 import android.icu.util.AnnualTimeZoneRule;
 import android.icu.util.BasicTimeZone;
+import android.icu.util.BasicTimeZone.LocalOption;
 import android.icu.util.Calendar;
 import android.icu.util.DateTimeRule;
 import android.icu.util.GregorianCalendar;
@@ -1238,7 +1239,7 @@ public class TimeZoneRuleTest extends TestFmwk {
 
         int[] offsets_vtzc = new int[2];
         VTimeZone vtzc = VTimeZone.create("PST");
-        vtzc.getOffsetFromLocal(Calendar.getInstance(vtzc).getTimeInMillis(), VTimeZone.LOCAL_STD, VTimeZone.LOCAL_STD, offsets_vtzc);
+        vtzc.getOffsetFromLocal(Calendar.getInstance(vtzc).getTimeInMillis(), LocalOption.STANDARD_FORMER, LocalOption.STANDARD_LATTER, offsets_vtzc);
         if (offsets_vtzc[0] > offsets_vtzc[1]) {
             errln("Error getOffsetFromLocal()");
         }
@@ -1472,7 +1473,7 @@ public class TimeZoneRuleTest extends TestFmwk {
             BasicTimeZone btz = (BasicTimeZone)tz;
             int []offsets = new int[2];
 
-            btz.getOffsetFromLocal(Calendar.getInstance().getTimeInMillis(), BasicTimeZone.LOCAL_STD, BasicTimeZone.LOCAL_STD, offsets);
+            btz.getOffsetFromLocal(Calendar.getInstance().getTimeInMillis(), LocalOption.STANDARD_FORMER, LocalOption.STANDARD_LATTER, offsets);
             if (offsets[0] > offsets[1]) {
                 errln("Error calling getOffsetFromLocal().");
             }

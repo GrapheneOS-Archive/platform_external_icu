@@ -38,6 +38,7 @@ import android.icu.lang.UCharacter;
 import android.icu.text.TimeZoneFormat.Style;
 import android.icu.text.TimeZoneFormat.TimeType;
 import android.icu.util.BasicTimeZone;
+import android.icu.util.BasicTimeZone.LocalOption;
 import android.icu.util.Calendar;
 import android.icu.util.HebrewCalendar;
 import android.icu.util.Output;
@@ -2695,10 +2696,10 @@ public class SimpleDateFormat extends DateFormat {
                     if (btz != null) {
                         if (tztype == TimeType.STANDARD) {
                             btz.getOffsetFromLocal(localMillis,
-                                    BasicTimeZone.LOCAL_STD, BasicTimeZone.LOCAL_STD, offsets);
+                                    LocalOption.STANDARD_FORMER, LocalOption.STANDARD_LATTER, offsets);
                         } else {
                             btz.getOffsetFromLocal(localMillis,
-                                    BasicTimeZone.LOCAL_DST, BasicTimeZone.LOCAL_DST, offsets);
+                                    LocalOption.DAYLIGHT_FORMER, LocalOption.DAYLIGHT_LATTER, offsets);
                         }
                     } else {
                         // No good way to resolve ambiguous time at transition,

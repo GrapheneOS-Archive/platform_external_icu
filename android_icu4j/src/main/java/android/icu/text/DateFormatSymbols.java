@@ -1472,7 +1472,7 @@ public class DateFormatSymbols implements Serializable, Cloneable {
                 && arrayOfArrayEquals(zoneStrings, that.zoneStrings)
                 // getDiplayName maps deprecated country and language codes to the current ones
                 // too bad there is no way to get the current codes!
-                // I thought canolicalize() would map the codes but .. alas! it doesn't.
+                // I thought canonicalize() would map the codes but .. alas! it doesn't.
                 && requestedLocale.getDisplayName().equals(that.requestedLocale.getDisplayName())
                 && Utility.arrayEquals(localPatternChars,
                                        that.localPatternChars));
@@ -2297,20 +2297,6 @@ public class DateFormatSymbols implements Serializable, Cloneable {
 
         initializeData(locale, calType);
     }
-
-    // Android patch (http://b/30464240) start: Add constructor taking a calendar type.
-    /**
-     * Variant of DateFormatSymbols(Calendar, ULocale) that takes the calendar type
-     * instead of a Calendar instance.
-     * @see #DateFormatSymbols(Calendar, Locale)
-     * @deprecated This API is ICU internal only.
-     * @hide draft / provisional / internal are hidden on Android
-     */
-    @Deprecated
-    public DateFormatSymbols(ULocale locale, String calType) {
-        initializeData(locale, calType);
-    }
-    // Android patch end.
 
     /**
      * Fetches a custom calendar's DateFormatSymbols out of the given resource

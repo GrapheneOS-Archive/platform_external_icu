@@ -2021,7 +2021,6 @@ public class DecimalFormat extends NumberFormat {
    * @see #setMinimumGroupingDigits(int)
    * @see #MINIMUM_GROUPING_DIGITS_MIN2
    * @category Separators
-   * @provisional This API might change or be removed in a future release.
    * @draft ICU 68
    */
   public static final int MINIMUM_GROUPING_DIGITS_AUTO = -2;
@@ -2034,7 +2033,6 @@ public class DecimalFormat extends NumberFormat {
    * @see #setMinimumGroupingDigits(int)
    * @see #MINIMUM_GROUPING_DIGITS_AUTO
    * @category Separators
-   * @provisional This API might change or be removed in a future release.
    * @draft ICU 68
    */
   public static final int MINIMUM_GROUPING_DIGITS_MIN2 = -3;
@@ -2246,16 +2244,6 @@ public class DecimalFormat extends NumberFormat {
     properties.setParseMode(mode);
     refreshFormatter();
   }
-
-  // BEGIN android-added: Allow libcore to use java-compatible parsing mode
-  /**
-   * @param parseJavaCompatible true for java-compatible mode, and otherwise lenient mode.
-   * @internal
-   */
-  public void setParseJavaCompatible(boolean parseJavaCompatible) {
-    setParseStrictMode(parseJavaCompatible ? ParseMode.JAVA_COMPATIBILITY : ParseMode.LENIENT);
-  }
-  // END android-added: Allow libcore to use java-compatible parsing mode
 
   /**
    * Android libcore uses this internal method to set {@link ParseMode#JAVA_COMPATIBILITY}.
