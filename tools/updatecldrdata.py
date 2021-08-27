@@ -21,6 +21,7 @@ import os
 import shutil
 import subprocess
 import sys
+from pathlib import Path
 
 import i18nutil
 import icuutil
@@ -31,6 +32,11 @@ import icuutil
 def main():
   if subprocess.call(["which", "mvn"]) != 0 or subprocess.call(["which", "ant"]) != 0:
     print("Can't find the required tools. Run `sudo apt-get install maven ant` to install")
+    exit(1)
+
+  if not os.path.exists(os.path.join(Path.home(), ".m2/settings.xml")):
+    print("Can\'t find `~/.m2/settings.xml`. Please follow the instructions at "
+          "http://cldr.unicode.org/development/maven to create one and the github token.")
     exit(1)
 
   cldr_dir = icuutil.cldrDir()
