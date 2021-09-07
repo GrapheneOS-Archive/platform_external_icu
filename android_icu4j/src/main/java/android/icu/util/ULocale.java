@@ -450,7 +450,6 @@ public final class ULocale implements Serializable, Comparable<ULocale> {
      * Creates a ULocale from the locale by first canonicalizing the locale according to CLDR.
      * @param locale the ULocale to canonicalize
      * @return the ULocale created from the canonical version of the ULocale.
-     * @hide Hide new API in Android temporarily
      */
     public static ULocale createCanonical(ULocale locale) {
         return createCanonical(locale.getName());

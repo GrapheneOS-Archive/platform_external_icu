@@ -493,7 +493,6 @@ public abstract class DateFormat extends UFormat {
 
     /**
      * Hour Cycle
-     * @hide Only a subset of ICU is exposed in Android
      */
     public enum HourCycle {
         /**
@@ -1933,7 +1932,6 @@ public abstract class DateFormat extends UFormat {
      *
      * @param cal   The calendar system for which a date/time format is desired.
      * @param locale The locale for which the date/time format is desired.
-     * @hide Hide new API in Android temporarily
      */
     static final public DateFormat getInstance(Calendar cal, ULocale locale) {
         return getDateTimeInstance(cal, SHORT, SHORT, locale);
