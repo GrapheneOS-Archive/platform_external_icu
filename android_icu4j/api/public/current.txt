@@ -1730,11 +1730,13 @@ package android.icu.number {
   }
 
   public enum NumberFormatter.UnitWidth {
+    enum_constant public static final android.icu.number.NumberFormatter.UnitWidth FORMAL;
     enum_constant public static final android.icu.number.NumberFormatter.UnitWidth FULL_NAME;
     enum_constant public static final android.icu.number.NumberFormatter.UnitWidth HIDDEN;
     enum_constant public static final android.icu.number.NumberFormatter.UnitWidth ISO_CODE;
     enum_constant public static final android.icu.number.NumberFormatter.UnitWidth NARROW;
     enum_constant public static final android.icu.number.NumberFormatter.UnitWidth SHORT;
+    enum_constant public static final android.icu.number.NumberFormatter.UnitWidth VARIANT;
   }
 
   public abstract class NumberFormatterSettings<T extends android.icu.number.NumberFormatterSettings<?>> {
@@ -2241,6 +2243,7 @@ package android.icu.text {
     method public static final android.icu.text.DateFormat getDateTimeInstance(android.icu.util.Calendar, int, int);
     method public static final android.icu.text.DateFormat getInstance();
     method public static final android.icu.text.DateFormat getInstance(android.icu.util.Calendar, java.util.Locale);
+    method public static final android.icu.text.DateFormat getInstance(android.icu.util.Calendar, android.icu.util.ULocale);
     method public static final android.icu.text.DateFormat getInstance(android.icu.util.Calendar);
     method public static final android.icu.text.DateFormat getInstanceForSkeleton(String);
     method public static final android.icu.text.DateFormat getInstanceForSkeleton(String, java.util.Locale);
@@ -2407,6 +2410,13 @@ package android.icu.text {
     field public static final android.icu.text.DateFormat.Field YEAR_WOY;
   }
 
+  public enum DateFormat.HourCycle {
+    enum_constant public static final android.icu.text.DateFormat.HourCycle HOUR_CYCLE_11;
+    enum_constant public static final android.icu.text.DateFormat.HourCycle HOUR_CYCLE_12;
+    enum_constant public static final android.icu.text.DateFormat.HourCycle HOUR_CYCLE_23;
+    enum_constant public static final android.icu.text.DateFormat.HourCycle HOUR_CYCLE_24;
+  }
+
   public class DateFormatSymbols implements java.lang.Cloneable java.io.Serializable {
     ctor public DateFormatSymbols();
     ctor public DateFormatSymbols(java.util.Locale);
@@ -2525,6 +2535,7 @@ package android.icu.text {
     method public String getBestPattern(String, int);
     method public String getDateTimeFormat();
     method public String getDecimal();
+    method public android.icu.text.DateFormat.HourCycle getDefaultHourCycle();
     method public static android.icu.text.DateTimePatternGenerator getEmptyInstance();
     method public String getFieldDisplayName(int, android.icu.text.DateTimePatternGenerator.DisplayWidth);
     method public static android.icu.text.DateTimePatternGenerator getInstance();
@@ -2666,6 +2677,7 @@ package android.icu.text {
     method public static android.icu.text.DecimalFormatSymbols forNumberingSystem(java.util.Locale, android.icu.text.NumberingSystem);
     method public static android.icu.text.DecimalFormatSymbols forNumberingSystem(android.icu.util.ULocale, android.icu.text.NumberingSystem);
     method public static java.util.Locale[] getAvailableLocales();
+    method public static android.icu.util.ULocale[] getAvailableULocales();
     method public android.icu.util.Currency getCurrency();
     method public String getCurrencySymbol();
     method public char getDecimalSeparator();
@@ -2838,10 +2850,35 @@ package android.icu.text {
   public final class ListFormatter {
     method public String format(java.lang.Object...);
     method public String format(java.util.Collection<?>);
+    method public android.icu.text.ListFormatter.FormattedList formatToValue(java.lang.Object...);
+    method public android.icu.text.ListFormatter.FormattedList formatToValue(java.util.Collection<?>);
+    method public static android.icu.text.ListFormatter getInstance(android.icu.util.ULocale, android.icu.text.ListFormatter.Type, android.icu.text.ListFormatter.Width);
+    method public static android.icu.text.ListFormatter getInstance(java.util.Locale, android.icu.text.ListFormatter.Type, android.icu.text.ListFormatter.Width);
     method public static android.icu.text.ListFormatter getInstance(android.icu.util.ULocale);
     method public static android.icu.text.ListFormatter getInstance(java.util.Locale);
     method public static android.icu.text.ListFormatter getInstance();
     method public String getPatternForNumItems(int);
+  }
+
+  public static final class ListFormatter.FormattedList implements android.icu.text.FormattedValue {
+    method public <A extends java.lang.Appendable> A appendTo(A);
+    method public char charAt(int);
+    method public int length();
+    method public boolean nextPosition(android.icu.text.ConstrainedFieldPosition);
+    method public CharSequence subSequence(int, int);
+    method public java.text.AttributedCharacterIterator toCharacterIterator();
+  }
+
+  public enum ListFormatter.Type {
+    enum_constant public static final android.icu.text.ListFormatter.Type AND;
+    enum_constant public static final android.icu.text.ListFormatter.Type OR;
+    enum_constant public static final android.icu.text.ListFormatter.Type UNITS;
+  }
+
+  public enum ListFormatter.Width {
+    enum_constant public static final android.icu.text.ListFormatter.Width NARROW;
+    enum_constant public static final android.icu.text.ListFormatter.Width SHORT;
+    enum_constant public static final android.icu.text.ListFormatter.Width WIDE;
   }
 
   public abstract class LocaleDisplayNames {
@@ -4152,10 +4189,12 @@ package android.icu.util {
     method public String getSymbol(android.icu.util.ULocale);
     method public static boolean isAvailable(String, java.util.Date, java.util.Date);
     method public java.util.Currency toJavaCurrency();
+    field public static final int FORMAL_SYMBOL_NAME = 4; // 0x4
     field public static final int LONG_NAME = 1; // 0x1
     field public static final int NARROW_SYMBOL_NAME = 3; // 0x3
     field public static final int PLURAL_LONG_NAME = 2; // 0x2
     field public static final int SYMBOL_NAME = 0; // 0x0
+    field public static final int VARIANT_SYMBOL_NAME = 5; // 0x5
   }
 
   public enum Currency.CurrencyUsage {
@@ -4658,6 +4697,7 @@ package android.icu.util {
     method public Object clone();
     method public int compareTo(android.icu.util.ULocale);
     method public static android.icu.util.ULocale createCanonical(String);
+    method public static android.icu.util.ULocale createCanonical(android.icu.util.ULocale);
     method public static android.icu.util.ULocale forLanguageTag(String);
     method public static android.icu.util.ULocale forLocale(java.util.Locale);
     method public static android.icu.util.ULocale[] getAvailableLocales();

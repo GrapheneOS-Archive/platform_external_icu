@@ -209,7 +209,6 @@ public final class NumberFormatter {
          * Behavior of this option with non-currency units is not defined at this time.
          *
          * @see NumberFormatter
-         * @hide Hide new API in Android temporarily
          */
         FORMAL,
 
@@ -221,7 +220,6 @@ public final class NumberFormatter {
          * Behavior of this option with non-currency units is not defined at this time.
          *
          * @see NumberFormatter
-         * @hide Hide new API in Android temporarily
          */
         VARIANT,
 
