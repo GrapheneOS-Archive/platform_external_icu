@@ -52,8 +52,6 @@ final public class ListFormatter {
 
     /**
      * Type of meaning expressed by the list.
-     *
-     * @hide Only a subset of ICU is exposed in Android
      */
     public enum Type {
         /**
@@ -75,8 +73,6 @@ final public class ListFormatter {
 
     /**
      * Verbosity level of the list patterns.
-     *
-     * @hide Only a subset of ICU is exposed in Android
      */
     public enum Width {
         /**
@@ -176,8 +172,6 @@ final public class ListFormatter {
      * Instances of this class are immutable and thread-safe.
      *
      * Not intended for public subclassing.
-     *
-     * @hide Only a subset of ICU is exposed in Android
      */
     public static final class FormattedList implements FormattedValue {
         private final FormattedStringBuilder string;
@@ -289,7 +283,6 @@ final public class ListFormatter {
      * @param locale
      *            the locale in question.
      * @return ListFormatter
-     * @hide Hide new API in Android temporarily
      */
     public static ListFormatter getInstance(ULocale locale, Type type, Width width) {
         String styleName = typeWidthToStyleString(type, width);
@@ -305,7 +298,6 @@ final public class ListFormatter {
      * @param locale
      *            the locale in question.
      * @return ListFormatter
-     * @hide Hide new API in Android temporarily
      */
     public static ListFormatter getInstance(Locale locale, Type type, Width width) {
         return getInstance(ULocale.forLocale(locale), type, width);
@@ -371,7 +363,6 @@ final public class ListFormatter {
      * @param items
      *            items to format. The toString() method is called on each.
      * @return items formatted into a FormattedList
-     * @hide Hide new API in Android temporarily
      */
     public FormattedList formatToValue(Object... items) {
         return formatToValue(Arrays.asList(items));
@@ -385,7 +376,6 @@ final public class ListFormatter {
      * @param items
      *            items to format. The toString() method is called on each.
      * @return items formatted into a FormattedList
-     * @hide Hide new API in Android temporarily
      */
     public FormattedList formatToValue(Collection<?> items) {
         return formatImpl(items, true).toValue();
