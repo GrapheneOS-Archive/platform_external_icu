@@ -60,7 +60,6 @@ import android.icu.impl.ICUResourceBundle;
  * @hide Only a subset of ICU is exposed in Android
  */
 
-@libcore.api.CorePlatformApi
 public class Region implements Comparable<Region> {
 
     /**
@@ -70,7 +69,6 @@ public class Region implements Comparable<Region> {
      * @hide Only a subset of ICU is exposed in Android
      */
 
-    @libcore.api.CorePlatformApi
     public enum RegionType {
         /**
          * Type representing the unknown region.
@@ -80,7 +78,6 @@ public class Region implements Comparable<Region> {
         /**
          * Type representing a territory.
          */
-        @libcore.api.CorePlatformApi
         TERRITORY,
 
         /**
@@ -435,7 +432,6 @@ public class Region implements Comparable<Region> {
      * @return An unmodifiable set of all known regions that match the given type.
      */
 
-    @libcore.api.CorePlatformApi
     public static Set<Region> getAvailable(RegionType type) {
 
         loadRegionData();
