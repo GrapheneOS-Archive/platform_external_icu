@@ -18,24 +18,6 @@ package android.icu.text {
 
 }
 
-package android.icu.util {
-
-  public abstract class BasicTimeZone extends android.icu.util.TimeZone {
-    method public abstract android.icu.util.TimeZoneTransition getNextTransition(long, boolean);
-  }
-
-  public abstract class TimeZoneRule implements java.io.Serializable {
-    method public int getDSTSavings();
-  }
-
-  public class TimeZoneTransition {
-    method public android.icu.util.TimeZoneRule getFrom();
-    method public long getTime();
-    method public android.icu.util.TimeZoneRule getTo();
-  }
-
-}
-
 package com.android.i18n.timezone {
 
   public final class CountryTimeZones {
