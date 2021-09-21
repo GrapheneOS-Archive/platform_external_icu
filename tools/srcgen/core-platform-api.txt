@@ -4,12 +4,5 @@ method:android.icu.text.DateFormatSymbols#getAmpmNarrowStrings()
 method:android.icu.text.DateTimePatternGenerator#getBestPattern(String,int,boolean)
 method:android.icu.text.StringPrep#getInstance(int)
 method:android.icu.text.StringPrep#prepare(String,int)
-method:android.icu.util.BasicTimeZone#getNextTransition(long,boolean)
-method:android.icu.util.TimeZoneRule#getDSTSavings()
-method:android.icu.util.TimeZoneTransition#getFrom()
-method:android.icu.util.TimeZoneTransition#getTime()
-method:android.icu.util.TimeZoneTransition#getTo()
 type:android.icu.text.StringPrep
-type:android.icu.util.BasicTimeZone
-type:android.icu.util.TimeZoneRule
-type:android.icu.util.TimeZoneTransition
+=
