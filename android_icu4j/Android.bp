@@ -129,7 +129,9 @@ java_library {
     permitted_packages: [
         "android.icu",
         "com.android.icu",
+        "com.android.i18n.system",
         "com.android.i18n.timezone",
+        "com.android.i18n.util",
     ],
     installable: true,
     hostdex: false,
