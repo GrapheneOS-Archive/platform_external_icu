@@ -1519,7 +1519,11 @@ public class TimeZoneTest extends TestFmwk
                 {"America/Antigua", "America/Port_of_Spain"},
                 {"America/Anguilla", "America/Port_of_Spain"},
                 {"America/Cayman", "America/Panama"},
-                {"America/Coral_Harbour", "America/Panama"},
+                // TODO(b/204533494): Enable this check.
+                // Android-changed: due to issues with time zones canonicity, decision was made
+                // to keep America/Coral_Harbour as alias to America/Atikokan.
+                // See more details in system/timezone/RELEASE_NOTES.md
+                // {"America/Coral_Harbour", "America/Panama"},
                 {"America/Curacao", "America/Aruba"},
                 {"America/Dominica", "America/Port_of_Spain"},
                 {"America/Grenada", "America/Port_of_Spain"},
