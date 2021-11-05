@@ -275,6 +275,23 @@ def RequiredToMakeLangInfo():
   shutil.copyfile(langInfo_out_path, langInfo_dst_path)
   return True
 
+def GenerateIcuDataFiles():
+  MakeIcuDataFiles()
+
+  # If icu4c/source/data/misc/langInfo.txt is re-generated, the binary data files need to be
+  # re-generated. MakeIcuDataFiles() is called until it converges because the re-generation
+  # depends icu4j, and icu4j depends on the binary data files.
+  while (RequiredToMakeLangInfo()):
+    MakeIcuDataFiles()
+
+def MakeIcuDataFiles():
+  i18nutil.SwitchToNewTemporaryDirectory()
+  icu_build_dir = '%s/icu' % os.getcwd()
+
+  PrepareIcuBuild(icu_build_dir)
+
+  MakeAndCopyIcuDataFiles(icu_build_dir)
+
 def CopyLicenseFiles(target_dir):
   """Copies ICU license files to the target_dir"""
 
