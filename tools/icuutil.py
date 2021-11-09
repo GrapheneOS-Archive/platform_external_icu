@@ -123,6 +123,9 @@ def MakeAndCopyIcuDataFiles(icu_build_dir):
   """Builds the ICU .dat and .jar files using the current src data.
 
   The files are copied back into the expected locations in the src tree.
+
+  This is a low-level method.
+  Please check :func:`GenerateIcuDataFiles()` for caveats.
   """
   # Keep track of the original cwd so we can go back to it at the end.
   original_working_dir = os.getcwd()
@@ -173,7 +176,9 @@ def MakeAndCopyOverlayTzIcuData(icu_build_dir, dest_file):
 
   The overlay file can be used as an overlay of a full ICU .dat file
   to provide newer time zone data. Some strings like translated
-  time zone names will be missing, but rules will be correct."""
+  time zone names will be missing, but rules will be correct.
+  """
+
   # Keep track of the original cwd so we can go back to it at the end.
   original_working_dir = os.getcwd()
 
@@ -244,9 +249,12 @@ def MakeAndCopyOverlayTzIcuData(icu_build_dir, dest_file):
   # Switch back to the original working cwd.
   os.chdir(original_working_dir)
 
-def RequiredToMakeLangInfo():
-  """ Returns true if icu4c/source/data/misc/langInfo.txt has been re-generated.
-  Returns false if re-generation is not needed.
+def _MakeLangInfo():
+  """ Regenerates icu4c/source/data/misc/langInfo.txt.
+  Returns true if the file was changed and false otherwise.
+
+  This is implementation detail, should not be called outside
+  of this script.
   """
 
   # Generate icu4c/source/data/misc/langInfo.txt by a ICU4J tool
@@ -276,15 +284,26 @@ def RequiredToMakeLangInfo():
   return True
 
 def GenerateIcuDataFiles():
-  MakeIcuDataFiles()
+  """ There are ICU files generation of which depends on ICU itself.
+  This method repeatedly builds ICU and re-generates these files until they
+  converge, i.e. subsequent builds do not change these files.
+  """
+  _MakeIcuDataFilesOnce()
 
   # If icu4c/source/data/misc/langInfo.txt is re-generated, the binary data files need to be
   # re-generated. MakeIcuDataFiles() is called until it converges because the re-generation
   # depends icu4j, and icu4j depends on the binary data files.
-  while (RequiredToMakeLangInfo()):
-    MakeIcuDataFiles()
+  while _MakeLangInfo():
+    _MakeIcuDataFilesOnce()
 
-def MakeIcuDataFiles():
+def _MakeIcuDataFilesOnce():
+  """Builds ICU and copies .dat and .jar files to expected places.
+  Build is invoked only once. It is unlikely that you need to call
+  this method outside of this script.
+
+  This is a low-level method.
+  Please check :func:`GenerateIcuDataFiles()` for caveats.
+  """
   i18nutil.SwitchToNewTemporaryDirectory()
   icu_build_dir = '%s/icu' % os.getcwd()
 
