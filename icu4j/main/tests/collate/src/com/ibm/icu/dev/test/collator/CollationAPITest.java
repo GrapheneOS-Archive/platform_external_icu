@@ -257,7 +257,7 @@ public class CollationAPITest extends TestFmwk {
         Collator col1 = Collator.getInstance(Locale.ENGLISH);
 
         // Collator col2 = (Collator)col1.clone();
-        // doAssert(col1.equals(col2), "Cloned object is not equal to the orginal");
+        // doAssert(col1.equals(col2), "Cloned object is not equal to the original");
         String ruleset = "&9 < a, A < b, B < c, C < d, D, e, E";
         RuleBasedCollator col3 = null;
         try {
@@ -268,7 +268,7 @@ public class CollationAPITest extends TestFmwk {
         }
         doAssert(!col1.equals(col3), "Cloned object is equal to some dummy");
         col3 = (RuleBasedCollator)col1;
-        doAssert(col1.equals(col3), "Copied object is not equal to the orginal");
+        doAssert(col1.equals(col3), "Copied object is not equal to the original");
 
     }
 
@@ -277,7 +277,7 @@ public class CollationAPITest extends TestFmwk {
      * - creation of a CollationElementIterator object
      * - == and != operators
      * - iterating forward
-     * - reseting the iterator index
+     * - resetting the iterator index
      * - requesting the order properties(primary, secondary or tertiary)
      */
     @Test
@@ -496,10 +496,8 @@ public class CollationAPITest extends TestFmwk {
         doAssert((col.getDecomposition() == Collator.NO_DECOMPOSITION), "Decomposition mode = Collator.NO_DECOMPOSITION");
 
 
-        // Android patch: Add --omitCollationRules to genrb.
-        // RuleBasedCollator rcol = (RuleBasedCollator)Collator.getInstance(new Locale("da", "DK"));
-        // doAssert(rcol.getRules().length() != 0, "da_DK rules does not have length 0");
-        // Android patch end.
+        RuleBasedCollator rcol = (RuleBasedCollator)Collator.getInstance(new Locale("da", "DK"));
+        doAssert(rcol.getRules().length() != 0, "da_DK rules does not have length 0");
 
         try {
             col = Collator.getInstance(Locale.FRENCH);
@@ -1702,6 +1700,19 @@ public class CollationAPITest extends TestFmwk {
             assertTrue("tailored Han before currency", coll.compare("\u4E00", "$") < 0);
         } catch (Exception e) {
             errln("unexpected exception for tailoring many characters at the end of symbols: " + e);
+        }
+    }
+
+    @Test
+    public void TestBogusLocaleID() {
+        try {
+            Collator c1 = Collator.getInstance(new ULocale("en-US-u-kn-true"));
+            Collator c2 = Collator.getInstance(new ULocale("en_US-u-kn-true"));
+
+            assertTrue("Comparison using \"normal\" collator failed", c1.compare("2", "10") < 0);
+            assertTrue("Comparison using \"bad\" collator failed", c2.compare("2", "10") < 0);
+        } catch (Exception e) {
+            errln("Exception creating collators: " + e);
         }
     }
 }

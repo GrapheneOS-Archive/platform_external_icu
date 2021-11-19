@@ -12,6 +12,7 @@ ar_SA{
         }
     }
     calendar{
+        default{"islamic-umalqura"}
         gregorian{
             dayPeriod{
                 format{

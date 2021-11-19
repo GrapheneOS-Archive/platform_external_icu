@@ -94,7 +94,7 @@
  * <p>
  * Code snippets illustrating the use of the Break Iterator APIs
  * are available in the ICU User Guide,
- * http://icu-project.org/userguide/boundaryAnalysis.html
+ * https://unicode-org.github.io/icu/userguide/boundaryanalysis/
  * and in the sample program icu/source/samples/break/break.cpp
  */
 
@@ -325,18 +325,20 @@ ubrk_safeClone(
 
 #endif /* U_HIDE_DEPRECATED_API */
 
+#ifndef U_HIDE_DRAFT_API
 
 /**
  * Thread safe cloning operation.
  * @param bi iterator to be cloned
  * @param status to indicate whether the operation went on smoothly or there were errors
  * @return pointer to the new clone
- * @stable ICU 69
+ * @draft ICU 69
  */
 U_CAPI UBreakIterator * U_EXPORT2
 ubrk_clone(const UBreakIterator *bi,
            UErrorCode *status);
 
+#endif  // U_HIDE_DRAFT_API
 
 #ifndef U_HIDE_DEPRECATED_API
 

@@ -111,7 +111,7 @@ tk{
         EZ{"Ýewro sebiti"}
         FI{"Finlýandiýa"}
         FJ{"Fiji"}
-        FK{"Folklend (Malwina) adalary"}
+        FK{"Folklend adalary"}
         FM{"Mikroneziýa"}
         FO{"Farer adalary"}
         FR{"Fransiýa"}
@@ -134,7 +134,7 @@ tk{
         GU{"Guam"}
         GW{"Gwineýa-Bisau"}
         GY{"Gaýana"}
-        HK{"Gonkong"}
+        HK{"Gonkong AAS Hytaý"}
         HM{"Herd we Makdonald adalary"}
         HN{"Gonduras"}
         HR{"Horwatiýa"}
@@ -188,7 +188,7 @@ tk{
         ML{"Mali"}
         MM{"Mýanma (Birma)"}
         MN{"Mongoliýa"}
-        MO{"Makao"}
+        MO{"Makao AAS Hytaý"}
         MP{"Demirgazyk Mariana adalary"}
         MQ{"Martinika"}
         MR{"Mawritaniýa"}
@@ -223,7 +223,7 @@ tk{
         PM{"Sen-Pýer we Mikelon"}
         PN{"Pitkern adalary"}
         PR{"Puerto-Riko"}
-        PS{"Palestina"}
+        PS{"Palestina territoriýasy"}
         PT{"Portugaliýa"}
         PW{"Palau"}
         PY{"Paragwaý"}
@@ -299,6 +299,9 @@ tk{
         ZZ{"Näbelli sebit"}
     }
     Countries%short{
+        HK{"Gonkong"}
+        MO{"Makao"}
+        PS{"Palestina"}
         US{"ABŞ"}
     }
     Countries%variant{
@@ -306,6 +309,7 @@ tk{
         CG{"Kongo (Respublika)"}
         CI{"Şirmaýy kenar"}
         CZ{"Çeh Respublikasy"}
+        FK{"Folklend (Malwina) adalary"}
         SZ{"Swazilend"}
         TL{"Gündogar Timor"}
     }

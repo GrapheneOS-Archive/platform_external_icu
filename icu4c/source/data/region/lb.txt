@@ -132,7 +132,7 @@ lb{
         GU{"Guam"}
         GW{"Guinea-Bissau"}
         GY{"Guyana"}
-        HK{"Hong Kong"}
+        HK{"Spezialverwaltungszon Hong Kong"}
         HM{"Heard- a McDonald-Inselen"}
         HN{"Honduras"}
         HR{"Kroatien"}
@@ -186,7 +186,7 @@ lb{
         ML{"Mali"}
         MM{"Myanmar"}
         MN{"Mongolei"}
-        MO{"Macau"}
+        MO{"Spezialverwaltungszon Macau"}
         MP{"Nërdlech Marianen"}
         MQ{"Martinique"}
         MR{"Mauretanien"}
@@ -221,7 +221,7 @@ lb{
         PM{"St. Pierre a Miquelon"}
         PN{"Pitcairninselen"}
         PR{"Puerto Rico"}
-        PS{"Palestina"}
+        PS{"Palestinensesch Autonomiegebidder"}
         PT{"Portugal"}
         PW{"Palau"}
         PY{"Paraguay"}
@@ -295,6 +295,9 @@ lb{
     }
     Countries%short{
         GB{"GB"}
+        HK{"Hong Kong"}
+        MO{"Macau"}
+        PS{"Palestina"}
         US{"US"}
     }
     Countries%variant{

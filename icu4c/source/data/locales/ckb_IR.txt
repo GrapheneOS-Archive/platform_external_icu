@@ -3,6 +3,7 @@
 // Generated using tools/cldr/cldr-to-icu/build-icu-data.xml
 ckb_IR{
     calendar{
+        default{"persian"}
         gregorian{
             DateTimePatterns{
                 "HH:mm:ss zzzz",
@@ -18,6 +19,16 @@ ckb_IR{
                 "{1} {0}",
                 "{1} {0}",
                 "{1} {0}",
+            }
+            DateTimeSkeletons{
+                "HHmmsszzzz",
+                "HHmmssz",
+                "HHmmss",
+                "HHmm",
+                "yMMMMEEEEd",
+                "yMMMMd",
+                "yMMMd",
+                "yMMdd",
             }
         }
         persian{
@@ -35,6 +46,34 @@ ckb_IR{
                 "{1} {0}",
                 "{1} {0}",
                 "{1} {0}",
+            }
+            DateTimeSkeletons{
+                "HHmmsszzzz",
+                "HHmmssz",
+                "HHmmss",
+                "HHmm",
+                "GyMMMMEEEEd",
+                "GyMMMMd",
+                "GyMMMd",
+                "GGGGGyMMdd",
+            }
+            monthNames{
+                format{
+                    wide{
+                        "خاکەلێوە",
+                        "گوڵان",
+                        "جۆزەردان",
+                        "پووشپەڕ",
+                        "گەلاوێژ",
+                        "خەرمانان",
+                        "ڕەزبەر",
+                        "گەڵاڕێزان",
+                        "سەرماوەز",
+                        "بەفرانبار",
+                        "ڕێبەندان",
+                        "ڕەشەمە",
+                    }
+                }
             }
         }
     }

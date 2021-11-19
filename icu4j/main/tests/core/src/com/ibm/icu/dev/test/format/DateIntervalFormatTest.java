@@ -652,54 +652,48 @@ public class DateIntervalFormatTest extends TestFmwk {
 
                 // Thai (default calendar buddhist)
 
-                // Android patch: Force default Gregorian calendar.
-
-                "th", "2550 10 10 10:10:10", "2551 10 10 10:10:10", "EEEEdMMMy", "\\u0E27\\u0E31\\u0E19\\u0E40\\u0E2A\\u0E32\\u0E23\\u0E4C\\u0E17\\u0E35\\u0E48 10 \\u0E15.\\u0E04. 2550 \\u2013 \\u0E27\\u0E31\\u0E19\\u0E2D\\u0E32\\u0E17\\u0E34\\u0E15\\u0E22\\u0E4C\\u0E17\\u0E35\\u0E48 10 \\u0E15.\\u0E04. 2551",
+                "th", "BE 2550 10 10 10:10:10", "BE 2551 10 10 10:10:10", "EEEEdMMMy", "\\u0E27\\u0E31\\u0E19\\u0E1E\\u0E38\\u0E18\\u0E17\\u0E35\\u0E48 10 \\u0E15.\\u0E04. 2550 \\u2013 \\u0E27\\u0E31\\u0E19\\u0E28\\u0E38\\u0E01\\u0E23\\u0E4C\\u0E17\\u0E35\\u0E48 10 \\u0E15.\\u0E04. 2551",
 
 
-                "th", "2550 10 10 10:10:10", "2551 10 10 10:10:10", "dMMM", "10 \\u0E15.\\u0E04. 2550 \\u2013 10 \\u0E15.\\u0E04. 2551",
+                "th", "BE 2550 10 10 10:10:10", "BE 2551 10 10 10:10:10", "dMMM", "10 \\u0E15.\\u0E04. 2550 \\u2013 10 \\u0E15.\\u0E04. 2551",
 
-                "th", "2550 10 10 10:10:10", "2551 10 10 10:10:10", "MMMy", "\\u0E15.\\u0E04. 2550 \\u2013 \\u0E15.\\u0E04. 2551",
-
-
-                "th", "2550 10 10 10:10:10", "2551 10 10 10:10:10", "EdMy", "ส. 10/10/2550 – อา. 10/10/2551",
-
-                "th", "2550 10 10 10:10:10", "2551 10 10 10:10:10", "dMy", "10/10/2550 \\u2013 10/10/2551",
+                "th", "BE 2550 10 10 10:10:10", "BE 2551 10 10 10:10:10", "MMMy", "\\u0E15.\\u0E04. 2550 \\u2013 \\u0E15.\\u0E04. 2551",
 
 
-                "th", "2550 10 10 10:10:10", "2551 10 10 10:10:10", "EdMy", "\\u0E2A. 10/10/2550 \\u2013 \\u0E2D\\u0E32. 10/10/2551",
-                "th", "2550 10 10 10:10:10", "2551 10 10 10:10:10", "My", "10/2550 \\u2013 10/2551",
+                "th", "BE 2550 10 10 10:10:10", "BE 2551 10 10 10:10:10", "EdMy", "\\u0E1E. 10/10/2550 \\u2013 \\u0E28. 10/10/2551",
 
-                "th", "2550 10 10 10:10:10", "2551 10 10 10:10:10", "EdM", "ส. 10/10/2550 – อา. 10/10/2551",
-
-
-                "th", "2550 10 10 10:10:10", "2551 10 10 10:10:10", "y", "2550\\u20132551",
-
-                "th", "2550 10 10 10:10:10", "2551 10 10 10:10:10", "EdM", "\\u0E2A. 10/10/2550 \\u2013 \\u0E2D\\u0E32. 10/10/2551",
-                "th", "2550 10 10 10:10:10", "2551 10 10 10:10:10", "M", "10/2550 \\u2013 10/2551",
+                "th", "BE 2550 10 10 10:10:10", "BE 2551 10 10 10:10:10", "dMy", "10/10/2550 \\u2013 10/10/2551",
 
 
-                "th", "2550 10 10 10:10:10", "2550 11 10 10:10:10", "EEEEdMMMy", "วันเสาร์ที่ 10 ต.ค. – วันอังคารที่ 10 พ.ย. 2550",
+                "th", "BE 2550 10 10 10:10:10", "BE 2551 10 10 10:10:10", "My", "10/2550 \\u2013 10/2551",
+
+                "th", "BE 2550 10 10 10:10:10", "BE 2551 10 10 10:10:10", "EdM", "\\u0E1E. 10/10/2550 \\u2013 \\u0E28. 10/10/2551",
 
 
-                "th", "2550 10 10 10:10:10", "2550 11 10 10:10:10", "dMMM", "10 \\u0E15.\\u0E04. \\u2013 10 \\u0E1E.\\u0E22.",
+                "th", "BE 2550 10 10 10:10:10", "BE 2551 10 10 10:10:10", "y", "2550\\u20132551",
 
-                "th", "2550 10 10 10:10:10", "2550 11 10 10:10:10", "EEEEdMMMy", "\\u0E27\\u0E31\\u0E19\\u0E40\\u0E2A\\u0E32\\u0E23\\u0E4C\\u0E17\\u0E35\\u0E48 10 \\u0E15.\\u0E04. \\u2013 \\u0E27\\u0E31\\u0E19\\u0E2D\\u0E31\\u0E07\\u0E04\\u0E32\\u0E23\\u0E17\\u0E35\\u0E48 10 \\u0E1E.\\u0E22. 2550",
-                "th", "2550 10 10 10:10:10", "2550 11 10 10:10:10", "MMMy", "\\u0E15.\\u0E04.\\u2013\\u0E1E.\\u0E22. 2550",
-
-                "th", "2550 10 10 10:10:10", "2550 11 10 10:10:10", "dM", "10/10 \\u2013 10/11",
-
-                "th", "2550 10 10 10:10:10", "2550 11 10 10:10:10", "My", "10/2550 \\u2013 11/2550",
+                "th", "BE 2550 10 10 10:10:10", "BE 2551 10 10 10:10:10", "M", "10/2550 \\u2013 10/2551",
 
 
-                "th", "2550 10 10 10:10:10", "2550 11 10 10:10:10", "d", "10/10 \\u2013 10/11",
-
-                "th", "2550 10 10 10:10:10", "2550 11 10 10:10:10", "y", "2550",
+                "th", "BE 2550 10 10 10:10:10", "BE 2550 11 10 10:10:10", "EEEEdMMMy", "\\u0E27\\u0E31\\u0E19\\u0E1E\\u0E38\\u0E18\\u0E17\\u0E35\\u0E48 10 \\u0E15.\\u0E04. \\u2013 \\u0E27\\u0E31\\u0E19\\u0E40\\u0E2A\\u0E32\\u0E23\\u0E4C\\u0E17\\u0E35\\u0E48 10 \\u0E1E.\\u0E22. 2550",
 
 
-                "th", "2550 10 10 10:10:10", "2550 11 10 10:10:10", "MMM", "ต.ค. – พ.ย.",
+                "th", "BE 2550 10 10 10:10:10", "BE 2550 11 10 10:10:10", "dMMM", "10 \\u0E15.\\u0E04. \\u2013 10 \\u0E1E.\\u0E22.",
 
-                "th", "2550 10 10 10:10:10", "2550 11 10 10:10:10", "y", "2550",
+                "th", "BE 2550 10 10 10:10:10", "BE 2550 11 10 10:10:10", "MMMy", "\\u0E15.\\u0E04.\\u2013\\u0E1E.\\u0E22. 2550",
+
+                "th", "BE 2550 10 10 10:10:10", "BE 2550 11 10 10:10:10", "dM", "10/10 \\u2013 10/11",
+
+                "th", "BE 2550 10 10 10:10:10", "BE 2550 11 10 10:10:10", "My", "10/2550 \\u2013 11/2550",
+
+
+                "th", "BE 2550 10 10 10:10:10", "BE 2550 11 10 10:10:10", "d", "10/10 \\u2013 10/11",
+
+                "th", "BE 2550 10 10 10:10:10", "BE 2550 11 10 10:10:10", "y", "\u0E1E.\u0E28. 2550",
+
+
+                "th", "BE 2550 10 10 10:10:10", "BE 2550 11 10 10:10:10", "MMM", "\u0E15.\u0E04.\u2013\u0E1E.\u0E22.",
+
                 // Tests for Japanese calendar with eras, including new era in 2019 (Heisei 31 through April 30, then new era)
 
                 "en-u-ca-japanese", "H 31 03 15 09:00:00", "H 31 04 15 09:00:00", "GyMMMd", "Mar 15 \u2013 Apr 15, 31 Heisei",
@@ -725,7 +719,6 @@ public class DateIntervalFormatTest extends TestFmwk {
 
                 "ja-u-ca-japanese", "H 31 04 15 09:00:00", DateFormat.JP_ERA_2019_NARROW+" 1 05 15 09:00:00", "GGGGGyMd", "H31/04/15\uFF5E"+DateFormat.JP_ERA_2019_NARROW+"1/05/15",
 
-                // Android patch end.
         };
         expect(DATA, DATA.length);
     }
@@ -806,8 +799,8 @@ public class DateIntervalFormatTest extends TestFmwk {
         "zh_HK", "CE 2010 09 27 00:00:00", "CE 2010 09 27 01:00:00", "jj", "\\u4E0A\\u534812\\u6642\\u81F31\\u6642",
         "zh_HK", "CE 2010 09 27 10:00:00", "CE 2010 09 27 13:00:00", "hB", "\\u4E0A\\u534810\\u6642 \\u2013 \\u4E0B\\u53481\\u6642",
         "zh_HK", "CE 2010 09 27 00:00:00", "CE 2010 09 27 01:00:00", "hB", "\\u51CC\\u666812\\u20131\\u6642",
-        "zh_HK", "CE 2010 09 27 10:00:00", "CE 2010 09 27 13:00:00", "CC", "\\u4E0A\\u534810\\u6642 \\u2013 \\u4E0B\\u53481\\u6642",
-        "zh_HK", "CE 2010 09 27 00:00:00", "CE 2010 09 27 01:00:00", "CC", "\\u51CC\\u666812\\u20131\\u6642",
+        "zh_HK", "CE 2010 09 27 10:00:00", "CE 2010 09 27 13:00:00", "CC", "\\u4E0A\\u534810\\u6642\\u81F3\\u4E0B\\u53481\\u6642",
+        "zh_HK", "CE 2010 09 27 00:00:00", "CE 2010 09 27 01:00:00", "CC", "\\u4E0A\\u534812\\u6642\\u81F31\\u6642",
         "hi_IN", "CE 2010 09 27 10:00:00", "CE 2010 09 27 13:00:00", "jj", "10 am \\u2013 1 pm",
         "hi_IN", "CE 2010 09 27 00:00:00", "CE 2010 09 27 01:00:00", "jj", "12\\u20131 am",
         "hi_IN", "CE 2010 09 27 10:00:00", "CE 2010 09 27 13:00:00", "hB", "\\u0938\\u0941\\u092C\\u0939 10 \\u2013 \\u0926\\u094B\\u092A\\u0939\\u0930 1",
@@ -1513,7 +1506,7 @@ public class DateIntervalFormatTest extends TestFmwk {
         PatternInfo dp = new PatternInfo(null, null, false);
         if(dp.hashCode() != 0){
             errln("PatternInfo.hashCode() was suppose to return 0 for a null " +
-                    "paramter in the constructor.");
+                    "parameter in the constructor.");
         }
     }
 
@@ -2347,7 +2340,7 @@ public class DateIntervalFormatTest extends TestFmwk {
 
         formatted = g.formatToValue(BCtoAD);
         assertEquals("Gregorian - BC to AD",
-                     "4 5, 123 BC, 6 AM \u2013 4 5, 124 AD, 6 AM",
+                     "4/5/123 B, 6 AM \u2013 4/5/124 A, 6 AM",
                      formatted.toString());
     }
 
@@ -2400,19 +2393,19 @@ public class DateIntervalFormatTest extends TestFmwk {
 
         FormattedDateInterval formatted = roc.formatToValue(bothAfterMG);
         assertEquals("roc calendar - both dates in MG Era",
-                     "民國1/1/2 6 上午 – 民國2/1/2 6 上午",
+                     "民國1/1/2 上午6時 – 民國2/1/2 上午6時",
                      formatted.toString());
         List<Field> expectedFields = getFields(formatted);
 
         formatted = roc.formatToValue(beforeAfterMG);
         assertEquals("roc calendar - prior MG Era and in MG Era",
-                     "民國前1年1月2日 6 上午 – 民國2年1月2日 6 上午",
+                     "民國前1/1/2 上午6時 – 民國2/1/2 上午6時",
                      formatted.toString());
         verifyFields(formatted, expectedFields);
 
         formatted = roc.formatToValue(bothBeforeMG);
         assertEquals("roc calendar - both dates prior MG Era",
-                     "民國前2/1/2 6 上午 – 民國前1/1/2 6 上午",
+                     "民國前2/1/2 上午6時 – 民國前1/1/2 上午6時",
                      formatted.toString());
         verifyFields(formatted, expectedFields);
     }
@@ -2457,7 +2450,7 @@ public class DateIntervalFormatTest extends TestFmwk {
 
         formatted = japanese.formatToValue(beforeAfterReiwa);
         assertEquals("japanese calendar - date before and in Reiwa",
-                     "平成31年3月2日 午前6時～令和元年5月4日 午前6時",
+                     "H31/3/2 午前6時～R1/5/4 午前6時",
                      formatted.toString());
         verifyFields(formatted, expectedFields);
     }

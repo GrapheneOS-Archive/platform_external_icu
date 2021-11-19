@@ -46,7 +46,7 @@ sw_KE{
         PG{"Papua Guinea Mpya"}
         PL{"Polandi"}
         PR{"Puetoriko"}
-        PS{"Palestina"}
+        PS{"Himaya za Palestina"}
         PY{"Paragwai"}
         QA{"Katari"}
         SG{"Singapuri"}

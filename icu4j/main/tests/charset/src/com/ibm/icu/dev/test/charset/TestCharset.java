@@ -16,6 +16,7 @@ import java.nio.charset.CharacterCodingException;
 import java.nio.charset.Charset;
 import java.nio.charset.CharsetDecoder;
 import java.nio.charset.CharsetEncoder;
+import java.nio.charset.CoderMalfunctionError;
 import java.nio.charset.CoderResult;
 import java.nio.charset.CodingErrorAction;
 import java.nio.charset.UnsupportedCharsetException;
@@ -39,6 +40,7 @@ import com.ibm.icu.charset.CharsetProviderICU;
 import com.ibm.icu.dev.test.TestFmwk;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.text.UnicodeSetIterator;
 
 @RunWith(JUnit4.class)
 public class TestCharset extends TestFmwk {
@@ -542,7 +544,7 @@ public class TestCharset extends TestFmwk {
             bytes[x + 1] = (byte) (0x80 | ((i >> 6) & 0x3f));
             bytes[x + 2] = (byte) (0x80 | ((i >> 0) & 0x3f));
             chars[y] = (char) i;
-            if (!UTF16.isSurrogate((char)i)) {
+            if (!UTF16.isSurrogate(i)) {
                 bs = ByteBuffer.wrap(bytes, x, 3).slice();
                 us = CharBuffer.wrap(chars, y, 1).slice();
                 try {
@@ -646,9 +648,7 @@ public class TestCharset extends TestFmwk {
                 logln("finish: " + hex(finishArray));
             }
         } catch (CharacterCodingException ex) {
-            // Android patch: Skip tests that fail with customized data.
-            logln(converter + " roundtrip test failed: " + ex.getMessage());
-            // Android patch end.
+            errln(converter + " roundtrip test failed: " + ex.getMessage());
             ex.printStackTrace(System.err);
         }
 
@@ -680,9 +680,7 @@ public class TestCharset extends TestFmwk {
                 }
             } else {
                 if (result.isError()) {
-                    // Android patch: Skip tests that fail with customized data.
-                    logln("Error should not have occurred while encoding HZ.(" + i + ")");
-                    // Android patch end.
+                    errln("Error should not have occurred while encoding HZ.(" + i + ")");
                 }
             }
         }
@@ -833,9 +831,7 @@ public class TestCharset extends TestFmwk {
                 return;
             } catch (RuntimeException ex) {
                 if (!currentlybad) {currentlybad = true; badcount++; logln(""); }
-                // Android patch: Skip tests that fail with customized data.
-                logln(converter + " " + ex.getClass().getName() + ": " + ex.getMessage());
-                // Android patch end.
+                errln(converter + " " + ex.getClass().getName() + ": " + ex.getMessage());
                 continue outer;
             }
 
@@ -1739,7 +1735,7 @@ public class TestCharset extends TestFmwk {
             //put the valid byte array
             buffer.put(unibytes);
 
-            //reset postion
+            //reset position
             buffer.flip();
 
             decoder.onMalformedInput(CodingErrorAction.REPLACE);
@@ -2256,9 +2252,9 @@ public class TestCharset extends TestFmwk {
         try {
             final Thread t1 = new Thread() {
                 public void run() {
-                    // commented out since the mehtods on
+                    // commented out since the methods on
                     // Charset API are supposed to be thread
-                    // safe ... to test it we dont sync
+                    // safe ... to test it we don't sync
 
                     // synchronized(charset){
                    while (!interrupted()) {
@@ -2384,10 +2380,8 @@ public class TestCharset extends TestFmwk {
             if(!result.isError()){
                 byte[] expected = {(byte)0xA9, (byte)0xA5, (byte)0xAF, (byte)0xFE, (byte)0xA2, (byte)0xAE};
                 if(!equals(expected, out.array())){
-                    // Android patch: Skip tests that fail with customized data.
-                    logln("Did not get the expected result for substitution bytes. Got: "+
+                    errln("Did not get the expected result for substitution bytes. Got: "+
                            hex(out.array()));
-                    // Android patch end.
                 }
                 logln("Output: "+  hex(out.array()));
             }else{
@@ -5061,12 +5055,22 @@ public class TestCharset extends TestFmwk {
         try {
             encoder.encode(CharBuffer.allocate(10), null, true);
             errln("Illegal argument exception should have been thrown due to null target.");
+        } catch (CoderMalfunctionError err) {
+            // Java 16 updated handling of Exception thrown by encodeLoop(CharBuffer,ByteBuffer).
+            // Previously when encodeLoop is called with null input/output buffer, it throws
+            // IllegalArgumentException, and Java CharsetEncoder does not catch the exception.
+            // In Java 16, a runtime exception thrown by encodeLoop implementation is caught
+            // and wrapped by CoderMalfunctionError. This block is required because CoderMalfunctionError
+            // is not an Exception.
         } catch (Exception ex) {
+            // IllegalArgumentException is thrown by encodeLoop(CharBuffer,ByteBuffer) implementation
+            // is not wrapped by CharsetEncoder up to Java 15.
         }
 
         try {
             decoder.decode(ByteBuffer.allocate(10), null, true);
             errln("Illegal argument exception should have been thrown due to null target.");
+        } catch (CoderMalfunctionError err) {
         } catch (Exception ex) {
         }
     }
@@ -5821,11 +5825,21 @@ public class TestCharset extends TestFmwk {
 
     }
 
+    // Test that all code points which have the default ignorable Unicode property
+    // are ignored if they have no mapping.
+    // If there are any failures, the hard coded list (IS_DEFAULT_IGNORABLE_CODE_POINT)
+    // in CharsetCallback.java should be updated.
+    // Keep in sync with ICU4C intltest/convtest.cpp.
     @Test
     public void TestDefaultIgnorableCallback() {
         String cnv_name = "euc-jp-2007";
         String pattern_ignorable = "[:Default_Ignorable_Code_Point:]";
-        String pattern_not_ignorable = "[:^Default_Ignorable_Code_Point:]";
+        String pattern_not_ignorable =
+                "[[:^Default_Ignorable_Code_Point:]" +
+                // For test performance, skip large ranges that will likely remain unassigned
+                // for a long time, and private use code points.
+                "-[\\U00040000-\\U000DFFFF]-[:Co:]" +
+                "]";
         UnicodeSet set_ignorable = new UnicodeSet(pattern_ignorable);
         UnicodeSet set_not_ignorable = new UnicodeSet(pattern_not_ignorable);
         CharsetEncoder encoder =  CharsetICU.forNameICU(cnv_name).newEncoder();
@@ -5835,28 +5849,30 @@ public class TestCharset extends TestFmwk {
         encoder.onMalformedInput(CodingErrorAction.REPLACE);
 
         // test ignorable code points are ignored
-        int size = set_ignorable.size();
-        for (int i = 0; i < size; i++) {
+        UnicodeSetIterator iter = new UnicodeSetIterator(set_ignorable);
+        while (iter.next()) {
             encoder.reset();
+            int c = iter.codepoint;
             try {
-                if(encoder.encode(CharBuffer.wrap(Character.toChars(set_ignorable.charAt(i)))).limit() > 0) {
-                    errln("Callback should have ignore default ignorable: U+" + Integer.toHexString(set_ignorable.charAt(i)));
+                if(encoder.encode(CharBuffer.wrap(Character.toChars(c))).limit() > 0) {
+                    errln("Callback should have ignore default ignorable: U+" + Integer.toHexString(c));
                 }
             } catch (Exception ex) {
-                errln("Error received converting +" + Integer.toHexString(set_ignorable.charAt(i)));
+                errln("Error received converting +" + Integer.toHexString(c));
             }
         }
 
         // test non-ignorable code points are not ignored
-        size = set_not_ignorable.size();
-        for (int i = 0; i < size; i++) {
+        iter.reset(set_not_ignorable);
+        while (iter.next()) {
             encoder.reset();
+            int c = iter.codepoint;
             try {
-                if(encoder.encode(CharBuffer.wrap(Character.toChars(set_not_ignorable.charAt(i)))).limit() == 0) {
-                    errln("Callback should not have ignored: U+" + Integer.toHexString(set_not_ignorable.charAt(i)));
+                if(encoder.encode(CharBuffer.wrap(Character.toChars(c))).limit() == 0) {
+                    errln("Callback should not have ignored: U+" + Integer.toHexString(c));
                 }
             } catch (Exception ex) {
-                errln("Error received converting U+" + Integer.toHexString(set_not_ignorable.charAt(i)));
+                errln("Error received converting U+" + Integer.toHexString(c));
             }
         }
     }

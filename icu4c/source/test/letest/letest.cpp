@@ -331,7 +331,7 @@ le_bool compareResults(const char *testID, TestResult *expected, TestResult *act
 {
     /* NOTE: we'll stop on the first failure 'cause once there's one error, it may cascade... */
     if (actual->glyphCount != expected->glyphCount) {
-        log_err("Test %s: incorrect glyph count: exptected %d, got %d\n",
+        log_err("Test %s: incorrect glyph count: expected %d, got %d\n",
             testID, expected->glyphCount, actual->glyphCount);
         return false;
     }
@@ -978,6 +978,72 @@ static void addAllTests(TestNode **root)
 #ifndef USING_ICULEHB
     addCTests(root);
 #endif
+}
+
+/* returns the path to icu/source/data/out */
+static const char *ctest_dataOutDir()
+{
+    static const char *dataOutDir = NULL;
+
+    if(dataOutDir) {
+        return dataOutDir;
+    }
+
+    /* U_TOPBUILDDIR is set by the makefiles on UNIXes when building cintltst and intltst
+    //              to point to the top of the build hierarchy, which may or
+    //              may not be the same as the source directory, depending on
+    //              the configure options used.  At any rate,
+    //              set the data path to the built data from this directory.
+    //              The value is complete with quotes, so it can be used
+    //              as-is as a string constant.
+    */
+#if defined (U_TOPBUILDDIR)
+    {
+        dataOutDir = U_TOPBUILDDIR "data" U_FILE_SEP_STRING "out" U_FILE_SEP_STRING;
+    }
+#else
+
+    /* On Windows, the file name obtained from __FILE__ includes a full path.
+     *             This file is "wherever\icu\source\test\cintltst\cintltst.c"
+     *             Change to    "wherever\icu\source\data"
+     */
+    {
+        static char p[sizeof(__FILE__) + 20];
+        char *pBackSlash;
+        int i;
+
+        strcpy(p, __FILE__);
+        /* We want to back over three '\' chars.                            */
+        /*   Only Windows should end up here, so looking for '\' is safe.   */
+        for (i=1; i<=3; i++) {
+            pBackSlash = strrchr(p, U_FILE_SEP_CHAR);
+            if (pBackSlash != NULL) {
+                *pBackSlash = 0;        /* Truncate the string at the '\'   */
+            }
+        }
+
+        if (pBackSlash != NULL) {
+            /* We found and truncated three names from the path.
+             *  Now append "source\data" and set the environment
+             */
+            strcpy(pBackSlash, U_FILE_SEP_STRING "data" U_FILE_SEP_STRING "out" U_FILE_SEP_STRING);
+            dataOutDir = p;
+        }
+        else {
+            /* __FILE__ on MSVC7 does not contain the directory */
+            FILE *file = fopen(".." U_FILE_SEP_STRING ".." U_FILE_SEP_STRING "data" U_FILE_SEP_STRING "Makefile.in", "r");
+            if (file) {
+                fclose(file);
+                dataOutDir = ".." U_FILE_SEP_STRING ".." U_FILE_SEP_STRING "data" U_FILE_SEP_STRING "out" U_FILE_SEP_STRING;
+            }
+            else {
+                dataOutDir = ".." U_FILE_SEP_STRING".." U_FILE_SEP_STRING".." U_FILE_SEP_STRING "data" U_FILE_SEP_STRING "out" U_FILE_SEP_STRING;
+            }
+        }
+    }
+#endif
+
+    return dataOutDir;
 }
 
 /*  ctest_setICU_DATA  - if the ICU_DATA environment variable is not already

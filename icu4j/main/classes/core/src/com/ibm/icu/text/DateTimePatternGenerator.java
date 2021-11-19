@@ -213,13 +213,10 @@ public class DateTimePatternGenerator implements Freezable<DateTimePatternGenera
     private class AppendItemFormatsSink extends UResource.Sink {
         @Override
         public void put(UResource.Key key, UResource.Value value, boolean noFallback) {
-            UResource.Table itemsTable = value.getTable();
-            for (int i = 0; itemsTable.getKeyAndValue(i, key, value); ++i) {
-                int field = getAppendFormatNumber(key);
-                assert field != -1;
-                if (getAppendItemFormat(field) == null) {
-                    setAppendItemFormat(field, value.toString());
-                }
+            int field = getAppendFormatNumber(key);
+            if (field < 0) { return; }
+            if (getAppendItemFormat(field) == null) {
+                setAppendItemFormat(field, value.toString());
             }
         }
     }
@@ -227,26 +224,14 @@ public class DateTimePatternGenerator implements Freezable<DateTimePatternGenera
     private class AppendItemNamesSink extends UResource.Sink {
         @Override
         public void put(UResource.Key key, UResource.Value value, boolean noFallback) {
-            UResource.Table itemsTable = value.getTable();
-            for (int i = 0; itemsTable.getKeyAndValue(i, key, value); ++i) {
-                if (value.getType() != UResourceBundle.TABLE) {
-                    // Typically get either UResourceBundle.TABLE = 2 or ICUResourceBundle.ALIAS = 3.
-                    // Currently fillInMissing() is being used instead of following the ALIAS, so
-                    // skip ALIAS entries which cause UResourceTypeMismatchException in the line
-                    // UResource.Table detailsTable = value.getTable()
-                    continue;
-                }
-                int fieldAndWidth = getCLDRFieldAndWidthNumber(key);
-                if (fieldAndWidth == -1) { continue; }
-                int field = fieldAndWidth / DisplayWidth.COUNT;
-                DisplayWidth width = CLDR_FIELD_WIDTH[fieldAndWidth % DisplayWidth.COUNT];
-                UResource.Table detailsTable = value.getTable();
-                for (int j = 0; detailsTable.getKeyAndValue(j, key, value); ++j) {
-                    if (!key.contentEquals("dn")) continue;
-                    if (getFieldDisplayName(field, width) == null) {
-                        setFieldDisplayName(field, width, value.toString());
-                    }
-                    break;
+            int fieldAndWidth = getCLDRFieldAndWidthNumber(key);
+            if (fieldAndWidth == -1) { return; }
+            int field = fieldAndWidth / DisplayWidth.COUNT;
+            DisplayWidth width = CLDR_FIELD_WIDTH[fieldAndWidth % DisplayWidth.COUNT];
+            UResource.Table detailsTable = value.getTable();
+            if (detailsTable.findValue("dn", value)) {
+                if (getFieldDisplayName(field, width) == null) {
+                    setFieldDisplayName(field, width, value.toString());
                 }
             }
         }
@@ -277,16 +262,13 @@ public class DateTimePatternGenerator implements Freezable<DateTimePatternGenera
 
         @Override
         public void put(UResource.Key key, UResource.Value value, boolean isRoot) {
-            UResource.Table formatsTable = value.getTable();
-            for (int i = 0; formatsTable.getKeyAndValue(i, key, value); ++i) {
-                String formatKey = key.toString();
-                if (!isAvailableFormatSet(formatKey)) {
-                    setAvailableFormat(formatKey);
-                    // Add pattern with its associated skeleton. Override any duplicate derived from std patterns,
-                    // but not a previous availableFormats entry:
-                    String formatValue = value.toString();
-                    addPatternWithSkeleton(formatValue, formatKey, !isRoot, returnInfo);
-                }
+            String formatKey = key.toString();
+            if (!isAvailableFormatSet(formatKey)) {
+                setAvailableFormat(formatKey);
+                // Add pattern with its associated skeleton. Override any duplicate derived from std patterns,
+                // but not a previous availableFormats entry:
+                String formatValue = value.toString();
+                addPatternWithSkeleton(formatValue, formatKey, !isRoot, returnInfo);
             }
         }
     }
@@ -305,7 +287,7 @@ public class DateTimePatternGenerator implements Freezable<DateTimePatternGenera
         // Load append item formats.
         AppendItemFormatsSink appendItemFormatsSink = new AppendItemFormatsSink();
         try {
-            rb.getAllItemsWithFallback(
+            rb.getAllChildrenWithFallback(
                     "calendar/" + calendarTypeToUse + "/appendItems",
                     appendItemFormatsSink);
         }catch(MissingResourceException e) {
@@ -314,7 +296,7 @@ public class DateTimePatternGenerator implements Freezable<DateTimePatternGenera
         // Load CLDR item names.
         AppendItemNamesSink appendItemNamesSink = new AppendItemNamesSink();
         try {
-            rb.getAllItemsWithFallback(
+            rb.getAllChildrenWithFallback(
                     "fields",
                     appendItemNamesSink);
         }catch(MissingResourceException e) {
@@ -323,7 +305,7 @@ public class DateTimePatternGenerator implements Freezable<DateTimePatternGenera
         // Load the available formats from CLDR.
         AvailableFormatsSink availableFormatsSink = new AvailableFormatsSink(returnInfo);
         try {
-            rb.getAllItemsWithFallback(
+            rb.getAllChildrenWithFallback(
                     "calendar/" + calendarTypeToUse + "/availableFormats",
                     availableFormatsSink);
         } catch (MissingResourceException e) {
@@ -644,44 +626,16 @@ public class DateTimePatternGenerator implements Freezable<DateTimePatternGenera
         return getBestPattern(skeleton, null, options);
     }
 
-    // BEGIN Android-added: http://b/170233598 Allow duplicate fields
-    /**
-     * Return the best pattern matching the input skeleton. It is guaranteed to
-     * have all of the fields in the skeleton.
-     *
-     * @param skeleton The skeleton is a pattern containing only the variable fields.
-     *            For example, "MMMdd" and "mmhh" are skeletons.
-     * @param options MATCH_xxx options for forcing the length of specified fields in
-     *            the returned pattern to match those in the skeleton (when this would
-     *            not happen otherwise). For default behavior, use MATCH_NO_OPTIONS.
-     * @param allowDuplicateFields allows duplicated field in the skeleton
-     * @return Best pattern matching the input skeleton (and options).
-     * @internal
-     */
-    public String getBestPattern(String skeleton, int options, boolean allowDuplicateFields) {
-        return getBestPattern(skeleton, null, options, allowDuplicateFields);
-    }
-
-    private String getBestPattern(String skeleton, DateTimeMatcher skipMatcher, int options) {
-        return getBestPattern(skeleton, skipMatcher, options, false);
-    }
-    // END Android-added: http://b/170233598 Allow duplicate fields
-
     /*
      * getBestPattern which takes optional skip matcher
      */
-    // Android-changed: http://b/170233598 Allow duplicate fields
-    // private String getBestPattern(String skeleton, DateTimeMatcher skipMatcher, int options) {
-    private String getBestPattern(String skeleton, DateTimeMatcher skipMatcher, int options,
-            boolean allowDuplicateFields) {
+    private String getBestPattern(String skeleton, DateTimeMatcher skipMatcher, int options) {
         EnumSet<DTPGflags> flags = EnumSet.noneOf(DTPGflags.class);
         // Replace hour metacharacters 'j', 'C', and 'J', set flags as necessary
         String skeletonMapped = mapSkeletonMetacharacters(skeleton, flags);
         String datePattern, timePattern;
         synchronized(this) {
-            // Android-changed: http://b/170233598 Allow duplicate fields
-            // current.set(skeletonMapped, fp, false);
-            current.set(skeletonMapped, fp, allowDuplicateFields);
+            current.set(skeletonMapped, fp, false);
             PatternWithMatcher bestWithMatcher = getBestRaw(current, -1, _distanceInfo, skipMatcher);
             if (_distanceInfo.missingFieldMask == 0 && _distanceInfo.extraFieldMask == 0) {
                 // we have a good item. Adjust the field types
@@ -2228,7 +2182,11 @@ public class DateTimePatternGenerator implements Freezable<DateTimePatternGenera
                             (type == MINUTE && (options & MATCH_MINUTE_FIELD_LENGTH)==0) ||
                             (type == SECOND && (options & MATCH_SECOND_FIELD_LENGTH)==0) ) {
                         adjFieldLen = fieldBuilder.length();
-                    } else if (matcherWithSkeleton != null) {
+                    } else if (matcherWithSkeleton != null && reqFieldChar != 'c' && reqFieldChar != 'e') {
+                        // (we skip this section for 'c' and 'e' because unlike the other characters considered in this function,
+                        // they have no minimum field length-- 'E' and 'EE' are equivalent to 'EEE', but 'e' and 'ee' are not
+                        // equivalent to 'eee' -- see the entries for "week day" in
+                        // https://www.unicode.org/reports/tr35/tr35-dates.html#Date_Field_Symbol_Table for more info)
                         int skelFieldLen = matcherWithSkeleton.original.getFieldLength(type);
                         boolean patFieldIsNumeric = variableField.isNumeric();
                         boolean skelFieldIsNumeric = matcherWithSkeleton.fieldIsNumeric(type);
@@ -2245,6 +2203,12 @@ public class DateTimePatternGenerator implements Freezable<DateTimePatternGenera
                             && (type != YEAR || reqFieldChar=='Y'))
                             ? reqFieldChar
                             : fieldBuilder.charAt(0);
+                    if (c == 'E' && adjFieldLen < 3) {
+                        // see https://www.unicode.org/reports/tr35/tr35-dates.html#Date_Field_Symbol_Table:
+                        // If we want a numeric day-of-week field, we have to use 'e'-- 'E' doesn't support
+                        // numeric day-of-week abbreivations
+                        c = 'e';
+                    }
                     if (type == HOUR) {
                         // The adjustment here is required to match spec (https://www.unicode.org/reports/tr35/tr35-dates.html#dfst-hour).
                         // It is necessary to match the hour-cycle preferred by the Locale.

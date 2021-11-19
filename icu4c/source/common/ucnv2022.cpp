@@ -520,16 +520,14 @@ _ISO2022Open(UConverter *cnv, UConverterLoadArgs *pArgs, UErrorCode *errorCode){
             }
             if(jpCharsetMasks[version]&CSM(GB2312)) {
                 myConverterData->myConverterArray[GB2312] =
-                    /* BEGIN android-changed */
-                    ucnv_loadSharedData("noop-gb2312_gl", &stackPieces, &stackArgs, errorCode); /* gb_2312_80-1 */
-                    /* END android-changed */
+                    ucnv_loadSharedData("ibm-5478", &stackPieces, &stackArgs, errorCode);   /* gb_2312_80-1 */
             }
             if(jpCharsetMasks[version]&CSM(KSC5601)) {
                 myConverterData->myConverterArray[KSC5601] =
                     ucnv_loadSharedData("ksc_5601", &stackPieces, &stackArgs, errorCode);
             }
 
-            /* set the function pointers to appropriate funtions */
+            /* set the function pointers to appropriate functions */
             cnv->sharedData=(UConverterSharedData*)(&_ISO2022JPData);
             uprv_strcpy(myConverterData->locale,"ja");
 
@@ -553,9 +551,7 @@ _ISO2022Open(UConverter *cnv, UConverterLoadArgs *pArgs, UErrorCode *errorCode){
             if(version==1) {
                 cnvName="icu-internal-25546";
             } else {
-                /* BEGIN android-changed */
-                cnvName="ksc_5601";
-                /* END android-changed */
+                cnvName="ibm-949";
                 myConverterData->version=version=0;
             }
             if(pArgs->onlyTestIsLoadable) {
@@ -582,7 +578,7 @@ _ISO2022Open(UConverter *cnv, UConverterLoadArgs *pArgs, UErrorCode *errorCode){
                 setInitialStateToUnicodeKR(cnv, myConverterData);
                 setInitialStateFromUnicodeKR(cnv, myConverterData);
 
-                /* set the function pointers to appropriate funtions */
+                /* set the function pointers to appropriate functions */
                 cnv->sharedData=(UConverterSharedData*)&_ISO2022KRData;
                 uprv_strcpy(myConverterData->locale,"ko");
             }
@@ -599,19 +595,17 @@ _ISO2022Open(UConverter *cnv, UConverterLoadArgs *pArgs, UErrorCode *errorCode){
             }
 
             /* open the required converters and cache them */
-            /* BEGIN android-changed */
             myConverterData->myConverterArray[GB2312_1] =
-                ucnv_loadSharedData("noop-gb2312_gl", &stackPieces, &stackArgs, errorCode);
+                ucnv_loadSharedData("ibm-5478", &stackPieces, &stackArgs, errorCode);
             if(version==1) {
                 myConverterData->myConverterArray[ISO_IR_165] =
-                    ucnv_loadSharedData("noop-iso-ir-165", &stackPieces, &stackArgs, errorCode);
+                    ucnv_loadSharedData("iso-ir-165", &stackPieces, &stackArgs, errorCode);
             }
             myConverterData->myConverterArray[CNS_11643] =
-                ucnv_loadSharedData("noop-cns-11643", &stackPieces, &stackArgs, errorCode);
-            /* END android-changed */
+                ucnv_loadSharedData("cns-11643-1992", &stackPieces, &stackArgs, errorCode);
 
 
-            /* set the function pointers to appropriate funtions */
+            /* set the function pointers to appropriate functions */
             cnv->sharedData=(UConverterSharedData*)&_ISO2022CNData;
             uprv_strcpy(myConverterData->locale,"cn");
 
@@ -2153,7 +2147,7 @@ escape:
                     changeState_2022(args->converter,&(mySource),
                         mySourceLimit, ISO_2022_JP,err);
 
-                    /* If in ISO-2022-JP only and we successully completed an escape sequence, but previous segment was empty, create an error */
+                    /* If in ISO-2022-JP only and we successfully completed an escape sequence, but previous segment was empty, create an error */
                     if(myData->version==0 && myData->key==0 && U_SUCCESS(*err) && myData->isEmptySegment) {
                         *err = U_ILLEGAL_ESCAPE_SEQUENCE;
                         args->converter->toUCallbackReason = UCNV_IRREGULAR;
@@ -2855,21 +2849,21 @@ getTrailByte:
 *       SS2 is a Chinese character as defined in CNS
 *       11643-plane-2, until another SS2designation
 *       appears
-*       (Meaning <ESC>N must preceed every 2 byte
+*       (Meaning <ESC>N must precede every 2 byte
 *        sequence.)
 *
 *      ESC $ + I       Indicates the immediate two bytes following SS3
 *       is a Chinese character as defined in CNS
 *       11643-plane-3, until another SS3designation
 *       appears
-*       (Meaning <ESC>O must preceed every 2 byte
+*       (Meaning <ESC>O must precede every 2 byte
 *        sequence.)
 *
 *      ESC $ + J       Indicates the immediate two bytes following SS3
 *       is a Chinese character as defined in CNS
 *       11643-plane-4, until another SS3designation
 *       appears
-*       (In English: <ESC>O must preceed every 2 byte
+*       (In English: <ESC>O must precede every 2 byte
 *        sequence.)
 *
 *      ESC $ + K       Indicates the immediate two bytes following SS3

@@ -80,7 +80,7 @@ void DateIntervalFormatTest::testAPI() {
 
     DateIntervalFormat* dtitvfmt = DateIntervalFormat::createInstance(UDAT_YEAR_MONTH_DAY, status);
     if(U_FAILURE(status)) {
-        dataerrln("ERROR: Could not create DateIntervalFormat (skeleton + default locale) - exitting");
+        dataerrln("ERROR: Could not create DateIntervalFormat (skeleton + default locale) - exiting");
         return;
     } else {
         delete dtitvfmt;
@@ -94,7 +94,7 @@ void DateIntervalFormatTest::testAPI() {
 
     dtitvfmt = DateIntervalFormat::createInstance(UDAT_YEAR_MONTH_DAY, Locale::getJapanese(), status);
     if(U_FAILURE(status)) {
-        dataerrln("ERROR: Could not create DateIntervalFormat (skeleton + locale) - exitting");
+        dataerrln("ERROR: Could not create DateIntervalFormat (skeleton + locale) - exiting");
         return;
     } else {
         delete dtitvfmt;
@@ -112,7 +112,7 @@ void DateIntervalFormatTest::testAPI() {
     delete dtitvinf;
 
     if(U_FAILURE(status)) {
-        dataerrln("ERROR: Could not create DateIntervalFormat (skeleton + DateIntervalInfo + default locale) - exitting");
+        dataerrln("ERROR: Could not create DateIntervalFormat (skeleton + DateIntervalInfo + default locale) - exiting");
         return;
     } else {
         delete dtitvfmt;
@@ -129,7 +129,7 @@ void DateIntervalFormatTest::testAPI() {
     dtitvfmt = DateIntervalFormat::createInstance("EEEdMMMyhms", Locale::getSimplifiedChinese(), *dtitvinf, status);
     delete dtitvinf;
     if(U_FAILURE(status)) {
-        dataerrln("ERROR: Could not create DateIntervalFormat (skeleton + DateIntervalInfo + locale) - exitting");
+        dataerrln("ERROR: Could not create DateIntervalFormat (skeleton + DateIntervalInfo + locale) - exiting");
         return;
     }
     // not deleted, test clone
@@ -263,19 +263,19 @@ void DateIntervalFormatTest::testAPI() {
 
     DateIntervalFormat* dtifmt = new DateIntervalFormat(fmt, inf, status);
     if(U_FAILURE(status)) {
-        dataerrln("ERROR: Could not create DateIntervalFormat (default) - exitting");
+        dataerrln("ERROR: Could not create DateIntervalFormat (default) - exiting");
         return;
     }
 
     DateIntervalFormat* dtifmt2 = new(dtifmt);
     if ( (*dtifmt) != (*dtifmt2) ) {
-        dataerrln("ERROR: Could not create DateIntervalFormat (default) - exitting");
+        dataerrln("ERROR: Could not create DateIntervalFormat (default) - exiting");
         return;
     }
 
     DateIntervalFormat dtifmt3 = (*dtifmt);
     if ( (*dtifmt) != dtifmt3 ) {
-        dataerrln("ERROR: Could not create DateIntervalFormat (default) - exitting");
+        dataerrln("ERROR: Could not create DateIntervalFormat (default) - exiting");
         return;
     }
 
@@ -293,7 +293,7 @@ void DateIntervalFormatTest::testAPI() {
     status = U_ZERO_ERROR;
     dtitvfmt->format(formattable, res, pos, status);
     if ( status != U_ILLEGAL_ARGUMENT_ERROR ) {
-        dataerrln("ERROR: format non-date-interval object should set U_ILLEGAL_ARGUMENT_ERROR - exitting");
+        dataerrln("ERROR: format non-date-interval object should set U_ILLEGAL_ARGUMENT_ERROR - exiting");
         return;
     }
 
@@ -304,7 +304,7 @@ void DateIntervalFormatTest::testAPI() {
     status = U_ZERO_ERROR;
     dtitvfmt->format(formattable, res, pos, status);
     if ( U_FAILURE(status) ) {
-        dataerrln("ERROR: format date interval failed - exitting");
+        dataerrln("ERROR: format date interval failed - exiting");
         return;
     }
 
@@ -316,7 +316,7 @@ void DateIntervalFormatTest::testAPI() {
     status = U_ZERO_ERROR;
     dtitvfmt->format(*fromCal, *toCal, res, pos, status);
     if ( U_FAILURE(status) ) {
-        dataerrln("ERROR: format date interval failed - exitting");
+        dataerrln("ERROR: format date interval failed - exiting");
         return;
     }
     delete fromCal;
@@ -328,7 +328,7 @@ void DateIntervalFormatTest::testAPI() {
     // TODO: why do I need cast?
     ((Format*)dtitvfmt)->parseObject(res, fmttable, status);
     if ( status != U_INVALID_FORMAT_ERROR ) {
-        dataerrln("ERROR: parse should set U_INVALID_FORMAT_ERROR - exitting");
+        dataerrln("ERROR: parse should set U_INVALID_FORMAT_ERROR - exiting");
         return;
     }
 
@@ -1008,52 +1008,47 @@ void DateIntervalFormatTest::testFormat() {
 
         // Thai (default calendar buddhist)
 
-        // BEGIN ANDROID-changed.  Default calendar in Android is Gregorian for th locale.
-        // "th", "BE 2550 10 10 10:10:10", "BE 2551 10 10 10:10:10", "EEEEdMMMy", "\\u0E27\\u0E31\\u0E19\\u0E1E\\u0E38\\u0E18\\u0E17\\u0E35\\u0E48 10 \\u0E15.\\u0E04. 2550 \\u2013 \\u0E27\\u0E31\\u0E19\\u0E28\\u0E38\\u0E01\\u0E23\\u0E4C\\u0E17\\u0E35\\u0E48 10 \\u0E15.\\u0E04. 2551",
+        "th", "BE 2550 10 10 10:10:10", "BE 2551 10 10 10:10:10", "EEEEdMMMy", "\\u0E27\\u0E31\\u0E19\\u0E1E\\u0E38\\u0E18\\u0E17\\u0E35\\u0E48 10 \\u0E15.\\u0E04. 2550 \\u2013 \\u0E27\\u0E31\\u0E19\\u0E28\\u0E38\\u0E01\\u0E23\\u0E4C\\u0E17\\u0E35\\u0E48 10 \\u0E15.\\u0E04. 2551",
 
 
-        // "th", "BE 2550 10 10 10:10:10", "BE 2551 10 10 10:10:10", "dMMM", "10 \\u0E15.\\u0E04. 2550 \\u2013 10 \\u0E15.\\u0E04. 2551",
+        "th", "BE 2550 10 10 10:10:10", "BE 2551 10 10 10:10:10", "dMMM", "10 \\u0E15.\\u0E04. 2550 \\u2013 10 \\u0E15.\\u0E04. 2551",
 
-        // "th", "BE 2550 10 10 10:10:10", "BE 2551 10 10 10:10:10", "MMMy", "\\u0E15.\\u0E04. 2550 \\u2013 \\u0E15.\\u0E04. 2551",
-
-
-        // "th", "BE 2550 10 10 10:10:10", "BE 2551 10 10 10:10:10", "EdMy", "\\u0E1E. 10/10/2550 \\u2013 \\u0E28. 10/10/2551",
-
-        // "th", "BE 2550 10 10 10:10:10", "BE 2551 10 10 10:10:10", "dMy", "10/10/2550 \\u2013 10/10/2551",
+        "th", "BE 2550 10 10 10:10:10", "BE 2551 10 10 10:10:10", "MMMy", "\\u0E15.\\u0E04. 2550 \\u2013 \\u0E15.\\u0E04. 2551",
 
 
-        // "th", "BE 2550 10 10 10:10:10", "BE 2551 10 10 10:10:10", "My", "10/2550 \\u2013 10/2551",
+        "th", "BE 2550 10 10 10:10:10", "BE 2551 10 10 10:10:10", "EdMy", "\\u0E1E. 10/10/2550 \\u2013 \\u0E28. 10/10/2551",
 
-        // "th", "BE 2550 10 10 10:10:10", "BE 2551 10 10 10:10:10", "EdM", "\\u0E1E. 10/10/2550 \\u2013 \\u0E28. 10/10/2551",
-
-
-        // "th", "BE 2550 10 10 10:10:10", "BE 2551 10 10 10:10:10", "y", "2550\\u20132551",
-
-        // "th", "BE 2550 10 10 10:10:10", "BE 2551 10 10 10:10:10", "M", "10/2550 \\u2013 10/2551",
+        "th", "BE 2550 10 10 10:10:10", "BE 2551 10 10 10:10:10", "dMy", "10/10/2550 \\u2013 10/10/2551",
 
 
-        // "th", "BE 2550 10 10 10:10:10", "BE 2550 11 10 10:10:10", "EEEEdMMMy", "\\u0E27\\u0E31\\u0E19\\u0E1E\\u0E38\\u0E18\\u0E17\\u0E35\\u0E48 10 \\u0E15.\\u0E04. \\u2013 \\u0E27\\u0E31\\u0E19\\u0E40\\u0E2A\\u0E32\\u0E23\\u0E4C\\u0E17\\u0E35\\u0E48 10 \\u0E1E.\\u0E22. 2550",
+        "th", "BE 2550 10 10 10:10:10", "BE 2551 10 10 10:10:10", "My", "10/2550 \\u2013 10/2551",
+
+        "th", "BE 2550 10 10 10:10:10", "BE 2551 10 10 10:10:10", "EdM", "\\u0E1E. 10/10/2550 \\u2013 \\u0E28. 10/10/2551",
 
 
-        // "th", "BE 2550 10 10 10:10:10", "BE 2550 11 10 10:10:10", "dMMM", "10 \\u0E15.\\u0E04. \\u2013 10 \\u0E1E.\\u0E22.",
+        "th", "BE 2550 10 10 10:10:10", "BE 2551 10 10 10:10:10", "y", "2550\\u20132551",
 
-        // "th", "BE 2550 10 10 10:10:10", "BE 2550 11 10 10:10:10", "MMMy", "\\u0E15.\\u0E04.\\u2013\\u0E1E.\\u0E22. 2550",
-
-        // "th", "2550 10 10 10:10:10", "2550 11 10 10:10:10", "dM", "10/10 \\u2013 10/11",
-
-        // "th", "BE 2550 10 10 10:10:10", "BE 2550 11 10 10:10:10", "My", "10/2550 \\u2013 11/2550",
+        "th", "BE 2550 10 10 10:10:10", "BE 2551 10 10 10:10:10", "M", "10/2550 \\u2013 10/2551",
 
 
-        // "th", "BE 2550 10 10 10:10:10", "BE 2550 11 10 10:10:10", "d", "10/10 \\u2013 10/11",
-
-        // "th", "BE 2550 10 10 10:10:10", "BE 2550 11 10 10:10:10", "y", "\\u0E1E.\\u0E28. 2550",
+        "th", "BE 2550 10 10 10:10:10", "BE 2550 11 10 10:10:10", "EEEEdMMMy", "\\u0E27\\u0E31\\u0E19\\u0E1E\\u0E38\\u0E18\\u0E17\\u0E35\\u0E48 10 \\u0E15.\\u0E04. \\u2013 \\u0E27\\u0E31\\u0E19\\u0E40\\u0E2A\\u0E32\\u0E23\\u0E4C\\u0E17\\u0E35\\u0E48 10 \\u0E1E.\\u0E22. 2550",
 
 
-        // "th", "BE 2550 10 10 10:10:10", "BE 2550 11 10 10:10:10", "MMM", "\\u0E15.\\u0E04.\\u2013\\u0E1E.\\u0E22.",
+        "th", "BE 2550 10 10 10:10:10", "BE 2550 11 10 10:10:10", "dMMM", "10 \\u0E15.\\u0E04. \\u2013 10 \\u0E1E.\\u0E22.",
 
-        // "th", "2550 10 10 10:10:10", "2550 11 10 10:10:10", "y", "\\u0E1E.\\u0E28. 2550",
+        "th", "BE 2550 10 10 10:10:10", "BE 2550 11 10 10:10:10", "MMMy", "\\u0E15.\\u0E04.\\u2013\\u0E1E.\\u0E22. 2550",
 
-        // "th", "2550 10 10 10:10:10", "2550 11 10 10:10:10", "MMM", "\\u0E15.\\u0E04.\\u2013\\u0E1E.\\u0E22.",
+        "th", "2550 10 10 10:10:10", "2550 11 10 10:10:10", "dM", "10/10 \\u2013 10/11",
+
+        "th", "BE 2550 10 10 10:10:10", "BE 2550 11 10 10:10:10", "My", "10/2550 \\u2013 11/2550",
+
+
+        "th", "BE 2550 10 10 10:10:10", "BE 2550 11 10 10:10:10", "d", "10/10 \\u2013 10/11",
+
+        "th", "BE 2550 10 10 10:10:10", "BE 2550 11 10 10:10:10", "y", "\\u0E1E.\\u0E28. 2550",
+
+
+        "th", "BE 2550 10 10 10:10:10", "BE 2550 11 10 10:10:10", "MMM", "\\u0E15.\\u0E04.\\u2013\\u0E1E.\\u0E22.",
 
         // Tests for Japanese calendar with eras, including new era in 2019 (Heisei 31 through April 30, then new era)
 
@@ -1064,12 +1059,12 @@ void DateIntervalFormatTest::testFormat() {
         "en-u-ca-japanese", "S 64 01 05 09:00:00", "H 1 01 15 09:00:00",  "GyMMMd", "Jan 5, 64 Sh\\u014Dwa \\u2013 Jan 15, 1 Heisei",
 
         "en-u-ca-japanese", "S 64 01 05 09:00:00", "H 1 01 15 09:00:00",  "GGGGGyMd", "1/5/64 S \\u2013 1/15/1 H",
-
+ 
         "en-u-ca-japanese", "H 31 04 15 09:00:00", JP_ERA_2019_NARROW " 1 05 15 09:00:00",  "GyMMMd", "Apr 15, 31 Heisei \\u2013 May 15, 1 " JP_ERA_2019_ROOT,
 
         "en-u-ca-japanese", "H 31 04 15 09:00:00", JP_ERA_2019_NARROW " 1 05 15 09:00:00",  "GGGGGyMd", "4/15/31 H \\u2013 5/15/1 " JP_ERA_2019_NARROW,
-
-
+ 
+ 
         "ja-u-ca-japanese", "H 31 03 15 09:00:00", "H 31 04 15 09:00:00", "GyMMMd", "\\u5E73\\u621031\\u5E743\\u670815\\u65E5\\uFF5E4\\u670815\\u65E5",
 
         "ja-u-ca-japanese", "H 31 03 15 09:00:00", "H 31 04 15 09:00:00", "GGGGGyMd", "H31/03/15\\uFF5E31/04/15",
@@ -1080,7 +1075,6 @@ void DateIntervalFormatTest::testFormat() {
 
         "ja-u-ca-japanese", "H 31 04 15 09:00:00", JP_ERA_2019_NARROW " 1 05 15 09:00:00", "GGGGGyMd", "H31/04/15\\uFF5E" JP_ERA_2019_NARROW "1/05/15",
 
-        // END ANDROID-changed
     };
     expect(DATA, UPRV_LENGTHOF(DATA));
 }
@@ -1160,8 +1154,8 @@ void DateIntervalFormatTest::testHourMetacharacters() {
         "zh_HK", "CE 2010 09 27 00:00:00", "CE 2010 09 27 01:00:00", "jj", "\\u4E0A\\u534812\\u6642\\u81F31\\u6642",
         "zh_HK", "CE 2010 09 27 10:00:00", "CE 2010 09 27 13:00:00", "hB", "\\u4E0A\\u534810\\u6642 \\u2013 \\u4E0B\\u53481\\u6642",
         "zh_HK", "CE 2010 09 27 00:00:00", "CE 2010 09 27 01:00:00", "hB", "\\u51CC\\u666812\\u20131\\u6642",
-        "zh_HK", "CE 2010 09 27 10:00:00", "CE 2010 09 27 13:00:00", "CC", "\\u4E0A\\u534810\\u6642 \\u2013 \\u4E0B\\u53481\\u6642",
-        "zh_HK", "CE 2010 09 27 00:00:00", "CE 2010 09 27 01:00:00", "CC", "\\u51CC\\u666812\\u20131\\u6642",
+        "zh_HK", "CE 2010 09 27 10:00:00", "CE 2010 09 27 13:00:00", "CC", "\\u4E0A\\u534810\\u6642\\u81F3\\u4E0B\\u53481\\u6642",
+        "zh_HK", "CE 2010 09 27 00:00:00", "CE 2010 09 27 01:00:00", "CC", "\\u4E0A\\u534812\\u6642\\u81F31\\u6642",
         "hi_IN", "CE 2010 09 27 10:00:00", "CE 2010 09 27 13:00:00", "jj", "10 am \\u2013 1 pm",
         "hi_IN", "CE 2010 09 27 00:00:00", "CE 2010 09 27 01:00:00", "jj", "12\\u20131 am",
         "hi_IN", "CE 2010 09 27 10:00:00", "CE 2010 09 27 13:00:00", "hB", "\\u0938\\u0941\\u092C\\u0939 10 \\u2013 \\u0926\\u094B\\u092A\\u0939\\u0930 1",
@@ -1200,7 +1194,7 @@ void DateIntervalFormatTest::expect(const char** data, int32_t data_length) {
             return;
         }
         const char* calType = defCal->getType();
-
+ 
         Locale refLoc("root");
         if (calType) {
             refLoc.setKeywordValue("calendar", calType, ec);
@@ -1734,7 +1728,7 @@ void DateIntervalFormatTest::testTicket11583_2() {
     DateInterval interval((UDate) 1232364615000.0, (UDate) 1328787015000.0);
     UnicodeString appendTo;
     FieldPosition fpos(FieldPosition::DONT_CARE);
-    UnicodeString expected("ene. de 2009 \\u2013 feb. de 2012");
+    UnicodeString expected("ene de 2009 \\u2013 feb de 2012");
     assertEquals(
             "",
             expected.unescape(),
@@ -2222,7 +2216,7 @@ void DateIntervalFormatTest::testTicket21222GregorianEraDiff() {
 
     formatted = g->formatToValue(BCtoAD, status);
     assertEquals("Gregorian - BC to AD",
-                 u"4 5, 123 BC, 6 AM \u2013 4 5, 124 AD, 6 AM",
+                 u"4/5/123 B, 6 AM \u2013 4/5/124 A, 6 AM",
                  formatted.toString(status));
 }
 
@@ -2270,20 +2264,20 @@ void DateIntervalFormatTest::testTicket21222ROCEraDiff() {
 
     formatted = roc->formatToValue(bothAfterMG, status);
     assertEquals("roc calendar - both dates in MG Era",
-                 u"民國1/1/2 6 上午 – 民國2/1/2 6 上午",
+                 u"民國1/1/2 上午6時 – 民國2/1/2 上午6時",
                  formatted.toString(status));
     getCategoryAndField(formatted, expectedCategory,
                         expectedField, status);
 
     formatted = roc->formatToValue(beforeAfterMG, status);
     assertEquals("roc calendar - prior MG Era and in MG Era",
-                 u"民國前1年1月2日 6 上午 – 民國2年1月2日 6 上午",
+                 u"民國前1/1/2 上午6時 – 民國2/1/2 上午6時",
                  formatted.toString(status));
     verifyCategoryAndField(formatted, expectedCategory, expectedField, status);
 
     formatted = roc->formatToValue(bothBeforeMG, status);
     assertEquals("roc calendar - both dates prior MG Era",
-                 u"民國前2/1/2 6 上午 – 民國前1/1/2 6 上午",
+                 u"民國前2/1/2 上午6時 – 民國前1/1/2 上午6時",
                  formatted.toString(status));
     verifyCategoryAndField(formatted, expectedCategory, expectedField, status);
 }
@@ -2346,7 +2340,7 @@ void DateIntervalFormatTest::testTicket21222JapaneseEraDiff() {
 
     formatted = japanese->formatToValue(beforeAfterReiwa, status);
     assertEquals("japanese calendar - date before and in Reiwa",
-                 u"平成31年3月2日 午前6時～令和元年5月4日 午前6時",
+                 u"H31/3/2 午前6時～R1/5/4 午前6時",
                  formatted.toString(status));
     verifyCategoryAndField(formatted, expectedCategory, expectedField, status);
 }

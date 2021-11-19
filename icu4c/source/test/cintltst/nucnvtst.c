@@ -290,10 +290,10 @@ void addTestNewConvert(TestNode** root)
    addTest(root, &TestISO_2022_JP, "tsconv/nucnvtst/TestISO_2022_JP");
    addTest(root, &TestJIS, "tsconv/nucnvtst/TestJIS");
    addTest(root, &TestISO_2022_JP_1, "tsconv/nucnvtst/TestISO_2022_JP_1");
-   // android-changed (no have ISO_2022_JP_2) -- addTest(root, &TestISO_2022_JP_2, "tsconv/nucnvtst/TestISO_2022_JP_2");
+   addTest(root, &TestISO_2022_JP_2, "tsconv/nucnvtst/TestISO_2022_JP_2");
    addTest(root, &TestISO_2022_KR, "tsconv/nucnvtst/TestISO_2022_KR");
    addTest(root, &TestISO_2022_KR_1, "tsconv/nucnvtst/TestISO_2022_KR_1");
-   // android-changed (no ISO-2022-CN) -- addTest(root, &TestISO_2022_CN, "tsconv/nucnvtst/TestISO_2022_CN");
+   addTest(root, &TestISO_2022_CN, "tsconv/nucnvtst/TestISO_2022_CN");
    /*
     * ICU 4.4 (ticket #7314) removes mappings for CNS 11643 planes 3..7
    addTest(root, &TestISO_2022_CN_EXT, "tsconv/nucnvtst/TestISO_2022_CN_EXT");
@@ -329,7 +329,8 @@ void addTestNewConvert(TestNode** root)
 #if !UCONFIG_NO_LEGACY_CONVERSION
    addTest(root, &TestJitterbug2346, "tsconv/nucnvtst/TestJitterbug2346");
    addTest(root, &TestJitterbug2411, "tsconv/nucnvtst/TestJitterbug2411");
-   // android-removed (no full ISO2022 CJK tables)  -- addTest(root, &TestJitterbug6175, "tsconv/nucnvtst/TestJitterbug6175");
+   addTest(root, &TestJitterbug6175, "tsconv/nucnvtst/TestJitterbug6175");
+
    addTest(root, &TestIsFixedWidth, "tsconv/nucnvtst/TestIsFixedWidth");
 #endif
 }
@@ -591,7 +592,7 @@ static ETestConvertResult testConvertToU( const uint8_t *source, int sourcelen, 
                 &src,
                 srcLimit,
                 checkOffsets ? offs : NULL,
-                (UBool)(srcLimit == realSourceEnd), /* flush if we're at the end of hte source data */
+                (UBool)(srcLimit == realSourceEnd), /* flush if we're at the end of the source data */
                 &status);
 
         /*        offs += (targ-oldTarg); */
@@ -697,7 +698,7 @@ static void TestNewConvertWithBufferSizes(int32_t outsize, int32_t insize )
      { 0x0000, 0x0001, 0x0002, 0x0003, 0x0004, 0x0007, 0x000a, 0x000d, 0x000e, 0x000e };
 
 #ifdef U_ENABLE_GENERIC_ISO_2022
-    /* Same as UTF8, but with ^[%B preceeding */
+    /* Same as UTF8, but with ^[%B preceding */
     static const const uint8_t expectedISO2022[] =
      { 0x1b, 0x25, 0x42, 0x31, 0x32, 0x33, 0x00, 0xe4, 0xb8, 0x80, 0xe4, 0xba, 0x8c, 0xe4, 0xb8, 0x89, 0x2E };
     static const int32_t toISO2022Offs[]     =
@@ -1534,13 +1535,7 @@ static void TestAmbiguous()
     for(i=0; (name=ucnv_getAvailableName(i))!=NULL; ++i) {
         cnv=ucnv_open(name, &status);
         if(U_SUCCESS(status)) {
-            /* BEGIN android-changed. To save space Android does not build full ISO-2022-CN CJK tables. */
-            const char* cnvName = ucnv_getName(cnv, &status);
-            if (strlen(cnvName) < 8 ||
-                strncmp(cnvName, "ISO_2022_CN", 8) != 0) {
             TestAmbiguousConverter(cnv);
-            }
-            /* END android-changed */
             ucnv_close(cnv);
         } else {
             log_err("error: unable to open available converter \"%s\"\n", name);
@@ -4712,7 +4707,7 @@ TestEBCDIC_STATEFUL() {
      /* Test the condition when source >= sourceLimit */
     TestNextUCharError(cnv, source, source, U_INDEX_OUTOFBOUNDS_ERROR, "sourceLimit <= source");
     ucnv_reset(cnv);
-    /*Test for the condition where source > sourcelimit after consuming the shift chracter */
+    /*Test for the condition where source > sourcelimit after consuming the shift character */
     {
         static const uint8_t source1[]={0x0f};
         TestNextUCharError(cnv, (const char*)source1, (const char*)source1+sizeof(source1), U_INDEX_OUTOFBOUNDS_ERROR, "a character is truncated");
@@ -5492,7 +5487,7 @@ static void TestJitterbug1293(){
         numNeeded = bytes_needed;
     } while (status == U_BUFFER_OVERFLOW_ERROR);
     if(U_FAILURE(status)){
-      log_err("An error occured in ucnv_fromUChars. Error: %s", u_errorName(status));
+      log_err("An error occurred in ucnv_fromUChars. Error: %s", u_errorName(status));
       return;
     }
     ucnv_close(conv);

@@ -38,6 +38,7 @@ lrc{
         native{"arabext"}
     }
     calendar{
+        default{"persian"}
         generic{
             DateTimePatterns{
                 "HH:mm:ss zzzz",
@@ -53,6 +54,16 @@ lrc{
                 "{1} {0}",
                 "{1} {0}",
                 "{1} {0}",
+            }
+            DateTimeSkeletons{
+                "HHmmsszzzz",
+                "HHmmssz",
+                "HHmmss",
+                "HHmm",
+                "GyMMMMEEEEd",
+                "GyMMMMd",
+                "GyMMMd",
+                "GGGGGyMMdd",
             }
             intervalFormats{
                 fallback{"{0} – {1}"}
@@ -81,6 +92,16 @@ lrc{
                 "{1} {0}",
                 "{1} {0}",
                 "{1} {0}",
+            }
+            DateTimeSkeletons{
+                "HHmmsszzzz",
+                "HHmmssz",
+                "HHmmss",
+                "HHmm",
+                "yMMMMEEEEd",
+                "yMMMMd",
+                "yMMMd",
+                "yMMdd",
             }
             dayNames{
                 format{

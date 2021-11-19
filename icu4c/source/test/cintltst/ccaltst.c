@@ -90,15 +90,15 @@ static const UCalGetTypeTest ucalGetTypeTests[] = {
     { "en_US",                   UCAL_GREGORIAN, "gregorian" },
     { "ja_JP@calendar=japanese", UCAL_DEFAULT,   "japanese"  },
     { "th_TH",                   UCAL_GREGORIAN, "gregorian" },
-    { "th_TH",                   UCAL_DEFAULT,   "gregorian"  },  // android-changed
+    { "th_TH",                   UCAL_DEFAULT,   "buddhist"  },
     { "th-TH-u-ca-gregory",      UCAL_DEFAULT,   "gregorian" },
     { "ja_JP@calendar=japanese", UCAL_GREGORIAN, "gregorian" },
     { "fr_CH",                   UCAL_DEFAULT,   "gregorian" },
-    { "fr_SA",                   UCAL_DEFAULT,   "gregorian" },  // android-changed
-    { "fr_CH@rg=sazzzz",         UCAL_DEFAULT,   "gregorian" },  // android-changed
+    { "fr_SA",                   UCAL_DEFAULT,   "islamic-umalqura" },
+    { "fr_CH@rg=sazzzz",         UCAL_DEFAULT,   "islamic-umalqura" },
     { "fr_CH@calendar=japanese;rg=sazzzz", UCAL_DEFAULT, "japanese" },
-    { "fr_TH@rg=SA",             UCAL_DEFAULT,   "gregorian"  }, /* ignore malformed rg tag */  // android-changed
-    { "th@rg=SA",                UCAL_DEFAULT,   "gregorian"  }, /* ignore malformed rg tag */  // android-changed
+    { "fr_TH@rg=SA",             UCAL_DEFAULT,   "buddhist"  }, /* ignore malformed rg tag */
+    { "th@rg=SA",                UCAL_DEFAULT,   "buddhist"  }, /* ignore malformed rg tag */
     { "",                        UCAL_GREGORIAN, "gregorian" },
     { NULL,                      UCAL_GREGORIAN, "gregorian" },
     { NULL, 0, NULL } /* terminator */
@@ -336,7 +336,7 @@ static void TestCalendar()
     /* use something sensible w/o hardcoding the count */
     if(count > 0) {
         log_verbose("PASS: ucal_countAvailable() works fine\n");
-        log_verbose("The no: of locales for which calendars are avilable are %d\n", count);
+        log_verbose("The no: of locales for which calendars are available are %d\n", count);
     } else {
         log_data_err("FAIL: Error in countAvailable()\n");
     }
@@ -438,7 +438,7 @@ static void TestCalendar()
         log_err("FAIL: there is an error in getAttributes or setAttributes\n");
     else
         log_verbose("PASS: attribute set and got successfully\n");
-        /*set it back to orginal value */
+        /*set it back to original value */
     log_verbose("Setting it back to normal\n");
     ucal_setAttribute(calit, UCAL_LENIENT, count);
     if(ucal_getAttribute(calit, UCAL_LENIENT)!=count)
@@ -1597,18 +1597,18 @@ static void TestGetKeywordValuesForLocale() {
             { "und",         "gregorian", NULL, NULL, NULL, NULL },
             { "en_US",       "gregorian", NULL, NULL, NULL, NULL },
             { "en_029",      "gregorian", NULL, NULL, NULL, NULL },
-            { "th_TH",       "gregorian", "buddhist", NULL, NULL, NULL },  // android-changed
-            { "und_TH",      "gregorian", "buddhist", NULL, NULL, NULL },  // android-changed
-            { "en_TH",       "gregorian", "buddhist", NULL, NULL, NULL },  // android-changed
+            { "th_TH",       "buddhist", "gregorian", NULL, NULL, NULL },
+            { "und_TH",      "buddhist", "gregorian", NULL, NULL, NULL },
+            { "en_TH",       "buddhist", "gregorian", NULL, NULL, NULL },
             { "he_IL",       "gregorian", "hebrew", "islamic", "islamic-civil", "islamic-tbla" },
             { "ar_EG",       "gregorian", "coptic", "islamic", "islamic-civil", "islamic-tbla" },
             { "ja",          "gregorian", "japanese", NULL, NULL, NULL },
             { "ps_Guru_IN",  "gregorian", "indian", NULL, NULL, NULL },
-            { "th@calendar=gregorian", "gregorian", "buddhist", NULL, NULL, NULL },  // android-changed
+            { "th@calendar=gregorian", "buddhist", "gregorian", NULL, NULL, NULL },
             { "en@calendar=islamic",   "gregorian", NULL, NULL, NULL, NULL },
             { "zh_TW",       "gregorian", "roc", "chinese", NULL, NULL },
-            { "ar_IR",       "gregorian", "persian", "islamic", "islamic-civil", "islamic-tbla" },  // android-changed
-            { "th@rg=SAZZZZ", "gregorian", "islamic-umalqura", "islamic", "islamic-rgsa", NULL },  // android-changed
+            { "ar_IR",       "persian", "gregorian", "islamic", "islamic-civil", "islamic-tbla" },
+            { "th@rg=SAZZZZ", "islamic-umalqura", "gregorian", "islamic", "islamic-rgsa", NULL },
     };
     const int32_t EXPECTED_SIZE[PREFERRED_SIZE] = { 1, 1, 1, 1, 2, 2, 2, 5, 5, 2, 2, 2, 1, 3, 5, 4 };
     UErrorCode status = U_ZERO_ERROR;
@@ -1885,7 +1885,7 @@ static const UChar tzUSPacific[] = { 0x55,0x53,0x2F,0x50,0x61,0x63,0x69,0x66,0x6
 static const UChar tzGMT[] = { 0x47,0x4D,0x54,0 }; /* "GMT" */
 
 static const TFDItem tfdItems[] = {
-    /* timezone    locale          start              target           progres  yDf  MDf    dDf     HDf       mDf         sDf */
+    /* timezone    locale          start              target           progress yDf  MDf    dDf     HDf       mDf         sDf */
     /* For these we compute the progressive difference for each field - not resetting the calendar after each call */
     { tzUSPacific, "en_US",        1267459800000.0,   1277772600000.0,  TRUE,     0,   3,    27,      9,       40,          0 }, /* 2010-Mar-01 08:10 -> 2010-Jun-28 17:50 */
     { tzUSPacific, "en_US",        1267459800000.0,   1299089280000.0,  TRUE,     1,   0,     1,      1,       58,          0 }, /* 2010-Mar-01 08:10 -> 2011-Mar-02 10:08 */

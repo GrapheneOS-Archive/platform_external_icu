@@ -683,7 +683,7 @@ public:
     virtual void getRules(
             const char *localeID, const char *collationType,
             UnicodeString &rules,
-            const char *&errorReason, UErrorCode &errorCode);
+            const char *&errorReason, UErrorCode &errorCode) override;
 
 private:
     const char *inputDir;
@@ -1035,11 +1035,7 @@ addCollation(ParseState* state, TableResource  *result, const char *collationTyp
 }
 
 static UBool
-keepCollationType(const char *type) {  // android-changed
-    // BEGIN android-added
-    if (uprv_strcmp(type, "big5han") == 0) { return FALSE; }
-    if (uprv_strcmp(type, "gb2312han") == 0) { return FALSE; }
-    // END android-added
+keepCollationType(const char * /*type*/) {
     return TRUE;
 }
 

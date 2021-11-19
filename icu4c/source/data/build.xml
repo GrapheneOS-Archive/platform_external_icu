@@ -42,8 +42,8 @@
             </or>
         </condition>
         <fail unless="is.cldr.classes.set" message="CLDR classes not found in ${cldrtools.dir}/cldr-code/target/classes. Please either set the CLDR_CLASSES environment variable or build cldr-code.jar."/>
-        <!-- Android-changed: By default proddata is getting build to cldr-staging instead of cldr-aux -->
-        <property name="env.CLDR_TMP_DIR" location="${env.CLDR_DIR}/../cldr-staging" />
+
+        <property name="env.CLDR_TMP_DIR" location="${env.CLDR_DIR}/../cldr-aux" /> <!-- Hack: see CLDRPaths -->
         <property name="cldr.prod.dir" location="${env.CLDR_TMP_DIR}/production/" />
         <echo message="java home: ${java.home}"/>
         <echo message="java version: ${java.version}"/>
@@ -58,12 +58,13 @@
     <target name="setup" depends="init">
         <mkdir dir="${env.CLDR_TMP_DIR}"/> <!-- make sure parent dir exists -->
         <condition property="cldrprod.exists">
-            <available file="${cldr.prod.dir}" type="dir"/>
+            <available file="${cldr.prod.dir}/common" type="dir"/>
         </condition>
     </target>
 
     <target name="cleanprod" depends="init, setup" if="cldrprod.exists">
-        <delete dir="${cldr.prod.dir}" />
+        <delete dir="${cldr.prod.dir}/common" />
+        <delete dir="${cldr.prod.dir}/keyboards" />
     </target>
     <target name="proddata" depends="init,setup" unless="cldrprod.exists">
         <echo message="Rebuilding ${cldr.prod.dir} - takes a while!"/>

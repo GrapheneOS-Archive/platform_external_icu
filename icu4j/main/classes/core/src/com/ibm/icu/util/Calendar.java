@@ -1485,7 +1485,7 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
      */
     private transient int             nextStamp = MINIMUM_USER_STAMP;
 
-    /* Max value for stamp allowable before recalcution */
+    /* Max value for stamp allowable before recalculation */
     private static int STAMP_MAX = 10000;
 
     // the internal serial version which says which version was written
@@ -2786,7 +2786,7 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
      * Subclasses can override these two methods if their values differ from the defaults.
      * <p>
      * Subclasses that have fields for which the assumption of continuity breaks
-     * down must overide <code>roll</code> to handle those fields specially.
+     * down must override <code>roll</code> to handle those fields specially.
      * For example, in the Hebrew calendar the month "Adar I"
      * only occurs in leap years; in other years the calendar jumps from
      * Shevat (month #4) to Adar (month #6).  The
@@ -3165,7 +3165,7 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
      * perform the add.
      * <p>
      * Subclasses that have fields for which this assumption of continuity breaks
-     * down must overide <code>add</code> to handle those fields specially.
+     * down must override <code>add</code> to handle those fields specially.
      * For example, in the Hebrew calendar the month "Adar I"
      * only occurs in leap years; in other years the calendar jumps from
      * Shevat (month #4) to Adar (month #6).  The
@@ -3398,7 +3398,7 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
     }
 
     //-------------------------------------------------------------------------
-    // Interface for creating custon DateFormats for different types of Calendars
+    // Interface for creating custom DateFormats for different types of Calendars
     //-------------------------------------------------------------------------
 
     /**
@@ -3570,51 +3570,6 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
         return result;
     }
 
-    // Android patch (http://b/28832222) start.
-    // Expose method to get format string for java.time.
-    /**
-     * Get the date time format string for the specified values.
-     * This is a copy of {@link #formatHelper(Calendar, ULocale, int, int)} with the following
-     * changes:
-     * <ul>
-     *     <li>Made public, but hidden</li>
-     *     <li>take calendar type string instead of Calendar</li>
-     *     <li>Ignore overrides</li>
-     *     <li>Return format string instead of DateFormat.</li>
-     * </ul>
-     * This is not meant as public API.
-     * @internal
-     */
-    // TODO: Check if calType can be passed via keyword on loc parameter instead.
-    public static String getDateTimeFormatString(ULocale loc, String calType, int dateStyle,
-            int timeStyle) {
-        if (timeStyle < DateFormat.NONE || timeStyle > DateFormat.SHORT) {
-            throw new IllegalArgumentException("Illegal time style " + timeStyle);
-        }
-        if (dateStyle < DateFormat.NONE || dateStyle > DateFormat.SHORT) {
-            throw new IllegalArgumentException("Illegal date style " + dateStyle);
-        }
-
-        PatternData patternData = PatternData.make(loc, calType);
-
-        // Resolve a pattern for the date/time style
-        String pattern = null;
-        if ((timeStyle >= 0) && (dateStyle >= 0)) {
-            pattern = SimpleFormatterImpl.formatRawPattern(
-                    patternData.getDateTimePattern(dateStyle), 2, 2,
-                    patternData.patterns[timeStyle],
-                    patternData.patterns[dateStyle + 4]);
-        } else if (timeStyle >= 0) {
-            pattern = patternData.patterns[timeStyle];
-        } else if (dateStyle >= 0) {
-            pattern = patternData.patterns[dateStyle + 4];
-        } else {
-            throw new IllegalArgumentException("No date or time style specified");
-        }
-        return pattern;
-    }
-    // Android patch (http://b/28832222) end.
-
     static class PatternData {
         // TODO make this even more object oriented
         private String[] patterns;
@@ -3632,12 +3587,8 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
             return dateTimePattern;
         }
         private static PatternData make(Calendar cal, ULocale loc) {
-            // Android patch (http://b/28832222) start.
-            return make(loc, cal.getType());
-        }
-        private static PatternData make(ULocale loc, String calType) {
-            // Android patch (http://b/28832222) end.
             // First, try to get a pattern from PATTERN_CACHE
+            String calType = cal.getType();
             String key = loc.getBaseName() + "+" + calType;
             PatternData patternData = PATTERN_CACHE.get(key);
             if (patternData == null) {
@@ -5068,7 +5019,7 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
         // fields computed by handleComputeFields().
         computeWeekFields();
 
-        // Compute time-related fields.  These are indepent of the date and
+        // Compute time-related fields.  These are independent of the date and
         // of the subclass algorithm.  They depend only on the local zone
         // wall milliseconds in day.
         int millisInDay = (int) (localMillis - (days * ONE_DAY));
@@ -5557,7 +5508,7 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
     }
 
     /**
-     * Find the previous zone transtion near the given time.
+     * Find the previous zone transition near the given time.
      *
      * @param base The base time, inclusive.
      * @return The time of the previous transition, or null if not found.
@@ -5614,7 +5565,7 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
     };
 
     /**
-     * Implementing binary search for zone transtion detection, used by {@link #getPreviousZoneTransitionTime(TimeZone, long, long)}
+     * Implementing binary search for zone transition detection, used by {@link #getPreviousZoneTransitionTime(TimeZone, long, long)}
      * @param tz The time zone.
      * @param upperOffset The zone offset at <code>upper</code>
      * @param upper The upper bound, inclusive.
@@ -5805,7 +5756,7 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
                 // recalculate offsets from the resolved time (non-wall).
                 // When the given wall time falls into skipped wall time,
                 // the offsets will be based on the zone offsets AFTER
-                // the transition (which means, earliest possibe interpretation).
+                // the transition (which means, earliest possible interpretation).
                 long tgmt = wall - (offsets[0] + offsets[1]);
                 zone.getOffset(tgmt, false, offsets);
             }
@@ -5858,7 +5809,7 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
                 // recalculate offsets from the resolved time (non-wall).
                 // When the given wall time falls into skipped wall time,
                 // the offsets will be based on the zone offsets AFTER
-                // the transition (which means, earliest possibe interpretation).
+                // the transition (which means, earliest possible interpretation).
                 long tgmt = wall - (offsets[0] + offsets[1]);
                 zone.getOffset(tgmt, false, offsets);
             }
