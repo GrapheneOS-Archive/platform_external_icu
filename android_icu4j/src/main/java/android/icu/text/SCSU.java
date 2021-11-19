@@ -13,7 +13,7 @@ package android.icu.text;
 /**
  * An interface defining  constants for the Standard Compression Scheme
  * for Unicode (SCSU) as outlined in <A
- * HREF="http://www.unicode.org/unicode/reports/tr6">Unicode Technical
+ * HREF="https://www.unicode.org/reports/tr6">Unicode Technical
  * Report #6</A>.
  *
  * @author Stephen F. Booth

@@ -27,6 +27,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
 import android.icu.dev.test.TestFmwk;
+import android.icu.dev.test.TestUtil;
 import android.icu.impl.RBBIDataWrapper;
 import android.icu.text.BreakIterator;
 import android.icu.text.RuleBasedBreakIterator;
@@ -45,6 +46,9 @@ public class RBBITest extends TestFmwk {
 
     @Test
    public void TestThaiDictionaryBreakIterator() {
+       // The expectations in this test heavily depends on the Thai dictionary.
+       // Therefore, we skip this test under the LSTM configuration.
+       org.junit.Assume.assumeTrue(!TestUtil.skipDictionaryTest());
        int position;
        int index;
        int result[] = { 1, 2, 5, 10, 11, 12, 11, 10, 5, 2, 1, 0 };
@@ -838,7 +842,7 @@ public class RBBITest extends TestFmwk {
             int result = bi.preceding(ruleLen);
             assertEquals("Reverse iteration should find the boundary at 0", 0, result);
 
-            // Verify that the range of rule lengths being tested cover the transations
+            // Verify that the range of rule lengths being tested cover the translations
             // from 8 to 16 bit data.
             RBBIDataWrapper dw = bi.fRData;
             RBBIDataWrapper.RBBIStateTable fwtbl = dw.fFTable;
