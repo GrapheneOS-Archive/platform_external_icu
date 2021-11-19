@@ -325,7 +325,7 @@ sl{
                 "EEEE, dd. MMMM y G",
                 "dd. MMMM y G",
                 "d. MMM y G",
-                "d. MM. yy GGGGG",
+                "d. M. yy GGGGG",
                 "{1} {0}",
                 "{1} {0}",
                 "{1} {0}",
@@ -340,7 +340,7 @@ sl{
                 "GyMMMMEEEEdd",
                 "GyMMMMdd",
                 "GyMMMd",
-                "GGGGGyyMMd",
+                "GGGGGyyMd",
             }
             availableFormats{
                 Bh{"h B"}
@@ -548,7 +548,7 @@ sl{
                 "EEEE, d. MMMM y",
                 "d. MMMM y",
                 "d. MMM y",
-                "d. MM. yy",
+                "d. M. yy",
                 "{1}, {0}",
                 "{1} {0}",
                 "{1} {0}",
@@ -563,7 +563,7 @@ sl{
                 "yMMMMEEEEdd",
                 "yMMMMdd",
                 "yMMMd",
-                "yyMMd",
+                "yyMd",
             }
             appendItems{
                 Timezone{"{0} {1}"}

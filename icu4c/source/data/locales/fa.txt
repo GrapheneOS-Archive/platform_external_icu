@@ -363,7 +363,6 @@ fa{
                 }
             }
         }
-        default{"persian"}
         ethiopic{
             eras{
                 abbreviated{

@@ -50,7 +50,7 @@ yo_BJ{
         GE{"Gɔgia"}
         GF{"Firenshi Guana"}
         GS{"Gúúsù Georgia àti Gúúsù Àwɔn Erékùsù Sandwich"}
-        HK{"Agbègbè Ìshàkóso Ìshúná Hong Kong Tí Shánà Ń Darí"}
+        HK{"Hong Kong"}
         IC{"Ɛrékùsù Kánárì"}
         IL{"Iserɛli"}
         IS{"Ashilandi"}
@@ -62,7 +62,7 @@ yo_BJ{
         LC{"Lushia"}
         LI{"Lɛshitɛnisiteni"}
         MH{"Etikun Máshali"}
-        MO{"Agbègbè Ìshàkóso Pàtàkì Macao"}
+        MO{"Màkáò"}
         MZ{"Moshamibiku"}
         NF{"Etikun Nɔ́úfókì"}
         NO{"Nɔɔwii"}
@@ -71,7 +71,7 @@ yo_BJ{
         PF{"Firenshi Polinesia"}
         PM{"Pɛɛri ati mikuloni"}
         PR{"Pɔto Riko"}
-        PS{"Agbègbè ara Palɛsítínì"}
+        PS{"Palɛsítínì"}
         PT{"Pɔ́túgà"}
         QO{"Agbègbè Òshɔ́ɔ́níà"}
         RS{"Sɛ́bíà"}
@@ -106,9 +106,6 @@ yo_BJ{
         ZM{"Shamibia"}
         ZW{"Shimibabe"}
         ZZ{"Àgbègbè àìmɔ̀"}
-    }
-    Countries%short{
-        PS{"Palɛsítínì"}
     }
     Countries%variant{
         CZ{"Shɛ́ɛ́kì"}

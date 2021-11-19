@@ -111,7 +111,7 @@ ms{
         EZ{"Zon Euro"}
         FI{"Finland"}
         FJ{"Fiji"}
-        FK{"Kepulauan Falkland"}
+        FK{"Kepulauan Falkland (Islas Malvinas)"}
         FM{"Micronesia"}
         FO{"Kepulauan Faroe"}
         FR{"Perancis"}
@@ -134,7 +134,7 @@ ms{
         GU{"Guam"}
         GW{"Guinea Bissau"}
         GY{"Guyana"}
-        HK{"Hong Kong SAR China"}
+        HK{"Hong Kong"}
         HM{"Kepulauan Heard & McDonald"}
         HN{"Honduras"}
         HR{"Croatia"}
@@ -188,7 +188,7 @@ ms{
         ML{"Mali"}
         MM{"Myanmar (Burma)"}
         MN{"Mongolia"}
-        MO{"Macau SAR China"}
+        MO{"Macau"}
         MP{"Kepulauan Mariana Utara"}
         MQ{"Martinique"}
         MR{"Mauritania"}
@@ -223,7 +223,7 @@ ms{
         PM{"Saint Pierre dan Miquelon"}
         PN{"Kepulauan Pitcairn"}
         PR{"Puerto Rico"}
-        PS{"Wilayah Palestin"}
+        PS{"Palestin"}
         PT{"Portugal"}
         PW{"Palau"}
         PY{"Paraguay"}
@@ -300,9 +300,6 @@ ms{
     }
     Countries%short{
         GB{"UK"}
-        HK{"Hong Kong"}
-        MO{"Macau"}
-        PS{"Palestin"}
         UN{"PBB"}
         US{"A.S"}
     }
@@ -311,7 +308,6 @@ ms{
         CG{"Congo (Republik)"}
         CI{"Ivory Coast"}
         CZ{"Republik Czech"}
-        FK{"Kepulauan Falkland (Islas Malvinas)"}
         TL{"Timor Timur"}
     }
 }

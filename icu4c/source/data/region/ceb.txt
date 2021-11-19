@@ -111,7 +111,7 @@ ceb{
         EZ{"Eurozone"}
         FI{"Finland"}
         FJ{"Fiji"}
-        FK{"Falkland Islands"}
+        FK{"Falkland Islands (Islas Malvinas)"}
         FM{"Micronesia"}
         FO{"Faroe Islands"}
         FR{"Pransya"}
@@ -134,7 +134,7 @@ ceb{
         GU{"Guam"}
         GW{"Guinea-Bissau"}
         GY{"Guyana"}
-        HK{"Hong Kong SAR China"}
+        HK{"Hong Kong"}
         HM{"Heard & McDonald Islands"}
         HN{"Honduras"}
         HR{"Croatia"}
@@ -188,7 +188,7 @@ ceb{
         ML{"Mali"}
         MM{"Myanmar (Burma)"}
         MN{"Mongolia"}
-        MO{"Macao SAR China"}
+        MO{"Macao"}
         MP{"Northern Mariana Islands"}
         MQ{"Martinique"}
         MR{"Mauritania"}
@@ -223,7 +223,7 @@ ceb{
         PM{"St. Pierre & Miquelon"}
         PN{"Pitcairn Islands"}
         PR{"Puerto Rico"}
-        PS{"Palestinian Territories"}
+        PS{"Palestine"}
         PT{"Portugal"}
         PW{"Palau"}
         PY{"Paraguay"}
@@ -300,9 +300,6 @@ ceb{
     }
     Countries%short{
         GB{"UK"}
-        HK{"Hong Kong"}
-        MO{"Macao"}
-        PS{"Palestine"}
         US{"US"}
     }
     Countries%variant{
@@ -310,7 +307,6 @@ ceb{
         CG{"Congo (Republika)"}
         CI{"Ivory Coast"}
         CZ{"Czech Republic"}
-        FK{"Falkland Islands (Islas Malvinas)"}
         SZ{"Swaziland"}
         TL{"East Timor"}
     }

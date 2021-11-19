@@ -111,7 +111,7 @@ ga{
         EZ{"Limistéar an euro"}
         FI{"an Fhionlainn"}
         FJ{"Fidsí"}
-        FK{"Oileáin Fháclainne"}
+        FK{"Oileáin Fháclainne (Islas Malvinas)"}
         FM{"an Mhicrinéis"}
         FO{"Oileáin Fharó"}
         FR{"an Fhrainc"}
@@ -134,7 +134,7 @@ ga{
         GU{"Guam"}
         GW{"Guine Bissau"}
         GY{"an Ghuáin"}
-        HK{"Sainréigiún Riaracháin Hong Cong, Daonphoblacht na Síne"}
+        HK{"Hong Cong"}
         HM{"Oileán Heard agus Oileáin McDonald"}
         HN{"Hondúras"}
         HR{"an Chróit"}
@@ -188,7 +188,7 @@ ga{
         ML{"Mailí"}
         MM{"Maenmar (Burma)"}
         MN{"an Mhongóil"}
-        MO{"Sainréigiún Riaracháin Macao, Daonphoblacht na Síne"}
+        MO{"Macao"}
         MP{"na hOileáin Mháirianacha Thuaidh"}
         MQ{"Martinique"}
         MR{"an Mháratáin"}
@@ -223,7 +223,7 @@ ga{
         PM{"San Pierre agus Miquelon"}
         PN{"Oileáin Pitcairn"}
         PR{"Pórtó Ríce"}
-        PS{"na Críocha Palaistíneacha"}
+        PS{"an Phalaistín"}
         PT{"an Phortaingéil"}
         PW{"Oileáin Palau"}
         PY{"Paragua"}
@@ -299,9 +299,6 @@ ga{
         ZZ{"Réigiún Anaithnid"}
     }
     Countries%short{
-        HK{"Hong Cong"}
-        MO{"Macao"}
-        PS{"an Phalaistín"}
         UN{"NA"}
         US{"SAM"}
     }
@@ -309,7 +306,6 @@ ga{
         CD{"an Congó (PDC)"}
         CG{"an Congó (Poblacht)"}
         CZ{"Poblacht na Seice"}
-        FK{"Oileáin Fháclainne (Islas Malvinas)"}
         SZ{"an tSuasalainn"}
     }
 }

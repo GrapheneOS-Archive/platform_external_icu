@@ -223,7 +223,6 @@ ps{
         native{"arabext"}
     }
     calendar{
-        default{"persian"}
         generic{
             DateTimePatterns{
                 "H:mm:ss (zzzz)",

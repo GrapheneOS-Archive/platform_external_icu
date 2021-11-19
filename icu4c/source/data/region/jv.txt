@@ -111,7 +111,7 @@ jv{
         EZ{"Zona Éuro"}
         FI{"Finlan"}
         FJ{"Fiji"}
-        FK{"Kapuloan Falkland"}
+        FK{"Kapuloan Falkland (Islas Malvinas)"}
         FM{"Féderasi Mikronésia"}
         FO{"Kapuloan Faro"}
         FR{"Prancis"}
@@ -134,7 +134,7 @@ jv{
         GU{"Guam"}
         GW{"Guinea-Bissau"}
         GY{"Guyana"}
-        HK{"Laladan Administratif Astamiwa Hong Kong"}
+        HK{"Hong Kong"}
         HM{"Kapuloan Heard lan McDonald"}
         HN{"Honduras"}
         HR{"Kroasia"}
@@ -188,7 +188,7 @@ jv{
         ML{"Mali"}
         MM{"Myanmar (Burma)"}
         MN{"Mongolia"}
-        MO{"Laladan Administratif Astamiwa Makau"}
+        MO{"Macau"}
         MP{"Kapuloan Mariana Lor"}
         MQ{"Martinik"}
         MR{"Mauritania"}
@@ -223,7 +223,7 @@ jv{
         PM{"Saint Pièr lan Mikuélon"}
         PN{"Kapuloan Pitcairn"}
         PR{"Puèrto Riko"}
-        PS{"Tlatah Palèstina"}
+        PS{"Palèstina"}
         PT{"Portugal"}
         PW{"Palau"}
         PY{"Paraguay"}
@@ -300,16 +300,12 @@ jv{
     }
     Countries%short{
         GB{"KM"}
-        HK{"Hong Kong"}
-        MO{"Macau"}
-        PS{"Palèstina"}
         US{"AS"}
     }
     Countries%variant{
         CD{"Républik Dhémokratik Kongo"}
         CG{"Républik Kongo"}
         CZ{"Républik Céko"}
-        FK{"Kapuloan Falkland (Islas Malvinas)"}
         SZ{"(Swasiland)"}
         TL{"Timor Wétan"}
     }
