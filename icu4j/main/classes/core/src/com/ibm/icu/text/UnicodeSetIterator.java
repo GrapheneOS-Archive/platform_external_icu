@@ -10,6 +10,7 @@ package com.ibm.icu.text;
 
 import java.util.Iterator;
 
+// Android patch: Make UnicodeSetIterator non-final.
 /**
  * UnicodeSetIterator iterates over the contents of a UnicodeSet.  It
  * iterates over either code points or code point ranges.  After all
@@ -47,15 +48,16 @@ import java.util.Iterator;
  * @see UnicodeSet#strings()
  * @see UnicodeSet#iterator()
  */
-public final class UnicodeSetIterator {
+public class UnicodeSetIterator {
 
+    // Android patch: Make UnicodeSetIterator.IS_STRING non-final.
     /**
      * Value of <tt>codepoint</tt> if the iterator points to a string.
      * If <tt>codepoint == IS_STRING</tt>, then examine
      * <tt>string</tt> for the current iteration result.
      * @stable ICU 2.0
      */
-    public static final int IS_STRING = -1;
+    public static int IS_STRING = -1;
 
     /**
      * Current code point, or the special value <tt>IS_STRING</tt>, if
