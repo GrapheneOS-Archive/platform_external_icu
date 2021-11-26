@@ -148,10 +148,13 @@ TimeZoneTest::TestGenericAPI()
     const char* tzver = TimeZone::getTZDataVersion(status);
     if (U_FAILURE(status)) {
         errcheckln(status, "FAIL: getTZDataVersion failed - %s", u_errorName(status));
-    } else if (uprv_strlen(tzver) != 5 /* 4 digits + 1 letter */) {
-        errln((UnicodeString)"FAIL: getTZDataVersion returned " + tzver);
     } else {
-        logln((UnicodeString)"tzdata version: " + tzver);
+        int32_t tzverLen = uprv_strlen(tzver);
+        if (tzverLen == 5 || tzverLen == 6 /* 4 digits + 1 or 2 letters */) {
+            logln((UnicodeString)"tzdata version: " + tzver);
+        } else {
+            errln((UnicodeString)"FAIL: getTZDataVersion returned " + tzver);
+        }
     }
 }
 
@@ -2018,6 +2021,12 @@ void TimeZoneTest::TestCanonicalID() {
         {"Africa/Sao_Tome", "Africa/Abidjan"},
         {"America/Antigua", "America/Port_of_Spain"},
         {"America/Anguilla", "America/Port_of_Spain"},
+        {"America/Cayman", "America/Panama"},
+        // TODO(b/204533494): enable this check back.
+        // Android-Changed: due to issues with time zones canonicity, decision was made to keep
+        // America/Coral_Harbour as alias to America/Atikokan.
+        // See more details in system/timezone/RELEASE_NOTES.md
+        // {"America/Coral_Harbour", "America/Panama"},
         {"America/Curacao", "America/Aruba"},
         {"America/Dominica", "America/Port_of_Spain"},
         {"America/Grenada", "America/Port_of_Spain"},
@@ -2026,7 +2035,6 @@ void TimeZoneTest::TestCanonicalID() {
         {"America/Lower_Princes", "America/Aruba"},
         {"America/Marigot", "America/Port_of_Spain"},
         {"America/Montserrat", "America/Port_of_Spain"},
-        {"America/Panama", "America/Cayman"},
         {"America/Santa_Isabel", "America/Tijuana"},
         {"America/Shiprock", "America/Denver"},
         {"America/St_Barthelemy", "America/Port_of_Spain"},
@@ -2036,7 +2044,7 @@ void TimeZoneTest::TestCanonicalID() {
         {"America/St_Vincent", "America/Port_of_Spain"},
         {"America/Toronto", "America/Montreal"},
         {"America/Tortola", "America/Port_of_Spain"},
-        {"America/Virgin", "America/Port_of_Spain"},
+        {"America/Virgin", "America/Puerto_Rico"},
         {"Antarctica/South_Pole", "Antarctica/McMurdo"},
         {"Arctic/Longyearbyen", "Europe/Oslo"},
         {"Asia/Kuwait", "Asia/Aden"},
