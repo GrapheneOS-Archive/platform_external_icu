@@ -463,7 +463,7 @@ public final class NumberFormatter {
      * <li>AUTO: 0.90, 1.00, 1.10
      * <li>HIDE_IF_WHOLE: 0.90, 1, 1.10
      * </ul>
-     * 
+     *
      * @hide Only a subset of ICU is exposed in Android
      * @hide draft / provisional / internal are hidden on Android
      */
@@ -474,7 +474,7 @@ public final class NumberFormatter {
          * @hide draft / provisional / internal are hidden on Android
          */
         AUTO,
-    
+
         /**
          * Same as AUTO, but hide trailing zeros after the decimal separator if they are all zero.
          *

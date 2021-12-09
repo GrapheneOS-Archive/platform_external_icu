@@ -58,7 +58,7 @@ typedef struct ULocaleData ULocaleData;
 
 /**
  * Return the current CLDR version used by the library.
- * @param versionArray fillin that will recieve the version number
+ * @param versionArray fill-in that will receive the version number
  * @param status error code - could be U_MISSING_RESOURCE_ERROR if the version was not found.
  * \xrefitem stable "Stable" "Stable List" ICU 4.2
  */

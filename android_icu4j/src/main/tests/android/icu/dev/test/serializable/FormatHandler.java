@@ -1081,7 +1081,7 @@ public class FormatHandler
             ULocale uloc = ULocale.forLocale(Locale.US);
             NumberFormat formats[] = {
                 /*
-                 * The code below was used to genereate the
+                 * The code below was used to generate the
                  * serialized NumberFormat objects in ICU 3.6:
                  *
                  *    NumberFormat.getInstance(Locale.US)
@@ -1386,7 +1386,7 @@ public class FormatHandler
                    // of 1,000.  This prevents us from getting "onze cents cent
                    // vingt-deux" ("eleven hundred one hundred twenty-two").
                 "1100>: onze cents[ >>];\n" +
-                   // at 1,200, we go back to formating in thousands, so we
+                   // at 1,200, we go back to formatting in thousands, so we
                    // repeat the rule for 1,000
                 "1200: mille >>;\n" +
                    // at 2,000, the multiplier is added

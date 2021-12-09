@@ -89,27 +89,20 @@ public class MeasureUnit implements Serializable {
      * or prefix of a compound unit.
      *
      * @hide Only a subset of ICU is exposed in Android
-     * @hide draft / provisional / internal are hidden on Android
      */
     public enum Complexity {
         /**
          * A single unit, like kilojoule.
-         *
-         * @hide draft / provisional / internal are hidden on Android
          */
         SINGLE,
 
         /**
          * A compound unit, like meter-per-second.
-         *
-         * @hide draft / provisional / internal are hidden on Android
          */
         COMPOUND,
 
         /**
          * A mixed unit, like hour-and-minute.
-         *
-         * @hide draft / provisional / internal are hidden on Android
          */
         MIXED
     }
@@ -393,7 +386,7 @@ public class MeasureUnit implements Serializable {
      *
      * @param identifier CLDR Unit Identifier
      * @throws IllegalArgumentException if the identifier is invalid.
-     * @hide draft / provisional / internal are hidden on Android
+     * @hide Hide new API in Android temporarily
      */
     public static MeasureUnit forIdentifier(String identifier) {
         if (identifier == null || identifier.isEmpty()) {
@@ -446,7 +439,7 @@ public class MeasureUnit implements Serializable {
      * Get CLDR Unit Identifier for this MeasureUnit, as defined in UTS 35.
      *
      * @return The string form of this unit.
-     * @hide draft / provisional / internal are hidden on Android
+     * @hide Hide new API in Android temporarily
      */
     public String getIdentifier() {
         String result = measureUnitImpl == null ? getSubtype() : measureUnitImpl.getIdentifier();
@@ -457,7 +450,7 @@ public class MeasureUnit implements Serializable {
      * Compute the complexity of the unit. See Complexity for more information.
      *
      * @return The unit complexity.
-     * @hide draft / provisional / internal are hidden on Android
+     * @hide Hide new API in Android temporarily
      */
     public Complexity getComplexity() {
         if (measureUnitImpl == null) {
@@ -512,7 +505,7 @@ public class MeasureUnit implements Serializable {
      *
      * @return The dimensionality (power) of this simple unit.
      * @throws UnsupportedOperationException if the unit is COMPOUND or MIXED.
-     * @hide draft / provisional / internal are hidden on Android
+     * @hide Hide new API in Android temporarily
      */
     public int getDimensionality() {
         return getSingleUnitImpl().getDimensionality();
@@ -528,7 +521,7 @@ public class MeasureUnit implements Serializable {
      * @param dimensionality The dimensionality (power).
      * @return A new SINGLE unit.
      * @throws UnsupportedOperationException if the unit is COMPOUND or MIXED.
-     * @hide draft / provisional / internal are hidden on Android
+     * @hide Hide new API in Android temporarily
      */
     public MeasureUnit withDimensionality(int dimensionality) {
         SingleUnitImpl singleUnit = getSingleUnitImpl();
@@ -546,7 +539,7 @@ public class MeasureUnit implements Serializable {
      *
      * @return The reciprocal of the target unit.
      * @throws UnsupportedOperationException if the unit is MIXED.
-     * @hide draft / provisional / internal are hidden on Android
+     * @hide Hide new API in Android temporarily
      */
     public MeasureUnit reciprocal() {
         MeasureUnitImpl measureUnit = getCopyOfMeasureUnitImpl();
@@ -569,7 +562,7 @@ public class MeasureUnit implements Serializable {
      * @param other The MeasureUnit to multiply with the target.
      * @return The product of the target unit with the provided unit.
      * @throws UnsupportedOperationException if the unit is MIXED.
-     * @hide draft / provisional / internal are hidden on Android
+     * @hide Hide new API in Android temporarily
      */
     public MeasureUnit product(MeasureUnit other) {
         MeasureUnitImpl implCopy = getCopyOfMeasureUnitImpl();
@@ -603,7 +596,7 @@ public class MeasureUnit implements Serializable {
      * If this is a SINGLE unit, a list of length 1 will be returned.
      *
      * @return An unmodifiable list of single units
-     * @hide draft / provisional / internal are hidden on Android
+     * @hide Hide new API in Android temporarily
      */
     public List<MeasureUnit> splitToSingleUnits() {
         final ArrayList<SingleUnitImpl> singleUnits =
@@ -972,6 +965,12 @@ public class MeasureUnit implements Serializable {
     public static final MeasureUnit SQUARE_YARD = MeasureUnit.internalGetInstance("area", "square-yard");
 
     /**
+     * Constant for unit of concentr: item
+     * @hide draft / provisional / internal are hidden on Android
+     */
+    public static final MeasureUnit ITEM = MeasureUnit.internalGetInstance("concentr", "item");
+
+    /**
      * Constant for unit of concentr: karat
      */
     public static final MeasureUnit KARAT = MeasureUnit.internalGetInstance("concentr", "karat");
@@ -1247,6 +1246,12 @@ public class MeasureUnit implements Serializable {
     public static final MeasureUnit THERM_US = MeasureUnit.internalGetInstance("energy", "therm-us");
 
     /**
+     * Constant for unit of force: kilowatt-hour-per-100-kilometer
+     * @hide draft / provisional / internal are hidden on Android
+     */
+    public static final MeasureUnit KILOWATT_HOUR_PER_100_KILOMETER = MeasureUnit.internalGetInstance("force", "kilowatt-hour-per-100-kilometer");
+
+    /**
      * Constant for unit of force: newton
      * @hide unsupported on Android
      */
@@ -1280,7 +1285,7 @@ public class MeasureUnit implements Serializable {
 
     /**
      * Constant for unit of graphics: dot
-     * @hide draft / provisional / internal are hidden on Android
+     * @hide Hide new API in Android temporarily
      */
     public static final MeasureUnit DOT = MeasureUnit.internalGetInstance("graphics", "dot");
 
@@ -1336,7 +1341,7 @@ public class MeasureUnit implements Serializable {
 
     /**
      * Constant for unit of length: earth-radius
-     * @hide draft / provisional / internal are hidden on Android
+     * @hide Hide new API in Android temporarily
      */
     public static final MeasureUnit EARTH_RADIUS = MeasureUnit.internalGetInstance("length", "earth-radius");
 
@@ -1433,13 +1438,13 @@ public class MeasureUnit implements Serializable {
 
     /**
      * Constant for unit of light: candela
-     * @hide draft / provisional / internal are hidden on Android
+     * @hide Hide new API in Android temporarily
      */
     public static final MeasureUnit CANDELA = MeasureUnit.internalGetInstance("light", "candela");
 
     /**
      * Constant for unit of light: lumen
-     * @hide draft / provisional / internal are hidden on Android
+     * @hide Hide new API in Android temporarily
      */
     public static final MeasureUnit LUMEN = MeasureUnit.internalGetInstance("light", "lumen");
 
@@ -1473,7 +1478,7 @@ public class MeasureUnit implements Serializable {
 
     /**
      * Constant for unit of mass: grain
-     * @hide draft / provisional / internal are hidden on Android
+     * @hide Hide new API in Android temporarily
      */
     public static final MeasureUnit GRAIN = MeasureUnit.internalGetInstance("mass", "grain");
 
@@ -1742,25 +1747,25 @@ public class MeasureUnit implements Serializable {
 
     /**
      * Constant for unit of volume: dessert-spoon
-     * @hide draft / provisional / internal are hidden on Android
+     * @hide Hide new API in Android temporarily
      */
     public static final MeasureUnit DESSERT_SPOON = MeasureUnit.internalGetInstance("volume", "dessert-spoon");
 
     /**
      * Constant for unit of volume: dessert-spoon-imperial
-     * @hide draft / provisional / internal are hidden on Android
+     * @hide Hide new API in Android temporarily
      */
     public static final MeasureUnit DESSERT_SPOON_IMPERIAL = MeasureUnit.internalGetInstance("volume", "dessert-spoon-imperial");
 
     /**
      * Constant for unit of volume: dram
-     * @hide draft / provisional / internal are hidden on Android
+     * @hide Hide new API in Android temporarily
      */
     public static final MeasureUnit DRAM = MeasureUnit.internalGetInstance("volume", "dram");
 
     /**
      * Constant for unit of volume: drop
-     * @hide draft / provisional / internal are hidden on Android
+     * @hide Hide new API in Android temporarily
      */
     public static final MeasureUnit DROP = MeasureUnit.internalGetInstance("volume", "drop");
 
@@ -1792,7 +1797,7 @@ public class MeasureUnit implements Serializable {
 
     /**
      * Constant for unit of volume: jigger
-     * @hide draft / provisional / internal are hidden on Android
+     * @hide Hide new API in Android temporarily
      */
     public static final MeasureUnit JIGGER = MeasureUnit.internalGetInstance("volume", "jigger");
 
@@ -1813,7 +1818,7 @@ public class MeasureUnit implements Serializable {
 
     /**
      * Constant for unit of volume: pinch
-     * @hide draft / provisional / internal are hidden on Android
+     * @hide Hide new API in Android temporarily
      */
     public static final MeasureUnit PINCH = MeasureUnit.internalGetInstance("volume", "pinch");
 
@@ -1834,7 +1839,7 @@ public class MeasureUnit implements Serializable {
 
     /**
      * Constant for unit of volume: quart-imperial
-     * @hide draft / provisional / internal are hidden on Android
+     * @hide Hide new API in Android temporarily
      */
     public static final MeasureUnit QUART_IMPERIAL = MeasureUnit.internalGetInstance("volume", "quart-imperial");
 
