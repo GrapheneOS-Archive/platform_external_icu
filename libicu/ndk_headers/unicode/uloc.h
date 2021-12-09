@@ -851,7 +851,7 @@ typedef enum ULocAvailableType {
    * \xrefitem internal "Internal"  "Internal List"  Do not use. This API is for internal use only.
    */
   ULOC_AVAILABLE_COUNT
-#endif
+#endif  /* U_HIDE_INTERNAL_API */
 } ULocAvailableType;
 
 
