@@ -53,8 +53,8 @@ import com.ibm.icu.util.ULocale;
  * </p>
  * <p>
  * For more information, details, and tips for writing rules, see the <a
- * href="http://www.unicode.org/draft/reports/tr35/tr35.html#Language_Plural_Rules">LDML spec, C.11 Language Plural
- * Rules</a>
+ * href="https://www.unicode.org/reports/tr35/tr35-numbers.html#Language_Plural_Rules">LDML spec,
+ * Part 3.5 Language Plural Rules</a>
  * </p>
  * <p>
  * Examples:
@@ -208,7 +208,8 @@ public class PluralRules implements Serializable {
          *
          * <p>
          * ICU defines plural rules for many locales based on CLDR <i>Language Plural Rules</i>. For these predefined
-         * rules, see CLDR page at http://unicode.org/repos/cldr-tmp/trunk/diff/supplemental/language_plural_rules.html
+         * rules, see CLDR page at
+         * https://unicode-org.github.io/cldr-staging/charts/latest/supplemental/language_plural_rules.html
          *
          * @param locale
          *            The locale for which a <code>PluralRules</code> object is returned.
@@ -248,7 +249,7 @@ public class PluralRules implements Serializable {
          * Returns the 'functionally equivalent' locale with respect to plural rules. Calling PluralRules.forLocale with
          * the functionally equivalent locale, and with the provided locale, returns rules that behave the same. <br>
          * All locales with the same functionally equivalent locale have plural rules that behave the same. This is not
-         * exaustive; there may be other locales whose plural rules behave the same that do not have the same equivalent
+         * exhaustive; there may be other locales whose plural rules behave the same that do not have the same equivalent
          * locale.
          *
          * @param locale
@@ -688,9 +689,7 @@ public class PluralRules implements Serializable {
             source = isNegative ? -n : n;
             visibleDecimalDigitCount = v;
             decimalDigits = f;
-            integerValue = n > MAX
-                    ? MAX
-                            : (long)n;
+            integerValue = n > MAX ? MAX : (long) source;
             int initExpVal = e;
             if (initExpVal == 0) {
                 initExpVal = c;
@@ -922,15 +921,15 @@ public class PluralRules implements Serializable {
         @Deprecated
         public double getPluralOperand(Operand operand) {
             switch(operand) {
-            case n: return source;
-            case i: return integerValue;
+            case n: return (exponent == 0 ? source : source * Math.pow(10, exponent));
+            case i: return intValue();
             case f: return decimalDigits;
             case t: return decimalDigitsWithoutTrailingZeros;
             case v: return visibleDecimalDigitCount;
             case w: return visibleDecimalDigitCountWithoutTrailingZeros;
             case e: return exponent;
             case c: return exponent;
-            default: return source;
+            default: return doubleValue();
             }
         }
 
@@ -1077,6 +1076,10 @@ public class PluralRules implements Serializable {
          */
         @Deprecated
         public long getShiftedValue() {
+            if (exponent != 0 && visibleDecimalDigitCount == 0 && decimalDigits == 0) {
+                // Need to take exponent into account if we have it
+                return (long)(source * Math.pow(10, exponent));
+            }
             return integerValue * baseFactor + decimalDigits;
         }
 
@@ -2057,7 +2060,7 @@ public class PluralRules implements Serializable {
      *
      * <p>ICU defines plural rules for many locales based on CLDR <i>Language Plural Rules</i>.
      * For these predefined rules, see CLDR page at
-     * http://unicode.org/repos/cldr-tmp/trunk/diff/supplemental/language_plural_rules.html
+     * https://unicode-org.github.io/cldr-staging/charts/latest/supplemental/language_plural_rules.html
      *
      * @param locale The locale for which a <code>PluralRules</code> object is
      *   returned.
@@ -2079,7 +2082,7 @@ public class PluralRules implements Serializable {
      *
      * <p>ICU defines plural rules for many locales based on CLDR <i>Language Plural Rules</i>.
      * For these predefined rules, see CLDR page at
-     * http://unicode.org/repos/cldr-tmp/trunk/diff/supplemental/language_plural_rules.html
+     * https://unicode-org.github.io/cldr-staging/charts/latest/supplemental/language_plural_rules.html
      *
      * @param locale The locale for which a <code>PluralRules</code> object is
      *   returned.
@@ -2100,7 +2103,7 @@ public class PluralRules implements Serializable {
      *
      * <p>ICU defines plural rules for many locales based on CLDR <i>Language Plural Rules</i>.
      * For these predefined rules, see CLDR page at
-     * http://unicode.org/repos/cldr-tmp/trunk/diff/supplemental/language_plural_rules.html
+     * https://unicode-org.github.io/cldr-staging/charts/latest/supplemental/language_plural_rules.html
      *
      * @param locale The locale for which a <code>PluralRules</code> object is
      *   returned.
@@ -2122,7 +2125,7 @@ public class PluralRules implements Serializable {
      *
      * <p>ICU defines plural rules for many locales based on CLDR <i>Language Plural Rules</i>.
      * For these predefined rules, see CLDR page at
-     * http://unicode.org/repos/cldr-tmp/trunk/diff/supplemental/language_plural_rules.html
+     * https://unicode-org.github.io/cldr-staging/charts/latest/supplemental/language_plural_rules.html
      *
      * @param locale The locale for which a <code>PluralRules</code> object is
      *   returned.
@@ -2207,7 +2210,7 @@ public class PluralRules implements Serializable {
      * @param range  The number range onto which the rules will be applied.
      * @return       The keyword of the selected rule.
      * @throws UnsupportedOperationException If called on an instance without plural ranges data.
-     * @draft ICU 68
+     * @stable ICU 68
      */
     public String select(FormattedNumberRange range) {
         if (standardPluralRanges == null) {
@@ -2432,7 +2435,7 @@ public class PluralRules implements Serializable {
      * locale, and with the provided locale, returns rules that behave the same.
      * <br>
      * All locales with the same functionally equivalent locale have
-     * plural rules that behave the same.  This is not exaustive;
+     * plural rules that behave the same.  This is not exhaustive;
      * there may be other locales whose plural rules behave the same
      * that do not have the same equivalent locale.
      *

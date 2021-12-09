@@ -115,7 +115,7 @@ public class FormattedNumber implements FormattedValue {
      * as "foot-and-inch" or "hour-and-minute-and-second".
      *
      * @return `MeasureUnit`.
-     * @hide draft / provisional / internal are hidden on Android
+     * @hide Hide new API in Android temporarily
      */
     public MeasureUnit getOutputUnit() {
         return this.outputUnit;

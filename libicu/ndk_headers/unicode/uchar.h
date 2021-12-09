@@ -60,7 +60,7 @@ U_CDECL_BEGIN
  * @see u_getUnicodeVersion
  * \xrefitem stable "Stable" "Stable List" ICU 2.0
  */
-#define U_UNICODE_VERSION "13.0"
+#define U_UNICODE_VERSION "14.0"
 
 /**
  * @addtogroup ICU4C
@@ -79,7 +79,7 @@ U_CDECL_BEGIN
  *
  * For more information see
  * "About the Unicode Character Database" (http://www.unicode.org/ucd/)
- * and the ICU User Guide chapter on Properties (http://icu-project.org/userguide/properties.html).
+ * and the ICU User Guide chapter on Properties (https://unicode-org.github.io/icu/userguide/strings/properties).
  *
  * Many properties are accessible via generic functions that take a UProperty selector.
  * - u_hasBinaryProperty() returns a binary value (true/false) per property and code point.
@@ -485,12 +485,63 @@ typedef enum UProperty {
      * \xrefitem stable "Stable" "Stable List" ICU 62
      */
     UCHAR_EXTENDED_PICTOGRAPHIC=64,
+#ifndef U_HIDE_DRAFT_API
+    /**
+     * Binary property of strings Basic_Emoji.
+     * See https://www.unicode.org/reports/tr51/#Emoji_Sets
+     *
+     * \xrefitem draft "Draft" "Draft List" This API may be changed in the future versions and was introduced in ICU 70
+     */
+    UCHAR_BASIC_EMOJI=65,
+    /**
+     * Binary property of strings Emoji_Keycap_Sequence.
+     * See https://www.unicode.org/reports/tr51/#Emoji_Sets
+     *
+     * \xrefitem draft "Draft" "Draft List" This API may be changed in the future versions and was introduced in ICU 70
+     */
+    UCHAR_EMOJI_KEYCAP_SEQUENCE=66,
+    /**
+     * Binary property of strings RGI_Emoji_Modifier_Sequence.
+     * See https://www.unicode.org/reports/tr51/#Emoji_Sets
+     *
+     * \xrefitem draft "Draft" "Draft List" This API may be changed in the future versions and was introduced in ICU 70
+     */
+    UCHAR_RGI_EMOJI_MODIFIER_SEQUENCE=67,
+    /**
+     * Binary property of strings RGI_Emoji_Flag_Sequence.
+     * See https://www.unicode.org/reports/tr51/#Emoji_Sets
+     *
+     * \xrefitem draft "Draft" "Draft List" This API may be changed in the future versions and was introduced in ICU 70
+     */
+    UCHAR_RGI_EMOJI_FLAG_SEQUENCE=68,
+    /**
+     * Binary property of strings RGI_Emoji_Tag_Sequence.
+     * See https://www.unicode.org/reports/tr51/#Emoji_Sets
+     *
+     * \xrefitem draft "Draft" "Draft List" This API may be changed in the future versions and was introduced in ICU 70
+     */
+    UCHAR_RGI_EMOJI_TAG_SEQUENCE=69,
+    /**
+     * Binary property of strings RGI_Emoji_ZWJ_Sequence.
+     * See https://www.unicode.org/reports/tr51/#Emoji_Sets
+     *
+     * \xrefitem draft "Draft" "Draft List" This API may be changed in the future versions and was introduced in ICU 70
+     */
+    UCHAR_RGI_EMOJI_ZWJ_SEQUENCE=70,
+    /**
+     * Binary property of strings RGI_Emoji.
+     * See https://www.unicode.org/reports/tr51/#Emoji_Sets
+     *
+     * \xrefitem draft "Draft" "Draft List" This API may be changed in the future versions and was introduced in ICU 70
+     */
+    UCHAR_RGI_EMOJI=71,
+#endif  // U_HIDE_DRAFT_API
 #ifndef U_HIDE_DEPRECATED_API
     /**
      * One more than the last constant for binary Unicode properties.
      * \xrefitem deprecated "Deprecated" "Deprecated List" ICU 58 The numeric value may change over time, see ICU ticket #12420.
      */
-    UCHAR_BINARY_LIMIT,
+    UCHAR_BINARY_LIMIT=72,
 #endif  // U_HIDE_DEPRECATED_API
 
     /** Enumerated property Bidi_Class.
@@ -1809,6 +1860,33 @@ enum UBlockCode {
     /** \xrefitem stable "Stable" "Stable List" ICU 66 */
     UBLOCK_YEZIDI = 308, /*[10E80]*/
 
+    // New blocks in Unicode 14.0
+
+    /** \xrefitem stable "Stable" "Stable List" ICU 70 */
+    UBLOCK_ARABIC_EXTENDED_B = 309, /*[0870]*/
+    /** \xrefitem stable "Stable" "Stable List" ICU 70 */
+    UBLOCK_CYPRO_MINOAN = 310, /*[12F90]*/
+    /** \xrefitem stable "Stable" "Stable List" ICU 70 */
+    UBLOCK_ETHIOPIC_EXTENDED_B = 311, /*[1E7E0]*/
+    /** \xrefitem stable "Stable" "Stable List" ICU 70 */
+    UBLOCK_KANA_EXTENDED_B = 312, /*[1AFF0]*/
+    /** \xrefitem stable "Stable" "Stable List" ICU 70 */
+    UBLOCK_LATIN_EXTENDED_F = 313, /*[10780]*/
+    /** \xrefitem stable "Stable" "Stable List" ICU 70 */
+    UBLOCK_LATIN_EXTENDED_G = 314, /*[1DF00]*/
+    /** \xrefitem stable "Stable" "Stable List" ICU 70 */
+    UBLOCK_OLD_UYGHUR = 315, /*[10F70]*/
+    /** \xrefitem stable "Stable" "Stable List" ICU 70 */
+    UBLOCK_TANGSA = 316, /*[16A70]*/
+    /** \xrefitem stable "Stable" "Stable List" ICU 70 */
+    UBLOCK_TOTO = 317, /*[1E290]*/
+    /** \xrefitem stable "Stable" "Stable List" ICU 70 */
+    UBLOCK_UNIFIED_CANADIAN_ABORIGINAL_SYLLABICS_EXTENDED_A = 318, /*[11AB0]*/
+    /** \xrefitem stable "Stable" "Stable List" ICU 70 */
+    UBLOCK_VITHKUQI = 319, /*[10570]*/
+    /** \xrefitem stable "Stable" "Stable List" ICU 70 */
+    UBLOCK_ZNAMENNY_MUSICAL_NOTATION = 320, /*[1CF00]*/
+
 #ifndef U_HIDE_DEPRECATED_API
     /**
      * One more than the highest normal UBlockCode value.
@@ -1816,7 +1894,7 @@ enum UBlockCode {
      *
      * \xrefitem deprecated "Deprecated" "Deprecated List" ICU 58 The numeric value may change over time, see ICU ticket #12420.
      */
-    UBLOCK_COUNT = 309,
+    UBLOCK_COUNT = 321,
 #endif  // U_HIDE_DEPRECATED_API
 
     /** \xrefitem stable "Stable" "Stable List" ICU 2.0 */
@@ -2107,6 +2185,9 @@ typedef enum UJoiningGroup {
 
     U_JG_HANIFI_ROHINGYA_KINNA_YA,  /**< \xrefitem stable "Stable" "Stable List" ICU 62 */
     U_JG_HANIFI_ROHINGYA_PA,  /**< \xrefitem stable "Stable" "Stable List" ICU 62 */
+
+    U_JG_THIN_YEH,  /**< \xrefitem stable "Stable" "Stable List" ICU 70 */
+    U_JG_VERTICAL_TAIL,  /**< \xrefitem stable "Stable" "Stable List" ICU 70 */
 
 #ifndef U_HIDE_DEPRECATED_API
     /**
@@ -2587,10 +2668,10 @@ typedef enum UVerticalOrientation {
  *
  * @param c Code point to test.
  * @param which UProperty selector constant, identifies which binary property to check.
- *        Must be UCHAR_BINARY_START<=which<UCHAR_BINARY_LIMIT.
+ *        Must be UCHAR_BINARY_START&lt;=which&lt;UCHAR_BINARY_LIMIT.
  * @return true or false according to the binary Unicode property value for c.
  *         Also false if 'which' is out of bounds or if the Unicode version
- *         does not have data for the property at all, or not for this code point.
+ *         does not have data for the property at all.
  *
  * @see UProperty
  * @see u_getBinaryPropertySet
@@ -2602,6 +2683,12 @@ U_CAPI UBool U_EXPORT2
 u_hasBinaryProperty(UChar32 c, UProperty which) __INTRODUCED_IN(31);
 
 
+
+#ifndef U_HIDE_DRAFT_API
+
+
+
+#endif  // U_HIDE_DRAFT_API
 
 
 
@@ -3867,7 +3954,7 @@ u_isJavaIDPart(UChar32 c) __INTRODUCED_IN(31);
  * Full case mappings are applied by the string case mapping functions,
  * see ustring.h and the UnicodeString class.
  * See also the User Guide chapter on C/POSIX migration:
- * http://icu-project.org/userguide/posix.html#case_mappings
+ * https://unicode-org.github.io/icu/userguide/icu/posix#case-mappings
  *
  * @param c the code point to be mapped
  * @return the Simple_Lowercase_Mapping of the code point, if any;
@@ -3894,7 +3981,7 @@ u_tolower(UChar32 c) __INTRODUCED_IN(31);
  * Full case mappings are applied by the string case mapping functions,
  * see ustring.h and the UnicodeString class.
  * See also the User Guide chapter on C/POSIX migration:
- * http://icu-project.org/userguide/posix.html#case_mappings
+ * https://unicode-org.github.io/icu/userguide/icu/posix#case-mappings
  *
  * @param c the code point to be mapped
  * @return the Simple_Uppercase_Mapping of the code point, if any;
@@ -3921,7 +4008,7 @@ u_toupper(UChar32 c) __INTRODUCED_IN(31);
  * Full case mappings are applied by the string case mapping functions,
  * see ustring.h and the UnicodeString class.
  * See also the User Guide chapter on C/POSIX migration:
- * http://icu-project.org/userguide/posix.html#case_mappings
+ * https://unicode-org.github.io/icu/userguide/icu/posix#case-mappings
  *
  * @param c the code point to be mapped
  * @return the Simple_Titlecase_Mapping of the code point, if any;
@@ -3947,7 +4034,7 @@ u_totitle(UChar32 c) __INTRODUCED_IN(31);
  * Full case mappings are applied by the string case mapping functions,
  * see ustring.h and the UnicodeString class.
  * See also the User Guide chapter on C/POSIX migration:
- * http://icu-project.org/userguide/posix.html#case_mappings
+ * https://unicode-org.github.io/icu/userguide/icu/posix#case-mappings
  *
  * @param c the code point to be mapped
  * @param options Either U_FOLD_CASE_DEFAULT or U_FOLD_CASE_EXCLUDE_SPECIAL_I

@@ -22,11 +22,21 @@ import java.nio.ByteBuffer;
 import java.text.CharacterIterator;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.MissingResourceException;
 
 import android.icu.impl.CharacterIteration;
 import android.icu.impl.ICUBinary;
 import android.icu.impl.ICUDebug;
 import android.icu.impl.RBBIDataWrapper;
+import android.icu.impl.breakiter.BurmeseBreakEngine;
+import android.icu.impl.breakiter.CjkBreakEngine;
+import android.icu.impl.breakiter.DictionaryBreakEngine;
+import android.icu.impl.breakiter.KhmerBreakEngine;
+import android.icu.impl.breakiter.LSTMBreakEngine;
+import android.icu.impl.breakiter.LanguageBreakEngine;
+import android.icu.impl.breakiter.LaoBreakEngine;
+import android.icu.impl.breakiter.ThaiBreakEngine;
+import android.icu.impl.breakiter.UnhandledBreakEngine;
 import android.icu.lang.UCharacter;
 import android.icu.lang.UProperty;
 import android.icu.lang.UScript;
@@ -693,13 +703,21 @@ public class RuleBasedBreakIterator extends BreakIterator {
             try {
                 switch (script) {
                 case UScript.THAI:
-                    eng = new ThaiBreakEngine();
+                    try {
+                        eng = LSTMBreakEngine.create(script, LSTMBreakEngine.createData(script));
+                    } catch (MissingResourceException e) {
+                        eng = new ThaiBreakEngine();
+                    }
                     break;
                 case UScript.LAO:
                     eng = new LaoBreakEngine();
                     break;
                 case UScript.MYANMAR:
-                    eng = new BurmeseBreakEngine();
+                    try {
+                        eng = LSTMBreakEngine.create(script, LSTMBreakEngine.createData(script));
+                    } catch (MissingResourceException e) {
+                        eng = new BurmeseBreakEngine();
+                    }
                     break;
                 case UScript.KHMER:
                     eng = new KhmerBreakEngine();
