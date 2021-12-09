@@ -455,7 +455,7 @@ public class RbnfSampleRuleSets {
                // of 1,000.  This prevents us from getting "onze cents cent
                // vingt-deux" ("eleven hundred one hundred twenty-two").
         + "    1100>: onze cents[ >>];\n"
-               // at 1,200, we go back to formating in thousands, so we
+               // at 1,200, we go back to formatting in thousands, so we
                // repeat the rule for 1,000
         + "    1200: mille >>;\n"
                // at 2,000, the multiplier is added
@@ -712,7 +712,7 @@ public class RbnfSampleRuleSets {
      * that are harder to alter than the traditional numerals (one could
      * fairly easily change a one to
      * a three just by adding two strokes, for example).  This is also done in
-     * the other countries using Chinese idographs, but different ideographs
+     * the other countries using Chinese ideographs, but different ideographs
      * are used in those places.
      */
     public static final String japanese =
@@ -1461,7 +1461,7 @@ public class RbnfSampleRuleSets {
     /**
      * Hebrew alphabetic numerals.  Before adoption of Arabic numerals, Hebrew speakers
      * used the letter of their alphabet as numerals.  The first nine letters of
-     * the alphabet repesented the values from 1 to 9, the second nine letters the
+     * the alphabet represented the values from 1 to 9, the second nine letters the
      * multiples of 10, and the remaining letters the multiples of 100.  Since they
      * ran out of letters at 400, the remaining multiples of 100 were represented
      * using combinations of the existing letters for the hundreds.  Numbers were
@@ -1810,7 +1810,7 @@ public class RbnfSampleRuleSets {
             + "that are harder to alter than the traditional numerals (one could "
             + "fairly easily change a one to "
             + "a three just by adding two strokes, for example).  This is also done in "
-            + "the other countries using Chinese idographs, but different ideographs "
+            + "the other countries using Chinese ideographs, but different ideographs "
             + "are used in those places.",
 
             "Again in Greek we have to supply the words "
@@ -1917,7 +1917,7 @@ public class RbnfSampleRuleSets {
 
             "Hebrew alphabetic numerals.  Before adoption of Arabic numerals, Hebrew speakers "
             + "used the letter of their alphabet as numerals.  The first nine letters of "
-            + "the alphabet repesented the values from 1 to 9, the second nine letters the "
+            + "the alphabet represented the values from 1 to 9, the second nine letters the "
             + "multiples of 10, and the remaining letters the multiples of 100.  Since they "
             + "ran out of letters at 400, the remaining multiples of 100 were represented "
             + "using combinations of the existing letters for the hundreds.  Numbers were "

@@ -1244,7 +1244,7 @@ public class DateIntervalFormat extends UFormat {
      * type of field at the beginning of the formatted result.
      *
      * @param context The DisplayContext value to set.
-     * @hide draft / provisional / internal are hidden on Android
+     * @hide Hide new API in Android temporarily
      */
     public void setContext(DisplayContext context)
     {
@@ -1259,7 +1259,7 @@ public class DateIntervalFormat extends UFormat {
      *
      * @param type the DisplayContext.Type whose value to return
      * @return the current DisplayContext setting for the specified type
-     * @hide draft / provisional / internal are hidden on Android
+     * @hide Hide new API in Android temporarily
      */
     public DisplayContext getContext(DisplayContext.Type type)
     {
