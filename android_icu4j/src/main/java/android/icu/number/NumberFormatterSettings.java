@@ -519,7 +519,7 @@ public abstract class NumberFormatterSettings<T extends NumberFormatterSettings<
      * @param usage A usage parameter from the units resource.
      * @return The fluent chain
      * @throws IllegalArgumentException in case of Setting a usage string but not a correct input unit.
-     * @hide draft / provisional / internal are hidden on Android
+     * @hide Hide new API in Android temporarily
      */
     public T usage(String usage) {
         if (usage != null && usage.isEmpty()) {

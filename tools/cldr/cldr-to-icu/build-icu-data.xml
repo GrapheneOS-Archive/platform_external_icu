@@ -24,7 +24,7 @@
              with Ant, this is messier than it should be. All we are saying here is:
              "Use the property if explicitly set, otherwise use the environment variable."
              We cannot just set the property to the environment variable, since expansion
-             fails for non existant properties, and you are left with a literal value of
+             fails for non existent properties, and you are left with a literal value of
              "${env.CLDR_DATA_DIR}". -->
         <condition property="cldrDataDir" value="${env.CLDR_DATA_DIR}">
             <isset property="env.CLDR_DATA_DIR"/>
@@ -47,10 +47,10 @@
         <property name="specialsDir" value="${basedir}/../../../icu4c/source/data/xml"/>
 
         <!-- Default value for ICU version (icuver.txt). Update this for each release. -->
-        <property name="icuVersion" value="69.1.0.0"/>
+        <property name="icuVersion" value="70.1.0.0"/>
 
         <!-- Default value for ICU data version (icuver.txt). Update this for each release. -->
-        <property name="icuDataVersion" value="69.1.0.0"/>
+        <property name="icuDataVersion" value="70.1.0.0"/>
 
         <!-- An override for the CLDR version string (icuver.txt and others). This will be
              extracted from the CLDR library used for building the data if not set here. -->
@@ -212,7 +212,7 @@
                 rm, rn, ro, rof, ru, rw, rwk
 
                 // S
-                sa, sah, saq, sat, sat_IN, sbp, sd, sd_Deva, sd_PK, se, seh, ses, sg, sh, sh_BA, sh_CS, sh_YU
+                sa, sah, saq, sat, sat_IN, sbp, sc, sd, sd_Deva, sd_PK, se, seh, ses, sg, sh, sh_BA, sh_CS, sh_YU
                 shi, shi_Latn, shi_MA, si, sk, sl, smn, sn, so, sq, sr, sr_BA, sr_CS, sr_Cyrl_CS, sr_Cyrl_YU, sr_Latn
                 sr_Latn_CS, sr_Latn_YU, sr_ME, sr_RS, sr_XK, sr_YU, su, su_ID, sv, sw
 
@@ -417,6 +417,7 @@
         <outputDirectories root="${outDir}" forceDelete="${forceDelete}">
             <dir name="brkitr">
                 <retain path="dictionaries"/>
+                <retain path="lstm"/>
                 <retain path="rules"/>
             </dir>
             <dir name="coll">
