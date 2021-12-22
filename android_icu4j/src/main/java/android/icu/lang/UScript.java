@@ -864,15 +864,15 @@ public final class UScript {
     /***/
     public static final int YEZIDI = 192; /* Yezi */
 
-    /** @hide Hide new API in Android temporarily*/
+    /***/
     public static final int CYPRO_MINOAN = 193; /* Cpmn */
-    /** @hide Hide new API in Android temporarily*/
+    /***/
     public static final int OLD_UYGHUR = 194; /* Ougr */
-    /** @hide Hide new API in Android temporarily*/
+    /***/
     public static final int TANGSA = 195; /* Tnsa */
-    /** @hide Hide new API in Android temporarily*/
+    /***/
     public static final int TOTO = 196; /* Toto */
-    /** @hide Hide new API in Android temporarily*/
+    /***/
     public static final int VITHKUQI = 197; /* Vith */
 
     /**
