@@ -2272,7 +2272,6 @@ public class PluralRules implements Serializable {
      * @param range  The number range onto which the rules will be applied.
      * @return       The keyword of the selected rule.
      * @throws UnsupportedOperationException If called on an instance without plural ranges data.
-     * @hide Hide new API in Android temporarily
      */
     public String select(FormattedNumberRange range) {
         if (standardPluralRanges == null) {
