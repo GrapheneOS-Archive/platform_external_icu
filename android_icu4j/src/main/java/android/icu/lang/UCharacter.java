@@ -1076,29 +1076,29 @@ public final class UCharacter implements ECharacterCategory, ECharacterDirection
 
         // New blocks in Unicode 14.0
 
-        /** @hide Hide new API in Android temporarily*/
+        /***/
         public static final int ARABIC_EXTENDED_B_ID = 309; /*[0870]*/
-        /** @hide Hide new API in Android temporarily*/
+        /***/
         public static final int CYPRO_MINOAN_ID = 310; /*[12F90]*/
-        /** @hide Hide new API in Android temporarily*/
+        /***/
         public static final int ETHIOPIC_EXTENDED_B_ID = 311; /*[1E7E0]*/
-        /** @hide Hide new API in Android temporarily*/
+        /***/
         public static final int KANA_EXTENDED_B_ID = 312; /*[1AFF0]*/
-        /** @hide Hide new API in Android temporarily*/
+        /***/
         public static final int LATIN_EXTENDED_F_ID = 313; /*[10780]*/
-        /** @hide Hide new API in Android temporarily*/
+        /***/
         public static final int LATIN_EXTENDED_G_ID = 314; /*[1DF00]*/
-        /** @hide Hide new API in Android temporarily*/
+        /***/
         public static final int OLD_UYGHUR_ID = 315; /*[10F70]*/
-        /** @hide Hide new API in Android temporarily*/
+        /***/
         public static final int TANGSA_ID = 316; /*[16A70]*/
-        /** @hide Hide new API in Android temporarily*/
+        /***/
         public static final int TOTO_ID = 317; /*[1E290]*/
-        /** @hide Hide new API in Android temporarily*/
+        /***/
         public static final int UNIFIED_CANADIAN_ABORIGINAL_SYLLABICS_EXTENDED_A_ID = 318; /*[11AB0]*/
-        /** @hide Hide new API in Android temporarily*/
+        /***/
         public static final int VITHKUQI_ID = 319; /*[10570]*/
-        /** @hide Hide new API in Android temporarily*/
+        /***/
         public static final int ZNAMENNY_MUSICAL_NOTATION_ID = 320; /*[1CF00]*/
 
         /**
@@ -2305,39 +2305,39 @@ public final class UCharacter implements ECharacterCategory, ECharacterDirection
 
         // New blocks in Unicode 14.0
 
-        /** @hide Hide new API in Android temporarily*/
+        /***/
         public static final UnicodeBlock ARABIC_EXTENDED_B =
                 new UnicodeBlock("ARABIC_EXTENDED_B", ARABIC_EXTENDED_B_ID); /*[0870]*/
-        /** @hide Hide new API in Android temporarily*/
+        /***/
         public static final UnicodeBlock CYPRO_MINOAN =
                 new UnicodeBlock("CYPRO_MINOAN", CYPRO_MINOAN_ID); /*[12F90]*/
-        /** @hide Hide new API in Android temporarily*/
+        /***/
         public static final UnicodeBlock ETHIOPIC_EXTENDED_B =
                 new UnicodeBlock("ETHIOPIC_EXTENDED_B", ETHIOPIC_EXTENDED_B_ID); /*[1E7E0]*/
-        /** @hide Hide new API in Android temporarily*/
+        /***/
         public static final UnicodeBlock KANA_EXTENDED_B =
                 new UnicodeBlock("KANA_EXTENDED_B", KANA_EXTENDED_B_ID); /*[1AFF0]*/
-        /** @hide Hide new API in Android temporarily*/
+        /***/
         public static final UnicodeBlock LATIN_EXTENDED_F =
                 new UnicodeBlock("LATIN_EXTENDED_F", LATIN_EXTENDED_F_ID); /*[10780]*/
-        /** @hide Hide new API in Android temporarily*/
+        /***/
         public static final UnicodeBlock LATIN_EXTENDED_G =
                 new UnicodeBlock("LATIN_EXTENDED_G", LATIN_EXTENDED_G_ID); /*[1DF00]*/
-        /** @hide Hide new API in Android temporarily*/
+        /***/
         public static final UnicodeBlock OLD_UYGHUR =
                 new UnicodeBlock("OLD_UYGHUR", OLD_UYGHUR_ID); /*[10F70]*/
-        /** @hide Hide new API in Android temporarily*/
+        /***/
         public static final UnicodeBlock TANGSA = new UnicodeBlock("TANGSA", TANGSA_ID); /*[16A70]*/
-        /** @hide Hide new API in Android temporarily*/
+        /***/
         public static final UnicodeBlock TOTO = new UnicodeBlock("TOTO", TOTO_ID); /*[1E290]*/
-        /** @hide Hide new API in Android temporarily*/
+        /***/
         public static final UnicodeBlock UNIFIED_CANADIAN_ABORIGINAL_SYLLABICS_EXTENDED_A =
                 new UnicodeBlock("UNIFIED_CANADIAN_ABORIGINAL_SYLLABICS_EXTENDED_A",
                         UNIFIED_CANADIAN_ABORIGINAL_SYLLABICS_EXTENDED_A_ID); /*[11AB0]*/
-        /** @hide Hide new API in Android temporarily*/
+        /***/
         public static final UnicodeBlock VITHKUQI =
                 new UnicodeBlock("VITHKUQI", VITHKUQI_ID); /*[10570]*/
-        /** @hide Hide new API in Android temporarily*/
+        /***/
         public static final UnicodeBlock ZNAMENNY_MUSICAL_NOTATION =
                 new UnicodeBlock("ZNAMENNY_MUSICAL_NOTATION",
                         ZNAMENNY_MUSICAL_NOTATION_ID); /*[1CF00]*/
@@ -2884,9 +2884,9 @@ public final class UCharacter implements ECharacterCategory, ECharacterDirection
         /***/
         public static final int HANIFI_ROHINGYA_PA = 101;
 
-        /** @hide Hide new API in Android temporarily*/
+        /***/
         public static final int THIN_YEH = 102;
-        /** @hide Hide new API in Android temporarily*/
+        /***/
         public static final int VERTICAL_TAIL = 103;
 
         /**
@@ -4697,7 +4697,6 @@ public final class UCharacter implements ECharacterCategory, ECharacterDirection
      * @exception IllegalArgumentException thrown when the code units do
      *            not form a valid surrogate pair
      * @see #toCodePoint(int, int)
-     * @hide Hide new API in Android temporarily
      */
     public static int getCodePoint(int lead, int trail)
     {
@@ -5612,7 +5611,6 @@ public final class UCharacter implements ECharacterCategory, ECharacterDirection
      * @param codePoint the code point to check
      *        (In ICU 3.0-69 the type of this parameter was <code>char</code>.)
      * @return true if codePoint is a high (lead) surrogate
-     * @hide Hide new API in Android temporarily
      */
     public static boolean isHighSurrogate(int codePoint) {
         return (codePoint & LEAD_SURROGATE_BITMASK) == LEAD_SURROGATE_BITS;
@@ -5637,7 +5635,6 @@ public final class UCharacter implements ECharacterCategory, ECharacterDirection
      * @param codePoint the code point to check
      *        (In ICU 3.0-69 the type of this parameter was <code>char</code>.)
      * @return true if codePoint is a low (trail) surrogate
-     * @hide Hide new API in Android temporarily
      */
     public static boolean isLowSurrogate(int codePoint) {
         return (codePoint & TRAIL_SURROGATE_BITMASK) == TRAIL_SURROGATE_BITS;
@@ -5663,7 +5660,6 @@ public final class UCharacter implements ECharacterCategory, ECharacterDirection
      *        (In ICU 3.0-69 the type of both parameters was <code>char</code>.)
      * @param low the low (trail) unit
      * @return true if high, low form a surrogate pair
-     * @hide Hide new API in Android temporarily
      */
     public static final boolean isSurrogatePair(int high, int low) {
         return isHighSurrogate(high) && isLowSurrogate(low);
@@ -5705,7 +5701,6 @@ public final class UCharacter implements ECharacterCategory, ECharacterDirection
      * @param low the low (trail) surrogate
      * @return the code point formed by the surrogate pair
      * @see #getCodePoint(int, int)
-     * @hide Hide new API in Android temporarily
      */
     public static final int toCodePoint(int high, int low) {
         // see ICU4C U16_GET_SUPPLEMENTARY()
