@@ -42,7 +42,13 @@ public class ListFormatterTest {
         sb = formattedList.appendTo(sb);
         // formatter.formatToValue should produce the same string as formatter.format
         assertEquals(formatter.format(items), sb.toString());
+    }
 
+    @Test
+    public void testFormatToValue() {
+        ListFormatter formatter = ListFormatter.getInstance(ULocale.US);
+        FormattedList formattedList = formatter.formatToValue("apple", "orange", "pear");
+        assertEquals("apple, orange, and pear", formattedList.toString());
     }
 
 }
