@@ -193,6 +193,10 @@ java_sdk_library {
     },
     api_dir: "api/public",
     api_only: true,
+
+    // Emit nullability annotations from the source to the stub files.
+    annotations_enabled: true,
+
     sdk_version: "none",
     system_modules: "art-module-public-api-stubs-system-modules",
 
