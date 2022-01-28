@@ -191,6 +191,17 @@ java_sdk_library {
             "-Xep:MissingOverride:OFF",
         ],
     },
+
+    public: {
+        enabled: true,
+    },
+    system: {
+        enabled: true,
+    },
+    module_lib: {
+        enabled: true,
+    },
+
     api_dir: "api/public",
     api_only: true,
 
