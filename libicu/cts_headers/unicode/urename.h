@@ -727,7 +727,7 @@
 #define ucnvsel_selectForUTF8 U_ICU_ENTRY_POINT_RENAME(ucnvsel_selectForUTF8)
 #define ucnvsel_serialize U_ICU_ENTRY_POINT_RENAME(ucnvsel_serialize)
 #define ucol_cloneBinary U_ICU_ENTRY_POINT_RENAME(ucol_cloneBinary)
-#define ucol_clone U_ICU_ENTRY_POINT_RENAME(ucol_clone)
+// #define ucol_clone U_ICU_ENTRY_POINT_RENAME(ucol_clone)
 // #define ucol_close U_ICU_ENTRY_POINT_RENAME(ucol_close)
 #define ucol_closeElements U_ICU_ENTRY_POINT_RENAME(ucol_closeElements)
 // #define ucol_countAvailable U_ICU_ENTRY_POINT_RENAME(ucol_countAvailable)
