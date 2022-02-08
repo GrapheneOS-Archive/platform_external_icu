@@ -1010,6 +1010,18 @@ ucol_getMaxVariable(const UCollator *coll) __INTRODUCED_IN(__ANDROID_API_T__);
 
 #endif  /* U_HIDE_DEPRECATED_API */
 
+/**
+ * Thread safe cloning operation. The result is a clone of a given collator.
+ * @param coll collator to be cloned
+ * @param status to indicate whether the operation went on smoothly or there were errors
+ * @return pointer to the new clone
+ * @see ucol_open
+ * @see ucol_openRules
+ * @see ucol_close
+ * \xrefitem stable "Stable" "Stable List" ICU 71
+ */
+U_CAPI UCollator* U_EXPORT2 ucol_clone(const UCollator *coll, UErrorCode *status) __INTRODUCED_IN(__ANDROID_API_T__);
+
 
 
 #ifndef U_HIDE_DEPRECATED_API
