@@ -55,6 +55,10 @@ def generate_symbol_txt(shim_functions, extra_function_names, template_file):
     }
     return JINJA_ENV.get_template(template_file).render(data)
 
+def get_jinja_env():
+    """Return a jinja2 environment"""
+    return JINJA_ENV
+
 def get_allowlisted_apis(allowlist_file):
     """Return all allowlisted API in allowlist_file"""
     allowlisted_apis = set()
