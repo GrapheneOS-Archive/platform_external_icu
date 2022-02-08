@@ -291,6 +291,7 @@ LIBICU_31 { # introduced=31
 
 LIBICU_T { # introduced=Tiramisu
   global:
+    ucol_clone;
     ucol_close;
     ucol_countAvailable;
     ucol_getAttribute;

@@ -191,8 +191,7 @@ ubrk_setUText,31
 #   ubrk_getLocaleByType
 #   ubrk_openBinaryRules
 #   ubrk_openRules
-# ucol_clone can't be exposed due to a internal tool bug. http://b/217701392
-# ucol_clone,T
+ucol_clone,T
 ucol_close,T
 ucol_countAvailable,T
 ucol_getAttribute,T
