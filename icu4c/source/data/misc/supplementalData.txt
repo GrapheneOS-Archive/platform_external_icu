@@ -19995,6 +19995,7 @@ supplementalData:table(nofallback){
             "en_MS",
             "en_MT",
             "en_MU",
+            "en_MV",
             "en_MW",
             "en_MY",
             "en_NA",
@@ -30688,12 +30689,15 @@ supplementalData:table(nofallback){
         MV{
             dv{
                 officialStatus{"official"}
-                populationShareF:int{49940000}
+                populationShareF:int{49980000}
+            }
+            en{
+                populationShareF:int{49750000}
             }
             territoryF:intvector{
                 59690100,
                 49984000,
-                55391904,
+                55540542,
             }
         }
         MW{
