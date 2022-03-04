@@ -431,4 +431,8 @@ java_test {
     patch_module: "java.base",
     sdk_version: "none",
     system_modules: "art-module-intra-core-api-stubs-system-modules",
+
+    errorprone: {
+        javacflags: ["-Xep:EqualsNull:WARN"],
+    },
 }
