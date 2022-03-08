@@ -216,6 +216,7 @@ IGNORED_INCLUDE_DEPENDENCY = {
     "ulocdata.h": ["ures.h", "uset.h", ],
     "unorm2.h": ["uset.h", ],
     "ustring.h": ["uiter.h", ],
+    "utrans.h": ["uset.h", ],
 }
 
 IGNORED_HEADER_FOR_DOXYGEN_GROUPING = set([
