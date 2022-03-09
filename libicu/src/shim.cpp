@@ -898,10 +898,10 @@ int32_t uenum_count(UEnumeration * en, UErrorCode * status) {
 const char * uenum_next(UEnumeration * en, int32_t * resultLength, UErrorCode * status) {
   return U_ICU_ENTRY_POINT_RENAME(uenum_next)(en, resultLength, status);
 }
-UEnumeration * uenum_openCharStringsEnumeration(const char *const  strings[], int32_t count, UErrorCode * ec) {
+UEnumeration * uenum_openCharStringsEnumeration(const char *const strings[], int32_t count, UErrorCode * ec) {
   return U_ICU_ENTRY_POINT_RENAME(uenum_openCharStringsEnumeration)(strings, count, ec);
 }
-UEnumeration * uenum_openUCharStringsEnumeration(const UChar *const  strings[], int32_t count, UErrorCode * ec) {
+UEnumeration * uenum_openUCharStringsEnumeration(const UChar *const strings[], int32_t count, UErrorCode * ec) {
   return U_ICU_ENTRY_POINT_RENAME(uenum_openUCharStringsEnumeration)(strings, count, ec);
 }
 void uenum_reset(UEnumeration * en, UErrorCode * status) {
