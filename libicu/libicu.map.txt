@@ -316,4 +316,15 @@ LIBICU_T { # introduced=Tiramisu
     ucol_setMaxVariable;
     ucol_strcoll;
     ucol_strcollUTF8;
+    utrans_clone;
+    utrans_close;
+    utrans_openIDs;
+    utrans_openInverse;
+    utrans_openU;
+    utrans_setFilter;
+    utrans_toRules;
+    utrans_trans;
+    utrans_transIncremental;
+    utrans_transIncrementalUChars;
+    utrans_transUChars;
 } LIBICU_31;

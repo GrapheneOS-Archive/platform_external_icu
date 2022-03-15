@@ -15,6 +15,7 @@
 #include <unicode/uscript.h>
 #include <unicode/ustring.h>
 #include <unicode/utext.h>
+#include <unicode/utrans.h>
 #include <unicode/utypes.h>
 #include <unicode/uversion.h>
 
@@ -314,6 +315,17 @@
 #undef utext_previous32
 #undef utext_previous32From
 #undef utext_setNativeIndex
+#undef utrans_clone
+#undef utrans_close
+#undef utrans_openIDs
+#undef utrans_openInverse
+#undef utrans_openU
+#undef utrans_setFilter
+#undef utrans_toRules
+#undef utrans_trans
+#undef utrans_transIncremental
+#undef utrans_transIncrementalUChars
+#undef utrans_transUChars
 
 extern "C" {
 void u_charAge(UChar32 c, UVersionInfo versionArray) {
@@ -1200,5 +1212,38 @@ UChar32 utext_previous32From(UText * ut, int64_t nativeIndex) {
 }
 void utext_setNativeIndex(UText * ut, int64_t nativeIndex) {
   U_ICU_ENTRY_POINT_RENAME(utext_setNativeIndex)(ut, nativeIndex);
+}
+UTransliterator * utrans_clone(const UTransliterator * trans, UErrorCode * status) {
+  return U_ICU_ENTRY_POINT_RENAME(utrans_clone)(trans, status);
+}
+void utrans_close(UTransliterator * trans) {
+  U_ICU_ENTRY_POINT_RENAME(utrans_close)(trans);
+}
+UEnumeration * utrans_openIDs(UErrorCode * pErrorCode) {
+  return U_ICU_ENTRY_POINT_RENAME(utrans_openIDs)(pErrorCode);
+}
+UTransliterator * utrans_openInverse(const UTransliterator * trans, UErrorCode * status) {
+  return U_ICU_ENTRY_POINT_RENAME(utrans_openInverse)(trans, status);
+}
+UTransliterator * utrans_openU(const UChar * id, int32_t idLength, UTransDirection dir, const UChar * rules, int32_t rulesLength, UParseError * parseError, UErrorCode * pErrorCode) {
+  return U_ICU_ENTRY_POINT_RENAME(utrans_openU)(id, idLength, dir, rules, rulesLength, parseError, pErrorCode);
+}
+void utrans_setFilter(UTransliterator * trans, const UChar * filterPattern, int32_t filterPatternLen, UErrorCode * status) {
+  U_ICU_ENTRY_POINT_RENAME(utrans_setFilter)(trans, filterPattern, filterPatternLen, status);
+}
+int32_t utrans_toRules(const UTransliterator * trans, UBool escapeUnprintable, UChar * result, int32_t resultLength, UErrorCode * status) {
+  return U_ICU_ENTRY_POINT_RENAME(utrans_toRules)(trans, escapeUnprintable, result, resultLength, status);
+}
+void utrans_trans(const UTransliterator * trans, UReplaceable * rep, const UReplaceableCallbacks * repFunc, int32_t start, int32_t * limit, UErrorCode * status) {
+  U_ICU_ENTRY_POINT_RENAME(utrans_trans)(trans, rep, repFunc, start, limit, status);
+}
+void utrans_transIncremental(const UTransliterator * trans, UReplaceable * rep, const UReplaceableCallbacks * repFunc, UTransPosition * pos, UErrorCode * status) {
+  U_ICU_ENTRY_POINT_RENAME(utrans_transIncremental)(trans, rep, repFunc, pos, status);
+}
+void utrans_transIncrementalUChars(const UTransliterator * trans, UChar * text, int32_t * textLength, int32_t textCapacity, UTransPosition * pos, UErrorCode * status) {
+  U_ICU_ENTRY_POINT_RENAME(utrans_transIncrementalUChars)(trans, text, textLength, textCapacity, pos, status);
+}
+void utrans_transUChars(const UTransliterator * trans, UChar * text, int32_t * textLength, int32_t textCapacity, int32_t start, int32_t * limit, UErrorCode * status) {
+  U_ICU_ENTRY_POINT_RENAME(utrans_transUChars)(trans, text, textLength, textCapacity, start, limit, status);
 }
 }
