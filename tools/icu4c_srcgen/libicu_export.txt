@@ -339,3 +339,16 @@ utext_setNativeIndex,31
 #   utext_getPreviousNativeIndex
 #   utext_hasMetaData
 #   utext_isLengthExpensive
+utrans_clone,T
+utrans_close,T
+utrans_openIDs,T
+utrans_openInverse,T
+utrans_openU,T
+utrans_setFilter,T
+utrans_toRules,T
+utrans_trans,T
+utrans_transIncremental,T
+utrans_transIncrementalUChars,T
+utrans_transUChars,T
+# Please expose the following API when USet API is exposed.
+#   utrans_getSourceSet
