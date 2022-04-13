@@ -22,6 +22,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
@@ -1506,6 +1507,7 @@ public class TimeZoneTest extends TestFmwk
     }
 
     @Test
+    @Ignore
     public void TestCanonicalID() {
         // Olson (IANA) tzdata used to have very few "Link"s long time ago.
         // This test case was written when most of CLDR canonical time zones are
