@@ -21,6 +21,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
@@ -1503,6 +1504,7 @@ public class TimeZoneTest extends TestFmwk
     }
 
     @Test
+    @Ignore
     public void TestCanonicalID() {
         // Some canonical IDs in CLDR are defined as "Link"
         // in Olson tzdata.
