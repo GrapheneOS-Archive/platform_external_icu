@@ -267,7 +267,7 @@ ar_XB{
         TM{"؜‮Turkmenistan‬؜"}
         TN{"؜‮Tunisia‬؜"}
         TO{"؜‮Tonga‬؜"}
-        TR{"؜‮Turkey‬؜"}
+        TR{"؜‮Türkiye‬؜"}
         TT{"؜‮Trinidad‬؜ & ؜‮Tobago‬؜"}
         TV{"؜‮Tuvalu‬؜"}
         TW{"؜‮Taiwan‬؜"}
@@ -313,5 +313,6 @@ ar_XB{
         CZ{"؜‮Czech‬؜ ؜‮Republic‬؜"}
         SZ{"؜‮Swaziland‬؜"}
         TL{"؜‮East‬؜ ؜‮Timor‬؜"}
+        TR{"؜‮Turkey‬؜"}
     }
 }
