@@ -10,7 +10,6 @@ en_GB{
         MF{"St Martin"}
         PM{"St Pierre & Miquelon"}
         SH{"St Helena"}
-        TR{"Turkey"}
         VC{"St Vincent & the Grenadines"}
     }
 }
