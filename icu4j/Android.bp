@@ -47,6 +47,8 @@ java_library {
         "//external/jimfs/jimfs",
         "//external/robolectric-shadows/robolectric",
         "//external/robolectric-shadows/shadows/framework",
+        "//external/robolectric/robolectric",
+        "//external/robolectric/shadows/framework",
         "//system/timezone/input_tools/android/telephonylookup_generator",
         "//system/timezone/input_tools/android/tzlookup_generator",
     ],
@@ -127,6 +129,7 @@ java_library {
     name: "icu4j-icudata-jarjar",
     visibility: [
         "//external/robolectric-shadows",
+        "//external/robolectric",
         "//frameworks/layoutlib",
     ],
     defaults: ["icu4j-defaults"],
@@ -138,6 +141,7 @@ java_library {
     name: "icu4j-icutzdata-jarjar",
     visibility: [
         "//external/robolectric-shadows",
+        "//external/robolectric",
         "//frameworks/layoutlib",
     ],
     defaults: ["icu4j-defaults"],
