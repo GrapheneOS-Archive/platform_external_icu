@@ -151,6 +151,7 @@ java_library {
     name: "core-icu4j-for-host",
     visibility: [
         "//art/build",
+        "//external/robolectric",
         "//external/robolectric-shadows",
         "//frameworks/layoutlib",
         "//packages/modules/RuntimeI18n/apex",
